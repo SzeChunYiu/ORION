@@ -140,14 +140,54 @@ class TestThePublishedCountsAreAnInstance:
         assert broken["counts_reproduced"] is False
 
 
-class TestTheGraphCarriesTheCount:
-    def test_every_wrong_graph_moves_the_discriminating_count(
+class TestWhatTheCountsCanAndCannotIdentify:
+    """The counts confirm a reachability class; the theorems pin the graph.
+
+    Written this way because the first version of this check tried three wrong
+    graphs, watched all three collapse to zero, and concluded the counts
+    identified the interpretation. They do not: three further graphs reproduce
+    1,055 exactly.
+    """
+
+    def test_the_counts_do_not_identify_the_star(self, sensitivity: dict) -> None:
+        assert sensitivity["counts_alone_identify_the_interpretation"] is False
+        assert set(sensitivity["variants_the_counts_cannot_distinguish_from_the_star"]) == {
+            "coordinates_chained_into_the_certificate",
+            "star_with_coordinate_cross_edges",
+            "complete_graph",
+        }
+
+    def test_every_indistinguishable_graph_is_refuted_by_a_theorem(
         self, sensitivity: dict
     ) -> None:
-        assert sensitivity["every_wrong_graph_changes_the_failure_count"] is True
-        assert set(sensitivity["variants_that_change_the_failure_count"]) == set(
-            sensitivity["variants"]
-        )
+        # This is the load-bearing assertion of the module. A variant that
+        # escaped both the counts and the theorems would leave the
+        # interpretation genuinely under-determined.
+        assert sensitivity["every_indistinguishable_variant_is_caught_by_a_theorem"] is True
+        for name in sensitivity["variants_the_counts_cannot_distinguish_from_the_star"]:
+            assert sensitivity["variants"][name]["coordinates_reopened_as_collateral"] > 0, name
+
+    def test_the_star_itself_has_no_collateral_reopening(self, counts: dict) -> None:
+        # The property the three indistinguishable graphs violate must hold of
+        # the interpretation, or the discriminator discriminates against it too.
+        from orion.programme.mechanized import load_executable_model
+
+        model = load_executable_model(REPO_ROOT / cg.EXECUTABLE_MODEL, "p6_star_check")
+        width = len(cg.COORDINATES)
+        star = [(index, width) for index in range(width)]
+        for damaged in ((0,), (0, 1), (0, 1, 2, 3, 4)):
+            reopened = model.descendants(width + 1, star, frozenset(damaged))
+            assert reopened == frozenset({width}), damaged
+
+    def test_leaving_the_reachability_class_moves_the_count(
+        self, sensitivity: dict
+    ) -> None:
+        variants = sensitivity["variants"]
+        assert variants["one_coordinate_does_not_support_the_certificate"][
+            "proper_subset_failures"
+        ] == 975
+        for name in ("edges_reversed", "no_support_edges"):
+            assert variants[name]["proper_subset_failures"] == 0, name
 
     def test_the_restoration_count_is_reported_as_non_discriminating(
         self, sensitivity: dict
@@ -168,6 +208,9 @@ class TestTheReport:
         assert report["published_counts"]["counts_reproduced"] is True
         assert report["frame_conditions"]["every_condition_carries_a_theorem"] is True
         assert any("155 tests the interpretation" in item for item in report["not_licensed"])
+        assert any(
+            "identify the star graph" in item for item in report["not_licensed"]
+        )
         assert any("independent review" in item for item in report["not_licensed"])
 
     def test_the_date_is_supplied_not_read_from_the_clock(self) -> None:

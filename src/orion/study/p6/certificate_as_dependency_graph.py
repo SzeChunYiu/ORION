@@ -446,13 +446,28 @@ def recompute_published_counts(repo_root: Any) -> dict[str, Any]:
 
 
 def counts_are_sensitive_to_the_interpretation(repo_root: Any) -> dict[str, Any]:
-    """Would a wrong interpretation give the same numbers?
+    """Do the published counts identify the interpretation? They do not.
 
     Reproducing two integers through a verified implementation is worth nothing
-    if the implementation is being asked a question whose answer does not depend
-    on the interpretation. Three wrong graphs are tried: the edges reversed so
-    the certificate supports its coordinates, the star with no edges at all, and
-    a chain in which each coordinate supports only the next.
+    if the question being asked has the same answer under a wrong reading. Six
+    dependency graphs are tried against the star. Three break it and three do
+    not, and the three that do not are the finding: a chain running through the
+    coordinates into the certificate, the star with extra coordinate-to-
+    coordinate edges, and the complete graph all return 1,055 exactly.
+
+    So the counts do not pin the star. What they test is the reachability class
+    --- whether every coordinate reaches the certificate --- and every graph in
+    that class gives the same pair. Removing one coordinate's support edge
+    leaves the class and the count moves to 975; reversing, deleting or
+    truncating the edges leaves it and the count collapses to 0.
+
+    The star is pinned by the theorems instead, and by which frame condition
+    each needs: under the chain an undamaged coordinate downstream of the damage
+    *is* reopened, which is exactly what
+    ``UNDAMAGED_COORDINATES_ARE_NOT_REOPENED`` forbids and what dropping
+    ``coordinates_do_not_support_each_other`` loses. That is checked here too,
+    rather than argued: the collateral reopening the counts cannot see is
+    counted directly.
     """
 
     from pathlib import Path
@@ -460,24 +475,43 @@ def counts_are_sensitive_to_the_interpretation(repo_root: Any) -> dict[str, Any]
     model = load_executable_model(Path(repo_root) / EXECUTABLE_MODEL, "p6_finite_models_cert_alt")
     width = len(COORDINATES)
     cert = width
+    star = [(index, cert) for index in range(width)]
 
-    variants = {
+    variants: dict[str, list[tuple[int, int]]] = {
         "edges_reversed": [(cert, index) for index in range(width)],
         "no_support_edges": [],
-        "coordinates_chained_not_starred": [
+        "coordinates_chained_without_the_certificate": [
             (index, index + 1) for index in range(width - 1)
+        ],
+        "one_coordinate_does_not_support_the_certificate": [
+            (index, cert) for index in range(1, width)
+        ],
+        "coordinates_chained_into_the_certificate": [
+            (index, index + 1) for index in range(width)
+        ],
+        "star_with_coordinate_cross_edges": star + [(0, 1), (1, 2)],
+        "complete_graph": [
+            (source, target)
+            for source in range(width + 1)
+            for target in range(width + 1)
+            if source != target
         ],
     }
 
-    outcomes: dict[str, dict[str, int]] = {}
+    outcomes: dict[str, dict[str, Any]] = {}
     for name, edges in variants.items():
         failures = 0
         restorations = 0
+        collateral = 0
         for _donor in DONORS:
             for size in range(1, width + 1):
                 for damaged in combinations(range(width), size):
                     if cert not in model.descendants(width + 1, edges, frozenset()):
                         restorations += 1
+                    reopened = model.descendants(width + 1, edges, frozenset(damaged))
+                    collateral += sum(
+                        1 for node in reopened if node != cert and node not in damaged
+                    )
                     for repaired_size in range(len(damaged)):
                         for repaired in combinations(damaged, repaired_size):
                             residue = frozenset(set(damaged) - set(repaired))
@@ -486,22 +520,47 @@ def counts_are_sensitive_to_the_interpretation(repo_root: Any) -> dict[str, Any]
         outcomes[name] = {
             "full_restorations": restorations,
             "proper_subset_failures": failures,
+            "coordinates_reopened_as_collateral": collateral,
         }
 
-    discriminating = [
+    indistinguishable = sorted(
         name
         for name, counts in outcomes.items()
-        if counts["proper_subset_failures"] != PUBLISHED_PROPER_SUBSET_FAILURES
-    ]
+        if counts["proper_subset_failures"] == PUBLISHED_PROPER_SUBSET_FAILURES
+    )
+    caught_by_collateral = sorted(
+        name for name in indistinguishable if outcomes[name]["coordinates_reopened_as_collateral"]
+    )
     return {
         "variants": outcomes,
-        "variants_that_change_the_failure_count": discriminating,
-        "every_wrong_graph_changes_the_failure_count": len(discriminating) == len(variants),
+        "variants_the_counts_cannot_distinguish_from_the_star": indistinguishable,
+        "of_those_caught_by_collateral_reopening": caught_by_collateral,
+        "counts_alone_identify_the_interpretation": not indistinguishable,
+        "every_indistinguishable_variant_is_caught_by_a_theorem": (
+            sorted(indistinguishable) == sorted(caught_by_collateral)
+        ),
+        "what_the_counts_actually_test": (
+            "Whether every coordinate reaches the certificate, and nothing more. Every "
+            "graph in that reachability class returns 155 and 1,055, including a chain "
+            "through the coordinates, the star with coordinate cross-edges and the "
+            "complete graph. Dropping one coordinate's support edge stays in reach of "
+            "the question and moves the count to 975; reversing or deleting the edges "
+            "leaves the class and collapses it to 0. The counts therefore confirm the "
+            "reachability class, not the star."
+        ),
+        "what_pins_the_star": (
+            "The theorems, and specifically UNDAMAGED_COORDINATES_ARE_NOT_REOPENED. "
+            "Every variant the counts cannot distinguish reopens coordinates as "
+            "collateral damage, which that theorem forbids and which dropping the frame "
+            "condition coordinates_do_not_support_each_other loses. The collateral count "
+            "is reported per variant above so this is a measurement rather than an "
+            "argument."
+        ),
         "the_restoration_count_does_not_discriminate": (
             "155 is the number of (donor, non-empty damage) pairs and does not depend on "
             "the graph at all -- a full repair leaves nothing changed, so no graph "
-            "reopens anything. Every variant below returns 155. The 1,055 is the count "
-            "that tests the interpretation, and it is the count that moves."
+            "reopens anything. Every variant returns 155. The 1,055 is the count that "
+            "moves, and it only moves out of the reachability class."
         ),
     }
 
@@ -547,14 +606,26 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "P6-U-T1 verified against them, rather than a separate enumeration that "
             "agrees with them. Each of the four frame conditions is shown to carry at "
             "least one theorem by dropping it, and three wrong dependency graphs are "
-            "shown to change the failure count, and each of the three surviving "
+            "tried against the interpretation, and each of the three surviving frame "
             "conditions is necessary: dropping the support edge loses withdrawal and "
             "minimality, dropping the edge restriction loses both collateral-damage "
-            "theorems, and dropping the certificate/coordinate distinction loses three."
+            "theorems and the derived sink, and dropping the certificate/coordinate "
+            "distinction loses four. The counts do not carry the interpretation on "
+            "their own and this is measured rather than assumed: a chain through the "
+            "coordinates into the certificate, the star with coordinate cross-edges and "
+            "the complete graph all return 1,055 exactly, because the counts test "
+            "whether every coordinate reaches the certificate and nothing further. "
+            "Every one of those three is refuted by a theorem instead -- each reopens "
+            "coordinates as collateral damage, which UNDAMAGED_COORDINATES_ARE_NOT_"
+            "REOPENED forbids -- so what pins the star is the proof, with the counts "
+            "confirming the reachability class."
         ),
         "not_licensed": [
             "any claim that 155 tests the interpretation; it is the number of (donor, "
             "damage) pairs and is unchanged by every wrong graph tried",
+            "any claim that the two counts identify the star graph; three structurally "
+            "different graphs reproduce 1,055 exactly, and only the theorems separate "
+            "them",
             "any claim that the donor axis extends the result; it enters neither the "
             "graph nor the changed set and multiplies 31 and 211 by five",
             "independent review: the interpretation, the theorems and the tests were "
@@ -601,8 +672,10 @@ def main(argv: list[str]) -> int:
     print(f"  every frame condition carries a theorem: {frames['every_condition_carries_a_theorem']}")
     sens = report["interpretation_sensitivity"]
     print(
-        "  every wrong graph moves the failure count: "
-        f"{sens['every_wrong_graph_changes_the_failure_count']}"
+        "  counts alone identify the interpretation: "
+        f"{sens['counts_alone_identify_the_interpretation']} "
+        f"(indistinguishable: {len(sens['variants_the_counts_cannot_distinguish_from_the_star'])}, "
+        f"all caught by a theorem: {sens['every_indistinguishable_variant_is_caught_by_a_theorem']})"
     )
 
     if not report["all_discharged"]:
@@ -614,8 +687,12 @@ def main(argv: list[str]) -> int:
     if not frames["every_condition_carries_a_theorem"]:
         print(f"INERT FRAME CONDITIONS: {frames['inert_conditions']}")
         return 3
-    if not sens["every_wrong_graph_changes_the_failure_count"]:
-        print("A WRONG DEPENDENCY GRAPH REPRODUCED THE PUBLISHED FAILURE COUNT")
+    if not sens["every_indistinguishable_variant_is_caught_by_a_theorem"]:
+        # The counts do not identify the star and are not asked to. What must
+        # hold is that every graph they cannot distinguish is refuted by a
+        # theorem instead; a variant that escapes both would leave the
+        # interpretation genuinely under-determined.
+        print("A WRONG DEPENDENCY GRAPH ESCAPED BOTH THE COUNTS AND THE THEOREMS")
         return 3
     return 0
 
