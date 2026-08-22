@@ -9,6 +9,8 @@ on:
       - 'packages/orion-research-harness/src/orion_research_harness/ocme_runtime.py'
       - 'packages/orion-research-harness/tests/test_paper_*.py'
       - 'packages/orion-research-harness/tests/test_epistemic_*.py'
+      - 'packages/orion-research-harness/tests/test_p8_*.py'
+      - 'packages/orion-research-harness/tests/test_research_saturation_*.py'
       - 'packages/orion-research-harness/tests/test_ocme_runtime.py'
       - 'packages/orion-research-harness/pyproject.toml'
       - 'development/orion-research-harness/PAPER_CONTRACT_*'
@@ -43,6 +45,8 @@ jobs:
             packages/orion-research-harness/tests/test_paper_runtime_cli.py \
             packages/orion-research-harness/tests/test_epistemic_mechanics_p6.py \
             packages/orion-research-harness/tests/test_epistemic_authority_p8.py \
+            packages/orion-research-harness/tests/test_p8_scope_widening_regression.py \
+            packages/orion-research-harness/tests/test_research_saturation_route_independence_regression.py \
             packages/orion-research-harness/tests/test_ocme_runtime.py \
             packages/orion-research-harness/tests/test_paper_programme_runtime.py
       - name: Execute P0 semantic paper-contract conformance gate
