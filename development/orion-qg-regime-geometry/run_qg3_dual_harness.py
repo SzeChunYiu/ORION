@@ -22,6 +22,7 @@ GENERIC_WS = REPO_ROOT / ".orion-qg-qg3-generic"
 NATIVE_WS = REPO_ROOT / ".orion-qg-qg3-native"
 STAGE1_PREFIX = "ORIONQG_QG3_STAGE1="
 GENERIC_PREFIX = "ORIONQG_QG3_GENERIC_ADMISSION="
+STAGE1_TIMEOUT_SECONDS = 300
 
 
 def _token(stdout: str, prefix: str) -> dict[str, Any]:
@@ -36,7 +37,8 @@ def _token(stdout: str, prefix: str) -> dict[str, Any]:
 
 def _run_local(workspace: ResearchWorkspace, code: str):
     request = workspace.get_or_create_request(
-        capability="PYTHON", payload={"code": code, "cwd": ".", "timeout": 120}
+        capability="PYTHON",
+        payload={"code": code, "cwd": ".", "timeout": STAGE1_TIMEOUT_SECONDS},
     )
     result = service_local_request(workspace, request.request_id)
     if not result.success:
@@ -142,6 +144,7 @@ def main() -> int:
         "native_decision": native_decision,
         "both_open": both_open,
         "selected": stage1.get("selected"),
+        "stage1_timeout_seconds": STAGE1_TIMEOUT_SECONDS,
     }, indent=2, sort_keys=True))
     return 0
 
