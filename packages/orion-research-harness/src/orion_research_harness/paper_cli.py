@@ -107,11 +107,14 @@ def main(argv: list[str] | None = None) -> int:
             min_independent_flat_routes=args.min_independent_flat_routes,
             window=args.window,
         )
+        report_payload = jsonable(report)
+        report_payload["grants_absolute_completeness"] = report.grants_absolute_completeness
+        report_payload["grants_self_promotion"] = report.grants_self_promotion
         _print(
             {
                 "schema": "ORION.HarnessResearchSaturationAssessment.v1",
                 "rounds": jsonable(rounds),
-                "report": jsonable(report),
+                "report": report_payload,
                 "grants_scientific_authority": False,
                 "grants_novelty_authority": False,
                 "grants_global_task_stop_authority": False,
