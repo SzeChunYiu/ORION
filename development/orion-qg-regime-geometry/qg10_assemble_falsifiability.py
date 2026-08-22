@@ -31,13 +31,13 @@ import json
 import pathlib
 import subprocess
 import sys
+import tempfile
 
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 VERIFIER = HERE / "qg10_generic_verify.py"
 RECEIPT = REPO / "research" / "extensions" / "orion-qg" / "QG10_INTERVAL_GEOMETRY_RESULTS.json"
 ARTIFACT = HERE / "QG10_FALSIFIABILITY.json"
-SCRATCH = pathlib.Path("/tmp/claude-0/-home-user-ORION/67dbe08a-4663-51f4-8d51-a98eddff850a/scratchpad/qg10")
 sys.path.insert(0, str(REPO / "packages" / "orion-research-harness" / "src"))
 
 from orion_research_harness.falsifiability import (  # noqa: E402
@@ -129,27 +129,32 @@ TAMPERS = [
 
 
 def main() -> int:
-    SCRATCH.mkdir(parents=True, exist_ok=True)
     receipt = json.loads(RECEIPT.read_text())
 
-    clean_path = SCRATCH / "clean.json"
-    clean_path.write_text(json.dumps(receipt))
-    clean_decision, clean_why = run(clean_path)
+    # A managed temporary directory, as the qg24-qg27 assemblers use. An earlier
+    # version hardcoded a session-specific path under /tmp/claude-0/<uuid>, which
+    # is ephemeral state that does not belong in a research record and would not
+    # exist on anyone else's machine. Reported by Cursor Bugbot.
+    with tempfile.TemporaryDirectory(prefix="qg10-tamper-") as tmp:
+        scratch = pathlib.Path(tmp)
+        clean_path = scratch / "clean.json"
+        clean_path.write_text(json.dumps(receipt))
+        clean_decision, clean_why = run(clean_path)
 
-    cases = []
-    for name, desc, mutate, expected in TAMPERS:
-        p = SCRATCH / f"{name}.json"
-        p.write_text(json.dumps(mutate(copy.deepcopy(receipt))))
-        decision, why = run(p)
-        cases.append({
-            "case": name, "tamper": desc,
-            "verdict": "REJECT" if decision == "REJECT" else "ACCEPT",
-            "failed_checks": why,
-            "result_digest_recomputed_so_copy_is_internally_self_consistent": True,
-            "note": "this receipt carries no self-digest field, so there is no hash "
-                    "for a tamper to invalidate and every rejection is necessarily a "
-                    "re-derivation",
-        })
+        cases = []
+        for name, desc, mutate, expected in TAMPERS:
+            p = scratch / f"{name}.json"
+            p.write_text(json.dumps(mutate(copy.deepcopy(receipt))))
+            decision, why = run(p)
+            cases.append({
+                "case": name, "tamper": desc,
+                "verdict": "REJECT" if decision == "REJECT" else "ACCEPT",
+                "failed_checks": why,
+                "result_digest_recomputed_so_copy_is_internally_self_consistent": True,
+                "note": "this receipt carries no self-digest field, so there is no "
+                        "hash for a tamper to invalidate and every rejection is "
+                        "necessarily a re-derivation",
+            })
 
     expected_check = {name: exp for name, _d, _m, exp in TAMPERS}
     demo = {
