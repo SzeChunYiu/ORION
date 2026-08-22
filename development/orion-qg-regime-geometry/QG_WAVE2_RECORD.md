@@ -308,6 +308,70 @@ authority `ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6`).
   is exactly the FAILED_DECOMPOSITION move the reopen adjudication independently derived
   for this negative.
 
+## QG-21 — REAL CHEMISTRY UNDER A FAULT-TOLERANT OBJECTIVE: A TRUE IMPROVEMENT THAT IS NOT A WIN
+
+`QG21_FT_CHEMISTRY_RESULTS.json` (protocol frozen pre-outcome, sha256 `88c2e5fa…7fc9`;
+13/13 gates; double-run byte-identical incl. the stage-1 predictions file; independent
+verifier **ACCEPT**, re-run by the orchestrator). Terminal
+`QG21_REAL_CHEMISTRY_STRICTLY_IMPROVED_UNDER_FT_OBJECTIVE` — and the qualification is the
+result.
+
+**Q1 refuted the premise the lane was launched on.** The lane was commissioned on the
+reasoning that QG-2's O1 shows chemistry flipping to trade regimes under a T-weighted
+objective, so a better FT compilation must exist. Deriving the cost model from the
+committed circuit protocols instead of adopting O1 by fiat shows **O1 is not derivable
+from fault-tolerant accounting**: O1 charges T per *support unit of a frame branch*,
+while the physics charges T per *rotation*, and a rotation's T cost is **independent of
+its axis weight**. O1 is retained only as a control point, flagged
+`derivable_from_ft_accounting: false`.
+
+**The structural consequence bounds the entire programme's applied ceiling.** Every
+compilation in this grammar carries exactly **9 arbitrary-angle rotations**
+(`ROTATIONS_R6M == 9`, verified in-run) — one per exponential, `2m−1 = 3` per block —
+and **no member of the family can change that number**. Frames, Tags and Restores are
+Clifford. So TARE-family regime geometry can optimize Clifford two-qubit gates and
+*nothing else*; the T-count, which dominates fault-tolerant cost, is fixed by the grammar
+before any optimization begins. That is a limit on what this line of work could ever
+deliver for FT compilation, and it was not previously stated anywhere.
+
+**The lane also disclosed, in advance, that its primary result was entailed.** A frozen
+reduction lemma notes that within this family θ_FT differences equal the committed
+objective's differences plus a constant `9κ_T` — so θ_FT's outcome on the receipted rows
+follows from the R6Q receipt rather than being discovered. Written into the protocol
+*before* the run.
+
+**Results on 90 real DUCC matchings** (30 receipted rows + 60 fresh QG-3 track-A Benzene
+rows), predictions digest-stamped `d0332530…` with the referee **structurally stubbed**
+during stage 1 (`referee_calls_during_stage1: 0`):
+
+| objective | FT-derivable | donor-exact | strictly improved | Δmax | predicted == referee |
+|---|---|---|---|---|---|
+| **θ_FT (4,2,2,1)** | yes | **90/90** | **0** | 0 | 90/90 |
+| S1 (4,2,4,2) | yes | 72/90 | **18** | 2 | **90/90** |
+| S2, S3 | yes | 90/90 | 0 | 0 | 90/90 |
+| O1 (control) | **no** | 0/90 | 90 | 13 | **0/90** |
+
+The 18 S1 improvements are real: every one predicted exactly before ground truth opened,
+Δ = 2 on all, mechanism the committed **borrow** trade (a weight-2 central-branch frame
+costing 2 buying two Restore units worth 4), with all 108 improved compilations
+serialized verbatim as usable artifacts. The O1 control is instructive in the opposite
+direction — 90 improvements but `predicted == referee` on **0/90**, because O1's optima
+lie outside the committed two-trade families entirely, exactly as QG-2's
+`identity_two_trade_count: 0` records.
+
+**Q3, stated honestly**: Δ = 2 two-qubit Clifford gates, median 10% of the donor's
+Clifford cost — against a compilation whose FT cost is dominated by ~270–900 T gates the
+grammar cannot touch. **Well under 1% of fault-tolerant cost. It is not a
+fault-tolerant win.** And under the primary, properly-derived θ_FT there is no
+improvement at all: donor-exactness survives on all 90 rows, extending the programme's
+real-library donor-exact census by 60 fresh rows.
+
+**Reading**: the applicability question this lane was built to settle is now settled, in
+the direction the evidence pointed rather than the direction the hypothesis hoped. The
+machinery does find real, prospectively-predicted improvements on real chemistry — and
+they are negligible where it counts, for a structural reason (fixed rotation count) that
+no further lane in this family can overcome.
+
 ## QG-15c — THE VOCABULARY: FLOOR 43 → 1, AND THE COLLISION DIAGNOSED
 
 `QG15C_VOCABULARY_RESULTS.json` (protocol frozen pre-outcome, sha256 `75481fb4…89feb`;
