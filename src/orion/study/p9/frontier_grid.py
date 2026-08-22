@@ -42,6 +42,7 @@ Run it::
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
@@ -139,6 +140,21 @@ VERDICT_NO_EVALUABLE_TEST = "T3_NO_EVALUABLE_CROSSING_TEST"
 VERDICT_OFF_GRID = "T3_OFF_GRID_CROSSING_CLAIMED"
 VERDICT_ON_GRID = "T3_CROSSINGS_ON_GRID"
 
+#: What the freeze *declares* about the environment it expected to run in.
+#:
+#: This was the whole story, and being only a declaration was a defect of the
+#: same shape as the ones this programme exists to catch. Two of its entries are
+#: claims about the machine --- no checkpoint present, provider access refused ---
+#: written by hand and checked by nothing. An environment that acquired a
+#: checkpoint would still be told it had none, and the grid would stay
+#: ``CANNOT_CHECK`` on a stale sentence rather than on a fact. A blocker nobody
+#: re-measures outlives the condition it describes.
+#:
+#: So the declaration stays, because it records what was expected, and
+#: :func:`probe_environment` measures the same facts on the machine actually
+#: running. The report carries both and says whether they agree. The grid becomes
+#: executable the moment the environment can execute it, without anyone
+#: remembering to edit this dict.
 ENVIRONMENT_BOUNDARY = {
     "open_weight_checkpoint_present": False,
     "outbound_provider_access": "proxy returns 403 to CONNECT for external providers",
@@ -148,6 +164,85 @@ ENVIRONMENT_BOUNDARY = {
         "a weaker proxy presented as the measurement"
     ),
 }
+
+#: Filename suffixes that mean "an open-weight checkpoint is on this disk".
+REPO_ROOT = Path(__file__).resolve().parents[4]
+
+CHECKPOINT_SUFFIXES = (".safetensors", ".gguf", ".onnx")
+CHECKPOINT_NAMES = ("pytorch_model.bin", "consolidated.00.pth")
+
+#: Runtimes that would be needed to evaluate one. Absence of all of them is
+#: sufficient on its own: a checkpoint nothing can load is not a scale ladder.
+CHECKPOINT_RUNTIMES = ("torch", "transformers", "llama_cpp", "onnxruntime")
+
+
+def probe_environment(repo_root: Path) -> dict[str, object]:
+    """Measure, on this machine, the facts :data:`ENVIRONMENT_BOUNDARY` declares.
+
+    Deliberately hermetic. Network reachability is *not* probed: a check that
+    reaches outward would make this function's result depend on the weather, and
+    the two local facts are already jointly sufficient --- with no checkpoint and
+    no runtime to load one, no model-scale ladder can be walked here whatever a
+    provider would have answered. The provider entry is therefore reported as
+    declared-only and labelled as such, rather than guessed at.
+    """
+
+    checkpoints: list[str] = []
+    for path in sorted(repo_root.rglob("*")):
+        if ".git" in path.parts or not path.is_file():
+            continue
+        if path.suffix in CHECKPOINT_SUFFIXES or path.name in CHECKPOINT_NAMES:
+            checkpoints.append(path.relative_to(repo_root).as_posix())
+            if len(checkpoints) >= 8:
+                break
+
+    runtimes = []
+    for name in CHECKPOINT_RUNTIMES:
+        if importlib.util.find_spec(name) is not None:
+            runtimes.append(name)
+
+    executable = bool(checkpoints) and bool(runtimes)
+    return {
+        "measured_on_this_machine": True,
+        "open_weight_checkpoint_present": bool(checkpoints),
+        "checkpoints_found": checkpoints,
+        "loading_runtimes_present": runtimes,
+        "grid_executable_here": executable,
+        "outbound_provider_access": "not probed; local facts are jointly sufficient",
+        "why": (
+            "a model-scale ladder needs a checkpoint and something able to load it; "
+            "neither is present"
+            if not executable
+            else "a checkpoint and a runtime able to load it are both present on this machine"
+        ),
+    }
+
+
+def environment_agreement(repo_root: Path) -> dict[str, object]:
+    """Whether the declared boundary still describes the machine in front of us."""
+
+    probe = probe_environment(repo_root)
+    disagreements = [
+        key
+        for key in ("open_weight_checkpoint_present", "grid_executable_here")
+        if ENVIRONMENT_BOUNDARY[key] != probe[key]
+    ]
+    return {
+        "declared": dict(ENVIRONMENT_BOUNDARY),
+        "measured": probe,
+        "agrees": not disagreements,
+        "disagreements": disagreements,
+        "detail": (
+            "the declared boundary still describes this machine"
+            if not disagreements
+            else (
+                "the declared boundary is stale on "
+                + ", ".join(disagreements)
+                + "; this environment can do more than the freeze assumed, and the grid "
+                "should be executed here rather than reported as unexecutable"
+            )
+        ),
+    }
 
 TERMINAL_DISPOSITION = (
     "P9-U-T3 remains BLOCKED. This freeze removes only the first half of its blocker -- the grid "
@@ -865,6 +960,7 @@ def audit_claimed_crossings(
 def assess_grid(
     outcomes: Mapping[str, CellOutcome],
     claimed_crossings: Sequence[ClaimedCrossing] = (),
+    repo_root: Path | None = None,
 ) -> dict[str, Any]:
     """Score the frozen grid against an outcome map. Three-valued."""
 
@@ -895,6 +991,9 @@ def assess_grid(
         "parameters_sha256": frozen_digest(),
         "claim_scope": CLAIM_SCOPE,
         "environment_boundary": dict(ENVIRONMENT_BOUNDARY),
+        "environment_agreement": environment_agreement(
+            repo_root if repo_root is not None else REPO_ROOT
+        ),
         "terminal_disposition": TERMINAL_DISPOSITION,
         "census": census,
         "sample_of_declared_cells": list(declared[:8]),
@@ -1090,7 +1189,7 @@ def main(argv: Sequence[str]) -> int:
         outcomes, claims = load_outcomes(args.outcomes)
     else:
         outcomes, claims = {}, ()
-    payload = assess_grid(outcomes, claims)
+    payload = assess_grid(outcomes, claims, repo_root=args.repo_root)
     payload["outcomes_file"] = str(args.outcomes) if args.outcomes is not None else None
 
     encoded = json.dumps(payload, indent=2, sort_keys=True) + "\n"
