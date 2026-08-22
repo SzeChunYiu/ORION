@@ -1,0 +1,2791 @@
+{
+  "authority": "ORION_QG15C_FEATURE_VOCABULARY_QG15C_FLOOR_PERSISTS__COLLISIONS_CHARACTERIZED__STABPREP_DONOR_EXACT_BOUNDARY_VOCABULARY_DETERMINATION_ON_VERIFIED_DOMAINS__NOT_R6",
+  "bindings": {
+    "qg15_confusions_reproduced": true,
+    "qg15_donor_censuses": {
+      "n1": 5,
+      "n2": 28,
+      "n3": 189
+    },
+    "qg15b_v1_E_floor": 43,
+    "qg15b_v1_cells": 243,
+    "qg15b_v1_mixed_cells": 12,
+    "qg15b_v1_mixed_records_verbatim": true,
+    "training_rows": 1146
+  },
+  "caps_disclosed": [
+    "runtime cap < 25 min per run",
+    "lattice frozen at K<=2, D<=6 (K<=2, D<=6; K=3 excluded by pre-freeze runtime arithmetic)",
+    "node budget 3000000 DFS expansions per lattice cell",
+    "mixed cells serialized verbatim capped at 20 (counts always exact)",
+    "held-out panel is the single seeded 120-state n=4 panel"
+  ],
+  "checkout_revision": "f7d6898ab0fa21e7684ac4a8ef8e5b94322b2800",
+  "chemistry_sources_read": false,
+  "claim_boundary": "All measurements are over the frozen finite domains and the frozen vocabularies only: StabPrep exhaustive n<=3 (1146 instances) with one seeded 120-state n=4 panel. The mixed-cell count and E_floor are properties of the frozen vocabulary on that domain, budget- and grid-independent, but not theorems for all n, for other vocabularies, or for other families. No impossibility claim is made. Ground-truth machinery is the committed QG-15/QG-15b machinery, imported unmodified, and earns no new credit. NOT_R6. No new subject data; the protected stretched-N2 subject is untouched.",
+  "gates": {
+    "G10_no_new_subject_data_no_network": true,
+    "G1_receipt_binding": true,
+    "G2_donor_validity": true,
+    "G3_schedule_trace_consistency": true,
+    "G4_referee_free_features": true,
+    "G5_heldout_discipline_stamp_first": true,
+    "G6_search_completeness_accounting": true,
+    "G7_surface_monotonicity": true,
+    "G8_floor_consistency_and_witness_reeval": true,
+    "G9_determinism_no_wallclock_in_digest": true
+  },
+  "heldout": {
+    "H1_cell_lookup": {
+      "confusion": {
+        "FN": 32,
+        "FP": 0,
+        "TN": 88,
+        "TP": 0,
+        "errors": 32
+      },
+      "panel_size": 120,
+      "rule": "predict donor-exact iff the held-out V2 vector equals a training cell whose training members are all donor-exact; unseen vectors predict negative and are reported separately",
+      "unseen_cells": 120
+    },
+    "H2_lattice_predicate": {
+      "cell": [
+        2,
+        4
+      ],
+      "confusion": {
+        "FN": 1,
+        "FP": 2,
+        "TN": 86,
+        "TP": 31,
+        "errors": 3
+      },
+      "train_errors": 16,
+      "witness": {
+        "conjunctions": [
+          [
+            {
+              "feature": "sched_steps_Y_and_sign",
+              "negated": false,
+              "op": "==",
+              "threshold": 0
+            },
+            {
+              "feature": "fac_cost_max",
+              "negated": false,
+              "op": "<=",
+              "threshold": 6
+            }
+          ],
+          [
+            {
+              "feature": "nSignZ",
+              "negated": false,
+              "op": "<=",
+              "threshold": 1
+            },
+            {
+              "feature": "sched_events_max",
+              "negated": false,
+              "op": "<=",
+              "threshold": 1
+            }
+          ],
+          [
+            {
+              "feature": "nCZ",
+              "negated": false,
+              "op": "==",
+              "threshold": 0
+            },
+            {
+              "feature": "C_D-LB",
+              "negated": false,
+              "op": "<=",
+              "threshold": 2
+            }
+          ],
+          [
+            {
+              "feature": "C_D-LB",
+              "negated": false,
+              "op": "<=",
+              "threshold": 4
+            },
+            {
+              "feature": "C_E3",
+              "negated": false,
+              "op": "==",
+              "threshold": 11
+            }
+          ]
+        ]
+      }
+    },
+    "labeled_after_stage_digest": true,
+    "panel": "QG-15 seeded n=4 panel (seed 20260821, 120 states, regenerated)",
+    "panel_internal_V2_floor": 0,
+    "panel_internal_V2_mixed_cells": 0,
+    "panel_positives": 32,
+    "verdict_H1": "HELDOUT_REFUTED(32/120)",
+    "verdict_H2": "HELDOUT_REFUTED(3/120)"
+  },
+  "network_access": false,
+  "novelty_credit": false,
+  "programme": "ORION-QG lane QG-15c (PROGRAMME_CHARTER_V1.md, issue #740); reopen-adjudicated successor of QG-15b (FAILED_DEFINITION)",
+  "protocol": "development/orion-qg-regime-geometry/QG15C_VOCABULARY_PROTOCOL_V1.md",
+  "protocol_sha256": "75481fb45a7f094ab667b4c416becf6c56d039a6f02d40d0481f041944d89feb",
+  "q1_collision_diagnosis": {
+    "cells_verbatim": [
+      {
+        "feature_vector": {
+          "C_D": 10,
+          "C_D-2n": 4,
+          "C_D-LB": 6,
+          "LB": 4,
+          "c": 2,
+          "n-c": 1,
+          "nCN": 1,
+          "nCN-(n-1)": -1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 0,
+          "r_X": 1
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 10,
+            "C_opt": 10,
+            "canonical_key": [
+              0,
+              3,
+              27,
+              28,
+              68,
+              71,
+              88,
+              95
+            ],
+            "donor_step_cost_profile": [
+              6,
+              0,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+ZZI",
+              "+YYI",
+              "+XXZ",
+              "-IIZ",
+              "-ZZZ",
+              "-XXI",
+              "-YYZ"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          },
+          "profiles_equal_as_multisets": true,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost profiles are ORDER-distinct permutations of one another: [6, 0, 4] (donor-exact) vs [0, 6, 4] (trade); every order-insensitive summary of the schedule is blind to this pair",
+          "trade_gap_C_D_minus_C_opt": 1,
+          "trade_member": {
+            "C_D": 10,
+            "C_opt": 9,
+            "canonical_key": [
+              0,
+              1,
+              70,
+              71,
+              112,
+              113,
+              118,
+              119
+            ],
+            "donor_step_cost_profile": [
+              0,
+              6,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 6,
+            "pauli": [
+              "+III",
+              "+ZII",
+              "-IZZ",
+              "-ZZZ",
+              "-IXX",
+              "-ZXX",
+              "-IYY",
+              "-ZYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 3,
+        "pos": 3,
+        "trade_gaps": [
+          1
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 11,
+          "C_D-2n": 5,
+          "C_D-LB": 6,
+          "LB": 5,
+          "c": 2,
+          "n-c": 1,
+          "nCN": 1,
+          "nCN-(n-1)": -1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 0,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 11,
+            "C_opt": 11,
+            "canonical_key": [
+              0,
+              14,
+              48,
+              54,
+              70,
+              72,
+              120,
+              126
+            ],
+            "donor_step_cost_profile": [
+              3,
+              4,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XZZ",
+              "+IXX",
+              "+IYY",
+              "-IZZ",
+              "-XII",
+              "-XXX",
+              "-XYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [3, 4, 4] (donor-exact) vs [1, 6, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 1,
+          "trade_member": {
+            "C_D": 11,
+            "C_opt": 10,
+            "canonical_key": [
+              0,
+              8,
+              70,
+              78,
+              112,
+              118,
+              120,
+              126
+            ],
+            "donor_step_cost_profile": [
+              1,
+              6,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 6,
+            "pauli": [
+              "+III",
+              "+XII",
+              "-IZZ",
+              "-XZZ",
+              "-IXX",
+              "-IYY",
+              "-XXX",
+              "-XYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 3,
+        "pos": 3,
+        "trade_gaps": [
+          1
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 9,
+          "C_D-2n": 3,
+          "C_D-LB": 5,
+          "LB": 4,
+          "c": 2,
+          "n-c": 1,
+          "nCN": 1,
+          "nCN-(n-1)": -1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 1,
+          "nY": 1,
+          "r_X": 1
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 9,
+            "C_opt": 9,
+            "canonical_key": [
+              0,
+              3,
+              29,
+              30,
+              68,
+              71,
+              89,
+              90
+            ],
+            "donor_step_cost_profile": [
+              5,
+              0,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+ZZI",
+              "+YXZ",
+              "+XYZ",
+              "-IIZ",
+              "-ZZZ",
+              "-YXI",
+              "-XYI"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          },
+          "profiles_equal_as_multisets": true,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": true,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost profiles are ORDER-distinct permutations of one another: [5, 0, 4] (donor-exact) vs [0, 5, 4] (trade); every order-insensitive summary of the schedule is blind to this pair",
+          "trade_gap_C_D_minus_C_opt": 1,
+          "trade_member": {
+            "C_D": 9,
+            "C_opt": 8,
+            "canonical_key": [
+              0,
+              1,
+              52,
+              53,
+              70,
+              71,
+              114,
+              115
+            ],
+            "donor_step_cost_profile": [
+              0,
+              5,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+ZII",
+              "+IXY",
+              "+ZXY",
+              "-IZZ",
+              "-ZZZ",
+              "-IYX",
+              "-ZYX"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 3,
+        "pos": 3,
+        "trade_gaps": [
+          1
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 10,
+          "C_D-2n": 4,
+          "C_D-LB": 5,
+          "LB": 5,
+          "c": 2,
+          "n-c": 1,
+          "nCN": 1,
+          "nCN-(n-1)": -1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 1,
+          "nY": 1,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 10,
+            "C_opt": 10,
+            "canonical_key": [
+              0,
+              15,
+              48,
+              54,
+              70,
+              73,
+              121,
+              127
+            ],
+            "donor_step_cost_profile": [
+              2,
+              4,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+YZZ",
+              "+IXX",
+              "+IYY",
+              "-IZZ",
+              "-YII",
+              "-YXX",
+              "-YYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": true,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [2, 4, 4] (donor-exact) vs [1, 5, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 1,
+          "trade_member": {
+            "C_D": 10,
+            "C_opt": 9,
+            "canonical_key": [
+              0,
+              8,
+              52,
+              60,
+              70,
+              78,
+              114,
+              122
+            ],
+            "donor_step_cost_profile": [
+              1,
+              5,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XII",
+              "+IXY",
+              "+XXY",
+              "-IZZ",
+              "-XZZ",
+              "-IYX",
+              "-XYX"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 3,
+        "pos": 3,
+        "trade_gaps": [
+          1
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 5,
+          "C_D-2n": 1,
+          "C_D-LB": 3,
+          "LB": 2,
+          "c": 2,
+          "n-c": 0,
+          "nCN": 0,
+          "nCN-(n-1)": -1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 5,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              13,
+              21,
+              24
+            ],
+            "donor_step_cost_profile": [
+              2,
+              3
+            ],
+            "n": 2,
+            "negative_sign_census": 2,
+            "pauli": [
+              "+II",
+              "+YX",
+              "-YI",
+              "-IX"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 2,
+              "2": 1
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [2, 3] (donor-exact) vs [1, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 5,
+            "C_opt": 3,
+            "canonical_key": [
+              0,
+              4,
+              10,
+              14
+            ],
+            "donor_step_cost_profile": [
+              1,
+              4
+            ],
+            "n": 2,
+            "negative_sign_census": 0,
+            "pauli": [
+              "+II",
+              "+XI",
+              "+IY",
+              "+XY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 2,
+              "2": 1
+            }
+          }
+        },
+        "n_values": [
+          2
+        ],
+        "neg": 2,
+        "pos": 2,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 5,
+          "C_D-2n": -1,
+          "C_D-LB": 3,
+          "LB": 2,
+          "c": 3,
+          "n-c": 0,
+          "nCN": 0,
+          "nCN-(n-1)": -2,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 5,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              1,
+              50,
+              51,
+              82,
+              83,
+              96,
+              97
+            ],
+            "donor_step_cost_profile": [
+              0,
+              2,
+              3
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+ZII",
+              "+IYX",
+              "+ZYX",
+              "-IYI",
+              "-ZYI",
+              "-IIX",
+              "-ZIX"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [0, 2, 3] (donor-exact) vs [0, 1, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 5,
+            "C_opt": 3,
+            "canonical_key": [
+              0,
+              1,
+              16,
+              17,
+              36,
+              37,
+              52,
+              53
+            ],
+            "donor_step_cost_profile": [
+              0,
+              1,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 0,
+            "pauli": [
+              "+III",
+              "+ZII",
+              "+IXI",
+              "+ZXI",
+              "+IIY",
+              "+ZIY",
+              "+IXY",
+              "+ZXY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 6,
+        "pos": 6,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 6,
+          "C_D-2n": 0,
+          "C_D-LB": 3,
+          "LB": 3,
+          "c": 3,
+          "n-c": 0,
+          "nCN": 0,
+          "nCN-(n-1)": -2,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 3
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 6,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              8,
+              50,
+              58,
+              82,
+              90,
+              96,
+              104
+            ],
+            "donor_step_cost_profile": [
+              1,
+              2,
+              3
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XII",
+              "+IYX",
+              "+XYX",
+              "-IYI",
+              "-XYI",
+              "-IIX",
+              "-XIX"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [1, 2, 3] (donor-exact) vs [1, 1, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 6,
+            "C_opt": 4,
+            "canonical_key": [
+              0,
+              8,
+              16,
+              24,
+              36,
+              44,
+              52,
+              60
+            ],
+            "donor_step_cost_profile": [
+              1,
+              1,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 0,
+            "pauli": [
+              "+III",
+              "+XII",
+              "+IXI",
+              "+XXI",
+              "+IIY",
+              "+XIY",
+              "+IXY",
+              "+XXY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 3,
+        "pos": 6,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 8,
+          "C_D-2n": 2,
+          "C_D-LB": 3,
+          "LB": 5,
+          "c": 2,
+          "n-c": 1,
+          "nCN": 1,
+          "nCN-(n-1)": -1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 8,
+            "C_opt": 8,
+            "canonical_key": [
+              0,
+              3,
+              27,
+              60,
+              88,
+              100,
+              103,
+              127
+            ],
+            "donor_step_cost_profile": [
+              6,
+              0,
+              2
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+ZZI",
+              "+YYI",
+              "+XXY",
+              "-XXI",
+              "-IIY",
+              "-ZZY",
+              "-YYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [6, 0, 2] (donor-exact) vs [4, 0, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              3,
+              24,
+              36,
+              39,
+              60,
+              91,
+              127
+            ],
+            "donor_step_cost_profile": [
+              4,
+              0,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 2,
+            "pauli": [
+              "+III",
+              "+ZZI",
+              "+XXI",
+              "+IIY",
+              "+ZZY",
+              "+XXY",
+              "-YYI",
+              "-YYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              2
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 1,
+              "2": 3,
+              "3": 3
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 6,
+        "pos": 6,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 11,
+          "C_D-2n": 5,
+          "C_D-LB": 3,
+          "LB": 8,
+          "c": 1,
+          "n-c": 2,
+          "nCN": 2,
+          "nCN-(n-1)": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 11,
+            "C_opt": 11,
+            "canonical_key": [
+              0,
+              7,
+              26,
+              29,
+              47,
+              104,
+              114,
+              117
+            ],
+            "donor_step_cost_profile": [
+              7,
+              4,
+              0
+            ],
+            "n": 3,
+            "negative_sign_census": 3,
+            "pauli": [
+              "+III",
+              "+ZZZ",
+              "+XYI",
+              "+YXZ",
+              "+YZY",
+              "-XIX",
+              "-IYX",
+              "-ZXY"
+            ],
+            "tensor_factor_sizes": [
+              3
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "2": 3,
+              "3": 4
+            }
+          },
+          "profiles_equal_as_multisets": true,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost profiles are ORDER-distinct permutations of one another: [7, 4, 0] (donor-exact) vs [4, 7, 0] (trade); every order-insensitive summary of the schedule is blind to this pair",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 11,
+            "C_opt": 9,
+            "canonical_key": [
+              0,
+              7,
+              24,
+              43,
+              44,
+              51,
+              52,
+              95
+            ],
+            "donor_step_cost_profile": [
+              4,
+              7,
+              0
+            ],
+            "n": 3,
+            "negative_sign_census": 1,
+            "pauli": [
+              "+III",
+              "+ZZZ",
+              "+XXI",
+              "+YZX",
+              "+XIY",
+              "+ZYX",
+              "+IXY",
+              "-YYZ"
+            ],
+            "tensor_factor_sizes": [
+              3
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "2": 3,
+              "3": 4
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 2,
+        "pos": 4,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 9,
+          "C_D-2n": 3,
+          "C_D-LB": 7,
+          "LB": 2,
+          "c": 3,
+          "n-c": 0,
+          "nCN": 0,
+          "nCN-(n-1)": -2,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 1,
+          "r_X": 2
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 9,
+            "C_opt": 9,
+            "canonical_key": [
+              0,
+              10,
+              38,
+              44,
+              66,
+              72,
+              100,
+              110
+            ],
+            "donor_step_cost_profile": [
+              3,
+              4,
+              2
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XZI",
+              "+IZY",
+              "+XIY",
+              "-IZI",
+              "-XII",
+              "-IIY",
+              "-XZY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": true,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [3, 4, 2] (donor-exact) vs [1, 4, 4] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 9,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              8,
+              18,
+              26,
+              68,
+              76,
+              86,
+              94
+            ],
+            "donor_step_cost_profile": [
+              1,
+              4,
+              4
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XII",
+              "+IYI",
+              "+XYI",
+              "-IIZ",
+              "-XIZ",
+              "-IYZ",
+              "-XYZ"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 6,
+        "pos": 6,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 8,
+          "C_D-2n": 2,
+          "C_D-LB": 5,
+          "LB": 3,
+          "c": 3,
+          "n-c": 0,
+          "nCN": 0,
+          "nCN-(n-1)": -2,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 3
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 8,
+            "C_opt": 8,
+            "canonical_key": [
+              0,
+              24,
+              44,
+              52,
+              72,
+              80,
+              100,
+              124
+            ],
+            "donor_step_cost_profile": [
+              3,
+              3,
+              2
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XXI",
+              "+XIY",
+              "+IXY",
+              "-XII",
+              "-IXI",
+              "-IIY",
+              "-XXY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": true,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [3, 3, 2] (donor-exact) vs [1, 4, 3] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              8,
+              18,
+              26,
+              96,
+              104,
+              114,
+              122
+            ],
+            "donor_step_cost_profile": [
+              1,
+              4,
+              3
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XII",
+              "+IYI",
+              "+XYI",
+              "-IIX",
+              "-XIX",
+              "-IYX",
+              "-XYX"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 6,
+        "pos": 3,
+        "trade_gaps": [
+          2
+        ]
+      },
+      {
+        "feature_vector": {
+          "C_D": 7,
+          "C_D-2n": 1,
+          "C_D-LB": 4,
+          "LB": 3,
+          "c": 3,
+          "n-c": 0,
+          "nCN": 0,
+          "nCN-(n-1)": -2,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2,
+          "r_X": 3
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 7,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              25,
+              45,
+              52,
+              73,
+              80,
+              100,
+              125
+            ],
+            "donor_step_cost_profile": [
+              2,
+              3,
+              2
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+YXI",
+              "+YIY",
+              "+IXY",
+              "-YII",
+              "-IXI",
+              "-IIY",
+              "-YXY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          },
+          "profiles_equal_as_multisets": false,
+          "profiles_identical": false,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": true,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost MULTISETS differ: [2, 3, 2] (donor-exact) vs [1, 4, 2] (trade); the aggregate event counters and the total C_D coincide, so V1 sees one point",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              8,
+              18,
+              26,
+              100,
+              108,
+              118,
+              126
+            ],
+            "donor_step_cost_profile": [
+              1,
+              4,
+              2
+            ],
+            "n": 3,
+            "negative_sign_census": 4,
+            "pauli": [
+              "+III",
+              "+XII",
+              "+IYI",
+              "+XYI",
+              "-IIY",
+              "-XIY",
+              "-IYY",
+              "-XYY"
+            ],
+            "tensor_factor_sizes": [
+              1,
+              1,
+              1
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "1": 3,
+              "2": 3,
+              "3": 1
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 6,
+        "pos": 3,
+        "trade_gaps": [
+          2
+        ]
+      }
+    ],
+    "summary": {
+      "E_floor": 43,
+      "all_pairs_differ_in_step_cost_profile": true,
+      "diagnosis": "V1 is a bag of donor events plus a total: it records how many Y/sign/CNOT corrections the frozen GE donor performed and their total cost, but not how those events are distributed over the elimination steps. Donor suboptimality is a per-step property (a step paying a Y-correction AND a sign-correction on one weight-1 pivot costs 4 where the referee pays 2), so V1 cannot separate a schedule that pairs the two events on one step from one that spreads them over two steps.",
+      "mixed_cells": 12,
+      "pairs_qubit_permutation_related": 0,
+      "pairs_with_equal_profile_multiset": 3
+    }
+  },
+  "qg15_results_sha256": "30011c45adc85918ce535f71c87ba7a1dbbea7ee87dc209810d65a1f22066e51",
+  "qg15b_results_sha256": "d3353ce926b1f2ff2ecab3da68c4fbd545ec820a9e372d6f288ec9daed1b6e82",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "qg15c lane, ORION-QG programme, 2026-08-22",
+  "result_digest": "45f0797df22ec3d1f300ca580bde319fc8a7eadfba6e2110b5b688a7630adae7",
+  "schema": "orion-qg.qg15c_vocabulary.v1",
+  "search": {
+    "any_cell_truncated": true,
+    "conjunction_stats": {
+      "K1": {
+        "R3_duplicate_vectors_dropped": 0,
+        "R4_empty_dropped": 0,
+        "R5_pot_nonneg_dropped": 117,
+        "R6_relevant_restriction_dropped": 0,
+        "distinct_vectors": 704,
+        "pool_size": 587,
+        "raw_conjunctions": 704
+      },
+      "K2": {
+        "R3_duplicate_vectors_dropped": 88994,
+        "R4_empty_dropped": 28935,
+        "R5_pot_nonneg_dropped": 25567,
+        "R6_relevant_restriction_dropped": 0,
+        "distinct_vectors": 130231,
+        "pool_size": 104664,
+        "raw_conjunctions": 248160
+      }
+    },
+    "floor_attainment_cells": {
+      "achieving_cells": [],
+      "any_cell_truncated": true,
+      "headline_cell": null,
+      "minimal_cells": [],
+      "minimality_compromised_by_truncation": true
+    },
+    "grids": {
+      "C_D": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "C_D-2n": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "C_D-C_E3": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        15
+      ],
+      "C_D-LB": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "C_E3": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "LB": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "c": [
+        1,
+        2,
+        3
+      ],
+      "fac_cost_max": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "fac_size_max": [
+        1,
+        2,
+        3
+      ],
+      "n-c": [
+        0,
+        1,
+        2
+      ],
+      "nCN": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nCN-(n-1)": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "nCZ": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nSignX": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nSignZ": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nY": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "r_X": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_cost_argmax": [
+        0,
+        1,
+        2
+      ],
+      "sched_cost_descents": [
+        0,
+        1,
+        2
+      ],
+      "sched_cost_first": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "sched_cost_last": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "sched_cost_max": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "sched_cost_moment": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sched_events_max": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sched_pivot_sign_count": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_pivot_wt_max": [
+        1,
+        2,
+        3
+      ],
+      "sched_rank_drops": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_route_Z": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_steps_Y_and_sign": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_steps_Y_only": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_steps_ge4": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_steps_sign_only": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sched_steps_zero": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "headline_cell": [
+      2,
+      4
+    ],
+    "headline_witness": {
+      "conjunctions": [
+        [
+          {
+            "feature": "sched_steps_Y_and_sign",
+            "negated": false,
+            "op": "==",
+            "threshold": 0
+          },
+          {
+            "feature": "fac_cost_max",
+            "negated": false,
+            "op": "<=",
+            "threshold": 6
+          }
+        ],
+        [
+          {
+            "feature": "nSignZ",
+            "negated": false,
+            "op": "<=",
+            "threshold": 1
+          },
+          {
+            "feature": "sched_events_max",
+            "negated": false,
+            "op": "<=",
+            "threshold": 1
+          }
+        ],
+        [
+          {
+            "feature": "nCZ",
+            "negated": false,
+            "op": "==",
+            "threshold": 0
+          },
+          {
+            "feature": "C_D-LB",
+            "negated": false,
+            "op": "<=",
+            "threshold": 2
+          }
+        ],
+        [
+          {
+            "feature": "C_D-LB",
+            "negated": false,
+            "op": "<=",
+            "threshold": 4
+          },
+          {
+            "feature": "C_E3",
+            "negated": false,
+            "op": "==",
+            "threshold": 11
+          }
+        ]
+      ]
+    },
+    "lattice": {
+      "D": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "K": [
+        1,
+        2
+      ],
+      "note": "K<=2, D<=6; K=3 excluded by pre-freeze runtime arithmetic"
+    },
+    "lattice_note": null,
+    "literal_stats": {
+      "R1_constants_dropped": 132,
+      "R2_duplicates_dropped": 850,
+      "pool_literals": 704,
+      "raw_literals": 1686
+    },
+    "minerr_surface": {
+      "K1_D1": {
+        "dfs_nodes": 303,
+        "minerr": 67,
+        "pool_size": 587,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D2": {
+        "dfs_nodes": 2692,
+        "minerr": 49,
+        "pool_size": 587,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D3": {
+        "dfs_nodes": 17554,
+        "minerr": 41,
+        "pool_size": 587,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 5
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 6
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D4": {
+        "dfs_nodes": 125965,
+        "minerr": 36,
+        "pool_size": 587,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 5
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 6
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D5": {
+        "dfs_nodes": 882054,
+        "minerr": 36,
+        "pool_size": 587,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 5
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 6
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D6": {
+        "dfs_nodes": 3000001,
+        "minerr": 36,
+        "pool_size": 587,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 5
+              }
+            ],
+            [
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "==",
+                "threshold": 6
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D1": {
+        "dfs_nodes": 30577,
+        "minerr": 47,
+        "pool_size": 104664,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_steps_Y_and_sign",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D2": {
+        "dfs_nodes": 3000001,
+        "minerr": 32,
+        "pool_size": 104664,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_steps_Y_and_sign",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D3": {
+        "dfs_nodes": 3000001,
+        "minerr": 21,
+        "pool_size": 104664,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_steps_Y_and_sign",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D4": {
+        "dfs_nodes": 3000001,
+        "minerr": 16,
+        "pool_size": 104664,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_steps_Y_and_sign",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              },
+              {
+                "feature": "C_E3",
+                "negated": false,
+                "op": "==",
+                "threshold": 11
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D5": {
+        "dfs_nodes": 3000001,
+        "minerr": 16,
+        "pool_size": 104664,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_steps_Y_and_sign",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              },
+              {
+                "feature": "C_E3",
+                "negated": false,
+                "op": "==",
+                "threshold": 11
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D6": {
+        "dfs_nodes": 3000001,
+        "minerr": 16,
+        "pool_size": 104664,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "sched_steps_Y_and_sign",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "fac_cost_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "sched_events_max",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              },
+              {
+                "feature": "C_E3",
+                "negated": false,
+                "op": "==",
+                "threshold": 11
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "node_budget_per_cell": 3000000,
+    "zero_error_cells": {
+      "achieving_cells": [],
+      "any_cell_truncated": true,
+      "headline_cell": null,
+      "minimal_cells": [],
+      "minimality_compromised_by_truncation": true
+    }
+  },
+  "stage_digest": "047ac8f1f276ebb903dec3c89a7a5979de1601a8eedcad2f618785af4d06db52",
+  "surviving_collisions": {
+    "E_floor": 1,
+    "all_at_single_n": true,
+    "all_cells_single_gap": true,
+    "cells_serialization_capped": false,
+    "cells_verbatim_capped": [
+      {
+        "feature_vector": {
+          "C_D": 11,
+          "C_D-2n": 5,
+          "C_D-C_E3": 0,
+          "C_D-LB": 3,
+          "C_E3": 11,
+          "LB": 8,
+          "c": 1,
+          "fac_cost_max": 11,
+          "fac_size_max": 3,
+          "n-c": 2,
+          "nCN": 2,
+          "nCN-(n-1)": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1,
+          "r_X": 2,
+          "sched_cost_argmax": 0,
+          "sched_cost_descents": 2,
+          "sched_cost_first": 7,
+          "sched_cost_last": 0,
+          "sched_cost_max": 7,
+          "sched_cost_moment": 4,
+          "sched_events_max": 3,
+          "sched_pivot_sign_count": 0,
+          "sched_pivot_wt_max": 2,
+          "sched_rank_drops": 2,
+          "sched_route_Z": 0,
+          "sched_steps_Y_and_sign": 1,
+          "sched_steps_Y_only": 0,
+          "sched_steps_ge4": 2,
+          "sched_steps_sign_only": 0,
+          "sched_steps_zero": 1
+        },
+        "minimal_distinguishing_pair": {
+          "donor_exact_member": {
+            "C_D": 11,
+            "C_opt": 11,
+            "canonical_key": [
+              0,
+              7,
+              26,
+              29,
+              47,
+              104,
+              114,
+              117
+            ],
+            "donor_step_cost_profile": [
+              7,
+              4,
+              0
+            ],
+            "n": 3,
+            "negative_sign_census": 3,
+            "pauli": [
+              "+III",
+              "+ZZZ",
+              "+XYI",
+              "+YXZ",
+              "+YZY",
+              "-XIX",
+              "-IYX",
+              "-ZXY"
+            ],
+            "tensor_factor_sizes": [
+              3
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "2": 3,
+              "3": 4
+            }
+          },
+          "profiles_equal_as_multisets": true,
+          "profiles_identical": true,
+          "qubit_permutation_related": false,
+          "same_negative_sign_census": false,
+          "same_tensor_factor_sizes": true,
+          "same_weight_enumerator": true,
+          "structural_difference_V1_cannot_see": "donor step-cost profiles are IDENTICAL ([7, 4, 0]); the whole frozen schedule-shape block is blind to this pair, which is therefore not separated by any statistic of the donor's per-step cost sequence",
+          "trade_gap_C_D_minus_C_opt": 2,
+          "trade_member": {
+            "C_D": 11,
+            "C_opt": 9,
+            "canonical_key": [
+              0,
+              7,
+              25,
+              30,
+              41,
+              46,
+              48,
+              119
+            ],
+            "donor_step_cost_profile": [
+              7,
+              4,
+              0
+            ],
+            "n": 3,
+            "negative_sign_census": 1,
+            "pauli": [
+              "+III",
+              "+ZZZ",
+              "+YXI",
+              "+XYZ",
+              "+YIX",
+              "+XZY",
+              "+IXX",
+              "-ZYY"
+            ],
+            "tensor_factor_sizes": [
+              3
+            ],
+            "weight_enumerator": {
+              "0": 1,
+              "2": 3,
+              "3": 4
+            }
+          }
+        },
+        "n_values": [
+          3
+        ],
+        "neg": 1,
+        "pos": 1,
+        "trade_gaps": [
+          2
+        ]
+      }
+    ],
+    "count": 1,
+    "impossibility_theorem_obligation": "Two failed vocabularies are evidence, not proof. An impossibility theorem would have to fix a precise feature class F (e.g. all functions of the r-local marginals of the stabilizer group; all permutation-invariant functions of the signed Pauli weight enumerator; all functions of the frozen donor gate word up to reordering) and prove: for every f in F there exist n-qubit stabilizer states S+, S- with f(S+) = f(S-), C_opt(S+) = C_D(S+) and C_opt(S-) < C_D(S-). This lane supplies witnesses only; it does not quantify over F and asserts no impossibility.",
+    "n_values_present": [
+      3
+    ],
+    "pairs_qubit_permutation_related": 0,
+    "pairs_same_negative_sign_census": 0,
+    "pairs_same_tensor_factor_sizes": 1,
+    "pairs_same_weight_enumerator": 1,
+    "pairs_with_identical_step_cost_profile": 1,
+    "trade_gaps_present": [
+      2
+    ]
+  },
+  "terminal": "QG15C_FLOOR_PERSISTS__COLLISIONS_CHARACTERIZED",
+  "timing": {
+    "A_features": 4.103,
+    "B_bindings": 0.002,
+    "C_cell_table": 0.003,
+    "D_search": 48.175,
+    "E_stage_digest": 0.001,
+    "F_heldout": 14.036,
+    "Q1_diagnosis": 0.003
+  },
+  "v2_cell_table": {
+    "E_floor": 1,
+    "E_floor_V1": 43,
+    "N_total": 924,
+    "P_total": 222,
+    "cells": 1043,
+    "grid_and_budget_independent": true,
+    "mixed_cells": 1,
+    "target_label": "donor_exact := (C_opt == C_D)",
+    "training_domain": "StabPrep exhaustive n=1..3 union (1146 instances)"
+  },
+  "vocabulary": {
+    "V1_features": [
+      "nCZ",
+      "nY",
+      "nSignX",
+      "nSignZ",
+      "nCN",
+      "C_D",
+      "r_X",
+      "c",
+      "LB",
+      "C_D-LB",
+      "n-c",
+      "nCN-(n-1)",
+      "C_D-2n"
+    ],
+    "V1_is_prefix_of_V2": true,
+    "V2_features": [
+      "nCZ",
+      "nY",
+      "nSignX",
+      "nSignZ",
+      "nCN",
+      "C_D",
+      "r_X",
+      "c",
+      "LB",
+      "C_D-LB",
+      "n-c",
+      "nCN-(n-1)",
+      "C_D-2n",
+      "sched_cost_max",
+      "sched_cost_argmax",
+      "sched_cost_first",
+      "sched_cost_last",
+      "sched_cost_descents",
+      "sched_cost_moment",
+      "sched_steps_ge4",
+      "sched_steps_zero",
+      "sched_events_max",
+      "sched_steps_Y_and_sign",
+      "sched_steps_Y_only",
+      "sched_steps_sign_only",
+      "sched_pivot_sign_count",
+      "sched_pivot_wt_max",
+      "sched_route_Z",
+      "sched_rank_drops",
+      "fac_size_max",
+      "fac_cost_max",
+      "C_E3",
+      "C_D-C_E3"
+    ],
+    "V2_new_features": [
+      "sched_cost_max",
+      "sched_cost_argmax",
+      "sched_cost_first",
+      "sched_cost_last",
+      "sched_cost_descents",
+      "sched_cost_moment",
+      "sched_steps_ge4",
+      "sched_steps_zero",
+      "sched_events_max",
+      "sched_steps_Y_and_sign",
+      "sched_steps_Y_only",
+      "sched_steps_sign_only",
+      "sched_pivot_sign_count",
+      "sched_pivot_wt_max",
+      "sched_route_Z",
+      "sched_rank_drops",
+      "fac_size_max",
+      "fac_cost_max",
+      "C_E3",
+      "C_D-C_E3"
+    ],
+    "computability_class": "each feature is a function of the target state and n alone, computed from the frozen GE donor family and F2 linear algebra; no feature calls the exact referee or uses C_opt (enforced structurally: the referee entry points are replaced by a raising stub for the whole feature-computation phase)",
+    "referee_stub_triggered": false
+  }
+}
