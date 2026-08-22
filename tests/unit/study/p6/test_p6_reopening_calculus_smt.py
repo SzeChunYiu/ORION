@@ -87,20 +87,28 @@ class TestAgainstTheCommittedModel:
         assert report.exercised_both_verdicts
 
 
-class TestTheCommittedCheckIsVacuous:
-    def test_both_mutations_survive_the_committed_check(self) -> None:
-        """This is the finding, and it must keep reproducing.
+class TestTheCommittedCheckIsNoLongerVacuous:
+    def test_both_mutations_are_killed_by_the_committed_check(self) -> None:
+        """The alarm fired, and this is the state it fired about.
 
-        ``check_reopening`` asserts that a set difference does not intersect what
-        was removed from it, then that a variable equals the expression it was
-        assigned. Both hold for any ``descendants``. If this test ever fails, the
-        committed check has become non-vacuous and this module's framing needs
-        revisiting -- which is worth being told about.
+        This test used to assert the opposite, and said so: "if this test ever
+        fails, the committed check has become non-vacuous and this module's
+        framing needs revisiting -- which is worth being told about." On
+        2026-08-22 it failed. ``check_reopening`` had asserted that a set
+        difference does not intersect what was removed from it, then that a
+        variable equals the expression it was assigned, both of which hold for
+        any ``descendants``; it now compares its retained set against a
+        specification built from an independently computed transitive closure,
+        and both mutants die.
+
+        Kept rather than deleted, and inverted rather than relaxed: a repair that
+        removes the test that would notice it regressing has not been checked.
         """
 
         report = calc.committed_check_is_vacuous(REPO_ROOT, node_count=3)
-        assert report["is_vacuous"] is True
-        assert sorted(report["mutations_survived"]) == ["always_empty", "always_every_node"]
+        assert report["is_vacuous"] is False
+        assert report["mutations_survived"] == []
+        assert report["baseline"] == [25, 1400]
 
     def test_our_own_differential_kills_what_the_committed_check_survives(self) -> None:
         """The replacement must detect exactly what the original missed."""

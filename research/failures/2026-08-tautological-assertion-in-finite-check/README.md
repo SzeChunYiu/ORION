@@ -84,3 +84,34 @@ authoritative and the enumeration is orthogonal to whether anything is compared.
 The narrower rule: **an expected value must be computed by a different route
 from the actual value.** When both sides come from one expression, the check
 degenerates into a tautology no matter how elaborate the loop around it.
+
+---
+
+## Repaired 2026-08-22
+
+This record states that "the committed check is **not** edited". It has now been
+edited, and the reproduction tables above are historical.
+
+The two assertions are replaced by three, each naming a theorem and each compared
+against a specification built from an independently computed transitive closure —
+a Warshall-style all-pairs relational composition, a different algorithm from the
+worklist traversal the implementation uses, so it is not a second copy of the
+thing under test. Sufficiency, minimality and exactness now carry Theorem 1 and
+Corollary 2.1 rather than restating set difference's own property.
+
+Measured in the same frame this record used: all eight declared wrong propagation
+operators were accepted before and none is accepted after, both mutants die where
+both survived, and the case counts are byte-identical at 130,320 over 543 graphs.
+The cases can now fail; that is the whole of what changed.
+
+The closure checker's `assert certified & changed <= got` had the same shape —
+`A ⊆ A ∪ B` — and gained the direction that did not exist: `got ⊆ roots |
+downstream`, the upper bound Corollary 4.1 needs. Nothing had bounded the
+affected set from above, so a full reset — the operator that corollary names as
+strictly non-minimal — passed.
+
+Two things this did not buy, pinned separately so they keep being reported:
+nothing the closure check says about node `a` is falsifiable, because the graph
+generator emits only earlier-to-later edges and `a` is a universal source; and
+that check never varies `certified`, which is reported as a constant axis rather
+than counted.

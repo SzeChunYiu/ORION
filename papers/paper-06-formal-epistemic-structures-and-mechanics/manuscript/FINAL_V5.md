@@ -65,10 +65,18 @@ set minus the downstream set. The first intersects a set with something already
 removed from it. The second compares a variable to the expression it was just
 assigned. Both hold for *any* value of the downstream set. The propagation
 function was called and its output was never compared against anything.
-Confirmed by mutation: replacing it with "always the empty set" leaves the check
-passing, and so does "always every node", both reporting the same case count as
-the real implementation. The reported 130,320 cases over 543 acyclic graphs are
+Confirmed by mutation: replacing it with "always the empty set" left the check
+passing, and so did "always every node", both reporting the same case count as
+the real implementation. The reported 130,320 cases over 543 acyclic graphs were
 therefore 130,320 cases none of which could fail.
+
+**The check itself has since been repaired**, on 2026-08-22, and the sentence
+above is a description of what it was. Its assertions now compare the retained
+set against a specification built from an independently computed transitive
+closure, so both mutants die where both previously survived, and eight declared
+wrong propagation operators are rejected where all eight were accepted. The case
+count is unchanged at 130,320 over 543 graphs; what changed is that those cases
+can now fail.
 
 That is now repaired rather than merely reported. The propagation
 specification is written independently of the implementation, and the shipped

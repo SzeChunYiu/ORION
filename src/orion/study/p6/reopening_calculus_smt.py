@@ -415,10 +415,21 @@ def committed_check_is_vacuous(repo_root: Any, *, node_count: int = 3) -> dict[s
     outcomes["mutations_survived"] = survived
     outcomes["is_vacuous"] = len(survived) == 2
     outcomes["explanation"] = (
-        "check_reopening's two assertions are set-algebra tautologies: it intersects "
-        "a set with something already removed from it, then compares a variable to "
-        "the expression it was just assigned. descendants is called and its output is "
-        "never compared to anything, so the check passes for any implementation."
+        (
+            "check_reopening compares its retained set against a specification built "
+            "from an independently computed transitive closure, so a wrong descendants "
+            "is caught. Until 2026-08-22 its two assertions were set-algebra "
+            "tautologies -- intersecting a set with something already removed from it, "
+            "then comparing a variable to the expression it was just assigned -- and "
+            "descendants was called with its output never compared to anything, so the "
+            "check passed for any implementation."
+        )
+        if not survived
+        else (
+            "check_reopening's assertions do not constrain descendants: "
+            f"{', '.join(survived)} survived, so the check passes for an implementation "
+            "that returns the wrong set."
+        )
     )
     return outcomes
 

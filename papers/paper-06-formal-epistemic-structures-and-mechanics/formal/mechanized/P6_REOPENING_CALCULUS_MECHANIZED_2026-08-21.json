@@ -2,29 +2,20 @@
   "all_discharged": true,
   "committed_check_vacuity": {
     "always_empty": {
-      "passed": true,
-      "result": [
-        25,
-        1400
-      ]
+      "error": "",
+      "passed": false
     },
     "always_every_node": {
-      "passed": true,
-      "result": [
-        25,
-        1400
-      ]
+      "error": "",
+      "passed": false
     },
     "baseline": [
       25,
       1400
     ],
-    "explanation": "check_reopening's two assertions are set-algebra tautologies: it intersects a set with something already removed from it, then compares a variable to the expression it was just assigned. descendants is called and its output is never compared to anything, so the check passes for any implementation.",
-    "is_vacuous": true,
-    "mutations_survived": [
-      "always_empty",
-      "always_every_node"
-    ]
+    "explanation": "check_reopening compares its retained set against a specification built from an independently computed transitive closure, so a wrong descendants is caught. Until 2026-08-22 its two assertions were set-algebra tautologies -- intersecting a set with something already removed from it, then comparing a variable to the expression it was just assigned -- and descendants was called with its output never compared to anything, so the check passed for any implementation.",
+    "is_vacuous": false,
+    "mutations_survived": []
   },
   "differential_against_committed_descendants": {
     "agreed": true,
