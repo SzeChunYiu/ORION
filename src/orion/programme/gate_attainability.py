@@ -85,6 +85,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+from math import isfinite
 from typing import Any, Callable, Sequence
 
 from orion.programme.guard_exercise import GuardAssessment, GuardExercise, assess_guard
@@ -108,6 +109,39 @@ DECLARED_ADMISSIBLE_WORLDS = "declared-admissible-worlds"
 
 class UnattainableGate(ValueError):
     """Raised when a gate's verdict is read before the protocol could have moved it."""
+
+
+class GateRole(str, Enum):
+    """What a gate is for, which decides what "it never fails" means.
+
+    Two different things get written as a threshold in the same panel, and only
+    one of them is a hypothesis.
+
+    ``HYPOTHESIS`` gates carry the claim. They read the subject under test, and
+    a hypothesis gate every admissible world satisfies has decided the paper
+    before the run --- the ``THRESHOLD_UNCONDITIONAL`` half of
+    :class:`GateReachReason`, and a ``FAIL``.
+
+    ``PRECONDITION`` gates certify the *instrument*, not the system: "the
+    strongest baseline false-promotes at least 5% of the time" says the
+    benchmark is hard enough to be worth reading, and it is satisfied or not
+    before the subject is chosen. A precondition that holds in every admissible
+    world is a benchmark built to be measurable, which is the thing P14A did not
+    do; a precondition no admissible world satisfies is still fatal, because the
+    instrument then certifies nothing and every gate downstream of it is
+    arithmetic.
+
+    So ``THRESHOLD_UNATTAINABLE`` fails in both roles and
+    ``THRESHOLD_UNCONDITIONAL`` fails only for a hypothesis. The role is
+    declared by the author, which is exactly how it could be abused --- relabel
+    a hypothesis a precondition and its unconditional pass stops blocking. That
+    is why :class:`ThresholdPanel` refuses a panel with no discriminating
+    hypothesis gate: moving every gate into ``PRECONDITION`` empties the panel
+    of claims rather than clearing it.
+    """
+
+    HYPOTHESIS = "HYPOTHESIS"
+    PRECONDITION = "PRECONDITION"
 
 
 class GateDirection(str, Enum):
@@ -148,6 +182,7 @@ class PreregisteredGate:
     reads: str
     threshold: float
     direction: GateDirection = GateDirection.AT_LEAST
+    role: GateRole = GateRole.HYPOTHESIS
 
     def __post_init__(self) -> None:
         if not self.gate_id.strip():
@@ -170,6 +205,7 @@ class PreregisteredGate:
             "reads": self.reads,
             "threshold": self.threshold,
             "direction": self.direction.value,
+            "role": self.role.value,
         }
 
 
@@ -233,6 +269,25 @@ class GateReachReason(str, Enum):
         """True for the reason that reports an absent register, not a result."""
 
         return self is GateReachReason.NO_ADMISSIBLE_WORLD
+
+
+def _reach_outcome(reason: GateReachReason, role: GateRole) -> Outcome:
+    """The verdict a reach reason carries, given what the gate is for.
+
+    One function so the measured register (:class:`GateReach`) and the declared
+    bound (:class:`ThresholdReach`) cannot drift into answering the same
+    question two ways --- the drift
+    ``2026-08-unfalsifiable-check-zero-refutation-capacity`` records about a
+    second implementation that could not disagree with the first.
+    """
+
+    if reason is GateReachReason.BOTH_OUTCOMES_REACHABLE:
+        return Outcome.PASS
+    if reason.is_vacuity:
+        return Outcome.CANNOT_CHECK
+    if reason is GateReachReason.THRESHOLD_UNCONDITIONAL and role is GateRole.PRECONDITION:
+        return Outcome.PASS
+    return Outcome.FAIL
 
 
 @dataclass(frozen=True)
@@ -306,11 +361,7 @@ class GateReach:
 
     @property
     def outcome(self) -> Outcome:
-        if self.reason is GateReachReason.BOTH_OUTCOMES_REACHABLE:
-            return Outcome.PASS
-        if self.reason.is_vacuity:
-            return Outcome.CANNOT_CHECK
-        return Outcome.FAIL
+        return _reach_outcome(self.reason, self.gate.role)
 
     @property
     def blocks(self) -> bool:
@@ -376,6 +427,273 @@ def measure_gate_attainability(
         ),
     )
     return GateReach(gate=gate, readings=tuple(readings), exercise=exercise)
+
+
+@dataclass(frozen=True)
+class StatisticSupport:
+    """The closed interval a gate's statistic can occupy under the frozen protocol.
+
+    The pre-run half of this module. :func:`measure_gate_attainability` needs a
+    register of worlds and a run of each; a bound needs only the preregistration,
+    so it is available at the moment the threshold is written --- which is the
+    only moment at which an unattainable threshold is cheap to fix.
+
+    ``derivation`` is mandatory for the same reason ``AdmissibleWorld.admits``
+    is. A bound nobody can re-derive from the protocol is a second guess at the
+    answer, and the whole question is whether the interval came from the freeze.
+    P14A's is exact and short: both failing gates read the prevalence of one
+    fact state out of 144, the eight facts are independent Bernoulli draws whose
+    rates are each monotone in a different declared uniform, so the extremum
+    over the declared box is attained at a corner and equals ``0.042326``
+    against thresholds of ``0.05`` and ``0.08``.
+
+    ``statistic`` names the quantity *and* the coordinate the interval is taken
+    over, because a gate's support is not a property of the gate alone. A
+    benchmark-difficulty precondition varies over the benchmarks the protocol
+    admits; a superiority gate varies over the implementations it admits in the
+    subject slot. Taking one gate's interval over the other's coordinate reports
+    a constant and calls it a ceiling.
+    """
+
+    statistic: str
+    infimum: float
+    supremum: float
+    derivation: str
+
+    def __post_init__(self) -> None:
+        for label, text in (("statistic", self.statistic), ("derivation", self.derivation)):
+            if not text.strip():
+                raise ValueError(
+                    f"a {label} is required; a bound that cannot be re-derived from the "
+                    "frozen protocol is a guess at the answer, not the protocol's reach"
+                )
+        for label, value in (("infimum", self.infimum), ("supremum", self.supremum)):
+            if not isfinite(value):
+                raise ValueError(f"{self.statistic}: {label} must be finite")
+        if self.supremum < self.infimum:
+            raise ValueError(
+                f"{self.statistic}: supremum {self.supremum} below infimum {self.infimum}; "
+                "an empty interval bounds nothing"
+            )
+
+    @property
+    def width(self) -> float:
+        return self.supremum - self.infimum
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "statistic": self.statistic,
+            "infimum": self.infimum,
+            "supremum": self.supremum,
+            "width": self.width,
+            "derivation": self.derivation,
+        }
+
+
+@dataclass(frozen=True)
+class ThresholdReach:
+    """Whether a frozen threshold lies inside the reach of the statistic it reads.
+
+    The same three reasons :class:`GateReach` returns, decided from the declared
+    interval rather than from runs. A threshold outside the interval on the
+    satisfying side is ``THRESHOLD_UNATTAINABLE`` and the run is arithmetic; one
+    the whole interval already satisfies is ``THRESHOLD_UNCONDITIONAL`` and only
+    a :attr:`GateRole.PRECONDITION` may be that.
+    """
+
+    gate: PreregisteredGate
+    support: StatisticSupport
+
+    @property
+    def best_value(self) -> float:
+        """The end of the interval closest to satisfying the gate."""
+
+        return (
+            self.support.supremum
+            if self.gate.direction is GateDirection.AT_LEAST
+            else self.support.infimum
+        )
+
+    @property
+    def worst_value(self) -> float:
+        """The end furthest from satisfying it --- the one that says a pass was not forced."""
+
+        return (
+            self.support.infimum
+            if self.gate.direction is GateDirection.AT_LEAST
+            else self.support.supremum
+        )
+
+    @property
+    def attainment_margin(self) -> float:
+        """How far the best reachable value clears the bar. Negative means it cannot."""
+
+        return self.gate.margin_of(self.best_value)
+
+    @property
+    def refutation_margin(self) -> float:
+        """How far the worst reachable value falls short. Non-negative means it cannot fail."""
+
+        return -self.gate.margin_of(self.worst_value)
+
+    @property
+    def reason(self) -> GateReachReason:
+        if not self.gate.satisfied_by(self.best_value):
+            return GateReachReason.THRESHOLD_UNATTAINABLE
+        if self.gate.satisfied_by(self.worst_value):
+            return GateReachReason.THRESHOLD_UNCONDITIONAL
+        return GateReachReason.BOTH_OUTCOMES_REACHABLE
+
+    @property
+    def outcome(self) -> Outcome:
+        return _reach_outcome(self.reason, self.gate.role)
+
+    @property
+    def blocks(self) -> bool:
+        return self.outcome.blocks
+
+    @property
+    def discriminates(self) -> bool:
+        return self.reason is GateReachReason.BOTH_OUTCOMES_REACHABLE
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "gate": self.gate.as_json(),
+            "outcome": self.outcome.value,
+            "reason": self.reason.value,
+            "best_value": self.best_value,
+            "worst_value": self.worst_value,
+            "attainment_margin": self.attainment_margin,
+            "refutation_margin": self.refutation_margin,
+            "support": self.support.as_json(),
+        }
+
+
+def assess_threshold_support(
+    gate: PreregisteredGate, *, support: StatisticSupport
+) -> ThresholdReach:
+    """Ask a frozen threshold whether it is inside its own statistic's reach.
+
+    No run, no seed, no register of worlds: the inputs are the preregistration's
+    threshold and the preregistration's own bound on the quantity it reads. That
+    is the point --- P14A's ``0.08`` was 1.9x the ceiling of the support it was
+    frozen against, and every artifact needed to say so existed before the seed
+    was drawn.
+    """
+
+    return ThresholdReach(gate=gate, support=support)
+
+
+@dataclass(frozen=True)
+class ThresholdPanel:
+    """A preregistration's whole gate battery, checked before the campaign runs.
+
+    Two conditions, and the second is what stops the first from being evaded.
+
+    No gate may be unattainable. One threshold above its statistic's ceiling
+    makes the conjunction constant however the other gates behave, which is
+    P14A.
+
+    At least one hypothesis gate must discriminate. Otherwise the panel has no
+    claim in it: a battery of preconditions certifies an instrument and asserts
+    nothing about the system, and relabelling the failing hypothesis a
+    precondition is the cheapest way to make an unconditional panel look clean.
+    """
+
+    label: str
+    reaches: tuple[ThresholdReach, ...]
+
+    def __post_init__(self) -> None:
+        if not self.label.strip():
+            raise ValueError("a threshold panel label is required")
+        if not self.reaches:
+            raise ValueError(f"{self.label}: a panel with no gates preregisters nothing")
+        ids = [reach.gate.gate_id for reach in self.reaches]
+        if len(set(ids)) != len(ids):
+            raise ValueError(f"{self.label}: gate ids must be distinct")
+
+    @property
+    def unattainable(self) -> tuple[str, ...]:
+        return tuple(
+            reach.gate.gate_id
+            for reach in self.reaches
+            if reach.reason is GateReachReason.THRESHOLD_UNATTAINABLE
+        )
+
+    @property
+    def unconditional_hypotheses(self) -> tuple[str, ...]:
+        return tuple(
+            reach.gate.gate_id
+            for reach in self.reaches
+            if reach.reason is GateReachReason.THRESHOLD_UNCONDITIONAL
+            and reach.gate.role is GateRole.HYPOTHESIS
+        )
+
+    @property
+    def discriminating(self) -> tuple[str, ...]:
+        return tuple(
+            reach.gate.gate_id
+            for reach in self.reaches
+            if reach.discriminates and reach.gate.role is GateRole.HYPOTHESIS
+        )
+
+    @property
+    def outcome(self) -> Outcome:
+        if self.unattainable or self.unconditional_hypotheses:
+            return Outcome.FAIL
+        return Outcome.PASS if self.discriminating else Outcome.FAIL
+
+    @property
+    def blocks(self) -> bool:
+        return self.outcome.blocks
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "label": self.label,
+            "outcome": self.outcome.value,
+            "unattainable": list(self.unattainable),
+            "unconditional_hypotheses": list(self.unconditional_hypotheses),
+            "discriminating_hypotheses": list(self.discriminating),
+            "gates": [reach.as_json() for reach in self.reaches],
+        }
+
+
+def assess_threshold_panel(reaches: Sequence[ThresholdReach], *, label: str) -> ThresholdPanel:
+    """Roll declared bounds up into "could this preregistration have said two things"."""
+
+    return ThresholdPanel(label=label, reaches=tuple(reaches))
+
+
+def require_supported_thresholds(panel: ThresholdPanel) -> None:
+    """Raise unless every threshold is inside reach and some hypothesis still discriminates.
+
+    The point of call is *before* the campaign: at freeze time, in the test that
+    guards the protocol, or in the runner's own preflight. Called after the fact
+    it still names the defect, but by then the cost is a published result that
+    has to be withdrawn rather than a threshold that has to be rewritten.
+    """
+
+    if not panel.blocks:
+        return
+    parts = [f"{panel.label}: the preregistered battery could not have said two things"]
+    if panel.unattainable:
+        parts.append(
+            "no admissible value satisfies "
+            + ", ".join(
+                f"{reach.gate.gate_id} (threshold {reach.gate.threshold} against a best "
+                f"reachable {reach.best_value}, margin {reach.attainment_margin})"
+                for reach in panel.reaches
+                if reach.gate.gate_id in set(panel.unattainable)
+            )
+        )
+    if panel.unconditional_hypotheses:
+        parts.append(
+            "every admissible value satisfies the hypothesis gates "
+            + ", ".join(panel.unconditional_hypotheses)
+        )
+    if not panel.discriminating:
+        parts.append("no hypothesis gate discriminates, so the panel carries no claim")
+    raise UnattainableGate("; ".join(parts))
 
 
 @dataclass(frozen=True)
@@ -494,12 +812,19 @@ __all__ = [
     "GateDirection",
     "GateReach",
     "GateReachReason",
+    "GateRole",
     "PreregisteredGate",
     "Statistic",
+    "StatisticSupport",
     "TerminalReach",
+    "ThresholdPanel",
+    "ThresholdReach",
     "UnattainableGate",
     "WorldReading",
+    "assess_threshold_panel",
+    "assess_threshold_support",
     "measure_gate_attainability",
     "measure_terminal_reach",
     "require_reachable",
+    "require_supported_thresholds",
 ]

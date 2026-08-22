@@ -48,8 +48,14 @@ from orion.programme.gate_attainability import (
     AdmissibleWorld,
     GateDirection,
     GateReach,
+    GateRole,
     PreregisteredGate,
+    StatisticSupport,
     TerminalReach,
+    ThresholdPanel,
+    ThresholdReach,
+    assess_threshold_panel,
+    assess_threshold_support,
     measure_gate_attainability,
     measure_terminal_reach,
 )
@@ -421,6 +427,7 @@ GATES: tuple[PreregisteredGate, ...] = (
         gate_id="strongest_baseline_false_promotion_ge_0_05",
         reads="strongest non-ORION baseline false promotion rate",
         threshold=0.05,
+        role=GateRole.PRECONDITION,
     ),
     PreregisteredGate(
         gate_id="accuracy_gain_ge_0_08",
@@ -686,6 +693,74 @@ def terminal_reach() -> TerminalReach:
     return measure_terminal_reach(gate_reaches(), label="P14A controlled governance terminal")
 
 
+#: The two gates whose statistic the protocol's own declared sampling support
+#: bounds. They are the two that failed, and they are one quantity: the strongest
+#: baseline's only mistake is :data:`DISCRIMINATING_STATE`, so its false-promotion
+#: rate and the full contract's accuracy gain over it are the same number.
+#:
+#: The other five read the arm sitting in the graded slot rather than the
+#: benchmark, so a sampling-support interval would report a constant for them and
+#: call it a ceiling. Their reach is measured over the world register in
+#: :func:`gate_reaches` instead.
+SUPPORT_BOUNDED_GATES: tuple[str, ...] = (
+    "strongest_baseline_false_promotion_ge_0_05",
+    "accuracy_gain_ge_0_08",
+)
+
+
+def declared_statistic_support() -> StatisticSupport:
+    """The interval P14A's discriminator prevalence can occupy, before any seed is drawn.
+
+    Everything this needs existed at freeze time: eight declared uniform ranges,
+    the half-and-half mix with ``base``, and the eight independent Bernoulli
+    draws in ``make_case``. Each factor of the product is monotone in a different
+    declared parameter, so the extrema sit at corners of the box and the bound is
+    exact rather than sampled.
+    """
+
+    return StatisticSupport(
+        statistic=(
+            "prevalence of the one fact state on which the strongest rule baseline and the "
+            "full contract disagree, over the eight sampling ranges the frozen protocol "
+            "declares"
+        ),
+        infimum=discriminator_infimum(),
+        supremum=discriminator_supremum(),
+        derivation=(
+            "make_case draws the eight facts as independent Bernoulli variables whose rates "
+            "are 0.5*sampled + 0.5*base; the state's prevalence is therefore a product of "
+            "eight factors, each monotone in a different declared uniform, so its extrema "
+            "over the declared box are attained at corners and are computed exactly by "
+            "discriminator_infimum/discriminator_supremum without running the benchmark"
+        ),
+    )
+
+
+def threshold_reaches() -> tuple[ThresholdReach, ...]:
+    """P14A's two support-bounded thresholds against the interval they were frozen over."""
+
+    support = declared_statistic_support()
+    by_id = {gate.gate_id: gate for gate in GATES}
+    return tuple(
+        assess_threshold_support(by_id[gate_id], support=support)
+        for gate_id in SUPPORT_BOUNDED_GATES
+    )
+
+
+def threshold_panel() -> ThresholdPanel:
+    """The pre-run verdict: could P14A's two aggregate thresholds ever have been met?
+
+    This is the check that would have cost a sentence at freeze time. It needs no
+    seed, no run and no register of worlds --- only the thresholds and the
+    protocol's own bound on the quantity they read --- and it returns ``FAIL``
+    with margins of ``-0.007674`` and ``-0.037674``.
+    """
+
+    return assess_threshold_panel(
+        threshold_reaches(), label="P14A aggregate superiority thresholds"
+    )
+
+
 #: Sampling supports the frozen protocol does **not** admit, in which the
 #: retained-negative discriminator is common enough that the preregistered
 #: ``0.08`` accuracy gap is not out of reach. They are the capability
@@ -893,4 +968,8 @@ __all__ = [
     "shipped_input",
     "shipped_receipt",
     "terminal_reach",
+    "SUPPORT_BOUNDED_GATES",
+    "declared_statistic_support",
+    "threshold_panel",
+    "threshold_reaches",
 ]
