@@ -1,5 +1,5 @@
 {
-  "blocker_sites": 577,
+  "blocker_sites": 578,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
     "MISSING_ACCESS": 6,
@@ -7,7 +7,7 @@
     "MISSING_DECLARATION": 90,
     "MISSING_IDENTITY": 30,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 382
+    "UNCLASSIFIED": 383
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -4604,7 +4604,7 @@
       "file": "programme/refutation_capacity.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 560,
+      "lineno": 565,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -8339,7 +8339,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": false,
       "kind": "OTHER_STATEMENT",
-      "lineno": 184,
+      "lineno": 266,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -8351,7 +8351,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 242,
+      "lineno": 324,
       "missing_obligation": null,
       "reasons": [
         "incomplete_always_reopens",
@@ -8375,7 +8375,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 258,
+      "lineno": 340,
       "missing_obligation": null,
       "reasons": [
         "incomplete_always_reopens",
@@ -8399,7 +8399,19 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": false,
       "kind": "OTHER_STATEMENT",
-      "lineno": 275,
+      "lineno": 357,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "extended_transport_replay.replay",
+      "file": "study/p7/closure_premises.py",
+      "has_reason": false,
+      "kind": "OTHER_STATEMENT",
+      "lineno": 529,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -9225,8 +9237,8 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "9409854e865d03d545872144a649b99eaf9a2fda",
-  "total_sites": 632,
+  "subject_commit": "096812253eace37c69806b0be97fdb2dd4cb4281",
+  "total_sites": 633,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 108,
   "with_reason": 275

@@ -1,8 +1,11 @@
 {
+  "cannot_check_reasons": [],
   "canonical_rows_sha256": "9a181cc61f1a1b56daa8f313d63acc3928f758b4150d242fe03c14e347ec511c",
   "no_alarm_cases": 24,
   "state_evaluations": 1536,
   "states_per_embedding": 512,
+  "t1_donor_visible_states": 96,
+  "t1_status": "CHECKED",
   "t1_violations": 0,
   "t2_coordinates_covered": [
     "claim_scope_supported",
@@ -13,9 +16,11 @@
   "t2_separation_pairs": 96,
   "t3_cases": 96,
   "t3_violations": 0,
-  "t4_cannot_check_reason": "ideal_product is the same expression as scientific_admissible, so the comparison restates one definition and cannot refute any theory",
-  "t4_status": "CANNOT_CHECK",
-  "t4_violations": null,
+  "t4_cannot_check_reason": null,
+  "t4_status": "CHECKED",
+  "t4_violations": 0,
   "t5_countermodels": 96,
-  "terminal": "CANNOT_CHECK"
+  "t5_donor_valid_transitions": 2880,
+  "t5_violations": 0,
+  "terminal": "PASS"
 }
