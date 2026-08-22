@@ -16,9 +16,18 @@ performance, or priority over any donor discipline is made anywhere.
 Sufficiency bounds on the structural support of compilation optima are usually
 reported as whatever a proof happened to reach — "support ≤ 5 suffices", "support
 ≤ 2 suffices" — with no statement of how far from the truth the bound sits. We
-propose that a compilation family under a fixed objective has an **intrinsic
-support number** κ: the exact bound such that every optimum admits generators of
-support ≤ κ and no smaller bound holds. (i) For the frozen R6I rank-2
+compute, for two compilation families under fixed objectives, the exact value of
+the **smallest support size of an optimal solution** — written κ here — meaning
+the exact bound such that every optimum admits generators of support ≤ κ and no
+smaller bound holds. **This quantity is not introduced here.** It is studied in
+integer optimization, where Aliev, De Loera, Eisenbrand, Oertel and Weismantel
+bound the support of an optimal solution of `max{cᵀx : Ax = b, x ≥ 0, x ∈ ℤⁿ}` by
+`2m·log(2√m‖A‖_∞)`, independently of the objective, with a nearly matching
+asymptotic lower bound (*The Support of Integer Optimal Solutions*, SIAM J. Optim.
+28(3):2152–2157, 2018). The contribution claimed here is **the exact values for
+two specific frozen families and the machine-checked ladders that reach them**,
+not the quantity, not the two-sidedness, and not the idea of asking for a matching
+lower bound. (i) For the frozen R6I rank-2
 dependent-triple shared-2-bit-Tag grammar under its frozen unit objective,
 **κ = 1 exactly**, proved by a five-rung machine-checked descent ladder starting
 from the published support-5 theorem and terminating at
@@ -51,6 +60,18 @@ authority — is reported as a first-class result.
 ---
 
 ## 1. What an intrinsic support number is, and why compilation needs it
+
+**Prior art, stated before the definition.** Asking for the smallest support of an
+optimal solution, and for a matching lower bound that makes the answer two-sided,
+is established practice in integer optimization (Aliev et al. 2018, above; and the
+sparsity-over-lattices line that follows it). Nothing in this section is a new kind
+of invariant. What is specific to this paper is that the quantity is computed
+*exactly*, for two named compilation families under frozen objectives, by ladders
+whose every rung is machine-checked and receipt-bound — where the integer-programming
+results give general bounds rather than exact values for a named family. The
+hostile external-novelty lane `QG19_HOSTILE_NOVELTY_RESULTS.json` records this
+claim's verdict as `INSTANCE_OF_KNOWN_GENERAL`, and this framing is the correction
+that verdict requires.
 
 Fix a compilation optimization family F over structured inputs and an objective
 C. A *support bound* for (F, C) is an integer B such that for every instance the

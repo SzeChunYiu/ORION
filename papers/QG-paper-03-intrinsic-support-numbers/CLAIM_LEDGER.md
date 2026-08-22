@@ -114,3 +114,26 @@ physical quantum advantage.
 | QG3-C43 | **Transferable principle (candidate).** Whole-system Tag relocation is available to a family exactly when its per-column frame refund *strictly* exceeds the maximum Restore penalty of deleting that column. The margin is 4 for R6I and 0 for TARE. The zero coincides with QG-8's geometric finding that the unit objective O0 sits *on* the central hyperplane t_c = 2·t_r at margin 0 (`CENTRAL_HYPERPLANE_EXACT`) — the proof-theoretic obstruction and the polyhedral boundary are one measurement seen twice. Proposed as a cheap a-priori test of whether a family's support bound equals its κ. | `QG18_TARE_KAPPA_RESULTS.json` (Q3 diagnosis); `QG8_OBJECTIVE_SUPPORT_PHASE_RESULTS.json` (`support2_cone.certificate_boundary_sharpness`) | Q3 structural diagnosis; margin values | (as QG3-C21 / QG3-C27) | MACHINE-EVIDENCED on two families; the general principle is a CANDIDATE, not proved |
 | QG3-C44 | κ is not monotone in apparent structural complexity: **κ_R6I = 1 < 2 = κ_TARE**, with the structurally richer family (rank-2 dependent triples, 2-bit Tag) carrying the smaller κ. Both values are now two-sided, so this is a comparison of intrinsic numbers rather than of proof artifacts. | `QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json`; `QG18_TARE_KAPPA_RESULTS.json` | `intrinsic_support_number` in both | (as QG3-C22 / QG3-C21) | THEOREM-GRADE-ON-DOMAIN |
 | QG3-C45 | QG-18 determinism and integrity: three runs at 497.6 s / 493.5 s / 493.8 s under a disclosed 25-min cap; canonical stdout receipt line byte-identical across runs (`aaaa7dd2…`); RESULTS-minus-timing byte-identical across all three (`1b169d0f…`); 23/23 gates true including exact algebra bindings to `r6m._LW/_LM/_SY/_F3` and 8 receipt sha256 bindings; no repository file modified; protected N₂ never opened; no chemistry source read; no network. | `QG18_TARE_KAPPA_RESULTS.json` | `timing`, gate block, receipt bindings | (as QG3-C21) | BOUNDED-RECORD (replay/integrity provenance) |
+
+## Prior-art correction (2026-08-22, binding)
+
+The hostile external-novelty lane QG-19
+(`development/orion-qg-regime-geometry/QG19_HOSTILE_NOVELTY_RESULTS.json`,
+terminal `QG19_SUBSUMPTION_FOUND__NOVELTY_REDUCED`) attacked this paper's central
+claim and returned **`INSTANCE_OF_KNOWN_GENERAL`**.
+
+The covering source is Aliev, De Loera, Eisenbrand, Oertel and Weismantel,
+*The Support of Integer Optimal Solutions*, SIAM J. Optim. 28(3):2152–2157 (2018),
+which bounds the support of an integer optimal solution by `2m·log(2√m‖A‖_∞)`,
+independently of the objective, **with a nearly matching asymptotic lower bound** —
+so the two-sidedness this paper treated as distinguishing is also prior.
+
+**What the manuscript may claim after this correction**: the *exact values* κ_R6I = 1
+and κ_TARE = 2 for two named frozen families, and the machine-checked receipt-bound
+ladders that reach them. **What it may not claim**: that the quantity, its
+two-sidedness, or the practice of demanding a matching lower bound originates here.
+Abstract and §1 were rewritten accordingly on 2026-08-22.
+
+Every passage supporting this correction carries `document_level_verification:
+false` — the egress proxy refused direct document retrieval — though the source and
+its bound were independently re-retrieved by the orchestrator and confirmed.
