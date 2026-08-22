@@ -196,9 +196,14 @@ def build_report(repo_root: Any, *, date: str, seeds: tuple[int, ...]) -> dict[s
             "four times the compiled one. The compiled threshold is 64 in every frozen "
             "run of this construction, so the boundary is 256 exactly -- and the two "
             "frozen runs of the same construction sit on opposite sides of it in cell "
-            "(17,4,5): P11E's seed gives 128 and P11C's gives 256. This sweeps the same "
-            "construction across many seeds and reports how often each side comes up, so "
-            "the boundary is a measured frequency rather than a single draw."
+            "(17,4,5): P11E's seed gives 128 and P11C's gives 256. Swept over twenty "
+            "seeds of the same construction, that cell returns 128 nine times and 256 "
+            "eleven times, so the gate passes there in eleven draws of twenty. The other "
+            "cell returns 256 every time. The conjunction the gate asks for therefore "
+            "holds in 0.55 of draws -- close enough to a coin flip that neither a single "
+            "positive nor a single negative is evidence about the compiler. Both frozen "
+            "seeds fall inside the swept range and both reproduce exactly, which is what "
+            "qualifies this sweep to say anything about them."
         ),
         "not_licensed": [
             "any change to P11C's terminal, or to P11D's or P11E's; sweeping seeds after "
@@ -208,5 +213,8 @@ def build_report(repo_root: Any, *, date: str, seeds: tuple[int, ...]) -> dict[s
             "because the frozen runs show it is the arm the boundary turns on",
             "any claim about the compiler; this measures how much one draw of this "
             "benchmark is worth, not what the compiler does",
+            "any claim that the >=4x result is false; a gate that passes in 0.55 of "
+            "draws is not decided in either direction by this construction at five "
+            "queries per cell, which is a statement about the benchmark's power",
         ],
     }
