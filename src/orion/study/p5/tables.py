@@ -428,12 +428,47 @@ def render_p5_3_tex(table: Mapping[str, Any]) -> str:
     )
 
 
+#: Readable names for the archive's cause classes.
+#:
+#: The class name is the value the archive records, and the JSON keeps it
+#: verbatim. Printing it into the paper is a different question: a reader meets
+#: ``ENVIRONMENT_DEPENDENCY_TOOL_FAILURE`` as a 35-character unbreakable word,
+#: which is both an internal identifier in a results table and --- because it
+#: cannot be hyphenated --- 27.7pt of overfull box. Naming the cause in words
+#: fixes the same defect twice.
+#:
+#: Unknown classes are refused rather than passed through. A cause the archive
+#: grows that nobody has named would otherwise reappear as a raw token in a
+#: published table, which is the state this replaces.
+CAUSE_LABELS = {
+    "RETRIEVAL_MISS": "retrieval miss",
+    "REPRESENTATION_GAP": "representation gap",
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": "environment dependency or tool failure",
+    "IMPLEMENTATION_BUG": "implementation bug",
+    "METHOD_BASIS_GAP": "method basis gap",
+}
+
+
+class UnnamedCauseClass(KeyError):
+    """Raised when the archive carries a cause class no label covers."""
+
+
+def cause_label(cause: str) -> str:
+    try:
+        return CAUSE_LABELS[cause]
+    except KeyError:
+        raise UnnamedCauseClass(
+            f"{cause!r} has no readable label; add one to CAUSE_LABELS rather than "
+            "letting a raw class name reach the manuscript"
+        ) from None
+
+
 def render_residual_tex(table: Mapping[str, Any]) -> str:
     rows = []
     for row in table["errors"]:
         rows.append(
-            f"    {_tex_escape(row['case_id'])} & {_tex_escape(row['gold'])} & "
-            f"{_tex_escape(row['attributed'])} & {row['confidence']} \\\\"
+            f"    {_tex_escape(row['case_id'])} & {cause_label(row['gold'])} & "
+            f"{cause_label(row['attributed'])} & {row['confidence'].lower()} \\\\"
         )
     return (
         "% Generated from archived glm-5.2 attribution JSONL. Do not edit by hand.\n"
@@ -443,9 +478,9 @@ def render_residual_tex(table: Mapping[str, Any]) -> str:
         "diagnostic run. These three cases remain incorrect; they are not successes.}\n"
         "  \\label{tab:P5-residual-errors}\n"
         "  \\small\n"
-        "  \\begin{tabular}{llll}\n"
+        "  \\begin{tabular}{lp{0.30\\linewidth}p{0.26\\linewidth}l}\n"
         "    \\toprule\n"
-        "    case & gold & attributed & confidence \\\\\n"
+        "    case & gold cause & attributed cause & confidence \\\\\n"
         "    \\midrule\n"
         + "\n".join(rows)
         + "\n"
