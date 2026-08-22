@@ -1,0 +1,76 @@
+% P6 manuscript entry point.
+%
+% Source of record for the prose: manuscript/FINAL_V5.md, split at its own
+% top-level headings into sections/NN-name.tex. One \section here per `##`
+% there, in the same order, with no heading renamed and no paragraph dropped.
+% The preamble follows papers/paper-01-.../manuscript/main.tex rather than
+% inventing its own: the same underscore/xurl handling for long snake_case
+% identifiers and content hashes, the same booktabs/longtable table stack.
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{xurl}
+\usepackage{hyperref}
+% figure/table infrastructure
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage[strings]{underscore}
+% Character protrusion only. The submission preamble in this repository
+% (submission/AIJ_MANUSCRIPT.tex) loads microtype for the same reason -- these
+% manuscripts are dense with slashed compounds and typewriter runs that TeX
+% cannot hyphenate and that otherwise put text in the margin. Font expansion is
+% off: pdfTeX can only expand scalable fonts and stops with a fatal error
+% otherwise.
+\usepackage[expansion=false]{microtype}
+\graphicspath{{figures/}}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+% Long snake_case identifiers, repository paths and content hashes appear
+% throughout the formal-artifact references, and need legal breakpoints.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
+
+\title{Formal Epistemic Structures and Mechanics --- V5}
+\author{Working framework draft}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Date:} 2026-08-22\\
+\textbf{Base manuscripts:} \idt{FINAL_V2_1.md}, \idt{FINAL_V3.md}, \idt{FINAL_V4.md}
+(historical scientific layers retained)
+
+\medskip
+
+\noindent V4 presented a certificate-lifting semantics whose support was an
+exhaustive enumeration over a bounded model. V5 changes what the paper claims to
+have proved, in both directions. Eleven theorems are now discharged over
+uninterpreted sorts, so the separation and change-propagation results hold at
+any size rather than at the enumerated one; and three of the quantities V4
+reported as findings are shown here to have been unfalsifiable, so they are
+withdrawn as evidence and kept only as a record of what the enumeration could
+and could not have detected.
+
+\input{sections/01-replacement-abstract}
+\input{sections/02-enumeration-limits}
+\input{sections/03-general-theorems}
+\input{sections/04-bounded-model-instance}
+\input{sections/05-axiom-minimality}
+\input{sections/06-bounded-general-statement}
+\input{sections/07-limits}
+\input{sections/08-conclusion}
+
+% The V5 overlay names its donor families in words rather than by citation key.
+% The donor works are listed rather than silently dropped, so the reference list
+% of the paper travels with the LaTeX tree.
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
