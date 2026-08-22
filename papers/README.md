@@ -81,4 +81,33 @@ Canonical synchronization files:
 - `research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md` — P1–P10 ownership map;
 - `research/extensions/meta-orion-recursive-scientific-evolution/FORMAL_VERIFICATION_CLOSURE_V1.md` — executable theorem/definition disposition after final CI binding.
 
+## ORION-Q publication wave — refactored 2026-08-22
+
+The closed ORION-Q programme has a separate four-paper publication wave. These packages are **not** part of the numbered P1–P15 identity system above.
+
+| Q paper | Role | Canonical current artifact | Research status |
+|---|---|---|---|
+| `Q-paper-01-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | internally ready for external proof/novelty audit; headline sharp theorem `kappa_R6M = 2` |
+| `Q-paper-02-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete Q case study; top-tier generality requires the frozen cross-domain protocol |
+| `Q-paper-03-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | V0 is one measurement; current main repairs historical D2/D3; multi-frontier study preregistered |
+| `Q-paper-04-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | six exact-synthetic mechanism studies; real-domain matched-information study preregistered |
+
+The publication/research architecture is summarized in `Q_SERIES_TOP_TIER_REFACTOR_2026-08-22.md`.
+
+### Q1 theorem status
+
+The publication-facing Q1 result is stronger than the historical V1 manuscript. For the frozen R6M shared-Tag TARE-M2 grammar/support-count objective:
+
+- an analytic all-`n` exchange proof gives support <=2 sufficiency;
+- the complete support-one family has an exact `n=2` counterexample (`5 < 6`);
+- therefore the intrinsic uniform frame-support number is exactly `kappa_R6M = 2`;
+- the proof's only weight-two parity obstruction is realized by the exact frame-for-Tag coupling witness;
+- the original large finite enumerations remain independent verification, not the logical basis of the publication proof.
+
+Canonical proof/novelty artifacts: `Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md`, `CLAIM_LEDGER_V2.md`, `NOVELTY_RESEARCH_2026-08-22.md`, and `FIGURES_PLAN_V2.md`.
+
+### Q/QG claim boundary
+
+ORION-QG remains a separate successor publication wave. Q papers may cite QG to disclose later limitations/follow-up, but must not back-port QG novelty into Q claims. In particular, later R6I support-one, objective cones, SixLCU/StabPrep results and refined support-two TARE subregimes belong to QG papers.
+
 RAKL papers remain immutable provenance and are selectively remapped in `legacy-rakl-map.md`.
