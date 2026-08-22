@@ -28,7 +28,14 @@ records what it removed.
 **Amended after QG-24.** This packet was first written before QG-24 ran. QG-24 then
 refuted the applied ceiling §5 asserted, so §5 is corrected in place rather than left
 standing — a closure packet that contradicts its own programme's later evidence is not a
-closure. The wave-3 lane set is QG-10, QG-19, QG-22, QG-23 and QG-24.
+closure. The wave-3 lane set is QG-10, QG-19, QG-22, QG-23, QG-24 and QG-26; **QG-25 is open**
+and its Q1 is still running, with only its donor search bound.
+
+**Amended again after QG-25's donor search and QG-26.** The donor search cost the
+programme the novelty of its central quantity — the minimum feasibility-deciding
+syndrome dimension is the Myhill–Nerode index in base two — and QG-26 is what that
+purchase bought: the donor field's standard question, asked for the first time, and a
+committed number confirmed tight rather than assumed so. §2 and §5 carry both.
 
 ## 2. What is established
 
@@ -49,6 +56,7 @@ any of them.
 | certified interval geometry | `L ≤ C_DP ≤ U` refereeless, all L components proven on complete domains; 60.4 % of rows certified, gaps never > 2 | QG-10 |
 | syndrome DP complexity | referee Θ(n); QG-7e closed form O(n⁶); naive enumeration Θ(4^{7n}) | QG-22, corroborated independently by QG-10 |
 | rotation-count distribution | exact counts at n = 1…14 with no sampling; merge floor **7**, not 9 | QG-24 |
+| syndrome state space is minimal | GF(2) rank of the committed alphabet is 10; the Nerode index of the R6I feasibility language is 2¹⁰ = 1024, structurally and by generic Moore refinement for two targets; the declared `STATES = 1024` is **exactly** the index, looseness factor 1 | QG-26 |
 
 **Two cross-lemma corroborations worth naming**, because they are what the verification
 audit says actually establishes correctness (`VERIFICATION_COVERAGE_2026-08-21.md`):
