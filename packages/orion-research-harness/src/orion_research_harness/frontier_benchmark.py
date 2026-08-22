@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Mapping, Sequence
+from typing import Any, Sequence
 
 from .protocol import content_digest
 
@@ -238,8 +238,34 @@ class FrontierDeferredScore:
             ("resolution_epoch", self.resolution_epoch),
         ):
             _nonempty(value, name=name)
+        if self.scorer_rule != item.deferred_scoring_rule:
+            raise ValueError("deferred score changed the frozen scorer rule")
         if self.score_digest != content_digest(self.unsigned()):
             raise ValueError("deferred score digest mismatch")
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        item: FrontierDecisionItem,
+        decision: FrontierInstrumentDecision,
+        resolving_evidence_digest: str,
+        alignment: DeferredAlignment,
+        resolution_epoch: str,
+    ) -> "FrontierDeferredScore":
+        decision.validate_against(item)
+        base = cls(
+            item_digest=item.item_digest,
+            decision_digest=decision.decision_digest,
+            resolving_evidence_digest=resolving_evidence_digest,
+            alignment=alignment,
+            scorer_rule=item.deferred_scoring_rule,
+            resolution_epoch=resolution_epoch,
+            score_digest="",
+        )
+        score = cls(**{**base.__dict__, "score_digest": content_digest(base.unsigned())})
+        score.validate_against(item=item, decision=decision)
+        return score
 
 
 __all__ = [
