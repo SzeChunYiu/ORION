@@ -245,6 +245,15 @@ def t_licensing_soft_reverted_to_prose(r):
     )
 
 
+def t_wall_clock_put_back_under_the_digest(r):
+    r["q3_cell_model"]["wall_clock_corroboration"] = {
+        "1": {"capped_seconds_per_instance": 0.00124}}
+
+
+def t_model_ratio_altered(r):
+    r["q3_cell_model"]["model_ratio_by_n"]["3"] = 1.0
+
+
 def t_wall_clock_status(r):
     r["q3_cell_model"]["wall_clock_status"] = ""
 
@@ -310,6 +319,10 @@ TAMPERS: dict[str, tuple[Callable[[dict], None], str]] = {
         t_licensing_counts_inflated, "licensing_record_matches_the_dp_rows"),
     "T18i_licensing_soft_reverted_to_prose": (
         t_licensing_soft_reverted_to_prose, "section_3_3_deviation_disclosed"),
+    "T19a_measured_wall_clock_returned_to_the_digest": (
+        t_wall_clock_put_back_under_the_digest,
+        "measured_wall_clock_is_not_under_digest_custody"),
+    "T19b_model_ratio_altered": (t_model_ratio_altered, "model_ratios_rederived"),
     "T19_wall_clock_caveat_removed": (
         t_wall_clock_status, "gate_g3_wall_clock_carries_no_argument"),
     "T20_instance_total_inflated": (

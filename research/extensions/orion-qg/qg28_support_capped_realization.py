@@ -701,7 +701,20 @@ def main() -> int:
             "above shows it is not needed at all, which is what makes the realized "
             "search polynomial rather than merely smaller."
         ),
-        "wall_clock_corroboration": wall,
+        "model_ratio_by_n": {
+            str(n): round(cells_capped(n, p_counts[n]) / cells_dxx(n), 2)
+            for n in (1, 2, 3)
+        },
+        "measured_wall_clock_lives_outside_the_digest": (
+            "A measured second cannot repeat, so hashing one makes the receipt "
+            "non-reproducible by construction and G8 can never hold. The first "
+            "assembly of this lane failed exactly there: two runs whose every "
+            "scientific field was byte-identical differed only in timing, and "
+            "the determinism gate correctly refused to write. The measurements "
+            "are reported in timings_excluded_from_digest.wall_clock_corroboration; "
+            "what stays under digest custody is model_ratio_by_n, which is "
+            "arithmetic on the frozen section-5 formulas and does repeat."
+        ),
         "wall_clock_status": (
             "Gate G3: timing carries no part of the argument. It appears to say "
             "whether the frozen cell model tracks measurement, and the answer is "
@@ -825,6 +838,7 @@ def main() -> int:
         ),
     }
     body["content_digest"] = sha(canonical(body))
+    timings["wall_clock_corroboration"] = wall
     body["timings_excluded_from_digest"] = timings
     body["total_seconds"] = round(time.time() - t_start, 1)
 

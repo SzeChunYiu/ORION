@@ -10,7 +10,7 @@
   "n >= 4 not executed: the committed dxx_search guards max_weight=2 to n<=3"
  ],
  "chemistry_sources_read": false,
- "content_digest": "05610cf590311983f25ab822eb60760be93e6fdc581c722fcec98af801717deb",
+ "content_digest": "40d00160f669f694814d45bcabd619727bf7cda2c4994150eb0b91e4e72cb69c",
  "deviation_from_protocol_section_3_3": {
   "found_by": "Cursor Bugbot on commit f8ba5f23, which observed that search() never called tag_weight_dp while the protocol and the responsibility string both said the sweep had been replaced",
   "section_says": "the shared Tag is obtained without the 4^n - 1 sweep, by an exact per-qubit syndrome DP",
@@ -941,23 +941,23 @@
   "prospective": true,
   "wall_clock_corroboration": {
    "1": {
-    "capped_seconds_per_instance": 0.00124,
-    "dxx_seconds_per_instance": 0.000348,
-    "measured_ratio": 3.57,
+    "capped_seconds_per_instance": 0.00147,
+    "dxx_seconds_per_instance": 0.000415,
+    "measured_ratio": 3.54,
     "model_ratio": 12.15,
     "reps": 40
    },
    "2": {
-    "capped_seconds_per_instance": 0.158747,
-    "dxx_seconds_per_instance": 0.002347,
-    "measured_ratio": 67.65,
+    "capped_seconds_per_instance": 0.17294,
+    "dxx_seconds_per_instance": 0.002383,
+    "measured_ratio": 72.58,
     "model_ratio": 759.38,
     "reps": 10
    },
    "3": {
-    "capped_seconds_per_instance": 36.483477,
-    "dxx_seconds_per_instance": 0.021911,
-    "measured_ratio": 1665.1,
+    "capped_seconds_per_instance": 36.382735,
+    "dxx_seconds_per_instance": 0.022222,
+    "measured_ratio": 1637.25,
     "model_ratio": 1404.96,
     "reps": 2
    }
@@ -997,13 +997,13 @@
  },
  "terminal": "QG28_COROLLARY_REALIZED__PROJECTED_WIN_CONFIRMED_WITH_ITS_CROSSOVER",
  "timings_excluded_from_digest": {
-  "domain_a_seconds": 6.66,
-  "domain_b_seconds": 1508.04,
+  "domain_a_seconds": 6.757,
+  "domain_b_seconds": 1548.213,
   "domain_c_seconds": 0.318,
-  "domain_d_seconds": 223.284,
-  "dp_driven_search_seconds": 229.59,
-  "tag_dp_check_seconds": 0.073
+  "domain_d_seconds": 218.27,
+  "dp_driven_search_seconds": 228.865,
+  "tag_dp_check_seconds": 0.081
  },
  "total_instances_compared": 13368,
- "total_seconds": 2042.9
+ "total_seconds": 2077.4
 }

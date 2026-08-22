@@ -490,6 +490,23 @@ def verify(path: pathlib.Path) -> dict[str, Any]:
         r.get("asserts_novelty") is False for r in rec.get("donor_search_records", [])
     )
     gates = rec.get("gates") or {}
+    # A digest is a promise that the field repeats. A measured second does not,
+    # so putting one under the digest guarantees G8 fails -- which is how the
+    # first assembly of this lane died. The body may carry the MODEL ratio,
+    # which is arithmetic and does repeat.
+    checks["measured_wall_clock_is_not_under_digest_custody"] = (
+        "wall_clock_corroboration" not in q3
+    )
+    want_ratios = {
+        str(n): round(cells_capped(pair_count(n)) / cells_dxx(n), 2)
+        for n in (1, 2, 3)
+    }
+    checks["model_ratios_rederived"] = (
+        {k: float(v) for k, v in (q3.get("model_ratio_by_n") or {}).items()}
+        == want_ratios
+    )
+    notes["model_ratios_rederived"] = want_ratios
+
     checks["gate_g3_wall_clock_carries_no_argument"] = (
         gates.get("G3_no_complexity_inference_from_wall_clock") is True
         and bool(str(q3.get("wall_clock_status", "")).strip())
