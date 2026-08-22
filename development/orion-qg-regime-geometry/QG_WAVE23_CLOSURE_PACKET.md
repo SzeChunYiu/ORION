@@ -28,8 +28,21 @@ records what it removed.
 **Amended after QG-24.** This packet was first written before QG-24 ran. QG-24 then
 refuted the applied ceiling §5 asserted, so §5 is corrected in place rather than left
 standing — a closure packet that contradicts its own programme's later evidence is not a
-closure. The wave-3 lane set is QG-10, QG-19, QG-22, QG-23, QG-24 and QG-26; **QG-25 is open**
-and its Q1 is still running, with only its donor search bound.
+closure. The wave-3 lane set is QG-10, QG-19, QG-22, QG-23, QG-24, QG-25, QG-26 and QG-27.
+**All are closed and bound**; QG-25's and QG-27's verifiers were written by the
+adjudicator rather than by their lanes, which is the ordinary case for an independent
+verifier and not a concession.
+
+**Amended a third time, after QG-25 and QG-27 closed.** QG-25's agent died twice without
+writing a verifier, so the adjudicator wrote one carrying its own stabilizer simulation:
+QG-22's conclusion about StabPrep stands and **its reason does not** — the obstruction is
+non-commutativity of the transition monoid, witnessed by two gates, not the size of the
+state space, and `PARITY_GRID(n)` exhibits a 2^(n²) space with a dimension-1 syndrome.
+QG-27 then answered the cost question QG-26 forbade itself: the DP is minimal for cost
+too, its own frozen definition of cost-equivalence was wrong and refuted by exhibition,
+and the `criterion_binding` gate committed that morning **refused its author's own lane**
+until an exhibited rejection was supplied. Sixteen defects of one shape were found and
+fixed across the day; the retrospective is `GATE_FAILURE_FAMILY_2026-08-22.md`.
 
 **Amended again after QG-25's donor search and QG-26.** The donor search cost the
 programme the novelty of its central quantity — the minimum feasibility-deciding
@@ -57,6 +70,8 @@ any of them.
 | syndrome DP complexity | referee Θ(n); QG-7e closed form O(n⁶); naive enumeration Θ(4^{7n}) | QG-22, corroborated independently by QG-10 |
 | rotation-count distribution | exact counts at n = 1…14 with no sampling; merge floor **7**, not 9 | QG-24 |
 | syndrome state space is minimal | GF(2) rank of the committed alphabet is 10; the Nerode index of the R6I feasibility language is 2¹⁰ = 1024, structurally and by generic Moore refinement for two targets; the declared `STATES = 1024` is **exactly** the index, looseness factor 1 | QG-26 |
+| the same state space is minimal for **cost** | letter costs are state-independent, so mergeability reduces to the feasibility language; the accepting set's translation stabiliser is trivial, so no two states merge | QG-27 |
+| no abelian syndrome for StabPrep at **any** dimension | `S`then`H` reaches ⟨X⟩ and `H`then`S` reaches ⟨Y⟩ — one multiset, two states — so every commutative-monoid homomorphism fails to separate them, fixed D or growing | QG-25 |
 
 **Two cross-lemma corroborations worth naming**, because they are what the verification
 audit says actually establishes correctness (`VERIFICATION_COVERAGE_2026-08-21.md`):
