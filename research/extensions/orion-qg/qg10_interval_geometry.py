@@ -802,6 +802,18 @@ def evaluate(tp, n: int, want_referee: bool, counters, budget=None) -> dict[str,
         raise AssertionError({"qg10_public_witness_replay_failed": n})
     counters["public_replay_rows"] += 1
     gap = best_u - low
+    # G11: every quantity that enters a decision is an exact Python integer.
+    for name, val in (("L", low), ("U", best_u), ("gap", gap),
+                      ("L_TRIV", components["L_TRIV"]),
+                      ("L_COL", components["L_COL"]),
+                      ("L_SEP", components["L_SEP"]),
+                      ("U_W1", u_w1), ("C_DP", c_dp)):
+        if val is None:
+            continue
+        if not isinstance(val, int) or isinstance(val, bool):
+            raise AssertionError({"qg10_non_integer_decision_value":
+                                  [name, repr(val), type(val).__name__]})
+    counters["integer_checked_rows"] += 1
     if gap < 0:
         counters["interval_inversions"].append(
             [n, [[list(a), list(b)] for a, b in tp], low, best_u])
@@ -1100,7 +1112,7 @@ def main() -> dict[str, Any]:
         "lower_bound_violations": [], "interval_inversions": [],
         "binding_rows": 0, "binding_failures": [],
         "dplus_rows": 0, "dplus_failures": [],
-        "bprime_calls": 0, "bsecond_calls": 0,
+        "bprime_calls": 0, "bsecond_calls": 0, "integer_checked_rows": 0,
     }
     coleq = column_equivalence_audit()
     tick("lemma_domains", t0)
@@ -1188,7 +1200,8 @@ def main() -> dict[str, Any]:
         "G9_sandwich": bool(not counters["sandwich_failures"]
                             and counters["sandwich_rows"] == len(refereed)),
         "G10_receipt_bindings": True,
-        "G11_exact_integers": True,
+        "G11_exact_integers": bool(
+            counters["integer_checked_rows"] == len(allrows)),
         "G12_caps_disclosed": True,
         "G13_no_protected_or_chemistry_access": True,
     }
@@ -1367,6 +1380,7 @@ def main() -> dict[str, Any]:
             "dplus_binding_cap": "n <= 4 (committed enumerator guard)",
             "verbatim_cap": VERBATIM_CAP,
             "runtime_cap_seconds": RUNTIME_CAP_SECONDS,
+            "integer_checked_rows": counters["integer_checked_rows"],
             "timing_excluded_from_receipt": ("runtimes are emitted on stderr "
                                              "only so the receipt is "
                                              "byte-identical across runs"),
