@@ -4,6 +4,9 @@ This module is intentionally narrow.  It does not grant scientific authority and
 is not a security certification.  It exposes the exact harness surfaces that the
 Q3 systems manuscript is allowed to describe so framework/paper drift becomes a
 machine failure instead of a prose discrepancy.
+
+Benchmark semantics such as whether AGREE/DISAGREE are admissible outcomes live in
+the frozen benchmark protocol, not in this harness implementation contract.
 """
 
 from __future__ import annotations
@@ -32,7 +35,6 @@ Q3_HARNESS_REQUIRED_PROPERTIES = (
     "campaign_state_decision_transition_schemas",
     "campaign_authority_non_escalation",
     "protected_reference_custody_checks",
-    "benchmark_disagreement_is_admissible",
 )
 
 
@@ -40,8 +42,9 @@ def q3_publication_contract() -> dict[str, Any]:
     """Return the publication-facing contract after validating code bindings.
 
     The values here describe implemented mechanics, not empirical reliability of
-    the scientific benchmark.  The benchmark's one-item outcome remains evidence
-    in the paper package rather than a property of this module.
+    the scientific benchmark.  The benchmark's one-item outcome and its admissible
+    AGREE/PARTIAL/DISAGREE vocabulary remain frozen evidence/protocol properties in
+    the paper package rather than properties of this module.
     """
 
     validate_q3_publication_contract()
