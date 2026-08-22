@@ -37,6 +37,7 @@ from .mechanics_bridge import (
     run_mechanic_receipts,
     saturation_surface,
 )
+from .paper_structure_consensus import run_paper_structure_consensus
 from .protocol import CapabilityRequest, CapabilityResult
 from .recursive_runner import RecursiveRunLimits
 from .recursive_budget_hardening import install_recursive_budget_hardening
@@ -90,6 +91,7 @@ __all__ = [
     "run_campaign",
     "run_campaign_cycle",
     "run_mechanic_receipts",
+    "run_paper_structure_consensus",
     "run_problem",
     "run_problem_recursive",
     "saturation_surface",
