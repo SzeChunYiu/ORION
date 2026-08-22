@@ -1,5 +1,5 @@
 {
-  "blocker_sites": 587,
+  "blocker_sites": 596,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 16,
     "MISSING_ACCESS": 6,
@@ -7,12 +7,12 @@
     "MISSING_DECLARATION": 93,
     "MISSING_IDENTITY": 32,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 385
+    "UNCLASSIFIED": 394
   },
   "closes_gate": null,
   "grants_authority": "NONE",
   "issue": 322,
-  "observing_sites": 55,
+  "observing_sites": 57,
   "schema_version": "orion.cannot-check-inventory.v2",
   "sites": [
     {
@@ -4187,7 +4187,7 @@
       "file": "programme/content_binding_coverage.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 197,
+      "lineno": 205,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4280,6 +4280,42 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 575,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "PairState.outcome",
+      "file": "programme/failure_class_coverage.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 110,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "FailureClass.outcome",
+      "file": "programme/failure_class_coverage.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 183,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "CoverageReport.outcome",
+      "file": "programme/failure_class_coverage.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 264,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4605,6 +4641,30 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 565,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "PanelCandidate.outcome",
+      "file": "programme/registry_coverage.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 126,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "CoverageReport.outcome",
+      "file": "programme/registry_coverage.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 243,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -6599,6 +6659,59 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "ArmCeiling.outcome",
+      "file": "study/p2/acquisition_ceiling.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 188,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "as_capability",
+      "file": "study/p2/acquisition_ceiling.py",
+      "has_reason": true,
+      "kind": "BRANCH",
+      "lineno": 253,
+      "missing_obligation": null,
+      "reasons": [
+        ": acquisition unmeasured on",
+        "task(s); a capability asserted over an unmeasured arm is the assumed zero this module exists to refuse"
+      ],
+      "role": "OBSERVES",
+      "unmet_precondition": null
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "delta_support",
+      "file": "study/p2/acquisition_ceiling.py",
+      "has_reason": true,
+      "kind": "BRANCH",
+      "lineno": 292,
+      "missing_obligation": null,
+      "reasons": [
+        ": acquisition unmeasured, so the statistic has no derived support -- report CANNOT_CHECK rather than a bound"
+      ],
+      "role": "OBSERVES",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "matched_exposure",
+      "file": "study/p2/acquisition_ceiling.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 416,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "Resolution",
       "file": "study/p2/comparison_resolution.py",
       "has_reason": false,
@@ -8410,7 +8523,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "OTHER_STATEMENT",
-      "lineno": 381,
+      "lineno": 398,
       "missing_obligation": null,
       "reasons": [
         "REOPEN"
@@ -8424,7 +8537,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "OTHER_STATEMENT",
-      "lineno": 423,
+      "lineno": 440,
       "missing_obligation": null,
       "reasons": [
         "REOPEN"
@@ -8438,7 +8551,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 520,
+      "lineno": 537,
       "missing_obligation": null,
       "reasons": [
         "incomplete_always_reopens",
@@ -8462,7 +8575,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 536,
+      "lineno": 553,
       "missing_obligation": null,
       "reasons": [
         "incomplete_always_reopens",
@@ -8486,7 +8599,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": false,
       "kind": "OTHER_STATEMENT",
-      "lineno": 553,
+      "lineno": 570,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -8498,7 +8611,31 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": false,
       "kind": "OTHER_STATEMENT",
-      "lineno": 675,
+      "lineno": 692,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "_carrying_outcome",
+      "file": "study/p7/premise_audit.py",
+      "has_reason": false,
+      "kind": "OTHER_STATEMENT",
+      "lineno": 198,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "discharges_without_donor_authority",
+      "file": "study/p8/authority_conservativity.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 252,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -9376,8 +9513,8 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "6283dbe242d434b80fc956b00a834878840f2be9",
-  "total_sites": 642,
+  "subject_commit": "52bd1e31fa97b904dd52b59bfe5c8fc04391aba2",
+  "total_sites": 653,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 111,
   "with_reason": 281
