@@ -121,6 +121,12 @@
       "reading": "4 of 6 ablations move none of the reported metrics, with a zero-width interval on every one. That is a statement about the corpus, not about the coordinates: it contains no case where those coordinates are consulted, so removing them cannot be observed to cost anything. It is not evidence that they are dispensable, and the opposite reading is not available from this artifact."
     }
   ],
+  "arms_that_cannot_differ": [
+    "P13: PROVENANCE_ONLY == UNQUALIFIED",
+    "P1: cost_greedy_repair == immediate_outcome_flip_repair",
+    "P1: orion_mutation_necessity == orion_with_unlimited_intervention_budget",
+    "P4: claimbench-sciclaimhunt-scientific-evidence == pooled-evidence-nli-support"
+  ],
   "control": {
     "guard_rate": {
       "at_extreme": null,
@@ -157,6 +163,7 @@
   "not_licensed": [
     "any claim that a saturated metric is the wrong metric; a benchmark on which every system is perfect may measure something real that is simply easy, and settling that needs a system that fails, which these panels do not contain",
     "any claim about H1, whose metric discriminates across the panel and whose interval is earned",
+    "any claim that two indistinguishable arms are a defect; an ablation that coincides with its own base is a null result and is the finding, while two comparators that coincide overstate breadth -- the check cannot tell them apart and does not try",
     "any claim that the panels' verdicts were recorded dishonestly; each is what its stated rule produces on its stated metric -- what is established is that two of them could not have been anything else"
   ],
   "panels": [
@@ -194,6 +201,7 @@
           "verdict_could_have_differed": false
         }
       },
+      "indistinguishable_arms": [],
       "metrics": {
         "clean_coverage": {
           "at_extreme": 1.0,
@@ -394,6 +402,12 @@
           "verdict_could_have_differed": true
         }
       },
+      "indistinguishable_arms": [
+        [
+          "claimbench-sciclaimhunt-scientific-evidence",
+          "pooled-evidence-nli-support"
+        ]
+      ],
       "metrics": {
         "clean_coverage": {
           "at_extreme": 1.0,
@@ -501,6 +515,125 @@
       "systems": 11
     },
     {
+      "artifact": "papers/paper-13-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
+      "hypotheses": {
+        "H1": {
+          "decided_on": "unsafe_reuse_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H2": {
+          "decided_on": "verified_correct_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H3": {
+          "decided_on": "mean_cost",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        }
+      },
+      "indistinguishable_arms": [
+        [
+          "PROVENANCE_ONLY",
+          "UNQUALIFIED"
+        ]
+      ],
+      "metrics": {
+        "cannot_check_count": {
+          "at_extreme": null,
+          "detail": "fewer than two systems report this metric, so it has no panel to vary over",
+          "distinct_values": 1,
+          "metric": "cannot_check_count",
+          "resolution": "CANNOT_CHECK",
+          "values": {
+            "RCS": 237.0
+          }
+        },
+        "correct_cannot_check_rate": {
+          "at_extreme": null,
+          "detail": "fewer than two systems report this metric, so it has no panel to vary over",
+          "distinct_values": 1,
+          "metric": "correct_cannot_check_rate",
+          "resolution": "CANNOT_CHECK",
+          "values": {
+            "RCS": 1.0
+          }
+        },
+        "mean_cost": {
+          "at_extreme": null,
+          "detail": "4 distinct values across 5 systems",
+          "distinct_values": 4,
+          "metric": "mean_cost",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 5.731892903645833,
+            "CONFIDENCE_ONLY": 1.858154296875,
+            "PROVENANCE_ONLY": 1.0,
+            "RCS": 2.8747151692708335,
+            "UNQUALIFIED": 1.0
+          }
+        },
+        "unnecessary_reopen_rate": {
+          "at_extreme": null,
+          "detail": "2 distinct values across 2 systems",
+          "distinct_values": 2,
+          "metric": "unnecessary_reopen_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 0.5743815104166666,
+            "RCS": 0.0
+          }
+        },
+        "unsafe_reuse_rate": {
+          "at_extreme": null,
+          "detail": "3 distinct values across 5 systems",
+          "distinct_values": 3,
+          "metric": "unsafe_reuse_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 0.0,
+            "CONFIDENCE_ONLY": 0.215576171875,
+            "PROVENANCE_ONLY": 0.3961588541666667,
+            "RCS": 0.0,
+            "UNQUALIFIED": 0.3961588541666667
+          }
+        },
+        "verified_correct_rate": {
+          "at_extreme": null,
+          "detail": "4 distinct values across 5 systems",
+          "distinct_values": 4,
+          "metric": "verified_correct_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 0.9512532552083334,
+            "CONFIDENCE_ONLY": 0.9657389322916666,
+            "PROVENANCE_ONLY": 0.9248046875,
+            "RCS": 0.980712890625,
+            "UNQUALIFIED": 0.9248046875
+          }
+        }
+      },
+      "paper_id": "P13",
+      "readable": true,
+      "systems": 5
+    },
+    {
       "artifact": "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
       "hypotheses": {
         "H1": {
@@ -534,6 +667,16 @@
           "verdict_could_have_differed": true
         }
       },
+      "indistinguishable_arms": [
+        [
+          "cost_greedy_repair",
+          "immediate_outcome_flip_repair"
+        ],
+        [
+          "orion_mutation_necessity",
+          "orion_with_unlimited_intervention_budget"
+        ]
+      ],
       "metrics": {
         "forbidden_high_level_mutation_rate": {
           "at_extreme": null,

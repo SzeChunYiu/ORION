@@ -16,6 +16,7 @@ import pytest
 
 from orion.programme.panel_resolution import (
     MetricResolution,
+    duplicate_arms,
     PUBLISHED_PANELS,
     build_report,
     discriminating_control,
@@ -265,3 +266,71 @@ class TestTheSweepDoesNotFireOnEverything:
         assert not any(
             item.startswith("P1 ") for item in report["hypotheses_settled_before_any_system_ran"]
         )
+
+
+class TestArmsThatCannotDiffer:
+    """Two arms with identical values on every shared metric are one arm twice.
+
+    Kept apart from saturation deliberately: this fires on panels whose metrics
+    all discriminate. P13A's four baselines vary freely across the panel and two
+    of them still agree to the last digit.
+    """
+
+    @pytest.fixture(scope="module")
+    def report(self) -> dict:
+        return build_report(REPO_ROOT, date="2026-08-22")
+
+    def test_identical_arms_are_grouped(self) -> None:
+        panel = {"a": {"r": 0.5, "c": 2.0}, "b": {"r": 0.5, "c": 2.0}, "d": {"r": 0.9, "c": 1.0}}
+        assert duplicate_arms(panel) == [("a", "b")]
+
+    def test_arms_that_differ_anywhere_are_not_grouped(self) -> None:
+        panel = {"a": {"r": 0.5, "c": 2.0}, "b": {"r": 0.5, "c": 2.5}}
+        assert duplicate_arms(panel) == []
+
+    def test_a_metric_only_one_arm_reports_does_not_break_the_tie(self) -> None:
+        # An absent metric may be an absence of measurement rather than a
+        # difference, so it must not be read as one.
+        panel = {"a": {"r": 0.5}, "b": {"r": 0.5, "extra": 1.0}}
+        assert duplicate_arms(panel) == [("a", "b")]
+
+    def test_arms_sharing_no_metric_are_not_grouped(self) -> None:
+        assert duplicate_arms({"a": {"x": 1.0}, "b": {"y": 1.0}}) == []
+
+    def test_booleans_are_not_compared_as_numbers(self) -> None:
+        panel = {"a": {"ok": True, "r": 1.0}, "b": {"ok": False, "r": 1.0}}
+        assert duplicate_arms(panel) == [("a", "b")]
+
+    def test_the_control_panel_has_no_duplicate_arms(self) -> None:
+        assert duplicate_arms(discriminating_control()) == []
+
+    def test_p13s_two_baselines_are_the_same_policy(self, report: dict) -> None:
+        p13 = next(p for p in report["panels"] if p["paper_id"] == "P13")
+        assert ["PROVENANCE_ONLY", "UNQUALIFIED"] in p13["indistinguishable_arms"]
+
+    def test_p13s_metrics_all_discriminate_anyway(self, report: dict) -> None:
+        # The reason this check is separate from saturation: the panel is not
+        # saturated, it just contains one policy twice.
+        p13 = next(p for p in report["panels"] if p["paper_id"] == "P13")
+        for name, hypothesis in p13["hypotheses"].items():
+            assert hypothesis["metric_resolution"] == MetricResolution.DISCRIMINATES.value, name
+
+    def test_p1s_budget_ablation_coincides_with_its_own_base(self, report: dict) -> None:
+        # The reading that is not a defect. P1 registers "remove the intervention
+        # budget" as an ablation, and it changing nothing is the result.
+        p1 = next(p for p in report["panels"] if p["paper_id"] == "P1")
+        assert [
+            "orion_mutation_necessity",
+            "orion_with_unlimited_intervention_budget",
+        ] in p1["indistinguishable_arms"]
+
+    def test_the_report_refuses_to_call_a_pair_a_defect(self, report: dict) -> None:
+        assert any(
+            "cannot tell them apart and does not try" in item
+            for item in report["not_licensed"]
+        )
+
+    def test_four_pairs_across_three_panels(self, report: dict) -> None:
+        assert len(report["arms_that_cannot_differ"]) == 4
+        papers = {item.split(":")[0] for item in report["arms_that_cannot_differ"]}
+        assert papers == {"P1", "P4", "P13"}

@@ -174,6 +174,53 @@ def inspect_metric(systems: dict[str, dict[str, Any]], metric: str) -> MetricRep
     )
 
 
+def duplicate_arms(systems: dict[str, dict[str, Any]]) -> list[tuple[str, ...]]:
+    """Groups of arms that report identical values on every metric they share.
+
+    Two comparator arms that cannot differ are one comparator listed twice, and
+    beating both is beating one. This is the P2 arm-distinguishability check at
+    panel level, and it is worth running separately from saturation because it
+    can fire on a panel whose metrics all discriminate: P13A's provenance-only
+    and unqualified baselines agree to the last digit on unsafe reuse, verified
+    correctness and cost, while the panel around them varies freely.
+
+    Arms are compared only on metrics they both report. An arm that reports a
+    metric the other does not is not thereby distinguished --- the absence may be
+    an absence of measurement --- so a shared-metric match is reported and the
+    unshared metrics are named alongside it rather than silently breaking the tie.
+    """
+
+    names = sorted(systems)
+    groups: list[tuple[str, ...]] = []
+    claimed: set[str] = set()
+    for index, left in enumerate(names):
+        if left in claimed:
+            continue
+        matches = [left]
+        left_rates = systems[left]
+        if not isinstance(left_rates, dict):
+            continue
+        for right in names[index + 1 :]:
+            right_rates = systems[right]
+            if not isinstance(right_rates, dict):
+                continue
+            shared = {
+                key
+                for key in set(left_rates) & set(right_rates)
+                if isinstance(left_rates[key], (int, float))
+                and isinstance(right_rates[key], (int, float))
+                and not isinstance(left_rates[key], bool)
+            }
+            if not shared:
+                continue
+            if all(abs(float(left_rates[k]) - float(right_rates[k])) <= TOLERANCE for k in shared):
+                matches.append(right)
+        if len(matches) > 1:
+            groups.append(tuple(matches))
+            claimed.update(matches)
+    return groups
+
+
 def inspect_panel(
     systems: dict[str, dict[str, Any]], metrics: tuple[str, ...] | None = None
 ) -> dict[str, MetricReport]:
@@ -217,6 +264,17 @@ PUBLISHED_PANELS: tuple[dict[str, Any], ...] = (
             "H1": "false_promotion_rate",
             "H2": "clean_coverage",
             "H3": "correct_cannot_check_rate",
+        },
+    },
+    {
+        "artifact": "papers/paper-13-responsibility-carrying-state/"
+        "P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
+        "paper_id": "P13",
+        "systems_key": "summary",
+        "hypothesis_metrics": {
+            "H1": "unsafe_reuse_rate",
+            "H2": "verified_correct_rate",
+            "H3": "mean_cost",
         },
     },
     # Registered because it is expected to come out clean. A sweep that only
@@ -367,6 +425,7 @@ def inspect_published_panel(repo_root: Any, panel: dict[str, Any]) -> dict[str, 
         "paper_id": panel["paper_id"],
         "readable": True,
         "systems": len(systems),
+        "indistinguishable_arms": [list(group) for group in duplicate_arms(systems)],
         "hypotheses": hypotheses,
         "metrics": {name: report.as_json() for name, report in sorted(reports.items())},
     }
@@ -399,6 +458,12 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
         "panels": panels,
         "ablation_panels": ablations,
         "hypotheses_settled_before_any_system_ran": settled,
+        "arms_that_cannot_differ": sorted(
+            f"{panel['paper_id']}: {' == '.join(group)}"
+            for panel in panels
+            if panel.get("readable")
+            for group in panel["indistinguishable_arms"]
+        ),
         "untestable_coordinates": sorted(
             f"{panel['paper_id']}: {name}"
             for panel in ablations
@@ -446,6 +511,10 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "settling that needs a system that fails, which these panels do not contain",
             "any claim about H1, whose metric discriminates across the panel and whose "
             "interval is earned",
+            "any claim that two indistinguishable arms are a defect; an ablation that "
+            "coincides with its own base is a null result and is the finding, while two "
+            "comparators that coincide overstate breadth -- the check cannot tell them "
+            "apart and does not try",
             "any claim that the panels' verdicts were recorded dishonestly; each is what "
             "its stated rule produces on its stated metric -- what is established is that "
             "two of them could not have been anything else",
