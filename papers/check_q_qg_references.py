@@ -14,10 +14,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 BIBS = [
     ROOT / "papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib",
     ROOT / "papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib",
+    ROOT / "papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib",
 ]
 FINAL = [
     ROOT / "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
     ROOT / "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
+    ROOT / "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
     ROOT / "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
     ROOT / "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
     ROOT / "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
@@ -33,7 +35,8 @@ REQUIRED_KEYS = {
     "smithmiles2023isa", "chen2025scienceagentbench", "bragg2025astabench",
     "meng2026scientistone", "liu2026sciagentarena", "chao2026stale",
     "sulpovar2026contextnest", "russell1991rightthing", "buneman2001provenance",
-    "cheney2009provenance",
+    "cheney2009provenance", "chang2026valueblindbench", "wang2026reflect",
+    "rao2026agreementmetrics", "panigrahi2026heurekabench",
 }
 
 EXPECTED_DOIS = {
@@ -42,6 +45,9 @@ EXPECTED_DOIS = {
     "smithmiles2023isa": "10.1145/3572895",
     "buneman2001provenance": "10.1007/3-540-44503-X_20",
     "cheney2009provenance": "10.1561/1900000006",
+    "chang2026valueblindbench": "10.48550/arXiv.2604.25224",
+    "wang2026reflect": "10.48550/arXiv.2605.19196",
+    "rao2026agreementmetrics": "10.48550/arXiv.2606.00093",
 }
 EXPECTED_EPRINTS = {
     "schillo2026tare": "2601.05740",
@@ -54,6 +60,10 @@ EXPECTED_EPRINTS = {
     "liu2026sciagentarena": "2606.12736",
     "chao2026stale": "2605.06527",
     "sulpovar2026contextnest": "2607.02116",
+    "chang2026valueblindbench": "2604.25224",
+    "wang2026reflect": "2605.19196",
+    "rao2026agreementmetrics": "2606.00093",
+    "panigrahi2026heurekabench": "2601.01678",
 }
 
 
@@ -104,17 +114,13 @@ def main() -> int:
             if got.split("v", 1)[0] != expected.lower():
                 errors.append(f"EPRINT_MISMATCH:{key}:{got}!={expected}")
 
-    # Final scientific masters should not contain raw Pandoc citation tokens themselves;
-    # cited masters are generated separately. But all names that require insertion must have
-    # a mapping and a shared BibTeX key.
     map_body = (ROOT / "papers/Q_QG_CITATION_INSERTION_MAP_V1.json").read_text(encoding="utf-8")
     map_keys = set(CITE_RE.findall(map_body))
     unknown_map = map_keys - set(entries)
     if unknown_map:
         errors.append(f"CITATION_MAP_UNKNOWN_KEYS:{sorted(unknown_map)}")
 
-    # Detect accidental direct Pandoc citation insertion into the scientific master; this
-    # would bypass the single-source citation generator.
+    # Scientific masters remain citation-token free; venue masters are generated.
     for path in FINAL:
         body = path.read_text(encoding="utf-8")
         direct = set(CITE_RE.findall(body)) & set(entries)
