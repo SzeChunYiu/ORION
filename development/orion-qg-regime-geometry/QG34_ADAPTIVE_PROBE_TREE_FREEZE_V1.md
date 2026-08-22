@@ -86,3 +86,67 @@ advance.
 `proof_authority: false` beyond the machine-checked recursion, `novelty_claim:
 false`. No credit over decision-tree minimization, adaptive testing,
 identification trees, or DP on partitions.
+
+---
+
+# OUTCOME (appended after execution; nothing above was edited)
+
+Terminal reached: `QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_ESTABLISHED`.
+
+```
+D_* = 3
+```
+
+The exact minimax adaptive probe depth above the joint bulk+spectrum summaries
+is **3**. Depth distribution over the 92 initial joint classes:
+
+| `D(S)` | 0 | 1 | 2 | 3 |
+|--------|---|---|---|---|
+| classes | 7 | 30 | 39 | **16** |
+
+The 7 depth-0 classes are the singleton joint classes; 16 classes attain `D_*`,
+with sizes 6, 12, 24 and 48.
+
+## The four things the freeze required
+
+1. **Bellman over the reachable state set.** 4,441 distinct states were valued;
+   the number comes from the recursion, not from a hand-built tree.
+2. **Infeasibility certificate at `d - 1 = 2`.** No depth-2 adaptive tree
+   resolves *any* of the 16 worst classes. Checked on all 16, not a sample.
+   So 3 is minimal, not merely achieved.
+3. **Per-state arity lower bounds.** `ceil(log_a |S|)` with `a` the largest
+   number of distinct `K_p` values a single probe takes on `S`, reported for
+   every class. It is **tight on 80 of the 92** — so on twelve classes the
+   information bound alone does not explain the depth and the Bellman value is
+   doing real work.
+4. **Independent re-derivation.** A second solver with a different state
+   encoding (integer bitmasks over the 715 orbit ids, exact value recursion with
+   arity branch-and-bound) against the first (sorted tuples, iterative-deepening
+   feasibility). **Per-class agreement on all 92.**
+
+An explicit optimal tree was extracted for the largest worst class (48 types):
+depth 3, every leaf a singleton, covering all 48.
+
+## Q4 (secondary, computed only after the minimax value was sealed)
+
+Expected probe depth under the uniform prior over the 715 orbit types:
+**2.3748**. It was not used to select the minimax tree.
+
+## Q5 — what this does and does not say about fixed-versus-adaptive
+
+Adaptivity never needs more than **3** probes on any input, against QG-32's
+certified fixed set of **5**.
+
+It does **not** follow that adaptive beats the fixed *minimum*. QG-32 `#911`
+certifies 5 as an upper bound and QG-32b `#918` asks whether 4 suffice; the true
+fixed minimum is their result to establish, and per the freeze this atom does not
+adjudicate it. If that minimum turns out to be 4 or 5 there is a strict
+separation; if it is 3 there is none. The number established here is the
+adaptive side only.
+
+## Relation to the symmetry ceiling in this branch
+
+The companion result shows `bulk + spectrum` is exactly the symmetry-complete
+summary (Theorem C1), so all 715/92 residual separation is position-asymmetric
+information. `D_* = 3` says three position-indexed queries suffice to extract
+all of it, worst case, from any of the 92 starting states.
