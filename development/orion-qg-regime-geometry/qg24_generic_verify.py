@@ -134,3 +134,104 @@ def slot_data(frames, centrals, restores):
     comm = [[1 if all(psymp(t, slots[k]) == 0 for t in restores[b]) else 0
              for k in range(6)] for b in range(3)]
     return slots, eq, sp, comm
+
+
+# ---- complete n=1 re-enumeration -------------------------------------------
+ACCEPT9 = (0b010000111, 0b100000111)
+
+
+def _state9(r, s):
+    rA0, rA1, rB0, rB1, rC0, rC1 = r
+    sA0, sB0, sC0 = lsymp(s, rA0), lsymp(s, rB0), lsymp(s, rC0)
+    sA1, sB1, sC1 = lsymp(s, rA1), lsymp(s, rB1), lsymp(s, rC1)
+    return (lsymp(rA0, rA1)
+            | (lsymp(rB0, rB1) << 1)
+            | (lsymp(rC0, rC1) << 2)
+            | ((sA0 ^ sB0) << 3)
+            | ((sA0 ^ sC0) << 4)
+            | ((sA1 ^ sB1) << 5)
+            | ((sA1 ^ sC1) << 6)
+            | (sA0 << 7)
+            | (sA1 << 8))
+
+
+def enumerate_n1():
+    """Complete n=1 enumeration: distribution per model and the pair support."""
+    dist = {"R6L_RESTORE_IN_PLACE": {7: 0, 8: 0, 9: 0},
+            "R6M_RESTORE_FACTORED": {7: 0, 8: 0, 9: 0}}
+    pair_support, total = set(), 0
+    for centrals in itertools.product((0, 1), repeat=3):
+        for r in itertools.product(range(4), repeat=6):
+            for s in range(4):
+                if _state9(r, s) not in ACCEPT9:
+                    continue
+                frames = [(r[0], r[1]), (r[2], r[3]), (r[4], r[5])]
+                slots = []
+                for j in range(3):
+                    r0, r1 = frames[j]
+                    a, c = (r0, r1) if centrals[j] == 1 else (r1, r0)
+                    slots.extend([a, c])
+                eq = [[1 if slots[i] == slots[j] else 0 for j in range(6)]
+                      for i in range(6)]
+                sp = [[lsymp(slots[i], slots[j]) for j in range(6)]
+                      for i in range(6)]
+                for tA0, tA1, tB0, tB1 in itertools.product(range(4), repeat=4):
+                    comm = [
+                        [1 if (lsymp(tA0, slots[k]) == 0 and lsymp(tA1, slots[k]) == 0)
+                         else 0 for k in range(6)],
+                        [1 if (lsymp(tB0, slots[k]) == 0 and lsymp(tB1, slots[k]) == 0)
+                         else 0 for k in range(6)],
+                        [1] * 6,
+                    ]
+                    total += 1
+                    for model in dist:
+                        rc, edges = merge_search(
+                            eq, sp, comm, model == "R6L_RESTORE_IN_PLACE")
+                        dist[model][rc] += 1
+                        pair_support.update(edges)
+    return dist, sorted([i + 1, j + 1] for i, j in pair_support), total
+
+
+def admissible_frame_tag_counts(n_values):
+    """Independent nine-bit DP counting admissible (frames, Tag) assignments."""
+    local = [0] * 512
+    for r in itertools.product(range(4), repeat=6):
+        for s in range(4):
+            local[_state9(r, s)] += 1
+    nz = [(d, c) for d, c in enumerate(local) if c]
+    dp = [0] * 512
+    dp[0] = 1
+    out = {}
+    for q in range(1, max(n_values) + 1):
+        nxt = [0] * 512
+        for t, cur in enumerate(dp):
+            if cur:
+                for d, c in nz:
+                    nxt[t ^ d] += cur * c
+        dp = nxt
+        if q in n_values:
+            out[q] = dp[ACCEPT9[0]] + dp[ACCEPT9[1]]
+    return out
+
+
+# ---- panel witness re-derivation -------------------------------------------
+
+def theta_ft_cost(a, bs, S, targets, centrals, n):
+    """theta_FT Clifford cost (4,2,2,1) of a seven-rotation compilation."""
+    frames = [((a, bs[j]) if centrals[j] == 1 else (bs[j], a)) for j in range(3)]
+    cost = 0
+    for j in range(3):
+        nc, c = (1 - centrals[j]), centrals[j]
+        cost += 4 * (pwt(frames[j][nc]) - 1) + 2 * (pwt(frames[j][c]) - 1)
+    cost += 2 * pwt(S)
+    restores = [(pmul(targets[j][0], frames[j][0]),
+                 pmul(targets[j][1], frames[j][1])) for j in range(3)]
+    for k in range(2):
+        ta, tb, tc = (restores[0][k], restores[1][k], restores[2][k])
+        for q in range(n):
+            la, lb, lc = pcode(ta, q), pcode(tb, q), pcode(tc, q)
+            if la == lb == lc and la != 0:
+                cost += 1
+            else:
+                cost += (la != 0) + (lb != 0) + (lc != 0)
+    return cost, frames, restores
