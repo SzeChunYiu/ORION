@@ -772,6 +772,12 @@
           "grade": "MANUSCRIPT_COMPLETION",
           "note": "Successor manuscript only. Listed so that its reuse against a P10-U terminal fails HC-SUP-PREDECESSOR-REUSE.",
           "terminal": ""
+        },
+        {
+          "artifact_ref": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json",
+          "grade": "BOUNDED_PROTECTED",
+          "note": "The result the README summarises, named directly so the ledger stops pointing at a summary of a summary. Audited here rather than restated. The instrument is sound on every point checked: the leave-top-module-out effect is markov_minus_unigram 0.1046 with a bootstrap 95% interval of [0.0863, 0.1223] that is earned rather than degenerate; the interval is computed over the 26 of 28 blocks that have any transitions, which is correct and is reported as 26 rather than silently as 28 -- the two excluded blocks, Tactic and Util, have zero transitions and would contribute nothing to either side of the ratio; and the order-null p-value is at the resampling floor because the observed 151 cross-module bigram macros fall outside the whole null distribution, whose minimum is 166. Its own standalone_gate reads passes: false on two named conditions, PENDING_SEPARATE_NATIVE_REPLAY and PENDING_CONSTRUCTIVE_SATURATION, and its authority line says REVISION-BOUND SOURCE-PROJECTION EVIDENCE; NO LEAN KERNEL REPLAY. Nothing here is being claimed past that. Real work and it discharges nothing: the terminals it would bear on need the native replay the gate is waiting for.",
+          "terminal": "SOURCE_PROJECTION_TRANSFER_MEASURED__NATIVE_REPLAY_PENDING"
         }
       ]
     }
