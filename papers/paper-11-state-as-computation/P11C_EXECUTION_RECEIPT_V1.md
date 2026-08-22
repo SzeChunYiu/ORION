@@ -62,10 +62,32 @@ produce on its frozen seed and is retained as such, and it does **not** restore
 the `>=4x` claim that `P11D` retired. `P11E`'s negative is not overturned by it.
 
 `evidence/audit/P11_THRESHOLD_STABILITY_2026-08-22.json` measures how often each
-side comes up across many seeds of the same construction. That sweep is a
-diagnostic and authorizes no terminal; sweeping seeds after an outcome is how a
-result gets selected rather than measured, and it may not be used to prefer one
-of these runs over another.
+side comes up across twenty seeds of the same construction. Both frozen seeds
+fall inside the swept range and both reproduce exactly, which is what qualifies
+the sweep to say anything about them.
+
+| cell | `UNIVERSAL_L1` threshold across 20 seeds | gate passes |
+| --- | --- | --- |
+| `(17,4,5)` | `128` in 9, `256` in 11 | 11 / 20 |
+| `(19,3,7)` | `256` in 20 | 20 / 20 |
+
+The conjunction gate 3 asks for therefore holds in **11 of 20 draws, 0.55**. The
+second cell never moves; the whole instability is in the first.
+
+That is close enough to a coin flip that neither a single positive nor a single
+negative is evidence about the compiler. `P11C`'s SUPPORTED and `P11D`'s
+NOT\_MET are two draws from the same distribution, and reading either as
+settling the `>=4x` question would be reading a coin. What the pair actually
+establishes is that this construction, at five queries per cell, does not have
+the power to decide the gate it was given. Raising the query count per cell, or
+choosing a cell whose threshold does not sit on the boundary, is the change that
+would make the question decidable; neither is a repair to any existing frozen
+protocol and both need a fresh identity.
+
+The sweep is a diagnostic and authorizes no terminal. Sweeping seeds after an
+outcome is how a result gets selected rather than measured, and it may not be
+used to prefer one of these runs over another — including this one. A 0.55 pass
+rate says the construction cannot decide, not that the claim is false.
 
 ## Environment note
 
