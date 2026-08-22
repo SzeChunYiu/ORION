@@ -1,0 +1,85 @@
+name: orion-qg-qg27-bulk-defect
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG27_*'
+      - 'development/orion-qg-regime-geometry/qg27_*'
+      - 'development/orion-qg-regime-geometry/run_qg27_dual_harness.py'
+      - 'research/extensions/orion-qg/qg27_*'
+      - '.github/workflows/orion-qg-qg27-bulk-defect.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg27-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  bulk-defect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg27_dual_harness.py | tee artifacts/orion-qg-qg27-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg27_bulk_defect.py --output artifacts/orion-qg-qg27-replay.json > artifacts/orion-qg-qg27-replay.log
+          cmp artifacts/orion-qg-qg27-bulk-defect.json artifacts/orion-qg-qg27-replay.json
+      - name: Enforce bulk-defect authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg27-bulk-defect.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg27-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg27-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg27-dual-harness.json').read_text())
+          pos='QG27_TARE_BULK_DEFECT_LAW_AND_EXACT_ASYMPTOTIC_COST_DENSITY_ALL_N_MACHINE_CHECKED'
+          assert a['terminal']==pos
+          assert a['local_bounds']['spectator_range']==[0,6]
+          assert a['local_bounds']['two_branch_active_range']==[0,6]
+          assert a['local_bounds']['two_branch_correction_range']==[-6,6]
+          assert a['local_bounds']['lower_defect_constant']==-34 and a['local_bounds']['upper_defect_constant']==8
+          assert a['local_bounds']['one_active_rows']==48 and a['local_bounds']['one_active_structural_values']==[2]
+          assert len(a['frozen_motif_controls'])==6 and all(v['match'] and v['valid_six_targets'] for v in a['frozen_motif_controls'].values())
+          assert a['baseline']['distinct_vectors']==4 and len(a['bulk_tie_forms'])==6
+          assert g['decision']=='ACCEPT_BULK_DEFECT_THERMODYNAMIC_LIMIT' and g['all_checks'] is True
+          assert g['derived']['lower_defect']==-34
+          assert n['decision']=='ACCEPT_BULK_DEFECT_THERMODYNAMIC_LIMIT' and n['all_checks'] is True
+          assert n['responsibility']=='BULK_DEFECT__ASYMPTOTIC_COST_DENSITY__PERIOD1_SCALING_RAYS'
+          assert d['terminal']==pos and d['both_accept'] is True and d['defect_band']==[-34,8]
+          for x in (a,g,n,d):
+            assert x['BULK_DEFECT_UNIFORM_BOUND_ALL_N'] is True
+            assert x['ASYMPTOTIC_COST_DENSITY_EXACT'] is True
+            assert x['PURE_SCALING_RAY_EVENTUALLY_AFFINE'] is True
+            assert x['ASYMPTOTIC_COUNT_SPACE_PHASE_GEOMETRY'] is True
+            assert x['DEFECT_CONSTANTS_SHARP'] is False
+            assert x['FINITE_N_GLOBAL_PHASE_BOUNDARY'] is False
+            assert x['PHYSICAL_PHASE_TRANSITION'] is False
+            assert x['CHAIN_ALL_N'] is False
+            assert x['CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg27-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg27-*.json
+            artifacts/orion-qg-qg27-*.log
+            .orion-qg-qg27-generic/.orion-harness/**
+            .orion-qg-qg27-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn
