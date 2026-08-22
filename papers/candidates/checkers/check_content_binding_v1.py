@@ -101,7 +101,12 @@ FALSIFIERS = {
 #: collects from. Naming a file in reproduction instructions without binding it means
 #: the file can change while the binding still verifies -- the reader runs something
 #: other than what was bound, and nothing says so. The checker caught exactly that.
+#: P6 is the same case, and it arrived the same way. Its `REPRODUCE` prose names
+#: `test_p6_formal_refutation_capacity.py`, the suite that pins the refutation
+#: capacity its two repaired checkers gained; the checker refused the manifest
+#: until the file it tells a reader to run was bound.
 CANDIDATE_SUBJECT: dict[str, tuple[Path, ...]] = {
+    "P6": (Path("tests/unit/candidates/test_p6_formal_refutation_capacity.py"),),
     "P8": (Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),),
 }
 
