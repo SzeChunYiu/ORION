@@ -1,4 +1,8 @@
 \section{Data and code availability}
+\label{sec:availability}
+
+Every artifact named anywhere in this paper is listed here with its path, so
+that no repository location has to be carried in the narrative.
 
 \subsection{Preregistration}
 The study was preregistered and frozen before any outcome was accessed, under the
@@ -7,43 +11,153 @@ reported analysis was planned or chosen after the fact should compare against
 that freeze; it is the reason every number reported here can be traced to a
 decision made in advance of seeing it.
 
-\subsection{Repository access}
-The source code, protocol definitions, case suite, and repository-held evidence artifacts used by this revision are version-controlled at \texttt{SzeChunYiu/ORION}. Persistent DOI assignment remains pending publication. Result-bearing artifacts are identified by their repository paths and content bindings rather than by an unverified archival claim.
+The machine-readable freeze is \idt{protocol/PROTOCOL_V1.json} and the case
+requirements are \idt{protocol/HIDDEN_SHIFT_CASE_SCHEMA_V1.json}. The freeze
+records that no outcome had been accessed when it was cut. The amendment that
+replaced human adjudication with a blinded model panel is recorded as version
+1.1 of that freeze; it carries an adjudication tier that the record type refuses
+to report as human adjudication. The adjudication standard itself is
+\idt{protocol/ADJUDICATION_RUBRIC_V1.md}, the execution identities are in
+\idt{protocol/EXECUTION_MANIFEST_V1.md}, and the prospective power calculation
+is \idt{protocol/PROSPECTIVE_POWER_V1.md}.
 
-\subsection{Reproducing the results}
-\subsubsection{Powered v2.2.4 successor}
-The primary and replication directories under \texttt{research/revival/p1/confirmatory/v2.2/} each contain compressed public worlds, protected response matrices, raw results, result JSON, an independent verification record, provenance, and \texttt{SHA256SUMS}. The primary execution identity is \texttt{PRIMARY\_EXECUTION\_FREEZE\_V3.json}; earlier receipts and both additive amendments are retained. The replication directory binds its own disjoint world and execution receipts. \texttt{PRIMARY\_REPLICATION\_CONCORDANCE.json} checks the predeclared cross-run conditions without pooling the runs.
+The frozen experiments reported in Sections~\ref{sec:necessity}
+and~\ref{sec:revision} have their own preregistrations:
+\idt{research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json}
+for the mutation-necessity experiment, together with its superseded earlier
+versions in the same directory, and
+\idt{research/claim_expansion/p1/P1_X_PROTOCOL_V1.md} with
+\idt{research/claim_expansion/p1/v2/P1_X_V2_REPLICATION_PROTOCOL.md} for the
+revision-responsibility battery.
 
-The exact decompression, independent-rescoring, byte-comparison, and figure-regeneration commands are given in \texttt{REPRODUCE.md}. The independent verifier uses only the standard library and imports neither the candidate policies, production scorer/statistics, nor ORION licensing. It recomputes 40,348 arm/world rows per run and must reproduce the complete analysis object and terminal.
+\subsection{Frozen suite and generated quantities}
+The case suite is \idt{protocol/cases/}, split into a pilot and a test set and
+bound by content hash: the pilot fingerprint is
+\texttt{\PilotSuiteFingerprintShort} and the test fingerprint is
+\texttt{\TestSuiteFingerprintShort}. Case generation and validation are
+\idt{protocol/cases/generate_cases.py} and
+\idt{protocol/cases/validate_cases.py}. Every count, tier and margin quoted in
+the text is a macro generated into \idt{manuscript/generated/suite_facts.tex}
+by \idt{scripts/render_suite_facts.py}, so prose cannot drift from the frozen
+suite. The precision tier the frozen power record assigns to the achieved
+half-width is registered there under the label \texttt{\AchievedTier}, with
+\RequiredNForHOne{} cases required for the primary hypothesis and
+\RequiredNForHTwo{} for the restraint hypothesis. The 86 cells lost to live-provider failures and re-executed against the
+frozen subject are listed in \idt{rerun_cells_manifest.json}.
 
-\subsubsection{Archived-result regeneration}
+\subsection{The hidden-formulation study}
+The scored archive is \idt{results/raw/test_scored.jsonl} with its run records
+in \idt{results/raw/test_runs.jsonl}. Table~\ref{tab:P1-T2} projects
+\idt{results/P1-T2_baseline_ablation_results.json} and its Markdown companion,
+which also carry the full system identifiers, per-family results and mechanistic
+metrics; Table~\ref{tab:P1-T3} projects
+\idt{results/P1-T3_failure_taxonomy.json} and its Markdown companion, which
+carry the per-case detail behind the failure-mode roll-up. The integrity note
+for these records is \idt{results/INTEGRITY_NOTE.md}.
+
+The mechanical attribution result and its rule-level limitations are
+\idt{evidence/MECHANICAL_ARM_LIMITATIONS_V1.md} with the case table
+\idt{evidence/MECHANICAL_ARM_CASE_TABLE_V1.json}. The blind solvability audit is
+\idt{evidence/MECHANICAL_SOLVABILITY_AUDIT_V1.md} with
+\idt{evidence/mechanical_solvability_audit_v1.json}. The falsifier record,
+including the subject commit \texttt{8a8a7feed588363f8e2cd820d3399a33b7af3074}
+and continuous-integration run \texttt{31933432314} at which the suite passed,
+is \idt{evidence/FALSIFIER_V1.md}. The bounded parent-domain replay is
+\idt{evidence/PARENT_DOMAIN_REPLAY_V1.md}, and the saturation record for the
+suite is \idt{evidence/FINAL_SATURATION_AUDIT.md}.
+
+\subsection{The mutation-necessity experiment}
+The primary and replication directories under
+\idt{research/revival/p1/confirmatory/v2.2/} each contain compressed public
+worlds, protected response matrices, raw results, the result record, an
+independent verification record, provenance, and a \idt{SHA256SUMS} manifest.
+The primary execution identity is \idt{PRIMARY_EXECUTION_FREEZE_V3.json};
+earlier receipts and both additive amendments are retained beside it. The
+replication directory binds its own disjoint world and execution receipts.
+\idt{PRIMARY_REPLICATION_CONCORDANCE.json} checks the predeclared cross-run
+conditions without pooling the runs. The independent verifier is
+\idt{research/revival/p1/verify_mutation_necessity_independent.py}; it uses only
+the standard library and imports neither the candidate policies, the production
+scorer and statistics, nor the subject's licensing code.
+
+The round-by-round donor dispositions that fixed the parent and ablation
+structure are \idt{research/revival/p1/P1_DONOR_ASSIMILATION_LEDGER_V1.json}
+with its later rounds in the same directory,
+\idt{research/revival/p1/P1_DONOR_ENGULFMENT_V1.json}, and the saturation record
+\idt{research/revival/p1/literature/SATURATION_LEDGER.md}.
+
+\subsection{The revision-responsibility battery}
+The protected freeze, protected results, and independent verification for both
+executions are under \idt{research/claim_expansion/p1/}: the first execution in
+\idt{results/P1_X_PROTECTED_RESULT_V1.json} with its outcome-access receipt, and
+the comparator-fair disjoint second execution in
+\idt{v2/P1_X_PROTECTED_RESULT_V2.json} with
+\idt{v2/P1_X_INDEPENDENT_VERIFICATION_V2.json}. The case schema is
+\idt{research/claim_expansion/p1/SCIENTIFIC_REVISION_RESPONSIBILITY_CASE_V1.schema.json}.
+
+\subsection{Bounded meta-discovery studies}
+The study calculus and the three decomposition pilots are under
+\idt{development/recursive-atom-calculus-closure-v1/} and
+\idt{development/jump-atom-pilot-closure-v1/}. The scoped failure-knowledge
+study is \idt{development/failure-epistemology-prospective-closure-v1/}, and the
+protected zero-error representation-transition study is
+\idt{research/extensions/orion-jump-recursive-atoms/zero_error_jump/}.
+
+\subsection{Claim ledgers and nearest work}
+The mapping from each result-bearing statement in this manuscript to the
+archived artifact that supports it is \idt{evidence/CLAIM_LEDGER.md}, with the
+immutable record of the earlier revision at \idt{evidence/CLAIM_LEDGER_V1.md}.
+The full nearest-work mechanism matrix, from which
+Section~\ref{sec:relatedwork} is drawn, is
+\idt{evidence/NEAREST_WORK_MATRIX_V2.md} with
+\idt{evidence/nearest_work_matrix_v2.json}. The bounded readiness attestation is
+\idt{evidence/PEER_REVIEW_READY_BOUNDED_V2.md}.
+
+\subsection{Repository access and reproduction}
+The implementation repository holds the source code, protocol definitions, case
+suite, and repository-held evidence artifacts used by this revision. Persistent
+DOI assignment remains pending publication. Result-bearing artifacts are identified by their repository paths
+and content bindings rather than by an unverified archival claim.
+
+The exact decompression, independent-rescoring, byte-comparison, and
+figure-regeneration commands are given in \idt{REPRODUCE.md}. The command
 \begin{verbatim}
 make paper01-results
 \end{verbatim}
-regenerates the Paper I publication tables from archived raw records only. It does not execute systems under test or create missing external evidence. On a checkout without an admissible archived study run, the underlying module returns \texttt{CANNOT\_CHECK}; malformed or unbound archives are refused rather than converted into publishable numbers. The exact command, inputs, outputs, and exit semantics are documented in the paper's repository-level \texttt{REPRODUCE.md}.
+regenerates the publication tables from archived raw records only. It does not
+execute systems under test or create missing external evidence. On a checkout
+without an admissible archived study run the underlying module reports the
+result as undetermined; malformed or unbound archives are refused rather than
+converted into publishable numbers.
 
-\subsubsection{Clean environment}
-The repository is Python-based with \texttt{pyproject.toml} dependency specification. A fresh code/test environment requires:
-\begin{itemize}
-    \item Python 3.11 or later;
-    \item \texttt{pip install -e .[dev]} from the repository root; and
-    \item model-provider access only for commands that actually execute a live provider arm.
-\end{itemize}
-The paper-specific reproduction note above, rather than a repository-root container recipe, is the current executable reproduction contract.
+A fresh code and test environment requires Python 3.11 or later, an editable
+install with the development extras from the repository root, and
+model-provider access only for commands that actually execute a live-provider
+arm; dependencies are declared in \idt{pyproject.toml}.
 
 \subsection{Runtime and cost}
-The credential-free v2.2.4 campaign and its independent verification each complete in approximately one minute on the current CPU environment. They make no network call and incur no model-provider cost. Algorithmic effort is fixed at 2,882 worlds, nine runnable arms, five ablations, and 10,000 registered paired-bootstrap resamples. Historical provider-oriented V1 cost remains \texttt{CANNOT\_CHECK}; it is not imputed from the mechanical successor.
+The credential-free mutation-necessity campaign and its independent
+verification each complete in approximately one minute on the current CPU
+environment. They make no network call and incur no model-provider cost.
+Algorithmic effort is fixed at 2,882 worlds, nine runnable arms, five ablations,
+and 10,000 registered paired-bootstrap resamples. The provider cost of the
+earlier live-provider arm was not recorded under a bound environment and
+therefore remains undetermined; it is not imputed from the mechanical
+successor.
 
 \subsection{Licensing status}
-This revision does not contain a repository-level \texttt{LICENSE} file or a project license declaration in \texttt{pyproject.toml}. Redistribution terms for code, case definitions, and protocol artifacts are therefore \texttt{CANNOT\_CHECK} from the repository state and must be resolved explicitly before archival/publication. Model-provider terms remain separately governed by the relevant providers.
+This revision does not contain a repository-level licence file or a project
+licence declaration in \idt{pyproject.toml}. Redistribution terms for code, case
+definitions, and protocol artifacts therefore remain undetermined from the
+repository state and must be resolved explicitly before archival or
+publication. Model-provider terms remain separately governed by the relevant
+providers.
 
 \subsection{Artifact fingerprinting}
-Result-bearing execution identities are bound through the protocol and archived records. Relevant coordinates include:
-\begin{itemize}
-    \item dataset/suite revisions and fingerprints;
-    \item baseline configuration hashes;
-    \item evaluator identity;
-    \item frozen split hashes; and
-    \item the exact subject revision and provider/model revisions for a live run.
-\end{itemize}
-Reproduction of an empirical result requires the exact bound subject and admissible archived records; prose or a protocol declaration alone is not evidence that the run occurred.
+Result-bearing execution identities are bound through the protocol and archived
+records. Relevant coordinates include dataset and suite revisions and
+fingerprints; baseline configuration hashes; evaluator identity; frozen split
+hashes; and the exact subject revision and provider/model revisions for a live
+run. Reproduction of an empirical result requires the exact bound subject and
+admissible archived records; prose or a protocol declaration alone is not
+evidence that the run occurred.

@@ -1,5 +1,19 @@
 # Paper 01 claim ledger
 
+> **Annotated 2026-08-22 after the manuscript house-style rewrite.** The
+> manuscript no longer makes a named system the subject of its claims, no longer
+> prints internal status tokens in prose, and carries repository paths only in
+> Data and code availability. Every row below is retained exactly as recorded:
+> **no claim, authority, evidence pointer or status moved in that rewrite**.
+> Read `ORION` in a row as the mechanism the manuscript now describes and, where
+> an arm is meant, as the implementation the manuscript names once in Methods
+> and thereafter calls the *governed policy*; read a `CANNOT_CHECK` status as
+> the outcome the manuscript now reports as *remaining undetermined*. The
+> manuscript sections these rows correspond to were renamed: the nearest-work
+> section is now Related work, the claim boundary is stated once in Limitations,
+> and the open-literature check table was replaced by prose that retains every
+> citation.
+
 ## Architectural claims
 
 | Claim | Status | Evidence type |

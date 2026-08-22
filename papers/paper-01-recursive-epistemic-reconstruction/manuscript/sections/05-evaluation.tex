@@ -127,11 +127,12 @@ path. The gate was repaired so those cases can no longer reframe merely because
 responsibility is singular.
 
 \subsubsection{Power and tier status}
-The achieved precision tier is \AchievedTier{} with half-width
-\AchievedHalfWidth{}. The number of cases required for the primary hypothesis is
-\RequiredNForHOne{}, and for the restraint hypothesis \RequiredNForHTwo{}. The
-study is therefore underpowered for its primary hypothesis, with
-\StochasticRepeats{} stochastic repeats per case.
+The achieved half-width is \AchievedHalfWidth{}, which does not reach the
+lowest precision tier the frozen statistical plan registered in advance. The
+number of cases required for the primary hypothesis is \RequiredNForHOne{}, and
+for the restraint hypothesis \RequiredNForHTwo{}. The study is therefore
+underpowered for its primary hypothesis, with \StochasticRepeats{} stochastic
+repeats per case.
 
 \subsection{Discussion}
 
@@ -146,8 +147,9 @@ on narrower rules whose generality is untested.
 \subsubsection{What the local evidence cannot establish}
 The historical $N=\TestCaseCount{}$ falls short of the required
 \RequiredNForHOne{} for the primary hypothesis and \RequiredNForHTwo{} for the
-restraint hypothesis. The achieved tier \AchievedTier{} is below the minimum
-standard, so this study remains underpowered for its broad primary hypotheses.
+restraint hypothesis. The achieved half-width \AchievedHalfWidth{} is below the
+lowest registered precision tier, so this study remains underpowered for its
+broad primary hypotheses.
 Within-study comparisons are populated (all systems below 0.03 root success;
 Table~\ref{tab:P1-T2}), but they do not authorize external superiority. The
 successor experiment is reported separately and is never pooled with these
