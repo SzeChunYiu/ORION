@@ -217,13 +217,40 @@ def test_the_precision_fix_lost_no_classification() -> None:
     no result. (P4's identifiability audit moved within its module in the same
     batch, which changes a line number and not a count.)
 
-    Future additions must update this sentinel deliberately rather than weakening
-    it to a lower-bound check.
+    Three later batches take the ratchet from 180 to 195, and the inventory had
+    gone stale against all three before this was noticed --- the generator is
+    re-derivable precisely so that a drift like that is a test failure rather
+    than something a reader has to spot.
+
+    Eleven are ``MISSING_DECLARATION``. Eight sit in P3's partial-observation
+    probe: one where the probe does not have the structure its freeze specifies,
+    so it is not the world under study and no arm number is reported over it;
+    and seven across ``evaluate_gates`` where a gate's own denominator is
+    absent --- ``PROBE_DERIVATION`` produced no case, so the guard has no
+    exercise at all; an over-resolution rate is ``None``; a held-out probe
+    yields no rate; there are no intact failures to explain, or no
+    over-resolutions to explain them against. Two more sit in P9's frontier
+    grid, where a cell missing from an outcome file makes the whole grid
+    ``CANNOT_CHECK`` and a fully executed grid whose crossing tests never had
+    two uncensored frontiers is ``CANNOT_CHECK`` rather than ``PASS`` --- a
+    crossing rate over an empty set is not a rate. The eleventh is P9's
+    campaign runner refusing to report a verdict it did not compute.
+
+    Four are ``MISSING_CUSTODY``, all in P9's hostile representation battery,
+    and they are the same rule the battery states in prose: an attack that had
+    no opportunity is ``CANNOT_CHECK``, never "the attack failed". A component
+    whose comparator answered with a single label has no margin to be attacked,
+    so there is nothing for the attack to have failed against.
+
+    Every one of the fifteen reports that a verdict could not be computed, which
+    is the distinction this whole batch exists to make. Future additions must
+    update this sentinel deliberately rather than weakening it to a lower-bound
+    check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 180, classified
+    assert sum(classified.values()) == 195, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
