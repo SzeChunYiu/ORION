@@ -111,6 +111,38 @@ pairing that Part 2 had only assumed: QG-31's `perm` pairs positions as
 **maximal symmetry quotient**. It carries all of the symmetry-invariant
 information about a column type and none of anything else.
 
+### Check B — how much of this is by construction (corrected)
+
+An earlier version of this document called the coincidence "apparently by
+accident". That overstated half of it. The claim splits in two, and the halves
+have different status (`research/extensions/orion-qg/qg_checkB_structural_vs_genuine.py`):
+
+**(a) Invariance is structural.** The spectrum sorts the whole 384-tuple, whose
+index set is `(p, aux)`. Each group factor merely permutes one of those indices:
+
+- a swap `s` satisfies `perm(perm(t,s),p) = perm(t, s XOR p)` — verified over all
+  `4^6 x 8 x 8` triples — so it permutes the **p-index**;
+- the aux row set is closed under the letter `S_3` **and** under block
+  permutations (both verified), so those permute the **aux-index**.
+
+Sorting a tuple whose index set the group only permutes is invariant by
+construction. The descriptor being *invariant* is therefore not a coincidence at
+all — it is what "unlabeled" means.
+
+*(A first pass tested whether the aux set is closed under swaps and got `False`.
+That tested the wrong index set — swaps act on `p`, not on `aux`. Recorded so the
+false step is not mistaken for a defect.)*
+
+**(b) Completeness is not structural.** Invariance only forces the descriptor's
+partition to *coarsen* the orbit partition. Landing on exactly 54 rather than
+fewer is a separate fact that could have failed, and a control shows it easily
+does: sorting only the **first 48** of the 384 coordinates is equally invariant
+but yields **50** classes, merging four orbits.
+
+**Corrected statement: the spectrum's invariance is by construction; its
+completeness is a genuine property of this particular probe family.** The
+interesting fact is (b).
+
 ### Corollary: bulk is provably not a symmetry quotient
 
 `168` of the 715 orbit representatives change bulk value under some wreath

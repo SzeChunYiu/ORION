@@ -22,6 +22,16 @@
     "spectrum_refines_bulk": false,
     "symmetry_refines_bulk": false
   },
+  "check_B_structural_vs_genuine": {
+    "completeness_is_NOT_structural": true,
+    "control": "sorting only the first 48 of the 384 coordinates is equally invariant but gives 50 classes, merging 4 orbits",
+    "corrected_statement": "the spectrum's invariance is by construction; its completeness (landing on exactly 54) is a genuine property of this probe family",
+    "corrects": "an earlier framing of the 54-coincidence as 'apparently by accident'",
+    "instrument": "research/extensions/orion-qg/qg_checkB_structural_vs_genuine.py",
+    "invariance_is_structural": true,
+    "recorded_false_step": "a first pass tested closure of the aux set under swaps and got False; that tested the wrong index set, since swaps act on p not aux",
+    "why": "the spectrum sorts the full 384-tuple indexed by (p, aux); swaps permute the p-index via perm(perm(t,s),p)=perm(t, s XOR p) (verified on all 4^6 x 8 x 8 triples), and the aux row set is closed under both the letter S_3 and block permutations, so those permute the aux-index"
+  },
   "independent_reproduction": {
     "all_match": true,
     "bulk_classes": 45,
