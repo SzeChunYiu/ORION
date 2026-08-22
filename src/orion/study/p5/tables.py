@@ -455,25 +455,193 @@ def render_residual_tex(table: Mapping[str, Any]) -> str:
     )
 
 
+#: What each awaiting-campaign table would show, and what the archive lacks.
+#:
+#: The generic stub these used to render printed a single ``Result`` column
+#: containing the word ``CANNOT_CHECK``, which says *that* a measurement is
+#: missing without saying *which* measurement, and its caption carried an
+#: unbalanced brace that no TeX run would accept. Neither is a property of the
+#: archive, so the shape each table would have --- its columns, and what a live
+#: campaign would put in them --- is data here rather than prose a human keeps
+#: in the committed file by hand. A reader then sees the measurement that is
+#: absent, and the committed ``.tex`` is exactly what this path produces.
+CANNOT_CHECK_PRESENTATION: dict[str, dict[str, Any]] = {
+    "P5-T2_baseline_ablation_results": {
+        "absent": (
+            "the archived attribution run has no matched baseline/ablation",
+            "arms, round identities, or campaign-level outcomes. Numbers are not imputed from",
+            "the 21/24 diagnostic accuracy.",
+        ),
+        "caption": (
+            "Baseline and ablation transfer/integrity results: no admissible rows in the "
+            "archived glm-5.2 attribution run. The archive contains a single-model "
+            "hidden-cause diagnostic over 24 cases and no baseline/ablation arm data. This "
+            "table will be populated when a live campaign produces matched "
+            "baseline-vs-ablation transfer and integrity measurements."
+        ),
+        "column_spec": "lccc",
+        "headers": (
+            "Condition",
+            "Transfer score",
+            "Integrity score",
+            "$\\Delta$ vs.\\ baseline",
+        ),
+    },
+    "P5-T3_harmful_null_interventions": {
+        "absent": (
+            "the archived attribution run has no campaign intervention",
+            "annotations, outcome labels, or round identities. Numbers are not imputed from",
+            "the 21/24 diagnostic accuracy.",
+        ),
+        "caption": (
+            "Campaign harmful/null interventions: no admissible rows in the archived "
+            "glm-5.2 attribution run. The archive contains a single-model hidden-cause "
+            "diagnostic over 24 cases and no intervention-level outcome annotations. This "
+            "table will be populated when a live campaign records which interventions were "
+            "harmful, null, or beneficial relative to the incumbent."
+        ),
+        "column_spec": "lccc",
+        "headers": (
+            "Intervention",
+            "Outcome",
+            "Effect size",
+            "Recovery",
+        ),
+    },
+    "P5-2_replay_vs_fresh_scatter": {
+        "absent": (
+            "the archived attribution run has no motivating/replay/fresh",
+            "score pairs, round identities, or matched-sample arms. Numbers are not imputed",
+            "from the 21/24 diagnostic accuracy.",
+        ),
+        "caption": (
+            "Replay-vs-fresh scatter: no admissible rows in the archived glm-5.2 "
+            "attribution run. The archive contains a single-model hidden-cause diagnostic "
+            "over 24 cases and no campaign-level replay/fresh score pairs. This table will "
+            "be populated when a live protected-transfer campaign produces matched replay "
+            "and fresh-task measurements."
+        ),
+        "column_spec": "lcc",
+        "headers": (
+            "Round",
+            "Replay score",
+            "Fresh score",
+        ),
+    },
+    "P5-4_longitudinal_specialist_regression": {
+        "absent": (
+            "the archived attribution run has no round identities,",
+            "longitudinal specialist-designation annotations, or matched baseline/ablation",
+            "arms. Numbers are not imputed from the 21/24 diagnostic accuracy.",
+        ),
+        "caption": (
+            "Longitudinal specialist regression: no admissible rows in the archived glm-5.2 "
+            "attribution run. The archive contains a single-model hidden-cause diagnostic "
+            "over 24 cases and no longitudinal specialist-designation data. This table will "
+            "be populated when a live campaign produces round-by-round specialist scores "
+            "with regression annotations."
+        ),
+        "column_spec": "lccc",
+        "headers": (
+            "Round",
+            "Specialist",
+            "Prior score",
+            "Current score",
+        ),
+    },
+    "P5-5_improvement_integrity_frontier": {
+        "absent": (
+            "the archived attribution run has no improvement/integrity",
+            "frontier pairs, no matched-score arms, and no round identities. Numbers are not",
+            "imputed from the 21/24 diagnostic accuracy.",
+        ),
+        "caption": (
+            "Improvement-integrity frontier: no admissible rows in the archived glm-5.2 "
+            "attribution run. The archive contains a single-model hidden-cause diagnostic "
+            "over 24 cases and no frontier-pair data. This table will be populated when a "
+            "live campaign produces matched improvement and integrity scores across rounds."
+        ),
+        "column_spec": "lcc",
+        "headers": (
+            "Round",
+            "Improvement score",
+            "Integrity score",
+        ),
+    },
+    "P5-6_failure_recurrence": {
+        "absent": (
+            "the archived attribution run has no recurrence annotations,",
+            "round identities, or matched-score arms. Numbers are not imputed from the 21/24",
+            "diagnostic accuracy.",
+        ),
+        "caption": (
+            "Failure recurrence: no admissible rows in the archived glm-5.2 attribution "
+            "run. The archive contains a single-model hidden-cause diagnostic over 24 cases "
+            "and no recurrence annotations. This table will be populated when a live "
+            "campaign records which previously resolved failures recur across rounds."
+        ),
+        "column_spec": "lccc",
+        "headers": (
+            "Original failure",
+            "Round resolved",
+            "Round recurred",
+            "Outcome",
+        ),
+    },
+    "P5-7_cost_to_validated_improvement": {
+        "absent": (
+            "the archived attribution run has no protected-improvement",
+            "cost annotations, round identities, or matched-score arms. Numbers are not imputed",
+            "from the 21/24 diagnostic accuracy.",
+        ),
+        "caption": (
+            "Cost to validated improvement: no admissible rows in the archived glm-5.2 "
+            "attribution run. The archive contains a single-model hidden-cause diagnostic "
+            "over 24 cases and no cost-to-improvement annotations. This table will be "
+            "populated when a live campaign records the resource cost (e.g., API calls, "
+            "rounds, wall time) required to reach validated improvement."
+        ),
+        "column_spec": "lccc",
+        "headers": (
+            "Improvement",
+            "Validation",
+            "Cost metric",
+            "Value",
+        ),
+    },
+}
+
+
 def render_cannot_check_tex(table: Mapping[str, Any]) -> str:
-    label = table["table_id"].split("_", 1)[0]
+    table_id = table["table_id"]
+    label = table_id.split("_", 1)[0]
+    presentation = CANNOT_CHECK_PRESENTATION[table_id]
+    headers = presentation["headers"]
+    absent = presentation["absent"]
+    comment = "\n".join(
+        f"% Status: CANNOT_CHECK \u2014 {line}" if index == 0 else f"% {line}"
+        for index, line in enumerate(absent)
+    )
     return (
-        "% Generated CANNOT_CHECK stub. No numbers.\n"
+        "% Generated from archived glm-5.2 attribution JSONL. Do not edit by hand.\n"
+        f"{comment}\n"
         "\\begin{table}[t]\n"
         "  \\centering\n"
-        f"  \\caption{{{_tex_escape(table['title'])}. Status: \\texttt{{CANNOT\\_CHECK}}. "
-        "The archived attribution JSONL does not contain the required campaign "
-        "outcomes, and none are imputed.}}\n"
+        f"  \\caption{{{presentation['caption']}}}\n"
         f"  \\label{{tab:{label}}}\n"
         "  \\small\n"
-        "  \\begin{tabular}{l}\n"
+        f"  \\begin{{tabular}}{{{presentation['column_spec']}}}\n"
         "    \\toprule\n"
-        "    Result \\\\\n"
+        f"    {' & '.join(headers)} \\\\\n"
         "    \\midrule\n"
-        "    \\texttt{CANNOT\\_CHECK} \\\\\n"
+        f"    \\multicolumn{{{len(headers)}}}{{c}}{{\\texttt{{CANNOT\\_CHECK}} --- "
+        "no admissible data in archive} \\\\\n"
         "    \\bottomrule\n"
         "  \\end{tabular}\n"
-        "\\end{table}\n"
+        "  \\par\\smallskip\n"
+        "  \\textit{Empirical authority:} DESCRIPTIVE\\_ONLY (diagnostic attribution). "
+        "Not a protected fresh-transfer or H1 result.\n"
+        "\\end{table}"
     )
 
 
