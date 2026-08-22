@@ -355,6 +355,26 @@ absorbed: `full_discovery_recall_one` is satisfied by all seven subjects, since
 an ablation removes a check and a policy reading fewer facts promotes more rather
 than fewer, so no registered implementation abstains.
 
+**P14B is audited too, and it is the mirror image.** `orion.study.p14.balanced_governance`
+loads the shipped P14B generator, reproduces `784d57e6…d679e66`, and asks the
+same question of a **positive** terminal — the case this record's own instrument
+had never been pointed at, and the one
+`orion.programme.registry_coverage` names as its sharpest unexamined panel. The
+terminal survives: the four component ablations P14B's protocol registers, placed
+in the graded slot, make the conjunction print both its words, and no threshold
+is outside reach. What does not survive is the count. Four of the eight gates are
+satisfied by every world the freeze admits — `full_discovery_recall_one` because
+exactly three of the 256 fact assignments are adjudicated `SUPPORTED_RESIDUAL` by
+gold and none of the nine registered policies declines any of them, and
+`matched_budget` because the runner writes one literal into all nine arms; both
+are hypothesis gates. The other two are preconditions, where holding everywhere
+is the intended behaviour: the difficulty bar P14A could not reach in any
+admissible world is cleared 2.9x here in every one, which is what P14B was frozen
+to fix and did fix. So "eight gates, all true" is four readings and four
+constants. This is the *other* half of the class: P14A's failure was a threshold
+no run could reach, P14B's is a threshold no run could miss, and a receipt
+serializes both as a boolean.
+
 **And the question P14A could not measure is answered at P14A's own bars.** P14C
 fixes the composition P14A sampled: four cases per semantic stratum makes the
 `RETAIN_NEGATIVE` share exactly `4/28 = 0.142857`, against P14A's ceiling of
@@ -388,8 +408,10 @@ the check that would have cost a sentence at freeze time.
 - The same nesting holds in P14B and P14C: both compare arms that are
   coarsenings of one adjudication rule, so their gaps are prevalences of the
   classes the coarsening drops. P14B is already labelled non-authoritative for
-  the circularity. P14C is now audited by this instrument (see **Discharged
-  since**), and the nesting is why its separation is exactly the
+  the circularity, and is now audited by this instrument as well (see
+  **Discharged since**): its terminal is reachable in both directions and four of
+  its eight gates are not. P14C is now audited by this instrument too, and the
+  nesting is why its separation is exactly the
   `RETAIN_NEGATIVE` stratum's share of the table; what the audit adds is that the
   share is *fixed by the freeze* rather than sampled, so the thresholds read
   against it are inside reach instead of above it.

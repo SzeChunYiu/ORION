@@ -24,6 +24,8 @@ P14A's two failing gates read one quantity whose supremum over its own declared 
 
 P14C's terminal is asked the same question over the coordinate it leaves free — which of the seven registered implementations occupies the graded slot. Exactly one clears all eight gates and six fail at least one, so the conjunction prints two terminals. P14A's `0.05` and `0.08` bars, registered unchanged, are both reachable here and both met at `0.142857`. One residual is disclosed rather than absorbed: `full_discovery_recall_one` is satisfied by every registered subject and therefore carries no refutation capacity over this register.
 
+P14B is asked the same question and answers in two halves. Its terminal is reachable in both directions — the four component ablations its protocol registers, placed in the graded slot, make the conjunction print both its words, and no threshold is outside its statistic's reach. But only four of its eight gates could have gone either way: `full_discovery_recall_one` is satisfied by all nine arms in every admissible run and `matched_budget` reads a module literal, both hypothesis gates, and the two remaining unconditional gates are preconditions for which that is intended. Disposition `TERMINAL_REACHABLE__GATE_COUNT_INFLATED`; P14B's non-authoritative status is unchanged.
+
 Adjudication: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.md` / `.json`, `verify_p14_gate_attainability_v1.py`.
 
 ### Reproducibility / protocol authority
@@ -59,6 +61,8 @@ Adjudication: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.md` / `.json`, `verify_p14
 - [x] P14B circularity explicitly acknowledged
 - [x] P14B nuisance-reminting protocol mismatch explicitly acknowledged
 - [x] P14B removed from claim authority
+- [x] P14B terminal shown reachable in both directions over the registered component ablations
+- [x] P14B disclosed as carrying four discriminating gates of the eight it publishes; `full_discovery_recall_one` and `matched_budget` satisfied by every admissible world
 - [x] P14C protocol/case table frozen before execution
 - [x] P14C policy receives facts only; gold field stripped
 - [x] P14C independent full-policy implementation

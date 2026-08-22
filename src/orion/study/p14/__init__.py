@@ -19,6 +19,20 @@ terminal turns out to have had one reachable value. The mechanism itself is
 The failure they close is recorded under
 ``research/failures/2026-08-unattainable-gate-predetermined-terminal/``.
 
+:mod:`balanced_governance` points the same instrument at P14B, the first
+successor, whose receipt publishes a **positive** terminal on eight gates all
+``true``. That terminal survives the question: the four component ablations the
+protocol registers, placed in the graded slot, make the conjunction print both
+its words, which P14A's could not. What does not survive is the count. Four of
+the eight gates are satisfied by every world the freeze admits ---
+``full_discovery_recall_one`` because no registered policy can decline any of the
+three fact states gold adjudicates as a promotion, ``matched_budget`` because the
+runner writes one literal into all nine arms, and two preconditions for which
+holding everywhere is the intended behaviour. So the receipt offers four readings
+and four constants, and a reader counting eight pieces of evidence is counting
+twice. Nothing frozen moves; P14B keeps its terminal, its numbers and its
+standing non-authoritative downgrade.
+
 :mod:`specification_conformance` carries the residual that record could not
 discharge. It points the same instrument at P14C, the specification-separated
 successor, over the coordinate P14C actually leaves free --- which of the seven

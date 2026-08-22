@@ -109,13 +109,35 @@ def test_the_registries_do_not_cover_every_decided_panel():
     assert "METHOD_AUTHORITY_BENCH_SUMMARY_V1.json" in artifacts
 
 
-def test_p14b_is_absent_from_the_adjudication_that_covers_p14a_and_p14c():
+def test_the_p14b_gap_this_module_found_is_closed_in_the_adjudication():
+    """It used to assert ``"p14b" not in adjudication``. That gap is now measured.
+
+    ``orion.study.p14.balanced_governance`` points the gate-attainability
+    instrument at P14B's positive terminal, and the adjudication carries what it
+    found: the terminal could have printed either word, and four of its eight
+    gates could not have. P14B stays outside the *panel-resolution* registries,
+    which is a different instrument and a different question --- so the live
+    measurement above still finds it unregistered there.
+    """
+
     adjudication = json.loads(
         (PAPERS / "paper-14-orion-rse" / "P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json").read_text()
     )
     assert "p14a" in adjudication
+    assert "p14b" in adjudication
     assert "p14c" in adjudication
-    assert "p14b" not in adjudication
+
+    block = adjudication["p14b"]
+    assert block["terminal_retained_verbatim"] == "P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED"
+    assert block["committed_digest_reproduced"] is True
+    assert block["terminal_reach"]["distinct_terminals"] == 2
+    assert block["gates_published"] == 8
+    assert len(block["gates_that_discriminate"]) == 4
+    assert block["hypothesis_gates_without_refutation_capacity"] == [
+        "full_discovery_recall_one",
+        "matched_budget",
+    ]
+    assert adjudication["edits_no_frozen_result"] is True
 
 
 # ---------------------------------------------------------------------------

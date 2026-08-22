@@ -1,6 +1,7 @@
 {
   "adjudicates": [
     "P14A_HIDDEN_GOLD_GOVERNANCE_PROTOCOL_V1.md",
+    "P14B_BALANCED_GOVERNANCE_PROTOCOL_V1.md",
     "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md"
   ],
   "claim_authority": "Specification-separated governance-contract conformance only, inherited unchanged from P14C. This adjudication establishes that P14A's two aggregate superiority gates were unmeasurable on P14A's own benchmark and that the same two thresholds, unedited, are both reachable and met on P14C's. It does not authorize any claim about external scientific validity, which still requires blinded independent adjudication.",
@@ -12,6 +13,9 @@
     "p14a_terminal_had_one_reachable_value": true,
     "p14a_thresholds_met_on_p14c": true,
     "p14a_thresholds_reachable_on_p14c": true,
+    "p14b_committed_digest_reproduced": true,
+    "p14b_no_threshold_was_unattainable": true,
+    "p14b_terminal_had_two_reachable_values": true,
     "p14c_committed_digest_reproduced": true,
     "p14c_terminal_had_two_reachable_values": true,
     "p14c_thresholds_inside_reach": true
@@ -88,6 +92,7 @@
   "instruments": [
     "orion.study.p14.governance_gates",
     "orion.study.p14.gate_audit",
+    "orion.study.p14.balanced_governance",
     "orion.study.p14.specification_conformance"
   ],
   "p14a": {
@@ -772,6 +777,1074 @@
       ]
     },
     "terminal_retained_verbatim": "P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET"
+  },
+  "p14b": {
+    "arm_error_strata": {
+      "ABLATE_DONOR": [
+        "SUBSUMED"
+      ],
+      "ABLATE_FREEZE": [
+        "CANNOT_CHECK"
+      ],
+      "ABLATE_INTERACTION": [
+        "INTERACTION_ONLY"
+      ],
+      "ABLATE_NEGATIVE_HISTORY": [
+        "RETAIN_NEGATIVE"
+      ],
+      "DONOR_AWARE_REVIEW": [
+        "RETAIN_NEGATIVE",
+        "INTERACTION_ONLY"
+      ],
+      "MULTI_REVIEW": [
+        "RETAIN_NEGATIVE"
+      ],
+      "ORION_RSE_FULL": [],
+      "RAW_POSITIVE": [
+        "RETAIN_NEGATIVE",
+        "SUBSUMED",
+        "INTERACTION_ONLY",
+        "CANNOT_CHECK"
+      ],
+      "REFLECTION_CHECKLIST": [
+        "RETAIN_NEGATIVE",
+        "SUBSUMED",
+        "INTERACTION_ONLY"
+      ]
+    },
+    "arms_missing_a_promotable_state": {
+      "ABLATE_DONOR": 0,
+      "ABLATE_FREEZE": 0,
+      "ABLATE_INTERACTION": 0,
+      "ABLATE_NEGATIVE_HISTORY": 0,
+      "DONOR_AWARE_REVIEW": 0,
+      "MULTI_REVIEW": 0,
+      "ORION_RSE_FULL": 0,
+      "RAW_POSITIVE": 0,
+      "REFLECTION_CHECKLIST": 0
+    },
+    "committed_digest_reproduced": true,
+    "disposition_detail": "P14B's conjunction could have printed either word: the full contract clears all eight gates and each of the four component ablations its own protocol registers, placed in the graded slot, fails at least one. That is the property P14A's conjunction did not have, and nothing here disturbs it. But only four of the eight gates could have gone either way. full_discovery_recall_one is satisfied by every one of the nine arms in every admissible run -- exactly three of the 256 fact assignments are adjudicated SUPPORTED_RESIDUAL by gold and no registered policy declines any of them, because the rule baselines promote supersets of gold and an ablation removes a check -- and matched_budget reads a module literal assigned identically to all nine arms. Both are hypothesis gates and both publish true without being able to publish anything else. The remaining two unconditional gates are preconditions, where holding everywhere is the intended behaviour: the difficulty bar P14A could not reach in any admissible world is 2.9x cleared here in every one. Separately, the coordinate the protocol leaves free at run time is the seed, and over the shipped draw and two alternates the terminal is a constant -- the balanced strata make every rate an exact fraction -- so the terminal's two words come entirely from substituting the graded implementation, whose own side of all four discriminating gates is fixed by policy('ORION_RSE_FULL', c) being return gold(c) at 0 divergent points of 256. The receipt, protocol, seed, thresholds, gold labels, comparators and terminal are retained verbatim, as is P14B's standing non-authoritative downgrade; only the reading of what its eight gates established changes.",
+    "evidential_disposition": "TERMINAL_REACHABLE__GATE_COUNT_INFLATED",
+    "gates_published": 8,
+    "gates_that_discriminate": [
+      "full_zero_false_promotion",
+      "accuracy_advantage_ge_0_08",
+      "retain_and_reopen_exact",
+      "each_ablation_worse"
+    ],
+    "graded_arm_divergence_from_gold": {
+      "applied": false,
+      "divergence_rate": 0.0,
+      "points": 256,
+      "points_changed": 0,
+      "theory_id": "ORION_RSE_FULL"
+    },
+    "hypothesis_gates_without_refutation_capacity": [
+      "full_discovery_recall_one",
+      "matched_budget"
+    ],
+    "pre_run_threshold_panel": {
+      "discriminating_hypotheses": [
+        "full_zero_false_promotion",
+        "accuracy_advantage_ge_0_08",
+        "retain_and_reopen_exact",
+        "each_ablation_worse"
+      ],
+      "gates": [
+        {
+          "attainment_margin": 0.0,
+          "best_value": 0.0,
+          "gate": {
+            "direction": "AT_MOST",
+            "gate_id": "full_zero_false_promotion",
+            "reads": "graded implementation's false promotion rate over the 6,720 protected cases",
+            "role": "HYPOTHESIS",
+            "threshold": 0.0
+          },
+          "outcome": "PASS",
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refutation_margin": -0.14285714285714285,
+          "support": {
+            "derivation": "the full contract is the gold function and false-promotes nothing; dropping the donor, interaction or negative-history check makes the arm promote that stratum entire, which is 1/7 of the table, and dropping the freeze check costs only the frozen-failure third of the CANNOT_CHECK stratum",
+            "infimum": 0.0,
+            "statistic": "graded implementation's false promotion rate, over the implementations the frozen protocol admits in the graded slot",
+            "supremum": 0.14285714285714285,
+            "width": 0.14285714285714285
+          },
+          "worst_value": 0.14285714285714285
+        },
+        {
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "full_discovery_recall_one",
+            "reads": "graded implementation's useful discovery recall",
+            "role": "HYPOTHESIS",
+            "threshold": 1.0
+          },
+          "outcome": "FAIL",
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refutation_margin": 0.0,
+          "support": {
+            "derivation": "exactly three of the 256 assignments of the eight case facts are adjudicated SUPPORTED_RESIDUAL by gold, and all nine registered policies return SUPPORTED_RESIDUAL on all three: the rule baselines promote supersets of gold, and an ablation flips one fact to its permissive value, which can only add promotions. The recall denominator is those states, so the statistic is 1.0 in every admissible run whatever occupies the graded slot -- see arms_missing_a_promotable_state",
+            "infimum": 1.0,
+            "statistic": "graded implementation's useful discovery recall, over the implementations the frozen protocol admits in the graded slot and over every seed the protocol permits",
+            "supremum": 1.0,
+            "width": 0.0
+          },
+          "worst_value": 1.0
+        },
+        {
+          "attainment_margin": 0.09285714285714285,
+          "best_value": 0.14285714285714285,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "strongest_baseline_false_promotion_ge_0_05",
+            "reads": "strongest non-ORION baseline false promotion rate over the balanced strata",
+            "role": "PRECONDITION",
+            "threshold": 0.05
+          },
+          "outcome": "PASS",
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refutation_margin": 0.09285714285714285,
+          "support": {
+            "derivation": "the seven strata are minted in equal numbers in every family, RAW_POSITIVE errs on four of them, REFLECTION_CHECKLIST on three, DONOR_AWARE_REVIEW on two and MULTI_REVIEW only on RETAIN_NEGATIVE, so the baselines' error sets nest, MULTI_REVIEW is the strongest comparator in every admissible run and its false promotion rate is exactly 1/7",
+            "infimum": 0.14285714285714285,
+            "statistic": "strongest non-ORION baseline false promotion rate, over the balanced tables the frozen protocol admits",
+            "supremum": 0.14285714285714285,
+            "width": 0.0
+          },
+          "worst_value": 0.14285714285714285
+        },
+        {
+          "attainment_margin": 0.06285714285714285,
+          "best_value": 0.14285714285714285,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "accuracy_advantage_ge_0_08",
+            "reads": "graded implementation's disposition accuracy minus the strongest baseline's",
+            "role": "HYPOTHESIS",
+            "threshold": 0.08
+          },
+          "outcome": "PASS",
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refutation_margin": -0.08,
+          "support": {
+            "derivation": "the seven strata are minted in equal numbers in every family, RAW_POSITIVE errs on four of them, REFLECTION_CHECKLIST on three, DONOR_AWARE_REVIEW on two and MULTI_REVIEW only on RETAIN_NEGATIVE, so the baselines' error sets nest, MULTI_REVIEW is the strongest comparator in every admissible run and its false promotion rate is exactly 1/7; the full contract is the gold function and scores 1.0, for a gain of exactly 1/7, while ABLATE_DONOR, ABLATE_INTERACTION and ABLATE_NEGATIVE_HISTORY each land on MULTI_REVIEW's own score for a gain of 0.0, and ABLATE_FREEZE sits between them at whatever share of the CANNOT_CHECK stratum the draw gives the frozen-failure subtype",
+            "infimum": 0.0,
+            "statistic": "graded implementation's accuracy gain over the strongest partial contract, over the implementations the frozen protocol admits in the graded slot",
+            "supremum": 0.14285714285714285,
+            "width": 0.14285714285714285
+          },
+          "worst_value": 0.0
+        },
+        {
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "retain_and_reopen_exact",
+            "reads": "the lower of the graded implementation's retained-negative and reopen accuracy",
+            "role": "HYPOTHESIS",
+            "threshold": 1.0
+          },
+          "outcome": "PASS",
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refutation_margin": -1.0,
+          "support": {
+            "derivation": "the full contract is the gold function and is exact on both protected strata; ABLATE_NEGATIVE_HISTORY stops reading live_negative_history and is therefore wrong on every case of the RETAIN_NEGATIVE stratum, taking the statistic to 0.0",
+            "infimum": 0.0,
+            "statistic": "lower of the graded implementation's retained-negative and reopen accuracy, over the implementations the frozen protocol admits in the graded slot",
+            "supremum": 1.0,
+            "width": 1.0
+          },
+          "worst_value": 0.0
+        },
+        {
+          "attainment_margin": 0.0,
+          "best_value": 4.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "each_ablation_worse",
+            "reads": "registered component ablations scoring below the graded implementation",
+            "role": "HYPOTHESIS",
+            "threshold": 4.0
+          },
+          "outcome": "PASS",
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refutation_margin": -4.0,
+          "support": {
+            "derivation": "the count is over the four registered ablations; the full contract scores 1.0 and every ablation is strictly below it, while an ablation in the graded slot is never strictly below itself and is not below the ones that score at least as well, so the count drops from four",
+            "infimum": 0.0,
+            "statistic": "registered ablations scoring below the graded implementation, over the implementations the frozen protocol admits in the graded slot",
+            "supremum": 4.0,
+            "width": 4.0
+          },
+          "worst_value": 0.0
+        },
+        {
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_MOST",
+            "gate_id": "matched_budget",
+            "reads": "distinct decision-budget receipts across the nine arms",
+            "role": "HYPOTHESIS",
+            "threshold": 1.0
+          },
+          "outcome": "FAIL",
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refutation_margin": 0.0,
+          "support": {
+            "derivation": "main() writes the module literal BUDGET = 7 into every arm's summary row; the set of distinct values has one element before any case is drawn, in every run, for every seed and every occupant of the graded slot",
+            "infimum": 1.0,
+            "statistic": "distinct decision-budget receipts across the nine arms, over every run the frozen protocol admits",
+            "supremum": 1.0,
+            "width": 0.0
+          },
+          "worst_value": 1.0
+        },
+        {
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "byte_identical_replay",
+            "reads": "1.0 when two executions of the frozen generator emit identical bytes",
+            "role": "PRECONDITION",
+            "threshold": 1.0
+          },
+          "outcome": "PASS",
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refutation_margin": 0.0,
+          "support": {
+            "derivation": "the payload is a pure function of numpy.random.default_rng(SEED)'s stream and the registered policies, all of which are deterministic; two executions of the same input therefore serialize to the same bytes in every admissible run",
+            "infimum": 1.0,
+            "statistic": "1.0 when two executions of the frozen generator emit identical bytes, over every run the protocol admits",
+            "supremum": 1.0,
+            "width": 0.0
+          },
+          "worst_value": 1.0
+        }
+      ],
+      "label": "P14B balanced governance thresholds",
+      "outcome": "FAIL",
+      "unattainable": [],
+      "unconditional_hypotheses": [
+        "full_discovery_recall_one",
+        "matched_budget"
+      ]
+    },
+    "receipt_fidelity": {
+      "digest_reproduced": true,
+      "gates_only_the_receipt_asserts": [
+        "byte_identical_replay"
+      ],
+      "gates_the_runner_computes": [
+        "accuracy_advantage_ge_0_08",
+        "each_ablation_worse",
+        "full_discovery_recall_one",
+        "full_zero_false_promotion",
+        "matched_budget",
+        "retain_and_reopen_exact",
+        "strongest_baseline_false_promotion_ge_0_05"
+      ],
+      "runner_gates_match_receipt": true,
+      "summary_fields_mismatched": [],
+      "terminal_matches": true
+    },
+    "replay_sha256": "784d57e694b9a96828e72bc5e80dfc9e533cf738b568e45a71ce9fd08d679e66",
+    "seed_only_terminal_reach": {
+      "clearing_every_gate": [
+        "shipped-run",
+        "alternate-seed-20260821",
+        "alternate-seed-2026082116"
+      ],
+      "distinct_terminals": 1,
+      "label": "P14B balanced governance terminal over the seed coordinate alone",
+      "outcome": "FAIL",
+      "unattainable": [],
+      "unconditional": [
+        "full_zero_false_promotion",
+        "full_discovery_recall_one",
+        "strongest_baseline_false_promotion_ge_0_05",
+        "accuracy_advantage_ge_0_08",
+        "retain_and_reopen_exact",
+        "each_ablation_worse",
+        "matched_budget",
+        "byte_identical_replay"
+      ],
+      "worlds": [
+        "shipped-run",
+        "alternate-seed-20260821",
+        "alternate-seed-2026082116"
+      ]
+    },
+    "standing_downgrade_retained": "P14B_NON_AUTHORITATIVE_PROTOCOL_MISMATCH",
+    "stratum_share": 0.14285714285714285,
+    "terminal_reach": {
+      "clearing_every_gate": [
+        "shipped-run",
+        "alternate-seed-20260821",
+        "alternate-seed-2026082116"
+      ],
+      "distinct_terminals": 2,
+      "gates": [
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 4 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on graded implementation's false promotion rate over the 6,720 protected cases against AT_MOST 0.0)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "full_zero_false_promotion",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on graded implementation's false promotion rate over the 6,720 protected cases against AT_MOST 0.0",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.5714285714285714,
+                "violations": 4
+              }
+            ],
+            "guard_id": "full_zero_false_promotion",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0,
+          "best_value": 0.0,
+          "gate": {
+            "direction": "AT_MOST",
+            "gate_id": "full_zero_false_promotion",
+            "reads": "graded implementation's false promotion rate over the 6,720 protected cases",
+            "role": "HYPOTHESIS",
+            "threshold": 0.0
+          },
+          "outcome": "PASS",
+          "readings": [
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 0.0,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 0.0,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 0.0,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": -0.14285714285714285,
+              "satisfied": false,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": -0.04702380952380952,
+              "satisfied": false,
+              "value": 0.04702380952380952,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": -0.14285714285714285,
+              "satisfied": false,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": -0.14285714285714285,
+              "satisfied": false,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refuting": [
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 0 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on graded implementation's useful discovery recall against AT_LEAST 1.0)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "full_discovery_recall_one",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on graded implementation's useful discovery recall against AT_LEAST 1.0",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "full_discovery_recall_one",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "full_discovery_recall_one",
+            "reads": "graded implementation's useful discovery recall",
+            "role": "HYPOTHESIS",
+            "threshold": 1.0
+          },
+          "outcome": "FAIL",
+          "readings": [
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refuting": [],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116",
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 0 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on strongest non-ORION baseline false promotion rate over the balanced strata against AT_LEAST 0.05)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "strongest_baseline_false_promotion_ge_0_05",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on strongest non-ORION baseline false promotion rate over the balanced strata against AT_LEAST 0.05",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "strongest_baseline_false_promotion_ge_0_05",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.09285714285714285,
+          "best_value": 0.14285714285714285,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "strongest_baseline_false_promotion_ge_0_05",
+            "reads": "strongest non-ORION baseline false promotion rate over the balanced strata",
+            "role": "PRECONDITION",
+            "threshold": 0.05
+          },
+          "outcome": "PASS",
+          "readings": [
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": 0.09285714285714285,
+              "satisfied": true,
+              "value": 0.14285714285714285,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refuting": [],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116",
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 3 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on graded implementation's disposition accuracy minus the strongest baseline's against AT_LEAST 0.08)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "accuracy_advantage_ge_0_08",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on graded implementation's disposition accuracy minus the strongest baseline's against AT_LEAST 0.08",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.42857142857142855,
+                "violations": 3
+              }
+            ],
+            "guard_id": "accuracy_advantage_ge_0_08",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0628571428571429,
+          "best_value": 0.1428571428571429,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "accuracy_advantage_ge_0_08",
+            "reads": "graded implementation's disposition accuracy minus the strongest baseline's",
+            "role": "HYPOTHESIS",
+            "threshold": 0.08
+          },
+          "outcome": "PASS",
+          "readings": [
+            {
+              "margin": 0.0628571428571429,
+              "satisfied": true,
+              "value": 0.1428571428571429,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0628571428571429,
+              "satisfied": true,
+              "value": 0.1428571428571429,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0628571428571429,
+              "satisfied": true,
+              "value": 0.1428571428571429,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": -0.08,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": 0.015833333333333324,
+              "satisfied": true,
+              "value": 0.09583333333333333,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": -0.08,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": -0.08,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refuting": [
+            "ablate-donor",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116",
+            "ablate-freeze"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 1 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on the lower of the graded implementation's retained-negative and reopen accuracy against AT_LEAST 1.0)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "retain_and_reopen_exact",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on the lower of the graded implementation's retained-negative and reopen accuracy against AT_LEAST 1.0",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.14285714285714285,
+                "violations": 1
+              }
+            ],
+            "guard_id": "retain_and_reopen_exact",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "retain_and_reopen_exact",
+            "reads": "the lower of the graded implementation's retained-negative and reopen accuracy",
+            "role": "HYPOTHESIS",
+            "threshold": 1.0
+          },
+          "outcome": "PASS",
+          "readings": [
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": -1.0,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refuting": [
+            "ablate-negative-history"
+          ],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116",
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 4 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on registered component ablations scoring below the graded implementation against AT_LEAST 4.0)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "each_ablation_worse",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on registered component ablations scoring below the graded implementation against AT_LEAST 4.0",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.5714285714285714,
+                "violations": 4
+              }
+            ],
+            "guard_id": "each_ablation_worse",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0,
+          "best_value": 4.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "each_ablation_worse",
+            "reads": "registered component ablations scoring below the graded implementation",
+            "role": "HYPOTHESIS",
+            "threshold": 4.0
+          },
+          "outcome": "PASS",
+          "readings": [
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 4.0,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 4.0,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 4.0,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": -4.0,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": -1.0,
+              "satisfied": false,
+              "value": 3.0,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": -4.0,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": -4.0,
+              "satisfied": false,
+              "value": 0.0,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "BOTH_OUTCOMES_REACHABLE",
+          "refuting": [
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 0 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on distinct decision-budget receipts across the nine arms against AT_MOST 1.0)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "matched_budget",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on distinct decision-budget receipts across the nine arms against AT_MOST 1.0",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "matched_budget",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_MOST",
+            "gate_id": "matched_budget",
+            "reads": "distinct decision-budget receipts across the nine arms",
+            "role": "HYPOTHESIS",
+            "threshold": 1.0
+          },
+          "outcome": "FAIL",
+          "readings": [
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refuting": [],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116",
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ]
+        },
+        {
+          "assessment": {
+            "detail": "declared-admissible-worlds: 0 violations in 7 opportunities (registered inputs the frozen protocol admits, scored on 1.0 when two executions of the frozen generator emit identical bytes against AT_LEAST 1.0)",
+            "exercises": [
+              {
+                "arm_id": "declared-admissible-worlds",
+                "exercised": true,
+                "guard_id": "byte_identical_replay",
+                "opportunities": 7,
+                "opportunity_definition": "registered inputs the frozen protocol admits, scored on 1.0 when two executions of the frozen generator emit identical bytes against AT_LEAST 1.0",
+                "resolution": 0.14285714285714285,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "byte_identical_replay",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "attainment_margin": 0.0,
+          "best_value": 1.0,
+          "gate": {
+            "direction": "AT_LEAST",
+            "gate_id": "byte_identical_replay",
+            "reads": "1.0 when two executions of the frozen generator emit identical bytes",
+            "role": "PRECONDITION",
+            "threshold": 1.0
+          },
+          "outcome": "PASS",
+          "readings": [
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "shipped-run"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-20260821"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "alternate-seed-2026082116"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-donor"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-freeze"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-interaction"
+            },
+            {
+              "margin": 0.0,
+              "satisfied": true,
+              "value": 1.0,
+              "world_id": "ablate-negative-history"
+            }
+          ],
+          "reason": "THRESHOLD_UNCONDITIONAL",
+          "refuting": [],
+          "satisfying": [
+            "shipped-run",
+            "alternate-seed-20260821",
+            "alternate-seed-2026082116",
+            "ablate-donor",
+            "ablate-freeze",
+            "ablate-interaction",
+            "ablate-negative-history"
+          ]
+        }
+      ],
+      "label": "P14B balanced governance superiority terminal",
+      "outcome": "PASS",
+      "unattainable": [],
+      "unconditional": [
+        "full_discovery_recall_one",
+        "strongest_baseline_false_promotion_ge_0_05",
+        "matched_budget",
+        "byte_identical_replay"
+      ],
+      "worlds": [
+        "shipped-run",
+        "alternate-seed-20260821",
+        "alternate-seed-2026082116",
+        "ablate-donor",
+        "ablate-freeze",
+        "ablate-interaction",
+        "ablate-negative-history"
+      ]
+    },
+    "terminal_retained_verbatim": "P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED",
+    "unconditional_preconditions": [
+      "strongest_baseline_false_promotion_ge_0_05",
+      "byte_identical_replay"
+    ],
+    "world_register": [
+      {
+        "admits": "the committed run: the protocol's own seed 2026082115 with the full contract in the graded slot",
+        "seed": 2026082115,
+        "subject": "ORION_RSE_FULL",
+        "world_id": "shipped-run"
+      },
+      {
+        "admits": "the same balanced design at another seed; the protocol fixes one seed but nothing about the benchmark distinguishes it",
+        "seed": 20260821,
+        "subject": "ORION_RSE_FULL",
+        "world_id": "alternate-seed-20260821"
+      },
+      {
+        "admits": "the same balanced design at another seed; the protocol fixes one seed but nothing about the benchmark distinguishes it",
+        "seed": 2026082116,
+        "subject": "ORION_RSE_FULL",
+        "world_id": "alternate-seed-2026082116"
+      },
+      {
+        "admits": "the protocol registers ABLATE_DONOR as the contract with its donor_owned check removed and scores it on the same protected cases; an implementation that silently lost that check is what the graded slot would then hold",
+        "seed": 2026082115,
+        "subject": "ABLATE_DONOR",
+        "world_id": "ablate-donor"
+      },
+      {
+        "admits": "the protocol registers ABLATE_FREEZE as the contract with its frozen check removed and scores it on the same protected cases; an implementation that silently lost that check is what the graded slot would then hold",
+        "seed": 2026082115,
+        "subject": "ABLATE_FREEZE",
+        "world_id": "ablate-freeze"
+      },
+      {
+        "admits": "the protocol registers ABLATE_INTERACTION as the contract with its interaction_only check removed and scores it on the same protected cases; an implementation that silently lost that check is what the graded slot would then hold",
+        "seed": 2026082115,
+        "subject": "ABLATE_INTERACTION",
+        "world_id": "ablate-interaction"
+      },
+      {
+        "admits": "the protocol registers ABLATE_NEGATIVE_HISTORY as the contract with its live_negative_history check removed and scores it on the same protected cases; an implementation that silently lost that check is what the graded slot would then hold",
+        "seed": 2026082115,
+        "subject": "ABLATE_NEGATIVE_HISTORY",
+        "world_id": "ablate-negative-history"
+      }
+    ]
   },
   "p14c": {
     "arm_error_counts_over_the_frozen_table": {

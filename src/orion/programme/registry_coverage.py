@@ -18,12 +18,30 @@ The two that are not both publish a **positive** terminal:
     ``P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED``, five arms, eight gates all
     true. P14 is the paper that *invented*
     :mod:`orion.programme.gate_attainability`, and
-    ``verify_p14_gate_attainability_v1.py`` drives that instrument over P14A and
-    P14C. Its ``P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`` has a ``p14a`` key
-    and a ``p14c`` key. There is no ``p14b``. Its docstring says no P14B
-    threshold "is edited, re-run or relabelled" --- true, and it was never
-    audited either. All five of P14B's arms report ``useful_discovery_recall``
-    of 1.0, and the gate ``full_discovery_recall_one`` reads exactly that.
+    ``verify_p14_gate_attainability_v1.py`` drove that instrument over P14A and
+    P14C only. Its ``P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`` had a ``p14a``
+    key and a ``p14c`` key and no ``p14b``. Its docstring said no P14B threshold
+    "is edited, re-run or relabelled" --- true, and it had never been audited
+    either. All five of P14B's arms report ``useful_discovery_recall`` of 1.0,
+    and the gate ``full_discovery_recall_one`` reads exactly that.
+
+    That gap is now measured, by :mod:`orion.study.p14.balanced_governance`, and
+    the adjudication carries a ``p14b`` key. The answer has two halves. P14B's
+    terminal is sound: over the four component ablations its own protocol
+    registers, placed in the graded slot, the conjunction prints both its words.
+    But only **four of its eight gates could have gone either way**. The recall
+    gate this paragraph pointed at is one of the four that could not --- exactly
+    three of the 256 fact assignments are adjudicated ``SUPPORTED_RESIDUAL`` by
+    gold and no registered policy declines any of them --- and ``matched_budget``
+    reads a module literal. Both are hypothesis gates. The finding was not that
+    the terminal was predetermined, as P14A's was; it was that a receipt saying
+    "eight gates, all true" was offering four readings and four constants. That
+    is a thing only this denominator could have prompted anyone to look for, and
+    a thing no reading of the receipt alone would have shown.
+
+    P14B remains outside the *panel-resolution* registries below, which is a
+    different instrument asking a different question, so it is still counted as
+    an uncovered panel here.
 
 ``METHOD_AUTHORITY_BENCH_SUMMARY_V1.json``
     ``P4_METHOD_AUTHORITY_SUPPORTED``, four arms, ten cases. Both reported

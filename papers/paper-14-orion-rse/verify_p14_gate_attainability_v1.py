@@ -1,6 +1,6 @@
 """Adjudicate what P14A's two failed gates measured, and where the question is answered.
 
-Reads nothing new into the paper's evidence. It drives two registered
+Reads nothing new into the paper's evidence. It drives three registered
 instruments over artifacts that are already frozen and writes their verdicts to
 ``P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json``:
 
@@ -10,11 +10,30 @@ instruments over artifacts that are already frozen and writes their verdicts to
 * ``orion.study.p14.specification_conformance`` loads the shipped P14C runner and
   frozen case table, reproduces the committed canonical digest, asks the same
   question over the coordinate P14C leaves free, and reads P14A's two thresholds
-  --- unchanged --- on P14C's benchmark.
+  --- unchanged --- on P14C's benchmark;
+* ``orion.study.p14.balanced_governance`` loads the shipped P14B generator,
+  reproduces its committed ``replay_sha256``, and asks the same question of a
+  **positive** terminal.
+
+The P14B block is the one this file used to be missing. Earlier revisions of this
+docstring said no P14B threshold "is edited, re-run or relabelled" --- true, and
+P14B had never been audited either, which
+``orion.programme.registry_coverage`` recorded as an unexamined positive. It is
+audited now, and the answer has two halves that must not be collapsed: P14B's
+terminal **could** have printed either word --- the full contract clears all
+eight gates and each of the four registered component ablations, placed in the
+graded slot, fails at least one --- while only **four of the eight** gates could
+have gone either way. ``full_discovery_recall_one`` and ``matched_budget`` are
+hypothesis gates no admissible world can fail, and the two preconditions are
+unconditional as preconditions should be. "Eight gates, all true" is four
+readings and four constants.
 
 No P14A, P14B or P14C threshold, seed, case, gold label, policy, comparator or
 result is edited, re-run or relabelled by this adjudication. P14A's terminal
-remains ``P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET`` verbatim.
+remains ``P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET`` verbatim, P14B's
+remains ``P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED`` verbatim under its
+standing ``P14B_NON_AUTHORITATIVE_PROTOCOL_MISMATCH`` downgrade, and P14C's
+stands as published.
 
     python papers/paper-14-orion-rse/verify_p14_gate_attainability_v1.py
 
@@ -27,6 +46,7 @@ import json
 from pathlib import Path
 
 from orion.programme.records import Outcome
+from orion.study.p14 import balanced_governance as p14b
 from orion.study.p14 import gate_audit, governance_gates as p14a
 from orion.study.p14 import specification_conformance as p14c
 
@@ -43,6 +63,9 @@ def main() -> None:
     p14a_report = gate_audit.audit_p14a_governance_terminal()
     p14a_json = gate_audit.report_as_json(p14a_report)
     p14a_panel = p14a.threshold_panel()
+
+    p14b_report = p14b.audit_p14b_balanced_terminal()
+    p14b_json = p14b.report_as_json(p14b_report)
 
     p14c_report = p14c.audit_p14c_conformance_terminal()
     p14c_json = p14c.report_as_json(p14c_report)
@@ -66,6 +89,20 @@ def main() -> None:
         ]
         == 1,
         "p14a_emitter_was_responsive": p14a_report["responsiveness"].outcome == Outcome.PASS,
+        # P14B: the positive terminal this file used to leave unaudited. Three
+        # measurements, each of which could have come out the other way --- the
+        # last one is exactly what P14A failed. How many of P14B's eight gates
+        # discriminate is *not* a gate here: it is a defect in P14B's battery,
+        # reported by name in the block below, and folding it into this
+        # conjunction would make an adjudication about P14A's terminal turn on
+        # something else. Same rule P14C's unexercised recall gate gets.
+        "p14b_committed_digest_reproduced": bool(p14b_json["digest_reproduced"]),
+        "p14b_terminal_had_two_reachable_values": p14b_json["terminal_reach"][
+            "distinct_terminals"
+        ]
+        == 2,
+        "p14b_no_threshold_was_unattainable": p14b_report["threshold_panel"].unattainable
+        == (),
         # P14C: the successor's conjunction could have printed either word, and
         # its own thresholds sit inside the interval its freeze declares.
         "p14c_terminal_had_two_reachable_values": p14c_json["terminal_reach"][
@@ -85,11 +122,13 @@ def main() -> None:
         "schema": "ORION.P14.GateAttainabilityAdjudication.v1",
         "adjudicates": [
             "P14A_HIDDEN_GOLD_GOVERNANCE_PROTOCOL_V1.md",
+            "P14B_BALANCED_GOVERNANCE_PROTOCOL_V1.md",
             "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md",
         ],
         "instruments": [
             "orion.study.p14.governance_gates",
             "orion.study.p14.gate_audit",
+            "orion.study.p14.balanced_governance",
             "orion.study.p14.specification_conformance",
         ],
         "edits_no_frozen_result": True,
@@ -123,6 +162,82 @@ def main() -> None:
                 "that could not be taken, not evidence against the governance contract. "
                 "The result, the seed, the thresholds and the terminal are retained "
                 "verbatim; only the reading of what they established changes."
+            ),
+        },
+        "p14b": {
+            "terminal_retained_verbatim": p14b.SHIPPED_TERMINAL,
+            "standing_downgrade_retained": "P14B_NON_AUTHORITATIVE_PROTOCOL_MISMATCH",
+            "replay_sha256": p14b.SHIPPED_RESULT_DIGEST,
+            "committed_digest_reproduced": p14b_json["digest_reproduced"],
+            "receipt_fidelity": p14b_json["receipt_fidelity"],
+            "stratum_share": p14b_json["stratum_share"],
+            "world_register": [
+                {
+                    "world_id": world.world_id,
+                    "admits": world.admits,
+                    "seed": world.payload.seed,
+                    "subject": world.payload.subject,
+                }
+                for world in p14b.declared_worlds()
+            ],
+            "terminal_reach": p14b_json["terminal_reach"],
+            # Reported and not rolled up: the sub-register that varies only the
+            # draw. Its per-gate readings are the same eight already above, so
+            # only the roll-up is carried here.
+            "seed_only_terminal_reach": {
+                key: p14b_json["seed_only_terminal_reach"][key]
+                for key in (
+                    "label",
+                    "outcome",
+                    "distinct_terminals",
+                    "worlds",
+                    "clearing_every_gate",
+                    "unattainable",
+                    "unconditional",
+                )
+            },
+            "pre_run_threshold_panel": p14b_json["threshold_panel"],
+            "gates_published": len(p14b.GATES),
+            "gates_that_discriminate": p14b_json["discriminating_gates"],
+            "hypothesis_gates_without_refutation_capacity": p14b_json[
+                "unexercised_hypothesis_gates"
+            ],
+            "unconditional_preconditions": [
+                gate_id
+                for gate_id in p14b_json["terminal_reach"]["unconditional"]
+                if gate_id not in set(p14b_json["unexercised_hypothesis_gates"])
+            ],
+            "arms_missing_a_promotable_state": p14b_json[
+                "arms_missing_a_promotable_state"
+            ],
+            "arm_error_strata": p14b_json["arm_error_strata"],
+            "graded_arm_divergence_from_gold": p14b_json["graded_arm_divergence"],
+            "evidential_disposition": "TERMINAL_REACHABLE__GATE_COUNT_INFLATED",
+            "disposition_detail": (
+                "P14B's conjunction could have printed either word: the full contract "
+                "clears all eight gates and each of the four component ablations its own "
+                "protocol registers, placed in the graded slot, fails at least one. That is "
+                "the property P14A's conjunction did not have, and nothing here disturbs "
+                "it. But only four of the eight gates could have gone either way. "
+                "full_discovery_recall_one is satisfied by every one of the nine arms in "
+                "every admissible run -- exactly three of the 256 fact assignments are "
+                "adjudicated SUPPORTED_RESIDUAL by gold and no registered policy declines "
+                "any of them, because the rule baselines promote supersets of gold and an "
+                "ablation removes a check -- and matched_budget reads a module literal "
+                "assigned identically to all nine arms. Both are hypothesis gates and both "
+                "publish true without being able to publish anything else. The remaining "
+                "two unconditional gates are preconditions, where holding everywhere is "
+                "the intended behaviour: the difficulty bar P14A could not reach in any "
+                "admissible world is 2.9x cleared here in every one. Separately, the "
+                "coordinate the protocol leaves free at run time is the seed, and over the "
+                "shipped draw and two alternates the terminal is a constant -- the balanced "
+                "strata make every rate an exact fraction -- so the terminal's two words "
+                "come entirely from substituting the graded implementation, whose own side "
+                "of all four discriminating gates is fixed by policy('ORION_RSE_FULL', c) "
+                "being return gold(c) at 0 divergent points of 256. The receipt, protocol, "
+                "seed, thresholds, gold labels, comparators and terminal are retained "
+                "verbatim, as is P14B's standing non-authoritative downgrade; only the "
+                "reading of what its eight gates established changes."
             ),
         },
         "p14c": {

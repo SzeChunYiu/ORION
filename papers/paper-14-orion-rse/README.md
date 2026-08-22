@@ -20,11 +20,13 @@ Both failing gates read one quantity: the prevalence of the single fact state on
 
 P14A therefore carries the evidential disposition `CANNOT_CHECK`: a measurement the protocol could not take, not evidence against the governance contract. The emitter itself is responsive — re-opening the declared ranges and nothing else moves the terminal to the positive branch in three of three registered capability worlds — and the graded `ORION_RSE_FULL` arm is the gold function it is scored against, at 0 divergent points of 256.
 
-Receipt: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`; write-up: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.md`; instruments: `orion.study.p14.governance_gates` / `gate_audit`.
+Receipt: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`; write-up: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.md`; instruments: `orion.study.p14.governance_gates` / `gate_audit`, with `balanced_governance` and `specification_conformance` covering P14B and P14C.
 
 ### P14B — balanced semantic test with circularity boundary
 
 Full ORION-RSE scored 0 false promotions / 1.0 disposition accuracy / 1.0 useful-discovery recall versus `MULTI_REVIEW` at 14.29% false promotion / 0.8571 accuracy over 6,720 balanced cases. However, the original full arm directly reused the gold decision function. P14B therefore remains useful as a semantic discriminator but is **not** treated as implementation-independent evidence.
+
+`orion.study.p14.balanced_governance` audits P14B's terminal for gate attainability, reproducing its committed `replay_sha256` first. The terminal is reachable in both directions: over the four component ablations the protocol registers in the graded slot, the conjunction prints both its words, and no threshold sits outside its statistic's reach — the difficulty bar P14A could not reach in any admissible run is cleared 2.9x here in every one. But only **four of the eight gates could have gone either way**. `full_discovery_recall_one` is satisfied by all nine arms in every admissible run (exactly three of the 256 fact assignments are promotable and no registered policy declines any of them) and `matched_budget` reads a module literal; both are hypothesis gates. The other two unconditional gates are preconditions, where holding everywhere is intended. Disposition: `TERMINAL_REACHABLE__GATE_COUNT_INFLATED`, recorded in `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json` under `p14b`. Nothing frozen is edited and the non-authoritative downgrade stands.
 
 ### P14C — specification-separated successor
 

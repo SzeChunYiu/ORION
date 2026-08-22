@@ -19,6 +19,13 @@ What changes is the **reading** of P14A's two failed gates. They were reported a
 a negative result about the governance contract. They are a `CANNOT_CHECK`: a
 measurement the frozen protocol was unable to take.
 
+And, since 2026-08-22, the reading of P14B's eight passed gates. Its terminal
+stands and is reachable in both directions — that half is a real result — but four
+of the eight gates supporting it could not have said anything else, so the receipt
+offers four readings where it appears to offer eight. Its disposition is recorded
+as `TERMINAL_REACHABLE__GATE_COUNT_INFLATED`. Nothing about P14B is edited or
+re-run by that either.
+
 ## The question nobody had asked
 
 A preregistered gate publishes a threshold, and a receipt publishes which side of
@@ -89,6 +96,81 @@ Two further measurements bound the finding:
   be anything but `true`.
 
 Both are recorded in the receipt and neither offsets the other.
+
+## P14B: a positive terminal, asked the same question
+
+P14B was never audited by this instrument. This receipt had a `p14a` key and a
+`p14c` key and no `p14b`; `orion.programme.registry_coverage` recorded the
+omission as its sharpest example, because P14B publishes a **positive** terminal
+on eight gates all `true` and the paper that invented the instrument had not
+pointed it at one. `orion.study.p14.balanced_governance` points it, after
+reproducing the receipt's committed `replay_sha256` `784d57e6…d679e66` byte for
+byte.
+
+The answer has two halves, and collapsing them loses the finding.
+
+**The terminal is sound.** What P14B leaves free is the same coordinate P14C
+does: which implementation occupies the graded `ORION_RSE_FULL` slot. Its
+protocol registers four component ablations. Over a seven-world register — the
+shipped draw, two alternate seeds, and each ablation in the graded slot in turn —
+the full contract clears all eight gates, every ablation fails at least one, and
+**reachable terminals: 2**. No threshold is outside reach, which is precisely
+what P14B was frozen to fix about P14A and did fix: the difficulty statistic
+whose supremum was `0.042326` there is exactly `1/7 = 0.142857` here, in every
+admissible run, because the strata are minted in equal numbers.
+
+**Four of the eight gates could not have gone the other way.**
+
+| gate | role | reason | why |
+|---|---|---|---|
+| `full_zero_false_promotion` | HYPOTHESIS | `BOTH_OUTCOMES_REACHABLE` | all four ablations false-promote |
+| `full_discovery_recall_one` | HYPOTHESIS | **`THRESHOLD_UNCONDITIONAL`** | no registered policy can decline a promotable case |
+| `strongest_baseline_false_promotion_ge_0_05` | PRECONDITION | `THRESHOLD_UNCONDITIONAL` | `1/7` in every admissible table — as a precondition should be |
+| `accuracy_advantage_ge_0_08` | HYPOTHESIS | `BOTH_OUTCOMES_REACHABLE` | fails for donor, interaction and negative-history ablations |
+| `retain_and_reopen_exact` | HYPOTHESIS | `BOTH_OUTCOMES_REACHABLE` | fails for `ABLATE_NEGATIVE_HISTORY` |
+| `each_ablation_worse` | HYPOTHESIS | `BOTH_OUTCOMES_REACHABLE` | an ablation in the graded slot is not below itself |
+| `matched_budget` | HYPOTHESIS | **`THRESHOLD_UNCONDITIONAL`** | the runner writes the literal `BUDGET = 7` into all nine arms |
+| `byte_identical_replay` | PRECONDITION | `THRESHOLD_UNCONDITIONAL` | a determinism certificate about the instrument |
+
+The two marked in bold are hypothesis gates satisfied by every world the freeze
+admits, so their `true` is arithmetic. `full_discovery_recall_one` is exact and
+provable before any run: of the 256 assignments of the eight case facts exactly
+**three** are adjudicated `SUPPORTED_RESIDUAL` by gold, and all nine registered
+policies return `SUPPORTED_RESIDUAL` on all three — the rule baselines promote
+supersets of gold, and an ablation flips a fact to its permissive value, which
+can only *add* promotions. The published receipt shows the consequence on its
+face: all five arms in its `summary` report `useful_discovery_recall` of `1.0`.
+It is the same gate `specification_conformance` reports as unexercised for P14C.
+
+So "eight gates, all true" is **four readings and four constants**. That does not
+make the terminal wrong; it makes the count of evidence supporting it half what
+the receipt appears to offer. `threshold_panel()` returns `FAIL` on the two
+unconditional hypothesis gates while `terminal_reach()` returns `PASS`, and
+neither offsets the other.
+
+Two further measurements bound it, reported and not rolled up:
+
+- **The draw cannot move the terminal.** Over the shipped seed and two alternates
+  with the shipped subject, `seed_only_terminal_reach` finds **one** reachable
+  word — the balanced strata make every rate an exact fraction. The terminal's
+  two words come entirely from substituting the graded implementation.
+- **The graded arm is the answer key.** `policy("ORION_RSE_FULL", c)` is
+  `return gold(c)`, measured at **0 divergent points of 256** — the circularity
+  `P14B_PROTOCOL_CONFORMANCE_CORRECTION_V1.md` already records, and the reason
+  the subject's own side of all four discriminating gates is fixed before the run.
+
+A bookkeeping note, the mirror of P14A's: `main()`'s terminal expression is a
+conjunction of **seven** gates. `byte_identical_replay` is asserted by the receipt
+beside the seven the runner emits and never enters `all(gates.values())`. The
+audit's replay measurement runs the aggregation twice in one process, which
+establishes that it is a pure function of its seed and its registered policies;
+it is weaker than the two fresh subprocesses `verify_p14c_protocol_adjudication_v2.py`
+uses, and does not re-certify P14B's replay claim independently.
+
+P14B's receipt, protocol, seed, thresholds, gold labels, comparators, arms and
+terminal are retained verbatim, as is its standing
+`P14B_NON_AUTHORITATIVE_PROTOCOL_MISMATCH` downgrade. Its evidential disposition
+is recorded as `TERMINAL_REACHABLE__GATE_COUNT_INFLATED`.
 
 ## P14C: the same question, on the successor, over the coordinate it leaves free
 
@@ -162,15 +244,17 @@ and the successor took the measurement.
 ```
 python papers/paper-14-orion-rse/verify_p14_gate_attainability_v1.py
 python -m orion.study.p14.gate_audit                    # exits 3: P14A blocks
+python -m orion.study.p14.balanced_governance           # exits 3: P14B's count blocks
 python -m orion.study.p14.specification_conformance     # exits 0: P14C passes
 python -m pytest tests/unit/study/p14 tests/unit/programme/test_gate_attainability.py
 ```
 
-The instruments load the shipped `run_p14a_controlled_governance_v1.py` and
+The instruments load the shipped `run_p14a_controlled_governance_v1.py`,
+`run_p14b_balanced_governance_v1.py` and
 `run_p14c_specification_separated_governance_v1.py` from this directory and
-reproduce their committed digests — `3ac625b7…57a28fe` and `74032348…f01a63` —
-before any verdict is read, so a failure above is about P14 and not about a local
-fixture.
+reproduce their committed digests — `3ac625b7…57a28fe`, `784d57e6…d679e66` and
+`74032348…f01a63` — before any verdict is read, so a failure above is about P14
+and not about a local fixture.
 
 ## Failure class
 
