@@ -25,6 +25,7 @@ import collections
 import hashlib
 import itertools
 import json
+import pathlib
 import sys
 from pathlib import Path
 from typing import Any
@@ -231,8 +232,13 @@ def l_col_of(cols) -> int:
     return 2 + w - 18 - 2 * mfree
 
 
-def main() -> int:
-    raw = RESULTS.read_bytes()
+def main(argv: list[str] | None = None) -> int:
+    # Input path only. No check is changed by this: the verifier was written with
+    # its results path hardcoded, so it could never be pointed at a tampered copy
+    # and its gate-G7 demonstration existed only as prose in the wave record.
+    argv = argv if argv is not None else sys.argv
+    path = pathlib.Path(argv[1]) if len(argv) > 1 else RESULTS
+    raw = path.read_bytes()
     rec = json.loads(raw)
     rows = rec["rows_for_generic_verifier"]
     fail: list[Any] = []
@@ -308,7 +314,12 @@ def main() -> int:
                          "research/extensions/orion-qg; numpy and the standard "
                          "library only"),
     }
-    OUT.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
+    # Destination follows the input. Running this against a tampered copy used to
+    # overwrite the COMMITTED verification artifact, because OUT was fixed -- so
+    # the act of testing the verifier destroyed the record of it passing. Found by
+    # doing exactly that.
+    dest = OUT if path == RESULTS else path.with_name(path.stem + ".verification.json")
+    dest.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     print("QG10_GENERIC_VERIFY=" + json.dumps(
         {k: v for k, v in out.items() if k != "failures_verbatim"},
         sort_keys=True, separators=(",", ":")))
