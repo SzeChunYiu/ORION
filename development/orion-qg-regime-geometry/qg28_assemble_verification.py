@@ -211,6 +211,27 @@ def t_section_33_deviation_hidden(r):
     r["deviation_from_protocol_section_3_3"]["what_licenses_the_claim_anyway"] = ""
 
 
+def t_dp_sample_disagrees_but_win_kept(r):
+    d = r["dp_driven_search"]
+    d["rows"][2]["agree"] = False
+    d["all_agree"] = False
+    d["agree"] = sum(1 for x in d["rows"] if x["agree"])
+
+
+def t_dp_n2_row_fabricated(r):
+    for row in r["dp_driven_search"]["rows"]:
+        if int(row.get("n", 0)) == 2:
+            for k in ("C_dp_driven", "C_table_driven", "C_Dxx"):
+                row[k] = int(row[k]) + 1
+            return
+    raise AssertionError("no n=2 row to fabricate")
+
+
+def t_licensing_counts_inflated(r):
+    lic = r["deviation_from_protocol_section_3_3"]["what_licenses_the_claim_anyway"]
+    lic["instances_agreeing"] = int(lic["instances_agreeing"]) + 3
+
+
 def t_wall_clock_status(r):
     r["q3_cell_model"]["wall_clock_status"] = ""
 
@@ -267,6 +288,13 @@ TAMPERS: dict[str, tuple[Callable[[dict], None], str]] = {
         t_dp_scope_removed, "dp_driven_search_declares_its_scope"),
     "T18e_section_3_3_deviation_hidden": (
         t_section_33_deviation_hidden, "section_3_3_deviation_disclosed"),
+    "T18f_dp_sample_disagrees_but_win_terminal_kept": (
+        t_dp_sample_disagrees_but_win_kept,
+        "dp_disagreement_would_move_the_terminal"),
+    "T18g_dp_n2_row_fabricated": (
+        t_dp_n2_row_fabricated, "dp_driven_n2_rows_recomputed"),
+    "T18h_licensing_counts_inflated": (
+        t_licensing_counts_inflated, "licensing_record_matches_the_dp_rows"),
     "T19_wall_clock_caveat_removed": (
         t_wall_clock_status, "gate_g3_wall_clock_carries_no_argument"),
     "T20_instance_total_inflated": (

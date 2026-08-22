@@ -709,9 +709,14 @@ def main() -> int:
         ),
     }
 
-    if all_agree and crossover is not None:
+    # The DP-driven sample is a route to C_D++ like any other, so a disagreement
+    # there is a disagreement, and the terminal has to move. Leaving it out let a
+    # failed section-3.3 demonstration sit inside a receipt that still announced
+    # the win -- reported by Cursor Bugbot on 5da6b4de.
+    everything_agrees = all_agree and bool(dp_driven["all_agree"])
+    if everything_agrees and crossover is not None:
         terminal = "QG28_COROLLARY_REALIZED__PROJECTED_WIN_CONFIRMED_WITH_ITS_CROSSOVER"
-    elif all_agree and crossover is None:
+    elif everything_agrees and crossover is None:
         terminal = "QG28_COROLLARY_REALIZED__NO_WIN_AT_ANY_N"
     else:
         terminal = "QG28_REALIZATION_DISAGREES__SOMETHING_IS_WRONG"
@@ -752,11 +757,21 @@ def main() -> int:
                 "instance at n=2, so running it over 9,261 n=2 instances is not "
                 "available inside the declared runtime cap"
             ),
-            "what_licenses_the_claim_anyway": (
-                "dp_driven_search above runs the section-3.3 algorithm literally "
-                "on a declared sample and gets the same C_D++ as both the "
-                "table-driven search and the committed dxx_search"
-            ),
+            "what_licenses_the_claim_anyway": {
+                "block": "dp_driven_search",
+                "instances_run": int(dp_driven["instances"]),
+                "instances_agreeing": int(dp_driven["agree"]),
+                "licenses_the_claim": bool(dp_driven["all_agree"]),
+                "text": (
+                    "dp_driven_search above runs the section-3.3 algorithm "
+                    f"literally on {dp_driven['instances']} declared instances and "
+                    f"gets the same C_D++ as both the table-driven search and the "
+                    f"committed dxx_search on {dp_driven['agree']} of them"
+                    + ("" if dp_driven["all_agree"] else
+                       " -- NOT ALL OF THEM, so nothing here licenses the claim "
+                       "and the terminal reports the disagreement instead")
+                ),
+            },
             "found_by": (
                 "Cursor Bugbot on commit f8ba5f23, which observed that search() "
                 "never called tag_weight_dp while the protocol and the "

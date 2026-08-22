@@ -22,7 +22,7 @@ import itertools
 import json
 import pathlib
 import sys
-from typing import Any
+from typing import Any, Mapping
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "research/extensions/orion-q"))
@@ -341,12 +341,55 @@ def verify(path: pathlib.Path) -> dict[str, Any]:
     checks["dp_driven_search_rows_recomputed"] = dp_rows_ok and checked > 0
     notes["dp_driven_rows_recomputed"] = checked
 
+    # The n>=2 rows were previously read, not recomputed, so a fabricated one
+    # cleared the gate while the "the Tag table is removable" claim looked
+    # evidenced. Reported by Cursor Bugbot on 5da6b4de. The definitional brute
+    # force is not affordable at n=2, so the committed dxx_search is used as the
+    # independent value and the row's three numbers must all equal it.
+    w1 = [letter_key(c, q) for q in (0, 1) for c in (1, 2, 3)]
+    n2_ok, n2_checked = True, 0
+    for row in rows:
+        if int(row.get("n", 0)) != 2:
+            continue
+        idxs = row.get("target_indices")
+        if not isinstance(idxs, list) or len(idxs) != 6:
+            n2_ok = False
+            continue
+        tps = tuple((w1[idxs[2 * j]], w1[idxs[2 * j + 1]]) for j in range(3))
+        want = int(r6p.dxx_search(tps, 2, max_weight=2)["C_Dxx"])
+        if any(int(row.get(k, -1)) != want
+               for k in ("C_dp_driven", "C_table_driven", "C_Dxx")):
+            n2_ok = False
+        n2_checked += 1
+    checks["dp_driven_n2_rows_recomputed"] = n2_ok and n2_checked > 0
+    notes["dp_driven_n2_rows_recomputed"] = n2_checked
+
+    # A DP sample that did NOT agree is a legitimate outcome and this verifier
+    # must accept a receipt that reports it honestly. What it may not accept is
+    # a receipt that reports a disagreement and still announces the win.
+    dp_agrees = bool(dps.get("all_agree"))
+    checks["dp_disagreement_would_move_the_terminal"] = dp_agrees or (
+        rec.get("terminal") == "QG28_REALIZATION_DISAGREES__SOMETHING_IS_WRONG"
+    )
+
+    lic = (rec.get("deviation_from_protocol_section_3_3") or {}).get(
+        "what_licenses_the_claim_anyway"
+    )
+    checks["licensing_record_matches_the_dp_rows"] = isinstance(lic, Mapping) and (
+        int(lic.get("instances_run", -1)) == len(rows)
+        and int(lic.get("instances_agreeing", -1)) == sum(
+            1 for r in rows if r.get("agree"))
+        and bool(lic.get("licenses_the_claim")) == (
+            bool(rows) and all(bool(r.get("agree")) for r in rows))
+    )
+
     dev = rec.get("deviation_from_protocol_section_3_3") or {}
     checks["section_3_3_deviation_disclosed"] = bool(dev) and all(
         bool(str(dev.get(k, "")).strip())
         for k in ("section_says", "what_the_bulk_domains_actually_run", "why",
-                  "what_licenses_the_claim_anyway", "found_by")
-    )
+                  "found_by")
+    ) and bool(str((dev.get("what_licenses_the_claim_anyway") or {}).get(
+        "text", "")).strip())
 
     # 7. the hostile panels, recomputed row by row rather than read.
     panels = next(
@@ -417,7 +460,7 @@ def verify(path: pathlib.Path) -> dict[str, Any]:
     )
 
     # 9. the terminal must follow from what was measured, not be chosen.
-    agree = bool(rec.get("all_domains_agree"))
+    agree = bool(rec.get("all_domains_agree")) and dp_agrees
     cross = own_cross is not None
     if agree and cross:
         want_terminal = "QG28_COROLLARY_REALIZED__PROJECTED_WIN_CONFIRMED_WITH_ITS_CROSSOVER"
