@@ -2,7 +2,7 @@
 
 The controlled experiments use prospectively frozen seeds, cell grids, train-size grids, thresholds and hostile checks. Thresholds are observed first grid points and are never extrapolated beyond the registered maximum; `NOT_REACHED` is retained literally. Exact theorems and workload equations require no statistical inference.
 
-The evidence history is append-only in scientific meaning: P11/P11B establish dense and no-answer-laundering gaps; P11D fails its stronger sparse gate; P11E independently reproduces the surviving residual; P11C remains `CANNOT_CHECK`; P11F is diagnostic after a protocol-conformance defect; P11G is separately frozen with replay as a hard terminal gate.
+The evidence history is append-only in scientific meaning: P11/P11B establish dense and no-answer-laundering gaps; P11D fails its stronger sparse gate; P11E independently reproduces the surviving residual; P11C, after a no-outcome vectorization amendment, ran to completion twice at `P11C_STRONGER_DECODER_GAP_SUPPORTED` but passes its pooled ≥4× gate at exactly the boundary (11 of 20 draws) and carries no claim authority; P11F is diagnostic after a protocol-conformance defect; P11G is separately frozen with replay as a hard terminal gate.
 
 Predictive `V`-information is the closest information-theoretic parent. Partial evaluation and knowledge compilation are the closest upstream-computation parents. Materialized views and multi-query optimization are reuse/crossover analogues. Modern query-conditioned memory, retrieval and context compression demonstrate practical task-conditioned state construction. Wong et al. provide current evidence that state design changes dynamic LLM reasoning. Sparse estimators and nonlinear ensembles are natural downstream substitutes.
 

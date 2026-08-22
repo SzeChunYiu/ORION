@@ -176,7 +176,7 @@ def test_a_bank_the_protocol_does_admit_leaves_the_gates_standing():
 
 
 def test_the_registered_pool_contained_an_arm_that_beats_the_gate():
-    """P11C froze three universal arms and the rule; running the rule flips the terminal."""
+    """Three registered universal arms on P11G's own stream; one of them flips the terminal."""
 
     pool = p11.registered_pool()
     thresholds = {
@@ -192,6 +192,135 @@ def test_the_registered_pool_contained_an_arm_that_beats_the_gate():
     assert p11.best_of_arms_gate() is False
     assert p11.terminal_under_arm("UNIVERSAL_L1") == p11.NOT_MET_TERMINAL
     assert p11.terminal_under_arm(p11.REPORTED_ARM) == p11.SHIPPED_TERMINAL
+
+
+def test_p11c_applied_its_own_combination_rule_to_its_own_frozen_data():
+    """The premise this module was built on --- an unapplied rule --- is retired by P11C.
+
+    Read off ``P11C_STRONGER_DECODER_ATTACK_RESULT_V1.json``: the rule's own
+    statistic is a field of every cell and the gate it feeds is a field of the
+    payload. Both are transcribed from the shipped artifact, not asserted here.
+    """
+
+    application = p11.p11c_rule_application()
+    published = json.loads(p11.P11C_RESULT.read_text(encoding="utf-8"))
+
+    assert application["applied"] is True
+    assert application["thresholds"] == (256, 256)
+    assert application["gate"] is True
+    assert application["terminal"] == "P11C_STRONGER_DECODER_GAP_SUPPORTED"
+    assert application["thresholds"] == tuple(
+        cell[p11.P11C_RULE_STATISTIC] for cell in published["cells"]
+    )
+    assert p11.P11C_RECEIPT.is_file()
+    assert application["terminal"] in p11.P11C_RECEIPT.read_text(encoding="utf-8")
+
+
+def test_p11cs_rule_does_not_bind_p11g_and_every_reason_is_still_in_the_freezes():
+    """The finding is an argument from freeze text, so the freeze text is the test.
+
+    ``_quote`` raises if a protocol stops containing the words, which is what
+    stops this becoming an argument from memory: re-freeze either side and the
+    binding has to be re-argued rather than silently inherited.
+    """
+
+    binding = p11.rule_binding()
+
+    assert binding.binds is False
+    assert binding.applied_to_its_own_data is True
+    assert binding.p11c_best_of_arms_thresholds == (256, 256)
+    assert binding.p11c_gate is True
+
+    aspects = {row.aspect for row in binding.divergences}
+    assert {"gate the rule feeds", "claim the rule serves"} <= aspects
+    assert len(binding.divergences) >= 3
+
+    for row in binding.divergences:
+        assert row.p11c.text in p11.P11C_PROTOCOL.read_text(encoding="utf-8")
+        assert row.p11g.text in p11.P11G_PROTOCOL.read_text(encoding="utf-8")
+    for quote in binding.non_crossing:
+        assert quote.text in (p11.PAPER_DIR / quote.source).read_text(encoding="utf-8")
+
+    # The three the task of separating two freezes actually turns on.
+    assert any("4x the compiled threshold" in row.p11c.text for row in binding.divergences)
+    assert any("`>=256`" in row.p11g.text for row in binding.divergences)
+    assert any(
+        "does not settle the frozen ExtraTrees attack" in quote.text
+        for quote in binding.non_crossing
+    )
+
+
+def test_a_freeze_that_stops_saying_it_takes_the_finding_down_with_it(tmp_path):
+    """Fail-closed: the conclusion may not outlive the words it was read from."""
+
+    with pytest.raises(p11.P11GFidelityError, match="no longer contains the frozen words"):
+        p11._quote(p11.P11G_PROTOCOL, "a sentence no frozen protocol contains")
+
+
+def test_the_receipt_publishes_one_value_of_an_axis_the_terminal_depends_on():
+    """The mirror of P6's inert donor axis, and the reason a declaration is owed."""
+
+    assert p11.receipt_universal_arms() == (p11.REPORTED_ARM,)
+
+    axes = p11.one_value_decision_axes()
+    assert len(axes) == 1
+    entry = axes[0]
+    assert entry["axis"] == "decoder_arm"
+    assert entry["values_in_receipt"] == [p11.REPORTED_ARM]
+    assert entry["registered_values"] == list(p11.REGISTERED_UNIVERSAL_ARMS)
+    assert entry["verdict_changing_pairs"] == 2
+    assert entry["terminals"]["UNIVERSAL_L1"] == p11.NOT_MET_TERMINAL
+
+
+def test_a_one_value_axis_the_terminal_depends_on_must_be_declared_in_the_record():
+    """The guard the resolution owes: a future receipt cannot publish one again in silence.
+
+    Every requirement is recomputed from the replayed runner --- the arm names,
+    each arm's censored threshold pair, the terminal each prints --- so the
+    declaration cannot say something the numbers do not, and the audit blocks
+    while any of it is missing.
+    """
+
+    required = p11.arm_disclosure_requirements()
+    body = p11.ARM_PLACEMENT_ADJUDICATION.read_text(encoding="utf-8")
+
+    assert p11.arm_disclosure_gaps() == ()
+    assert "decoder_arm" in required
+    assert "`UNIVERSAL_L1` | 128, >=256 | " + p11.NOT_MET_TERMINAL in required
+    assert "`UNIVERSAL_EXTRA_TREES` | >=256, >=256 | " + p11.SHIPPED_TERMINAL in required
+    for item in required:
+        assert item in body, item
+
+    # And it is a live check, not a rubber stamp: take the declaration away and
+    # every requirement comes back as a gap.
+    original = p11.ARM_PLACEMENT_ADJUDICATION
+    try:
+        p11.ARM_PLACEMENT_ADJUDICATION = original.with_name("does-not-exist.md")
+        gaps = p11.arm_disclosure_gaps()
+    finally:
+        p11.ARM_PLACEMENT_ADJUDICATION = original
+    assert gaps[0].startswith("missing: ")
+    assert set(required) <= set(gaps)
+    assert p11.arm_disclosure_gaps() == ()
+
+
+def test_a_declaration_that_omits_one_registered_arm_is_still_a_gap(tmp_path):
+    """The axis is declared only when every registered value is, not the reported one."""
+
+    partial = tmp_path / "partial.md"
+    body = p11.ARM_PLACEMENT_ADJUDICATION.read_text(encoding="utf-8")
+    partial.write_text(
+        body.replace("`UNIVERSAL_L1` | 128, >=256 | " + p11.NOT_MET_TERMINAL, "elided"),
+        encoding="utf-8",
+    )
+    original = p11.ARM_PLACEMENT_ADJUDICATION
+    try:
+        p11.ARM_PLACEMENT_ADJUDICATION = partial
+        gaps = p11.arm_disclosure_gaps()
+    finally:
+        p11.ARM_PLACEMENT_ADJUDICATION = original
+
+    assert gaps == ("`UNIVERSAL_L1` | 128, >=256 | " + p11.NOT_MET_TERMINAL,)
 
 
 def test_the_terminal_is_a_function_of_which_registered_arm_was_carried_forward():
@@ -280,19 +409,52 @@ def test_an_unregistered_arm_is_refused():
         p11.AttackSpec(seed=1, arm="UNIVERSAL_TRANSFORMER")
 
 
-def test_the_audit_blocks_and_names_both_halves():
+def test_the_audit_blocks_on_attainability_and_reports_the_transplant_as_a_reading():
+    """What rolls up, and what does not.
+
+    The attainability verdict blocks and always did. The transplanted rule is
+    retained verbatim and reported --- ``[128, 256]``, gate ``False`` --- and no
+    longer rolls up, because :func:`rule_binding` reads it against a freeze that
+    does not govern P11G. What rolls up in its place is stricter than a boolean
+    about somebody else's rule: the record has to declare the axis.
+    """
+
     report = audit_p11g_attack_terminal()
 
     assert report["scientific_sha256"] == p11.SHIPPED_SCIENTIFIC_SHA256
     assert report["curves_reproduced"] is True
     assert report["terminal_reach"].outcome is Outcome.FAIL
     assert report["responsiveness"].outcome is Outcome.PASS
-    assert report["pool_outcome"] is Outcome.FAIL
     assert report["outcome"] is Outcome.FAIL
+
+    assert report["transplanted_rule_gate"] is False
+    assert report["best_of_arms_thresholds"] == (128, 256)
+    assert report["rule_binding"].binds is False
+    assert report["arm_disclosure_gaps"] == ()
+    assert report["disclosure_outcome"] is Outcome.PASS
+    assert len(report["one_value_decision_axes"]) == 1
 
     payload = report_as_json(report)
     assert json.loads(json.dumps(payload))["outcome"] == "FAIL"
     assert payload["best_of_arms_thresholds"] == [128, 256]
+    assert payload["rule_binding"]["binds"] is False
+    assert payload["disclosure_outcome"] == "PASS"
+
+
+def test_the_audit_blocks_again_if_the_axis_declaration_disappears():
+    """The guard is in the terminal decision path of the audit, not only in a test."""
+
+    original = p11.ARM_PLACEMENT_ADJUDICATION
+    try:
+        p11.ARM_PLACEMENT_ADJUDICATION = original.with_name("does-not-exist.md")
+        report = audit_p11g_attack_terminal()
+        assert report["disclosure_outcome"] is Outcome.FAIL
+        assert report["arm_disclosure_gaps"]
+        assert report["outcome"] is Outcome.FAIL
+    finally:
+        p11.ARM_PLACEMENT_ADJUDICATION = original
+
+    assert audit_p11g_attack_terminal()["disclosure_outcome"] is Outcome.PASS
 
 
 def test_the_audit_cli_exits_three_and_renders():
@@ -304,8 +466,39 @@ def test_the_audit_cli_exits_three_and_renders():
     assert code == 3
     assert "reachable terminals: 1" in rendered
     assert p11.SHIPPED_SCIENTIFIC_SHA256 in rendered
+    assert "P11C's best-of-arms rule does not bind P11G" in rendered
+    assert "86.7% decoder / 13.3% state" not in rendered
+    assert "13.3% decoder / 86.7% state" in rendered
 
     stream = io.StringIO()
     with contextlib.redirect_stdout(stream):
         assert main(["--json"]) == 3
-    assert json.loads(stream.getvalue())["pool_outcome"] == "FAIL"
+    payload = json.loads(stream.getvalue())
+    assert payload["disclosure_outcome"] == "PASS"
+    assert payload["rule_binding"]["binds"] is False
+
+
+def test_the_paper_states_the_arm_dependence_in_its_own_prose():
+    """Not only in an audit: the manuscript and the chapter have to carry it.
+
+    An audit nobody publishes is not a disclosure. These are the two surfaces a
+    reader of the paper actually sees.
+    """
+
+    manuscript = (p11.PAPER_DIR / "MANUSCRIPT.md").read_text(encoding="utf-8")
+    chapter_path = p11.PAPER_DIR / "paper/chapters/05-hostile-decoder-substitution.md"
+    chapter = chapter_path.read_text(encoding="utf-8")
+    ledger = (p11.PAPER_DIR / "CLAIM_EVIDENCE_LEDGER.md").read_text(encoding="utf-8")
+
+    for text in (manuscript, chapter):
+        assert "UNIVERSAL_L1" in text
+        assert "n=128" in text or "**128**" in text
+        assert "P11G_ARM_PLACEMENT_ADJUDICATION_V1.md" in text
+        # the decomposition, in both directions
+        assert "+0.0614" in text and "+0.4010" in text
+        assert "86.7%" in text and "55.4%" in text
+
+    rows = [line for line in ledger.splitlines() if line.startswith("|")]
+    assert not [row for row in rows if "HOSTILE NONLINEAR / PRIMARY" in row]
+    assert [row for row in rows if "HOSTILE NONLINEAR / ARM-SCOPED" in row]
+    assert [row for row in rows if "NOT AUTHORIZED" in row and "universal-state decoding" in row]

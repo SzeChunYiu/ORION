@@ -32,11 +32,35 @@ through the attacker instead of the defender.
 Did the register contain an arm that wins? ``P11C_STRONGER_DECODER_ATTACK_
 PROTOCOL_V1.md`` froze three universal-state arms and the rule that combines
 them --- "the earliest threshold reached by any of the three universal-state
-arms" --- and then timed out, after which each successor gated on one arm alone.
-:func:`best_of_arms_gate` applies that frozen rule to P11G's own frozen data and
-:func:`arm_axis` reports the decoder-arm axis with
+arms". :func:`best_of_arms_gate` transplants that rule onto P11G's own frozen
+data and :func:`arm_axis` reports the decoder-arm axis with
 :func:`orion.programme.refutation_capacity.axis_sensitivity`: the terminal is a
 function of which arm was carried forward.
+
+Does P11C's rule *govern* P11G? This module used to assume it did, on the
+premise that P11C timed out and so the rule was never applied to any outcome.
+That premise was true when it was written and is now false.
+``P11C_EXECUTION_RECEIPT_V1.md`` and
+``P11C_STRONGER_DECODER_ATTACK_RESULT_V1.json`` record the run completed twice
+in fresh processes, and the frozen payload carries the rule's own statistic per
+cell (``best_universal_threshold_0_95``) and its own gate
+(``best_universal_threshold_ratio_ge_4``). :func:`rule_binding` reads that back
+and reads the two freezes against each other: the rule feeds a ``>=4x`` *ratio*
+gate on a ladder P11G does not run, over a pool two of whose three arms P11G
+never registers and whose third is a different estimator, for a claim about a
+family of attacks rather than about one decoder. It binds P11C. It does not
+bind P11G.
+
+What does not go away is the axis. On P11G's own bytes ``UNIVERSAL_L1`` reaches
+the target at ``n=128`` in cell ``(17,4,5)``, where P11G's own gate wants
+``>=256``, so P11G's terminal is a statement about the arm placed in its gate.
+The shipped receipt carries that axis with exactly one value.
+:func:`one_value_decision_axes` finds axes in that position and
+:func:`arm_disclosure_gaps` refuses to let one stand undeclared: the record has
+to name every registered value, its threshold pair and the terminal it prints,
+and if a future receipt publishes another such axis the gap list is non-empty
+until the record catches up. ``P11G_ARM_PLACEMENT_ADJUDICATION_V1.md`` is where
+that declaration lives.
 
 The failure class is recorded under
 ``research/failures/2026-08-unwinnable-attack-predetermined-survival/``.
@@ -78,7 +102,18 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 PAPER_DIR = REPO_ROOT / "papers/paper-11-state-as-computation"
 P11G_RUNNER = PAPER_DIR / "run_p11g_deterministic_tree_decoder_v1.py"
 P11G_RECEIPT = PAPER_DIR / "P11G_DETERMINISTIC_TREE_DECODER_RESULT_V1.json"
+P11G_PROTOCOL = PAPER_DIR / "P11G_DETERMINISTIC_TREE_DECODER_PROTOCOL_V1.md"
 P11C_PROTOCOL = PAPER_DIR / "P11C_STRONGER_DECODER_ATTACK_PROTOCOL_V1.md"
+P11C_RESULT = PAPER_DIR / "P11C_STRONGER_DECODER_ATTACK_RESULT_V1.json"
+P11C_RECEIPT = PAPER_DIR / "P11C_EXECUTION_RECEIPT_V1.md"
+P11D_PROTOCOL = PAPER_DIR / "P11D_SPARSE_DECODER_ATTACK_PROTOCOL_V1.md"
+P11E_PROTOCOL = PAPER_DIR / "P11E_SEEDED_SPARSE_REPLICATION_PROTOCOL_V1.md"
+
+#: Where the arm axis P11G's receipt carries with one value is declared. The
+#: adjudication reclassifies P11G's claim authority without editing a frozen
+#: byte, the way ``papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_
+#: ADJUDICATION_V1.md`` did for P14A.
+ARM_PLACEMENT_ADJUDICATION = PAPER_DIR / "P11G_ARM_PLACEMENT_ADJUDICATION_V1.md"
 
 #: The scientific payload digest P11G publishes twice in its own receipt. The
 #: fidelity anchor: :func:`shipped_scientific_sha256` reproduces it by re-running
@@ -703,6 +738,13 @@ def best_of_arms_thresholds(seed: int | None = None) -> tuple[int, ...]:
     """P11C's frozen rule: the earliest threshold reached by any universal arm, per cell.
 
     Censored at :data:`GATE_THRESHOLD_SIZE`, which is all the gate reads.
+
+    This is a *transplant*, and :func:`rule_binding` is what says so. The rule
+    is P11C's, it was applied to P11C's own frozen data in P11C's own receipt,
+    and running it here puts P11C's arm identities on P11G's construction --- a
+    different query count, ladder, test size and tree count. The reading is
+    retained because it is the honest measurement of the arm axis; what it is
+    not is P11G's gate.
     """
 
     pool = registered_pool(seed)
@@ -714,7 +756,11 @@ def best_of_arms_thresholds(seed: int | None = None) -> tuple[int, ...]:
 
 
 def best_of_arms_gate(seed: int | None = None) -> bool:
-    """P11G's hostile threshold gate, read through the pool P11C registered."""
+    """P11G's hostile threshold gate, read through the pool P11C registered.
+
+    ``False`` on P11G's own data. See :func:`rule_binding` for why that is a
+    measurement of the arm axis rather than a refutation of P11G's terminal.
+    """
 
     return all(threshold >= GATE_THRESHOLD_SIZE for threshold in best_of_arms_thresholds(seed))
 
@@ -740,6 +786,282 @@ def arm_axis(seed: int | None = None) -> AxisSensitivity:
         reference=lambda point: terminal_under_arm(str(point["decoder_arm"]), seed),
         space=space,
     )
+
+
+@dataclass(frozen=True)
+class FreezeQuote:
+    """One verbatim sentence lifted from a frozen file, with its source named."""
+
+    source: str
+    text: str
+
+    def as_json(self) -> dict[str, str]:
+        return {"source": self.source, "text": self.text}
+
+
+@dataclass(frozen=True)
+class FreezeDivergence:
+    """One respect in which the two freezes ask different questions."""
+
+    aspect: str
+    p11c: FreezeQuote
+    p11g: FreezeQuote
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "aspect": self.aspect,
+            "p11c": self.p11c.as_json(),
+            "p11g": self.p11g.as_json(),
+        }
+
+
+@dataclass(frozen=True)
+class RuleBinding:
+    """Whether P11C's best-of-arms rule governs P11G's terminal, and on what evidence."""
+
+    binds: bool
+    applied_to_its_own_data: bool
+    p11c_best_of_arms_thresholds: tuple[int, ...]
+    p11c_gate: bool
+    p11c_terminal: str
+    divergences: tuple[FreezeDivergence, ...]
+    non_crossing: tuple[FreezeQuote, ...]
+
+    @property
+    def label(self) -> str:
+        return (
+            "P11C's best-of-arms rule binds P11G"
+            if self.binds
+            else "P11C's best-of-arms rule does not bind P11G"
+        )
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "binds": self.binds,
+            "label": self.label,
+            "applied_to_its_own_data": self.applied_to_its_own_data,
+            "p11c_best_of_arms_thresholds": list(self.p11c_best_of_arms_thresholds),
+            "p11c_gate": self.p11c_gate,
+            "p11c_terminal": self.p11c_terminal,
+            "divergences": [row.as_json() for row in self.divergences],
+            "non_crossing": [quote.as_json() for quote in self.non_crossing],
+        }
+
+
+def _quote(path: Path, text: str) -> FreezeQuote:
+    """A sentence that has to still be in the frozen file, or nothing below is said.
+
+    The finding is an argument from freeze text. Binding each sentence to the
+    file it came from is what stops it drifting into an argument from memory:
+    edit or re-freeze either protocol and this raises rather than keeping a
+    conclusion the words no longer support.
+    """
+
+    body = path.read_text(encoding="utf-8")
+    if text not in body:
+        raise P11GFidelityError(f"{path.name} no longer contains the frozen words: {text!r}")
+    return FreezeQuote(source=path.name, text=text)
+
+
+#: The field P11C's frozen payload writes the combination rule's own statistic
+#: into, per cell, and the gate it feeds. Their presence is what makes "the rule
+#: was never applied to an outcome" false.
+P11C_RULE_STATISTIC = "best_universal_threshold_0_95"
+P11C_RULE_GATE = "best_universal_threshold_ratio_ge_4"
+
+
+def p11c_rule_application() -> dict[str, Any]:
+    """The best-of-arms statistic, gate and terminal as P11C's own frozen receipt carries them.
+
+    This is the fact that retired the premise this module was built on. P11C did
+    not merely freeze a combination rule and leave it: its shipped payload
+    computes the rule per cell and gates on it. ``applied`` is read from the
+    payload's own structure rather than asserted.
+    """
+
+    payload = json.loads(P11C_RESULT.read_text(encoding="utf-8"))
+    cells = payload["cells"]
+    applied = all(P11C_RULE_STATISTIC in cell for cell in cells) and (
+        P11C_RULE_GATE in payload["gates"]
+    )
+    return {
+        "applied": applied,
+        "thresholds": tuple(int(cell[P11C_RULE_STATISTIC]) for cell in cells),
+        "gate": bool(payload["gates"][P11C_RULE_GATE]),
+        "terminal": str(payload["terminal"]),
+    }
+
+
+@lru_cache(maxsize=1)
+def rule_binding() -> RuleBinding:
+    """Read the two freezes against each other and say which protocol the rule governs.
+
+    Three respects, each of which is on its own enough to keep a rule inside its
+    own protocol, and all three of which hold here: the rule feeds a *different
+    gate* (a ``>=4x`` ratio against the compiled threshold, not an absolute
+    ``>=256``), it is defined over a *different ladder* (five queries per cell to
+    ``n=2048`` on 8,192 test points, against three queries per cell to ``n=1024``
+    on 4,096), and it serves a *different claim* (a family of attacks, against
+    one named decoder). Two of the three arms it pools are not registered by
+    P11G at all and the third is a 256-tree ensemble where P11G froze 96 at
+    ``n_jobs=1``, so P11C's pool cannot be assembled inside P11G's freeze ---
+    :func:`registered_pool` builds a hybrid, which is a new experiment rather
+    than a frozen rule.
+
+    The programme says the same thing in its own voice: P11D, the first
+    single-arm successor, froze that it "does not settle the frozen ExtraTrees
+    attack", and P11D, P11E and P11G each re-froze a single-arm statistic under
+    their own protocol identity.
+    """
+
+    application = p11c_rule_application()
+    divergences = (
+        FreezeDivergence(
+            aspect="gate the rule feeds",
+            p11c=_quote(
+                P11C_PROTOCOL,
+                "the best hostile universal threshold is at least 4x the compiled "
+                "threshold in both cells",
+            ),
+            p11g=_quote(
+                P11G_PROTOCOL,
+                "tree-universal 0.95 threshold `>=256` or `NOT_REACHED` in both cells",
+            ),
+        ),
+        FreezeDivergence(
+            aspect="scale ladder the rule is defined on",
+            p11c=_quote(P11C_PROTOCOL, "Training sizes: `64, 128, 256, 512, 1024, 2048`."),
+            p11g=_quote(P11G_PROTOCOL, "train sizes: `64,128,256,512,1024`;"),
+        ),
+        FreezeDivergence(
+            aspect="test size",
+            p11c=_quote(P11C_PROTOCOL, "Test size: `8192`."),
+            p11g=_quote(P11G_PROTOCOL, "test size: `4096`;"),
+        ),
+        FreezeDivergence(
+            aspect="protected queries per cell",
+            p11c=_quote(P11C_PROTOCOL, "Five protected queries per cell"),
+            p11g=_quote(P11G_PROTOCOL, "three protected queries per cell;"),
+        ),
+        FreezeDivergence(
+            aspect="the pooled arm the two protocols share, and do not share",
+            p11c=_quote(P11C_PROTOCOL, "`UNIVERSAL_EXTRA_TREES`: 256 ExtraTrees"),
+            p11g=_quote(P11G_PROTOCOL, "`n_estimators=96`"),
+        ),
+        FreezeDivergence(
+            aspect="claim the rule serves",
+            p11c=_quote(
+                P11C_PROTOCOL,
+                "survives fixed sparse-linear and nonlinear tree-ensemble attacks.",
+            ),
+            p11g=_quote(
+                P11G_PROTOCOL,
+                "over a deterministic single-thread 96-tree ExtraTrees decoder "
+                "operating on the complete universal parity bank.",
+            ),
+        ),
+    )
+    non_crossing = (
+        _quote(
+            P11D_PROTOCOL,
+            "It does not settle the frozen ExtraTrees attack or establish a universal "
+            "nonlinear lower bound.",
+        ),
+        _quote(P11D_PROTOCOL, "universal-L1 threshold / compiled threshold >=4 in both cells"),
+        _quote(P11E_PROTOCOL, "sparse universal threshold >=128 or `NOT_REACHED` in both cells"),
+        _quote(P11G_PROTOCOL, "P11G is a new successor; it does not edit or relabel P11F."),
+    )
+    return RuleBinding(
+        binds=False,
+        applied_to_its_own_data=bool(application["applied"]),
+        p11c_best_of_arms_thresholds=application["thresholds"],
+        p11c_gate=bool(application["gate"]),
+        p11c_terminal=str(application["terminal"]),
+        divergences=divergences,
+        non_crossing=non_crossing,
+    )
+
+
+def receipt_universal_arms() -> tuple[str, ...]:
+    """Universal-state arms the shipped P11G receipt actually publishes curves for."""
+
+    cells = shipped_receipt()["scientific_payload"]["cells"]
+    arms = {arm for cell in cells for arm in cell["curves"]}
+    return tuple(sorted(arms - {DEFENCE_ARM}))
+
+
+def one_value_decision_axes() -> tuple[dict[str, Any], ...]:
+    """Axes the terminal depends on that the shipped receipt carries with one value.
+
+    The mirror of P6's inert donor axis. There the axis was carried with many
+    values and moved nothing, so every count it multiplied was a relabelling;
+    here the axis moves the terminal and is carried once, so the published
+    verdict reads as a property of the decoder family when it is a property of
+    the arm placed in the gate.
+
+    A receipt that publishes such an axis owes the record a declaration of every
+    registered value, and :func:`arm_disclosure_gaps` is what collects on it.
+    """
+
+    axes: list[dict[str, Any]] = []
+    axis = arm_axis()
+    published = receipt_universal_arms()
+    if axis.verdict_changing_pairs > 0 and len(published) < len(REGISTERED_UNIVERSAL_ARMS):
+        axes.append(
+            {
+                "axis": axis.axis,
+                "registered_values": list(REGISTERED_UNIVERSAL_ARMS),
+                "values_in_receipt": list(published),
+                "verdict_changing_pairs": axis.verdict_changing_pairs,
+                "comparable_pairs": axis.comparable_pairs,
+                "terminals": {arm: terminal_under_arm(arm) for arm in REGISTERED_UNIVERSAL_ARMS},
+            }
+        )
+    return tuple(axes)
+
+
+def arm_disclosure_requirements() -> tuple[str, ...]:
+    """Everything the record must state before a one-value verdict-changing axis stands.
+
+    Every requirement is a string this module *measured*, not one it was told,
+    so a declaration cannot be written that the numbers do not support.
+    """
+
+    required: list[str] = []
+    for entry in one_value_decision_axes():
+        required.append(str(entry["axis"]))
+        for arm in REGISTERED_UNIVERSAL_ARMS:
+            thresholds = tuple(
+                reading.censored_attack_threshold for reading in registered_pool()[arm]
+            )
+            # Censored, so a curve that reaches the target at 256, at 1024 or
+            # nowhere are one value here. ``>=256`` says that and does not
+            # promote a censored reading to ``NOT_REACHED``.
+            rendered = ", ".join(
+                f">={GATE_THRESHOLD_SIZE}" if value >= GATE_THRESHOLD_SIZE else str(value)
+                for value in thresholds
+            )
+            required.append(f"`{arm}` | {rendered} | {entry['terminals'][arm]}")
+        required.append(SHIPPED_TERMINAL)
+        required.append(NOT_MET_TERMINAL)
+    return tuple(required)
+
+
+def arm_disclosure_gaps() -> tuple[str, ...]:
+    """Requirements :data:`ARM_PLACEMENT_ADJUDICATION` does not yet state.
+
+    Empty is the only acceptable value while a verdict-changing axis is carried
+    with one value in the receipt. If a future P11 receipt publishes another such
+    axis, its requirements appear here and stay here until the record says them.
+    """
+
+    required = arm_disclosure_requirements()
+    if not required:
+        return ()
+    if not ARM_PLACEMENT_ADJUDICATION.exists():
+        return (f"missing: {ARM_PLACEMENT_ADJUDICATION.name}",) + required
+    body = ARM_PLACEMENT_ADJUDICATION.read_text(encoding="utf-8")
+    return tuple(item for item in required if item not in body)
 
 
 def decoder_family_share() -> tuple[dict[str, Any], ...]:
@@ -797,7 +1119,15 @@ __all__ = [
     "GATE_TRAIN_SIZES",
     "NOT_MET_TERMINAL",
     "NUISANCE_LADDER",
+    "ARM_PLACEMENT_ADJUDICATION",
     "P11C_PROTOCOL",
+    "P11C_RECEIPT",
+    "P11C_RESULT",
+    "P11C_RULE_GATE",
+    "P11C_RULE_STATISTIC",
+    "P11D_PROTOCOL",
+    "P11E_PROTOCOL",
+    "P11G_PROTOCOL",
     "P11G_RECEIPT",
     "P11G_RUNNER",
     "READINGS",
@@ -809,9 +1139,14 @@ __all__ = [
     "TARGET_ACCURACY",
     "AttackSpec",
     "CellReading",
+    "FreezeDivergence",
+    "FreezeQuote",
     "P11GFidelityError",
+    "RuleBinding",
     "admissible_worlds",
     "arm_axis",
+    "arm_disclosure_gaps",
+    "arm_disclosure_requirements",
     "attack_responsiveness",
     "best_of_arms_gate",
     "best_of_arms_thresholds",
@@ -823,9 +1158,13 @@ __all__ = [
     "gate_values",
     "measure",
     "nuisance_ladder",
+    "one_value_decision_axes",
+    "p11c_rule_application",
     "p11g_module",
     "receipt",
+    "receipt_universal_arms",
     "registered_pool",
+    "rule_binding",
     "require_fidelity",
     "seed_sweep",
     "shipped_curves_match",

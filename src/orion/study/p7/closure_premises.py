@@ -15,9 +15,11 @@ theorem was::
 
 As audited, ``check_support_transport`` called it at ``True`` and again at
 ``False`` on all 64 states, so ambiguity --- the content of C4 --- was a caller
-literal and the body returned ``64``. It has since been repaired to supply no
-value and report ``CANNOT_CHECK``; :func:`transport_authority` reads that repair
-back off the shipped file, and the measurement below is unchanged by it.
+literal and the body returned ``64``. It was then repaired to supply no value and
+report ``CANNOT_CHECK`` over 1 decided case, and it has since been repaired
+again: it enumerates an admissible target completion class beside each witness
+and decides ambiguity from that class with the shipped ``extension_ambiguous``.
+:func:`transport_authority` reads both counts back off the shipped file.
 
 ``research/claim_expansion/p7/check_p7_x2_closure_carrying.py`` is what the
 superiority ledger names for P7-U-T1. Its composition block is::
@@ -60,19 +62,39 @@ each of them limits it.
   ``composition_successes: 25`` and ``composition_bridge_countermodels: 25`` are
   unchanged. Deciding the premise moved no verdict; it removed the freedom.
 
-``target_ambiguous_if_missing`` is a different case and stays one.
-``admissible_target_completions`` --- the class Definition 14 reads --- is not an
-axis of anything the shipped transport checker enumerates, so no rule written
-against those 64 states could decide it, and the constraint stays
-``UNDECIDABLE_IN_MODEL``. That is a statement about the model rather than about
-the premise, and :func:`extended_transport_constraint` is what makes the
-difference measurable instead of arguable: the *same* :data:`TARGET_AMBIGUITY`
-premise, with the same ``decided_from``, measured over a space that carries a
-completion class per case and decides ambiguity with the shipped
-``extension_ambiguous``, comes back decided on every case with one admissible
-rule. That space is **not** what P7 ships and does not repair the shipped result;
-it is the demonstration that the shipped model, not the premise, is what cannot
-answer.
+``target_ambiguous_if_missing`` was a different case and is no longer one.
+``admissible_target_completions`` --- the class Definition 14 reads --- used to be
+absent from everything the shipped transport checker enumerated, so no rule
+written against those 64 states could decide it and the constraint was
+``UNDECIDABLE_IN_MODEL``. That was a statement about the model and not about the
+premise, and the model has been given the axis: the shipped check now enumerates
+960 cases, 64 witness-coordinate states with each of the 15 admissible completion
+classes, and :func:`transport_constraint` comes back decided on every one of them
+with a single admissible rule where 2**64 survived before.
+
+Three facts bound that repair too.
+
+* The case count grew from 64 to 960 and the two numbers do not measure the same
+  thing. 64 was the size of an enumeration standing downstream of an undecided
+  premise, of which the check could report 1 decided case; 960 counts cases whose
+  premise the check itself decided. :func:`transport_authority` carries both.
+* The completion classes are the 15 non-empty subsets of a fixed four-completion
+  pool over two observation histories. Both values of Definition 14 arise from the
+  structure of a class rather than from a label, which is what makes the decision
+  a decision --- but this is a finite witness family and not a proof over every
+  admissible target class.
+* :func:`transport_replay` asserts that the rule under test agrees with
+  ``extension_ambiguous`` on the case's class, because that is what the shipped
+  body computes. On the 15 cases pairing the complete witness with a class,
+  Theorem 6 returns ``TRANSFER_CLOSURE`` whatever ambiguity is, so that assertion
+  is what pins the premise there. :func:`transport_mapping_only_floor` reports the
+  verdict without it: 945 of the 960 cases still exclude a value, leaving 2**15
+  rules rather than 2**64.
+
+:func:`witness_only_transport_constraint` keeps the pre-repair model measurable,
+under its own check id. It is what says the repair was a missing axis rather than
+a loosened assertion: the same premise with the same ``decided_from`` over the
+six coordinates alone still comes back ``UNDECIDABLE_IN_MODEL``.
 
 Each shipped assertion is transcribed here as an :data:`AssertionReplay` that
 takes the premise from a supplied deciding rule instead of from the literal, so
@@ -80,13 +102,17 @@ takes the premise from a supplied deciding rule instead of from the literal, so
 much of the premise the artifact's own assertions pin down. The fidelity anchors
 are :data:`SHIPPED_ROWS_SHA256` and :data:`SHIPPED_TRANSPORT_CASES`: the closure
 row list is rebuilt byte for byte before any claim is transcribed, and the
-transport space is the checker's own ``product((False, True), repeat=6)``.
+transport space is the checker's own ``product((False, True), repeat=6)`` crossed
+with the checker's own ``admissible_completion_classes()``, both read off the
+shipped file.
 
 The wrong theories registered here are for
 :mod:`orion.programme.refutation_capacity`, and they exist to make the
-independence of the two questions visible. Every one of them is refuted by
-``check_support_transport``, which is exactly why a refutation-capacity pass is
-not an answer about the premise.
+independence of the two questions visible. Every one of them was refuted by
+``check_support_transport`` while the premise it was handed was still entirely
+free, which is why a refutation-capacity pass was never an answer about the
+premise --- and why the premise had to be decided separately rather than argued
+for from that pass.
 """
 
 from __future__ import annotations
@@ -109,6 +135,7 @@ from orion.programme.decided_premises import (
     Assignment,
     DecisionConstraint,
     Premise,
+    case_label,
     measure_decision_constraint,
 )
 from orion.programme.refutation_capacity import (
@@ -145,8 +172,14 @@ CLOSURE_CARRYING_RESULT_PATH = (
 #: ``canonical_rows_sha256`` as published in ``P7_X2_CLOSURE_CARRYING_RESULT_V1.json``.
 SHIPPED_ROWS_SHA256 = "25f40385714adb15bca298a8cfd2b7fe2b28c96bfe462f6b60583be8f735b95f"
 
-#: Transport states ``check_theory_closure_v2.py`` enumerates; once printed as 64.
-SHIPPED_TRANSPORT_CASES = 64
+#: The six-coordinate product; the whole of what the checker enumerated when its
+#: case count was 64 and its premise was undecided.
+TRANSPORT_COORDINATE_STATES = 64
+
+#: Cases ``check_theory_closure_v2.py`` now enumerates: each coordinate state with
+#: each admissible target completion class. Not comparable to the old 64 --- see
+#: :func:`transport_authority`.
+SHIPPED_TRANSPORT_CASES = 960
 
 #: The six transport-witness coordinates, in ``Transport``'s field order.
 TRANSPORT_COORDINATES: tuple[str, ...] = (
@@ -167,10 +200,20 @@ COMPOSITION_REFERENCE_ID = "check_p7_x2_closure_carrying.compose"
 #: zero by construction rather than by observation.
 DONOR_CONSERVATIVITY_COUNT = "donor_conservativity_violations"
 
-#: The check id the extended transport space is measured under. Deliberately not
-#: ``check_support_transport``: nothing in the paper enumerates this space, and a
-#: shared id would let a demonstration be read as the shipped result.
-EXTENDED_TRANSPORT_CHECK_ID = "transport_over_admissible_target_completions"
+#: The check id the pre-repair transport model is measured under. Deliberately not
+#: ``check_support_transport``: that name now belongs to a check that enumerates
+#: completion classes, and a shared id would let the counterfactual be read as the
+#: shipped result.
+WITNESS_ONLY_TRANSPORT_CHECK_ID = "check_support_transport_without_completion_classes"
+
+
+def _accepts(replay: AssertionReplay, assignment: Assignment) -> bool:
+    """Whether replayed assertions hold under one deciding rule."""
+
+    try:
+        return bool(replay(assignment))
+    except AssertionError:
+        return False
 
 
 def _load(module_name: str, path: Path) -> ModuleType:
@@ -211,15 +254,47 @@ def _run_shipped_main(module: ModuleType) -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
-# The transport theorem: 64 states, and an ambiguity premise handed in twice
+# The transport theorem: 960 cases, and the ambiguity premise decided on each
 # ---------------------------------------------------------------------------
 
-def transport_cases() -> tuple[ModelPoint, ...]:
-    """The checker's own ``product((False, True), repeat=6)``, named by coordinate."""
+def transport_coordinate_states() -> tuple[ModelPoint, ...]:
+    """The checker's ``product((False, True), repeat=6)``, named by coordinate.
+
+    64 of them. This was the whole of the enumerated space while the ambiguity
+    premise was undecided; it is now one factor of it.
+    """
 
     return tuple(
         dict(zip(TRANSPORT_COORDINATES, bits))
         for bits in itertools.product((False, True), repeat=6)
+    )
+
+
+def completion_classes(module: ModuleType) -> dict[str, tuple[Any, ...]]:
+    """The admissible target completion classes, read off the shipped checker.
+
+    Not a fixture of this module's: ``admissible_completion_classes`` lives in
+    ``check_theory_closure_v2.py`` because the shipped check is what enumerates
+    them. Fifteen classes, seven target-ambiguous under the shipped
+    ``extension_ambiguous`` and eight not, so a rule over this axis has something
+    to decide.
+    """
+
+    return module.admissible_completion_classes()
+
+
+def transport_cases(module: ModuleType) -> tuple[ModelPoint, ...]:
+    """The space ``check_support_transport`` enumerates: witness x completion class.
+
+    960 cases. The axis Definition 14 reads --- ``admissible_target_completions``
+    --- is present, which is the whole of the difference between this and the
+    64-case model measured by :func:`witness_only_transport_constraint`.
+    """
+
+    return tuple(
+        {**point, "admissible_target_completions": name}
+        for point in transport_coordinate_states()
+        for name in completion_classes(module)
     )
 
 
@@ -230,50 +305,169 @@ TARGET_AMBIGUITY = Premise(
         "whether the admissible target model class contains one completion that "
         "preserves the transported certificate and one that invalidates it"
     ),
-    # Named as the manuscript states it. The shipped transport model has six
-    # boolean witness coordinates and no completion class, so this is the axis
-    # whose absence makes the decision unaskable rather than merely unmade ---
-    # and it is the axis :func:`extended_transport_cases` adds to show that the
-    # unaskability belongs to the model and not to the premise.
+    # Named as the manuscript states it. The shipped transport check now carries a
+    # completion class beside each witness, so this axis is present in the space it
+    # enumerates; :func:`witness_only_transport_constraint` measures the same
+    # premise over the model that lacked it, which is what says the repair was a
+    # missing axis rather than an inexpressible question.
     decided_from=("admissible_target_completions",),
     domain=(False, True),
 )
 
 
-def transport_replay(module: ModuleType) -> AssertionReplay:
-    """Replay the audited ``check_support_transport`` under a deciding rule.
+def transport_baseline(module: ModuleType) -> Assignment:
+    """Definition 14, computed: ``extension_ambiguous`` over the case's own class.
 
-    That body evaluated both ambiguity literals on every state; a deciding rule
-    selects one, so this asserts the branch it picks. It calls only
-    ``transfer_terminal``, whose branches the repair left unchanged.
+    The rule the shipped body runs, so this is the baseline rather than a literal.
+    """
+
+    classes = completion_classes(module)
+
+    def baseline(point: ModelPoint) -> Hashable:
+        return bool(
+            module.extension_ambiguous(classes[point["admissible_target_completions"]])
+        )
+
+    return baseline
+
+
+def transport_replay(module: ModuleType) -> AssertionReplay:
+    """The shipped ``check_support_transport``, replayed under a deciding rule.
+
+    Three assertions per case, transcribed from the shipped body in its order.
+
+    The first is the decision. The shipped body computes ambiguity by calling
+    ``extension_ambiguous`` on the case's class, so a rule that disagrees with that
+    call on that class is not a rule the check runs; asserting ``supplied ==
+    decided`` is the transcription of that computation, not an extra assertion.
+    Without it the 15 cases pairing the complete witness with a class would read as
+    free, because Theorem 6 returns ``TRANSFER_CLOSURE`` there whatever ambiguity
+    is --- the premise is decided on those cases but not consumed by the terminal.
+
+    :func:`transport_mapping_only_floor` is what keeps that from being the load the
+    verdict rests on: it drops this assertion and reports what the mapping
+    assertions alone still exclude, which is 945 of the 960 cases.
+
+    The second is the mapping, unchanged from the shipped theorem. The third is the
+    sensitivity assertion the shipped body makes on every case: on an incomplete
+    witness the other value of the premise is a different terminal, and on the
+    complete one it is the same terminal --- which is Theorem 5's positive transport
+    and is why those cases cannot constrain the premise through the mapping.
     """
 
     transport_type = module.Transport
-    cases = transport_cases()
+    classes = completion_classes(module)
+    cases = transport_cases(module)
 
     def replay(assignment: Assignment) -> bool:
         for point in cases:
             witness = transport_type(*(point[name] for name in TRANSPORT_COORDINATES))
-            ambiguous = bool(assignment(point))
+            completions = classes[point["admissible_target_completions"]]
+            decided = bool(module.extension_ambiguous(completions))
+            supplied = bool(assignment(point))
+            assert supplied == decided
             terminal = module.transfer_terminal(
-                witness, target_ambiguous_if_missing=ambiguous
+                witness, target_ambiguous_if_missing=supplied
             )
             if witness.complete:
                 assert terminal == "TRANSFER_CLOSURE"
-            elif ambiguous:
-                assert terminal == "REOPEN"
-            else:
-                assert terminal == "CANNOT_CHECK"
+                assert (
+                    module.transfer_terminal(
+                        witness, target_ambiguous_if_missing=not supplied
+                    )
+                    == "TRANSFER_CLOSURE"
+                )
+                continue
+            assert terminal == ("REOPEN" if decided else "CANNOT_CHECK")
+            assert (
+                module.transfer_terminal(
+                    witness, target_ambiguous_if_missing=not supplied
+                )
+                != terminal
+            )
         return True
 
     return replay
 
 
-def transport_baseline(point: ModelPoint) -> Hashable:
-    """The ambiguity value the shipped loop's primary call passes: the literal ``True``."""
+def transport_mapping_only_replay(module: ModuleType) -> AssertionReplay:
+    """The shipped assertions minus the one that reads the computed premise back.
 
-    del point
-    return True
+    The weakest honest reading of the repaired check: pretend the ambiguity value
+    reaching ``transfer_terminal`` could be anything, and keep only the assertions
+    about the terminal. What survives is the floor under the verdict.
+    """
+
+    transport_type = module.Transport
+    classes = completion_classes(module)
+    cases = transport_cases(module)
+
+    def replay(assignment: Assignment) -> bool:
+        for point in cases:
+            witness = transport_type(*(point[name] for name in TRANSPORT_COORDINATES))
+            completions = classes[point["admissible_target_completions"]]
+            decided = bool(module.extension_ambiguous(completions))
+            supplied = bool(assignment(point))
+            terminal = module.transfer_terminal(
+                witness, target_ambiguous_if_missing=supplied
+            )
+            if witness.complete:
+                assert terminal == "TRANSFER_CLOSURE"
+                assert (
+                    module.transfer_terminal(
+                        witness, target_ambiguous_if_missing=not supplied
+                    )
+                    == "TRANSFER_CLOSURE"
+                )
+                continue
+            assert terminal == ("REOPEN" if decided else "CANNOT_CHECK")
+        return True
+
+    return replay
+
+
+def transport_mapping_only_floor(module: ModuleType | None = None) -> dict[str, Any]:
+    """How much of the premise the terminal assertions alone exclude.
+
+    Reported beside the verdict because :func:`transport_replay` asserts the
+    decision directly, and a reader is entitled to know how much of the result that
+    assertion carries. Answer: 945 of the 960 cases exclude a value of the premise
+    from the terminal assertions by themselves, and the free 15 are exactly the
+    complete witness paired with each class, where Theorem 6 does not read
+    ambiguity at all.
+    """
+
+    module = module or theory_closure_module()
+    replay = transport_mapping_only_replay(module)
+    baseline = transport_baseline(module)
+    cases = transport_cases(module)
+    free = 0
+    for point in cases:
+        label = case_label(point)
+        other = not bool(baseline(point))
+
+        def flipped(candidate: ModelPoint, label: str = label, other: bool = other) -> Hashable:
+            if case_label(candidate) == label:
+                return other
+            return baseline(candidate)
+
+        if _accepts(replay, flipped):
+            free += 1
+    decided = len(cases) - free
+    return {
+        "cases": len(cases),
+        "cases_excluding_a_value_from_the_terminal_assertions_alone": decided,
+        "cases_free_under_the_terminal_assertions_alone": free,
+        "admissible_ambiguity_rules_under_the_terminal_assertions_alone": 2**free,
+        "reading": (
+            f"dropping the assertion that the supplied premise equals the computed one, "
+            f"{decided} of {len(cases)} cases still exclude a value of "
+            f"{TARGET_AMBIGUITY.premise_id} and {2**free} ambiguity rules survive, against "
+            f"{2**TRANSPORT_COORDINATE_STATES} before the completion class was carried; the "
+            f"{free} free cases are the complete witness with each class, where Theorem 6 "
+            "returns TRANSFER_CLOSURE regardless of ambiguity"
+        ),
+    }
 
 
 def transport_rule(module: ModuleType) -> Rule:
@@ -291,16 +485,18 @@ def transport_rule(module: ModuleType) -> Rule:
 
 
 def transport_theory_space() -> tuple[ModelPoint, ...]:
-    """The transport states crossed with both ambiguity values.
+    """The 64 coordinate states crossed with both ambiguity values.
 
-    Ambiguity is an axis *here* and only here: measuring a false theory of the
-    terminal map requires the parameter the map reads, which is precisely the
-    parameter the claim says should have been derived.
+    Ambiguity is a free axis here rather than a computed one, and deliberately: a
+    false theory of the *terminal map* has to be evaluable at both values of the
+    map's own parameter, so this space asks a different question from the one
+    :func:`transport_cases` asks. The shipped check computes the value; this space
+    quantifies over it.
     """
 
     return tuple(
         {**point, "target_ambiguous_if_missing": ambiguous}
-        for point in transport_cases()
+        for point in transport_coordinate_states()
         for ambiguous in (False, True)
     )
 
@@ -360,28 +556,29 @@ def transport_check() -> MechanizedCheck:
     return MechanizedCheck(
         check_id="check_support_transport",
         asserts=(
-            "over all 64 transport-coordinate combinations, a complete witness "
-            "transports closure and an incomplete one reopens when the target is "
-            "ambiguous and is CANNOT_CHECK otherwise"
+            "over the 64 transport-coordinate combinations at both values of the "
+            "ambiguity premise, a complete witness transports closure and an "
+            "incomplete one reopens when the target is ambiguous and is CANNOT_CHECK "
+            "otherwise"
         ),
         accepts=accepts,
     )
 
 
 def transport_constraint(module: ModuleType | None = None) -> DecisionConstraint:
-    """Measure how much of C4's ambiguity premise the shipped 64 cases pin down."""
+    """Measure how much of C4's ambiguity premise the shipped cases pin down."""
 
     module = module or theory_closure_module()
     return measure_decision_constraint(
         TARGET_AMBIGUITY,
         check_id="check_support_transport",
-        cases=transport_cases(),
+        cases=transport_cases(module),
         replay=transport_replay(module),
-        baseline=transport_baseline,
+        baseline=transport_baseline(module),
         opportunity_definition=(
-            "the 64 transport-coordinate combinations the checker enumerates; each is "
-            "an opportunity for the theorem's assertions to exclude one value of the "
-            "ambiguity premise"
+            "the transport-coordinate combinations the checker enumerates, each paired "
+            "with one admissible target completion class; each is an opportunity for the "
+            "theorem's assertions to exclude one value of the ambiguity premise"
         ),
     )
 
@@ -389,141 +586,90 @@ def transport_constraint(module: ModuleType | None = None) -> DecisionConstraint
 def transport_authority(module: ModuleType | None = None) -> dict[str, Any]:
     """What the shipped transport check's case count is a count *of*.
 
-    The audited body returned ``64`` and ``REPRODUCE_V2_1.md`` reported it as "all
-    64 transport-coordinate combinations". Only the complete witness decides its
-    terminal from the six enumerated coordinates alone; the other 63 turn on
-    Definition 14 target-ambiguity, which the six-coordinate ``Transport`` model
-    does not carry. Reporting the split is what keeps a count downstream of an
-    undecided premise from being read as a count of decided cases.
+    Two counts have been published for this check and they measure different
+    things, so both are carried here.
 
-    Read off the shipped file, not restated: the repaired
-    ``check_support_transport`` returns a ``CheckTerminal`` and its ``terminal``
-    and ``checked`` fields are carried through here.
+    ``64`` was the size of the six-coordinate enumeration, and
+    ``REPRODUCE_V2_1.md`` reported it as "all 64 transport-coordinate
+    combinations". Only the complete witness decided its terminal from those
+    coordinates; the other 63 turned on Definition 14 target-ambiguity, which the
+    six-coordinate ``Transport`` model does not carry, so the check was entitled to
+    report ``1``.
+
+    ``960`` is what the check enumerates now that each witness carries an
+    admissible target completion class, and every one of those cases decides the
+    premise from its own class. The growth is not a bigger version of the old
+    number: the old count stood downstream of an undecided premise and this one
+    does not.
+
+    Read off the shipped file, not restated: ``check_support_transport`` returns a
+    ``CheckTerminal`` and its ``terminal`` and ``checked`` fields are carried
+    through here.
     """
 
     module = module or theory_closure_module()
-    decided = tuple(point for point in transport_cases() if _complete(point))
-    downstream = tuple(point for point in transport_cases() if not _complete(point))
+    classes = completion_classes(module)
+    ambiguous = tuple(
+        name for name, members in classes.items() if module.extension_ambiguous(members)
+    )
+    cases = transport_cases(module)
+    fixed_by_completeness = tuple(point for point in cases if _complete(point))
+    consuming = tuple(point for point in cases if not _complete(point))
     shipped = module.check_support_transport()
     return {
-        "enumerated_states": len(transport_cases()),
-        "decided_by_the_witness_coordinates": len(decided),
-        "downstream_of_the_undecided_premise": len(downstream),
+        "enumerated_cases": len(cases),
+        "transport_coordinate_states": TRANSPORT_COORDINATE_STATES,
+        "admissible_completion_classes": len(classes),
+        "ambiguous_completion_classes": len(ambiguous),
+        "unambiguous_completion_classes": len(classes) - len(ambiguous),
+        "cases_whose_terminal_consumes_the_premise": len(consuming),
+        "cases_whose_terminal_is_fixed_by_completeness": len(fixed_by_completeness),
+        "previously_enumerated_states": TRANSPORT_COORDINATE_STATES,
+        "previously_decided_cases": 1,
         "shipped_terminal": shipped.terminal,
         "shipped_checked": shipped.checked,
         "shipped_undecidable_premise": shipped.undecidable_premise,
         "shipped_decided_from": shipped.decided_from,
         "reading": (
-            f"{len(decided)} of {len(transport_cases())} enumerated states decide their "
-            "terminal from the six witness coordinates alone; the remaining "
-            f"{len(downstream)} are the mapping downstream of "
-            f"{TARGET_AMBIGUITY.premise_id}, so the shipped check is entitled to report "
-            f"{shipped.checked} decided case and not {len(transport_cases())}"
+            f"the check enumerated {TRANSPORT_COORDINATE_STATES} witness-coordinate states "
+            f"and was entitled to report 1 decided case; it now enumerates {len(cases)} "
+            f"({TRANSPORT_COORDINATE_STATES} states x {len(classes)} admissible target "
+            f"completion classes, {len(ambiguous)} of them ambiguous) and decides "
+            f"{TARGET_AMBIGUITY.premise_id} on every one of them from that case's own "
+            f"class, so the shipped check reports {shipped.checked} decided cases. On "
+            f"{len(consuming)} of them the terminal changes with the premise; the other "
+            f"{len(fixed_by_completeness)} pair the complete witness with each class, where "
+            "Theorem 6 is TRANSFER_CLOSURE whatever ambiguity is"
         ),
     }
 
 
 # ---------------------------------------------------------------------------
-# The same premise in a model that carries what Definition 14 reads
+# The same premise in the model that did not carry what Definition 14 reads
 # ---------------------------------------------------------------------------
 
-#: Target completions built from the shipped ``Completion`` type, over the two
-#: observation histories the file's own ambiguity checks use. Ambiguity is a
-#: property of the *class*: ``extension_ambiguous`` looks for two members sharing
-#: an observed history and disagreeing on ``mandatory_satisfied``. The pool is
-#: chosen so that both values arise from that structure rather than from a label.
-_COMPLETION_POOL: tuple[tuple[str, tuple[Any, bool, str | None]], ...] = (
-    ("open:satisfied", (("query:q", "result:empty"), True, None)),
-    ("open:unsatisfied", (("query:q", "result:empty"), False, "unseen")),
-    ("closed:satisfied", (("manifest:closed-world",), True, None)),
-    ("closed:unsatisfied", (("manifest:closed-world",), False, "hidden-relevant")),
-)
+def witness_only_transport_replay(module: ModuleType) -> AssertionReplay:
+    """The transport theorem over the six coordinates alone, under a deciding rule.
 
-
-def completion_classes(module: ModuleType) -> dict[str, tuple[Any, ...]]:
-    """Every non-empty admissible target completion class over the pool.
-
-    Fifteen classes, built with the shipped ``Completion`` dataclass. Seven of
-    them are target-ambiguous under the shipped ``extension_ambiguous`` and eight
-    are not, so a rule over this axis has something to decide.
-    """
-
-    completion = module.Completion
-    built = [
-        (name, completion(history, satisfied, witness))
-        for name, (history, satisfied, witness) in _COMPLETION_POOL
-    ]
-    classes: dict[str, tuple[Any, ...]] = {}
-    for size in range(1, len(built) + 1):
-        for chosen in itertools.combinations(built, size):
-            classes["+".join(name for name, _ in chosen)] = tuple(
-                value for _, value in chosen
-            )
-    return classes
-
-
-def extended_transport_cases(module: ModuleType) -> tuple[ModelPoint, ...]:
-    """The 64 transport witnesses crossed with the admissible completion classes.
-
-    This is **not** a space the paper enumerates. It exists so that
-    "no rule written against the shipped model could decide this premise" is a
-    measured contrast rather than an assertion: the axis the premise names is
-    present here and absent there, and nothing else differs.
-    """
-
-    return tuple(
-        {**point, "admissible_target_completions": name}
-        for point in transport_cases()
-        for name in completion_classes(module)
-    )
-
-
-def extended_transport_baseline(module: ModuleType) -> Assignment:
-    """Definition 14, computed: ``extension_ambiguous`` over the case's own class."""
-
-    classes = completion_classes(module)
-
-    def baseline(point: ModelPoint) -> Hashable:
-        return bool(
-            module.extension_ambiguous(classes[point["admissible_target_completions"]])
-        )
-
-    return baseline
-
-
-def extended_transport_replay(module: ModuleType) -> AssertionReplay:
-    """Theorem 6 over the extended space, with the premise computed from the case.
-
-    Two assertions per case and they answer different questions. The first is the
-    decision: a checker that computes ambiguity from the completion class does not
-    accept a rule that disagrees with ``extension_ambiguous`` on that class, so
-    every case excludes one value. The second is the mapping, unchanged from the
-    shipped theorem.
-
-    The order matters for what the measurement means. On a *complete* witness the
-    terminal is ``TRANSFER_CLOSURE`` whatever ambiguity is, so the mapping alone
-    would leave those cases free --- not because the premise was supplied but
-    because Theorem 6 does not consume it there. The decision is still made on
-    those cases, and asserting it is what says so.
+    The body ``check_support_transport`` ran before it carried completion classes,
+    which evaluated both ambiguity literals on every state; a deciding rule selects
+    one, so this asserts the branch it picks. It calls only ``transfer_terminal``,
+    whose branches the repair left unchanged.
     """
 
     transport_type = module.Transport
-    classes = completion_classes(module)
-    cases = extended_transport_cases(module)
+    cases = transport_coordinate_states()
 
     def replay(assignment: Assignment) -> bool:
         for point in cases:
             witness = transport_type(*(point[name] for name in TRANSPORT_COORDINATES))
-            completions = classes[point["admissible_target_completions"]]
-            decided = bool(module.extension_ambiguous(completions))
-            supplied = bool(assignment(point))
-            assert supplied == decided
+            ambiguous = bool(assignment(point))
             terminal = module.transfer_terminal(
-                witness, target_ambiguous_if_missing=supplied
+                witness, target_ambiguous_if_missing=ambiguous
             )
             if witness.complete:
                 assert terminal == "TRANSFER_CLOSURE"
-            elif decided:
+            elif ambiguous:
                 assert terminal == "REOPEN"
             else:
                 assert terminal == "CANNOT_CHECK"
@@ -532,25 +678,40 @@ def extended_transport_replay(module: ModuleType) -> AssertionReplay:
     return replay
 
 
-def extended_transport_constraint(module: ModuleType | None = None) -> DecisionConstraint:
-    """Measure the same premise over the model that carries its decision inputs.
+def witness_only_transport_baseline(point: ModelPoint) -> Hashable:
+    """The ambiguity value that body's primary call passed: the literal ``True``."""
 
-    Same :data:`TARGET_AMBIGUITY`, same ``decided_from``. What differs is whether
-    ``admissible_target_completions`` is an axis, and that difference is the whole
-    of the shipped check's ``UNDECIDABLE_IN_MODEL``.
+    del point
+    return True
+
+
+def witness_only_transport_constraint(
+    module: ModuleType | None = None,
+) -> DecisionConstraint:
+    """The same premise, measured over the model that lacked its decision inputs.
+
+    Kept, and reported beside the verdict, because it is what says the repair was a
+    missing axis and not a loosened assertion. Same :data:`TARGET_AMBIGUITY`, same
+    ``decided_from``; ``admissible_target_completions`` is simply not an axis of
+    these 64 cases, so the premise comes back ``UNDECIDABLE_IN_MODEL`` with all
+    2**64 ambiguity predicates admissible --- including the constant-``False`` one
+    that is the V1 error the V2 core says it repaired.
+
+    This is **not** the shipped enumeration any more, and it is measured under its
+    own check id for that reason.
     """
 
     module = module or theory_closure_module()
     return measure_decision_constraint(
         TARGET_AMBIGUITY,
-        check_id=EXTENDED_TRANSPORT_CHECK_ID,
-        cases=extended_transport_cases(module),
-        replay=extended_transport_replay(module),
-        baseline=extended_transport_baseline(module),
+        check_id=WITNESS_ONLY_TRANSPORT_CHECK_ID,
+        cases=transport_coordinate_states(),
+        replay=witness_only_transport_replay(module),
+        baseline=witness_only_transport_baseline,
         opportunity_definition=(
-            "the transport witnesses crossed with the admissible target completion "
-            "classes; each is an opportunity for the theorem's assertions to exclude "
-            "one value of the ambiguity premise"
+            "the 64 transport-coordinate combinations, without a completion class; each "
+            "is an opportunity for the theorem's assertions to exclude one value of the "
+            "ambiguity premise"
         ),
     )
 
@@ -993,7 +1154,6 @@ __all__ = [
     "COMPOSITION_REFERENCE_ID",
     "COMPOSITION_REGISTRIES",
     "DONOR_CONSERVATIVITY_COUNT",
-    "EXTENDED_TRANSPORT_CHECK_ID",
     "FALSE_TRANSPORT_THEORIES",
     "REPO_ROOT",
     "SHIPPED_ROWS_SHA256",
@@ -1001,7 +1161,9 @@ __all__ = [
     "TARGET_AMBIGUITY",
     "THEORY_CLOSURE_PATH",
     "TRANSPORT_COORDINATES",
+    "TRANSPORT_COORDINATE_STATES",
     "TRANSPORT_REFERENCE_ID",
+    "WITNESS_ONLY_TRANSPORT_CHECK_ID",
     "canonical_rows_digest",
     "closure_carrying_module",
     "closure_model_space",
@@ -1019,10 +1181,6 @@ __all__ = [
     "composition_stack",
     "donor_axis_diagnosis",
     "donor_axis_multipliers",
-    "extended_transport_baseline",
-    "extended_transport_cases",
-    "extended_transport_constraint",
-    "extended_transport_replay",
     "functions_taking_a_donor_argument",
     "identity_guards",
     "theory_closure_module",
@@ -1031,7 +1189,13 @@ __all__ = [
     "transport_cases",
     "transport_check",
     "transport_constraint",
+    "transport_coordinate_states",
+    "transport_mapping_only_floor",
+    "transport_mapping_only_replay",
     "transport_replay",
     "transport_rule",
     "transport_theory_space",
+    "witness_only_transport_baseline",
+    "witness_only_transport_constraint",
+    "witness_only_transport_replay",
 ]

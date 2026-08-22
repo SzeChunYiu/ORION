@@ -1,5 +1,5 @@
 {
-  "blocker_sites": 580,
+  "blocker_sites": 581,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
     "MISSING_ACCESS": 6,
@@ -7,7 +7,7 @@
     "MISSING_DECLARATION": 90,
     "MISSING_IDENTITY": 31,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 384
+    "UNCLASSIFIED": 385
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -4225,7 +4225,7 @@
       "file": "programme/decided_premises.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 362,
+      "lineno": 375,
       "missing_obligation": "cases must be present at this guard",
       "reasons": [
         "enumerates no case, so",
@@ -4240,7 +4240,7 @@
       "file": "programme/decided_premises.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 383,
+      "lineno": 396,
       "missing_obligation": null,
       "reasons": [
         "rejects the baseline rule for",
@@ -4255,7 +4255,7 @@
       "file": "programme/decided_premises.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 422,
+      "lineno": 435,
       "missing_obligation": "modelled must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -4267,7 +4267,7 @@
       "file": "programme/decided_premises.py",
       "has_reason": false,
       "kind": "BRANCH",
-      "lineno": 561,
+      "lineno": 574,
       "missing_obligation": null,
       "reasons": [],
       "role": "OBSERVES",
@@ -4279,7 +4279,7 @@
       "file": "programme/decided_premises.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 562,
+      "lineno": 575,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -8337,11 +8337,27 @@
       "category": "UNCLASSIFIED",
       "context": "transport_replay.replay",
       "file": "study/p7/closure_premises.py",
-      "has_reason": false,
+      "has_reason": true,
       "kind": "OTHER_STATEMENT",
-      "lineno": 266,
+      "lineno": 381,
       "missing_obligation": null,
-      "reasons": [],
+      "reasons": [
+        "REOPEN"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "transport_mapping_only_replay.replay",
+      "file": "study/p7/closure_premises.py",
+      "has_reason": true,
+      "kind": "OTHER_STATEMENT",
+      "lineno": 423,
+      "missing_obligation": null,
+      "reasons": [
+        "REOPEN"
+      ],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -8351,7 +8367,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 324,
+      "lineno": 520,
       "missing_obligation": null,
       "reasons": [
         "incomplete_always_reopens",
@@ -8375,7 +8391,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 340,
+      "lineno": 536,
       "missing_obligation": null,
       "reasons": [
         "incomplete_always_reopens",
@@ -8399,7 +8415,7 @@
       "file": "study/p7/closure_premises.py",
       "has_reason": false,
       "kind": "OTHER_STATEMENT",
-      "lineno": 357,
+      "lineno": 553,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -8407,11 +8423,11 @@
     },
     {
       "category": "UNCLASSIFIED",
-      "context": "extended_transport_replay.replay",
+      "context": "witness_only_transport_replay.replay",
       "file": "study/p7/closure_premises.py",
       "has_reason": false,
       "kind": "OTHER_STATEMENT",
-      "lineno": 529,
+      "lineno": 675,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -9261,9 +9277,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "00a750e5107c45f14eba88802c72e361dcf8132b",
-  "total_sites": 635,
+  "subject_commit": "96b3207830798cdf2e42ca8a0a5aaff372bb1d8a",
+  "total_sites": 636,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 108,
-  "with_reason": 275
+  "with_reason": 277
 }

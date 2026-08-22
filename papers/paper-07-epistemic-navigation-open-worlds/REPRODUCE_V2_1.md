@@ -11,11 +11,19 @@ Expected sentinels:
 
 ```text
 P7 THEORY CLOSURE V2: PASS
-theory_closure_terminal: CANNOT_CHECK
+theory_closure_terminal: PASS
 P7 CONTRACT MANIFEST V2: PASS
 ```
 
-The first command checks the closed theorems/countermodels. Its `PASS` banner reports assertion status only — every finite witness in the file held — and `theory_closure_terminal` is the verdict on what those witnesses establish. It is `CANNOT_CHECK`, and `check_support_transport` is why: the check enumerates all 64 transport-coordinate combinations and **decides 1 of them** from the witness coordinates alone (a complete witness transports closure). The other 63 turn on Definition 14 target-ambiguity, which the six-coordinate `Transport` model does not carry, so it reports the premise and what the premise is decided from rather than a case count. The 64 is the size of the enumeration; it is not a count of decided cases, and earlier versions of this file read it as one. The second command executes all 8 frozen prospective contract cases, including harmful-reframe and non-retrieval experimental-design transfer controls.
+The first command checks the closed theorems/countermodels. Its `PASS` banner reports assertion status only — every finite witness in the file held — and `theory_closure_terminal` is the verdict on what those witnesses establish.
+
+`theory_closure_terminal` is now `PASS`, and `check_support_transport` is why it was not. That check enumerated the 64 transport-coordinate combinations and could decide **1** of them from the witness coordinates alone (a complete witness transports closure); the other 63 turned on Definition 14 target-ambiguity, which the six-coordinate `Transport` model did not carry, so the check reported `CANNOT_CHECK` naming the premise rather than a case count. It now enumerates an admissible target completion class beside each witness — the 15 non-empty classes over a fixed four-completion pool, 7 of them ambiguous — and decides target-ambiguity per case with `extension_ambiguous`, the Definition 14 decider this file already shipped. The enumeration is therefore **960 cases** (64 × 15) and the check reports `support_transport: PASS (960 checked)`.
+
+**The 960 is not a bigger 64.** 64 was the size of an enumeration standing downstream of a premise nothing decided, of which 1 case was decided; 960 counts cases whose premise the check itself decides. Any earlier reading of the 64 as a count of decided cases was wrong, and so is reading the 960 as the same quantity grown.
+
+What the 960 establishes: on every case the terminal Theorem 6 assigns is the terminal computed from the witness's completeness and from Definition 14 applied to that case's own completion class, with nothing about ambiguity supplied by the caller; and on the 945 cases with an incomplete witness the terminal changes when ambiguity does, so the premise is consumed and not carried past. What it does not establish: the other 15 pair the one complete witness with each class, where Theorem 6 is `TRANSFER_CLOSURE` whatever ambiguity is — those cases decide the premise but do not test the terminal's dependence on it. Nor is this a proof over Definition 14: the classes are a finite family over a fixed pool, not every completion class a target model could admit. `PYTHONPATH=src python -m orion.study.p7.premise_audit` measures all of that against this file and exits `0`; it reports the same premise over the six coordinates alone, where it is still undecidable in that model, and the floor under the verdict — 945 of the 960 cases exclude a value of the premise from the terminal assertions alone, leaving 2**15 ambiguity rules where 2**64 survived before.
+
+The second command executes all 8 frozen prospective contract cases, including harmful-reframe and non-retrieval experimental-design transfer controls.
 
 Programme integration:
 

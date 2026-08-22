@@ -1,9 +1,9 @@
 """Audit P7's two shipped closure checkers for premises they were handed.
 
-Runs both registrations --- the 64-state transport theorem behind the paper's C4
-and the composition block behind P7.V3.5 --- and reports, per premise, how many
-of the checker's own enumerated cases exclude any value of it and how many
-deciding rules the artifact therefore accepts.
+Runs both registrations --- the transport theorem behind the paper's C4 and the
+composition block behind P7.V3.5 --- and reports, per premise, how many of the
+checker's own enumerated cases exclude any value of it and how many deciding
+rules the artifact therefore accepts.
 
 The transport check is also measured with
 :mod:`orion.programme.refutation_capacity`, and it passes: every declared wrong
@@ -20,18 +20,22 @@ what the verdicts mean.
   relation, and the report carries the axis sensitivity of that decision. The
   premise is pinned to one rule; the *value* it is pinned to still does not vary
   with the donor pair, because both registries P7 shipped are uniform.
-* ``target_ambiguous_if_missing`` is still ``UNDECIDABLE_IN_MODEL`` against the
-  shipped 64 states, and the report carries what those 64 states are a count of:
-  one state decides its terminal from the witness coordinates, 63 are the mapping
-  downstream of the premise. The same premise measured over a space that carries
-  an admissible-completion class comes back decided, which is what says the
-  shipped *model* is what cannot answer.
+* ``target_ambiguous_if_missing`` is now decided, because the shipped check
+  enumerates an admissible target completion class beside each witness and reads
+  Definition 14 off it. The report carries both case counts, because they are not
+  the same measurement: 64 states of which 1 was decided, against 960 cases every
+  one of which decides the premise. It also carries the same premise measured over
+  the six coordinates alone, which still comes back ``UNDECIDABLE_IN_MODEL`` ---
+  that contrast is what says the repair was a missing axis and not a loosened
+  assertion --- and the floor under the verdict when the assertion that the rule
+  agrees with ``extension_ambiguous`` is dropped: 945 of the 960 cases still
+  exclude a value.
 * The donor axis is inert, and the report carries the evidence for which kind of
   inert: no shipped function has a parameter a donor could enter through, so the
   enumeration is a multiplier rather than a rule declining to read a coordinate.
 
 Exits ``3`` when any premise blocks, so it fails a pipeline rather than printing
-a table nobody reads::
+a table nobody reads. Both premises are now decided, so it exits ``0``::
 
     python -m orion.study.p7.premise_audit
 """
@@ -64,7 +68,7 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
 
     transport = premises.transport_constraint(theory_closure)
     composition = premises.composition_constraint(closure_carrying)
-    extended_transport = premises.extended_transport_constraint(theory_closure)
+    witness_only_transport = premises.witness_only_transport_constraint(theory_closure)
 
     capacity: RefutationCapacity = measure_refutation_capacity(
         premises.transport_check(),
@@ -80,7 +84,7 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
     # between "one rule survives each case" and "one rule survives the check".
     sampled = sample_assignments_accepted(
         premises.TARGET_AMBIGUITY,
-        cases=premises.transport_cases(),
+        cases=premises.transport_cases(theory_closure),
         replay=premises.transport_replay(theory_closure),
     )
     sampled_bridge = sample_assignments_accepted(
@@ -88,10 +92,10 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
         cases=premises.composition_cases(closure_carrying),
         replay=premises.composition_replay(closure_carrying),
     )
-    sampled_extended = sample_assignments_accepted(
+    sampled_witness_only = sample_assignments_accepted(
         premises.TARGET_AMBIGUITY,
-        cases=premises.extended_transport_cases(theory_closure),
-        replay=premises.extended_transport_replay(theory_closure),
+        cases=premises.transport_coordinate_states(),
+        replay=premises.witness_only_transport_replay(theory_closure),
     )
 
     space = premises.closure_model_space(closure_carrying)
@@ -103,8 +107,9 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
     constraints = (transport, composition)
     return {
         "constraints": constraints,
-        "extended_transport": extended_transport,
+        "witness_only_transport": witness_only_transport,
         "transport_authority": premises.transport_authority(theory_closure),
+        "transport_mapping_floor": premises.transport_mapping_only_floor(theory_closure),
         "transport_capacity": capacity,
         "donor_axis": donor_axis,
         "donor_diagnosis": premises.donor_axis_diagnosis(closure_carrying),
@@ -112,7 +117,7 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
         "composition_agreement": premises.composition_agreement(closure_carrying),
         "sampled_ambiguity_rules": sampled,
         "sampled_bridge_rules": sampled_bridge,
-        "sampled_extended_ambiguity_rules": sampled_extended,
+        "sampled_witness_only_ambiguity_rules": sampled_witness_only,
         "canonical_rows_sha256": premises.canonical_rows_digest(closure_carrying),
         "canonical_rows_reproduced": (
             premises.canonical_rows_digest(closure_carrying) == premises.SHIPPED_ROWS_SHA256
@@ -128,8 +133,9 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
     constraints: Sequence[DecisionConstraint] = report["constraints"]
     return {
         "constraints": [item.as_json() for item in constraints],
-        "extended_transport": report["extended_transport"].as_json(),
+        "witness_only_transport": report["witness_only_transport"].as_json(),
         "transport_authority": report["transport_authority"],
+        "transport_mapping_floor": report["transport_mapping_floor"],
         "transport_capacity": report["transport_capacity"].as_json(),
         "donor_axis": report["donor_axis"].as_json(),
         "donor_diagnosis": report["donor_diagnosis"],
@@ -137,7 +143,9 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         "composition_agreement": report["composition_agreement"],
         "sampled_ambiguity_rules": list(report["sampled_ambiguity_rules"]),
         "sampled_bridge_rules": list(report["sampled_bridge_rules"]),
-        "sampled_extended_ambiguity_rules": list(report["sampled_extended_ambiguity_rules"]),
+        "sampled_witness_only_ambiguity_rules": list(
+            report["sampled_witness_only_ambiguity_rules"]
+        ),
         "canonical_rows_sha256": report["canonical_rows_sha256"],
         "canonical_rows_reproduced": report["canonical_rows_reproduced"],
         "composition_argument_triples": [
@@ -172,10 +180,10 @@ def _render(report: dict[str, Any]) -> str:
         lines.extend(_constraint_lines(constraint))
         if constraint.check_id == "check_support_transport":
             lines.append(f"      authority: {authority['reading']}")
+            lines.append(f"      floor: {report['transport_mapping_floor']['reading']}")
             lines.append(
-                f"      the shipped check reports {authority['shipped_terminal']} "
-                f"(premise={authority['shipped_undecidable_premise']}, "
-                f"decided_from={authority['shipped_decided_from']})"
+                f"      the shipped check reports {authority['shipped_terminal']} over "
+                f"{authority['shipped_checked']} cases"
             )
         if constraint.check_id == "p7_x2_composition_block":
             lines.append(
@@ -189,8 +197,8 @@ def _render(report: dict[str, Any]) -> str:
             )
     lines.extend(
         _constraint_lines(
-            report["extended_transport"],
-            note="[demonstration space, not the shipped 64 states]",
+            report["witness_only_transport"],
+            note="[the model before it carried completion classes; not the shipped space]",
         )
     )
     capacity = report["transport_capacity"]
@@ -200,11 +208,11 @@ def _render(report: dict[str, Any]) -> str:
         f"declared false theories of the terminal map"
     )
     for label, key in (
-        ("ambiguity rules against the shipped 64 states", "sampled_ambiguity_rules"),
+        ("ambiguity rules against the shipped 960 cases", "sampled_ambiguity_rules"),
         ("bridge rules against the decided composition rows", "sampled_bridge_rules"),
         (
-            "ambiguity rules against the completion-class space",
-            "sampled_extended_ambiguity_rules",
+            "ambiguity rules against the 64 coordinate states alone",
+            "sampled_witness_only_ambiguity_rules",
         ),
     ):
         accepted_rules, trials = report[key]

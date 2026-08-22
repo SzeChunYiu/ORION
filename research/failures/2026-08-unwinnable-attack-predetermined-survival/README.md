@@ -157,9 +157,26 @@ and froze the rule that combines them:
 > Define the best hostile universal threshold as the earliest threshold reached
 > by any of the three universal-state arms.
 
-P11C exceeded its execution window and is `CANNOT_CHECK`, so that rule was never
-applied to an outcome. Each successor carried one arm forward and gated on that
-arm alone: P11D and P11E on `UNIVERSAL_L1`, P11G on `UNIVERSAL_EXTRA_TREES`.
+Each successor carried one arm forward and gated on that arm alone: P11D and
+P11E on `UNIVERSAL_L1`, P11G on `UNIVERSAL_EXTRA_TREES`.
+
+**Correction, 2026-08-22.** This record was written while P11C was
+`CANNOT_CHECK`, and said the rule "was never applied to an outcome". That is no
+longer true. `P11C_EXECUTION_RECEIPT_V1.md` records the frozen protocol run to
+completion twice in fresh processes, and its payload carries the rule's own
+statistic per cell (`best_universal_threshold_0_95`: 256 and 256) and the gate it
+feeds (`best_universal_threshold_ratio_ge_4`: true). The rule was applied — by
+P11C, to P11C's own frozen data. Reading the two freezes against each other then
+settles where it stops: it feeds a `>=4x` *ratio* gate on a five-query, `n=2048`,
+8,192-test ladder over a pool whose tree arm is 256 estimators, for a claim about
+a family of attacks; P11G froze an absolute `>=256` gate on a three-query,
+`n=1024`, 4,096-test ladder over one 96-tree arm, for a claim about one decoder,
+and P11D froze outright that it "does not settle the frozen ExtraTrees attack".
+So P11C's rule governs P11C and does not bind P11G, and correct response 6 below
+is withdrawn as stated.
+
+What survives that correction is the axis, which is what this record is actually
+about and which does not depend on whose rule it is:
 
 Run all three on **P11G's own frozen data stream** — identical queries, test set,
 training draws and estimator seeds, only the decoder swapped:
@@ -170,17 +187,20 @@ training draws and estimator seeds, only the decoder swapped:
 | `UNIVERSAL_L2` | `NOT_REACHED` | `NOT_REACHED` | 0.4568 / 0.4120 |
 | `UNIVERSAL_L1` | **128** | **256** | 0.3252 / 0.3258 |
 
-P11C's own best-of-arms rule gives a best hostile universal threshold of
-**128 and 256**. P11G's gate 3 requires `>= 256` **in both cells**. It is
-therefore **false**, and P11G's terminal expression prints
-`P11G_DETERMINISTIC_TREE_DECODER_GAP_NOT_MET`.
+The best threshold over the three registered arms is **128 and 256**. Placed in
+P11G's own gate 3, which requires `>= 256` **in both cells**, `UNIVERSAL_L1`'s
+128 in the first cell makes P11G's terminal expression print
+`P11G_DETERMINISTIC_TREE_DECODER_GAP_NOT_MET`. Two of the three comparable pairs
+on the `decoder_arm` axis change the verdict, so the terminal is a function of
+which registered arm was carried forward — on P11G's own bytes, under P11G's own
+gate arithmetic, with no rule borrowed from anywhere.
 
 Over 12 seeds of the frozen protocol the flip is unanimous: `UNIVERSAL_L1`
 reaches 0.95 at `n=128` in cell `(17,4,5)` in **12 of 12** worlds, and gate 3
-under the register's own combination rule holds in **0 of 12**. The same gate,
-on the same bytes, is unconditionally `True` read through the arm P11G reported
-and unconditionally `False` read through the pool P11C registered. What it
-measures is which arm was placed in it.
+read through the best of the three registered arms holds in **0 of 12**. The
+same gate, on the same bytes, is unconditionally `True` read through the arm
+P11G reported and unconditionally `False` read through the arm P11D and P11E
+carried. What it measures is which arm was placed in it.
 
 ### What P11's own documents already say, and what they do not
 
@@ -291,10 +311,18 @@ to P14A would still miss it.
    bank and the terminal moves — and `FAIL` on attainability. That pair is the
    diagnosis: a responsive emitter whose losing region lies outside its own
    preregistration.
-6. When a protocol freezes a *pool* of attacks and a combination rule, apply the
-   rule. P11C froze three arms and "the earliest threshold reached by any"; three
-   successors each gated on one arm. Running the frozen rule on the frozen data
-   is a two-line change and it flips the terminal in 12 of 12 worlds.
+6. ~~When a protocol freezes a *pool* of attacks and a combination rule, apply
+   the rule.~~ **Withdrawn as stated** — see the correction above: P11C applied
+   its own rule to its own data, and a rule frozen for one protocol's gate,
+   ladder and claim does not bind a successor that froze its own. The durable
+   form is narrower and borrows nobody's rule: **when a terminal depends on which
+   of several registered arms is placed in its gate, and the receipt carries that
+   axis with one value, the record owes a declaration of every registered value.**
+   `refutation_capacity.axis_sensitivity` measures it and
+   `decoder_attack_reach.arm_disclosure_gaps` blocks until the declaration
+   exists;
+   `papers/paper-11-state-as-computation/P11G_ARM_PLACEMENT_ADJUDICATION_V1.md`
+   is that declaration for P11G.
 7. Decompose a gap that changes two things at once. P11G compares logistic
    regression on `r` compiled columns against ExtraTrees on the full bank.
    Holding the decoder fixed and moving only the representation attributes
@@ -319,13 +347,16 @@ to P14A would still miss it.
    committed payload digest before transcribing a claim; a test pins the digest
    and the published curve values. An instrument that only runs on its own
    fixture is the failure it was written to catch.
-11. Do not repair P11. Its protocols are frozen, its receipts are retained by the
-    paper's own rule, and `papers/paper-11-state-as-computation/` belongs to
-    another lane. What is owed there is a ledger correction: the P11G row is
-    evidence about a 96-tree ExtraTrees decoder on a 2,380-column parity bank —
-    which is what its own claim-authority sentence says — and not `HOSTILE
-    NONLINEAR / PRIMARY` support for the mechanism. The diagnosis, the instrument
-    and the blocking audit are done here.
+11. Do not repair P11. Its protocols are frozen and its receipts are retained by
+    the paper's own rule. What is owed there is a ledger correction: the P11G row
+    is evidence about a 96-tree ExtraTrees decoder on a 2,380-column parity bank
+    — which is what its own claim-authority sentence says — and not `HOSTILE
+    NONLINEAR / PRIMARY` support for the mechanism. **Done, 2026-08-22:** that row
+    now reads `HOSTILE NONLINEAR / ARM-SCOPED`, the arm axis and the
+    decoder/state decomposition are in the paper's own prose (`MANUSCRIPT.md`
+    5.4.1 and 5.4.2), and `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` carries the
+    adjudication — every frozen byte retained, no published number moved. The
+    diagnosis, the instrument and the blocking audit are still here.
 
 `orion.study.p11.attack_audit` runs all of it and exits `3`:
 
@@ -334,8 +365,11 @@ to P14A would still miss it.
   every admissible world satisfies: no_answer_laundering, compiled_by_64,
                                     tree_threshold_ge_256, delta64_ge_0_20
   responsiveness: PASS (HELD_UNDER_EXERCISE), 0/3 cases ignored, 2 verdicts
-  best-of-arms thresholds per cell: [128, 256] (gate wants >= 256)  -> pool FAIL
-  outcome: FAIL
+  best-of-arms thresholds per cell: [128, 256] (P11G's gate wants >= 256)
+  decoder_arm axis: 3 values, 3 comparable pairs, 2 verdict-changing, inert: False
+  P11C's best-of-arms rule does not bind P11G   (different gate, ladder, claim)
+  decision axes carried in the receipt with one value: decoder_arm -> declared
+  outcome: FAIL   (terminal_reach: the attack had no reachable win)
 ```
 
 ## General lesson candidate
@@ -396,10 +430,12 @@ reach — and this one an **adversary no admissible run could lose to**.
 - P11D and P11E are untouched by this record. Their arm is the capable one; their
   2× and 4× residuals are the paper's real hostile result, and they are what the
   synthesis claim should rest on.
-- P11C is still `CANNOT_CHECK` and its best-of-arms rule has still never been run
-  under its own protocol identity. The measurement here runs that rule on P11G's
-  data, which is evidence about P11G, not a P11C terminal — a genuine P11C result
-  needs a new protocol identity with its own freeze.
+- P11C has since run to completion under its own protocol identity and applied
+  its own best-of-arms rule there, at exactly its gate boundary and with an
+  11-of-20 sweep behind it, so it carries no claim authority in either direction.
+  The measurement here transplants that rule onto P11G's data, which is evidence
+  about P11G's arm axis, not a P11C terminal and not a verdict from a rule that
+  governs P11G.
 - `UNIVERSAL_L1`'s threshold in cell `(19,3,7)` is 256 at 11 of 12 seeds and 128
   at one (`2026082123`). The gate-3 flip does not depend on that cell: cell
   `(17,4,5)` reaches 128 at all 12.
