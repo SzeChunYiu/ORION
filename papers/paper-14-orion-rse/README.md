@@ -10,7 +10,11 @@
 
 ## Status
 
-`PEER_REVIEW_PACKAGE_READY / SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED / P14A_SUPERIORITY_GATES_CLASSIFIED_CANNOT_CHECK / EXTERNAL_SCIENTIFIC_VALIDITY_OPEN`
+`PEER_REVIEW_PACKAGE_READY / ACTIVE_P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED / P14A_HISTORY_ADJUDICATED / EXTERNAL_SCIENTIFIC_VALIDITY_OPEN`
+
+`P14_ACTIVE_CLAIM_AUTHORITY_V1.json` is the machine-readable authority entry
+point. It binds the active positive P14C result and replay adjudication by
+content hash, while retaining P14A as non-authoritative historical evidence.
 
 ### P14A — preserved terminal, reclassified as an unmeasurable gate
 
