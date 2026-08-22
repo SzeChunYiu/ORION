@@ -1,1 +1,15 @@
-Test-time scaling is usually treated as a one-dimensional problem: decide how much more reasoning, sampling, search or verification to perform. State construction creates a second inference action. A system can spend computation to make task-relevant structure more accessible *before* downstream reasoning, or spend the same resource reasoning longer over the current state. We formalize this as a two-axis allocation problem under a single matched budget and require state construction, reasoning/search and all auxiliary work to share one resource boundary. In a preregistered held-out benchmark of access-limited, reasoning-limited, jointly limited and easy regimes, every policy receives the same two-unit budget and the same noisy pre-outcome difficulty signals. A frozen joint allocator achieves mean verified success **0.8582**, versus **0.4631** for adaptive-state-only, **0.4528** for adaptive-reasoning-only and **0.5155** for a fixed `(1,1)` allocation. Its mean gain over the better one-axis adaptive policy is **+0.3347**, with a family-block 95% bootstrap interval of **[0.2860, 0.3827]** and a worst-family gain of **+0.1582**. Two executions are byte-identical. These results establish a controlled superiority claim: when task families vary in *where* marginal computation has value, adaptation over both state construction and reasoning strictly outperforms adaptation over either axis alone at identical total budget. Current adaptive test-time-compute work already owns dynamic reasoning-budget allocation; the residual here is the symmetric treatment of **state construction as a competing inference resource**. We do not claim real-LLM or prover superiority until matched end-to-end accounting and held-out real-system validation are completed.
+Test-time scaling is usually treated as a one-dimensional problem: decide how
+much more reasoning, sampling, search or verification to perform. State
+construction creates a second inference action. We formalize the resulting
+two-axis allocation problem under one budget and report a preregistered
+controlled run over 16 held-out generated families. The frozen joint arm scores
+0.8582, versus 0.4631 and 0.4528 for the two named one-axis arms, and the run is
+byte-reproducible. A later comparator-capability audit changes the interpretation,
+not the historical bytes: the joint arm can emit four allocations while each
+one-axis arm can emit only two, and both losing-arm ceilings are below the
+winner's achieved score. With identical four-action sets, the gain is +0.0408,
+the worst-family gain is +0.0020, and the original gate is not met. Consequently
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` sets the active terminal to
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. P12A motivates the resource-location
+hypothesis but does not establish signal-count superiority; that claim requires
+a prospectively frozen, capability-matched P12B.

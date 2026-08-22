@@ -1,6 +1,9 @@
 # P13 Peer-Review Readiness Report
 
-**Decision:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_RESPONSIBILITY-SAFE-REUSE_RESULT`
+**Decision:** `NOT_READY__P13A_SELF_SCORED_SAFETY_ENDPOINT`
+
+Active terminal: `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`, from
+`P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
 
 ## Five-lens hostile review
 
@@ -10,19 +13,28 @@
 
 ### Experimental design
 
-**Pass.** The historical negative is retained. The successor has a new protocol/seed, strong confidence/provenance/always-raw controls and a prospective recoverability decision.
+**Fail for empirical safety.** The historical negative is retained, but the RCS
+unsafe-reuse counter is the logical negation of the same declared-support
+predicate that selects reuse. Certificate correctness is not independently
+graded, and provenance-only duplicates unqualified reuse.
 
 ### Statistics / reproducibility
 
-**Pass after explicit correction.** Exact support is deterministic. Hostile PR review found that the V1 efficacy runner omitted the protocol's byte-replay gate from the runner terminal. The V1 terminal is now non-authoritative alone. `verify_p13a_protocol_adjudication_v2.py` re-executes the exact frozen runner twice in fresh subprocess directories and requires all original scientific gates plus byte identity. Both payload SHA-256 values are `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f`. No post-hoc repair of the historical P14A finite-sanity threshold occurs.
+**Pass for exact semantics and historical replay; blocked for the safety
+endpoint.** The exact support matrix and byte replay remain valid. The later
+outcome-entailment adjudication enumerates 3,840 points: the action changes on
+2,304 while the self-scored harm moves on zero and has zero opportunities.
 
 ### Novelty / donor
 
-**Pass after subtraction.** Confidence gating, provenance, state abstraction, stale-memory detection and proof-carrying actions are donor-owned. The residual is responsibility-scoped support plus reopen/recovery semantics and an interior safety–cost efficacy result.
+**Pass only for the exact conditional core.** The interior safety–cost result is
+not authorized until independently graded P13B.
 
 ### Referee / reporting
 
-**Pass for controlled scope.** The abstract reports the old negative and the new positive together. `CANNOT_CHECK` is treated as a valid outcome. Authority separation prevents the state container from self-certifying scientific novelty/safety. The replay adjudication correction is visible in the evidence chain.
+**Fail for an efficacy paper.** The exact/conditional result is reportable, but
+the manuscript must not say the protected benchmark empirically eliminates
+unsafe reuse.
 
 ## Checklist
 
@@ -33,13 +45,14 @@
 - [x] confidence-only baseline
 - [x] provenance-only baseline
 - [x] always-raw safety ceiling
-- [x] unsafe-reuse primary endpoint
+- [ ] independently gold-scored unsafe-reuse primary endpoint
 - [x] utility/correctness constraint
 - [x] resource cost and unnecessary reopen
 - [x] exact CANNOT_CHECK accounting
 - [x] V1 replay-gate omission disclosed
 - [x] exact runner replayed in two fresh subprocesses
-- [x] authoritative V2 replay adjudication
+- [x] V2 historical replay adjudication
+- [x] active outcome-entailment authority correction
 - [x] claim/evidence ledger
 - [x] donor subtraction
 - [ ] verifier-backed real-system responsibility shift
@@ -48,4 +61,7 @@
 
 ## Referee-facing headline
 
-> **Sufficiency is responsibility-scoped authority.** A compact state can be current, provenanced and high-confidence while still lacking distinctions needed for a new responsibility. An explicit support/recovery contract eliminates such unsafe reuse in the protected benchmark without paying the cost of always reopening raw state, and the result survives the protocol's replay requirement under an explicit independent adjudicator.
+> **Sufficiency is responsibility-scoped authority in the exact registered
+> construction.** The current RCS interface conditionally refuses reuse outside
+> declared support. Whether it prevents unsafe reuse under wrong or stale
+> certificates is an open P13B question.
