@@ -207,7 +207,7 @@ Not where the programme looked for them.
 | id | residual | status |
 | --- | --- | --- |
 | **W8** | R6B batch selection taken on the receipt's word, not re-derived | open; registered by the QG-3 verifier's stated limit |
-| **W9** | committed family search does not realize QG-6's support-capped corollary | partial — QG-10's `U_W1` supplies an uncapped weight-one enumerator, checked equal on all 1,029 instances where both are defined; support-2 remains |
+| **W9** | committed family search does not realize QG-6's support-capped corollary | ~~partial — QG-10's `U_W1` supplies an uncapped weight-one enumerator; support-2 remains~~ **CLOSED by QG-28.** The support-≤2 case is now realized as a certified search agreeing with `dxx_search` on 13,368 instances, every one of them, including the **complete** n=2 domain. The registered exponential→polynomial projection is **confirmed with its price**: the capped search overtakes at **n = 7** as implemented and **n = 9** table-free, so the win is asymptotic and buys nothing at any n this programme runs. See §8. |
 | **W10** | the V2 feature map, not the referee, caps StabPrep's reach | open |
 | **W11** | `donor_search` requires a passage but does not check it occurs in the query log | ~~open — QG-24's verifier implements this check and it is **stronger than the committed module**~~ **CLOSED in `ccbd708b`**, which added `passage_occurs_in_log` to the committed module and fixed a bug in the first fix. This row said "open" for the rest of the branch anyway. Struck rather than deleted: a ledger that keeps saying open after the work landed is the same failure as a receipt that keeps saying PASS after the criterion moved, and it belongs in the count. |
 | — | QG-15c's surviving collision pair (identical schedule geometry) | open; the precise form an impossibility result must address |
@@ -264,6 +264,89 @@ measurement subject.
 Corroboration kinds are typed and fail closed: an artifact asserting
 `scientific_corroboration` on `PROVENANCE_ONLY` evidence is rejected by
 `orion_research_harness.corroboration`.
+
+## 8b. QG-28 — W9 realized, and what the projected win actually costs
+
+**The residual.** QG-6's corollary bounds a certified support-≤2 search at
+`O(n²·16)` frame-pair candidates per block. The committed `r6p.dxx_search` does
+not realize it, reaching the same D++ optimum through an `A^{2n}` don't-care
+pattern space and an `A^n − 1` Tag sweep, `O(n·4^{3n})` cells. The conversion
+ledger registered a **projected exponential→polynomial implementation win** and
+nobody had ever evaluated the projection.
+
+**What was built.** A second, structurally different route to `C_D++`:
+enumerate frame-pair triples directly over the support-capped candidate set,
+with no pattern space at all. Two pieces carry it.
+
+1. **The cost identity comes from the family, not from the search.** The
+   verifier's brute force recomputes `C_D++` through the frozen
+   `r6m.factor_restore_triple` — the actual Restore-factoring function — rather
+   than through any agreement-count formula, so a wrong identity shows up as a
+   disagreement instead of being reproduced on both sides.
+2. **The Tag without the sweep.** The six label constraints `⟨S, R⟩ = l` each
+   decompose over qubits, so the minimum-weight shared Tag is a shortest path
+   through 2⁶ syndrome states with one step per qubit: **O(n), 64 states, no
+   `4ⁿ − 1` enumeration.** This is what makes the realized search polynomial
+   rather than merely smaller, and it is a textbook minimum-weight-coset DP that
+   this lane claims nothing about.
+
+**Result.** `C_capped == C_Dxx` on **13,368 instances, all of them**: n=1
+complete (4,096), n=2 **complete** (all 9,261 structured instances), the five
+R6N hostile panels including `n2_b` — the instance that refuted the weight-one
+family — and six declared n=3. The Tag DP reproduces the exhaustive `4ⁿ` Tag
+minimum at n = 1, 2, 3, and `dp_driven_search` runs §3.3's algorithm literally
+inside the objective on 66 instances with 66 agreeing.
+
+**W9's projection is confirmed, and its price is now known.**
+
+| n | P(n) | N_cap (as run) | N_cap_dp (table-free) | N_dxx (committed) |
+|---|---|---|---|---|
+| 3 | 666 | 1.6 × 10¹⁰ | 4.7 × 10¹¹ | 1.1 × 10⁷ |
+| 6 | 8,136 | 2.9 × 10¹³ | 1.7 × 10¹⁵ | 5.5 × 10¹² |
+| **7** | 13,650 | **1.4 × 10¹⁴** | 9.2 × 10¹⁵ | 4.0 × 10¹⁴ |
+| **9** | 31,158 | 1.6 × 10¹⁵ | **1.4 × 10¹⁷** | 2.1 × 10¹⁸ |
+
+The capped search overtakes the committed one at **n = 7** as implemented, and at
+**n = 9** for the variant that carries no Tag table at all. Below that the
+committed implementation is cheaper — by 1,400× at n = 3, which is every n this
+programme actually runs. So the registered win is real and **asymptotic**: it
+buys nothing at the sizes where the family has ever been evaluated, and it is the
+only feasible route at n ≥ 7, where `N_dxx` passes 10¹⁴.
+
+**Two disclosures the lane carries in its own receipt, not just here.**
+
+*It saw the answer first.* A scratch prototype ran **before** the protocol was
+written, so §0 of the protocol says so and lists what the prototype had already
+returned, and the receipt labels Q1 and Q2 `prospective: false`. Writing "frozen
+before outcome" over a protocol whose author already knows the answer is the
+exact failure `criterion_binding` was committed to stop; a gate whose author
+exempts himself is worth nothing. Q3 — the cell model and the crossover — is the
+part that stayed prospective, and its counting rule was frozen before either
+count was evaluated.
+
+*The frozen counting rule described the wrong algorithm.* §5's `N_cap` counts the
+search as this lane runs it, and that implementation still carries a `4ⁿ` Tag
+table — so a crossover computed from it is the implementation's crossover, not
+the polynomial algorithm's. `N_cap_dp` was added for the table-free variant,
+disclosed as an addition to a frozen section, with the note that the terminal
+turns on whether a finite crossover exists at all and both counts have one.
+
+**Wall-clock, and why it carries no argument.** Gate G3 admits timing for one
+purpose: saying whether the frozen cell model tracks measurement. At n = 3 it
+does (measured 1665×, model 1405×). At n ≤ 2 it does not — 3.6× against a
+modelled 12×, 68× against 759× — because per-call overhead dominates both
+implementations at that size. Reported as the discrepancy it is.
+
+**Four defects found in review, all mine, all one shape.** Cursor Bugbot found
+that the assembler's `stdout_identical` was a hardcoded `True` never compared to
+anything; that `search()` never called the Tag DP the protocol and responsibility
+string both claimed it used; that `dp_driven_search` could disagree everywhere
+without moving the terminal, the licensing text, the verifier verdict or the
+unrecomputed n=2 rows; and that a fail-closed disclosure check raised
+`AttributeError` instead of returning REJECT on the field's own previous shape.
+The last is the sharpest: the existing tamper set that field to `""`, which is
+falsy, so it passed cleanly through the very line that crashes on anything else —
+a tamper exercising the working half of a guard and reporting coverage for both.
 
 ## 9. Stop rules
 

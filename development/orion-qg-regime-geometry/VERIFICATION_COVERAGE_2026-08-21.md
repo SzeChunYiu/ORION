@@ -89,6 +89,8 @@ naive configuration referee's exponential. Registered as **W9 — realize QG-6's
 support-capped corollary in the committed family search**. The bound is already proved;
 this is engineering.
 
+**W9 is now CLOSED by QG-28.** The certified search exists and agrees with the committed enumerator on 13,368 instances, all of them. Two things the registration did not anticipate: the `A^n − 1` Tag sweep is removable by an exact O(n) syndrome DP, which is what makes the realization polynomial rather than merely smaller; and the polynomial has a large exponent, so it does not overtake until n = 7 (n = 9 without the Tag table). "This is engineering" was right. "A win" was right only asymptotically.
+
 ## A residual from QG-25's donor search (W12)
 
 QG-25's donor-field query established that "the minimum dimension of a feasibility-deciding
