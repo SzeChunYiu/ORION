@@ -389,7 +389,23 @@ class TestTheReport:
         report = ds.build_report(REPO_ROOT, date="2026-08-22")
         assert report["all_discharged"] is True
         assert report["published_counts"]["counts_reproduced"] is True
-        assert report["frame_conditions"]["every_condition_carries_a_theorem"] is True
+        frames = report["frame_conditions"]
+        # Two ways this can be False, and they are not the same news. An inert
+        # condition is a finding about the axiom and does not go away by
+        # re-running; a condition whose countermodel search did not settle is a
+        # fact about the search, and this file's own docstring records a
+        # load-bearing condition being reported inert for exactly that reason.
+        assert frames["inert_conditions"] == [], (
+            f"frame conditions carry nothing: {frames['inert_conditions']}. Every "
+            "search settled, so this is a finding about the axioms."
+        )
+        assert frames["conditions_left_undecided"] == [], (
+            f"the countermodel search did not settle for {frames['conditions_left_undecided']} "
+            f"(gave up on {frames.get('theorems_the_search_gave_up_on')}). That is not a "
+            "finding that they are inert --- these searches succeed on an idle machine, so "
+            "re-run before reading it as anything else."
+        )
+        assert frames["every_condition_carries_a_theorem"] is True
         assert report["argument_space"]["every_triple_reached"] is True
         assert any(
             "more than two of compose's eight" in item for item in report["not_licensed"]

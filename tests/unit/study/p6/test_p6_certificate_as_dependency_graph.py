@@ -16,6 +16,7 @@ from pathlib import Path
 
 import pytest
 
+from orion.programme.records import Outcome
 from orion.study.p6 import certificate_as_dependency_graph as cg
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -256,3 +257,101 @@ class TestTheReport:
         written = json.loads(out.read_text(encoding="utf-8"))
         assert written["record"] == "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH"
         assert len(written["theorems"]) == len(cg.THEOREMS)
+
+
+class TestASearchThatGaveUpIsNotAFinding:
+    """A loaded machine must not be able to make this audit publish an inert axiom.
+
+    ``refute_in_a_bounded_world`` returned a bool, so "no countermodel exists in
+    this world" and "the solver ran out of time" were the same ``False``, and
+    ``inert_conditions`` was computed from it. A full-suite run under load duly
+    reported ``coordinates_do_not_support_each_other`` as carrying nothing --- a
+    claim about the axiom, produced by contention.
+
+    These drive the classifier directly rather than waiting for a busy machine,
+    because a test that reproduces this only under load is not a test.
+    """
+
+    def test_the_search_reports_three_outcomes_not_two(self) -> None:
+        assert set(cg.RefutationSearch) == {
+            cg.RefutationSearch.COUNTERMODEL,
+            cg.RefutationSearch.NO_COUNTERMODEL,
+            cg.RefutationSearch.UNDECIDED,
+        }
+
+    def test_the_bool_wrapper_is_true_only_for_a_countermodel(self, monkeypatch) -> None:
+        for verdict, expected in (
+            (cg.RefutationSearch.COUNTERMODEL, True),
+            (cg.RefutationSearch.NO_COUNTERMODEL, False),
+            (cg.RefutationSearch.UNDECIDED, False),
+        ):
+            monkeypatch.setattr(
+                cg, "search_for_a_countermodel", (lambda _v: lambda *a, **k: _v)(verdict)
+            )
+            assert cg.refute_in_a_bounded_world([], None, None) is expected, verdict
+
+    def _measure(self, monkeypatch, verdict_for) -> dict:
+        monkeypatch.setattr(
+            cg,
+            "search_for_a_countermodel",
+            lambda axioms, claim, cert, **k: verdict_for(claim),
+        )
+        return cg.frame_conditions_are_load_bearing(repeats=2)
+
+    def test_a_search_that_gave_up_is_undecided_and_never_inert(
+        self, monkeypatch
+    ) -> None:
+        report = self._measure(
+            monkeypatch, lambda _claim: cg.RefutationSearch.UNDECIDED
+        )
+
+        assert report["inert_conditions"] == []
+        assert report["conditions_left_undecided"] == sorted(cg.FRAME_CONDITION_IDS)
+        assert report["outcome"] == Outcome.CANNOT_CHECK.value
+        assert report["every_condition_carries_a_theorem"] is False
+
+    def test_a_condition_that_settles_with_no_countermodel_is_inert(
+        self, monkeypatch
+    ) -> None:
+        """The finding the audit is entitled to make, and it must still fire."""
+
+        report = self._measure(
+            monkeypatch, lambda _claim: cg.RefutationSearch.NO_COUNTERMODEL
+        )
+
+        assert report["inert_conditions"] == sorted(cg.FRAME_CONDITION_IDS)
+        assert report["conditions_left_undecided"] == []
+        assert report["outcome"] == Outcome.FAIL.value
+
+    def test_the_classification_separates_all_four_states(self) -> None:
+        """The logic that was wrong twice, checked without a solver.
+
+        ``inert`` used to be read off the stable core alone, so it swallowed two
+        different things that are not findings: a condition whose searches gave
+        up, and one whose refutation is real but intermittent. The second is the
+        subtler error --- the union is non-empty, so the condition demonstrably
+        carries a theorem, and calling it inert states the opposite of what was
+        measured.
+        """
+
+        inert, undecided, intermittent = cg.classify_frame_conditions(
+            always={"stable": {"T1"}, "flaky": set(), "gave_up": set(), "empty": set()},
+            ever={"stable": {"T1"}, "flaky": {"T2"}, "gave_up": set(), "empty": set()},
+            undecided={"stable": set(), "flaky": set(), "gave_up": {"T3"}, "empty": set()},
+        )
+
+        assert inert == ["empty"]
+        assert undecided == ["gave_up"]
+        assert intermittent == ["flaky"]
+
+    def test_an_intermittent_refutation_is_never_called_inert(self) -> None:
+        inert, _, intermittent = cg.classify_frame_conditions(
+            always={"c": set()}, ever={"c": {"T"}}, undecided={"c": set()}
+        )
+
+        assert inert == []
+        assert intermittent == ["c"]
+
+    def test_the_criterion_states_both_directions(self) -> None:
+        report = cg.frame_conditions_are_load_bearing(repeats=1)
+        assert "in that direction too" in report["criterion"]

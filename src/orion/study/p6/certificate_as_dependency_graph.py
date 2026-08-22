@@ -55,9 +55,11 @@ remains true that no evaluator outside this lane has checked any of it, which is
 
 from __future__ import annotations
 
+from enum import Enum
 from itertools import combinations
-from typing import Any
+from typing import Any, Mapping
 
+from orion.programme.records import Outcome
 from orion.programme.mechanized import (
     ProofResult,
     Theorem,
@@ -340,17 +342,37 @@ def _drop_queries(condition: str) -> list[tuple[str, list[Any], Any, Any]]:
 REFUTATION_WORLD_SIZE = 4
 
 
-def refute_in_a_bounded_world(
+class RefutationSearch(str, Enum):
+    """What a bounded countermodel search actually returned.
+
+    Three values, because ``sat`` and ``unsat`` and ``unknown`` are three facts
+    and the first version of this collapsed the last two into ``False``. A
+    solver that proved no countermodel exists in the bounded world and a solver
+    that ran out of time both said "not refuted", so a condition whose search
+    timed out was indistinguishable from one that carries nothing --- and
+    ``inert_conditions`` reported the second, which is a claim about the axiom.
+    """
+
+    COUNTERMODEL = "COUNTERMODEL"
+    #: No countermodel exists in a universe of this size. Sound in one direction
+    #: only: it does not show the claim holds unboundedly.
+    NO_COUNTERMODEL = "NO_COUNTERMODEL"
+    #: The search did not settle. A fact about the search, not about the axiom.
+    UNDECIDED = "UNDECIDED"
+
+
+def search_for_a_countermodel(
     axioms: list[Any], claim: Any, cert: Any, *, size: int = REFUTATION_WORLD_SIZE, timeout_ms: int = 20000
-) -> bool:
-    """Is there a countermodel in a universe of at most ``size`` nodes?
+) -> RefutationSearch:
+    """Look for a countermodel in a universe of at most ``size`` nodes.
 
     Needed because the unbounded search is not stable. Asking the solver to
     refute a universally quantified claim over an uninterpreted sort leaves it
     hunting for a model it may or may not find, and the same drop returns a
     countermodel on one run and ``unknown`` on the next --- which would make a
     load-bearing measurement depend on machine load. Bounding the sort turns the
-    search finite.
+    search finite, and returning three values rather than two keeps the two ways
+    of not finding one apart.
     """
 
     solver = require_z3()
@@ -365,7 +387,28 @@ def refute_in_a_bounded_world(
         checker.add(axiom)
     checker.add(bound)
     checker.add(solver.Not(claim))
-    return bool(checker.check() == solver.sat)
+    verdict = checker.check()
+    if verdict == solver.sat:
+        return RefutationSearch.COUNTERMODEL
+    if verdict == solver.unsat:
+        return RefutationSearch.NO_COUNTERMODEL
+    return RefutationSearch.UNDECIDED
+
+
+def refute_in_a_bounded_world(
+    axioms: list[Any], claim: Any, cert: Any, *, size: int = REFUTATION_WORLD_SIZE, timeout_ms: int = 20000
+) -> bool:
+    """``True`` when a countermodel was found. Kept for callers that want a bool.
+
+    Do not use this to decide that an axiom carries nothing: ``False`` covers
+    both "no countermodel in this world" and "the search gave up", and only the
+    first is evidence. Use :func:`search_for_a_countermodel` for that.
+    """
+
+    return (
+        search_for_a_countermodel(axioms, claim, cert, size=size, timeout_ms=timeout_ms)
+        is RefutationSearch.COUNTERMODEL
+    )
 
 
 #: How many times the drop measurement is repeated. One run is not a
@@ -373,6 +416,38 @@ def refute_in_a_bounded_world(
 #: encoding, and the same dropped axiom yields a countermodel on one run and
 #: ``unknown`` on the next.
 LOAD_BEARING_REPEATS = 3
+
+
+def classify_frame_conditions(
+    *,
+    always: Mapping[str, set[str]],
+    ever: Mapping[str, set[str]],
+    undecided: Mapping[str, set[str]],
+) -> tuple[list[str], list[str], list[str]]:
+    """Split the conditions with no stable core by *why* they have none.
+
+    Four states, because "no stable core" had three different causes collapsed
+    into one verdict and only one of them is a claim about the axiom.
+
+    ``inert`` is the only finding here, and it needs both: nothing was refuted
+    on any run, *and* every search settled. Calling a condition inert because
+    its searches gave up is a claim the run does not support --- that is how
+    loading the machine used to make this audit publish an inert frame
+    condition. Calling one inert because its refutation was intermittent is a
+    different error in the same direction: the condition demonstrably carries a
+    theorem, just not on every run, and the published criterion is about the
+    stable core rather than about whether anything was carried at all.
+
+    Returned as plain data over plain sets so the classification can be tested
+    without a solver. It was wrong twice; it should be checkable in a
+    millisecond.
+    """
+
+    names = list(always)
+    inert = sorted(n for n in names if not ever[n] and not undecided.get(n))
+    unsettled = sorted(n for n in names if not ever[n] and undecided.get(n))
+    intermittent = sorted(n for n in names if ever[n] and not always[n])
+    return inert, unsettled, intermittent
 
 
 def frame_conditions_are_load_bearing(
@@ -406,19 +481,28 @@ def frame_conditions_are_load_bearing(
 
     always: dict[str, set[str]] = {}
     ever: dict[str, set[str]] = {}
+    undecided: dict[str, set[str]] = {}
     for condition in FRAME_CONDITION_IDS:
         rounds: list[set[str]] = []
+        gave_up: set[str] = set()
         for _ in range(repeats):
-            found = {
-                name
-                for name, axioms, claim, cert in _drop_queries(condition)
-                if name in baseline and refute_in_a_bounded_world(axioms, claim, cert)
-            }
+            found: set[str] = set()
+            for name, axioms, claim, cert in _drop_queries(condition):
+                if name not in baseline:
+                    continue
+                verdict = search_for_a_countermodel(axioms, claim, cert)
+                if verdict is RefutationSearch.COUNTERMODEL:
+                    found.add(name)
+                elif verdict is RefutationSearch.UNDECIDED:
+                    gave_up.add(name)
             rounds.append(found)
         always[condition] = set.intersection(*rounds) if rounds else set()
         ever[condition] = set.union(*rounds) if rounds else set()
+        undecided[condition] = gave_up - ever[condition]
 
-    inert = sorted(name for name, core in always.items() if not core)
+    inert, unsettled, intermittent_only = classify_frame_conditions(
+        always=always, ever=ever, undecided=undecided
+    )
     return {
         "baseline_discharged": sorted(baseline),
         "repeats": repeats,
@@ -426,15 +510,30 @@ def frame_conditions_are_load_bearing(
         "theorems_refuted_on_some_run": {
             k: sorted(ever[k] - always[k]) for k in FRAME_CONDITION_IDS
         },
+        "theorems_the_search_gave_up_on": {
+            k: sorted(v) for k, v in undecided.items() if v
+        },
         "inert_conditions": inert,
-        "every_condition_carries_a_theorem": not inert,
+        "conditions_left_undecided": unsettled,
+        "conditions_carried_only_intermittently": intermittent_only,
+        "every_condition_carries_a_theorem": not (inert or unsettled or intermittent_only),
+        "outcome": (
+            Outcome.FAIL.value
+            if inert
+            else Outcome.CANNOT_CHECK.value
+            if unsettled or intermittent_only
+            else Outcome.PASS.value
+        ),
         "criterion": (
             "a condition is load-bearing only when dropping it yields a countermodel to "
             "some theorem on every one of the repeated runs. A theorem that merely stops "
             "being provable is not counted, because an unknown return is a fact about the "
             "search; and a theorem refuted on some runs but not others is reported "
             "separately rather than credited, because the solver's model search on this "
-            "encoding is not deterministic."
+            "encoding is not deterministic. A condition whose searches did not settle is "
+            "reported as undecided rather than as inert: an unknown return is a fact "
+            "about the search in that direction too, and calling it an inert axiom is a "
+            "claim the run does not support."
         ),
     }
 
@@ -775,8 +874,24 @@ def main(argv: list[str]) -> int:
     if not counts["counts_reproduced"]:
         print("THE PUBLISHED COUNTS WERE NOT REPRODUCED UNDER THE INTERPRETATION")
         return 3
-    if not frames["every_condition_carries_a_theorem"]:
+    if frames["inert_conditions"]:
         print(f"INERT FRAME CONDITIONS: {frames['inert_conditions']}")
+        return 3
+    if frames["conditions_carried_only_intermittently"]:
+        print(
+            "FRAME CONDITIONS CARRIED ONLY INTERMITTENTLY (they do carry a theorem, but "
+            "not on every run, so the stable core the published criterion asks for was "
+            f"not established): {frames['conditions_carried_only_intermittently']}"
+        )
+        return 3
+    if frames["conditions_left_undecided"]:
+        # Not the same sentence as the one above, and it must never print as if
+        # it were: the search did not settle, so whether these carry a theorem
+        # was not measured on this run.
+        print(
+            "FRAME CONDITIONS LEFT UNDECIDED (the countermodel search did not settle; "
+            f"this is not a finding that they are inert): {frames['conditions_left_undecided']}"
+        )
         return 3
     if not sens["every_indistinguishable_variant_is_caught_by_a_theorem"]:
         # The counts do not identify the star and are not asked to. What must

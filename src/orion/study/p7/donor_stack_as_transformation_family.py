@@ -741,6 +741,12 @@ def frame_conditions_are_load_bearing(
     slowest_bounded = 0.0
     refuted: dict[str, list[str]] = {}
     found_at: dict[str, dict[str, int]] = {}
+    #: Per condition, the last verdict seen for each theorem, at the largest
+    #: world size tried. Distinguishes "no countermodel exists there" from "the
+    #: search ran out of budget", which the inert test used to conflate.
+    settled: dict[str, dict[str, ProofOutcome]] = {
+        condition: {} for condition in FRAME_CONDITION_IDS
+    }
     unbounded_unknown: dict[str, list[str]] = {}
     outcomes: dict[str, dict[str, str]] = {}
     for condition in FRAME_CONDITION_IDS:
@@ -790,9 +796,15 @@ def frame_conditions_are_load_bearing(
                 max((seconds[r.theorem.name] for r in results if r.discharged), default=0.0),
             )
             for result in results:
+                if result.theorem.name not in baseline:
+                    continue
+                # Keep the last verdict for every theorem still outstanding, at
+                # the largest size tried. Without it, "no countermodel found"
+                # cannot be told from "the search gave up", and only the first
+                # is evidence that the condition carries nothing.
+                settled[condition][result.theorem.name] = result.outcome
                 if (
-                    result.theorem.name in baseline
-                    and result.outcome is ProofOutcome.COUNTEREXAMPLE
+                    result.outcome is ProofOutcome.COUNTEREXAMPLE
                     and result.theorem.name not in hits
                 ):
                     hits[result.theorem.name] = size
@@ -800,7 +812,27 @@ def frame_conditions_are_load_bearing(
         refuted[condition] = sorted(hits)
         found_at[condition] = dict(sorted(hits.items()))
 
-    inert = sorted(name for name, lost in refuted.items() if not lost)
+    # A condition with no countermodel is inert only when every one of its
+    # searches *settled* on not having one. The function's own docstring records
+    # a load-bearing condition being reported inert because a countermodel was
+    # missed under load, and the remedy taken then was a longer refutation
+    # budget -- which lowers the odds without changing what an exhausted budget
+    # is reported as. An unknown return is a fact about the search in this
+    # direction too.
+    gave_up = {
+        condition: sorted(
+            name
+            for name, outcome in settled[condition].items()
+            if outcome is ProofOutcome.UNKNOWN and name not in set(refuted[condition])
+        )
+        for condition in refuted
+    }
+    inert = sorted(
+        name for name, lost in refuted.items() if not lost and not gave_up[name]
+    )
+    undecided_conditions = sorted(
+        name for name, lost in refuted.items() if not lost and gave_up[name]
+    )
     return {
         "baseline_discharged": sorted(baseline),
         "rejected_candidate_conditions": list(CANDIDATE_CONDITION_IDS),
@@ -824,7 +856,9 @@ def frame_conditions_are_load_bearing(
             "mistake in the other direction."
         ),
         "inert_conditions": inert,
-        "every_condition_carries_a_theorem": not inert,
+        "conditions_left_undecided": undecided_conditions,
+        "theorems_the_search_gave_up_on": {k: v for k, v in gave_up.items() if v},
+        "every_condition_carries_a_theorem": not inert and not undecided_conditions,
         "drop_timeout_ms": drop_timeout_ms,
         "refutation_timeout_ms": refutation_timeout_ms,
         "slowest_bounded_refutation_seconds": round(slowest_bounded, 4),
@@ -1552,8 +1586,17 @@ def main(argv: list[str]) -> int:
     if not counts["counts_reproduced"]:
         print("THE PUBLISHED COUNTS WERE NOT REPRODUCED UNDER THE INTERPRETATION")
         return 3
-    if not frames["every_condition_carries_a_theorem"]:
+    if frames["inert_conditions"]:
         print(f"INERT FRAME CONDITIONS: {frames['inert_conditions']}")
+        return 3
+    if frames["conditions_left_undecided"]:
+        # A different sentence from the one above, and it must stay different:
+        # the countermodel search did not settle, so whether these carry a
+        # theorem was not measured on this run.
+        print(
+            "FRAME CONDITIONS LEFT UNDECIDED (the countermodel search did not settle; "
+            f"this is not a finding that they are inert): {frames['conditions_left_undecided']}"
+        )
         return 3
     if not space["every_triple_reached"]:
         print(f"ARGUMENT TRIPLES STILL UNREACHED: {space['unreached']}")
