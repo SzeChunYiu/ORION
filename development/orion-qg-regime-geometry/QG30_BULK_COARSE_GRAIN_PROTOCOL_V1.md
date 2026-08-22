@@ -1,7 +1,7 @@
 # ORION-QG QG-30 — exact 45-bin bulk coarse-graining and bulk/defect scale separation V1
 
 Date: 2026-08-22
-Issue: #892
+Issue: #893
 Parent programme: #740
 Execution branch: `codex/orion-qg-qg30-bulk-coarse-grain-20260822`
 Direct parents:
