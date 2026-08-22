@@ -863,19 +863,23 @@ def test_committed_ledger_classifies_every_blocked_terminal() -> None:
     """Every blocked terminal says why, and the blocked count is pinned.
 
     The count was 49 of 51 until the three formal-generalization papers were
-    adjudicated on their own terms. P6-U-T1, P6-U-T2, P7-U-T1 and P8-U-T1 are
-    discharged by mechanized theorems, which is what those gates admit; the
-    blockers written against them had been asking for evaluator custody, and
-    custody is a precondition of an empirical campaign, not of a proof. The
-    number is pinned rather than computed so that a terminal moving in either
-    direction has to be noticed here.
+    adjudicated on their own terms. P6-U-T1, P6-U-T2, P7-U-T1, P7-U-T2 and
+    P8-U-T1 are discharged by mechanized theorems, which is what those gates
+    admit; the blockers written against them had been asking for evaluator
+    custody, and custody is a precondition of an empirical campaign, not of a
+    proof. P7-U-T2 came last and cost the most: it was blocked a second time
+    after the derivation existed, because the finite result it derived turned
+    out to evaluate its composition rule at two of eight argument triples, and
+    it moved only once the donor families were interpreted as transformations
+    with their own hand-off contracts. The number is pinned rather than computed
+    so that a terminal moving in either direction has to be noticed here.
     """
 
     ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
     for paper in ledger.papers:
         assert paper.unclassified_blocked_gate_ids() == (), paper.paper_id
     total = sum(len(paper.work_queue()) for paper in ledger.papers)
-    assert total == 45, "45 of the 51 registered terminals are blocked"
+    assert total == 44, "44 of the 51 registered terminals are blocked"
 
 
 def test_committed_ledger_pins_the_p1_diagnosis() -> None:
@@ -929,12 +933,12 @@ def test_report_emits_a_cross_paper_work_queue() -> None:
     ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
     report = build_report(ledger)
     queue = report["work_queue"]
-    assert len(queue) == 45
+    assert len(queue) == 44
     ranks = [Actionability(item["actionability"]).queue_rank for item in queue]
     assert ranks == sorted(ranks), "the queue must be ordered by actionability"
     assert all({"paper_id", "gate_id", "responsibility", "unblock"} <= set(item) for item in queue)
-    assert sum(report["work_queue_by_actionability"].values()) == 45
-    assert sum(report["work_queue_by_responsibility"].values()) == 45
+    assert sum(report["work_queue_by_actionability"].values()) == 44
+    assert sum(report["work_queue_by_responsibility"].values()) == 44
 
 
 def test_ledger_document_counts_match_the_report() -> None:

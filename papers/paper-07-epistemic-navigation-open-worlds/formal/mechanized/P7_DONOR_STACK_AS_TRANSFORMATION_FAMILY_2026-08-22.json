@@ -1,0 +1,354 @@
+{
+  "all_discharged": true,
+  "argument_space": {
+    "argument_triples_possible": 8,
+    "argument_triples_reached": 8,
+    "differential": {
+      "agreed": true,
+      "agreements": 204800,
+      "disagreements": [],
+      "exercised_both_verdicts": true,
+      "informative": true,
+      "positive_trials": 25,
+      "trials": 204800
+    },
+    "evaluations_per_triple": {
+      "000": 99225,
+      "001": 99225,
+      "010": 1575,
+      "011": 1575,
+      "100": 1575,
+      "101": 1575,
+      "110": 25,
+      "111": 25
+    },
+    "every_triple_reached": true,
+    "reading": "204800 evaluations of the committed compose over 8 of 8 argument triples, against the rule the calculus proves. The shipped result reaches two of these triples; the six it does not are the ones where a leg fails to carry, and they are covered by A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES and A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES at arbitrary width. The corpus is heavily skewed: 25 of 204800 rows compose successfully, one per ordered donor pair, because a leg carries only at the single all-holding closure vector. Both verdicts occur, which is what the differential needs, but the per-triple counts are reported rather than summarised so the skew is visible. This enumeration is not part of P7's published result and does not become part of it by being run here.",
+    "unreached": []
+  },
+  "committed_result": "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json",
+  "date": "2026-08-22",
+  "executable_model": "research/claim_expansion/p7/check_p7_x2_closure_carrying.py",
+  "frame_conditions": {
+    "baseline_discharged": [
+      "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES",
+      "A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES",
+      "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE",
+      "BRIDGED_DONOR_HANDOFF_COMPOSES",
+      "BRIDGED_SUCCESS_IS_NOT_VACUOUS",
+      "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED",
+      "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT",
+      "NO_IDENTITY_IS_A_DONOR_IS_DERIVED",
+      "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE",
+      "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR",
+      "UNBRIDGED_DONOR_HANDOFF_REFUSES",
+      "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS"
+    ],
+    "drop_timeout_ms": 3000,
+    "every_condition_carries_a_theorem": true,
+    "headroom_factor": 1.8,
+    "headroom_note": "Every theorem that is discharged anywhere in these runs is discharged in 1.6555s against a drop budget of 3.0s, a factor of 2. A loss recorded here is a claim the solver could not close in that much more time than the proofs need, not a claim it was rushed on.",
+    "inert_conditions": [],
+    "outcome_when_dropped": {
+      "distinct_donors_have_distinct_endpoints": {
+        "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
+        "A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
+        "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE": "PROVED",
+        "BRIDGED_DONOR_HANDOFF_COMPOSES": "PROVED",
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS": "PROVED",
+        "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED": "PROVED",
+        "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT": "PROVED",
+        "NO_IDENTITY_IS_A_DONOR_IS_DERIVED": "PROVED",
+        "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE": "PROVED",
+        "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR": "UNKNOWN",
+        "UNBRIDGED_DONOR_HANDOFF_REFUSES": "PROVED",
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": "PROVED"
+      },
+      "handoffs_are_never_contract_identities": {
+        "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
+        "A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
+        "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE": "UNKNOWN",
+        "BRIDGED_DONOR_HANDOFF_COMPOSES": "PROVED",
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS": "PROVED",
+        "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED": "UNKNOWN",
+        "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT": "UNKNOWN",
+        "NO_IDENTITY_IS_A_DONOR_IS_DERIVED": "UNKNOWN",
+        "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE": "UNKNOWN",
+        "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR": "PROVED",
+        "UNBRIDGED_DONOR_HANDOFF_REFUSES": "UNKNOWN",
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": "UNKNOWN"
+      },
+      "the_donor_stack_is_inhabited": {
+        "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
+        "A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
+        "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE": "PROVED",
+        "BRIDGED_DONOR_HANDOFF_COMPOSES": "PROVED",
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS": "COUNTEREXAMPLE",
+        "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED": "PROVED",
+        "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT": "PROVED",
+        "NO_IDENTITY_IS_A_DONOR_IS_DERIVED": "PROVED",
+        "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE": "PROVED",
+        "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR": "PROVED",
+        "UNBRIDGED_DONOR_HANDOFF_REFUSES": "PROVED",
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": "COUNTEREXAMPLE"
+      }
+    },
+    "rejected_candidate_conditions": [
+      "no_identity_is_a_donor",
+      "composite_handoffs_are_separated_too"
+    ],
+    "slowest_discharged_seconds": 1.6555,
+    "the_rejected_candidates_are_inert": true,
+    "theorems_gained_by_adding_the_candidates": [],
+    "theorems_lost_by_dropping": {
+      "distinct_donors_have_distinct_endpoints": [
+        "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR"
+      ],
+      "handoffs_are_never_contract_identities": [
+        "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE",
+        "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED",
+        "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT",
+        "NO_IDENTITY_IS_A_DONOR_IS_DERIVED",
+        "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE",
+        "UNBRIDGED_DONOR_HANDOFF_REFUSES",
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS"
+      ],
+      "the_donor_stack_is_inhabited": [
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS",
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS"
+      ]
+    }
+  },
+  "interpretation_sensitivity": {
+    "counts_alone_identify_the_interpretation": false,
+    "every_indistinguishable_assignment_is_caught_by_a_theorem": true,
+    "of_those_caught_by_the_distinct_handoff_count": [
+      "one_input_and_one_output_contract",
+      "one_shared_output_contract"
+    ],
+    "registries_that_move_the_success_count": [
+      "no_handoff_registered",
+      "one_handoff_registered",
+      "only_self_handoffs_registered"
+    ],
+    "registries_that_would_separate_the_indistinguishable_assignments": [
+      "one_handoff_registered",
+      "only_self_handoffs_registered"
+    ],
+    "variants": {
+      "endomorphic_donors": {
+        "composites_that_carry_by_registry": {
+          "every_handoff_registered": 25,
+          "no_handoff_registered": 5,
+          "one_handoff_registered": 6,
+          "only_self_handoffs_registered": 5
+        },
+        "composition_bridge_countermodels": 20,
+        "composition_successes": 25,
+        "distinct_handoffs_visited": 25
+      },
+      "one_input_and_one_output_contract": {
+        "composites_that_carry_by_registry": {
+          "every_handoff_registered": 25,
+          "no_handoff_registered": 0,
+          "one_handoff_registered": 25,
+          "only_self_handoffs_registered": 25
+        },
+        "composition_bridge_countermodels": 25,
+        "composition_successes": 25,
+        "distinct_handoffs_visited": 1
+      },
+      "one_shared_contract": {
+        "composites_that_carry_by_registry": {
+          "every_handoff_registered": 25,
+          "no_handoff_registered": 25,
+          "one_handoff_registered": 25,
+          "only_self_handoffs_registered": 25
+        },
+        "composition_bridge_countermodels": 0,
+        "composition_successes": 25,
+        "distinct_handoffs_visited": 1
+      },
+      "one_shared_output_contract": {
+        "composites_that_carry_by_registry": {
+          "every_handoff_registered": 25,
+          "no_handoff_registered": 0,
+          "one_handoff_registered": 5,
+          "only_self_handoffs_registered": 25
+        },
+        "composition_bridge_countermodels": 25,
+        "composition_successes": 25,
+        "distinct_handoffs_visited": 5
+      },
+      "pipeline_chained": {
+        "composites_that_carry_by_registry": {
+          "every_handoff_registered": 25,
+          "no_handoff_registered": 4,
+          "one_handoff_registered": 5,
+          "only_self_handoffs_registered": 9
+        },
+        "composition_bridge_countermodels": 21,
+        "composition_successes": 25,
+        "distinct_handoffs_visited": 25
+      },
+      "separated_handoffs": {
+        "composites_that_carry_by_registry": {
+          "every_handoff_registered": 25,
+          "no_handoff_registered": 0,
+          "one_handoff_registered": 1,
+          "only_self_handoffs_registered": 5
+        },
+        "composition_bridge_countermodels": 25,
+        "composition_successes": 25,
+        "distinct_handoffs_visited": 25
+      }
+    },
+    "what_pins_the_donor_indexing": "The theorem, not the counts. Two readings in which the 5x5 loop visits 1 and 5 distinct hand-offs reproduce both published counts exactly, so the counts do not establish that the donor axis indexes anything. THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR does, it is the theorem lost by dropping distinct_donors_have_distinct_endpoints, and the distinct hand-off count is reported per assignment above so this is a measurement rather than an argument. What would have settled it empirically is a registry that bridges some hand-offs and not others: one_handoff_registered, only_self_handoffs_registered separates the interpretation from both impostors. P7 shipped neither.",
+    "what_the_countermodel_count_tests": "Exactly the first frame condition and nothing more. 25 countermodels under an empty registry is the statement that no donor's target contract is any donor's source contract; one shared contract returns 0, endomorphic donors return 20 and a chained pipeline returns 21. P7's published number and the frame condition are the same assertion, which is why the condition is not a choice this module made.",
+    "what_the_success_count_tests": "Nothing about the contracts. Every assignment tried returns 25 under a registry that bridges every hand-off, because a full registry satisfies the match test whatever the contracts are. What it tests is the registry: it moves under every other registry tried -- no_handoff_registered, one_handoff_registered, only_self_handoffs_registered -- so 25 successes is the statement that the registry bridges all 25 hand-offs and says nothing about which hand-offs those are.",
+    "wrong_assignments_that_move_a_published_count": [
+      "endomorphic_donors",
+      "one_shared_contract",
+      "pipeline_chained"
+    ],
+    "wrong_assignments_the_counts_cannot_distinguish": [
+      "one_input_and_one_output_contract",
+      "one_shared_output_contract"
+    ]
+  },
+  "not_licensed": [
+    "any claim that the published counts reach more than two of compose's eight argument triples; reproducing 25 and 25 requires two uniform registries over an all-carrying stack, so the recomputation reaches exactly the two the shipped runner reaches. The other six are exercised here and are not part of P7's published result",
+    "any claim that 25 successes tests the interpretation; every contract assignment tried returns 25 under a registry that bridges everything",
+    "any claim that the published counts establish that the five families are distinct transformations; two readings collapsing the stack to one and to five distinct hand-offs reproduce both counts, and only the theorem separates them",
+    "any claim that P7's other two donor-looped counts are what their size suggests; measured here by running the committed carries at one donor and at five, the 155 full refinements and 1,055 proper-subset failures are 31 and 211 replicated by a loop that enters neither the closure vector nor the repair set. That half of the artifact is P7-U-T1's and is context here",
+    "any claim that this repairs the committed artifact; research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json still records counts produced by a loop whose third argument is a literal, and that file is unchanged",
+    "independent review: the interpretation, the theorems and the tests were written in the same lane as the model, which is P7-U-T5",
+    "any empirical claim whatsoever; nothing here is measured on a pipeline"
+  ],
+  "published_counts": {
+    "argument_triples_possible": 8,
+    "argument_triples_reached": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "closure_coordinates": 5,
+    "composition_bridge_countermodels": 25,
+    "composition_successes": 25,
+    "computed_by": "the committed check_p7_x2_closure_carrying.carries and .compose, with bridge_match computed from the interpretation rather than supplied",
+    "countermodel_failures": [],
+    "counts_reproduced": true,
+    "distinct_handoffs_visited": 25,
+    "donors": 5,
+    "published_composition_bridge_countermodels": 25,
+    "published_composition_successes": 25,
+    "success_failures": [],
+    "the_refinement_counts_are_a_separate_object": {
+      "full_refinement_successes_at_one_donor": 31,
+      "full_refinement_successes_at_the_committed_stack": 155,
+      "proper_subset_failures_at_one_donor": 211,
+      "proper_subset_failures_at_the_committed_stack": 1055,
+      "reading": "155 and 1055 are 31 and 211 counted 5 times: the donor loop enters neither the closure vector nor the repair set, so the five families replicate the single-donor result rather than extending it. Measured by running the committed carries at both donor counts, not inferred from the loop's shape.",
+      "the_donor_axis_is_a_multiplier": true
+    },
+    "what_the_donor_loop_now_does": "The loop visits 25 distinct hand-off contract pairs and the registry decides each one separately, so the donor pair is an input to the verdict rather than an unused loop variable. It is still the case that only 2 of 8 argument triples are reached, and that is now a fact about the registries rather than about the loop: reproducing 25 successes needs every hand-off bridged and reproducing 25 countermodels needs none bridged, and both of P7's published registries are uniform over an all-carrying stack. The 25 rows are 25 distinct hand-offs; they are still 25 agreeing verdicts."
+  },
+  "record": "P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY",
+  "schema_version": "orion.p7.donor-stack-as-transformation-family.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "BRIDGED_DONOR_HANDOFF_COMPOSES",
+      "outcome": "PROVED",
+      "statement": "for any two donors that carry closure, a registered bridge between the contract the first emits and the contract the second consumes is enough for the composite to carry -- for a donor stack of any size over a coordinate sort of any size",
+      "why_it_matters": "This is the general form of P7's 25 composition successes. The committed loop establishes it for one argument triple; here it is a statement about every pair of transformations in an uninterpreted sort, with the bridge read off the two transformations rather than supplied by the caller."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "UNBRIDGED_DONOR_HANDOFF_REFUSES",
+      "outcome": "PROVED",
+      "statement": "for any two donors, if no bridge is registered between the contract the first emits and the contract the second consumes then the composite does not carry closure, however good both legs are",
+      "why_it_matters": "The general form of P7's 25 bridge countermodels, and the half that carries the claim: donor-visible composability is not closure. Note the frame condition it needs -- without separated hand-offs the exact-contract disjunct of the match test fires and the refusal is false."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE",
+      "outcome": "PROVED",
+      "statement": "a donor composed with itself carries closure only if a bridge is registered from its own target contract back to its own source contract",
+      "why_it_matters": "The five diagonal rows of P7's 5x5 loop. They are the rows most easily lost: under any reading in which a donor consumes what it produces, the match test succeeds by reflexivity and `assert not compose(c1, c2, False)` has no model at all. The shipped result asserts it for the diagonal too, which is why the interpretation has to separate the hand-offs and why that is not a free choice."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES",
+      "outcome": "PROVED",
+      "statement": "if the first leg does not carry closure the composite does not carry it, whatever the second leg is and whatever the registry says",
+      "why_it_matters": "Four of the six argument triples the shipped composition loop never evaluates. P7's published result contains no row in which a leg fails, so this is not a generalisation of anything it measured -- it is the part of the calculus that says what would have happened if it had."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES",
+      "outcome": "PROVED",
+      "statement": "if the second leg does not carry closure the composite does not carry it, whatever the first leg is and whatever the registry says",
+      "why_it_matters": "The remaining two unreached argument triples. Stated separately from the left leg because a composition rule that was asymmetric in its legs would fail exactly one of the two, and a single symmetric statement would hide which."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR",
+      "outcome": "PROVED",
+      "statement": "distinct ordered donor pairs present distinct hand-offs: if two pairs agree on the emitted contract and on the consumed contract then they are the same pair",
+      "why_it_matters": "This is the formal content of 'the donor loop stops being a multiplier'. Without it the 5x5 loop can visit one hand-off twenty-five times and every published count comes out the same -- which two of the wrong interpretations below actually do. The counts cannot see the difference; this theorem can."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT",
+      "outcome": "PROVED",
+      "statement": "two donor pairs whose hand-offs the registry decides differently have composites that carry differently: the verdict tracks the pair",
+      "why_it_matters": "The other half of the same point. It is not enough that the loop visits distinct hand-offs; the verdict has to depend on which one it is at. Under the committed model it provably cannot, because `bridge_match` is a literal. Under the interpretation it does."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS",
+      "outcome": "PROVED",
+      "statement": "on an inhabited donor stack that carries closure and has no bridge registered between any of its hand-offs, some ordered pair of carrying donors has a composite that does not carry",
+      "why_it_matters": "A refusal theorem quantified over an empty stack is a theorem about nothing, and that is the exact shape of failure this repository's guards are built for. This says the 25 countermodels have witnesses rather than assuming they do."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "BRIDGED_SUCCESS_IS_NOT_VACUOUS",
+      "outcome": "PROVED",
+      "statement": "on an inhabited donor stack that carries closure and has every hand-off bridged, some ordered pair of donors has a composite that carries",
+      "why_it_matters": "The same guard on the positive side. Kept separate because a stack can be inhabited by transformations that do not carry, in which case the successes would be vacuous while the refusals were not."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "NO_IDENTITY_IS_A_DONOR_IS_DERIVED",
+      "outcome": "PROVED",
+      "statement": "no identity transformation is a donor. This was a candidate fourth frame condition; it is a consequence of separated hand-offs and is discharged here rather than assumed",
+      "why_it_matters": "An axiom no theorem needs is decoration, and a redundant presentation of an axiom that is working looks identical to it from inside. Deriving this settles which: the interpretation rests on three conditions, and the plausible fourth is a theorem about them."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED",
+      "outcome": "PROVED",
+      "statement": "the composite of two donors emits a contract that is no donor's source contract either, so a chain never acquires a hand-off the stack did not have",
+      "why_it_matters": "The other candidate axiom, and the one that would have been tempting to state in order to reach the chain theorem. It is not needed: a composite's target is its last leg's target, which is a structural axiom of the calculus, so the separation transports for free."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE",
+      "outcome": "PROVED",
+      "statement": "a chain of three donors carries closure exactly when all three legs carry and both interior hand-offs are bridged -- one missing bridge anywhere in the chain refuses the whole chain",
+      "why_it_matters": "P7's published composition result is about pairs. This is the first length at which a chain has an interior, and it is where a rule that checked only its endpoints would diverge from one that checks every hand-off."
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "P7's five donor families are interpreted as a transformation family in the calculus P7-U-T1 proved: each family is a transformation with its own source and target obligation contracts, and the bridge_match the committed runner types as a literal becomes Match(Tgt t, Src u), computed from the two transformations and the registered bridge relation. Under three frame conditions -- hand-offs are never contract identities, distinct families have distinct endpoints, the stack is inhabited -- twelve theorems are discharged by Z3 over uninterpreted transformation, contract, coordinate and obligation sorts, for a donor stack of any size: a bridged hand-off composes, an unbridged one refuses, a donor composed with itself still needs a bridge, either leg failing refuses, the hand-off identifies the donor pair, distinct hand-offs can differ in verdict, both halves are non-vacuous on an inhabited stack, and a three-donor chain needs every interior bridge. Two further conditions were written as axioms first, came back inert, and are discharged as theorems instead -- and adding them back is re-measured on every run, so that they make nothing newly provable is a result rather than a memory. P7's published 25 composition successes and 25 bridge countermodels are then recomputed by running the committed carries and compose with the hand-off computed rather than supplied, so the counts are output of the shipped implementation under the interpretation. The six argument triples the shipped loop never reaches are covered by theorem and exercised on the committed functions over 204800 evaluations spanning all eight triples. Three limits are measured rather than implied. The countermodel count is exactly the first frame condition, so that condition is P7's own assertion and not this module's choice. The success count discriminates nothing about the contracts: every assignment tried returns 25 under a full registry. And the counts cannot see the second frame condition at all -- two readings in which the 5x5 loop visits one and five distinct hand-offs reproduce both published numbers -- so what establishes that the donor axis indexes anything is THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR and the measured hand-off count, not the published pair."
+}
