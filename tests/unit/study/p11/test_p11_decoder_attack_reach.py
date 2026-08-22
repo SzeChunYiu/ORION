@@ -486,8 +486,20 @@ def test_the_paper_states_the_arm_dependence_in_its_own_prose():
     """
 
     manuscript = (p11.PAPER_DIR / "MANUSCRIPT.md").read_text(encoding="utf-8")
-    chapter_path = p11.PAPER_DIR / "paper/chapters/05-hostile-decoder-substitution.md"
+    chapter_path = (
+        p11.PAPER_DIR / "manuscript/sections/05-hostile-decoder-substitution.md"
+    )
     chapter = chapter_path.read_text(encoding="utf-8")
+
+    # The chapter reaches the PDF through a two-line .tex shim, so the .md is the
+    # published surface and not a second copy of it. Asserting the shim still
+    # points here is what stops the two from forking into a file readers see and
+    # a file this test reads -- and this assertion exists because the path above
+    # was stale from the tree move in 4dc4f50 until 2026-08-22, so the test
+    # raised FileNotFoundError rather than checking anything. The disclosure
+    # survived that gap intact; nothing was enforcing that it would.
+    shim = chapter_path.with_suffix(".tex").read_text(encoding="utf-8")
+    assert f"\\markdownInput{{sections/{chapter_path.name}}}" in shim
     ledger = (p11.PAPER_DIR / "CLAIM_EVIDENCE_LEDGER.md").read_text(encoding="utf-8")
 
     for text in (manuscript, chapter):
