@@ -2,7 +2,9 @@
   "artifacts": {
     "comparison_resolution_audit": "evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json",
     "deep_official_archive": "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
+    "deep_stage_attribution": "evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
     "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
+    "lexical_echo_successor": "evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
     "metasyn_fn_ledger": "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json",
     "metasyn_probe": "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
     "offline_gold_manifest": "evidence/offline_gold/MANIFEST.json",
@@ -2033,6 +2035,220 @@
         }
       ],
       "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R61",
+      "manuscript_status": "ASSERTED",
+      "note": "Candidate generation is the failing stage, not judging. A judge-free string matcher recovers almost nothing from the candidate sets themselves.",
+      "numeric_bindings": [
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.total_candidate_titles"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.items_with_reference_and_candidates"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.exact_title_recoveries"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.substring_recoveries"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.token_overlap_ge_0.5_recoveries"
+        }
+      ],
+      "region": "results",
+      "sentence": "A judge-free stage attribution over the same archive compared all 10,850 returned candidate titles against the 564 tasks that carried both a reference and candidates: exact-title recovery 0, substring recovery 0, and token-overlap recovery at a half-token threshold on 8 of them.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.total_items"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "conclusion"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R62",
+      "manuscript_status": "ASSERTED",
+      "note": "A description of the frozen successor rule. Its two thresholds are stated in words rather than as figures, so the sentence carries no numeric slot; the document-frequency ceiling it names is bound as a support artifact.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The successor, D4_DISCRIMINATIVE_TERM_GATING, uses index statistics only--never the gold set, the target, or the task family--discarding question terms whose document frequency exceeds five percent of the corpus, ranking the survivors by inverse document frequency at the baseline's own query width, and demoting rather than deleting documents that agree on fewer than two discriminative terms.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "world_precondition.max_content_df_fraction"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "world_precondition.passed"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R63",
+      "manuscript_status": "ASSERTED",
+      "note": "Scoped CONSTRUCTED_REPRODUCTION_ONLY. The corpus is authored so the mechanism is present by construction; this is not evidence about any external benchmark.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "world_precondition.documents"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.S1_D4_DISCRIMINATIVE_TERM_GATING.tasks"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.S1_D4_DISCRIMINATIVE_TERM_GATING.hit_at_1"
+        }
+      ],
+      "region": "results",
+      "sentence": "On an authored corpus of 2,760 documents in which the named mechanism is present by construction and the denominator is complete, the current mechanic recovers the target for none of the 120 echo tasks within the top ten while the successor recovers all of them, at a rank-one recovery rate of 0.983.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.B0_CURRENT_D1_UNWEIGHTED.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.S1_D4_DISCRIMINATIVE_TERM_GATING.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "verdict"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R64",
+      "manuscript_status": "ASSERTED",
+      "note": "b=0 and c=120: no task moved against the successor. The p-value is bound as support rather than printed, since its exponent cannot be a numeric slot.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.discordant"
+        }
+      ],
+      "region": "results",
+      "sentence": "The paired McNemar test over those tasks is discordant on 120 pairs, every one of them favouring the successor.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.b"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.c"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.p_value"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R65",
+      "manuscript_status": "ASSERTED",
+      "note": "The guard's own vacuity flag is false and its measured loss is zero. A harm guard on a slice the baseline already fails would test nothing.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.no_echo.B0_CURRENT_D1_UNWEIGHTED.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.no_echo.B0_CURRENT_D1_UNWEIGHTED.tasks"
+        }
+      ],
+      "region": "results",
+      "sentence": "The harm guard is not vacuous: the current mechanic already scores 1.000 on the 60 tasks written without echo, and the successor does not damage them.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G3_HARM.vacuous"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G3_HARM.loss"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R66",
+      "manuscript_status": "ASSERTED",
+      "note": "Separates the successor's gain from ordinary term weighting. Non-blocking gate.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.B1_CURRENT_D1_BM25.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.B1_CURRENT_D1_BM25.hit_at_1"
+        }
+      ],
+      "region": "results",
+      "sentence": "BM25 over the same query recovers much of the top-ten rate (0.633) but almost none of the rank-one rate (0.0083), so the query-side gate rather than document-side weighting is what carries rank one.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G4_MARGINAL_OVER_BM25.margin"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G4_MARGINAL_OVER_BM25.blocking"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R67",
+      "manuscript_status": "ASSERTED",
+      "note": "The control's own construction defect is recorded in the artifact: four of the forty tasks leak a content token through a non-disjoint synonym map, reported and not repaired. Non-blocking.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.paraphrase_gap.S1_D4_DISCRIMINATIVE_TERM_GATING.tasks"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G5_SPECIFICITY.gain"
+        }
+      ],
+      "region": "results",
+      "sentence": "A pre-registered specificity control behaves as required: on 40 tasks whose question and target share no content token, the successor gains exactly 0.000, confirming the arena isolates the lexical mechanism instead of rewarding the successor generally.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G5_SPECIFICITY.blocking"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "known_construction_defects"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
     }
   ],
   "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",

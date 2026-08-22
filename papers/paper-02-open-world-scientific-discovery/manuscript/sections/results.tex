@@ -237,10 +237,10 @@ find.  No absent credential is converted into a negative outcome or a zero-cost
 measurement.
 
 That zero was then diagnosed rather than left standing.  A judge-free stage
-attribution over the same archive compared all 10{,}850 returned candidate
-titles against the 564 tasks that carried both a reference and candidates:
-exact-title recovery 0, substring recovery 0, and token-overlap recovery at
-threshold 0.5 on 8 of 564, a rate of 0.0142.  Because a plain string matcher
+attribution over the same archive compared all 10,850 returned candidate titles
+against the 564 tasks that carried both a reference and candidates: exact-title
+recovery 0, substring recovery 0, and token-overlap recovery at a half-token
+threshold on 8 of them.  Because a plain string matcher
 recovers almost nothing from the candidate sets themselves, the failing stage is
 candidate \emph{generation} and not scoring, judging, or reference formatting.
 The attribution names a specific mechanism: questions whose incidental
@@ -257,13 +257,16 @@ gold set, the target, or the task family---discarding question terms whose
 document frequency exceeds five percent of the corpus, ranking the survivors by
 inverse document frequency at the baseline's own query width, and demoting rather
 than deleting documents that agree on fewer than two discriminative terms.  On an
-authored corpus of 2{,}760 documents in which the named mechanism is present by
+authored corpus of 2,760 documents in which the named mechanism is present by
 construction and the denominator is complete, the current mechanic recovers the
-target for 0 of 120 echo tasks at rank 10 while the successor recovers 120 of 120
-(hit@1 0.983; McNemar $b=0$, $c=120$, $p=1.5\times10^{-36}$).  The harm guard is
+target for none of the 120 echo tasks within the top ten while the successor
+recovers all of them, at a rank-one recovery rate of 0.983.  The paired McNemar
+test over those tasks is discordant on 120 pairs, every one of them favouring
+the successor.  The harm guard is
 not vacuous: the current mechanic already scores 1.000 on the 60 tasks written
 without echo, and the successor does not damage them.  BM25 over the same query
-recovers much of hit@10 (0.633) but almost none of hit@1 (0.0083), so the
+recovers much of the top-ten rate (0.633) but almost none of the rank-one rate
+(0.0083), so the
 query-side gate rather than document-side weighting is what carries rank one.  A
 pre-registered specificity control behaves as required: on 40 tasks whose
 question and target share no content token, the successor gains exactly 0.000,
