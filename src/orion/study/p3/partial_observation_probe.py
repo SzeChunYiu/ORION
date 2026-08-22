@@ -56,6 +56,29 @@ decisions" can only be left alone or failed by a corpus added to it, never
 passed, so supplying its denominator cannot manufacture a positive --- and it
 does not: A1 destroys correct answers over it, and G6 fails on evidence.
 
+**Amendment 002 (2026-08-22).** Amendment 001 measured A1 and A1 failed: it
+abstains on the *presence* of a one-sided absence, so on the twelve
+``H_UNDECISIVE_ABSENCE`` pairs --- where a higher-precedence coordinate already
+decides and the absent one could not have changed the answer --- it destroys an
+answer ``compare_meaning`` already had right. That is a defect in A1's design.
+What warrants abstention is not that a source was silent but that the silence is
+what the answer turns on, and this amendment adds the arm that decides that way:
+``A3_decisive_absence_only`` runs ``compare_meaning`` over every admissible
+completion of every one-sided absence and abstains only when the completions
+disagree. A1 and A2 stay exactly where they are --- A1's measured harm is a
+finding and has to stay reproducible --- and ``G6_HARM_A1`` keeps failing, for
+A1, with the same statement and the same threshold. The new arm gets its own
+gates.
+
+Those gates come back ``CANNOT_CHECK``, which is the point of adding them
+carefully. A3 destroys no correct answer anywhere in this repository and repairs
+nine of A0's, but the three corpora frozen on 2026-08-21 give it nothing to fire
+on, and ``research/p3-partial-observation-harm-v1/`` derives its gold by exactly
+the completion-invariance criterion A3 decides by --- so on the one corpus where
+A3 can fire, agreeing with gold is its definition restated. ``G9_HARM_A3``
+detects that by reading each corpus's declared gold-derivation rule rather than a
+hard-coded list, and refuses to report the zero as safety.
+
 Nothing here edits ``orion.knowledge.semantics``; the candidate rules are
 study-local arms. Nothing here edits a frozen atlas, result or receipt, and the
 2026-08-21 freeze document and its twin are left byte-identical.
@@ -69,8 +92,9 @@ Run it::
 from __future__ import annotations
 
 import argparse
+import itertools
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Callable
@@ -124,9 +148,23 @@ AMENDMENT_TWIN = (
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.json"
 )
 
-#: The twin the runner checks itself against. Points at the amendment while one
-#: is in force, so a digest drift is caught against the record actually running.
-FREEZE_TWIN = AMENDMENT_TWIN
+# Amendment 002 (2026-08-22) adds a fourth arm, A3_decisive_absence_only, and the
+# two gates that carry it. It does not touch G6_HARM_A1: A1's measured harm is a
+# finding, the gate that reports it names A1, and pointing a failing gate at a
+# different arm would be a relabelling rather than a repair. Amendment 001 and the
+# 2026-08-21 freeze are both left byte-identical.
+AMENDMENT_002_DOCUMENT = (
+    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.md"
+)
+AMENDMENT_002_TWIN = (
+    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.json"
+)
+
+#: The twin the runner checks itself against. Points at the amendment in force, so
+#: a digest drift is caught against the record actually running.
+FREEZE_TWIN = AMENDMENT_002_TWIN
 
 CLAIM_SCOPE = "PARTIAL_OBSERVATION_OF_FROZEN_ATLASES_ONLY"
 
@@ -211,6 +249,7 @@ Arm = Callable[[ScientificMeaningProjection, ScientificMeaningProjection], Meani
 ARM_CURRENT = "A0_orion_current"
 ARM_ASYMMETRIC = "A1_observedness_asymmetric"
 ARM_STRICT = "A2_observedness_strict"
+ARM_DECISIVE = "A3_decisive_absence_only"
 
 
 def arm_orion_current(
@@ -265,12 +304,120 @@ def arm_observedness_strict(
     return compare_meaning(left, right).relation
 
 
+#: The prefix every synthetic completion value carries, so a value invented by
+#: :func:`admissible_completions` can never be mistaken for one a source stated.
+COMPLETION_WITNESS_PREFIX = "orion:p3:completion-witness"
+
+
+def _differing_completion(coordinate: str, mirror: Any) -> Any:
+    """A value the silent source could have stated that is *not* the mirror's.
+
+    Derived from the coordinate's own type and from the value the other side
+    states, and from nothing else. In particular it is not drawn from any
+    corpus's vocabulary: a rule that asked "could the silence have hidden one of
+    *these* values" would be reading its answer off whichever table it was handed.
+    """
+
+    absent = ABSENT_VALUE[coordinate]
+    if isinstance(absent, tuple):
+        witness = (f"{COMPLETION_WITNESS_PREFIX}:{coordinate}",)
+        return witness if witness != mirror else (f"{COMPLETION_WITNESS_PREFIX}:{coordinate}:alt",)
+    if isinstance(absent, (Polarity, Modality)):
+        for value in type(absent):
+            if value is not absent and value != mirror:
+                return value
+        raise ValueError(f"{coordinate} has no value distinct from both absent and {mirror!r}")
+    witness = f"{COMPLETION_WITNESS_PREFIX}:{coordinate}"
+    return witness if witness != mirror else f"{COMPLETION_WITNESS_PREFIX}:{coordinate}:alt"
+
+
+def admissible_completions(
+    left: ScientificMeaningProjection, right: ScientificMeaningProjection
+) -> Iterator[tuple[ScientificMeaningProjection, ScientificMeaningProjection]]:
+    """Every pair the two sources' silences are compatible with.
+
+    For each coordinate stated on exactly one side, the silent source either
+    agreed with the other (the *mirror* completion) or did not (a *differing*
+    completion). Two witnesses per absence is not a sample: every branch of
+    ``compare_meaning`` tests an absent coordinate only for equality with the
+    mirror --- the three ``left.X and right.X`` guards, ``_same_or_empty``, the
+    ``modality`` inequality and the ``polarity`` inequality all do --- so the
+    relation, as a function of what the silent source might have said, takes at
+    most the two values these witnesses produce. A pair with no one-sided absence
+    has exactly one completion, itself.
+    """
+
+    absences = _one_sided_absences(left, right)
+    if not absences:
+        yield left, right
+        return
+    per_coordinate: list[tuple[tuple[str, str, Any], ...]] = []
+    for coordinate in absences:
+        if observed(left, coordinate):
+            silent_side, mirror = "right", getattr(left, coordinate)
+        else:
+            silent_side, mirror = "left", getattr(right, coordinate)
+        per_coordinate.append(
+            tuple(
+                (silent_side, coordinate, value)
+                for value in (mirror, _differing_completion(coordinate, mirror))
+            )
+        )
+    for combination in itertools.product(*per_coordinate):
+        left_overrides = {name: value for side, name, value in combination if side == "left"}
+        right_overrides = {name: value for side, name, value in combination if side == "right"}
+        yield (
+            replace(left, **left_overrides) if left_overrides else left,
+            replace(right, **right_overrides) if right_overrides else right,
+        )
+
+
+def arm_decisive_absence_only(
+    left: ScientificMeaningProjection, right: ScientificMeaningProjection
+) -> MeaningRelation:
+    """Abstain only when the absence changes the answer.
+
+    A1 abstains on the *presence* of a one-sided absence. That is a defect in A1's
+    design rather than in the measurement that caught it: what warrants abstention
+    is not that a source was silent but that the silence is what the answer turns
+    on. This arm runs ``compare_meaning`` over every admissible completion of every
+    one-sided absence and abstains only when the completions disagree; where they
+    agree, the silence could not have changed the relation and there is nothing to
+    abstain over.
+
+    It is defined in terms of ``compare_meaning`` --- the system under test --- and
+    the coordinate types, and it imports nothing from any corpus builder. That
+    matters: any corpus whose gold is *derived* by a completion-invariance rule
+    scores this arm against a restatement of its own definition, and this module
+    refuses to read a number off such a corpus (see ``G9_HARM_A3``).
+    """
+
+    relations = {
+        compare_meaning(completed_left, completed_right).relation
+        for completed_left, completed_right in admissible_completions(left, right)
+    }
+    if len(relations) == 1:
+        return relations.pop()
+    return MeaningRelation.UNRESOLVED
+
+
 ARMS: dict[str, Arm] = {
     ARM_CURRENT: arm_orion_current,
     ARM_ASYMMETRIC: arm_observedness_asymmetric,
     ARM_STRICT: arm_observedness_strict,
+    ARM_DECISIVE: arm_decisive_absence_only,
 }
-ARM_ORDER: tuple[str, ...] = (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
+ARM_ORDER: tuple[str, ...] = (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT, ARM_DECISIVE)
+
+#: The arms frozen on 2026-08-21 and amended on 2026-08-22 by amendment 001. The
+#: mining census of ``G5_MINING_YIELD`` is a published finding about *these*; it
+#: is computed over this tuple so that adding a candidate arm cannot retroactively
+#: move it. ``A3``'s own census is reported separately and in full.
+MINING_ARM_ORDER: tuple[str, ...] = (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
+
+#: Candidate repairs, i.e. every arm that is not the system under test. Harm is
+#: reported for each of them against ``A0_orion_current``.
+CANDIDATE_ARM_ORDER: tuple[str, ...] = (ARM_ASYMMETRIC, ARM_STRICT, ARM_DECISIVE)
 
 
 # --------------------------------------------------------------------------
@@ -601,17 +748,29 @@ FAILURE_KINDS = frozenset(
 )
 
 
-def mining_census(scored: Sequence[ScoredCase]) -> dict[str, Any]:
+def mining_census(
+    scored: Sequence[ScoredCase], *, arms: Sequence[str] = MINING_ARM_ORDER
+) -> dict[str, Any]:
     """Freeze section 7.1: for every failure, what could have told the pair apart.
 
     A non-empty ``discriminating_coordinates`` set means the failure is explained
     by a coordinate ORION already carries. An empty set means no coordinate in
     the representation can discriminate the pair, and the missing thing is not a
     dimension.
+
+    ``arms`` defaults to :data:`MINING_ARM_ORDER`, the three arms ``G5_MINING_YIELD``
+    was frozen over. Amendment 002 adds a fourth arm, and a published finding about
+    three arms may not silently become a finding about four: A3's census is
+    computed separately, reported in full on the gate, and pinned by a test, so
+    scoping is a way of keeping the old number honest rather than of hiding the
+    new one.
     """
 
+    admitted = set(arms)
     rows: list[dict[str, Any]] = []
     for item in scored:
+        if item.arm_id not in admitted:
+            continue
         if item.kind not in FAILURE_KINDS:
             continue
         coords = discriminating_coordinates(item.left, item.right)
@@ -680,7 +839,15 @@ def _over_resolution_rate(payload: Mapping[str, Any], arm: str) -> float | None:
 
 
 def harm_against_current(scored: Sequence[ScoredCase], arm_id: str) -> dict[str, Any]:
-    """How many intact decisions this arm moves, and how many correct ones it destroys."""
+    """How many intact decisions this arm moves, and how many correct ones it destroys.
+
+    ``pairs_a0_answers_correctly_with_a_one_sided_absence`` is the harm
+    denominator proper: a correct answer can only be destroyed on a pair A0
+    already answers correctly, and an observedness-sensitive arm can only move a
+    pair with an absence in it. A zero there means the corpus could not have
+    reported a harm whatever the arm did --- the same emptiness ``G6_HARM_A1``
+    carried before amendment 001, made visible per arm rather than inferred.
+    """
 
     baseline = {item.case_id: item for item in scored if item.arm_id == ARM_CURRENT}
     candidate = [item for item in scored if item.arm_id == arm_id]
@@ -691,13 +858,167 @@ def harm_against_current(scored: Sequence[ScoredCase], arm_id: str) -> dict[str,
         if baseline[item.case_id].predicted is baseline[item.case_id].gold
         and item.predicted is not item.gold
     ]
+    repaired = [
+        item
+        for item in changed
+        if baseline[item.case_id].predicted is not baseline[item.case_id].gold
+        and item.predicted is item.gold
+    ]
+    correct_and_partial = [
+        item
+        for item in candidate
+        if baseline[item.case_id].predicted is baseline[item.case_id].gold
+        and _one_sided_absences(item.left, item.right)
+    ]
     return {
         "arm_id": arm_id,
         "n_cases": len(candidate),
         "decisions_changed": len(changed),
         "fraction_changed": (len(changed) / len(candidate)) if candidate else None,
         "correct_answers_destroyed": len(destroyed),
+        "wrong_answers_repaired": len(repaired),
+        "pairs_a0_answers_correctly": sum(
+            1 for item in candidate if baseline[item.case_id].predicted is baseline[item.case_id].gold
+        ),
+        "pairs_a0_answers_correctly_with_a_one_sided_absence": len(correct_and_partial),
         "changed_case_ids": sorted(item.case_id for item in changed)[:8],
+    }
+
+
+def arm_disagreement(
+    scored: Sequence[ScoredCase], arm_id: str, other_arm_id: str
+) -> dict[str, Any]:
+    """On how many cases two arms name different relations, and who is right there.
+
+    A candidate repair that never differs from the arm it repairs has not been
+    shown to repair anything. This is the number that says whether a corpus can
+    tell them apart at all.
+    """
+
+    left = {item.case_id: item for item in scored if item.arm_id == arm_id}
+    right = {item.case_id: item for item in scored if item.arm_id == other_arm_id}
+    shared = sorted(set(left) & set(right))
+    differing = [case_id for case_id in shared if left[case_id].predicted is not right[case_id].predicted]
+    return {
+        "arm_id": arm_id,
+        "other_arm_id": other_arm_id,
+        "n_cases": len(shared),
+        "n_differing": len(differing),
+        "n_differing_where_this_arm_is_right": sum(
+            1
+            for case_id in differing
+            if left[case_id].predicted is left[case_id].gold
+            and right[case_id].predicted is not right[case_id].gold
+        ),
+        "n_differing_where_the_other_arm_is_right": sum(
+            1
+            for case_id in differing
+            if right[case_id].predicted is right[case_id].gold
+            and left[case_id].predicted is not left[case_id].gold
+        ),
+        "differing_case_ids": differing[:8],
+    }
+
+
+def exact_agreement_with_gold(scored: Sequence[ScoredCase], arm_id: str) -> dict[str, Any]:
+    """How often this arm names exactly the relation gold names.
+
+    Reported for a single purpose: an arm that reproduces gold on every case of a
+    corpus has zero harm there by arithmetic, so that zero carries no information
+    the accuracy number does not already carry. Where the corpus's gold is derived
+    by the same criterion the arm decides by, neither number is a measurement.
+    """
+
+    rows = [item for item in scored if item.arm_id == arm_id]
+    exact = [item for item in rows if item.predicted is item.gold]
+    return {
+        "arm_id": arm_id,
+        "n_cases": len(rows),
+        "n_exact": len(exact),
+        "reproduces_gold_on_every_case": bool(rows) and len(exact) == len(rows),
+    }
+
+
+#: A gold-derivation rule naming this criterion decides a case by asking whether
+#: the relation is constant over the admissible completions of what one source did
+#: not state --- which is exactly what ``arm_decisive_absence_only`` asks. A corpus
+#: declaring it cannot score that arm: the answer is the definition.
+DECISIVENESS_RULE_MARKER = "completion-invariance"
+
+#: What the freeze fixes as the gold of a probe case. Recorded as a rule string so
+#: probe corpora carry the same provenance field the intact corpora carry.
+PROBE_GOLD_DERIVATION_RULE = "freeze:probe-gold-is-unresolved-after-redaction"
+
+
+def gold_provenance(cases: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    """The derivation rules a corpus's own records declare for its gold.
+
+    Read off ``expected.authority.derivation.rule``, i.e. from the corpus rather
+    than from a table in this module keyed by corpus id. A hard-coded list of
+    "circular corpora" would go stale the moment one was added; a corpus that
+    declares how its gold was derived can be checked against a candidate arm's
+    criterion mechanically.
+    """
+
+    rules: set[str] = set()
+    declared = 0
+    for case in cases:
+        expected = case.get("expected")
+        if not isinstance(expected, Mapping):
+            continue
+        authority = expected.get("authority")
+        if not isinstance(authority, Mapping):
+            continue
+        derivation = authority.get("derivation")
+        if not isinstance(derivation, Mapping):
+            continue
+        rule = derivation.get("rule")
+        if rule:
+            declared += 1
+            rules.add(str(rule))
+    marked = sorted(rule for rule in rules if DECISIVENESS_RULE_MARKER in rule)
+    return {
+        "declared_rules": sorted(rules),
+        "n_cases_declaring_a_rule": declared,
+        "n_cases": len(cases),
+        "rules_naming_completion_invariance": marked,
+        "gold_derived_by_completion_invariance": bool(marked),
+    }
+
+
+def independent_harm_evidence(entry: Mapping[str, Any], arm_id: str) -> dict[str, Any]:
+    """Whether one corpus can say anything about this arm's harm that its gold
+    does not already entail.
+
+    Three ways it cannot. The corpus has no harm denominator, so no arm could
+    have reported a harm on it. Its gold is derived by the criterion the arm
+    decides by, so the arm's decisions are a restatement of gold. Or the arm
+    reproduces gold on every case, so its zero harm follows from a perfect score
+    rather than from a comparison. The last is deliberately conservative --- it can
+    only refuse a pass, never grant one --- because a harm gate that reports safety
+    it did not measure is the failure this whole lane exists to prevent.
+    """
+
+    harm = entry["harm_vs_current"][arm_id]
+    provenance = entry["gold_provenance"]
+    agreement = entry["exact_agreement_with_gold"][arm_id]
+    denominator = int(harm["pairs_a0_answers_correctly_with_a_one_sided_absence"])
+    circular_gold = bool(provenance["gold_derived_by_completion_invariance"])
+    reproduces = bool(agreement["reproduces_gold_on_every_case"])
+    reasons: list[str] = []
+    if denominator == 0:
+        reasons.append("NO_HARM_DENOMINATOR")
+    if circular_gold:
+        reasons.append("GOLD_DERIVED_BY_THE_CRITERION_THE_ARM_DECIDES_BY")
+    if reproduces:
+        reasons.append("ARM_REPRODUCES_GOLD_ON_EVERY_CASE")
+    return {
+        "harm_denominator": denominator,
+        "gold_derived_by_completion_invariance": circular_gold,
+        "declared_gold_rules": list(provenance["declared_rules"]),
+        "arm_reproduces_gold_on_every_case": reproduces,
+        "supplies_independent_evidence": not reasons,
+        "withheld_because": reasons,
     }
 
 
@@ -811,6 +1132,53 @@ GATES: dict[str, Any] = {
         "blocking": True,
         "fails_by_construction": True,
     },
+    "G9_HARM_A3": {
+        "statement": (
+            "A3_decisive_absence_only destroys 0 correct answers on every intact corpus, and "
+            "at least one intact corpus supplies independent evidence for that zero: it has a "
+            "harm denominator (a pair A0 answers correctly and A3 can fire on), its gold is not "
+            "derived by the completion-invariance criterion A3 decides by, and A3 does not "
+            "reproduce its gold on every case"
+        ),
+        "blocking": True,
+        "why_a_separate_gate": (
+            "G6_HARM_A1 names A1_observedness_asymmetric and reports a measured harm of 12 "
+            "destroyed answers. That is a finding. Repointing it at the arm that repairs A1 "
+            "would turn a failing gate into a passing one by changing its subject, which is "
+            "the relabelling this repository keeps finding. G6 keeps failing for A1; this "
+            "gate carries A3 and answers for A3 alone."
+        ),
+        "circularity_note": (
+            "research/p3-partial-observation-harm-v1/ derives its gold by "
+            "identity:observed-coordinate-precedence-with-completion-invariance --- abstain "
+            "where the admissible completions of the absent coordinate disagree. That is A3's "
+            "decision rule. On that corpus A3 agrees with gold by construction, so neither its "
+            "accuracy nor its harm there is a measurement of A3, and this gate refuses both. "
+            "The three corpora frozen on 2026-08-21 have no one-sided absence at all, so A3 "
+            "cannot fire on them and its zero there is structural, exactly the emptiness G6 "
+            "carried before amendment 001."
+        ),
+        "discharged_by": (
+            "an intact corpus with one-sided absences whose gold is fixed by adjudication or "
+            "by a rule that does not ask whether the completions agree, containing at least "
+            "one partially observed pair A0 answers correctly"
+        ),
+    },
+    "G10_BENEFIT_A3": {
+        "statement": (
+            "A3_decisive_absence_only's P3.OVERRESOLVED_UNRESOLVED_CASE violation rate is 0.0 "
+            "on every probe corpus, i.e. it still abstains everywhere the frozen probe gold "
+            "says abstention is right; and report whether any corpus separates A3 from A1"
+        ),
+        "max_violation_rate": 0.0,
+        "blocking": False,
+        "note": (
+            "probe gold is UNRESOLVED on every probe case, so an arm that abstains "
+            "unconditionally scores the same 0.0. A1 and A2 do. This gate therefore shows that "
+            "A3 keeps A1's intended benefit; it is not evidence that A3 is better than A1, and "
+            "the separation fields say so with a number."
+        ),
+    },
 }
 
 VERDICT_CHANNEL = "CHANNEL_OPENED_FAILURE_DEMONSTRATED"
@@ -842,7 +1210,8 @@ CANDIDATE_COORDINATE = {
 FROZEN_PARAMETERS: dict[str, Any] = {
     "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE",
     "freeze_document": FREEZE_DOCUMENT,
-    "amendment": {
+    "amendments": [
+    {
         "id": "AMENDMENT_001",
         "date": "2026-08-22",
         "document": AMENDMENT_DOCUMENT,
@@ -867,6 +1236,45 @@ FROZEN_PARAMETERS: dict[str, Any] = {
             "the 2026-08-21 freeze document and its twin, both byte-identical",
         ],
     },
+    {
+        "id": "AMENDMENT_002",
+        "date": "2026-08-22",
+        "document": AMENDMENT_002_DOCUMENT,
+        "reason": (
+            "G6_HARM_A1 came back FAIL on evidence: A1 abstains on the presence of a "
+            "one-sided absence, so on the twelve H_UNDECISIVE_ABSENCE pairs --- where the "
+            "absent coordinate is not what the answer turns on --- it destroys an answer A0 "
+            "already had right. That is a defect in A1's design, not in the measurement. The "
+            "science wants abstention when the absence changes the answer, and no arm on "
+            "record decides that way"
+        ),
+        "changes": [
+            "adds A3_decisive_absence_only, a fourth arm that abstains only when the "
+            "admissible completions of a one-sided absence disagree about the relation, "
+            "alongside A1 and A2 and replacing neither",
+            "adds G9_HARM_A3, which reports A3's harm and refuses to read it off a corpus "
+            "whose gold is derived by the criterion A3 decides by",
+            "adds G10_BENEFIT_A3, which reports whether A3 still abstains where the frozen "
+            "probe gold says abstention is right, and whether anything separates A3 from A1",
+            "records each corpus's declared gold-derivation rule and each arm's exact "
+            "agreement with gold, so the circularity check reads the corpus rather than a "
+            "hard-coded list of corpus ids",
+            "reports a harm denominator per arm per corpus: the pairs A0 answers correctly "
+            "that have a one-sided absence in them",
+            "scopes the G5_MINING_YIELD census to the three arms it was frozen over and "
+            "reports A3's census beside it, so a published three-arm finding does not "
+            "silently become a four-arm one",
+        ],
+        "unchanged": [
+            "G6_HARM_A1: same statement, same threshold, same arm, same FAIL",
+            "every other gate threshold and every gate's subject",
+            "the coordinate table, the absent-value table, A0, A1, A2 and the probe gold",
+            "the four corpora and every case in them",
+            "the 2026-08-21 freeze, its twin, and amendment 001 and its twin, all "
+            "byte-identical",
+        ],
+    },
+    ],
     "claim_scope": CLAIM_SCOPE,
     "coordinates": list(COORDINATES),
     "absent_values": {
@@ -875,6 +1283,11 @@ FROZEN_PARAMETERS: dict[str, Any] = {
     },
     "absence_reading_in_compare_meaning": dict(ABSENCE_READING),
     "arms": list(ARM_ORDER),
+    "mining_census_arms": list(MINING_ARM_ORDER),
+    "candidate_arms": list(CANDIDATE_ARM_ORDER),
+    "completion_witness_prefix": COMPLETION_WITNESS_PREFIX,
+    "decisiveness_rule_marker": DECISIVENESS_RULE_MARKER,
+    "probe_gold_derivation_rule": PROBE_GOLD_DERIVATION_RULE,
     "sides_per_redactable_pair": list(SIDES),
     "intact_sources": dict(INTACT_SOURCES),
     "symmetric_intact_sources": list(SYMMETRIC_INTACT_ORDER),
@@ -970,12 +1383,14 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
     }
 
     intact_pairs: dict[str, list[Any]] = {}
+    provenance: dict[str, dict[str, Any]] = {}
     probes: dict[str, tuple[ProbeCase, ...]] = {}
     sources: dict[str, Any] = {}
     for corpus_id, relative in INTACT_SOURCES.items():
         path = repo_root / relative
         cases = load_jsonl(path)
         intact_pairs[corpus_id] = _intact_pairs(cases)
+        provenance[corpus_id] = gold_provenance(cases)
         if corpus_id in PROBE_OF:
             probes[PROBE_OF[corpus_id]] = build_probe(cases, PROBE_OF[corpus_id])
         sources[corpus_id] = {
@@ -1016,12 +1431,20 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
             "kind": "INTACT",
             "n_cases": len(pairs),
             "one_sided_absence_census": one_sided_absence_census(pairs),
+            "gold_provenance": provenance[corpus_id],
             "by_arm": assess_corpus(corpus_id, ledger),
             "harm_vs_current": {
-                arm: harm_against_current(scored, arm)
-                for arm in (ARM_ASYMMETRIC, ARM_STRICT)
+                arm: harm_against_current(scored, arm) for arm in CANDIDATE_ARM_ORDER
+            },
+            "exact_agreement_with_gold": {
+                arm: exact_agreement_with_gold(scored, arm) for arm in ARM_ORDER
             },
             "mining_census": mining_census(scored),
+            "mining_census_a3": mining_census(scored, arms=(ARM_DECISIVE,)),
+            "arm_disagreement": {
+                arm: arm_disagreement(scored, ARM_DECISIVE, arm)
+                for arm in (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
+            },
         }
 
     for probe_id, probe in probes.items():
@@ -1033,11 +1456,36 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
             "n_cases": len(pairs),
             "redacted_coordinates": sorted({case.coordinate for case in probe}),
             "parent_gold_relations": sorted({case.parent_gold.value for case in probe}),
+            "gold_provenance": {
+                "declared_rules": [PROBE_GOLD_DERIVATION_RULE],
+                "n_cases_declaring_a_rule": len(pairs),
+                "n_cases": len(pairs),
+                "rules_naming_completion_invariance": [],
+                "gold_derived_by_completion_invariance": False,
+                "note": (
+                    "probe gold is fixed by the freeze, not derived from the completions. It "
+                    "is UNRESOLVED on every probe case, so an arm that abstains "
+                    "unconditionally is right on all of them; these corpora cannot separate "
+                    "an abstaining arm from a decisiveness-aware one, and A0 answers none of "
+                    "them correctly, so they carry no harm denominator either."
+                ),
+            },
+            "harm_vs_current": {
+                arm: harm_against_current(scored, arm) for arm in CANDIDATE_ARM_ORDER
+            },
+            "exact_agreement_with_gold": {
+                arm: exact_agreement_with_gold(scored, arm) for arm in ARM_ORDER
+            },
+            "arm_disagreement": {
+                arm: arm_disagreement(scored, ARM_DECISIVE, arm)
+                for arm in (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
+            },
         }
         if pairs:
             ledger = ledger_from_scored(probe_id, scored)
             entry["by_arm"] = assess_corpus(probe_id, ledger)
             entry["mining_census"] = mining_census(scored)
+            entry["mining_census_a3"] = mining_census(scored, arms=(ARM_DECISIVE,))
             parent_pairs = [
                 (case.case_id, case.left, case.right, case.parent_gold) for case in probe
             ]
@@ -1049,6 +1497,7 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
         else:
             entry["by_arm"] = {}
             entry["mining_census"] = mining_census(())
+            entry["mining_census_a3"] = mining_census(())
             entry["parent_gold_scoring"] = {}
         corpora[probe_id] = entry
 
@@ -1159,8 +1608,14 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
         b_outcome = Outcome.CANNOT_CHECK
     else:
         b_outcome = Outcome.PASS if not b_explained else Outcome.FAIL
+    a3_failures = [
+        row
+        for corpus_id in (*INTACT_ORDER, PROBE_DERIVATION, PROBE_HELDOUT_REAL, PROBE_HELDOUT_SYNTHETIC)
+        for row in corpora[corpus_id]["mining_census_a3"]["failures"]
+    ]
     gates["G5_MINING_YIELD"] = {
         "outcome": _worst([a_outcome, b_outcome]).value,
+        "census_arms": list(MINING_ARM_ORDER),
         "a_intact_failures": {
             "outcome": a_outcome.value,
             "n_failures": len(intact_failures),
@@ -1170,6 +1625,19 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
             "outcome": b_outcome.value,
             "n_over_resolutions": len(probe_over_resolutions),
             "n_explained_by_an_existing_coordinate": len(b_explained),
+        },
+        "c_arm_added_by_amendment_002": {
+            "arm_id": ARM_DECISIVE,
+            "n_failures": len(a3_failures),
+            "n_demanding_a_missing_coordinate": sum(
+                1 for row in a3_failures if row["demands_a_coordinate_orion_lacks"]
+            ),
+            "counted_towards_the_outcome": False,
+            "note": (
+                "reported, not scored. G5's outcome is a published finding about the three "
+                "arms frozen before amendment 002; a fourth arm may not move it silently. If "
+                "this count is ever non-zero the finding has changed and this field says so."
+            ),
         },
     }
 
@@ -1224,6 +1692,107 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
             corpus_id: corpora[corpus_id]["harm_vs_current"][ARM_STRICT]
             for corpus_id in INTACT_ORDER
         },
+    }
+
+    a3_by_corpus: dict[str, Any] = {}
+    for corpus_id in INTACT_ORDER:
+        entry = corpora[corpus_id]
+        harm = entry["harm_vs_current"][ARM_DECISIVE]
+        a3_by_corpus[corpus_id] = {
+            **harm,
+            "pairs_where_a3_could_fire": entry["one_sided_absence_census"][
+                "n_pairs_with_a_one_sided_absence"
+            ],
+            "evidence": independent_harm_evidence(entry, ARM_DECISIVE),
+        }
+    a3_destroyed = sum(int(row["correct_answers_destroyed"]) for row in a3_by_corpus.values())
+    a3_changed = sum(int(row["decisions_changed"]) for row in a3_by_corpus.values())
+    a3_repaired = sum(int(row["wrong_answers_repaired"]) for row in a3_by_corpus.values())
+    independent = sorted(
+        corpus_id
+        for corpus_id, row in a3_by_corpus.items()
+        if row["evidence"]["supplies_independent_evidence"]
+    )
+    if a3_destroyed > 0:
+        a3_outcome = Outcome.FAIL
+        a3_detail = (
+            f"A3 destroyed {a3_destroyed} correct answers across the intact corpora; the "
+            "decisiveness-aware repair is unsafe on measured evidence"
+        )
+    elif not independent:
+        a3_outcome = Outcome.CANNOT_CHECK
+        a3_detail = (
+            f"A3 destroyed 0 correct answers and repaired {a3_repaired}, but no intact corpus "
+            "supplies independent evidence for that zero: the three corpora frozen on "
+            "2026-08-21 have no one-sided absence for A3 to fire on, and "
+            "INTACT_HARM_SYNTHETIC derives its gold by the completion-invariance criterion A3 "
+            "decides by, so A3 agrees with it by construction. The zero is not a demonstration "
+            "of safety and may not be cited as one"
+        )
+    else:
+        a3_outcome = Outcome.PASS
+        a3_detail = (
+            f"A3 destroyed 0 correct answers, with independent evidence from {independent}"
+        )
+    gates["G9_HARM_A3"] = {
+        "outcome": a3_outcome.value,
+        "decisions_changed": a3_changed,
+        "correct_answers_destroyed": a3_destroyed,
+        "wrong_answers_repaired": a3_repaired,
+        "corpora_supplying_independent_evidence": independent,
+        "vacuous_or_circular": not independent,
+        "by_corpus": a3_by_corpus,
+        "detail": a3_detail,
+    }
+
+    a3_probe: dict[str, Any] = {}
+    a3_rates: list[Outcome] = []
+    threshold = float(GATES["G10_BENEFIT_A3"]["max_violation_rate"])
+    for probe_id in (PROBE_DERIVATION, PROBE_HELDOUT_REAL, PROBE_HELDOUT_SYNTHETIC):
+        by_arm = corpora[probe_id]["by_arm"]
+        rate = _over_resolution_rate(by_arm, ARM_DECISIVE) if by_arm else None
+        row: dict[str, Any] = {
+            "violation_rate": rate,
+            "violation_rate_by_arm": {
+                arm: (_over_resolution_rate(by_arm, arm) if by_arm else None)
+                for arm in ARM_ORDER
+            },
+            "disagreement_with_a1": corpora[probe_id]["arm_disagreement"][ARM_ASYMMETRIC],
+        }
+        if rate is None:
+            row["outcome"] = Outcome.CANNOT_CHECK.value
+            a3_rates.append(Outcome.CANNOT_CHECK)
+        else:
+            outcome = Outcome.PASS if rate <= threshold else Outcome.FAIL
+            row["outcome"] = outcome.value
+            a3_rates.append(outcome)
+        a3_probe[probe_id] = row
+    separating = sorted(
+        corpus_id
+        for corpus_id in (*INTACT_ORDER, PROBE_DERIVATION, PROBE_HELDOUT_REAL, PROBE_HELDOUT_SYNTHETIC)
+        if corpora[corpus_id]["arm_disagreement"][ARM_ASYMMETRIC]["n_differing"] > 0
+    )
+    separating_independently = sorted(
+        corpus_id
+        for corpus_id in separating
+        if not corpora[corpus_id]["gold_provenance"]["gold_derived_by_completion_invariance"]
+    )
+    gates["G10_BENEFIT_A3"] = {
+        "outcome": _worst(a3_rates).value,
+        "threshold": threshold,
+        "by_probe": a3_probe,
+        "corpora_separating_a3_from_a1": separating,
+        "corpora_separating_a3_from_a1_on_gold_not_derived_by_the_criterion_a3_uses": (
+            separating_independently
+        ),
+        "detail": (
+            "A3 abstains everywhere the frozen probe gold says abstention is right, so it "
+            "keeps the benefit A1 was reaching for. A1 and A2 score the same 0.0 there, "
+            f"because probe gold is UNRESOLVED on every probe case: {separating} "
+            "separate A3 from A1 at all, and "
+            f"{separating_independently or 'no corpus'} separates them on gold not derived "
+            "by the criterion A3 decides by."
+        ),
     }
 
     gates["G8_NOVELTY"] = {
@@ -1297,7 +1866,14 @@ INTERPRETATION = (
     "redactions, eight coordinates merge-ward and one separation-ward exactly as section 1.2 "
     "predicted, and the abstain-on-asymmetry repair A1 is measured to destroy correct answers "
     "rather than assumed harmless. G6_HARM_A1 is now a FAIL on evidence instead of a "
-    "CANNOT_CHECK on emptiness."
+    "CANNOT_CHECK on emptiness. Amendment 002 builds the arm that defect points at --- "
+    "A3_decisive_absence_only, which abstains only where the admissible completions of the "
+    "absence disagree --- and then declines to certify it. A3 destroys no correct answer on any "
+    "corpus here and repairs nine of A0's, but every one of those zeros is either structural "
+    "(the three symmetric atlases give A3 nothing to fire on) or circular (the harm corpus "
+    "derives its gold by A3's own criterion). G9_HARM_A3 is CANNOT_CHECK, and that is the "
+    "honest state of the evidence: the repair is designed and unfalsified, not demonstrated "
+    "safe."
 )
 
 
@@ -1327,10 +1903,46 @@ CAVEATS: tuple[str, ...] = (
     "have been the vacuous-guard fallacy this lane exists to prevent.",
     "A rule that abstained only where the one-sided absence is decisive would not pay A1's cost "
     "on INTACT_HARM_SYNTHETIC's H stratum. That corpus cannot score such a rule: its gold is "
-    "derived by exactly that criterion, so the comparison would be circular. The candidate is "
-    "named, not measured. A1 and A2 are also indistinguishable on that corpus -- identical "
-    "decision kinds on all 33 cases -- so A2's separate cost remains visible only on the three "
-    "corpora frozen on 2026-08-21, where G7 is unchanged.",
+    "derived by exactly that criterion, so the comparison would be circular. Amendment 002 "
+    "builds the rule anyway, as A3_decisive_absence_only, and keeps the warning: it does not "
+    "read A3's number off that corpus. A1 and A2 are also indistinguishable on that corpus -- "
+    "identical decision kinds on all 33 cases -- so A2's separate cost remains visible only on "
+    "the three corpora frozen on 2026-08-21, where G7 is unchanged.",
+    "A3_decisive_absence_only's zero harm is not a demonstration that A3 is safe, and "
+    "G9_HARM_A3 refuses to report it as one. On INTACT_DERIVATION, INTACT_HELDOUT_REAL and "
+    "INTACT_HELDOUT_SYNTHETIC A3 has no one-sided absence to fire on, so it is A0 exactly and "
+    "its zero is the same structural zero G6 carried before amendment 001. On "
+    "INTACT_HARM_SYNTHETIC A3 reproduces gold on all 33 cases, which is not a surprise and not "
+    "a result: that corpus derives its gold by asking whether the relation is constant over "
+    "the admissible completions of the absence, and that is A3's decision rule. Harm is a "
+    "different question from accuracy in general -- it asks whether a decision A0 got right was "
+    "moved, which no gold-derivation rule fixes -- but on a corpus where the candidate "
+    "reproduces gold everywhere the two collapse: zero harm follows from a perfect score by "
+    "arithmetic. Reporting that zero as safety would be the identity-dressed-as-a-measurement "
+    "defect this lane exists to catch.",
+    "A3 and gold_from_standard are different functions, which is why the circularity above is "
+    "a fact about this corpus's coverage rather than about A3 being gold. They differ in their "
+    "inner relation rule (compare_meaning, the system under test, against the builder's "
+    "independently written precedence rule), in their completion set (two witnesses derived "
+    "from the pair against three values from a frozen corpus vocabulary) and in their domain "
+    "(A3 answers a pair with several one-sided absences; gold_from_standard raises). They "
+    "disagree on a pair whose stated side uses a value outside that vocabulary. What no corpus "
+    "in this repository does is exercise a difference: the harm corpus states every value from "
+    "the vocabulary and has at most one absence per pair.",
+    "The probe corpora cannot separate A3 from A1. Probe gold is UNRESOLVED on all 48 cases, "
+    "so any arm that abstains unconditionally is right on all of them, and A1, A2 and A3 all "
+    "abstain on all of them: every redaction the freeze admits silences the coordinate the "
+    "decision turned on, so there is no probe case on which decisiveness-awareness would "
+    "change an answer. A0 answers none of the 48 correctly, so the probe corpora carry no harm "
+    "denominator either. A3's 0.0 over-resolution rate there says it keeps A1's intended "
+    "benefit; it says nothing about A3 being better than A1.",
+    "G9_HARM_A3 can be discharged, and naming what would discharge it is part of reporting it "
+    "honestly: an intact corpus with one-sided absences whose gold is fixed by adjudication, "
+    "or by any rule that does not ask whether the completions agree, containing at least one "
+    "partially observed pair A0 answers correctly. Nothing in this repository is such a "
+    "corpus, and building one is not a construction task -- under partial observation the "
+    "relation is genuinely underdetermined, so an independent gold has to come from "
+    "adjudicators rather than from a rule.",
     "INTACT_HARM_SYNTHETIC is synthetic. It establishes what compare_meaning does with a "
     "one-sided absence and what an abstain-on-asymmetry repair costs on pairs of that shape. It "
     "establishes nothing about how often scientific sources state a coordinate on one side only, "
@@ -1405,12 +2017,20 @@ __all__ = [
     "ARMS",
     "ARM_CURRENT",
     "ARM_ASYMMETRIC",
+    "ARM_DECISIVE",
     "ARM_ORDER",
     "ARM_STRICT",
     "AMENDMENT_DOCUMENT",
     "AMENDMENT_TWIN",
+    "AMENDMENT_002_DOCUMENT",
+    "AMENDMENT_002_TWIN",
+    "CANDIDATE_ARM_ORDER",
     "CANDIDATE_COORDINATE",
+    "COMPLETION_WITNESS_PREFIX",
     "COORDINATES",
+    "DECISIVENESS_RULE_MARKER",
+    "MINING_ARM_ORDER",
+    "PROBE_GOLD_DERIVATION_RULE",
     "FREEZE_DOCUMENT",
     "FREEZE_TWIN",
     "FROZEN_PARAMETERS",
@@ -1432,10 +2052,16 @@ __all__ = [
     "ScoredCase",
     "VERDICT_T5",
     "CAVEATS",
+    "admissible_completions",
+    "arm_decisive_absence_only",
+    "arm_disagreement",
     "build_probe",
     "construction_precondition",
     "derive_verdicts",
     "discriminating_coordinates",
+    "exact_agreement_with_gold",
+    "gold_provenance",
+    "independent_harm_evidence",
     "evaluate_gates",
     "frozen_digest",
     "harm_against_current",

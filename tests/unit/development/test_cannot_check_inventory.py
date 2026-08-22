@@ -257,11 +257,21 @@ def test_the_precision_fix_lost_no_classification() -> None:
     cannot be reached, and the honest report is that the check could not be taken
     rather than that it failed. The same module's ``ViewCollapse.outcome`` is
     ``UNCLASSIFIED`` and so is not counted here.
+
+    P3's partial-observation probe takes it 196 to 199 with three
+    ``MISSING_DECLARATION`` sites, all of them a gate declining to read a zero it
+    cannot use. ``G9_HARM_A3`` withholds a harm count of 0 three times over: on
+    the three symmetric atlases because no intact pair has a one-sided absence
+    for the arm to fire on, and on the harm corpus because that corpus's gold is
+    derived by the very criterion the arm decides by, so the arm reproduces it on
+    every case and its harm is 0 by arithmetic rather than by safety. A zero from
+    a denominator of nothing and a zero from a tautology are both absent
+    measurements, and the gate says so instead of reporting the arm as harmless.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 196, classified
+    assert sum(classified.values()) == 199, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"

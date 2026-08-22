@@ -188,6 +188,28 @@ all 33. The corpus separates abstention from harm; it does not separate the two
 abstention rules from each other. The three symmetric atlases are where A2's
 distinct cost is visible.
 
+### 6.2 What happened to that candidate (added 2026-08-22, amendment 002)
+
+The candidate named in 6.1 was subsequently built, as
+`A3_decisive_absence_only` in `orion.study.p3.partial_observation_probe`, and
+6.1's warning was honoured rather than argued away. A3 abstains only where the
+admissible completions of the absence disagree, and it derives those completions
+from the pair and the coordinate types --- not from the admissible-value table in
+`PARTIAL_OBSERVATION_HARM_STANDARD.json` --- so it is a different function from
+`gold_from_standard`, and a test exhibits a pair on which the two disagree. On
+*this* corpus that difference is never exercised: every value here is drawn from
+the table and no pair carries two absences, so A3 reproduces gold on all 33
+cases.
+
+Its harm here is therefore zero for the same circular reason its accuracy is
+perfect: an arm that reproduces gold on every case of a corpus cannot destroy an
+answer on it, whatever the harm definition. The runner's `G9_HARM_A3` withholds
+that zero on evidence read from this corpus's own
+`expected.authority.derivation.rule`, and reports `CANNOT_CHECK`. This corpus is
+not cited as evidence that A3 is safe, and the twelve `H_UNDECISIVE_ABSENCE`
+answers A3 spares are the twelve A1 destroys --- an identity here, not a
+comparison.
+
 ## 7. External validity — the bound, stated here so it travels
 
 The cases are **synthetic**. Gold follows from the emitted standard table by the

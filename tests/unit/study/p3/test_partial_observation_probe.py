@@ -13,6 +13,16 @@ and the measurement came back negative. The tests below pin the denominator as
 well as the outcome, precisely so that a corpus regression back to zero one-sided
 absences shows up as a test failure rather than as a gate quietly returning to a
 zero that looks clean.
+
+Amendment 002 adds ``A3_decisive_absence_only``, the arm A1's measured harm points
+at, and the tests for it are written the other way round. A3 destroys nothing
+anywhere in this repository, and every one of those zeros is either structural or
+circular, so the assertions below pin ``CANNOT_CHECK`` and pin *why*: that the one
+corpus A3 can fire on derives its gold by A3's own decision rule, and that the
+gate detects this and refuses the zero. The counterfactual tests show the gate can
+also say ``PASS`` and ``FAIL``, and the witness test shows A3 is not literally the
+corpus's gold function --- so the refusal is a judgement about coverage rather
+than a tautology in either direction.
 """
 
 from __future__ import annotations
@@ -34,6 +44,7 @@ from orion.knowledge.semantics import (
 )
 from orion.programme.records import Outcome
 from orion.study.p3.partial_observation_harm_build import (
+    COORDINATE_VALUES,
     STRATUM_C,
     STRATUM_CONTRACT,
     STRATUM_D,
@@ -43,6 +54,7 @@ from orion.study.p3.partial_observation_harm_build import (
     absence_reading_census,
     build_report,
     construction_receipts,
+    gold_from_standard,
     harm_cases,
     harm_preview,
     rule_agreement_on_fully_observed,
@@ -50,16 +62,20 @@ from orion.study.p3.partial_observation_harm_build import (
 )
 from orion.study.p3.partial_observation_probe import (
     ABSENT_VALUE,
+    ARMS,
     ARM_ASYMMETRIC,
     ARM_CURRENT,
+    ARM_DECISIVE,
     ARM_ORDER,
     ARM_STRICT,
     CANDIDATE_COORDINATE,
     COORDINATES,
+    DECISIVENESS_RULE_MARKER,
     FREEZE_TWIN,
     INTACT_HARM_SYNTHETIC,
     INTACT_ORDER,
     INTACT_SOURCES,
+    MINING_ARM_ORDER,
     PARTIALLY_OBSERVED_INTACT_ORDER,
     PROBE_DERIVATION,
     PROBE_HELDOUT_REAL,
@@ -68,9 +84,12 @@ from orion.study.p3.partial_observation_probe import (
     SYMMETRIC_INTACT_ORDER,
     VERDICT_T5,
     FreezeViolation,
+    admissible_completions,
+    arm_decisive_absence_only,
     build_probe,
     construction_precondition,
     discriminating_coordinates,
+    evaluate_gates,
     frozen_digest,
     main,
     observed,
@@ -101,6 +120,95 @@ def shipped() -> list[dict[str, object]]:
     """The harm corpus as it ships, read through the same loader the probe uses."""
 
     return load_jsonl(REPO_ROOT / INTACT_SOURCES[INTACT_HARM_SYNTHETIC])
+
+
+#: A harm row with every count at zero, i.e. an arm that touched nothing.
+_NO_HARM: dict[str, int] = {
+    "decisions_changed": 0,
+    "correct_answers_destroyed": 0,
+    "wrong_answers_repaired": 0,
+    "pairs_a0_answers_correctly": 0,
+    "pairs_a0_answers_correctly_with_a_one_sided_absence": 0,
+}
+
+
+def _fabricated_corpora(
+    *,
+    a1: dict[str, int] | None = None,
+    a3: dict[str, int] | None = None,
+    gold_rule: str = "identity:adjudicated-by-people",
+    a3_reproduces_gold: bool = False,
+    a3_denominator: int = 12,
+) -> dict[str, object]:
+    """A corpora payload with the shape ``evaluate_gates`` reads and nothing real in it.
+
+    Every gate here reports a negative on the shipped corpora. A gate that can
+    only report a negative is not a gate, so each of them is also run against a
+    fabricated world in which the positive is the right answer. The fabrication
+    is obvious and local; it is never fed to a claim.
+    """
+
+    a1_row = {**_NO_HARM, **(a1 or {})}
+    a3_row = {
+        **_NO_HARM,
+        "pairs_a0_answers_correctly_with_a_one_sided_absence": a3_denominator,
+        **(a3 or {}),
+    }
+
+    def corpus(kind: str) -> dict[str, object]:
+        return {
+            "kind": kind,
+            "n_cases": 33,
+            "one_sided_absence_census": {"n_pairs_with_a_one_sided_absence": 27},
+            "gold_provenance": {
+                "declared_rules": [gold_rule],
+                "gold_derived_by_completion_invariance": DECISIVENESS_RULE_MARKER in gold_rule,
+            },
+            "harm_vs_current": {
+                ARM_ASYMMETRIC: a1_row,
+                ARM_STRICT: dict(_NO_HARM),
+                ARM_DECISIVE: a3_row,
+            },
+            "exact_agreement_with_gold": {
+                arm: {
+                    "reproduces_gold_on_every_case": (
+                        arm == ARM_DECISIVE and a3_reproduces_gold
+                    )
+                }
+                for arm in ARM_ORDER
+            },
+            "mining_census": {"failures": []},
+            "mining_census_a3": {"failures": []},
+            "arm_disagreement": {
+                arm: {"n_differing": 0}
+                for arm in (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
+            },
+            "by_arm": {},
+        }
+
+    corpora: dict[str, object] = {corpus_id: corpus("INTACT") for corpus_id in INTACT_ORDER}
+    for probe_id in PROBE_IDS:
+        corpora[probe_id] = corpus("PROBE")
+    return corpora
+
+
+#: One fully observed projection's worth of coordinate values, so a test can
+#: silence exactly one of them and know every other is stated on both sides.
+_FULLY_OBSERVED: dict[str, object] = {
+    "referent_ids": ("probe:referent:0",),
+    "construct_ids": ("probe:construct:0",),
+    "measurement_ids": ("probe:measurement:0",),
+    "temporal_context_ids": ("probe:temporal:0",),
+    "assumption_ids": ("probe:assumption:0",),
+    "attribution_id": "probe:attribution:0",
+    "discourse_relation": "probe:discourse:0",
+    "polarity": Polarity.POSITIVE,
+    "modality": Modality.ASSERTED,
+}
+
+
+def _fully_observed(**overrides: object) -> ScientificMeaningProjection:
+    return _projection(**{**_FULLY_OBSERVED, **overrides})
 
 
 def _projection(**overrides: object) -> ScientificMeaningProjection:
@@ -332,23 +440,7 @@ class TestGatesRefuseToLaunder:
         that cannot say anything else.
         """
 
-        from orion.study.p3.partial_observation_probe import evaluate_gates
-
-        corpora = {
-            corpus_id: {
-                "one_sided_absence_census": {"n_pairs_with_a_one_sided_absence": 27},
-                "harm_vs_current": {
-                    ARM_ASYMMETRIC: {"decisions_changed": 0, "correct_answers_destroyed": 0},
-                    ARM_STRICT: {"decisions_changed": 0, "correct_answers_destroyed": 0},
-                },
-                "mining_census": {"failures": []},
-                "by_arm": {},
-            }
-            for corpus_id in INTACT_ORDER
-        }
-        for probe_id in PROBE_IDS:
-            corpora[probe_id] = {"by_arm": {}, "mining_census": {"failures": []}}
-        gates = evaluate_gates(corpora)
+        gates = evaluate_gates(_fabricated_corpora())
         assert gates["G6_HARM_A1"]["outcome"] == Outcome.PASS.value
         assert gates["G6_HARM_A1"]["vacuous"] is False
 
@@ -600,3 +692,380 @@ class TestArmsAreTotal:
         for corpus_id, entry in campaign["corpora"].items():
             counts = entry["by_arm"][arm]["decision_kinds"]
             assert sum(counts.values()) == entry["n_cases"], corpus_id
+
+
+# --------------------------------------------------------------------------
+# Amendment 002: the decisiveness-aware arm
+# --------------------------------------------------------------------------
+
+
+def _richer_completions(coordinate: str, mirror: object) -> tuple[object, ...]:
+    """More values than the arm's two witnesses, for the completeness check."""
+
+    absent = ABSENT_VALUE[coordinate]
+    if isinstance(absent, tuple):
+        assert isinstance(mirror, tuple)
+        return (mirror, ("z:1",), ("z:2",), mirror + ("z:3",), ("z:1", "z:2"))
+    if isinstance(absent, (Polarity, Modality)):
+        return tuple(value for value in type(absent) if value is not absent)
+    return (mirror, "z:1", "z:2")
+
+
+class TestTheDecisiveArmDecidesOnDecisiveness:
+    """``A3_decisive_absence_only`` abstains on the absence that moves the answer.
+
+    A1's twelve destroyed answers are a design defect: it abstains on the
+    *presence* of an absence. These pin that the new arm abstains on the thing
+    that matters instead, on pairs written here rather than on a corpus, so the
+    behaviour is checked against the rule and not against a gold file.
+    """
+
+    def test_it_answers_where_a_higher_coordinate_already_decides(self) -> None:
+        left = _fully_observed(measurement_ids=ABSENT_VALUE["measurement_ids"])
+        right = _fully_observed(referent_ids=("probe:referent:1",))
+        assert arm_decisive_absence_only(left, right) is MeaningRelation.DISTINCT_REFERENT
+        # A1 throws that answer away purely because something is missing.
+        assert ARMS[ARM_ASYMMETRIC](left, right) is MeaningRelation.UNRESOLVED
+        assert ARMS[ARM_CURRENT](left, right) is MeaningRelation.DISTINCT_REFERENT
+
+    def test_it_abstains_where_the_absence_is_what_the_answer_turns_on(self) -> None:
+        left = _fully_observed(measurement_ids=ABSENT_VALUE["measurement_ids"])
+        right = _fully_observed()
+        assert arm_decisive_absence_only(left, right) is MeaningRelation.UNRESOLVED
+        # and the current rule does not: it reads the silence as agreement.
+        assert ARMS[ARM_CURRENT](left, right) is MeaningRelation.COMPATIBLE
+
+    def test_it_is_the_current_rule_exactly_when_nothing_is_one_sided(self) -> None:
+        left = _fully_observed()
+        right = _fully_observed(construct_ids=("probe:construct:9",))
+        assert arm_decisive_absence_only(left, right) is compare_meaning(left, right).relation
+        both_silent = (
+            _fully_observed(assumption_ids=()),
+            _fully_observed(assumption_ids=()),
+        )
+        assert (
+            arm_decisive_absence_only(*both_silent)
+            is compare_meaning(*both_silent).relation
+        )
+
+    @pytest.mark.parametrize("coordinate", COORDINATES)
+    def test_two_witnesses_enumerate_every_relation_a_richer_table_reaches(
+        self, coordinate: str
+    ) -> None:
+        """The arm's completion set is complete, not a sample.
+
+        Every branch of ``compare_meaning`` tests an absent coordinate only for
+        equality with the mirror value, so two witnesses --- agree, differ ---
+        reach every relation any larger set of admissible values reaches. If that
+        stopped being true the arm would be abstaining or answering on the
+        strength of which values someone happened to list, which is the failure
+        mode the whole circularity section is about.
+        """
+
+        for other in (_fully_observed(), _fully_observed(referent_ids=("probe:referent:1",))):
+            left = _fully_observed(**{coordinate: ABSENT_VALUE[coordinate]})
+            mirror = getattr(other, coordinate)
+            witnessed = {
+                compare_meaning(one, two).relation
+                for one, two in admissible_completions(left, other)
+            }
+            richer = {
+                compare_meaning(replace(left, **{coordinate: value}), other).relation
+                for value in _richer_completions(coordinate, mirror)
+            }
+            assert witnessed == richer, (coordinate, witnessed, richer)
+
+
+class TestTheDecisiveArmIsNotTheHarmCorpusGoldFunction:
+    """The circularity is about one corpus's coverage, not about A3 being gold.
+
+    If A3 and ``gold_from_standard`` were the same function, ``G9_HARM_A3``
+    reporting ``CANNOT_CHECK`` would be a tautology rather than a finding about
+    the evidence available. They are not the same function, and this exhibits a
+    pair on which they disagree.
+    """
+
+    def test_they_disagree_on_a_pair_outside_the_corpus_vocabulary(self) -> None:
+        base = {name: values[0] for name, values in COORDINATE_VALUES.items()}
+        silent = _projection(**{**base, "referent_ids": ABSENT_VALUE["referent_ids"]})
+        stated = _projection(**{**base, "referent_ids": ("outside:the:frozen:vocabulary",)})
+
+        # gold_from_standard completes the silence only from its own table, and
+        # every value in that table differs from what the other side states, so
+        # it calls the pair determinate.
+        assert gold_from_standard(silent, stated) is MeaningRelation.DISTINCT_REFERENT
+        # A3 completes it from the pair, so "the silence hid an agreement" is one
+        # of the worlds it has to rule out, and it cannot.
+        assert arm_decisive_absence_only(silent, stated) is MeaningRelation.UNRESOLVED
+
+    def test_a3_answers_a_pair_the_corpus_rule_refuses_to_answer(self) -> None:
+        """Different domains, not only different values.
+
+        ``gold_from_standard`` is defined on at most one one-sided absence and
+        raises otherwise; A3 takes the product.
+        """
+
+        left = _fully_observed(
+            measurement_ids=ABSENT_VALUE["measurement_ids"],
+            attribution_id=ABSENT_VALUE["attribution_id"],
+        )
+        right = _fully_observed(referent_ids=("probe:referent:1",))
+        with pytest.raises(ValueError, match="at most one one-sided absence"):
+            gold_from_standard(left, right)
+        assert arm_decisive_absence_only(left, right) is MeaningRelation.DISTINCT_REFERENT
+        assert len(list(admissible_completions(left, right))) == 4
+
+    def test_the_runner_does_not_import_the_corpus_builder(self) -> None:
+        """The arm cannot be reading the corpus's rule, because it cannot see it.
+
+        The dependency runs the other way: the builder imports the probe's
+        absent-value table and checks it against its own. Checked over the parsed
+        imports rather than over the text, because the module's prose names the
+        builder repeatedly and a substring check would pass or fail on prose.
+        """
+
+        import ast
+
+        tree = ast.parse(
+            (REPO_ROOT / "src/orion/study/p3/partial_observation_probe.py").read_text(
+                encoding="utf-8"
+            )
+        )
+        imported: set[str] = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                imported.update(alias.name for alias in node.names)
+            elif isinstance(node, ast.ImportFrom):
+                imported.add(node.module or "")
+                imported.update(f"{node.module or ''}.{alias.name}" for alias in node.names)
+        assert not any("partial_observation_harm_build" in name for name in imported), imported
+
+
+class TestTheDecisivenessGateRefusesTheZeroItCannotEarn:
+    def test_a3_destroys_nothing_and_repairs_nine(self, campaign: dict[str, object]) -> None:
+        gate = campaign["gates"]["G9_HARM_A3"]
+        assert gate["correct_answers_destroyed"] == 0
+        assert gate["decisions_changed"] == 9
+        assert gate["wrong_answers_repaired"] == 9
+
+    def test_and_the_gate_still_refuses_to_call_that_safety(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """The whole point of the gate.
+
+        Zero harm plus nine repairs looks like a clean result. It is not one: the
+        only corpus A3 can fire on derives its gold by A3's decision rule.
+        """
+
+        gate = campaign["gates"]["G9_HARM_A3"]
+        assert gate["outcome"] == Outcome.CANNOT_CHECK.value
+        assert gate["corpora_supplying_independent_evidence"] == []
+        assert gate["vacuous_or_circular"] is True
+
+    def test_the_harm_corpus_is_withheld_for_naming_a3s_own_criterion(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """The circularity is detected from the corpus, not hard-coded here.
+
+        This is the assertion that fails if A3's number is ever read off its own
+        definition: the corpus declares the derivation rule, the runner matches
+        the marker, and the evidence is withheld on that basis.
+        """
+
+        evidence = campaign["gates"]["G9_HARM_A3"]["by_corpus"][INTACT_HARM_SYNTHETIC][
+            "evidence"
+        ]
+        assert evidence["supplies_independent_evidence"] is False
+        assert "GOLD_DERIVED_BY_THE_CRITERION_THE_ARM_DECIDES_BY" in evidence["withheld_because"]
+        assert evidence["gold_derived_by_completion_invariance"] is True
+        assert any(
+            DECISIVENESS_RULE_MARKER in rule for rule in evidence["declared_gold_rules"]
+        )
+        assert evidence["harm_denominator"] == 18
+
+    def test_a3_reproduces_that_corpus_gold_on_every_case(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """33 of 33, which is the definition restated and not a score.
+
+        Pinned so the number exists on the record and so the reason the gate
+        withholds it is checkable rather than asserted.
+        """
+
+        agreement = campaign["corpora"][INTACT_HARM_SYNTHETIC]["exact_agreement_with_gold"][
+            ARM_DECISIVE
+        ]
+        assert agreement["n_cases"] == 33
+        assert agreement["n_exact"] == 33
+        assert agreement["reproduces_gold_on_every_case"] is True
+
+    @pytest.mark.parametrize("corpus_id", SYMMETRIC_INTACT_ORDER)
+    def test_the_symmetric_atlases_give_a3_nothing_to_fire_on(
+        self, campaign: dict[str, object], corpus_id: str
+    ) -> None:
+        """The same structural zero G6 carried before amendment 001."""
+
+        row = campaign["gates"]["G9_HARM_A3"]["by_corpus"][corpus_id]
+        assert row["pairs_where_a3_could_fire"] == 0
+        assert row["decisions_changed"] == 0
+        assert row["evidence"]["harm_denominator"] == 0
+        assert "NO_HARM_DENOMINATOR" in row["evidence"]["withheld_because"]
+
+    def test_the_gate_would_pass_on_a_corpus_that_could_have_failed_it(self) -> None:
+        gates = evaluate_gates(_fabricated_corpora())
+        assert gates["G9_HARM_A3"]["outcome"] == Outcome.PASS.value
+        assert gates["G9_HARM_A3"]["corpora_supplying_independent_evidence"] == sorted(
+            INTACT_ORDER
+        )
+
+    def test_the_gate_fails_when_the_arm_destroys_an_answer(self) -> None:
+        gates = evaluate_gates(
+            _fabricated_corpora(a3={"decisions_changed": 3, "correct_answers_destroyed": 1})
+        )
+        assert gates["G9_HARM_A3"]["outcome"] == Outcome.FAIL.value
+        assert gates["G9_HARM_A3"]["correct_answers_destroyed"] == 4
+
+    def test_the_gate_refuses_a_pass_when_the_gold_rule_names_a3s_criterion(self) -> None:
+        """Same zero, same denominator, a gold rule derived by A3's own criterion.
+
+        This is the non-circularity test proper. Everything that produced ``PASS``
+        two tests up is held fixed except the corpus's declared derivation rule,
+        and the gate declines to certify.
+        """
+
+        gates = evaluate_gates(
+            _fabricated_corpora(
+                gold_rule="identity:observed-coordinate-precedence-with-completion-invariance"
+            )
+        )
+        assert gates["G9_HARM_A3"]["outcome"] == Outcome.CANNOT_CHECK.value
+        assert gates["G9_HARM_A3"]["corpora_supplying_independent_evidence"] == []
+
+    def test_the_gate_refuses_a_pass_when_the_arm_reproduces_gold_everywhere(self) -> None:
+        """A perfect score makes zero harm arithmetic rather than a comparison."""
+
+        gates = evaluate_gates(_fabricated_corpora(a3_reproduces_gold=True))
+        assert gates["G9_HARM_A3"]["outcome"] == Outcome.CANNOT_CHECK.value
+
+    def test_the_gate_refuses_a_pass_without_a_harm_denominator(self) -> None:
+        gates = evaluate_gates(_fabricated_corpora(a3_denominator=0))
+        assert gates["G9_HARM_A3"]["outcome"] == Outcome.CANNOT_CHECK.value
+
+
+class TestTheBenefitGateSeparatesNothing:
+    def test_a3_keeps_abstaining_where_the_probe_gold_says_it_should(
+        self, campaign: dict[str, object]
+    ) -> None:
+        gate = campaign["gates"]["G10_BENEFIT_A3"]
+        assert gate["outcome"] == Outcome.PASS.value
+        for probe_id in PROBE_IDS:
+            rates = gate["by_probe"][probe_id]["violation_rate_by_arm"]
+            assert rates[ARM_DECISIVE] == 0.0
+            assert rates[ARM_CURRENT] == 1.0
+
+    def test_and_that_zero_is_shared_with_the_arms_it_is_meant_to_beat(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """Probe gold is UNRESOLVED on all 48, so abstaining scores perfectly.
+
+        Recorded so A3's probe number is never quoted as a superiority over A1.
+        """
+
+        gate = campaign["gates"]["G10_BENEFIT_A3"]
+        for probe_id in PROBE_IDS:
+            rates = gate["by_probe"][probe_id]["violation_rate_by_arm"]
+            assert rates[ARM_ASYMMETRIC] == 0.0
+            assert rates[ARM_STRICT] == 0.0
+            assert gate["by_probe"][probe_id]["disagreement_with_a1"]["n_differing"] == 0
+
+    def test_only_the_circular_corpus_separates_a3_from_a1(
+        self, campaign: dict[str, object]
+    ) -> None:
+        gate = campaign["gates"]["G10_BENEFIT_A3"]
+        assert gate["corpora_separating_a3_from_a1"] == [INTACT_HARM_SYNTHETIC]
+        assert (
+            gate[
+                "corpora_separating_a3_from_a1_on_gold_not_derived_by_the_criterion_a3_uses"
+            ]
+            == []
+        )
+
+    def test_where_they_do_differ_a3_is_the_one_that_is_right(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """Reported for completeness, and reported as circular.
+
+        The twelve pairs A1 destroys are exactly the ones A3 spares, and that is
+        an identity on this corpus rather than a comparison: the corpus's gold
+        calls them determinate by the criterion A3 decides by.
+        """
+
+        row = campaign["corpora"][INTACT_HARM_SYNTHETIC]["arm_disagreement"][ARM_ASYMMETRIC]
+        assert row["n_differing"] == 12
+        assert row["n_differing_where_this_arm_is_right"] == 12
+        assert row["n_differing_where_the_other_arm_is_right"] == 0
+        # exactly the twelve G6 records A1 as destroying, and no others: on the
+        # nine decisive-absence pairs and the six incomparable ones both arms
+        # abstain, so the only place they part is the stratum whose gold this
+        # corpus derives by A3's own criterion.
+        assert campaign["gates"]["G6_HARM_A1"]["by_corpus"][INTACT_HARM_SYNTHETIC][
+            "correct_answers_destroyed"
+        ] == row["n_differing"]
+
+
+class TestAmendmentTwoMovedNoPublishedNumber:
+    def test_the_a1_harm_finding_still_reproduces(self, campaign: dict[str, object]) -> None:
+        """27 / 21 / 12, unchanged by the arm that repairs A1.
+
+        The finding G6 reports is why A3 exists. Adding A3 must not disturb it.
+        """
+
+        gate = campaign["gates"]["G6_HARM_A1"]
+        assert gate["outcome"] == Outcome.FAIL.value
+        assert gate["pairs_where_a1_could_fire"] == 27
+        assert gate["decisions_changed"] == 21
+        assert gate["correct_answers_destroyed"] == 12
+        assert gate["by_corpus"][INTACT_HARM_SYNTHETIC]["correct_answers_destroyed"] == 12
+
+    def test_g6_still_names_a1_and_was_not_repointed(self) -> None:
+        """A failing gate may not be repaired by changing its subject."""
+
+        from orion.study.p3.partial_observation_probe import GATES
+
+        assert GATES["G6_HARM_A1"]["statement"].startswith("A1_observedness_asymmetric")
+        assert ARM_DECISIVE not in GATES["G6_HARM_A1"]["statement"]
+        assert GATES["G9_HARM_A3"]["statement"].startswith("A3_decisive_absence_only")
+        assert GATES["G6_HARM_A1"]["blocking"] is True
+
+    def test_the_new_arm_contributes_no_minable_failure_anywhere(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """And the mining gate says so in a field rather than by omission."""
+
+        for corpus_id in (*INTACT_ORDER, *PROBE_IDS):
+            assert campaign["corpora"][corpus_id]["mining_census_a3"]["n_failures"] == 0
+        reported = campaign["gates"]["G5_MINING_YIELD"]["c_arm_added_by_amendment_002"]
+        assert reported["arm_id"] == ARM_DECISIVE
+        assert reported["n_failures"] == 0
+        assert reported["counted_towards_the_outcome"] is False
+
+    def test_the_mining_census_is_scoped_to_the_arms_it_was_frozen_over(
+        self, campaign: dict[str, object]
+    ) -> None:
+        gate = campaign["gates"]["G5_MINING_YIELD"]
+        assert gate["census_arms"] == list(MINING_ARM_ORDER)
+        assert ARM_DECISIVE not in gate["census_arms"]
+        assert gate["a_intact_failures"]["n_failures"] == 9
+        assert gate["b_probe_over_resolutions"]["n_over_resolutions"] == 48
+        assert gate["outcome"] == Outcome.FAIL.value
+
+    def test_the_strict_arm_cost_is_unchanged(self, campaign: dict[str, object]) -> None:
+        harm = campaign["gates"]["G7_COST_A2"]["by_corpus"][INTACT_HARM_SYNTHETIC]
+        assert harm["decisions_changed"] == 21
+        assert harm["correct_answers_destroyed"] == 12
+
+    def test_the_campaign_is_still_a_failure_and_t5_is_still_not_discharged(
+        self, campaign: dict[str, object]
+    ) -> None:
+        assert campaign["overall_outcome"] == Outcome.FAIL.value
+        assert campaign["verdicts"]["t5"] == VERDICT_T5
