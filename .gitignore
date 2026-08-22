@@ -8,3 +8,22 @@ __pycache__/
 # artifacts -- but a lock is an input, and issue #160 Gate 7 requires a
 # dependency lock sufficient for clean reproduction of every paper. An
 # ignored lock makes that gate permanently unclosable.
+
+# LaTeX build intermediates. `latexmk` writes these beside `main.tex` on every
+# build; only the `.pdf` is an artifact anyone reads. Leaving them untracked but
+# unignored made a rebuild look like an uncommitted change to the manuscript.
+#
+# `.log`, `.out` and `.toc` are deliberately *not* ignored repository-wide: a
+# campaign's `run.log` and `prepare.log` are evidence, and P11-P14 track a
+# `paper/main.markdown.out`. Ignoring those extensions everywhere would silently
+# drop a future evidence file from the index. So they are scoped to the one
+# directory where they can only be TeX output.
+papers/**/*.aux
+papers/**/*.bbl
+papers/**/*.blg
+papers/**/*.fdb_latexmk
+papers/**/*.fls
+papers/**/*.synctex.gz
+papers/**/manuscript/main.log
+papers/**/manuscript/main.out
+papers/**/manuscript/main.toc
