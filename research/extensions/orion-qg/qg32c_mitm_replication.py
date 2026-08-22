@@ -133,7 +133,7 @@ def main():
     if not parent_ok or not recon_ok or not witness_ok:
         terminal = "QG32C_CANNOT_CHECK"
     out = {
-        "schema":"ORIONQG.QG32C.MITMReplication.v1", "issue":"SzeChunYiu/ORION#PENDING",
+        "schema":"ORIONQG.QG32C.MITMReplication.v1", "issue":"SzeChunYiu/ORION#928",
         "terminal":terminal, "protocol_sha256":shaf(PROTO), "parent_qg32_sha256":shaf(PARENT),
         "parent_upper_bound_bound":parent_ok, "reconstruction":recon,
         "EXISTS_SEPARATOR_AT_MOST_4": exists if terminal in {YES,NO} else None,
