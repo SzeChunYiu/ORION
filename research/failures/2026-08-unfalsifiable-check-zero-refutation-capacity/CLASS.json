@@ -1,0 +1,109 @@
+{
+ "class_id": "2026-08-unfalsifiable-check-zero-refutation-capacity",
+ "schema_version": "orion.programme.failure-class-declaration.v1",
+ "detector": "orion.programme.self_comparison_scan",
+ "sweep": "research/development/sweep_self_comparison.py",
+ "found_in": [
+  6,
+  7,
+  8
+ ],
+ "found_in_detail": {
+  "6": "the original record: certificate-lifting checker counted `x != x` 1,536 times and published the zero as a theorem",
+  "7": "check_p7_x2_closure_carrying.py:47, found 2026-08-22 by reading, not by any mechanism -- the class had none",
+  "8": "check_p8_x{2,3,4}_authority_lifting.py, three occurrences, found 2026-08-22"
+ },
+ "sweeps": [
+  {
+   "paper_id": 1,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (86 files under 7 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 2,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (124 files under 4 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 3,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (27 files under 4 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 4,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (33 files under 5 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 5,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (27 files under 4 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 6,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (31 files under 6 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 7,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (19 files under 5 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 8,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (24 files under 5 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 9,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (37 files under 5 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 10,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (5 files under 5 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 11,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (16 files under 3 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 12,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (6 files under 3 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 13,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (2 files under 1 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 14,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (13 files under 3 root(s))",
+   "found": false
+  },
+  {
+   "paper_id": 15,
+   "detector": "orion.programme.self_comparison_scan",
+   "run": "research/development/sweep_self_comparison.py --json (60 files under 2 root(s))",
+   "found": false
+  }
+ ],
+ "note": "P6, P7 and P8 are recorded as FOUND on the historical fact that the guard was there. The current sweep finds none anywhere, because all three were repaired; a repaired paper does not stop having had the defect."
+}
