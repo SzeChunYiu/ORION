@@ -40,12 +40,12 @@
     "Q2": {
       "directory": "papers/Q-paper-02-recursive-recovery",
       "canonical_manuscript": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md",
-      "receipt_index": "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX.md",
+      "receipt_index": "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX_V2.md",
       "primary_claim_id": "Q2.NEGATIVE_RECOVERY.CASE_STUDY",
       "primary_claim": "The closed ORION-Q programme is a fully receipted case study of explicit negative-result recovery in which donor absorption, saturation, targeted refutation, repair, prospective prediction, and theorem closure remain separately recorded rather than being rewritten into a single positive narrative.",
       "required_internal_evidence": [
         "development/orion-q-max-r0/PROGRAMME_CLOSURE_PACKET_2026-08-21.md",
-        "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX.md",
+        "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX_V2.md",
         "papers/Q-paper-02-recursive-recovery/NOVELTY_RESEARCH_2026-08-22.md"
       ],
       "publication_scope": "SINGLE_PROGRAMME_METHOD_CASE_STUDY",
@@ -67,7 +67,8 @@
       "required_harness_contract": "ORION.Q3.HarnessPublicationContract.v1",
       "required_internal_evidence": [
         "development/orion-q-max-r0/dual-harness-benchmark-v0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_RESULTS.json",
-        "packages/orion-research-harness/tests/test_invalid_content_recovery.py"
+        "packages/orion-research-harness/tests/test_invalid_content_recovery.py",
+        "packages/orion-research-harness/src/orion_research_harness/publication_contract.py"
       ],
       "publication_scope": "SYSTEMS_AND_BENCHMARK_DEFINITION_WITH_ONE_MEASUREMENT",
       "current_internal_status": "COMPLETE_FOR_SCOPED_SYSTEMS_PAPER",
