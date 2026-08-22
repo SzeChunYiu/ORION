@@ -1,0 +1,4644 @@
+{
+  "authority": "ORIONQG_QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME__FROZEN_THETA_ROT__NOT_R6",
+  "caps": {
+    "no_sampling_anywhere": true,
+    "q1_size_note": "the enumeration is exact and complete at every n listed; n=8/12 are QG-21's D1 sizes and n=12/14 its D2 sizes, so the applied sizes are covered. No size was attempted and abandoned.",
+    "q1_sizes_enumerated": [
+      1,
+      2,
+      4,
+      8,
+      12,
+      14
+    ],
+    "q2_panel": "all 90 receipted QG-21 rows, both intervener models",
+    "runtime_cap_minutes_per_run": 45
+  },
+  "checks": {
+    "crt_modulus_bits": 620
+  },
+  "claim_boundary": {
+    "covers": "the exact rotation-count distribution of the complete configuration space of the frozen R6M three-block TARE-M2 shared-Tag grammar under the frozen merge relation, at n = 1,2,4,8,12,14, under two intervener models; and the exact minimum theta_FT Clifford cost of the seven-rotation sub-family on 90 receipted rows",
+    "does_not_cover": "other grammars, hardware, device performance, algorithmic viability, any physical quantum-advantage claim, and any novelty in the merge relation, which is donor property"
+  },
+  "donor_novelty_credit": false,
+  "donor_search": {
+    "document_level_verification": false,
+    "log": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md",
+    "prior_expectation_recorded_before_searching": "protocol section 1: this lane EXPECTS to be subsumed; phase polynomials, T-par, TODD, Gray-Synth and Pauli-rotation merging are a heavily worked area. The expectation was met.",
+    "query_families_required": [
+      "OWN_VOCABULARY",
+      "DONOR_FIELD_TRANSLATION",
+      "INVERTED_OR_SURVEY"
+    ],
+    "records": [
+      {
+        "asserts_novelty": false,
+        "claim": "Two arbitrary-angle Pauli rotations about the same axis, separated only by operations that commute with that axis, may be merged into one, lowering the non-Clifford count.",
+        "claim_id": "QG24-C1",
+        "document_level_verification": false,
+        "note": "Protocol section 2 already assigns this relation zero novelty credit; the search confirms the assignment rather than discovering it.",
+        "query_families": [
+          "OWN_VOCABULARY",
+          "DONOR_FIELD_TRANSLATION",
+          "INVERTED_OR_SURVEY"
+        ],
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md#family-2",
+        "source": "TMerge / Pauli-rotation-merging line, as reported in 'Optimal number of parametrized rotations and Hadamard gates in parametrized Clifford circuits with non-repeated parameters', arXiv:2407.07846",
+        "verbatim_passage": "TMerge reduces the T-count by exploiting the commutativity of Pauli rotation axes, reordering gates within each T layer and merging rotation gates that have the same axis.",
+        "verdict": "SUBSUMED",
+        "verdict_means": "prior art states the claim or a more general one: novelty removed"
+      },
+      {
+        "asserts_novelty": false,
+        "claim": "Merging same-axis Pauli exponentials separated only by commuting Paulis is the right rewrite for minimising non-Clifford count.",
+        "claim_id": "QG24-C2",
+        "document_level_verification": false,
+        "query_families": [
+          "OWN_VOCABULARY",
+          "DONOR_FIELD_TRANSLATION",
+          "INVERTED_OR_SURVEY"
+        ],
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md#family-2",
+        "source": "A. Cole, 'Quantum Circuit Optimisation Through Stabiliser Reduction of Pauli Exponentials', Oxford thesis",
+        "verbatim_passage": "Writing a circuit as a series of Pauli exponentials and merging those exponentials of the same Pauli when there are only commuting Paulis in between them is essentially the best possible rewrite strategy when minimising the number of non-Clifford components of the circuit.",
+        "verdict": "SUBSUMED",
+        "verdict_means": "prior art states the claim or a more general one: novelty removed"
+      },
+      {
+        "asserts_novelty": true,
+        "claim": "This lane's residual candidate: that the SEVEN-rotation floor of the frozen three-block TARE-M2 shared-Tag grammar, and the decidability of reaching it, is a regime-geometry statement rather than an instance of known rotation-merging.",
+        "claim_id": "QG24-C3",
+        "document_level_verification": false,
+        "query_families": [
+          "OWN_VOCABULARY",
+          "DONOR_FIELD_TRANSLATION",
+          "INVERTED_OR_SURVEY"
+        ],
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md",
+        "source": "TMerge / Pauli-rotation merging (arXiv:2407.07846) as the general result; van de Wetering & Amy, 'Optimising quantum circuits is generally hard', arXiv:2310.05958, for the complexity backdrop",
+        "surviving_specialization": "at most: the arithmetic that in THIS grammar the merge relation admits exactly the two block seams, so the floor is 7 and not 9, and that the floor is reachable on every real row. The merging rule, its optimality and its complexity are donor property.",
+        "verbatim_passage": "An efficient algorithm for solving the Pauli rotation merging problem constructs the associated optimized quantum circuit with a complexity of O(nM+nhm) where h is the optimal of internal Hadamard gates required to implement the initial sequence of Pauli rotations.",
+        "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+        "verdict_means": "claim is a specialization of an established result: novelty is at most the specialization, and the general result must be cited"
+      },
+      {
+        "asserts_novelty": false,
+        "claim": "Own-vocabulary framing: rotation count as a trade currency with a decidable membership predicate and an intrinsic support number.",
+        "claim_id": "QG24-C4",
+        "document_level_verification": false,
+        "note": "NOT a novelty grant. The own-vocabulary family returned only unrelated exchange-rate-regime and formal-decidability hits, which is a statement about this programme's private vocabulary and nothing else. The claim it would have protected is already removed by C1-C3 under the translated query family -- exactly QG-19's mechanism.",
+        "query_families": [
+          "OWN_VOCABULARY",
+          "DONOR_FIELD_TRANSLATION",
+          "INVERTED_OR_SURVEY"
+        ],
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md#family-1",
+        "source": null,
+        "verbatim_passage": "",
+        "verdict": "NO_PRIOR_ART_FOUND",
+        "verdict_means": "declared searches returned nothing bearing; novelty NOT established -- this reports the queries run, not the state of the literature"
+      }
+    ],
+    "retrieval_note": "WebSearch returned snippet-level text; every direct document fetch (arxiv.org, cs.ox.ac.uk) was refused by the egress proxy with EGRESS_BLOCKED, so every verbatim passage below is snippet-level and is marked document_level_verification: false. The lane does not take the QG24_BLOCKED terminal because retrieval was available, only document fetch was not.",
+    "validated_by": "orion_research_harness.donor_search.validate_donor_search"
+  },
+  "gates": {
+    "G1_donor_search_validated_before_any_novelty_claim": true,
+    "G2_O1_not_used": true,
+    "G2_theta_rot_derived_from_qg21_ft_accounting": true,
+    "G3_complete_domain_at_every_declared_size": true,
+    "G3_no_sampling_presented_as_enumeration": true,
+    "G4_predictions_staged_before_referee": true,
+    "G4_raising_stub_never_triggered": true,
+    "G5_ft_fraction_reported": true,
+    "G6_qg21_receipt_unedited": true,
+    "G7_independent_verifier_obligation": "development/orion-qg-regime-geometry/qg24_generic_verify.py",
+    "G8_determinism_double_run": "asserted by the runner; timing excluded",
+    "G9_caps_disclosed": true,
+    "exact_counts_match_n1_brute_force": true,
+    "exact_counts_sum_to_independent_domain_size": true,
+    "lemma_L1_closed_form_matches_general_search_n1": true,
+    "lemma_L1_closed_form_matches_general_search_n2": true,
+    "protected_subject_never_opened": true,
+    "witness_grammar_checks_all_pass": true
+  },
+  "headline": "QG-21's applied ceiling is a FAMILY ARTIFACT, not a structural property of the grammar. Enumerating the complete configuration space -- not the family menu -- the rotation count takes the values 9, 8 and 7, and the floor 7 is reachable on every one of the 90 receipted real-chemistry rows, at no Clifford price on most of them. Two of the nine arbitrary-angle rotations, about 22 % of the fault-tolerant cost, were left on the table by the family menu. That saving is elementary Pauli-rotation merging and belongs entirely to the donor literature (verdict SUBSUMED). And the lifted value is itself a constant, so theta_rot is still not a regime-geometry object: the ceiling moved down, the geometry did not appear.",
+  "lane": "QG-24",
+  "novelty_authority": false,
+  "novelty_credit": false,
+  "panel": [
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          18
+        ],
+        [
+          22,
+          25
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          18
+        ],
+        [
+          22,
+          27
+        ],
+        [
+          25,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 12,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 13,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          18
+        ],
+        [
+          22,
+          31
+        ],
+        [
+          25,
+          27
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 24,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 13,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          27
+        ],
+        [
+          25,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 24,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          25,
+          27
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          25
+        ],
+        [
+          18,
+          22
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          25
+        ],
+        [
+          18,
+          27
+        ],
+        [
+          22,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          25
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          27
+        ],
+        [
+          18,
+          22
+        ],
+        [
+          25,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 12,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          27
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          22,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          27
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          22,
+          25
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          31
+        ],
+        [
+          18,
+          22
+        ],
+        [
+          25,
+          27
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 11,
+      "seven_rotation_min_clifford_factored": 11,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          31
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          31
+        ],
+        [
+          18,
+          27
+        ],
+        [
+          22,
+          25
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 8,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "H4"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          7
+        ],
+        [
+          11,
+          24
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          7
+        ],
+        [
+          11,
+          31
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          7
+        ],
+        [
+          11,
+          32
+        ],
+        [
+          24,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          11
+        ],
+        [
+          7,
+          24
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          11
+        ],
+        [
+          7,
+          31
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          11
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          24,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          24
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          24
+        ],
+        [
+          7,
+          31
+        ],
+        [
+          11,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          24
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          11,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          31
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          31
+        ],
+        [
+          7,
+          24
+        ],
+        [
+          11,
+          32
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          31
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          11,
+          24
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          32
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          24,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          32
+        ],
+        [
+          7,
+          24
+        ],
+        [
+          11,
+          31
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          32
+        ],
+        [
+          7,
+          31
+        ],
+        [
+          11,
+          24
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "N2"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          11,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          11,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          11,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          72
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          72
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          72
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          73
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          73
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          73
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 14,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          74
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          74
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          74
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 12,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 8,
+      "seven_rotation_min_clifford_factored": 8,
+      "seven_rotation_min_clifford_in_place": 8,
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          16,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          16,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          21
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 13,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          16,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          11,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          21
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 13,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          16
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          16
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          11,
+          21
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          16
+        ],
+        [
+          6,
+          21
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 13,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          21
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 23,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          21
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          21
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          19,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          10,
+          19
+        ],
+        [
+          12,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          10,
+          22
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          19,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          12,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 1,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          19,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 11,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          10,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          10,
+          19
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          19
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          12,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          19
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          10,
+          22
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          19
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 12,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          22
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 10,
+      "seven_rotation_min_clifford_factored": 10,
+      "seven_rotation_min_clifford_in_place": 22,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          22
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          10,
+          19
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    },
+    {
+      "clifford_price_factored": 0,
+      "clifford_price_in_place": 0,
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          22
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "min_rotations_factored": 7,
+      "min_rotations_in_place": 7,
+      "n_qubits": 14,
+      "predicate": {
+        "Q_A_nonidentity": true,
+        "Q_B_nonidentity": true,
+        "seven_reachable_factored": true,
+        "seven_reachable_in_place": true
+      },
+      "r6m_theta_FT_optimum_clifford": 9,
+      "seven_rotation_min_clifford_factored": 9,
+      "seven_rotation_min_clifford_in_place": 9,
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+    }
+  ],
+  "physical_quantum_advantage_claim": false,
+  "protocol": "development/orion-qg-regime-geometry/QG24_ROTATION_REGIME_PROTOCOL_V1.md",
+  "protocol_objections": [
+    {
+      "clause": "section 2, merge relation",
+      "objection": "The frozen relation says 'separated only by operations that commit with that axis' but does not say where the branch-controlled Restore sits. R6L writes it after each block; R6M's committed cost model extracts an all-three common Restore factor, which only makes sense if the three Restores are composed together, i.e. after the last Uanti. These give different intervener sets and different counts.",
+      "resolution": "executed anyway, with BOTH readings enumerated completely and reported side by side; no gate softened, and the lane's verdict is the same under either."
+    },
+    {
+      "clause": "section 3 step 2",
+      "objection": "'If the count is 9 on every configuration ... report that and stop' presumes 9 is the only candidate invariant. The measured answer is that 9 is not invariant but 7 is a floor and is reached everywhere, so the count is neither invariant nor a regime object.",
+      "resolution": "executed as written; the measured distribution is reported."
+    },
+    {
+      "clause": "section 6, terminals",
+      "objection": "No frozen terminal covers 'variation found, template does not instantiate, and the fault-tolerant fraction is nonetheless material'. QG24_PARTIAL names the first two and is silent on the third; QG24_..._CEILING_LIFTED requires the template.",
+      "resolution": "QG24_PARTIAL taken, because Q2 is the binding clause; the material Q3 fraction is reported in full under q3_magnitude and in the headline rather than being lost to the terminal."
+    }
+  ],
+  "protocol_sha256": "91dc301ec26f253603e873a88cb1f27e01f7db4b4cd4d5c5d7f9be2fc9438b4e",
+  "q1_ceiling_verdict": "FAMILY_ARTIFACT",
+  "q1_distribution": {
+    "1": {
+      "enumerated_domain_size_reduced": 98304,
+      "full_configuration_space_admissible": 1572864,
+      "independent_admissible_frame_tag_count": 48,
+      "per_model": {
+        "R6L_RESTORE_IN_PLACE": {
+          "distribution_full": {
+            "7": 15360,
+            "8": 264192,
+            "9": 1293312
+          },
+          "distribution_reduced": {
+            "7": 960,
+            "8": 16512,
+            "9": 80832
+          },
+          "fraction_below_nine": 0.177734375,
+          "sums_to_domain": true
+        },
+        "R6M_RESTORE_FACTORED": {
+          "distribution_full": {
+            "7": 245760,
+            "8": 688128,
+            "9": 638976
+          },
+          "distribution_reduced": {
+            "7": 15360,
+            "8": 43008,
+            "9": 39936
+          },
+          "fraction_below_nine": 0.59375,
+          "sums_to_domain": true
+        }
+      }
+    },
+    "12": {
+      "enumerated_domain_size_reduced": 926336658684558789064057580591456364609956257716252734952568230763111246725120,
+      "full_configuration_space_admissible": 260740589429463081236528480760705150026436701249985127664309807502861528458472816749806878720,
+      "independent_admissible_frame_tag_count": 1461501550218616986443438186092383517123270410240,
+      "per_model": {
+        "R6L_RESTORE_IN_PLACE": {
+          "distribution_full": {
+            "7": 57896061873022730559776970186701993392311705447713975393795954725369612861440,
+            "8": 8013509455437258084341877871416743760148663353561969492955387757851253033507393372160,
+            "9": 260740581415953567903208523396096718832722754399328381790634866833498376811265057872800645120
+          },
+          "distribution_reduced": {
+            "7": 205688130964968005400013489444795288080711179104703402465034240,
+            "8": 28469704657529100033535051293457995882891478890861838710276955161231360,
+            "9": 926336630214853925846826582088399671138470930029485763379550415782753620459520
+          },
+          "fraction_below_nine": 3.073364807093518e-08,
+          "sums_to_domain": true
+        },
+        "R6M_RESTORE_FACTORED": {
+          "distribution_full": {
+            "7": 926336989968363688956431522987231894276987287163423606300735275605913805783040,
+            "8": 34968038902141513121807785977855305963086287019972986222913462921297906068763548057600,
+            "9": 260740554461423252758025390589230215739607750931803830704036421165792306425291142072453038080
+          },
+          "distribution_reduced": {
+            "7": 3291010095439488086400215831116724609291378865675254439440547840,
+            "8": 124231430128466204798370803451686960141438074671686515496963433666969600,
+            "9": 926336534453125369587757342732566512707164999553568771887187058545238139207680
+          },
+          "fraction_below_nine": 1.34110457850055e-07,
+          "sums_to_domain": true
+        }
+      }
+    },
+    "14": {
+      "enumerated_domain_size_reduced": 16296287749967485808093532041041840700176781316752276284709763555715912593765934736804413440,
+      "full_configuration_space_admissible": 1174271287012415164378716449649664059452598543747821073567220612914563299737398223333097652745357997469859840,
+      "independent_admissible_frame_tag_count": 392318857000165910408833920746794318290114195623069614080,
+      "per_model": {
+        "R6L_RESTORE_IN_PLACE": {
+          "distribution_full": {
+            "7": 1018518007138618858967449193040111444350880983852633653217393186872211223901057851253063680,
+            "8": 2255602314770441395946668043010496470728273828985288717942080614466801636576779168153932164046520320,
+            "9": 1174271284756812848589757046564377157474652879979435800231050911119849032053203399884107260690367982170275840
+          },
+          "distribution_reduced": {
+            "7": 14134776781507802631102771365735774116585435120805237147153981909111930880,
+            "8": 31302770303199298151201446824422276331682438568555625318130539370503640458587013120,
+            "9": 16296287718664715490759457108332591244651733619334063599568703116780136076108312369105469440
+          },
+          "fraction_below_nine": 1.9208528222874888e-09,
+          "sums_to_domain": true
+        },
+        "R6M_RESTORE_FACTORED": {
+          "distribution_full": {
+            "7": 16296288114217901743479187088641783109614095741642138451478290989955379582416925620049018880,
+            "8": 9842628241153193107122164406519495698562411421395177344901667168566969095255306875229701555617792000,
+            "9": 1174271277169786906929235228309597909453915756543626542557947526370757679692138138122411195098730821803048960
+          },
+          "distribution_reduced": {
+            "7": 226156428504124842097644341851772385865366961932883794354463710545790894080,
+            "8": 136593906201926033982004876722864068741036972251467714668827601717334811682537472000,
+            "9": 16296287613373579380011069554912121879668370723942918167875086954004516521967412508476047360
+          },
+          "fraction_below_nine": 8.381903199294882e-09,
+          "sums_to_domain": true
+        }
+      }
+    },
+    "2": {
+      "enumerated_domain_size_reduced": 515396075520,
+      "full_configuration_space_admissible": 131941395333120,
+      "independent_admissible_frame_tag_count": 983040,
+      "per_model": {
+        "R6L_RESTORE_IN_PLACE": {
+          "distribution_full": {
+            "7": 44291850240,
+            "8": 4646617743360,
+            "9": 127250485739520
+          },
+          "distribution_reduced": {
+            "7": 173015040,
+            "8": 18150850560,
+            "9": 497072209920
+          },
+          "fraction_below_nine": 0.035552978515625,
+          "sums_to_domain": true
+        },
+        "R6M_RESTORE_FACTORED": {
+          "distribution_full": {
+            "7": 708669603840,
+            "8": 18683107737600,
+            "9": 112549617991680
+          },
+          "distribution_reduced": {
+            "7": 2768240640,
+            "8": 72980889600,
+            "9": 439646945280
+          },
+          "fraction_below_nine": 0.14697265625,
+          "sums_to_domain": true
+        }
+      }
+    },
+    "4": {
+      "enumerated_domain_size_reduced": 9633627625054076235939840,
+      "full_configuration_space_admissible": 631349420035543940198553354240,
+      "independent_admissible_frame_tag_count": 280375465082880,
+      "per_model": {
+        "R6L_RESTORE_IN_PLACE": {
+          "distribution_full": {
+            "7": 616213485782267571732480,
+            "8": 1279437945434061724471787520,
+            "9": 630069365876624096206509834240
+          },
+          "distribution_reduced": {
+            "7": 9402671597019463680,
+            "8": 19522673727936732856320,
+            "9": 9614095548654542483619840
+          },
+          "fraction_below_nine": 0.0020274892449378967,
+          "sums_to_domain": true
+        },
+        "R6M_RESTORE_FACTORED": {
+          "distribution_full": {
+            "7": 9859415772516281147719680,
+            "8": 5558151563361277578313728000,
+            "9": 625781409056410146339091906560
+          },
+          "distribution_reduced": {
+            "7": 150442745552311418880,
+            "8": 84810662282734338048000,
+            "9": 9548666520025789586472960
+          },
+          "fraction_below_nine": 0.008819222450256348,
+          "sums_to_domain": true
+        }
+      }
+    },
+    "8": {
+      "enumerated_domain_size_reduced": 2993109681327522585764952672251925240410985600122880,
+      "full_configuration_space_admissible": 12855308194642691370561826870309825580602120751654703181332480,
+      "independent_admissible_frame_tag_count": 20282100118641849078878526504960,
+      "per_model": {
+        "R6L_RESTORE_IN_PLACE": {
+          "distribution_full": {
+            "7": 187086481793945775333601501507507022959725206568960,
+            "8": 101145594218782299879042768140864278889834991247939338240,
+            "9": 12855207048861386106468002052208083214815723893703730035425280
+          },
+          "distribution_reduced": {
+            "7": 43559465975022356802039197997075278069760,
+            "8": 23549793804712197715193677726402943695391293440,
+            "9": 2993086131490158407592215121772159639470214930759680
+          },
+          "fraction_below_nine": 7.868016835832492e-06,
+          "sums_to_domain": true
+        },
+        "R6M_RESTORE_FACTORED": {
+          "distribution_full": {
+            "7": 2993383708703132405337624024120112367355603305103360,
+            "8": 441354973731457746709503480849548403801028814401909555200,
+            "9": 12854866836675576204111984961491352008078207355484697966673920
+          },
+          "distribution_reduced": {
+            "7": 696951455600357708832627167953204449116160,
+            "8": 102760962613732029383420823339733389159904051200,
+            "9": 2993006919667957398135211542595958339068621246955520
+          },
+          "fraction_below_nine": 3.4332741030596026e-05,
+          "sums_to_domain": true
+        }
+      }
+    }
+  },
+  "q1_lemma_L1_n1_complete_check": {
+    "brute_force_distribution_n1_reduced": {
+      "R6L_RESTORE_IN_PLACE": {
+        "7": 960,
+        "8": 16512,
+        "9": 80832
+      },
+      "R6M_RESTORE_FACTORED": {
+        "7": 15360,
+        "8": 43008,
+        "9": 39936
+      }
+    },
+    "closed_form_agrees_everywhere": true,
+    "configurations_checked": 196608,
+    "ever_feasible_pairs_1indexed": [
+      [
+        3,
+        4
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "mismatches": []
+  },
+  "q1_lemma_L1_n2_pattern_check": {
+    "checks": 12160768,
+    "closed_form_agrees_everywhere": true,
+    "mismatches": [],
+    "n2_patterns_with_cross_slot_equality": 1484,
+    "n2_slot_patterns_realizable": 2444
+  },
+  "q1_models": {
+    "R6L_RESTORE_IN_PLACE": "each block's branch-controlled Restore is charged where the donor R6L composition writes it -- immediately after that block's Uanti -- so it is a Clifford intervener between the blocks it separates",
+    "R6M_RESTORE_FACTORED": "R6M's committed cost model extracts an all-three common Restore factor (factor_restore_triple), which requires the three Restores to be composed together; read literally that places every Restore after the last Uanti, so no Clifford intervenes between blocks"
+  },
+  "q1_qg21_witnesses_remeasured": {
+    "distribution": {
+      "R6L_RESTORE_IN_PLACE": {
+        "7": 2,
+        "8": 20,
+        "9": 86
+      },
+      "R6M_RESTORE_FACTORED": {
+        "7": 14,
+        "8": 38,
+        "9": 56
+      }
+    },
+    "grammar_failures": [],
+    "note": "rotation count of QG-21's own 108 serialized improved compilations under the frozen merge relation; QG-21 asserted the constant 9 for all of them"
+  },
+  "q1_rotation_count_is_invariant_in_the_grammar": false,
+  "q2_regime": {
+    "donor_optimal_region": "empty as a region: under theta_rot the frozen donor family and every family member sit at 9 or 8, and the grammar floor 7 is reachable on every row of the applied domain, so there is no boundary to cross",
+    "elementary_trades": "none: theta_rot takes three values on the whole configuration space and its optimum is the constant 7 on every real batch, so no trade exchanges one currency for another",
+    "membership_predicate": "decidable in O(n): theta_rot_min = 7 iff the two block-A / block-B target products are non-identity (in-place model), and unconditionally (factored model). Decidable but vacuous on the applied domain -- it is true on every one of the 90 receipted rows",
+    "prospective_forecast": {
+      "hits": 60,
+      "panel": "D2 held-out rows",
+      "referee_calls_during_stage1": 0,
+      "referee_stub_installed": true,
+      "rows": 60,
+      "stage1_digest": "8e59555558d55124cd4c297a71bee36fb5e5e0959d8c5f070d41478f30b934e9"
+    },
+    "sufficiency_bounds": "degenerate: the sufficient condition (a common outer frame axis across the three blocks) is also necessary, by Lemma L1, and is always satisfiable",
+    "template_instantiated": false,
+    "verdict": "theta_rot is NOT a regime-geometry object. It varies over the configuration space, so QG-21's 9 is a family artifact, but its optimum is a second constant (7) attained everywhere. A currency whose optimum never moves carries no geometry."
+  },
+  "q3_magnitude": {
+    "break_even_note": "the merge pays whenever one arbitrary-angle rotation costs more than (Clifford price)/2 two-qubit Cliffords; the price is at or below zero on most rows, so the break-even ratio is at or below zero there and the saving is unconditional",
+    "clifford_price_factored": {
+      "max": 0,
+      "median": 0,
+      "min": 0,
+      "rows": 90,
+      "rows_free_or_better": 90
+    },
+    "clifford_price_in_place": {
+      "max": 14,
+      "median": 1,
+      "min": 0,
+      "rows": 90,
+      "rows_free_or_better": 36
+    },
+    "comparison_to_qg21": "QG-21 reported its best defensible improvement as 2 two-qubit Clifford gates against a 9-rotation backdrop -- about 0.7 % of fault-tolerant cost at kappa_T/c_T = 30, and it called that negligible. This lane moves 2 of the 9 rotations themselves, about 22 %. That is roughly thirty times larger and it is NOT negligible. It is also not this programme's: it is textbook Pauli-rotation merging (donor verdict SUBSUMED, QG24-C1/C2).",
+    "fault_tolerant_fraction_moved": {
+      "C_base_median_two_qubit_cliffords": 9,
+      "at_kappa_over_c_100": 0.22002200220022003,
+      "at_kappa_over_c_30": 0.21505376344086022,
+      "formula": "2*kappa_T / (9*kappa_T + c_T*C_base)",
+      "limit_kappa_dominant": 0.2222222222222222
+    },
+    "fraction_of_rotation_count_removed": 0.2222222222222222,
+    "rotations_per_compilation_family_menu": 9,
+    "rotations_per_compilation_grammar_floor": 7,
+    "rotations_removed": 2,
+    "t_gate_backdrop_range": [
+      270,
+      900
+    ],
+    "t_gates_saved_range": [
+      60,
+      200
+    ],
+    "unit": "arbitrary-angle rotations (magic states / synthesized Pauli rotations), the unit theta_rot counts; Clifford price reported separately in two-qubit Clifford gates, QG-21's unit"
+  },
+  "qg21_binding": {
+    "O1_control_excluded_because": "QG-2's O1 = (7,1,4,3) prices T per support unit of a frame branch. The frame's support buys CNOT-ladder entanglers, not T gates; the rotation count is 1 per exponential regardless of weight. O1 is therefore retained as a control point and is not derivable from fault-tolerant accounting.",
+    "protocol_sha256_recorded_by_qg21": "88c2e5fa9e22330b6f2de108a3fc35c01298deb34dc331ca7e72f7e307ca7fc9",
+    "qualification_recorded_here_not_in_qg21": "QG-21's statement 'every member of the frozen family carries exactly nine rotations' is correct about the family MENU and is not edited. It does not hold of the grammar: this lane exhibits admissible grammar configurations with 8 and with 7, and measures that some of QG-21's OWN serialized witnesses already carry 8 once the merge relation is applied.",
+    "results_file": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+    "results_sha256": "fb1dfea5ef16c91f17045f173d5f8522be7df35db2c15714ff0a56eecad97ea3",
+    "theta_FT_weights": [
+      4,
+      2,
+      2,
+      1
+    ]
+  },
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "result_digest": "538b38aabf21ce343f84c680f236671131d249211247bf6a1357c36c75911a0a",
+  "schema": "ORIONQG.QG24.RotationRegime.v1",
+  "stage1": {
+    "digest": "8e59555558d55124cd4c297a71bee36fb5e5e0959d8c5f070d41478f30b934e9",
+    "embedded": {
+      "lane": "QG-24",
+      "panel": "D2 held-out rows",
+      "predictions": [
+        {
+          "matching": [
+            [
+              4,
+              7
+            ],
+            [
+              11,
+              72
+            ],
+            [
+              73,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              7
+            ],
+            [
+              11,
+              73
+            ],
+            [
+              72,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              7
+            ],
+            [
+              11,
+              74
+            ],
+            [
+              72,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              11
+            ],
+            [
+              7,
+              72
+            ],
+            [
+              73,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              11
+            ],
+            [
+              7,
+              73
+            ],
+            [
+              72,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              11
+            ],
+            [
+              7,
+              74
+            ],
+            [
+              72,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              72
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              73,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              72
+            ],
+            [
+              7,
+              73
+            ],
+            [
+              11,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              72
+            ],
+            [
+              7,
+              74
+            ],
+            [
+              11,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              73
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              72,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              73
+            ],
+            [
+              7,
+              72
+            ],
+            [
+              11,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              73
+            ],
+            [
+              7,
+              74
+            ],
+            [
+              11,
+              72
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              74
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              72,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              74
+            ],
+            [
+              7,
+              72
+            ],
+            [
+              11,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              4,
+              74
+            ],
+            [
+              7,
+              73
+            ],
+            [
+              11,
+              72
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              7
+            ],
+            [
+              11,
+              72
+            ],
+            [
+              73,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              7
+            ],
+            [
+              11,
+              73
+            ],
+            [
+              72,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              7
+            ],
+            [
+              11,
+              74
+            ],
+            [
+              72,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              11
+            ],
+            [
+              7,
+              72
+            ],
+            [
+              73,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              11
+            ],
+            [
+              7,
+              73
+            ],
+            [
+              72,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              11
+            ],
+            [
+              7,
+              74
+            ],
+            [
+              72,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              72
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              73,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              72
+            ],
+            [
+              7,
+              73
+            ],
+            [
+              11,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              72
+            ],
+            [
+              7,
+              74
+            ],
+            [
+              11,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              73
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              72,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              73
+            ],
+            [
+              7,
+              72
+            ],
+            [
+              11,
+              74
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              73
+            ],
+            [
+              7,
+              74
+            ],
+            [
+              11,
+              72
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              74
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              72,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              74
+            ],
+            [
+              7,
+              72
+            ],
+            [
+              11,
+              73
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              5,
+              74
+            ],
+            [
+              7,
+              73
+            ],
+            [
+              11,
+              72
+            ]
+          ],
+          "n_qubits": 12,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              6
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              16,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              6
+            ],
+            [
+              11,
+              16
+            ],
+            [
+              12,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              6
+            ],
+            [
+              11,
+              21
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              11
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              16,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              11
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              12,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              11
+            ],
+            [
+              6,
+              21
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              12
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              16,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              12
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              11,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              12
+            ],
+            [
+              6,
+              21
+            ],
+            [
+              11,
+              16
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              16
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              12,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              16
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              11,
+              21
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              16
+            ],
+            [
+              6,
+              21
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              21
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              12,
+              16
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              21
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              11,
+              16
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              21
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              6
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              19,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              6
+            ],
+            [
+              10,
+              19
+            ],
+            [
+              12,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              6
+            ],
+            [
+              10,
+              22
+            ],
+            [
+              12,
+              19
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              10
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              19,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              10
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              12,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              10
+            ],
+            [
+              6,
+              22
+            ],
+            [
+              12,
+              19
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              12
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              19,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              12
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              10,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              12
+            ],
+            [
+              6,
+              22
+            ],
+            [
+              10,
+              19
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              19
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              12,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              19
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              10,
+              22
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              19
+            ],
+            [
+              6,
+              22
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              22
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              12,
+              19
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              22
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              10,
+              19
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        },
+        {
+          "matching": [
+            [
+              1,
+              22
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "n_qubits": 14,
+          "predicted_clifford_price_nonnegative": true,
+          "predicted_min_rotations_factored": 7,
+          "predicted_min_rotations_in_place": 7,
+          "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+        }
+      ],
+      "rule": "the decidable predicate merge_predicate_seven, derived analytically from Lemma L1 and never fitted to any row"
+    },
+    "note": "staged inside this receipt rather than in a separate artifact because protocol section 8 permits exactly five files",
+    "referee_calls_during_stage1": 0
+  },
+  "terminal": "QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME"
+}
