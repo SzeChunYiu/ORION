@@ -8,6 +8,7 @@ from orion.study.ea import (
     NodeKind,
     NodeStatus,
     ViewMode,
+    analyze_identifiability,
     generate_case,
     generate_obligation_hostile_pair,
     generate_representation_hostile_pair,
@@ -63,6 +64,13 @@ def test_representation_hostile_pair_collides_when_semantics_hidden():
     assert remint.fingerprint(ViewMode.FULL) != material.fingerprint(ViewMode.FULL)
     assert remint.gold_delta != material.gold_delta
 
+    typed = analyze_identifiability((remint, material), ViewMode.TYPED)
+    full = analyze_identifiability((remint, material), ViewMode.FULL)
+    assert typed.deterministic_accuracy_ceiling == pytest.approx(0.5)
+    assert typed.is_identifying is False
+    assert full.deterministic_accuracy_ceiling == pytest.approx(1.0)
+    assert full.is_identifying is True
+
 
 def test_obligation_hostile_pair_collides_when_scope_hidden():
     nontransport, transport = generate_obligation_hostile_pair("obligation-pair")
@@ -70,6 +78,30 @@ def test_obligation_hostile_pair_collides_when_scope_hidden():
     assert nontransport.fingerprint(ViewMode.TYPED) == transport.fingerprint(ViewMode.TYPED)
     assert nontransport.fingerprint(ViewMode.FULL) != transport.fingerprint(ViewMode.FULL)
     assert nontransport.gold_delta != transport.gold_delta
+
+    typed = analyze_identifiability((nontransport, transport), ViewMode.TYPED)
+    full = analyze_identifiability((nontransport, transport), ViewMode.FULL)
+    assert typed.deterministic_accuracy_ceiling == pytest.approx(0.5)
+    assert typed.is_identifying is False
+    assert full.deterministic_accuracy_ceiling == pytest.approx(1.0)
+    assert full.is_identifying is True
+
+
+def test_combined_hostile_pairs_have_exact_typed_ceiling_and_full_separation():
+    rep = generate_representation_hostile_pair("combined-rep")
+    obligation = generate_obligation_hostile_pair("combined-obligation")
+    cases = (*rep, *obligation)
+
+    typed = analyze_identifiability(cases, ViewMode.TYPED)
+    full = analyze_identifiability(cases, ViewMode.FULL)
+
+    assert typed.sample_count == 4
+    assert typed.unique_fingerprint_count == 2
+    assert typed.deterministic_accuracy_ceiling == pytest.approx(0.5)
+    assert len(typed.collisions) == 2
+    assert full.unique_fingerprint_count == 4
+    assert full.deterministic_accuracy_ceiling == pytest.approx(1.0)
+    assert full.is_identifying is True
 
 
 def test_sparse_retraction_changes_only_dependency_component():
