@@ -128,7 +128,7 @@ import json
 import sys
 from pathlib import Path
 from types import ModuleType
-from typing import Any, Hashable
+from typing import Any, Hashable, Sequence
 
 from orion.programme.decided_premises import (
     AssertionReplay,
@@ -143,8 +143,10 @@ from orion.programme.refutation_capacity import (
     FalseTheory,
     MechanizedCheck,
     ModelPoint,
+    RefutationCapacity,
     Rule,
     axis_sensitivity,
+    measure_refutation_capacity,
 )
 from orion.study.p7.donor_stack_as_transformation_family import (
     CONTRACT_ASSIGNMENTS,
@@ -191,14 +193,29 @@ TRANSPORT_COORDINATES: tuple[str, ...] = (
     "excludes_new_defeater",
 )
 
+#: The five registered closure coordinates, in the shipped checker's order.
+#: :func:`closure_carrying_capacities` asserts this against ``module.COORDS`` so the
+#: register is pointed at the shipped file rather than at a fixture of its own.
+CLOSURE_COORDINATES: tuple[str, ...] = (
+    "obligations_total",
+    "obligations_unambiguous",
+    "frontier_resolved",
+    "objective_semantics_preserved",
+    "closure_epoch_current",
+)
+
 TRANSPORT_REFERENCE_ID = "check_theory_closure_v2.transfer_terminal"
 COMPOSITION_REFERENCE_ID = "check_p7_x2_closure_carrying.compose"
 
 #: The shipped closure-carrying checker's one donor-dependent count. Its claim is
-#: that a donor transform's native verdict survives projection, and the artifact
-#: computes the projection as ``projected_native = native_valid``, so the count is
-#: zero by construction rather than by observation.
+#: that a donor transform's native verdict survives projection. The artifact used
+#: to compute that projection as ``projected_native = native_valid`` on the line
+#: above the guard, so the count was zero by construction rather than by
+#: observation; :func:`donor_conservativity_capacity` is what says it is a
+#: measurement now.
 DONOR_CONSERVATIVITY_COUNT = "donor_conservativity_violations"
+
+CARRYING_REFERENCE_ID = "check_p7_x2_closure_carrying.carries"
 
 #: The check id the pre-repair transport model is measured under. Deliberately not
 #: ``check_support_transport``: that name now belongs to a check that enumerates
@@ -1000,16 +1017,442 @@ def closure_reference(module: ModuleType) -> Rule:
 
 
 # ---------------------------------------------------------------------------
+# The donor-conservativity count, and the theories it can now reject
+#
+# ``donor_conservativity_violations`` was published as ``0`` from a guard that
+# read ``projected_native = native_valid`` immediately followed by
+# ``if projected_native != native_valid``. Both operands are the same name by
+# assignment, ``native_valid`` is rebound nowhere between them, and the guard was
+# therefore ``x != x``: evaluated 320 times, satisfied 0 times, and 0 under every
+# theory of closure carrying. The decisive measurement is the one below ---
+# substituting ``carries`` with a rule under which closure is carried by a donor
+# transform whose own native verdict is invalid, which is exactly the violation
+# the count names, the shipped script ran to completion and still printed 0.
+#
+# The checker now carries ``project_to_donor`` and the image of ``carries`` along
+# it, and states conservativity as the equality of that image with the donor's own
+# verdict. Both directions bite, and the register below is what shows it.
+# ---------------------------------------------------------------------------
+
+def donor_transforms(module: ModuleType) -> tuple[tuple[str, bool], ...]:
+    """The donor-visible transforms the 320 rows project onto. Ten of them."""
+
+    return tuple(
+        sorted({(str(point["donor"]), bool(point["native_valid"])) for point in closure_model_space(module)})
+    )
+
+
+def donor_fibre(module: ModuleType, transform: tuple[str, bool]) -> tuple[ModelPoint, ...]:
+    """Every carried state that projects onto one donor transform."""
+
+    donor, native_valid = transform
+    return tuple(
+        {"donor": donor, "native_valid": native_valid, **dict(zip(module.COORDS, closure))}
+        for closure in itertools.product((False, True), repeat=len(module.COORDS))
+    )
+
+
+def _accepts_donor_conservativity(module: ModuleType):
+    """The shipped ``donor_conservativity_violations == 0`` counter, replayed.
+
+    The image of the rule along ``project_to_donor`` --- a donor transform is
+    closure-carrying when *some* closure vector over it carries --- must coincide
+    with the donor's own native verdict. Both directions are about the rule: left
+    to right the semantics never manufactures a native verdict it was not given,
+    which is what ``closure_carries_without_a_valid_donor`` does; right to left it
+    never withdraws one the donor theory issues, which is what ``nothing_carries``
+    does.
+    """
+
+    def accepts(rule: Rule) -> bool:
+        for transform in donor_transforms(module):
+            image = any(bool(rule(point)) for point in donor_fibre(module, transform))
+            if image != transform[1]:
+                return False
+        return True
+
+    return accepts
+
+
+def _accepts_ideal_product_tie(module: ModuleType):
+    """The shipped ``ideal_product_mismatches == 0`` counter, replayed.
+
+    An extensional-equivalence claim is an identity test, so this rejects every
+    theory that differs from the enriched donor product anywhere --- which, the
+    register being live by construction, is all of them. That is maximal capacity
+    earned cheaply and it is worth saying so: what the check turns on is that the
+    two sides have *separate constructions*, which the capacity measure cannot
+    see. The shipped script keeps ``_independently_defined`` for exactly that
+    reason and reports ``CANNOT_CHECK`` rather than a clean zero if they collapse.
+    """
+
+    def accepts(rule: Rule) -> bool:
+        return not any(
+            bool(rule(point))
+            != module.ideal_product(
+                point["native_valid"], tuple(point[name] for name in module.COORDS)
+            )
+            for point in closure_model_space(module)
+        )
+
+    return accepts
+
+
+def _accepts_single_coordinate_separations(module: ModuleType):
+    """The 25 minimal one-coordinate separation witnesses, replayed."""
+
+    full = (True,) * len(module.COORDS)
+
+    def accepts(rule: Rule) -> bool:
+        point = {"donor": module.DONORS[0], "native_valid": True, **dict(zip(module.COORDS, full))}
+        if not rule(point):
+            return False
+        for index in range(len(module.COORDS)):
+            broken = list(full)
+            broken[index] = False
+            candidate = {
+                "donor": module.DONORS[0],
+                "native_valid": True,
+                **dict(zip(module.COORDS, broken)),
+            }
+            if rule(candidate):
+                return False
+        return True
+
+    return accepts
+
+
+def _accepts_product_countermodels(module: ModuleType):
+    """The 31 donor-product nonclosure countermodels, replayed."""
+
+    def accepts(rule: Rule) -> bool:
+        for closure in itertools.product((False, True), repeat=len(module.COORDS)):
+            if all(closure):
+                continue
+            point = {
+                "donor": module.DONORS[0],
+                "native_valid": True,
+                **dict(zip(module.COORDS, closure)),
+            }
+            if rule(point):
+                return False
+        return True
+
+    return accepts
+
+
+def _accepts_selective_refinement(module: ModuleType):
+    """The 155 full refinements and 1,055 proper-subset failures, replayed."""
+
+    size = len(module.COORDS)
+
+    def at(closure: Sequence[bool]) -> ModelPoint:
+        return {
+            "donor": module.DONORS[0],
+            "native_valid": True,
+            **dict(zip(module.COORDS, tuple(closure))),
+        }
+
+    def accepts(rule: Rule) -> bool:
+        for count in range(1, size + 1):
+            for changed in itertools.combinations(range(size), count):
+                damaged = [True] * size
+                for index in changed:
+                    damaged[index] = False
+                if rule(at(damaged)):
+                    return False
+                for taken in range(0, len(changed)):
+                    for repaired in itertools.combinations(changed, taken):
+                        partial = damaged[:]
+                        for index in repaired:
+                            partial[index] = True
+                        if rule(at(partial)):
+                            return False
+                whole = damaged[:]
+                for index in changed:
+                    whole[index] = True
+                if not rule(at(whole)):
+                    return False
+        return True
+
+    return accepts
+
+
+def closure_carrying_checks(module: ModuleType) -> tuple[MechanizedCheck, ...]:
+    """The shipped closure-carrying checker's five claims, as replayable checks."""
+
+    return (
+        MechanizedCheck(
+            check_id=DONOR_CONSERVATIVITY_COUNT,
+            asserts=(
+                "the image of carrying along the donor projection is the donor-native "
+                "verdict, on all 10 donor transforms and their 32-state fibres"
+            ),
+            accepts=_accepts_donor_conservativity(module),
+        ),
+        MechanizedCheck(
+            check_id="ideal_product_mismatches",
+            asserts=(
+                "the donor validator over a requirement set enriched by the five closure "
+                "coordinates agrees with P7 on all 320 states"
+            ),
+            accepts=_accepts_ideal_product_tie(module),
+        ),
+        MechanizedCheck(
+            check_id="single_coordinate_separation_witnesses",
+            asserts=(
+                "a fully carried state carries, and breaking any one of the five closure "
+                "coordinates stops it (25 witnesses)"
+            ),
+            accepts=_accepts_single_coordinate_separations(module),
+        ),
+        MechanizedCheck(
+            check_id="donor_product_nonclosure_countermodels",
+            asserts=(
+                "no product of natively valid donor transforms carries while any closure "
+                "coordinate is missing (31 countermodels)"
+            ),
+            accepts=_accepts_product_countermodels(module),
+        ),
+        MechanizedCheck(
+            check_id="selective_closure_refinement",
+            asserts=(
+                "refining every damaged closure coordinate restores carrying and every "
+                "proper subset fails (155 successes, 1,055 failures)"
+            ),
+            accepts=_accepts_selective_refinement(module),
+        ),
+    )
+
+
+CLOSURE_CARRIES_WITHOUT_A_VALID_DONOR = FalseTheory(
+    theory_id="closure_carries_without_a_valid_donor",
+    breaks=(
+        "P7.V4.7 donor conservativity: task-global closure would be carried by a donor "
+        "transform whose own native verdict is invalid, so nothing is being conservatively "
+        "reused and the absorbed mechanism has been given standing it never had"
+    ),
+    rule=lambda point: all(point[name] for name in CLOSURE_COORDINATES),
+)
+
+NATIVE_VALIDITY_ALONE_CARRIES = FalseTheory(
+    theory_id="native_validity_alone_carries",
+    breaks=(
+        "P7's closure-transport claim: a natively valid donor transform would carry "
+        "task-global closure with no obligation transport at all"
+    ),
+    rule=lambda point: bool(point["native_valid"]),
+)
+
+EPOCH_COORDINATE_INERT = FalseTheory(
+    theory_id="epoch_coordinate_inert",
+    breaks=(
+        "the registered closure coordinates: closure_epoch_current would not be "
+        "load-bearing, so a stale closure epoch would never require refinement"
+    ),
+    rule=lambda point: bool(point["native_valid"])
+    and all(point[name] for name in CLOSURE_COORDINATES[:-1]),
+)
+
+MAJORITY_OF_COORDINATES_SUFFICES = FalseTheory(
+    theory_id="majority_of_coordinates_suffices",
+    breaks=(
+        "P7.V4.7 exactness: a proper subset of the damaged coordinates would restore "
+        "carrying, which is the 1,055 proper-subset failures denied"
+    ),
+    rule=lambda point: bool(point["native_valid"])
+    and sum(bool(point[name]) for name in CLOSURE_COORDINATES) >= 3,
+)
+
+ANY_COORDINATE_SUFFICES = FalseTheory(
+    theory_id="any_coordinate_suffices",
+    breaks=(
+        "the 25 separation witnesses: one surviving closure coordinate would carry the "
+        "whole obligation"
+    ),
+    rule=lambda point: bool(point["native_valid"])
+    and any(point[name] for name in CLOSURE_COORDINATES),
+)
+
+EVERYTHING_CARRIES = FalseTheory(
+    theory_id="everything_carries",
+    breaks="every P7 closure claim at once: no state would ever fail to carry closure",
+    rule=lambda point: True,
+)
+
+NOTHING_CARRIES = FalseTheory(
+    theory_id="nothing_carries",
+    breaks=(
+        "P7.V4.7 recovery: no refinement would ever restore carrying, so the 155 full "
+        "closure-refinement successes would not exist"
+    ),
+    rule=lambda point: False,
+)
+
+DONOR_FAMILY_DECIDES = FalseTheory(
+    theory_id="donor_family_decides",
+    breaks=(
+        "the donor-independence the enumeration silently assumes: carrying would depend on "
+        "which donor family supplied the transform rather than on the closure vector"
+    ),
+    rule=lambda point: point["donor"] == "PLANNING_REFINEMENT",
+)
+
+#: The wrong theories of closure carrying a reviewer would want rejected.
+#:
+#: Every entry names the P7 claim it breaks, because a register whose entries
+#: cannot be read as wrong is a mutation sweep rather than a falsifier set.
+FALSE_CARRYING_THEORIES: tuple[FalseTheory, ...] = (
+    CLOSURE_CARRIES_WITHOUT_A_VALID_DONOR,
+    NATIVE_VALIDITY_ALONE_CARRIES,
+    EPOCH_COORDINATE_INERT,
+    MAJORITY_OF_COORDINATES_SUFFICES,
+    ANY_COORDINATE_SUFFICES,
+    EVERYTHING_CARRIES,
+    NOTHING_CARRIES,
+    DONOR_FAMILY_DECIDES,
+)
+
+
+def closure_carrying_capacities(
+    module: ModuleType | None = None,
+) -> dict[str, RefutationCapacity]:
+    """Measure every shipped closure-carrying claim against the false theories."""
+
+    module = module or closure_carrying_module()
+    if tuple(module.COORDS) != CLOSURE_COORDINATES:
+        raise ValueError(
+            "the registered false theories name the shipped closure coordinates; the "
+            f"checker now enumerates {tuple(module.COORDS)}"
+        )
+    reference = closure_reference(module)
+    space = closure_model_space(module)
+    return {
+        check.check_id: measure_refutation_capacity(
+            check,
+            reference=reference,
+            reference_id=CARRYING_REFERENCE_ID,
+            theories=FALSE_CARRYING_THEORIES,
+            space=space,
+        )
+        for check in closure_carrying_checks(module)
+    }
+
+
+def donor_conservativity_capacity(module: ModuleType | None = None) -> dict[str, Any]:
+    """What the repaired donor-conservativity count rejects, and by what number.
+
+    Reported rather than asserted because a repaired guard that still rejects
+    nothing is the defect it replaced. The count also has to be shown *firing* on
+    a rule the shipped script otherwise runs to completion, which is what
+    ``violations_under_the_donor_irrelevant_theory`` is: the theory is
+    :data:`CLOSURE_CARRIES_WITHOUT_A_VALID_DONOR`, it leaves every measured
+    quantity in the artifact unchanged, and the conservativity count moves off
+    zero only because the projection exists.
+    """
+
+    module = module or closure_carrying_module()
+    capacity = closure_carrying_capacities(module)[DONOR_CONSERVATIVITY_COUNT]
+    firing = shipped_run_under(module, CLOSURE_CARRIES_WITHOUT_A_VALID_DONOR.theory_id)
+    shipped = _run_shipped_main(closure_carrying_module())
+    unchanged = tuple(
+        sorted(
+            key
+            for key in (
+                "state_evaluations",
+                "single_coordinate_separation_witnesses",
+                "donor_product_nonclosure_countermodels",
+                "full_closure_refinement_successes",
+                "partial_closure_refinement_failures",
+                "composition_successes",
+                "composition_bridge_countermodels",
+            )
+            if firing.get(key) == shipped.get(key)
+        )
+    )
+    return {
+        "guard": (
+            "carry_image_in_donor_language(project_to_donor(...)) != "
+            "native_verdict(project_to_donor(...))"
+        ),
+        "identity_guards_remaining": identity_guards(CLOSURE_CARRYING_PATH),
+        "status": shipped["donor_conservativity_status"],
+        "violations": shipped[DONOR_CONSERVATIVITY_COUNT],
+        "donor_transforms": shipped["donor_conservativity_states"],
+        "distinct_donor_transforms": shipped["donor_conservativity_distinct_states"],
+        "refuted": capacity.refuted,
+        "survivors": capacity.survivors,
+        "refuting_theory": CLOSURE_CARRIES_WITHOUT_A_VALID_DONOR.theory_id,
+        "violations_under_the_donor_irrelevant_theory": firing[DONOR_CONSERVATIVITY_COUNT],
+        "terminal_under_the_donor_irrelevant_theory": firing["terminal"],
+        "counts_unchanged_under_the_donor_irrelevant_theory": unchanged,
+        "reading": (
+            f"the count compares the image of carrying along project_to_donor against the "
+            f"donor's own verdict over {shipped['donor_conservativity_states']} donor "
+            f"transforms with {shipped['donor_conservativity_distinct_states']} distinct "
+            f"verdicts, and rejects {len(capacity.refuted)} of "
+            f"{len(capacity.refuted) + len(capacity.survivors)} registered false theories "
+            f"of closure carrying. Under {CLOSURE_CARRIES_WITHOUT_A_VALID_DONOR.theory_id} "
+            f"--- closure carried by a natively invalid donor transform, which the shipped "
+            f"script used to run to completion on --- it reports "
+            f"{firing[DONOR_CONSERVATIVITY_COUNT]} violations and the checker's terminal is "
+            f"{firing['terminal']}, with {len(unchanged)} of the 7 measured quantities "
+            f"unchanged. Its zero is an observation"
+        ),
+    }
+
+
+def shipped_run_under(module: ModuleType, theory_id: str) -> dict[str, Any]:
+    """Run the shipped checker with ``carries`` replaced by one registered false theory.
+
+    The rule is written as a module-level ``def`` rather than a lambda because the
+    checker's own ``_independently_defined`` gate reads the substituted function's
+    source: a rule whose source cannot be recovered makes the ideal-product counter
+    report ``CANNOT_CHECK``, which would hide the terminal this measurement is
+    about.
+    """
+
+    theory = next(item for item in FALSE_CARRYING_THEORIES if item.theory_id == theory_id)
+    under_test = _load(f"orion_p7_closure_carrying_{theory_id}", CLOSURE_CARRYING_PATH)
+    coords = under_test.COORDS
+
+    def carries(native_valid: bool, closure: tuple[bool, ...]) -> bool:
+        return bool(
+            theory.rule(
+                {"donor": under_test.DONORS[0], "native_valid": native_valid, **dict(zip(coords, closure))}
+            )
+        )
+
+    under_test.carries = carries
+    try:
+        return _run_shipped_main(under_test)
+    except AssertionError as error:
+        return {
+            "terminal": "DIED_ON_AN_ASSERTION",
+            DONOR_CONSERVATIVITY_COUNT: None,
+            "assertion": str(error) or "assert",
+        }
+
+
+# ---------------------------------------------------------------------------
 # The inert donor axis: whether the rule cannot read the donor or merely does not
 # ---------------------------------------------------------------------------
 
-def functions_taking_a_donor_argument(module: ModuleType) -> tuple[str, ...]:
-    """Shipped functions with a donor in their signature. There are none.
+#: The two functions the shipped checker's verdicts come out of. ``closure_reference``
+#: is ``carries`` and ``COMPOSITION_REFERENCE_ID`` is ``compose``; the donor axis is a
+#: multiplier exactly to the extent that neither of them can read it.
+VERDICT_RULE_NAMES: tuple[str, ...] = ("carries", "compose")
 
-    ``axis_sensitivity`` says the donor never changes a verdict; this says why.
-    ``carries(native_valid, closure)`` and ``compose(c1, c2, bridge_match)`` have
-    no parameter a donor could enter through, so the donor coordinate is not a
-    quantity the rule declines to use --- it is not addressable by the rule at all.
+
+def functions_taking_a_donor_argument(module: ModuleType) -> tuple[str, ...]:
+    """Every shipped function with a donor in its signature.
+
+    Three, since the repair: ``project_to_donor(donor, native_valid, closure)`` and
+    the two predicates over the transform it returns. Only the projection's value
+    varies with the donor --- see :func:`donor_arguments_that_change_the_value` ---
+    and none of the three is a verdict; see
+    :func:`verdict_rules_taking_a_donor_argument` for the question the inert axis
+    is actually about.
     """
 
     return tuple(
@@ -1019,6 +1462,62 @@ def functions_taking_a_donor_argument(module: ModuleType) -> tuple[str, ...]:
             if inspect.isfunction(value)
             and value.__module__ == module.__name__
             and any("donor" in parameter for parameter in inspect.signature(value).parameters)
+        )
+    )
+
+
+def donor_arguments_that_change_the_value(module: ModuleType) -> tuple[str, ...]:
+    """Of the functions taking a donor argument, the ones whose value varies with it.
+
+    Measured over the shipped donor stack rather than read off a body. One:
+    ``project_to_donor`` carries the donor label into the transform it returns,
+    which is what makes the conservativity block visit ten transforms.
+    ``native_verdict`` and ``carry_image_in_donor_language`` both take a transform
+    and discard its label, which is what makes those ten transforms carry two
+    distinct verdicts. That pair of facts is the whole content of "the donor axis
+    is a multiplier".
+    """
+
+    varies: list[str] = []
+    fibre = tuple(itertools.product((False, True), repeat=len(module.COORDS)))
+    for name in functions_taking_a_donor_argument(module):
+        function = getattr(module, name)
+        parameters = tuple(inspect.signature(function).parameters)
+        for native_valid in (False, True):
+            if parameters[0] == "donor":
+                values = {
+                    function(donor, native_valid, fibre[0]) for donor in module.DONORS
+                }
+            else:
+                values = {
+                    function((donor, native_valid)) for donor in module.DONORS
+                }
+            if len(values) > 1:
+                varies.append(name)
+                break
+    return tuple(sorted(varies))
+
+
+def verdict_rules_taking_a_donor_argument(module: ModuleType) -> tuple[str, ...]:
+    """Of the verdict rules, the ones with a donor in their signature. There are none.
+
+    ``axis_sensitivity`` says the donor never changes a verdict; this says why.
+    ``carries(native_valid, closure)`` and ``compose(c1, c2, bridge_match)`` have
+    no parameter a donor could enter through, so the donor coordinate is not a
+    quantity the rule declines to use --- it is not addressable by the rule at all.
+    Its one downstream consumer, ``carry_image_in_donor_language``, deletes the
+    donor label it is handed for the same reason, so the ten donor transforms carry
+    two distinct conservativity verdicts and not ten.
+    """
+
+    return tuple(
+        sorted(
+            name
+            for name in VERDICT_RULE_NAMES
+            if any(
+                "donor" in parameter
+                for parameter in inspect.signature(getattr(module, name)).parameters
+            )
         )
     )
 
@@ -1110,39 +1609,162 @@ def donor_axis_diagnosis(module: ModuleType) -> dict[str, Any]:
     """Why the donor axis is inert, with the evidence that decides between the two causes.
 
     An inert axis has two possible causes and they call for different repairs. If
-    the rule should read the coordinate and does not, the repair is in the rule.
-    If the rule cannot read it, the enumeration is a multiplier and the artifact
-    has to say so. The evidence here is the second: no shipped function has a
-    parameter a donor could enter through, the counts collapse exactly five-fold
-    when the stack is cut to one family, and the artifact's one donor-dependent
-    claim --- ``donor_conservativity_violations`` --- is guarded by a comparison of
-    a name against the name it was assigned from, so its ``0`` is a property of the
-    source and not an observation.
+    the rule should read the coordinate and does not, the repair is in the rule. If
+    the rule cannot read it, the enumeration is a multiplier and the artifact has to
+    say so. The evidence here is the second: neither ``carries`` nor ``compose`` has
+    a parameter a donor could enter through, and the counts collapse exactly
+    five-fold --- twenty-five-fold for the composition pair --- when the stack is cut
+    to one family.
+
+    What has changed is the last clause. The artifact's one donor-dependent claim,
+    ``donor_conservativity_violations``, used to be guarded by a comparison of a
+    name against the name it was assigned from, so its ``0`` was a property of the
+    source. It is now the equality of the image of carrying along
+    ``project_to_donor`` with the donor's own verdict;
+    :func:`donor_conservativity_capacity` carries what that rejects and the number
+    it reports when it fires. :func:`identity_guards` stays armed so a later edit
+    that reintroduces the old shape is caught rather than inherited.
     """
 
-    reading_functions = functions_taking_a_donor_argument(module)
+    verdict_readers = verdict_rules_taking_a_donor_argument(module)
+    projection_readers = functions_taking_a_donor_argument(module)
+    donor_sensitive = donor_arguments_that_change_the_value(module)
     guards = identity_guards(CLOSURE_CARRYING_PATH)
     multipliers = donor_axis_multipliers()
+    conservativity = donor_conservativity_capacity(module)
     return {
-        "functions_taking_a_donor_argument": reading_functions,
-        "the_rule_can_read_the_donor": bool(reading_functions),
+        "verdict_rules_taking_a_donor_argument": verdict_readers,
+        "functions_taking_a_donor_argument": projection_readers,
+        "donor_arguments_that_change_the_value": donor_sensitive,
+        "the_rule_can_read_the_donor": bool(verdict_readers),
         "identity_guards": guards,
         "multipliers": multipliers,
+        "donor_conservativity": conservativity,
         "verdict": (
             "THE_RULE_CANNOT_READ_THE_DONOR"
-            if not reading_functions
+            if not verdict_readers
             else "THE_RULE_CAN_READ_THE_DONOR_AND_DOES_NOT"
         ),
         "reading": (
-            "no shipped function takes a donor argument, so the donor coordinate is not "
-            "a quantity the rule declines to use; the enumeration multiplies "
+            "no shipped verdict rule takes a donor argument, so the donor coordinate is "
+            "not a quantity the rule declines to use; the enumeration multiplies "
             f"{', '.join(multipliers['counts_multiplied_by_the_donor_loop'])} by "
             f"{multipliers['donors']} and "
             f"{', '.join(multipliers['counts_multiplied_by_the_donor_pair_loop'])} by "
-            f"{multipliers['donors'] ** 2}, and must be read as such. The one count "
-            f"whose claim needs the donor, {DONOR_CONSERVATIVITY_COUNT}, is guarded by "
-            f"{'; '.join(guards) or 'no identity guard'}, which cannot fire, so its zero "
-            "is a property of the source and not an observation"
+            f"{multipliers['donors'] ** 2}, and must be read as such. The one count whose "
+            f"claim needs the donor, {DONOR_CONSERVATIVITY_COUNT}, is no longer an "
+            f"identity guard: {conservativity['reading']}"
+        ),
+    }
+
+
+def published_count_multiplicity(module: ModuleType | None = None) -> dict[str, Any]:
+    """Every published count beside the number of distinct facts behind it.
+
+    The inert axis is a reporting defect before it is anything else. ``320`` reads
+    as 320 observations and is 64 observed five times; ``25`` minimal separations
+    is 5 observed five times; ``25`` composition successes is 1 observed
+    twenty-five times. Published here as a table so a number and its multiplicity
+    travel together, and measured by running the shipped checker at one donor
+    rather than read off the loop's shape.
+    """
+
+    module = module or closure_carrying_module()
+    published = _run_shipped_main(module)
+    multipliers = donor_axis_multipliers()
+    at_one = multipliers["counts_at_one_donor"]
+    donors = multipliers["donors"]
+    factors = {
+        **{key: donors for key in multipliers["counts_multiplied_by_the_donor_loop"]},
+        **{key: donors**2 for key in multipliers["counts_multiplied_by_the_donor_pair_loop"]},
+        **{key: 1 for key in multipliers["counts_independent_of_the_donor_loop"]},
+    }
+    rows = tuple(
+        {
+            "count": key,
+            "published": published[key],
+            "distinct": at_one[key],
+            "factor": factors[key],
+        }
+        for key in sorted(factors)
+    )
+    inflated = tuple(row for row in rows if row["factor"] > 1)
+    return {
+        "donors": donors,
+        "rows": rows,
+        "inflated_counts": tuple(row["count"] for row in inflated),
+        "reading": (
+            "; ".join(
+                f"{row['count']} {row['published']} = {row['distinct']} x {row['factor']}"
+                for row in inflated
+            )
+            + f"; {', '.join(row['count'] for row in rows if row['factor'] == 1)} is not "
+            "multiplied by the donor loop"
+        ),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Why the pre-repair transport model cannot decide the premise
+# ---------------------------------------------------------------------------
+
+def witness_only_transport_undecidability(module: ModuleType | None = None) -> dict[str, Any]:
+    """Proof that Definition 14 is not a function of the six transport coordinates.
+
+    :func:`witness_only_transport_constraint` reports ``UNDECIDABLE_IN_MODEL``
+    because ``admissible_target_completions`` is not an axis of the 64 states. On
+    its own that is a statement about which keys a dictionary has, and a reader is
+    entitled to ask whether a cleverer rule over the coordinates that *are* there
+    could recover the premise anyway. It could not, and this is why: in the shipped
+    960-case enumeration every one of the 64 coordinate states is paired with all
+    15 admissible completion classes, 7 of which are target-ambiguous under
+    ``extension_ambiguous`` and 8 of which are not. The shipped decision is
+    therefore one-to-many over the coordinates, so *every* rule written against the
+    six-coordinate model --- all ``2**64`` of them --- disagrees with it on at least
+    ``min(7, 8)`` cases per state.
+
+    That is the check's own falsifier and it is not vacuous: it rejects the theory
+    that Definition 14 target-ambiguity is a function of the transport coordinates,
+    and it names the number of cases the best such rule gets wrong.
+    """
+
+    module = module or theory_closure_module()
+    baseline = transport_baseline(module)
+    by_state: dict[tuple[bool, ...], list[bool]] = {}
+    for point in transport_cases(module):
+        key = tuple(bool(point[name]) for name in TRANSPORT_COORDINATES)
+        by_state.setdefault(key, []).append(bool(baseline(point)))
+
+    carrying_both = tuple(key for key, values in by_state.items() if len(set(values)) > 1)
+    minimum_wrong = sum(
+        min(sum(values), len(values) - sum(values)) for values in by_state.values()
+    )
+    cases = sum(len(values) for values in by_state.values())
+    return {
+        "check_id": WITNESS_ONLY_TRANSPORT_CHECK_ID,
+        "premise_id": TARGET_AMBIGUITY.premise_id,
+        "decided_from": TARGET_AMBIGUITY.decided_from,
+        "cases": cases,
+        "coordinate_states": len(by_state),
+        "coordinate_states_carrying_both_values": len(carrying_both),
+        "ambiguous_classes_per_state": max(sum(values) for values in by_state.values()),
+        "unambiguous_classes_per_state": max(
+            len(values) - sum(values) for values in by_state.values()
+        ),
+        "minimum_cases_a_coordinate_rule_gets_wrong": minimum_wrong,
+        "best_possible_agreement": cases - minimum_wrong,
+        "decidable_in_the_shipped_space": True,
+        "decidable_in_the_witness_only_model": False,
+        "reading": (
+            f"{TARGET_AMBIGUITY.premise_id} is not a function of "
+            f"{', '.join(TRANSPORT_COORDINATES)}: all {len(carrying_both)} of the "
+            f"{len(by_state)} coordinate states appear in the shipped {cases} cases with "
+            f"both an ambiguous and an unambiguous completion class, so the best rule "
+            f"written over those coordinates alone disagrees with the shipped Definition 14 "
+            f"decision on {minimum_wrong} of {cases} cases and every one of the 2**"
+            f"{len(by_state)} rules the model admits is wrong somewhere. The premise is "
+            "undecidable in that model by construction; it is decided on every case of the "
+            "shipped space, which carries the class"
         ),
     }
 
@@ -1164,7 +1786,13 @@ __all__ = [
     "TRANSPORT_COORDINATE_STATES",
     "TRANSPORT_REFERENCE_ID",
     "WITNESS_ONLY_TRANSPORT_CHECK_ID",
+    "CARRYING_REFERENCE_ID",
+    "CLOSURE_COORDINATES",
+    "FALSE_CARRYING_THEORIES",
+    "VERDICT_RULE_NAMES",
     "canonical_rows_digest",
+    "closure_carrying_capacities",
+    "closure_carrying_checks",
     "closure_carrying_module",
     "closure_model_space",
     "closure_reference",
@@ -1179,10 +1807,16 @@ __all__ = [
     "composition_match",
     "composition_replay",
     "composition_stack",
+    "donor_arguments_that_change_the_value",
     "donor_axis_diagnosis",
+    "donor_conservativity_capacity",
+    "donor_fibre",
+    "donor_transforms",
     "donor_axis_multipliers",
     "functions_taking_a_donor_argument",
     "identity_guards",
+    "published_count_multiplicity",
+    "shipped_run_under",
     "theory_closure_module",
     "transport_authority",
     "transport_baseline",
@@ -1195,7 +1829,9 @@ __all__ = [
     "transport_replay",
     "transport_rule",
     "transport_theory_space",
+    "verdict_rules_taking_a_donor_argument",
     "witness_only_transport_baseline",
     "witness_only_transport_constraint",
     "witness_only_transport_replay",
+    "witness_only_transport_undecidability",
 ]

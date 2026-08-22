@@ -1513,7 +1513,10 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "the repair set. That half of the artifact is P7-U-T1's and is context here",
             "any claim that this repairs the committed artifact; "
             f"{COMMITTED_RESULT} still records counts produced by a loop whose third "
-            "argument is a literal, and that file is unchanged",
+            "argument is a literal, and no count in it moved. A later repair gave that "
+            "file a donor-conservativity check that can fail and a donor_axis block "
+            "carrying each count's multiplicity; the composition literal this record is "
+            "about is untouched by it",
             "independent review: the interpretation, the theorems and the tests were "
             "written in the same lane as the model, which is P7-U-T5",
             "any empirical claim whatsoever; nothing here is measured on a pipeline",

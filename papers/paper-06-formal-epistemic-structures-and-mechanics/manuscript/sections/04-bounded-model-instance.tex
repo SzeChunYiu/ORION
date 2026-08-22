@@ -57,9 +57,13 @@ the structure would be reporting something the counts cannot see.
 \emph{The donor axis is a multiplier, not a dimension.} The donor family enters
 neither the dependency graph nor the changed set. The five families replicate
 the same 31 restorations and 211 failures rather than extending them: 155 and
-1,055 are 31 and 211 counted five times. That is the shape of the original loop,
-reproduced here rather than corrected, and it means the published pair carries
-the information of the smaller pair.
+1,055 are 31 and 211 counted five times. The same loop repeats the rest of the
+list: 320 states is the 64-point (donor verdict, coordinate vector) space
+enumerated once per family, and the 25 minimal separations are 5 counted five
+times. Only the 31 product countermodels are 31 distinct facts. That is the
+shape of the original loop, reproduced here rather than corrected, and it means
+the published counts carry the information of the smaller ones; the
+``donor_axis`` block of the result artifact carries the table.
 
 \emph{The revalidation block cannot see conservativity.} Every state it asserts about
 is built with the donor verdict pinned valid, so the derived rule with its donor

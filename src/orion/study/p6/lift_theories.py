@@ -60,6 +60,8 @@ from __future__ import annotations
 import hashlib
 import itertools
 import json
+from pathlib import Path
+from typing import Any
 
 from orion.programme.refutation_capacity import (
     FalseTheory,
@@ -503,6 +505,46 @@ INDEPENDENT_LIFT = FalseTheory(
 #: omitted because the separation witnesses already assert on each of them.
 ENUMERATED_AXES: tuple[str, ...] = ("donor", "native_valid")
 
+#: The shipped checker's published result, whose ``donor_axis`` block the checker
+#: computes and :func:`published_count_multiplicity` reads back.
+X2_RESULT_PATH = (
+    Path(__file__).resolve().parents[4]
+    / "research/claim_expansion/p6/P6_X2_CERTIFICATE_LIFTING_RESULT_V1.json"
+)
+
+
+def published_count_multiplicity() -> tuple[dict[str, Any], ...]:
+    """Every published count beside the number of distinct facts behind it.
+
+    ``axis_sensitivity`` says the donor axis is inert and every count under it is
+    repeated five times; this says which counts and to what. ``320`` reads as 320
+    observations and is 64 observed once per donor family; ``25`` minimal
+    separations is 5 observed five times; only the 31 product countermodels are 31
+    distinct facts, because their loop does not range over donors.
+
+    Read off the shipped artifact's own ``donor_axis`` block rather than recomputed
+    here, so a reader is looking at the number the paper published.
+    """
+
+    published = json.loads(X2_RESULT_PATH.read_text(encoding="utf-8"))
+    axis = published["donor_axis"]
+    pairs = (
+        ("state_evaluations", "distinct_state_evaluations"),
+        ("single_coordinate_separation_witnesses", "distinct_separation_witnesses"),
+        ("certificate_product_countermodels", "distinct_product_countermodels"),
+        ("full_revalidation_successes", "distinct_full_revalidation_successes"),
+        ("partial_revalidation_failures", "distinct_partial_revalidation_failures"),
+    )
+    return tuple(
+        {
+            "count": name,
+            "published": published[name],
+            "distinct": axis[distinct_name],
+            "factor": published[name] // axis[distinct_name],
+        }
+        for name, distinct_name in pairs
+    )
+
 
 __all__ = [
     "ANY_COORDINATE_SUFFICES",
@@ -524,11 +566,13 @@ __all__ = [
     "SHIPPED_CHECKS",
     "SHIPPED_ROWS_SHA256",
     "UNBRIDGED_DONOR_DISCHARGES_COORDINATE",
+    "X2_RESULT_PATH",
     "canonical_rows_digest",
     "donor_fibre",
     "ideal_enriched_product",
     "independent_lift",
     "lifting_model_space",
     "project_to_donor",
+    "published_count_multiplicity",
     "reference_lift",
 ]

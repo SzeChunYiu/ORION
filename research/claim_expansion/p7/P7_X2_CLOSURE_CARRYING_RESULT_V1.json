@@ -1,7 +1,19 @@
 {
   "schema": "P7.X2.ClosureCarryingResult.v1",
-  "donor_families": ["PLANNING_REFINEMENT", "CEGAR_REFINEMENT", "BIDIRECTIONAL_MIGRATION", "WORLD_MODEL_REPLAN", "TERMINAL_COMMITMENT"],
-  "closure_coordinates": ["obligations_total", "obligations_unambiguous", "frontier_resolved", "objective_semantics_preserved", "closure_epoch_current"],
+  "donor_families": [
+    "PLANNING_REFINEMENT",
+    "CEGAR_REFINEMENT",
+    "BIDIRECTIONAL_MIGRATION",
+    "WORLD_MODEL_REPLAN",
+    "TERMINAL_COMMITMENT"
+  ],
+  "closure_coordinates": [
+    "obligations_total",
+    "obligations_unambiguous",
+    "frontier_resolved",
+    "objective_semantics_preserved",
+    "closure_epoch_current"
+  ],
   "state_evaluations": 320,
   "donor_conservativity_violations": 0,
   "single_coordinate_separation_witnesses": 25,
@@ -13,5 +25,30 @@
   "ideal_product_mismatches": 0,
   "canonical_rows_sha256": "25f40385714adb15bca298a8cfd2b7fe2b28c96bfe462f6b60583be8f735b95f",
   "interpretation": "Sound planning/refinement, CEGAR, round-trip migration, replanning and terminal-commitment mechanisms are absorbed as donor transforms. Their native validity is preserved. Scientific closure is inherited only through complete/unambiguous/current obligation transport; failed transport is repaired at the affected closure coordinates, and heterogeneous transforms compose only when the intermediate closure contract is exactly bridged.",
-  "claim_ceiling": "BOUNDED_FORMAL_CLOSURE_CARRYING_NAVIGATION; no deployed-agent or inherent-expressivity claim"
+  "claim_ceiling": "BOUNDED_FORMAL_CLOSURE_CARRYING_NAVIGATION; no deployed-agent or inherent-expressivity claim",
+  "assertion_coverage_status": "COMPLETE",
+  "assertion_covered_states": 64,
+  "assertion_covered_states_native_invalid": 32,
+  "assertion_state_space": 64,
+  "assertion_uncovered_states": 0,
+  "cannot_check_reasons": [],
+  "donor_axis": {
+    "distinct_composition_bridge_countermodels": 1,
+    "distinct_composition_successes": 1,
+    "distinct_full_refinement_successes": 31,
+    "distinct_partial_refinement_failures": 211,
+    "distinct_product_countermodels": 31,
+    "distinct_separation_witnesses": 5,
+    "distinct_state_evaluations": 64,
+    "multiplier": 5,
+    "pair_multiplier": 25,
+    "read_by_carries_or_compose": false,
+    "values": 5,
+    "verdict_rules_taking_a_donor_argument": []
+  },
+  "donor_conservativity_distinct_states": 2,
+  "donor_conservativity_states": 10,
+  "donor_conservativity_status": "CHECKED",
+  "ideal_product_status": "CHECKED",
+  "terminal": "PASS"
 }

@@ -512,12 +512,21 @@ def test_the_donor_axis_is_inert_because_no_rule_can_read_it(closure_carrying) -
     diagnosis = premises.donor_axis_diagnosis(closure_carrying)
     multipliers = diagnosis["multipliers"]
 
-    assert diagnosis["functions_taking_a_donor_argument"] == ()
+    assert diagnosis["verdict_rules_taking_a_donor_argument"] == ()
     assert diagnosis["the_rule_can_read_the_donor"] is False
     assert diagnosis["verdict"] == "THE_RULE_CANNOT_READ_THE_DONOR"
-    # The one donor-dependent count is guarded by a comparison of a name against
-    # the name it was assigned from, so its zero cannot be an observation.
-    assert diagnosis["identity_guards"] == ("main: projected_native != native_valid",)
+    # Three shipped functions take a donor argument and none is a verdict: the
+    # projection, which carries the label into the transform and is what makes the
+    # ten donor transforms ten, and the two predicates over that transform, which
+    # discard it and are what make those ten carry two distinct verdicts.
+    assert diagnosis["functions_taking_a_donor_argument"] == (
+        "carry_image_in_donor_language",
+        "native_verdict",
+        "project_to_donor",
+    )
+    assert diagnosis["donor_arguments_that_change_the_value"] == ("project_to_donor",)
+    # The guard that could not fire is gone, and the detector for it stays armed.
+    assert diagnosis["identity_guards"] == ()
     assert premises.DONOR_CONSERVATIVITY_COUNT in multipliers["counts_zero_at_every_stack_size"]
 
     assert multipliers["counts_at_five_donors"]["state_evaluations"] == 320
@@ -527,14 +536,23 @@ def test_the_donor_axis_is_inert_because_no_rule_can_read_it(closure_carrying) -
         "single_coordinate_separation_witnesses",
         "full_closure_refinement_successes",
         "partial_closure_refinement_failures",
+        # The conservativity block visits five copies of two donor transforms for
+        # the same reason, and publishes the distinct count beside the total.
+        "donor_conservativity_states",
     }
     assert set(multipliers["counts_multiplied_by_the_donor_pair_loop"]) == {
         "composition_successes",
         "composition_bridge_countermodels",
     }
-    assert multipliers["counts_independent_of_the_donor_loop"] == (
+    assert set(multipliers["counts_independent_of_the_donor_loop"]) == {
         "donor_product_nonclosure_countermodels",
-    )
+        # The assertion-coverage counts are over one copy of the state space by
+        # construction, which is the point of publishing them.
+        "assertion_covered_states",
+        "assertion_covered_states_native_invalid",
+        "assertion_state_space",
+        "donor_conservativity_distinct_states",
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -626,3 +644,202 @@ def test_the_audit_cli_exits_zero(capsys) -> None:
     assert "P7 closure premises" in capsys.readouterr().out
     assert main(["--json"]) == 0
     assert json.loads(capsys.readouterr().out)["outcome"] == Outcome.PASS.value
+
+
+# ---------------------------------------------------------------------------
+# The donor-conservativity count: the guard that could not fire, and its repair
+# ---------------------------------------------------------------------------
+
+
+def test_the_old_conservativity_guard_compared_a_name_against_itself(tmp_path) -> None:
+    """The defect, stated mechanically and kept as a regression.
+
+    ``identity_guards`` walks the shipped file for an ``if x != y`` whose two
+    names are related by an assignment in the same function. The closure-carrying
+    checker had exactly one --- ``projected_native = native_valid`` immediately
+    above ``if projected_native != native_valid`` --- and the audit blocks if one
+    ever comes back.
+    """
+
+    assert premises.identity_guards(premises.CLOSURE_CARRYING_PATH) == ()
+
+    tree = ast.parse(
+        "def main():\n"
+        "    total = 0\n"
+        "    for native_valid in (False, True):\n"
+        "        projected_native = native_valid\n"
+        "        if projected_native != native_valid:\n"
+        "            total += 1\n"
+    )
+    scratch = tmp_path / "identity_guard_probe.py"
+    scratch.write_text(ast.unparse(tree), encoding="utf-8")
+    assert premises.identity_guards(scratch) == ("main: projected_native != native_valid",)
+
+
+def test_the_repaired_conservativity_count_rejects_the_donor_irrelevant_theory(
+    closure_carrying,
+) -> None:
+    """The count fires, and it is the only claim in the file that does.
+
+    ``closure_carries_without_a_valid_donor`` denies P7.V4.7's conservativity
+    outright. Under the old guard the shipped script ran to completion and printed
+    ``donor_conservativity_violations: 0``; under the projection it reports 5 --- one
+    per donor family whose native verdict is invalid --- and the terminal is FAIL.
+    Every measured quantity is unchanged, because their assertion blocks never
+    leave ``native_valid=True``.
+    """
+
+    capacity = premises.donor_conservativity_capacity(closure_carrying)
+
+    assert capacity["status"] == "CHECKED"
+    assert capacity["violations"] == 0
+    assert capacity["donor_transforms"] == 10
+    assert capacity["distinct_donor_transforms"] == 2
+    assert capacity["violations_under_the_donor_irrelevant_theory"] == 5
+    assert capacity["terminal_under_the_donor_irrelevant_theory"] == "FAIL"
+    assert len(capacity["counts_unchanged_under_the_donor_irrelevant_theory"]) == 7
+    assert set(capacity["refuted"]) == {
+        "closure_carries_without_a_valid_donor",
+        "everything_carries",
+        "nothing_carries",
+        "donor_family_decides",
+    }
+
+
+def test_the_other_four_claims_still_accept_the_donor_irrelevant_theory(
+    closure_carrying,
+) -> None:
+    """The panel is complete because a new claim covers those states, not an old one.
+
+    Every assertion in the separation, countermodel and refinement blocks still
+    evaluates the rule at ``native_valid=True``, so each still accepts a theory
+    that drops the donor transform's own verdict. That is the finding, and it is
+    what makes the conservativity count load-bearing rather than redundant.
+    """
+
+    capacities = premises.closure_carrying_capacities(closure_carrying)
+
+    for check_id in (
+        "single_coordinate_separation_witnesses",
+        "donor_product_nonclosure_countermodels",
+        "selective_closure_refinement",
+    ):
+        assert "closure_carries_without_a_valid_donor" in capacities[check_id].survivors, check_id
+    assert (
+        "closure_carries_without_a_valid_donor"
+        in capacities[premises.DONOR_CONSERVATIVITY_COUNT].refuted
+    )
+    for capacity in capacities.values():
+        assert capacity.refuted, capacity.check_id
+        assert not capacity.blocks
+
+
+def test_collapsing_the_two_sides_reports_cannot_check_rather_than_a_clean_zero(
+    closure_carrying,
+) -> None:
+    """The durability gate: the repair is only as good as the distinction it made."""
+
+    module = premises.closure_carrying_module()
+
+    def carry_image_in_donor_language(donor_transform):
+        _donor, native_valid = donor_transform
+        return native_valid
+
+    module.carry_image_in_donor_language = carry_image_in_donor_language
+    buffer = io.StringIO()
+    with contextlib.redirect_stdout(buffer):
+        module.main()
+    collapsed = json.loads(buffer.getvalue())
+
+    assert collapsed["donor_conservativity_status"] == "CANNOT_CHECK"
+    assert collapsed[premises.DONOR_CONSERVATIVITY_COUNT] is None
+    assert collapsed["terminal"] == "CANNOT_CHECK"
+    assert any("cannot refute any theory" in reason for reason in collapsed["cannot_check_reasons"])
+
+
+def test_the_repaired_checker_publishes_the_same_counts_and_digest(
+    closure_carrying, published
+) -> None:
+    """The repair changed what the checker claims, not what it found."""
+
+    result = _run_shipped_closure_carrying(closure_carrying)
+
+    for key in (
+        "state_evaluations",
+        "donor_conservativity_violations",
+        "single_coordinate_separation_witnesses",
+        "donor_product_nonclosure_countermodels",
+        "full_closure_refinement_successes",
+        "partial_closure_refinement_failures",
+        "composition_successes",
+        "composition_bridge_countermodels",
+        "ideal_product_mismatches",
+        "canonical_rows_sha256",
+    ):
+        assert result[key] == published[key], key
+    assert result["canonical_rows_sha256"] == premises.SHIPPED_ROWS_SHA256
+    assert result["terminal"] == published["terminal"] == "PASS"
+    assert result["assertion_coverage_status"] == "COMPLETE"
+    assert result["assertion_covered_states"] == result["assertion_state_space"] == 64
+    assert result["assertion_covered_states_native_invalid"] == 32
+
+
+def test_every_published_count_is_reported_with_its_multiplicity(closure_carrying) -> None:
+    """320 is 64 observed five times, and the artifact has to say so.
+
+    Measured by running the shipped checker at one donor family and at five, not
+    read off the loop's shape.
+    """
+
+    table = premises.published_count_multiplicity(closure_carrying)
+    rows = {row["count"]: row for row in table["rows"]}
+
+    assert (rows["state_evaluations"]["published"], rows["state_evaluations"]["distinct"]) == (
+        320,
+        64,
+    )
+    assert rows["single_coordinate_separation_witnesses"]["published"] == 25
+    assert rows["single_coordinate_separation_witnesses"]["distinct"] == 5
+    assert rows["full_closure_refinement_successes"]["distinct"] == 31
+    assert rows["partial_closure_refinement_failures"]["distinct"] == 211
+    assert rows["composition_successes"]["distinct"] == 1
+    assert rows["composition_bridge_countermodels"]["distinct"] == 1
+    assert rows["composition_successes"]["factor"] == 25
+    # The one count the donor loop does not touch.
+    assert rows["donor_product_nonclosure_countermodels"]["factor"] == 1
+    assert rows["donor_product_nonclosure_countermodels"]["distinct"] == 31
+
+    published = json.loads(premises.CLOSURE_CARRYING_RESULT_PATH.read_text())
+    axis = published["donor_axis"]
+    assert axis["multiplier"] == 5
+    assert axis["pair_multiplier"] == 25
+    assert axis["read_by_carries_or_compose"] is False
+    assert axis["distinct_state_evaluations"] == 64
+    assert axis["distinct_separation_witnesses"] == 5
+    assert axis["distinct_full_refinement_successes"] == 31
+    assert axis["distinct_partial_refinement_failures"] == 211
+    assert axis["distinct_composition_successes"] == 1
+    assert axis["distinct_composition_bridge_countermodels"] == 1
+
+
+def test_the_undecidable_premise_is_undecidable_by_construction(theory_closure) -> None:
+    """Why, not only that. The proof the audit prints beside the CANNOT_CHECK.
+
+    Definition 14 is one-to-many over the six transport coordinates: every one of
+    the 64 coordinate states is paired with all 15 admissible completion classes,
+    7 ambiguous and 8 not. So no rule over those coordinates alone reproduces the
+    shipped decision, and the best one is wrong on 7 x 64 = 448 of the 960 cases.
+    """
+
+    proof = premises.witness_only_transport_undecidability(theory_closure)
+
+    assert proof["check_id"] == premises.WITNESS_ONLY_TRANSPORT_CHECK_ID
+    assert proof["cases"] == 960
+    assert proof["coordinate_states"] == 64
+    assert proof["coordinate_states_carrying_both_values"] == 64
+    assert proof["ambiguous_classes_per_state"] == 7
+    assert proof["unambiguous_classes_per_state"] == 8
+    assert proof["minimum_cases_a_coordinate_rule_gets_wrong"] == 448
+    assert proof["best_possible_agreement"] == 512
+    assert proof["decidable_in_the_witness_only_model"] is False
+    assert proof["decidable_in_the_shipped_space"] is True

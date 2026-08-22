@@ -31,11 +31,34 @@ what the verdicts mean.
   agrees with ``extension_ambiguous`` is dropped: 945 of the 960 cases still
   exclude a value.
 * The donor axis is inert, and the report carries the evidence for which kind of
-  inert: no shipped function has a parameter a donor could enter through, so the
-  enumeration is a multiplier rather than a rule declining to read a coordinate.
+  inert: neither ``carries`` nor ``compose`` has a parameter a donor could enter
+  through, so the enumeration is a multiplier rather than a rule declining to read
+  a coordinate. Every count it multiplies is printed beside the number of distinct
+  facts behind it, because ``320`` that is 64 observed five times is a number a
+  reader will otherwise misread.
 
-Exits ``3`` when any premise blocks, so it fails a pipeline rather than printing
-a table nobody reads. Both premises are now decided, so it exits ``0``::
+Two further things are reported because they were the defects.
+
+* ``donor_conservativity_violations`` was published as ``0`` from
+  ``projected_native = native_valid`` followed by
+  ``if projected_native != native_valid`` --- the same name on both sides, so the
+  guard could not fire and its zero was a property of the source. The shipped
+  checker now states conservativity as the equality of the image of ``carries``
+  along ``project_to_donor`` with the donor's own verdict, and the audit reports
+  what that rejects: under ``closure_carries_without_a_valid_donor`` it reports 5
+  violations and the checker's terminal is ``FAIL``, while all seven measured
+  quantities are unchanged. :func:`orion.study.p7.closure_premises.identity_guards`
+  stays armed, so an edit that reintroduces the old shape blocks the audit.
+* ``check_support_transport_without_completion_classes`` is ``UNDECIDABLE_IN_MODEL``
+  and the report now carries the proof rather than the absence of a key: all 64
+  coordinate states appear in the shipped 960 cases with both an ambiguous and an
+  unambiguous completion class, so the best rule over those coordinates alone is
+  wrong on 448 of 960 cases.
+
+Exits ``3`` when any premise blocks or when the closure-carrying panel blocks ---
+a check that rejects no false theory, a false theory no check rejects, or an
+identity guard back in the shipped file --- so it fails a pipeline rather than
+printing a table nobody reads. Both terminals are green, so it exits ``0``::
 
     python -m orion.study.p7.premise_audit
 """
@@ -54,6 +77,8 @@ from orion.programme.decided_premises import (
 from orion.programme.records import Outcome
 from orion.programme.refutation_capacity import (
     RefutationCapacity,
+    TheoryCoverage,
+    assess_theory_coverage,
     axis_sensitivity,
     measure_refutation_capacity,
 )
@@ -104,6 +129,11 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
     )
     accepted, total = premises.compose_rules_accepted(closure_carrying)
 
+    carrying_capacities = premises.closure_carrying_capacities(closure_carrying)
+    carrying_coverage = assess_theory_coverage(
+        tuple(carrying_capacities.values()), label="P7.V4.7 closure carrying"
+    )
+
     constraints = (transport, composition)
     return {
         "constraints": constraints,
@@ -113,6 +143,12 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
         "transport_capacity": capacity,
         "donor_axis": donor_axis,
         "donor_diagnosis": premises.donor_axis_diagnosis(closure_carrying),
+        "carrying_capacities": carrying_capacities,
+        "carrying_coverage": carrying_coverage,
+        "published_count_multiplicity": premises.published_count_multiplicity(closure_carrying),
+        "witness_only_undecidability": premises.witness_only_transport_undecidability(
+            theory_closure
+        ),
         "handoff_axes": premises.composition_handoff_axes(closure_carrying),
         "composition_agreement": premises.composition_agreement(closure_carrying),
         "sampled_ambiguity_rules": sampled,
@@ -126,7 +162,43 @@ def audit_p7_closure_checkers() -> dict[str, Any]:
         "compose_rules_accepted": accepted,
         "compose_rules_total": total,
         "outcome": decision_outcome(constraints),
+        # A second terminal, and non-compensatory with the first. A premise the
+        # artifact decides is not the same property as a count the artifact could
+        # have reported otherwise, and P7 shipped one of each: ``bridge_match`` was
+        # a caller literal and ``donor_conservativity_violations`` was ``x != x``.
+        # Deciding a premise does not un-vacuate a guard and repairing a guard does
+        # not decide a premise, so the two are reported and gated separately.
+        "carrying_outcome": _carrying_outcome(
+            carrying_capacities,
+            carrying_coverage,
+            premises.identity_guards(premises.CLOSURE_CARRYING_PATH),
+        ),
     }
+
+
+def _carrying_outcome(
+    capacities: dict[str, RefutationCapacity],
+    coverage: TheoryCoverage,
+    guards: Sequence[str],
+) -> Outcome:
+    """Blocking join over the closure-carrying panel.
+
+    Blocks when any registered check rejects no false theory, when a false theory
+    is rejected by no check at all, or when a guard comparing a name against the
+    name it was assigned from is still in the shipped file. The last one is a
+    ratchet: the defect this panel exists to catch was exactly that shape, and a
+    later edit that reintroduces it must fail the audit rather than inherit its
+    green.
+    """
+
+    outcomes = [item.outcome for item in capacities.values()]
+    outcomes.append(coverage.outcome)
+    if guards:
+        outcomes.append(Outcome.FAIL)
+    for blocking in (Outcome.FAIL, Outcome.CANNOT_CHECK):
+        if blocking in outcomes:
+            return blocking
+    return Outcome.PASS
 
 
 def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
@@ -139,6 +211,13 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         "transport_capacity": report["transport_capacity"].as_json(),
         "donor_axis": report["donor_axis"].as_json(),
         "donor_diagnosis": report["donor_diagnosis"],
+        "carrying_capacities": {
+            check_id: capacity.as_json()
+            for check_id, capacity in report["carrying_capacities"].items()
+        },
+        "carrying_coverage": report["carrying_coverage"].as_json(),
+        "published_count_multiplicity": report["published_count_multiplicity"],
+        "witness_only_undecidability": report["witness_only_undecidability"],
         "handoff_axes": [item.as_json() for item in report["handoff_axes"]],
         "composition_agreement": report["composition_agreement"],
         "sampled_ambiguity_rules": list(report["sampled_ambiguity_rules"]),
@@ -154,6 +233,7 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         "compose_rules_accepted": report["compose_rules_accepted"],
         "compose_rules_total": report["compose_rules_total"],
         "outcome": report["outcome"].value,
+        "carrying_outcome": report["carrying_outcome"].value,
     }
 
 
@@ -225,6 +305,15 @@ def _render(report: dict[str, Any]) -> str:
     )
     diagnosis = report["donor_diagnosis"]
     lines.append(f"      {diagnosis['verdict']}: {diagnosis['reading']}")
+    multiplicity = report["published_count_multiplicity"]
+    lines.append("  published counts beside the number of distinct facts behind them:")
+    for row in multiplicity["rows"]:
+        if row["factor"] == 1:
+            continue
+        lines.append(
+            f"      {row['count']}: published {row['published']} = "
+            f"{row['distinct']} distinct x {row['factor']}"
+        )
     for handoff in report["handoff_axes"]:
         lines.append(
             f"  decided hand-off vs axis {handoff.axis!r}: "
@@ -236,11 +325,39 @@ def _render(report: dict[str, Any]) -> str:
         f"argument triples and accepts {report['compose_rules_accepted']}/"
         f"{report['compose_rules_total']} Boolean composition rules"
     )
+    conservativity = diagnosis["donor_conservativity"]
+    lines.append("  closure-carrying claims against the declared false theories of carrying:")
+    for check_id, capacity in report["carrying_capacities"].items():
+        lines.append(
+            f"      {check_id:<38s} refuted {len(capacity.refuted):>2d}  "
+            f"accepted {len(capacity.survivors):>2d}  {capacity.outcome.value}"
+        )
+        if capacity.survivors:
+            lines.append(f"          accepted: {', '.join(capacity.survivors)}")
+    coverage = report["carrying_coverage"]
+    lines.append(
+        f"      false theories of carrying rejected by no check: "
+        f"{len(coverage.unrefuted)}/{len(coverage.live)}"
+    )
+    lines.append(
+        f"      {premises.DONOR_CONSERVATIVITY_COUNT} fires: under "
+        f"{conservativity['refuting_theory']} it reports "
+        f"{conservativity['violations_under_the_donor_irrelevant_theory']} violations and "
+        f"the shipped terminal is "
+        f"{conservativity['terminal_under_the_donor_irrelevant_theory']}, with "
+        f"{len(conservativity['counts_unchanged_under_the_donor_irrelevant_theory'])} of 7 "
+        f"measured quantities unchanged; identity guards remaining: "
+        f"{len(conservativity['identity_guards_remaining'])}"
+    )
+    undecidable = report["witness_only_undecidability"]
+    lines.append(f"  why {undecidable['check_id']} cannot be decided:")
+    lines.append(f"      {undecidable['reading']}")
     lines.append(
         f"  canonical_rows_sha256 reproduced: {report['canonical_rows_reproduced']} "
         f"({report['canonical_rows_sha256'][:8]})"
     )
-    lines.append(f"  outcome: {report['outcome'].value}")
+    lines.append(f"  premise outcome: {report['outcome'].value}")
+    lines.append(f"  closure-carrying outcome: {report['carrying_outcome'].value}")
     return "\n".join(lines)
 
 
@@ -251,7 +368,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     report = audit_p7_closure_checkers()
     print(json.dumps(report_as_json(report), indent=2, sort_keys=True) if args.json else _render(report))
-    return 3 if Outcome(report["outcome"]).blocks else 0
+    blocked = Outcome(report["outcome"]).blocks or Outcome(report["carrying_outcome"]).blocks
+    return 3 if blocked else 0
 
 
 if __name__ == "__main__":

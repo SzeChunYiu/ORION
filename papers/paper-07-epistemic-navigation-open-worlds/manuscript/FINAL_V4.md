@@ -196,7 +196,14 @@ The enumeration of V3 is unchanged on disk and its digest is unchanged:
 
 What V4 changes is the reading. The 155 and 1,055 are a five-way donor
 multiplication of 31 and 211: the donor loop enters neither the closure vector
-nor the repair set. The composition pair is discussed in §20. The counts remain
+nor the repair set. Neither does anything else under it — 320 states is the
+64-point (native verdict, closure vector) space enumerated once per family, the
+25 minimal separations are 5 counted five times, and the 25 successes and 25
+bridge countermodels are one of each counted once per ordered donor pair. Only
+the 31 nonclosure countermodels are 31 distinct facts. The `donor_axis` block of
+`research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json` carries the
+same table, computed by running the checker at one donor and at five. The
+composition pair is discussed in §20. The counts remain
 correct and remain reproducible; they are support for a bounded instance, and
 the general claims are now carried by §§18–19 instead.
 

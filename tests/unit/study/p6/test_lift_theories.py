@@ -344,6 +344,30 @@ def test_the_donor_axis_is_still_a_pure_loop_multiplier() -> None:
     ) == (64, 5, 31, 211, 31)
 
 
+def test_every_published_count_is_reported_with_its_multiplicity() -> None:
+    """"Every count repeated 5x" is the fact; the audit has to print the table.
+
+    ``320`` is 64 observed once per donor family and ``25`` is 5 observed five
+    times, and both are numbers a reader misreads without the factor beside them.
+    Only the 31 product countermodels are 31 distinct facts, because their loop
+    does not range over donors.
+    """
+
+    rows = {row["count"]: row for row in lifting.published_count_multiplicity()}
+
+    assert (rows["state_evaluations"]["published"], rows["state_evaluations"]["factor"]) == (
+        320,
+        5,
+    )
+    assert rows["state_evaluations"]["distinct"] == 64
+    assert rows["single_coordinate_separation_witnesses"]["distinct"] == 5
+    assert rows["single_coordinate_separation_witnesses"]["factor"] == 5
+    assert rows["full_revalidation_successes"]["distinct"] == 31
+    assert rows["partial_revalidation_failures"]["distinct"] == 211
+    assert rows["certificate_product_countermodels"]["factor"] == 1
+    assert rows["certificate_product_countermodels"]["distinct"] == 31
+
+
 def test_the_native_validity_axis_is_read_on_one_distinct_state() -> None:
     sensitivity = axis_sensitivity(
         "native_valid", reference=lifting.reference_lift, space=lifting.lifting_model_space()
