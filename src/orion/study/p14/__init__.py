@@ -18,6 +18,17 @@ terminal turns out to have had one reachable value. The mechanism itself is
 
 The failure they close is recorded under
 ``research/failures/2026-08-unattainable-gate-predetermined-terminal/``.
+
+:mod:`specification_conformance` carries the residual that record could not
+discharge. It points the same instrument at P14C, the specification-separated
+successor, over the coordinate P14C actually leaves free --- which of the seven
+registered implementations sits in the graded slot --- and finds a conjunction
+that prints two terminals rather than one. It then reads P14A's two failing
+thresholds, ``0.05`` and ``0.08`` unchanged, on P14C's benchmark, where the same
+statistic is ``0.142857`` instead of capped at ``0.042326``. Both are met. P14A
+is not edited, re-run or relabelled by that; what it gains is the classification
+its own protocol could not supply, that its terminal recorded an unmeasurable
+gate rather than a result.
 """
 
 from __future__ import annotations
@@ -49,6 +60,8 @@ from .governance_gates import (
     shipped_bench,
     shipped_input,
     terminal_reach,
+    threshold_panel,
+    threshold_reaches,
 )
 
 __all__ = [
@@ -78,4 +91,6 @@ __all__ = [
     "shipped_bench",
     "shipped_input",
     "terminal_reach",
+    "threshold_panel",
+    "threshold_reaches",
 ]

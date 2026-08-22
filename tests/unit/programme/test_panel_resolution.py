@@ -412,3 +412,19 @@ class TestAttainableMargins:
     def test_it_is_surfaced_at_the_top_level(self, report: dict) -> None:
         assert len(report["gates_no_subject_could_have_passed"]) == 1
         assert "P14 accuracy_gain_ge_0_08" in report["gates_no_subject_could_have_passed"][0]
+
+    def test_the_successors_gate_is_carried_and_does_not_fire(self, report: dict) -> None:
+        # Registered deliberately. A sweep that visits only the receipt it
+        # already suspects reports the suspicion; P14C carries the same gate
+        # under a benchmark that fixed the composition P14A sampled, is checked
+        # by the same code, and comes out reachable.
+        p14c = next(p for p in report["margin_gates"] if p["paper_id"] == "P14C")
+        gate = next(g for g in p14c["gates"] if g["gate_id"] == "accuracy_advantage_ge_0_10")
+
+        assert gate["attainable"] is True
+        assert gate["attainable_margin"] == pytest.approx(0.14285714285714285)
+        assert gate["observed_margin"] == pytest.approx(0.14285714285714285)
+        assert gate["threshold"] == 0.10
+        assert not any(
+            "P14C" in line for line in report["gates_no_subject_could_have_passed"]
+        )

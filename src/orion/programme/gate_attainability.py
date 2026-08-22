@@ -532,9 +532,15 @@ class ThresholdReach:
 
     @property
     def refutation_margin(self) -> float:
-        """How far the worst reachable value falls short. Non-negative means it cannot fail."""
+        """Signed distance from the *worst* reachable value to the bar.
 
-        return -self.gate.margin_of(self.worst_value)
+        The mirror of :attr:`attainment_margin`, and the number that says a pass
+        was not forced: negative means some admissible value falls short, so the
+        gate can still fail. Non-negative means even the least favourable value
+        the protocol can produce already clears it.
+        """
+
+        return self.gate.margin_of(self.worst_value)
 
     @property
     def reason(self) -> GateReachReason:

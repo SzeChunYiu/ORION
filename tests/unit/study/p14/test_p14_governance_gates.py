@@ -16,9 +16,11 @@ import pytest
 from orion.programme.gate_attainability import (
     AdmissibleWorld,
     GateReachReason,
+    GateRole,
     UnattainableGate,
     measure_gate_attainability,
     require_reachable,
+    require_supported_thresholds,
 )
 from orion.programme.records import Outcome
 from orion.study.p14 import governance_gates as p14
@@ -272,3 +274,53 @@ def test_the_audit_exits_three_and_prints_the_margins():
     with contextlib.redirect_stdout(stream):
         assert main(["--json"]) == 3
     assert '"outcome": "FAIL"' in stream.getvalue()
+
+
+def test_the_two_failing_thresholds_were_outside_reach_before_the_seed_was_drawn() -> None:
+    """The pre-run half: no run, no register of worlds, only the freeze's own bound."""
+
+    support = p14.declared_statistic_support()
+
+    assert support.infimum == pytest.approx(0.009085200732011248)
+    assert support.supremum == pytest.approx(0.04232587750858594)
+    assert support.derivation.strip()
+
+    reaches = {reach.gate.gate_id: reach for reach in p14.threshold_reaches()}
+    assert set(reaches) == set(p14.SUPPORT_BOUNDED_GATES)
+
+    difficulty = reaches["strongest_baseline_false_promotion_ge_0_05"]
+    assert difficulty.gate.role is GateRole.PRECONDITION
+    assert difficulty.reason is GateReachReason.THRESHOLD_UNATTAINABLE
+    assert difficulty.attainment_margin == pytest.approx(-0.007674122491414061)
+
+    gain = reaches["accuracy_gain_ge_0_08"]
+    assert gain.gate.role is GateRole.HYPOTHESIS
+    assert gain.reason is GateReachReason.THRESHOLD_UNATTAINABLE
+    assert gain.attainment_margin == pytest.approx(-0.03767412249141406)
+
+
+def test_the_preregistration_check_blocks_and_names_both_bars() -> None:
+    panel = p14.threshold_panel()
+
+    assert panel.outcome is Outcome.FAIL
+    assert panel.unattainable == (
+        "strongest_baseline_false_promotion_ge_0_05",
+        "accuracy_gain_ge_0_08",
+    )
+    assert panel.discriminating == ()
+    with pytest.raises(UnattainableGate, match="no admissible value satisfies"):
+        require_supported_thresholds(panel)
+
+
+def test_the_declared_bound_and_the_measured_register_reach_the_same_verdict() -> None:
+    """Two instruments, one answer: the bound is not a softer paraphrase of the register."""
+
+    declared = {reach.gate.gate_id: reach.reason for reach in p14.threshold_reaches()}
+    measured = {
+        reach.gate.gate_id: reach.reason
+        for reach in p14.gate_reaches()
+        if reach.gate.gate_id in set(p14.SUPPORT_BOUNDED_GATES)
+    }
+
+    assert declared == measured
+    assert set(declared.values()) == {GateReachReason.THRESHOLD_UNATTAINABLE}

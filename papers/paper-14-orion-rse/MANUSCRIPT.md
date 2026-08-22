@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Research agents can generate hypotheses, retrieve literature, design experiments and draft interpretations faster than they can reliably determine what those outputs scientifically warrant. We present **ORION-RSE**, a fail-closed recursive scientific-governance contract that separates research generation from claim promotion. ORION-RSE atomizes claims, subtracts nearest-donor ownership before novelty promotion, freezes protected discriminators before outcomes, retains null/negative/subsumed history, distinguishes standalone from interaction-only evidence, records `CANNOT_CHECK`, separates evaluator identity from scientific authority, stops recursion when no material discriminator remains and reopens prior decisions only after material evidence or regime change. We evaluate this governance layer rather than claiming a new autonomous scientist. A first preregistered mixed benchmark is retained as **negative**: full ORION-RSE made zero false promotions and retained every valid discovery, but the only residual discriminator against the strongest comparator occupied 1.8375% of the realized cases, so registered aggregate separation gates could not pass. A fresh balanced benchmark gives equal protected weight to seven scientific dispositions and yields 0 false promotions, 1.000 disposition accuracy and 1.000 useful-discovery recall for the full contract versus 14.29% false promotion and 0.8571 accuracy for the strongest interaction-aware multi-review baseline. That benchmark originally implemented the full policy through the same adjudication function used for gold, so we treat it as an internal semantic-discriminator result rather than independent validation. We therefore preregister a third **specification-separated** successor: 28 explicit gold cases are frozen in a separate adjudication artifact, the policy receives facts only, and the full implementation is independently coded. Full ORION-RSE is 28/28 correct with zero false promotions and full valid-discovery recall; `MULTI_REVIEW` is 24/28 with 14.29% false promotion, all six component ablations are worse, and two evaluations yield identical canonical SHA-256 `74032348…f01a63`. The resulting claim is strong but precise: **against the registered governance specification, the complete contract conforms strictly better than partial review contracts without suppressing valid promotion.** Whether the specification itself improves open-ended real science remains an external blinded-adjudication question.
+Research agents can generate hypotheses, retrieve literature, design experiments and draft interpretations faster than they can reliably determine what those outputs scientifically warrant. We present **ORION-RSE**, a fail-closed recursive scientific-governance contract that separates research generation from claim promotion. ORION-RSE atomizes claims, subtracts nearest-donor ownership before novelty promotion, freezes protected discriminators before outcomes, retains null/negative/subsumed history, distinguishes standalone from interaction-only evidence, records `CANNOT_CHECK`, separates evaluator identity from scientific authority, stops recursion when no material discriminator remains and reopens prior decisions only after material evidence or regime change. We evaluate this governance layer rather than claiming a new autonomous scientist. A first preregistered mixed benchmark is retained as **negative**: full ORION-RSE made zero false promotions and retained every valid discovery, but the only residual discriminator against the strongest comparator occupied 1.8375% of the realized cases, so registered aggregate separation gates could not pass. We then show that this negative is uninformative about the contract rather than evidence against it: both failing gates read one quantity whose supremum over the protocol's own declared sampling support is 0.042326, below both the 0.05 and the 0.08 bar, so the seven-gate conjunction had a single reachable value before the seed was drawn. The terminal is retained verbatim and reclassified `CANNOT_CHECK`. A fresh balanced benchmark gives equal protected weight to seven scientific dispositions and yields 0 false promotions, 1.000 disposition accuracy and 1.000 useful-discovery recall for the full contract versus 14.29% false promotion and 0.8571 accuracy for the strongest interaction-aware multi-review baseline. That benchmark originally implemented the full policy through the same adjudication function used for gold, so we treat it as an internal semantic-discriminator result rather than independent validation. We therefore preregister a third **specification-separated** successor: 28 explicit gold cases are frozen in a separate adjudication artifact, the policy receives facts only, and the full implementation is independently coded. Full ORION-RSE is 28/28 correct with zero false promotions and full valid-discovery recall; `MULTI_REVIEW` is 24/28 with 14.29% false promotion, all six component ablations are worse, and two evaluations yield identical canonical SHA-256 `74032348…f01a63`. That benchmark's terminal is attainable in both directions — of the seven implementations its protocol admits in the graded slot, exactly one clears every gate — and the first benchmark's 0.05 and 0.08 bars, registered unchanged, are both met here at 0.142857. The resulting claim is strong but precise: **against the registered governance specification, the complete contract conforms strictly better than partial review contracts without suppressing valid promotion.** Whether the specification itself improves open-ended real science remains an external blinded-adjudication question.
 
 ## 1. Introduction
 
@@ -25,7 +25,7 @@ The paper contributes:
 1. a bounded research-governance lifecycle;
 2. explicit dispositions including `SUBSUMED`, `INTERACTION_ONLY`, `RETAIN_NEGATIVE` and `CANNOT_CHECK`;
 3. a matched-resource evaluation with useful-discovery recall so blanket abstention cannot win;
-4. a preserved negative mixed benchmark and its root-cause diagnosis;
+4. a preserved negative mixed benchmark, its root-cause diagnosis, and a mechanical determination that its two failing gates were unattainable under its own frozen sampling support;
 5. a balanced semantic-discriminator benchmark;
 6. a specification-separated successor that removes direct gold-function reuse and tests every core component through ablation.
 
@@ -130,6 +130,20 @@ After validity, freeze, identifiability, donor and interaction checks, the only 
 
 The result identifies a benchmark-design problem: natural/random mixtures may underweight the decision boundary being tested. P14A is not retuned; it motivates a new balanced question.
 
+### 6.2 What the negative established, and what it did not
+
+The statement above is about the draw that happened. The stronger and more damaging statement is about every draw the protocol admits, and we make it here rather than leave the terminal to be read as a comparative finding.
+
+Both failing gates read one quantity. `MULTI_REVIEW` reproduces the gold adjudication except where a positive is a same-evidence rereading of a live negative history; over the 144 fact states the generator can emit, that exception is a single state, and it is also `MULTI_REVIEW`'s only false promotion. So `strongest_baseline_false_promotion_ge_0_05` reads its frequency and `accuracy_gain_ge_0_08` reads `1 − (1 − that frequency)` — the same number, which is why the receipt prints `0.018375` for both.
+
+The eight case facts are independent Bernoulli draws whose rates are each monotone in a different declared uniform, and each family's draw is mixed half-and-half with a fixed base. The state's prevalence is therefore a product whose extrema over the declared box sit at corners, and the box's **supremum is 0.042326** — below both the 0.05 and the 0.08 bar. Exercised over five registered admissible worlds spanning the declared ranges, ending at the extremal corner, the best reachable value is 0.040250, giving attainment margins of **−0.009750** and **−0.039750**, and no world satisfies either gate. The remaining five gates are satisfied by every admissible world, three of them because the graded `ORION_RSE_FULL` arm is the gold function it is scored against (0 divergent points of 256). The seven-gate conjunction therefore had **one reachable value** before the seed was drawn.
+
+The instrument was not incapable in general. Re-opening the declared sampling ranges and nothing else — same seed, same nine arms, same seven thresholds, same terminal expression — moves the terminal to the positive branch in three of three registered capability worlds, with two distinct terminals observed and no inert case. The pass region is live; it lies outside the set of runs the preregistration admits.
+
+P14A's terminal, seed, thresholds and receipt are retained verbatim and nothing is relabelled positive. Its **evidential disposition is `CANNOT_CHECK`**: the gates recorded a measurement the frozen protocol could not take, not evidence against the governance contract. The adjudication is `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`, produced by `verify_p14_gate_attainability_v1.py` over instruments that reload the shipped generator and reproduce its committed `full_result_sha256` before any verdict is read.
+
+The general lesson we take from it is that a threshold is a claim about a distribution: freeze the threshold and the support of the statistic it reads together, or an outcome has been frozen rather than a test.
+
 ## 7. P14B — balanced semantic discriminator
 
 P14B uses a fresh seed and 12 held-out families with seven equal strata: clean support, legitimate material reopening, retained negative history, donor subsumption, interaction-only evidence, `CANNOT_CHECK` and negative evidence. There are 6,720 protected cases total, with the same seven-check decision receipt for every arm.
@@ -184,7 +198,24 @@ Full ORION-RSE correctly handles all retained-negative and supported-reopen case
 
 `74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63`.
 
-### 8.3 Strongest current claim
+### 8.3 Gate attainability, and P14A's thresholds read here
+
+P14C's terminal is asked the question §6.2 asks of P14A's, over the coordinate P14C leaves free. P14A sampled the discriminator's prevalence; P14C fixes it by composition — four cases per semantic stratum makes the `RETAIN_NEGATIVE` share exactly `4/28 = 0.142857` in every admissible table, against P14A's ceiling of `0.042326` for the same quantity. What remains free is the implementation in the graded slot, and the protocol registers seven of them: the full contract and its six single-component ablations.
+
+Over that register the full contract clears all eight gates and every ablation fails at least one, so the conjunction prints **two** distinct terminals rather than one. `accuracy_advantage_ge_0_10` is refutable: it fails for the donor, interaction and negative-history ablations. `strongest_baseline_false_promotion_ge_0_10` is a benchmark-difficulty precondition and holds in every admissible table by construction, which is the property P14A's corresponding gate lacked — there, the same certificate was unsatisfiable.
+
+P14A's two frozen bars are then registered verbatim and read on this benchmark:
+
+| P14A gate, threshold unchanged | reachable interval here | realized | verdict |
+|---|---|---|---|
+| `strongest_baseline_false_promotion_ge_0_05` | [0.142857, 0.142857] over admissible tables | 0.142857 | **met** |
+| `accuracy_gain_ge_0_08` | [0.000000, 0.142857] over admissible subjects | 0.142857 | **met** |
+
+The 0.08 bar sits strictly inside its interval, so it could have gone either way and did not have to pass. The question P14A's gates encoded is therefore answered affirmatively at P14A's own thresholds, under P14C's protocol identity, with no threshold, seed, case or result of P14A edited. P14A's terminal stands; it is classified, not overturned.
+
+One honest residual: `full_discovery_recall_one` is satisfied by all seven registered subjects, because an ablation removes a check and a policy reading fewer facts promotes more rather than fewer. No registered implementation abstains, so that gate carries no refutation capacity over this register and its pass is not evidence that the contract preserves valid discovery. It is named as such in the adjudication receipt.
+
+### 8.4 Strongest current claim
 
 P14C closes the direct implementation-circularity objection. The strongest evidence-backed statement is:
 
@@ -224,7 +255,8 @@ Its distinctive mechanism is active negative/subsumed history plus material-reop
 
 1. P14A–C are controlled symbolic decision benchmarks, not natural-language open-ended science.
 2. P14C removes direct gold-function reuse but the adjudication specification is still internally authored; external validity remains open.
-3. Balanced strata test discrimination, not real-world prevalence; P14A shows why prevalence and discriminability must be reported separately.
+3. Balanced strata test discrimination, not real-world prevalence; P14A shows why prevalence and discriminability must be reported separately, and why a threshold must be frozen together with the support of the statistic it reads.
+4. One P14C gate, `full_discovery_recall_one`, is satisfied by every implementation the protocol registers in the graded slot, so its pass is a property of the ablation register rather than evidence about the contract.
 4. Decision costs are matched abstractly; real workflows have heterogeneous token, retrieval, experiment and reviewer costs.
 5. Human or independent-model adjudicators may disagree on novelty and admissibility.
 6. Longitudinal value of negative-history retention is not yet demonstrated on realistic scientific work.
@@ -233,7 +265,7 @@ Its distinctive mechanism is active negative/subsumed history plus material-reop
 
 ## 13. Conclusion
 
-ORION-RSE treats scientific governance as a decision system that can itself fail. The paper preserves two important boundaries: P14A fails because the decisive discriminator is too rare in its mixed benchmark, and P14B is semantically informative but directly reuses its adjudication function for the full policy. P14C then removes that implementation circularity with a separately frozen case specification and independent policy implementation. The complete contract conforms to all registered cases, makes zero false promotions and preserves every valid promotion, while the strongest partial review contract fails the retained-negative boundary. The next claim frontier is external rather than synthetic: **blinded realistic packets, independent adjudication and longitudinal research history under matched resources.**
+ORION-RSE treats scientific governance as a decision system that can itself fail. The paper preserves two important boundaries: P14A's aggregate gates were unreachable under its own frozen sampling support, so its terminal is a measurement that could not be taken rather than a comparative negative, and P14B is semantically informative but directly reuses its adjudication function for the full policy. P14C then removes that implementation circularity with a separately frozen case specification and independent policy implementation. The complete contract conforms to all registered cases, makes zero false promotions and preserves every valid promotion, while the strongest partial review contract fails the retained-negative boundary. The next claim frontier is external rather than synthetic: **blinded realistic packets, independent adjudication and longitudinal research history under matched resources.**
 
 ## References
 

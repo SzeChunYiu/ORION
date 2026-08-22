@@ -263,6 +263,29 @@ PUBLISHED_MARGIN_GATES: tuple[dict[str, Any], ...] = (
             },
         ),
     },
+    # P14A's successor, registered because it is expected to come out clean and
+    # carries the same gate under a benchmark that fixed the composition P14A
+    # sampled. A sweep that visits only the receipt it already suspects reports
+    # the suspicion; this one is checked by the same code and does not fire.
+    # The full mechanical treatment --- both directions of reachability, over the
+    # implementations the protocol admits in the graded slot --- is
+    # `orion.study.p14.specification_conformance`.
+    {
+        "artifact": "papers/paper-14-orion-rse/"
+        "P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json",
+        "paper_id": "P14C",
+        "systems_key": "summary",
+        "gates": (
+            {
+                "gate_id": "accuracy_advantage_ge_0_10",
+                "metric": "disposition_accuracy",
+                "subject": "ORION_RSE_FULL",
+                "baseline": "MULTI_REVIEW",
+                "threshold": 0.10,
+                "ceiling": 1.0,
+            },
+        ),
+    },
 )
 
 

@@ -15,11 +15,17 @@ from orion.programme.gate_attainability import (
     GateDirection,
     GateReach,
     GateReachReason,
+    GateRole,
     PreregisteredGate,
+    StatisticSupport,
+    ThresholdReach,
     UnattainableGate,
+    assess_threshold_panel,
+    assess_threshold_support,
     measure_gate_attainability,
     measure_terminal_reach,
     require_reachable,
+    require_supported_thresholds,
 )
 from orion.programme.guard_exercise import GuardVerdictReason
 from orion.programme.records import Outcome
@@ -247,3 +253,196 @@ def test_a_reach_must_carry_the_worlds_it_was_measured_over() -> None:
 
     with pytest.raises(ValueError, match="must carry the worlds"):
         GateReach(gate=measured.gate, readings=(), exercise=measured.exercise)
+
+
+# --- the pre-run half: a threshold against the interval its statistic can occupy ---
+#
+# `measure_gate_attainability` needs a register of worlds and a run of each, so
+# it can only be asked after a campaign is built. A bound needs the
+# preregistration alone, which is the only moment at which an unattainable
+# threshold costs a sentence instead of a published result.
+
+
+def support(
+    infimum: float = 0.009085200732011248, supremum: float = 0.04232587750858594
+) -> StatisticSupport:
+    return StatisticSupport(
+        statistic="the discriminating state's frequency over the declared sampling box",
+        infimum=infimum,
+        supremum=supremum,
+        derivation="a product of eight factors each monotone in a different declared uniform",
+    )
+
+
+def threshold_reach(
+    value: float,
+    *,
+    direction: GateDirection = GateDirection.AT_LEAST,
+    role: GateRole = GateRole.HYPOTHESIS,
+    bounds: StatisticSupport | None = None,
+) -> ThresholdReach:
+    return assess_threshold_support(
+        PreregisteredGate(
+            gate_id="discriminator-prevalence",
+            reads="the discriminating state's frequency",
+            threshold=value,
+            direction=direction,
+            role=role,
+        ),
+        support=bounds or support(),
+    )
+
+
+def test_a_threshold_above_the_statistics_ceiling_is_caught_before_the_run() -> None:
+    """P14A's ``0.08`` against a supremum of ``0.042326``: no seed had to be drawn."""
+
+    reached = threshold_reach(0.08)
+
+    assert reached.reason is GateReachReason.THRESHOLD_UNATTAINABLE
+    assert reached.outcome is Outcome.FAIL
+    assert reached.blocks is True
+    assert reached.discriminates is False
+    assert reached.best_value == pytest.approx(0.04232587750858594)
+    assert reached.attainment_margin == pytest.approx(-0.03767412249141406)
+
+
+def test_a_threshold_inside_the_interval_can_go_either_way() -> None:
+    reached = threshold_reach(0.02)
+
+    assert reached.reason is GateReachReason.BOTH_OUTCOMES_REACHABLE
+    assert reached.outcome is Outcome.PASS
+    assert reached.discriminates is True
+    assert reached.attainment_margin > 0.0
+    assert reached.refutation_margin < 0.0
+
+
+def test_a_threshold_the_whole_interval_clears_decides_a_hypothesis_in_advance() -> None:
+    reached = threshold_reach(0.005)
+
+    assert reached.reason is GateReachReason.THRESHOLD_UNCONDITIONAL
+    assert reached.outcome is Outcome.FAIL
+    assert reached.refutation_margin == pytest.approx(0.004085200732011248)
+
+
+def test_a_precondition_may_hold_in_every_admissible_world_but_may_not_be_unreachable() -> None:
+    """The asymmetry: an instrument certificate is allowed to be certain, a claim is not."""
+
+    certain = threshold_reach(0.005, role=GateRole.PRECONDITION)
+    unreachable = threshold_reach(0.08, role=GateRole.PRECONDITION)
+
+    assert certain.reason is GateReachReason.THRESHOLD_UNCONDITIONAL
+    assert certain.outcome is Outcome.PASS
+    assert unreachable.reason is GateReachReason.THRESHOLD_UNATTAINABLE
+    assert unreachable.outcome is Outcome.FAIL
+
+
+def test_an_at_most_gate_reads_the_other_end_of_the_interval() -> None:
+    unreachable = threshold_reach(0.005, direction=GateDirection.AT_MOST)
+    reachable = threshold_reach(0.02, direction=GateDirection.AT_MOST)
+
+    assert unreachable.reason is GateReachReason.THRESHOLD_UNATTAINABLE
+    assert unreachable.best_value == pytest.approx(0.009085200732011248)
+    assert reachable.reason is GateReachReason.BOTH_OUTCOMES_REACHABLE
+
+
+def test_the_measured_register_and_the_declared_bound_agree_on_the_same_gate() -> None:
+    """One reason function serves both, so the two halves cannot drift apart."""
+
+    bounds = support(infimum=0.01, supremum=0.04)
+    for threshold in (0.005, 0.02, 0.08):
+        assert reach(threshold).reason is threshold_reach(threshold, bounds=bounds).reason
+
+
+def test_a_bound_that_cannot_be_re_derived_is_refused() -> None:
+    with pytest.raises(ValueError, match="derivation is required"):
+        StatisticSupport(statistic="x", infimum=0.0, supremum=1.0, derivation="  ")
+    with pytest.raises(ValueError, match="statistic is required"):
+        StatisticSupport(statistic=" ", infimum=0.0, supremum=1.0, derivation="d")
+    with pytest.raises(ValueError, match="an empty interval bounds nothing"):
+        StatisticSupport(statistic="x", infimum=0.5, supremum=0.4, derivation="d")
+    with pytest.raises(ValueError, match="supremum must be finite"):
+        StatisticSupport(statistic="x", infimum=0.0, supremum=float("inf"), derivation="d")
+
+
+def test_one_unattainable_threshold_blocks_the_whole_preregistration() -> None:
+    """P14A's battery, asked at freeze time: two gates, both above the ceiling."""
+
+    difficulty = assess_threshold_support(
+        PreregisteredGate(
+            gate_id="strongest_baseline_false_promotion_ge_0_05",
+            reads="strongest non-ORION baseline false promotion rate",
+            threshold=0.05,
+            role=GateRole.PRECONDITION,
+        ),
+        support=support(),
+    )
+    panel = assess_threshold_panel(
+        (difficulty, threshold_reach(0.08)),
+        label="P14A aggregate superiority thresholds",
+    )
+
+    assert panel.outcome is Outcome.FAIL
+    assert panel.unattainable == (
+        "strongest_baseline_false_promotion_ge_0_05",
+        "discriminator-prevalence",
+    )
+    assert panel.discriminating == ()
+    with pytest.raises(UnattainableGate, match="no admissible value satisfies"):
+        require_supported_thresholds(panel)
+
+
+def test_a_panel_of_preconditions_alone_carries_no_claim() -> None:
+    """Relabelling every hypothesis a precondition empties the panel, it does not clear it."""
+
+    panel = assess_threshold_panel(
+        (
+            assess_threshold_support(
+                PreregisteredGate(
+                    gate_id="benchmark-is-hard-enough",
+                    reads="strongest baseline error rate",
+                    threshold=0.005,
+                    role=GateRole.PRECONDITION,
+                ),
+                support=support(),
+            ),
+        ),
+        label="preconditions only",
+    )
+
+    assert panel.discriminating == ()
+    assert panel.outcome is Outcome.FAIL
+    with pytest.raises(UnattainableGate, match="no hypothesis gate discriminates"):
+        require_supported_thresholds(panel)
+
+
+def test_a_panel_with_a_live_hypothesis_and_reachable_bars_passes() -> None:
+    panel = assess_threshold_panel(
+        (
+            assess_threshold_support(
+                PreregisteredGate(
+                    gate_id="benchmark-is-hard-enough",
+                    reads="strongest baseline error rate",
+                    threshold=0.005,
+                    role=GateRole.PRECONDITION,
+                ),
+                support=support(),
+            ),
+            threshold_reach(0.02),
+        ),
+        label="a battery that could have said two things",
+    )
+
+    assert panel.outcome is Outcome.PASS
+    assert panel.unattainable == ()
+    assert panel.discriminating == ("discriminator-prevalence",)
+    require_supported_thresholds(panel)
+    assert panel.as_json()["outcome"] == "PASS"
+
+
+def test_a_panel_needs_gates_distinct_ids_and_a_label() -> None:
+    with pytest.raises(ValueError, match="preregisters nothing"):
+        assess_threshold_panel((), label="empty")
+    with pytest.raises(ValueError, match="label is required"):
+        assess_threshold_panel((threshold_reach(0.02),), label=" ")
+    with pytest.raises(ValueError, match="gate ids must be distinct"):
+        assess_threshold_panel((threshold_reach(0.02), threshold_reach(0.03)), label="duplicated")
