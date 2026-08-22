@@ -1,0 +1,124 @@
+name: orion-qg-qg7d-j7-pa-confirm
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG7D_J7_*'
+      - 'development/orion-qg-regime-geometry/qg7d_j7_*'
+      - 'development/orion-qg-regime-geometry/run_qg7d_j7_pa_dual_harness.py'
+      - 'research/extensions/orion-qg/qg7d_j7_*'
+      - '.github/workflows/orion-qg-qg7d-j7-pa-confirm.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg7d-j7-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg7d-j7-pa-confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QG7D_J7_PARENT: 96065a43fdc4542b69acb525e3f4aabb27665c87
+      QG7C_DIGEST: 0b127438dac9dc844a52176873eb5769a99ff52b34851d9c82c4b1feded656b6
+    steps:
+      - name: Checkout exact confirmatory head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen J7 parent lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG7D_J7_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG7D_J7_PARENT}")" = "${QG7D_J7_PARENT}"
+          test -f development/orion-qg-regime-geometry/QG7D_J7_PA_CONFIRMATORY_PROTOCOL_V1.md
+          test -f research/extensions/orion-qg/QG7C_CLASSIFICATION_RESULTS.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg7d_j7_pa_confirm.py \
+            development/orion-qg-regime-geometry/qg7d_j7_analyzer_exec.py \
+            development/orion-qg-regime-geometry/qg7d_j7_pa_generic_verify.py \
+            development/orion-qg-regime-geometry/qg7d_j7_pa_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg7d_j7_pa_dual_harness.py
+      - name: Execute frozen J7 packet through generic and native ORION
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg7d_j7_pa_dual_harness.py \
+            | tee artifacts/orion-qg-qg7d-j7-pa-dual-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          set -euo pipefail
+          python development/orion-qg-regime-geometry/qg7d_j7_analyzer_exec.py \
+            --output artifacts/orion-qg-qg7d-j7-pa-confirm-replay.json \
+            > artifacts/orion-qg-qg7d-j7-pa-replay.log
+          cmp \
+            artifacts/orion-qg-qg7d-j7-pa-confirm.json \
+            artifacts/orion-qg-qg7d-j7-pa-confirm-replay.json
+      - name: Enforce PA-only theorem terminal and open PP/chain boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg7d-j7-pa-confirm.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg7d-j7-pa-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg7d-j7-pa-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg7d-j7-pa-dual-harness.json').read_text())
+          pos='QG7D_PA_PINNED_COMM_S2_CLOSED_ALL_N_MACHINE_CHECKED__PP_CHAIN_OPEN'
+          assert a['terminal']==pos and a['all_gates'] is True
+          assert a['parent_qg7c_digest']=='0b127438dac9dc844a52176873eb5769a99ff52b34851d9c82c4b1feded656b6'
+          assert a['parent']['pa_failures']==103048
+          assert a['parent']['delta_histogram']=={'1':100672,'2':2376}
+          vals=sorted(a['parent']['per_parameter_cell_failures'].values())
+          assert vals.count(12431)==8 and vals.count(450)==8
+          assert a['structural_costs']['old_pinned_pa']==6
+          assert a['structural_costs']['new_dplus']==2
+          assert a['j6']['library_size']==384
+          assert a['j6']['residual_count']==42
+          assert a['j6']['residual_delta_histogram']=={'1':42}
+          assert a['j7_bprime']['rows_evaluated']==42
+          assert a['j7_bprime']['delta_histogram']=={'-1':6,'0':36}
+          assert a['j7_bprime']['witness_verification_failures']==[]
+          assert a['j7_bprime']['final_residuals']==0
+          assert g['decision']=='ACCEPT_PA_ALL_N_CLOSURE' and g['all_checks'] is True
+          assert g['parent_failures']==103048 and g['j6_residuals']==42 and g['j7_final_residuals']==0
+          assert n['decision']=='ACCEPT_PA_ALL_N_CLOSURE' and n['all_checks'] is True
+          assert n['responsibility']=='PA_PINNED_COMM_S2_NORMALIZATION'
+          assert d['terminal']==pos and d['both_accept'] is True
+          assert d['PA_ALL_N'] is True
+          for obj in (a,g,n,d):
+              assert obj['PP_ALL_N'] is False
+              assert obj['CHAIN_ALL_N'] is False
+              assert obj['GLOBAL_BDOUBLEPRIME_COMPLETENESS'] is False
+              assert obj['novelty_authority'] is False
+              assert obj['r6_authority'] is False
+              assert obj['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload J7 dual-harness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg7d-j7-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg7d-j7-pa-confirm.json
+            artifacts/orion-qg-qg7d-j7-pa-confirm-replay.json
+            artifacts/orion-qg-qg7d-j7-pa-generic-verification.json
+            artifacts/orion-qg-qg7d-j7-pa-native-verification.json
+            artifacts/orion-qg-qg7d-j7-pa-dual-harness.json
+            artifacts/orion-qg-qg7d-j7-pa-dual-summary.json
+            artifacts/orion-qg-qg7d-j7-pa-replay.log
+            .orion-qg-qg7d-j7-generic/.orion-harness/**
+            .orion-qg-qg7d-j7-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn
