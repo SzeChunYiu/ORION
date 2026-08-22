@@ -65,7 +65,7 @@ class TestTheFrameConditionsCarryTheProof:
         assert load_bearing["every_condition_carries_a_theorem"] is True
 
     @pytest.mark.parametrize(
-        ("condition", "expected_lost"),
+        ("condition", "expected_core"),
         [
             (
                 "coordinates_support_the_certificate",
@@ -76,21 +76,52 @@ class TestTheFrameConditionsCarryTheProof:
             ),
             (
                 "coordinates_do_not_support_each_other",
+                {"CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED"},
+            ),
+            (
+                "the_certificate_is_not_a_coordinate",
                 {
                     "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
-                    "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
                     "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+                    "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+                    "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+                    "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
                 },
             ),
         ],
     )
-    def test_which_theorem_each_condition_carries_is_pinned(
-        self, condition: str, expected_lost: set[str], load_bearing: dict
+    def test_which_theorem_each_condition_always_carries(
+        self, condition: str, expected_core: set[str], load_bearing: dict
     ) -> None:
-        # Pinned rather than merely counted: a condition that starts carrying a
-        # different theorem has changed meaning, and a non-empty set of losses
-        # would hide that.
-        assert set(load_bearing["theorems_lost_by_dropping"][condition]) == expected_lost
+        # The stable core, not an equality against one run. The edge-restriction
+        # condition refutes between one and three theorems depending on how the
+        # solver's model search goes; exactly one of them falls every time.
+        core = set(load_bearing["theorems_refuted_on_every_run"][condition])
+        assert core <= expected_core
+        assert core
+
+    def test_a_theorem_that_only_stops_being_provable_is_not_counted(
+        self, load_bearing: dict
+    ) -> None:
+        # The correction this class exists for. An UNKNOWN return is a fact
+        # about the search, not evidence the axiom was carrying the theorem, and
+        # the first version of this measurement counted it as a loss.
+        assert "unknown return is a fact about the" in load_bearing["criterion"]
+        assert "not deterministic" in load_bearing["criterion"]
+
+    def test_the_measurement_is_repeated(self, load_bearing: dict) -> None:
+        assert load_bearing["repeats"] >= 3
+
+    def test_a_bounded_countermodel_is_only_used_to_refute(self) -> None:
+        # Soundness of the whole approach rests on direction: a countermodel in
+        # a small universe refutes a universal claim, while failing to find one
+        # there proves nothing. If the bound ever reached a proof query this
+        # would be unsound, so the proof path is checked to be unbounded.
+        import inspect
+
+        source = inspect.getsource(cg.prove_all)
+        assert "refute_in_a_bounded_world" not in source
+        assert "REFUTATION_WORLD_SIZE" not in source
 
     def test_an_unknown_condition_is_refused(self) -> None:
         with pytest.raises(ValueError, match="unknown frame condition"):

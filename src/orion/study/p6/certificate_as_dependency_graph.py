@@ -63,6 +63,7 @@ from orion.programme.mechanized import (
     Theorem,
     discharge,
     load_executable_model,
+    require_z3,
 )
 from orion.study.p6.reopening_calculus_smt import (
     EXECUTABLE_MODEL,
@@ -232,8 +233,14 @@ def _damage_on_coordinates(vocab: dict[str, Any], coord: Any, changed: Any) -> A
     return solver.ForAll([n], solver.Implies(changed(n), coord(n)))
 
 
-def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[ProofResult, ...]:
-    """Discharge every theorem in :data:`THEOREMS` under the interpretation."""
+def _queries(drop: str | None = None) -> list[tuple[Theorem, list[Any], Any, Any]]:
+    """Every theorem as a (theorem, axioms, claim, certificate) tuple.
+
+    Split out of :func:`prove_all` so the same queries can be re-asked in a
+    bounded world when the open search returns ``unknown``. Building them twice
+    from two copies of the encoding would let the load-bearing measurement drift
+    from the proofs it is measuring.
+    """
 
     vocab = _vocabulary()
     solver = vocab["z3"]
@@ -247,39 +254,26 @@ def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[Proo
 
     x = solver.Const("x", Node)
     y = solver.Const("y", Node)
-
-    results: list[ProofResult] = []
-
-    # 1. Any damage withdraws the certificate.
     witness = solver.Const("w", Node)
-    results.append(
-        discharge(
+    residue = solver.Const("res", Node)
+
+    return [
+        (
             CERTIFICATE_WITHDRAWN,
             base + [_damage_on_coordinates(vocab, coord, Changed)],
             solver.Implies(
                 solver.Exists([witness], solver.And(coord(witness), Changed(witness))),
                 _reopened(vocab, cert, Changed),
             ),
-            timeout_ms=timeout_ms,
-        )
-    )
-
-    # 2. A full repair restores it. "Full repair" is the empty changed set:
-    #    every damaged coordinate has been removed from it.
-    results.append(
-        discharge(
+            cert,
+        ),
+        (
             CERTIFICATE_RESTORED,
             base + [solver.ForAll([x], solver.Not(Changed(x)))],
             solver.Not(_reopened(vocab, cert, Changed)),
-            timeout_ms=timeout_ms,
-        )
-    )
-
-    # 3. A partial repair does not. `Changed2` is the residue after repairing:
-    #    contained in the original damage, and still non-empty.
-    residue = solver.Const("res", Node)
-    results.append(
-        discharge(
+            cert,
+        ),
+        (
             PARTIAL_REPAIR_INSUFFICIENT,
             base
             + [
@@ -290,13 +284,9 @@ def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[Proo
                 solver.Exists([residue], Changed2(residue)),
                 _reopened(vocab, cert, Changed2),
             ),
-            timeout_ms=timeout_ms,
-        )
-    )
-
-    # 4. No coordinate is reopened by damage to another.
-    results.append(
-        discharge(
+            cert,
+        ),
+        (
             NO_COLLATERAL_REOPENING,
             base + [_damage_on_coordinates(vocab, coord, Changed)],
             solver.ForAll(
@@ -306,61 +296,146 @@ def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[Proo
                     solver.Not(_reopened(vocab, y, Changed)),
                 ),
             ),
-            timeout_ms=timeout_ms,
-        )
-    )
-
-    # 5. Damage to the certificate reopens no coordinate.
-    results.append(
-        discharge(
+            cert,
+        ),
+        (
             CERTIFICATE_IS_A_SINK,
             base + [solver.ForAll([x], Changed(x) == (x == cert))],
             solver.ForAll(
                 [y], solver.Implies(coord(y), solver.Not(_reopened(vocab, y, Changed)))
             ),
-            timeout_ms=timeout_ms,
-        )
-    )
-
-    # 6. The condition that used to be an axiom, now a consequence of the rest.
-    results.append(
-        discharge(
+            cert,
+        ),
+        (
             CERTIFICATE_SUPPORTS_NOTHING,
             base,
             solver.ForAll([x], solver.Not(vocab["Edge"](cert, x))),
-            timeout_ms=timeout_ms,
-        )
+            cert,
+        ),
+    ]
+
+
+def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[ProofResult, ...]:
+    """Discharge every theorem in :data:`THEOREMS` under the interpretation."""
+
+    return tuple(
+        discharge(theorem, axioms, claim, timeout_ms=timeout_ms)
+        for theorem, axioms, claim, _cert in _queries(drop=drop)
     )
 
-    return tuple(results)
+
+def _drop_queries(condition: str) -> list[tuple[str, list[Any], Any, Any]]:
+    """The queries under one dropped condition, keyed by theorem name."""
+
+    return [
+        (theorem.name, axioms, claim, cert)
+        for theorem, axioms, claim, cert in _queries(drop=condition)
+    ]
 
 
-def frame_conditions_are_load_bearing(*, timeout_ms: int = 30000) -> dict[str, Any]:
-    """Drop each frame condition and record which theorems stop being provable.
+#: Node-sort bound used only when searching for a countermodel. Sound in that
+#: direction and in no other: a model of the axioms plus the negated claim is a
+#: genuine countermodel however small its universe, while failing to find one in
+#: a bounded universe proves nothing at all. Never added to a proof query.
+REFUTATION_WORLD_SIZE = 4
 
-    A condition no theorem needs is not part of the interpretation, it is
-    decoration; and if every theorem survived every drop, the proofs would be
-    about the reopening axioms alone and the interpretation would be doing no
-    work. Reported per condition rather than as a single boolean, because which
-    theorem each one carries is the informative part.
+
+def refute_in_a_bounded_world(
+    axioms: list[Any], claim: Any, cert: Any, *, size: int = REFUTATION_WORLD_SIZE, timeout_ms: int = 20000
+) -> bool:
+    """Is there a countermodel in a universe of at most ``size`` nodes?
+
+    Needed because the unbounded search is not stable. Asking the solver to
+    refute a universally quantified claim over an uninterpreted sort leaves it
+    hunting for a model it may or may not find, and the same drop returns a
+    countermodel on one run and ``unknown`` on the next --- which would make a
+    load-bearing measurement depend on machine load. Bounding the sort turns the
+    search finite.
+    """
+
+    solver = require_z3()
+    Node = cert.sort()
+    world = [solver.Const(f"w{index}", Node) for index in range(size)]
+    x = solver.Const("bounded_x", Node)
+    bound = solver.ForAll([x], solver.Or(*[x == member for member in world]))
+
+    checker = solver.Solver()
+    checker.set("timeout", timeout_ms)
+    for axiom in axioms:
+        checker.add(axiom)
+    checker.add(bound)
+    checker.add(solver.Not(claim))
+    return bool(checker.check() == solver.sat)
+
+
+#: How many times the drop measurement is repeated. One run is not a
+#: measurement here: the solver's model search is not deterministic on this
+#: encoding, and the same dropped axiom yields a countermodel on one run and
+#: ``unknown`` on the next.
+LOAD_BEARING_REPEATS = 3
+
+
+def frame_conditions_are_load_bearing(
+    *, timeout_ms: int = 30000, repeats: int = LOAD_BEARING_REPEATS
+) -> dict[str, Any]:
+    """Drop each frame condition and record which theorems are *refuted*.
+
+    Three corrections stack up in this function and each was forced.
+
+    **Refuted, not merely unproved.** Dropping an axiom leaves the solver
+    hunting for a model it may not find, and an ``unknown`` return says the
+    search did not settle, not that the axiom was carrying the theorem.
+    Counting those as losses inflates every condition's weight, and this
+    function did exactly that.
+
+    **Bounded, because the open search is not stable.** Refuting a universally
+    quantified claim over an uninterpreted sort is a model search with no
+    guarantee of termination. Bounding the node sort makes it finite, and it is
+    sound in that direction only: a countermodel in a small universe is a
+    countermodel, while failing to find one there proves nothing.
+
+    **Repeated, because even bounded it is not deterministic.** One condition
+    yields two, one or three refutations on successive identical runs. So the
+    measurement is taken ``repeats`` times and reported as a stable core --- the
+    theorems refuted on *every* run --- and an intermittent remainder. A
+    condition counts as load-bearing only on its stable core, which is the
+    strictest of the three readings and the only one that does not move.
     """
 
     baseline = {result.theorem.name for result in prove_all(timeout_ms=timeout_ms) if result.discharged}
-    per_condition: dict[str, list[str]] = {}
-    for condition in FRAME_CONDITION_IDS:
-        survivors = {
-            result.theorem.name
-            for result in prove_all(timeout_ms=timeout_ms, drop=condition)
-            if result.discharged
-        }
-        per_condition[condition] = sorted(baseline - survivors)
 
-    inert = sorted(name for name, lost in per_condition.items() if not lost)
+    always: dict[str, set[str]] = {}
+    ever: dict[str, set[str]] = {}
+    for condition in FRAME_CONDITION_IDS:
+        rounds: list[set[str]] = []
+        for _ in range(repeats):
+            found = {
+                name
+                for name, axioms, claim, cert in _drop_queries(condition)
+                if name in baseline and refute_in_a_bounded_world(axioms, claim, cert)
+            }
+            rounds.append(found)
+        always[condition] = set.intersection(*rounds) if rounds else set()
+        ever[condition] = set.union(*rounds) if rounds else set()
+
+    inert = sorted(name for name, core in always.items() if not core)
     return {
         "baseline_discharged": sorted(baseline),
-        "theorems_lost_by_dropping": per_condition,
+        "repeats": repeats,
+        "theorems_refuted_on_every_run": {k: sorted(v) for k, v in always.items()},
+        "theorems_refuted_on_some_run": {
+            k: sorted(ever[k] - always[k]) for k in FRAME_CONDITION_IDS
+        },
         "inert_conditions": inert,
         "every_condition_carries_a_theorem": not inert,
+        "criterion": (
+            "a condition is load-bearing only when dropping it yields a countermodel to "
+            "some theorem on every one of the repeated runs. A theorem that merely stops "
+            "being provable is not counted, because an unknown return is a fact about the "
+            "search; and a theorem refuted on some runs but not others is reported "
+            "separately rather than credited, because the solver's model search on this "
+            "encoding is not deterministic."
+        ),
     }
 
 
@@ -585,6 +660,16 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
         "all_discharged": not undischarged,
         "undischarged": undischarged,
         "frame_conditions": frames,
+        "load_bearing_criterion_history": (
+            "This measurement has been wrong twice. It first counted any theorem that "
+            "stopped being discharged, which credits an axiom for the solver failing to "
+            "settle a question. Requiring a countermodel then made it unstable, because "
+            "refuting a universally quantified claim over an uninterpreted sort is an "
+            "unbounded model search. It now asks for a countermodel in a bounded world "
+            "-- sound in that direction only -- and takes the intersection over repeated "
+            "runs. The conclusion survived both corrections; the per-condition detail "
+            "did not, and the difference is recorded rather than quietly restated."
+        ),
         "published_counts": counts,
         "interpretation_sensitivity": sensitivity,
         "what_this_establishes": (
@@ -607,10 +692,16 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "agrees with them. Each of the four frame conditions is shown to carry at "
             "least one theorem by dropping it, and three wrong dependency graphs are "
             "tried against the interpretation, and each of the three surviving frame "
-            "conditions is necessary: dropping the support edge loses withdrawal and "
-            "minimality, dropping the edge restriction loses both collateral-damage "
-            "theorems and the derived sink, and dropping the certificate/coordinate "
-            "distinction loses four. The counts do not carry the interpretation on "
+            "conditions is necessary under the strictest of three readings: dropping it "
+            "yields an actual countermodel, in a bounded world, on every one of the "
+            "repeated runs. Two weaker readings were rejected on the way. Counting a "
+            "theorem that merely stopped being provable inflates every condition's "
+            "weight, because an unknown return is a fact about the solver's search "
+            "rather than evidence the axiom was carrying anything. And a single run is "
+            "not a measurement here: the model search is not deterministic on this "
+            "encoding, and the edge-restriction condition refutes between one and three "
+            "theorems on identical repeated runs, of which exactly one falls every "
+            "time. The counts do not carry the interpretation on "
             "their own and this is measured rather than assumed: a chain through the "
             "coordinates into the certificate, the star with coordinate cross-edges and "
             "the complete graph all return 1,055 exactly, because the counts test "

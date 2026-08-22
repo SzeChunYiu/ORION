@@ -212,7 +212,8 @@ evidence for the non-compensatory primitive only.
 
 The interpretation was first stated with four frame conditions. A check that
 drops each condition and re-runs the proofs reported two of them inert: dropping
-either lost no theorem. Neither was a reprieve. Dropping *both* loses three
+either lost no theorem — where "lost" then meant "no longer proved", which is
+the wrong criterion and is corrected below. Neither was a reprieve. Dropping *both* loses three
 theorems, because each was derivable from the other three, so the four were a
 redundant presentation of the same constraint. The interpretation now rests on
 three independent conditions — every coordinate supports the certificate, every
@@ -225,6 +226,26 @@ An axiom that no theorem needs is either decoration or a redundant presentation
 of an axiom that is doing the work, and the two are indistinguishable from
 inside. The check that told them apart is worth more here than the axiom it
 removed.
+
+That check has since been wrong twice, and both corrections are worth stating
+because they change what "load-bearing" can mean rather than only how it is
+computed. It first counted any theorem that stopped being *proved* when an axiom
+was dropped. That credits an axiom for the solver failing to settle a question:
+a solver returning `unknown` has said nothing about whether the theorem still
+holds. Requiring an actual countermodel fixed the criterion and broke the
+stability, because refuting a universally quantified claim over an uninterpreted
+sort is an unbounded model search — the same dropped axiom yielded a
+countermodel on one run and `unknown` on the next. The measurement now asks for
+a countermodel in a universe bounded to four nodes, which is sound in that
+direction and in no other (a countermodel in a small universe is a countermodel;
+failing to find one there proves nothing), and takes the intersection over
+repeated runs.
+
+Under that strictest reading all three conditions remain necessary, so the
+conclusion survived both corrections. The per-condition detail did not: the
+edge-restriction condition refutes between one and three theorems on identical
+repeated runs, of which exactly one falls every time, and only that one is
+credited to it.
 
 ## Bounded general statement
 
