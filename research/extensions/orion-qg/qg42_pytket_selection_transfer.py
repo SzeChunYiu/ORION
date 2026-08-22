@@ -53,6 +53,17 @@ def build(edges):
     return c
 
 
+def architecture_nodes(uids):
+    """Normalize routed single-index UnitIDs to the Node type required by pybind."""
+    out = []
+    for uid in uids:
+        idx = tuple(uid.index)
+        if len(idx) != 1:
+            raise RuntimeError(f"unexpected routed UnitID index: {uid!r}")
+        out.append(Node(int(idx[0])))
+    return tuple(out)
+
+
 def route_cost(edges, arch_edges, layout):
     c = build(edges)
     arc = Architecture(list(arch_edges))
@@ -62,8 +73,10 @@ def route_cost(edges, arch_edges, layout):
 
     invalid = []
     for cmd in c.get_commands():
-        if len(cmd.qubits) == 2 and not arc.valid_operation(cmd.qubits, True):
-            invalid.append(str(cmd))
+        if len(cmd.qubits) == 2:
+            nodes = architecture_nodes(cmd.qubits)
+            if not arc.valid_operation(nodes, True):
+                invalid.append(str(cmd))
     if invalid:
         raise RuntimeError("architecture-invalid routed operation: " + invalid[0])
 
@@ -176,7 +189,6 @@ def main():
         and r["architectures"]["ring6"]["disjoint_selection_separation"]
     ]
 
-    # Hostile dead-instrument control: the frozen input-CX count is identically seven.
     dead_cost = [7] * len(LAYOUTS)
     dead_detected = max(dead_cost) == min(dead_cost)
 
@@ -231,21 +243,16 @@ def main():
     out["result_digest"] = sha(out)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
-    print(
-        TOKEN
-        + canon(
-            {
-                "terminal": terminal,
-                "line": line,
-                "ring": ring,
-                "disjoint_line": dline,
-                "disjoint_ring": dring,
-                "stable": stable,
-                "instrument": out["instrument_controls"],
-                "result_digest": out["result_digest"],
-            }
-        )
-    )
+    print(TOKEN + canon({
+        "terminal": terminal,
+        "line": line,
+        "ring": ring,
+        "disjoint_line": dline,
+        "disjoint_ring": dring,
+        "stable": stable,
+        "instrument": out["instrument_controls"],
+        "result_digest": out["result_digest"],
+    }))
     return 0
 
 
