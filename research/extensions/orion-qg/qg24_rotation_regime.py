@@ -34,6 +34,9 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
+for _p in (REPO / "packages/orion-research-harness/src", REPO / "src"):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
 PROTOCOL = "development/orion-qg-regime-geometry/QG24_ROTATION_REGIME_PROTOCOL_V1.md"
 QG21_RESULTS = REPO / "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json"
 RESULTS_PATH = HERE / "QG24_ROTATION_REGIME_RESULTS.json"
