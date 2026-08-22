@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Validate paper-specific science manifests against their declared frozen git cuts.
 
-The checker resolves git blob IDs directly from each cut. It intentionally does not compare
-against the PR merge worktree, because current main may contain later science that the paper's
-freshness adjudication chose not to import. Publication-branch science mutation is guarded by
-check_q_qg_publication.py.
+The checker resolves git blob IDs directly from each cut. Publication-branch mutation of
+pre-existing science and Q3's exact prospective-extension allowance are separately guarded
+by check_q_qg_publication.py / q3-completion.
 """
 
 from __future__ import annotations
@@ -16,14 +15,12 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "papers/Q_QG_SCIENCE_MANIFESTS_V1.json"
-EXPECTED = {"Q1": 10, "Q4": 8, "QG1": 11, "QG2": 5}
+EXPECTED = {"Q1": 10, "Q3": 7, "Q4": 8, "QG1": 11, "QG2": 5}
 
 
 def git(*args: str) -> str:
-    proc = subprocess.run(
-        ["git", *args], cwd=ROOT, check=True, text=True,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-    )
+    proc = subprocess.run(["git", *args], cwd=ROOT, check=True, text=True,
+                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return proc.stdout.strip()
 
 
