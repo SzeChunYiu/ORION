@@ -5,16 +5,21 @@ on:
     paths:
       - 'packages/orion-research-harness/src/orion_research_harness/paper_*.py'
       - 'packages/orion-research-harness/src/orion_research_harness/epistemic_*.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_director.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_v3_conformance.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/recursive_director_integration.py'
       - 'packages/orion-research-harness/src/orion_research_harness/research_saturation.py'
       - 'packages/orion-research-harness/src/orion_research_harness/ocme_runtime.py'
       - 'packages/orion-research-harness/tests/test_paper_*.py'
       - 'packages/orion-research-harness/tests/test_epistemic_*.py'
       - 'packages/orion-research-harness/tests/test_p8_*.py'
+      - 'packages/orion-research-harness/tests/test_research_director_*.py'
       - 'packages/orion-research-harness/tests/test_research_saturation_*.py'
       - 'packages/orion-research-harness/tests/test_ocme_runtime.py'
       - 'packages/orion-research-harness/pyproject.toml'
       - 'development/orion-research-harness/PAPER_CONTRACT_*'
       - 'development/orion-research-harness/PAPER_PROGRAMME_*'
+      - 'development/orion-research-harness/PAPER_RESEARCH_*'
       - '.github/workflows/orion-research-harness-paper-contract.yml'
   workflow_dispatch:
 
@@ -44,6 +49,8 @@ jobs:
             packages/orion-research-harness/tests/test_paper_contract_runtime.py \
             packages/orion-research-harness/tests/test_paper_runtime_cli.py \
             packages/orion-research-harness/tests/test_paper_control_cli.py \
+            packages/orion-research-harness/tests/test_research_director_v3.py \
+            packages/orion-research-harness/tests/test_paper_structure_consensus_v3.py \
             packages/orion-research-harness/tests/test_epistemic_mechanics_p6.py \
             packages/orion-research-harness/tests/test_epistemic_authority_p8.py \
             packages/orion-research-harness/tests/test_p8_scope_widening_regression.py \
@@ -90,6 +97,24 @@ jobs:
           assert report['grants_promotion_authority'] is False
           assert report['grants_global_task_stop_authority'] is False
           PY
+      - name: Execute research-director and consensus-extraction V3 gate
+        run: |
+          orion-harness-paper research-v3-conformance | tee /tmp/orion-research-v3.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-research-v3.json').read_text())
+          assert report['schema'] == 'ORION.HarnessResearchDirectorConsensusConformance.v3'
+          assert report['terminal'] == 'ORION_HARNESS_RESEARCH_DIRECTOR_CONSENSUS_EXTRACTION_V3_OPERATIONAL'
+          assert report['operational'] is True
+          assert report['failed_probes'] == []
+          assert report['probes'] and all(report['probes'].values())
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
       - name: Run full shared-harness regression suite
         run: python -m pytest -q packages/orion-research-harness/tests
       - uses: actions/upload-artifact@v4
@@ -99,5 +124,6 @@ jobs:
           path: |
             /tmp/orion-paper-contract.json
             /tmp/orion-paper-programme.json
+            /tmp/orion-research-v3.json
           if-no-files-found: warn
           retention-days: 14
