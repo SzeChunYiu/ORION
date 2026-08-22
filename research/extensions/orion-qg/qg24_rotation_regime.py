@@ -570,3 +570,131 @@ def admissible_count_dp(n_values):
         if q in n_values:
             out[q] = dp[0b010000111] + dp[0b100000111]
     return out
+
+
+# ---------------------------------------------------------------------------
+# 5. Q2 / Q3 — the real-chemistry panel
+# ---------------------------------------------------------------------------
+# theta_rot is frozen in protocol section 2: one unit per arbitrary-angle
+# rotation, independent of axis weight. G2: it is QG-21's own fault-tolerant
+# accounting -- "T cost is charged per rotation, not per support unit ... the
+# rotation count is 1 per exponential regardless of weight" -- with the Clifford
+# half dropped, because this lane's objective is the non-Clifford term alone.
+# QG-2's O1 = (7,1,4,3) is NOT used anywhere in this lane: QG-21 refuted it as
+# non-derivable (derivable_from_ft_accounting: false) precisely because it prices
+# T per support unit, the exact error theta_rot must not repeat.
+THETA_FT_WEIGHTS = (4, 2, 2, 1)  # (t_nc, t_c, t_tag, t_r), QG-21 PRIMARY
+
+_REFEREE_STATE = {"stage": "stage1", "calls_in_stage1": 0, "stub_installed": True}
+
+
+def _referee_guard(name: str) -> None:
+    if _REFEREE_STATE["stage"] == "stage1":
+        _REFEREE_STATE["calls_in_stage1"] += 1
+        raise AssertionError(
+            f"G4 violation: referee '{name}' called during stage 1, before the "
+            "prospective predictions were staged and digested")
+
+
+def merge_predicate_seven(target_pairs, n: int) -> dict:
+    """Decidable membership predicate for theta_rot = 7 (both models).
+
+    Factored model: 7 is reachable for ANY targets -- take a common outer axis
+    a = X_0, central axes b_j = Z_0 and Tag S = Z_0.
+    In-place model: block j's Restore must commute with the shared outer axis a,
+    which reduces (linearly, over GF(2)) to symp(a, P_j0 . P_j1) = 1 for blocks A
+    and B. Such an a exists iff both products are non-identity, i.e. iff the two
+    targets paired inside block A differ and likewise inside block B. Decidable
+    in O(n); no search.
+    """
+    qa = pmul(tuple(target_pairs[0][0]), tuple(target_pairs[0][1]))
+    qb = pmul(tuple(target_pairs[1][0]), tuple(target_pairs[1][1]))
+    return {
+        "Q_A_nonidentity": qa != (0, 0),
+        "Q_B_nonidentity": qb != (0, 0),
+        "seven_reachable_factored": True,
+        "seven_reachable_in_place": qa != (0, 0) and qb != (0, 0),
+    }
+
+
+def _f3_local(ta, tb, tc):
+    same = (ta == tb) & (ta == tc) & (ta != 0)
+    return np.where(same, 1, LW[ta] + LW[tb] + LW[tc]).astype(np.int64)
+
+
+ACCEPTING9 = (0b010000111, 0b100000111)
+INF = 10 ** 9
+
+
+def constrained_clifford_min(target_pairs, n: int, in_place: bool):
+    """Exact minimum theta_FT Clifford cost over all SEVEN-rotation members.
+
+    The seven-rotation sub-family is exactly a_A = a_B = a_C (Lemma L1 with both
+    seam merges firing), so the frames collapse to one shared outer axis a and
+    three central axes b_A,b_B,b_C. This is an exact dynamic program over the
+    same nine-bit parity state R6M uses, extended by four parity bits when the
+    in-place model additionally demands that the Restores of blocks A and B
+    commute with a. Nothing here re-reads a results file.
+    """
+    _referee_guard("constrained_clifford_min")
+    space = 4 ** 5
+    a, bA, bB, bC, sv = _digits(space, 5)
+    pairs = [(tuple(p[0]), tuple(p[1])) for p in target_pairs]
+    best = INF
+    nbits = 13 if in_place else 9
+    states = 1 << nbits
+    for centrals in itertools.product((0, 1), repeat=3):
+        bs = (bA, bB, bC)
+        R0 = [a if centrals[j] == 1 else bs[j] for j in range(3)]
+        R1 = [bs[j] if centrals[j] == 1 else a for j in range(3)]
+        for perm_b, perm_c in itertools.product((0, 1), repeat=2):
+            order = [pairs[0],
+                     pairs[1] if perm_b == 0 else (pairs[1][1], pairs[1][0]),
+                     pairs[2] if perm_c == 0 else (pairs[2][1], pairs[2][0])]
+            dp = np.full(states, INF, dtype=np.int64)
+            dp[0] = 0
+            feasible = True
+            for q in range(n):
+                pl = [[pcodes(order[j][k], n)[q] for k in range(2)] for j in range(3)]
+                t0 = [LM[pl[j][0], R0[j]] for j in range(3)]
+                t1 = [LM[pl[j][1], R1[j]] for j in range(3)]
+                cost = (12 * LW[a] + 2 * (LW[bA] + LW[bB] + LW[bC]) + 2 * LW[sv]
+                        ).astype(np.int64)
+                cost = cost + _f3_local(t0[0], t0[1], t0[2])
+                cost = cost + _f3_local(t1[0], t1[1], t1[2])
+                sA0, sB0, sC0 = (SY[sv, R0[0]], SY[sv, R0[1]], SY[sv, R0[2]])
+                sA1, sB1, sC1 = (SY[sv, R1[0]], SY[sv, R1[1]], SY[sv, R1[2]])
+                delta = (SY[R0[0], R1[0]].astype(np.int64)
+                         | (SY[R0[1], R1[1]].astype(np.int64) << 1)
+                         | (SY[R0[2], R1[2]].astype(np.int64) << 2)
+                         | ((sA0 ^ sB0).astype(np.int64) << 3)
+                         | ((sA0 ^ sC0).astype(np.int64) << 4)
+                         | ((sA1 ^ sB1).astype(np.int64) << 5)
+                         | ((sA1 ^ sC1).astype(np.int64) << 6)
+                         | (sA0.astype(np.int64) << 7)
+                         | (sA1.astype(np.int64) << 8))
+                if in_place:
+                    axis = a
+                    delta = (delta
+                             | (SY[t0[0], axis].astype(np.int64) << 9)
+                             | (SY[t1[0], axis].astype(np.int64) << 10)
+                             | (SY[t0[1], axis].astype(np.int64) << 11)
+                             | (SY[t1[1], axis].astype(np.int64) << 12))
+                order_idx = np.argsort(cost, kind="stable")
+                d_sorted = delta[order_idx]
+                uniq, first = np.unique(d_sorted, return_index=True)
+                lc = cost[order_idx][first]
+                idx = np.bitwise_xor(np.arange(states, dtype=np.int64)[:, None],
+                                     uniq[None, :])
+                cand = dp[idx] + lc[None, :]
+                dp = cand.min(axis=1)
+                if not np.any(dp < INF):
+                    feasible = False
+                    break
+            if not feasible:
+                continue
+            for st in ACCEPTING9:
+                v = int(dp[st]) if not in_place else int(dp[st])
+                if v < INF and v - 18 < best:
+                    best = v - 18
+    return None if best >= INF else int(best)
