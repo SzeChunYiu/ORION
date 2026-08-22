@@ -265,8 +265,21 @@ def check_donor(records, log_text):
             bad.append([cid, "missing-verbatim-passage"])
         passage = " ".join(str(rec.get("verbatim_passage", "")).split())
         if passage:
-            flat = " ".join(
-                line.lstrip("> ").strip() for line in log_text.splitlines())
+            # Markdown blockquote markers only. lstrip("> ") would treat its
+            # argument as a CHARACTER SET and eat any run of '>' and spaces,
+            # which in a fail-closed check could splice non-adjacent text into
+            # something that looks like one contiguous quote. Strip the literal
+            # "> " / ">" prefix instead, repeatedly, for nested blockquotes.
+            def _unquote(line):
+                while True:
+                    if line.startswith("> "):
+                        line = line[2:]
+                    elif line.startswith(">"):
+                        line = line[1:]
+                    else:
+                        return line
+            flat = " ".join(_unquote(line).strip()
+                            for line in log_text.splitlines())
             flat = " ".join(flat.split())
             if passage not in flat:
                 bad.append([cid, "passage-not-in-committed-query-log"])
