@@ -52,16 +52,49 @@ depends only on *which lines* are occupied, not on which point of each line. The
 deciding information sits in the lower-order terms. That explains why the
 regularity looked mysterious in the census.
 
-## The lead this opens
+## The lead this opens — and its immediate correction
 
-The same survey states **Conjecture 4.9**, which is open:
+X1-I originally pointed at the same survey's **Conjecture 4.9** as a fresh open
+target. A prior-art check run *before* any work (X1-J,
+`X1J_CONJECTURE_49_PRIOR_ART_MAP.md`) shows that framing was wrong too.
 
-> `G = C_{n_1} ⊕ ... ⊕ C_{n_r}`, `k ∈ [1, n_1 - 1]`, `S` of length `k + d(G)`
-> with no zero-sum subsequence longer than `k`. Then `S = 0^k T` with `T`
-> zero-sum-free.
+Conjecture 4.9 **is** Conjecture 1.1 of Gao & Zhuang, *Sequences not containing
+long zero-sum subsequences*, European J. Combin. 27 (2006) 777–787. Such an `S`
+is called a **normal sequence**. It has a twenty-year literature and is open only
+in a narrow corner:
 
-That is a live target in the immediate neighbourhood of machinery this programme
-already has, and unlike X1-I it is not already answered.
+| case | source | status |
+|---|---|---|
+| `G` cyclic | Gao–Zhuang Thm 1.6(i) | proved |
+| any `G`, `k <= min(6, p-1)` | Gao–Zhuang Thm 1.5 | proved |
+| `C_p^r`, `p in {2,3,5,7}` | Gao–Zhuang Thm 1.6(iii) | proved |
+| any `p`-group, `k in [1, p-1]` | Girard Thm 2.1 | proved |
+| `C_p + H`, `H` any abelian `p`-group | Girard Cor 2.2 | proved — covers **all** elementary abelian `C_p^r`, every `p` |
+| **all rank-two groups** `C_m + C_mn` | Girard Thm 2.5 + Property B (Reiher; Gao–Geroldinger–Grynkiewicz) | proved **unconditionally** |
+
+**What is actually open:** `k >= p`, with `G` neither cyclic, nor rank `<= 2`,
+nor of the form `C_p + H` — i.e. **rank `>= 3` with `n_1` composite**. The
+smallest reachable target is `G = C_4^3` (`|G| = 64`, `D = 10`, `d = 9`) at
+`k in {2,3}`.
+
+And the hunt has a **shape** rather than being blind: Gao–Zhuang **Conjecture
+5.3** is the precise obstruction — a zero-sum-free `W` with `|W| = D(G)-1` and
+`v_g(W) = ord(g)-1` for some `g` with `ord(g) < n_1` would yield
+`g^{ord(g)} W` as a counterexample to 4.9.
+
+One gap is honestly open: Guan–Yuan–Zeng, *Normal sequences over finite abelian
+groups*, JCTA 118 (2011) 1519–1524, is behind a paywall (403). Its abstract
+mentions p-groups **or** rank-two groups, and it cannot be ruled out that it
+settles all p-groups — which would remove `C_4^3` as a target. Recorded as
+`CANNOT_CHECK_ACCESS`, not inferred either way.
+
+Two name-collision traps were avoided and are worth recording: arXiv:2311.02387
+concerns a *different* Gao–Zhuang conjecture (small Davenport constant of
+**non-abelian** groups), and Girard–Schmid's "Conjecture 2.2" is a different Gao
+conjecture about `eta`/EGZ constants.
+
+Also noted from reading the primary text: the survey's essentiality example has a
+typo — `v_g(S) = ord(g)-1` should read `v_g(T)`.
 
 ## Standing correction to X1-G
 
