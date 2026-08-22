@@ -99,9 +99,16 @@ If any two of the reachable syndrome values are Nerode-equivalent — indistingu
 every continuation — then nine bits is not tight and the true dimension is smaller. The
 check is decidable on the domains QG-6 already enumerates: partition the reachable syndrome
 values by their continuation behaviour and compare the block count against 2⁹. Registered
-as **W12 — check QG-6's nine-bit TARE syndrome for Nerode minimality.** No result of this
-programme is retracted by the question being open; what is open is whether a committed
-number is tight or merely sufficient.
+as **W12 — check QG-6's nine-bit TARE syndrome for Nerode minimality.**
+
+**W12 is now CLOSED, same day, by QG-26.** The check was run on the committed R6I
+state space rather than on the per-block change-vector rank: the GF(2) rank of the
+committed alphabet is 10, the Nerode index is 2¹⁰ = 1024 structurally and 1024 again
+under generic Moore refinement for two independent targets, and the module's declared
+`STATES = 1024` is therefore exactly the index. Looseness factor 1. The committed
+number is tight and every complexity statement resting on it stands as written. The
+result is scoped to the feasibility language only; nothing about the min-plus cost
+DP's running time follows, and the receipt and its verifier both enforce that.
 
 ## A residual on criterion churn, now closed in code (W13)
 
