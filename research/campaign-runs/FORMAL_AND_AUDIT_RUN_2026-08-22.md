@@ -124,3 +124,74 @@ denominator of one, a false theory no check rejects. Each prints a passing
 character for a measurement that was never taken, which is precisely what the
 three-valued discipline exists to keep apart — and each is stated here as a
 denominator rather than left to be inferred from a silence.
+
+---
+
+# Follow-up: what has closed, and what P15 turns out to be
+
+## Closed since the run above
+
+**P10 publication membership: FAIL → PASS.** 20 of 571 files inside the
+manifest's own declared scope were named by no digest any gate opens; now 0 of
+571. Thirteen were the lane's `experiments/` directory — `results/` was a
+generator root and `experiments/` was not, so the manifest pinned every committed
+number and none of the six drivers that computed them. Four were excluded by an
+allowlist of eight file extensions, among them a Lean toolchain pin and a native
+shim that decide what the acceptance receipts compile to; the filter is now build
+output only. Three were lane-root files the generator names one by one and had
+not been told about.
+
+**P7 supplied premise: FAIL → CANNOT_CHECK.** `bridge_match` went from free on
+25 of 25 cases with 33,554,432 admissible deciding rules to decided on every one
+of 50 with exactly one. The case count went *up* because 50 is what the shipped
+block actually asserts; the audit had folded two rows that disagree into a single
+case. No published verdict moved — 50 of 50 agreement, and
+`canonical_rows_sha256` still reproduces.
+
+**P6 refutation capacity: FAIL → PASS on both checkers.** Every check now
+refutes some declared false theory, and the registers grew rather than shrank —
+7 to 8 and 8 to 9. The `t4` repair is the clearest: it had been comparing
+`ideal_product` against `scientific_admissible`, which is the same expression, so
+its zero violations were a property of the expression.
+
+## P15 is not a negative result; it has no results
+
+`papers/paper-15-orion-research-harness/` contains one file, a README, and
+declares `DIRECTORY_OPENED / NO_PROTECTED_RESULT`. It carries no scientific
+superiority claim and grants no authority, and it says plainly what it still
+needs: a paper issue, a claim ledger, a donor matrix against existing
+research-execution and workflow-provenance systems, and a protocol freeze, none
+of which exists.
+
+That is an honest state rather than a defect, and it should not be counted as a
+negative to be driven positive — there is nothing to drive. What *is* checkable
+is the guarantee surface the README points at, and it was checked rather than
+taken on the README's word: all six named test files exist, and
+`packages/orion-research-harness/tests` runs **151 passed**. The load-bearing
+separation the paper would claim — a host or capability failure is reported
+without being recorded as a scientific result — is under test today.
+
+## P11 is the remaining one, and it is not a measurement gap
+
+The attack audit's `FAIL` does not come from a missing denominator. P11G froze
+three decoder arms *and* a best-of-arms combination rule, then published a gate
+read from a single arm. Applying P11C's own frozen rule to P11G's own frozen data
+does not leave the gate standing.
+
+The arm axis is not inert — 2 of 3 comparable pairs change the verdict, and the
+two ends are `P11G_DETERMINISTIC_TREE_DECODER_GAP_NOT_MET` under `UNIVERSAL_L1`
+and `..._SUPPORTED` under `UNIVERSAL_EXTRA_TREES`. So this is the mirror image of
+P6's inert donor: an axis the terminal genuinely depends on, present in the
+published receipt with exactly one value.
+
+The decomposition is more favourable than that sounds and should be reported
+either way: holding the decoder fixed and moving only the representation,
+the state half carries 86.7% of the published gap in one cell and 55.4% in the
+other. The placement claim is not empty. What is not established is the terminal
+as published, because the protocol's own combination rule was frozen and then not
+applied.
+
+Resolving this honestly means one of two things, and not a third: establish with
+evidence that the best-of-arms rule does not govern P11G, or report the terminal
+under the frozen rule and run a successor that can carry the claim. Reporting a
+single-arm verdict as if the arm were not a choice is the option that is closed.
