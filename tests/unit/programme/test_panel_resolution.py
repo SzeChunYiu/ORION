@@ -17,6 +17,7 @@ import pytest
 from orion.programme.panel_resolution import (
     MetricResolution,
     duplicate_arms,
+    margin_is_attainable,
     PUBLISHED_PANELS,
     build_report,
     discriminating_control,
@@ -334,3 +335,80 @@ class TestArmsThatCannotDiffer:
         assert len(report["arms_that_cannot_differ"]) == 4
         papers = {item.split(":")[0] for item in report["arms_that_cannot_differ"]}
         assert papers == {"P1", "P4", "P13"}
+
+
+class TestAttainableMargins:
+    """A gate no subject could have passed measures the benchmark, not the system.
+
+    The mirror of saturation. A saturated metric is one no system can fail; an
+    unattainable margin is one no system can pass. P14A is the case that makes
+    it concrete rather than hypothetical: its subject scored 1.0 disposition
+    accuracy -- the ceiling exactly -- and still missed a 0.08 gain gate,
+    because the strongest baseline was already at 0.981625.
+    """
+
+    @pytest.fixture(scope="module")
+    def report(self) -> dict:
+        return build_report(REPO_ROOT, date="2026-08-22")
+
+    def test_a_reachable_margin_is_reported_reachable(self) -> None:
+        systems = {"s": {"m": 0.9}, "b": {"m": 0.5}}
+        gate = {
+            "gate_id": "g", "metric": "m", "subject": "s", "baseline": "b",
+            "threshold": 0.2, "ceiling": 1.0,
+        }
+        result = margin_is_attainable(systems, gate)
+        assert result["attainable"] is True
+        assert result["attainable_margin"] == pytest.approx(0.5)
+
+    def test_a_margin_wider_than_the_headroom_is_unreachable(self) -> None:
+        systems = {"s": {"m": 1.0}, "b": {"m": 0.98}}
+        gate = {
+            "gate_id": "g", "metric": "m", "subject": "s", "baseline": "b",
+            "threshold": 0.08, "ceiling": 1.0,
+        }
+        result = margin_is_attainable(systems, gate)
+        assert result["attainable"] is False
+        assert result["subject_reached_the_ceiling"] is True
+
+    def test_headroom_is_measured_from_the_ceiling_not_the_subject(self) -> None:
+        # The question is what *any* subject could have achieved, not what this
+        # one did. A weak subject against a weak baseline still has room.
+        systems = {"s": {"m": 0.1}, "b": {"m": 0.2}}
+        gate = {
+            "gate_id": "g", "metric": "m", "subject": "s", "baseline": "b",
+            "threshold": 0.5, "ceiling": 1.0,
+        }
+        result = margin_is_attainable(systems, gate)
+        assert result["attainable"] is True
+        assert result["observed_margin"] == pytest.approx(-0.1)
+
+    def test_a_missing_metric_is_not_checked(self) -> None:
+        gate = {
+            "gate_id": "g", "metric": "m", "subject": "s", "baseline": "b",
+            "threshold": 0.5, "ceiling": 1.0,
+        }
+        assert margin_is_attainable({"s": {}, "b": {}}, gate) == {
+            "gate_id": "g",
+            "checked": False,
+        }
+
+    def test_p14as_gain_gate_could_not_have_been_passed(self, report: dict) -> None:
+        p14 = next(p for p in report["margin_gates"] if p["paper_id"] == "P14")
+        gate = next(g for g in p14["gates"] if g["gate_id"] == "accuracy_gain_ge_0_08")
+        assert gate["attainable"] is False
+        assert gate["subject_reached_the_ceiling"] is True
+        assert gate["attainable_margin"] == pytest.approx(0.018375)
+        assert gate["threshold"] == 0.08
+
+    def test_the_declared_outcome_agrees_that_it_failed(self, report: dict) -> None:
+        # The check must not be discovering a different fact from the receipt.
+        # The receipt says the gate failed; this says no subject could have
+        # passed it. Those are the same event described at two levels.
+        p14 = next(p for p in report["margin_gates"] if p["paper_id"] == "P14")
+        gate = next(g for g in p14["gates"] if g["gate_id"] == "accuracy_gain_ge_0_08")
+        assert gate["declared_outcome"] is False
+
+    def test_it_is_surfaced_at_the_top_level(self, report: dict) -> None:
+        assert len(report["gates_no_subject_could_have_passed"]) == 1
+        assert "P14 accuracy_gain_ge_0_08" in report["gates_no_subject_could_have_passed"][0]

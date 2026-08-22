@@ -243,6 +243,82 @@ def inspect_panel(
 # The published panels, and the report
 # ---------------------------------------------------------------------------
 
+#: Margin gates on the branch: a registered threshold on the difference between
+#: a subject and a named baseline. Listed with the metric's ceiling, because
+#: attainability is exactly the question of whether the gap between the ceiling
+#: and the baseline is wide enough for the threshold to fit inside it.
+PUBLISHED_MARGIN_GATES: tuple[dict[str, Any], ...] = (
+    {
+        "artifact": "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
+        "paper_id": "P14",
+        "systems_key": "summary",
+        "gates": (
+            {
+                "gate_id": "accuracy_gain_ge_0_08",
+                "metric": "disposition_accuracy",
+                "subject": "ORION_RSE_FULL",
+                "baseline": "MULTI_REVIEW",
+                "threshold": 0.08,
+                "ceiling": 1.0,
+            },
+        ),
+    },
+)
+
+
+def margin_is_attainable(
+    systems: dict[str, dict[str, Any]], gate: dict[str, Any]
+) -> dict[str, Any]:
+    """Could any subject have passed this margin gate on the realized benchmark?
+
+    A gate of the form "subject minus baseline is at least delta" is bounded
+    above by ``ceiling - baseline``: the subject cannot score better than the
+    metric allows. When that headroom is narrower than the threshold, the gate
+    is unreachable however good the subject is, and its failure measures the
+    benchmark rather than the system.
+
+    P14A is the case that makes this worth checking rather than reasoning about.
+    Its subject reached ``1.0`` disposition accuracy --- the ceiling, exactly ---
+    and still missed a ``0.08`` gain gate, because the strongest baseline was
+    already at ``0.981625`` and the whole available headroom was ``0.018375``.
+    The paper says so in prose and retains the negative. What it did not have is
+    a check that would have said so before the run.
+
+    This is the mirror of saturation. A saturated metric is one no system can
+    fail; an unattainable margin is one no system can pass. Both settle the
+    verdict before the first case is scored.
+    """
+
+    subject = systems.get(gate["subject"]) or {}
+    baseline = systems.get(gate["baseline"]) or {}
+    metric = gate["metric"]
+    if not isinstance(subject.get(metric), (int, float)) or not isinstance(
+        baseline.get(metric), (int, float)
+    ):
+        return {"gate_id": gate["gate_id"], "checked": False}
+
+    subject_value = float(subject[metric])
+    baseline_value = float(baseline[metric])
+    ceiling = float(gate["ceiling"])
+    headroom = ceiling - baseline_value
+    threshold = float(gate["threshold"])
+    return {
+        "gate_id": gate["gate_id"],
+        "checked": True,
+        "metric": metric,
+        "subject": gate["subject"],
+        "baseline": gate["baseline"],
+        "subject_value": subject_value,
+        "baseline_value": baseline_value,
+        "ceiling": ceiling,
+        "threshold": threshold,
+        "attainable_margin": headroom,
+        "attainable": headroom >= threshold,
+        "subject_reached_the_ceiling": abs(subject_value - ceiling) <= TOLERANCE,
+        "observed_margin": subject_value - baseline_value,
+    }
+
+
 #: Panels on the branch that decide hypotheses from per-system rates, with the
 #: metric each hypothesis is decided on. Listed rather than discovered, because
 #: the mapping from a hypothesis to the metric it rests on is not derivable from
@@ -431,11 +507,38 @@ def inspect_published_panel(repo_root: Any, panel: dict[str, Any]) -> dict[str, 
     }
 
 
+def inspect_margin_gates(repo_root: Any, panel: dict[str, Any]) -> dict[str, Any]:
+    """Every registered margin gate on one artifact, and whether it was reachable."""
+
+    import json
+    from pathlib import Path
+
+    target = Path(repo_root).resolve() / panel["artifact"]
+    if not target.is_file():
+        return {"artifact": panel["artifact"], "paper_id": panel["paper_id"], "readable": False}
+
+    payload = json.loads(target.read_text(encoding="utf-8"))
+    systems = payload.get(panel.get("systems_key", "systems")) or {}
+    declared = payload.get("gates") or {}
+    gates = []
+    for gate in panel["gates"]:
+        checked = margin_is_attainable(systems, gate)
+        checked["declared_outcome"] = declared.get(gate["gate_id"])
+        gates.append(checked)
+    return {
+        "artifact": panel["artifact"],
+        "paper_id": panel["paper_id"],
+        "readable": True,
+        "gates": gates,
+    }
+
+
 def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
     """Everything this module establishes, with what it does not."""
 
     panels = [inspect_published_panel(repo_root, panel) for panel in PUBLISHED_PANELS]
     ablations = [inspect_ablations(repo_root, panel) for panel in PUBLISHED_ABLATIONS]
+    margins = [inspect_margin_gates(repo_root, panel) for panel in PUBLISHED_MARGIN_GATES]
     control = inspect_panel(discriminating_control())
     control_clean = all(
         report.resolution is MetricResolution.DISCRIMINATES for report in control.values()
@@ -457,6 +560,15 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
         "date": date,
         "panels": panels,
         "ablation_panels": ablations,
+        "margin_gates": margins,
+        "gates_no_subject_could_have_passed": sorted(
+            f"{panel['paper_id']} {gate['gate_id']}: threshold {gate['threshold']} against "
+            f"{gate['attainable_margin']:.6f} of available headroom"
+            for panel in margins
+            if panel.get("readable")
+            for gate in panel["gates"]
+            if gate.get("checked") and not gate["attainable"]
+        ),
         "hypotheses_settled_before_any_system_ran": settled,
         "arms_that_cannot_differ": sorted(
             f"{panel['paper_id']}: {' == '.join(group)}"
