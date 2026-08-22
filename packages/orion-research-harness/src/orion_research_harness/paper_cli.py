@@ -5,6 +5,8 @@ import json
 import sys
 from pathlib import Path
 
+from orion.core.research_resolution import UnresolvedClass
+
 from .epistemic_authority import AuthorityTerminal, authorize_effect
 from .epistemic_mechanics import MechanicTerminal, apply_mechanic, certificate_aware_reopen
 from .epistemic_navigation import plan_navigation
@@ -33,6 +35,11 @@ from .paper_runtime_io import (
 from .paper_structure import run_paper_structure
 from .paper_structure_consensus import run_paper_structure_consensus
 from .research_director import ResearchDirectiveKind, direct_research_from_mapping
+from .research_resolution import (
+    assimilate_negative_result,
+    build_resolution_obligation,
+    resolution_plan_from_mapping,
+)
 from .research_saturation import assess_evidence_derived_saturation
 from .research_v3_conformance import research_v3_conformance
 from .workspace import ResearchWorkspace
@@ -86,6 +93,7 @@ def build_parser() -> argparse.ArgumentParser:
     _structure_input(sub, "paper-structure-consensus")
 
     _json_input(sub, "research-direct")
+    _json_input(sub, "resolution-plan")
     _json_input(sub, "mechanic-apply")
     _json_input(sub, "dependency-repair")
     _json_input(sub, "authority-check")
@@ -124,6 +132,23 @@ def _non_authorizing(schema: str, **payload: object) -> dict[str, object]:
     }
 
 
+def _resolution(
+    *,
+    subject_id: str,
+    unresolved_class: UnresolvedClass,
+    reason_codes: tuple[str, ...],
+    required_object_ids: tuple[str, ...] = (),
+    blocker_ids: tuple[str, ...] = (),
+) -> dict[str, object]:
+    return build_resolution_obligation(
+        subject_id=subject_id,
+        unresolved_class=unresolved_class,
+        reason_codes=reason_codes,
+        required_object_ids=required_object_ids,
+        blocker_ids=blocker_ids,
+    ).as_dict()
+
+
 def _run_structure_command(args, *, consensus: bool) -> int:
     workspace = ResearchWorkspace.load(args.workspace)
     runner = run_paper_structure_consensus if consensus else run_paper_structure
@@ -136,8 +161,29 @@ def _run_structure_command(args, *, consensus: bool) -> int:
         chunk_size=args.chunk_size,
         chunk_overlap=args.chunk_overlap,
     )
-    _print(outcome)
     status = str(outcome["status"])
+    projected = dict(outcome)
+    if status in {"PENDING_CAPABILITY", "HOST_CAPABILITY_FAILED"}:
+        request = outcome.get("request", {})
+        request_id = str(request.get("request_id", "")) if isinstance(request, dict) else ""
+        projected["resolution_obligation"] = _resolution(
+            subject_id=args.method_id,
+            unresolved_class=UnresolvedClass.CAPABILITY,
+            reason_codes=(status,),
+            required_object_ids=((request_id,) if request_id else ()),
+            blocker_ids=((request_id,) if status == "HOST_CAPABILITY_FAILED" and request_id else ()),
+        )
+    elif status.startswith("CANNOT_CHECK"):
+        projected["resolution_obligation"] = _resolution(
+            subject_id=args.method_id,
+            unresolved_class=(
+                UnresolvedClass.COVERAGE
+                if "COVERAGE" in status
+                else UnresolvedClass.EVIDENCE
+            ),
+            reason_codes=(status,),
+        )
+    _print(projected)
     if status == "PENDING_CAPABILITY":
         return 2
     if status == "HOST_CAPABILITY_FAILED":
@@ -165,9 +211,23 @@ def main(argv: list[str] | None = None) -> int:
         return _run_structure_command(args, consensus=False)
     if args.command == "paper-structure-consensus":
         return _run_structure_command(args, consensus=True)
+    if args.command == "resolution-plan":
+        raw = _load_json(args.json, args.file)
+        if not isinstance(raw, dict):
+            raise TypeError("resolution-plan input must be an object")
+        _print(resolution_plan_from_mapping(raw))
+        return 0
     if args.command == "research-direct":
         directive = direct_research_from_mapping(_load_json(args.json, args.file))
-        _print(directive.as_dict())
+        payload = directive.as_dict()
+        if directive.kind is ResearchDirectiveKind.CANNOT_CHECK:
+            payload["resolution_obligation"] = _resolution(
+                subject_id="research-directive",
+                unresolved_class=UnresolvedClass.RESPONSIBILITY,
+                reason_codes=(directive.reason,),
+                blocker_ids=directive.trigger_residual_ids,
+            )
+        _print(payload)
         return 4 if directive.kind is ResearchDirectiveKind.CANNOT_CHECK else 0
     if args.command == "mechanic-apply":
         raw = _load_json(args.json, args.file)
@@ -177,7 +237,14 @@ def main(argv: list[str] | None = None) -> int:
             mechanic_state_from_mapping(raw["state"]),
             mechanic_contract_from_mapping(raw["contract"]),
         )
-        _print(_non_authorizing("ORION.HarnessP6MechanicExecution.v1", result=jsonable(result)))
+        payload = _non_authorizing("ORION.HarnessP6MechanicExecution.v1", result=jsonable(result))
+        if result.terminal is MechanicTerminal.CANNOT_CHECK:
+            payload["resolution_obligation"] = _resolution(
+                subject_id=str(raw.get("contract", {}).get("mechanic_id", "p6-mechanic")),
+                unresolved_class=UnresolvedClass.EVIDENCE,
+                reason_codes=tuple(str(item) for item in result.reasons) or ("P6_CANNOT_CHECK",),
+            )
+        _print(payload)
         if result.terminal is MechanicTerminal.APPLIED:
             return 0
         return 4 if result.terminal is MechanicTerminal.CANNOT_CHECK else 5
@@ -205,26 +272,71 @@ def main(argv: list[str] | None = None) -> int:
             confidence=raw.get("confidence"),
             expected_utility=raw.get("expected_utility"),
         )
-        _print(_non_authorizing("ORION.HarnessP8AuthorityDecision.v1", decision=jsonable(decision)))
+        payload = _non_authorizing("ORION.HarnessP8AuthorityDecision.v1", decision=jsonable(decision))
+        if decision.terminal is AuthorityTerminal.CANNOT_CHECK:
+            payload["resolution_obligation"] = _resolution(
+                subject_id=str(raw.get("effect", {}).get("effect_id", "p8-effect")),
+                unresolved_class=UnresolvedClass.AUTHORITY,
+                reason_codes=tuple(str(item) for item in decision.reasons) or ("P8_CANNOT_CHECK",),
+            )
+        _print(payload)
         if decision.terminal is AuthorityTerminal.AUTHORIZED:
             return 0
         return 4 if decision.terminal is AuthorityTerminal.CANNOT_CHECK else 5
     if args.command == "ocme-assess":
-        decision = assess_ocme_episode(ocme_episode_from_mapping(_load_json(args.json, args.file)))
-        _print(_non_authorizing("ORION.HarnessP10OCMEAssessment.v1", decision=jsonable(decision)))
+        raw = _load_json(args.json, args.file)
+        if not isinstance(raw, dict):
+            raise TypeError("ocme-assess input must be an object")
+        decision = assess_ocme_episode(ocme_episode_from_mapping(raw))
+        payload = _non_authorizing("ORION.HarnessP10OCMEAssessment.v1", decision=jsonable(decision))
+        if decision.terminal is OCMETerminal.CANNOT_CHECK:
+            payload["resolution_obligation"] = _resolution(
+                subject_id=str(raw.get("episode_id", "p10-episode")),
+                unresolved_class=UnresolvedClass.METHOD,
+                reason_codes=tuple(str(item) for item in decision.reasons) or ("P10_CANNOT_CHECK",),
+            )
+        elif decision.terminal is OCMETerminal.OCME_DONOR_SUBSUMED:
+            evidence_ids = tuple(
+                str(item)
+                for item in (
+                    list((raw.get("obstruction") or {}).get("evidence_ids", ()))
+                    + list((raw.get("transfer") or {}).get("evidence_ids", ()))
+                )
+            ) or ("e:ocme-donor-subsumed",)
+            payload["negative_result"] = assimilate_negative_result(
+                result_id=f"negative:{raw.get('episode_id', 'p10')}:donor",
+                subject_id=str(raw.get("episode_id", "p10-episode")),
+                negative_kind="DONOR_SUBSUMED",
+                evidence_ids=evidence_ids,
+                reason_codes=tuple(str(item) for item in decision.reasons) or ("DONOR_SUBSUMED",),
+            ).as_dict()
+        elif decision.terminal is OCMETerminal.OCME_IMPOSSIBILITY_BOUNDARY:
+            payload["negative_result"] = assimilate_negative_result(
+                result_id=f"negative:{raw.get('episode_id', 'p10')}:impossibility",
+                subject_id=str(raw.get("episode_id", "p10-episode")),
+                negative_kind="IMPOSSIBILITY_BOUNDARY",
+                evidence_ids=tuple(str(item) for item in (raw.get("obstruction") or {}).get("evidence_ids", ())) or ("e:ocme-impossibility",),
+                reason_codes=tuple(str(item) for item in decision.reasons) or ("IMPOSSIBILITY_BOUNDARY",),
+            ).as_dict()
+        _print(payload)
         return 4 if decision.terminal is OCMETerminal.CANNOT_CHECK else 0
     if args.command == "navigation-plan":
         state = navigation_state_from_mapping(_load_json(args.json, args.file))
         decision = plan_navigation(state)
-        _print(
-            {
-                "schema": "ORION.HarnessEpistemicNavigationDecision.v1",
-                "state": jsonable(state),
-                "decision": jsonable(decision),
-                "grants_scientific_authority": False,
-                "grants_novelty_authority": False,
-            }
-        )
+        payload = {
+            "schema": "ORION.HarnessEpistemicNavigationDecision.v1",
+            "state": jsonable(state),
+            "decision": jsonable(decision),
+            "grants_scientific_authority": False,
+            "grants_novelty_authority": False,
+        }
+        if decision.action.value == "CANNOT_CHECK":
+            payload["resolution_obligation"] = _resolution(
+                subject_id=state.active_chart.chart_id,
+                unresolved_class=UnresolvedClass.COVERAGE,
+                reason_codes=tuple(str(item) for item in decision.reasons) or ("P7_CANNOT_CHECK",),
+            )
+        _print(payload)
         return 0 if decision.action.value != "CANNOT_CHECK" else 4
     if args.command == "research-saturation":
         rounds = research_rounds_from_mapping(_load_json(args.json, args.file))
@@ -236,16 +348,21 @@ def main(argv: list[str] | None = None) -> int:
         report_payload = jsonable(report)
         report_payload["grants_absolute_completeness"] = report.grants_absolute_completeness
         report_payload["grants_self_promotion"] = report.grants_self_promotion
-        _print(
-            {
-                "schema": "ORION.HarnessResearchSaturationAssessment.v1",
-                "rounds": jsonable(rounds),
-                "report": report_payload,
-                "grants_scientific_authority": False,
-                "grants_novelty_authority": False,
-                "grants_global_task_stop_authority": False,
-            }
-        )
+        payload = {
+            "schema": "ORION.HarnessResearchSaturationAssessment.v1",
+            "rounds": jsonable(rounds),
+            "report": report_payload,
+            "grants_scientific_authority": False,
+            "grants_novelty_authority": False,
+            "grants_global_task_stop_authority": False,
+        }
+        if not report.bounded_saturated:
+            payload["resolution_obligation"] = _resolution(
+                subject_id="research-saturation",
+                unresolved_class=UnresolvedClass.COVERAGE,
+                reason_codes=tuple(str(item) for item in report.reasons) or ("SATURATION_OPEN",),
+            )
+        _print(payload)
         return 0 if report.bounded_saturated else 4
     if args.command == "p11-accessible-rank":
         _print(_non_authorizing(
@@ -267,20 +384,34 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "p13-action":
         action = p13_rcs_action(args.state_class, args.task, recoverable=args.recoverable)
-        _print(_non_authorizing(
+        payload = _non_authorizing(
             "ORION.HarnessP13ResponsibilityAction.v1",
             state_class=args.state_class,
             task=args.task,
             recoverable=args.recoverable,
             action=action.value,
-        ))
+        )
+        if action.value == "CANNOT_CHECK":
+            payload["resolution_obligation"] = _resolution(
+                subject_id=f"p13:{args.state_class}:{args.task}",
+                unresolved_class=UnresolvedClass.RESPONSIBILITY,
+                reason_codes=("P13_RESPONSIBILITY_NOT_RESOLVED",),
+            )
+        _print(payload)
         return 0
     if args.command == "p14-disposition":
         raw = _load_json(args.json, args.file)
         if not isinstance(raw, dict):
             raise TypeError("p14-disposition input must be an object")
         disposition = p14_governance_disposition(raw)
-        _print(_non_authorizing("ORION.HarnessP14Disposition.v1", disposition=disposition))
+        payload = _non_authorizing("ORION.HarnessP14Disposition.v1", disposition=disposition)
+        if disposition == "CANNOT_CHECK":
+            payload["resolution_obligation"] = _resolution(
+                subject_id="p14-governance",
+                unresolved_class=UnresolvedClass.EVIDENCE,
+                reason_codes=("P14_GOVERNANCE_EVIDENCE_INSUFFICIENT",),
+            )
+        _print(payload)
         return 0
     raise AssertionError(args.command)
 
