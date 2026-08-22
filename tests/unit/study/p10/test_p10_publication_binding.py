@@ -1,9 +1,10 @@
 """P10's shipped binding, measured against the files in this checkout.
 
-The finding is one pair of verdicts:
-``test_the_shipped_binding_is_clean_and_its_membership_is_open``. Everything else
-here is a ratchet on one of the numbers that pair rests on, so that closing the
-gap reds these tests and widening it reds them harder.
+The finding these tests were written for is closed. They said the shipped
+manifest bound every committed number and none of the code that produced them,
+and they were built so that closing the gap would red them --- which it did. They
+now pin the closed state, with the same reasoning kept: what has to stay true is
+that the producers are inside the binding, not merely that some count is small.
 
 Nothing in this file edits ``papers/``. The lane is content-bound, and an audit
 that had to modify its subject to measure it would be reporting on a different
@@ -35,12 +36,14 @@ from orion.study.p10.membership_audit import audit_p10_publication_binding
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 
-#: Files inside the manifest's own declared scope that no gate can observe. Named
-#: rather than counted, because the count alone would let one be swapped for
-#: another. The first is the runner ``REPRODUCE_LOCAL_CLOSURE.sh`` executes and
-#: whose committed output the manifest *does* bind; the last two are the toolchain
-#: pin and the native shim behind P10's eight Lean acceptance receipts.
-LOAD_BEARING_UNENROLLED = (
+#: The files whose absence from the binding was the finding. Named rather than
+#: counted, because a count alone would let one be swapped for another. The first
+#: is the runner ``REPRODUCE_LOCAL_CLOSURE.sh`` executes and whose committed
+#: output the manifest already bound; the last two are the toolchain pin and the
+#: native shim behind P10's eight Lean acceptance receipts --- both of which
+#: decide what the proofs compile to, and neither of which carried an extension
+#: on the generator's old allowlist.
+LOAD_BEARING = (
     "papers/orion-learning-machine/experiments/phase1_mechanic_composition/run_v2.py",
     "papers/orion-learning-machine/experiments/phase0_solver_ecology/run.py",
     "papers/orion-learning-machine/experiments/phase2_real_source/run_phase2a.py",
@@ -50,9 +53,12 @@ LOAD_BEARING_UNENROLLED = (
     "papers/paper-xx-content-bound-math-evaluation/benchmark/native/lean_readlink_self.c",
 )
 
-#: Measured 2026-08-21. A ratchet, not a target: enrolling a file may only lower
-#: it, and every drop should come with the manifest regeneration that caused it.
-UNENROLLED_CEILING = 20
+#: Was 20, measured 2026-08-21; the ratchet said enrolling a file may only lower
+#: it and every drop must come with the manifest regeneration that caused it.
+#: Both happened: ``experiments/`` became a generator root, the suffix allowlist
+#: became a build-output denylist, three lane-root files were named, and the
+#: manifest was regenerated to 567 entries.
+UNENROLLED_CEILING = 0
 
 
 @pytest.fixture(scope="module")
@@ -60,40 +66,46 @@ def audit():
     return shipped.audit_p10_publication(REPO_ROOT)
 
 
-def test_the_shipped_binding_is_clean_and_its_membership_is_open(audit) -> None:
-    """The finding, in two verdicts on one artifact.
+def test_the_shipped_binding_is_clean_and_its_membership_is_closed(audit) -> None:
+    """The finding, closed, in two verdicts on one artifact.
 
-    Drift ``PASS`` is not disputed: 551 enrolled files, none changed, and the
-    shipped verifier really does red on the first byte of any of them. Membership
-    ``FAIL`` says the 551 was chosen by ``included_files()`` inside the lane the
-    manifest protects, and that twenty files inside that same declared scope are
-    named by no digest a gate opens.
+    Drift ``PASS`` was never disputed: the enrolled files are unchanged and the
+    shipped verifier really does red on the first byte of any of them. What was
+    ``FAIL`` is membership --- the enrolled set was chosen by ``included_files()``
+    inside the lane the manifest protects, and twenty files inside the same
+    declared scope were named by no digest a gate opens. Scope and enrolment now
+    agree at 571, so both verdicts pass and the closure requirement no longer
+    raises.
     """
 
     assert assess_drift(audit).outcome is Outcome.PASS
-    assert assess_membership(audit).outcome is Outcome.FAIL
-    assert audit_outcome(audit) is Outcome.FAIL
-    assert audit_outcome(audit).blocks
+    assert assess_membership(audit).outcome is Outcome.PASS
+    assert audit_outcome(audit) is Outcome.PASS
+    assert not audit_outcome(audit).blocks
 
-    with pytest.raises(ManifestMembershipNotClosed, match="named by no enforced binding"):
-        require_closed_membership(audit)
+    require_closed_membership(audit)  # no longer raises
 
 
-def test_the_load_bearing_files_are_the_unenrolled_ones(audit) -> None:
-    unenrolled = {path.relative_to(REPO_ROOT).as_posix() for path in audit.unenrolled}
-    assert set(LOAD_BEARING_UNENROLLED) <= unenrolled
+def test_the_load_bearing_files_are_now_inside_the_binding(audit) -> None:
+    """Named, not counted: a count would let one be swapped for another."""
+
+    enrolled = {path.relative_to(REPO_ROOT).as_posix() for path in audit.enrolled}
+    missing = sorted(set(LOAD_BEARING) - enrolled)
+    assert not missing, missing
     assert len(audit.unenrolled) <= UNENROLLED_CEILING
 
 
-def test_every_experiment_driver_in_the_lane_is_unenrolled(audit) -> None:
-    """The producers are outside the binding; the results they produced are inside.
+def test_every_experiment_driver_in_the_lane_is_enrolled(audit) -> None:
+    """The producers are inside the binding, alongside the results they produced.
 
-    ``results/`` is one of the generator's four roots and ``experiments/`` is not,
-    so the manifest pins every committed number and none of the code that made
-    them.
+    ``results/`` was one of the generator's roots and ``experiments/`` was not, so
+    the manifest pinned every committed number and none of the code that made
+    them: a reader could confirm the numbers had not moved while the program that
+    computed them changed underneath. ``experiments/`` is now a root, and this
+    fails if it is ever dropped again.
     """
 
-    unenrolled = {path.relative_to(REPO_ROOT).as_posix() for path in audit.unenrolled}
+    enrolled = {path.relative_to(REPO_ROOT).as_posix() for path in audit.enrolled}
     experiments = REPO_ROOT / shipped.LANE / "experiments"
     drivers = {
         path.relative_to(REPO_ROOT).as_posix()
@@ -101,7 +113,7 @@ def test_every_experiment_driver_in_the_lane_is_unenrolled(audit) -> None:
         if path.is_file() and "__pycache__" not in path.parts
     }
     assert drivers, "the experiments directory is empty; this test has lost its subject"
-    assert drivers <= unenrolled
+    assert drivers <= enrolled, sorted(drivers - enrolled)
 
     enrolled = {path.relative_to(REPO_ROOT).as_posix() for path in audit.enrolled}
     results = {
@@ -117,16 +129,20 @@ def test_the_historical_script_manifest_is_dereferenced_by_nothing_and_says_so(
 ) -> None:
     """A receipt is not a check, and the proof is that it has already drifted.
 
-    ``SCRIPT_MANIFEST_SHA256.txt`` names twelve of the twenty unenrolled files.
-    If anything hashed the paths it names, ten disagreements could not coexist
-    with a green suite.
+    ``SCRIPT_MANIFEST_SHA256.txt`` used to be the only thing naming twelve of the
+    twenty unenrolled files, which is what ``stale_only`` counted: named by a
+    digest file, observed by no gate. Those twelve are now in the enforced
+    manifest, so ``stale_only`` is empty --- but the receipt itself is unchanged
+    and still disagrees with the bytes in ten places, which is the point. If
+    anything hashed the paths it names, ten disagreements could not coexist with a
+    green suite; nothing does, so they can.
     """
 
     check = next(item for item in audit.checks if item.binding_id == shipped.SCRIPT_MANIFEST)
     assert check.enforced is False
     assert check.named == 36
     assert len(check.drifted) >= 10
-    assert len(audit.stale_only) == 12
+    assert len(audit.stale_only) == 0
     assert len(audit.unenforced_drift) == len(check.drifted)
     # And none of it is scored against the guard that does run.
     assert audit.enforced_violations == 0
@@ -198,25 +214,28 @@ def test_the_declared_scope_can_never_be_narrower_than_the_generator_enrols() ->
 
 
 def test_the_published_count_is_mostly_a_vendored_lean_checkout() -> None:
-    """``PASS (547 files)`` is not 547 files of P10.
+    """A passing membership verdict is still not 571 files of P10.
 
-    461 are Mathlib source and 7 are an ASlib scenario --- material the lane did
-    not write. 514 of the 547 are not in the lane directory at all: they belong to
+    463 are Mathlib source and 8 are an ASlib scenario --- material the lane did
+    not write. 518 of the 571 are not in the lane directory at all: they belong to
     the two retired ``paper-xx-`` predecessors, whose grade the superiority ledger
-    records as discharging no P10-U terminal.
+    records as discharging no P10-U terminal. Closing the membership gap enlarged
+    the authored count from 79 to 96, because seventeen of the newly enrolled
+    files are the lane's own experiment drivers; it did not make the vendored
+    majority any less vendored.
     """
 
     origin = shipped.manifest_entry_origin(REPO_ROOT)
-    assert origin["vendored_lean_corpus"] == 461
-    assert origin["vendored_aslib_scenario"] == 7
-    assert origin["outside_the_lane_directory"] == 514
-    assert origin["shared_lane"] == 33
+    assert origin["vendored_lean_corpus"] == 463
+    assert origin["vendored_aslib_scenario"] == 8
+    assert origin["outside_the_lane_directory"] == 518
+    assert origin["shared_lane"] == 49
     authored = sum(
         origin[name]
         for name in ("p10_predecessor_authored", "p9_predecessor_authored", "shared_lane",
                      "other_papers")
     )
-    assert authored == 79
+    assert authored == 96
 
 
 def test_the_active_p10_identity_carries_no_binding_at_all() -> None:
@@ -252,13 +271,21 @@ def test_the_existing_coverage_survey_cannot_see_this_binding() -> None:
     assert assess_paper(binding).outcome is Outcome.CANNOT_CHECK
 
 
-def test_the_cli_report_carries_both_denominators_and_blocks() -> None:
+def test_the_cli_report_carries_both_denominators_and_no_longer_blocks() -> None:
+    """Both denominators still reported; they now agree.
+
+    The pair is the point, not the pass. A report that printed only the drift
+    verdict would have said PASS throughout the period when twenty files were
+    unobservable, which is why the enrolled count and the scope are both here.
+    """
+
     report = audit_p10_publication_binding(REPO_ROOT)
-    assert report["outcome"] == "FAIL"
-    assert report["files_enrolled"] == 551
+    assert report["outcome"] == "PASS"
+    assert report["files_enrolled"] == 571
+    assert report["files_unenrolled"] == 0
     assert report["files_in_scope"] == report["files_enrolled"] + report["files_unenrolled"]
     assert report["drift_verdict"]["outcome"] == "PASS"
-    assert report["membership_verdict"]["outcome"] == "FAIL"
+    assert report["membership_verdict"]["outcome"] == "PASS"
     assert report["generator_agrees_with_committed_manifest"] is True
 
 
