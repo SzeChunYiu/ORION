@@ -63,11 +63,7 @@ class Judgment:
     def __post_init__(self) -> None:
         if not self.judgment_id.strip():
             raise ValueError("judgment_id is required")
-        object.__setattr__(
-            self,
-            "support_premise_ids",
-            _strings(self.support_premise_ids, name="support_premise_ids"),
-        )
+        object.__setattr__(self, "support_premise_ids", _strings(self.support_premise_ids, name="support_premise_ids"))
 
 
 @dataclass(frozen=True)
@@ -79,11 +75,7 @@ class HardAuthorityObligation:
     def __post_init__(self) -> None:
         if not self.obligation_id.strip():
             raise ValueError("obligation_id is required")
-        object.__setattr__(
-            self,
-            "additional_premise_ids",
-            _strings(self.additional_premise_ids, name="additional_premise_ids"),
-        )
+        object.__setattr__(self, "additional_premise_ids", _strings(self.additional_premise_ids, name="additional_premise_ids"))
 
 
 @dataclass(frozen=True)
@@ -135,24 +127,20 @@ class Coercion:
     lineage_ids: tuple[str, ...]
     valid_from_epoch: int
     valid_through_epoch: int
+    allow_scope_widening: bool = False
 
     def __post_init__(self) -> None:
         if not self.coercion_id.strip() or not self.issuer_root_id.strip():
             raise ValueError("coercion identity/issuer root are required")
-        object.__setattr__(
-            self,
-            "semantic_premise_ids",
-            _strings(self.semantic_premise_ids, name="semantic_premise_ids"),
-        )
+        object.__setattr__(self, "semantic_premise_ids", _strings(self.semantic_premise_ids, name="semantic_premise_ids"))
         object.__setattr__(self, "lineage_ids", _strings(self.lineage_ids, name="lineage_ids", allow_empty=False))
-        for name, value in (
-            ("valid_from_epoch", self.valid_from_epoch),
-            ("valid_through_epoch", self.valid_through_epoch),
-        ):
+        for name, value in (("valid_from_epoch", self.valid_from_epoch), ("valid_through_epoch", self.valid_through_epoch)):
             if isinstance(value, bool) or not isinstance(value, int) or value < 0:
                 raise ValueError(f"{name} must be a non-negative integer")
         if self.valid_through_epoch < self.valid_from_epoch:
             raise ValueError("coercion validity interval is inverted")
+        if not isinstance(self.allow_scope_widening, bool):
+            raise TypeError("allow_scope_widening must be boolean")
 
 
 @dataclass(frozen=True)
@@ -163,14 +151,12 @@ class SupportFamily:
     def __post_init__(self) -> None:
         if not self.certificate_id.strip():
             raise ValueError("certificate_id is required")
-        normalized: list[tuple[str, ...]] = []
-        for index, support in enumerate(self.support_sets):
-            normalized.append(_strings(support, name=f"support_sets[{index}]", allow_empty=False))
+        normalized = tuple(_strings(support, name="support set", allow_empty=False) for support in self.support_sets)
+        if not normalized:
+            raise ValueError("support family requires at least one support set")
         if len(normalized) != len(set(normalized)):
             raise ValueError("support sets must be unique")
-        if not normalized:
-            raise ValueError("support family requires at least one derivation")
-        object.__setattr__(self, "support_sets", tuple(normalized))
+        object.__setattr__(self, "support_sets", normalized)
 
 
 @dataclass(frozen=True)
@@ -188,30 +174,18 @@ class AuthorityContext:
 
     def __post_init__(self) -> None:
         for name, values in (
-            ("judgment", [item.judgment_id for item in self.judgments]),
-            ("obligation", [item.obligation_id for item in self.hard_obligations]),
-            ("grant", [item.grant_id for item in self.roots]),
-            ("coercion", [item.coercion_id for item in self.coercions]),
-            ("support family", [item.certificate_id for item in self.support_families]),
+            ("judgment", [x.judgment_id for x in self.judgments]),
+            ("obligation", [x.obligation_id for x in self.hard_obligations]),
+            ("grant", [x.grant_id for x in self.roots]),
+            ("coercion", [x.coercion_id for x in self.coercions]),
+            ("blocker", [x[0] for x in self.blocker_determinations]),
+            ("support family", [x.certificate_id for x in self.support_families]),
         ):
             if len(values) != len(set(values)):
                 raise ValueError(f"{name} identities must be unique")
-        blockers = [item[0] for item in self.blocker_determinations]
-        if len(blockers) != len(set(blockers)):
-            raise ValueError("blocker determination types must be unique")
-        if any(not item.strip() for item in blockers):
-            raise ValueError("blocker type identity is required")
-        object.__setattr__(
-            self,
-            "required_blocker_type_ids",
-            _strings(self.required_blocker_type_ids, name="required_blocker_type_ids"),
-        )
+        object.__setattr__(self, "required_blocker_type_ids", _strings(self.required_blocker_type_ids, name="required_blocker_type_ids"))
         object.__setattr__(self, "valid_premise_ids", _strings(self.valid_premise_ids, name="valid_premise_ids"))
-        object.__setattr__(
-            self,
-            "revoked_premise_ids",
-            _strings(self.revoked_premise_ids, name="revoked_premise_ids"),
-        )
+        object.__setattr__(self, "revoked_premise_ids", _strings(self.revoked_premise_ids, name="revoked_premise_ids"))
         object.__setattr__(self, "history", tuple(str(item) for item in self.history))
 
 
@@ -236,34 +210,26 @@ def _premise_state(context: AuthorityContext, premise_id: str) -> str:
     return "MISSING"
 
 
-def support_family_valid(
-    family: SupportFamily,
-    valid_premise_ids: Sequence[str],
-    revoked_premise_ids: Sequence[str],
-) -> bool:
+def support_family_valid(family: SupportFamily, valid_premise_ids: Sequence[str], revoked_premise_ids: Sequence[str]) -> bool:
     valid = set(valid_premise_ids)
     revoked = set(revoked_premise_ids)
     return any(set(support) <= valid and not (set(support) & revoked) for support in family.support_sets)
 
 
-def revoke_premises(
-    context: AuthorityContext,
-    premise_ids: Sequence[str],
-    *,
-    epoch: int,
-) -> AuthorityContext:
+def revoke_premises(context: AuthorityContext, premise_ids: Sequence[str], *, epoch: int) -> AuthorityContext:
     revoked = _strings(premise_ids, name="premise_ids", allow_empty=False)
     if isinstance(epoch, bool) or not isinstance(epoch, int) or epoch < 0:
         raise ValueError("revocation epoch must be a non-negative integer")
     next_revoked = tuple(dict.fromkeys((*context.revoked_premise_ids, *revoked)))
-    history = list(context.history)
-    for premise in revoked:
-        history.append(f"REVOKE:{premise}@{epoch}")
-    return replace(context, revoked_premise_ids=next_revoked, history=tuple(history))
+    return replace(
+        context,
+        revoked_premise_ids=next_revoked,
+        history=(*context.history, *(f"REVOKE:{premise}@{epoch}" for premise in revoked)),
+    )
 
 
 def _grant_for_effect(effect: EffectRequest, context: AuthorityContext) -> tuple[RootGrant | None, str]:
-    domain_grants = [item for item in context.roots if item.domain == effect.domain]
+    domain_grants = [grant for grant in context.roots if grant.domain == effect.domain]
     if not domain_grants:
         return None, "missing grant/root for effect domain"
     for grant in domain_grants:
@@ -279,70 +245,72 @@ def _grant_for_effect(effect: EffectRequest, context: AuthorityContext) -> tuple
     return None, "available grant/root is stale, out of scope, payload-mismatched, revoked, or invalid"
 
 
-def _coercion_usable(coercion: Coercion, effect: EffectRequest, context: AuthorityContext) -> tuple[bool, str]:
+def _coercion_usable(coercion: Coercion, effect: EffectRequest, context: AuthorityContext) -> tuple[bool, AuthorityTerminal, str]:
     if not (coercion.valid_from_epoch <= effect.epoch <= coercion.valid_through_epoch):
-        return False, "stale coercion epoch"
-    registered_roots = {item.root_id for item in context.roots}
-    if coercion.issuer_root_id not in registered_roots:
-        return False, "coercion issuer/root is not registered"
-    if _premise_state(context, coercion.issuer_root_id) != "VALID":
-        return False, "coercion issuer/root is unavailable or revoked"
+        return False, AuthorityTerminal.DENIED, "stale coercion epoch"
+    roots = {grant.root_id for grant in context.roots}
+    if coercion.issuer_root_id not in roots:
+        return False, AuthorityTerminal.DENIED, "coercion issuer/root is not registered"
+    root_state = _premise_state(context, coercion.issuer_root_id)
+    if root_state == "REVOKED":
+        return False, AuthorityTerminal.DENIED, "coercion issuer/root revoked"
+    if root_state == "MISSING":
+        return False, AuthorityTerminal.CANNOT_CHECK, "coercion issuer/root unavailable"
+    input_scope = set(coercion.input_type.scope_ids)
+    output_scope = set(coercion.output_type.scope_ids)
+    if not output_scope <= input_scope and not coercion.allow_scope_widening:
+        return False, AuthorityTerminal.DENIED, "coercion scope widening was not explicitly declared"
     for premise in coercion.semantic_premise_ids:
         state = _premise_state(context, premise)
-        if state != "VALID":
-            return False, "coercion semantic premise is missing/revoked"
-    return True, ""
+        if state == "REVOKED":
+            return False, AuthorityTerminal.DENIED, "coercion semantic premise revoked"
+        if state == "MISSING":
+            return False, AuthorityTerminal.CANNOT_CHECK, "coercion semantic premise unavailable"
+    return True, AuthorityTerminal.AUTHORIZED, ""
 
 
-def _judgment_usable(judgment: Judgment, context: AuthorityContext) -> tuple[bool, str]:
+def _judgment_usable(judgment: Judgment, context: AuthorityContext) -> tuple[bool, AuthorityTerminal, str]:
     for premise in judgment.support_premise_ids:
         state = _premise_state(context, premise)
         if state == "REVOKED":
-            return False, "judgment support premise revoked"
+            return False, AuthorityTerminal.DENIED, "judgment support premise revoked"
         if state == "MISSING":
-            return False, "judgment support premise unavailable"
-    return True, ""
+            return False, AuthorityTerminal.CANNOT_CHECK, "judgment support premise unavailable"
+    return True, AuthorityTerminal.AUTHORIZED, ""
 
 
-def _coercion_path(
-    start: JudgmentType,
-    target: JudgmentType,
-    effect: EffectRequest,
-    context: AuthorityContext,
-) -> tuple[tuple[str, ...] | None, bool, str]:
+def _coercion_path(start: JudgmentType, target: JudgmentType, effect: EffectRequest, context: AuthorityContext) -> tuple[tuple[str, ...] | None, AuthorityTerminal, str]:
     if start == target:
-        return (), False, ""
+        return (), AuthorityTerminal.AUTHORIZED, ""
     outgoing: dict[JudgmentType, list[Coercion]] = {}
-    invalid_relevant = False
-    invalid_reason = ""
     for coercion in context.coercions:
         outgoing.setdefault(coercion.input_type, []).append(coercion)
-    queue: deque[tuple[JudgmentType, tuple[str, ...]]] = deque([(start, ())])
+    queue: deque[tuple[JudgmentType, tuple[str, ...]]] = deque(((start, ()),))
     visited = {start}
+    strongest_failure = AuthorityTerminal.CANNOT_CHECK
+    failure_reason = "no exact typed coercion path"
     while queue:
         current, path = queue.popleft()
-        for coercion in outgoing.get(current, ()):  # full type equality, not domain-only
-            usable, reason = _coercion_usable(coercion, effect, context)
+        for coercion in outgoing.get(current, ()):
+            usable, terminal, reason = _coercion_usable(coercion, effect, context)
             if not usable:
-                invalid_relevant = True
-                invalid_reason = reason
+                if terminal is AuthorityTerminal.DENIED:
+                    strongest_failure = AuthorityTerminal.DENIED
+                    failure_reason = reason
+                elif strongest_failure is not AuthorityTerminal.DENIED:
+                    failure_reason = reason
                 continue
             next_type = coercion.output_type
             next_path = (*path, coercion.coercion_id)
             if next_type == target:
-                return next_path, invalid_relevant, invalid_reason
-            if next_type in visited:
-                continue
-            visited.add(next_type)
-            queue.append((next_type, next_path))
-    return None, invalid_relevant, invalid_reason
+                return next_path, AuthorityTerminal.AUTHORIZED, ""
+            if next_type not in visited:
+                visited.add(next_type)
+                queue.append((next_type, next_path))
+    return None, strongest_failure, failure_reason
 
 
-def _discharge_obligation(
-    obligation: HardAuthorityObligation,
-    effect: EffectRequest,
-    context: AuthorityContext,
-) -> tuple[AuthorityTerminal, tuple[str, ...], str]:
+def _discharge_obligation(obligation: HardAuthorityObligation, effect: EffectRequest, context: AuthorityContext) -> tuple[AuthorityTerminal, tuple[str, ...], str]:
     for premise in obligation.additional_premise_ids:
         state = _premise_state(context, premise)
         if state == "REVOKED":
@@ -350,104 +318,56 @@ def _discharge_obligation(
         if state == "MISSING":
             return AuthorityTerminal.CANNOT_CHECK, (), f"mandatory premise {premise} unavailable"
 
-    if not context.judgments:
-        return AuthorityTerminal.CANNOT_CHECK, (), "required typed judgment evidence unavailable"
-
-    saw_incompatible = False
-    saw_invalid = False
-    invalid_reason = ""
-    saw_missing_support = False
+    best_failure = AuthorityTerminal.CANNOT_CHECK
+    best_reason = "required typed judgment unavailable"
     for judgment in context.judgments:
-        usable, reason = _judgment_usable(judgment, context)
+        usable, terminal, reason = _judgment_usable(judgment, context)
         if not usable:
-            if "revoked" in reason:
-                saw_invalid = True
-                invalid_reason = reason
-            else:
-                saw_missing_support = True
+            if terminal is AuthorityTerminal.DENIED:
+                best_failure = terminal
+                best_reason = reason
             continue
-        if judgment.judgment_type == obligation.required_type:
-            return AuthorityTerminal.AUTHORIZED, (), "direct exact typed discharge"
-        saw_incompatible = True
-        path, invalid_path, path_reason = _coercion_path(
-            judgment.judgment_type,
-            obligation.required_type,
-            effect,
-            context,
-        )
+        path, path_terminal, path_reason = _coercion_path(judgment.judgment_type, obligation.required_type, effect, context)
         if path is not None:
-            return AuthorityTerminal.AUTHORIZED, path, "derived exact typed discharge"
-        if invalid_path:
-            saw_invalid = True
-            invalid_reason = path_reason
-
-    if saw_invalid:
-        return AuthorityTerminal.DENIED, (), invalid_reason or "typed derivation invalid/stale/revoked"
-    if saw_incompatible:
-        return AuthorityTerminal.DENIED, (), "available judgment has incompatible complete type and no valid coercion path"
-    if saw_missing_support:
-        return AuthorityTerminal.CANNOT_CHECK, (), "judgment support evidence unavailable"
-    return AuthorityTerminal.CANNOT_CHECK, (), "typed discharge cannot currently be established"
+            return AuthorityTerminal.AUTHORIZED, path, ""
+        if path_terminal is AuthorityTerminal.DENIED:
+            best_failure = AuthorityTerminal.DENIED
+            best_reason = path_reason
+        elif best_failure is not AuthorityTerminal.DENIED:
+            best_reason = path_reason
+    return best_failure, (), best_reason
 
 
-def authorize_effect(
-    effect: EffectRequest,
-    context: AuthorityContext,
-    *,
-    confidence: float | None = None,
-    expected_utility: float | None = None,
-) -> AuthorityDecision:
-    """Evaluate P8 permission. Confidence/utility are intentionally non-authorizing.
+def authorize_effect(effect: EffectRequest, context: AuthorityContext, *, confidence: float | None = None, expected_utility: float | None = None) -> AuthorityDecision:
+    """P8 authorization. Confidence/utility are intentionally not authority premises."""
 
-    They are accepted only to make the separation executable: the function never
-    reads them when deciding AUTHORIZED/DENIED/CANNOT_CHECK.
-    """
-
-    _ = confidence, expected_utility
     blocker_map = dict(context.blocker_determinations)
-    for blocker_type in context.required_blocker_type_ids:
-        determination = blocker_map.get(blocker_type, BlockerDetermination.UNDETERMINED)
-        if determination is BlockerDetermination.ESTABLISHED:
-            return AuthorityDecision(
-                AuthorityTerminal.DENIED,
-                f"blocker {blocker_type} is established",
-            )
-        if determination is BlockerDetermination.UNDETERMINED:
-            return AuthorityDecision(
-                AuthorityTerminal.CANNOT_CHECK,
-                f"blocker {blocker_type} is undetermined; absence is not refutation",
-            )
+    for blocker_id in context.required_blocker_type_ids:
+        state = blocker_map.get(blocker_id, BlockerDetermination.UNDETERMINED)
+        if state is BlockerDetermination.ESTABLISHED:
+            return AuthorityDecision(AuthorityTerminal.DENIED, f"active blocker established: {blocker_id}")
+        if state is BlockerDetermination.UNDETERMINED:
+            return AuthorityDecision(AuthorityTerminal.CANNOT_CHECK, f"blocker determination unavailable: {blocker_id}")
 
     grant, grant_reason = _grant_for_effect(effect, context)
     if grant is None:
-        terminal = (
-            AuthorityTerminal.CANNOT_CHECK
-            if grant_reason.startswith("missing")
-            else AuthorityTerminal.DENIED
-        )
-        return AuthorityDecision(terminal, grant_reason)
+        return AuthorityDecision(AuthorityTerminal.DENIED, grant_reason)
 
-    all_paths: list[str] = []
+    paths: list[str] = []
     discharged: list[str] = []
     for obligation in context.hard_obligations:
         terminal, path, reason = _discharge_obligation(obligation, effect, context)
         if terminal is not AuthorityTerminal.AUTHORIZED:
-            return AuthorityDecision(
-                terminal,
-                f"hard obligation {obligation.obligation_id} not discharged: {reason}",
-                tuple(discharged),
-                tuple(all_paths),
-                grant.grant_id,
-            )
+            return AuthorityDecision(terminal, reason, obligation_ids=tuple(discharged), grant_id=grant.grant_id)
         discharged.append(obligation.obligation_id)
-        all_paths.extend(path)
+        paths.extend(path)
 
     return AuthorityDecision(
         AuthorityTerminal.AUTHORIZED,
-        "all hard obligations discharged; blockers refuted; exact grant/scope/payload/epoch fresh",
-        tuple(discharged),
-        tuple(all_paths),
-        grant.grant_id,
+        "all hard obligations discharged by exact typed derivations; blockers refuted; grant fresh and in scope",
+        obligation_ids=tuple(discharged),
+        coercion_path_ids=tuple(paths),
+        grant_id=grant.grant_id,
     )
 
 
