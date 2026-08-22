@@ -41,25 +41,23 @@ jobs:
           python - <<'PY'
           import hashlib,json
           from pathlib import Path
-          src=Path('artifacts/orion-qg-qg32-min-probes.json')
-          d=json.loads(src.read_text())
-          probes=list(d['selected_probe_indices'])
-          assert probes
+          d=json.loads(Path('artifacts/orion-qg-qg32-min-probes.json').read_text())
+          probes=list(d['selected_probe_indices']);assert probes
           d['selected_probe_indices']=probes[:-1]
           d['selected_separates_715']=False
+          if isinstance(d.get('certified_probe_upper_bound'),int): d['certified_probe_upper_bound']=max(0,d['certified_probe_upper_bound']-1)
           u={k:v for k,v in d.items() if k!='result_digest'}
-          raw=json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False)
-          d['result_digest']=hashlib.sha256(raw.encode()).hexdigest()
+          d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
           Path('artifacts/orion-qg-qg32-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
           PY
-          python development/orion-qg-regime-geometry/qg32_generic_verify.py --input artifacts/orion-qg-qg32-tampered.json --output artifacts/orion-qg-qg32-tampered-verify.json > artifacts/orion-qg-qg32-tampered-verify.log
+          python development/orion-qg-regime-geometry/qg32_upper_bound_generic_verify.py --input artifacts/orion-qg-qg32-tampered.json --output artifacts/orion-qg-qg32-tampered-verify.json > artifacts/orion-qg-qg32-tampered-verify.log
           python - <<'PY'
           import json
           from pathlib import Path
           d=json.loads(Path('artifacts/orion-qg-qg32-tampered-verify.json').read_text())
           assert d['decision']=='REJECT' and d['all_checks'] is False
           PY
-      - name: Enforce minimum-probe authority boundary
+      - name: Enforce QG-32 authority boundary
         run: |
           python - <<'PY'
           import json
@@ -69,17 +67,30 @@ jobs:
           n=json.loads(Path('artifacts/orion-qg-qg32-native-verification.json').read_text())
           d=json.loads(Path('artifacts/orion-qg-qg32-dual-harness.json').read_text())
           strong='QG32_MINIMUM_FIXED_PROBE_BASIS_ABOVE_JOINT_BULK_SPECTRUM_MACHINE_CHECKED'
-          assert d['terminal']==strong and d['both_accept'] is True
+          upper='QG32_JOINT_SEPARATING_PROBE_UPPER_BOUND_ONLY'
+          assert d['terminal'] in {strong,upper} and d['both_accept'] is True
           assert all(a['parent_checks'].values())
-          assert a['PRODUCTION_MILP_MINIMUM_OPTIMAL'] is True
           assert a['selected_separates_715'] is True
-          assert a['minimum_probe_cardinality']==len(a['selected_probe_indices'])
-          assert 'NO_LEX_AUTHORITY' in a['selected_canonicalization']
-          assert g['decision']=='ACCEPT_MINIMUM_FIXED_PROBE_BASIS' and g['all_checks'] is True
-          proof=g['independent']['proof']
-          assert proof['no_smaller'] is True
-          assert n['decision']=='ACCEPT_MINIMUM_FIXED_PROBE_BASIS' and n['all_checks'] is True
-          assert n['responsibility']=='JOINT_SUMMARY_PLUS_MINIMUM_FIXED_PROBE_ACTIVE_VERIFICATION_ONLY'
+          assert a['JOINT_SEPARATING_PROBE_UPPER_BOUND_CERTIFIED'] is True
+          assert a['UNRESOLVED_JOINT_PAIR_LOCALIZATION_VALID'] is True
+          assert isinstance(a['certified_probe_upper_bound'],int)
+          assert a['certified_probe_upper_bound']==len(a['selected_probe_indices'])
+          if d['terminal']==strong:
+            assert a['PRODUCTION_MILP_MINIMUM_OPTIMAL'] is True
+            assert isinstance(a['minimum_probe_cardinality'],int)
+            assert g['decision']=='ACCEPT_MINIMUM_FIXED_PROBE_BASIS' and g['all_checks'] is True
+            assert g['independent']['proof']['no_smaller'] is True
+            assert n['decision']=='ACCEPT_MINIMUM_FIXED_PROBE_BASIS' and n['all_checks'] is True
+            assert n['responsibility']=='JOINT_SUMMARY_PLUS_MINIMUM_FIXED_PROBE_ACTIVE_VERIFICATION_ONLY'
+            assert d['MINIMUM_FIXED_PROBE_BASIS_AUTHORITY'] is True
+          else:
+            assert a['PRODUCTION_MILP_MINIMUM_OPTIMAL'] is False
+            assert a['minimum_probe_cardinality'] is None
+            assert a['MINIMUM_FIXED_PROBE_BASIS_AUTHORITY'] is False
+            assert g['decision']=='ACCEPT_FIXED_PROBE_UPPER_BOUND' and g['authority_level']=='UPPER_ONLY' and g['all_checks'] is True
+            assert n['decision']=='ACCEPT_FIXED_PROBE_UPPER_BOUND' and n['all_checks'] is True
+            assert n['responsibility']=='JOINT_SUMMARY_PLUS_CERTIFIED_FIXED_PROBE_UPPER_BOUND_ONLY'
+            assert d['MINIMUM_FIXED_PROBE_BASIS_AUTHORITY'] is False
           for x in (a,g,n,d):
             assert x['MINIMUM_FULL_FINITE_OPTIMUM_PROBES'] is False
             assert x['HARDWARE_MEASUREMENT_MINIMUM'] is False
