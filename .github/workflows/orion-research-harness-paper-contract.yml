@@ -43,6 +43,7 @@ jobs:
           python -m pytest -q \
             packages/orion-research-harness/tests/test_paper_contract_runtime.py \
             packages/orion-research-harness/tests/test_paper_runtime_cli.py \
+            packages/orion-research-harness/tests/test_paper_control_cli.py \
             packages/orion-research-harness/tests/test_epistemic_mechanics_p6.py \
             packages/orion-research-harness/tests/test_epistemic_authority_p8.py \
             packages/orion-research-harness/tests/test_p8_scope_widening_regression.py \
