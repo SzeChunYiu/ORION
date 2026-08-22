@@ -123,3 +123,55 @@ measured here; the reason they are is not, and finding it out is the work that
 has to happen before a fourth transport version is worth running — a fourth
 campaign scored at IoU 0.004 would spend the same effort to learn the same
 nothing.
+
+---
+
+## Addendum, same day: the ceiling case, in P4
+
+Running the same question — could this have come out differently — over the
+other papers' panels found the mirror image, and it is decided rather than
+merely reported.
+
+P4's protected V2 panel decides three hypotheses from eleven systems' rates:
+
+| metric | across the panel | hypothesis | declared |
+| --- | --- | --- | --- |
+| `false_promotion_rate` | 0.0 → 0.917 | H1 | `PASS`, ci95 [-0.553, -0.447] |
+| `clean_coverage` | **1.0 for all eleven** | H2 | `PASS`, ci95 [0.0, 0.0] |
+| `correct_cannot_check_rate` | **1.0 for all eleven** | H3 | `NOT_SUPPORTED`, ci95 [0.0, 0.0] |
+
+H2 is a non-inferiority guard on a metric that every system in its own
+comparator set achieves perfectly. It cannot fail. H3's negative is the same
+fact wearing the other sign — and that pairing is the useful part: saturation is
+not a bias toward optimism, and looking only at the `PASS` rows would have
+missed half of it.
+
+The later identifiable V3 panel repairs one of the two. There
+`correct_cannot_check_rate` varies (1.0, 0.5, and 0.0 across the panel), so H3
+becomes a real separation. `clean_coverage` is still 1.0 for every system.
+
+P4's ledger already carried the sentence "the old H3 slice saturated because it
+was non-identifying — labels were recoverable from trivial cues". The lesson was
+learned on one axis and the cheaper check was never run: saturation is visible
+directly in any published panel, needs nothing but the per-system rates, and
+would have refused H2 in both constructions.
+
+### The distinction that had to be got right
+
+A zero-width interval has two causes that mean opposite things.
+
+*Saturation.* Every system holds the same value; the difference is constant
+because there is nothing to differ about. Nothing is learned.
+
+*Separation.* The systems hold different constants — one at the ceiling, another
+at the floor — so the difference is constant and maximal. Something is learned,
+and it is the strongest thing the metric can say. What is still not learned is
+any measure of uncertainty: the width is zero because the sample is constant,
+not because the estimate is precise.
+
+Merging them under "degenerate interval" would either excuse a saturated guard
+or condemn a perfect separation. `orion.programme.panel_resolution` reports them
+by name, and the case that must stay quiet is tested alongside the case that
+must fire — including an interior saturation, a missing rate that must not be
+read as zero, and a one-case rate difference (1/360) that must not be absorbed
+as float noise.

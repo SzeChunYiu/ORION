@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "852595644fb8ecb9ffd1849b8600a2f22cb6ad2e1e701a222ea76b49712f2e1e",
+    "content_digest": "6e09bc58ef0d79c3ca69a02876b6b0ba94048c418e2155bef6cb4e33d247bc90",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -91,7 +91,7 @@
         "check_id": "HC-SUP-UNCLASSIFIED-BLOCKER",
         "findings": [],
         "outcome": "PASS",
-        "reason": "all 45 blocked terminal(s) carry a responsibility class and an unblock action"
+        "reason": "all 44 blocked terminal(s) carry a responsibility class and an unblock action"
       },
       {
         "check_id": "HC-SUP-PREDECESSOR-REUSE",
@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "e194cf1620ce4e215da5e1ec756ee9eb6adfe699a5f0e4ccee9d27cb9e491750",
+  "content_digest": "b37286c87c85ca8b2c69f9b92541c706e8e1d90f949c297c7af9f52dc3632483",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -529,6 +529,11 @@
           "artifact_ref": "research/claim_expansion/p4/P4_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK"
+        },
+        {
+          "artifact_ref": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "TWO_OF_P4S_THREE_PUBLISHED_HYPOTHESES_REST_ON_SATURATED_METRICS"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -569,11 +574,12 @@
           "actionability": "BLOCKED_ON_NEW_ARENA",
           "gate_id": "P4-U-T2",
           "refs": [
-            "#652"
+            "#652",
+            "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all — that is what H3 taught.",
-          "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report."
+          "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all -- that is what H3 taught. A partial one now exists and finds the lesson was learned too narrowly. H3's saturation was diagnosed as label recoverability and repaired on that axis, but saturation is checkable directly from any published panel: read each metric across every system and ask whether it takes more than one value. Done that way (P4_PANEL_RESOLUTION_2026-08-22), the published V2 panel decides two of its three hypotheses on metrics no system varies on. clean_coverage is exactly 1.0 for all eleven systems, so H2 -- the clean-coverage non-inferiority guard -- reports [0.0, 0.0] and PASS, which is a guard no system in the panel can fail. correct_cannot_check_rate is also 1.0 for all eleven, so H3 reports [0.0, 0.0] and NOT_SUPPORTED, a negative that records the benchmark rather than the systems. Saturation is not a bias toward optimism: in the same panel it produced one PASS and one NOT_SUPPORTED. The later identifiable V3 panel repairs correct_cannot_check_rate, which varies there, and leaves clean_coverage saturated at 1.0 across every system. Only false_promotion_rate discriminates in either panel, ranging 0.0 to 0.917, and H1's interval is earned.",
+          "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report -- and give it the saturation check as its cheapest leg, since that one needs only the panel and would have refused H2 in both constructions. Then the harder leg the H3 lesson actually names: labels provably unrecoverable from evidence-list length, missingness pattern, template or source count. A clean-coverage guard also needs a construction on which some system fails it; until one exists, non-inferiority on that metric cannot be claimed from a panel where every system is perfect."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -800,8 +806,8 @@
           "findings": [],
           "gate_id": "P7-U-T2",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json"
         },
         {
           "findings": [],
@@ -857,16 +863,6 @@
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
           "statement": "False closure and unnecessary recomputation cannot be traded off without the pipeline corpus and a cost model.",
           "unblock": "Instrument both together so a false-closure reduction bought with runaway recomputation is visible as a failure."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P7-U-T2",
-          "refs": [
-            "#655"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The composition half is now derived rather than standing beside the theorem: all 25 bridged and 25 unbridged committed rows are discharged as ground instances, the unit rule as the closure lift on all 320 rows, and all seven published counts recompute. What this exposes is how little that target contains. Instrumenting the shipped runner shows it evaluates compose at 2 of its 8 possible argument triples -- (True, True, False) and (True, True, True) -- so both legs are constant and the 25 successes and 25 countermodels are two values of bridge_match counted 25 times each by a 5x5 donor loop in which the donor never enters the function. Deriving 50 instances of two evaluations is not deriving 50 facts.",
-          "unblock": "Give the finite result something to be an instance of. That means varying the arguments the shipped loop holds constant -- a composition row where a leg does not carry is not currently evaluated at all -- and interpreting the five donor families as models of the proved primitives so the donor loop stops being a multiplier. Until then this terminal can only be discharged against a target of two evaluations."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1623,11 +1619,12 @@
       "issue": 652,
       "paper_id": "P4",
       "refs": [
-        "#652"
+        "#652",
+        "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all — that is what H3 taught.",
-      "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report."
+      "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all -- that is what H3 taught. A partial one now exists and finds the lesson was learned too narrowly. H3's saturation was diagnosed as label recoverability and repaired on that axis, but saturation is checkable directly from any published panel: read each metric across every system and ask whether it takes more than one value. Done that way (P4_PANEL_RESOLUTION_2026-08-22), the published V2 panel decides two of its three hypotheses on metrics no system varies on. clean_coverage is exactly 1.0 for all eleven systems, so H2 -- the clean-coverage non-inferiority guard -- reports [0.0, 0.0] and PASS, which is a guard no system in the panel can fail. correct_cannot_check_rate is also 1.0 for all eleven, so H3 reports [0.0, 0.0] and NOT_SUPPORTED, a negative that records the benchmark rather than the systems. Saturation is not a bias toward optimism: in the same panel it produced one PASS and one NOT_SUPPORTED. The later identifiable V3 panel repairs correct_cannot_check_rate, which varies there, and leaves clean_coverage saturated at 1.0 across every system. Only false_promotion_rate discriminates in either panel, ranging 0.0 to 0.917, and H1's interval is earned.",
+      "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report -- and give it the saturation check as its cheapest leg, since that one needs only the panel and would have refused H2 in both constructions. Then the harder leg the H3 lesson actually names: labels provably unrecoverable from evidence-list length, missingness pattern, template or source count. A clean-coverage guard also needs a construction on which some system fails it; until one exists, non-inferiority on that metric cannot be claimed from a panel where every system is perfect."
     },
     {
       "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -1727,18 +1724,6 @@
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P7-U-T2",
-      "issue": 655,
-      "paper_id": "P7",
-      "refs": [
-        "#655"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The composition half is now derived rather than standing beside the theorem: all 25 bridged and 25 unbridged committed rows are discharged as ground instances, the unit rule as the closure lift on all 320 rows, and all seven published counts recompute. What this exposes is how little that target contains. Instrumenting the shipped runner shows it evaluates compose at 2 of its 8 possible argument triples -- (True, True, False) and (True, True, True) -- so both legs are constant and the 25 successes and 25 countermodels are two values of bridge_match counted 25 times each by a 5x5 donor loop in which the donor never enters the function. Deriving 50 instances of two evaluations is not deriving 50 facts.",
-      "unblock": "Give the finite result something to be an instance of. That means varying the arguments the shipped loop holds constant -- a composition row where a leg does not carry is not currently evaluated at all -- and interpreting the five donor families as models of the proved primitives so the donor loop stops being a multiplier. Until then this terminal can only be discharged against a target of two evaluations."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
       "gate_id": "P7-U-T5",
       "issue": 655,
       "paper_id": "P7",
@@ -1777,13 +1762,13 @@
   "work_queue_by_actionability": {
     "BLOCKED_ON_CAMPAIGN": 22,
     "BLOCKED_ON_NEW_ARENA": 14,
-    "BLOCKED_ON_PROOF": 6,
+    "BLOCKED_ON_PROOF": 5,
     "BLOCKED_ON_UPSTREAM": 3
   },
   "work_queue_by_responsibility": {
     "IMPLEMENTATION_OR_ENVIRONMENT": 3,
     "MEASUREMENT_OR_EVALUATOR": 19,
-    "OBJECTIVE_OR_MODEL_CLASS": 4,
+    "OBJECTIVE_OR_MODEL_CLASS": 3,
     "REPRESENTATION_OR_INTERFACE": 1,
     "SEARCH_OR_EVIDENCE": 18
   }

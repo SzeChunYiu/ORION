@@ -108,16 +108,18 @@ result and is distinct from both a pass and a build failure.
 | P3 | #651 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
 | P4 | #652 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
 | P5 | #653 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 0/5 |
-| P6 | #654 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
-| P7 | #655 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
-| P8 | #656 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
+| P6 | #654 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
+| P7 | #655 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
+| P8 | #656 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 1/5 |
 | P9 | #662 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 1/6 |
 | P10 | #663 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 1/5 |
 
-**2 of 51 gates pass.** Both are scope gates — `P9-U-T6` and `P10-U-T5` — and
+**7 of 51 gates pass.** Two are scope gates — `P9-U-T6` and `P10-U-T5` — and
 they pass because those two papers do keep their advertised claims inside what
-they earned. Nothing else is discharged, and the thirteen-check battery is clean:
-no substitution is currently being made anywhere in the ledger.
+they earned. Five are formal-generalization gates discharged by mechanized
+theorems: `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2` and `P8-U-T1`. Nothing
+empirical is discharged anywhere, and the fourteen-check battery is clean: no
+substitution is currently being made in the ledger.
 
 The full battery is clean *and* the report still blocks. That combination is the
 object working as intended: "nobody is cheating" and "nothing is established" are
@@ -137,23 +139,29 @@ own frozen taxonomy in
 unblock it and how near that is. `HC-SUP-UNCLASSIFIED-BLOCKER` fails on a blocked
 gate with no recorded cause, so the ledger cannot quietly go back to one word.
 
-Forty-five of the fifty-one registered terminals are blocked, and all forty-five
-are classified. Six are discharged: `P9-U-T6` and `P10-U-T5` on scope discipline,
-and `P6-U-T1`, `P6-U-T2`, `P7-U-T1` and `P8-U-T1` on mechanized theorems, which is
-what a `FORMAL_GENERALIZATION` terminal admits. Those four had been blocked on
-blocker text asking for evaluator custody; custody is a precondition of an
-empirical campaign, and requiring it of a proof blocks every provable gate on a
-category error. The queue, nearest first:
+Forty-four of the fifty-one registered terminals are blocked, and all forty-four
+are classified. Seven are discharged: `P9-U-T6` and `P10-U-T5` on scope
+discipline, and `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2` and `P8-U-T1` on
+mechanized theorems, which is what a `FORMAL_GENERALIZATION` terminal admits.
+Four of those five had been blocked on blocker text asking for evaluator custody;
+custody is a precondition of an empirical campaign, and requiring it of a proof
+blocks every provable gate on a category error. `P7-U-T2` was not: it was blocked
+a second time *after* its derivation existed, because instrumenting the finite
+result it derived showed the shipped composition loop evaluating its rule at two
+of eight argument triples with the donor never entering the function. It moved
+only once the five donor families were interpreted as transformations with their
+own hand-off contracts, so the intermediate-contract test is computed from the
+pair rather than typed by the caller. The queue, nearest first:
 
 | Actionability | Terminals | Meaning |
 | --- | --- | --- |
 | `BLOCKED_ON_UPSTREAM` | 3 | another lane's in-flight work, nameable by PR |
 | `BLOCKED_ON_CAMPAIGN` | 22 | arena and comparator exist; no protected run scored |
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
-| `BLOCKED_ON_PROOF` | 6 | needs a mechanized theorem from primitive semantics |
+| `BLOCKED_ON_PROOF` | 5 | needs a mechanized theorem from primitive semantics |
 
 By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
-`OBJECTIVE_OR_MODEL_CLASS` 4, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
+`OBJECTIVE_OR_MODEL_CLASS` 3, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
 `REPRESENTATION_OR_INTERFACE` 1.
 
 These counts are pinned against the generated report by
@@ -221,10 +229,16 @@ promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
   old H3 slice was non-identifying, which is why the issue asks for a new one.
 - **P5 #653** — everything downstream of a matched baseline. The `21/24`
   attribution record's own `baseline_pressure` layer is `CANNOT_CHECK`.
-- **P6 #654** / **P7 #655** / **P8 #656** — `FORMAL_GENERALIZATION` gates need a
-  mechanized theorem from primitive semantics. The existing checkers are
-  exhaustive finite enumeration, which is what the issues ask to *stop* being the
-  primary authority.
+- **P6 #654** / **P7 #655** / **P8 #656** — the `FORMAL_GENERALIZATION` gates
+  these three issues raise are the only ones now discharged, on mechanized
+  theorems over uninterpreted sorts rather than on the exhaustive finite
+  enumeration the issues asked to stop being the primary authority. What holds
+  each paper's terminal is everything else: a naturalistic arena, a cost model,
+  and independent reproduction. P7's second gate took two attempts — the first
+  derivation was refused because the finite result it derived exercised its own
+  composition rule at two of eight argument triples — and the record of what its
+  published counts do and do not carry is in
+  `papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json`.
 - **P9 #662** — the direct open-weight scaling run and its second family. The
   scope gate already passes.
 - **P10 #663** — native-state extraction and verified solve benefit. The scope
