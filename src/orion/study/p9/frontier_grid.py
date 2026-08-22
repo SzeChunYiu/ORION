@@ -179,12 +179,21 @@ CHECKPOINT_RUNTIMES = ("torch", "transformers", "llama_cpp", "onnxruntime")
 def probe_environment(repo_root: Path) -> dict[str, object]:
     """Measure, on this machine, the facts :data:`ENVIRONMENT_BOUNDARY` declares.
 
-    Deliberately hermetic. Network reachability is *not* probed: a check that
+    Deliberately hermetic. Network reachability is *not* probed here: a check that
     reaches outward would make this function's result depend on the weather, and
     the two local facts are already jointly sufficient --- with no checkpoint and
     no runtime to load one, no model-scale ladder can be walked here whatever a
-    provider would have answered. The provider entry is therefore reported as
-    declared-only and labelled as such, rather than guessed at.
+    provider would have answered.
+
+    The provider half is not left as an assertion either. It was measured once and
+    recorded, dated and with its method, in
+    ``papers/paper-09-structured-epistemic-learning/evidence/
+    P9_U_T3_ACQUISITION_REACHABILITY_2026-08-22.json``: every host distributing
+    open-weight checkpoints is unreachable through this environment's proxy while
+    the python package index is reachable. So a runtime could be installed and the
+    weights it would load cannot be obtained --- the blocker is acquisition of the
+    ladder, not tooling, which is a sharper statement than "no provider access"
+    and a different one from "no way to run anything".
     """
 
     checkpoints: list[str] = []
@@ -208,7 +217,11 @@ def probe_environment(repo_root: Path) -> dict[str, object]:
         "checkpoints_found": checkpoints,
         "loading_runtimes_present": runtimes,
         "grid_executable_here": executable,
-        "outbound_provider_access": "not probed; local facts are jointly sufficient",
+        "outbound_provider_access": (
+            "not probed here; measured once and recorded in "
+            "papers/paper-09-structured-epistemic-learning/evidence/"
+            "P9_U_T3_ACQUISITION_REACHABILITY_2026-08-22.json"
+        ),
         "why": (
             "a model-scale ladder needs a checkpoint and something able to load it; "
             "neither is present"
