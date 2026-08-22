@@ -1,0 +1,105 @@
+name: orion-qg-qg42b-pytket-all-collisions
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/orion-qg-qg42b-pytket-all-collisions.yml'
+      - 'development/orion-qg-regime-geometry/QG42B_*'
+      - 'development/orion-qg-regime-geometry/qg42b_*'
+      - 'research/extensions/orion-qg/qg42b_*'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg42b-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  complete-collision-transfer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned production compiler
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'pytket==2.18.1'
+          python - <<'PY'
+          from importlib.metadata import version
+          assert version('pytket')=='2.18.1'
+          PY
+      - name: Compile QG-42b lane
+        run: |
+          python -m py_compile research/extensions/orion-qg/qg42b_build_all_collision_panel.py
+          python -m py_compile research/extensions/orion-qg/qg42b_pytket_all_collisions.py
+          python -m py_compile development/orion-qg-regime-geometry/qg42b_generic_verify.py
+          python -m py_compile development/orion-qg-regime-geometry/qg42b_native_verify.py
+      - name: Build complete compiler-blind collision universe
+        run: |
+          set -o pipefail
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          p=Path('research/extensions/orion-qg/qg42b_build_all_collision_panel.py')
+          t=ast.parse(p.read_text())
+          bad=[]
+          for n in ast.walk(t):
+            if isinstance(n,ast.Import): bad += [a.name for a in n.names if a.name.startswith('pytket')]
+            if isinstance(n,ast.ImportFrom) and (n.module or '').startswith('pytket'): bad.append(n.module)
+          assert not bad,bad
+          PY
+          mkdir -p artifacts
+          python research/extensions/orion-qg/qg42b_build_all_collision_panel.py | tee artifacts/orion-qg-qg42b-panel.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg42b-panel.json').read_text())
+          assert d['terminal']=='QG42B_PANEL_FROZEN_BEFORE_ROUTING'
+          assert d['labelled_graphs_enumerated']==6435
+          assert d['isomorphism_classes_total']==24
+          assert d['collision_fiber_count']==5
+          assert d['complete_collision_pair_count']>0
+          assert d['unique_graphs_in_collision_universe']>0
+          assert d['PYTKET_IMPORTED'] is False
+          PY
+      - name: Execute complete held-out production transfer
+        run: |
+          set -o pipefail
+          python research/extensions/orion-qg/qg42b_pytket_all_collisions.py | tee artifacts/orion-qg-qg42b-summary.log
+      - name: Independent complete-universe rederivation
+        run: |
+          set -o pipefail
+          python development/orion-qg-regime-geometry/qg42b_generic_verify.py | tee artifacts/orion-qg-qg42b-generic.log
+      - name: Native scoped authority gate
+        run: |
+          set -o pipefail
+          python development/orion-qg-regime-geometry/qg42b_native_verify.py | tee artifacts/orion-qg-qg42b-native.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('artifacts/orion-qg-qg42b-pytket.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg42b-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg42b-native-verification.json').read_text())
+          assert g['all_checks'] is True and n['all_checks'] is True
+          assert s['BOUNDED_PYTKET_ALL_COLLISIONS_AUTHORITY'] is True
+          assert n['BOUNDED_PYTKET_ALL_COLLISIONS_AUTHORITY'] is True
+          for k in ('ALL_CIRCUIT_THEOREM','COMPARATIVE_COMPILER_PERFORMANCE','HARDWARE_NOISE_OR_FT_CLAIM','physical_quantum_advantage_claim','novelty_authority'):
+            assert s[k] is False
+          PY
+      - name: Deterministic production replay
+        run: |
+          cp artifacts/orion-qg-qg42b-pytket.json artifacts/qg42b-first.json
+          python research/extensions/orion-qg/qg42b_pytket_all_collisions.py --output artifacts/qg42b-second.json >/dev/null
+          cmp artifacts/qg42b-first.json artifacts/qg42b-second.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg-qg42b-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg42b-*
+            artifacts/qg42b-*.json
+          if-no-files-found: warn
