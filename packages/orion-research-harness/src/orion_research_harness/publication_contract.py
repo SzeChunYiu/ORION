@@ -151,22 +151,39 @@ def validate_q3_publication_contract() -> None:
             "Q3 contract drift: invalid reasoner content no longer maps to HOST_CAPABILITY_FAILED"
         )
 
-    # Campaign records keep the paper's exact schemas and deserialize only with
-    # all authority-grant booleans false.
+    # Campaign records keep the paper's exact schemas. CampaignState is the
+    # persisted/read record and rejects any true authority field on from_dict;
+    # decision/transition are serialized from typed in-memory objects and their
+    # unsigned payloads always inject the all-false authority surface.
     if not _campaign_protocol._AUTHORITY_FIELDS:
         raise RuntimeError("Q3 contract drift: campaign authority field set is empty")
-    for cls, schema in (
-        (CampaignState, CAMPAIGN_STATE_SCHEMA),
-        (CampaignDecision, CAMPAIGN_DECISION_SCHEMA),
-        (CampaignTransition, CAMPAIGN_TRANSITION_SCHEMA),
+    for schema in (
+        CAMPAIGN_STATE_SCHEMA,
+        CAMPAIGN_DECISION_SCHEMA,
+        CAMPAIGN_TRANSITION_SCHEMA,
     ):
         if not isinstance(schema, str) or not schema:
-            raise RuntimeError(f"Q3 contract drift: invalid campaign schema for {cls.__name__}")
-        _require_source_tokens(
-            cls.from_dict,
-            label=f"{cls.__name__}.from_dict",
-            tokens=("_require_authority_false",),
-        )
+            raise RuntimeError("Q3 contract drift: empty campaign schema")
+    _require_source_tokens(
+        CampaignState.from_dict,
+        label="CampaignState.from_dict",
+        tokens=("_require_authority_false",),
+    )
+    _require_source_tokens(
+        CampaignState.unsigned,
+        label="CampaignState.unsigned",
+        tokens=("_authority_false",),
+    )
+    _require_source_tokens(
+        CampaignDecision.unsigned,
+        label="CampaignDecision.unsigned",
+        tokens=("_authority_false",),
+    )
+    _require_source_tokens(
+        CampaignTransition.unsigned,
+        label="CampaignTransition.unsigned",
+        tokens=("_authority_false",),
+    )
 
     # Protected reference custody is a declared-surface scan, not general taint
     # tracking. Bind exactly the path/blob/payload/script checks the paper states.
