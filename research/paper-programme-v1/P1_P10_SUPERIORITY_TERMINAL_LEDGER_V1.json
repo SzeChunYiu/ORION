@@ -28,8 +28,8 @@
             "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
           "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
-          "statement": "The 2019 replication cannot run through this evaluator at all. source_year == 2020, the exact retained-failure list ['MEAS-P2','BOUND-P1'] and n_episodes == 48 are hard-wired; a 2019 corpus identical in every other respect returns P1_R6_CANNOT_CHECK_FIXED_DATA with zero episodes executed and no exception raised. No 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
-          "unblock": "Read year, retained-route list and expected episode count from the fixed-source JSON, which already carries expected_episode_count, rather than from literals. Then build the 2019 corpus and run it with an independent scorer on a live/open-weight host."
+          "statement": "The evaluator no longer refuses another year by construction. The primary year is read from FIXED_SOURCE_SET_V1.json, which has always carried primary_year, rather than written as the literal 2020 in two row checks; the expected episode count was already read from that file. And being handed a corpus built from different sources is now a determinate refusal, P1_R6_REFUSED_NOT_THE_FROZEN_SOURCE_SET, rather than a frozen-corpus CANNOT_CHECK reported with zero episodes scored and nothing raised -- the evaluator can tell that it was given a different object, so saying it could not tell was the wrong report. A frozen corpus that is merely incomplete still reports as undetermined, which is what that terminal is for. What remains is external and unchanged: no 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
+          "unblock": "Build the 2019 corpus -- the evaluator will now run it -- and score it with an independent scorer on a live or open-weight host."
         },
         {
           "actionability": "BLOCKED_ON_UPSTREAM",

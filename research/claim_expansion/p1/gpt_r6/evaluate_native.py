@@ -53,6 +53,17 @@ ALL_GOLD_CLASSES = SUBSTANTIVE | {CONTROL, UNRESOLVED}
 EXPECTED_PAIRS = {r["source_id"]: r for r in FIXED["pair_sources"]}
 EXPECTED_UNRES = {r["source_id"]: r for r in FIXED["unresolved_sources"]}
 
+#: The primary year, read from the frozen source set rather than written here.
+#:
+#: This was the literal ``2020`` in two row checks. A replication corpus drawn
+#: from any other year -- the obvious next experiment, and the one #723 asks for
+#: -- therefore could not run through this evaluator at all: every row failed
+#: the year check, every source id missed ``EXPECTED_PAIRS``, and the result came
+#: back as a frozen-corpus CANNOT_CHECK with zero episodes scored and nothing
+#: raised. The year the primary was drawn from is a property of the source set,
+#: and the source set already declares it.
+PRIMARY_YEAR = int(FIXED["primary_year"])
+
 # P1-U-T3 repair 3. The frozen corpus mints episode ids as
 # f"R5-{query_id}-{suffix}" (gpt_r5/build_fixed_corpus.py:172-180), so the
 # trailing suffix *is* the pair role. Any payload carrying the episode id
@@ -138,7 +149,7 @@ def validate_fixed_corpus(
             errors.append(f"{sid} query mismatch")
         if str(row.get("adverse_class")) != str(expected["class"]):
             errors.append(f"{sid} class mismatch")
-        if int(row.get("source_year", -1)) != 2020:
+        if int(row.get("source_year", -1)) != PRIMARY_YEAR:
             errors.append(f"{sid} wrong year")
         cls = str(row.get("adverse_class", ""))
         classes[cls] += 1
@@ -165,7 +176,7 @@ def validate_fixed_corpus(
         seen_sources.add(sid)
         if str(row.get("query_id")) != str(expected["query_id"]):
             errors.append(f"{sid} query mismatch")
-        if int(row.get("source_year", -1)) != 2020:
+        if int(row.get("source_year", -1)) != PRIMARY_YEAR:
             errors.append(f"{sid} wrong year")
         domains.add(str(row.get("actual_domain", "")))
         try:
@@ -176,6 +187,22 @@ def validate_fixed_corpus(
         if eid in seen_episodes:
             errors.append(f"duplicate episode {eid}")
         seen_episodes.add(eid)
+
+    # Whether this is the frozen corpus at all, which is not the same question as
+    # whether the frozen corpus is complete. A replication drawn from another year
+    # shares no source ids with the freeze, so every row fell through the
+    # ``EXPECTED_PAIRS.get(sid) is None`` continue above, nothing was scored, and
+    # the result was reported as a frozen-corpus CANNOT_CHECK -- an undetermined
+    # measurement. It is not undetermined: the evaluator was handed a different
+    # object and can say so. ``DISJOINT`` is a determinate refusal.
+    presented = pair_sources | unres_sources
+    expected = set(EXPECTED_PAIRS) | set(EXPECTED_UNRES)
+    if presented == expected:
+        source_set = "FROZEN"
+    elif presented and not (presented & expected):
+        source_set = "DISJOINT"
+    else:
+        source_set = "PARTIAL"
 
     min_per_class = int(FIXED["minimum_pair_sources_per_substantive_class"])
     checks = {
@@ -194,6 +221,8 @@ def validate_fixed_corpus(
         "errors": errors,
         "class_counts": dict(sorted(classes.items())),
         "n_domains": len(domains),
+        "source_set": source_set,
+        "primary_year": PRIMARY_YEAR,
     }
 
 
@@ -483,7 +512,7 @@ def evaluate(
     *,
     payload_sink: dict[str, list[dict[str, str]]] | None = None,
 ) -> dict[str, object]:
-    """Score the frozen 2020 primary.
+    """Score the frozen primary.
 
     ``payload_sink``, when given, receives the raw candidate-visible provider
     payloads keyed ``"<episode_id>::<arm>"``.  The predecessor guard kept only a
@@ -496,7 +525,11 @@ def evaluate(
             "schema": "P1U.NativeOrionResult.v1",
             "data": data,
             "policy_outcomes_generated": False,
-            "terminal": "P1_R6_CANNOT_CHECK_FIXED_CORPUS",
+            "terminal": (
+                "P1_R6_REFUSED_NOT_THE_FROZEN_SOURCE_SET"
+                if data["source_set"] == "DISJOINT"
+                else "P1_R6_CANNOT_CHECK_FIXED_CORPUS"
+            ),
         }
 
     rows: list[dict[str, object]] = []
