@@ -48,7 +48,6 @@ X1B_K3_SCALAR_CONFIRM_CAMPAIGN_MANIFEST = {
                 ],
                 "evidence_rules": [
                     {"evidence_key": "X1B_K3_FINITE_CONFIRMED", "path": ["finite_confirmatory_reconstruction"], "transform": "BOOL_YES_NO"},
-                    {"evidence_key": "X1B_K3_CONSISTENT_ORBITS", "path": ["consistent_common_rhs_orbit_count"], "transform": "STRING"},
                 ],
             },
             "next_phase": "FINITE_CONFIRMED",
