@@ -1,0 +1,336 @@
+{
+ "accepting_states": [
+  387,
+  451,
+  579,
+  707,
+  835,
+  899
+ ],
+ "authority_ceiling": "NOT_R6",
+ "caps_disclosed": [
+  "runtime cap < 15 minutes, single process, wall clock",
+  "horizons 1..12 only; equivalence beyond that horizon is not decided",
+  "one frozen cost-table key; no other key attempted"
+ ],
+ "chemistry_sources_read": false,
+ "committed_state_count": 1024,
+ "cost_mergeability_reduces_to_feasibility": {
+  "conclusion": "cost is state-independent, so residual cost functions differ only through admissibility; the letters span the full state group, so every pair of states is separated by a word; therefore no two states may be merged and 1024 is minimal for cost as well as for feasibility",
+  "every_state_separated_from_every_other": true,
+  "letters_span_rank": 10,
+  "reachable_subgroup_order": 1024,
+  "states_not_separated": []
+ },
+ "costs_are_state_independent": {
+  "checked": "the committed table is a single length-STATES array of per-delta costs; there is no state axis for a cost to depend on",
+  "state_count": 1024,
+  "table_is_indexed_by_delta_only": true,
+  "table_length": 1024
+ },
+ "criterion_binding": [
+  {
+   "applied_criterion_digest": "f3c3338e4eb057fa8fb4ea0593d1fdf60513ab0a8bf76a4e2c35c6b5840c4e42",
+   "criterion": "protocol section 6, QG27_COST_DP_IS_ALREADY_MINIMAL",
+   "deviation": {
+    "description": "protocol section 4's cost-equivalence relation normalises each state by its own first-horizon value; the applied relation requires equal absolute cost-to-go at every horizon",
+    "rationale": "the frozen relation is refuted by counterexample, not by preference: it places two states with different optimal costs in one class, and merging them changes the computed optimum. Cost-to-go is flat in the horizon here because extra steps never help with non-negative costs, so every finite state normalises to all-zeros and the frozen relation retains no information at all. The applied criterion abandons horizon profiles entirely: cost is state-independent in this DP, so mergeability reduces to the feasibility language QG-26 already settled"
+   },
+   "exhibited_refutation_of_the_frozen_criterion": {
+    "difference": 30,
+    "optimal_cost_to_go_a": 0,
+    "optimal_cost_to_go_b": 30,
+    "refuted": true,
+    "state_a": 387,
+    "state_b": 0,
+    "why": "the frozen section 4 relation places these two states in one class, and their optimal cost-to-go differs, so merging them changes the computed optimum. The relation subtracts each state's own first-horizon value, and cost-to-go is flat in the horizon for this automaton because extra steps never help when every letter cost is non-negative -- so every finite state normalises to all-zeros and the relation retains no information."
+   },
+   "exhibited_rejection": {
+    "construction": "the committed letter set restricted to letters whose top seven bits are zero, so the letters span a proper subgroup",
+    "every_state_separated": false,
+    "letters_span_rank": 3,
+    "reachable_subgroup_order": 8,
+    "shows": "the applied criterion still returns not-minimal on an automaton that is not minimal, so it did not stop discriminating",
+    "terminal_the_applied_criterion_returns": "QG27_COST_REDUCTION_CANDIDATE__UNPROVEN_BEYOND_HORIZON"
+   },
+   "exhibited_rejection_ref": "QG27_COST_MINIMALITY_RESULTS.json#exhibited_rejection -- the applied criterion returns not-minimal on a deliberately rank-deficient letter set",
+   "frozen_criterion_digest": "8bbb3f21d9a55ab076e5b9f91e98fe372c01015247639721cf313e5f17bb5ecf",
+   "reported_verdict": "PASS",
+   "verdict_under_frozen_criterion": "FAIL"
+  }
+ ],
+ "distinct_finite_costs": 17,
+ "donor_search": [
+  {
+   "asserts_novelty": false,
+   "claim": "the cost-merge relation of the committed R6I min-plus DP",
+   "inherits": "weighted-automaton minimization over the tropical semiring (Mohri's pushing); donor property, no novelty claimed"
+  }
+ ],
+ "exhibited_rejection": {
+  "construction": "the committed letter set restricted to letters whose top seven bits are zero, so the letters span a proper subgroup",
+  "every_state_separated": false,
+  "letters_span_rank": 3,
+  "reachable_subgroup_order": 8,
+  "shows": "the applied criterion still returns not-minimal on an automaton that is not minimal, so it did not stop discriminating",
+  "terminal_the_applied_criterion_returns": "QG27_COST_REDUCTION_CANDIDATE__UNPROVEN_BEYOND_HORIZON"
+ },
+ "frozen_criterion_refutation": {
+  "difference": 30,
+  "optimal_cost_to_go_a": 0,
+  "optimal_cost_to_go_b": 30,
+  "refuted": true,
+  "state_a": 387,
+  "state_b": 0,
+  "why": "the frozen section 4 relation places these two states in one class, and their optimal cost-to-go differs, so merging them changes the computed optimum. The relation subtracts each state's own first-horizon value, and cost-to-go is flat in the horizon for this automaton because extra steps never help when every letter cost is non-negative -- so every finite state normalises to all-zeros and the relation retains no information."
+ },
+ "frozen_key": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ ],
+ "frozen_key_is_the_only_key_used": true,
+ "g3_timing_note": "wall time below is a measurement of THIS implementation and appears in no argument. No complexity or hardness inference is drawn from it.",
+ "g4_no_efficiency_claim": "no reduction is claimed. Protocol section 5 requires an exhibited quotient with identical optima on every declared instance before any efficiency claim, and this lane exhibits none.",
+ "headline_in_plain_words": "This lane's own frozen definition of cost-equivalence was wrong, and running it is what found that. Under the applied (absolute) relation the answer to QG-26's deferred question, for this one frozen key and these horizons, is reported in `runs`. No reduction is claimed: protocol section 5 requires an exhibited quotient with identical optima and this lane exhibits none.",
+ "horizons_examined": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
+ ],
+ "letters_with_finite_cost": 358,
+ "novelty_authority": false,
+ "physical_quantum_advantage_claim": false,
+ "protected_subject_read": false,
+ "protocol_sha256": "8d1b682ee9615314b3e32bccba48f9de570501c3be56bd63d62bc8acf2ec421e",
+ "result_digest": "2bd405b14e1f7a2ed79fe44154078580f210541eafdc96b1c4bd68cf43e9ebb1",
+ "runs": {
+  "absolute_cost_relation": {
+   "class_count": 29,
+   "classes_with_more_than_one_state": 28,
+   "example_merged_pairs": [
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     6,
+     10
+    ],
+    [
+     7,
+     11
+    ]
+   ],
+   "largest_class_size": 154
+  },
+  "absolute_single_target_387": {
+   "class_count": 35,
+   "classes_with_more_than_one_state": 33,
+   "example_merged_pairs": [
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     8,
+     11
+    ],
+    [
+     10,
+     42
+    ]
+   ],
+   "largest_class_size": 144
+  },
+  "absolute_single_target_451": {
+   "class_count": 35,
+   "classes_with_more_than_one_state": 33,
+   "example_merged_pairs": [
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     51
+    ],
+    [
+     7,
+     39
+    ],
+    [
+     8,
+     12
+    ]
+   ],
+   "largest_class_size": 144
+  },
+  "absolute_single_target_579": {
+   "class_count": 35,
+   "classes_with_more_than_one_state": 33,
+   "example_merged_pairs": [
+    [
+     0,
+     8
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     11
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     6,
+     22
+    ]
+   ],
+   "largest_class_size": 144
+  },
+  "absolute_single_target_707": {
+   "class_count": 35,
+   "classes_with_more_than_one_state": 33,
+   "example_merged_pairs": [
+    [
+     0,
+     8
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     51
+    ],
+    [
+     4,
+     12
+    ],
+    [
+     5,
+     13
+    ]
+   ],
+   "largest_class_size": 144
+  },
+  "absolute_single_target_835": {
+   "class_count": 35,
+   "classes_with_more_than_one_state": 33,
+   "example_merged_pairs": [
+    [
+     0,
+     12
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     6,
+     22
+    ]
+   ],
+   "largest_class_size": 144
+  },
+  "absolute_single_target_899": {
+   "class_count": 35,
+   "classes_with_more_than_one_state": 33,
+   "example_merged_pairs": [
+    [
+     0,
+     12
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     23
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     6,
+     18
+    ]
+   ],
+   "largest_class_size": 144
+  },
+  "frozen_section4_relation": {
+   "class_count": 3,
+   "classes_with_more_than_one_state": 3,
+   "example_merged_pairs": [
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     95,
+     105
+    ]
+   ],
+   "largest_class_size": 837
+  }
+ },
+ "schema": "ORIONQG.QG27.CostMinimality.v1",
+ "scope_limit": "this is the time-invariant automaton obtained by freezing ONE cost-table key. It says nothing about the key-varying DP the programme actually runs, and nothing about QG-26's feasibility result, which concerns a different language and is untouched.",
+ "terminal": "QG27_COST_DP_IS_ALREADY_MINIMAL",
+ "terminal_under_the_frozen_criterion": "QG27_COST_REDUCTION_CANDIDATE__UNPROVEN_BEYOND_HORIZON",
+ "why_both_horizon_scans_are_beside_the_point": "equal cost-to-go, normalised or absolute, is NECESSARY for merging and not sufficient: it says what finishing costs, never where a state lands. The frozen relation additionally normalises that away and is refuted by exhibited counterexample. Both scans are reported because the lane ran them, not because either answers the question."
+}
