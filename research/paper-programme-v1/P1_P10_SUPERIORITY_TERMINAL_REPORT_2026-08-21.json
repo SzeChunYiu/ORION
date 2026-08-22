@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "4321dc81920b22af8eeaccd37a818d46b3099061444b08537fbbe5176b7e6e1b",
+  "content_digest": "d03996f54e169d94f892f3b9b2d6451b32e1db608f03e15a7c71f572f2a5b699",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -753,6 +753,11 @@
           "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json",
           "grade": "MECHANIZED_THEOREM",
           "terminal": "REOPENING_THEOREMS_DISCHARGED__COMMITTED_IMPLEMENTATION_VERIFIED"
+        },
+        {
+          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json",
+          "grade": "MECHANIZED_THEOREM",
+          "terminal": "CERTIFICATE_LIFT_DERIVED_FROM_STATED_PRIMITIVES"
         }
       ],
       "strongest_grade": "MECHANIZED_THEOREM",
@@ -787,8 +792,8 @@
             "#654"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
-          "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
+          "statement": "The certificate lift now follows from stated primitives rather than standing beside them: scientific_admissible is derived on all 1,536 states of the embedding cube, both verdicts present, and three independent changes to the shipped rule each break the derivation (P6_LIFT_INTERPRETATION_2026-08-22). What is still not derived is the revalidation model behind the 155 full restorations and 1,055 strict-subset failures, which is a separate object from the lift, and the custody question the derivation shares with P6-U-T4: the primitives, the derivation and its tests were written in the same lane as the model.",
+          "unblock": "Derive the revalidation model the same way. Its rule is minimal-restoration rather than admissibility, so it needs the reopening theorems already proved -- soundness, completeness and minimality of the reopened set -- instantiated at the certificate level, with the 155 restorations as soundness instances and the 1,055 strict-subset failures as necessity witnesses of minimality. Then have someone outside this lane check both interpretations, which is P6-U-T4 and is not reachable from inside it."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1781,8 +1786,8 @@
         "#654"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
-      "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
+      "statement": "The certificate lift now follows from stated primitives rather than standing beside them: scientific_admissible is derived on all 1,536 states of the embedding cube, both verdicts present, and three independent changes to the shipped rule each break the derivation (P6_LIFT_INTERPRETATION_2026-08-22). What is still not derived is the revalidation model behind the 155 full restorations and 1,055 strict-subset failures, which is a separate object from the lift, and the custody question the derivation shares with P6-U-T4: the primitives, the derivation and its tests were written in the same lane as the model.",
+      "unblock": "Derive the revalidation model the same way. Its rule is minimal-restoration rather than admissibility, so it needs the reopening theorems already proved -- soundness, completeness and minimality of the reopened set -- instantiated at the certificate level, with the 155 restorations as soundness instances and the 1,055 strict-subset failures as necessity witnesses of minimality. Then have someone outside this lane check both interpretations, which is P6-U-T4 and is not reachable from inside it."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",

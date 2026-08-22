@@ -412,8 +412,8 @@
             "#654"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
-          "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
+          "statement": "The certificate lift now follows from stated primitives rather than standing beside them: scientific_admissible is derived on all 1,536 states of the embedding cube, both verdicts present, and three independent changes to the shipped rule each break the derivation (P6_LIFT_INTERPRETATION_2026-08-22). What is still not derived is the revalidation model behind the 155 full restorations and 1,055 strict-subset failures, which is a separate object from the lift, and the custody question the derivation shares with P6-U-T4: the primitives, the derivation and its tests were written in the same lane as the model.",
+          "unblock": "Derive the revalidation model the same way. Its rule is minimal-restoration rather than admissibility, so it needs the reopening theorems already proved -- soundness, completeness and minimality of the reopened set -- instantiated at the certificate level, with the 155 restorations as soundness instances and the 1,055 strict-subset failures as necessity witnesses of minimality. Then have someone outside this lane check both interpretations, which is P6-U-T4 and is not reachable from inside it."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -473,6 +473,12 @@
           "grade": "MECHANIZED_THEOREM",
           "note": "Six theorems on change propagation over dependency graphs of any size, cyclic or not: reopening soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation. Discharged over an uninterpreted node sort with reachability axiomatised as a well-founded reflexive-transitive closure. The specification is written independently of P6's implementation, and the committed descendants is then compared against it exhaustively over every directed graph on four nodes and every changed subset: 61,440 of 61,440 agree, 51,712 of them with a non-empty reopening. The implementation is correct. That had not previously been established, because check_reopening asserts set-algebra tautologies and passes with descendants replaced by a constant.",
           "terminal": "REOPENING_THEOREMS_DISCHARGED__COMMITTED_IMPLEMENTATION_VERIFIED"
+        },
+        {
+          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json",
+          "grade": "MECHANIZED_THEOREM",
+          "note": "scientific_admissible derived from three primitives stated independently of it -- a donor certificate establishes only what its embedding declares, each scientific coordinate is a separate obligation rather than a contribution, and lifting is conservative. Reproduces the shipped rule on all 1,536 states with both verdicts present (24 admissible). A derivation and not a restatement: making a coordinate compensatory disagrees on 96 states, waiving an embedding's donor requirement on 9, dropping conservativity on 72.",
+          "terminal": "CERTIFICATE_LIFT_DERIVED_FROM_STATED_PRIMITIVES"
         }
       ]
     },
