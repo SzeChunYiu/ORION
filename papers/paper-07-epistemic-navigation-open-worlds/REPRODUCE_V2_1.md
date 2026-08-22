@@ -11,10 +11,11 @@ Expected sentinels:
 
 ```text
 P7 THEORY CLOSURE V2: PASS
+theory_closure_terminal: CANNOT_CHECK
 P7 CONTRACT MANIFEST V2: PASS
 ```
 
-The first command checks the closed theorems/countermodels, including all 64 transport-coordinate combinations. The second executes all 8 frozen prospective contract cases, including harmful-reframe and non-retrieval experimental-design transfer controls.
+The first command checks the closed theorems/countermodels. Its `PASS` banner reports assertion status only — every finite witness in the file held — and `theory_closure_terminal` is the verdict on what those witnesses establish. It is `CANNOT_CHECK`, and `check_support_transport` is why: the check enumerates all 64 transport-coordinate combinations and **decides 1 of them** from the witness coordinates alone (a complete witness transports closure). The other 63 turn on Definition 14 target-ambiguity, which the six-coordinate `Transport` model does not carry, so it reports the premise and what the premise is decided from rather than a case count. The 64 is the size of the enumeration; it is not a count of decided cases, and earlier versions of this file read it as one. The second command executes all 8 frozen prospective contract cases, including harmful-reframe and non-retrieval experimental-design transfer controls.
 
 Programme integration:
 
