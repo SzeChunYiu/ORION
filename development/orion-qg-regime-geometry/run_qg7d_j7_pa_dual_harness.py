@@ -55,7 +55,7 @@ def main() -> int:
         gw, "development/orion-qg-regime-geometry/qg7d_j7_analyzer_exec.py",
         "ORIONQG_QG7D_J7=", 240)
     greq, gres, gsum = run(
-        gw, "development/orion-qg-regime-geometry/qg7d_j7_pa_generic_verify.py",
+        gw, "development/orion-qg-regime-geometry/qg7d_j7_generic_exec.py",
         "ORIONQG_QG7D_J7_GENERIC=", 240)
     a = json.loads((ART / "orion-qg-qg7d-j7-pa-confirm.json").read_text())
     g = json.loads((ART / "orion-qg-qg7d-j7-pa-generic-verification.json").read_text())
