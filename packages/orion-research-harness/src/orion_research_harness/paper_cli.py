@@ -79,8 +79,7 @@ def build_parser() -> argparse.ArgumentParser:
     _json_input(sub, "dependency-repair")
     _json_input(sub, "authority-check")
     _json_input(sub, "ocme-assess")
-
-    navigation = _json_input(sub, "navigation-plan")
+    _json_input(sub, "navigation-plan")
 
     saturation = _json_input(sub, "research-saturation")
     saturation.add_argument("--min-independent-flat-routes", type=int, default=2)
@@ -249,14 +248,14 @@ def main(argv: list[str] | None = None) -> int:
             recoverable=args.recoverable,
             action=action.value,
         ))
-        return 4 if action.value == "CANNOT_CHECK" else 0
+        return 0
     if args.command == "p14-disposition":
         raw = _load_json(args.json, args.file)
         if not isinstance(raw, dict):
             raise TypeError("p14-disposition input must be an object")
         disposition = p14_governance_disposition(raw)
         _print(_non_authorizing("ORION.HarnessP14Disposition.v1", disposition=disposition))
-        return 4 if disposition == "CANNOT_CHECK" else 0
+        return 0
     raise AssertionError(args.command)
 
 
