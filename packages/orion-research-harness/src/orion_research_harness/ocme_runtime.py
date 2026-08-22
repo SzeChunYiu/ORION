@@ -21,6 +21,21 @@ class ObstructionKind(str, Enum):
     RESOURCE_BOUNDED_OBSTRUCTION = "RESOURCE_BOUNDED_OBSTRUCTION"
 
 
+# P10-U OCME O1 frozen first-right-of-refusal families. These are semantic
+# route families, not implementation labels: every family must have an explicit
+# evidenced result before an obstruction may open method-language search.
+REQUIRED_LOWER_LEVEL_ROUTE_KINDS: tuple[str, ...] = (
+    "SEARCH_MORE",
+    "REPRESENTATION_REPAIR",
+    "IMPLEMENTATION_REPAIR",
+    "LIBRARY_RETRIEVAL",
+    "ACTION_ABSTRACTION_MACRO_MINING",
+    "PROOF_REPAIR",
+    "PROGRAM_SYNTHESIS",
+    "EVOLUTIONARY_SEARCH",
+)
+
+
 def _ids(values: Sequence[str], *, name: str, allow_empty: bool = True) -> tuple[str, ...]:
     if isinstance(values, (str, bytes)):
         raise TypeError(f"{name} must be an array")
@@ -167,6 +182,9 @@ class OCMEEpisode:
         ids = [item.check_id for item in self.lower_level_results]
         if len(ids) != len(set(ids)):
             raise ValueError("lower-level check identities must be unique")
+        route_kinds = [item.route_kind for item in self.lower_level_results]
+        if len(route_kinds) != len(set(route_kinds)):
+            raise ValueError("lower-level route kinds must be unique")
         for value in (
             self.problem_model_frozen,
             self.verifier_available,
@@ -220,6 +238,16 @@ def _valid_obstruction(obstruction: ObstructionCertificate) -> tuple[bool, str]:
     return True, ""
 
 
+def _lower_level_coverage(episode: OCMEEpisode) -> tuple[bool, tuple[str, ...]]:
+    observed = {item.route_kind for item in episode.lower_level_results}
+    missing = tuple(
+        route_kind
+        for route_kind in REQUIRED_LOWER_LEVEL_ROUTE_KINDS
+        if route_kind not in observed
+    )
+    return not missing, missing
+
+
 def assess_ocme_episode(episode: OCMEEpisode) -> OCMEDecision:
     """Execute the P10 OCME O0--O6 decision contract.
 
@@ -246,6 +274,17 @@ def assess_ocme_episode(episode: OCMEEpisode) -> OCMEDecision:
             OCMETerminal.OCME_LOWER_LEVEL_CAUSE,
             jump_open=False,
             reasons=("lower-level first-right-of-refusal route succeeds: " + ",".join(successful_lower),),
+        )
+
+    coverage_ok, missing_routes = _lower_level_coverage(episode)
+    if not coverage_ok:
+        return _decision(
+            OCMETerminal.CANNOT_CHECK,
+            jump_open=False,
+            reasons=(
+                "lower-level first-right-of-refusal coverage incomplete; missing route families: "
+                + ",".join(missing_routes),
+            ),
         )
 
     if episode.obstruction is None:
@@ -322,6 +361,7 @@ __all__ = [
     "ObstructionCertificate",
     "ObstructionKind",
     "OutsideClosureVerification",
+    "REQUIRED_LOWER_LEVEL_ROUTE_KINDS",
     "TransferEvidence",
     "assess_ocme_episode",
 ]
