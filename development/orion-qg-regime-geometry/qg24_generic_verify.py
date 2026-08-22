@@ -235,3 +235,243 @@ def theta_ft_cost(a, bs, S, targets, centrals, n):
             else:
                 cost += (la != 0) + (lb != 0) + (lc != 0)
     return cost, frames, restores
+
+
+# ---- donor-search gate, re-implemented -------------------------------------
+VERDICTS = {"SUBSUMED", "SUBSUMED_IN_SPECIAL_CASE", "INSTANCE_OF_KNOWN_GENERAL",
+            "NEAREST_MISS", "NO_PRIOR_ART_FOUND", "CANNOT_ASSESS"}
+NEEDS_PASSAGE = {"SUBSUMED", "SUBSUMED_IN_SPECIAL_CASE",
+                 "INSTANCE_OF_KNOWN_GENERAL", "NEAREST_MISS"}
+FAMILIES = ("OWN_VOCABULARY", "DONOR_FIELD_TRANSLATION", "INVERTED_OR_SURVEY")
+
+
+def check_donor(records, log_text):
+    bad = []
+    for rec in records:
+        cid = rec.get("claim_id")
+        if rec.get("verdict") not in VERDICTS:
+            bad.append([cid, "verdict-not-admissible"])
+            continue
+        fams = rec.get("query_families") or []
+        if any(f not in fams for f in FAMILIES):
+            bad.append([cid, "missing-query-family"])
+        if rec.get("asserts_novelty"):
+            if rec["verdict"] == "CANNOT_ASSESS":
+                bad.append([cid, "cannot-assess-on-novelty-claim"])
+            if not rec.get("query_log_ref"):
+                bad.append([cid, "missing-query-log-ref"])
+        if rec["verdict"] in NEEDS_PASSAGE and not str(
+                rec.get("verbatim_passage", "")).strip():
+            bad.append([cid, "missing-verbatim-passage"])
+        passage = " ".join(str(rec.get("verbatim_passage", "")).split())
+        if passage:
+            flat = " ".join(log_text.split())
+            if passage not in flat:
+                bad.append([cid, "passage-not-in-committed-query-log"])
+    return bad
+
+
+def main(argv):
+    res_path = Path(argv[1]) if len(argv) > 1 else DEFAULT_RESULTS
+    res = json.loads(res_path.read_text())
+    checks, failures = {}, []
+
+    def record(name, ok, detail=None):
+        checks[name] = {"ok": bool(ok), "detail": detail}
+        if not ok:
+            failures.append(name)
+
+    # 1. digests ------------------------------------------------------------
+    record("protocol_sha256_recomputes",
+           sha_file(REPO / res["protocol"]) == res["protocol_sha256"])
+    record("qg21_receipt_unedited_sha256",
+           sha_file(QG21_RESULTS) == res["qg21_binding"]["results_sha256"],
+           {"recomputed": sha_file(QG21_RESULTS)})
+    record("result_digest_recomputes",
+           sha_text(canonical({k: v for k, v in res.items()
+                               if k != "result_digest"})) == res["result_digest"])
+    record("stage1_digest_recomputes",
+           sha_text(canonical(res["stage1"]["embedded"])) == res["stage1"]["digest"])
+
+    # 2. donor search -------------------------------------------------------
+    bad = check_donor(res["donor_search"]["records"], DONOR_LOG.read_text())
+    record("donor_search_gate_reimplemented", not bad, {"bad": bad})
+    record("no_novelty_granted",
+           res["novelty_credit"] is False and res["novelty_authority"] is False
+           and res["donor_novelty_credit"] is False)
+    record("document_level_verification_declared_false",
+           res["donor_search"]["document_level_verification"] is False)
+
+    # 3. Lemma L1 + 4. complete n=1 re-enumeration --------------------------
+    dist, pairs, total = enumerate_n1()
+    record("lemma_L1_pair_support_is_the_two_block_seams",
+           pairs == [[3, 4], [6, 7]], {"recomputed": pairs})
+    n1 = res["q1_distribution"]["1"]
+    ok = True
+    for model, block in n1["per_model"].items():
+        for r in ("7", "8", "9"):
+            if int(block["distribution_reduced"][r]) != dist[model][int(r)]:
+                ok = False
+    record("n1_distribution_recomputed_from_primitives", ok,
+           {"recomputed": {m: {str(k): v for k, v in d.items()}
+                           for m, d in dist.items()}})
+    record("n1_domain_size_recomputed",
+           total == int(n1["enumerated_domain_size_reduced"]),
+           {"recomputed": total})
+
+    # 5. domain-size identity at every declared n ---------------------------
+    ns = sorted(int(k) for k in res["q1_distribution"])
+    adm = admissible_frame_tag_counts(ns)
+    bad_n = []
+    for n in ns:
+        block = res["q1_distribution"][str(n)]
+        expect = 8 * adm[n] * (4 ** (4 * n))
+        if int(block["enumerated_domain_size_reduced"]) != expect:
+            bad_n.append([n, "domain-size"])
+        if int(block["independent_admissible_frame_tag_count"]) != adm[n]:
+            bad_n.append([n, "frame-tag-count"])
+        for model, mb in block["per_model"].items():
+            tot = sum(int(v) for v in mb["distribution_reduced"].values())
+            if tot != expect:
+                bad_n.append([n, model, "sum"])
+            for k, v in mb["distribution_reduced"].items():
+                if int(v) < 0:
+                    bad_n.append([n, model, "negative"])
+                if int(mb["distribution_full"][k]) != int(v) * (4 ** (2 * n)):
+                    bad_n.append([n, model, "full-scale"])
+    record("domain_size_identity_at_every_declared_n", not bad_n, {"bad": bad_n[:8]})
+
+    # 6. Q1 verdict consistency ---------------------------------------------
+    below9 = any(int(res["q1_distribution"][str(n)]["per_model"][m]
+                     ["distribution_reduced"][r]) > 0
+                 for n in ns for m in res["q1_distribution"][str(n)]["per_model"]
+                 for r in ("7", "8"))
+    record("ceiling_verdict_consistent_with_distribution",
+           (res["q1_ceiling_verdict"] == "FAMILY_ARTIFACT") == below9
+           and res["q1_rotation_count_is_invariant_in_the_grammar"] == (not below9),
+           {"configurations_below_nine_exist": below9})
+    record("terminal_consistent",
+           res["terminal"] == ("QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME"
+                               if below9 else
+                               "QG24_CEILING_IS_STRUCTURAL__ROTATION_COUNT_"
+                               "INVARIANT_IN_THE_GRAMMAR"))
+
+    # 7. panel: predicate + seven-rotation witness ---------------------------
+    bad_rows, checked_rows = [], 0
+    qg21 = json.loads(QG21_RESULTS.read_text())
+    base = {(r["subject"], canonical(r["matching"]), int(r["n_qubits"])):
+            (r["target_pairs"], int(r["referee"]["theta_FT"]["C_DP"]))
+            for r in qg21["rows"]}
+    for row in res["panel"]:
+        key = (row["subject"], canonical(row["matching"]), int(row["n_qubits"]))
+        if key not in base:
+            bad_rows.append([row["subject"], "row-not-in-qg21-receipt"])
+            continue
+        tp, cdp = base[key]
+        n = int(row["n_qubits"])
+        if cdp != int(row["r6m_theta_FT_optimum_clifford"]):
+            bad_rows.append([row["subject"], "baseline-mismatch"])
+        qa = pmul(tuple(tp[0][0]), tuple(tp[0][1]))
+        qb = pmul(tuple(tp[1][0]), tuple(tp[1][1]))
+        pred = row["predicate"]
+        if bool(pred["seven_reachable_in_place"]) != (qa != (0, 0) and qb != (0, 0)):
+            bad_rows.append([row["subject"], "predicate-in-place"])
+        if pred["seven_reachable_factored"] is not True:
+            bad_rows.append([row["subject"], "predicate-factored"])
+        for model_key, wit_key in (("factored", "witness_factored"),
+                                   ("in_place", "witness_in_place")):
+            wit = row.get(wit_key)
+            claimed = row[f"seven_rotation_min_clifford_{model_key}"]
+            if wit is None:
+                if claimed is not None:
+                    bad_rows.append([row["subject"], model_key, "witness-missing"])
+                continue
+            a = tuple(wit["a"])
+            bs = [tuple(b) for b in wit["b"]]
+            S = tuple(wit["S"])
+            centrals = [int(c) for c in wit["centrals"]]
+            pairs_t = [(tuple(p[0]), tuple(p[1])) for p in tp]
+            order = [pairs_t[0],
+                     pairs_t[1] if int(wit["perm_b"]) == 0
+                     else (pairs_t[1][1], pairs_t[1][0]),
+                     pairs_t[2] if int(wit["perm_c"]) == 0
+                     else (pairs_t[2][1], pairs_t[2][0])]
+            cost, frames, restores = theta_ft_cost(a, bs, S, order, centrals, n)
+            if cost != int(claimed):
+                bad_rows.append([row["subject"], model_key, "cost", cost, claimed])
+            grammar = (all(psymp(*frames[j]) == 1 for j in range(3))
+                       and len({psymp(S, frames[j][0]) for j in range(3)}) == 1
+                       and len({psymp(S, frames[j][1]) for j in range(3)}) == 1
+                       and psymp(S, frames[0][0]) != psymp(S, frames[0][1]))
+            if not grammar:
+                bad_rows.append([row["subject"], model_key, "grammar"])
+            _, eq, sp, comm = slot_data(frames, centrals, restores)
+            rc, _ = merge_search(eq, sp, comm, model_key == "in_place")
+            if rc != 7:
+                bad_rows.append([row["subject"], model_key, "rotations", rc])
+            price = row[f"clifford_price_{model_key}"]
+            if price is not None and int(price) != int(claimed) - cdp:
+                bad_rows.append([row["subject"], model_key, "price"])
+        checked_rows += 1
+    record("panel_witnesses_reverified_from_primitives", not bad_rows,
+           {"rows": checked_rows, "bad": bad_rows[:8]})
+
+    # 8. forecast tally ------------------------------------------------------
+    panel_by = {(p["subject"], canonical(p["matching"]), int(p["n_qubits"])): p
+                for p in res["panel"]}
+    hits = 0
+    for s in res["stage1"]["embedded"]["predictions"]:
+        p = panel_by[(s["subject"], canonical(s["matching"]), int(s["n_qubits"]))]
+        if (s["predicted_min_rotations_factored"] == p["min_rotations_factored"]
+                and s["predicted_min_rotations_in_place"]
+                == p["min_rotations_in_place"]):
+            hits += 1
+    fc = res["q2_regime"]["prospective_forecast"]
+    record("forecast_tally_recomputes",
+           hits == int(fc["hits"])
+           and len(res["stage1"]["embedded"]["predictions"]) == int(fc["rows"]))
+    record("G4_referee_never_called_in_stage1",
+           int(fc["referee_calls_during_stage1"]) == 0)
+
+    # 9. Q3 arithmetic -------------------------------------------------------
+    q3 = res["q3_magnitude"]
+    record("q3_rotation_fraction_recomputes",
+           abs(q3["fraction_of_rotation_count_removed"] - 2 / 9) < 1e-12
+           and int(q3["rotations_removed"])
+           == int(q3["rotations_per_compilation_family_menu"])
+           - int(q3["rotations_per_compilation_grammar_floor"]))
+    record("authority_ceiling_not_r6",
+           res["r6_authority"] is False
+           and res["physical_quantum_advantage_claim"] is False
+           and res["reserved_stretched_n2_accessed"] is False)
+
+    verdict = "ACCEPT" if not failures else "REJECT"
+    out = {
+        "verifier": "qg24_generic_verify",
+        "independent_of": ["qg24_rotation_regime", "max_r6* analyzers",
+                           "orion_research_harness", "numpy"],
+        "results_file": str(res_path),
+        "results_sha256": sha_file(res_path),
+        "terminal_under_review": res["terminal"],
+        "n1_configurations_reenumerated": total,
+        "declared_sizes": ns,
+        "panel_rows_reverified": checked_rows,
+        "check_count": len(checks),
+        "checks": checks,
+        "failed_checks": failures,
+        "lower_bound_note": ("this verifier establishes that a seven-rotation "
+                             "compilation of the stated theta_FT cost EXISTS for "
+                             "every panel row, that the complete n=1 enumeration "
+                             "and the domain-size identity hold, and that every "
+                             "digest and arithmetic claim recomputes. That no "
+                             "CHEAPER seven-rotation member exists is the exact "
+                             "DP's claim and is not re-derived here."),
+        "verdict": verdict,
+    }
+    print(json.dumps(out, indent=2, sort_keys=True))
+    print(f"QG24_GENERIC_VERIFY={verdict}")
+    return 0 if verdict == "ACCEPT" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
