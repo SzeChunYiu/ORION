@@ -24,6 +24,12 @@ def test_file_list_fails_closed_when_directory_exceeds_bound(
         local_tools.execute_local(workspace, "FILE_LIST", {"path": "."})
 
 
+def test_process_timeout_honors_qg3_budget_and_clamps_oversized_requests():
+    assert local_tools._validated_process_timeout(300) == 300
+    assert local_tools._validated_process_timeout(9999) == local_tools._MAX_PROCESS_TIMEOUT_SECONDS
+    assert local_tools._validated_process_timeout(0) == 1
+
+
 def test_descendant_holding_output_pipe_cannot_hang_completed_process(tmp_path: Path):
     project = tmp_path / "project"
     project.mkdir()
