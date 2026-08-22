@@ -4,7 +4,7 @@ Date: 2026-08-22
 Issue: #911
 Parent: QG-31 #904
 Execution branch: `codex/orion-qg-qg32-min-probes-20260822`
-Status: **FROZEN BEFORE ANY MINIMUM-PROBE OUTCOME.**
+Status: **FROZEN BEFORE ANY ACCEPTED MINIMUM-PROBE OUTCOME.** First protected attempt timed out inside the 120-second harness process cap before producing a result receipt; the scientific minimum target is unchanged.
 
 ## Question
 
@@ -38,7 +38,7 @@ A probe set is separating iff `union_{p in P} D_p = U`.
 
 Production primary solver: exact binary MILP minimizing `sum x_p` subject to every unresolved pair being covered.
 
-After the minimum cardinality `m_joint` is found, production must select the **lexicographically smallest sorted probe tuple among all cardinality-m_joint optima** by exact feasibility queries with total cardinality fixed.
+The selected probe set is the sorted optimum returned by the exact minimum-cardinality solve. **No lexicographic-optimum authority is required in V1.** This removes a reproducibility-only cascade of repeated feasibility MILPs that exceeded the harness process cap; it does not alter the minimum-cardinality question.
 
 ## P3 — minimum certificate
 
@@ -48,7 +48,7 @@ Preferred solver-independent lower-bound certificate:
 
 Such a packing proves every separating probe set has size at least `m_joint`.
 
-If no matching packing is found, production must label the strong minimum certificate incomplete; generic ORION may still earn the minimum only by independently proving infeasibility at `m_joint-1` with an exact branch/search procedure. A MILP status alone is not sufficient for the strongest native authority.
+If no matching packing is found, production must label the simple packing certificate incomplete; generic ORION may still earn the minimum only by independently proving infeasibility at `m_joint-1` with an exact branch/search procedure. A production MILP status alone is not sufficient for the strongest native authority.
 
 ## P4 — selected probe details
 
@@ -79,8 +79,8 @@ Must independently rebuild phase-free Pauli/F3 semantics, local-Clifford orbits,
 
 It must:
 - verify the production selected set separates all pairs;
-- verify the lexicographic tuple against an independent exact feasibility/search routine;
-- verify the packing lower bound if supplied, OR independently prove no set of size `m_joint-1` exists.
+- verify the packing lower bound if supplied, OR independently prove no set of size `m_joint-1` exists with an exact branch/search routine;
+- agree on the minimum cardinality, not on one particular optimal probe tuple.
 
 Do not import the production solver or its incidence matrix.
 
@@ -112,4 +112,4 @@ Honest alternatives:
 
 ## Donor subtraction
 
-Minimum test cover, hitting set, feature acquisition and experimental design are donor methods. Candidate value is the exact TARE-specific joint partition, minimum fixed probe basis and its use as a bounded active-verification primitive.
+Minimum test cover, hitting set, feature acquisition and experimental design are donor methods. Candidate value is the exact TARE-specific joint partition, minimum fixed probe cardinality and its use as a bounded active-verification primitive.
