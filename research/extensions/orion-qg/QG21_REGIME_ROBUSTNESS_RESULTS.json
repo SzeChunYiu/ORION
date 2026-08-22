@@ -1,0 +1,37 @@
+{
+  "schema": "ORIONQG.QG21.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#864",
+  "pr": "SzeChunYiu/ORION#877",
+  "execution_head": "160f0be2b301280f083fe8008d8264ef5b382fb0",
+  "workflow_run_id": 32561466154,
+  "workflow_artifact_id": 9472899216,
+  "workflow_artifact_sha256": "cddacfa1105c74b92d19b81c251901c05fdc46f8a3c8aa0137338c1f91dda387",
+  "source_result_digest": "8703b0bf9474d6e68154b5ff5b6a3cc2f52200a68378bdf93b6f23b4dc294fbf",
+  "terminal": "QG21_CERTIFIED_REGIME_ROBUSTNESS_RADIUS_MACHINE_CHECKED",
+  "gauge": "G1_t_r_fixed",
+  "perturbation_norm": "L_infinity_absolute_box_on_non_r_coefficients",
+  "qg8": {
+    "O0_radius": "0",
+    "O2_radius": "0",
+    "active_facet": "central"
+  },
+  "qg16": {
+    "O0_radius": "0",
+    "O_in_radius": "1/2",
+    "O_in_active_facet": "c_plus_nc_minus_2r_minus_2tag",
+    "O_in_minimum_slack": "2",
+    "O_in_eps_boxes_contained": ["0", "1/20", "1/10", "1/5"]
+  },
+  "outside_cone_semantics": "CERTIFICATE_NOT_APPLICABLE__NOT_REGIME_CHANGE",
+  "generic_orion": {"decision": "ACCEPT_CERTIFICATE_ROBUSTNESS", "all_checks": true},
+  "native_orion_q": {"decision": "ACCEPT_CERTIFICATE_ROBUSTNESS", "all_checks": true, "responsibility": "CERTIFICATE_MARGIN"},
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "CERTIFICATE_MARGIN": true,
+  "TRUE_PHASE_BOUNDARY": false,
+  "TRUE_PHASE_BRACKET": false,
+  "true_phase_boundary_status": "OPEN",
+  "novelty_authority": false,
+  "r6_authority": false,
+  "physical_quantum_advantage_claim": false
+}
