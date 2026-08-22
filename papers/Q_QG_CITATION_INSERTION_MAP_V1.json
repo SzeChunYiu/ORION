@@ -1,10 +1,11 @@
 {
   "schema": "ORIONQ.PublicationCitationInsertionMap.v1",
-  "date": "2026-08-21",
+  "date": "2026-08-22",
   "authority": "PUBLICATION_CITATION_PLACEMENT_ONLY__NO_SCIENTIFIC_PROMOTION",
   "bibliographies": [
     "papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib",
-    "papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib"
+    "papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib",
+    "papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib"
   ],
   "papers": {
     "Q1": {
@@ -23,6 +24,17 @@
         {"needle": "AstaBench", "citation": "[@bragg2025astabench]", "occurrence": 1},
         {"needle": "SciAgentArena", "citation": "[@liu2026sciagentarena]", "occurrence": 1},
         {"needle": "ScientistOne", "citation": "[@meng2026scientistone]", "occurrence": 1}
+      ]
+    },
+    "Q3": {
+      "source": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
+      "output": "papers/Q-paper-03-dual-instrument/submission_master/MANUSCRIPT_CITED.md",
+      "insertions": [
+        {"needle": "ScienceAgentBench, AstaBench, SciAgentArena and HeurekaBench", "citation": "[@chen2025scienceagentbench; @bragg2025astabench; @liu2026sciagentarena; @panigrahi2026heurekabench]", "occurrence": 1},
+        {"needle": "ScientistOne", "citation": "[@meng2026scientistone]", "occurrence": 1},
+        {"needle": "REFLECT (`arXiv:2605.19196`)", "citation": "[@wang2026reflect]", "occurrence": 1},
+        {"needle": "ValueBlindBench (`arXiv:2604.25224`)", "citation": "[@chang2026valueblindbench]", "occurrence": 1},
+        {"needle": "Agreement-metric work (`arXiv:2606.00093`)", "citation": "[@rao2026agreementmetrics]", "occurrence": 1}
       ]
     },
     "Q4": {
@@ -59,7 +71,6 @@
     "Every needle must occur exactly at or beyond the declared occurrence; missing needles fail generation.",
     "Every citation key must exist in the combined verified BibTeX inputs.",
     "The generator inserts citations only; it may not change claim wording or scientific numbers.",
-    "Final venue wrappers consume generated cited masters rather than editing scientific masters independently.",
-    "Q3 is absent because no final scientific results manuscript is authorized."
+    "Final venue wrappers consume generated cited masters rather than editing scientific masters independently."
   ]
 }
