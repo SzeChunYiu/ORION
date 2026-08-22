@@ -1,0 +1,63 @@
+name: orion-qg-qg34-adaptive-probe-tree
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg34_adaptive_probe_tree.py'
+      - 'development/orion-qg-regime-geometry/QG34_ADAPTIVE_PROBE_TREE_PROTOCOL_V1.md'
+      - 'development/orion-qg-regime-geometry/qg34_generic_verify.py'
+      - 'development/orion-qg-regime-geometry/qg34_native_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg34_dual_harness.py'
+      - '.github/workflows/orion-qg-qg34.yml'
+  workflow_dispatch:
+jobs:
+  adaptive-minimax:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg34_dual_harness.py | tee artifacts/orion-qg-qg34-summary.json
+      - name: Deterministic production replay
+        run: |
+          python research/extensions/orion-qg/qg34_adaptive_probe_tree.py --output artifacts/orion-qg-qg34-replay.json > artifacts/orion-qg-qg34-replay.log
+          cmp artifacts/orion-qg-qg34-adaptive-probe-tree.json artifacts/orion-qg-qg34-replay.json
+      - name: Self-consistent policy tamper must be rejected
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('artifacts/orion-qg-qg34-adaptive-probe-tree.json');d=json.loads(p.read_text());node=d['first_worst_class_policy']['tree'];assert node['type']=='probe';node['probe_index']=(int(node['probe_index'])+1)%384
+          u={k:v for k,v in d.items() if k!='result_digest'};d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest();Path('artifacts/orion-qg-qg34-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg34_generic_verify.py --input artifacts/orion-qg-qg34-tampered.json --output artifacts/orion-qg-qg34-tampered-verify.json > artifacts/orion-qg-qg34-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg34-tampered-verify.json').read_text());assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce adaptive authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('artifacts/orion-qg-qg34-adaptive-probe-tree.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg34-generic-verification.json').read_text());n=json.loads(Path('artifacts/orion-qg-qg34-native-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg34-dual-harness.json').read_text())
+          assert d['both_accept'] is True;assert s['EXACT_ADAPTIVE_MINIMAX_AUTHORITY'] is True;assert g['all_checks'] is True and n['all_checks'] is True
+          for x in (s,g,n,d):
+              assert x['EXACT_FIXED_PROBE_MINIMUM_BOUND'] is False;assert x['ADAPTIVITY_ADVANTAGE_OVER_EXACT_FIXED_MINIMUM'] is False;assert x['MINIMUM_FULL_FINITE_OPTIMUM_PROBES'] is False;assert x['HARDWARE_MEASUREMENT_MINIMUM'] is False;assert x['QG28_GLOBAL_STATE_MINIMALITY'] is False;assert x['novelty_authority'] is False;assert x['physical_quantum_advantage_claim'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg-qg34-${{ github.sha }}
+          path: |
+            artifacts/orion-qg-qg34-*.json
+            artifacts/orion-qg-qg34-*.log
