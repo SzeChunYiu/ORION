@@ -1,0 +1,41 @@
+{
+  "C1": {
+    "consequence": "the spectrum carries exactly the symmetry-invariant information about a column type, and nothing more",
+    "equal_as_set_systems": true,
+    "reps_whose_spectrum_changes_under_some_wreath_element": 0,
+    "statement": "the unlabeled one-active defect spectrum partition equals the S_3(letters) x (S_2 wr S_3)(positions) orbit partition of the 4096 column types",
+    "verdict": "CONFIRMED_AS_EQUALITY"
+  },
+  "authority": {
+    "NOT_R6": true,
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "novelty_claim": false,
+    "proof_authority": false
+  },
+  "bulk_is_not_a_symmetry_quotient": {
+    "bulk_refines_spectrum": false,
+    "bulk_refines_symmetry": false,
+    "consequence": "bulk and spectrum are incomparable -- QG-31's finding -- because they are different kinds of object: one is a group quotient, the other is not",
+    "mechanism": "bulk reads baseline over only the first 4 of the 8 swap patterns (ps[:4]), so it is not even S_2^3-invariant",
+    "reps_whose_bulk_changes_under_some_wreath_element": 168,
+    "spectrum_refines_bulk": false,
+    "symmetry_refines_bulk": false
+  },
+  "independent_reproduction": {
+    "all_match": true,
+    "bulk_classes": 45,
+    "indexed_classes": 715,
+    "joint_bulk_spectrum_classes": 92,
+    "reported_by_qg31_qg32": {
+      "bulk": 45,
+      "indexed": 715,
+      "joint": 92,
+      "spectrum": 54
+    },
+    "spectrum_classes": 54
+  },
+  "issue_under_test": "SzeChunYiu/ORION#904 (QG-31)",
+  "read_from": "origin/codex/orion-qg-qg31-query-abstraction-20260822 (open PR #905) -- definitions only; both cost primitives are on main and every partition here is recomputed by this file, not imported from that branch",
+  "schema": "ORION.QG.SpectrumSymmetryIdentification.v1"
+}
