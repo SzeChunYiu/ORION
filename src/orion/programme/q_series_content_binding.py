@@ -1,8 +1,8 @@
 """Content-addressed drift checking for the canonical ORION-Q paper set.
 
-The older global paper survey predates the Q namespace. This checker binds the
-canonical files selected by ``Q_SERIES_FINAL_SPEC_V1.json`` without pretending
-that historical drafts are part of the submission package.
+The global paper survey predates the Q namespace. This checker binds the canonical
+files selected by ``Q_SERIES_FINAL_SPEC_V1.json`` without pretending that
+historical drafts are part of the submission package.
 
 Git blob identities are used because they are already the repository's immutable
 content identities. The checker recomputes them from working-tree bytes rather
@@ -17,12 +17,15 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from orion.registry import Q_SERIES_SYNC_EPOCH
+
 BINDING_PATH = Path("papers/Q_SERIES_CONTENT_BINDING_V1.json")
 BINDING_SCHEMA = "ORION.QSeriesContentBinding.v1"
 
 
 @dataclass(frozen=True)
 class QSeriesContentBindingReport:
+    sync_epoch: str
     files_bound: int
     drifted_paths: tuple[str, ...]
     missing_paths: tuple[str, ...]
@@ -34,12 +37,14 @@ class QSeriesContentBindingReport:
     def as_json(self) -> dict[str, Any]:
         return {
             "schema": BINDING_SCHEMA,
+            "sync_epoch": self.sync_epoch,
             "files_bound": self.files_bound,
             "drifted_paths": list(self.drifted_paths),
             "missing_paths": list(self.missing_paths),
             "clean": self.clean,
             "grants_scientific_authority": False,
             "grants_novelty_authority": False,
+            "predicts_journal_acceptance": False,
         }
 
 
@@ -57,6 +62,8 @@ def load_q_series_content_binding(repo_root: Path) -> dict[str, Any]:
         raise TypeError("Q-series content binding must be a JSON object")
     if raw.get("schema") != BINDING_SCHEMA:
         raise ValueError("unsupported Q-series content binding schema")
+    if raw.get("sync_epoch") != Q_SERIES_SYNC_EPOCH:
+        raise ValueError("Q-series content binding epoch no longer matches the registry")
     if raw.get("hash_kind") != "git_blob_sha1":
         raise ValueError("Q-series content binding must use git_blob_sha1")
     files = raw.get("files")
@@ -77,13 +84,6 @@ def load_q_series_content_binding(repo_root: Path) -> dict[str, Any]:
 def q_series_bound_rows_for_directory(
     repo_root: Path, directory: Path
 ) -> tuple[dict[str, Any], ...]:
-    """Rows from the cross-paper binding that belong to one paper directory.
-
-    Returns an empty tuple when the Q-series binding is absent or when the
-    directory is not one of its watched surfaces. Parsing errors deliberately
-    propagate so a malformed declared binding cannot silently degrade to UNBOUND.
-    """
-
     path = repo_root / BINDING_PATH
     if not path.is_file():
         return ()
@@ -120,6 +120,7 @@ def inspect_q_series_content_binding(repo_root: Path) -> QSeriesContentBindingRe
             drifted.append(path_value)
 
     return QSeriesContentBindingReport(
+        sync_epoch=str(raw["sync_epoch"]),
         files_bound=len(seen),
         drifted_paths=tuple(sorted(drifted)),
         missing_paths=tuple(sorted(missing)),
