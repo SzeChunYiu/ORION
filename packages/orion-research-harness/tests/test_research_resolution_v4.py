@@ -13,6 +13,7 @@ from orion.core.solution import Solution, SolutionStatus
 from orion.core.state import KnowledgeState, OrionState
 from orion.engine.trace import SolveTrace
 from orion.runtime import RuntimeResult
+from orion_research_harness.recursive_director_integration import _dedupe_reason_codes
 from orion_research_harness.recursive_runner import _RecursiveSession, run_problem_recursive
 from orion_research_harness.research_resolution import (
     assimilate_negative_result,
@@ -35,6 +36,20 @@ def test_resource_cannot_check_is_active_resolution_obligation_not_task_stop():
     assert ResolutionAction.TASK_STOP not in obligation.next_actions
     assert obligation.grants_scientific_authority is False
     assert obligation.grants_global_task_stop_authority is False
+
+
+def test_duplicate_recursive_stop_reasons_are_deduplicated_before_obligation_construction():
+    assert _dedupe_reason_codes(
+        (
+            "CANNOT_CHECK_RESOURCE_BOUND",
+            "CANNOT_CHECK_RESOURCE_BOUND",
+            "CANNOT_CHECK_AMBIGUOUS_RESIDUAL_IDENTITY",
+            "CANNOT_CHECK_RESOURCE_BOUND",
+        )
+    ) == (
+        "CANNOT_CHECK_RESOURCE_BOUND",
+        "CANNOT_CHECK_AMBIGUOUS_RESIDUAL_IDENTITY",
+    )
 
 
 def test_protected_external_cannot_check_remains_explicitly_blocked_not_local_retry():
