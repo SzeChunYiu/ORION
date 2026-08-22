@@ -5,9 +5,11 @@ A paper's `.tex` tree is authoritative when it has one: `latexmk` on
 `manuscript/main.tex` (or `paper/main.tex`) is what the repo's own Makefiles
 call, and it is what this runs first.
 
-Five registered papers have no LaTeX tree at all -- P6, P7, P8, P10 and P15 --
-and `latexmk` is absent from some environments this runs in. So there is a
-second path: Markdown -> HTML -> PDF via WeasyPrint, no TeX required. It is a
+P15 has no LaTeX tree -- it has no manuscript at all -- and `latexmk` is absent
+from some environments this runs in. P6, P7, P8 and P10 were in that list until
+they were given `manuscript/main.tex` trees; the sentence is kept accurate here
+because the next reader decides whether to trust the fallback by reading it. So
+there is a second path: Markdown -> HTML -> PDF via WeasyPrint, no TeX required. It is a
 fallback, never a substitute: if a `.tex` tree exists and `latexmk` is present,
 the fallback is not used, and the PDF records which path produced it so a reader
 is never left guessing whether they are holding the typeset paper or a

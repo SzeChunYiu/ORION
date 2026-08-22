@@ -82,7 +82,15 @@ CONTENT_DRIFT_OPPORTUNITY = (
 #: fails on machine identity rather than on content --- the reason
 #: ``check_content_binding_v1`` excludes them too, kept in step here.
 _EXCLUDED_DIR_NAMES = frozenset({"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"})
-_EXCLUDED_SUFFIXES = frozenset({".pyc", ".pyo", ".pyd"})
+_EXCLUDED_SUFFIXES = frozenset(
+    {".pyc", ".pyo", ".pyd", ".aux", ".bbl", ".blg", ".fdb_latexmk", ".fls", ".synctex"}
+)
+
+#: Suffixes that are LaTeX sidecars *only when they sit beside their own source*.
+#: `.log` cannot be excluded outright --- three tracked logs under `papers/` are
+#: evidence rather than residue --- so a `.log` counts as residue exactly when a
+#: `.tex` of the same stem is its neighbour.
+_SIDECAR_SUFFIXES = frozenset({".log", ".out", ".toc"})
 
 #: Directories under ``papers/`` that are shared material rather than one paper.
 #: ``candidates`` holds the P6-P8 shared package, which those papers' own
@@ -211,8 +219,19 @@ class PaperBinding:
         }
 
 
-def _is_build_artifact(path: Path) -> bool:
+def is_build_artifact(path: Path) -> bool:
+    """True for generated files no content binding should include.
+
+    Defined here and imported by `check_content_binding_v1.py` rather than
+    written out twice. It *was* written out twice, identically, and the two
+    copies drifted the moment LaTeX trees arrived: the checker learned to skip
+    `main.fdb_latexmk` and this module did not, so one reported the binding
+    current while the other reported seven files nobody was watching.
+    """
+
     if path.suffix in _EXCLUDED_SUFFIXES:
+        return True
+    if path.suffix in _SIDECAR_SUFFIXES and path.with_suffix(".tex").is_file():
         return True
     return any(part in _EXCLUDED_DIR_NAMES for part in path.parts)
 
@@ -221,7 +240,7 @@ def _files_on_disk(directory: Path) -> int:
     return sum(
         1
         for path in directory.rglob("*")
-        if path.is_file() and not _is_build_artifact(path) and path.name != SUMS_NAME
+        if path.is_file() and not is_build_artifact(path) and path.name != SUMS_NAME
     )
 
 
@@ -355,7 +374,7 @@ def inspect_paper(repo_root: Path, directory: Path) -> PaperBinding:
             if (
                 root in target.parents
                 and target.name != SUMS_NAME
-                and not _is_build_artifact(target)
+                and not is_build_artifact(target)
             ):
                 covered[target] = digest
 

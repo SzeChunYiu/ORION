@@ -39,6 +39,15 @@
 \author{Working framework draft}
 \date{}
 
+% A content binding that changes on every rebuild is not a binding. These three
+% papers bind manuscript/main.pdf in SHA256SUMS, and pdfTeX stamps a wall-clock
+% /CreationDate, /ModDate and a trailer /ID derived from them -- so simply
+% rebuilding the paper broke its own binding, checker exit 0 before and 1 after.
+% Omitting the timestamps makes the PDF a function of its source, which is what
+% the binding claims to attest. Same repair as the P1 figure manifest.
+\ifdefined\pdfinfoomitdate \pdfinfoomitdate=1 \fi
+\ifdefined\pdftrailerid \pdftrailerid{} \fi
+\ifdefined\pdfsuppressptexinfo \pdfsuppressptexinfo=-1 \fi
 \begin{document}
 \maketitle
 
