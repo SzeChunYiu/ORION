@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from orion.programme.q_series_content_binding import require_q_series_content_binding
 from orion.registry import (
     Q3_HARNESS_PUBLICATION_CONTRACT_ID,
     Q_SERIES_CANONICAL_MANUSCRIPTS,
@@ -61,8 +62,11 @@ def _require_file(repo_root: Path, value: str, *, label: str) -> Path:
 
 
 def validate_q_series_sync(repo_root: Path) -> QSeriesSyncReport:
+    # Content bytes are checked before semantic parsing so an edited paper/spec
+    # cannot pass merely because it still contains the right keywords.
+    require_q_series_content_binding(repo_root)
     spec = load_q_series_spec(repo_root)
-    checks: list[str] = []
+    checks: list[str] = ["canonical_content_binding"]
 
     if spec.get("schema") != Q_SERIES_PUBLICATION_SPEC_ID:
         raise ValueError("Q-series spec schema no longer matches runtime registry")
@@ -97,6 +101,10 @@ def validate_q_series_sync(repo_root: Path) -> QSeriesSyncReport:
     q1 = papers["Q1"]
     for required in q1.get("required_internal_evidence", []):
         _require_file(repo_root, str(required), label="Q1 evidence")
+    if q1.get("current_internal_status") != "COMPLETE_FOR_SCOPED_THEOREM_PAPER__SUBMISSION_FORMATTING_REMAINS":
+        raise ValueError("Q1 final internal status drifted from the frozen scoped theorem-paper state")
+    if q1.get("novelty_search_status") != "NOT_LOCATED_IN_BOUNDED_SEARCH__NOT_NOVELTY_CERTIFICATE":
+        raise ValueError("Q1 novelty-search boundary changed without a new final spec")
     sanity = _load_json(
         repo_root
         / "papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
@@ -129,7 +137,9 @@ def validate_q_series_sync(repo_root: Path) -> QSeriesSyncReport:
     )
     if not sharp:
         raise ValueError("Q1 sharpness witness 5<6 at structured n=2 instance 16 is missing")
-    checks.extend(["q1_sanity", "q1_all_n_receipt", "q1_sharpness_witness"])
+    checks.extend(
+        ["q1_sanity", "q1_all_n_receipt", "q1_sharpness_witness", "q1_final_novelty_refresh"]
+    )
 
     # Q2: the methodology manuscript is final only if the receipt index reaches the
     # actual programme closure rather than the pre-R6S draft state.
