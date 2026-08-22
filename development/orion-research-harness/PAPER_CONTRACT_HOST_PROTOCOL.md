@@ -6,7 +6,7 @@ Authority: host/orchestration instructions only; no scientific, novelty, adoptio
 
 ## Purpose
 
-The paper-contract runtime closes the distinction between a mechanic being discoverable and being executable. It provides raw-source method reconstruction, evidence-derived multi-axis saturation, Paper-VII navigation, P6 epistemic mechanics, P8 typed authority, P10 obstruction-certified method-language expansion, host-callable P11-P14 decision laws, and a V3 paper-aware research director that tells a normal recursive solve which research-control surface must run next.
+The paper-contract runtime closes the distinction between a mechanic being discoverable and being executable. It provides raw-source method reconstruction, evidence-derived multi-axis saturation, Paper-VII navigation, P6 epistemic mechanics, P8 typed authority, P10 obstruction-certified method-language expansion, host-callable P11-P14 decision laws, a V3 paper-aware research director, and a V4 research-resolution lifecycle that distinguishes positive, negative, and unresolved outcomes.
 
 ## Install
 
@@ -17,12 +17,13 @@ python -m pip install -e 'packages/orion-research-harness[dev]'
 
 ## Semantic self-checks
 
-Run all three gates:
+Run the paper/harness gates plus the V4 covariance module:
 
 ```bash
 orion-harness-paper paper-contract-conformance
 orion-harness-paper paper-programme-conformance
 orion-harness-paper research-v3-conformance
+python -m orion_research_harness.research_v4_conformance
 ```
 
 A release-ready result must report:
@@ -31,13 +32,72 @@ A release-ready result must report:
 ORION_HARNESS_PAPER_CONTRACT_P0_OPERATIONAL
 ORION_HARNESS_P1_P15_OPERATIONAL
 ORION_HARNESS_RESEARCH_DIRECTOR_CONSENSUS_EXTRACTION_V3_OPERATIONAL
+ORION_PAPER_FRAMEWORK_HARNESS_COVARIANCE_V4_OPERATIONAL
 ```
 
-The P0 gate executes hostile semantic probes; the programme gate executes positive and fail-closed probes for every P1-P15 owner; V3 checks research-director and consensus-extraction control semantics. None is a scientific benchmark, an arbitrary-paper extraction-completeness claim, or promotion authority.
+The P0 gate executes hostile semantic probes; the programme gate executes positive and fail-closed probes for every P1-P15 owner; V3 checks research-director and consensus-extraction control semantics; V4 checks paper ↔ framework ↔ harness outcome-lifecycle covariance. None is a scientific benchmark, an arbitrary-paper extraction-completeness claim, or promotion authority.
+
+## V4 outcome lifecycle: positive, negative, unresolved
+
+The host must keep three outcome classes separate:
+
+- **POSITIVE** — the bounded target contract passes;
+- **NEGATIVE** — a verified obstruction, falsification, non-identifiability, donor subsumption, failed frozen transfer, or other scientifically meaningful negative result;
+- **UNRESOLVED** — the current contract cannot decide the target judgment (`CANNOT_CHECK`).
+
+### `CANNOT_CHECK` is normally an active resolution obligation
+
+Main harness surfaces now attach `ResearchResolutionObligation.v1` whenever they own an unresolved decision. The object records:
+
+- unresolved class and reason codes;
+- required evidence/capability/authority objects;
+- admissible next actions;
+- prior attempts and blockers;
+- an explicit bounded/external stop condition when one applies;
+- non-authorizing authority ceilings.
+
+Use the generic host surface directly when needed:
+
+```bash
+orion-harness-paper resolution-plan --file unresolved-or-negative.json
+```
+
+Example unresolved payload:
+
+```json
+{
+  "outcome_kind": "UNRESOLVED",
+  "subject_id": "claim:x",
+  "unresolved_class": "EVIDENCE",
+  "reason_codes": ["MISSING_INDEPENDENT_VERIFICATION"],
+  "required_object_ids": ["verify:claim:x"]
+}
+```
+
+The returned obligation will propose admissible actions such as evidence acquisition/verification, capability repair, search expansion, orientation/reframe, responsibility diagnosis, representation repair, OCME, typed authority checking, protocol-authorized resource widening, or protected-evidence request.
+
+A protected/external blocker is not treated as an ordinary local retry. A frozen resource bound does not self-authorize more resources. No resolution obligation can include `TASK_STOP` or grant scientific/novelty/promotion/global-stop authority.
+
+### Negative results are assimilated, not "fixed" into positives
+
+A verified negative result is represented as `ResearchNegativeResult.v1`. Example:
+
+```json
+{
+  "outcome_kind": "NEGATIVE",
+  "result_id": "negative:donor",
+  "subject_id": "method:candidate",
+  "negative_kind": "DONOR_SUBSUMED",
+  "evidence_ids": ["e:donor"],
+  "reason_codes": ["STRONG_DONOR_SAME_REACH"]
+}
+```
+
+Typical assimilation dispositions include registering an obstruction/donor result, closing a hypothesis branch, reopening a dependency, reframing/widening search, revising a paper claim, revising a framework mechanic, or recording a bounded negative terminal. These are research-control consequences, not scientific-authority grants.
 
 ## Paper-aware research director
 
-Every completed normal recursive solve now carries a derived `research_directive`. The underlying immutable run receipt is not rewritten; the directive is a control-plane projection over it.
+Every completed normal recursive solve carries a derived `research_directive`. Unresolved recursive outcomes also carry `resolution_obligation`. The underlying immutable run receipt is not rewritten; both are control-plane projections over it.
 
 You can also ask the director directly:
 
@@ -47,7 +107,7 @@ orion-harness-paper research-direct --file solve-state.json
 
 The director is deliberately non-compensatory:
 
-- resource exhaustion or ambiguous residual identity -> `CANNOT_CHECK`;
+- resource exhaustion or ambiguous residual identity -> unresolved + resolution obligation;
 - zero/multiple causal responsibilities -> `DIAGNOSE_RESPONSIBILITY`;
 - `EXECUTION` -> `RESTORE_CAPABILITY` (P15);
 - `EVIDENCE` -> `VERIFY_EVIDENCE` (P4/P8);
@@ -84,7 +144,7 @@ It is replayable and proceeds through four fail-closed stages:
 3. `INDEPENDENT_REVIEW` coverage check over the merged exact-span ledger;
 4. the existing `VERIFY_EVIDENCE` semantic source-support check, which still requires a certificate.
 
-Identical claims retain both proposer lane IDs. Sequence-valued coordinates union source-supported claims. Distinct surviving scalar values produce `CANNOT_CHECK_PROPOSER_DISAGREEMENT` before canonical construction. A valid reviewer-discovered missed claim produces `CANNOT_CHECK_COVERAGE_GAP`; the reviewer claim is not silently promoted into a COMPLETE structure. Invalid quotes/schema are host capability failures.
+Identical claims retain both proposer lane IDs. Sequence-valued coordinates union source-supported claims. Distinct surviving scalar values produce `CANNOT_CHECK_PROPOSER_DISAGREEMENT` before canonical construction. A valid reviewer-discovered missed claim produces `CANNOT_CHECK_COVERAGE_GAP`; the reviewer claim is not silently promoted into a COMPLETE structure. V4 projects those unresolved states into resolution obligations. Invalid quotes/schema are host capability failures.
 
 The older single-proposer V1 path remains available for backward compatibility:
 
@@ -108,21 +168,12 @@ Every proposer/reviewer claim uses `coordinate`, `value`, and an exact verbatim 
 
 ## P6 host commands — epistemic mechanics
 
-Execute a declarative P6 mechanic contract against a typed state:
-
 ```bash
 orion-harness-paper mechanic-apply --file mechanic-input.json
-```
-
-The JSON object contains `state` and `contract`. The runtime enforces declared write footprints, hard evidence/authority premises, obligation persistence/discharge, non-escalating authority and recursive audit-rank constraints. `DENIED` and `CANNOT_CHECK` never mutate state.
-
-Run root-inclusive certificate-aware dependency repair:
-
-```bash
 orion-harness-paper dependency-repair --file repair-input.json
 ```
 
-The object contains `state`, `changed_ids`, and optional `certificates`. Changed certified roots cannot self-preserve; downstream preservation requires an exact current protected certificate.
+The runtime enforces declared write footprints, hard evidence/authority premises, obligation persistence/discharge, non-escalating authority and recursive audit-rank constraints. `DENIED` and `CANNOT_CHECK` never mutate state. P6 `CANNOT_CHECK` receives an evidence-class resolution obligation.
 
 ## P7 host command — open-world navigation
 
@@ -130,13 +181,13 @@ The object contains `state`, `changed_ids`, and optional `certificates`. Changed
 orion-harness-paper navigation-plan --file navigation-state.json
 ```
 
-The state carries an active chart, location/frontier, route contracts, obligations, budget, censoring, visited state, evidence and route-stop receipts. Core invariant:
+Core invariant:
 
 ```text
 task_stop -> every mandatory obligation is satisfied, discharged, or certificate-covered
 ```
 
-Route stop never implies task stop. Budget exhaustion, censored/unavailable route exhaustion, or an unmapped mandatory obligation remains `CANNOT_CHECK`. An unresolved start yields orientation.
+Route stop never implies task stop. Budget exhaustion, censored/unavailable route exhaustion, or an unmapped mandatory obligation remains unresolved and carries a coverage-class resolution obligation. An unresolved start yields orientation.
 
 ## P8 host command — typed epistemic authority
 
@@ -144,7 +195,7 @@ Route stop never implies task stop. Budget exhaustion, censored/unavailable rout
 orion-harness-paper authority-check --file authority-input.json
 ```
 
-The object contains `effect` and `context`, plus optional confidence/expected utility. Authority requires exact typed obligation discharge, blocker refutation, fresh in-scope grant and exact content/epoch binding. Confidence and utility are not authority currency. Cross-domain/type changes require registered protected coercions. Scope widening is denied unless the coercion explicitly declares `allow_scope_widening=true`.
+Authority requires exact typed obligation discharge, blocker refutation, fresh in-scope grant and exact content/epoch binding. Confidence and utility are not authority currency. Cross-domain/type changes require registered protected coercions. Scope widening is denied unless the coercion explicitly declares `allow_scope_widening=true`. P8 `CANNOT_CHECK` carries an authority-class resolution obligation; `DENIED` remains a negative authorization decision rather than being softened to missing evidence.
 
 ## Evidence-derived nine-axis research saturation
 
@@ -152,11 +203,11 @@ The object contains `effect` and `context`, plus optional confidence/expected ut
 orion-harness-paper research-saturation --file rounds.json
 ```
 
-Each round supplies executed route contracts, observed Self-ORION axes and observed item identities. Novelty counts are derived by set difference. Independent-flat credit is derived structurally and is one-route-per-round; a mixed bundle cannot manufacture a new independent route family. Missing axes, material residuals, dependent routes or resource bounds block bounded saturation. Bounded saturation never grants absolute completeness.
+Each round supplies executed route contracts, observed Self-ORION axes and observed item identities. Novelty counts are derived by set difference. Independent-flat credit is derived structurally and is one-route-per-round; a mixed bundle cannot manufacture a new independent route family. Missing axes, material residuals, dependent routes or resource bounds block bounded saturation and now produce a resolution obligation. Bounded saturation never grants absolute completeness.
 
 ### Important telemetry boundary
 
-Core `SearchQuery` records `route_id` and `route_kind`, but it does **not** encode the critical failure/coverage assumptions required by Paper VII to establish structural independence. Therefore the harness must not manufacture structural route contracts from query labels alone. When the director returns `ASSESS_SATURATION` or `NAVIGATE_OR_REFRAME`, the host must supply/execute explicit `RouteContract`s with critical assumption and coverage identities. Missing structural identity is a real `CANNOT_CHECK` residual, not a reason to infer independence.
+Core `SearchQuery` records `route_id` and `route_kind`, but it does **not** encode the critical failure/coverage assumptions required by Paper VII to establish structural independence. Therefore the harness must not manufacture structural route contracts from query labels alone. When the director returns `ASSESS_SATURATION` or `NAVIGATE_OR_REFRAME`, the host must supply/execute explicit `RouteContract`s with critical assumption and coverage identities. Missing structural identity is a real unresolved obligation, not a reason to infer independence.
 
 ## P10 host command — obstruction-certified method-language expansion
 
@@ -164,7 +215,9 @@ Core `SearchQuery` records `route_id` and `route_kind`, but it does **not** enco
 orion-harness-paper ocme-assess --file ocme-episode.json
 ```
 
-The runtime enforces O0-O6: freeze/custody, lower-level first-right-of-refusal, independently verified obstruction, candidate edit, independent outside-closure check, held-out transfer/false-expansion guard, donor comparison and independent reproduction. Timeout-only failure is not an obstruction certificate. A supported method expansion remains a non-authorizing research result; P4/P8/protected evaluation still own promotion.
+The runtime enforces O0-O6, including all eight registered lower-level first-right-of-refusal families, independently verified obstruction, candidate edit, independent outside-closure check, held-out transfer/false-expansion guard, donor comparison and independent reproduction. Timeout-only failure is not an obstruction certificate.
+
+Missing O0-O6 proof objects are unresolved and carry method-class resolution obligations. Verified donor subsumption or impossibility boundaries are negative results and receive assimilation objects; they are not rewritten as `CANNOT_CHECK`.
 
 ## P11-P14 host-callable paper laws
 
@@ -175,8 +228,8 @@ orion-harness-paper p13-action Z1 VERIFY --recoverable
 orion-harness-paper p14-disposition --file governance-facts.json
 ```
 
-These are lightweight deterministic decision kernels corresponding to the current paper contracts: P11 accessible-rank/optionality, P12 matched-budget state-reasoning allocation, P13 responsibility-scoped reuse/reopen/CANNOT_CHECK, and P14 specification-separated governance. They do not import publication outcomes as policy inputs; P14 explicitly rejects gold/private adjudication fields.
+P13/P14 unresolved dispositions carry V4 resolution obligations. The law outputs remain lightweight bounded decision kernels and do not import publication outcomes as policy inputs.
 
 ## Authority boundary
 
-Paper extraction/consensus, research directives, mechanic execution, dependency repair, navigation, authority decisions, bounded saturation, OCME dispositions, P11-P14 law outputs and all three conformance terminals are non-authorizing research-control evidence. Scientific conclusions still require normal ORION evidence, protected verification and authority machinery.
+Paper extraction/consensus, research directives, resolution obligations, negative-result assimilation, mechanic execution, dependency repair, navigation, authority decisions, bounded saturation, OCME dispositions, P11-P14 law outputs and all conformance terminals are non-authorizing research-control evidence. Scientific conclusions still require normal ORION evidence, protected verification and authority machinery.
