@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from orion import registry
 from orion.core.research_resolution import (
     AssimilationDisposition,
@@ -101,4 +103,14 @@ def research_v4_conformance() -> dict[str, object]:
     }
 
 
-__all__ = ["TERMINAL", "research_v4_conformance"]
+def main() -> int:
+    report = research_v4_conformance()
+    print(json.dumps(report, indent=2, sort_keys=True))
+    return 0 if report["operational"] else 4
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+
+__all__ = ["TERMINAL", "main", "research_v4_conformance"]
