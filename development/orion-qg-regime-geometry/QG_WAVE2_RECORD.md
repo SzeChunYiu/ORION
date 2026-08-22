@@ -1148,7 +1148,55 @@ before it could be claimed. The one thing left standing is arithmetic about this
 its merge relation admits exactly two seams, and that is a fact about R6M, not a
 contribution to compilation.
 
-## QG-25 (donor search bound; Q1 in flight) — THE PROGRAMME'S CENTRAL QUANTITY HAS BEEN NAMED SINCE 1958, AND THE FIELD PUTS THIS FAMILY IN NP
+## QG-25 — QG-22 WAS RIGHT ABOUT STABPREP FOR A REASON IT DID NOT GIVE
+
+Protocol `QG25_NO_SYNDROME_FAMILY_PROTOCOL_V1.md`, frozen at `48058887`. Terminal
+**`QG25_NO_CONSERVED_SYNDROME_PROVED__COLLAPSE_MECHANISM_ABSENT`**. Verifier ACCEPT on
+16 checks, none failed; ten tampered copies with recomputed digests all REJECT, each
+caught by the check it names, validated through `orion_research_harness.falsifiability`;
+double run byte-identical.
+
+**The lane's agent died twice before writing a verifier, so the adjudicator wrote one.**
+That is the ordinary case rather than a special circumstance — an independent verifier
+should not come from the lane — and it carries its own single-qubit stabilizer simulation
+so the load-bearing witness is re-derived from the Clifford action on Pauli operators
+rather than read back out of the receipt.
+
+### The result
+
+QG-22's **conclusion** stands: StabPrep has no fixed-dimension conserved syndrome. Its
+**reason** does not. QG-22 inferred absence from the 2^Θ(n²) size of the state space, and
+size does not entail absence — the lane exhibits `PARITY_GRID(n)`, a family with a 2^(n²)
+configuration space and a conserved syndrome of dimension **1**, verified independently at
+n = 1, 2, 3.
+
+The real obstruction is that StabPrep's transition monoid is **non-commutative**, and the
+witness is two gates:
+
+| word | reaches | prepares target |
+|---|---|---|
+| `S` then `H` | stabilizer ⟨X⟩ | yes |
+| `H` then `S` | stabilizer ⟨Y⟩ | no |
+
+Both are the same multiset `{H, S}`, so **every** commutative-monoid homomorphism assigns
+them the same value while one prepares the target and the other does not. That kills
+abelian syndromes at *every* dimension, fixed or growing — strictly stronger than QG-22
+claimed, and resting on a two-gate witness rather than a counting argument. I re-derived
+both states from `H: X↔Z` and `S: X→Y` independently of the lane's code; they reproduce.
+
+### The finding about this programme, stated plainly
+
+**QG-22 reached a true conclusion by an inference that does not support it**, and that
+inference was load-bearing in its component table for a whole wave. "The state space is
+huge, therefore there is no small conserved quantity" is invalid. It should be read as a
+lucky guess that the donor literature later justified by a different route.
+
+No hardness result is claimed and none exists: per QG-25's own donor search the field puts
+Clifford synthesis **in NP** and records only exponential algorithms. Gates G3 and G4 hold.
+
+### Donor search (bound earlier, at `5958ae08`)
+
+
 
 Protocol `QG25_NO_SYNDROME_FAMILY_PROTOCOL_V1.md`, frozen at `48058887` before any
 outcome-determining run. Donor search committed at `5958ae08`. **Q1 — running QG-6's

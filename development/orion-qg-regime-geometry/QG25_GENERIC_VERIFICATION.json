@@ -1,0 +1,237 @@
+{
+ "authored_by": "the adjudicator, not the lane",
+ "check_count": 16,
+ "checks": {
+  "authority_ceiling_not_r6": {
+   "detail": null,
+   "ok": true
+  },
+  "counterexample_family_reproduces": {
+   "detail": {
+    "bad": []
+   },
+   "ok": true
+  },
+  "counterexample_space_is_two_to_the_n_squared": {
+   "detail": null,
+   "ok": true
+  },
+  "criterion_binding_records_bind_both_digests": {
+   "detail": {
+    "bad": [],
+    "count": 13
+   },
+   "ok": true
+  },
+  "criterion_digests_match_the_frozen_protocol_text": {
+   "detail": null,
+   "ok": true
+  },
+  "document_level_verification_declared_false": {
+   "detail": null,
+   "ok": true
+  },
+  "donor_records_validate_with_the_log_passed": {
+   "detail": {
+    "bad": []
+   },
+   "ok": true
+  },
+  "exactly_one_word_prepares_the_target": {
+   "detail": null,
+   "ok": true
+  },
+  "no_abelian_syndrome_claimed_at_any_D": {
+   "detail": null,
+   "ok": true
+  },
+  "no_hardness_or_reduction_claimed": {
+   "detail": null,
+   "ok": true
+  },
+  "protocol_sha256_recomputes": {
+   "detail": null,
+   "ok": true
+  },
+  "qg22_conclusion_stands_but_its_reason_does_not": {
+   "detail": null,
+   "ok": true
+  },
+  "result_digest_recomputes": {
+   "detail": null,
+   "ok": true
+  },
+  "witness_states_match_the_receipt": {
+   "detail": {
+    "receipt": [
+     [
+      "+I",
+      "+X"
+     ],
+     [
+      "+I",
+      "+Y"
+     ]
+    ],
+    "recomputed": [
+     "X",
+     "Y"
+    ]
+   },
+   "ok": true
+  },
+  "witness_words_are_permutations_of_each_other": {
+   "detail": {
+    "a": [
+     "S",
+     "H"
+    ],
+    "b": [
+     "H",
+     "S"
+    ]
+   },
+   "ok": true
+  },
+  "witness_words_reach_different_states": {
+   "detail": {
+    "recomputed_a": "X",
+    "recomputed_b": "Y"
+   },
+   "ok": true
+  }
+ },
+ "determinism": {
+  "double_run": true,
+  "run1_sha256": "c2373a8b97dcd3e0a08ba8a812c2ddb7372521616ba761090d0a9e7a22febd97",
+  "run2_sha256": "c2373a8b97dcd3e0a08ba8a812c2ddb7372521616ba761090d0a9e7a22febd97",
+  "stdout_identical": true
+ },
+ "failed_checks": [],
+ "falsifiability_demonstration": {
+  "all_tampered_copies_internally_self_consistent": true,
+  "all_tampered_copies_rejected": true,
+  "cases": [
+   {
+    "case": "T1_witness_words_not_permutations",
+    "failed_checks": [
+     "witness_words_are_permutations_of_each_other",
+     "witness_states_match_the_receipt"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the two witness words are edited so they are no longer permutations of each other, which is the entire basis of the abelian argument",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T2_witness_states_made_equal",
+    "failed_checks": [
+     "witness_states_match_the_receipt"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the two words are claimed to reach the same stabilizer state",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T3_both_words_prepare_the_target",
+    "failed_checks": [
+     "exactly_one_word_prepares_the_target"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "both words are claimed to prepare the target, separating nothing",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T4_counterexample_space_inflated",
+    "failed_checks": [
+     "counterexample_family_reproduces",
+     "counterexample_space_is_two_to_the_n_squared"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the counterexample family's configuration space is inflated at n=2",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T5_counterexample_syndrome_made_to_grow",
+    "failed_checks": [
+     "counterexample_family_reproduces"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the counterexample's syndrome dimension is made to grow with n, gutting it",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T6_donor_passage_stripped",
+    "failed_checks": [
+     "donor_records_validate_with_the_log_passed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the verbatim passage is stripped from a donor record",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T7_document_level_verification_claimed",
+    "failed_checks": [
+     "document_level_verification_declared_false"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a donor record claims document-level verification against the measured retrieval ceiling",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T8_criterion_digest_broken",
+    "failed_checks": [
+     "criterion_digests_match_the_frozen_protocol_text"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a criterion digest no longer matches the frozen protocol text",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T9_qg22_finding_softened",
+    "failed_checks": [
+     "qg22_conclusion_stands_but_its_reason_does_not"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the finding that QG-22 was right for a reason it did not give is softened into agreement",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T10_hardness_gate_flipped",
+    "failed_checks": [
+     "no_hardness_or_reduction_claimed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the gate forbidding a reduction or lower bound is flipped to false",
+    "verdict": "REJECT"
+   }
+  ],
+  "expected_check_per_case": {
+   "T10_hardness_gate_flipped": "no_hardness_or_reduction_claimed",
+   "T1_witness_words_not_permutations": "witness_words_are_permutations_of_each_other",
+   "T2_witness_states_made_equal": "witness_states_match_the_receipt",
+   "T3_both_words_prepare_the_target": "exactly_one_word_prepares_the_target",
+   "T4_counterexample_space_inflated": "counterexample_family_reproduces",
+   "T5_counterexample_syndrome_made_to_grow": "counterexample_family_reproduces",
+   "T6_donor_passage_stripped": "donor_records_validate_with_the_log_passed",
+   "T7_document_level_verification_claimed": "document_level_verification_declared_false",
+   "T8_criterion_digest_broken": "criterion_digests_match_the_frozen_protocol_text",
+   "T9_qg22_finding_softened": "qg22_conclusion_stands_but_its_reason_does_not"
+  },
+  "method": "each tampered copy has its result_digest RECOMPUTED, so no hash mismatch is available; every rejection comes from re-derivation",
+  "tamper_files_kept_outside_the_repository": true,
+  "validated_through": "orion_research_harness.falsifiability"
+ },
+ "independent_of": [
+  "qg25_no_syndrome_family",
+  "qg6_syndrome_rank",
+  "numpy"
+ ],
+ "results_file": "/home/user/ORION/research/extensions/orion-qg/QG25_NO_SYNDROME_FAMILY_RESULTS.json",
+ "results_sha256": "fad21ac133582495a645511ee06327b661371fe8d2e1a6b3668a348598076f92",
+ "schema": "ORIONQG.QG25.GenericVerification.v1",
+ "scope_note": "re-derives the two-gate witness from the Clifford action on Pauli operators and the counterexample family from its own definition. It does NOT re-run the lane's complete word enumerations at n = 2, 3, which are reported on the lane's word and are not what the result rests on: a single permutation pair reaching two states settles the abelian question at every dimension.",
+ "terminal_under_review": "QG25_NO_CONSERVED_SYNDROME_PROVED__COLLAPSE_MECHANISM_ABSENT",
+ "verdict": "ACCEPT",
+ "verifier": "qg25_generic_verify",
+ "verifier_sha256": "f49c148148966e637e00d9641a51ab4c26442fa98b1f0cd1732256e72e6563a4"
+}
