@@ -1,0 +1,16 @@
+// Exact primary solver for final X1-B rank-2-radical prefix classes.
+// Uses the already committed illegal-state quotient and minimum-last dominance.
+#include <array>
+#include <cstdint>
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+using namespace std;
+struct Bits{uint64_t lo,hi;};
+static inline void set_bit(Bits&a,int i){if(i<64)a.lo|=1ULL<<i;else a.hi|=1ULL<<(i-64);}static inline bool test_bit(Bits a,int i){return i<64?((a.lo>>i)&1ULL):((a.hi>>(i-64))&1ULL);}static inline Bits bit_or(Bits a,Bits b){return{a.lo|b.lo,a.hi|b.hi};}
+static inline uint64_t hash_bits(uint64_t lo,uint64_t hi){uint64_t x=lo+0x9e3779b97f4a7c15ULL;x=(x^(x>>30))*0xbf58476d1ce4e5b9ULL;x^=hi+0x94d049bb133111ebULL+(x<<6)+(x>>2);x^=x>>27;x*=0x94d049bb133111ebULL;return x^(x>>31);}
+struct States{vector<uint64_t>lo,hi;vector<uint8_t>last;size_t size()const{return last.size();}void release(){vector<uint64_t>().swap(lo);vector<uint64_t>().swap(hi);vector<uint8_t>().swap(last);}};
+struct Flat{size_t cap,mask,n=0;vector<uint64_t>lo,hi;vector<uint8_t>last;explicit Flat(int p):cap(1ULL<<p),mask(cap-1),lo(cap),hi(cap),last(cap,255){}void insert(Bits k,uint8_t l){size_t p=hash_bits(k.lo,k.hi)&mask;for(size_t z=0;z<cap;z++){uint8_t old=last[p];if(old==255){lo[p]=k.lo;hi[p]=k.hi;last[p]=l;++n;return;}if(lo[p]==k.lo&&hi[p]==k.hi){if(l<old)last[p]=l;return;}p=(p+1)&mask;}throw runtime_error("hash capacity exhausted");}States extract()const{States s;s.lo.reserve(n);s.hi.reserve(n);s.last.reserve(n);for(size_t p=0;p<cap;p++)if(last[p]!=255){s.lo.push_back(lo[p]);s.hi.push_back(hi[p]);s.last.push_back(last[p]);}return s;}};
+static vector<int> forbidden(int cls){if(cls==11)return{0,1,2,5,6,10,25,26,46,65,111};if(cls==12)return{0,1,2,5,6,10,25,26,30,34,53,107};throw runtime_error("class must be 11 or 12");}
+struct Solver{array<array<array<Bits,256>,16>,125>*lut;Bits F{0,0};int cls;explicit Solver(int c):cls(c){for(int i:forbidden(c))set_bit(F,i);lut=new array<array<array<Bits,256>,16>,125>();for(int x=0;x<125;x++){int xa=x/25,xb=x/5%5,xc=x%5;for(int ch=0;ch<16;ch++)for(int p=0;p<256;p++){Bits o{0,0};for(int b=0;b<8;b++)if(p>>b&1){int g=ch*8+b;if(g>=125)continue;int a=g/25,bb=g/5%5,cc=g%5;set_bit(o,25*((a-xa+5)%5)+5*((bb-xb+5)%5)+(cc-xc+5)%5);}(*lut)[x][ch][p]=o;}}}~Solver(){delete lut;}Bits shift_minus(Bits s,int x)const{Bits o{0,0};for(int ch=0;ch<8;ch++)o=bit_or(o,(*lut)[x][ch][(s.lo>>(8*ch))&255]);for(int ch=8;ch<16;ch++)o=bit_or(o,(*lut)[x][ch][(s.hi>>(8*(ch-8)))&255]);return o;}void run(){const int powers[10]={8,14,19,23,25,24,23,22,21,20};States cur;cur.lo={F.lo};cur.hi={F.hi};cur.last={0};uint64_t transitions=0;cout<<"class "<<cls<<" depth 0 states 1\n";for(int d=0;d<10;d++){Flat next(powers[d]);for(size_t si=0;si<cur.size();si++){Bits I{cur.lo[si],cur.hi[si]};int last=cur.last[si];for(int pos=last;pos<124;pos++){int x=pos+1;if(test_bit(I,x))continue;Bits J=bit_or(I,shift_minus(I,x));next.insert(J,(uint8_t)pos);++transitions;}}cout<<"class "<<cls<<" depth "<<d+1<<" states "<<next.n<<" transitions "<<transitions<<"\n";if(next.n==0){cout<<"NO max_length "<<d<<"\n";return;}States ns=next.extract();cur.release();cur=move(ns);}cout<<"YES depth10_states "<<cur.size()<<"\n";}};
+int main(int argc,char**argv){int cls=argc>1?atoi(argv[1]):11;Solver s(cls);s.run();return 0;}
