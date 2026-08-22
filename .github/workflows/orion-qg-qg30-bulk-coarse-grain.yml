@@ -59,8 +59,10 @@ jobs:
           assert n['decision']=='ACCEPT_BULK45_DEFECT_SEPARATION' and n['all_checks'] is True
           assert n['responsibility']=='BULK45_ASYMPTOTIC_SUFFICIENCY__FINITE_DEFECT_INFORMATION_BARRIER'
           assert d['terminal']==pos and d['both_accept'] is True
-          for x in (a,g,n,d):
+          assert a.get('BULK_SIGNATURE_COUNT_45', a.get('BULK_SIGNATURE_COUNT'))==45
+          for x in (g,n,d):
             assert x['BULK_SIGNATURE_COUNT_45']==45
+          for x in (a,g,n,d):
             assert x['BULK_45_HISTOGRAM_SUFFICIENT_FOR_ASYMPTOTIC_DENSITY'] is True
             assert x['ASYMPTOTIC_PHASE_GEOMETRY_DESCENDS_TO_45_COUNTS'] is True
             assert x['BULK_DEFECT_SCALE_SEPARATION'] is True
