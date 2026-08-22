@@ -27,16 +27,18 @@ Canonical objects:
 - `papers/Q_SERIES_FINAL_SPEC_V1.json` — paper identities, canonical manuscript paths, maximum claim scopes, required evidence, owner-declared skipped/deferred gates and forbidden promotions;
 - `src/orion/programme/q_series_sync.py` — executable semantic/evidence checker for that specification;
 - `papers/Q_SERIES_CONTENT_BINDING_V1.json` + `src/orion/programme/q_series_content_binding.py` — content-addressed drift guard for the canonical Q submission bytes;
+- `src/orion/programme/content_binding_coverage.py` — repository-wide survey that now recognizes the Q1-Q4 cross-paper canonical binding alongside the older per-directory bindings;
 - `packages/orion-research-harness/src/orion_research_harness/publication_contract.py` — Q3's machine-readable harness contract;
-- `tests/unit/publication/test_q_series_final_spec.py`, `test_q_series_content_binding.py`, and `packages/orion-research-harness/tests/test_publication_contract.py` — regression gates.
+- `tests/unit/publication/test_q_series_final_spec.py`, `test_q_series_content_binding.py`, `tests/unit/programme/test_content_binding_coverage.py`, and `packages/orion-research-harness/tests/test_publication_contract.py` — regression gates;
+- `.github/workflows/q-series-publication-sync.yml` — push/PR gate that exercises the paper/framework binding, Q3 harness contract and Q1 independent finite-core sanity result together.
 
 `src/orion/registry.py` carries the shared Q-series sync epoch, canonical manuscript identities and Q3 harness publication-contract id. A change to any of those surfaces must update the final Q spec, content binding, framework snapshot and affected manuscript/claim ledger together.
 
 ### Q-series content-binding rule
 
-The older repository-wide paper survey predates the Q namespace and discovers per-directory `SHA256SUMS`/manifest bindings. The Q-series therefore carries a dedicated cross-paper binding over the **canonical publication package**, not every historical draft. The binding recomputes Git blob identities directly from working-tree bytes, so an uncommitted/local edit is visible as drift.
+The repository supports two content-binding forms. P6-P8 use per-directory `SHA256SUMS`/manifest bindings; Q1-Q4 use a deliberate cross-paper binding over the **canonical publication package**, not every historical draft. The Q binding recomputes Git blob identities directly from working-tree bytes, so an uncommitted/local edit is visible as drift. The generic `content_binding_coverage` survey consumes both forms, so Q1-Q4 no longer appear `UNBOUND` merely because their binding lives at the publication-wave level.
 
-Historical V1 drafts may remain unbound because they are provenance snapshots rather than current submission surfaces. A canonical Q manuscript, proof, claim ledger, novelty record or final spec may not change silently: the Q-series binding must be reviewed/regenerated with the change.
+Historical V1 drafts may remain outside the canonical Q binding because they are provenance snapshots rather than current submission surfaces. They remain visible as unbound files in the survey's denominator accounting. A canonical Q manuscript, proof, claim ledger, novelty record or final spec may not change silently: the Q-series binding must be reviewed/regenerated with the change.
 
 ### Owner-skipped external expert review
 
