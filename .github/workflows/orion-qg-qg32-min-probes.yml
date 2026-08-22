@@ -74,9 +74,10 @@ jobs:
           assert a['PRODUCTION_MILP_MINIMUM_OPTIMAL'] is True
           assert a['selected_separates_715'] is True
           assert a['minimum_probe_cardinality']==len(a['selected_probe_indices'])
+          assert 'NO_LEX_AUTHORITY' in a['selected_canonicalization']
           assert g['decision']=='ACCEPT_MINIMUM_FIXED_PROBE_BASIS' and g['all_checks'] is True
           proof=g['independent']['proof']
-          assert proof['no_smaller'] is True and proof['lexicographically_minimum'] is True
+          assert proof['no_smaller'] is True
           assert n['decision']=='ACCEPT_MINIMUM_FIXED_PROBE_BASIS' and n['all_checks'] is True
           assert n['responsibility']=='JOINT_SUMMARY_PLUS_MINIMUM_FIXED_PROBE_ACTIVE_VERIFICATION_ONLY'
           for x in (a,g,n,d):
