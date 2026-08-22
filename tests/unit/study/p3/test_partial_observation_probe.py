@@ -72,8 +72,13 @@ from orion.study.p3.partial_observation_probe import (
     COORDINATES,
     DECISIVENESS_RULE_MARKER,
     FREEZE_TWIN,
+    INTACT_DERIVATION,
     INTACT_HARM_SYNTHETIC,
+    INTACT_HELDOUT_REAL,
+    INTACT_HELDOUT_SYNTHETIC,
     INTACT_ORDER,
+    INTACT_RECORD_GOLD,
+    INTACT_ROLE,
     INTACT_SOURCES,
     MINING_ARM_ORDER,
     PARTIALLY_OBSERVED_INTACT_ORDER,
@@ -88,8 +93,10 @@ from orion.study.p3.partial_observation_probe import (
     arm_decisive_absence_only,
     build_probe,
     construction_precondition,
+    arm_disagreement,
     discriminating_coordinates,
     evaluate_gates,
+    exact_agreement_where_the_arm_can_fire,
     frozen_digest,
     main,
     observed,
@@ -97,6 +104,7 @@ from orion.study.p3.partial_observation_probe import (
     overall_outcome,
     redactable_coordinates,
     run_campaign,
+    score_pairs,
     verify_against_twin,
 )
 from orion.study.p3_public_reference import load_jsonl
@@ -122,6 +130,20 @@ def shipped() -> list[dict[str, object]]:
     return load_jsonl(REPO_ROOT / INTACT_SOURCES[INTACT_HARM_SYNTHETIC])
 
 
+#: What ``A0_orion_current`` gets wrong on each intact corpus, in the two kinds a
+#: merge guard can express. Zero on the four corpora frozen before amendment 003.
+#: On ``INTACT_RECORD_GOLD`` gold survives the extraction loss, so the merge-ward
+#: reading of a one-sided absence produces eight false merges on records that
+#: differ and the separation-ward reading of ``modality`` produces one false split
+#: on records that agree.
+A0_FAILURE_CENSUS: dict[str, dict[str, int]] = {
+    INTACT_DERIVATION: {"FALSE_MERGE": 0, "FALSE_SPLIT": 0},
+    INTACT_HELDOUT_REAL: {"FALSE_MERGE": 0, "FALSE_SPLIT": 0},
+    INTACT_HELDOUT_SYNTHETIC: {"FALSE_MERGE": 0, "FALSE_SPLIT": 0},
+    INTACT_HARM_SYNTHETIC: {"FALSE_MERGE": 0, "FALSE_SPLIT": 0},
+    INTACT_RECORD_GOLD: {"FALSE_MERGE": 8, "FALSE_SPLIT": 1},
+}
+
 #: A harm row with every count at zero, i.e. an arm that touched nothing.
 _NO_HARM: dict[str, int] = {
     "decisions_changed": 0,
@@ -138,6 +160,7 @@ def _fabricated_corpora(
     a3: dict[str, int] | None = None,
     gold_rule: str = "identity:adjudicated-by-people",
     a3_reproduces_gold: bool = False,
+    a3_reproduces_gold_where_it_fires: bool = False,
     a3_denominator: int = 12,
 ) -> dict[str, object]:
     """A corpora payload with the shape ``evaluate_gates`` reads and nothing real in it.
@@ -174,6 +197,15 @@ def _fabricated_corpora(
                     "reproduces_gold_on_every_case": (
                         arm == ARM_DECISIVE and a3_reproduces_gold
                     )
+                }
+                for arm in ARM_ORDER
+            },
+            "exact_agreement_where_the_arm_can_fire": {
+                arm: {
+                    "n_pairs_with_a_one_sided_absence": 27,
+                    "reproduces_gold_on_every_pair_it_can_fire_on": (
+                        arm == ARM_DECISIVE and a3_reproduces_gold_where_it_fires
+                    ),
                 }
                 for arm in ARM_ORDER
             },
@@ -314,14 +346,30 @@ class TestTheIntactAtlasesAreUnchanged:
     """A repair may only subtract. The intact side must read exactly as before."""
 
     @pytest.mark.parametrize("corpus_id", INTACT_ORDER)
-    def test_current_arm_still_commits_no_false_merge_and_no_false_split(
+    def test_the_current_arms_false_merge_census_is_what_it_is_declared_to_be(
         self, campaign: dict[str, object], corpus_id: str
     ) -> None:
+        """Zero on every corpus but the one added by amendment 003, and not zero there.
+
+        The published finding --- ORION commits zero false merges and zero false
+        splits on every P3 atlas --- is about those atlases, and the four rows of
+        zeroes below are it, unchanged. ``INTACT_RECORD_GOLD`` is not one of them:
+        its gold is the relation between two source records, so it stays
+        determinate on a pair whose deciding coordinate the extraction dropped,
+        and ``compare_meaning``'s reading of that silence is then a false merge
+        rather than an over-resolution. The count is recorded here rather than
+        scoped away, and the eight-to-one split is the absence-reading table
+        restated.
+        """
+
         entry = campaign["corpora"][corpus_id]["by_arm"][ARM_CURRENT]
         kinds = entry["decision_kinds"]
-        assert kinds["FALSE_MERGE"] == 0
-        assert kinds["FALSE_SPLIT"] == 0
-        assert entry["false_merge"]["outcome"] == Outcome.PASS.value
+        expected = A0_FAILURE_CENSUS[corpus_id]
+        assert kinds["FALSE_MERGE"] == expected["FALSE_MERGE"]
+        assert kinds["FALSE_SPLIT"] == expected["FALSE_SPLIT"]
+        assert entry["false_merge"]["outcome"] == (
+            Outcome.PASS.value if not expected["FALSE_MERGE"] else Outcome.FAIL.value
+        )
 
     @pytest.mark.parametrize("corpus_id", SYMMETRIC_INTACT_ORDER)
     def test_over_resolution_stays_cannot_check_on_the_symmetric_atlases(
@@ -428,9 +476,16 @@ class TestGatesRefuseToLaunder:
         assert gate["pairs_where_a1_could_fire"] > 0
         assert gate["vacuous"] is False
         assert gate["outcome"] == Outcome.FAIL.value
-        assert gate["decisions_changed"] == 21
-        assert gate["correct_answers_destroyed"] == 12
-        assert gate["pairs_where_a1_could_fire"] == 27
+        # The finding amendment 001 reported, pinned where it is true: on the
+        # corpus built for it. The gate's totals are sums over the intact corpora
+        # and amendment 003 adds one, so they move; the row does not.
+        row = gate["by_corpus"][INTACT_HARM_SYNTHETIC]
+        assert row["pairs_where_a1_could_fire"] == 27
+        assert row["decisions_changed"] == 21
+        assert row["correct_answers_destroyed"] == 12
+        assert gate["decisions_changed"] == 47
+        assert gate["correct_answers_destroyed"] == 29
+        assert gate["pairs_where_a1_could_fire"] == 53
 
     def test_the_harm_gate_would_report_a_pass_if_a1_left_the_corpus_alone(self) -> None:
         """The gate is not wired to fail whatever happens.
@@ -466,12 +521,19 @@ class TestGatesRefuseToLaunder:
         has a discriminating coordinate, because what is missing is a third value
         on an existing axis rather than an axis. FAIL is that finding, not a
         contradiction of it.
+
+        Amendment 003 adds nine more, on INTACT_RECORD_GOLD, of a different kind:
+        gold there survives the extraction loss, so the same merge-ward reading
+        that over-resolves on the harm corpus is a false merge here, plus one
+        false split from the separation-ward reading of ``modality``. Eighteen
+        failures, none with a discriminating coordinate, and the finding is the
+        same one twice over.
         """
 
         gate = campaign["gates"]["G5_MINING_YIELD"]
         part_a = gate["a_intact_failures"]
-        assert part_a["n_failures"] == 9
-        assert part_a["n_demanding_a_missing_coordinate"] == 9
+        assert part_a["n_failures"] == 18
+        assert part_a["n_demanding_a_missing_coordinate"] == 18
         assert part_a["outcome"] == Outcome.FAIL.value
         assert gate["outcome"] == Outcome.FAIL.value
         # and it did not license the "no new coordinate" verdict, which needs PASS
@@ -561,7 +623,7 @@ class TestTheHarmDenominatorExists:
     def test_the_corpus_is_registered_as_intact_and_not_as_a_probe_parent(self) -> None:
         assert INTACT_HARM_SYNTHETIC in INTACT_ORDER
         assert INTACT_HARM_SYNTHETIC in INTACT_SOURCES
-        assert PARTIALLY_OBSERVED_INTACT_ORDER == (INTACT_HARM_SYNTHETIC,)
+        assert INTACT_HARM_SYNTHETIC in PARTIALLY_OBSERVED_INTACT_ORDER
         # Redacting a pair that already has a one-sided absence would give a probe
         # case with two, which C2 rejects and which would abort the campaign.
         assert INTACT_HARM_SYNTHETIC not in PROBE_OF
@@ -842,25 +904,43 @@ class TestTheDecisiveArmIsNotTheHarmCorpusGoldFunction:
 
 
 class TestTheDecisivenessGateRefusesTheZeroItCannotEarn:
-    def test_a3_destroys_nothing_and_repairs_nine(self, campaign: dict[str, object]) -> None:
-        gate = campaign["gates"]["G9_HARM_A3"]
-        assert gate["correct_answers_destroyed"] == 0
-        assert gate["decisions_changed"] == 9
-        assert gate["wrong_answers_repaired"] == 9
-
-    def test_and_the_gate_still_refuses_to_call_that_safety(
+    def test_a3_destroys_nine_correct_answers_on_gold_it_did_not_write(
         self, campaign: dict[str, object]
     ) -> None:
-        """The whole point of the gate.
+        """Amendment 003's measurement, and the reason G9 is no longer a refusal.
 
-        Zero harm plus nine repairs looks like a clean result. It is not one: the
-        only corpus A3 can fire on derives its gold by A3's decision rule.
+        Under amendment 002 this read 0 destroyed and 9 repaired, and the gate
+        refused to call either a result because the only corpus A3 could fire on
+        derived its gold by A3's own criterion. INTACT_RECORD_GOLD derives its
+        gold from source records instead, and over it A3 destroys.
         """
 
         gate = campaign["gates"]["G9_HARM_A3"]
-        assert gate["outcome"] == Outcome.CANNOT_CHECK.value
-        assert gate["corpora_supplying_independent_evidence"] == []
-        assert gate["vacuous_or_circular"] is True
+        assert gate["correct_answers_destroyed"] == 9
+        assert gate["decisions_changed"] == 27
+        assert gate["wrong_answers_repaired"] == 9
+        assert gate["by_corpus"][INTACT_RECORD_GOLD]["correct_answers_destroyed"] == 9
+        assert gate["by_corpus"][INTACT_HARM_SYNTHETIC]["correct_answers_destroyed"] == 0
+
+    def test_the_gate_fails_and_the_failure_rests_on_independent_gold(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """A FAIL is only worth having if the corpus that produced it counts.
+
+        The gate reports the harm count before it reads the evidence block, so a
+        destroyed answer on a circular corpus would fail it too. This pins that
+        the destruction is on the corpus whose gold is *not* derived by A3's
+        criterion, which is what makes the FAIL a finding rather than an artefact.
+        """
+
+        gate = campaign["gates"]["G9_HARM_A3"]
+        assert gate["outcome"] == Outcome.FAIL.value
+        assert gate["corpora_supplying_independent_evidence"] == [INTACT_RECORD_GOLD]
+        assert gate["corpora_where_a3_destroyed_a_correct_answer"] == [INTACT_RECORD_GOLD]
+        assert gate[
+            "corpora_where_a3_destroyed_a_correct_answer_on_independent_gold"
+        ] == [INTACT_RECORD_GOLD]
+        assert gate["vacuous_or_circular"] is False
 
     def test_the_harm_corpus_is_withheld_for_naming_a3s_own_criterion(
         self, campaign: dict[str, object]
@@ -923,7 +1003,24 @@ class TestTheDecisivenessGateRefusesTheZeroItCannotEarn:
             _fabricated_corpora(a3={"decisions_changed": 3, "correct_answers_destroyed": 1})
         )
         assert gates["G9_HARM_A3"]["outcome"] == Outcome.FAIL.value
-        assert gates["G9_HARM_A3"]["correct_answers_destroyed"] == 4
+        assert gates["G9_HARM_A3"]["correct_answers_destroyed"] == len(INTACT_ORDER)
+
+    def test_the_gate_refuses_a_pass_when_gold_agrees_with_the_arm_wherever_it_fires(
+        self,
+    ) -> None:
+        """The extensional circularity check added by amendment 003.
+
+        Everything that produced ``PASS`` above is held fixed --- innocent
+        derivation rule, real denominator, no whole-corpus perfect score --- and
+        the corpus's gold is made to agree with A3 on every pair A3 can fire on.
+        That is the same circularity reached by construction instead of by
+        declaration, and the gate declines to certify. It is the assertion that
+        fails if INTACT_RECORD_GOLD is ever edited into a corpus A3 gets right.
+        """
+
+        gates = evaluate_gates(_fabricated_corpora(a3_reproduces_gold_where_it_fires=True))
+        assert gates["G9_HARM_A3"]["outcome"] == Outcome.CANNOT_CHECK.value
+        assert gates["G9_HARM_A3"]["corpora_supplying_independent_evidence"] == []
 
     def test_the_gate_refuses_a_pass_when_the_gold_rule_names_a3s_criterion(self) -> None:
         """Same zero, same denominator, a gold rule derived by A3's own criterion.
@@ -978,17 +1075,29 @@ class TestTheBenefitGateSeparatesNothing:
             assert rates[ARM_STRICT] == 0.0
             assert gate["by_probe"][probe_id]["disagreement_with_a1"]["n_differing"] == 0
 
-    def test_only_the_circular_corpus_separates_a3_from_a1(
+    def test_the_separation_is_now_visible_on_gold_neither_arm_wrote(
         self, campaign: dict[str, object]
     ) -> None:
+        """Under amendment 002 the second list was empty. It is not now.
+
+        The first list is every corpus on which A1 and A3 make different
+        decisions; the second is the subset whose gold is not A3's own criterion,
+        by declaration or in effect. INTACT_RECORD_GOLD is in both, and on it A3
+        is right on all 8 pairs where they part.
+        """
+
         gate = campaign["gates"]["G10_BENEFIT_A3"]
-        assert gate["corpora_separating_a3_from_a1"] == [INTACT_HARM_SYNTHETIC]
-        assert (
-            gate[
-                "corpora_separating_a3_from_a1_on_gold_not_derived_by_the_criterion_a3_uses"
-            ]
-            == []
-        )
+        assert gate["corpora_separating_a3_from_a1"] == [
+            INTACT_HARM_SYNTHETIC,
+            INTACT_RECORD_GOLD,
+        ]
+        assert gate[
+            "corpora_separating_a3_from_a1_on_gold_not_derived_by_the_criterion_a3_uses"
+        ] == [INTACT_RECORD_GOLD]
+        row = gate["separation_from_a1_on_independent_gold"][INTACT_RECORD_GOLD]
+        assert row["n_differing"] == 8
+        assert row["n_differing_where_this_arm_is_right"] == 8
+        assert row["n_differing_where_the_other_arm_is_right"] == 0
 
     def test_where_they_do_differ_a3_is_the_one_that_is_right(
         self, campaign: dict[str, object]
@@ -1015,17 +1124,20 @@ class TestTheBenefitGateSeparatesNothing:
 
 class TestAmendmentTwoMovedNoPublishedNumber:
     def test_the_a1_harm_finding_still_reproduces(self, campaign: dict[str, object]) -> None:
-        """27 / 21 / 12, unchanged by the arm that repairs A1.
+        """27 / 21 / 12 on the corpus it is a finding about, unchanged.
 
-        The finding G6 reports is why A3 exists. Adding A3 must not disturb it.
+        The finding G6 reports is why A3 exists. Adding A3 must not disturb it,
+        and neither may adding a corpus. Amendment 003 adds one, so the gate's
+        totals are larger; the row the finding lives in is byte-identical, and
+        that is where it is pinned.
         """
 
         gate = campaign["gates"]["G6_HARM_A1"]
         assert gate["outcome"] == Outcome.FAIL.value
-        assert gate["pairs_where_a1_could_fire"] == 27
-        assert gate["decisions_changed"] == 21
-        assert gate["correct_answers_destroyed"] == 12
-        assert gate["by_corpus"][INTACT_HARM_SYNTHETIC]["correct_answers_destroyed"] == 12
+        row = gate["by_corpus"][INTACT_HARM_SYNTHETIC]
+        assert row["pairs_where_a1_could_fire"] == 27
+        assert row["decisions_changed"] == 21
+        assert row["correct_answers_destroyed"] == 12
 
     def test_g6_still_names_a1_and_was_not_repointed(self) -> None:
         """A failing gate may not be repaired by changing its subject."""
@@ -1055,7 +1167,7 @@ class TestAmendmentTwoMovedNoPublishedNumber:
         gate = campaign["gates"]["G5_MINING_YIELD"]
         assert gate["census_arms"] == list(MINING_ARM_ORDER)
         assert ARM_DECISIVE not in gate["census_arms"]
-        assert gate["a_intact_failures"]["n_failures"] == 9
+        assert gate["a_intact_failures"]["n_failures"] == 18
         assert gate["b_probe_over_resolutions"]["n_over_resolutions"] == 48
         assert gate["outcome"] == Outcome.FAIL.value
 
@@ -1069,3 +1181,240 @@ class TestAmendmentTwoMovedNoPublishedNumber:
     ) -> None:
         assert campaign["overall_outcome"] == Outcome.FAIL.value
         assert campaign["verdicts"]["t5"] == VERDICT_T5
+
+
+class TestAmendmentThreeGivesTheDecisivenessGateADenominator:
+    """The corpus that turned G9 from a refusal into a measurement.
+
+    Every assertion here is a regression guard on the *denominator* and on its
+    independence, not on the outcome. A corpus that quietly lost its one-sided
+    absences, or whose gold quietly drifted into A3's criterion, would put the
+    gate back to ``CANNOT_CHECK`` --- an outcome that reads as clean --- so the
+    things that make the FAIL worth having are pinned separately from the FAIL.
+    """
+
+    def test_the_corpus_is_registered_as_intact_with_a_declared_role(self) -> None:
+        assert INTACT_RECORD_GOLD in INTACT_ORDER
+        assert INTACT_RECORD_GOLD in INTACT_SOURCES
+        assert INTACT_RECORD_GOLD in PARTIALLY_OBSERVED_INTACT_ORDER
+        assert INTACT_ROLE[INTACT_RECORD_GOLD] == (
+            "HARM_MEASUREMENT_ON_GOLD_ANCHORED_OUTSIDE_THE_PROJECTIONS"
+        )
+        # It has one-sided absences of its own, so redacting one of its pairs
+        # would give a probe case with two, which C2 rejects.
+        assert INTACT_RECORD_GOLD not in PROBE_OF
+
+    def test_every_intact_corpus_declares_a_role_and_the_old_ones_keep_theirs(
+        self, campaign: dict[str, object]
+    ) -> None:
+        sources = campaign["sources"]
+        assert set(sources) == set(INTACT_ORDER)
+        for corpus_id in SYMMETRIC_INTACT_ORDER:
+            assert sources[corpus_id]["role"] == "HARM_AND_PROBE_PARENT"
+        assert sources[INTACT_HARM_SYNTHETIC]["role"] == "HARM_MEASUREMENT_ONLY"
+        assert sources[INTACT_RECORD_GOLD]["n_cases"] == 36
+
+    def test_the_denominator_is_not_zero_and_reaches_every_coordinate(
+        self, campaign: dict[str, object]
+    ) -> None:
+        census = campaign["corpora"][INTACT_RECORD_GOLD]["one_sided_absence_census"]
+        assert census["n_pairs"] == 36
+        assert census["n_pairs_with_a_one_sided_absence"] == 26
+        assert set(census["by_coordinate"]) == set(COORDINATES)
+        row = campaign["gates"]["G9_HARM_A3"]["by_corpus"][INTACT_RECORD_GOLD]
+        assert row["pairs_where_a3_could_fire"] == 26
+        assert row["evidence"]["harm_denominator"] == 17
+
+    def test_its_gold_is_not_derived_by_the_criterion_a3_decides_by(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """Both the nominal check and the extensional one, on the shipped corpus."""
+
+        provenance = campaign["corpora"][INTACT_RECORD_GOLD]["gold_provenance"]
+        assert provenance["declared_rules"] == ["identity:frozen-source-record-relation"]
+        assert provenance["gold_derived_by_completion_invariance"] is False
+        assert provenance["rules_naming_completion_invariance"] == []
+        assert provenance["n_cases_declaring_a_rule"] == 36
+        evidence = campaign["gates"]["G9_HARM_A3"]["by_corpus"][INTACT_RECORD_GOLD][
+            "evidence"
+        ]
+        assert evidence["arm_reproduces_gold_on_every_pair_it_can_fire_on"] is False
+        assert evidence["arm_reproduces_gold_on_every_case"] is False
+        assert evidence["supplies_independent_evidence"] is True
+        assert evidence["withheld_because"] == []
+
+    def test_the_circular_corpus_is_still_withheld_and_now_for_a_third_reason(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """Adding an independent corpus must not soften the check on the other one."""
+
+        evidence = campaign["gates"]["G9_HARM_A3"]["by_corpus"][INTACT_HARM_SYNTHETIC][
+            "evidence"
+        ]
+        assert evidence["supplies_independent_evidence"] is False
+        assert evidence["withheld_because"] == [
+            "GOLD_DERIVED_BY_THE_CRITERION_THE_ARM_DECIDES_BY",
+            "GOLD_COINCIDES_WITH_THE_ARM_WHEREVER_THE_ARM_CAN_FIRE",
+            "ARM_REPRODUCES_GOLD_ON_EVERY_CASE",
+        ]
+
+    @pytest.mark.parametrize("corpus_id", SYMMETRIC_INTACT_ORDER)
+    def test_the_extensional_check_does_not_fire_vacuously(
+        self, campaign: dict[str, object], corpus_id: str
+    ) -> None:
+        """A corpus with no partially observed pair is not "circular" for having none.
+
+        It is withheld for having no denominator, which is a different and honest
+        reason. A vacuous truth reported as a circularity would be the same
+        substitution one layer up.
+        """
+
+        evidence = campaign["gates"]["G9_HARM_A3"]["by_corpus"][corpus_id]["evidence"]
+        assert evidence["n_pairs_the_arm_can_fire_on"] == 0
+        assert evidence["arm_reproduces_gold_on_every_pair_it_can_fire_on"] is False
+        assert "NO_HARM_DENOMINATOR" in evidence["withheld_because"]
+        assert (
+            "GOLD_COINCIDES_WITH_THE_ARM_WHEREVER_THE_ARM_CAN_FIRE"
+            not in evidence["withheld_because"]
+        )
+
+    def test_a3_is_strictly_better_than_a1_here_and_still_not_safe(
+        self, campaign: dict[str, object]
+    ) -> None:
+        """The two numbers that have to be read together.
+
+        A3 spares the eight pairs whose absence could not have changed the answer,
+        which A1 destroys. It still destroys the nine whose absence could have.
+        The first is the benefit A3 was built for; the second is why G9 fails.
+        """
+
+        a1 = campaign["gates"]["G6_HARM_A1"]["by_corpus"][INTACT_RECORD_GOLD]
+        a3 = campaign["gates"]["G9_HARM_A3"]["by_corpus"][INTACT_RECORD_GOLD]
+        assert a1["pairs_a0_answers_correctly_with_a_one_sided_absence"] == 17
+        assert a3["pairs_a0_answers_correctly_with_a_one_sided_absence"] == 17
+        assert a1["correct_answers_destroyed"] == 17
+        assert a3["correct_answers_destroyed"] == 9
+        assert a3["wrong_answers_repaired"] == 0
+
+    def test_editing_the_corpus_into_circularity_cannot_produce_a_pass(
+        self, shipped_record_gold: list[dict[str, object]]
+    ) -> None:
+        """The load-bearing guard, run on the corpus as it actually ships.
+
+        The edit that would make G9 look clean is to delete the strata where the
+        record-anchored gold and A3 disagree, keeping only the pairs A3 gets
+        right. The gate reads the file, not the builder, so it has to catch that
+        on its own: the surviving corpus is withheld for coinciding with A3
+        wherever A3 can fire, the gate finds no corpus supplying independent
+        evidence, and it returns ``CANNOT_CHECK`` rather than ``PASS``.
+        """
+
+        kept = [
+            case
+            for case in shipped_record_gold
+            if str(_record_gold_stratum(case)).startswith(("LU_", "NL_"))
+        ]
+        assert 0 < len(kept) < len(shipped_record_gold)
+        corpora = _fabricated_corpora()
+        corpora[INTACT_RECORD_GOLD] = _record_gold_entry(kept)
+        gates = evaluate_gates(corpora)
+        evidence = gates["G9_HARM_A3"]["by_corpus"][INTACT_RECORD_GOLD]["evidence"]
+        assert (
+            "GOLD_COINCIDES_WITH_THE_ARM_WHEREVER_THE_ARM_CAN_FIRE"
+            in evidence["withheld_because"]
+        )
+        assert INTACT_RECORD_GOLD not in gates["G9_HARM_A3"][
+            "corpora_supplying_independent_evidence"
+        ]
+        assert (
+            INTACT_RECORD_GOLD
+            not in gates["G10_BENEFIT_A3"][
+                "corpora_separating_a3_from_a1_on_gold_not_derived_by_the_criterion_a3_uses"
+            ]
+        )
+
+    def test_the_earlier_freeze_records_still_carry_their_own_digests(self) -> None:
+        """Amendment 003 is a separate record; the ones it amends are untouched."""
+
+        from orion.study.p3.partial_observation_probe import (
+            AMENDMENT_003_TWIN,
+            AMENDMENT_002_TWIN,
+            AMENDMENT_TWIN,
+            ORIGINAL_FREEZE_TWIN,
+        )
+
+        recorded = {
+            ORIGINAL_FREEZE_TWIN: (
+                "28d3e289d3dddddaef142e5756b77a825829836f1eadb900b80e49f985f73691"
+            ),
+            AMENDMENT_TWIN: (
+                "d4e97dcfc8a35d97656ec5eee60efc249a8e24dc682dd153c029fd9450b59ac8"
+            ),
+            AMENDMENT_002_TWIN: (
+                "9292414c63a50f0f31ad832b45a891a1eaf90584751f90f10362d941ad36c28e"
+            ),
+        }
+        for path, digest in recorded.items():
+            twin = json.loads((REPO_ROOT / path).read_text(encoding="utf-8"))
+            assert twin["parameters_sha256"] == digest
+        assert FREEZE_TWIN == AMENDMENT_003_TWIN
+        assert frozen_digest() != recorded[AMENDMENT_002_TWIN]
+
+
+@pytest.fixture(scope="module")
+def shipped_record_gold() -> list[dict[str, object]]:
+    return load_jsonl(REPO_ROOT / INTACT_SOURCES[INTACT_RECORD_GOLD])
+
+
+def _record_gold_stratum(case: dict[str, object]) -> str:
+    meta = case["partial_observation_record_gold"]
+    assert isinstance(meta, dict)
+    return str(meta["stratum"])
+
+
+def _record_gold_entry(cases: list[dict[str, object]]) -> dict[str, object]:
+    """One corpus payload of the shape ``evaluate_gates`` reads, scored for real."""
+
+    from orion.study.p3.partial_observation_probe import (
+        exact_agreement_with_gold,
+        gold_provenance,
+        harm_against_current,
+    )
+    from orion.study.p3_public_reference import projection_from_dict
+
+    pairs = []
+    for case in cases:
+        expected = case["expected"]
+        assert isinstance(expected, dict)
+        pairs.append(
+            (
+                str(case["case_id"]),
+                projection_from_dict(case["left_projection"]),
+                projection_from_dict(case["right_projection"]),
+                MeaningRelation(str(expected["meaning_relation"])),
+            )
+        )
+    scored = score_pairs(pairs)
+    return {
+        "kind": "INTACT",
+        "n_cases": len(pairs),
+        "one_sided_absence_census": one_sided_absence_census(pairs),
+        "gold_provenance": gold_provenance(cases),
+        "harm_vs_current": {
+            arm: harm_against_current(scored, arm)
+            for arm in (ARM_ASYMMETRIC, ARM_STRICT, ARM_DECISIVE)
+        },
+        "exact_agreement_with_gold": {
+            arm: exact_agreement_with_gold(scored, arm) for arm in ARM_ORDER
+        },
+        "exact_agreement_where_the_arm_can_fire": {
+            arm: exact_agreement_where_the_arm_can_fire(scored, arm) for arm in ARM_ORDER
+        },
+        "mining_census": {"failures": []},
+        "mining_census_a3": {"failures": []},
+        "arm_disagreement": {
+            arm: arm_disagreement(scored, ARM_DECISIVE, arm)
+            for arm in (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
+        },
+        "by_arm": {},
+    }

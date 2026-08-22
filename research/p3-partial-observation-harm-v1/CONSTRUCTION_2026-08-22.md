@@ -234,3 +234,23 @@ number over it is evidence about ORION's competence.
   all assume its 56 cases. The new cases are a separate corpus with its own
   identity — the same move that freeze itself made.
 - No threshold is relaxed and no zero-denominator report is converted into a pass.
+
+## 9. Addendum (amendment 003, 2026-08-22)
+
+Section 6 ends "the runner's `G9_HARM_A3` withholds that zero ... and reports
+`CANNOT_CHECK`". The withholding still stands and is unchanged: this corpus's
+gold is derived by A3's own criterion, the runner reads that off
+`expected.authority.derivation.rule`, and it now also detects the same
+circularity extensionally — A3 reproduces this corpus's gold on all 27 pairs it
+can fire on, so `GOLD_COINCIDES_WITH_THE_ARM_WHEREVER_THE_ARM_CAN_FIRE` is
+recorded beside the declared-rule reason.
+
+What has changed is the gate's overall outcome, and only because a *different*
+corpus was added. `research/p3-partial-observation-record-gold-v1/` derives its
+gold from source records rather than from what a silence could have hidden, and
+over it A3 destroys 9 correct answers. `G9_HARM_A3` is `FAIL`, not
+`CANNOT_CHECK`. Nothing in this corpus, in its build report or in its numbers
+moved: `G6_HARM_A1`'s row for this corpus still reads 27 / 21 / 12.
+
+This addendum is appended rather than edited into section 6, so the record of
+what was true when this corpus was built stays legible.
