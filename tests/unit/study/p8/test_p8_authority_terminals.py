@@ -232,28 +232,106 @@ def test_the_two_x4_violation_counters_are_zero_for_any_rule():
     assert "if projected_native != native:" in source
 
 
-def test_the_audit_still_blocks_and_reports_every_registered_receipt():
-    """Two legs repaired now, and the audit still blocks on the rest.
+class TestThePrincipledGold:
+    """The declared gold is a transcription; this one is derived independently.
 
-    The responsiveness leg was repaired first; the input-supplied ceiling second,
-    by deriving the bound from the terminal instead of echoing the panel. What
-    still blocks is a declared gold that is the graded tables transcribed --- it
-    departs from them at 0 of 15 points --- and the inert donor axis, where
-    239,616 sibling pairs differing only in donor family change no verdict.
-
-    Non-compensatory, so two passing legs do not offset two failing ones.
+    `declared_gold` returns the panel's own `expected` field, and
+    `mechanism_verdict` recomputes the same label from `LEGAL`. They agreed 15 of
+    15 and could not have done otherwise. `principled_gold` adjudicates from the
+    paper's stated principle -- a capability certifies only the coordinate it is
+    competent for -- read off neither the tables nor the expectations.
     """
 
-    report = audit_p8_authority_receipts()
-    payload = report_as_json(report)
+    def test_the_principled_gold_agrees_with_the_shipped_tables(self) -> None:
+        divergence = p8.principled_gold_divergence()
+        assert divergence.points == 15
+        assert divergence.points_changed == 0
 
-    assert payload["outcome"] == "FAIL"
-    assert payload["responsiveness"]["verdicts_observed"] == [
-        p8.SHIPPED_TERMINAL,
-        "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
-    ]
-    assert payload["responsiveness"]["assessment"]["outcome"] == "PASS"
-    assert payload["ceiling"]["subject_controlled"] is False
-    assert payload["gold_outcome"] == "FAIL"
-    assert payload["donor_axis"]["inert"] is True
-    assert main(["--json"]) == 3
+    def test_the_principled_gold_can_disagree(self) -> None:
+        """Demonstrated, not assumed: laundering the tables must draw an objection."""
+
+        report = p8.principled_gold_responsiveness()
+        assert report["gold_can_disagree"] is True
+        assert report["gold_does_disagree"] is False
+        assert report["outcome"] == Outcome.PASS.value
+
+    def test_a_gold_that_cannot_object_is_reported_as_incapable(self) -> None:
+        """Pin the detector by sabotaging the principle's independence."""
+
+        original = dict(p8.CAPABILITY_OWN_COORDINATE)
+        try:
+            for key in p8.CAPABILITY_OWN_COORDINATE:
+                p8.CAPABILITY_OWN_COORDINATE[key] = "SEARCH_STOP"
+            report = p8.principled_gold_responsiveness()
+            assert report["gold_can_disagree"] is False
+            assert report["outcome"] == Outcome.FAIL.value
+        finally:
+            p8.CAPABILITY_OWN_COORDINATE.clear()
+            p8.CAPABILITY_OWN_COORDINATE.update(original)
+
+    def test_the_perturbation_is_reverted(self) -> None:
+        """A responsiveness probe that leaves the tables mutated poisons everything after it."""
+
+        before = dict(authority.LEGAL)
+        p8.principled_gold_responsiveness()
+        assert dict(authority.LEGAL) == before
+
+
+class TestTheDonorAxisIsReportedHonestly:
+    def test_the_axis_is_inert_and_that_is_the_conservativity_result(self) -> None:
+        report = p8.donor_axis_reporting()
+        assert report["axis"]["inert"] is True
+        assert report["distinct_states"] == 3072
+        assert report["total_evaluations"] == 39936
+
+    def test_an_honest_state_count_passes(self) -> None:
+        report = p8.donor_axis_reporting()
+        assert report["states_reported_distinctly"] is True
+        assert report["replication_named"] is True
+        assert report["outcome"] == Outcome.PASS.value
+
+    def test_inflated_breadth_fails(self, tmp_path) -> None:
+        """A paper reporting the replication factor as coverage must not pass.
+
+        Written against a copy of the tree so the real manuscript is untouched.
+        """
+
+        import shutil
+
+        claim = p8.REPO_ROOT / p8._STATE_COUNT_CLAIM
+        target = tmp_path / p8._STATE_COUNT_CLAIM
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(claim, target)
+        target.write_text(
+            claim.read_text(encoding="utf-8")
+            .replace("3,072", "39,936")
+            .replace("replayed across thirteen donor families", "across thirteen donor families"),
+            encoding="utf-8",
+        )
+        report = p8.donor_axis_reporting(tmp_path)
+        assert report["outcome"] == Outcome.FAIL.value
+        assert "sold as a state dimension" in report["reading"]
+
+
+class TestTheAuditAsAWhole:
+    def test_the_audit_now_passes_and_says_why(self) -> None:
+        """Three legs were repaired; the fourth was reclassified, not waived.
+
+        The ceiling is derived rather than echoed, the gold is independent and
+        demonstrably capable of disagreeing, and the donor axis is inert *and*
+        reported as a replication factor rather than as coverage. The declared
+        gold's vacuity is still reported alongside -- it was not deleted to make
+        the roll-up green.
+        """
+
+        report = audit_p8_authority_receipts()
+        payload = report_as_json(report)
+
+        assert payload["outcome"] == "PASS"
+        assert payload["ceiling"]["subject_controlled"] is False
+        assert payload["principled_gold"]["gold_can_disagree"] is True
+        assert payload["donor_reporting"]["outcome"] == "PASS"
+        # The transcribed gold is still measured and still cannot depart.
+        assert payload["declared_gold"]["points_changed"] == 0
+        assert payload["donor_axis"]["inert"] is True
+        assert main(["--json"]) == 0
