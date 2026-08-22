@@ -1,5 +1,19 @@
 # ORION-P3 journal readiness — scoped public-reference paper
 
+> **Annotated 2026-08-22 after the manuscript house-style rewrite.** This
+> checklist records a readiness audit of the manuscript as it stood when the
+> audit was run, and is annotated rather than restated: no gate verdict,
+> artifact digest, number or claim status in it changed. Two rows now describe
+> the manuscript's earlier vocabulary rather than its current wording. The four
+> alignment outcomes are all still first-class in the manuscript and in the
+> evaluated code, but the prose names them in plain English -- aligned,
+> related, obstructed, unresolved -- instead of printing the machine tokens.
+> The scoped headline is likewise unchanged, but the body no longer prints the
+> ledger identifiers `P3.C5`/`P3.C9`; the claim-to-section mapping lives in
+> `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`. The manuscript also gained a Data and
+> code availability section, which is where the repository paths and content
+> digests now live.
+
 **Current terminal:** `PEER_REVIEW_READY` for the scoped P3.C5/P3.C9 structured-mapping claim **only on a commit whose repository CI and `p3-manuscript-audit` both succeed**.  
 **Not claimed:** raw-text end-to-end extraction superiority, universal coordinate necessity, expert-atlas adequacy, downstream answer-quality improvement, or general method-learning performance.
 

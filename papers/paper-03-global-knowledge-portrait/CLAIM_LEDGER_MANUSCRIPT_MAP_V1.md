@@ -1,5 +1,19 @@
 # P3 manuscript ↔ claim-ledger map V1
 
+> **Annotated 2026-08-22 after the manuscript house-style rewrite.** Every
+> ledger identifier and manuscript location in the table below still holds:
+> the same sections carry the same claims at the same authority. Two things
+> about the map's own vocabulary are now historical rather than current. The
+> prose no longer prints the ledger identifiers `P3.C1`--`P3.C9`, because those
+> are internal claim identifiers; the mapping from claim to section is what
+> this file is for, and it is unchanged. The prose no longer prints
+> `CANNOT_CHECK` either, and says "remains undetermined" instead. The removed
+> section `25-p3x-novelty-refresh.tex` was folded into Related work and into a
+> single boundary paragraph in Limitations, retaining every citation it
+> carried. A new section, `60-availability.tex`, collects the repository
+> paths, protocol identifiers and content digests that used to be scattered
+> through the narrative. No claim, number or authority in this map changed.
+
 **Date:** 2026-08-18  
 **Ledger:** `CLAIM_LEDGER_V1.md`  
 **Rule:** a manuscript sentence may not outrank this ledger. This file is a map, not a promotion.

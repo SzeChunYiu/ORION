@@ -216,9 +216,9 @@ The study was preregistered and frozen before any outcome was accessed, under th
 The machine-readable freeze is \idt{protocol/PROTOCOL_V1.json}, the case requirements are \idt{protocol/ATTACK_CASE_SCHEMA_V1.json}, and the statistical rules, metric definitions, and threat model are \idt{protocol/STATISTICAL_ANALYSIS_PLAN_V1.md}, \idt{protocol/METRICS_REGISTRY_V1.json}, and \idt{protocol/THREAT_MODEL_V1.md}. The custody policy and the execution-freeze checklist for the post-repair campaign are \idt{protocol/CUSTODY_POLICY_V1.md} and \idt{protocol/EXECUTION_FREEZE_CHECKLIST_V2.md}. The prospective execution binding, including the exact subject revision and the frozen harness identity, is \idt{protocol/PROTECTED_RUN_BINDINGS_V2.json}. The comparator and ablation disclosure is \idt{host/BASELINE_CONFIGS_V2.json}, and the frozen case generator and verdict-leak check are \idt{protocol/generate_attack_manifest.py} and \idt{protocol/check_verdict_leak_v1.py}.
 
 \subsection{Executed campaign and result artifacts}
-The publication-authorizing campaign is GitHub Actions run \idt{31976589735}. The subject under test is commit \idt{f6e51b5c8f905382b8e2f5568d9035fc14241aa1}; the split digest is
-\idt{3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9}; the frozen harness digest is
-\idt{094f43cb320f8e8e3196049269b20ac22e7e94fa9890b80f27f38ef49f7c82ea}; and the safe publication bundle digest is
+The publication-authorizing campaign is GitHub Actions run \idt{31976589735}. The subject under test is commit \idt{f6e51b5c8f905382b8e2f5568d9035fc14241aa1}; the split SHA-256 is
+\idt{3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9}; the frozen harness SHA-256 is
+\idt{094f43cb320f8e8e3196049269b20ac22e7e94fa9890b80f27f38ef49f7c82ea}; and the safe publication bundle SHA-256 is
 \idt{51ac14bc3a6b4b570aaca6d4a41c91f53d9bf2887e66f0620c412f78566a3b44}.
 
 The safe aggregates behind every number in Section~\ref{sec:results} are \idt{evidence/protected_v2/PUBLICATION_METRICS_V2.json}; the per-family contrast behind Figure~\ref{fig:p4_4} is \idt{evidence/protected_v2/FAMILY_CONTRAST_V2.json}; and the result and custody attestation is \idt{evidence/protected_v2/RESULT_ATTESTATION_V2.md}. Tables~\ref{tab:p4_t1}--\ref{tab:p4_t2} and Figures~\ref{fig:p4_2}--\ref{fig:p4_6} are regenerated from those two aggregates alone by \idt{figures/generate_figures.py}, which never reads protected per-case labels. The mapping from every result-bearing sentence in this manuscript to the archived artifact that supports it is \idt{evidence/CLAIM_LEDGER_V1.md}. The excluded exploratory arm is documented as \idt{evidence/protected_v2/LIVE_ARM_STATUS.md}; its outputs are retained rather than deleted, and are not pooled with the protected campaign. The nearest-work dispositions that Section~\ref{sec:related} discusses in prose are recorded per mechanism in \idt{literature/NEAREST_WORK_AUDIT_2026-08-16.md}.
@@ -236,8 +236,8 @@ A scientific-authority decision is stricter than factuality, citation presence, 
 
 \appendix
 \section{Freeze and custody identifiers}
-The final hidden set was created only after the public preflight and harness merge were signed and green. The independent host run is \idt{31975937488}; the protected attack-set digest is
-\idt{6b8b6243040163dfa582dbeb8896e2c68d6b263e3227b64e7bab199d8599897c}; and the candidate-manifest digest is
+The final hidden set was created only after the public preflight and harness merge were signed and green. The independent host run is \idt{31975937488}; the protected attack-set SHA-256 is
+\idt{6b8b6243040163dfa582dbeb8896e2c68d6b263e3227b64e7bab199d8599897c}; and the candidate-manifest SHA-256 is
 \idt{c5df341a6bf63f83d2af17492c498d4d36a944ad6616097a630d8390b7bda331}. Execution-freeze merge \idt{99bcacc82224089c34019ad82287754388dadbc5} was GitHub-verified before launch. The launch workflow independently re-queried that signature and exact-main CI and byte-compared frozen workflow, binding, and harness files against the signed freeze commit before handoff.
 
 \section{Ablation interpretation}
