@@ -23,7 +23,7 @@ The paper makes four contributions.
 1. **Responsibility-relative sufficiency.** We define exact support as homogeneity of representation equivalence classes under a named downstream responsibility.
 2. **A responsibility-carrying state interface.** RCS binds state identity to supported responsibilities, witnesses, omissions, recovery and reopen semantics without granting scientific self-authority.
 3. **A permanent negative-result analysis.** The old P14A terminal remains negative; we identify why its finite-sample sentinel was a poor proxy for the exact responsibility question rather than silently weakening it.
-4. **Independent controlled superiority evidence.** A new protected benchmark shows zero unsafe RCS reuse with substantially lower cost than always-raw and materially lower unsafe reuse than confidence-only and provenance-only baselines.
+4. **Independent controlled superiority evidence.** A new protected benchmark shows zero unsafe RCS reuse with substantially lower cost than always-raw and materially lower unsafe reuse than the confidence-only baseline and than unqualified reuse. Provenance-only is listed separately below but is the unqualified policy on this corpus, where lineage is always valid, so it is not independent evidence.
 
 ## 2. Donor boundary and novelty
 
@@ -159,6 +159,19 @@ When a compact state lacks a needed coordinate, an unqualified decoder uses the 
 5. `ALWAYS_RAW`: reopen raw state whenever possible.
 
 Fixed resource units are `REUSE=1`, `REOPEN=6`, `CANNOT_CHECK=0.5`.
+
+Baselines 1 and 3 are the same policy on this corpus, and the list should be
+read as four distinct policies rather than five. Every episode supplies valid
+lineage by construction, so the provenance check never refuses and
+`PROVENANCE_ONLY` reduces to "always reuse" — which is `UNQUALIFIED`. Their
+measured rates agree to the last digit on every metric reported: unsafe reuse
+`0.3961588541666667`, verified correctness `0.9248046875`, mean cost `1.0`.
+Nothing here is a defect in the run; it follows from the construction stated
+above. But it means beating provenance-only and beating unqualified are one
+result reported twice, and it means this benchmark does not test whether a
+provenance check helps — the check is never exercised. A corpus containing
+episodes with absent or broken lineage would be needed for that, and it does not
+exist here.
 
 ## 7. Results
 

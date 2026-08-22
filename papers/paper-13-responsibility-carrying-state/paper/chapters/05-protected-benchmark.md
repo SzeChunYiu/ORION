@@ -15,3 +15,15 @@ Family probabilities for hidden variables `m` and `r` vary independently over `[
 5. `ALWAYS_RAW`: reopen raw state whenever possible.
 
 Fixed resource units are `REUSE=1`, `REOPEN=6`, `CANNOT_CHECK=0.5`.
+
+Baselines 1 and 3 are the same policy on this corpus, and the list is four
+distinct policies rather than five. Every episode supplies valid lineage by
+construction, so the provenance check never refuses and `PROVENANCE_ONLY`
+reduces to "always reuse" — which is `UNQUALIFIED`. Their measured rates are
+identical on every metric reported: unsafe reuse `0.3961588541666667`, verified
+correctness `0.9248046875`, mean cost `1.0`. This follows from the construction
+above rather than from anything that happened during the run, and the results
+report the two together for that reason. It has one consequence worth stating
+plainly: this benchmark does not test whether a provenance check helps, because
+the check is never exercised. Establishing that would need episodes with absent
+or broken lineage, which this corpus does not contain.
