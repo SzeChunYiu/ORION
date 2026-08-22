@@ -1,0 +1,206 @@
+{
+  "authority": {
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false,
+    "root_state_896": "OPEN"
+  },
+  "claim_ceiling": "EXACT_MACHINE_CHECKED_CONSTANT_NO_NOVELTY_CLAIM",
+  "corollary_D3": {
+    "inputs": {
+      "D_2_C5cubed": 20,
+      "eta_6_C5cubed": 24
+    },
+    "lower_bound_source": "Freeze--Schmid 24-term k=3 witness recorded on issue #915",
+    "prior_interval_on_issue_915": [
+      25,
+      33
+    ],
+    "state_reduction_for_915": "at length 25 every zero-sum subsequence has length >= 25 - D_2 + 1 = 6 (Lemma A)",
+    "statement": "25 <= D_3(C_5^3) <= 26",
+    "status": "OPEN_TWO_VALUE_INTERVAL",
+    "upper_bound_route": "Lemma B with k=2, T=6: D_3 <= max(eta_6, D_2+6) = max(24, 26) = 26"
+  },
+  "donor_facts_used": {
+    "D_C5cubed_olson": 13,
+    "D_C5squared_olson": 9,
+    "exp": 5,
+    "literature_interval_on_issue": [
+      20,
+      23
+    ],
+    "lower_bound_source": "Freeze--Schmid Theorem 4.1 specialised to C_5^3, k=2 (19-term witness)"
+  },
+  "eta_7_C5cubed": 19,
+  "eta_T_C5cubed": {
+    "10": 15,
+    "11": 15,
+    "12": 15,
+    "6": 24,
+    "7": 19,
+    "8": 18,
+    "9": 15
+  },
+  "exhaustive_search": {
+    "T": 7,
+    "complete_search": true,
+    "extremal_witness": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        4,
+        1,
+        0
+      ],
+      [
+        4,
+        1,
+        0
+      ],
+      [
+        4,
+        1,
+        0
+      ],
+      [
+        4,
+        1,
+        0
+      ],
+      [
+        4,
+        2,
+        0
+      ]
+    ],
+    "f_T_rank3": 18,
+    "nodes": 88575385,
+    "witness_length": 18,
+    "witness_min_zero_sum_length": 8
+  },
+  "f_7_rank_le_2": {
+    "C_5^2": 10,
+    "note": "independent Python enumeration; 10 < 18 so rank 3 attains the maximum"
+  },
+  "f_T_rank_le_2_C5squared": {
+    "5": 12,
+    "6": 11,
+    "7": 10,
+    "note": "all strictly below the rank-3 values, so rank 3 attains f_T(C_5^3) for T in 5..7"
+  },
+  "group": "C_5^3",
+  "independent_replay": {
+    "distinct_from_searcher": "frozenset (weight,sum) state vs C bitboard; separate k-disjoint DP",
+    "f7_witness_min_zero_sum": 8,
+    "f7_witness_two_disjoint": false,
+    "fs19_min_zero_sum": 7,
+    "fs19_two_disjoint": false,
+    "implementation": "research/orion-rg/x1f0_independent_replay.py",
+    "random_len20_trials": 300,
+    "random_len20_without_two_disjoint": 0
+  },
+  "issue": "SzeChunYiu/ORION#916",
+  "lemmas": {
+    "A_complement": "no k+1 disjoint zero-sums at length L => every zero-sum has length >= L - D_k(G) + 1",
+    "A_tightness_control": "predicted >=7 on the 19-term donor witness; executed value exactly 7",
+    "B_eta_ladder": "D_{k+1}(G) <= min_T max(eta_T(G), D_k(G)+T); T=D(G) recovers the classical D_{k+1} <= D_k + D",
+    "B_instantiation": "max(eta_7, D+7) = max(19,20) = 20, tight"
+  },
+  "parents": [
+    "SzeChunYiu/ORION#915",
+    "SzeChunYiu/ORION#901",
+    "SzeChunYiu/ORION#896",
+    "SzeChunYiu/ORION#894"
+  ],
+  "recorded_defect": {
+    "effect_on_value": "none; both runs returned 18, only the sound run is cited",
+    "repair": "MAXLINE table over admissible line multiplicity vectors; T=7 re-run to completion under the sound bound",
+    "what": "first-draft line bound used max_p mult_ub(p) over each projective line",
+    "why_unsound": "g and 2g can coexist (g^1 (2g)^1 has no zero-sum of length <=7), so a line total can exceed every single-point cap"
+  },
+  "schema": "ORION.RG.X1F0.CommittedResult.v1",
+  "short_zero_sum_spectrum_rank3": {
+    "10": 14,
+    "11": 14,
+    "12": 14,
+    "6": 23,
+    "7": 18,
+    "8": 17,
+    "9": 14
+  },
+  "source_result_digest": "412e0e757bdf5fa81da5dad1b6966991529303659b885ebc49ceb342cc6aeeea",
+  "terminal": "X1F0_EXACT_D2_ESTABLISHED",
+  "theorem": {
+    "exact_value": 20,
+    "lower_bound": 20,
+    "rank_le_2_case": "D(C_5^2)=9, 20-9=11>=9, handled without search",
+    "statement": "D_2(C_5^3) = 20",
+    "upper_bound": 20,
+    "upper_bound_route": "f_7(C_5^3)=18 < 20 forces a zero-sum of length <=7; the complement then has >= 13 = D(C_5^3) elements"
+  }
+}
