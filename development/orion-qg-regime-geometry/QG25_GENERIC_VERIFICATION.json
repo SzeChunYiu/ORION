@@ -28,7 +28,17 @@
    "ok": true
   },
   "document_level_verification_declared_false": {
-   "detail": null,
+   "detail": {
+    "per_record": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "top_level": false
+   },
    "ok": true
   },
   "donor_records_validate_with_the_log_passed": {
@@ -103,8 +113,8 @@
  },
  "determinism": {
   "double_run": true,
-  "run1_sha256": "c2373a8b97dcd3e0a08ba8a812c2ddb7372521616ba761090d0a9e7a22febd97",
-  "run2_sha256": "c2373a8b97dcd3e0a08ba8a812c2ddb7372521616ba761090d0a9e7a22febd97",
+  "run1_sha256": "ac7a2940e294f279315e6a7cadc211245311fb6c43cc6b12fd08fb364701caed",
+  "run2_sha256": "ac7a2940e294f279315e6a7cadc211245311fb6c43cc6b12fd08fb364701caed",
   "stdout_identical": true
  },
  "failed_checks": [],
@@ -263,5 +273,5 @@
  "terminal_under_review": "QG25_NO_CONSERVED_SYNDROME_PROVED__COLLAPSE_MECHANISM_ABSENT",
  "verdict": "ACCEPT",
  "verifier": "qg25_generic_verify",
- "verifier_sha256": "f49c148148966e637e00d9641a51ab4c26442fa98b1f0cd1732256e72e6563a4"
+ "verifier_sha256": "3ff0d99fe853cb5daa1c5f2a96ba508470c2d5ef8956abf176ad73d4377ce1fd"
 }

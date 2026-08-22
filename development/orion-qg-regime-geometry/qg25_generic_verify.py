@@ -71,22 +71,36 @@ def parity_grid_has_dimension_one_syndrome(n: int) -> dict:
     """
     cells = n * n
     space = 2 ** cells
-    # every move flips exactly one cell, so it flips the total parity
-    increments = {1}
+
+    def syndrome(config: int) -> int:
+        return bin(config).count("1") % 2
+
+    def feasible(config: int) -> bool:
+        return syndrome(config) == 1
+
+    # every move flips exactly one cell, so it must flip the total parity
+    increments = set()
     for config in range(space):
         for cell in range(cells):
             after = config ^ (1 << cell)
-            if (bin(after).count("1") % 2) == (bin(config).count("1") % 2):
-                increments.add(0)
-    fibres_decide = all(
-        (bin(c).count("1") % 2 == 1) == (bin(c).count("1") % 2 == 1)
-        for c in range(space)
-    )
+            increments.add((syndrome(after) - syndrome(config)) % 2)
+
+    # Fibres decide feasibility iff feasibility is CONSTANT on each syndrome fibre.
+    # An earlier version of this line read `(p == 1) == (p == 1)`, which is X == X
+    # and therefore always true -- a tautology sitting where the check should be,
+    # and the family check then trusted the receipt's own flag instead of this
+    # value. Reported by Cursor Bugbot. Grouping and comparing is the actual test.
+    fibres: dict[int, set[bool]] = {}
+    for config in range(space):
+        fibres.setdefault(syndrome(config), set()).add(feasible(config))
+    fibres_decide = all(len(v) == 1 for v in fibres.values())
+
     return {
         "n": n,
         "configuration_space": space,
         "syndrome_dimension_D": 1,
         "per_move_increment_is_always_one": increments == {1},
+        "fibre_count": len(fibres),
         "fibres_decide_feasibility": fibres_decide,
     }
 
@@ -131,7 +145,11 @@ def main(argv) -> int:
         if (mine["configuration_space"] != row["configuration_space"]
                 or mine["syndrome_dimension_D"] != row["syndrome_dimension_D"]
                 or not mine["per_move_increment_is_always_one"]
-                or not row["fibres_decide_feasibility"]):
+                # recomputed, and then required to AGREE with what the receipt
+                # claims -- trusting the receipt's own flag here was the second
+                # half of the same defect
+                or not mine["fibres_decide_feasibility"]
+                or bool(row["fibres_decide_feasibility"]) is not True):
             bad_rows.append([row["n"], mine])
     record("counterexample_family_reproduces", not bad_rows, {"bad": bad_rows})
     record("counterexample_space_is_two_to_the_n_squared",
@@ -147,10 +165,16 @@ def main(argv) -> int:
         except Exception as exc:  # noqa: BLE001 - reported, not raised
             donor_bad.append([i, str(exc)[:120]])
     record("donor_records_validate_with_the_log_passed", not donor_bad, {"bad": donor_bad})
+    # AND, not OR. With `or`, a false top-level flag accepted the receipt even
+    # when an individual record claimed document-level verification -- so the
+    # retrieval-ceiling check could miss exactly the claim it exists to catch.
+    # Reported by Cursor Bugbot.
+    top = res["donor_search"].get("document_level_verification")
+    per_record = [r.get("document_level_verification") for r in res["donor_search"]["records"]]
     record("document_level_verification_declared_false",
-           res["donor_search"].get("document_level_verification") is False
-           or all(r.get("document_level_verification") is False
-                  for r in res["donor_search"]["records"]))
+           (top is False or top is None)
+           and all(v is False or v is None for v in per_record),
+           {"top_level": top, "per_record": per_record})
 
     # --- criterion binding: every record must bind both digests -------------
     cb = res.get("criterion_binding", {})

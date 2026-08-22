@@ -86,10 +86,14 @@ def t6(r):
 
 
 def t7(r):
-    """Claim a passage was verified at document level, against the retrieval ceiling."""
+    """Claim document-level verification on ONE record, leaving the top-level flag false.
+
+    The first version of this case flipped both flags, and the verifier's check
+    used `or` -- so the top-level flag alone would have cleared it and the tamper
+    passed for the wrong reason, masking the bug. Flipping only the record is the
+    harder case and the one the retrieval ceiling actually needs caught.
+    """
     r["donor_search"]["records"][0]["document_level_verification"] = True
-    if "document_level_verification" in r["donor_search"]:
-        r["donor_search"]["document_level_verification"] = True
     return r
 
 
