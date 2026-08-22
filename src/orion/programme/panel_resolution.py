@@ -222,6 +222,83 @@ PUBLISHED_PANELS: tuple[dict[str, Any], ...] = (
 )
 
 
+#: Ablation panels: the "systems" are ablated variants and the metric is the
+#: delta each one moves. Registered separately from comparison panels because an
+#: ablation delta of zero means something different from a rate that ties --- it
+#: means the corpus cannot test the coordinate that was removed.
+PUBLISHED_ABLATIONS: tuple[dict[str, Any], ...] = (
+    {
+        "artifact": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/ANALYSIS.json",
+        "paper_id": "P3",
+        "block": "ablation_deltas",
+        "deltas": (
+            "accuracy_ablation_minus_full",
+            "false_merge_ablation_minus_full",
+            "false_split_ablation_minus_full",
+        ),
+    },
+)
+
+
+def inspect_ablations(repo_root: Any, panel: dict[str, Any]) -> dict[str, Any]:
+    """Which ablations move anything, and which the corpus cannot test at all.
+
+    An ablation whose every reported delta is exactly zero, with a zero-width
+    interval on each, has not shown the removed coordinate to be dispensable ---
+    it has shown that this corpus contains no case where the coordinate is
+    consulted. The two readings are opposite and only the second is available
+    from the artifact. Reported per ablation rather than as a count, because
+    which coordinates are untestable is the part that says what corpus to build.
+    """
+
+    import json
+    from pathlib import Path
+
+    target = Path(repo_root).resolve() / panel["artifact"]
+    if not target.is_file():
+        return {"artifact": panel["artifact"], "paper_id": panel["paper_id"], "readable": False}
+
+    payload = json.loads(target.read_text(encoding="utf-8"))
+    block = payload.get(panel["block"]) or {}
+
+    inert: list[str] = []
+    active: list[str] = []
+    detail: dict[str, Any] = {}
+    for name, metrics in sorted(block.items()):
+        moved: dict[str, list[float]] = {}
+        for delta in panel["deltas"]:
+            entry = metrics.get(delta)
+            if not isinstance(entry, dict):
+                continue
+            low, high = entry.get("ci95_low"), entry.get("ci95_high")
+            if isinstance(low, (int, float)) and isinstance(high, (int, float)):
+                moved[delta] = [float(low), float(high)]
+        if not moved:
+            continue
+        every_delta_is_zero = all(
+            abs(low) <= TOLERANCE and abs(high) <= TOLERANCE for low, high in moved.values()
+        )
+        (inert if every_delta_is_zero else active).append(name)
+        detail[name] = {"intervals": moved, "moves_nothing": every_delta_is_zero}
+
+    return {
+        "artifact": panel["artifact"],
+        "paper_id": panel["paper_id"],
+        "readable": True,
+        "ablations": detail,
+        "inert_ablations": inert,
+        "active_ablations": active,
+        "reading": (
+            f"{len(inert)} of {len(inert) + len(active)} ablations move none of the "
+            "reported metrics, with a zero-width interval on every one. That is a "
+            "statement about the corpus, not about the coordinates: it contains no case "
+            "where those coordinates are consulted, so removing them cannot be observed "
+            "to cost anything. It is not evidence that they are dispensable, and the "
+            "opposite reading is not available from this artifact."
+        ),
+    }
+
+
 def discriminating_control() -> dict[str, dict[str, Any]]:
     """A panel on which every check must stay quiet.
 
@@ -285,6 +362,7 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
     """Everything this module establishes, with what it does not."""
 
     panels = [inspect_published_panel(repo_root, panel) for panel in PUBLISHED_PANELS]
+    ablations = [inspect_ablations(repo_root, panel) for panel in PUBLISHED_ABLATIONS]
     control = inspect_panel(discriminating_control())
     control_clean = all(
         report.resolution is MetricResolution.DISCRIMINATES for report in control.values()
@@ -305,7 +383,14 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
         "record": "PANEL_RESOLUTION",
         "date": date,
         "panels": panels,
+        "ablation_panels": ablations,
         "hypotheses_settled_before_any_system_ran": settled,
+        "untestable_coordinates": sorted(
+            f"{panel['paper_id']}: {name}"
+            for panel in ablations
+            if panel.get("readable")
+            for name in panel["inert_ablations"]
+        ),
         "control": {name: report.as_json() for name, report in sorted(control.items())},
         "control_is_clean": control_clean,
         "what_this_establishes": (
@@ -322,7 +407,17 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "clean_coverage remains saturated at 1.0 across every system. Saturation is "
             "distinguished from separation rather than merged with it: a panel split "
             "between a metric's floor and its ceiling also yields a zero-width interval, "
-            "and that one is the strongest thing the metric can say."
+            "and that one is the strongest thing the metric can say. The same question "
+            "put to P3's ablation panel finds four of its six ablations moving none of "
+            "accuracy, false merge or false split, each with a zero-width interval: the "
+            "corpus contains no case where those coordinates are consulted, so removing "
+            "them cannot be observed to cost anything. Neither paper is caught out by "
+            "this. P4's manuscript states its saturation in prose with the same counts "
+            "and calls H2 and H3 design limits rather than comparative findings, and "
+            "P3's states that removing referent, construct, measurement or temporal "
+            "context has zero measured effect and preserves those zeros as coverage "
+            "limitations. What this adds is that both limits become executable and "
+            "ledger-visible rather than remaining paragraphs a reader has to find."
         ),
         "not_licensed": [
             "any claim that a saturated metric is the wrong metric; a benchmark on which "
@@ -362,6 +457,14 @@ def main(argv: list[str]) -> int:
         )
         print(f"written: {args.output}")
 
+    for panel in report["ablation_panels"]:
+        if not panel.get("readable"):
+            continue
+        print(f"  {panel['artifact'].rsplit('/', 1)[-1]} ({panel['paper_id']})")
+        for name in panel["inert_ablations"]:
+            print(f"    ! {name}: moves nothing")
+        for name in panel["active_ablations"]:
+            print(f"      {name}: moves at least one metric")
     for panel in report["panels"]:
         print(f"  {panel['artifact'].rsplit('/', 1)[-1]} ({panel['paper_id']})")
         for name, hypothesis in sorted(panel.get("hypotheses", {}).items()):

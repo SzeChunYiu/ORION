@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "011ff9128a7de6b2cb74dd96e3e3a3cc7cde4967a75568ff456da73594f14652",
+  "content_digest": "a81d82fcd220f10d47690456bf5be3b8535e359abff66397959f7f2ef3656265",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -424,6 +424,11 @@
           "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
           "grade": "CANNOT_CHECK",
           "terminal": "P3_PARTIAL_OBSERVATION_RESULT__NULL_FOR_T5__OVER_RESOLUTION_GUARD_NO_LONGER_VACUOUS"
+        },
+        {
+          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "FOUR_OF_SIX_P3_COORDINATES_ARE_UNTESTABLE_ON_THIS_CORPUS"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -434,10 +439,11 @@
           "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P3-U-T5",
           "refs": [
-            "#651"
+            "#651",
+            "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "REPRESENTATION_OR_INTERFACE",
-          "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL).",
+          "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL). A second reading of the same emptiness is now on record and points at what to build (P3_PANEL_RESOLUTION_2026-08-22). Four of the six registered ablations -- remove_construct, remove_measurement, remove_referent, remove_temporal_context -- move none of accuracy, false merge or false split, each with a zero-width interval; only forcing compatibility without the obstruction distinction and removing the modality/polarity/attribution/discourse group move anything. P3's manuscript already says this and preserves those zeros as coverage limitations rather than reading them as dispensability, which is the correct reading and the only one the artifact supports. What the audit adds is that four coordinates are named as untestable on this corpus, executably, rather than in a results paragraph -- so the corpus a successor coordinate would have to be mined from is the one that makes those four consultable, not merely one with false merges in it.",
           "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
         },
         {
@@ -1389,10 +1395,11 @@
       "issue": 651,
       "paper_id": "P3",
       "refs": [
-        "#651"
+        "#651",
+        "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
       ],
       "responsibility": "REPRESENTATION_OR_INTERFACE",
-      "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL).",
+      "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL). A second reading of the same emptiness is now on record and points at what to build (P3_PANEL_RESOLUTION_2026-08-22). Four of the six registered ablations -- remove_construct, remove_measurement, remove_referent, remove_temporal_context -- move none of accuracy, false merge or false split, each with a zero-width interval; only forcing compatibility without the obstruction distinction and removing the modality/polarity/attribution/discourse group move anything. P3's manuscript already says this and preserves those zeros as coverage limitations rather than reading them as dispensability, which is the correct reading and the only one the artifact supports. What the audit adds is that four coordinates are named as untestable on this corpus, executably, rather than in a results paragraph -- so the corpus a successor coordinate would have to be mined from is the one that makes those four consultable, not merely one with false merges in it.",
       "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
     },
     {

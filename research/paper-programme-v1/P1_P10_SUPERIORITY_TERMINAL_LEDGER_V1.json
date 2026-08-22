@@ -236,10 +236,11 @@
           "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P3-U-T5",
           "refs": [
-            "#651"
+            "#651",
+            "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "REPRESENTATION_OR_INTERFACE",
-          "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL).",
+          "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL). A second reading of the same emptiness is now on record and points at what to build (P3_PANEL_RESOLUTION_2026-08-22). Four of the six registered ablations -- remove_construct, remove_measurement, remove_referent, remove_temporal_context -- move none of accuracy, false merge or false split, each with a zero-width interval; only forcing compatibility without the obstruction distinction and removing the modality/polarity/attribution/discourse group move anything. P3's manuscript already says this and preserves those zeros as coverage limitations rather than reading them as dispensability, which is the correct reading and the only one the artifact supports. What the audit adds is that four coordinates are named as untestable on this corpus, executably, rather than in a results paragraph -- so the corpus a successor coordinate would have to be mined from is the one that makes those four consultable, not merely one with false merges in it.",
           "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
         }
       ],
@@ -258,6 +259,12 @@
           "grade": "CANNOT_CHECK",
           "note": "A prospectively frozen attempt at T5 that came out null, and is filed at grade CANNOT_CHECK because that is what it earned. Its value is the side-finding: P3.OVERRESOLVED_UNRESOLVED_CASE had a zero denominator on every atlas, because no P3 atlas contains a single partially observed pair -- across 9 coordinates and 88 cases every coordinate is observed on both sides or absent on both. Silencing on one side the coordinate that carries the decision gives the guard 12 opportunities where it had 0, and the current system over-resolves 12 of 12, with 8/8 and 28/28 held out. The candidate coordinate itself fails its own pre-declared novelty gate by construction, so it is a third value on the existing axes and not a new identity axis.",
           "terminal": "P3_PARTIAL_OBSERVATION_RESULT__NULL_FOR_T5__OVER_RESOLUTION_GUARD_NO_LONGER_VACUOUS"
+        },
+        {
+          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "note": "The ablation half of the panel resolution audit. Reports which ablations move a reported metric and which move none, and refuses the dispensability reading of a zero delta: an ablation that changes nothing shows the corpus contains no case where the removed coordinate is consulted, which is a statement about the corpus. Four of P3's six are inert and two are not, and the two matter -- without them the finding would be that the corpus measures nothing, which is a different and stronger claim. Reproduces a limitation P3's manuscript already states. Real work and it discharges nothing.",
+          "terminal": "FOUR_OF_SIX_P3_COORDINATES_ARE_UNTESTABLE_ON_THIS_CORPUS"
         }
       ]
     },

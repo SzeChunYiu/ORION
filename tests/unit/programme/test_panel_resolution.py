@@ -173,3 +173,56 @@ class TestTheReport:
             lambda: {"a": {"r": 1.0}, "b": {"r": 1.0}},
         )
         assert main(["--repo-root", str(REPO_ROOT), "--date", "2026-08-22"]) == 3
+
+
+class TestAblationPanels:
+    """An ablation delta of zero says something about the corpus, not the coordinate."""
+
+    @pytest.fixture(scope="module")
+    def report(self) -> dict:
+        return build_report(REPO_ROOT, date="2026-08-22")
+
+    def test_p3s_ablation_panel_is_on_the_branch(self, report: dict) -> None:
+        assert report["ablation_panels"]
+        assert all(panel["readable"] for panel in report["ablation_panels"])
+
+    def test_four_of_p3s_six_ablations_move_nothing(self, report: dict) -> None:
+        p3 = report["ablation_panels"][0]
+        assert set(p3["inert_ablations"]) == {
+            "remove_construct",
+            "remove_measurement",
+            "remove_referent",
+            "remove_temporal_context",
+        }
+
+    def test_two_of_them_do_move_something(self, report: dict) -> None:
+        # Without this the finding would be "the corpus measures nothing", which
+        # is a different and stronger claim than the one being made.
+        p3 = report["ablation_panels"][0]
+        assert set(p3["active_ablations"]) == {
+            "force_compatibility_without_obstruction",
+            "remove_modality_polarity_attribution_discourse",
+        }
+
+    def test_an_inert_ablation_has_a_zero_width_interval_on_every_metric(
+        self, report: dict
+    ) -> None:
+        p3 = report["ablation_panels"][0]
+        for name in p3["inert_ablations"]:
+            for low, high in p3["ablations"][name]["intervals"].values():
+                assert low == 0.0 and high == 0.0, name
+
+    def test_an_active_ablation_is_not_zero_on_every_metric(self, report: dict) -> None:
+        p3 = report["ablation_panels"][0]
+        for name in p3["active_ablations"]:
+            intervals = p3["ablations"][name]["intervals"].values()
+            assert any(low != 0.0 or high != 0.0 for low, high in intervals), name
+
+    def test_the_reading_refuses_the_dispensable_interpretation(self, report: dict) -> None:
+        reading = report["ablation_panels"][0]["reading"]
+        assert "not evidence that they are dispensable" in reading
+        assert "about the corpus" in reading
+
+    def test_untestable_coordinates_are_surfaced_at_the_top_level(self, report: dict) -> None:
+        assert len(report["untestable_coordinates"]) == 4
+        assert all(item.startswith("P3: ") for item in report["untestable_coordinates"])
