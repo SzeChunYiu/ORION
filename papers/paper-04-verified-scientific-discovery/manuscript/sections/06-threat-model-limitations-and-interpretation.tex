@@ -1,0 +1,23 @@
+\section{Threat model, limitations, and interpretation}
+The result is intentionally bounded. First, the campaign uses 420 synthetic mechanical-gold cases; it does not establish performance on naturally occurring scientific disagreements. The written human-adjudication rubric was never triggered because all final cases were mechanically decidable, so no claim is made about adjudicator agreement. Second, scoring is deterministic and uses no LLM provider. It isolates authority-transition semantics but does not measure the error distribution of a full stochastic research agent.
+
+Third, comparator mechanisms are matched reimplementations. They instantiate published ideas under one packet and budget, but the result must not be read as a leaderboard against the original ProvenAI, ProvenanceGuard, DeepSciVerify, FIRE, AttributionBench, CLAIM-BENCH, RewardHackingAgents, or related implementations. Fourth, the clean controls are intentionally unambiguous; 60/60 coverage shows that the governed pipeline did not win by blanket refusal but does not estimate recall on difficult benign cases. Fifth, the hostile taxonomy is finite. Adaptive attacks, compromised host infrastructure, side channels outside retained syscall/network telemetry, and novel evaluator attacks remain outside this campaign.
+
+Sixth, and most consequential for how the three hypotheses should be read, two of them are measured on axes that this battery
+saturates, and for H3 the mechanism is identified rather than suspected. Clean coverage is $1.0$ for all eleven panel systems and for all eight ablations,
+and the correct-undetermined rate is $1.0$ for all eleven systems and is not instrumented in the
+ablations at all. Only false authority promotion varies: it takes six distinct values across
+the panel and four across the ablations. The whole empirical separation reported here rests on
+that one axis. H1 is therefore a measurement; H2's non-inferiority pass and H3's null are
+statements about a battery in which neither quantity was ever observed to move. Testing them
+would require clean positives that a weaker governance mechanism actually declines, and
+insufficient-evidence cases that a weaker mechanism actually over-promotes or over-abstains on
+--- cases the current gold construction does not contain. Until such cases exist, H2 and H3
+should be read as design limits rather than as comparative findings.
+
+Seventh, the mechanisms composed here are not claimed as novel, and the boundary is worth stating once and plainly. Provenance tracking, attribution evaluation, citation checking, iterative verification, evidence escalation, contamination detection, evaluator-tamper detection, abstention, benchmark auditing, claim-level auditability, provenance ontologies, and generic behavioral-integrity checking are all prior work, cited in Section~\ref{sec:related}. The relevance-versus-authorized-evidence distinction is likewise established there. What is measured here is the behavior of the non-compensatory conjunction of those prerequisites under a protected, gold-blind battery, and nothing beyond it.
+
+Recent benchmark-auditing work is an additional caution: expert-built tasks and evaluation harnesses can contain specification, environment, ground-truth, or grading defects that materially alter measured rankings \citep{benchguard2026,autobenchmarkaudit2026,hal2025}. Deterministic generation, typed-panel validation, exact split/harness binding, protected custody, post-run public slicing, and independent reproduction mitigate this risk, but these controls do not prove that the 13-family taxonomy is complete or that every benchmark-design assumption is correct.
+
+The appropriate interpretation is architectural: under the frozen attack families and custody model, non-compensatory authority gates prevent promotions that survive strong semantic/citation/source mechanisms when a governance prerequisite is missing. This supports a fail-closed authority transition as an assurance layer; it does not prove universal scientific truth, general abstention ability, or evaluator security.
+
