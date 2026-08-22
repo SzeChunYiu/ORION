@@ -15,7 +15,7 @@ The comparison gives both policy classes identical side information: the exact i
 
 ## Frozen parent binding
 
-QG-34 must provide:
+QG-34 committed parent `QG34_ADAPTIVE_PROBE_TREE_RESULTS.json` is already earned and is frozen into QG-36 by exact Git blob SHA `61ad64ed01036b1dd44d7c684c35e43c62534c29`. It must provide:
 - terminal `QG34_EXACT_MINIMAX_ADAPTIVE_PROBE_DEPTH_MACHINE_CHECKED`;
 - `both_accept=true`;
 - `EXACT_ADAPTIVE_MINIMAX_AUTHORITY=true`;
@@ -23,15 +23,18 @@ QG-34 must provide:
 - `worst_case_depth = max(class_depths)`;
 - QG-32 parent file hash.
 
-QG-35 must provide:
+QG-35 is not yet known. After it earns an exact result, QG-36 may bind **only**:
+1. the immutable raw exact result `QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json`, whose internal `result_digest` must validate over all other fields and which carries the 92 `class_minima`; and
+2. `QG35_PROTECTED_RUN_RECEIPT_2026-08-22.json`, which must independently state `both_accept=true`, the exact QG-35 terminal, and the same `F_*`/authority as the raw result.
+
+The raw QG-35 result must provide:
 - terminal `QG35_EXACT_SUMMARY_CONDITIONED_FIXED_PROBE_COMPLEXITY_MACHINE_CHECKED`;
-- `both_accept=true`;
 - `EXACT_SUMMARY_CONDITIONED_FIXED_AUTHORITY=true`;
 - 92 exact `class_minima` values in the same canonical QG-32 joint-class order;
 - `worst_case_class_conditioned_fixed_minimum = max(class_minima)`;
 - the same QG-32 parent file hash.
 
-Class-order binding is fail-closed by identical QG-32 parent hash, identical universe `(715 orbits, 384 probes, 92 joint classes)`, and the explicit receipt statement that both arrays use QG-32 generic `make_groups` canonical order. QG-36 does not re-open raw compiler states.
+Class-order binding is fail-closed by identical QG-32 parent hash, identical universe `(715 orbits, 384 probes, 92 joint classes)`, and the explicit receipt contract that both arrays use QG-32 generic `make_groups` canonical order. QG-36 does not re-open raw compiler states.
 
 ## Frozen decision table
 
@@ -61,7 +64,7 @@ No `F_*` value is predicted in this protocol.
 
 ## Production composition
 
-Read only the two committed parent JSON receipts. Recompute:
+Read only the bound parent JSON receipts. Verify the QG-34 frozen blob, validate the QG-35 raw result digest, bind QG-35 protected dual acceptance, then recompute:
 - parent authority checks;
 - array lengths/ranges;
 - maxima from arrays;
@@ -71,7 +74,7 @@ Read only the two committed parent JSON receipts. Recompute:
 
 ## Independent generic verification
 
-Independently re-read the two immutable receipts and recompute all 92 comparisons using a separate implementation/order. Require exact agreement with the production composition object.
+Independently re-read the immutable receipts, independently verify QG-34 blob and QG-35 raw digest/dual receipt, and recompute all 92 comparisons using a separate implementation/order. Require exact agreement with the production composition object.
 
 ## Native ORION-Q authority
 
@@ -94,5 +97,5 @@ Always false:
 
 ## Workflow
 
-Before QG-35 target receipt exists, CI performs freeze-only checks and exits successfully without adjudication.
-After only the immutable QG-35 receipt is bound, the unchanged workflow executes production/generic/native composition, deterministic replay, and a self-consistent parent-array/max tamper rejection.
+Before both QG-35 target files exist, CI performs freeze-only checks and exits successfully without adjudication.
+After only the immutable QG-35 raw result and protected dual receipt are bound, the unchanged workflow executes production/generic/native composition, deterministic replay, and a self-consistent QG-35 raw parent-array/max tamper rejection. Because the raw parent digest is independently validated, recomputing only the QG-36 output digest cannot launder a parent tamper.
