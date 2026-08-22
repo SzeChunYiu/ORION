@@ -209,7 +209,7 @@ Not where the programme looked for them.
 | **W8** | R6B batch selection taken on the receipt's word, not re-derived | open; registered by the QG-3 verifier's stated limit |
 | **W9** | committed family search does not realize QG-6's support-capped corollary | partial — QG-10's `U_W1` supplies an uncapped weight-one enumerator, checked equal on all 1,029 instances where both are defined; support-2 remains |
 | **W10** | the V2 feature map, not the referee, caps StabPrep's reach | open |
-| **W11** | `donor_search` requires a passage but does not check it occurs in the query log | open — QG-24's verifier implements this check and it is **stronger than the committed module**; the gap was found the same way every other harness fix was, by a lane failing against it |
+| **W11** | `donor_search` requires a passage but does not check it occurs in the query log | ~~open — QG-24's verifier implements this check and it is **stronger than the committed module**~~ **CLOSED in `ccbd708b`**, which added `passage_occurs_in_log` to the committed module and fixed a bug in the first fix. This row said "open" for the rest of the branch anyway. Struck rather than deleted: a ledger that keeps saying open after the work landed is the same failure as a receipt that keeps saying PASS after the criterion moved, and it belongs in the count. |
 | — | QG-15c's surviving collision pair (identical schedule geometry) | open; the precise form an impossibility result must address |
 | — | QG-10's 39.6 % undecided rows | open; gaps are 0/1/2 only |
 | — | QG-19's `document_level_verification: false` on every source | open; needs a session with document egress |
