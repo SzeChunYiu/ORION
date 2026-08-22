@@ -1,0 +1,16 @@
+{
+ "artifact": "development/orion-qg-regime-geometry/QG23_GENERIC_VERIFICATION.json",
+ "cases_examined": 8,
+ "detects": "a case rejected by a real but unrelated check (the QG-26 T9 shape)",
+ "does_not_detect": "a mutation that does not do what its name says (the QG-24 T6 shape); that needs the verifier re-run against fresh tampers, not the record",
+ "expected_check_is_the_adjudicators_reading_not_a_lane_declaration": true,
+ "gate": "CLEARS",
+ "gate_is_not_vacuous": {
+  "gate": "REFUSED",
+  "gate_reason": "falsifiability demonstration rejected:\n  - H1_verdict_flipped_to_BORNE_OUT was rejected by ['an_unrelated_check'] but not by 'H1_verdict', the check it exists to exercise -- that check is therefore still untested, and the suite's count conceals it",
+  "probe": "first case redirected to an unrelated check"
+ },
+ "gate_reason": null,
+ "lane": "QG-23",
+ "schema": "ORIONQG.FalsifiabilityRetrospective.v1"
+}

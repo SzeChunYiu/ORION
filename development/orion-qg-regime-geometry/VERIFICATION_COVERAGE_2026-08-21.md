@@ -154,6 +154,21 @@ assemblers delegate to it rather than carrying the rule twice, and both historic
 defects are confirmed caught through it. Registered as **W14 — closed on arrival**,
 with the same honest note as W13: its value is prospective.
 
+**Applied backwards to the one lane that predates it.** QG-23's committed eight-case
+demonstration was run through the gate (`FALSIFIABILITY_RETROSPECTIVE.json`): all eight
+cases are caught by the check their name says they exercise, and the demonstration
+**clears**. The gate is shown non-vacuous on that same record set first — redirecting
+one case to an unrelated check is refused with the reason named — because a clean
+result from an adapter nobody tested would look identical to a clean result.
+
+The limit is stated rather than left implied: this reads the *recorded* demonstration,
+so it finds the QG-26-T9 shape (a case rejected by a real but unrelated check) and
+**cannot** find the QG-24-T6 shape (a mutation that does not do what its name says).
+Finding the latter needs the verifier re-run against freshly built tampers — which is
+what produced two wrong reconstructions in one afternoon, and is not attempted here.
+The expected-check mapping is the adjudicator's reading of QG-23's case names against
+its verifier, stated as a reading so it can be disputed.
+
 The parent literature is named in the module and not claimed: this is mutation
 testing (DeMillo–Lipton–Sayward 1978; Hamlet 1977), where a surviving mutant means
 missing coverage and "killed by" names a specific test; fault injection in the
