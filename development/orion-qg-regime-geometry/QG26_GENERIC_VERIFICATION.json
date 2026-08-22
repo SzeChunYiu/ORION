@@ -1,6 +1,6 @@
 {
  "analyzer_sha256": "ccd7032edd1e64f112abceab8da40f233d9b9ada47f3c5a698ad5cb7265edf78",
- "check_count": 13,
+ "check_count": 15,
  "checks": {
   "alphabet_reenumerated_from_the_committed_dp": {
    "detail": {
@@ -16,6 +16,16 @@
    "detail": {
     "module": 1024
    },
+   "ok": true
+  },
+  "criterion_binding_gate_reimplemented": {
+   "detail": {
+    "bad": []
+   },
+   "ok": true
+  },
+  "criterion_binding_verdict_matches_the_terminal": {
+   "detail": null,
    "ok": true
   },
   "enumeration_complete": {
@@ -70,8 +80,8 @@
  },
  "determinism": {
   "double_run": true,
-  "run1_sha256": "ceb8e660a60c32b56eb153483fb4178933a6cbd5f8e1c8cf8b0e9475dd41d425",
-  "run2_sha256": "ceb8e660a60c32b56eb153483fb4178933a6cbd5f8e1c8cf8b0e9475dd41d425",
+  "run1_sha256": "bd1eaf5b43b2fb9f8ffa6a42138bfeac74b1b542bf60d0d506d1f2eca90d50db",
+  "run2_sha256": "bd1eaf5b43b2fb9f8ffa6a42138bfeac74b1b542bf60d0d506d1f2eca90d50db",
   "stdout_identical": true
  },
  "failed_checks": [],
@@ -82,7 +92,8 @@
    {
     "case": "T1_terminal_flipped_to_loose",
     "failed_checks": [
-     "terminal_follows_from_the_recomputed_numbers"
+     "terminal_follows_from_the_recomputed_numbers",
+     "criterion_binding_verdict_matches_the_terminal"
     ],
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
     "tamper": "the headline terminal is flipped to the opposite branch",
@@ -152,6 +163,33 @@
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
     "tamper": "the enumerated option-row count is reduced to 4^5 while complete stays true",
     "verdict": "REJECT"
+   },
+   {
+    "case": "T9_criterion_binding_block_incoherent",
+    "failed_checks": [
+     "criterion_binding_verdict_matches_the_terminal"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the criterion_binding record claims a changed criterion and flips its verdict, with no deviation, counterfactual or exhibited rejection",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T10_applied_criterion_digest_removed",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "applied_criterion_digest is deleted, so 'unchanged' would have to be inferred from silence",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T11_frozen_criterion_digest_does_not_match_the_protocol",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the bound frozen digest is not the digest of the criterion text in the frozen protocol",
+    "verdict": "REJECT"
    }
   ],
   "each_case_names_the_field_it_mutates": true,
@@ -170,5 +208,5 @@
  "terminal_under_review": "QG26_SYNDROME_IS_NERODE_MINIMAL",
  "verdict": "ACCEPT",
  "verifier": "qg26_generic_verify",
- "verifier_sha256": "28f62ab27eece548999f8b41f50d266f8bdfe4802149a7d340b8a024919c68f6"
+ "verifier_sha256": "ccf43246908c1e2a9732a5e45fa7673fb05dab35518f4950e91557d5648a96c4"
 }

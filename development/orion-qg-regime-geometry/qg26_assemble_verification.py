@@ -94,6 +94,32 @@ def t8(r):
     return r
 
 
+def t9(r):
+    """Claim a criterion change and flip the verdict, coherently resealed.
+
+    Until the verifier reimplemented the criterion-churn gate, this copy was
+    ACCEPTed: the analyzer validated its own criterion_binding block in-run and
+    nothing independent re-checked it, which is custody standing in for
+    corroboration.
+    """
+    rec = r["criterion_binding"][0]
+    rec["applied_criterion_digest"] = "0" * 64
+    rec["reported_verdict"] = "FAIL"
+    return r
+
+
+def t10(r):
+    """Drop applied_criterion_digest entirely -- omission must not read as sameness."""
+    del r["criterion_binding"][0]["applied_criterion_digest"]
+    return r
+
+
+def t11(r):
+    """Bind a frozen digest that is not the digest of the frozen protocol text."""
+    r["criterion_binding"][0]["frozen_criterion_digest"] = "1" * 64
+    return r
+
+
 TAMPERS = [
     ("T1_terminal_flipped_to_loose",
      "the headline terminal is flipped to the opposite branch", t1),
@@ -112,6 +138,15 @@ TAMPERS = [
      "novelty_authority is flipped to true", t7),
     ("T8_enumeration_truncated_but_declared_complete",
      "the enumerated option-row count is reduced to 4^5 while complete stays true", t8),
+    ("T9_criterion_binding_block_incoherent",
+     "the criterion_binding record claims a changed criterion and flips its verdict, "
+     "with no deviation, counterfactual or exhibited rejection", t9),
+    ("T10_applied_criterion_digest_removed",
+     "applied_criterion_digest is deleted, so 'unchanged' would have to be inferred "
+     "from silence", t10),
+    ("T11_frozen_criterion_digest_does_not_match_the_protocol",
+     "the bound frozen digest is not the digest of the criterion text in the frozen "
+     "protocol", t11),
 ]
 
 

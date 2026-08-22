@@ -1253,8 +1253,22 @@ domains and has not been run.
 
 Protocol `QG26_NERODE_MINIMALITY_PROTOCOL_V1.md`, frozen at `eeaa3433` before the
 analyzer was written. Terminal **`QG26_SYNDROME_IS_NERODE_MINIMAL`**. Verifier ACCEPT
-on 13 checks, none failed; eight tampered copies with recomputed digests all REJECT;
+on 15 checks, none failed; **eleven** tampered copies with recomputed digests all REJECT;
 analyzer and verifier both byte-identical on a double run. Runtime 0.1 s.
+
+**Amended within the hour.** The first version of this lane's verifier carried 13 checks
+and eight tampers, and did not look at the `criterion_binding` block at all. The
+analyzer validated its own records in-run, which is custody standing in for
+corroboration — precisely the substitution `corroboration` exists to refuse. A copy
+whose criterion record claimed a changed criterion and flipped its verdict, resealed
+coherently, **was ACCEPTed**. Gate G5 of this lane's own protocol says that if the gate
+is not exercised here it is not a gate, and it was not. The verifier now reimplements
+the churn rules independently (the same pattern QG-24 uses for the donor gate, so the
+`independent_of` claim still holds), checks the bound frozen digest against the
+criterion text in the frozen protocol rather than against the receipt's own word, and
+carries three tamper cases for it — T9, T10, T11 — all REJECT. The verification
+artifact was regenerated rather than relabelled, so every digest binds a file that
+exists.
 
 ### What was asked
 
