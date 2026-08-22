@@ -24,6 +24,11 @@ from .exact_worlds import (
     generate_representation_hostile_pair,
     generate_suite,
 )
+from .identifiability import (
+    IdentifiabilityCollision,
+    IdentifiabilityReport,
+    analyze_identifiability,
+)
 
 __all__ = [
     "DeltaKind",
@@ -42,6 +47,9 @@ __all__ = [
     "ObligationScope",
     "Representation",
     "ViewMode",
+    "IdentifiabilityCollision",
+    "IdentifiabilityReport",
+    "analyze_identifiability",
     "apply_delta_with_representation",
     "execute_intervention",
     "generate_case",
