@@ -52,7 +52,7 @@ def main() -> int:
 
     gw = ResearchWorkspace.initialize(GW, project_root=ROOT, allow_process_tools=True)
     areq, ares, asum = run(
-        gw, "research/extensions/orion-qg/qg7d_j7_pa_confirm.py",
+        gw, "development/orion-qg-regime-geometry/qg7d_j7_analyzer_exec.py",
         "ORIONQG_QG7D_J7=", 240)
     greq, gres, gsum = run(
         gw, "development/orion-qg-regime-geometry/qg7d_j7_pa_generic_verify.py",
