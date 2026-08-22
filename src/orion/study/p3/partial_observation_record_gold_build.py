@@ -92,6 +92,29 @@ establishes nothing about how often scientific extraction drops a coordinate on
 one side only. No accuracy, false-merge, false-split or superiority number over
 it is evidence about ORION's competence on scientific text.
 
+**Amendment 004 (2026-08-22).** The corpus is unchanged --- ``record_gold_cases()``
+with no argument emits the shipped ``cases.jsonl`` byte for byte, and
+``standard_document()`` the shipped standard --- and two things are added on top
+of it, both in service of a bound rather than of a corpus.
+
+:class:`RecordDraw` names the choices this standard leaves *free*: the id strings
+the records use, which of the two values of a closed vocabulary each record
+takes, and which side of a pair the extraction loss falls on. The standard fixes
+none of them and :func:`relation_from_records` reads none of them.
+:func:`fresh_draw` redraws them from a seed and :func:`held_out_corpus` builds and
+:func:`verify`s the result without writing it, so a finding measured on the
+shipped 36 cases can be re-measured on 36 nobody had in front of them. That is
+the guard against a rule --- or a bound --- fitted to the cases it was derived
+after seeing.
+
+:func:`undecidability_witness_cases` builds the sharpest form of what amendment
+004 establishes: for a coordinate, an ``LA`` case and an ``LD`` case whose loss
+falls on the *same* side, whose shipped projections are then identical value for
+value, and whose gold differs. Two legal cases of this corpus, one pair of
+projections, two golds --- because the value that decides is the one the
+extraction destroyed. Gold is not a function of the projections, which is why
+``G9_HARM_A3``'s nine destroyed answers are a floor and not a defect.
+
 Build it::
 
     python -m orion.study.p3.partial_observation_record_gold_build --write
@@ -102,8 +125,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import random
 from collections.abc import Mapping, Sequence
-from dataclasses import replace
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -305,6 +329,139 @@ class RecordCorpusError(RuntimeError):
     """Raised when the corpus does not have the structure the gate needs."""
 
 
+# --------------------------------------------------------------------------
+# Draws (amendment 004)
+# --------------------------------------------------------------------------
+
+#: The label of the draw the shipped corpus is built from. A draw carrying any
+#: other label is a *held-out* corpus: it is never written to the repository, and
+#: every document it emits says which draw it came from, so a number measured on
+#: one can never be quoted as a number about the other.
+DEFAULT_DRAW_LABEL = "frozen-2026-08-22"
+
+#: The prefix every value a held-out draw invents carries. Distinct from the
+#: frozen table's ``porec:`` so that a held-out record can never be mistaken for
+#: a shipped one by a reader or by a grep.
+FRESH_DRAW_VALUE_PREFIX = "pofd"
+
+WITNESS_SLOT_BASE = 900
+
+
+@dataclass(frozen=True)
+class RecordDraw:
+    """The construction choices the record standard leaves free.
+
+    The standard fixes the coordinate *precedence*, the strata and the shape of a
+    case. It does not fix which id strings the records use, which of the two
+    values of a closed vocabulary each record takes, or which side of a pair the
+    extraction loss falls on. Those are free, and amendment 004 makes them
+    explicit so that a finding measured on the shipped corpus can be re-measured
+    on a corpus drawn differently.
+
+    ``DEFAULT_DRAW`` reproduces the frozen table exactly, so
+    ``record_gold_cases()`` with no argument emits the corpus that already ships,
+    byte for byte.
+    """
+
+    label: str
+    record_values: Mapping[str, tuple[Any, ...]]
+    lost_side: Mapping[tuple[str, str], str]
+
+    def __post_init__(self) -> None:
+        if not self.label.strip():
+            raise RecordCorpusError("a draw needs a label")
+        missing = [name for name in COORDINATES if name not in self.record_values]
+        if missing:
+            raise RecordCorpusError(f"draw {self.label} states no value for {', '.join(missing)}")
+        for name in COORDINATES:
+            values = tuple(self.record_values[name])
+            if len(values) != 2 or values[0] == values[1]:
+                raise RecordCorpusError(
+                    f"draw {self.label}: {name} needs two distinct record values, got {values!r}"
+                )
+            if ABSENT_VALUE[name] in values:
+                raise RecordCorpusError(
+                    f"draw {self.label}: {name} takes its absent value on a record, so the "
+                    "record would not be fully observed and gold could not be read off it"
+                )
+        for stratum in (STRATUM_LA, STRATUM_LD, STRATUM_LU):
+            for name in COORDINATES:
+                if stratum is STRATUM_LU and name == LU_DECIDING_COORDINATE:
+                    continue
+                side = self.lost_side.get((stratum, name))
+                if side not in ("left", "right"):
+                    raise RecordCorpusError(
+                        f"draw {self.label}: no loss side for {stratum}/{name}"
+                    )
+
+
+def _frozen_lost_side() -> dict[tuple[str, str], str]:
+    """The side each loss falls on in the corpus frozen by amendment 003.
+
+    Written out from the parity rules that produced it rather than restated as a
+    literal table, so that this and ``_case_specs`` cannot drift apart.
+    """
+
+    sides: dict[tuple[str, str], str] = {}
+    for index, coordinate in enumerate(COORDINATES):
+        sides[(STRATUM_LA, coordinate)] = "left" if index % 2 == 0 else "right"
+        sides[(STRATUM_LD, coordinate)] = "right" if index % 2 == 0 else "left"
+    for index, coordinate in enumerate(
+        name for name in COORDINATES if name != LU_DECIDING_COORDINATE
+    ):
+        sides[(STRATUM_LU, coordinate)] = "left" if index % 2 == 0 else "right"
+    return sides
+
+
+DEFAULT_DRAW = RecordDraw(
+    label=DEFAULT_DRAW_LABEL,
+    record_values=RECORD_VALUES,
+    lost_side=_frozen_lost_side(),
+)
+
+
+def fresh_draw(seed: int) -> RecordDraw:
+    """A held-out draw: the same standard, different free choices.
+
+    The record vocabulary is redrawn, the two closed vocabularies are redrawn
+    from their own value sets, and the side each extraction loss falls on is
+    drawn independently per stratum and coordinate. Nothing the derivation rule
+    reads changes: the precedence order, the strata and the loss shape are the
+    standard's, not the draw's.
+
+    Seeded from a string that names this module, so a draw is reproducible from
+    its seed alone and two different studies asking for "seed 7" of different
+    things do not collide.
+    """
+
+    rng = random.Random(f"{PROTOCOL_ID}:fresh-draw:{seed}")
+    values: dict[str, tuple[Any, ...]] = {}
+    for name in COORDINATES:
+        frozen = RECORD_VALUES[name]
+        if isinstance(frozen[0], (Polarity, Modality)):
+            pool = [item for item in type(frozen[0]) if item != ABSENT_VALUE[name]]
+            values[name] = tuple(rng.sample(pool, 2))
+            continue
+        stem = name[:-4] if name.endswith("_ids") else name
+        first, second = rng.sample(range(10, 100), 2)
+
+        def render(number: int, stem: str = stem) -> str:
+            return f"{FRESH_DRAW_VALUE_PREFIX}{seed:02d}:{stem}:{number:02d}"
+
+        if isinstance(frozen[0], tuple):
+            values[name] = ((render(first),), (render(second),))
+        else:
+            values[name] = (render(first), render(second))
+    sides: dict[tuple[str, str], str] = {}
+    for stratum in (STRATUM_LA, STRATUM_LD, STRATUM_LU):
+        for name in COORDINATES:
+            if stratum == STRATUM_LU and name == LU_DECIDING_COORDINATE:
+                continue
+            sides[(stratum, name)] = rng.choice(("left", "right"))
+    return RecordDraw(label=f"fresh-draw-{seed}", record_values=values, lost_side=sides)
+
+
+
 def relation_from_records(
     left: ScientificMeaningProjection, right: ScientificMeaningProjection
 ) -> MeaningRelation:
@@ -366,8 +523,17 @@ def _jsonable(value: Any) -> Any:
     return getattr(value, "value", value)
 
 
-def standard_document() -> dict[str, Any]:
-    return {
+def standard_document(draw: RecordDraw = DEFAULT_DRAW) -> dict[str, Any]:
+    """The standard, for one draw of the choices it leaves free.
+
+    ``draw`` defaults to the frozen table, and on that default the document is
+    byte-identical to the one the corpus ships --- the case ``source_records``
+    carry its hash, so anything else would rewrite the shipped corpus. A
+    held-out draw adds a ``draw`` block naming itself, so a standard emitted for
+    one can never be read as the standard the corpus was built against.
+    """
+
+    document: dict[str, Any] = {
         "schema_version": STANDARD_SCHEMA_VERSION,
         "protocol_id": PROTOCOL_ID,
         "atlas_id": ATLAS_ID,
@@ -386,8 +552,8 @@ def standard_document() -> dict[str, Any]:
         "coordinate_precedence": list(COORDINATES),
         "absent_values": {name: _jsonable(value) for name, value in ABSENT_VALUE.items()},
         "record_values": {
-            name: [_jsonable(value) for value in values]
-            for name, values in RECORD_VALUES.items()
+            name: [_jsonable(value) for value in draw.record_values[name]]
+            for name in COORDINATES
         },
         "predicate": PREDICATE,
         "disciplines": list(DISCIPLINES),
@@ -415,14 +581,31 @@ def standard_document() -> dict[str, Any]:
         "external_validity": EXTERNAL_VALIDITY,
         "not_an_accuracy_benchmark": ACCURACY_CAVEAT,
     }
+    if draw.label != DEFAULT_DRAW_LABEL:
+        document["draw"] = {
+            "label": draw.label,
+            "lost_side": {
+                f"{stratum}/{coordinate}": side
+                for (stratum, coordinate), side in sorted(draw.lost_side.items())
+            },
+            "held_out": (
+                "this is not the draw the corpus ships. It re-draws the free choices the "
+                "standard does not fix --- the record vocabulary, which value of each closed "
+                "vocabulary each record takes, and which side each extraction loss falls on "
+                "--- and fixes nothing the derivation rule reads. It exists to re-measure a "
+                "finding off the corpus it was found on, and it is never written to the "
+                "repository."
+            ),
+        }
+    return document
 
 
-def standard_bytes() -> bytes:
-    return json.dumps(standard_document(), indent=2, sort_keys=True).encode("utf-8") + b"\n"
+def standard_bytes(draw: RecordDraw = DEFAULT_DRAW) -> bytes:
+    return json.dumps(standard_document(draw), indent=2, sort_keys=True).encode("utf-8") + b"\n"
 
 
-def standard_hash() -> str:
-    return _sha(standard_bytes())
+def standard_hash(draw: RecordDraw = DEFAULT_DRAW) -> str:
+    return _sha(standard_bytes(draw))
 
 
 # --------------------------------------------------------------------------
@@ -430,13 +613,13 @@ def standard_hash() -> str:
 # --------------------------------------------------------------------------
 
 
-def _base_values() -> dict[str, Any]:
+def _base_values(draw: RecordDraw) -> dict[str, Any]:
     """The value every coordinate takes on both records unless a spec overrides it."""
 
-    return {name: values[0] for name, values in RECORD_VALUES.items()}
+    return {name: draw.record_values[name][0] for name in COORDINATES}
 
 
-def _case_specs() -> list[dict[str, Any]]:
+def _case_specs(draw: RecordDraw = DEFAULT_DRAW) -> list[dict[str, Any]]:
     """Every case as a plain description, before any projection is built.
 
     A census, written so that its shape can be read at a glance and checked
@@ -449,37 +632,35 @@ def _case_specs() -> list[dict[str, Any]]:
     specs: list[dict[str, Any]] = []
     slot = 0
 
-    for index, coordinate in enumerate(COORDINATES):
+    for coordinate in COORDINATES:
         specs.append(
             {
                 "stratum": STRATUM_LA,
                 "slot": slot,
                 "lost_coordinate": coordinate,
-                "lost_side": "left" if index % 2 == 0 else "right",
+                "lost_side": draw.lost_side[(STRATUM_LA, coordinate)],
                 "records_differ_on": None,
             }
         )
         slot += 1
-    for index, coordinate in enumerate(COORDINATES):
+    for coordinate in COORDINATES:
         specs.append(
             {
                 "stratum": STRATUM_LD,
                 "slot": slot,
                 "lost_coordinate": coordinate,
-                "lost_side": "right" if index % 2 == 0 else "left",
+                "lost_side": draw.lost_side[(STRATUM_LD, coordinate)],
                 "records_differ_on": coordinate,
             }
         )
         slot += 1
-    for index, coordinate in enumerate(
-        name for name in COORDINATES if name != LU_DECIDING_COORDINATE
-    ):
+    for coordinate in (name for name in COORDINATES if name != LU_DECIDING_COORDINATE):
         specs.append(
             {
                 "stratum": STRATUM_LU,
                 "slot": slot,
                 "lost_coordinate": coordinate,
-                "lost_side": "left" if index % 2 == 0 else "right",
+                "lost_side": draw.lost_side[(STRATUM_LU, coordinate)],
                 "records_differ_on": LU_DECIDING_COORDINATE,
             }
         )
@@ -525,15 +706,17 @@ def _projection_payload(
     }
 
 
-def _case(spec: Mapping[str, Any], *, standard_sha: str) -> dict[str, Any]:
+def _case(
+    spec: Mapping[str, Any], *, standard_sha: str, draw: RecordDraw = DEFAULT_DRAW
+) -> dict[str, Any]:
     stratum = str(spec["stratum"])
     slot = int(spec["slot"])
 
-    left_record_values = _base_values()
-    right_record_values = _base_values()
+    left_record_values = _base_values(draw)
+    right_record_values = _base_values(draw)
     differ = spec["records_differ_on"]
     if differ is not None:
-        right_record_values[str(differ)] = RECORD_VALUES[str(differ)][1]
+        right_record_values[str(differ)] = draw.record_values[str(differ)][1]
 
     digest = _decimal_digest(
         "|".join(
@@ -634,15 +817,90 @@ def _case(spec: Mapping[str, Any], *, standard_sha: str) -> dict[str, Any]:
     return case
 
 
-def record_gold_cases() -> list[dict[str, Any]]:
-    """The 36 cases, emitted in ``case_id`` sort order."""
+def record_gold_cases(draw: RecordDraw = DEFAULT_DRAW) -> list[dict[str, Any]]:
+    """The 36 cases, emitted in ``case_id`` sort order.
 
-    standard_sha = standard_hash()
-    cases = [_case(spec, standard_sha=standard_sha) for spec in _case_specs()]
+    ``draw`` defaults to the frozen table, on which this emits the corpus that
+    already ships, byte for byte. Any other draw is a held-out corpus: the same
+    standard, the same strata and the same derivation rule, with the choices the
+    standard leaves free re-drawn. It is returned and never written.
+    """
+
+    standard_sha = standard_hash(draw)
+    cases = [_case(spec, standard_sha=standard_sha, draw=draw) for spec in _case_specs(draw)]
     ids = [str(case["case_id"]) for case in cases]
     if len(set(ids)) != len(ids):  # pragma: no cover - a collision would be a hash break
         raise RecordCorpusError("partial-observation record-gold case ids collided")
     return sorted(cases, key=lambda case: str(case["case_id"]))
+
+
+def undecidability_witness_cases(
+    coordinate: str, *, draw: RecordDraw = DEFAULT_DRAW, lost_side: str = "right"
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """One ``LA`` case and one ``LD`` case whose *projections* are the same pair.
+
+    Both are legal cases of this corpus: same standard, same strata, same
+    derivation rule, built by the same :func:`_case` and validated by the same
+    :func:`validate_case`. The only thing that separates them from the two cases
+    the shipped corpus already carries for this coordinate is that the extraction
+    loss falls on the *same* side in both, which the standard does not fix and
+    the derivation rule does not read.
+
+    Losing the same side makes the two projection pairs identical value for
+    value, because ``LD``'s surviving side keeps the base value and ``LA``'s
+    records both hold it. So the pair a reader of the projections sees is one
+    pair, and the two cases give it two different golds: the ``LA`` records agree
+    on the lost coordinate and the ``LD`` records do not, and the extraction that
+    produced these projections destroyed exactly the value that decides which.
+
+    This is the mechanical form of the claim that gold is not a function of the
+    projections. It needs no canonicalisation beyond dropping ``projection_id``
+    and ``source_span``, which are per-case bookkeeping the relation never reads:
+    no left/right swap, no renaming of anything.
+    """
+
+    if coordinate not in COORDINATES:
+        raise KeyError(f"{coordinate} is not one of the nine identity coordinates")
+    if lost_side not in ("left", "right"):
+        raise ValueError(f"lost_side must be left or right, not {lost_side!r}")
+    index = COORDINATES.index(coordinate)
+    standard_sha = standard_hash(draw)
+    agreeing = _case(
+        {
+            "stratum": STRATUM_LA,
+            "slot": WITNESS_SLOT_BASE + index,
+            "lost_coordinate": coordinate,
+            "lost_side": lost_side,
+            "records_differ_on": None,
+        },
+        standard_sha=standard_sha,
+        draw=draw,
+    )
+    differing = _case(
+        {
+            "stratum": STRATUM_LD,
+            "slot": WITNESS_SLOT_BASE + len(COORDINATES) + index,
+            "lost_coordinate": coordinate,
+            "lost_side": "right",
+            "records_differ_on": coordinate,
+        },
+        standard_sha=standard_sha,
+        draw=draw,
+    )
+    return agreeing, differing
+
+
+def held_out_corpus(seed: int) -> list[dict[str, Any]]:
+    """A fresh draw of the corpus, verified by the same :func:`verify` and returned.
+
+    Never written. The point of a held-out draw is to re-measure a number on
+    cases that were not in front of whoever proposed the rule, and a draw that
+    got written would stop being held out the moment it was.
+    """
+
+    cases = record_gold_cases(fresh_draw(seed))
+    verify(cases, construction_receipts(cases))
+    return cases
 
 
 # --------------------------------------------------------------------------
@@ -1258,8 +1516,13 @@ __all__ = [
     "CASES_FILENAME",
     "COORDINATES",
     "CORPUS_DIR",
+    "DEFAULT_DRAW",
+    "DEFAULT_DRAW_LABEL",
     "DERIVATION_RULE",
+    "FRESH_DRAW_VALUE_PREFIX",
     "LU_DECIDING_COORDINATE",
+    "RecordDraw",
+    "WITNESS_SLOT_BASE",
     "PREDICATE",
     "PROTOCOL_ID",
     "RECORD_VALUES",
@@ -1278,7 +1541,9 @@ __all__ = [
     "coordinate_balance",
     "decisiveness_census",
     "extraction_loss_is_the_only_difference",
+    "fresh_draw",
     "fully_observed",
+    "held_out_corpus",
     "harm_preview",
     "main",
     "observed",
@@ -1291,6 +1556,7 @@ __all__ = [
     "standard_bytes",
     "standard_document",
     "standard_hash",
+    "undecidability_witness_cases",
     "verify",
     "write_corpus",
 ]

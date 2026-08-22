@@ -110,6 +110,34 @@ is completion-invariance under another name --- which the runner now detects
 extensionally as well as by declaration, so editing a corpus into circularity
 returns the gate to ``CANNOT_CHECK`` rather than passing it.
 
+**Amendment 004 (2026-08-22).** Amendment 003 left ``G9_HARM_A3`` failing on nine
+destroyed answers and an open question: is nine a defect of ``A3`` that a better
+candidate-visible rule could avoid, or the price of the evidence? It is the
+price, and this amendment measures it rather than arguing it. Put two of
+``INTACT_RECORD_GOLD``'s cases side by side with everything no rule may read
+stripped away --- the bookkeeping fields, the identity of the opaque ids, and the
+left/right orientation, none of which the relation reads --- and nine pairs of
+cases collapse onto each other while their gold stays different. Gold is
+therefore **not a function of the projections**: the information that decides is
+exactly the value the extraction destroyed, and a rule reading only the
+projections answers one relation for both members of such an orbit and is wrong
+on one of them. Nine orbits, so nine of the thirty-six cases cannot be answered
+correctly by any candidate-visible rule at all; the best reachable exact
+agreement is 27 of 36, and ``A0_orion_current`` already reaches it. On each of
+the nine, gold carries both ``COMPATIBLE`` and a separation, so a determinate
+answer is a false merge on one member or a false split on the other and the only
+answer that is neither is ``UNRESOLVED`` --- which destroys the one answer ``A0``
+gets right there. Summed: **9**, exactly what ``A3`` pays. ``A3``'s harm is a
+floor and not a repairable defect, and the amendment says so on the gate instead
+of leaving a FAIL that reads like a defect. No arm is added, because none can
+help: the search for a better rule is not hard, it is impossible, and that is the
+stronger result. The builder can construct the witness in its sharpest form ---
+an ``LA`` case and an ``LD`` case that lose the *same* side, whose projections are
+then identical value for value, needing neither a swap nor a renaming --- and can
+redraw the whole corpus under a different seed, on which every one of these
+numbers reproduces. ``G9`` keeps its statement, its threshold, its subject and
+its ``FAIL``.
+
 Nothing here edits ``orion.knowledge.semantics``; the candidate rules are
 study-local arms. Nothing here edits a frozen atlas, result or receipt, and the
 2026-08-21 freeze document and its twin are left byte-identical.
@@ -126,7 +154,7 @@ import argparse
 import itertools
 import json
 from collections.abc import Iterator, Mapping, Sequence
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, fields, replace
 from pathlib import Path
 from typing import Any, Callable
 
@@ -208,9 +236,23 @@ AMENDMENT_003_TWIN = (
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.json"
 )
 
+# Amendment 004 (2026-08-22) adds no arm, no corpus and no gate. It settles what
+# G9_HARM_A3's FAIL means by measuring the ceiling the corpus imposes on any rule
+# that reads only the projections, and annotates the gate with it. G9 keeps its
+# statement, its threshold, its subject and its FAIL. Amendments 001, 002 and 003
+# and the 2026-08-21 freeze are all left byte-identical.
+AMENDMENT_004_DOCUMENT = (
+    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md"
+)
+AMENDMENT_004_TWIN = (
+    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.json"
+)
+
 #: The twin the runner checks itself against. Points at the amendment in force, so
 #: a digest drift is caught against the record actually running.
-FREEZE_TWIN = AMENDMENT_003_TWIN
+FREEZE_TWIN = AMENDMENT_004_TWIN
 
 CLAIM_SCOPE = "PARTIAL_OBSERVATION_OF_FROZEN_ATLASES_ONLY"
 
@@ -1191,6 +1233,309 @@ def one_sided_absence_census(
 
 
 # --------------------------------------------------------------------------
+# The identifiability ceiling (amendment 004)
+# --------------------------------------------------------------------------
+
+#: Fields of a projection that carry per-case bookkeeping and nothing the
+#: relation reads: which record a case drew the projection from, and where. Two
+#: cases whose projections differ only here are, to any rule about *meaning*, the
+#: same pair. A rule that told them apart would be reading the case id.
+CANONICAL_BOOKKEEPING_FIELDS: tuple[str, ...] = (
+    "projection_id",
+    "source_id",
+    "source_span",
+)
+
+#: Fields whose values are opaque ids minted by whoever built the corpus. Nothing
+#: in ``compare_meaning`` or in any arm reads them except for equality --- across
+#: the pair and, for the list coordinates, within a value --- so a consistent
+#: renaming across both sides changes no arm's answer and no relation. The
+#: canonical form relabels them by first occurrence, which is exactly a
+#: consistent renaming.
+OPEN_VOCABULARY_FIELDS: tuple[str, ...] = (
+    "predicate",
+    "referent_ids",
+    "construct_ids",
+    "measurement_ids",
+    "temporal_context_ids",
+    "assumption_ids",
+    "attribution_id",
+    "discourse_relation",
+    "unresolved_ambiguities",
+)
+
+#: Fields whose values come from a closed enumeration. These are relabelled only
+#: when asked, and never across the absent value: ``Polarity.UNKNOWN`` and
+#: ``Modality.UNKNOWN`` are what a silence looks like, so a relabelling that moved
+#: them would be erasing the very thing under study. Relabelling the *stated*
+#: values is a different matter --- ``compare_meaning`` and every arm read
+#: ``polarity`` only through ``left.polarity != right.polarity``, so which of the
+#: two poles a record happens to state is a labelling, and a rule that answered
+#: differently according to which one survived extraction would be reading the
+#: label rather than the relation.
+CLOSED_VOCABULARY_FIELDS: tuple[str, ...] = ("polarity", "modality")
+
+#: The one structured field. ``argument_roles`` is a tuple of ``(role, filler)``
+#: pairs; no rule in this study reads it, but it is part of the projection, so it
+#: is canonicalised rather than dropped --- dropping it would make two pairs the
+#: same evidence on the strength of a field this module chose to ignore.
+CANONICAL_ROLE_FIELDS: tuple[str, ...] = ("argument_roles",)
+
+#: The token every absent value canonicalises to, in every field.
+CANONICAL_ABSENT_TOKEN = "ABSENT"
+
+
+def canonicalisation_field_census() -> dict[str, Any]:
+    """Every field of a projection, and what the canonical form does with it.
+
+    A field this module neither reads nor names as bookkeeping would be silently
+    ignored, and two pairs that differ only in it would be reported as the same
+    evidence --- which is how a ceiling gets overstated. So the split is computed
+    against the dataclass rather than asserted, and a field added to
+    :class:`~orion.knowledge.semantics.ScientificMeaningProjection` shows up here
+    as uncovered until someone decides which side it belongs on.
+    """
+
+    declared = tuple(field.name for field in fields(ScientificMeaningProjection))
+    accounted = (
+        set(CANONICAL_BOOKKEEPING_FIELDS)
+        | set(OPEN_VOCABULARY_FIELDS)
+        | set(CLOSED_VOCABULARY_FIELDS)
+        | set(CANONICAL_ROLE_FIELDS)
+    )
+    return {
+        "projection_fields": list(declared),
+        "stripped_as_bookkeeping": list(CANONICAL_BOOKKEEPING_FIELDS),
+        "relabelled_as_open_vocabulary": list(OPEN_VOCABULARY_FIELDS),
+        "relabelled_as_closed_vocabulary": list(CLOSED_VOCABULARY_FIELDS),
+        "relabelled_as_role_structure": list(CANONICAL_ROLE_FIELDS),
+        "uncovered": sorted(set(declared) - accounted),
+        "named_but_not_a_projection_field": sorted(accounted - set(declared)),
+        "covers_every_field": not (set(declared) - accounted)
+        and not (accounted - set(declared)),
+    }
+
+
+def _canonical_orientation(
+    left: ScientificMeaningProjection,
+    right: ScientificMeaningProjection,
+    *,
+    relabel_closed_vocabularies: bool,
+) -> str:
+    """One orientation's canonical string, ids relabelled by first occurrence."""
+
+    table: dict[tuple[str, Any], str] = {}
+    counts: dict[str, int] = {}
+
+    def label(field: str, value: Any) -> str:
+        key = (field, value)
+        if key not in table:
+            counts[field] = counts.get(field, 0) + 1
+            table[key] = f"{field}#{counts[field]}"
+        return table[key]
+
+    form: list[Any] = []
+    for field in OPEN_VOCABULARY_FIELDS:
+        for side in (left, right):
+            value = getattr(side, field)
+            if isinstance(value, tuple):
+                form.append([label(field, item) for item in value])
+            else:
+                form.append(label(field, value) if value else CANONICAL_ABSENT_TOKEN)
+    for field in CANONICAL_ROLE_FIELDS:
+        for side in (left, right):
+            form.append(
+                [
+                    [label(f"{field}:role", role), label(f"{field}:filler", filler)]
+                    for role, filler in getattr(side, field)
+                ]
+            )
+    for field in CLOSED_VOCABULARY_FIELDS:
+        for side in (left, right):
+            value = getattr(side, field)
+            if value == ABSENT_VALUE[field]:
+                form.append(CANONICAL_ABSENT_TOKEN)
+            elif relabel_closed_vocabularies:
+                form.append(label(field, value))
+            else:
+                form.append(value.value)
+    return json.dumps(form, separators=(",", ":"))
+
+
+def canonical_pair_form(
+    left: ScientificMeaningProjection,
+    right: ScientificMeaningProjection,
+    *,
+    relabel_closed_vocabularies: bool = True,
+) -> str:
+    """What two projections look like once everything no rule may read is gone.
+
+    Three things are stripped, and each of them is stripped because *gold* does
+    not read it, not because it was convenient:
+
+    * the bookkeeping fields, which say which record the projection came from;
+    * the identity of the opaque ids, which every rule reads only for equality,
+      so a consistent renaming across both sides is invisible to all of them;
+    * the orientation, because a meaning relation is symmetric --- ``COMPATIBLE``
+      and ``DISTINCT_REFERENT`` are relations *between* two statements and
+      ``compare_meaning`` returns the same value on a swapped pair.
+
+    Two pairs with the same canonical form are the same evidence. A rule that is
+    a function of the projections alone and does not read bookkeeping therefore
+    gives them the same answer; :func:`identifiability_ceiling` checks that every
+    arm on record actually does, rather than assuming it.
+    """
+
+    return min(
+        _canonical_orientation(
+            left, right, relabel_closed_vocabularies=relabel_closed_vocabularies
+        ),
+        _canonical_orientation(
+            right, left, relabel_closed_vocabularies=relabel_closed_vocabularies
+        ),
+    )
+
+
+def projection_orbits(
+    pairs: Sequence[tuple[str, ScientificMeaningProjection, ScientificMeaningProjection, MeaningRelation]],
+    *,
+    relabel_closed_vocabularies: bool = True,
+) -> dict[str, list[tuple[str, MeaningRelation]]]:
+    """Cases grouped by canonical form, each with its case id and its gold."""
+
+    grouped: dict[str, list[tuple[str, MeaningRelation]]] = {}
+    for case_id, left, right, gold in pairs:
+        form = canonical_pair_form(
+            left, right, relabel_closed_vocabularies=relabel_closed_vocabularies
+        )
+        grouped.setdefault(form, []).append((case_id, gold))
+    return grouped
+
+
+def identifiability_ceiling(
+    pairs: Sequence[tuple[str, ScientificMeaningProjection, ScientificMeaningProjection, MeaningRelation]],
+    *,
+    relabel_closed_vocabularies: bool = True,
+) -> dict[str, Any]:
+    """How well any rule reading only the projections could possibly do here.
+
+    A corpus can carry two cases whose projections are the same evidence and
+    whose gold differs. When it does, gold is not a function of the projections,
+    and no rule that reads only the projections is right on both: it answers one
+    relation for the two of them and is wrong on at least one. Counting those
+    orbits turns "this arm destroys nine correct answers" into a question with a
+    determinate answer --- is nine a defect of the arm, or the price of the
+    evidence?
+
+    Three numbers come out of it.
+
+    ``n_pairs_no_candidate_visible_rule_can_answer_correctly``
+        the cases that must be wrong, summed over orbits: an orbit of size *n*
+        whose most common gold covers *m* of them costs *n - m*.
+
+    ``max_exact_agreement_reachable_by_a_candidate_visible_rule``
+        the complement, i.e. the best accuracy any such rule can reach.
+
+    ``harm_floor_for_an_arm_that_commits_no_false_merge_and_no_false_split``
+        the cost of the only escape. On an orbit carrying both ``COMPATIBLE`` and
+        a non-merge gold, a determinate answer is a false merge on one member or
+        a false split on another; the sole answer that is neither is
+        ``UNRESOLVED``, and that destroys every answer ``A0`` gets right on the
+        orbit. Summed, that is the smallest harm such an arm can pay.
+
+    The last number is a floor and not a target. An arm is free to pay less by
+    answering exactly what ``A0`` answers --- and then it *is* ``A0`` on those
+    pairs, over-resolving where the projections do not determine the relation,
+    which is the failure this whole study exists to demonstrate.
+    """
+
+    orbits = projection_orbits(
+        pairs, relabel_closed_vocabularies=relabel_closed_vocabularies
+    )
+    predicted: dict[str, dict[str, MeaningRelation]] = {
+        arm_id: {case_id: ARMS[arm_id](left, right) for case_id, left, right, _gold in pairs}
+        for arm_id in ARM_ORDER
+    }
+    gold_of = {case_id: gold for case_id, _left, _right, gold in pairs}
+
+    reachable = 0
+    unanswerable = 0
+    rows: list[dict[str, Any]] = []
+    floor = 0
+    trilemma_orbits = 0
+    for form in sorted(orbits, key=lambda key: sorted(case_id for case_id, _ in orbits[key])[0]):
+        members = orbits[form]
+        golds = [gold for _case_id, gold in members]
+        best = max(golds.count(relation) for relation in set(golds))
+        reachable += best
+        unanswerable += len(members) - best
+        if len(set(golds)) == 1:
+            continue
+        a0 = {predicted[ARM_CURRENT][case_id] for case_id, _gold in members}
+        a0_correct = sorted(
+            case_id for case_id, gold in members if predicted[ARM_CURRENT][case_id] is gold
+        )
+        forces_a_choice = any(
+            gold is MeaningRelation.COMPATIBLE for gold in golds
+        ) and any(gold in NONMERGE_RELATIONS for gold in golds)
+        if forces_a_choice:
+            trilemma_orbits += 1
+            floor += len(a0_correct)
+        rows.append(
+            {
+                "case_ids": sorted(case_id for case_id, _gold in members),
+                "golds": sorted({gold.value for gold in golds}),
+                "a0_answer": sorted(relation.value for relation in a0),
+                "a0_is_correct_on": a0_correct,
+                "forces_a_false_merge_a_false_split_or_an_abstention": forces_a_choice,
+            }
+        )
+
+    constant: dict[str, bool] = {}
+    for arm_id in ARM_ORDER:
+        constant[arm_id] = all(
+            len({predicted[arm_id][case_id] for case_id, _gold in members}) == 1
+            for members in orbits.values()
+        )
+    exact = {
+        arm_id: sum(
+            1 for case_id in gold_of if predicted[arm_id][case_id] is gold_of[case_id]
+        )
+        for arm_id in ARM_ORDER
+    }
+    return {
+        "canonicalisation": {
+            "bookkeeping_fields_stripped": list(CANONICAL_BOOKKEEPING_FIELDS),
+            "open_vocabulary_fields_relabelled": list(OPEN_VOCABULARY_FIELDS),
+            "closed_vocabulary_fields_relabelled": (
+                list(CLOSED_VOCABULARY_FIELDS) if relabel_closed_vocabularies else []
+            ),
+            "role_structure_fields_relabelled": list(CANONICAL_ROLE_FIELDS),
+            "left_right_swap_allowed": True,
+            "absent_values_are_never_relabelled": True,
+            "covers_every_projection_field": bool(
+                canonicalisation_field_census()["covers_every_field"]
+            ),
+        },
+        "n_pairs": len(pairs),
+        "n_orbits": len(orbits),
+        "n_undecidable_orbits": len(rows),
+        "n_pairs_in_an_undecidable_orbit": sum(len(row["case_ids"]) for row in rows),
+        "n_pairs_no_candidate_visible_rule_can_answer_correctly": unanswerable,
+        "max_exact_agreement_reachable_by_a_candidate_visible_rule": reachable,
+        "exact_agreement_by_arm": {arm_id: exact[arm_id] for arm_id in ARM_ORDER},
+        "arms_at_the_ceiling": [
+            arm_id for arm_id in ARM_ORDER if exact[arm_id] == reachable and pairs
+        ],
+        "n_orbits_forcing_a_false_merge_a_false_split_or_an_abstention": trilemma_orbits,
+        "harm_floor_for_an_arm_that_commits_no_false_merge_and_no_false_split": floor,
+        "every_arm_is_constant_on_every_orbit": all(constant.values()),
+        "arm_is_constant_on_every_orbit": constant,
+        "undecidable_orbits": rows,
+    }
+
+
+# --------------------------------------------------------------------------
 # Frozen parameter block and its digest (freeze section 8.1)
 # --------------------------------------------------------------------------
 
@@ -1350,6 +1695,63 @@ GATES: dict[str, Any] = {
                 "declares. Editing the new corpus into circularity --- by deleting the strata "
                 "on which its record-anchored gold and A3 disagree --- therefore returns the "
                 "gate to CANNOT_CHECK rather than turning it into a PASS."
+            ),
+        },
+        "amendment_004": {
+            "threshold_unchanged": True,
+            "statement_unchanged": True,
+            "subject_unchanged": True,
+            "outcome_unchanged": "FAIL",
+            "arms_added": [],
+            "corpora_added": [],
+            "question_it_settles": (
+                "whether the nine correct answers A3 destroys on INTACT_RECORD_GOLD are a "
+                "defect of A3 that some better candidate-visible rule could avoid, or the "
+                "price of the evidence. They are the price."
+            ),
+            "the_bound": (
+                "Strip from a pair of projections everything gold does not read --- the "
+                "bookkeeping fields, the identity of the opaque ids (every rule reads them "
+                "only for equality, so a consistent renaming across both sides is invisible "
+                "to all of them), and the left/right orientation (a meaning relation is "
+                "symmetric) --- and nine pairs of INTACT_RECORD_GOLD's cases collapse onto "
+                "each other with different gold. Gold is not a function of the projections "
+                "there: what decides is the value the extraction destroyed. Nine of the "
+                "thirty-six cases therefore cannot be answered correctly by any rule reading "
+                "only the projections; the reachable ceiling is 27 of 36 and A0 already "
+                "reaches it. On each of the nine orbits gold carries both COMPATIBLE and a "
+                "separation, so a determinate answer is a false merge on one member or a "
+                "false split on the other, and UNRESOLVED --- the only answer that is neither "
+                "--- destroys the one answer A0 gets right there. The harm floor is 9 and A3 "
+                "pays exactly 9."
+            ),
+            "why_no_fifth_arm": (
+                "a fifth arm would have to beat 9 while still abstaining where the "
+                "projections do not determine the relation, and the bound says no such arm "
+                "exists. The best principled candidate --- decide on the coordinates observed "
+                "on both sides and ignore the rest, which is the record standard's precedence "
+                "order applied to the shared observed frame --- destroys 1 instead of 9 and "
+                "buys that by never abstaining at all: its P3.OVERRESOLVED_UNRESOLVED_CASE "
+                "violation rate is 1.0 on all three probe corpora against G10's 0.0, i.e. it "
+                "surrenders the entire benefit A3 exists for. Registering it as an arm would "
+                "be registering A0 with a merge-ward modality reading."
+            ),
+            "guard_against_fitting_the_measurement": (
+                "the bound is stated over the coordinate precedence the record standard "
+                "declares and over the symmetries gold itself respects, not over the list of "
+                "cases A3 fails; the runner checks mechanically that every arm on record is "
+                "constant on every orbit, so the canonicalisation is not stripping something "
+                "an arm reads; and the builder can redraw the whole corpus under a different "
+                "seed --- new record vocabulary, new closed-vocabulary values, new loss sides "
+                "--- on which the orbit count, the ceiling, the floor and A3's harm all "
+                "reproduce."
+            ),
+            "what_did_not_move": (
+                "no threshold, no gate statement, no gate subject, no arm, no corpus, no "
+                "case. G9 still reads 'destroys 0 correct answers' and still fails. A harm "
+                "gate that relaxed its threshold on learning the floor is above zero would be "
+                "the relabelling this repository keeps finding; what a floor changes is what "
+                "the FAIL means, not whether it fails."
             ),
         },
     },
@@ -1525,6 +1927,57 @@ FROZEN_PARAMETERS: dict[str, Any] = {
             "added to it."
         ),
     },
+    {
+        "id": "AMENDMENT_004",
+        "date": "2026-08-22",
+        "document": AMENDMENT_004_DOCUMENT,
+        "reason": (
+            "G9_HARM_A3 came back FAIL on nine destroyed correct answers and left the "
+            "question of what the nine mean. A failing harm gate reads as a repairable "
+            "defect of the arm it names, and this one is not: the nine are the price of the "
+            "evidence, and no rule reading only the projections can pay less while still "
+            "abstaining where the projections do not determine the relation. That is a "
+            "bound, it is provable from the corpus's own cases, and leaving it unstated "
+            "would invite the next amendment to go looking for a fifth arm that cannot exist"
+        ),
+        "changes": [
+            "adds canonical_pair_form and identifiability_ceiling, which group a corpus's "
+            "cases by what a rule reading only the projections can see --- bookkeeping "
+            "stripped, opaque ids consistently renamed, left/right swap allowed --- and "
+            "report the orbits on which gold is not constant",
+            "reports, per intact and probe corpus, the ceiling those orbits impose: how many "
+            "cases no candidate-visible rule can answer correctly, the best reachable exact "
+            "agreement, and which arms reach it",
+            "annotates G9_HARM_A3 with the harm floor and with whether A3's harm sits at it, "
+            "so the FAIL reads as a floor rather than as a defect",
+            "checks mechanically that every arm on record is constant on every orbit, so the "
+            "canonicalisation cannot be stripping something an arm actually reads",
+            "adds RecordDraw, fresh_draw and held_out_corpus to the corpus builder, so the "
+            "whole corpus can be redrawn under a different seed and the finding re-measured "
+            "on cases nobody proposed a rule against; the default draw emits the shipped "
+            "corpus byte for byte",
+            "adds undecidability_witness_cases to the corpus builder, which constructs the "
+            "witness in its sharpest form: an LA case and an LD case losing the same side, "
+            "whose projections are then identical value for value",
+        ],
+        "unchanged": [
+            "every gate threshold, including G9's 0 and G6's 0",
+            "every gate's subject and every gate's outcome; G9 still names A3 and still FAILs",
+            "the arms: no fifth arm is registered, because the bound says none can help",
+            "the coordinate table, the absent-value table, A0, A1, A2, A3 and the probe gold",
+            "the five corpora and every case in them; record_gold_cases() with no argument "
+            "still emits research/p3-partial-observation-record-gold-v1/cases.jsonl byte for "
+            "byte",
+            "the 2026-08-21 freeze, its twin, amendments 001, 002 and 003 and their twins, "
+            "all byte-identical",
+        ],
+        "numbers_this_amendment_moves": (
+            "none. No gate's outcome, threshold, subject or count changes. The amendment adds "
+            "reported fields --- the ceiling per corpus, the floor on G9 --- and the arms, "
+            "corpora and gold are untouched, so every number the runner published before it "
+            "publishes after it."
+        ),
+    },
     ],
     "claim_scope": CLAIM_SCOPE,
     "coordinates": list(COORDINATES),
@@ -1538,6 +1991,16 @@ FROZEN_PARAMETERS: dict[str, Any] = {
     "candidate_arms": list(CANDIDATE_ARM_ORDER),
     "completion_witness_prefix": COMPLETION_WITNESS_PREFIX,
     "decisiveness_rule_marker": DECISIVENESS_RULE_MARKER,
+    "canonicalisation": {
+        "bookkeeping_fields_stripped": list(CANONICAL_BOOKKEEPING_FIELDS),
+        "open_vocabulary_fields_relabelled": list(OPEN_VOCABULARY_FIELDS),
+        "closed_vocabulary_fields_relabelled": list(CLOSED_VOCABULARY_FIELDS),
+        "role_structure_fields_relabelled": list(CANONICAL_ROLE_FIELDS),
+        "absent_token": CANONICAL_ABSENT_TOKEN,
+        "left_right_swap_allowed": True,
+        "absent_values_are_never_relabelled": True,
+        "field_census": canonicalisation_field_census(),
+    },
     "probe_gold_derivation_rule": PROBE_GOLD_DERIVATION_RULE,
     "sides_per_redactable_pair": list(SIDES),
     "intact_sources": dict(INTACT_SOURCES),
@@ -1697,6 +2160,7 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
             },
             "mining_census": mining_census(scored),
             "mining_census_a3": mining_census(scored, arms=(ARM_DECISIVE,)),
+            "identifiability_ceiling": identifiability_ceiling(pairs),
             "arm_disagreement": {
                 arm: arm_disagreement(scored, ARM_DECISIVE, arm)
                 for arm in (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
@@ -1735,6 +2199,7 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
             "exact_agreement_where_the_arm_can_fire": {
                 arm: exact_agreement_where_the_arm_can_fire(scored, arm) for arm in ARM_ORDER
             },
+            "identifiability_ceiling": identifiability_ceiling(pairs),
             "arm_disagreement": {
                 arm: arm_disagreement(scored, ARM_DECISIVE, arm)
                 for arm in (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
@@ -1957,12 +2422,29 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
     for corpus_id in INTACT_ORDER:
         entry = corpora[corpus_id]
         harm = entry["harm_vs_current"][ARM_DECISIVE]
+        # Amendment 004. ``.get`` rather than ``[...]``: the ceiling is a property
+        # of the pairs, and a caller that assembles a corpus payload without them
+        # should get a gate that says the floor is unknown, not a KeyError that
+        # reads like a bug in the gate.
+        ceiling = entry.get("identifiability_ceiling")
         a3_by_corpus[corpus_id] = {
             **harm,
             "pairs_where_a3_could_fire": entry["one_sided_absence_census"][
                 "n_pairs_with_a_one_sided_absence"
             ],
             "evidence": independent_harm_evidence(entry, ARM_DECISIVE),
+            "harm_floor": (
+                None
+                if ceiling is None
+                else int(
+                    ceiling[
+                        "harm_floor_for_an_arm_that_commits_no_false_merge_and_no_false_split"
+                    ]
+                )
+            ),
+            "undecidable_orbits": (
+                None if ceiling is None else int(ceiling["n_undecidable_orbits"])
+            ),
         }
     a3_destroyed = sum(int(row["correct_answers_destroyed"]) for row in a3_by_corpus.values())
     a3_changed = sum(int(row["decisions_changed"]) for row in a3_by_corpus.values())
@@ -1980,6 +2462,12 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
     destroying_independently = [
         corpus_id for corpus_id in destroying if corpus_id in independent
     ]
+    # A partial sum would be a floor over some of the corpora reported as a floor
+    # over all of them, which is the substitution this lane exists to prevent. If
+    # any corpus could not be measured the total is withheld.
+    floors = [row["harm_floor"] for row in a3_by_corpus.values()]
+    a3_floor = None if any(value is None for value in floors) else sum(int(v) for v in floors)
+    at_the_floor = a3_floor is not None and a3_destroyed == a3_floor
     if a3_destroyed > 0:
         a3_outcome = Outcome.FAIL
         a3_detail = (
@@ -1989,6 +2477,19 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
             "unsafe on measured evidence: it is a strict improvement on A1, which destroys "
             "more on the same pairs, and it is not free"
         )
+        if at_the_floor:
+            a3_detail += (
+                f". Amendment 004: {a3_floor} is the floor, not a defect. On those corpora "
+                "gold is not a function of the projections --- cases whose projections are "
+                "the same evidence carry different gold, because the value that decides is "
+                "the one the extraction destroyed --- so no rule reading only the "
+                "projections is right on both members of such a pair. On every one of them "
+                "gold carries both COMPATIBLE and a separation, so a determinate answer is "
+                "a false merge or a false split and the only answer that is neither destroys "
+                "the answer A0 gets right there. A3 pays exactly that and no more; the gate "
+                "still fails, because a floor above zero is a fact about the evidence and "
+                "not a licence to move a threshold"
+            )
     elif not independent:
         a3_outcome = Outcome.CANNOT_CHECK
         a3_detail = (
@@ -2009,6 +2510,22 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
         "decisions_changed": a3_changed,
         "correct_answers_destroyed": a3_destroyed,
         "wrong_answers_repaired": a3_repaired,
+        "harm_floor_for_any_candidate_visible_rule": a3_floor,
+        "a3_harm_is_at_the_floor": at_the_floor,
+        "floor_note": (
+            "the smallest number of correct answers a rule reading only the projections can "
+            "destroy on these corpora while committing no false merge and no false split. It "
+            "is computed from the corpora's own cases, not from A3: cases whose projections "
+            "are the same evidence up to bookkeeping, a consistent renaming of opaque ids and "
+            "a left/right swap, but whose gold differs, cannot both be answered correctly by "
+            "any such rule. The threshold is not moved. A gate that relaxed because the floor "
+            "turned out to be above zero would be the relabelling this repository keeps "
+            "finding; what the floor changes is what the FAIL means, not whether it fails"
+        ),
+        "identifiability_ceiling": {
+            corpus_id: corpora[corpus_id].get("identifiability_ceiling")
+            for corpus_id in INTACT_ORDER
+        },
         "corpora_supplying_independent_evidence": independent,
         "corpora_where_a3_destroyed_a_correct_answer": destroying,
         "corpora_where_a3_destroyed_a_correct_answer_on_independent_gold": (
@@ -2162,7 +2679,18 @@ INTERPRETATION = (
     "by any honest corpus either: A3 abstains on every decisive one-sided absence, so wherever "
     "gold is determinate there and A0 is right, A3 must destroy that answer. Only a gold that "
     "is determinate exactly where the completions agree --- completion-invariance under another "
-    "name --- could report otherwise."
+    "name --- could report otherwise. Amendment 004 settles what that FAIL means. Strip from a "
+    "pair of projections everything gold does not read --- the bookkeeping fields, the identity "
+    "of the opaque ids, the left/right orientation --- and nine pairs of INTACT_RECORD_GOLD's "
+    "cases become the same evidence while their gold stays different, because what decides is "
+    "the value the extraction destroyed. Gold is not a function of the projections there, so no "
+    "rule reading only the projections is right on both members of such a pair: nine of the "
+    "thirty-six cases are unanswerable, the reachable ceiling is 27 of 36, and A0_orion_current "
+    "already reaches it. Each of the nine orbits carries both COMPATIBLE and a separation, so a "
+    "determinate answer is a false merge or a false split and the only answer that is neither "
+    "destroys the one answer A0 has right there. The harm floor is 9; A3 pays 9. G9_HARM_A3 "
+    "keeps its threshold and its FAIL, and the FAIL is now labelled as a floor rather than as a "
+    "defect a fifth arm could repair."
 )
 
 
@@ -2293,6 +2821,31 @@ CAVEATS: tuple[str, ...] = (
     "The probe is a mechanical redaction of atlases that already ship here. It establishes a "
     "property of compare_meaning, not a frequency in scientific text. No accuracy, false-merge, "
     "false-split or superiority number over it is evidence about ORION's competence.",
+    "A3's nine destroyed answers on INTACT_RECORD_GOLD are a floor and not a defect, and that "
+    "is a bound rather than a defence of A3. Nine pairs of that corpus's cases are the same "
+    "evidence once bookkeeping, the identity of the opaque ids and the left/right orientation "
+    "are stripped --- none of which gold reads --- and carry different gold, so gold there is "
+    "not a function of the projections. Any rule reading only the projections answers one "
+    "relation for both members and is wrong on one of them; on each orbit gold carries both "
+    "COMPATIBLE and a separation, so the only answer that is neither a false merge nor a false "
+    "split is UNRESOLVED, which destroys the one answer A0 has right. What this licenses is "
+    "narrow: it says the search for a fifth arm that beats 9 while keeping A3's abstention is "
+    "not hard but impossible, on pairs of this shape. It does not say A3 is safe, it does not "
+    "move G9's threshold, and it is not evidence about scientific text --- the corpus is "
+    "synthetic and the bound is a bound over it.",
+    "The floor is 9 and not 8 or 17 because of what the corpus contains, so it moves with the "
+    "corpus. It counts orbits on which INTACT_RECORD_GOLD carries conflicting gold, and that "
+    "corpus was built to carry one per coordinate. A corpus with more coordinates in conflict "
+    "would have a higher floor and one with fewer a lower one, which is why the runner computes "
+    "it from the cases rather than quoting it, and why a corpus edited to drop the conflicting "
+    "strata lowers the floor to zero and is refused for circularity in the same breath.",
+    "A rule that reduces the harm without keeping the benefit is not a repair, and one exists: "
+    "decide on the coordinates observed on both sides and ignore the rest --- the record "
+    "standard's precedence order applied to the shared observed frame. It destroys 1 correct "
+    "answer on INTACT_RECORD_GOLD instead of A3's 9, and it buys that by never abstaining, so "
+    "its P3.OVERRESOLVED_UNRESOLVED_CASE violation rate is 1.0 on all three probe corpora "
+    "where G10 requires 0.0. It is A0 with a merge-ward modality reading, which is why it is "
+    "reported here as the arithmetic of the trade-off rather than registered as an arm.",
     "PROBE_DERIVATION and PROBE_HELDOUT_REAL reach only the polarity coordinate, because the real "
     "atlases populate no other coordinate differently on both sides. The other two coordinate "
     "strata are reached only through the 24 synthetic cases of coordinate-necessity-v1.",
@@ -2368,7 +2921,14 @@ __all__ = [
     "AMENDMENT_002_TWIN",
     "AMENDMENT_003_DOCUMENT",
     "AMENDMENT_003_TWIN",
+    "AMENDMENT_004_DOCUMENT",
+    "AMENDMENT_004_TWIN",
     "CANDIDATE_ARM_ORDER",
+    "CANONICAL_ABSENT_TOKEN",
+    "CANONICAL_BOOKKEEPING_FIELDS",
+    "CANONICAL_ROLE_FIELDS",
+    "CLOSED_VOCABULARY_FIELDS",
+    "OPEN_VOCABULARY_FIELDS",
     "CANDIDATE_COORDINATE",
     "COMPLETION_WITNESS_PREFIX",
     "COORDINATES",
@@ -2402,6 +2962,8 @@ __all__ = [
     "arm_decisive_absence_only",
     "arm_disagreement",
     "build_probe",
+    "canonical_pair_form",
+    "canonicalisation_field_census",
     "construction_precondition",
     "derive_verdicts",
     "discriminating_coordinates",
@@ -2413,12 +2975,14 @@ __all__ = [
     "evaluate_gates",
     "frozen_digest",
     "harm_against_current",
+    "identifiability_ceiling",
     "main",
     "mining_census",
     "observed",
     "one_sided_absence_census",
     "overall_outcome",
     "probe_case_json",
+    "projection_orbits",
     "redactable_coordinates",
     "run_campaign",
     "score_pairs",

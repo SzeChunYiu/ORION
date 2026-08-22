@@ -1334,11 +1334,18 @@ class TestAmendmentThreeGivesTheDecisivenessGateADenominator:
         )
 
     def test_the_earlier_freeze_records_still_carry_their_own_digests(self) -> None:
-        """Amendment 003 is a separate record; the ones it amends are untouched."""
+        """Each amendment is a separate record; the ones it amends are untouched.
+
+        Amendment 004 adds a fifth record and repoints ``FREEZE_TWIN`` at it. The
+        four digests below are the ones this test has always pinned plus
+        amendment 003's, and the runner binds to whichever amendment is in force
+        --- currently 004, which adds no arm, no corpus and no gate.
+        """
 
         from orion.study.p3.partial_observation_probe import (
-            AMENDMENT_003_TWIN,
             AMENDMENT_002_TWIN,
+            AMENDMENT_003_TWIN,
+            AMENDMENT_004_TWIN,
             AMENDMENT_TWIN,
             ORIGINAL_FREEZE_TWIN,
         )
@@ -1353,12 +1360,15 @@ class TestAmendmentThreeGivesTheDecisivenessGateADenominator:
             AMENDMENT_002_TWIN: (
                 "9292414c63a50f0f31ad832b45a891a1eaf90584751f90f10362d941ad36c28e"
             ),
+            AMENDMENT_003_TWIN: (
+                "a1057b6fe0d1d6fbe1f95c8e2202abe2936c913309aa549036a89a878a4d9b34"
+            ),
         }
         for path, digest in recorded.items():
             twin = json.loads((REPO_ROOT / path).read_text(encoding="utf-8"))
             assert twin["parameters_sha256"] == digest
-        assert FREEZE_TWIN == AMENDMENT_003_TWIN
-        assert frozen_digest() != recorded[AMENDMENT_002_TWIN]
+        assert FREEZE_TWIN == AMENDMENT_004_TWIN
+        assert frozen_digest() not in set(recorded.values())
 
 
 @pytest.fixture(scope="module")
