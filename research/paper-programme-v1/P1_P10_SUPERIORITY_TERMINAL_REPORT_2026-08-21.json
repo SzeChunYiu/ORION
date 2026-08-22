@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "3643863151d7f158f97cdf2fa095d2796ba86e2c899e20817f22371e30acd167",
+  "content_digest": "e194cf1620ce4e215da5e1ec756ee9eb6adfe699a5f0e4ccee9d27cb9e491750",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -308,6 +308,11 @@
           "artifact_ref": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "VALIDATED_ON_CONSTRUCTED_REPRODUCTION__CONSTRUCTED_REPRODUCTION_ONLY"
+        },
+        {
+          "artifact_ref": "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "BOTH_COMPLETED_WIDE_CAMPAIGNS_RAN_AT_THE_MEASUREMENT_FLOOR"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -315,26 +320,26 @@
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
         {
-          "actionability": "BLOCKED_ON_UPSTREAM",
+          "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P2-U-T1",
           "refs": [
             "#650",
-            "#733"
+            "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "SEARCH_OR_EVIDENCE",
-          "statement": "No naturalistic open-world arena with hidden distributed evidence and multiple material routes exists; the P2-X predecessor scored exact acquisition contracts, which is a different object.",
-          "unblock": "PR #733 reopens the external Wide campaign with a transport-valid OpenAIRE V2 source. Land it, then build the adversarial route families #650 enumerates (missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated)."
+          "statement": "The blocker this replaces named PR #733 as in-flight upstream work. #733 was closed unmerged on 2026-08-21, superseded by #752, which also closed unmerged after running. So nothing is in flight, and two completed campaigns now exist whose results the ledger had not recorded. V2 never scored: its repeated-pid crosswalk probe returned HTTP 200 with an empty results array, below its prospectively frozen minimum of one, so acquisition never started. V3 changed the crosswalk encoding, did run all 400 rows, and terminated P2_WIDE_EXTERNAL_V3_CANNOT_CHECK on provider validity: 0.716 against a frozen 0.90. Underneath that correct terminal is a harder finding, measured rather than asserted (P2_COMPARISON_RESOLUTION_2026-08-22). Both completed campaigns ran at the measurement floor. The frozen rule requires an average-IoU delta of 0.03 before superiority is supported, and every arm in both campaigns scores about 0.004, so the entire measured performance of the best arm is smaller than the difference the campaign exists to detect. Deleting a competing arm outright would not reach the threshold. Everything else follows: all 399 paired questions tie, the bootstrap interval is [0.0, 0.0] which reads as the strongest possible equivalence evidence and is instead the signature of an instrument with no resolution, and in V3 three distinct candidate files produced one byte-identical evaluator output. In V1 the three arms shared one candidate digest outright, so that campaign scored a single system against itself three times.",
+          "unblock": "Raise the arms off the floor before running another campaign; a fourth transport version scored at IoU 0.004 would spend the same effort to learn the same nothing. That means finding out why retrieval scores near zero on a benchmark whose own gold is reachable -- which the resolution audit deliberately does not diagnose, because it measures the instrument and not the retrieval. Only then are the route families #650 enumerates worth building: missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated. Independently of all of it, this terminal is PROTECTED_SUPERIORITY and admits only PROSPECTIVE_PROTECTED evidence, which requires external evaluator custody that no campaign here has had."
         },
         {
-          "actionability": "BLOCKED_ON_UPSTREAM",
+          "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P2-U-T2",
           "refs": [
             "#650",
-            "#733"
+            "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "False-closure non-inferiority cannot be measured without route-level and task-level closure receipts over a naturalistic arena.",
-          "unblock": "Require closure receipts per route and per task in the Wide campaign schema before outcomes are accessed."
+          "statement": "This is the terminal the resolution finding matters most to, because a non-inferiority guard is exactly what a degenerate interval would wrongly discharge. Both completed Wide campaigns report a paired interval of [0.0, 0.0] over 399 matched questions with 399 ties, no wins and no losses. Read at face value that is conclusive equivalence. It is instead a zero-width interval over identical differences, which a bootstrap produces at any sample size, and it arises because every arm sits at the measurement floor -- about 0.004 average IoU against a frozen required delta of 0.03. Route-level and task-level closure receipts over a naturalistic arena are still missing, which was the original statement and remains true; what is added is that the instrument that would carry them currently has no resolution, so collecting receipts through it would produce another interval that could not have come out any other way. Three reporting defects travel with both artifacts: they publish the unseeded max_iou_at_k family that the paper's own score_wide_comparison.py excludes by rule, that family decreases in k which a maximum over the top k cannot do, and every runtime total is exactly zero, which is untransported measurement rather than measured cost.",
+          "unblock": "Require the resolution audit to pass before a campaign's paired interval is allowed to discharge anything: an interval from an all-ties split, from arms whose evaluator output is byte-identical, or from arms below the campaign's own frozen effect threshold must map to CANNOT_CHECK rather than to non-inferiority. Then require closure receipts per route and per task in the campaign schema before outcomes are accessed. The guard exists and reports both campaigns as ZERO_RESOLUTION; wiring it into the campaign's own terminal rule is the step that has not been taken."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1236,32 +1241,6 @@
     },
     {
       "actionability": "BLOCKED_ON_UPSTREAM",
-      "gate_id": "P2-U-T1",
-      "issue": 650,
-      "paper_id": "P2",
-      "refs": [
-        "#650",
-        "#733"
-      ],
-      "responsibility": "SEARCH_OR_EVIDENCE",
-      "statement": "No naturalistic open-world arena with hidden distributed evidence and multiple material routes exists; the P2-X predecessor scored exact acquisition contracts, which is a different object.",
-      "unblock": "PR #733 reopens the external Wide campaign with a transport-valid OpenAIRE V2 source. Land it, then build the adversarial route families #650 enumerates (missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated)."
-    },
-    {
-      "actionability": "BLOCKED_ON_UPSTREAM",
-      "gate_id": "P2-U-T2",
-      "issue": 650,
-      "paper_id": "P2",
-      "refs": [
-        "#650",
-        "#733"
-      ],
-      "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "False-closure non-inferiority cannot be measured without route-level and task-level closure receipts over a naturalistic arena.",
-      "unblock": "Require closure receipts per route and per task in the Wide campaign schema before outcomes are accessed."
-    },
-    {
-      "actionability": "BLOCKED_ON_UPSTREAM",
       "gate_id": "P9-U-T1",
       "issue": 662,
       "paper_id": "P9",
@@ -1357,6 +1336,32 @@
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
       "statement": "No closed-world method-expansion result exists, and the expansion gate in #663 requires an independently witnessed obstruction rather than one inferred from timeout.",
       "unblock": "Freeze the method basis and closure, witness the obstruction independently, and only then admit a proposed minimal semantics-preserving edit — measuring false escalation on known-method controls."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P2-U-T1",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650",
+        "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "The blocker this replaces named PR #733 as in-flight upstream work. #733 was closed unmerged on 2026-08-21, superseded by #752, which also closed unmerged after running. So nothing is in flight, and two completed campaigns now exist whose results the ledger had not recorded. V2 never scored: its repeated-pid crosswalk probe returned HTTP 200 with an empty results array, below its prospectively frozen minimum of one, so acquisition never started. V3 changed the crosswalk encoding, did run all 400 rows, and terminated P2_WIDE_EXTERNAL_V3_CANNOT_CHECK on provider validity: 0.716 against a frozen 0.90. Underneath that correct terminal is a harder finding, measured rather than asserted (P2_COMPARISON_RESOLUTION_2026-08-22). Both completed campaigns ran at the measurement floor. The frozen rule requires an average-IoU delta of 0.03 before superiority is supported, and every arm in both campaigns scores about 0.004, so the entire measured performance of the best arm is smaller than the difference the campaign exists to detect. Deleting a competing arm outright would not reach the threshold. Everything else follows: all 399 paired questions tie, the bootstrap interval is [0.0, 0.0] which reads as the strongest possible equivalence evidence and is instead the signature of an instrument with no resolution, and in V3 three distinct candidate files produced one byte-identical evaluator output. In V1 the three arms shared one candidate digest outright, so that campaign scored a single system against itself three times.",
+      "unblock": "Raise the arms off the floor before running another campaign; a fourth transport version scored at IoU 0.004 would spend the same effort to learn the same nothing. That means finding out why retrieval scores near zero on a benchmark whose own gold is reachable -- which the resolution audit deliberately does not diagnose, because it measures the instrument and not the retrieval. Only then are the route families #650 enumerates worth building: missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated. Independently of all of it, this terminal is PROTECTED_SUPERIORITY and admits only PROSPECTIVE_PROTECTED evidence, which requires external evaluator custody that no campaign here has had."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P2-U-T2",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650",
+        "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "This is the terminal the resolution finding matters most to, because a non-inferiority guard is exactly what a degenerate interval would wrongly discharge. Both completed Wide campaigns report a paired interval of [0.0, 0.0] over 399 matched questions with 399 ties, no wins and no losses. Read at face value that is conclusive equivalence. It is instead a zero-width interval over identical differences, which a bootstrap produces at any sample size, and it arises because every arm sits at the measurement floor -- about 0.004 average IoU against a frozen required delta of 0.03. Route-level and task-level closure receipts over a naturalistic arena are still missing, which was the original statement and remains true; what is added is that the instrument that would carry them currently has no resolution, so collecting receipts through it would produce another interval that could not have come out any other way. Three reporting defects travel with both artifacts: they publish the unseeded max_iou_at_k family that the paper's own score_wide_comparison.py excludes by rule, that family decreases in k which a maximum over the top k cannot do, and every runtime total is exactly zero, which is untransported measurement rather than measured cost.",
+      "unblock": "Require the resolution audit to pass before a campaign's paired interval is allowed to discharge anything: an interval from an all-ties split, from arms whose evaluator output is byte-identical, or from arms below the campaign's own frozen effect threshold must map to CANNOT_CHECK rather than to non-inferiority. Then require closure receipts per route and per task in the campaign schema before outcomes are accessed. The guard exists and reports both campaigns as ZERO_RESOLUTION; wiring it into the campaign's own terminal rule is the step that has not been taken."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1770,10 +1775,10 @@
     }
   ],
   "work_queue_by_actionability": {
-    "BLOCKED_ON_CAMPAIGN": 20,
+    "BLOCKED_ON_CAMPAIGN": 22,
     "BLOCKED_ON_NEW_ARENA": 14,
     "BLOCKED_ON_PROOF": 6,
-    "BLOCKED_ON_UPSTREAM": 5
+    "BLOCKED_ON_UPSTREAM": 3
   },
   "work_queue_by_responsibility": {
     "IMPLEMENTATION_OR_ENVIRONMENT": 3,

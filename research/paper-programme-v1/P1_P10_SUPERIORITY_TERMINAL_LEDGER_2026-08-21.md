@@ -147,8 +147,8 @@ category error. The queue, nearest first:
 
 | Actionability | Terminals | Meaning |
 | --- | --- | --- |
-| `BLOCKED_ON_UPSTREAM` | 5 | another lane's in-flight work, nameable by PR |
-| `BLOCKED_ON_CAMPAIGN` | 20 | arena and comparator exist; no protected run scored |
+| `BLOCKED_ON_UPSTREAM` | 3 | another lane's in-flight work, nameable by PR |
+| `BLOCKED_ON_CAMPAIGN` | 22 | arena and comparator exist; no protected run scored |
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
 | `BLOCKED_ON_PROOF` | 6 | needs a mechanized theorem from primitive semantics |
 
@@ -163,6 +163,14 @@ beside a generated one drifts on the first regeneration.
 Nothing is `ACTIONABLE_NOW`, and that is a real finding rather than a formality:
 after the P1 implementation defect below, the nearest work is other lanes'
 in-flight PRs, and everything past that needs a campaign, an arena or a proof.
+
+`BLOCKED_ON_UPSTREAM` fell from five to three when P2's two entries were checked
+against GitHub rather than against their own text. Both named PR #733 as the
+work that would move them. #733 closed unmerged on 2026-08-21, superseded by
+#752, which also closed unmerged — after running and producing a result the
+ledger did not know about. A blocker pointing at a dead pull request will never
+move, and it reads as though someone else is already handling the work. Both are
+now `BLOCKED_ON_CAMPAIGN` and say what the completed campaigns actually found.
 
 ## P1: the defect is solved, and the result is not yet attributable
 
