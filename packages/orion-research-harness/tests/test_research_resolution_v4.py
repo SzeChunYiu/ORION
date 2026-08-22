@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from orion.core.method import MethodState
 from orion.core.research_resolution import (
     AssimilationDisposition,
     ResearchOutcomeKind,
@@ -7,10 +8,17 @@ from orion.core.research_resolution import (
     ResolutionState,
     UnresolvedClass,
 )
+from orion.core.search_universe import SearchUniverseState
+from orion.core.solution import Solution, SolutionStatus
+from orion.core.state import KnowledgeState, OrionState
+from orion.engine.trace import SolveTrace
+from orion.runtime import RuntimeResult
+from orion_research_harness.recursive_runner import _RecursiveSession, run_problem_recursive
 from orion_research_harness.research_resolution import (
     assimilate_negative_result,
     build_resolution_obligation,
 )
+from orion_research_harness.workspace import ResearchWorkspace
 
 
 def test_resource_cannot_check_is_active_resolution_obligation_not_task_stop():
@@ -79,3 +87,37 @@ def test_unknown_unresolved_class_fails_closed_with_diagnosis_only():
     )
     assert obligation.state is ResolutionState.ACTIVE
     assert obligation.next_actions == (ResolutionAction.DIAGNOSE_RESPONSIBILITY,)
+
+
+def test_recursive_cannot_check_outcome_is_not_bare(monkeypatch, tmp_path):
+    workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
+    final_state = OrionState(
+        knowledge=KnowledgeState(),
+        search_universe=SearchUniverseState(),
+        method=MethodState(method_version="fixture"),
+    )
+    fake = RuntimeResult(
+        solution=Solution(
+            problem_id="problem:v4",
+            status=SolutionStatus.CANNOT_CHECK,
+            answer="evidence is still insufficient",
+            trace_id="trace:v4",
+        ),
+        final_state=final_state,
+        trace=SolveTrace(trace_id="trace:v4", events=()),
+    )
+
+    def fake_solve_root(self, *, problem, state):
+        return fake, final_state
+
+    monkeypatch.setattr(_RecursiveSession, "solve_root", fake_solve_root)
+    outcome = run_problem_recursive(
+        workspace,
+        {"problem_id": "problem:v4", "question": "Can this be decided?"},
+    )
+    assert outcome["status"] == "COMPLETE"
+    assert outcome["solution_status"] == "CANNOT_CHECK"
+    resolution = outcome["resolution_obligation"]
+    assert resolution["schema"] == "ORION.ResearchResolutionObligation.v1"
+    assert resolution["outcome_kind"] == "UNRESOLVED"
+    assert resolution["grants_global_task_stop_authority"] is False
