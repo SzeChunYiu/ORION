@@ -1334,6 +1334,76 @@ positive half of the ledger QG-19 opened: absorbing a donor field costs novelty 
 **buys the field's standard questions**, and this programme had been paying the cost
 without collecting.
 
+## QG-27 — THE COST DP IS ALREADY MINIMAL, AND THE LANE'S OWN FROZEN DEFINITION WAS WRONG
+
+Protocol `QG27_COST_MINIMALITY_PROTOCOL_V1.md`, frozen at `587843d2` before the analyzer
+was written. Terminal **`QG27_COST_DP_IS_ALREADY_MINIMAL`**. Verifier ACCEPT on 16 checks,
+none failed; ten tampered copies with recomputed digests all REJECT, each caught by the
+check it names, validated through `orion_research_harness.falsifiability`; both double runs
+byte-identical.
+
+### The question
+
+QG-26's gate G3 forbade it from saying anything about cost, in its own receipt: *"nothing
+here shows any algorithm is faster, and whether the cost DP admits the same reduction is
+not answered."* This lane asks. Two states can be feasibility-distinguishable and still
+carry identical cost behaviour, in which case the min-plus DP does work the feasibility
+argument cannot see.
+
+### The lane's frozen criterion was wrong, and running it is what found that
+
+Protocol §4 defined cost-equivalence as `C_r[s] − C_r[s']` constant at every horizon —
+which subtracts each state's own baseline. Run as frozen it collapsed 1024 states to
+**three**, and it is refuted by exhibition, not argument:
+
+> the relation places state **387**, an accepting state with cost-to-go **0**, in the same
+> class as state **0** with cost-to-go **30**. Merging them changes the optimum by 30.
+
+The cause: cost-to-go is flat in the horizon here, because extra steps never help when
+every letter cost is non-negative. So every finite state normalises to all-zeros and the
+frozen relation retains **no information at all**.
+
+### Both horizon scans were beside the point
+
+Equal cost-to-go — normalised or absolute — is **necessary for merging and never
+sufficient**: it says what finishing costs, never where a state lands. The corrected
+absolute relation gives 29 classes and that number means nothing either. Both are in the
+receipt because the lane ran them, not because either answers the question.
+
+### What settles it
+
+The committed cost table is indexed by **delta alone** — there is no state axis for a cost
+to depend on — so a word costs the same from every state. By Mohri's pushing condition,
+residual cost functions can then differ **only** through admissibility, which is the
+feasibility language. QG-26 settled that: the letters span rank 10, the full group, so
+every pair of states is separated by a word. **No two states are mergeable; 1024 is minimal
+for cost as well as for feasibility.**
+
+No efficiency claim is made and none is available: §5 requires an exhibited quotient with
+identical optima, and there is no reduction to exhibit. Scope is one cost-table key,
+declared in the protocol before any run and never changed.
+
+### The gate built that morning refused this lane
+
+The terminal is a PASS under a criterion changed after the outcome, where the frozen
+criterion gave FAIL — so `criterion_binding` demanded an `exhibited_rejection_ref` and
+would not let the record stand without one. **That is the gate working on its author, hours
+after its author wrote it.** The demonstration supplied: run the applied criterion on the
+committed letter set restricted to a proper subgroup (rank 3, order 8) and it returns
+**not-minimal**, as it should. The relaxed rule still discriminates.
+
+### And assembling the verification found a hole in the gate itself
+
+Tamper **T6** conceals the criterion change by setting `applied_criterion_digest` equal to
+the frozen one — and the verifier **ACCEPTed it**, because with the digests equal none of
+the gated checks run. The same hole was in the committed `criterion_binding` module. Both
+now refuse a record that declares the criterion unchanged while carrying `deviation`,
+`verdict_under_frozen_criterion` or `exhibited_rejection_ref` — fields that exist only
+because a criterion changed. QG-26's verifier carried the same shape and is fixed with it;
+its artifact was **regenerated rather than relabelled**.
+
+Harness suite 223 passing.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where

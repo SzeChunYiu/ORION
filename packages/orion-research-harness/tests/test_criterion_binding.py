@@ -181,3 +181,23 @@ def test_indeterminate_is_never_treated_as_a_pass():
 def test_describe_refuses_an_unknown_verdict():
     with pytest.raises(ValueError, match="unknown criterion verdict"):
         describe("ACCEPT")
+
+
+def test_a_change_cannot_be_concealed_by_claiming_sameness():
+    """Setting the applied digest equal to the frozen one is the cheapest bypass.
+
+    A lane's own verifier ACCEPTed exactly this tampered receipt, which is how the
+    hole was found: with the digests equal, none of the gated checks run at all.
+    A record that claims sameness while carrying deviation fields is contradictory.
+    """
+    for field, value in (
+        ("deviation", {"description": "d", "rationale": "r"}),
+        ("verdict_under_frozen_criterion", FAIL),
+        ("exhibited_rejection_ref", "somewhere#case"),
+    ):
+        with pytest.raises(ValueError, match="concealed"):
+            validate_criterion_binding(_record(**{field: value}))
+
+
+def test_an_honestly_unchanged_record_still_passes():
+    validate_criterion_binding(_record(note="nothing changed"))

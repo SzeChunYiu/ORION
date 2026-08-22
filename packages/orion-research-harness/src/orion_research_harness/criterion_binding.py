@@ -152,6 +152,25 @@ def validate_criterion_binding(
             "key. Sameness must be asserted, not inferred from silence."
         )
     if applied_digest == frozen_digest:
+        # Claiming sameness is not free. A record that says the criterion did not
+        # change while carrying the fields that only exist BECAUSE it changed is
+        # internally contradictory, and concealment is the cheapest way past this
+        # gate: set the applied digest equal to the frozen one and the checks
+        # below never run. Found when a lane's own verifier accepted exactly that
+        # tampered receipt.
+        contradictions = [
+            field
+            for field in ("deviation", "verdict_under_frozen_criterion",
+                          "exhibited_rejection_ref")
+            if record.get(field)
+        ]
+        if contradictions:
+            raise ValueError(
+                f"the record declares the criterion unchanged (applied digest equals "
+                f"frozen) yet carries {contradictions}, which only exist for a "
+                "criterion that changed. Either the digests are wrong or the change "
+                "is being concealed; both are refused."
+            )
         return
 
     if verdict not in PASSING_VERDICTS:

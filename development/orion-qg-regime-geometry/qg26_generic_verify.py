@@ -124,6 +124,11 @@ def check_criterion_binding(records, frozen_texts) -> list:
             bad.append([i, "frozen_criterion_digest does not match the frozen protocol text"])
             continue
         if applied == frozen:
+            contradictions = [f for f in ("deviation", "verdict_under_frozen_criterion",
+                                          "exhibited_rejection_ref") if rec.get(f)]
+            if contradictions:
+                bad.append([i, "declares the criterion unchanged yet carries "
+                               f"{contradictions}; the change is being concealed"])
             continue
         if verdict != "PASS":
             continue
