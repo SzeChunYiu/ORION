@@ -164,6 +164,24 @@
     "random_len20_trials": 300,
     "random_len20_without_two_disjoint": 0
   },
+  "independent_upper_bound_route": {
+    "D_2_from_this_route": 20,
+    "agreement_with_f7_route": true,
+    "extremal_witnesses_enumerated": 98622,
+    "instrument": "research/orion-rg/x1f0_exact_two_disjoint_enumerator.c",
+    "max_length_with_no_two_disjoint": 19,
+    "nodes": 353051328,
+    "note": "two independent upper-bound proofs of D_2 <= 20: the eta_7 ladder and this direct enumeration",
+    "predicate": "exact two-disjoint-zero-sum DP (125-bit shift-permuted bitboards), not the f_7 route",
+    "prune_used": "no zero-sum of length <= 6, valid for targets of length >= 19 by Lemma A",
+    "shift_mask_validation": "all 125 x 125 single-bit images checked against primitive mod-5 addition: 0 mismatches"
+  },
+  "inverse_problem_data": {
+    "extremal_length_19_witnesses_up_to_normalization": 98622,
+    "freeze_schmid_is_one_of_them": true,
+    "normalization": "support contains e1,e2,e3 (GL(3,5)); m(e1)<=m(e2)<=m(e3) (S_3)",
+    "relevance": "X1-F4 asks whether every maximal length-19 failure is GL-equivalent to the Freeze--Schmid type; it is not -- the class is large"
+  },
   "issue": "SzeChunYiu/ORION#916",
   "lemmas": {
     "A_complement": "no k+1 disjoint zero-sums at length L => every zero-sum has length >= L - D_k(G) + 1",
@@ -193,7 +211,7 @@
     "8": 17,
     "9": 14
   },
-  "source_result_digest": "412e0e757bdf5fa81da5dad1b6966991529303659b885ebc49ceb342cc6aeeea",
+  "source_result_digest": "6064f31332cda6ae0d98d78890f4cf7b9f84b64d82633c6c17a831d133acf744",
   "terminal": "X1F0_EXACT_D2_ESTABLISHED",
   "theorem": {
     "exact_value": 20,

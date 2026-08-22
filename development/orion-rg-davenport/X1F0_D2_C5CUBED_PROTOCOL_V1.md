@@ -187,3 +187,35 @@ cc -O3 -o spectrum research/orion-rg/x1f0_short_zero_sum_spectrum.c
 ./spectrum 7            # -> f_7 = 18, complete_search = true
 python3 research/orion-rg/x1f0_independent_replay.py
 ```
+
+## Second, independent upper-bound proof
+
+`research/orion-rg/x1f0_exact_two_disjoint_enumerator.c` decides the same
+question without the `eta_7` route, by carrying the **exact** two-disjoint
+predicate as an incremental DP: `R1` (one nonempty part, its sum) and `R2`
+(both parts nonempty, indexed by the pair of sums), stored as 125-bit boards and
+advanced by the coordinate-wise shift that realises `+v` on `C_5^3`.
+
+The shift masks were validated before use: all `125 x 125` single-bit images
+were compared against primitive mod-5 addition, **0 mismatches**.
+
+The `no zero-sum of length <= 6` prune is legitimate here because the target
+length is `>= 19`, where Lemma A forces minimum zero-sum `>= 7`, and that
+property is inherited by every sub-multiset.
+
+Result: the maximum length of a sequence over `C_5^3` with **no two disjoint
+nonempty zero-sum subsequences** is **19** (353,051,328 nodes). Hence
+`D_2 = 20`, agreeing with the `eta_7` route.
+
+## Inverse-problem note for X1-F4
+
+The run also enumerated **98,622** length-19 witnesses under the normalization
+above. `#915` X1-F4 proposes classifying every maximal length-19 failure as
+`GL`-equivalent to the Freeze–Schmid obstruction type. That is **false as
+stated**: the extremal class is large, and Freeze–Schmid's witness is one
+member of it. Any inverse route to `D_3` must classify a large family, not a
+single type. One further extremal example produced by the search:
+
+```
+e1 e2 e3 (0,1,1) (0,1,2) (1,0,4)^4 (2,0,4)^3 (4,1,0)^4 (4,1,1)^3
+```
