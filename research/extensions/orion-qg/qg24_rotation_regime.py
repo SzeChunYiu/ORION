@@ -698,3 +698,144 @@ def constrained_clifford_min(target_pairs, n: int, in_place: bool):
                 if v < INF and v - 18 < best:
                     best = v - 18
     return None if best >= INF else int(best)
+
+
+def witness_rotation_count(witness, target_pairs, n: int):
+    """Merged rotation count of a serialized R6M-family compilation."""
+    R = witness["R"]
+    frames = {b: (tuple(R[b][0]), tuple(R[b][1])) for b in ("A", "B", "C")}
+    S = tuple(witness["S"])
+    centrals = tuple(int(c) for c in witness["centrals"])
+    pb = int(witness.get("relative_permutation_B", 0))
+    pc = int(witness.get("relative_permutation_C", 0))
+    pairs = [(tuple(p[0]), tuple(p[1])) for p in target_pairs]
+    order = [pairs[0],
+             pairs[1] if pb == 0 else (pairs[1][1], pairs[1][0]),
+             pairs[2] if pc == 0 else (pairs[2][1], pairs[2][0])]
+    slots, tvals = [], {}
+    for j, b in enumerate(("A", "B", "C")):
+        r0, r1 = frames[b]
+        a, c = (r0, r1) if centrals[j] == 1 else (r1, r0)
+        slots.extend([a, c])
+        tvals[b] = (pmul(order[j][0], r0), pmul(order[j][1], r1))
+    slots = tuple(slots)
+    eq = [[1 if slots[i] == slots[j] else 0 for j in range(6)] for i in range(6)]
+    sp = [[psymp(slots[i], slots[j]) for j in range(6)] for i in range(6)]
+    cIA = [1 if all(psymp(t, slots[k]) == 0 for t in tvals["A"]) else 0
+           for k in range(6)]
+    cIB = [1 if all(psymp(t, slots[k]) == 0 for t in tvals["B"]) else 0
+           for k in range(6)]
+    grammar = {
+        "frames_anticommute": all(psymp(*frames[b]) == 1 for b in ("A", "B", "C")),
+        "tag_labels_shared": (len({psymp(S, frames[b][0]) for b in "ABC"}) == 1
+                              and len({psymp(S, frames[b][1]) for b in "ABC"}) == 1),
+        "branch_labels_distinct": (psymp(S, frames["A"][0])
+                                   != psymp(S, frames["A"][1])),
+    }
+    out = {"grammar_checks": grammar}
+    for model in MODELS:
+        rc, prs = rotation_count_general(eq, sp, cIA, cIB,
+                                         model == "R6L_RESTORE_IN_PLACE")
+        out[model] = {"rotations": rc,
+                      "merged_pairs_1indexed": [[i + 1, j + 1] for i, j in prs]}
+    return out
+
+
+# ---------------------------------------------------------------------------
+# 6. Donor-search record (section 1 -- a HARD precondition, validated in-run)
+# ---------------------------------------------------------------------------
+DONOR_RECORDS = [
+    {
+        "claim_id": "QG24-C1",
+        "claim": ("Two arbitrary-angle Pauli rotations about the same axis, "
+                  "separated only by operations that commute with that axis, may "
+                  "be merged into one, lowering the non-Clifford count."),
+        "asserts_novelty": False,
+        "verdict": "SUBSUMED",
+        "query_families": list(("OWN_VOCABULARY", "DONOR_FIELD_TRANSLATION",
+                                "INVERTED_OR_SURVEY")),
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md#family-2",
+        "source": ("TMerge / Pauli-rotation-merging line, as reported in "
+                   "'Optimal number of parametrized rotations and Hadamard gates "
+                   "in parametrized Clifford circuits with non-repeated "
+                   "parameters', arXiv:2407.07846"),
+        "verbatim_passage": ("TMerge reduces the T-count by exploiting the "
+                             "commutativity of Pauli rotation axes, reordering "
+                             "gates within each T layer and merging rotation "
+                             "gates that have the same axis."),
+        "document_level_verification": False,
+        "note": ("Protocol section 2 already assigns this relation zero novelty "
+                 "credit; the search confirms the assignment rather than "
+                 "discovering it."),
+    },
+    {
+        "claim_id": "QG24-C2",
+        "claim": ("Merging same-axis Pauli exponentials separated only by "
+                  "commuting Paulis is the right rewrite for minimising "
+                  "non-Clifford count."),
+        "asserts_novelty": False,
+        "verdict": "SUBSUMED",
+        "query_families": list(("OWN_VOCABULARY", "DONOR_FIELD_TRANSLATION",
+                                "INVERTED_OR_SURVEY")),
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md#family-2",
+        "source": ("A. Cole, 'Quantum Circuit Optimisation Through Stabiliser "
+                   "Reduction of Pauli Exponentials', Oxford thesis"),
+        "verbatim_passage": ("Writing a circuit as a series of Pauli exponentials "
+                             "and merging those exponentials of the same Pauli "
+                             "when there are only commuting Paulis in between "
+                             "them is essentially the best possible rewrite "
+                             "strategy when minimising the number of "
+                             "non-Clifford components of the circuit."),
+        "document_level_verification": False,
+    },
+    {
+        "claim_id": "QG24-C3",
+        "claim": ("This lane's residual candidate: that the SEVEN-rotation floor "
+                  "of the frozen three-block TARE-M2 shared-Tag grammar, and the "
+                  "decidability of reaching it, is a regime-geometry statement "
+                  "rather than an instance of known rotation-merging."),
+        "asserts_novelty": True,
+        "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+        "query_families": list(("OWN_VOCABULARY", "DONOR_FIELD_TRANSLATION",
+                                "INVERTED_OR_SURVEY")),
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md",
+        "source": ("TMerge / Pauli-rotation merging (arXiv:2407.07846) as the "
+                   "general result; van de Wetering & Amy, 'Optimising quantum "
+                   "circuits is generally hard', arXiv:2310.05958, for the "
+                   "complexity backdrop"),
+        "verbatim_passage": ("An efficient algorithm for solving the Pauli "
+                             "rotation merging problem constructs the associated "
+                             "optimized quantum circuit with a complexity of "
+                             "O(nM+nhm) where h is the optimal of internal "
+                             "Hadamard gates required to implement the initial "
+                             "sequence of Pauli rotations."),
+        "document_level_verification": False,
+        "surviving_specialization": ("at most: the arithmetic that in THIS "
+                                     "grammar the merge relation admits exactly "
+                                     "the two block seams, so the floor is 7 and "
+                                     "not 9, and that the floor is reachable on "
+                                     "every real row. The merging rule, its "
+                                     "optimality and its complexity are donor "
+                                     "property."),
+    },
+    {
+        "claim_id": "QG24-C4",
+        "claim": ("Own-vocabulary framing: rotation count as a trade currency "
+                  "with a decidable membership predicate and an intrinsic "
+                  "support number."),
+        "asserts_novelty": False,
+        "verdict": "NO_PRIOR_ART_FOUND",
+        "query_families": list(("OWN_VOCABULARY", "DONOR_FIELD_TRANSLATION",
+                                "INVERTED_OR_SURVEY")),
+        "query_log_ref": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md#family-1",
+        "source": None,
+        "verbatim_passage": "",
+        "document_level_verification": False,
+        "note": ("NOT a novelty grant. The own-vocabulary family returned only "
+                 "unrelated exchange-rate-regime and formal-decidability hits, "
+                 "which is a statement about this programme's private vocabulary "
+                 "and nothing else. The claim it would have protected is already "
+                 "removed by C1-C3 under the translated query family -- exactly "
+                 "QG-19's mechanism."),
+    },
+]
