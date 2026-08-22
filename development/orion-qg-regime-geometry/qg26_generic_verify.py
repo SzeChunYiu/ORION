@@ -63,7 +63,7 @@ def aux48(s):
 def baselines(types,perms,f3):
  vecs=[];meta=[]
  for p in perms:
-  v=[baseline(permute_type(t,p),f3) for t in types];vecs.append(v);c=Counter(v);meta.append({"perm":p,"sha256":sha_obj(v),"histogram":{str(k):int(n) for k,n in sorted(c.items())},"min":min(v),"max":max(v)})
+  v=[baseline(permute_type(t,p),f3) for t in types];vecs.append(v);c=Counter(v);meta.append({"perm":list(p),"sha256":sha_obj(v),"histogram":{str(k):int(n) for k,n in sorted(c.items())},"min":min(v),"max":max(v)})
  return vecs,meta
 def stream(h,v):h.update((str(int(v))+"\n").encode())
 def one_active(types,perms,aux,vecs,lm,f3):
