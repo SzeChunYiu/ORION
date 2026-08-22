@@ -18,10 +18,19 @@ def main():
  for p in (GW,NW):
   if p.exists():shutil.rmtree(p)
  ART.mkdir(exist_ok=True)
- for n in ("orion-qg-qg31-query-abstraction.json","orion-qg-qg31-generic-verification.json","orion-qg-qg31-native-verification.json","orion-qg-qg31-dual-harness.json"):
-  p=ART/n
+ for name in ("orion-qg-qg31-query-abstraction.json","orion-qg-qg31-generic-verification.json","orion-qg-qg31-native-verification.json","orion-qg-qg31-dual-harness.json"):
+  p=ART/name
   if p.exists():p.unlink()
- gw=ResearchWorkspace.initialize(GW,project_root=ROOT,allow_process_tools=True);at=run(gw,"research/extensions/orion-qg/qg31_query_indexed_abstraction.py","ORIONQG_QG31=",180);gt=run(gw,"development/orion-qg-regime-geometry/qg31_generic_verify.py","ORIONQG_QG31_GENERIC=",180);a=json.loads((ART/"orion-qg-qg31-query-abstraction.json").read_text());g=json.loads((ART/"orion-qg-qg31-generic-verification.json").read_text());assert at.get("result_digest")==a.get("result_digest")
- nw=ResearchWorkspace.initialize(NW,project_root=ROOT,allow_process_tools=True);nt=run(nw,"development/orion-qg-regime-geometry/qg31_native_verify.py","ORIONQG_QG31_NATIVE=",60);n=json.loads((ART/"orion-qg-qg31-native-verification.json").read_text());both=a.get("terminal")==POS and g.get("decision")=="ACCEPT_QUERY_INDEXED_ABSTRACTION" and g.get("all_checks") is True and n.get("decision")=="ACCEPT_QUERY_INDEXED_ABSTRACTION" and n.get("all_checks") is True and g.get("source_result_digest")==a.get("result_digest")==n.get("source_result_digest";)
- return 0
+ gw=ResearchWorkspace.initialize(GW,project_root=ROOT,allow_process_tools=True)
+ at=run(gw,"research/extensions/orion-qg/qg31_query_indexed_abstraction.py","ORIONQG_QG31=",180)
+ gt=run(gw,"development/orion-qg-regime-geometry/qg31_generic_verify.py","ORIONQG_QG31_GENERIC=",180)
+ a=json.loads((ART/"orion-qg-qg31-query-abstraction.json").read_text());g=json.loads((ART/"orion-qg-qg31-generic-verification.json").read_text());assert at.get("result_digest")==a.get("result_digest")
+ nw=ResearchWorkspace.initialize(NW,project_root=ROOT,allow_process_tools=True)
+ nt=run(nw,"development/orion-qg-regime-geometry/qg31_native_verify.py","ORIONQG_QG31_NATIVE=",60)
+ n=json.loads((ART/"orion-qg-qg31-native-verification.json").read_text())
+ both=(a.get("terminal")==POS and g.get("decision")=="ACCEPT_QUERY_INDEXED_ABSTRACTION" and g.get("all_checks") is True and n.get("decision")=="ACCEPT_QUERY_INDEXED_ABSTRACTION" and n.get("all_checks") is True and g.get("source_result_digest")==a.get("result_digest")==n.get("source_result_digest"))
+ term=POS if both else "QG31_GENERIC_NATIVE_DISAGREEMENT"
+ out={"schema":"ORIONQG.QG31.DualHarness.v1","issue":"SzeChunYiu/ORION#904","terminal":term,"both_accept":bool(both),"source_result_digest":a.get("result_digest"),"class_counts":a.get("class_counts"),"partition_relations":a.get("partition_relations"),"witnesses":a.get("witnesses"),"generic_summary":gt,"native_summary":nt,"BULK_QUERY_CLASSES_45":bool(both),"DEFECT_SPECTRUM_QUERY_CLASSES_54":bool(both),"INDEXED_LOCAL_RESPONSE_CLASSES_715":bool(both),"INDEXED_RESPONSE_MINIMALITY_715":bool(both),"BULK_SPECTRUM_PARTITIONS_INCOMPARABLE":bool(both and a.get("BULK_SPECTRUM_PARTITIONS_INCOMPARABLE")),"QUERY_INDEXED_ABSTRACTION_REQUIRED":bool(both),"FULL_FINITE_N_OPTIMUM_REQUIRES_715_CLASSES":False,"QG28_ORBIT_HISTOGRAM_GLOBALLY_MINIMAL":False,"novelty_authority":False,"r6_authority":False,"physical_quantum_advantage_claim":False}
+ (ART/"orion-qg-qg31-dual-harness.json").write_text(json.dumps(out,indent=2,sort_keys=True)+"\n")
+ print(json.dumps({"terminal":term,"both_accept":both,"counts":out["class_counts"],"incomparable":out["BULK_SPECTRUM_PARTITIONS_INCOMPARABLE"],"generic":g.get("decision"),"native":n.get("decision")},sort_keys=True));return 0
 if __name__=="__main__":raise SystemExit(main())
