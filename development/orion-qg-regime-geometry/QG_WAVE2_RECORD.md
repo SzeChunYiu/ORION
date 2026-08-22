@@ -752,6 +752,121 @@ Two campaign-level lessons the programme has to keep:
   C-A took one lane to derive and one lane to demolish, and the demolition is the item
   that makes the rest of the programme citable rather than embarrassing.
 
+## QG-10 — CERTIFIED INTERVAL GEOMETRY: DECIDING OPTIMALITY WITHOUT A REFEREE, AND A THIRD PREMISE REFUTED
+
+`QG10_INTERVAL_GEOMETRY_RESULTS.json` (protocol frozen before the analyzer was written,
+sha256 `678357bf…dd1b`; result digest `16365a0d…45e2`; file sha256 `61768d29…eb61`; 13/13
+gates; two runs 501.7 s / 460.1 s under a 1,500 s cap, receipt **byte-identical** — timing
+is on stderr only, precisely so the receipt is byte-stable). Terminal
+`QG10_CERTIFIED_INTERVAL_GEOMETRY_ESTABLISHED`, authority NOT_R6.
+
+**The object.** A two-sided interval `L ≤ C_DP ≤ U` computed **without calling the
+referee**, so that on the rows where `L == U` the optimum is *certified*, not measured.
+
+* **U — proven by exhibition, no theorem and no referee.** `U = min(U_W1, U_B′, U_B″)`;
+  every member minimizes over *accepted* configurations and returns a witness, replayed
+  per instance through `r6s.config_labels` + `r6s.config_cost` at the instance's full n:
+  **48,309/48,309 replays exact, 0 failures** (gate G7).
+* **L = max(L_TRIV, L_COL, L_SEP), every component PROVEN**, each on a complete domain:
+  `L_TRIV = 2`; `L_COL = 2 + W − 18 − 2·M_free` from a per-column inequality checked over
+  the **complete 32,768**-case domain (0 violations) plus a cost identity over a
+  **complete 536,870,912**-case local domain and 279,936 refereed n=1 configurations;
+  `L_SEP` the exact optimum under the F₂-linear syndrome projection `π: F₂⁹ → F₂⁶`, with π
+  verified linear on all 512×512 pairs and `RED = π(FULL)` on the complete 16,384-option
+  domain, kernel rank 3.
+
+**`L_SEP` has a clean physical reading, and it is the lane's best structural sentence**:
+it is the cost the instance would have **if the three blocks were not required to share one
+Tag label orientation**. So `C_DP − L_SEP` is *exactly the price of cross-block label
+consistency*. It binds on 47,805 of 48,309 rows (L_TRIV on the other 504); L_COL never
+binds — recorded rather than pruned, because a component that never binds is a finding
+about the geometry, not dead weight.
+
+**Tightness geometry.** 29,174 / 48,309 rows decided (**60.4 %**); gaps are 0, 1 or 2 and
+**never larger**. Tightness *rises* with n — 0.598 at n=2 (complete weight-one panel,
+46,656 rows) against 0.900 at n=24 and n=96 — so the hard instances are the small crowded
+ones, not the large ones. Every `gap > 0` row is reported UNDECIDED and carries no regime
+label. The structural characterization is labelled **EVIDENCED**, not a theorem.
+
+**The sandwich holds.** `L ≤ C_DP ≤ U` asserted on 48,285 refereed instances: **0
+failures, 0 lower-bound violations, 0 interval inversions**, with 1,377 referee-binding
+checks against the committed `max_r6o.dp_cost_frozen_configs` at 0 mismatches.
+
+### The premise correction — and it independently corroborates QG-22
+
+The charter's premise was *"no exact referee at large n for TARE."* The lane recorded it
+**false for this grammar**, machine-derived: the committed referee is a nine-bit XOR DP
+that is **linear in n** (recorded shape, measured at n=384). What is actually capped is the
+committed **family** enumerator `r6p.dxx_search` — `EXPECTED_PAIR_COUNTS` keys `[1,2,3,4]`,
+`4^{2n}` tables, `KeyError: 5` at n=5, captured verbatim.
+
+This is the **third lane in the campaign to refute the premise it was launched on** —
+QG-21 refuted O1's derivability from FT accounting, QG-22 refuted the classification as
+collapse agent, QG-10 refutes the referee scarcity its own charter assumed. It is also
+**cross-lemma corroboration of QG-22** in the strongest available sense: QG-22 *proved*
+the syndrome DP is Θ(n) by a counting argument, and QG-10 *independently rediscovered the
+same fact* from the opposite direction while trying to work around a referee it turned
+out not to need. Two lanes, different instruments, same object — and the object is again
+the fixed-dimension conserved syndrome, not the classification.
+
+So **the referee-free frontier of this programme sits at the *family* level (`C_D+`,
+`C_D++`), not at the optimum.** That relocates the whole motivation for interval methods
+here, and the receipt says so rather than quietly keeping the original framing.
+
+**Which makes `U_W1` the lane's most useful artifact.** It is this lane's own enumerator of
+the complete weight-one-frame family, machine-checked equal to the committed
+`r6p.dxx_search(max_weight=1)` on **all 1,029 instances where the committed enumerator can
+run (n ≤ 4), 0 mismatches** — and it *extends `C_D+` to any n*, which the committed
+machinery cannot do. That is direct progress on residual **W9** (QG-22's finding that
+`dxx_search` fails to realize QG-6's own support-capped corollary): the weight-one case now
+has a working uncapped enumerator, checked against the capped one on every instance where
+both are defined.
+
+### Where it certifies beyond any committed receipt
+
+* Panels **D (n=5,6,8,12)** and **E (n=24,48,96)** — 600 rows — lie beyond every committed
+  receipt's referee domain: no committed lane can evaluate `C_D+`/`C_D++` there, so the
+  QG-7e classification **cannot even be stated numerically** there with committed
+  machinery. The method certifies **427/600 = 71.2 %** of those rows exactly, max gap 2.
+  Labelled `VERIFIED_BY_LANE_EXTENDED_REFEREE`, never `VERIFIED`.
+* Panel **F (n = 192, 384; 24 rows)** runs with the referee **deliberately withheld** —
+  only the 64-state projected accumulation is ever built for those columns — and certifies
+  **24/24 tight, gap 0**, labelled `CERTIFIED_NOT_VERIFIED`. Those rows carry the proofs of
+  L and U and **no empirical confirmation**, and the label says exactly that.
+
+### Corroboration, including the part that went wrong and was caught
+
+`qg10_generic_verify.py` → **ACCEPT, 0 failures**, imports nothing from the analyzer and
+nothing from `orion-q`/`orion-qg`: over 2,853 serialized rows it rebuilt the algebra, the
+acceptance predicate, the cost function, the nine-bit syndrome and the six-bit projection,
+then performed 2,853 witness replays, 2,853 `L_COL`/`L_SEP` re-derivations, **2,829
+independent `C_DP` re-derivations**, 2,829 sandwich re-checks, and 24 confirmations that
+the withheld-referee rows carry no `C_DP`.
+
+**Orchestrator checks on top of the lane's own:**
+
+1. **Re-ran the verifier independently → ACCEPT**, binding `results_sha256`
+   `61768d29…eb61`, matching the receipt on disk.
+2. **Demonstrated the verifier can fail.** Two tampered copies both **REJECT**: inflating
+   a row's `L` to break the sandwich, and corrupting a row's `C_DP`. A verifier that cannot
+   fail establishes nothing.
+3. **Caught a stale binding mid-flight.** An earlier verification, committed in
+   `4b6c7992`, bound the *superseded* receipt `1e14cafd…` after the lane re-emitted its
+   receipt with an added cap disclosure (`integer_checked_rows: 48309`), moving the digest
+   `488fb032… → 16365a0d…`. Terminal and all 13 gates were unchanged and the only delta was
+   a disclosure — but "the only delta looks harmless" is precisely the reasoning
+   `RECEIPT_CHURN_HAZARD_2026-08-21.md` exists to forbid. The lane was held UNBOUND until
+   the verifier re-ran against the current digest. Corroboration kind:
+   `FROM_PRIMITIVES_VERIFIED`.
+
+**Disclosed caps**, all in `caps_disclosed`: panel B is complete over the *stated*
+weight-one-target sub-domain (6⁶), not the full 15⁶; the committed borrow enumerators
+`B′`/`B″` cost seconds to ~30 s per instance at n ≥ 5, so they run under a per-panel call
+budget (540 B′, 160 B″) and rows past budget carry `U = U_W1` flagged
+`BUDGET_EXHAUSTED_W1_ONLY` — still a valid witness-proven upper bound, since U is a minimum
+over an *evaluated subset* of families; 1,200 of 46,656 panel-B rows serialized for the
+verifier, all other panels in full.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where
