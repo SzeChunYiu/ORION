@@ -60,7 +60,8 @@ NEAREST_MISS = "NEAREST_MISS"
 #: a statement about the searches run, usable only with the query log.
 NO_PRIOR_ART_FOUND = "NO_PRIOR_ART_FOUND"
 
-#: The source could not be retrieved or read. Recorded, never inferred.
+#: The source could not be retrieved or read. Recorded, never inferred -- and
+#: never a verdict on a claim that asserts novelty, since nothing was checked.
 CANNOT_ASSESS = "CANNOT_ASSESS"
 
 VERDICTS = frozenset(
@@ -123,6 +124,24 @@ def validate_donor_search(record: Mapping[str, Any]) -> None:
             "credible rather than a phrasing artifact."
         )
 
+    if verdict == CANNOT_ASSESS:
+        raise ValueError(
+            "CANNOT_ASSESS cannot stand as the verdict on a claim that asserts "
+            "novelty. It records that the source could not be retrieved, so "
+            "nothing was checked -- and 'we could not check, therefore it is "
+            "new' is the exact inference this module exists to refuse. Either "
+            "complete the search, or drop asserts_novelty and report the claim "
+            "as unassessed."
+        )
+
+    if not record.get("query_log_ref"):
+        raise ValueError(
+            "a claim asserting novelty must bind query_log_ref. Naming the "
+            "query families is a declaration that searches were run; the log is "
+            "the evidence that they were, with the verbatim queries and their "
+            "result counts. Without it the gate checks three strings."
+        )
+
     if verdict in VERDICTS_REQUIRING_A_PASSAGE and not str(
         record.get("verbatim_passage", "")
     ).strip():
@@ -130,13 +149,6 @@ def validate_donor_search(record: Mapping[str, Any]) -> None:
             f"verdict {verdict} must bind a verbatim_passage. A verdict against "
             "a source we cannot quote is an opinion, not a finding; paraphrase "
             "is how a near-miss gets talked into a non-match."
-        )
-
-    if verdict == NO_PRIOR_ART_FOUND and not record.get("query_log_ref"):
-        raise ValueError(
-            "NO_PRIOR_ART_FOUND requires query_log_ref. It is not a novelty "
-            "grant -- it is a statement about the searches that were run, and "
-            "it is only inspectable, and therefore only usable, alongside them."
         )
 
 
@@ -162,5 +174,8 @@ def describe(verdict: str) -> str:
             "-- this reports the queries run, not the state of the literature"
         )
     if verdict == CANNOT_ASSESS:
-        return "source unretrievable: recorded as unassessed, never inferred either way"
+        return (
+            "source unretrievable: recorded as unassessed, never inferred either "
+            "way, and never a basis for asserting novelty"
+        )
     raise ValueError(f"unknown donor-search verdict: {verdict}")

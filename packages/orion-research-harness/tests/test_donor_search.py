@@ -28,6 +28,7 @@ def _claim(**overrides):
         "asserts_novelty": True,
         "verdict": NEAREST_MISS,
         "query_families": list(ALL_FAMILIES),
+        "query_log_ref": "QG19_QUERY_LOG.md",
         "verbatim_passage": "extracting an optimal term can be efficiently done",
     }
     record.update(overrides)
@@ -62,19 +63,39 @@ def test_a_verdict_against_a_source_must_quote_it(verdict):
 
 
 def test_no_prior_art_found_is_not_a_novelty_grant_without_its_log():
+    record = _claim(verdict=NO_PRIOR_ART_FOUND, verbatim_passage="")
+    record.pop("query_log_ref")
     with pytest.raises(ValueError, match="query_log_ref"):
-        validate_donor_search(_claim(verdict=NO_PRIOR_ART_FOUND, verbatim_passage=""))
-    validate_donor_search(
-        _claim(
-            verdict=NO_PRIOR_ART_FOUND,
-            verbatim_passage="",
-            query_log_ref="QG19_QUERY_LOG.md",
-        )
-    )
+        validate_donor_search(record)
+    validate_donor_search(_claim(verdict=NO_PRIOR_ART_FOUND, verbatim_passage=""))
 
 
-def test_cannot_assess_needs_no_passage_because_nothing_was_read():
-    validate_donor_search(_claim(verdict=CANNOT_ASSESS, verbatim_passage=""))
+def test_naming_the_families_is_not_evidence_that_searches_ran():
+    """Reported by an automated reviewer on PR #892: listing three family-name
+    strings must not be enough to clear a fail-closed gate. Every claim that
+    asserts novelty binds the log carrying the verbatim queries and counts."""
+    for verdict in (
+        SUBSUMED,
+        SUBSUMED_IN_SPECIAL_CASE,
+        INSTANCE_OF_KNOWN_GENERAL,
+        NEAREST_MISS,
+        NO_PRIOR_ART_FOUND,
+    ):
+        record = _claim(verdict=verdict)
+        record.pop("query_log_ref")
+        with pytest.raises(ValueError, match="query_log_ref"):
+            validate_donor_search(record)
+
+
+def test_cannot_assess_may_not_carry_a_novelty_claim():
+    """Reported by an automated reviewer on PR #892, and it also contradicted
+    QG-24 §6, whose BLOCKED terminal says that when retrieval is unavailable
+    nothing may be called new. 'We could not check, therefore it is new' is the
+    inference this module exists to refuse."""
+    with pytest.raises(ValueError, match="CANNOT_ASSESS cannot stand"):
+        validate_donor_search(_claim(verdict=CANNOT_ASSESS, verbatim_passage=""))
+    # It stays legal on a record that does not assert novelty.
+    validate_donor_search({"asserts_novelty": False, "verdict": CANNOT_ASSESS})
 
 
 def test_query_families_must_be_a_sequence_not_a_string():
