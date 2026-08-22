@@ -8,9 +8,9 @@
 
 Scientific agents do not only store facts; they reuse failures, certificates, uncertain resource estimates and observations whose value depends on where they apply and whether they can change a downstream decision. We study whether that **epistemic binding** matters when visible factual information is held fixed. Six prospectively frozen exact-synthetic families compare typed/scoped decision mechanisms with matched-information controls and strong donor methods. We organize these separately preregistered studies into a post-study benchmark taxonomy spanning type-conditioned priors, applicability scope, decision-relevant uncertainty, transformation lineage, decision-coupled acquisition and remint obligations.
 
-The frozen families exhibit complementary effects and null regimes. Type-conditioned value-of-information (VoI) achieves mean utility 3.291 versus 2.180 for the same VoI planner with a uniform prior. Scope-bound reopening remains robust when irrelevant context changes trap unscoped reopening. Pareto-ambiguity-targeted verification reduces mean scalarized regret from 0.252 for matched-budget random verification to 0.110. Full-chain transport catches all 200 registered laundering chains, including 68 deep splices, with zero false positives on 200 honest chains, whereas last-hop checks miss the deep attacks. Decision-coupled acquisition spends no probes on decision-irrelevant high-entropy decoys, compared with 36.6% for pure information gain. Typed remint/transport improves utility in a mixed-transport regime, while all correct methods tie exactly in the preregistered regime where reminting is unnecessary. Two additional donor comparisons prevent broader policy claims.
+The frozen families exhibit complementary effects and null regimes. Type-conditioned value-of-information (VoI) achieves mean utility 3.291 versus 2.180 for the same VoI planner with a uniform prior; a paired publication analysis gives a mean difference of 1.111 with bootstrap 95% interval [0.833, 1.400]. Scope-bound reopening strongly outperforms unscoped reopening when irrelevant context changes are present, while its advantage over conservative never-reopen is not cleanly separated within either frozen regime. Pareto-ambiguity-targeted verification reduces mean scalarized regret from 0.252 for matched-budget random verification to 0.110; the paired regret reduction is 0.142 [0.100, 0.187]. Full-chain transport catches all 200 registered laundering chains, including 68 deep splices, with zero false positives on 200 honest chains, whereas last-hop checks miss the deep attacks. Decision-coupled acquisition spends no probes on decision-irrelevant high-entropy decoys, compared with 36.6% for pure information gain, and improves mean utility by 2.146 [1.976, 2.299]. Typed remint/transport improves utility in a mixed-transport regime by 2.264 [1.717, 2.825] over matched-budget re-derivation, while the preregistered remint-unnecessary regime is an exact tie. Two additional donor comparisons prevent broader policy claims.
 
-The contribution is not a priority claim for typed memory, provenance, stale-state handling or VoI. It is a controlled benchmark hypothesis: **the same scientific facts can license different decisions when applicability, uncertainty, lineage and decision-role relations are explicit rather than flattened**. The six families remain heterogeneous and are not pooled into one universal effect size. A secondary publication analysis reruns the original frozen seeds to report paired episode-level contrasts and bootstrap uncertainty without changing any primary terminal. All headline evidence is synthetic; real scientific-agent transfer remains an explicit evidence gap governed by a separately frozen protocol.
+The contribution is not a priority claim for typed memory, provenance, stale-state handling or VoI. It is a controlled benchmark hypothesis: **the same scientific facts can license different decisions when applicability, uncertainty, lineage and decision-role relations are explicit rather than flattened**. The six families remain heterogeneous and are not pooled into one universal effect size. All headline evidence is synthetic; real scientific-agent transfer remains an explicit evidence gap governed by a separately frozen protocol.
 
 ---
 
@@ -63,7 +63,9 @@ Every mechanism has a prespecified place where a plausible shortcut should fail 
 
 ### 2.4 Statistical reporting
 
-The frozen result receipts remain the primary scientific record. For stochastic episode generators, `publication_analysis.py` deterministically rebuilds the original seeded episodes and computes paired treatment-comparator differences plus percentile-bootstrap intervals. This is secondary reporting only: it changes no seed, generator, arm, metric, gate or terminal. N4-D is an exact constructed-chain census and is reported by counts rather than Monte-Carlo uncertainty.
+The frozen result receipts remain the primary scientific record. For stochastic episode generators, `publication_analysis.py` deterministically rebuilds the original seeded episodes and computes paired treatment-comparator differences plus percentile-bootstrap intervals. `PUBLICATION_PAIRED_ANALYSIS_V1.json` records that secondary analysis. It changes no seed, generator, arm, metric, gate or terminal. N4-D is an exact constructed-chain census and is reported by counts rather than Monte-Carlo uncertainty.
+
+The paired analysis is descriptive rather than a substitute for independent replication. A confidence interval that crosses zero is treated as a boundary on the manuscript claim rather than something to hide through aggregation.
 
 ---
 
@@ -93,19 +95,21 @@ Across 300 frozen episodes:
 - uniform-prior VoI: 2.180;
 - known-graph-only: 0.358.
 
+The paired typed-minus-uniform mean difference is 1.111 with bootstrap 95% interval [0.833, 1.400]. Against the known-graph-only arm, the paired difference is 2.933 [2.556, 3.301]. The typed and uniform arms tie on 57.7% of episodes because in many worlds the type prior does not change the selected probing/commit path; the aggregate advantage is concentrated in the subset where it changes the decision.
+
 The result does not establish a new VoI algorithm. It demonstrates that declared type information changes the value of an otherwise identical acquisition calculation in this world.
 
 ---
 
-## 5. Applicability scope prevents both stale reuse and pointless reopening
+## 5. Applicability scope avoids over-reopening without a clear penalty relative to never-reopen
 
 N4-B binds a failure receipt to context coordinates such as representation and access contract. A `NOISE` coordinate changes frequently but does not affect the truth of the recorded failure.
 
 The scoped rule reopens only if a coordinate inside the recorded applicability scope changes. Controls never reopen, always reopen or reopen on any change.
 
-Pooled mean utility is 3.199 for scoped reopening versus 2.782 for never reopening, -7.813 for unscoped change reopening and -9.225 for always reopening. The `REOPEN_WASTEFUL` hostile regime is essential: relevant coordinates almost never change while `NOISE` changes frequently, so unscoped and always-reopen rules incur large unnecessary costs.
+Pooled mean utility is 3.199 for scoped reopening versus 2.782 for never reopening, -7.813 for unscoped change reopening and -9.225 for always reopening. The paired regime-level analysis gives the sharper interpretation. Relative to unscoped change reopening, scoped reopening improves mean round utility by 6.973 [5.740, 8.255] in `STALE_MATTERS` and 15.050 [13.624, 16.451] in `REOPEN_WASTEFUL`. Relative to never reopening, however, the intervals include zero in both regimes: 0.774 [-0.663, 2.254] and 0.060 [-0.540, 0.634], respectively.
 
-The mechanism is narrower than stale-memory detection. The scientific question is which state change was actually part of the old failure's validity conditions.
+The result we therefore retain is not “scoped reopening always beats never reopening.” It is that explicit applicability scope prevents the severe over-reopening failure induced by irrelevant context changes while remaining statistically compatible with the conservative never-reopen behavior in these frozen panels. That is a more useful mechanism boundary than the pooled ranking alone.
 
 ---
 
@@ -113,7 +117,7 @@ The mechanism is narrower than stale-memory detection. The scientific question i
 
 N4-C assigns interval-valued cost/error coordinates to candidate paths and gives each arm a verification budget of four edges. The treatment targets edges contributing to unresolved Pareto ambiguity; the primary comparator verifies four random edges and then uses the same midpoint estimator.
 
-Mean scalarized regret is 0.1096 for the targeted method versus 0.2518 for random verification, with 76.5% zero-regret outcomes for the targeted arm. The publication analysis reports the corresponding paired regret reduction and interval over the same 400 seeded episodes.
+Mean scalarized regret is 0.1096 for the targeted method versus 0.2518 for random verification, with 76.5% zero-regret outcomes for the targeted arm. The paired regret reduction is 0.142 with bootstrap 95% interval [0.100, 0.187]. The arms tie on 67.3% of episodes, while the targeted method wins on 26.0% and loses on 6.8%, making the result interpretable as avoiding a minority of costly verification mistakes rather than uniformly changing every episode.
 
 The result is not a general active-verification theorem and the scalarized regret does not replace full Pareto analysis. It isolates one decision-specific use of uncertainty: verify what can change the ranking, not merely what is wide.
 
@@ -135,6 +139,8 @@ N4-E gives all probing arms the same priors and the same stopping rule: continue
 
 Two facts are deliberately constructed as high-entropy but decision-irrelevant decoys. Pure information gain spends 36.6% of probes on them; the decision-coupled selector spends zero. Mean utility is 9.266 for decision-coupled selection versus 7.121 for information gain and 8.989 for the deterministic `LLM_PROXY` heuristic.
 
+The paired decision-VoI-minus-information-gain utility difference is 2.146 [1.976, 2.299], with treatment wins on 94.8% of episodes. Against the deterministic proxy the difference is much smaller, 0.277 [0.119, 0.412], and 44.0% of episodes tie. This distinction is important: the large result is against entropy-driven acquisition, while the stronger hand-designed proxy absorbs most of the advantage.
+
 Again the claim is not that VoI or active learning is new. The experiment isolates a distinction between uncertainty reduction and expected decision change.
 
 ---
@@ -143,7 +149,9 @@ Again the claim is not that VoI or active learning is new. The experiment isolat
 
 N4-F3 studies evidence reuse after two representation edits under a shared certification budget.
 
-In `MIXED_TRANSPORT`, typed remint/transport achieves mean utility 9.421 versus 7.157 for matched-budget re-derivation and -7.821 for naive carry-forward. In `STALE_HOSTILE`, naive carry-forward is deliberately punished. The crucial first-right-of-refusal condition is `REMINT_UNNECESSARY`: every correct method ties exactly in the frozen output and the typed method spends zero remints.
+In `MIXED_TRANSPORT`, typed remint/transport achieves mean utility 9.421 versus 7.157 for matched-budget re-derivation and -7.821 for naive carry-forward. The paired utility differences are 2.264 [1.717, 2.825] against re-derivation and 17.242 [15.577, 18.836] against naive carry-forward. The treatment never loses to either comparator in the 200 mixed episodes, although it ties re-derivation on 68.5% because many episodes do not require the extra transport information.
+
+The crucial first-right-of-refusal condition is `REMINT_UNNECESSARY`: typed transport and re-derivation have an exact paired difference of 0.000 [0.000, 0.000] over all 200 episodes. A useful metadata mechanism should disappear where its metadata has no decision value.
 
 The exact result receipt retains full precision; the manuscript reports rounded values because the extra decimals carry no scientific meaning.
 
@@ -193,7 +201,7 @@ Until that study exists, the paper does not claim real scientific-agent effectiv
 
 ## 14. Code, data and benchmark availability
 
-The six frozen generators, result receipts, protocols, machine-readable `BENCHMARK_INDEX_V1.json`, publication analysis script and reproduction instructions are committed in the ORION repository. Before journal publication, a tagged release should be deposited in a DOI-minting repository and the permanent identifier inserted here. The minimum dataset consists of the frozen result JSON files plus the benchmark index; the generators reproduce the stochastic synthetic worlds from fixed seeds.
+The six frozen generators, result receipts, protocols, machine-readable `BENCHMARK_INDEX_V1.json`, `PUBLICATION_PAIRED_ANALYSIS_V1.json`, publication analysis script and reproduction instructions are committed in the ORION repository. Before journal publication, a tagged release should be deposited in a DOI-minting repository and the permanent identifier inserted here. The minimum dataset consists of the frozen result JSON files plus the benchmark index and paired-analysis receipt; the generators reproduce the stochastic synthetic worlds from fixed seeds.
 
 ## AI-assisted research and writing disclosure
 
