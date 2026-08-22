@@ -37,24 +37,34 @@ Consistency control (pre-registered, executed): the Freeze–Schmid `k=2` witnes
 of length 19 must then have minimum zero-sum length `>= 19 - 13 + 1 = 7`.
 Executed value: exactly 7. Lemma A is tight on the donor witness.
 
-## Lemma B (eta-ladder bound)
+## Lemma B — NOT NEW. This is Freeze–Schmid 2010, Proposition 3.2(3)
 
-For every finite abelian group `G`, every `k >= 1` and every `T >= 1`:
+**Correction, recorded after a hostile literature check.** An earlier version of
+this document presented the following as a new lemma:
 
 ```
 D_{k+1}(G)  <=  max( eta_T(G),  D_k(G) + T ).
 ```
 
-Hence `D_{k+1}(G) <= min_{T>=1} max( eta_T(G), D_k(G) + T )`.
+It is published. Freeze & Schmid, *Remarks on a generalization of the Davenport
+constant*, Discrete Math. 310 (2010) 3373–3389 (arXiv:0905.4248),
+**Proposition 3.2(3)**:
 
-*Proof.* Put `L = max(eta_T, D_k + T)` and let `|S| = L`. Since `L >= eta_T`,
-`S` has a nonempty zero-sum `A` with `|A| <= T`. Then
-`|S A^{-1}| >= L - T >= D_k(G)`, so the complement carries `k` pairwise disjoint
-nonempty zero-sums. With `A` that is `k+1`. ∎
+> for each `l` in `N`, `D_{k+1}(G) <= max{ D_k(G) + l, s_{<=l}(G) - 1 }`
 
-Taking `T = D(G)` gives `eta_{D(G)} = D(G)` and recovers the classical
-`D_{k+1} <= D_k + D`. Lemma B is therefore a refinement, not a replacement; its
-value is that a small `T` with a small `eta_T` beats the classical bound.
+with `s_{<=l}(G)` exactly our `eta_l(G)`. Their form is **strictly stronger than
+the one claimed here**: `eta_l - 1` where this document had `eta_l`.
+
+The same paper's Proposition 3.2(2) is sharper still:
+`D_{k+1}(G) <= D_k(G) + M`, where `M` is the minimum length of a minimal
+zero-sum sequence dividing an extremal `B`.
+
+No ORION credit is taken for any of this. What remains of this document's
+contribution is the *instantiation*: the exact `eta_T(C_5^3)` spectrum that
+makes the bound bite, and the exact constants that follow.
+
+For the record, the correct (Freeze–Schmid) form instantiates as
+`max(D + 7, eta_7 - 1) = max(20, 18) = 20`, which is tight.
 
 ## Executed instrument
 
@@ -120,8 +130,8 @@ disjoint nonempty zero-sum subsequences (two independent implementations, see
 
 Either way `S` has two disjoint nonempty zero-sums, so `D_2 <= 20`. ∎
 
-Equivalently, via Lemma B with `k = 1`, `T = 7`:
-`D_2 <= max(eta_7, D + 7) = max(19, 20) = 20`, which is exactly tight.
+Equivalently, via Freeze–Schmid Prop. 3.2(3) with `k = 1`, `l = 7`:
+`D_2 <= max(D + 7, eta_7 - 1) = max(20, 18) = 20`, exactly tight.
 
 ## Donor position
 
@@ -235,33 +245,43 @@ and `f_T(G)` for small `G` by complete enumeration; every `(G, k)` step below
 compares the Lemma B bound against the true constant and against the classical
 `D_{k+1} <= D_k + D`.
 
-| group | `k` | true `D_{k+1}` | Lemma B | classical | best `T` | tight |
+| group | `k` | true `D_{k+1}` | FS 3.2(3) | classical | best `l` | tight |
 |-------|-----|----------------|---------|-----------|----------|-------|
 | `C_2^2` | 1 | 5 | 5 | 6 | 2 | yes |
 | `C_2^2` | 2 | 7 | 7 | 8 | 2 | yes |
 | `C_2^3` | 1 | 7 | 7 | 8 | 3 | yes |
 | `C_2^3` | 2 | 9 | 9 | 11 | 2 | yes |
-| `C_2^4` | 1 | 8 | **9** | 10 | 3 | **no** |
+| `C_2^4` | 1 | 8 | 8 | 10 | 3 | yes |
 | `C_2^4` | 2 | 11 | 11 | 13 | 3 | yes |
 | `C_3^2` | 1 | 8 | 8 | 10 | 3 | yes |
 | `C_3^2` | 2 | 11 | 11 | 13 | 3 | yes |
 | `C_5^2` | 1 | 14 | 14 | 18 | 5 | yes |
 | `C_5^3` | 1 | 20 | 20 | 26 | 7 | yes |
-| `C_5^3` | 2 | 25 | 26 | 33 | 6 | **no** |
+| `C_5^3` | 2 | 25 | **26** | 33 | 6 | **no** |
 
-**Tight in 9 of the 11 decided steps; strictly better than the classical bound
-in all 11.** (`C_5^3, k = 2` was open when this table was first built; it is
-closed at 25 by `X1F_D3_C5CUBED_PROTOCOL_V1.md`, and it is the second gap.)
+**Recomputed under the correct Freeze–Schmid form** `max{D_k + l, eta_l - 1}`:
+tight in **10 of the 11** decided steps. The extra `-1` closes `C_2^4, k = 1`
+(`max{5+3, 9-1} = 8`, the true value), so the "second gap" reported in an
+earlier version of this table was an artifact of the weaker restatement, not a
+real weakness of the published lemma.
 
-Instrument validation before any of this was read: the same code reproduces the
-known rank-2 values `D_k(C_n^2) = (k+1)n - 1` on every computed entry
+**Exactly one genuine gap remains: `C_5^3, k = 2`** — the bound gives
+`max{20+6, 24-1} = 26` while the truth is 25 (`X1F_D3_C5CUBED_PROTOCOL_V1.md`).
+
+**Every row of this table is replication, not discovery.** Freeze–Schmid
+determined exact `D_k` for elementary 2-groups of rank 4 and 5, and state that
+rank `<= 3` was already known; the rank-2 formula `D_k(C_m + C_n) = m + kn - 1`
+is classical. The table's role is instrument validation and boundary-finding for
+the published bound, nothing more. The code reproduces the known rank-2 values
+on every computed entry
 (`C_2^2: 3,5,7`; `C_3^2: 5,8,11`; `C_5^2: 9,14`). A checker that had not
 reproduced a known family would not have been used.
 
 ### The one gap is a lead, not noise
 
-There are two failures, `C_2^4, k = 1` (`D_2 = 8`, bound 9) and `C_5^3, k = 2`
-(`D_3 = 25`, bound 26); both lose by exactly one. Taking the first:
+One failure survives the correct form: `C_5^3, k = 2` (`D_3 = 25`, bound 26).
+The `C_2^4` case below is retained only to show why the weaker restatement
+appeared to fail there:
 The `eta_T` profile there is `2:16, 3:9, 4:6, 5:5, 6:5, 7:5` against `D = 5`, so
 every `T` is either short of `eta_T` or over `D + T`; no single `T` balances.
 That is the mechanism of the gap: Lemma B commits to **one** threshold `T`,

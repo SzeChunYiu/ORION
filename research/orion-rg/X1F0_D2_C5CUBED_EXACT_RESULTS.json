@@ -33,6 +33,15 @@
     ],
     "lower_bound_source": "Freeze--Schmid Theorem 4.1 specialised to C_5^3, k=2 (19-term witness)"
   },
+  "elementary_2_group_values_are_replication": {
+    "groups": [
+      "C_2^2",
+      "C_2^3",
+      "C_2^4"
+    ],
+    "role_here": "instrument validation and boundary-finding only, not discovery",
+    "status": "KNOWN. Freeze-Schmid determined exact D_k for elementary 2-groups of rank 4 and 5 and state rank <= 3 was already known."
+  },
   "eta_7_C5cubed": 19,
   "eta_T_C5cubed": {
     "10": 15,
@@ -195,6 +204,16 @@
     "SzeChunYiu/ORION#896",
     "SzeChunYiu/ORION#894"
   ],
+  "prior_art_correction": {
+    "also_sharper": "their Prop 3.2(2): D_{k+1} <= D_k + M, M the minimum length of a minimal zero-sum sequence dividing an extremal B",
+    "credit": "no ORION credit is taken for the bound; the contribution is the instantiation",
+    "effect_on_the_exact_constants": "none; D_2 = 20 and D_3 = 25 stand, and the correct form still gives D_2 <= max(20, 18) = 20",
+    "effect_on_the_generality_table": "the extra -1 closes the C_2^4 k=1 gap, so it is tight in 10 of 11, not 9 of 11, and exactly one genuine gap remains (C_5^3 k=2)",
+    "prior_art": "Freeze & Schmid, Remarks on a generalization of the Davenport constant, Discrete Math. 310 (2010) 3373-3389, arXiv:0905.4248, Proposition 3.2(3)",
+    "relation": "identical, and their form is STRICTLY STRONGER (eta_l - 1 versus eta_l)",
+    "their_statement": "for each l in N, D_{k+1}(G) <= max{D_k(G) + l, s_{<=l}(G) - 1}, with s_{<=l} = eta_l",
+    "what_was_overclaimed": "an earlier version presented D_{k+1} <= max(eta_T, D_k+T) as a new lemma (Lemma B)"
+  },
   "recorded_defect": {
     "effect_on_value": "none; both runs returned 18, only the sound run is cited",
     "repair": "MAXLINE table over admissible line multiplicity vectors; T=7 re-run to completion under the sound bound",
@@ -211,7 +230,7 @@
     "8": 17,
     "9": 14
   },
-  "source_result_digest": "6064f31332cda6ae0d98d78890f4cf7b9f84b64d82633c6c17a831d133acf744",
+  "source_result_digest": "28079b70ee3784eef5c15da41b0f549fb73836b6b125fdcaf969bfed5a8afe9a",
   "terminal": "X1F0_EXACT_D2_ESTABLISHED",
   "theorem": {
     "exact_value": 20,
@@ -220,5 +239,12 @@
     "statement": "D_2(C_5^3) = 20",
     "upper_bound": 20,
     "upper_bound_route": "f_7(C_5^3)=18 < 20 forces a zero-sum of length <=7; the complement then has >= 13 = D(C_5^3) elements"
-  }
+  },
+  "what_remains_new": [
+    "D_2(C_5^3) = 20",
+    "D_3(C_5^3) = 25",
+    "the exact eta_T(C_5^3) spectrum for T = 6..12",
+    "the complete enumeration of the 98,622 extremal length-19 witnesses (rank-3 inverse data; Zhong 2025 Combinatorica treats rank 2)",
+    "the structure-theorem route that closed D_3"
+  ]
 }
