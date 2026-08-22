@@ -21,8 +21,17 @@ establishes correctness, as opposed to integrity?
 importing the analyzer or re-reading its receipt). This is the only mechanism that
 catches the deterministic-but-wrong failure mode:
 
-QG-3, QG-6, QG-7, QG-7b, QG-7c, QG-7d, QG-8, QG-9 (support2, support2-tightness,
-support3, support4, V6), QG-12, QG-13, QG-15, QG-15b, QG-16, QG-17, QG-18.
+QG-3, QG-6, QG-7, QG-7b, QG-7c, QG-7d, QG-7e, QG-8, QG-9 (support2, support2-tightness,
+support3, support4, V6), QG-12, QG-13, QG-15, QG-15b, QG-15c, QG-16, QG-17, QG-17b,
+QG-18, QG-20, QG-21, QG-22.
+
+**QG-22 carries a stated tier caveat.** Its verifier writes its own instance generator,
+timing loop, least-squares fit, configuration-space enumeration, StabPrep count and
+counting-argument formulas, and shares no code with the lane script — but it *does* import
+the committed ORION-Q analyzers, because on this lane the analyzers are the measurement
+subject rather than the instrument. A defect inside `r6m._solve_config` itself would be
+invisible to both. That is bounded by the analyzers' own Tier-1 coverage above (QG-6,
+QG-7, QG-7e), not by this verifier.
 
 **Tier 2 — cross-lemma corroboration** (a defect would have to survive an independently
 committed result). This is the mechanism that in fact caught the QG-7d bug, via its
@@ -68,6 +77,17 @@ verifier checks six-uniqueness, pairwise commutation and the 3+3 window split, b
 adversary choosing a different six-term batch would not be caught*. Also unverifiable
 offline: the temporal ordering of stage 1 before stage 2 (only content binding is
 checkable). Registered as the residual **W8 — re-derive R6B batch selection**.
+
+## A second residual, from QG-22 (W9)
+
+QG-6's committed corollary bounds a certified support-≤2 search at `O(n²·16)` frame-pair
+candidates per block. The committed `r6p.dxx_search` does not realize it: it reaches the
+same D++ optimum through an A^{2n} don't-care pattern space and an A^n−1 Tag sweep,
+`O(n·4^{3n})` cells. The measured exponential behaviour of that search is therefore an
+artefact of the implementation, not evidence about the problem — the same status as the
+naive configuration referee's exponential. Registered as **W9 — realize QG-6's
+support-capped corollary in the committed family search**. The bound is already proved;
+this is engineering.
 
 ## Rule adopted
 

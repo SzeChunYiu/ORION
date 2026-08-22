@@ -505,6 +505,114 @@ protocol had already declared. Recorded as a falsified prediction rather than qu
 dropped; the reopen adjudication's terminal stands as issued, with this outcome scored
 against it.
 
+## QG-22 — NO SEPARATION FOR UNIT-COST TARE, AND THE COLLAPSE AGENT IS NOT WHAT WE THOUGHT
+
+`QG22_COMPLEXITY_SEPARATION_RESULTS.json` (protocol frozen pre-outcome, sha256
+`1b91a106…b170`; result digest `109b1db8…fa54`; 10/10 gates; double-run byte-identical;
+independent verifier **ACCEPT**, 29/29 checks, 0 failed, re-run by the orchestrator;
+runtime 536.97 s under a 1,500 s cap, timing excluded from the digest by gate G9).
+Terminal `QG22_PARTIAL__HARDNESS_LOCATED_ELSEWHERE`. Authority carries NOT_R6 and
+`donor_novelty_credit: false`.
+
+**The lane refused the terminal this programme expected it to reach.** Among the frozen
+terminals was `QG22_NO_SEPARATION__CLASSIFICATION_COLLAPSES_THE_PROBLEM`. The lane
+declined it and recorded why, verbatim: *"its name asserts a collapse agent this lane's
+own measurements contradict."* Selecting it *"would have recorded a false attribution;
+the PARTIAL terminal records the true one."*
+
+**The gap runs the wrong way.** Two proven counting arguments, each corroborated by a
+wall-clock ladder with reported fits, residuals and domain:
+
+| object | cost | status |
+| --- | --- | --- |
+| unrestricted syndrome DP referee (`r6m._solve_config`) | **Θ(n)** | PROVEN |
+| QG-7e certified closed form `min(C_D+, f_B′, f_B″)` | **O(n⁶)**, dominated by `f_B″` | PROVEN |
+| naive configuration enumeration | **Θ(A^{Ln}) = Θ(4^{7n})** | PROVEN (closed-form count, checked against direct enumeration for n ≤ 3) |
+| committed family search `r6p.dxx_search` | **O(n·4^{3n})** | PROVEN |
+
+*"The referee the closed form was meant to replace is asymptotically cheaper than the
+closed form."* So **Q2-A answers NO**: `C_DP` is not polynomial *because of* QG-7e. The
+syndrome DP was already affine in n before QG-7e existed. The exponential collapse that
+does exist runs from the naive Θ(4^{7n}) enumeration down to the Θ(n) DP — and it is
+effected by **the fixed 9-bit conserved syndrome, QG-6's meta-theorem object**, not by
+the classification.
+
+**This corrects, not extends, the provisional reading committed in `5912f2c9`.** That
+commit message said QG-7e's closed form "collapses the very hardness a separation would
+have claimed." It does not. *"The programme's classification is not what removed the
+hardness — the fixed-dimension conserved syndrome already had."* The closed form's value
+is that it is a theorem about the shape of the optimum for all n, and a human-readable
+optimum — **not** that it is a faster optimizer. The wave-2 record now states that
+attribution and the provisional one is superseded.
+
+**Q2-B closes the escape hatch.** QG-2 records that the two-trade identity *fails* under
+O1 (4,484 identity-two-trade failures), so under O1 there is no closed form. Hardness
+does not reappear there: O1 re-weights the local cost table but leaves the 9-bit
+acceptance syndrome untouched, so the same DP composes and the exact O1 optimum is
+computed in the same affine-in-n time. The receipt records the O1 DP optima across
+n ∈ {1,2,3,4,6,8,12,16} — 7, 10, 18, 25, 37, 47, 96, 121 — growing affinely, with no
+regime of super-polynomial cost anywhere on the ladder. **"No closed form" does not
+imply "no polynomial exact algorithm."**
+
+**Q2-C**: deciding optimality is Θ(n), the same order as computing the optimum — one
+objective evaluation plus one DP call. No verification/computation asymmetry to exploit.
+
+**The defensible general statement (Q3), quantifiers explicit.** Let F be a compilation
+family whose configuration space factorizes over n positions with a per-position local
+alphabet of fixed size A, whose feasibility predicate is a **fixed-dimension conserved
+syndrome** (a group homomorphism into a fixed finite abelian group of order 2^D, D
+independent of n), and whose objective is a **sum of per-position local terms**. Then the
+exact optimum is computable in time `O(C_ext · 2^{2D} · n + n·A^L)` — **linear in n** — by
+min-plus DP over the syndrome; deciding optimality costs the same order; and naive
+enumeration costs Θ(A^{Ln}). And the sentence that most constrains this programme's own
+claims:
+
+> **An all-n finite-support classification of the optimum — such as QG-7e's
+> `C_DP == min(C_D+, f_B′, f_B″)` — is NEITHER NECESSARY NOR SUFFICIENT for this
+> collapse**, and for TARE it is strictly more expensive to evaluate (O(n⁶)) than the DP
+> it characterizes (Θ(n)).
+
+Four stated failure modes for that statement are registered in the receipt, each with the
+mechanism that kills the DP argument: a feasibility certificate that grows with n
+(StabPrep, state space 2^{Θ(n²)}); a non-local objective (rotation count, depth); the
+alphabet/arity as input rather than frozen constant (at best XP in block count K); a
+configuration space that does not factorize over positions (the D3 phase-ordering
+setting, where optimal ordering is undecidable — Touati et al. 2006).
+
+**What the terminal does NOT assert, in its own words.** *"The word 'hardness' in the
+frozen terminal name is a lane label, not a result. No reduction is supplied, no lower
+bound is proved, and nothing here says any problem lies outside P. Every exponential
+quantity in this receipt is the work of an algorithm we wrote, never a property of a
+problem."* `lower_bound_supplied: false`, `reduction_supplied: false`,
+`complexity_class_claim: none`. The located candidate — families without a conserved
+syndrome, with StabPrep as this programme's own instance — is **CONJECTURE**, and is
+labelled as such in the Q3 component table alongside the general-F statement (also
+CONJECTURE: the DP argument transfers verbatim as standard donor mathematics, but this
+lane executed only TARE).
+
+**A sharp engineering finding falls out of Q1.** QG-6's committed corollary
+`Σ_{k≤d} C(n,k)·A^k = O(n^d A^d)` bounds the **support-≤d certified search space** per
+structural generator (d=2, A=4 for TARE) — i.e. O(n²·16) frame-pair candidates per block
+would suffice. The committed `r6p.dxx_search` does **not** realize that corollary: it
+reaches the same D++ optimum through an A^{2n}-cell don't-care pattern space and an
+A^n − 1 Tag sweep, O(n·A^{3n}) cells. So *"the exponential behaviour measured for
+`r6p.dxx_search` is an artefact of that implementation, exactly as the exponential
+behaviour of the naive configuration referee is an artefact of that referee. Neither is
+evidence about the difficulty of the problem. This is the single sharpest reason why no
+separation can be read off our own runtimes."* Registered as residual **W9 — realize
+QG-6's support-capped corollary in the committed family search**; it is a projected
+exponential-to-polynomial implementation win with a committed bound already proved, not a
+new theorem.
+
+**Why this lane is a positive result despite a PARTIAL terminal.** It removes a claim the
+programme was one step from making (a classification-driven complexity separation),
+supplies the correct attribution with proven bounds on both sides, closes the O1 escape
+hatch that would have rescued the claim, and converts a vague intuition about "where the
+hardness lives" into a **decidable structural criterion** — fixed-dimension conserved
+syndrome, factorizing configuration space, local-sum objective — with four named failure
+modes and one in-programme instance (StabPrep) on the far side of it. That criterion, not
+the separation, is the transferable object.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where

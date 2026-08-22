@@ -13,6 +13,7 @@ recorded as failed. Authority: development record; converts nothing by itself.
 | N6 | novelty freezes authored without literature access | DONOR_SUBSUMPTION RISK → hostile external-novelty lane | QG-19 | not yet chartered |
 | W5 | no real-chemistry trade regime found | — | R7 | **EXECUTED — honest negative that confirms prospectively.** Census extended to 180 matchings at 12/14/16 qubits, all donor-exact; six genuinely unread 16q batches admitted. Successor is an O1-style re-freeze, not a harder hunt. |
 | W8 | R6B batch selection taken on the receipt's word | — | — | registered by the QG-3 verifier's stated limit |
+| W9 | committed family search does not realize QG-6's own support-capped corollary | — | QG-22 | **REGISTERED — projected exponential→polynomial implementation win.** QG-6's corollary bounds the certified support-≤2 search at O(n²·16) frame-pair candidates per block; `r6p.dxx_search` instead sweeps an A^{2n} don't-care pattern space plus an A^n−1 Tag sweep, O(n·4^{3n}). The bound is already proved and committed — realizing it is engineering, not a new theorem. |
 
 ## What N1 costs the method finding
 
@@ -54,3 +55,31 @@ zero. Likewise μ is undefined, since cost is additive over gates with no
 frame-refund/Restore-penalty split; that is categorically different from TARE's μ = 0,
 which is a *measured* tie set over 368,640 rows. Distinguishing "undefined" from "zero"
 is the whole content of Q3.
+
+
+## What QG-22 costs the programme's own headline
+
+QG-7e's all-n classification was the wave-2 headline, and the natural next sentence — the
+one this programme was one lane from writing — was that the classification *collapses* the
+optimization problem. QG-22 measured both sides and the attribution is false. The
+unrestricted syndrome DP referee is **Θ(n)** and predates QG-7e; the QG-7e closed form is
+**O(n⁶)**. The referee the closed form characterizes is asymptotically *cheaper* than the
+closed form. The exponential collapse that does exist — Θ(4^{7n}) naive enumeration down
+to Θ(n) — is effected by the **fixed 9-bit conserved syndrome**, QG-6's meta-theorem
+object, not by the classification.
+
+The lane was offered a terminal that would have recorded the flattering reading
+(`QG22_NO_SEPARATION__CLASSIFICATION_COLLAPSES_THE_PROBLEM`) and declined it in writing:
+*"its name asserts a collapse agent this lane's own measurements contradict."* That is the
+second time in this campaign a lane has refuted the premise it was launched on — QG-21
+refuted O1's derivability from FT accounting, QG-22 refutes the classification's role as
+collapse agent — and both times the refutation is the more transferable result.
+
+What survives, and is stronger than the claim it replaced: a **decidable structural
+criterion** for when a compilation family's exact optimum is linear in n (fixed-dimension
+conserved syndrome + factorizing configuration space + local-sum objective), with four
+named failure modes and one in-programme instance, StabPrep, on the far side of it. An
+all-n finite-support classification is **neither necessary nor sufficient** for that
+collapse. Every claim in the programme that leans on QG-7e must now say what QG-7e is for
+— an all-n theorem about the *shape* of the optimum, and a human-readable optimum — and
+must not say it is what makes optimization tractable.

@@ -1049,6 +1049,39 @@ CLAIM_BOUNDARY = {
 }
 
 
+def referee_availability() -> dict[str, Any]:
+    """Machine-derived record of WHICH referee is actually capped.
+
+    The lane charter assumed the exact optimum is out of reach at large n. It is
+    not: the committed referee is a nine-bit XOR DP linear in n. What is capped
+    is the committed FAMILY enumerator."""
+    guard_keys = sorted(int(k) for k in r6p.EXPECTED_PAIR_COUNTS)
+    try:
+        r6p.dxx_search((((1, 0), (0, 1)), ((2, 0), (0, 2)), ((4, 0), (0, 4))), 5)
+        n5 = "UNEXPECTEDLY_SUCCEEDED"
+    except Exception as exc:  # noqa: BLE001 - the guard is the observation
+        n5 = "%s: %s" % (type(exc).__name__, exc)
+    return {
+        "committed_optimum_referee": "max_r6o.dp_cost_frozen_configs",
+        "committed_optimum_referee_shape": ("nine-bit XOR DP over qubits, "
+                                            "512 states, linear in n"),
+        "committed_family_enumerator": "r6p.dxx_search",
+        "committed_family_enumerator_guard_keys": guard_keys,
+        "committed_family_enumerator_at_n5": n5,
+        "committed_receipt_panels_stop_at_n": 4,
+        "finding": ("the referee-free frontier of this programme sits at the "
+                    "FAMILY level (C_D+, C_D++), not at the optimum C_DP; this "
+                    "lane's panels D/E/F therefore lie beyond every committed "
+                    "receipt's referee domain while the optimum itself remains "
+                    "computable, and the lane reports both facts"),
+        "panel_F_referee_withheld_mechanism": ("panel F rows are evaluated "
+                                               "through solve_columns_relaxed "
+                                               "only; the exact 512-state "
+                                               "accumulation is never run for "
+                                               "them"),
+    }
+
+
 def main() -> dict[str, Any]:
     start = time.monotonic()
     seconds: dict[str, float] = {}
@@ -1300,6 +1333,25 @@ def main() -> dict[str, Any]:
             "L_SEP_binding_decided": lsep_binding_decided,
             "W1_achieving_rows": w1_total,
             "W1_achieving_decided": w1_decided,
+        },
+        "gates": gates,
+        "referee_availability": referee_availability(),
+        "complexity": {
+            "exact_referee_per_instance": ("32 (perm x central) configurations "
+                                           "x n qubits x 512^2 min-plus state "
+                                           "updates -- LINEAR in n"),
+            "L_SEP_per_instance": ("32 configurations x n qubits x 64^2 "
+                                   "min-plus state updates -- 64x fewer state "
+                                   "updates than the referee, linear in n"),
+            "L_COL_per_instance": "O(n), closed form, hand-checkable",
+            "U_W1_per_instance": ("O(n) column extraction, then a search whose "
+                                  "size depends only on the number of distinct "
+                                  "target columns (at most 12 nonzero for "
+                                  "support-<=2 targets) -- independent of n"),
+            "committed_family_enumerator": ("r6p.dxx_search builds 4^(2n) "
+                                            "tables and is hard-guarded at "
+                                            "n <= 4"),
+            "qg6_search_complexity_corollary_bound": "O(n^d A^d), d = 2 here",
         },
         "receipt_bindings": receipt_bindings(),
         "claim_boundary": CLAIM_BOUNDARY,
