@@ -847,9 +847,19 @@ the withheld-referee rows carry no `C_DP`.
 
 1. **Re-ran the verifier independently → ACCEPT**, binding `results_sha256`
    `61768d29…eb61`, matching the receipt on disk.
-2. **Demonstrated the verifier can fail.** Two tampered copies both **REJECT**: inflating
-   a row's `L` to break the sandwich, and corrupting a row's `C_DP`. A verifier that cannot
-   fail establishes nothing.
+2. **Demonstrated the verifier can fail.** ~~Two tampered copies both REJECT: inflating a
+   row's `L` to break the sandwich, and corrupting a row's `C_DP`.~~ **Corrected and
+   replaced with evidence — see `QG10_FALSIFIABILITY.json`.** That sentence was prose with
+   no machine-readable record, and it was wrong about the mechanism: inflating `L` is caught
+   by `lower_bound_mismatch`, **not** the sandwich, because `L` is recomputed from
+   primitives before the sandwich is evaluated. **QG-10's sandwich check had never been
+   exercised by any tamper.** The demonstration is now seven cases, each declaring the check
+   that must catch it and validated through `orion_research_harness.falsifiability`; T7
+   lowers `U` below the recomputed `C_DP` and fires `sandwich_violated` for the first time.
+   Two tooling defects had to be fixed before the demonstration could be run at all: the
+   verifier's results path was hardcoded, so it could never be pointed at a tampered copy,
+   and its **output** path was hardcoded too, so testing it overwrote the committed
+   verification artifact — the act of testing destroyed the record of it passing.
 3. **Caught a stale binding mid-flight.** An earlier verification, committed in
    `4b6c7992`, bound the *superseded* receipt `1e14cafd…` after the lane re-emitted its
    receipt with an added cap disclosure (`integer_checked_rows: 48309`), moving the digest

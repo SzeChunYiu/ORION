@@ -1,4 +1,4 @@
-# Sixteen defects in one day, one shape: something computed and then not allowed to matter
+# Twenty-three defects in one day, one shape: something computed and then not allowed to matter
 
 Date: 2026-08-22
 Branch: `claude/orion-harness-verification-b17qdj`
@@ -15,10 +15,16 @@ branch nobody will read commit by commit. The pattern is the useful artifact,
 and it is worth one file.
 
 It is also worth being exact. In four separate summaries during this session I
-described the count as "seven", then "eleven", then "twelve". **The number is
-sixteen**, and I was under-counting each time by summarising from memory instead
-of from the log. That is a small instance of the same failure being catalogued:
-a number stated without being recomputed.
+described the count as "seven", then "eleven", then "twelve", each time
+under-counting by summarising from memory instead of from the log — a small
+instance of the very failure being catalogued, a number stated without being
+recomputed.
+
+**The count is now twenty-three.** Sixteen when this file was written; seven more
+found afterwards, six of them in the two hours after the three gates existed. That
+is growth, not a recount, and the distinction matters: the earlier corrections were
+me mis-stating a fixed number, this is the number moving because the looking
+continued.
 
 ## The shape
 
@@ -72,13 +78,37 @@ the outside.
 |---|---|---|
 | 16 | QG-27 analyzer | the `BLOCKED` branch raised `NameError` on five unbound names instead of writing its receipt |
 
+**F. A check excused on a ground that was not true**
+
+| # | where | what |
+|---|---|---|
+| 17 | QG-25 coverage list | `witness_words_reach_different_states` was exempted as taking "no input from the receipt". It reads `word_a` and `word_b` from the receipt. The gate built to make gaps visible was satisfied by a false statement, and the check it excused carries QG-25's entire witness |
+
+**G. Tooling that made its own verification impossible**
+
+| # | where | what |
+|---|---|---|
+| 18 | QG-10 verifier | its results path was hardcoded, so it could never be pointed at a tampered copy — the gate-G7 demonstration was structurally unperformable |
+| 19 | QG-10 verifier | its **output** path was hardcoded too, so running it against a tamper overwrote the committed verification artifact. Testing it destroyed the record of it passing |
+| 20 | QG-10 wave record | the prose claim named the wrong mechanism: inflating `L` is caught at recomputation, not by the sandwich, so **the sandwich check had never been exercised** |
+| 21 | QG-10 assembler | a Claude session UUID hardcoded as the scratch path in a committed research record |
+| 22 | QG-10 `T4` | a no-op: it copied one target over another on a row whose block-0 pair was `[[1,0],[1,0]]`, both members identical. Second no-op tamper of the day |
+| 23 | QG-10 assembler | it recorded `gate: REFUSED` into the artifact and wrote it anyway |
+
+Group G is worth separating because its shape is one step further back: not a check
+that fails to check, but **tooling arranged so the check could never be run**. Defects
+18 and 19 together explain why 20 was possible — a demonstration that cannot be
+performed gets written as prose, and prose is not checked.
+
 ## Who found them
 
-Eleven by **Cursor Bugbot**. Two by the `falsifiability` gate refusing to write an
-artifact — including one in `criterion_binding`, three commits after that module
-was written to close this family. One by the `criterion_binding` gate refusing
-its author's own lane, hours after its author wrote it. Two by re-deriving rather
-than re-labelling a verification artifact.
+Thirteen by **Cursor Bugbot**. Two by the `falsifiability` gate refusing to write
+an artifact — including one in `criterion_binding`, three commits after that
+module was written to close this family. One by the `criterion_binding` gate
+refusing its author's own lane, hours after its author wrote it. Two by
+re-deriving rather than re-labelling a verification artifact. Four by attempting
+a demonstration that had only ever been asserted — including one, defect 22, that
+the demonstration surfaced by ACCEPTing a copy it should have rejected.
 
 **None by reading the code back after writing it.** That is the finding about
 method: attention does not catch this class, because the defective and the
