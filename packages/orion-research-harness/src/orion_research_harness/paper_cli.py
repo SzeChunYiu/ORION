@@ -177,9 +177,7 @@ def _run_structure_command(args, *, consensus: bool) -> int:
         projected["resolution_obligation"] = _resolution(
             subject_id=args.method_id,
             unresolved_class=(
-                UnresolvedClass.COVERAGE
-                if "COVERAGE" in status
-                else UnresolvedClass.EVIDENCE
+                UnresolvedClass.COVERAGE if "COVERAGE" in status else UnresolvedClass.EVIDENCE
             ),
             reason_codes=(status,),
         )
@@ -237,7 +235,9 @@ def main(argv: list[str] | None = None) -> int:
             mechanic_state_from_mapping(raw["state"]),
             mechanic_contract_from_mapping(raw["contract"]),
         )
-        payload = _non_authorizing("ORION.HarnessP6MechanicExecution.v1", result=jsonable(result))
+        payload = _non_authorizing(
+            "ORION.HarnessP6MechanicExecution.v1", result=jsonable(result)
+        )
         if result.terminal is MechanicTerminal.CANNOT_CHECK:
             payload["resolution_obligation"] = _resolution(
                 subject_id=str(raw.get("contract", {}).get("mechanic_id", "p6-mechanic")),
@@ -260,7 +260,9 @@ def main(argv: list[str] | None = None) -> int:
                 for item in raw.get("certificates", ())
             ),
         )
-        _print(_non_authorizing("ORION.HarnessP6DependencyRepair.v1", state=jsonable(repaired)))
+        _print(
+            _non_authorizing("ORION.HarnessP6DependencyRepair.v1", state=jsonable(repaired))
+        )
         return 0
     if args.command == "authority-check":
         raw = _load_json(args.json, args.file)
@@ -272,7 +274,9 @@ def main(argv: list[str] | None = None) -> int:
             confidence=raw.get("confidence"),
             expected_utility=raw.get("expected_utility"),
         )
-        payload = _non_authorizing("ORION.HarnessP8AuthorityDecision.v1", decision=jsonable(decision))
+        payload = _non_authorizing(
+            "ORION.HarnessP8AuthorityDecision.v1", decision=jsonable(decision)
+        )
         if decision.terminal is AuthorityTerminal.CANNOT_CHECK:
             payload["resolution_obligation"] = _resolution(
                 subject_id=str(raw.get("effect", {}).get("effect_id", "p8-effect")),
@@ -288,7 +292,9 @@ def main(argv: list[str] | None = None) -> int:
         if not isinstance(raw, dict):
             raise TypeError("ocme-assess input must be an object")
         decision = assess_ocme_episode(ocme_episode_from_mapping(raw))
-        payload = _non_authorizing("ORION.HarnessP10OCMEAssessment.v1", decision=jsonable(decision))
+        payload = _non_authorizing(
+            "ORION.HarnessP10OCMEAssessment.v1", decision=jsonable(decision)
+        )
         if decision.terminal is OCMETerminal.CANNOT_CHECK:
             payload["resolution_obligation"] = _resolution(
                 subject_id=str(raw.get("episode_id", "p10-episode")),
@@ -315,8 +321,13 @@ def main(argv: list[str] | None = None) -> int:
                 result_id=f"negative:{raw.get('episode_id', 'p10')}:impossibility",
                 subject_id=str(raw.get("episode_id", "p10-episode")),
                 negative_kind="IMPOSSIBILITY_BOUNDARY",
-                evidence_ids=tuple(str(item) for item in (raw.get("obstruction") or {}).get("evidence_ids", ())) or ("e:ocme-impossibility",),
-                reason_codes=tuple(str(item) for item in decision.reasons) or ("IMPOSSIBILITY_BOUNDARY",),
+                evidence_ids=tuple(
+                    str(item)
+                    for item in (raw.get("obstruction") or {}).get("evidence_ids", ())
+                )
+                or ("e:ocme-impossibility",),
+                reason_codes=tuple(str(item) for item in decision.reasons)
+                or ("IMPOSSIBILITY_BOUNDARY",),
             ).as_dict()
         _print(payload)
         return 4 if decision.terminal is OCMETerminal.CANNOT_CHECK else 0
@@ -331,10 +342,11 @@ def main(argv: list[str] | None = None) -> int:
             "grants_novelty_authority": False,
         }
         if decision.action.value == "CANNOT_CHECK":
+            reason = str(decision.reason).strip()
             payload["resolution_obligation"] = _resolution(
                 subject_id=state.active_chart.chart_id,
                 unresolved_class=UnresolvedClass.COVERAGE,
-                reason_codes=tuple(str(item) for item in decision.reasons) or ("P7_CANNOT_CHECK",),
+                reason_codes=((reason,) if reason else ("P7_CANNOT_CHECK",)),
             )
         _print(payload)
         return 0 if decision.action.value != "CANNOT_CHECK" else 4
@@ -365,22 +377,26 @@ def main(argv: list[str] | None = None) -> int:
         _print(payload)
         return 0 if report.bounded_saturated else 4
     if args.command == "p11-accessible-rank":
-        _print(_non_authorizing(
-            "ORION.HarnessP11AccessibleRank.v1",
-            d=args.d,
-            s=args.s,
-            rank_dimension=p11_accessible_rank_dimension(args.d, args.s),
-        ))
+        _print(
+            _non_authorizing(
+                "ORION.HarnessP11AccessibleRank.v1",
+                d=args.d,
+                s=args.s,
+                rank_dimension=p11_accessible_rank_dimension(args.d, args.s),
+            )
+        )
         return 0
     if args.command == "p12-allocate":
         allocation = p12_joint_alloc(args.state_signal, args.reasoning_signal, budget=args.budget)
-        _print(_non_authorizing(
-            "ORION.HarnessP12Allocation.v1",
-            state_signal=args.state_signal,
-            reasoning_signal=args.reasoning_signal,
-            budget=args.budget,
-            allocation=list(allocation),
-        ))
+        _print(
+            _non_authorizing(
+                "ORION.HarnessP12Allocation.v1",
+                state_signal=args.state_signal,
+                reasoning_signal=args.reasoning_signal,
+                budget=args.budget,
+                allocation=list(allocation),
+            )
+        )
         return 0
     if args.command == "p13-action":
         action = p13_rcs_action(args.state_class, args.task, recoverable=args.recoverable)
