@@ -20,6 +20,7 @@ _LOCAL_CAPABILITIES = {
 _MAX_TEXT_CHARS = 1_000_000
 _MAX_LIST_ENTRIES = 10_000
 _MAX_PROCESS_OUTPUT_BYTES = 100_000
+_MAX_PROCESS_TIMEOUT_SECONDS = 600
 _DRAIN_JOIN_SECONDS = 1.0
 
 
@@ -39,6 +40,10 @@ def _validated_max_chars(value: Any) -> int:
     if max_chars < 1 or max_chars > _MAX_TEXT_CHARS:
         raise ValueError(f"max_chars must be between 1 and {_MAX_TEXT_CHARS}")
     return max_chars
+
+
+def _validated_process_timeout(value: Any) -> int:
+    return min(max(int(value), 1), _MAX_PROCESS_TIMEOUT_SECONDS)
 
 
 def _read_text_bounded(path: Path, max_chars: int) -> str:
@@ -160,7 +165,7 @@ def execute_local(
                 "SHELL/PYTHON local execution is disabled for this workspace; "
                 "reinitialize with --allow-process-tools to opt in"
             )
-        timeout = min(max(int(payload.get("timeout", 60)), 1), 120)
+        timeout = _validated_process_timeout(payload.get("timeout", 60))
         cwd = _confined(root, str(payload.get("cwd", ".")))
         if not cwd.is_dir():
             raise NotADirectoryError(cwd)
