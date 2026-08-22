@@ -1,0 +1,45 @@
+{
+  "schema": "ORIONQG.QG23.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#879",
+  "pr": "SzeChunYiu/ORION#882",
+  "execution_head": "c0358db45b01a37a5cd73e9e7bbea2703d953581",
+  "workflow_run_id": 32563332016,
+  "workflow_artifact_id": 9473402728,
+  "workflow_artifact_sha256": "f8098360ab85b42dcda93bd2ceb731dd284c42536f8425d14d69eb175b23d9c0",
+  "source_result_digest": "664aa04976b467f73159fbb81f2555f386d25d417b787647f905383dcd082719",
+  "terminal": "QG23_TARE_AUXILIARY_SUPPORT_SKELETON_AT_MOST_6_ALL_N_MACHINE_CHECKED",
+  "proof_identity": "|U_aux| <= wt(S)+p <= 3+c+p = 6-a <= 6, for a+p+c=3",
+  "maximum_auxiliary_support": 6,
+  "shape_count_rows": 10,
+  "maximizing_shape_counts": [
+    {"anchored":0,"phantom":0,"comm_s2":3,"tag_support_bound":6,"phantom_off_tag_home_bound":0,"aux_support_bound":6},
+    {"anchored":0,"phantom":1,"comm_s2":2,"tag_support_bound":5,"phantom_off_tag_home_bound":1,"aux_support_bound":6},
+    {"anchored":0,"phantom":2,"comm_s2":1,"tag_support_bound":4,"phantom_off_tag_home_bound":2,"aux_support_bound":6},
+    {"anchored":0,"phantom":3,"comm_s2":0,"tag_support_bound":3,"phantom_off_tag_home_bound":3,"aux_support_bound":6}
+  ],
+  "qg7c_parent": {
+    "m1_exact_A_P_C": true,
+    "t2_tag_bound_wtS_le_3_plus_comm_s2": true,
+    "phantom_home_tag_off": true,
+    "cyclic_borrow_closed_all_n": true
+  },
+  "qg7f_hostile_control": {
+    "two_coordinate_reduction_refuted": true,
+    "tag_weight": 3,
+    "B_comm_s2_support": [0,1],
+    "C_comm_s2_support": [1,2]
+  },
+  "generic_orion": {"decision":"ACCEPT_AUXILIARY_SUPPORT_COMPACTNESS","all_checks":true},
+  "native_orion_q": {"decision":"ACCEPT_AUXILIARY_SUPPORT_COMPACTNESS","all_checks":true,"responsibility":"AUXILIARY_SUPPORT_COMPACTNESS"},
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "target_spectator_state": "OPEN_AND_NOT_BOUNDED_BY_6",
+  "AUXILIARY_SUPPORT_COMPACTNESS": true,
+  "FULL_STATE_DIMENSION_6": false,
+  "CHAIN_ALL_N": false,
+  "GLOBAL_BDOUBLEPRIME_COMPLETENESS": false,
+  "FIFTH_REGIME_FOUND": false,
+  "novelty_authority": false,
+  "r6_authority": false,
+  "physical_quantum_advantage_claim": false
+}
