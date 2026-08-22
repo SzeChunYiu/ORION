@@ -175,6 +175,29 @@ def test_the_score_is_quotable_only_because_the_register_clears() -> None:
             f"cannot be said to have failed to recover the label"
         )
 
+    # The register does not clear on every axis, and the published claim says so.
+    # All four non-clearing cells are the digest-prefix probe -- FREEZE.md section 3
+    # declares it a noise control -- and none is on the axis H3 reads. A claim that
+    # said "clears everywhere" would be false; one that omitted these would be the
+    # same omission the 0.5 margin exists to prevent.
+    residual = [
+        (seed, label, t["worst_recovery"], t["worst_probe"])
+        for seed, terminals in register["seed_invariance"].items()
+        for label, t in terminals.items()
+        if t["outcome"] != "PASS"
+    ]
+    assert len(residual) == 4
+    assert {r[3] for r in residual} == {"digest-prefix"}
+    assert {r[1] for r in residual} == {"BLOCK", "PROMOTE"}
+    assert "CANNOT_CHECK" not in {r[1] for r in residual}
+    assert max(r[2] for r in residual) < 0.09
+
+    manifest = _json(MANIFEST)
+    claim = next(c for c in manifest["claims"] if c["id"] == "P4.H3")
+    assert "on the CANNOT_CHECK axis" in claim["text"]
+    assert "does not clear everywhere" in claim["text"]
+    assert "noise control" in claim["text"]
+
     seeds = register["seed_invariance"]
     assert len(seeds) == 13
     for seed, terminals in seeds.items():
