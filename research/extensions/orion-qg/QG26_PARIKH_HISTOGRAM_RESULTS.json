@@ -1,0 +1,65 @@
+{
+  "schema": "ORIONQG.QG26.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#884",
+  "pr": "SzeChunYiu/ORION#885",
+  "execution_head": "6af18431a392c0746ddf39841c07243f0abf8c91",
+  "workflow_run_id": 32564365729,
+  "workflow_artifact_id": 9473675579,
+  "workflow_artifact_sha256": "49036e12c04691d54d75fdf8c15590ac772bdc00963972282c8e436a077cee17",
+  "terminal": "QG26_TARE_EXACT_COST_IS_FINITE_GUARDED_TROPICAL_FUNCTION_OF_4096_COLUMN_COUNTS_ALL_N",
+  "source_result_digest": "f288d6a2cdcfff587d364713a256a8504a373707aef184dba9fb9197ac58029f",
+  "histogram_dimension": 4096,
+  "spectator_baselines": {
+    "permutation_vectors": 8,
+    "distinct_vectors": 4,
+    "pairing": {
+      "000__111": "863ab85f27b1f0c266ef98974b0f6421bcdd4b7ccf1b40ea2b60f292b4a17fc5",
+      "001__110": "5a2230fc443ff728cd43c5129757e5e878d5ce1a646b475117aafba164f8cb40",
+      "010__101": "eee34707336f3ff67060fef3184e42e7ed38910cda25bd1ff2fc3e0ba9fc8b1c",
+      "011__100": "31d88111ba93a8554ba81938ff5cf644d162a368afb43e62355ed867f6e83795"
+    },
+    "common_value_histogram": {"0":1,"1":24,"2":198,"3":696,"4":1305,"5":1296,"6":576},
+    "coefficient_range": [0,6]
+  },
+  "template_finiteness": {
+    "max_active_coordinates": 6,
+    "active_labeled_choice_base": 67104768,
+    "global_control_sectors": 64,
+    "ordered_template_universe_upper_bound": 5843866091514747548682615357344867751387234828288,
+    "upper_bound_decimal_digits": 49
+  },
+  "protected_controls": {
+    "one_active_decomposition_rows": 1572864,
+    "one_active_decomposition_mismatches": 0,
+    "one_active_digest": "ca88dc90212cd25de52e2105323895ebbb9f35c1bfa503bba58f949646bf9860",
+    "structural_cost_rows": 131072,
+    "structural_cost_mismatches": 0,
+    "structural_digest": "62fdaba0927e90e143b790c5abf08cfd3865abb4a49c4fcac06700a0120f1827",
+    "equal_type_placement_rows": 768,
+    "equal_type_placement_mismatches": 0,
+    "placement_digest": "e2437fc573be5cfa12635d770edd94862cde936adda35fe727dd4504124bee5e"
+  },
+  "theorem": {
+    "histogram_sufficient": true,
+    "guarded_affine_template_form": "C_tau(N)=B_pi(N)+K_tau with guards N_t>=m_tau(t)",
+    "exact_optimum_form": "C_DP(N)=min_{tau feasible on N}[B_pi(tau)(N)+K_tau]",
+    "count_space_regime_geometry": "finite semilinear/integer-polyhedral optimal-template partition exists",
+    "physical_qubit_order_irrelevant": true,
+    "nontrivial_auxiliary_correction_occurrences_at_most": 6
+  },
+  "generic_orion": {"decision":"ACCEPT_PARIKH_GUARDED_TROPICAL_GEOMETRY","all_checks":true},
+  "native_orion_q": {"decision":"ACCEPT_PARIKH_GUARDED_TROPICAL_GEOMETRY","all_checks":true,"responsibility":"HISTOGRAM_SUFFICIENT__FINITE_GUARDED_TROPICAL_TEMPLATE_GEOMETRY"},
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "HISTOGRAM_SUFFICIENT_STATISTIC_ALL_N": true,
+  "FINITE_GUARDED_TROPICAL_TEMPLATE_REPRESENTATION": true,
+  "COUNT_SPACE_REGIME_GEOMETRY_EXISTS": true,
+  "EXPLICIT_TEMPLATE_BASIS_ENUMERATED": false,
+  "PRACTICAL_STATIC_FORECASTER": false,
+  "CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS": false,
+  "CHAIN_ALL_N": false,
+  "GLOBAL_FINITE_INSTANCE_PHASE_BOUNDARY_IN_OBJECTIVE_SPACE": false,
+  "novelty_authority": false,
+  "r6_authority": false,
+  "physical_quantum_advantage_claim": false
+}
