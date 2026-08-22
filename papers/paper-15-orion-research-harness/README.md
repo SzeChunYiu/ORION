@@ -1,74 +1,52 @@
-# P15 — The ORION research harness
+# P15 — Fail-Closed Research Execution
 
-**Stable ID:** ORION-P15
-**Paper issue:** none yet — this directory was opened ahead of one.
-**Status:** `DIRECTORY_OPENED / NO_PROTECTED_RESULT`
+**Status:** `FRAMEWORK_COMPLETE / NO_PROTECTED_PAPER_RESULT`
 
-A systems paper introducing the two execution harnesses ORION research runs on, and
-the guarantees each provides. It carries no scientific superiority claim and grants
-no authority.
+P15 is an independent framework paper on receipt semantics, execution attribution,
+failure/evidence separation and graded independence claims. Its neutral manuscript
+title is *Fail-Closed Research Execution: Receipt Semantics and Independence
+Contracts*.
 
-## Why P15 rather than a new namespace
+## Scientific identity
 
-The P-series already contains non-claim papers: #669 writes P14 (ORION-RSE) as a
-"methods/evaluation-contract paper only", and the merged P10 technical note was
-evaluation infrastructure. A systems paper is therefore in-series, not an exception.
-`Q-paper-NN-*` stays reserved for the ORION-Q programme's own scientific numbering.
+The paper asks which predicates must be verified before an execution record can
+support progressively stronger claims about attribution and independence. It
+defines:
 
-If a programme issue later assigns this subject a different number, that decision
-wins; this README is not an authority over numbering.
+- a typed request/result receipt model;
+- a fail-closed scientific-evidence admission predicate;
+- six agreement levels, from deterministic structural agreement to scientific
+  corroboration;
+- twelve adversarial attack families covering substitution, replay, leakage,
+  forgery, stale state, partial writes, false success and selective omission.
 
-## What it would cover
+The central formal properties are contract consequences: a typed capability-failure
+terminal cannot enter scientific evidence, and an independence label cannot exceed
+its weakest verified gate.
 
-### 1. The ORION research harness
+## Current evidence ceiling
 
-`packages/orion-research-harness/` — a turnkey local harness for tool-integrated
-research sessions, landed through #725 and hardened afterwards. What makes it a
-paper rather than a utility is the guarantee surface, which is already under test:
+No protected paper result exists. Unit tests and deterministic source scans are
+implementation-conformance evidence only. They do not establish general
+reliability, evidence quality, authenticated executor independence, model
+independence or scientific corroboration.
 
-| Concern | Test |
-|---|---|
-| host/capability failures never enter scientific evidence | `test_governance_hardening.py` |
-| bounded file, process and directory output | `test_local_limits.py` |
-| strict, non-coercing receipt schemas | `test_hardening.py` |
-| race-safe receipt publication | `test_campaign_strictness.py` |
-| recovery from invalid content | `test_invalid_content_recovery.py` |
-| execution coverage accounting | `test_execution_coverage.py` |
+## Manuscript package
 
-The load-bearing claim is a separation, not a feature: **a host or capability
-failure is reported without being recorded as a scientific result.** That boundary
-is what the hostile suite exists to defend.
+- `manuscript/main.tex` is the canonical source;
+- `manuscript/chapters/` contains 10 complete, tracked TeX chapters;
+- `manuscript/references.bib` contains the claim-local bibliography;
+- `CLAIM_LEDGER_V1.md` records the evidence ceiling and promotion gates;
+- `BUILD.md` records the portable build command and verified PDF digest.
 
-### 2. The ORION-Q dual harness
+The manuscript is system-neutral: internal programme names, repository paths,
+operational terminals and codebase branding do not carry its scientific argument.
 
-`development/orion-q-max-r0/` — a two-lane agreement benchmark with per-lane
-receipts (`DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md`, lane A/B receipt
-sets, and content-addressed per-problem and per-request receipts). The object of
-interest is **agreement between independently executing lanes**, which is a
-different guarantee from single-harness determinism.
+## Promotion gate
 
-### 3. What the two share, and where they differ
-
-Both bind results to content-addressed receipts. Whether they share a receipt
-semantics or merely resemble each other is an open question, and answering it
-honestly is the paper's most likely real contribution.
-
-## What this paper must not claim
-
-- that a harness makes a scientific result valid — it makes a result *attributable*,
-  which is a strictly weaker property;
-- superiority over any other research-execution harness, absent a matched comparison
-  that does not currently exist;
-- that receipt coverage implies evidence quality.
-
-A cautionary case sits in this repository already: the P1-U R6 campaign produced
-fully receipted rows that were then rejected wholesale by a digest-representation
-type error. Receipts were complete and the result was still unusable. See
-`research/failures/2026-08-digest-representation-boundary-mixup/`.
-
-## Before this becomes a paper
-
-Per #670's rule — research decomposition is fine-grained, publication synthesis is
-coarse-grained — a directory is not an identity. This needs a paper issue, a claim
-ledger, a donor matrix against existing research-execution and workflow-provenance
-systems, and a protocol freeze, none of which exists yet.
+An empirical result requires a prospectively frozen hostile protocol, authenticated
+and appropriately separated custody, complete attribution, released attack fixtures
+and receipt sets, and independent adjudication. General reliability additionally
+requires multiple prospectively sampled task or campaign units with task-level
+uncertainty. Until those gates pass, the paper remains a framework without a
+performance or superiority result.
