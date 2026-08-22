@@ -10,6 +10,7 @@ import pytest
 
 from orion_research_harness.donor_search import (
     CANNOT_ASSESS,
+    passage_occurs_in_log,
     INSTANCE_OF_KNOWN_GENERAL,
     NEAREST_MISS,
     NO_PRIOR_ART_FOUND,
@@ -131,3 +132,44 @@ def test_no_verdict_describes_itself_as_granting_novelty():
     assert "novelty NOT established" in describe(NO_PRIOR_ART_FOUND)
     with pytest.raises(ValueError):
         describe("LOOKS_NOVEL_TO_ME")
+
+
+def test_passage_must_occur_in_the_supplied_query_log():
+    """Residual W11, found by QG-24 failing against a check its own verifier had
+    and the committed module lacked. Requiring a passage proves someone typed
+    one; requiring it to occur in the log proves it was found."""
+    log = "Search results:\n\n> TMerge reduces the T-count by exploiting commutativity.\n"
+    validate_donor_search(
+        _claim(verbatim_passage="TMerge reduces the T-count by exploiting commutativity."),
+        log,
+    )
+    with pytest.raises(ValueError, match="does not occur in the supplied query log"):
+        validate_donor_search(
+            _claim(verbatim_passage="a sentence that was never in any log"), log
+        )
+
+
+def test_blockquote_strip_is_a_literal_prefix_not_a_character_set():
+    """A blockquoted line whose CONTENT begins with '>' is the discriminator.
+
+    lstrip("> ") takes its argument as a character set and eats the content's
+    own '>' as well as the marker; the literal prefix strip does not. Getting
+    this wrong in a fail-closed check silently changes what counts as a match.
+    """
+    from orion_research_harness.donor_search import _unquote_markdown
+
+    line = "> >= 5 qubits"           # blockquote containing the text ">= 5 qubits"
+    assert _unquote_markdown(line) == ">= 5 qubits"
+    assert line.lstrip("> ") == "= 5 qubits"          # what the bug did
+    assert _unquote_markdown(line) != line.lstrip("> ")
+
+    log = "Results:\n> >= 5 qubits are required\n"
+    assert passage_occurs_in_log(">= 5 qubits are required", log)
+
+    # A bare '>' marker is not guessed at; failing to match is the safe
+    # direction for a fail-closed check.
+    assert _unquote_markdown(">>text") == ">>text"
+
+
+def test_log_is_optional_so_existing_callers_keep_working():
+    validate_donor_search(_claim())

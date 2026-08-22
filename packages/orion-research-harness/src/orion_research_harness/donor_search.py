@@ -87,7 +87,38 @@ VERDICTS_REQUIRING_A_PASSAGE = frozenset(
 QUERY_FAMILIES = ("OWN_VOCABULARY", "DONOR_FIELD_TRANSLATION", "INVERTED_OR_SURVEY")
 
 
-def validate_donor_search(record: Mapping[str, Any]) -> None:
+def _unquote_markdown(line: str) -> str:
+    """Strip literal "> " blockquote markers, and only those.
+
+    NOT lstrip("> "), which takes its argument as a character set and eats any
+    run of '>' and spaces -- including a '>' that belongs to the quoted text,
+    as in a line quoting ">= 5 qubits".
+
+    A bare '>' with no following space is deliberately NOT stripped. Some
+    nesting styles write ">>text", and guessing there could consume content;
+    leaving the marker in place merely fails to match, which in a fail-closed
+    check is the safe direction.
+    """
+    while line.startswith("> "):
+        line = line[2:]
+    return line
+
+
+def passage_occurs_in_log(passage: str, log_text: str) -> bool:
+    """Is the cited passage actually present in the query log?
+
+    Requiring a passage proves someone typed one. Requiring it to occur in the
+    log that supposedly produced it proves it was *found* -- which is the claim.
+    QG-24's own verifier implemented this check when the committed module did
+    not, and its records failed on it; the gap is closed here (residual W11).
+    """
+    flat = " ".join(_unquote_markdown(l).strip() for l in log_text.splitlines())
+    return " ".join(str(passage).split()) in " ".join(flat.split())
+
+
+def validate_donor_search(
+    record: Mapping[str, Any], log_text: str | None = None
+) -> None:
     """Fail closed on a novelty claim that cannot show a donor search.
 
     `record` describes one claim. If it does not assert novelty, nothing is
@@ -149,6 +180,18 @@ def validate_donor_search(record: Mapping[str, Any]) -> None:
             f"verdict {verdict} must bind a verbatim_passage. A verdict against "
             "a source we cannot quote is an opinion, not a finding; paraphrase "
             "is how a near-miss gets talked into a non-match."
+        )
+
+    passage = str(record.get("verbatim_passage", "")).strip()
+    if log_text is not None and passage and not passage_occurs_in_log(
+        passage, log_text
+    ):
+        raise ValueError(
+            "verbatim_passage does not occur in the supplied query log. A "
+            "citation whose quote cannot be found in the log that produced it "
+            "evidences nothing -- the passage may have been paraphrased, "
+            "reconstructed from memory, or invented. Pass the log to have this "
+            "checked; omit it only when the log is genuinely unavailable."
         )
 
 
