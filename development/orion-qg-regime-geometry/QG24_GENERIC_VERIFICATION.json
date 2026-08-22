@@ -1,0 +1,215 @@
+{
+  "check_count": 18,
+  "checks": {
+    "G4_referee_never_called_in_stage1": {
+      "detail": null,
+      "ok": true
+    },
+    "authority_ceiling_not_r6": {
+      "detail": null,
+      "ok": true
+    },
+    "ceiling_verdict_consistent_with_distribution": {
+      "detail": {
+        "configurations_below_nine_exist": true
+      },
+      "ok": true
+    },
+    "document_level_verification_declared_false": {
+      "detail": null,
+      "ok": true
+    },
+    "domain_size_identity_at_every_declared_n": {
+      "detail": {
+        "bad": []
+      },
+      "ok": true
+    },
+    "donor_search_gate_reimplemented": {
+      "detail": {
+        "bad": []
+      },
+      "ok": true
+    },
+    "forecast_tally_recomputes": {
+      "detail": null,
+      "ok": true
+    },
+    "lemma_L1_pair_support_is_the_two_block_seams": {
+      "detail": {
+        "recomputed": [
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "ok": true
+    },
+    "n1_distribution_recomputed_from_primitives": {
+      "detail": {
+        "recomputed": {
+          "R6L_RESTORE_IN_PLACE": {
+            "7": 960,
+            "8": 16512,
+            "9": 80832
+          },
+          "R6M_RESTORE_FACTORED": {
+            "7": 15360,
+            "8": 43008,
+            "9": 39936
+          }
+        }
+      },
+      "ok": true
+    },
+    "n1_domain_size_recomputed": {
+      "detail": {
+        "recomputed": 98304
+      },
+      "ok": true
+    },
+    "no_novelty_granted": {
+      "detail": null,
+      "ok": true
+    },
+    "panel_witnesses_reverified_from_primitives": {
+      "detail": {
+        "bad": [],
+        "rows": 90
+      },
+      "ok": true
+    },
+    "protocol_sha256_recomputes": {
+      "detail": null,
+      "ok": true
+    },
+    "q3_rotation_fraction_recomputes": {
+      "detail": null,
+      "ok": true
+    },
+    "qg21_receipt_unedited_sha256": {
+      "detail": {
+        "recomputed": "fb1dfea5ef16c91f17045f173d5f8522be7df35db2c15714ff0a56eecad97ea3"
+      },
+      "ok": true
+    },
+    "result_digest_recomputes": {
+      "detail": null,
+      "ok": true
+    },
+    "stage1_digest_recomputes": {
+      "detail": null,
+      "ok": true
+    },
+    "terminal_consistent": {
+      "detail": null,
+      "ok": true
+    }
+  },
+  "declared_sizes": [
+    1,
+    2,
+    4,
+    8,
+    12,
+    14
+  ],
+  "determinism": {
+    "byte_identical": true,
+    "double_run": true,
+    "note": "runtime goes to stderr only and appears in no digested field",
+    "run1_sha256": "aa0c429a2fde98cf33dbfb342a49e602ad808c9908c6beecc09ceafbcfa063a5",
+    "run2_sha256": "aa0c429a2fde98cf33dbfb342a49e602ad808c9908c6beecc09ceafbcfa063a5",
+    "runtime_cap_minutes": 45,
+    "runtime_seconds_run1": 322.6,
+    "runtime_seconds_run2": 329.3,
+    "stdout_identical": true,
+    "timing_excluded_from_result_digest": true
+  },
+  "failed_checks": [],
+  "falsifiability_demonstration": {
+    "all_tampered_copies_internally_self_consistent": true,
+    "all_tampered_copies_rejected": true,
+    "cases": [
+      {
+        "case": "T1_ceiling_flipped_to_structural",
+        "failed_checks": [
+          "ceiling_verdict_consistent_with_distribution",
+          "terminal_consistent"
+        ],
+        "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+        "tamper": "the headline verdict is flipped to the opposite terminal",
+        "verdict": "REJECT"
+      },
+      {
+        "case": "T2_n1_distribution_shifted",
+        "failed_checks": [
+          "n1_distribution_recomputed_from_primitives"
+        ],
+        "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+        "tamper": "4096 configurations moved from nine rotations to seven at n=1",
+        "verdict": "REJECT"
+      },
+      {
+        "case": "T3_panel_cost_understated",
+        "failed_checks": [
+          "panel_witnesses_reverified_from_primitives"
+        ],
+        "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+        "tamper": "one panel row's seven-rotation Clifford cost lowered by three, with its price kept arithmetically consistent",
+        "verdict": "REJECT"
+      },
+      {
+        "case": "T4_subsuming_passage_removed",
+        "failed_checks": [
+          "donor_search_gate_reimplemented"
+        ],
+        "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+        "tamper": "the verbatim passage is stripped from a SUBSUMED donor record",
+        "verdict": "REJECT"
+      },
+      {
+        "case": "T5_forecast_tally_altered",
+        "failed_checks": [
+          "forecast_tally_recomputes"
+        ],
+        "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+        "tamper": "the prospective-forecast hit count is altered",
+        "verdict": "REJECT"
+      },
+      {
+        "case": "T6_g4_staging_violated",
+        "failed_checks": [
+          "G4_referee_never_called_in_stage1"
+        ],
+        "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+        "tamper": "the receipt admits three referee calls during stage 1",
+        "verdict": "REJECT"
+      }
+    ],
+    "method": "each tampered copy is an edit to the receipt with its result_digest RECOMPUTED, so the copy is internally self-consistent and no hash mismatch is available to the verifier; every rejection below comes from re-derivation from primitives",
+    "tamper_files_kept_outside_the_repository": true
+  },
+  "independent_of": [
+    "qg24_rotation_regime",
+    "max_r6* analyzers",
+    "orion_research_harness",
+    "numpy"
+  ],
+  "lane": "QG-24",
+  "lower_bound_note": "this verifier establishes that a seven-rotation compilation of the stated theta_FT cost EXISTS for every panel row, that the complete n=1 enumeration and the domain-size identity hold, and that every digest and arithmetic claim recomputes. That no CHEAPER seven-rotation member exists is the exact DP's claim and is not re-derived here.",
+  "n1_configurations_reenumerated": 98304,
+  "panel_rows_reverified": 90,
+  "results_file": "research/extensions/orion-qg/QG24_ROTATION_REGIME_RESULTS.json",
+  "results_sha256": "aa0c429a2fde98cf33dbfb342a49e602ad808c9908c6beecc09ceafbcfa063a5",
+  "schema": "ORIONQG.QG24.GenericVerification.v1",
+  "terminal_under_review": "QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME",
+  "verdict": "ACCEPT",
+  "verifier": "development/orion-qg-regime-geometry/qg24_generic_verify.py",
+  "verifier_sha256": "c3996f3284de6fc2c34626dcb10b1b63ee8bffc6a246702af184f89254cc23fe"
+}

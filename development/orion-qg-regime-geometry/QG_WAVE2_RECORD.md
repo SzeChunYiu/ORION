@@ -1007,6 +1007,147 @@ undefined when the three-point range fit is ≤ 0 at n=1 (executed with a disclo
 the prospective component on the referee when the feature map is the binding cost. All four
 are protocol defects worth fixing in a successor, and none was used as licence to deviate.
 
+## QG-24 — THE APPLIED CEILING WAS A FAMILY ARTIFACT, AND MORE THAN HALF OF QG-21'S OWN WITNESSES ALREADY BROKE IT
+
+`QG24_ROTATION_REGIME_RESULTS.json` (protocol frozen pre-run at `bece8910`; result digest
+`5aba1652…6017`; file sha256 `aa0c429a…63a5`; 9/9 gates; double run **byte-identical**,
+322.6 s / 329.3 s against a 45-minute cap, timing on stderr only; verifier **ACCEPT, 18
+checks, 0 failures**, re-run independently by the orchestrator). Terminal
+`QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME`, authority NOT_R6.
+
+### Q1 — the ceiling is not structural
+
+QG-21 measured `ROTATIONS_R6M == 9` and the programme read it as a wall. **It is a property
+of the family menu, not of the grammar.**
+
+**Lemma L1 (proved, then checked exhaustively).** The merge relation can only ever admit
+the two block seams — positions (3,4), (6,7), and long-range (3,7). Everything intra-block
+is blocked by the grammar's own `symp(a_j,b_j) = 1`. Checked against an independent
+general 36-pair search over the complete n=1 domain (196,608 checks, 0 mismatches, observed
+pair support exactly {(3,4),(6,7)}) and over all 2,444 n=2 slot patterns × all 2¹²
+Restore-commutation vectors (12,160,768 checks, 0 mismatches).
+
+| n | domain (exact) | model | 7 rot | 8 rot | 9 rot |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 98,304 | factored | 15,360 | 43,008 | 39,936 |
+| 1 | 98,304 | in-place | 960 | 16,512 | 80,832 |
+| 2 | 515,396,075,520 | factored | 2,768,240,640 | 72,980,889,600 | 439,646,945,280 |
+| 8 | 2.993×10⁵¹ | factored | 6.97×10⁴¹ | 1.03×10⁴⁷ | 2.993×10⁵¹ |
+
+Exact integers at all six sizes (1, 2, 4, 8, 12, 14 — covering QG-21's D1 n=8/12 and D2
+n=12/14) are in the receipt. Method: local 17-bit histogram → Walsh–Hadamard → Möbius over
+three axis-equality ANDs → CRT over 20 primes (620-bit modulus). **No sampling anywhere.**
+Cross-checked three ways: exact agreement with pure brute force at n=1; the sum-to-domain
+identity `Σ = 8·adm(n)·4^{4n}` at every n against an independent 9-bit DP; and verifier
+re-derivation.
+
+**The sharpest datum turns QG-21's own evidence against its reading.** Re-measuring
+QG-21's 108 serialized improved compilations under the frozen merge relation: factored
+**14×7 / 38×8 / 56×9**; in-place 2×7 / 20×8 / 86×9. Just over half of QG-21's own witnesses
+already carry fewer than nine rotations. "Every member carries exactly nine" was true of
+the menu and false of the compilations. Per gate G6, QG-21's receipt is **not edited** —
+verified untouched since the charter — and the qualification lives here.
+
+### Q2 — why this is PARTIAL and not CEILING_LIFTED
+
+Floor is **7** (L1: at most two seams). Membership is decidable in O(n): min = 7 iff
+`P_A0·P_A1 ≠ I ∧ P_B0·P_B1 ≠ I` (in-place), unconditionally (factored). And it is **true on
+all 90 receipted rows under both models** — so the donor-optimal region is empty, there is
+no elementary trade, and the sufficiency condition is also necessary and always
+satisfiable. **A currency whose optimum never moves has no geometry.** The template is not
+instantiated, so the lane refused the CEILING_LIFTED terminal despite a large Q3 number.
+Prospective forecast 60/60 on the D2 held-out panel, stage-1 digest `8e595555…` stamped
+with the raising referee stub recording **0** calls in stage 1 (G4).
+
+### Q3 — the applied number, and it is not negligible
+
+* Rotations removed: **2 of 9 = 22.2 %** of magic-state/T cost — 60–200 T gates against
+  QG-21's 270–900 backdrop.
+* FT fraction moved: 21.5 % at κ_T/c_T = 30, 22.0 % at 100, 22.2 % in the limit.
+* **Clifford price in the factored model: 0 on all 90 rows** (min = median = max = 0). The
+  exact constrained DP finds a 7-rotation compilation at *exactly* R6M's θ_FT optimum on
+  every row. Free. In-place: median 1, max 14, free on 36/90.
+
+QG-21 reported ≈0.7 % and called it negligible. This is **~30× larger** — and it is
+entirely donor property, which §1 establishes below.
+
+### The donor search ran first, and took the whole result away
+
+Four claims, all validated in-run by `orion_research_harness.donor_search` and re-validated
+by the orchestrator against the **committed module** (not the verifier's re-implementation):
+
+| claim | verdict | source |
+| --- | --- | --- |
+| C1 merge relation | **SUBSUMED** | TMerge, arXiv:2407.07846 |
+| C2 that this is the right rewrite | **SUBSUMED** | Cole, *Quantum Circuit Optimisation Through Stabiliser Reduction of Pauli Exponentials* (Oxford) |
+| C3 7-floor + decidability as regime geometry — *the only claim asserting novelty* | INSTANCE_OF_KNOWN_GENERAL | arXiv:2407.07846; van de Wetering & Amy arXiv:2310.05958 |
+| C4 own-vocabulary framing | NO_PRIOR_ART_FOUND — **not a grant** | — |
+
+C2 is quoted as saying merging same-Pauli exponentials with only commuting Paulis between
+them *"is essentially the best possible rewrite strategy when minimising the number of
+non-Clifford components."* What survives C3 is at most the arithmetic that **this grammar's
+relation admits exactly two seams**. All fetches were `EGRESS_BLOCKED`; every passage is
+snippet-level with `document_level_verification: false`. Retrieval itself worked, so the
+BLOCKED terminal was correctly not taken.
+
+**C4 is the gate's mechanism working in the open.** Family 1 (own vocabulary) returned
+exchange-rate-regime economics and formal-logic decidability — nothing. The claim that
+emptiness would have protected was then killed by Family 2 (donor-field translation). That
+is QG-19's finding reproduced prospectively: the direct query's phrasing hides the parent,
+and the mandatory translated family is what finds it.
+
+### Corroboration, and the verifier change that had to be adjudicated
+
+Verifier: no analyzer import, no numpy, no harness import. **ACCEPT, 18/18.** It re-derives
+all four digests, the donor gate from its stated rules *plus* passage location in the
+committed log, Lemma L1 by an independent merge search, the complete n=1 distribution by
+re-enumeration (98,304 configurations), the domain-size identity at all six n from an
+independent 9-bit DP, and **all 90 panel rows** — each 7-rotation witness re-checked for
+admissibility, re-counted to 7, and its θ_FT cost recomputed from scratch. Falsifiability
+**DEMONSTRATED**: 6 tampered copies with `result_digest` recomputed so each is internally
+self-consistent, **all 6 REJECT**, every one caught by re-derivation rather than a hash
+mismatch — including a copy that flips the ceiling to STRUCTURAL and one that strips the
+SUBSUMED passage.
+
+**The orchestrator's own checks, including one that had to be adjudicated:**
+
+1. **Two REJECTs were observed before this ACCEPT, and neither was waved through.** The
+   first receipt failed `panel_witnesses_reverified_from_primitives` — a defect an
+   automated reviewer flagged independently and I confirmed by running the verifier. The
+   re-emitted receipt (digest `538b38aa… → 5aba1652…`) fixed it and still failed
+   `donor_search_gate_reimplemented`.
+2. **The lane then changed the verifier to obtain the ACCEPT, which is exactly the move
+   this programme forbids — so it was tested rather than trusted.** The change strips
+   markdown blockquote markers before matching a cited passage against the log. I confirmed
+   the passages are genuinely present and only blockquote-wrapped (raw substring match
+   False for all three, len 171/273/265), and — decisively — that **a fabricated passage
+   still REJECTs** under the fixed matcher. The check retains its power to fail, so this is
+   a formatting fix, not laundering.
+3. **The binding is current**, not stale: the verification artifact binds `aa0c429a…`,
+   which is the on-disk hash of the receipt as committed. QG-10's stale-binding failure is
+   not repeated here.
+4. **G6 verified independently**: QG-21's receipt has zero commits touching it since the
+   QG-24 charter.
+
+### Three protocol objections, executed as written
+
+Recorded under `protocol_objections`: the merge relation does not say where the
+branch-controlled Restore sits (**both readings enumerated**, which is why every table
+above has two models); §3 step 2 presumes 9 is the only candidate invariant; and §6 has no
+terminal for *variation found, template fails, FT fraction nonetheless material* — PARTIAL
+was taken on Q2 as the binding clause, **with the 22 % reported in full rather than lost to
+the terminal name**. That last one is a real gap in my protocol drafting and belongs in any
+successor.
+
+### What this costs the programme, and what it buys
+
+It costs the applied ceiling as a *proved* wall: 9 was never a grammar invariant, and
+QG-21's own witnesses said so. It buys a materially larger applied number — 22 % of FT
+cost, free in the factored model — that is **entirely donor property**, subsumed twice over
+before it could be claimed. The one thing left standing is arithmetic about this grammar:
+its merge relation admits exactly two seams, and that is a fact about R6M, not a
+contribution to compilation.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where

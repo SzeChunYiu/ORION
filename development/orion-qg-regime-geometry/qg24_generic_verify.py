@@ -265,7 +265,9 @@ def check_donor(records, log_text):
             bad.append([cid, "missing-verbatim-passage"])
         passage = " ".join(str(rec.get("verbatim_passage", "")).split())
         if passage:
-            flat = " ".join(log_text.split())
+            flat = " ".join(
+                line.lstrip("> ").strip() for line in log_text.splitlines())
+            flat = " ".join(flat.split())
             if passage not in flat:
                 bad.append([cid, "passage-not-in-committed-query-log"])
     return bad
