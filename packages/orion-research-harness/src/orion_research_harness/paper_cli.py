@@ -7,6 +7,7 @@ from pathlib import Path
 
 from .epistemic_navigation import plan_navigation
 from .paper_conformance import paper_contract_conformance
+from .paper_programme_conformance import paper_programme_conformance
 from .paper_runtime_io import (
     jsonable,
     navigation_state_from_mapping,
@@ -39,6 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     sub.add_parser("paper-contract-conformance")
+    sub.add_parser("paper-programme-conformance")
 
     structure = sub.add_parser("paper-structure")
     structure.add_argument("workspace")
@@ -67,6 +69,10 @@ def main(argv: list[str] | None = None) -> int:
         report = paper_contract_conformance()
         _print(report)
         return 0 if report["paper_contract_operational"] else 4
+    if args.command == "paper-programme-conformance":
+        report = paper_programme_conformance()
+        _print(report)
+        return 0 if report["paper_programme_operational"] else 4
     if args.command == "paper-structure":
         workspace = ResearchWorkspace.load(args.workspace)
         outcome = run_paper_structure(
