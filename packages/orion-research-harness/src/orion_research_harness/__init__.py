@@ -37,6 +37,7 @@ from .mechanics_bridge import (
     run_mechanic_receipts,
     saturation_surface,
 )
+from .ocme_programme_hardening import install_ocme_programme_hardening
 from .paper_structure_consensus import run_paper_structure_consensus
 from .protocol import CapabilityRequest, CapabilityResult
 from .recursive_runner import RecursiveRunLimits
@@ -76,6 +77,7 @@ __all__ = [
     "execution_coverage",
     "initialize_campaign",
     "install_governance_hardening",
+    "install_ocme_programme_hardening",
     "install_recursive_budget_hardening",
     "install_recursive_cost_hardening",
     "install_research_director_integration",
