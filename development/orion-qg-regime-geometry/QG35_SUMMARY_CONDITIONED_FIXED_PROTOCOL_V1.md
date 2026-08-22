@@ -5,17 +5,17 @@ Issue: SzeChunYiu/ORION#932
 Parent programme: #740
 Direct earned parent: QG-32 #911.
 Context-only earned parent: QG-32c #928 proves universal fixed minimum 5, but QG-35 does not use that lower bound because its fixed probe set may depend on the known joint summary class.
-Comparison successor: QG-36 #933, frozen before any QG-35 result.
+Comparison successor: QG-36 #933, frozen before any accepted QG-35 result.
 
 ## Status
 
-**PROSPECTIVE FAIR-BASELINE LANE. FROZEN BEFORE ANY QG-35 OUTCOME.**
+**FAIR-BASELINE LANE. SCIENTIFIC TARGET FROZEN BEFORE OUTCOME. RUN-1 SEARCH-METHOD AMENDMENT RECORDED BEFORE RERUN.**
 
 The initial joint bulk+spectrum summary class is known before any indexed probe is selected. For each of the 92 exact initial classes `S`, define `F(S)` as the minimum cardinality of a probe set selected after `S` is known but fixed before any probe responses are observed, such that the joint response signature separates every orbit in `S`.
 
 `F_* = max_S F(S)`.
 
-No value of `F(S)` or `F_*` is predicted.
+No value of `F(S)` or `F_*` was predicted before run 1.
 
 ## Frozen universe and binding
 
@@ -50,19 +50,28 @@ For every non-singleton class:
 5. allowed sound pruning only:
    - no-slots terminal;
    - maximum-cover cardinality lower bound;
-   - choose one uncovered pair with the fewest still-available candidate probes;
-   - sorted-probe start index to avoid duplicate combinations;
-   - memoization keyed by `(remaining_pairs, slots, start)`;
+   - choose one uncovered pair with the fewest candidate probes among all retained covers;
+   - memoization keyed only by `(remaining_pairs, slots)`;
 6. if no `d<=4` exists, verify the earned QG-32 universal five-probe basis separates this class and set `F(S)=5`.
 
+Already-selected probes cannot recur in the amended search because every pair they cover is removed from `remaining_pairs`, so the same probe covers no remaining pivot and cannot be selected again.
+
 Required serialization:
-- all 92 exact `F(S)` values in canonical class order;
+- all 92 exact `F(S)` values in canonical QG-32 `make_groups` class order;
 - minimum histogram by class count and by orbit mass;
 - `F_*`;
 - worst class indices/sizes;
-- canonical exact witness probe set for every worst class;
+- deterministic exact witness probe set for every worst class;
 - witness separation check;
 - per-class reduced cover count and branch-search statistics.
+
+### Run-1 method refutation and amendment
+
+Protected run 1 was **not accepted**. Production and independent generic ORION agreed on 91/92 class minima and on the provisional maximum, but differed on class index 5: production returned 3 while generic MITM returned 2.
+
+The cause was the original production-only pruning rule `start probe index`, used together with uncovered-pair branching. That combination is unsound: the probe covering the currently chosen pivot need not be the smallest-index member of an optimal set. If the search branches on a higher-index pivot-covering probe first, the old `start` restriction can incorrectly exclude a lower-index companion probe required for other uncovered pairs.
+
+The independent verifier exposed this failure. Before rerun, the rule is removed and production memoization is reduced to the exact state `(remaining_pairs, slots)`. No scientific target, domain, allowed cardinality, parent upper bound, generic method, native authority, comparison rule, or positive terminal is changed by this amendment. Run 1 remains unearned.
 
 ## Independent generic method
 
