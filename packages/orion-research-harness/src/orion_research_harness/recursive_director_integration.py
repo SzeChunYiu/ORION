@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 
 from orion.core.research_resolution import UnresolvedClass
 from orion.core.residuals import Residual, ResidualKind, Responsibility
@@ -16,6 +16,19 @@ _INSTALLED = False
 
 def _mapping(value: object) -> Mapping[str, Any]:
     return value if isinstance(value, Mapping) else {}
+
+
+def _dedupe_reason_codes(values: Iterable[str]) -> tuple[str, ...]:
+    """Preserve first occurrence while preventing duplicate-ID construction failure."""
+
+    seen: set[str] = set()
+    out: list[str] = []
+    for value in values:
+        code = str(value).strip()
+        if code and code not in seen:
+            seen.add(code)
+            out.append(code)
+    return tuple(out)
 
 
 def _material_residuals_from_record(record: Mapping[str, Any]) -> tuple[Residual, ...]:
@@ -92,11 +105,10 @@ def _resolution_for_nonrun_outcome(outcome: Mapping[str, Any]) -> dict[str, obje
     problem_id = str(outcome.get("problem_id", "unknown-problem"))
     request = _mapping(outcome.get("request"))
     request_id = str(request.get("request_id", ""))
-    reasons = (status,)
     obligation = build_resolution_obligation(
         subject_id=problem_id,
         unresolved_class=UnresolvedClass.CAPABILITY,
-        reason_codes=reasons,
+        reason_codes=(status,),
         required_object_ids=((request_id,) if request_id else ()),
         blocker_ids=((request_id,) if status == "HOST_CAPABILITY_FAILED" and request_id else ()),
     )
@@ -104,12 +116,7 @@ def _resolution_for_nonrun_outcome(outcome: Mapping[str, Any]) -> dict[str, obje
 
 
 def install_research_director_integration() -> None:
-    """Attach paper-aware next-action and V4 unresolved-resolution projections.
-
-    The underlying recursive runner and immutable run receipt remain unchanged.
-    Derived director/resolution objects cannot rewrite scientific evidence, erase a
-    negative result, or mint closure authority.
-    """
+    """Attach paper-aware next-action and V4 unresolved-resolution projections."""
 
     global _INSTALLED
     if _INSTALLED:
@@ -152,14 +159,11 @@ def install_research_director_integration() -> None:
         public_status = str(outcome.get("status", ""))
         unresolved = (
             public_status.startswith("CANNOT_CHECK")
-            or solution_status in {
-                SolutionStatus.CANNOT_CHECK,
-                SolutionStatus.PROVISIONAL,
-                SolutionStatus.BLOCKED,
-            }
+            or solution_status
+            in {SolutionStatus.CANNOT_CHECK, SolutionStatus.PROVISIONAL, SolutionStatus.BLOCKED}
         )
         if unresolved:
-            reason_codes = tuple(
+            reason_codes = _dedupe_reason_codes(
                 str(row.get("stop_reason"))
                 for row in record.get("stop_records", ())
                 if isinstance(row, Mapping) and row.get("stop_reason")
@@ -167,11 +171,19 @@ def install_research_director_integration() -> None:
             if not reason_codes:
                 reason_codes = (public_status or solution_status.value,)
             obligation = build_resolution_obligation(
-                subject_id=str(outcome.get("problem_id") or record.get("problem", {}).get("problem_id") or "unknown-problem"),
+                subject_id=str(
+                    outcome.get("problem_id")
+                    or _mapping(record.get("problem")).get("problem_id")
+                    or "unknown-problem"
+                ),
                 unresolved_class=_class_for_directive(directive.kind, record),
                 reason_codes=reason_codes,
                 attempt_ids=(run_id,),
-                blocker_ids=tuple(str(item) for item in outcome.get("residual_ids", ()) if str(item)),
+                blocker_ids=tuple(
+                    dict.fromkeys(
+                        str(item) for item in outcome.get("residual_ids", ()) if str(item)
+                    )
+                ),
             )
             projected["resolution_obligation"] = obligation.as_dict()
         return projected
@@ -185,4 +197,4 @@ def install_research_director_integration() -> None:
 install_research_director_integration()
 
 
-__all__ = ["install_research_director_integration"]
+__all__ = ["_dedupe_reason_codes", "install_research_director_integration"]
