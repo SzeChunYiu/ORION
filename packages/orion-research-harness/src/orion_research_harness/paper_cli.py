@@ -216,12 +216,21 @@ def main(argv: list[str] | None = None) -> int:
         _print(resolution_plan_from_mapping(raw))
         return 0
     if args.command == "research-direct":
-        directive = direct_research_from_mapping(_load_json(args.json, args.file))
+        raw = _load_json(args.json, args.file)
+        if not isinstance(raw, dict):
+            raise TypeError("research-direct input must be an object")
+        directive = direct_research_from_mapping(raw)
         payload = directive.as_dict()
         if directive.kind is ResearchDirectiveKind.CANNOT_CHECK:
+            if raw.get("resource_bound_hit") is True:
+                unresolved_class = UnresolvedClass.RESOURCE
+            elif raw.get("identity_ambiguity_hit") is True:
+                unresolved_class = UnresolvedClass.RESPONSIBILITY
+            else:
+                unresolved_class = UnresolvedClass.RESPONSIBILITY
             payload["resolution_obligation"] = _resolution(
                 subject_id="research-directive",
-                unresolved_class=UnresolvedClass.RESPONSIBILITY,
+                unresolved_class=unresolved_class,
                 reason_codes=(directive.reason,),
                 blocker_ids=directive.trigger_residual_ids,
             )
@@ -303,10 +312,13 @@ def main(argv: list[str] | None = None) -> int:
             )
         elif decision.terminal is OCMETerminal.OCME_DONOR_SUBSUMED:
             evidence_ids = tuple(
-                str(item)
-                for item in (
-                    list((raw.get("obstruction") or {}).get("evidence_ids", ()))
-                    + list((raw.get("transfer") or {}).get("evidence_ids", ()))
+                dict.fromkeys(
+                    str(item)
+                    for item in (
+                        list((raw.get("obstruction") or {}).get("evidence_ids", ()))
+                        + list((raw.get("transfer") or {}).get("evidence_ids", ()))
+                    )
+                    if str(item)
                 )
             ) or ("e:ocme-donor-subsumed",)
             payload["negative_result"] = assimilate_negative_result(
