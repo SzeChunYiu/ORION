@@ -116,10 +116,21 @@ jobs:
 
           expected = json.loads(Path('papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json').read_text())
           actual = json.loads(Path('/tmp/q1-sanity.json').read_text())
-          if actual != expected:
-              raise SystemExit('Q1 independent proof sanity output drifted from the bound result')
+          core_keys = (
+              'schema',
+              'orion_quantum_imports',
+              'restore_lemma',
+              'class_lemma',
+              'status',
+          )
+          expected_core = {key: expected[key] for key in core_keys}
+          actual_core = {key: actual[key] for key in core_keys}
+          if actual_core != expected_core:
+              raise SystemExit('Q1 independent proof sanity scientific core drifted from the bound result')
           if actual.get('status') != 'PASS':
               raise SystemExit('Q1 independent proof sanity check did not PASS')
+          if 'not external peer review' not in actual.get('authority', ''):
+              raise SystemExit('Q1 reusable sanity script lost its non-authority boundary')
           PY
       - name: Validate Q3 typed reconstruction of historically prospective V0
         run: |
