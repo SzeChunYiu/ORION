@@ -1,0 +1,173 @@
+{
+  "check_count": 36,
+  "checks": {
+    "G10_hypotheses_stated_before_measurement": true,
+    "G1_receipt_bindings_exact": true,
+    "G2_vocabulary_verbatim": true,
+    "G3_staging_enforced_structurally": true,
+    "G4_both_fits_both_coordinates_residuals_domain": true,
+    "G5_no_panel_reselection": true,
+    "G6_abstention_reported_two_sided": true,
+    "G7_no_silent_truncation": true,
+    "G8_authority_ceiling_NOT_R6": true,
+    "G9_timing_excluded_from_digest": true,
+    "H0_support_census": true,
+    "H0_verdict": true,
+    "H1_alternative_reading_disclosed": true,
+    "H1_verdict": true,
+    "authority_string_matches_terminal": true,
+    "baselines_recomputed_32_and_3": true,
+    "census_per_feature_rederived": true,
+    "claim_boundary_states_the_weaker_object": true,
+    "class_counts": true,
+    "coverage": true,
+    "frozen_ladder_matches": true,
+    "gates_all_true": true,
+    "n4_state_space_complete": true,
+    "panel_positives": true,
+    "predictor_scores_rederived": true,
+    "protocol_sha256": true,
+    "q3_curves_rederived": true,
+    "raw_headline_witness_is_the_qg15c_witness": true,
+    "result_digest": true,
+    "schema": true,
+    "stage1_digest": true,
+    "sublattice_minimality_both_arms": true,
+    "terminal_follows_the_verdicts": true,
+    "training_domain_complete": true,
+    "upstream_receipt_hashes": true,
+    "witness_training_error_reevaluated": true
+  },
+  "checks_failed": [],
+  "decision": "ACCEPT",
+  "falsifiability_demonstration": {
+    "all_rejected": true,
+    "cases": [
+      {
+        "checks_that_caught_it": [
+          "H1_verdict",
+          "terminal_follows_the_verdicts"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "H1_verdict_flipped_to_BORNE_OUT"
+      },
+      {
+        "checks_that_caught_it": [
+          "coverage"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "normalized_box_coverage_inflated"
+      },
+      {
+        "checks_that_caught_it": [
+          "baselines_recomputed_32_and_3",
+          "predictor_scores_rederived"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "lattice_baseline_claimed_perfect"
+      },
+      {
+        "checks_that_caught_it": [
+          "census_per_feature_rederived"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "one_feature_reclassified_as_linear"
+      },
+      {
+        "checks_that_caught_it": [
+          "baselines_recomputed_32_and_3",
+          "predictor_scores_rederived",
+          "q3_curves_rederived",
+          "raw_headline_witness_is_the_qg15c_witness",
+          "stage1_digest"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "raw_headline_witness_threshold_shifted"
+      },
+      {
+        "checks_that_caught_it": [
+          "q3_curves_rederived"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "one_tradeoff_curve_cell_zeroed"
+      },
+      {
+        "checks_that_caught_it": [
+          "stage1_digest"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "stage1_digest_replaced"
+      },
+      {
+        "checks_that_caught_it": [
+          "H0_support_census"
+        ],
+        "decision": "REJECT",
+        "self_consistent_digest": true,
+        "tamper": "H0_census_claims_intensive_features_did_it"
+      }
+    ],
+    "method": "each tampered copy is a single minimal field mutation with its result_digest RECOMPUTED so the copy is internally self-consistent; a tamper is therefore caught by the independent re-derivation, not by a hash mismatch",
+    "status": "DEMONSTRATED",
+    "tampers_tried": 8
+  },
+  "independence": "imports nothing from qg23_forecast_n_dependence, qg15_third_family, qg15b_predicate_language or qg15c_vocabulary; ground truth comes from the committed qg15_generic_verify / qg15c_generic_verify layers, whose Pauli representation and conjugation tables are numerically derived and share no code with the analyzer chain. Serialized predicates are treated as claims and re-evaluated, never trusted.",
+  "rebuilt": {
+    "H0": "BORNE_OUT",
+    "H1": "REFUTED",
+    "H1_all_pairs_reading": "BORNE_OUT",
+    "baseline_cell_lookup": 32,
+    "baseline_lattice": 3,
+    "class_counts": {
+      "EXTENSIVE_LINEAR": 23,
+      "EXTENSIVE_OTHER": 9,
+      "INTENSIVE": 1
+    },
+    "coverage_normalized_box": 71,
+    "coverage_normalized_exact_cell": 0,
+    "coverage_unnormalized_box": 44,
+    "coverage_unnormalized_exact_cell": 0,
+    "intensive_only_out_of_support": 0,
+    "normalized_cell_lookup_errors": 32,
+    "normalized_lattice_errors": 28,
+    "panel_out_of_box_support_unnormalized": 76,
+    "panel_positives": 32,
+    "sublattice": {
+      "normalized_arm": {
+        "E_floor": 1,
+        "cells": 1043,
+        "literal_pool": 1082,
+        "mixed": 1,
+        "sublattice_minerr": {
+          "K1_D1": 70,
+          "K1_D2": 52,
+          "K1_D3": 46,
+          "K2_D1": 53
+        }
+      },
+      "raw_arm": {
+        "E_floor": 1,
+        "cells": 1043,
+        "literal_pool": 704,
+        "mixed": 1,
+        "sublattice_minerr": {
+          "K1_D1": 67,
+          "K1_D2": 49,
+          "K1_D3": 41,
+          "K2_D1": 47
+        }
+      }
+    },
+    "terminal": "QG23_PARTIAL__SUPPORT_DIAGNOSED_BUT_NORMALIZATION_DOES_NOT_TRANSFER",
+    "training_rows": 1146
+  },
+  "results_file": "/home/user/ORION/research/extensions/orion-qg/QG23_FORECAST_N_DEPENDENCE_RESULTS.json",
+  "verifier_scope": "protocol section 8 verifier scope in full: complete n<=3 rebuild from the independent primitive layer, independent census with both fits in both coordinates and their residuals and domains, independent phi_n, independent panel regeneration and labelling, independent cell tables and a complete brute-force sub-lattice minimum-error search over {(1,1),(1,2),(1,3),(2,1)} for BOTH arms with no R5/R6 reductions and no pruning bounds, the full trade-off curve at every threshold, the H0/H1/terminal chain recomputed from the verifier's own numbers, and a field-by-field rebuild of the stage-1 digest"
+}

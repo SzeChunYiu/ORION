@@ -8,3 +8,10 @@ __pycache__/
 # artifacts -- but a lock is an input, and issue #160 Gate 7 requires a
 # dependency lock sufficient for clean reproduction of every paper. An
 # ignored lock makes that gate permanently unclosable.
+
+# Ephemeral harness run state. The QG dual-harness runners create and rmtree
+# these workspaces themselves, and the QG workflows upload artifacts/ as CI
+# build artifacts rather than committing it. Lane receipts that carry authority
+# are written to research/extensions/orion-qg/ and committed explicitly.
+/artifacts/
+/.orion-qg-*/

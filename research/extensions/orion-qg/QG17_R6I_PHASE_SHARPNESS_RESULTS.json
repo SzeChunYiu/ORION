@@ -1,0 +1,289 @@
+{
+  "schema": "ORION.QG.QG17.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#814",
+  "pr": null,
+  "lane": "QG-17 — sharpness of the R6I support-1 objective phase",
+  "execution_head": "61e1d19c42e9b5db757cd2a6814e9e7fb789c18d",
+  "execution_head_note": "Concurrent lanes advanced HEAD 0d80d466 -> 61e1d19c during the run and -> 19439942 shortly after it. Neither diff touches any QG-17 file (git diff --name-only 0d80d466..19439942 | grep -i qg17 is empty), so the frozen instrument was byte-identical throughout. All QG-17 artifacts were produced at 2026-08-21T20:02:19Z under head 61e1d19c.",
+  "shared_harness_note": "packages/orion-research-harness/src/orion_research_harness/local_tools.py was UNMODIFIED at QG-17 execution time (20:02:19Z); another lane raised its process-timeout cap from 120 s to 1800 s at 20:07:11Z, after this run finished. This run therefore executed under the original 120 s per-tool cap, which the 17.6 s scanner never approached.",
+  "protocol": "development/orion-qg-regime-geometry/QG17_R6I_PHASE_SHARPNESS_PROTOCOL_V1.md",
+  "protocol_status": "FROZEN_BEFORE_WEIGHTED_CANDIDATE_SCORING__EXECUTED_UNMODIFIED",
+
+  "terminal": "QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN",
+  "annotation": null,
+  "annotation_note": "QG17_QG16_FACET_LOCALLY_SHARP_BY_AFFINE_WITNESS was NOT earned: it requires at least one selected witness hyperplane exactly proportional to a QG-16 facet, and no witness exists.",
+  "source_result_digest": "30338474f41c5e1362d4c44ff455b3e5b8496b0210e61945bf7ee9668c6a60cd",
+
+  "instrument_digests_sha256": {
+    "QG17_R6I_PHASE_SHARPNESS_PROTOCOL_V1.md": "4f67c0c975bc6fe5caafcd9eedae84688c1dbfab5fee271c8b4d5907f47c2641",
+    "qg17_r6i_phase_sharpness.py": "0ce06e6ffa86dee7a52dcfadee0e1106d475396c14f97aa5661604d433752b32",
+    "qg17_generic_verify.py": "77fb2339e1aaab999d60d96dd3b487b225acefba88c9a579a1b8c89769ed4c2f",
+    "qg17_native_verify.py": "9191027fbd3162f61ef366cec78021c9f1d636060148cb1a3288296e0c8f7730",
+    "run_qg17_dual_harness.py": "410190d359c1be5b28844c003bdedde65ebb01683eae7b79a63670c4f85a5868"
+  },
+
+  "parent_binding": {
+    "qg16_terminal": "QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED",
+    "qg16_protected_receipt_commit": "406886f55aaaa08a4b310d336e3c98a87371e97e",
+    "qg16_protected": true,
+    "qg16_sharpness_open_at_entry": true,
+    "v5_terminal": "QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL",
+    "v5_generator_digest_expected": "bb07c127d037f68e2a1f6ca6b5defee0fbadcebdb3ae23aedd4e7266f184a4fa",
+    "v5_generator_digest_recomputed": "bb07c127d037f68e2a1f6ca6b5defee0fbadcebdb3ae23aedd4e7266f184a4fa",
+    "v5_generator_digest_exact": true,
+    "all_parent_checks_pass": true
+  },
+
+  "candidate_generator": {
+    "reuse": "EXACT_V5_REUSE_UNMODIFIED__qg9_support2_tightness",
+    "unique_blocks": 1296,
+    "compatible_block_pairs": 4104,
+    "template_families": ["IDENTITY_RESTORE", "ONE_DEFECT_A", "ONE_DEFECT_B", "MATCHED_DEFECT"],
+    "candidates_tested": 211248,
+    "family_candidates_tested": {
+      "IDENTITY_RESTORE": 4104,
+      "ONE_DEFECT_A": 69768,
+      "ONE_DEFECT_B": 69768,
+      "MATCHED_DEFECT": 67608
+    },
+    "family_counts_match_v5": true
+  },
+
+  "exact_weighted_cap1_referee": {
+    "ordered_support1_anticommuting_frame_pairs_per_block": 12,
+    "total_A_by_B_pair_cells": 144,
+    "tag_feasible_pair_cells": 84,
+    "feasible_B_partners_per_A_pair": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+    "every_A_pair_has_feasible_B_partner": true,
+    "cache": {"a_target_classes": 468, "b_target_classes": 468, "b_envelope_entries": 1872}
+  },
+
+  "objectives": [
+    {
+      "name": "O0",
+      "role": "INSIDE_CONTROL",
+      "theta_t_nc_t_c_t_tag_t_r": ["4", "2", "2", "1"],
+      "theta_exact": {"t_nc": {"numerator": 4, "denominator": 1}, "t_c": {"numerator": 2, "denominator": 1}, "t_tag": {"numerator": 2, "denominator": 1}, "t_r": {"numerator": 1, "denominator": 1}},
+      "qg16_position": "INSIDE_CONE_ON_BOUNDARY__minimum_margin_0",
+      "strict_witness_count": 0,
+      "first_witness": null,
+      "max_gap_witness": null,
+      "outcome": "CONTROL_HELD__ZERO_STRICT_WITNESSES_AS_QG16_REQUIRES"
+    },
+    {
+      "name": "O_tag_out",
+      "role": "OUTSIDE_OBJECTIVE_1",
+      "theta_t_nc_t_c_t_tag_t_r": ["4", "2", "5/2", "1"],
+      "theta_exact": {"t_nc": {"numerator": 4, "denominator": 1}, "t_c": {"numerator": 2, "denominator": 1}, "t_tag": {"numerator": 5, "denominator": 2}, "t_r": {"numerator": 1, "denominator": 1}},
+      "qg16_position": "OUTSIDE_CONE__minimum_margin_-1",
+      "strict_witness_count": 0,
+      "first_witness": null,
+      "max_gap_witness": null,
+      "family_histogram": {},
+      "pair_kind_histogram": {},
+      "outcome": "NO_STRICT_SUPPORT2_WITNESS__SUPPORT1_NOT_REFUTED_HERE_ON_THIS_DOMAIN"
+    },
+    {
+      "name": "O_restore_out",
+      "role": "OUTSIDE_OBJECTIVE_2",
+      "theta_t_nc_t_c_t_tag_t_r": ["4", "2", "2", "5/4"],
+      "theta_exact": {"t_nc": {"numerator": 4, "denominator": 1}, "t_c": {"numerator": 2, "denominator": 1}, "t_tag": {"numerator": 2, "denominator": 1}, "t_r": {"numerator": 5, "denominator": 4}},
+      "qg16_position": "OUTSIDE_CONE__minimum_margin_-1/2",
+      "strict_witness_count": 0,
+      "first_witness": null,
+      "max_gap_witness": null,
+      "family_histogram": {},
+      "pair_kind_histogram": {},
+      "outcome": "NO_STRICT_SUPPORT2_WITNESS__SUPPORT1_NOT_REFUTED_HERE_ON_THIS_DOMAIN"
+    },
+    {
+      "name": "O_nc_out",
+      "role": "OUTSIDE_OBJECTIVE_3",
+      "theta_t_nc_t_c_t_tag_t_r": ["3/2", "3/2", "1", "1"],
+      "theta_exact": {"t_nc": {"numerator": 3, "denominator": 2}, "t_c": {"numerator": 3, "denominator": 2}, "t_tag": {"numerator": 1, "denominator": 1}, "t_r": {"numerator": 1, "denominator": 1}},
+      "qg16_position": "OUTSIDE_CONE__minimum_margin_-2",
+      "strict_witness_count": 0,
+      "first_witness": null,
+      "max_gap_witness": null,
+      "family_histogram": {},
+      "pair_kind_histogram": {},
+      "outcome": "NO_STRICT_SUPPORT2_WITNESS__SUPPORT1_NOT_REFUTED_HERE_ON_THIS_DOMAIN"
+    }
+  ],
+
+  "outside_objectives_with_strict_witness": [],
+  "selected_witnesses": [],
+  "selected_witness_schema_note": "Had any strict witness existed, each selected first/max-gap record would carry integer r2=(U_c_extra,U_nc_extra,TagSupport,RestoreSupport), integer r1=(0,0,TagSupport,RestoreSupport), the difference d=r2-r1 in (t_c,t_nc,t_tag,t_r) order, its gcd/sign-normalized form, and its QG-16 facet proportionality verdict. No strict witness was found, so this list is empty and no d vector exists to normalize.",
+
+  "qg16_facets_bound_verbatim": [
+    {
+      "index": 0,
+      "halfspace_verbatim_from_qg16": "2*t_nc >= 5*t_r",
+      "coefficient_vector_t_c_t_nc_t_tag_t_r": [0, 2, 0, -5],
+      "normalized_vector": [0, 2, 0, -5],
+      "affine_proportionality_determination": "NOT_DETERMINED__NO_WITNESS_HYPERPLANE_EXISTS",
+      "local_sharpness_verdict": "UNDEMONSTRATED_BY_QG17"
+    },
+    {
+      "index": 1,
+      "halfspace_verbatim_from_qg16": "t_c+t_nc >= 5*t_r",
+      "coefficient_vector_t_c_t_nc_t_tag_t_r": [1, 1, 0, -5],
+      "normalized_vector": [1, 1, 0, -5],
+      "affine_proportionality_determination": "NOT_DETERMINED__NO_WITNESS_HYPERPLANE_EXISTS",
+      "local_sharpness_verdict": "UNDEMONSTRATED_BY_QG17"
+    },
+    {
+      "index": 2,
+      "halfspace_verbatim_from_qg16": "2*t_nc >= 2*t_r+2*t_tag",
+      "coefficient_vector_t_c_t_nc_t_tag_t_r": [0, 2, -2, -2],
+      "normalized_vector": [0, 1, -1, -1],
+      "affine_proportionality_determination": "NOT_DETERMINED__NO_WITNESS_HYPERPLANE_EXISTS",
+      "local_sharpness_verdict": "UNDEMONSTRATED_BY_QG17"
+    },
+    {
+      "index": 3,
+      "halfspace_verbatim_from_qg16": "t_c+t_nc >= 2*t_r+2*t_tag",
+      "coefficient_vector_t_c_t_nc_t_tag_t_r": [1, 1, -2, -2],
+      "normalized_vector": [1, 1, -2, -2],
+      "affine_proportionality_determination": "NOT_DETERMINED__NO_WITNESS_HYPERPLANE_EXISTS",
+      "local_sharpness_verdict": "UNDEMONSTRATED_BY_QG17"
+    }
+  ],
+  "facet_affine_matches": [],
+  "locally_sharp_facets": [],
+
+  "gates": {
+    "protocol_present": true,
+    "parents_bound": true,
+    "generator_digest_exact": true,
+    "unique_blocks_1296": true,
+    "pair_count_4104": true,
+    "candidate_count_211248": true,
+    "family_counts_match_v5": true,
+    "support1_pair_count_12": true,
+    "support1_tag_feasible_cells_nonzero": true,
+    "every_A_pair_has_feasible_B_partner": true,
+    "O0_zero_strict": true,
+    "all_gates_pass": true
+  },
+
+  "generic_orion": {
+    "decision": "ACCEPT_BOUNDED_NEGATIVE",
+    "all_checks": true,
+    "checks": {
+      "schema": true,
+      "result_digest": true,
+      "protocol_hash": true,
+      "generator_digest": true,
+      "candidate_count": true,
+      "O0_zero_strict": true,
+      "qg16_parent": true,
+      "selected_present_if_positive": true,
+      "selected_witnesses_independent": true,
+      "global_boundary_not_complete": true,
+      "authority_ceiling": true
+    },
+    "selected_verification": [],
+    "bounded_negative_caveat": "selected_witnesses_independent is VACUOUSLY true: there are no selected witnesses to replay. The generic lane independently checked digests, protocol hash, generator digest, candidate count, the O0 zero-witness control and parent binding; it did NOT independently regenerate the 211,248-candidate negative panel. The protocol explicitly does not require it to. This is the same bounded-negative posture V5 recorded."
+  },
+
+  "native_orion_q": {
+    "decision": "ACCEPT_BOUNDED_NEGATIVE",
+    "all_checks": true,
+    "responsibility": "NO_WITNESS_ON_FROZEN_V5_DOMAIN",
+    "checks": {
+      "parent_qg16_protected": true,
+      "generator_and_scan_gates": true,
+      "generic_accept": true,
+      "O0_zero": true,
+      "positive_consistent": true,
+      "global_incomplete": true,
+      "no_novelty": true,
+      "no_physical_advantage": true
+    },
+    "phase_witness_authority": false
+  },
+
+  "both_accept": true,
+  "dual_harness_terminal": "QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN",
+
+  "determinism": {
+    "runs": 3,
+    "canonical_pair_compared": [
+      "artifacts/orion-qg-qg17-r6i-phase-sharpness.json (dual-harness lane run)",
+      "artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json (deterministic replay)"
+    ],
+    "results_byte_identical": true,
+    "results_sha256_both_runs": "c2e67aeced98bc497b30016e564ed005f2f16bdb9c942bbf2a79828d748a29d7",
+    "canonical_stdout_identical": true,
+    "stdout_token_all_runs": "ORIONQG_QG17={\"annotation\":null,\"candidates_tested\":211248,\"facet_match_count\":0,\"outside_positive\":[],\"result_digest\":\"30338474f41c5e1362d4c44ff455b3e5b8496b0210e61945bf7ee9668c6a60cd\",\"strict_counts\":{\"O0\":0,\"O_nc_out\":0,\"O_restore_out\":0,\"O_tag_out\":0},\"tag_feasible_cells\":84,\"terminal\":\"QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN\"}",
+    "no_timing_fields_in_results": true
+  },
+
+  "runtimes_seconds": {
+    "scanner_timing_probe_run": 17.569,
+    "dual_harness_scanner_plus_both_verifiers": 18.147,
+    "scanner_deterministic_replay_run": 17.595,
+    "runtime_cap_per_run_seconds": 1500,
+    "cap_hit": false,
+    "cap_disclosure": "No run approached the 25-minute cap; the slowest wall time was 18.147 s. The dual harness's own internal 120 s per-tool timeout was likewise never approached."
+  },
+
+  "artifact_digests_sha256": {
+    "orion-qg-qg17-r6i-phase-sharpness.json": "c2e67aeced98bc497b30016e564ed005f2f16bdb9c942bbf2a79828d748a29d7",
+    "orion-qg-qg17-r6i-phase-sharpness-replay.json": "c2e67aeced98bc497b30016e564ed005f2f16bdb9c942bbf2a79828d748a29d7",
+    "orion-qg-qg17-generic-verification.json": "6d62b02e6d6bba8599e56737e23f0e0ef8822a2e0943f88c95986d68c2cea952",
+    "orion-qg-qg17-native-verification.json": "bda7b1bd7d5c764df402bfd8ccc2f09d13e81879745b3b245693c4ec1424273e",
+    "orion-qg-qg17-dual-harness.json": "4dc3c144c3e0a03bbfb167e9e2dfb559dd68d10f24f8faf8ef023589973b19e9",
+    "orion-qg-qg17-dual-summary.json": "722869923008df875dea63bfb7f4599f2a1ea67eed29d3eab98be61fa33b7fbe",
+    "orion-qg-qg17-replay.log": "c5e396630c7c49e7a09dbbab3abb6b8c2fbb1ab25ec78eab845f835abc4ee012"
+  },
+
+  "environment_deviations_from_workflow": [
+    "Ran locally with Python 3.11.15 from the session scratchpad venv instead of the workflow's actions/setup-python 3.12 + 'pip install -e .[dev,candidates]' + 'pip install -e packages/orion-research-harness[dev]'. orion_research_harness and numpy were already importable from the repo tree; no package install was performed.",
+    "Ran 'mkdir -p artifacts' before the dual harness, exactly as the workflow's own execute step does.",
+    "Skipped the workflow's 'Assert frozen lineage' step (git merge-base against 406886f5...) and the 'Upload QG-17 proof receipts' step; both are CI-only plumbing with no scientific content.",
+    "No scientific parameter, threshold, candidate count, objective, gate, or source file was modified. Zero code fixes were required."
+  ],
+  "plumbing_fixes_applied": [],
+
+  "post_hoc_diagnostic_not_protocol_frozen": {
+    "authority": "NONE__DIAGNOSTIC_ONLY__DOES_NOT_ALTER_TERMINAL_OR_GATES",
+    "purpose": "Record how close the frozen support-2 family came to a strict win, and confirm the zero-witness result is not a plumbing artifact of a single implementation.",
+    "max_margin_C_cap1_minus_C2_over_full_domain": {
+      "O0": "-5",
+      "O_tag_out": "-5",
+      "O_restore_out": "-13/4",
+      "O_nc_out": "0"
+    },
+    "exact_tie_counts_C2_equals_C_cap1": {"O0": 0, "O_tag_out": 0, "O_restore_out": 0, "O_nc_out": 4896},
+    "reading": "At O_nc_out the best frozen support-2 member exactly TIES the exact weighted support-1 optimum on 4,896 of 211,248 candidates but never strictly beats it; the protocol requires strict inequality, so no refutation follows. At O_tag_out and O_restore_out the support-2 family never comes within a strict win: its frame-extra cost (U_c_extra,U_nc_extra), which support-1 frames pay nothing for, outweighs the Tag/Restore savings.",
+    "cross_implementation_check": {
+      "sampled_candidates": 27,
+      "comparisons": 108,
+      "method": "Deterministic prime-stride sample re-scored with qg17_generic_verify.py's independent Fraction-exact support2_exact/cap1_exact against the scanner's scaled-integer C2/C_cap1 and resource vectors.",
+      "mismatches": 0
+    }
+  },
+
+  "interpretation": "Running the frozen QG-17 instrument end to end over the complete 211,248-candidate frozen V5 domain produced zero strict C2 < C_cap1 witnesses at all four registered objectives, including all three pre-registered outside objectives. The O0 inside control held at exactly zero strict witnesses, confirming the QG-16 parent binding. Consequently no QG-16 cone facet was shown locally sharp: the sharpness attack came up empty on this domain. This is an honest negative about the WITNESS FAMILY and the DOMAIN, not a proof that support 1 remains sufficient outside the QG-16 cone — a weighted unrestricted DP, or any support-2 configuration outside the frozen V5 obstruction-block family, could still refute support 1 at these objectives.",
+
+  "anti_overclaim": {
+    "global_phase_boundary_complete": false,
+    "global_phase_boundary_sharpness": "OPEN",
+    "qg16_facet_local_sharpness_demonstrated": false,
+    "support1_sufficiency_outside_cone_proved": false,
+    "support2_required_anywhere_claimed": false,
+    "negative_scope": "BOUNDED_TO_THE_FROZEN_V5_OBSTRUCTION_BLOCK_DOMAIN_AND_THE_THREE_PRE_REGISTERED_OUTSIDE_OBJECTIVES_ONLY",
+    "outside_cone_semantics": "THIS_RESULT_DOES_NOT_APPLY_OUTSIDE_ITS_EXACT_OBJECTIVES__NOT_SUPPORT1_SUFFICIENT__NOT_SUPPORT2_REQUIRED",
+    "novelty_authority": false,
+    "physical_quantum_advantage_claim": false,
+    "network_access": false,
+    "chemistry_sources_read": false,
+    "protected_subject_read": false
+  },
+
+  "successor_permission": "A_WEIGHTED_UNRESTRICTED_DP_OR_A_WIDER_SUPPORT2_DOMAIN_MAY_REOPEN_SHARPNESS_ONLY_AS_A_NEW_PROSPECTIVE_PACKET",
+
+  "authority": "QG17_NO_SUPPORT2_PHASE_WITNESS_ON_COMPLETE_FROZEN_V5_DOMAIN__O0_CONTROL_HELD__QG16_CONE_FACET_LOCAL_SHARPNESS_UNDEMONSTRATED__GLOBAL_PHASE_BOUNDARY_SHARPNESS_REMAINS_OPEN__BOUNDED_NEGATIVE_ONLY__NOT_R6"
+}

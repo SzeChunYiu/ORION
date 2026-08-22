@@ -1,0 +1,249 @@
+{
+ "analyzer_sha256": "ccd7032edd1e64f112abceab8da40f233d9b9ada47f3c5a698ad5cb7265edf78",
+ "check_count": 15,
+ "checks": {
+  "alphabet_reenumerated_from_the_committed_dp": {
+   "detail": {
+    "recomputed_distinct": 358
+   },
+   "ok": true
+  },
+  "authority_ceiling_not_r6": {
+   "detail": null,
+   "ok": true
+  },
+  "committed_state_count_matches_the_module": {
+   "detail": {
+    "module": 1024
+   },
+   "ok": true
+  },
+  "criterion_binding_gate_reimplemented": {
+   "detail": {
+    "bad": []
+   },
+   "ok": true
+  },
+  "criterion_binding_verdict_matches_the_terminal": {
+   "detail": {
+    "expected": "PASS"
+   },
+   "ok": true
+  },
+  "enumeration_complete": {
+   "detail": null,
+   "ok": true
+  },
+  "gf2_rank_recomputed": {
+   "detail": {
+    "recomputed": 10
+   },
+   "ok": true
+  },
+  "looseness_factor_consistent": {
+   "detail": null,
+   "ok": true
+  },
+  "methods_agree_as_claimed": {
+   "detail": null,
+   "ok": true
+  },
+  "moore_refinement_reproduced": {
+   "detail": {
+    "recomputed": {
+     "0": 1024,
+     "239": 1024
+    }
+   },
+   "ok": true
+  },
+  "nerode_index_is_2_to_the_rank": {
+   "detail": null,
+   "ok": true
+  },
+  "no_speed_claim_g3": {
+   "detail": null,
+   "ok": true
+  },
+  "protocol_sha256_recomputes": {
+   "detail": null,
+   "ok": true
+  },
+  "result_digest_recomputes": {
+   "detail": null,
+   "ok": true
+  },
+  "terminal_follows_from_the_recomputed_numbers": {
+   "detail": {
+    "expected": "QG26_SYNDROME_IS_NERODE_MINIMAL"
+   },
+   "ok": true
+  }
+ },
+ "determinism": {
+  "double_run": true,
+  "run1_sha256": "72c3d434310f803eb507a78b4036f5fe8a12bdb64d3a60d8a0bdad8f9dfd2ad6",
+  "run2_sha256": "72c3d434310f803eb507a78b4036f5fe8a12bdb64d3a60d8a0bdad8f9dfd2ad6",
+  "stdout_identical": true
+ },
+ "failed_checks": [],
+ "falsifiability_demonstration": {
+  "all_tampered_copies_internally_self_consistent": true,
+  "all_tampered_copies_rejected": true,
+  "cases": [
+   {
+    "case": "T1_terminal_flipped_to_loose",
+    "failed_checks": [
+     "terminal_follows_from_the_recomputed_numbers",
+     "criterion_binding_verdict_matches_the_terminal"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the headline terminal is flipped to the opposite branch",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T2_rank_understated_coherently",
+    "failed_checks": [
+     "gf2_rank_recomputed",
+     "nerode_index_is_2_to_the_rank",
+     "looseness_factor_consistent"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the GF(2) rank is lowered to 9 with the Nerode index and looseness factor adjusted to stay arithmetically consistent",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T3_alphabet_letter_removed",
+    "failed_checks": [
+     "alphabet_reenumerated_from_the_committed_dp"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "one letter is dropped from the declared alphabet and the count adjusted",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T4_mechanical_block_count_altered",
+    "failed_checks": [
+     "moore_refinement_reproduced"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the Moore refinement block count for target 239 is halved",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T5_looseness_factor_altered",
+    "failed_checks": [
+     "looseness_factor_consistent"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the looseness factor is set to 2 while rank and index stay correct",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T6_g3_scope_statement_replaced_by_a_speed_claim",
+    "failed_checks": [
+     "no_speed_claim_g3"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the gate-G3 scope statement is replaced with the speed claim G3 forbids",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T7_novelty_authority_granted",
+    "failed_checks": [
+     "authority_ceiling_not_r6"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "novelty_authority is flipped to true",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T8_enumeration_truncated_but_declared_complete",
+    "failed_checks": [
+     "enumeration_complete"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the enumerated option-row count is reduced to 4^5 while complete stays true",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T9_pass_under_a_changed_criterion_with_no_deviation",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the applied criterion digest diverges from the frozen one while the record keeps its PASS and offers no deviation, counterfactual or exhibited rejection -- the exact hazard criterion_binding exists for",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T10_applied_criterion_digest_removed",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "applied_criterion_digest is deleted, so 'unchanged' would have to be inferred from silence",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T11_frozen_criterion_digest_does_not_match_the_protocol",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the bound frozen digest is not the digest of the criterion text in the frozen protocol",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T12_criterion_verdict_contradicts_the_terminal",
+    "failed_checks": [
+     "criterion_binding_verdict_matches_the_terminal"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the criterion record reports FAIL while the terminal says the criterion was met",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T13_criterion_binding_block_emptied",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented",
+     "criterion_binding_verdict_matches_the_terminal"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the criterion_binding block is emptied, which must REJECT rather than raise",
+    "verdict": "REJECT"
+   }
+  ],
+  "each_case_names_the_field_it_mutates": true,
+  "each_case_rejected_by_the_check_it_names": true,
+  "expected_check_per_case": {
+   "T10_applied_criterion_digest_removed": "criterion_binding_gate_reimplemented",
+   "T11_frozen_criterion_digest_does_not_match_the_protocol": "criterion_binding_gate_reimplemented",
+   "T12_criterion_verdict_contradicts_the_terminal": "criterion_binding_verdict_matches_the_terminal",
+   "T13_criterion_binding_block_emptied": "criterion_binding_gate_reimplemented",
+   "T1_terminal_flipped_to_loose": "terminal_follows_from_the_recomputed_numbers",
+   "T2_rank_understated_coherently": "gf2_rank_recomputed",
+   "T3_alphabet_letter_removed": "alphabet_reenumerated_from_the_committed_dp",
+   "T4_mechanical_block_count_altered": "moore_refinement_reproduced",
+   "T5_looseness_factor_altered": "looseness_factor_consistent",
+   "T6_g3_scope_statement_replaced_by_a_speed_claim": "no_speed_claim_g3",
+   "T7_novelty_authority_granted": "authority_ceiling_not_r6",
+   "T8_enumeration_truncated_but_declared_complete": "enumeration_complete",
+   "T9_pass_under_a_changed_criterion_with_no_deviation": "criterion_binding_gate_reimplemented"
+  },
+  "method": "each tampered copy has its result_digest RECOMPUTED, so no hash mismatch is available; every rejection comes from re-derivation against the committed DP module",
+  "tamper_files_kept_outside_the_repository": true
+ },
+ "independent_of": [
+  "qg26_nerode_minimality",
+  "orion_research_harness",
+  "numpy"
+ ],
+ "results_file": "/home/user/ORION/research/extensions/orion-qg/QG26_NERODE_MINIMALITY_RESULTS.json",
+ "results_sha256": "2b953b6cda41c481b4e0ad4f90217514d1aaeecb4abcbd4261de6eb54098bcfa",
+ "schema": "ORIONQG.QG26.GenericVerification.v1",
+ "scope_note": "this verifier establishes the Nerode index of the FEASIBILITY language of the committed R6I state space, by two independent recomputations. It establishes nothing about the min-plus cost DP's running time.",
+ "terminal_under_review": "QG26_SYNDROME_IS_NERODE_MINIMAL",
+ "verdict": "ACCEPT",
+ "verifier": "qg26_generic_verify",
+ "verifier_sha256": "074ef6eb0907acde429712d6a383776dc8f7ed74ca4fc71fa89311a896818f8d"
+}
