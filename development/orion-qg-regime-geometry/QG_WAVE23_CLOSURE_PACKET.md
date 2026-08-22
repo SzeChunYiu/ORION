@@ -25,6 +25,11 @@ the one thing the programme expected:
 It does **not** close on a general framework contribution. QG-19 removed that, and §4
 records what it removed.
 
+**Amended after QG-24.** This packet was first written before QG-24 ran. QG-24 then
+refuted the applied ceiling §5 asserted, so §5 is corrected in place rather than left
+standing — a closure packet that contradicts its own programme's later evidence is not a
+closure. The wave-3 lane set is QG-10, QG-19, QG-22, QG-23 and QG-24.
+
 ## 2. What is established
 
 These are **exact values on named families under frozen cost models, machine-checked, each
@@ -43,6 +48,7 @@ any of them.
 | StabPrep feature-determination floor | zero error unachievable at any (K,D) in V1; V2 drops the floor 43 → 1 and mixed cells 12 → 1, one pair surviving | QG-15b, QG-15c |
 | certified interval geometry | `L ≤ C_DP ≤ U` refereeless, all L components proven on complete domains; 60.4 % of rows certified, gaps never > 2 | QG-10 |
 | syndrome DP complexity | referee Θ(n); QG-7e closed form O(n⁶); naive enumeration Θ(4^{7n}) | QG-22, corroborated independently by QG-10 |
+| rotation-count distribution | exact counts at n = 1…14 with no sampling; merge floor **7**, not 9 | QG-24 |
 
 **Two cross-lemma corroborations worth naming**, because they are what the verification
 audit says actually establishes correctness (`VERIFICATION_COVERAGE_2026-08-21.md`):
@@ -121,10 +127,24 @@ unconfirmed at the number, and cited as no quantitative datum.
 
 Not where the programme looked for them.
 
-* **Applied ceiling (QG-21).** Every compilation in this grammar carries exactly **9
-  arbitrary-angle rotations** that no family member can change. TARE regime geometry can
-  therefore only optimize Clifford gates — **under 1 % of fault-tolerant cost.** The
-  improvement is real and it is negligible where it counts.
+* **Applied ceiling — QG-21 measured it, and QG-24 REFUTED it inside this same packet.**
+  QG-21 recorded exactly **9 arbitrary-angle rotations** per compilation and the programme
+  read that as a wall at under 1 % of fault-tolerant cost. **It is a property of the family
+  menu, not of the grammar.** QG-24's Lemma L1 proves the merge relation admits only the
+  two block seams (12,357,376 checks, 0 mismatches), the floor is **7**, and re-measuring
+  **QG-21's own 108 improved compilations** gives 14×7 / 38×8 / 56×9 — over half already
+  carried fewer than nine. The real applied figure is **22.2 % of magic-state/T cost**, and
+  in the factored model it is **free** (Clifford price 0 on all 90 rows). ~30× QG-21's
+  number.
+  **The correction does not rescue the programme's method, and QG-24 says so.** The 7-floor
+  predicate is decidable in O(n) and true on *all 90 rows under both models*, so the
+  donor-optimal region is empty and no elementary trade exists — a currency whose optimum
+  never moves has no geometry. QG-24 therefore terminates
+  `QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME`, refusing `CEILING_LIFTED` despite
+  the large number. And the 22.2 % is **entirely donor property**: its merge relation is
+  SUBSUMED twice over (TMerge arXiv:2407.07846; Cole, Oxford), with the regime framing
+  INSTANCE_OF_KNOWN_GENERAL. Per gate G6, QG-21's receipt is not edited — verified untouched
+  since QG-24's charter — and the qualification lives in QG-24's own file.
 * **Complexity ceiling (QG-22).** There is no separation to state: membership, exact
   optimization and optimality verification are all polynomial, and the optimum is affine in
   n. "No closed form" does not imply "no polynomial algorithm" — the O1 escape hatch is
@@ -146,6 +166,7 @@ Not where the programme looked for them.
 | **W8** | R6B batch selection taken on the receipt's word, not re-derived | open; registered by the QG-3 verifier's stated limit |
 | **W9** | committed family search does not realize QG-6's support-capped corollary | partial — QG-10's `U_W1` supplies an uncapped weight-one enumerator, checked equal on all 1,029 instances where both are defined; support-2 remains |
 | **W10** | the V2 feature map, not the referee, caps StabPrep's reach | open |
+| **W11** | `donor_search` requires a passage but does not check it occurs in the query log | open — QG-24's verifier implements this check and it is **stronger than the committed module**; the gap was found the same way every other harness fix was, by a lane failing against it |
 | — | QG-15c's surviving collision pair (identical schedule geometry) | open; the precise form an impossibility result must address |
 | — | QG-10's 39.6 % undecided rows | open; gaps are 0/1/2 only |
 | — | QG-19's `document_level_verification: false` on every source | open; needs a session with document egress |
@@ -171,7 +192,19 @@ known failure mode.
    direction. Six for six.** A clean structural statement about DP over a bounded state has
    a parent in coding theory, constraint satisfaction, or integer programming. The default
    must be that the parent exists, with the burden on us to find it *before* the freeze.
-3. **A disclosed criterion change is worth more than a clean-looking result.** QG-23 wrote
+3. **The feedback loop closed, and it caught its own new link on the first pass.**
+   QG-19's finding became `orion_research_harness.donor_search`, a fail-closed precondition
+   on any novelty claim. An automated reviewer then found **two holes in that gate** —
+   `CANNOT_ASSESS` clearing it with no evidence, and a character-set strip that could splice
+   non-adjacent text into an apparent quote — both verified and fixed. The hardened gate then
+   bound QG-24, whose only novelty-asserting claim came back
+   `INSTANCE_OF_KNOWN_GENERAL` *before* it could be frozen. Four independent checks
+   (the reviewer, the lane's own verifier, orchestrator re-runs, the committed gate) each
+   caught something the others missed. **This is the second time a review of a guard found
+   the guard weaker than the rule it guards** — the first produced `corroboration.py`. A
+   gate is a claim about what cannot get through, and like any claim it needs someone
+   adversarial reading it.
+4. **A disclosed criterion change is worth more than a clean-looking result.** QG-23 wrote
    down that its first-coded H1 read BORNE_OUT, and the orchestrator adjudicated the
    restriction as correct in the record — checkable because the verifier *re-derives* the
    verdict rather than reading it, and one of its eight falsifiability tampers is the flipped

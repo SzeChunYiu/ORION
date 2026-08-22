@@ -23,7 +23,7 @@ catches the deterministic-but-wrong failure mode:
 
 QG-3, QG-6, QG-7, QG-7b, QG-7c, QG-7d, QG-7e, QG-8, QG-9 (support2, support2-tightness,
 support3, support4, V6), QG-12, QG-13, QG-15, QG-15b, QG-15c, QG-16, QG-17, QG-17b,
-QG-18, QG-20, QG-21, QG-22.
+QG-18, QG-20, QG-21, QG-22, QG-23, QG-24.
 
 **QG-22 carries a stated tier caveat.** Its verifier writes its own instance generator,
 timing loop, least-squares fit, configuration-space enumeration, StabPrep count and
