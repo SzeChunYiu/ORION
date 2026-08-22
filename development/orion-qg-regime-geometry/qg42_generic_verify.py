@@ -101,6 +101,16 @@ def build(edges):
     return c
 
 
+def architecture_nodes(uids):
+    out = []
+    for uid in uids:
+        idx = tuple(uid.index)
+        if len(idx) != 1:
+            raise AssertionError(f"unexpected routed UnitID index: {uid!r}")
+        out.append(Node(int(idx[0])))
+    return tuple(out)
+
+
 def cost_vector(edges, arch_edges):
     arc = Architecture(list(arch_edges))
     costs = []
@@ -111,8 +121,9 @@ def cost_vector(edges, arch_edges):
         c = build(edges)
         place_with_map(c, {c.qubits[q]: Node(int(p[q])) for q in range(N)})
         MappingManager(arc).route_circuit(c, [LexiRouteRoutingMethod(10)])
-        bad = [cmd for cmd in c.get_commands() if len(cmd.qubits) == 2 and not arc.valid_operation(cmd.qubits, True)]
-        invalid += len(bad)
+        for cmd in c.get_commands():
+            if len(cmd.qubits) == 2 and not arc.valid_operation(architecture_nodes(cmd.qubits), True):
+                invalid += 1
         costs.append(int(c.n_2qb_gates()))
         depths.append(int(c.depth_2q()))
         totals.append(int(c.n_gates))
@@ -206,7 +217,13 @@ def main():
                     and source_arm["disjoint_selection_separation"] == disj
                 )
                 all_rows &= core_equal
-                row["architectures"][aname] = {"core_equal": bool(core_equal), "selection_separation": sep, "disjoint": disj, "A_cost_hash": sa["cost_vector_sha256"], "B_cost_hash": sb["cost_vector_sha256"]}
+                row["architectures"][aname] = {
+                    "core_equal": bool(core_equal),
+                    "selection_separation": sep,
+                    "disjoint": disj,
+                    "A_cost_hash": sa["cost_vector_sha256"],
+                    "B_cost_hash": sb["cost_vector_sha256"],
+                }
                 pair_disjoint[aname] = disj
                 if aname == "line6":
                     independent_line |= sep
@@ -221,13 +238,19 @@ def main():
     checks["all_layout_geometry_replayed"] = bool(all_rows)
     checks["instrument_varies"] = bool(any_var)
     checks["router_exercised"] = bool(any_router)
-    checks["selection_flags"] = src.get("selection_separation", {}).get("line6") == independent_line and src.get("selection_separation", {}).get("ring6") == independent_ring and src.get("selection_separation", {}).get("disjoint_line6") == independent_dline and src.get("selection_separation", {}).get("disjoint_ring6") == independent_dring and src.get("selection_separation", {}).get("topology_stable_disjoint_pair_indices") == stable
-
-    # Hostile controls are semantic: constant input-CX count is detected as dead;
-    # erasing layout identity cannot support an argmin-set separation claim.
-    checks["dead_instrument_control"] = len(set([7] * 720)) == 1 and src.get("instrument_controls", {}).get("input_cx_count_dead_instrument_detected") is True
+    checks["selection_flags"] = (
+        src.get("selection_separation", {}).get("line6") == independent_line
+        and src.get("selection_separation", {}).get("ring6") == independent_ring
+        and src.get("selection_separation", {}).get("disjoint_line6") == independent_dline
+        and src.get("selection_separation", {}).get("disjoint_ring6") == independent_dring
+        and src.get("selection_separation", {}).get("topology_stable_disjoint_pair_indices") == stable
+    )
+    checks["dead_instrument_control"] = (
+        len(set([7] * 720)) == 1
+        and src.get("instrument_controls", {}).get("input_cx_count_dead_instrument_detected") is True
+    )
     claimed_sep = independent_line or independent_ring
-    collapsed_can_prove_sep = False  # one layout representative has no identity-set information by construction
+    collapsed_can_prove_sep = False
     checks["layout_collapse_control"] = (not collapsed_can_prove_sep) if claimed_sep else True
 
     ok = all(checks.values())
@@ -253,7 +276,11 @@ def main():
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
-    print(TOKEN + canon({"decision": out["decision"], "selection": out["independent_selection"], "rows": checks["all_layout_geometry_replayed"]}))
+    print(TOKEN + canon({
+        "decision": out["decision"],
+        "selection": out["independent_selection"],
+        "rows": checks["all_layout_geometry_replayed"],
+    }))
     return 0
 
 
