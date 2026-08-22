@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Sequence
+from typing import Any, Mapping, Sequence
 
-from orion.core.residuals import Residual, Responsibility
+from orion.core.residuals import Residual, ResidualKind, Responsibility
 from orion.core.solution import SolutionStatus
 
 
@@ -159,8 +159,6 @@ def direct_research(
                 "formulation/search/interface responsibility remains open; use typed reframe/navigation routes and keep route-stop separate from task-stop",
             )
 
-        # Future Responsibility enum values fail closed rather than silently
-        # inheriting an arbitrary paper mechanic.
         return ResearchDirective(
             ResearchDirectiveKind.DIAGNOSE_RESPONSIBILITY,
             ("P1", "P6"),
@@ -184,8 +182,65 @@ def direct_research(
     )
 
 
+def _mapping(value: object, *, name: str) -> Mapping[str, Any]:
+    if not isinstance(value, Mapping):
+        raise TypeError(f"{name} must be an object")
+    return value
+
+
+def _residual_from_mapping(value: object, *, index: int) -> Residual:
+    raw = _mapping(value, name=f"residuals[{index}]")
+    raw_responsibilities = raw.get("candidate_responsibilities", ())
+    if isinstance(raw_responsibilities, (str, bytes)) or not isinstance(
+        raw_responsibilities, (list, tuple)
+    ):
+        raise TypeError("candidate_responsibilities must be an array")
+    responsibilities = tuple(Responsibility(str(item)) for item in raw_responsibilities)
+    raw_metadata = raw.get("metadata", ())
+    if isinstance(raw_metadata, Mapping):
+        metadata = tuple((str(k), str(v)) for k, v in raw_metadata.items())
+    elif isinstance(raw_metadata, (list, tuple)):
+        rows: list[tuple[str, str]] = []
+        for item in raw_metadata:
+            if not isinstance(item, (list, tuple)) or len(item) != 2:
+                raise TypeError("residual metadata rows must be [key,value]")
+            rows.append((str(item[0]), str(item[1])))
+        metadata = tuple(rows)
+    else:
+        raise TypeError("residual metadata must be an object or array of pairs")
+    return Residual(
+        residual_id=str(raw["residual_id"]),
+        kind=ResidualKind(str(raw.get("kind", ResidualKind.UNCLASSIFIED.value))),
+        description=str(raw.get("description", "unspecified material residual")),
+        material=raw.get("material", True),
+        candidate_responsibilities=responsibilities,
+        metadata=metadata,
+    )
+
+
+def direct_research_from_mapping(value: object) -> ResearchDirective:
+    raw = _mapping(value, name="research-direct input")
+    raw_residuals = raw.get("residuals", ())
+    if isinstance(raw_residuals, (str, bytes)) or not isinstance(raw_residuals, (list, tuple)):
+        raise TypeError("residuals must be an array")
+    resource = raw.get("resource_bound_hit", False)
+    identity = raw.get("identity_ambiguity_hit", False)
+    if not isinstance(resource, bool) or not isinstance(identity, bool):
+        raise TypeError("resource_bound_hit and identity_ambiguity_hit must be booleans")
+    return direct_research(
+        solution_status=SolutionStatus(str(raw.get("solution_status", SolutionStatus.CANNOT_CHECK.value))),
+        material_residuals=tuple(
+            _residual_from_mapping(item, index=index)
+            for index, item in enumerate(raw_residuals)
+        ),
+        resource_bound_hit=resource,
+        identity_ambiguity_hit=identity,
+    )
+
+
 __all__ = [
     "ResearchDirective",
     "ResearchDirectiveKind",
     "direct_research",
+    "direct_research_from_mapping",
 ]
