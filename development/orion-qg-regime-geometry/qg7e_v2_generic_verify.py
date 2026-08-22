@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Independent generic ORION verifier for QG-7e V2 corrected binding."""
 from __future__ import annotations
-import argparse,hashlib,itertools,json
+import argparse,hashlib,itertools,json,sys
 from collections import Counter
 from pathlib import Path
 import numpy as np
+sys.path.insert(0,str(Path(__file__).resolve().parent))
 import qg7e_generic_verify as g1
 ROOT=Path(__file__).resolve().parents[2];INPUT=ROOT/"artifacts/orion-qg-qg7e-v2-pp-single-pinner.json";OUT=ROOT/"artifacts/orion-qg-qg7e-v2-generic-verification.json";TOKEN="ORIONQG_QG7E_V2_GENERIC=";POS="QG7E_V2_PP_SINGLE_PINNER_CLOSED_ALL_HIDDEN_ENVIRONMENTS__CHAIN_OPEN"
 def canon(v):return json.dumps(v,sort_keys=True,separators=(",",":"),allow_nan=False)
