@@ -8,11 +8,12 @@ recorded as failed. Authority: development record; converts nothing by itself.
 | N1 | comm-s2 pinned sector open (QG-7c/7d) | FAILED_DECOMPOSITION → change the decomposition, not the menu | QG-7e | **CONVERTED — theorem complete.** But the *prediction was wrong*: E1's decomposition attack was refuted by exact enumeration (10 of 12 states admit no Δ≤0 alternative at all, so it was a local-optimality failure, not a descent failure), and what closed it was a **menu enlargement** — admitting all eight per-block target-permutation subsets where QG-7d realized only the global mirror. Scored against the adjudication. |
 | N2 | StabPrep boundary unseparable at any budget | FAILED_DEFINITION → redefine the vocabulary | QG-15c | **PARTIALLY CONVERTED, prediction correct in mechanism.** Redefinition was the right move: diagnosing the collision as an *ordered per-step* property of the donor schedule and freezing a schedule-aware V2 drops the floor 43 → 1 and mixed cells 12 → 1, with the best held-out number in the series (3/120). One pair survives with identical step-cost profiles, and the lane refused to add the discriminant it found post-hoc. Honest negative terminal, near-miss result. |
 | N3 | no support-2 phase witness; exact tie on 4,896 at O_nc_out | INACTIVE_NO_ATOM_CONDITION → solve for the tie locus | QG-17b | **CONVERTED, prediction correct.** The ties collapse to exactly two hyperplanes, `O_nc_out` lies exactly on both, and both sign-flip completely — 4,896 crossing witnesses give the first machine-checked points where support 1 provably fails. Bonus discovery: neither hyperplane is proportional to a QG-16 facet, so the true boundary has two faces the certificate does not describe. |
-| N4 | prospective forecast refuted at n=4 | FAILED_DEFINITION → make n-dependence explicit | — | not yet chartered |
+| N4 | prospective forecast refuted at n=4 | FAILED_DEFINITION → make n-dependence explicit | QG-23 | **CONVERTED TO A DIAGNOSED NEGATIVE; prediction correct in mechanism, wrong in payoff.** H0 BORNE_OUT: the support failure is carried *entirely* by the extensive features (intensive+degenerate alone put 0/120 out of support; extensive combined 76/120), so making n-dependence explicit was the right diagnostic move. H1 REFUTED: normalization raises *box* coverage 44→71 but moves the exact-cell measure the predictor actually consumes **0→0**, and the refit lattice is 28/120 against the un-normalized incumbent's 3/120. The predicted payoff — an n-scaling law or certified extrapolation range — did not arrive. Q3 is a flagged `null_result`: error rate flat as coverage runs 0.558→1.000, and abstaining *raises* the raw lattice's error rate. |
 | N5 | syndrome rank 5 vs κ_R6I = 1 (sound but loose) | UNRESOLVED → measure rank − κ across families | QG-20 | **MEASURED, hypothesis self-refuted.** `slack == μ` holds on both families under the QG-6 certified ranks (R6I 5−1=4=μ; TARE 2−2=0=μ) — but a diagnostic frozen in §5 *before* the outcome asked whether the ranks are rewrite-aligned with the margins. They are not: the certified ranks use different rewrites (R6M per-slot, R6I per-block) while both margins are measured under block deletion. The margin-aligned R6M block rank is **3**, so TARE gives 3−2=1 ≠ μ=0. The agreement is rewrite-dependent and fails on the rewrite the margins themselves use. Terminal `QG20_PARTIAL__THIRD_FAMILY_NOT_DERIVABLE`. |
 | N6 | novelty freezes authored without literature access | DONOR_SUBSUMPTION RISK → hostile external-novelty lane | QG-19 | **CONVERTED, prediction correct, and the risk was real.** Terminal `QG19_SUBSUMPTION_FOUND__NOVELTY_REDUCED`. Six claims attacked, none survived with novelty intact: two SUBSUMED (C-A the headline structural criterion → Wolf 1978's syndrome trellis; C-F digest-custody-≠-correctness → Meyman 2026 'governance laundering', six months older), three INSTANCE_OF_KNOWN_GENERAL, one NEAREST_MISS. Every passage is search-tool text, not a document read — the egress proxy refused all 11 fetches — so each source carries `document_level_verification: false`. |
 | W5 | no real-chemistry trade regime found | — | R7 | **EXECUTED — honest negative that confirms prospectively.** Census extended to 180 matchings at 12/14/16 qubits, all donor-exact; six genuinely unread 16q batches admitted. Successor is an O1-style re-freeze, not a harder hunt. |
 | W8 | R6B batch selection taken on the receipt's word | — | — | registered by the QG-3 verifier's stated limit |
+| W10 | the V2 feature map, not the referee, is what caps this family's reach | — | QG-23 | **REGISTERED.** n=5 is blocked at ~28.4 h by the frozen feature map at ~42 ms/state, ~38× the cap; the Dial-queue referee projects ~338 s, comfortably inside it. Third instance of the binding cost being our own instrumentation rather than the problem. |
 | W9 | committed family search does not realize QG-6's own support-capped corollary | — | QG-22 → QG-10 | **PARTIAL PROGRESS.** QG-10's `U_W1` is an uncapped weight-one-frame enumerator machine-checked equal to the committed `dxx_search(max_weight=1)` on all 1,029 instances where the capped version can run (n≤4, 0 mismatches), and it extends `C_D+` to any n. The weight-one case now has a working uncapped enumerator; the support-2 case does not. Original registration: **projected exponential→polynomial implementation win.** QG-6's corollary bounds the certified support-≤2 search at O(n²·16) frame-pair candidates per block; `r6p.dxx_search` instead sweeps an A^{2n} don't-care pattern space plus an A^n−1 Tag sweep, O(n·4^{3n}). The bound is already proved and committed — realizing it is engineering, not a new theorem. |
 
 ## What N1 costs the method finding
@@ -116,3 +117,28 @@ model — κ_R6I = 1, κ_TARE = 2, the all-n TARE classification, the tie locus 
 hyperplanes, the StabPrep feature-determination floor — are measurements, and no source
 found here computes them. The frameworks around them are borrowed; the register now says
 from whom. That is a smaller programme than the one we thought we had, and an honest one.
+
+
+## The pattern across N1–N6, now that all six have run
+
+Every one of the six standing negatives has been through a chartered lane. The adjudication
+predicted a conversion move for each. Scoring them honestly:
+
+| negative | move predicted | move that worked | prediction |
+| --- | --- | --- | --- |
+| N1 | change the decomposition | **menu enlargement** | **WRONG** |
+| N2 | redefine the vocabulary | redefinition (floor 43 → 1, one pair left) | right in mechanism |
+| N3 | solve for the tie locus | solving for the tie locus | **right** |
+| N4 | make n-dependence explicit | diagnosis yes, payoff no | right in mechanism |
+| N5 | measure rank − κ across families | measured, then self-refuted | right in mechanism |
+| N6 | hostile external-novelty lane | subsumption found on all six claims | **right, and costly** |
+
+Two of six predictions were right outright, three right about the mechanism but not the
+payoff, one flatly wrong. The adjudication's headline method finding — *the negative always
+identified the wrong OBJECT, never merely an insufficient search* — has one clean
+counterexample (N1) and one case where identifying the right object bought a diagnosis
+rather than a result (N4). **It is a heuristic with a known failure mode, and it should be
+cited as one.**
+
+The more durable finding is the one N6 produced, and it costs more: **every novelty freeze
+authored without literature access was wrong in the same direction.** Six for six.

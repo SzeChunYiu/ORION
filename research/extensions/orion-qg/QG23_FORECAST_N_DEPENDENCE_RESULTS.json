@@ -71,26 +71,26 @@
   },
   "n5_measured_obstacle": {
     "feature_probe": {
-      "elapsed_s": 0.844,
-      "ms_per_state": 42.203,
-      "projected_complete_domain_hours": 28.411,
-      "projected_complete_domain_s": 102280.5,
+      "elapsed_s": 0.856,
+      "ms_per_state": 42.779,
+      "projected_complete_domain_hours": 28.799,
+      "projected_complete_domain_s": 103675.5,
       "selection_rule": "first k states of the deterministic frozen-gate-order BFS from |0..0>; no seed, no choice, no labels",
       "states_probed": 20
     },
     "n5_expected_states": 2423520,
     "note": "wall-clock rates are timing and are therefore excluded from result_digest, exactly as the timing block is (gate G9). The deterministic counts they are derived from are inside the digest.",
     "referee_probe": {
-      "elapsed_s": 5.58,
+      "elapsed_s": 6.185,
       "exhausted": false,
       "frontier_radius": 12,
-      "projected_complete_referee_s": 338.1,
+      "projected_complete_referee_s": 374.8,
       "reached": 155045,
-      "settle_rate_per_s": 7167.93,
+      "settle_rate_per_s": 6466.99,
       "settled": 40000
     },
     "runtime_cap_s": 2700,
-    "verdict": "complete n=5 referee is plausible on the measured settle rate but the complete n=5 V2 feature map is not: it projects to 28.411 hours against a 45-minute cap"
+    "verdict": "complete n=5 referee is plausible on the measured settle rate but the complete n=5 V2 feature map is not: it projects to 28.799 hours against a 45-minute cap"
   },
   "network_access": false,
   "novelty_authority": false,
@@ -8830,16 +8830,16 @@
   },
   "terminal": "QG23_PARTIAL__SUPPORT_DIAGNOSED_BUT_NORMALIZATION_DOES_NOT_TRANSFER",
   "timing": {
-    "A_bindings_referee": 0.084,
-    "B1_train_features": 3.856,
+    "A_bindings_referee": 0.089,
+    "B1_train_features": 3.953,
     "B2_census": 0.008,
-    "B3_panel_features": 4.8,
-    "B4_raw_lattice": 49.105,
-    "B5_normalized_lattice": 58.225,
+    "B3_panel_features": 4.895,
+    "B4_raw_lattice": 49.747,
+    "B5_normalized_lattice": 59.332,
     "B6_stage1_digest": 0.003,
-    "C_n4_referee": 8.967,
+    "C_n4_referee": 9.125,
     "D_scoring": 0.002,
-    "E_n5_probes": 6.501
+    "E_n5_probes": 7.121
   },
   "verdicts": {
     "H0": "BORNE_OUT",

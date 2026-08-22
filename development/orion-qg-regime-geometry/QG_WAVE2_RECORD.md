@@ -867,6 +867,146 @@ budget (540 B′, 160 B″) and rows past budget carry `U = U_W1` flagged
 over an *evaluated subset* of families; 1,200 of 46,656 panel-B rows serialized for the
 verifier, all other panels in full.
 
+## QG-23 — N4 CONVERTED TO A DIAGNOSED NEGATIVE: THE FORECAST LEFT ITS SUPPORT, AND NORMALIZING DOES NOT BRING IT BACK
+
+`QG23_FORECAST_N_DEPENDENCE_RESULTS.json` (protocol frozen pre-run, sha256 `4896c8ea…6725`;
+result digest `4de58b2b…9d05`; stage-1 digest `a0e15f7c…f739`; 10/10 gates; double run
+byte-identical outside timing; verifier **ACCEPT, 36 checks, 0 failed**, re-run
+independently by the orchestrator). Terminal
+`QG23_PARTIAL__SUPPORT_DIAGNOSED_BUT_NORMALIZATION_DOES_NOT_TRANSFER`.
+
+**Frozen verdicts: H0 BORNE_OUT, H1 REFUTED.** N4 converts to a *diagnosed* negative, not
+a rescued forecast — which §1 of the protocol said in advance would still count as a
+conversion.
+
+**Q1 — the census answers H0 cleanly.** Over the complete n ≤ 3 domain (1,146 instances),
+the 33 V2 features split **23 EXTENSIVE_LINEAR / 9 EXTENSIVE_OTHER / 1 INTENSIVE
+(`sched_cost_last`) / 0 DEGENERATE**. On the 120-instance panel the support failure is
+carried *entirely* by the extensive features: **INTENSIVE + DEGENERATE alone put 0/120 out
+of support**, extensive combined put **76/120** out. The protocol's H0-killing condition —
+intensive features alone putting the panel out of support — is not met, so H0 stands. Worst
+single offenders: `c` 33/120, `nCN−(n−1)` 33, `sched_cost_moment` 29, `LB` 24.
+
+**Q2 — coverage rises, accuracy does not follow.** Baselines recomputed in-run rather than
+copied: cell lookup **32/120 ✓**, lattice **3/120 ✓**, headline cell and witness
+byte-identical to QG-15c's.
+
+| measure | un-normalized | normalized |
+| --- | --- | --- |
+| box support in | 44/120 | **71/120** (+27) |
+| **exact-cell seen** — what the lookup rule actually consumes | 0/120 | **0/120 (+0)** |
+
+The second row is the finding. Normalization raises the *box* by 27 and moves the measure
+the predictor actually keys on **not at all**. And the refit lattice predicate on normalized
+features is **28/120 — far worse** than the un-normalized incumbent's 3/120. For the
+incumbent itself the split runs the wrong way: 2.82 % error in-support against 2.04 %
+out-of-support.
+
+**Q3 — a null result, flagged as one.** Across the frozen ladder τ ∈ {0, .05, .10, .25,
+.50, 1, 2, 4, 8, ∞} **the error rate is flat as coverage runs 0.558 → 1.000, for every
+predictor.** The raw lattice goes 2.82 % at 71 predicted to 2.50 % at 120 predicted —
+*abstaining raises the error rate.* Error-rate spans 0.003–0.084. The receipt carries
+`null_result: true`. The abstaining forecaster the lane was built to produce does not exist
+for this family, and the two-sided reporting rule (G6) is what makes that visible rather
+than hideable behind a coverage number.
+
+**One effect recorded rather than buried**: normalized box membership *is* weakly associated
+with the label — panel positives are enriched *outside* it, Fisher one-sided p = 0.012 —
+and that association is absent, indeed slightly reversed, un-normalized. So `φ_n` does put
+a real if modest signal into support membership. It never becomes forecast accuracy.
+
+### The disclosed criterion change, and the orchestrator's adjudication
+
+The lane discloses, in a `criterion_disclosure` field it did not have to write, that **its
+first coded operationalization of H1 read BORNE_OUT** and it then restricted the criterion.
+That is exactly the shape of post-hoc tuning the freeze discipline exists to catch, so it
+is adjudicated here rather than accepted on the lane's say-so.
+
+*The two readings.* Under **all pairs** (any refit predictor × any support measure) H1
+passes on **one of six pairs**. Under **consumed measure** (each predictor scored on the
+support notion it acts on) H1 fails on all.
+
+**Adjudication: the restriction is correct and REFUTED stands.** Four reasons, the first
+decisive:
+
+1. **H1's first clause fails for the passing pair on its own terms.** H1 as frozen requires
+   that *"n=4 vectors fall back inside the n≤3 support"* **and** that the forecast on that
+   covered fraction improve. The passing pair is the cell-lookup rule scored against *box*
+   support — but that rule keys on the whole 33-vector, so the support it consumes is
+   exact-cell membership, which is **0/120 before and 0/120 after**. Its coverage was never
+   restored. Scoring clause (b) on box support while clause (a) is false on exact-cell
+   support is a category mismatch, not a reading.
+2. **The passing predictor is constant.** It predicts negative on all 120 panel instances,
+   so its "error rate" on any subset is just that subset's positive rate, and its total
+   error is 32/120 — identical to the un-normalized baseline. Admitting this pair would let
+   a constant predictor certify a competence region.
+3. **The margin is 0.028** (ratio 0.472 against a 0.500 threshold).
+4. **The protocol already ruled on it**: §4 says *"a normalization that raises coverage
+   without separating accuracy has explained nothing"*, and Q3 shows the error rate flat
+   across coverage for every predictor.
+
+The lane's own symmetry check points the same way and is verified: the restriction is
+structurally **more** favourable to H1 for the only predictor with real accuracy — the
+lattice predicate, failed under all-pairs partly on a measure it does not use, gains a
+material +27 coverage on the measure it does use — and it still fails, at 0.690. A
+correction that helps the strong candidate and still yields REFUTED is not outcome-directed.
+
+**The adjudication is independently checkable, which is why it can be trusted.** The
+verifier does not read the verdict — it **re-derives** it, reporting `H1: REFUTED` and
+`H1_all_pairs_reading: BORNE_OUT` from its own numbers, and one of its eight falsifiability
+tampers is precisely `H1_verdict_flipped_to_BORNE_OUT`, caught by two checks. Both readings
+stay on the record; a reader who disagrees with this adjudication has every number needed
+to overturn it.
+
+### Corroboration
+
+`qg23_generic_verify.py` → **ACCEPT, 36/36**, re-run by the orchestrator with the same
+result. It imports nothing from the analyzer chain and rebuilds the referee, donor, schedule
+trace, all 33 features, the census with both fits in both coordinates, `φ_n`, the panel and
+its labels, the trade-off curves, the H0/H1/terminal chain and the stage-1 digest field by
+field, plus a **complete brute-force sub-lattice minimum-error search on both arms** with no
+reductions and no pruning bounds. Falsifiability **DEMONSTRATED**: 8 tampered copies, each
+with its `result_digest` recomputed so the copy is internally self-consistent — so a tamper
+is caught by re-derivation, never by a hash mismatch — and **all 8 REJECTED**.
+
+Gate G3 is enforced structurally as required: `qg15c.RefereeStub` physically replaced
+`referee`, `referee_lex` and `extract_optimal_circuit` across the whole prediction stage,
+recorded installed, recorded removed, and **never triggered**; the stage-1 digest was
+printed before any n=4 referee call and is bit-stable across runs. Corroboration kind:
+`FROM_PRIMITIVES_VERIFIED`.
+
+### n=5, and the third instance of the same pattern
+
+`n5_attempted: false`, component `NOT_ATTEMPTED`, no sub-panel formed, no n=5 outcome
+observed — G5 intact. **The referee is not the obstacle**: a Dial bucket queue settles
+40,000 of 2,423,520 states, projecting ~338 s, inside the cap. The blocker is **the frozen
+V2 feature map** at ~42 ms/state → **~28.4 h, about 38× the cap**.
+
+That is the third time in this campaign the binding cost turned out to be our own
+instrumentation rather than the problem: `r6p.dxx_search` failing to realize QG-6's
+support-capped corollary (W9), QG-10 finding the referee linear in n while the *family*
+enumerator was the wall, and now the feature map costing 38× what the referee would.
+Registered as residual **W10 — the V2 feature map, not the referee, is what caps this
+family's reach.**
+
+### A process hazard this lane surfaced
+
+The lane reports that orchestrator commits — driven by a repository hook demanding a clean
+tree — **swept its analyzer and verifier into commits mid-flight**, before it had finished
+writing them. No artifact was corrupted (each such commit was labelled provisional, carried
+no scientific reading, and was superseded on completion), but the hazard is real: a
+clean-tree policy and an in-flight lane are in direct tension, and the resolution used here
+— commit as provisional, state facts only, bind nothing until the verifier decides — is the
+one that keeps both. Recorded so the next campaign does not have to rediscover it.
+
+### Four protocol objections, all executed as written
+
+Recorded verbatim in the receipt: §3.1 names an unnamed statistic; §4 leaves the divisor
+undefined when the three-point range fit is ≤ 0 at n=1 (executed with a disclosed floor of
+1.0); §4.1's "no referee output" was read as "no *n=4* referee output"; and §5 conditions
+the prospective component on the referee when the feature map is the binding cost. All four
+are protocol defects worth fixing in a successor, and none was used as licence to deviate.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where
