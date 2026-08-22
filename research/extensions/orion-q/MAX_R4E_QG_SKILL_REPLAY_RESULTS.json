@@ -1,0 +1,51 @@
+{
+  "schema": "ORIONQ.MAXR4E.QGSkillReplayCommitted.v1",
+  "issue": "SzeChunYiu/ORION#903",
+  "pr": "SzeChunYiu/ORION#906",
+  "execution_head": "5d6a9b0e40229b0aa3df538b3af874726f8675de",
+  "workflow_run_id": 32569939457,
+  "workflow_artifact_id": 9475056190,
+  "workflow_artifact_sha256": "7c4aee82794b460d129e7da59df678ac6e69135c5c4174d498535209bb515ec5",
+  "terminal": "MAX_R4E_QG_SKILLS_HAVE_REAL_COMPILER_OPERATIONAL_VALUE__REPLAY_CALIBRATED",
+  "source_result_digest": "40f9dccb84d4b95eacc4088ae85b7d85eaf2a7f5ecdc766e8fe7aacc35b3f75c",
+  "required_actions": {
+    "R6I": "RESTRICT_TO_PROVED_SUPPORT1",
+    "SixLCU": "USE_MINIMAL_EXACT_K1D1_PREDICATE",
+    "StabPrep": "REJECT_ZERO_ERROR_IN_FROZEN_VOCAB__ESCALATE_REPRESENTATION"
+  },
+  "r6i_support_localization": {
+    "n2_pair_ratio_cap2_over_cap1": 10,
+    "n3_pair_ratio_cap2_over_cap1": 37,
+    "n4_pair_ratio_cap2_over_cap1": 82,
+    "n5_pair_ratio_cap2_over_cap1": 145,
+    "n6_pair_ratio_cap2_over_cap1": 226,
+    "cap1_pair_counts_n2_n6": [12,18,24,30,36],
+    "cap2_pair_counts_n2_n6": [120,666,1968,4350,8136]
+  },
+  "sixlcu_minimal_exact_classifier": {
+    "higher_order_raw_conjunctions_avoidable_for_scoped_task": 4545400,
+    "higher_order_distinct_vectors_avoidable_for_scoped_task": 530944,
+    "K1": {"raw":300,"distinct":300},
+    "K2": {"raw":45150,"distinct":17288},
+    "K3": {"raw":4500250,"distinct":513656}
+  },
+  "stabprep_information_barrier": {
+    "mixed_cells": 12,
+    "E_floor": 43,
+    "zero_error_terminal": "ZERO_UNACHIEVABLE_ANY_BUDGET",
+    "dfs_nodes_avoidable_for_binary_zero_error_existence_question": 79896607,
+    "raw_conjunctions_constructed": 4822968,
+    "distinct_conjunction_vectors_constructed": 617654,
+    "truncated_lattice_cells": 9
+  },
+  "generic_orion": {"decision":"ACCEPT_REAL_COMPILER_REPLAY_VALUE","all_checks":true},
+  "native_orion_q": {"decision":"ACCEPT_REAL_COMPILER_REPLAY_VALUE","all_checks":true,"responsibility":"REAL_COMPILER_REPLAY_OPERATIONAL_VALUE_ONLY__NO_TRANSFER_SUPERIORITY"},
+  "deterministic_replay_byte_identical": true,
+  "MAX_R4E_QG_SKILLS_REAL_COMPILER_OPERATIONAL_VALUE_REPLAY": true,
+  "MAX_R4E_QG_SKILLS_COMPILER_GENERAL": false,
+  "MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE": false,
+  "MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER": false,
+  "REAL_QUANTUM_SUPERIORITY_AUTHORIZED": false,
+  "NOVELTY_AUTHORIZED": false,
+  "interpretation": "The QG-derived theorem/certificate-aware research-control skills have measurable operational value on three real non-TARE compiler families in retrospective replay, without changing scientific answers. This does not yet establish prospective transfer superiority."
+}
