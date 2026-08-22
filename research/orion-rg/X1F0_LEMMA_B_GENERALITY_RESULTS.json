@@ -150,14 +150,14 @@
         "2": 14
       },
       "eta_T": {
+        "10": 9,
+        "11": 9,
+        "12": 9,
         "5": 13,
         "6": 12,
         "7": 11,
         "8": 10,
-        "9": 9,
-        "10": 9,
-        "11": 9,
-        "12": 9
+        "9": 9
       },
       "group": "C_5^2",
       "steps": [
@@ -212,6 +212,25 @@
     }
   ],
   "instrument": "research/orion-rg/x1f0_general_dk_and_fT.c",
+  "not_checked": {
+    "explicitly_not": "checked and fine",
+    "groups": [
+      "C_2^2",
+      "C_2^3",
+      "C_3^2"
+    ],
+    "reason": "the D_k enumerator carries no search bound; all three runs were killed without returning",
+    "status": "CANNOT_CHECK_RESOURCE_BOUND",
+    "step": "k=3 -> k=4"
+  },
+  "rank_le_2_control_recomputed": {
+    "agreement": true,
+    "f_5_C5sq": 12,
+    "f_6_C5sq": 11,
+    "f_7_C5sq": 10,
+    "first_producer": "throwaway Python helper with a witness-record bug (size unaffected)",
+    "recomputed_with": "research/orion-rg/x1f0_general_dk_and_fT.c"
+  },
   "schema": "ORION.RG.X1F0.LemmaBGenerality.v1",
   "summary": {
     "decided_steps": 10,

@@ -150,9 +150,16 @@ It does supply the `#915` state reduction that motivated this atom: at length
 | 11  | 14 | 15 |  10,689,661 |
 | 12  | 14 | 15 |   1,659,207 |
 
-Rank `<= 2` control (independent enumeration): `f_5(C_5^2)=12`, `f_6(C_5^2)=11`,
-`f_7(C_5^2)=10` — all strictly below the rank-3 values, so rank 3 attains the
-maximum throughout this range and the table is `f_T(C_5^3)`.
+Rank `<= 2` control: `f_5(C_5^2)=12`, `f_6(C_5^2)=11`, `f_7(C_5^2)=10` — all
+strictly below the rank-3 values, so rank 3 attains the maximum throughout this
+range and the table is `f_T(C_5^3)`.
+
+These three numbers were first produced by a throwaway Python helper that had a
+bookkeeping bug in its witness record (it appended one element per multiplicity
+step but popped once). The bug could not affect the returned *size*, which is
+all that was read, but the row is load-bearing, so it was recomputed from
+scratch with `x1f0_general_dk_and_fT.c` — the same instrument validated against
+`D_k(C_n^2) = (k+1)n - 1` below. Both runs agree: 12, 11, 10.
 
 `f_T = 14` is stable for `T >= 9`; the classical zero-sum-free maximum is
 `D(C_5^3)-1 = 12`, so the two extra elements at `T >= 9` come from sequences
@@ -265,3 +272,11 @@ lose. Recorded as an open refinement target rather than smoothed over.
 
 Note that `k = 2` on the same group is tight (11 = 11), so the failure is
 specific to the first step, not to the group.
+
+### What was attempted and could not be checked
+
+`D_4` was launched for `C_2^2`, `C_2^3` and `C_3^2` to extend the ladder test one
+step further. All three were killed at a resource bound without returning, so
+the `k = 3 -> 4` step is **`CANNOT_CHECK_RESOURCE_BOUND`**, not "checked and
+fine". The enumerator in `x1f0_general_dk_and_fT.c` carries no bound for the
+`D_k` mode; adding one is the prerequisite for that row.
