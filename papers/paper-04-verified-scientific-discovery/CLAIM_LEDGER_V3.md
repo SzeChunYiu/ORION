@@ -20,6 +20,9 @@ This ledger supersedes the scientific claim ceiling of the historical V2 manuscr
 | P4.V3.9 | An ideal typed donor product given the same scientific coordinates and promotion predicate ties P4-X exactly at 400/400. | IDEAL-PRODUCT EQUIVALENCE | Inherent expressivity or centralization advantage. |
 | P4.V3.10 | Provenance, claim verification, evaluator auditing/custody, contamination defense, abstention, assurance cases and generic authorization remain donor-owned components. | NOVELTY BOUNDARY | P4 invented those mechanisms. |
 | P4.V3.11 | Current deployed/verifier/provider generality remains `CANNOT_CHECK`. | CLAIM CEILING | Verifier-agnostic or universal scientific-authority superiority. |
+| P4.V3.12 | On the prospectively frozen V3 battery, ORION selects the correct `CANNOT_CHECK` terminal on 30/30 gold cases with 0/360 false promotions; the H1-selected comparator `provenai-citation-fidelity-influence` scores 0/30, so the effect is 1.0 with CI95 [1.0, 1.0], and `deepsciverify-abstract-to-full-escalation` scores 15/30, so against it the margin is 0.5. What is measured is terminal expressiveness under a non-compensatory gate lattice — the ability to report an inability. | PROTECTED V3 RESULT, `evidence/protected_v3/`; quotable because the identifiability register clears at informedness 0.0 over 14 probes and 13 seeds | Any sentence that quotes the 1.0 without the 0.5; a finer-grained scientific judgement, when nine of the ten comparators score 0 because they cannot emit `CANNOT_CHECK` at all; general abstention superiority. |
+
+P4.V3.3 is unchanged and remains a statement about V2: on the V1 construction the eligible family was saturated at 1.0 for all eleven systems, so that null records the instrument. P4.V3.12 is a different battery, not a restatement of V2's number, and the V2 artifacts under `evidence/protected_v2/` are unedited.
 
 ## Allowed headline
 
