@@ -149,6 +149,7 @@ Not where the programme looked for them.
 | — | QG-15c's surviving collision pair (identical schedule geometry) | open; the precise form an impossibility result must address |
 | — | QG-10's 39.6 % undecided rows | open; gaps are 0/1/2 only |
 | — | QG-19's `document_level_verification: false` on every source | open; needs a session with document egress |
+| — | Aliev et al. 2018 cited in QG-paper-03 on two independent retrievals, not a document read | open; must be verified against the primary document before submission (rationale in that paper's claim ledger) |
 | — | four QG-23 protocol objections | open; defects to fix in a successor protocol, none used as licence to deviate |
 
 ## 7. Method findings, scored honestly

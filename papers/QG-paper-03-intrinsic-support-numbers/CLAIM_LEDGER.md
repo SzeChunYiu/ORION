@@ -134,6 +134,28 @@ ladders that reach them. **What it may not claim**: that the quantity, its
 two-sidedness, or the practice of demanding a matching lower bound originates here.
 Abstract and §1 were rewritten accordingly on 2026-08-22.
 
-Every passage supporting this correction carries `document_level_verification:
-false` — the egress proxy refused direct document retrieval — though the source and
-its bound were independently re-retrieved by the orchestrator and confirmed.
+### Citation status of Aliev et al. 2018, stated because the register advises against this
+
+`QG_EXTERNAL_DONOR_REGISTER_V2.md` carries a standing caveat: every passage in it is
+search-tool text rather than text read off the primary document, and it advises that
+*"a successor lane with document access should re-verify each passage against its
+source before any of these citations enters a paper."*
+
+This citation entered a paper anyway. That is a deliberate deviation, recorded rather
+than glossed, and the reasons are:
+
+1. The correction it supports **lowers** this paper's claim. Withholding it would leave
+   the stronger, now-known-false framing standing while we wait for document access —
+   the wrong direction to err in.
+2. The source was **independently re-retrieved** by the orchestrator, on a separate
+   search, confirming title, all five authors, venue, volume, page range 2152–2157, the
+   bound `2m·log(2√m‖A‖_∞)`, its objective-independence, the nearly matching asymptotic
+   lower bound, the arXiv id 1712.08923 and DOI 10.1137/17M1162792. Two independent
+   retrievals agreeing on that many specific fields is materially stronger than one, and
+   still **not** a document read.
+3. Nothing quantitative from this source is used. It is cited for existence and
+   direction only.
+
+**Obligation carried forward**: before this manuscript is submitted anywhere, this
+citation must be verified against the primary document. Registered alongside the
+programme's other open residuals.
