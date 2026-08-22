@@ -315,7 +315,10 @@ def main() -> int:
     check_dependencies()
     check_invariants()
     check_recursive_audit()
-    print("ORION P6-P8 schema embedding V1 + V4 covariance: PASS")
+    # Preserve the stable V1 terminal consumed by existing CI/automation.
+    print("ORION P6-P8 schema embedding V1: PASS")
+    # Report the stronger covariance status as an additive, machine-readable-enough line.
+    print("ORION P6-P8 V4 covariance extension: PASS")
     print(f"  framework: {registry.FRAMEWORK_VERSION}")
     print(f"  paper sync epoch: {registry.PAPER_SYNC_EPOCH}")
     print("  core K/W/M + operator/substrate anchors: confirmed")
