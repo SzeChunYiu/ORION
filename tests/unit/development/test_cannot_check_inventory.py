@@ -279,11 +279,23 @@ def test_the_precision_fix_lost_no_classification() -> None:
     things changed and only one was measured, so the identity of the environment
     is the blocker and the site names it. Under the recorded environment the same
     divergence would be ``FAIL``, and that branch is reachable and tested.
+
+    Two ``INSUFFICIENT_EVIDENCE`` sites take it 200 to 202, and both are the
+    same shape: an instrument that produced no evidence either way, saying so.
+    P6's ``frame_conditions_are_load_bearing`` reports a condition whose
+    countermodel search did not settle --- no countermodel found, and none shown
+    not to exist --- rather than reporting it as an inert axiom, which is what a
+    loaded machine used to make it publish. P9's ``OracleIndependence.outcome``
+    reports a second comparator that turned out to be the first under another
+    name: there was no verdict it could have returned other than the one it did.
+    Both name their blocker in the returning statement so this inventory records
+    an examined site rather than one carrying no extractable reason, and
+    ``UNCLASSIFIED`` is unchanged at 385 across both.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 200, classified
+    assert sum(classified.values()) == 202, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"

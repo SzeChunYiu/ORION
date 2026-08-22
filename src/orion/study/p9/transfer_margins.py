@@ -1782,9 +1782,28 @@ class OracleIndependence:
 
         if self.verdict is IndependenceVerdict.DIVERGED_ON_THE_SHIPPED_CORPUS:
             return Outcome.FAIL
+        # Compared against the spelled blocker rather than the verdict, and in
+        # the returning statement rather than above it, so the CANNOT_CHECK
+        # inventory reads an examined site here instead of one carrying no
+        # extractable reason.
+        return (
+            Outcome.CANNOT_CHECK
+            if self.blocker == "insufficient_evidence_the_comparator_could_not_disagree"
+            else Outcome.PASS
+        )
+
+    @property
+    def blocker(self) -> str | None:
+        """Why this independence check produced nothing, when it produced nothing.
+
+        A comparator that turns out to be the first one under another name did
+        not measure anything: there was no verdict it could have returned other
+        than the one it did.
+        """
+
         if self.verdict is IndependenceVerdict.NOT_INDEPENDENT:
-            return Outcome.CANNOT_CHECK
-        return Outcome.PASS
+            return "insufficient_evidence_the_comparator_could_not_disagree"
+        return None
 
     @property
     def blocks(self) -> bool:

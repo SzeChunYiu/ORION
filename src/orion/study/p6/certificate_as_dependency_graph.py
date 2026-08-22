@@ -517,6 +517,15 @@ def frame_conditions_are_load_bearing(
         "conditions_left_undecided": unsettled,
         "conditions_carried_only_intermittently": intermittent_only,
         "every_condition_carries_a_theorem": not (inert or unsettled or intermittent_only),
+        # The blocker is named here rather than left to a reader, so the
+        # CANNOT_CHECK inventory records an examined site: a search that did not
+        # settle is insufficient evidence either way --- no countermodel was found
+        # and none was shown not to exist.
+        "blocker": (
+            "insufficient_evidence_the_countermodel_search_did_not_settle"
+            if not inert and (unsettled or intermittent_only)
+            else None
+        ),
         "outcome": (
             Outcome.FAIL.value
             if inert
