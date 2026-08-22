@@ -13,6 +13,7 @@ FIG_AUTH = ROOT / "papers/Q_QG_FIGURE_AUTHORITY_V2.md"
 EXPECTED = {
     "Q1_Quantum": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
     "Q2_AIJ": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
+    "Q3_TMLR": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
     "Q4_TMLR": "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
     "QG1_PRX": "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
     "QG2_Quantum": "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
@@ -53,7 +54,12 @@ def main() -> int:
         if "BLOCKED_" not in submit:
             errors.append(f"UNAUTHORIZED_SUBMISSION_TERMINAL:{package_id}:{submit}")
         stems = entry.get("required_figure_stems", [])
-        if not stems:
+        if package_id == "Q3_TMLR":
+            if stems:
+                errors.append(f"Q3_UNEXPECTED_MANDATORY_FIGURES:{stems}")
+            if "three-unit prospective disposition table" not in entry.get("primary_result_display", ""):
+                errors.append("Q3_PRIMARY_TABLE_NOT_BOUND")
+        elif not stems:
             errors.append(f"NO_REQUIRED_FIGURES:{package_id}")
         for stem in stems:
             if stem in all_stems:
@@ -62,14 +68,16 @@ def main() -> int:
             if stem not in fig_auth:
                 errors.append(f"FIGURE_STEM_NOT_IN_V2_AUTHORITY:{package_id}:{stem}")
 
+    # Q3 intentionally adds no required plot, so the existing five-paper figure authority
+    # remains exactly 12 standalone stems.
     if len(all_stems) != 12:
         errors.append(f"FIGURE_STEM_COUNT_DRIFT:{len(all_stems)}!=12")
 
-    q3 = data.get("Q3", {})
-    if q3.get("technical_terminal") != "NO_TARGET_PACKAGE_BY_DESIGN":
-        errors.append("Q3_TARGET_PACKAGE_BLOCK_NOT_ENFORCED")
-    if "SCIENTIFIC_SERIES_INCOMPLETE" not in q3.get("scientific_terminal", ""):
-        errors.append("Q3_SCIENTIFIC_BLOCK_NOT_VISIBLE")
+    q3 = packages.get("Q3_TMLR", {})
+    if "Q3_PROSPECTIVE_CASE_SERIES_COMPLETE" not in q3.get("scientific_terminal", ""):
+        errors.append("Q3_COMPLETE_SCIENTIFIC_TERMINAL_NOT_VISIBLE")
+    if q3.get("official_style_commit") != "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992":
+        errors.append("Q3_TMLR_STYLE_COMMIT_NOT_PINNED")
 
     # Superseded package/figure lanes must be visibly non-authoritative.
     if "no publication authority" not in fig_auth.lower():
@@ -86,7 +94,7 @@ def main() -> int:
     print("Q_QG_TARGET_PACKAGE_V2_CHECK=PASS")
     print(f"TARGET_PACKAGES={len(EXPECTED)}")
     print(f"REQUIRED_STANDALONE_FIGURES={len(all_stems)}")
-    print("Q3_TARGET_PACKAGE=BLOCKED_BY_DESIGN")
+    print("Q3_TARGET_PACKAGE=TMLR__TABLE_PRIMARY__NO_MANDATORY_FIGURE")
     print("SUBMISSION_AUTHORITY=NOT_GRANTED_BY_PACKAGE_MANIFEST")
     return 0
 
