@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import secrets
 from pathlib import Path, PurePosixPath
 from typing import Any, Mapping
 
@@ -91,24 +92,172 @@ def _require_sha256(value: Any, field: str) -> str:
     return digest
 
 
-#: A 256-bit nonce drawn from a CSPRNG lands below 2**64 with probability
-#: 2**-192. Anything that does is a counter, an ordinal or a small integer, and
-#: the commitment scheme's whole purpose is defeated by one: the shipped
-#: PROTECTED_SUITE_V1 used `int(nonce, 16)` values 1 through 24, which opened its
-#: 24 commitments in 108 SHA-256 evaluations. See
+#: The root-cause commitment binds one of eight public enum labels. Eight digests
+#: exhaust that message space, so every bit of protection the scheme has lives in
+#: the nonce, and the nonce is the one field no schema can inspect for entropy:
+#: `0...01` and a CSPRNG draw are both 64 hex characters, both unique across a
+#: suite, both non-zero. The shipped PROTECTED_SUITE_V1 used `int(nonce, 16)`
+#: values 1 through 24, and the 24 commitments a freeze of it would publish open
+#: in 108 SHA-256 evaluations. See
 #: research/failures/2026-08-invertible-commitment-vacuous-custody/.
+#:
+#: A magnitude floor alone does not repair that. `f"{2**255 + ordinal:064x}"`
+#: clears any floor and is enumerated as cheaply as the ordinal was. The rule
+#: below is therefore shaped as "reject what a declared cheap adversary
+#: enumerates", not "reject what looks small", and
+#: `orion.study.p5.hidden_cause_custody` builds its disclosure probes from the
+#: same generators so the two cannot drift apart.
 _MIN_NONCE_VALUE = 1 << 64
 
+#: A run of 32 identical hex characters is what padding leaves; 32 CSPRNG bytes
+#: produce one with probability below 2**-119.
+_MAX_IDENTICAL_RUN = 32
 
-def _require_nonce(value: Any, field: str) -> str:
+#: 32 bytes drawn from a CSPRNG take about 30 distinct values. Taking fewer than
+#: twelve has probability near 3e-15 and is the signature of a nonce assembled
+#: from a short alphabet -- `"ab" * 24` plus a counter, say, which clears both the
+#: magnitude floor and the run limit while carrying about 16 bits.
+_MIN_DISTINCT_BYTES = 12
+
+#: Two independent 256-bit draws agree in their first 16 hex characters with
+#: probability 2**-64. Agreement at that length across a suite means one salt
+#: varied by an index, which is a single secret with a public offset rather than
+#: a per-case one.
+_MAX_SHARED_NONCE_AFFIX = 16
+
+
+def mint_root_cause_nonce() -> str:
+    """Draw one opening nonce: 256 bits from the OS CSPRNG, per case, never reused.
+
+    The error raised by :func:`nonce_weakness` used to be the only place that
+    said how to produce a correct nonce, which left every caller to implement
+    the one line that carries the scheme's entire security. This is that line.
+    """
+
+    return secrets.token_hex(32)
+
+
+def constant_nonces() -> frozenset[str]:
+    """Fixed nonces a generator leaves behind when it never drew one.
+
+    Placeholders, not guesses: each is a value a fixture, template or default
+    argument writes into the field, and a commitment opened by one was never
+    protected by anything.
+    """
+
+    values = {digit * 64 for digit in "0123456789abcdef"}
+    blocks = ("01", "0f", "de", "ad", "beef", "dead", "deadbeef", "cafebabe", "0123456789abcdef")
+    for block in blocks:
+        values.add(block * (64 // len(block)))
+    for seed in (b"", b"nonce", b"changeme", b"placeholder", b"secret", b"seed", b"0"):
+        values.add(hashlib.sha256(seed).hexdigest())
+    values.add(sha256_json(""))
+    values.add(sha256_json({}))
+    values.add(sha256_json(None))
+    values.add(sha256_json(0))
+    return frozenset(values)
+
+
+def published_field_nonces(
+    case: Mapping[str, Any], *, ordinal: int, suite_id: str = ""
+) -> frozenset[str]:
+    """Nonces derivable from what the manifest publishes beside the commitment.
+
+    A nonce computed from the case id, the case's position or the visible
+    symptom is published in full the moment the manifest is, whatever its
+    entropy looks like. ``ordinal`` is the case's 1-based position in the suite
+    as emitted.
+    """
+
+    seeds: list[str] = [
+        str(case.get("case_id", "")),
+        str(ordinal),
+        f"{ordinal:064x}",
+        str(case.get("visible_symptom", "")),
+        suite_id,
+        f"{suite_id}|{case.get('case_id', '')}",
+        f"{case.get('case_id', '')}|{ordinal}",
+    ]
+    values: set[str] = set()
+    for seed in seeds:
+        if not seed:
+            continue
+        values.add(hashlib.sha256(seed.encode("utf-8")).hexdigest())
+        values.add(sha256_json(seed))
+        values.add(hashlib.sha512(seed.encode("utf-8")).hexdigest()[:64])
+    values.add(sha256_json(ordinal))
+    return frozenset(values)
+
+
+def _max_identical_run(nonce: str) -> int:
+    best = run = 1
+    for previous, char in zip(nonce, nonce[1:]):
+        run = run + 1 if char == previous else 1
+        best = max(best, run)
+    return best
+
+
+def nonce_weakness(
+    nonce: str,
+    *,
+    case: Mapping[str, Any] | None = None,
+    ordinal: int | None = None,
+    suite_id: str = "",
+) -> str | None:
+    """Name the cheap enumeration that finds ``nonce``, or ``None`` if none does.
+
+    Returns a sentence rather than a boolean because the caller has to be able
+    to say *which* attack the nonce fell to; "invalid nonce" is not a finding an
+    operator can act on. ``case`` and ``ordinal`` are optional so the shape rules
+    can be applied to a bare nonce, but a suite validation supplies them, since
+    the derived-from-published-field family cannot be checked without them.
+    """
+
+    value = int(nonce, 16)
+    if value == 0:
+        return "the all-zero nonce"
+    if value < _MIN_NONCE_VALUE:
+        return "below 2**64, the range a counter, an ordinal or a small integer occupies"
+    if value > (1 << 256) - _MIN_NONCE_VALUE:
+        return "within 2**64 of 2**256, the range a counter run down from the top occupies"
+    run = _max_identical_run(nonce)
+    if run >= _MAX_IDENTICAL_RUN:
+        return (
+            f"padded with a run of {run} identical hex characters, leaving {64 - run} "
+            "characters of anything at all"
+        )
+    for block in (1, 2, 4, 8, 16, 32):
+        if nonce == nonce[:block] * (64 // block):
+            return f"a {block}-character block repeated {64 // block} times"
+    distinct = len({nonce[index : index + 2] for index in range(0, 64, 2)})
+    if distinct < _MIN_DISTINCT_BYTES:
+        return (
+            f"assembled from {distinct} distinct bytes where 32 CSPRNG bytes take about 30"
+        )
+    if nonce in constant_nonces():
+        return "a fixed placeholder a generator leaves behind"
+    if case is not None and ordinal is not None:
+        if nonce in published_field_nonces(case, ordinal=ordinal, suite_id=suite_id):
+            return "derived from a field the manifest publishes beside the commitment"
+    return None
+
+
+def _require_nonce(
+    value: Any,
+    field: str,
+    *,
+    case: Mapping[str, Any] | None = None,
+    ordinal: int | None = None,
+    suite_id: str = "",
+) -> str:
     nonce = _require_sha256(value, field)
-    if nonce == "0" * 64:
-        raise ValueError(f"{field} must not be the all-zero nonce")
-    if int(nonce, 16) < _MIN_NONCE_VALUE:
+    weakness = nonce_weakness(nonce, case=case, ordinal=ordinal, suite_id=suite_id)
+    if weakness is not None:
         raise ValueError(
-            f"{field} is below 2**64 and is therefore enumerable; the protected root "
+            f"{field} is {weakness} and is therefore enumerable; the protected root "
             "cause has only eight possible values, so a guessable nonce leaves the "
-            "commitment openable by brute force. Draw nonces from secrets.token_hex(32)."
+            "commitment openable by brute force. Draw nonces from "
+            "orion.study.p5.freeze.mint_root_cause_nonce()."
         )
     return nonce
 
@@ -159,7 +308,7 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
     suite = _require_mapping(raw_suite, "suite")
     if suite.get("schema_version") != SCHEMA_VERSION:
         raise ValueError(f"schema_version must be {SCHEMA_VERSION!r}")
-    _require_nonempty_string(suite.get("suite_id"), "suite_id")
+    suite_id = _require_nonempty_string(suite.get("suite_id"), "suite_id")
     if suite.get("created_before_outcome_access") is not True:
         raise ValueError("created_before_outcome_access must be true")
     _require_sha256(suite.get("evaluator_hash"), "evaluator_hash")
@@ -178,7 +327,7 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
     allowed_surfaces: list[str] = []
     protected_surfaces: list[str] = []
 
-    for case_id, case in cases.items():
+    for ordinal, (case_id, case) in enumerate(cases.items(), start=1):
         prefix = f"case {case_id}"
         _require_nonempty_string(case.get("visible_symptom"), f"{prefix}.visible_symptom")
         _require_mapping(case.get("candidate_visible_context"), f"{prefix}.candidate_visible_context")
@@ -188,9 +337,34 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
             raise ValueError(f"{prefix}.protected_root_cause is not a registered root cause")
         observed_causes.add(root)
 
-        nonce = _require_nonce(case.get("root_cause_nonce"), f"{prefix}.root_cause_nonce")
+        nonce = _require_nonce(
+            case.get("root_cause_nonce"),
+            f"{prefix}.root_cause_nonce",
+            case=case,
+            ordinal=ordinal,
+            suite_id=suite_id,
+        )
         if nonce in used_nonces:
             raise ValueError("root_cause_nonce values must be unique across cases")
+        # Distinct is not independent. One salt varied by an index shares its head
+        # or its tail with every other case, so opening any one case opens the
+        # scheme; the affix rule is what makes the salt per-case rather than
+        # per-suite. Two real draws collide on 16 hex characters at 2**-64.
+        for seen in used_nonces:
+            if nonce[:_MAX_SHARED_NONCE_AFFIX] == seen[:_MAX_SHARED_NONCE_AFFIX]:
+                raise ValueError(
+                    f"{prefix}.root_cause_nonce shares its first "
+                    f"{_MAX_SHARED_NONCE_AFFIX} characters with another case; that is one "
+                    "salt with a per-case offset, not a per-case salt, and opening either "
+                    "case opens both"
+                )
+            if nonce[-_MAX_SHARED_NONCE_AFFIX:] == seen[-_MAX_SHARED_NONCE_AFFIX:]:
+                raise ValueError(
+                    f"{prefix}.root_cause_nonce shares its last "
+                    f"{_MAX_SHARED_NONCE_AFFIX} characters with another case; that is one "
+                    "salt with a per-case offset, not a per-case salt, and opening either "
+                    "case opens both"
+                )
         used_nonces.add(nonce)
 
         competing = _require_string_list(

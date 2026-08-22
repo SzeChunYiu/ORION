@@ -4017,7 +4017,7 @@
       "file": "programme/commitment_custody.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 434,
+      "lineno": 444,
       "missing_obligation": "registered must be present at this guard",
       "reasons": [
         ": no disclosure probe was registered; a commitment nobody attacked reports no disclosure because nobody looked"
@@ -4031,7 +4031,7 @@
       "file": "programme/commitment_custody.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 447,
+      "lineno": 457,
       "missing_obligation": "materialised must be present at this guard",
       "reasons": [
         ": no sealed secret was supplied; zero disclosures out of zero commitments is an absent measurement, not custody that held"
@@ -4045,7 +4045,7 @@
       "file": "programme/commitment_custody.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 463,
+      "lineno": 473,
       "missing_obligation": null,
       "reasons": [
         ": the modelled commitment scheme does not reproduce the canary digest for secret",
@@ -4060,7 +4060,7 @@
       "file": "programme/commitment_custody.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 482,
+      "lineno": 492,
       "missing_obligation": null,
       "reasons": [
         "produced no nonce candidate and so computed no digest; a probe that never ran contributes a silent zero to the roll-up"
@@ -4074,7 +4074,7 @@
       "file": "programme/commitment_custody.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 498,
+      "lineno": 508,
       "missing_obligation": null,
       "reasons": [
         ": a ceiling of",
@@ -4091,7 +4091,7 @@
       "file": "programme/commitment_custody.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 533,
+      "lineno": 543,
       "missing_obligation": null,
       "reasons": [
         "hit the",
@@ -7576,7 +7576,7 @@
       "file": "study/p5/freeze.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 385,
+      "lineno": 559,
       "missing_obligation": null,
       "reasons": [
         "schema_version",
@@ -8121,7 +8121,7 @@
       "file": "study/p5/hidden_cause_custody.py",
       "has_reason": false,
       "kind": "BRANCH",
-      "lineno": 350,
+      "lineno": 556,
       "missing_obligation": null,
       "reasons": [],
       "role": "OBSERVES",
@@ -8133,7 +8133,7 @@
       "file": "study/p5/hidden_cause_custody.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 351,
+      "lineno": 557,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -9283,7 +9283,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "3f3f5047b85e57462d007182781bc5516777b720",
+  "subject_commit": "0c3a3b6112915b388fa9626ee4db009c39f053d5",
   "total_sites": 636,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 108,

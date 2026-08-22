@@ -35,6 +35,41 @@ The failure record is ``research/failures/
 Nothing here weakens the diagnostic work. It bounds it: 21/24 remains an
 honest description of one model's output on 24 symptom texts, and stops being
 evidence that a hidden cause was hidden.
+
+Which weakness, and what the repair had to be
+---------------------------------------------
+
+The message space and the nonce space fail differently and only one of them can
+be fixed. The message space *is* small --- eight registered families --- and it
+cannot be enlarged, because the label the candidate must produce is one of
+those eight by definition. So the eight-digest cost of testing a nonce guess is
+permanent, and the entire budget has to be carried by the nonce. That makes the
+nonce a per-item salt in everything but name, and the repair is the standard
+one: draw it from a CSPRNG (:func:`orion.study.p5.freeze.mint_root_cause_nonce`),
+never derive it from anything published, never share it between cases, and
+release it only at opening.
+
+A magnitude floor is not that repair. ``f"{2**255 + ordinal:064x}"`` is 64 hex
+characters, non-zero, unique per case, and 2**191 times above any floor, and it
+opens to the same single guess the ordinal did --- which is what
+``floor-evading-counter-nonce`` demonstrates. :func:`orion.study.p5.freeze.nonce_weakness`
+therefore rejects *shapes a declared probe generates* rather than *values that
+look small*, and the probes here are built from the freeze's own generators, so
+the set the freeze refuses and the set the adversary tries cannot drift apart.
+:func:`unenforceable_nonces` reports that answer inside the audit.
+
+What the repair does not do
+---------------------------
+
+It does not reopen the shipped suite. ``PROTECTED_SUITE_V1.json`` publishes
+``protected_root_cause`` in plaintext next to ``root_cause_nonce``, so its
+labels are disclosed by the file existing, not by any weakness in the digest
+over them; and the ordinal cue survives whatever the nonce is. Re-drawing its
+nonces now, after the run was scored, would produce a commitment made by
+somebody who already knows the answers, which is not a commitment. The custody
+audit on the shipped cases is therefore expected to keep failing, and
+:class:`~orion.programme.commitment_custody.ProspectiveScore` is expected to
+keep refusing to hold 0.875. The repair is for the next freeze.
 """
 
 from __future__ import annotations
@@ -63,7 +98,13 @@ from orion.programme.commitment_custody import (
     audit_commitment_custody,
 )
 from orion.programme.records import Outcome
-from orion.study.p5.freeze import ROOT_CAUSES, sha256_json
+from orion.study.p5.freeze import (
+    ROOT_CAUSES,
+    constant_nonces,
+    nonce_weakness,
+    published_field_nonces,
+    sha256_json,
+)
 
 SHIPPED_SUITE_PATH = "papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json"
 
@@ -97,11 +138,47 @@ def root_cause_commitment(root_cause: str, nonce: str) -> str:
 #: re-derived from a live freeze by the unit tests. Its only job is to make an
 #: audit whose scheme model has drifted report ``SCHEME_NOT_DEMONSTRATED``
 #: instead of "no commitment was opened".
+#:
+#: The nonce was ``"7f" * 32`` until the freeze learned to refuse a repeated
+#: block, at which point the canary became a triple the real freeze could no
+#: longer emit --- a canary that fails its own instrument. It is now a fixed
+#: 256-bit value that ``nonce_weakness`` clears, so the triple stays reproducible
+#: and stays something a freeze would accept. Fixed rather than drawn, because a
+#: canary has to be a constant to be checked against.
 FREEZE_CANARY = SchemeCanary(
     secret="METHOD_BASIS_GAP",
-    nonce="7f" * 32,
-    digest="3b8530a57e9adbf6c22b31869cd615fbf65a495b76c2d0205ab450b716b20252",
+    nonce="fb5f297ce3c11215576e39fff4aad5458b2871126a96d12063d08ffb78da047f",
+    digest="93b7228a27dd7abeef2ab0f37d7c3079db7e09c798a9542db8989d8d65c23f7e",
 )
+
+
+#: How far each unbounded probe sweeps. Both are stated as numbers rather than
+#: as "small" because a probe's finding is the pair (what it opened, what it
+#: spent), and a budget nobody can quote is a budget nobody can argue is within
+#: an adversary's reach.
+SMALL_INTEGER_SWEEP = 16_384
+FLOOR_EVASION_SWEEP = 1_024
+
+#: Bases for the counters that clear a magnitude floor without gaining entropy.
+#: This family is the reason a floor is not a repair: `f"{2**255 + ordinal:064x}"`
+#: is 64 hex characters, non-zero, unique per case, far above 2**64, and opens to
+#: the same one guess the ordinal did.
+_FLOOR_EVASION_BASES: tuple[int, ...] = (
+    1 << 64,
+    1 << 65,
+    1 << 128,
+    1 << 192,
+    1 << 255,
+    (1 << 256) - 1 - FLOOR_EVASION_SWEEP,
+    int("deadbeef" * 8, 16) & ~0xFFFF,
+    int("cafebabe" * 8, 16) & ~0xFFFF,
+)
+
+#: Per-probe digest ceiling for the P5 audit. Above the 3,145,728 evaluations the
+#: widest probe spends against a 24-case suite, so a probe that opens nothing
+#: reports WITHHELD_UNDER_ENUMERATION rather than BUDGET_EXHAUSTED: the sweep
+#: finished and found nothing, which is a different fact from running out of money.
+DISCLOSURE_BUDGET_DIGESTS = 5_000_000
 
 
 def _ordinal_nonce(sealed: SealedSecret) -> tuple[str, ...]:
@@ -109,21 +186,25 @@ def _ordinal_nonce(sealed: SealedSecret) -> tuple[str, ...]:
 
 
 def _small_integer_nonces(sealed: SealedSecret) -> tuple[str, ...]:
-    # 4096 covers any counter a case generator plausibly runs to, and states the
-    # attack's cost as a number rather than leaving it as "small".
-    return tuple(f"{value:064x}" for value in range(4096))
+    return tuple(f"{value:064x}" for value in range(SMALL_INTEGER_SWEEP))
+
+
+def _floor_evading_nonces(sealed: SealedSecret) -> tuple[str, ...]:
+    mask = (1 << 256) - 1
+    return tuple(
+        f"{(base + counter) & mask:064x}"
+        for base in _FLOOR_EVASION_BASES
+        for counter in range(FLOOR_EVASION_SWEEP)
+    )
 
 
 def _constant_nonces(sealed: SealedSecret) -> tuple[str, ...]:
-    # The values a placeholder leaves behind. The all-zero nonce is included even
-    # though validate_protected_suite rejects it, because that rejection is the
-    # entire entropy check the freeze performs and this records its coverage.
-    return (
-        "0" * 64,
-        "a" * 64,
-        "f" * 64,
-        hashlib.sha256(b"").hexdigest(),
-    )
+    # Taken from freeze.constant_nonces rather than restated, so the set the
+    # freeze refuses and the set the adversary tries cannot drift apart. The
+    # all-zero nonce is included even though the freeze has always rejected it,
+    # because that rejection used to be the entire entropy check and this records
+    # its coverage.
+    return tuple(sorted(constant_nonces()))
 
 
 def _case_id_digest_nonces(sealed: SealedSecret) -> tuple[str, ...]:
@@ -148,8 +229,20 @@ P5_DISCLOSURE_PROBES: tuple[DisclosureProbe, ...] = (
         kind=DisclosureKind.SMALL_INTEGER,
         nonce_candidates=_small_integer_nonces,
         cost_rationale=(
-            "a sweep over the first 4096 integers, the range any generator loop counter "
-            "falls in; bounded above by 4096 x 8 digests per case on ordinary hardware"
+            f"a sweep over the first {SMALL_INTEGER_SWEEP} integers, the range any generator "
+            f"loop counter falls in; bounded above by {SMALL_INTEGER_SWEEP} x 8 digests per "
+            "case, seconds of ordinary hardware"
+        ),
+    ),
+    DisclosureProbe(
+        probe_id="floor-evading-counter-nonce",
+        kind=DisclosureKind.SMALL_INTEGER,
+        nonce_candidates=_floor_evading_nonces,
+        cost_rationale=(
+            f"the same counter sweep offset by {len(_FLOOR_EVASION_BASES)} round bases -- "
+            "powers of two, the top of the range, and two repeated-word patterns -- which is "
+            "what a generator emits when it is told only that its nonce must not look small; "
+            f"{len(_FLOOR_EVASION_BASES) * FLOOR_EVASION_SWEEP} candidates per case"
         ),
     ),
     DisclosureProbe(
@@ -157,8 +250,9 @@ P5_DISCLOSURE_PROBES: tuple[DisclosureProbe, ...] = (
         kind=DisclosureKind.CONSTANT,
         nonce_candidates=_constant_nonces,
         cost_rationale=(
-            "four fixed placeholders a fixture leaves behind - all-zero, all-a, all-f and "
-            "the digest of the empty string; 32 digests for the whole manifest"
+            f"the {len(constant_nonces())} fixed placeholders a fixture leaves behind -- "
+            "single-digit repeats, repeated words, and the digests of the empty and default "
+            "seeds; well under a thousand digests for the whole manifest"
         ),
     ),
     DisclosureProbe(
@@ -171,6 +265,89 @@ P5_DISCLOSURE_PROBES: tuple[DisclosureProbe, ...] = (
         ),
     ),
 )
+
+
+def _published_field_probe(
+    cases: Sequence[Mapping[str, Any]], *, suite_id: str
+) -> DisclosureProbe:
+    """Every nonce derivable from a field published beside the commitment.
+
+    Wider than ``case-id-digest-nonce`` and case-aware, so it can reach the
+    symptom text and the suite id as well as the case id. Built from
+    ``freeze.published_field_nonces`` so that the derivations the freeze refuses
+    and the derivations the adversary tries are the same list.
+    """
+
+    index = {
+        str(case["case_id"]): (case, ordinal)
+        for ordinal, case in enumerate(cases, start=1)
+    }
+
+    def candidates(sealed: SealedSecret) -> tuple[str, ...]:
+        found = index.get(sealed.secret_id)
+        if found is None:
+            return _case_id_digest_nonces(sealed)
+        case, ordinal = found
+        return tuple(sorted(published_field_nonces(case, ordinal=ordinal, suite_id=suite_id)))
+
+    return DisclosureProbe(
+        probe_id="published-field-nonce",
+        kind=DisclosureKind.PUBLISHED_FIELD,
+        nonce_candidates=candidates,
+        cost_rationale=(
+            "every SHA-256, SHA-512-truncated and canonical-JSON derivation of the case id, "
+            "the case ordinal, the visible symptom and the suite id -- all of which the "
+            "manifest publishes; about twenty candidates per case"
+        ),
+    )
+
+
+def _reused_nonce_probe(cases: Sequence[Mapping[str, Any]]) -> DisclosureProbe:
+    """One opening's nonce, tried against every other case.
+
+    This is the probe that decides whether the salt is per-item. A scheme with a
+    single high-entropy salt shared across the suite passes every shape rule
+    above and is still not a commitment: the first authorised opening hands the
+    adversary all 24. P5 is not hypothetical about this -- ``evidence/tables/
+    P5-ATTRIBUTION_RESIDUAL_ERRORS.json`` names three golds outright and
+    ``evidence/glm-5.2-attribution/report.json`` lists every family's case ids,
+    so the suite already discloses openings.
+
+    A case's own nonce is excluded from its own candidate list: a case whose
+    opening the adversary was handed is disclosed by assumption, and counting it
+    would report the assumption back as a finding.
+    """
+
+    pairs = tuple(
+        (str(case["case_id"]), str(case.get("root_cause_nonce", ""))) for case in cases
+    )
+
+    def candidates(sealed: SealedSecret) -> tuple[str, ...]:
+        return tuple(
+            nonce for case_id, nonce in pairs if nonce and case_id != sealed.secret_id
+        )
+
+    return DisclosureProbe(
+        probe_id="reused-nonce",
+        kind=DisclosureKind.RECOVERED_ELSEWHERE,
+        nonce_candidates=candidates,
+        cost_rationale=(
+            "the nonces of the other cases, as an adversary holding one authorised opening "
+            "would try them; n-1 candidates per case, and the only probe that can tell a "
+            "per-case salt from one suite-wide salt"
+        ),
+    )
+
+
+def disclosure_probes_for(
+    cases: Sequence[Mapping[str, Any]], *, suite_id: str = ""
+) -> tuple[DisclosureProbe, ...]:
+    """The registered probes, plus the two that need the cases to be constructed."""
+
+    return P5_DISCLOSURE_PROBES + (
+        _published_field_probe(cases, suite_id=suite_id),
+        _reused_nonce_probe(cases),
+    )
 
 
 def sealed_root_causes(cases: Sequence[Mapping[str, Any]]) -> tuple[SealedSecret, ...]:
@@ -198,18 +375,46 @@ def sealed_root_causes(cases: Sequence[Mapping[str, Any]]) -> tuple[SealedSecret
 def audit_suite_custody(
     cases: Sequence[Mapping[str, Any]],
     *,
-    budget_digests: int = 1_000_000,
+    suite_id: str = "",
+    budget_digests: int = DISCLOSURE_BUDGET_DIGESTS,
 ) -> CustodyAudit:
     """Attack the commitments this suite would publish, with the declared cheap probes."""
 
     return audit_commitment_custody(
         custody_id=CUSTODY_ID,
         secrets=sealed_root_causes(cases),
-        probes=P5_DISCLOSURE_PROBES,
+        probes=disclosure_probes_for(cases, suite_id=suite_id),
         scheme=root_cause_commitment,
         canary=FREEZE_CANARY,
         budget_digests=budget_digests,
     )
+
+
+def unenforceable_nonces(
+    cases: Sequence[Mapping[str, Any]], *, suite_id: str = ""
+) -> tuple[tuple[str, str], ...]:
+    """``(case_id, weakness)`` for every nonce ``validate_protected_suite`` would refuse.
+
+    The custody audit and the freeze validator answer the same question from
+    opposite ends --- can a cheap adversary find this nonce --- and this is the
+    one call that reports the validator's answer in the audit's vocabulary. A
+    suite with an empty result here is one whose nonces no registered probe can
+    generate, which is what the audit then tries to falsify by generating them.
+    """
+
+    findings: list[tuple[str, str]] = []
+    for ordinal, case in enumerate(cases, start=1):
+        nonce = str(case.get("root_cause_nonce", ""))
+        if len(nonce) != 64:
+            findings.append((str(case.get("case_id", "")), "not a 64-character hex nonce"))
+            continue
+        try:
+            weakness = nonce_weakness(nonce, case=case, ordinal=ordinal, suite_id=suite_id)
+        except ValueError:
+            weakness = "not a hex nonce"
+        if weakness is not None:
+            findings.append((str(case.get("case_id", "")), weakness))
+    return tuple(findings)
 
 
 HIDDEN_CAUSE_CUE_NAMES: tuple[str, ...] = (
@@ -327,7 +532,7 @@ def audit_root_cause_identifiability(
 def audit_hidden_cause_suite(
     suite: Mapping[str, Any],
     *,
-    budget_digests: int = 1_000_000,
+    budget_digests: int = DISCLOSURE_BUDGET_DIGESTS,
 ) -> dict[str, Any]:
     """Full audit: commitment custody, per-family identifiability, and a roll-up.
 
@@ -338,7 +543,8 @@ def audit_hidden_cause_suite(
     """
 
     cases = list(suite.get("cases") or [])
-    custody = audit_suite_custody(cases, budget_digests=budget_digests)
+    suite_id = str(suite.get("suite_id", ""))
+    custody = audit_suite_custody(cases, suite_id=suite_id, budget_digests=budget_digests)
     families = sorted({str(case["protected_root_cause"]) for case in cases})
     identifiability = tuple(
         audit_root_cause_identifiability(cases, label=family) for family in families
@@ -354,9 +560,22 @@ def audit_hidden_cause_suite(
 
     return {
         "schema_version": "orion.p5.hidden-cause-custody-audit.v1",
-        "suite_id": suite.get("suite_id", ""),
+        "suite_id": suite_id,
         "n_cases": len(cases),
         "overall_outcome": overall.value,
+        # The work is reported next to the verdict, always. "Nothing was opened"
+        # and "nothing was opened in 4.7 million SHA-256 evaluations across six
+        # declared adversaries" are different claims, and only the second one is
+        # a result. The nonce findings are the freeze validator's answer to the
+        # same question, so a suite that would not survive a freeze cannot look
+        # clean here just because the probes are bounded.
+        "disclosure_budget_digests": budget_digests,
+        "digests_computed": sum(item.digests_computed for item in custody.attempts),
+        "probes_run": len(custody.attempts),
+        "enumerable_nonces": [
+            {"case_id": case_id, "weakness": weakness}
+            for case_id, weakness in unenforceable_nonces(cases, suite_id=suite_id)
+        ],
         "commitment_custody": custody.as_json(),
         "root_cause_identifiability": [item.as_json() for item in identifiability],
     }
@@ -368,7 +587,7 @@ def main(argv: Iterable[str] | None = None) -> int:
     )
     parser.add_argument("--suite", type=Path, default=Path(SHIPPED_SUITE_PATH))
     parser.add_argument("--output", type=Path)
-    parser.add_argument("--budget-digests", type=int, default=1_000_000)
+    parser.add_argument("--budget-digests", type=int, default=DISCLOSURE_BUDGET_DIGESTS)
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     suite = json.loads(args.suite.read_text(encoding="utf-8"))
@@ -389,17 +608,22 @@ __all__ = [
     "BENCHMARK_ID",
     "CASES_PER_FAMILY",
     "CUSTODY_ID",
+    "DISCLOSURE_BUDGET_DIGESTS",
+    "FLOOR_EVASION_SWEEP",
     "FREEZE_CANARY",
     "HIDDEN_CAUSE_CUE_NAMES",
     "P5_DISCLOSURE_PROBES",
     "P5_SHORTCUT_PROBES",
     "SHIPPED_SUITE_PATH",
+    "SMALL_INTEGER_SWEEP",
     "audit_hidden_cause_suite",
     "audit_root_cause_identifiability",
     "audit_suite_custody",
     "default_fit_case_ids",
+    "disclosure_probes_for",
     "extract_hidden_cause_cues",
     "labelled_case",
     "root_cause_commitment",
     "sealed_root_causes",
+    "unenforceable_nonces",
 ]

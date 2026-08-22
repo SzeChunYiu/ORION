@@ -16,10 +16,17 @@ from typing import Any
 import pytest
 
 from orion.programme.benchmark_identifiability import CaseSplit
-from orion.programme.commitment_custody import CustodyReason
+from orion.programme.commitment_custody import CustodyReason, DisclosureKind
 from orion.programme.records import Outcome
-from orion.study.p5.freeze import ROOT_CAUSES, freeze_protected_suite, sha256_json
+from orion.study.p5.freeze import (
+    ROOT_CAUSES,
+    freeze_protected_suite,
+    mint_root_cause_nonce,
+    nonce_weakness,
+    sha256_json,
+)
 from orion.study.p5.hidden_cause_custody import (
+    DISCLOSURE_BUDGET_DIGESTS,
     FREEZE_CANARY,
     P5_DISCLOSURE_PROBES,
     SHIPPED_SUITE_PATH,
@@ -27,11 +34,13 @@ from orion.study.p5.hidden_cause_custody import (
     audit_root_cause_identifiability,
     audit_suite_custody,
     default_fit_case_ids,
+    disclosure_probes_for,
     extract_hidden_cause_cues,
     labelled_case,
     main,
     root_cause_commitment,
     sealed_root_causes,
+    unenforceable_nonces,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -219,9 +228,18 @@ class TestCommitmentCustody:
         assert secrets[0].domain == tuple(FAMILIES)
         assert secrets[0].domain_size == 8
 
-    def test_every_registered_probe_states_its_cost(self) -> None:
-        assert len(P5_DISCLOSURE_PROBES) == 4
-        assert all(probe.cost_rationale.strip() for probe in P5_DISCLOSURE_PROBES)
+    def test_every_registered_probe_states_its_cost(self, shipped_cases) -> None:
+        probes = disclosure_probes_for(shipped_cases, suite_id="shipped")
+        assert len(P5_DISCLOSURE_PROBES) == 5
+        assert len(probes) == 7
+        assert all(probe.cost_rationale.strip() for probe in probes)
+
+    def test_every_way_of_not_guessing_a_nonce_has_a_probe(self, shipped_cases) -> None:
+        # DisclosureKind enumerates five ways of obtaining a nonce without
+        # cryptanalysis. A kind with no probe behind it is a class of attack the
+        # audit reports zero disclosures for because nobody ran it.
+        probes = disclosure_probes_for(shipped_cases, suite_id="shipped")
+        assert {probe.kind for probe in probes} == set(DisclosureKind)
 
 
 class TestRootCauseIdentifiability:
@@ -304,3 +322,227 @@ class TestCli:
         report = json.loads(output.read_text(encoding="utf-8"))
         assert report["overall_outcome"] == Outcome.FAIL.value
         assert report["commitment_custody"]["outcome"] == Outcome.FAIL.value
+
+
+# ---------------------------------------------------------------------------
+# The attack, the repair, and the proof that the two are about the same thing.
+#
+# A test suite that only pinned "the probe recovers nothing" would pass equally
+# well if the probe had been deleted. Every claim below is therefore stated
+# twice: once as the attack succeeding against the scheme as shipped, and once
+# as the same attack, at the same budget, failing against the repaired one.
+# ---------------------------------------------------------------------------
+
+
+def _floor_evading_nonces(count: int) -> list[str]:
+    """Nonces that clear a magnitude floor and carry nothing.
+
+    ``2**255 + ordinal`` is 64 hex characters, non-zero, unique per case and
+    2**191 times above the 2**64 floor the freeze used to enforce. It also opens
+    to one guess, which is the whole point: a floor rejects values that look
+    small, and this does not look small.
+    """
+
+    return [f"{(1 << 255) + index:064x}" for index in range(1, count + 1)]
+
+
+@pytest.fixture(scope="module")
+def repaired_cases(shipped_cases) -> list[dict[str, Any]]:
+    """The shipped cases with their nonces redrawn from the CSPRNG.
+
+    Real draws rather than a fixed fixture: the claim under test is about what
+    ``mint_root_cause_nonce`` produces, and a hard-coded "high entropy" constant
+    would only establish that one lucky value survives.
+    """
+
+    return [dict(case, root_cause_nonce=mint_root_cause_nonce()) for case in shipped_cases]
+
+
+@pytest.fixture(scope="module")
+def repaired_audit(repaired_cases):
+    return audit_suite_custody(repaired_cases, suite_id="repaired")
+
+
+class TestTheAttackWorksOnTheSchemeAsShipped:
+    """Each of these must keep passing, or the repair below proves nothing."""
+
+    def test_the_ordinal_nonce_still_opens_all_24_at_4_5_digests_each(
+        self, shipped_cases
+    ) -> None:
+        audit = audit_suite_custody(shipped_cases, suite_id="shipped")
+        ordinal = {item.probe_id: item for item in audit.attempts}["ordinal-nonce"]
+        assert (ordinal.disclosed, ordinal.sealed) == (24, 24)
+        assert ordinal.digests_computed == 108
+        assert audit.outcome is Outcome.FAIL
+
+    def test_a_magnitude_floor_alone_would_not_have_stopped_it(self) -> None:
+        """The repair the shipped scheme first received, and why it was not one.
+
+        Every nonce here is above 2**64, so the floor that ``_require_nonce``
+        enforced accepts all eight. The floor-evading probe opens all eight
+        anyway, because the entropy a floor measures is not the entropy a
+        commitment needs.
+        """
+
+        nonces = _floor_evading_nonces(8)
+        assert all(int(nonce, 16) >= 1 << 64 for nonce in nonces)
+
+        cases = _freezable_suite(nonces, FAMILIES)["cases"]
+        audit = audit_suite_custody(cases, suite_id="floor-evading")
+        attempt = {item.probe_id: item for item in audit.attempts}[
+            "floor-evading-counter-nonce"
+        ]
+        assert audit.outcome is Outcome.FAIL
+        assert (attempt.disclosed, attempt.sealed) == (8, 8)
+
+    def test_one_salt_shared_across_the_suite_opens_the_whole_suite(self) -> None:
+        """Per-item is not decoration. A shared salt has full entropy and no custody.
+
+        Every shape rule clears this nonce --- it is a CSPRNG draw. What it is
+        not is *per case*, so the first authorised opening hands the adversary
+        the other twenty-three, which is what ``reused-nonce`` measures.
+        """
+
+        shared = mint_root_cause_nonce()
+        cases = _freezable_suite([shared] * 8, FAMILIES)["cases"]
+        assert nonce_weakness(shared) is None
+
+        audit = audit_suite_custody(cases, suite_id="shared-salt")
+        attempt = {item.probe_id: item for item in audit.attempts}["reused-nonce"]
+        assert audit.outcome is Outcome.FAIL
+        assert (attempt.disclosed, attempt.sealed) == (8, 8)
+
+
+class TestTheRepairDefeatsTheAttack:
+    def test_the_probes_open_0_of_24_under_csprng_salts(self, repaired_audit) -> None:
+        assert repaired_audit.outcome is Outcome.PASS
+        assert repaired_audit.reason is CustodyReason.WITHHELD_UNDER_ENUMERATION
+        assert repaired_audit.worst_disclosure_rate == 0.0
+        assert not repaired_audit.blocks
+        for attempt in repaired_audit.attempts:
+            assert attempt.disclosed == 0, attempt.probe_id
+            assert attempt.disclosed_ids == (), attempt.probe_id
+
+    def test_the_pass_states_a_budget_that_no_probe_ran_out_of(
+        self, repaired_audit
+    ) -> None:
+        """A probe that stopped looking reports the same zero as one that looked.
+
+        ``BUDGET_EXHAUSTED`` is the reason that separates them, and it blocks.
+        Asserting that no attempt hit the ceiling is what makes the zero above a
+        finding rather than an interruption.
+        """
+
+        for attempt in repaired_audit.attempts:
+            assert not attempt.budget_exhausted, attempt.probe_id
+            assert attempt.budget_digests == DISCLOSURE_BUDGET_DIGESTS
+            assert attempt.attempted, attempt.probe_id
+
+    def test_the_attack_spent_millions_of_digests_to_recover_nothing(
+        self, repaired_audit
+    ) -> None:
+        spent = sum(attempt.digests_computed for attempt in repaired_audit.attempts)
+        # 16384 counters + 8192 floor-evading counters + the bounded families,
+        # against 8 candidate labels and 24 commitments.
+        assert spent > 4_000_000
+        assert f"{spent} digest evaluations" in repaired_audit.detail
+
+    def test_no_repaired_nonce_is_one_the_freeze_would_refuse(
+        self, repaired_cases
+    ) -> None:
+        assert unenforceable_nonces(repaired_cases, suite_id="repaired") == ()
+
+    def test_every_shipped_nonce_is_one_the_freeze_would_refuse(
+        self, shipped_cases
+    ) -> None:
+        findings = unenforceable_nonces(shipped_cases, suite_id="shipped")
+        assert len(findings) == 24
+        assert all("below 2**64" in weakness for _, weakness in findings)
+
+
+class TestTheFreezeRefusesWhatTheProbeTries:
+    """The binding that keeps the two halves from drifting apart.
+
+    A repair is only a repair if the thing that accepts nonces refuses exactly
+    what the thing that attacks them generates. These tests walk the probes'
+    candidate lists and require the validator to name a weakness for every one.
+    """
+
+    def test_no_shape_probe_can_generate_a_nonce_the_freeze_accepts(
+        self, shipped_cases
+    ) -> None:
+        case = shipped_cases[0]
+        sealed = sealed_root_causes(shipped_cases)[0]
+        probes = {
+            probe.probe_id: probe
+            for probe in disclosure_probes_for(shipped_cases, suite_id="shipped")
+        }
+        # reused-nonce is excluded on purpose: its candidates are other cases'
+        # real nonces, which are strong values. Uniqueness and the shared-affix
+        # rule are what refuse it, and they are tested separately below.
+        checked = 0
+        for probe_id, probe in probes.items():
+            if probe_id == "reused-nonce":
+                continue
+            for candidate in probe.nonce_candidates(sealed):
+                weakness = nonce_weakness(
+                    candidate, case=case, ordinal=1, suite_id="shipped"
+                )
+                assert weakness is not None, f"{probe_id} generated {candidate}"
+                checked += 1
+        assert checked > 20_000
+
+    def test_the_freeze_refuses_a_reused_salt(self) -> None:
+        shared = mint_root_cause_nonce()
+        with pytest.raises(ValueError, match="unique across cases"):
+            freeze_protected_suite(_freezable_suite([shared] * 8, FAMILIES))
+
+    def test_the_freeze_refuses_one_salt_with_a_per_case_tail(self) -> None:
+        """Distinct is not independent, and only the affix rule sees that."""
+
+        head = mint_root_cause_nonce()[:48]
+        nonces = [head + f"{index:016x}" for index in range(1, 9)]
+        assert len(set(nonces)) == 8
+        with pytest.raises(ValueError, match="not a per-case salt"):
+            freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+
+    def test_the_freeze_refuses_a_floor_evading_counter(self) -> None:
+        with pytest.raises(ValueError, match="enumerable"):
+            freeze_protected_suite(_freezable_suite(_floor_evading_nonces(8), FAMILIES))
+
+    def test_the_freeze_refuses_a_nonce_derived_from_the_case_id(self) -> None:
+        nonces = [
+            hashlib.sha256(f"P5-HC-{index:03d}".encode()).hexdigest()
+            for index in range(1, 9)
+        ]
+        with pytest.raises(ValueError, match="publishes beside the commitment"):
+            freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+
+    def test_minted_nonces_freeze_and_their_commitments_hold(self) -> None:
+        nonces = [mint_root_cause_nonce() for _ in range(8)]
+        suite = _freezable_suite(nonces, FAMILIES)
+        _, manifest = freeze_protected_suite(suite)
+
+        published = {
+            case["case_id"]: case["root_cause_commitment"] for case in manifest["cases"]
+        }
+        for case, nonce, family in zip(suite["cases"], nonces, FAMILIES, strict=True):
+            assert published[case["case_id"]] == root_cause_commitment(family, nonce)
+
+        audit = audit_suite_custody(suite["cases"], suite_id=suite["suite_id"])
+        assert audit.outcome is Outcome.PASS
+        assert audit.worst_disclosure_rate == 0.0
+
+
+class TestTheRollUpReportsItsCost:
+    def test_the_shipped_report_names_the_nonces_the_freeze_would_refuse(
+        self, shipped_cases
+    ) -> None:
+        report = audit_hidden_cause_suite(
+            {"suite_id": "shipped", "cases": shipped_cases}
+        )
+        assert report["overall_outcome"] == Outcome.FAIL.value
+        assert len(report["enumerable_nonces"]) == 24
+        assert report["probes_run"] == 7
+        assert report["disclosure_budget_digests"] == DISCLOSURE_BUDGET_DIGESTS
+        assert report["digests_computed"] > 0
