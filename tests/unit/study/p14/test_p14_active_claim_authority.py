@@ -13,6 +13,19 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def test_active_authority_json_has_no_duplicate_object_keys() -> None:
+    def reject_duplicates(pairs):
+        value = {}
+        for key, item in pairs:
+            if key in value:
+                raise ValueError(f"duplicate JSON object key: {key}")
+            value[key] = item
+        return value
+
+    record = json.loads(ACTIVE.read_text(encoding="utf-8"), object_pairs_hook=reject_duplicates)
+    assert record["external_validity"] == "OPEN"
+
+
 def test_active_p14_authority_is_positive_p14c_and_content_bound() -> None:
     record = json.loads(ACTIVE.read_text(encoding="utf-8"))
     active = record["active_claim"]
