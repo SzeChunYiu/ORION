@@ -1,5 +1,4 @@
 name: orion-qg-qg3-positive-forecast
-
 on:
   pull_request:
     paths:
@@ -9,17 +8,16 @@ on:
       - 'packages/orion-research-harness/tests/test_qg3_positive_forecast.py'
       - '.github/workflows/orion-qg-qg3.yml'
   workflow_dispatch:
-
 concurrency:
   group: orion-qg-qg3-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-
 jobs:
   qg3-positive-forecast:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
       QG3_FROZEN_BASE: 13a0fc6afb1d150a114ec318d72830e3c6722b03
+      ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS: 600
     steps:
       - name: Checkout exact protected head, never synthetic merge ref
         uses: actions/checkout@v4
@@ -42,21 +40,17 @@ jobs:
           python -m pip install -e '.[dev,candidates]'
           python -m pip install -e 'packages/orion-research-harness[dev]'
       - name: Validate QG-3 native campaign control
-        run: |
-          pytest -q packages/orion-research-harness/tests/test_qg3_positive_forecast.py
+        run: pytest -q packages/orion-research-harness/tests/test_qg3_positive_forecast.py
       - name: Run stage 1 + dual-harness pre-ground-truth admission
         run: |
+          set -o pipefail
           mkdir -p artifacts
-          python development/orion-qg-regime-geometry/run_qg3_dual_harness.py \
-            | tee artifacts/orion-qg-qg3-dual-summary.json
+          python development/orion-qg-regime-geometry/run_qg3_dual_harness.py | tee artifacts/orion-qg-qg3-dual-summary.json
       - name: Run exact referee twice after dual admission
         run: |
-          python research/extensions/orion-qg/qg3_exact_referee.py \
-            --output artifacts/orion-qg-qg3-result-run1.json \
-            | tee artifacts/orion-qg-qg3-referee-run1.log
-          python research/extensions/orion-qg/qg3_exact_referee.py \
-            --output artifacts/orion-qg-qg3-result-run2.json \
-            | tee artifacts/orion-qg-qg3-referee-run2.log
+          set -o pipefail
+          python research/extensions/orion-qg/qg3_exact_referee.py --output artifacts/orion-qg-qg3-result-run1.json | tee artifacts/orion-qg-qg3-referee-run1.log
+          python research/extensions/orion-qg/qg3_exact_referee.py --output artifacts/orion-qg-qg3-result-run2.json | tee artifacts/orion-qg-qg3-referee-run2.log
           cmp artifacts/orion-qg-qg3-result-run1.json artifacts/orion-qg-qg3-result-run2.json
           cp artifacts/orion-qg-qg3-result-run1.json artifacts/orion-qg-qg3-result.json
       - name: Enforce honest terminal and positive gates
@@ -64,49 +58,15 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-
-          stage1 = json.loads(Path('artifacts/orion-qg-qg3-stage1.json').read_text())
-          dual = json.loads(Path('artifacts/orion-qg-qg3-dual-admission.json').read_text())
-          result = json.loads(Path('artifacts/orion-qg-qg3-result.json').read_text())
-
-          assert stage1['schema'] == 'ORION.QG.QG3.Stage1Prediction.v1'
-          assert stage1['candidate_cap'] == 12
-          assert stage1['ground_truth_opened'] is False
-          assert stage1['novelty_authority'] is False
-          assert stage1['dp_call_count'] == 0
-          assert stage1['no_dp_calls'] is True
-          assert stage1['protected_unread'] is True
-
-          assert dual['schema'] == 'ORION.QG.QG3.DualAdmission.v1'
-          assert dual['stage1_digest'] == stage1['stage1_digest']
-          assert dual['ground_truth_opened'] is False
-          assert dual['novelty_authority'] is False
-
-          allowed = {
-              'QG3_NO_POSITIVE_PREDICTION_IN_FROZEN_SCAN',
-              'QG3_DUAL_HARNESS_DISAGREEMENT',
-              'QG3_PREDICTION_REFUTED',
-              'QG3_ACCESS_OR_PROVENANCE_CANNOT_CHECK',
-              'QG3_PROSPECTIVE_POSITIVE_TRADE_FORECAST_CONFIRMED',
-          }
-          assert result['terminal'] in allowed
-          assert result['novelty_authority'] is False
-          if 'physical_quantum_advantage_claim' in result:
-              assert result['physical_quantum_advantage_claim'] is False
-
-          if result['terminal'] == 'QG3_PROSPECTIVE_POSITIVE_TRADE_FORECAST_CONFIRMED':
-              assert stage1['positive_found'] is True
-              assert dual['both_open'] is True
-              assert all(result['gates'].values())
-              assert result['truth']['strict_donor_gap'] >= 1
-              assert result['prediction']['predicted_C_DP'] < result['prediction']['C_R6L']
-              assert result['truth']['C_DP'] == result['prediction']['predicted_C_DP']
-              assert result['truth']['truth_regime'] == result['prediction']['predicted_regime']
-          else:
-              # A non-positive terminal may not silently claim that ground truth was opened
-              # unless it is the explicit prediction-refuted referee outcome.
-              if result['terminal'] != 'QG3_PREDICTION_REFUTED':
-                  assert result['ground_truth_opened'] is False
+          stage1=json.loads(Path('artifacts/orion-qg-qg3-stage1.json').read_text());dual=json.loads(Path('artifacts/orion-qg-qg3-dual-admission.json').read_text());result=json.loads(Path('artifacts/orion-qg-qg3-result.json').read_text())
+          assert stage1['schema']=='ORION.QG.QG3.Stage1Prediction.v1' and stage1['candidate_cap']==12 and stage1['ground_truth_opened'] is False and stage1['novelty_authority'] is False and stage1['dp_call_count']==0 and stage1['no_dp_calls'] is True and stage1['protected_unread'] is True
+          assert dual['schema']=='ORION.QG.QG3.DualAdmission.v1' and dual['stage1_digest']==stage1['stage1_digest'] and dual['ground_truth_opened'] is False and dual['novelty_authority'] is False
+          allowed={'QG3_NO_POSITIVE_PREDICTION_IN_FROZEN_SCAN','QG3_DUAL_HARNESS_DISAGREEMENT','QG3_PREDICTION_REFUTED','QG3_ACCESS_OR_PROVENANCE_CANNOT_CHECK','QG3_PROSPECTIVE_POSITIVE_TRADE_FORECAST_CONFIRMED'}
+          assert result['terminal'] in allowed and result['novelty_authority'] is False
+          if 'physical_quantum_advantage_claim' in result: assert result['physical_quantum_advantage_claim'] is False
+          if result['terminal']=='QG3_PROSPECTIVE_POSITIVE_TRADE_FORECAST_CONFIRMED':
+              assert stage1['positive_found'] is True and dual['both_open'] is True and all(result['gates'].values()) and result['truth']['strict_donor_gap']>=1 and result['prediction']['predicted_C_DP']<result['prediction']['C_R6L'] and result['truth']['C_DP']==result['prediction']['predicted_C_DP'] and result['truth']['truth_regime']==result['prediction']['predicted_regime']
+          elif result['terminal']!='QG3_PREDICTION_REFUTED': assert result['ground_truth_opened'] is False
           PY
       - name: Upload QG-3 receipts
         uses: actions/upload-artifact@v4

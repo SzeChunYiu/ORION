@@ -96,9 +96,15 @@ jobs:
         run: |
           orion-harness init /tmp/orion-q-r6 --project-root . --allow-process-tools
           orion-harness campaign-start /tmp/orion-q-r6 orion-q:max-r6-live
+      - name: Drive live campaign through current fail-closed prospective verdict
       - name: Drive live campaign through protected pre-access R6 boundary
         run: |
+          set -o pipefail
           orion-harness campaign-run /tmp/orion-q-r6 orion-q:max-r6-live --max-cycles 4 | tee /tmp/orion-q-r6-run.json
+          grep 'R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING' /tmp/orion-q-r6-run.json
+          orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
+          grep '"R6_EARNED"' /tmp/orion-q-r6-state.json
+      - name: Fail closed on current R6 verdict and protected-subject custody
           orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
       - name: Enforce terminal progression and protected R6 custody
         run: |
@@ -123,6 +129,24 @@ jobs:
               raise SystemExit(f"unexpected campaign phase: {state.get('phase_id')!r}")
           if state.get('authority_ceiling') != 'BELOW_R6_UNTIL_PROTECTED_PROMOTION':
               raise SystemExit('campaign authority ceiling changed')
+          for key in (
+              'grants_adoption_authority',
+              'grants_global_task_stop_authority',
+              'grants_merge_authority',
+              'grants_novelty_authority',
+              'grants_promotion_authority',
+              'grants_scientific_authority',
+          ):
+              if state.get(key) is not False:
+                  raise SystemExit(f'fail-closed grant changed: {key}={state.get(key)!r}')
+
+          observations = dict(state.get('observations') or [])
+          if observations.get('R6_EARNED') != 'NO':
+              raise SystemExit(f"unexpected R6 earned observation: {observations.get('R6_EARNED')!r}")
+          if observations.get('R6_PROTECTED_SUBJECT_ACCESSED') != 'NO':
+              raise SystemExit('protected R6 subject was accessed during fail-closed live smoke')
+          if observations.get('R6_PROSPECTIVE_AUTHORITY') != 'MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED':
+              raise SystemExit(f"unexpected prospective authority: {observations.get('R6_PROSPECTIVE_AUTHORITY')!r}")
 
           observations = dict(state.get('observations') or [])
           expected_observations = {
