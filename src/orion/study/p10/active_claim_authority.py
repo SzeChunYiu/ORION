@@ -15,6 +15,7 @@ MANUSCRIPT = PAPER / "manuscript/main.tex"
 HYPOTHESES = PAPER / "manuscript/sections/11-primary-hypotheses.tex"
 STATUS = PAPER / "manuscript/sections/16-claim-ladder-and-status.tex"
 PREDECESSOR_AUTHORITY = REPO_ROOT / "papers/orion-learning-machine/LOCAL_CLOSURE_AUTHORITY.json"
+PROTOCOL = PAPER / "protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json"
 
 
 def _binding(path: Path) -> dict[str, str]:
@@ -29,6 +30,9 @@ def build_active_claim_authority() -> dict[str, Any]:
         "schema": SCHEMA,
         "paper_id": "P10",
         "active_terminal": ACTIVE_TERMINAL,
+        "execution_authorized": False,
+        "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
+        "lifecycle_state": "PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT",
         "lifecycle_state": "PROSPECTIVE_MAXIMUM_CLAIM_MANUSCRIPT",
         "scientific_result_state": "NO_P10_PROTECTED_RESULT",
         "active_empirical_claim": None,
@@ -41,6 +45,7 @@ def build_active_claim_authority() -> dict[str, Any]:
             "manuscript": _binding(MANUSCRIPT),
             "hypotheses": _binding(HYPOTHESES),
             "claim_ladder_status": _binding(STATUS),
+            "prospective_protocol": _binding(PROTOCOL),
             "shared_predecessor_authority": _binding(PREDECESSOR_AUTHORITY),
         },
         "predecessor_boundary": {

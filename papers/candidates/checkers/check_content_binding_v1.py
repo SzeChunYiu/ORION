@@ -69,6 +69,40 @@ CANDIDATE_DIRS = {
     "P8": PAPERS_DIR / "paper-08-epistemic-authority-autonomous-science",
 }
 
+# Successor reproducibility artifacts are deliberately outside the frozen V1
+# package identity.  V1 continues to validate its original bytes; a V2 manifest
+# binds these additive files after their own implementation commit.  Keeping an
+# exact allowlist prevents the V1 namespace from silently ignoring arbitrary
+# new paper files.
+SUCCESSOR_V2_PATHS = {
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/Makefile",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/REPRODUCE_V3.md",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_certificate_lifting_scope_smt_v1.py",
+    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/generate_assumption_countermodels_v2.py",
+    "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json",
+    "papers/paper-07-epistemic-navigation-open-worlds/Makefile",
+    "papers/paper-07-epistemic-navigation-open-worlds/REPRODUCE_V3.md",
+    "papers/paper-07-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py",
+    "papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json",
+    "papers/paper-07-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json",
+    "papers/paper-07-epistemic-navigation-open-worlds/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
+    "papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json",
+    "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json",
+    "papers/paper-08-epistemic-authority-autonomous-science/Makefile",
+    "papers/paper-08-epistemic-authority-autonomous-science/REPRODUCE_V3.md",
+    "papers/paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.schema.json",
+    "papers/paper-08-epistemic-authority-autonomous-science/benchmark/generate_authority_cases_v2.py",
+    "papers/paper-08-epistemic-authority-autonomous-science/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
+    "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
+    "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/cross_capability_attack_replay_result_v2.json",
+}
+
 #: Reproduction-subject files that live outside the candidate directory. Every
 #: candidate's `REPRODUCE_V2_1.md` invokes the donor-envelope checker and the two
 #: pytest wrappers; the per-candidate finite falsifier is named by the V1
@@ -314,7 +348,10 @@ def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     paths = {
         path.relative_to(repo_root).as_posix()
         for path in directory.rglob("*")
-        if path.is_file() and path.name != SUMS_NAME and not _is_build_artifact(path)
+        if path.is_file()
+        and path.name != SUMS_NAME
+        and not _is_build_artifact(path)
+        and path.relative_to(repo_root).as_posix() not in SUCCESSOR_V2_PATHS
     }
     # Listed unconditionally: on a first `--write` the manifest does not exist
     # yet, and enumerating only what is on disk would omit it from its own set,

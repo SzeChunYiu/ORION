@@ -10,6 +10,7 @@ audit and routing artifact, not a promotion instrument.
 
 - base revision: `fd9892fdafd7734b07c8b24a4384c9e9561b1349`
 - branch: `codex/p1-p15-recursive-resolution-ledger`
+- publication: local commit only; no push or pull request in this task
 - publication: draft PR 970
 
 ## 2026-08-23 execution synchronization
@@ -64,6 +65,7 @@ license to tune the gate or endpoint after outcomes are visible.
 ## Out of scope
 
 - rerunning protected or external experiments;
+- changing claim terminals or manuscript prose;
 - fabricating external evidence or treating a local replay as independent;
 - merging, publishing, or representing an open repair branch as landed;
 - guaranteeing that any prospective successor will pass.

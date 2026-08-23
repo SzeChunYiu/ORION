@@ -69,6 +69,14 @@ def test_validator_checks_base_source_existence(tmp_path):
 
 def test_validator_requires_steps_for_remaining_integration_blockers():
     document = _ledger()
+    item = next(
+        item
+        for paper in document["papers"]
+        for item in paper["items"]
+        if item.get("remaining_integration_blockers")
+    )
+    item["remaining_integration_blockers"][0]["next_executable_step"] = ""
+    assert any("remaining_integration_blockers" in error for error in validate_ledger(document))
     item = _first_item(document, "FIXED_BY_EXISTING_PR")
     item["remaining_integration_blockers"] = [
         {"blocker": "synthetic validator fixture", "next_executable_step": ""}

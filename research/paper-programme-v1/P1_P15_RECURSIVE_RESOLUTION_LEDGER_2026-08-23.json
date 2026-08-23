@@ -64,6 +64,22 @@
           }
         },
         {
+          "item_id": "P1.R7.WIDE.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P1.H1.R7",
+          "disposition": "A wide successor protocol exists in PR 954, but no result is authorized until the outcome-blind source frame, max-T power, comparator, host, and scorer custody are frozen.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-r7-wide-successor"},
+            {"path": "research/claim_expansion/p1/gpt_r7/source_frame.py", "availability": "EXISTING_PR", "ref": "codex/p1-r7-wide-successor"},
+            {"path": "research/claim_expansion/p1/gpt_r7/query_frame.py", "availability": "EXISTING_PR", "ref": "codex/p1-r7-wide-successor"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "python research/claim_expansion/p1/gpt_r7/query_frame.py > /tmp/p1-r7-query-frame.json",
+            "success_condition": "The query frame is generated before search; the subsequently acquired source frame contains two waves totaling 512 source clusters and passes max-T power plus comparator/custody checks before scoring.",
+            "failure_terminal": "P1_R7_NOT_READY_FOR_PROTECTED_EXECUTION"
           "item_id": "P1.R7A.WIDE.SUCCESSOR",
           "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
           "claim_id": "P1.H1.R7A.MAXT_POWERED",
@@ -132,6 +148,11 @@
           "item_id": "P2.TASK_WORLD.IDENTITY",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P2.OPEN_WORLD.SUCCESSOR.V2",
+          "disposition": "The reconstructed baseline does not reproduce the archived baseline, so task, query, provider candidate, and scorer identity are not yet bound.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json", "availability": "BASE_REVISION"}
           "disposition": "PR 973 freezes a powered 768-cluster, four-arena, equal-route successor, but the archived task-world baseline has not been reproduced and live provider, comparator, and evaluator identities remain unbound.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
@@ -180,6 +201,11 @@
           "existing_pr": {
             "number": 967,
             "url": "https://github.com/SzeChunYiu/ORION/pull/967",
+            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
             "head": "codex/p3-p9-p15-lifecycle",
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q"
           },
@@ -198,6 +224,17 @@
           "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
           "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
           "claim_id": "P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1",
+          "disposition": "A new claim must estimate excess harm above the proven observation floor; relaxing the old G9 gate after A004 outcomes would be post-hoc.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze an independent source-anchored corpus, a partial-identification estimand, an excess-harm-above-floor gate, and protected replication under a new claim ID.",
+            "success_condition": "The new gate is simulation-attainable and frozen before any successor outcomes are observed.",
+            "failure_terminal": "P3_PARTIAL_IDENTIFICATION_SUCCESSOR_NOT_READY"
           "disposition": "PR 973 freezes a new floor-adjusted partial-identification estimand over 768 source-family clusters; synthetic attainability passes, while the independent atlas, gold labels, raw-text attacks, and downstream evaluator remain externally unbound.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
@@ -299,6 +336,11 @@
           "item_id": "P4.NATURALISTIC.GENERALITY",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P4.H3.NATURALISTIC.V1",
+          "disposition": "The constructed V3 panel does not establish naturalistic multi-domain generality.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md", "availability": "BASE_REVISION"}
           "disposition": "PR 973 freezes a powered paired naturalistic design over 768 source-case clusters; the blinded panel, external comparators, evaluator, and source-disjoint replication panel remain absent.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
@@ -359,11 +401,19 @@
           "item_id": "P5.WIDE.SUCCESSOR",
           "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
           "claim_id": "P5.REVISION_LEVEL.WIDE.V1",
+          "disposition": "A single issue-76 cycle and the 24-case GLM diagnostic are not a wide confirmatory basis; three diagnostic errors remain historical descriptive evidence.",
           "disposition": "PR 973 freezes a powered 768-cluster, eight-domain, eight-revision-class successor with same-visible-symptom blocking; execution remains blocked on the protected project panel, final split, M-open donor binding, exact identities, and independent evaluators.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
             {"path": "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-05-self-orion/JOURNAL_READINESS.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "After preflight passes, freeze an attainable powered panel spanning multiple independent project and issue families, then execute once under protected evaluator custody.",
+            "success_condition": "The successor is family-wide, baseline-capability-matched, powered, and frozen before outcomes.",
+            "failure_terminal": "P5_WIDE_SUCCESSOR_NOT_READY"
             {"path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
           ],
           "next_executable_step": {
@@ -401,17 +451,20 @@
           "item_id": "P6.REPRODUCIBILITY.EXTERNAL",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P6.EMPIRICAL.LIFTING.V1",
+          "disposition": "The content manifest grants no authority and lacks a current subject binding, environment lock, immutable raw-result format, proof object, regeneration path, and independent replay.",
           "disposition": "PR 972 closes the local schema, generator, subject/environment binding, proof-object, regeneration, and hostile-replay mechanics. The resulting receipt is LOCAL_REPLAY_ONLY; independent clean-room reproduction and any separately frozen empirical extension remain external.",
           "blocked_gates": ["P6-U-T3_CORPUS", "P6-U-T4_INDEPENDENT_REVIEW", "P6-U-T5_EVIDENCE_ONTOLOGY"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json", "availability": "BASE_REVISION"},
             {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
             {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
             {"path": "research/claim_expansion/p6/P6_X_INDEPENDENT_VERIFICATION_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_REPRODUCTION",
+            "command": "Bind the current subject commit and environment, emit immutable proof/result objects with a regeneration command, and obtain an independent clean-room replay receipt.",
             "command": "Give the frozen V2 manifest and V3 local replay bundle to an independent custodian and obtain a signed clean-room replay receipt without reusing the local execution unit.",
             "success_condition": "A third party reproduces the bounded formal artifact byte-for-byte and any empirical extension has a separately frozen claim identity.",
             "failure_terminal": "P6_INDEPENDENT_REPRODUCTION_NOT_ESTABLISHED"
@@ -462,11 +515,17 @@
           "item_id": "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P7.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1",
+          "disposition": "No naturalistic corpus, protected evaluator, current subject binding, environment lock, trace replay, or independent reproduction establishes empirical navigation.",
           "disposition": "PR 972 closes the local schema, generator, subject/environment binding, and eight-of-eight trace-opportunity replay mechanics. That receipt is LOCAL_REPLAY_ONLY; a naturalistic corpus, protected evaluator, and independent reproduction are still absent.",
           "blocked_gates": ["P7-U-T3_NATURALISTIC_ARENA", "P7-U-T4_NATURALISTIC_COMPARISON", "P7-U-T5_DUAL_INDEPENDENT_REVIEW"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze a multi-domain naturalistic corpus, donor-complete baselines, protected evaluator, trace schema, current environment, and independent replay plan before execution.",
             {"path": "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
             {"path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
           ],
@@ -506,11 +565,13 @@
           "item_id": "P8.DEPLOYED.AGENT.EXTERNAL",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P8.DEPLOYED.AUTHORITY_COMPOSITION.V1",
+          "disposition": "All expected labels are public, 169 composition entries are homogeneous/reflexive repetitions rather than heterogeneous breadth, and the manifest lacks current subject, protected-label custody, attack replay, environment, and independent reproduction; deployed-agent generality is untested.",
           "disposition": "PR 972 closes the local schema, generator, current subject/environment binding, and five-of-five attack-opportunity replay mechanics. The receipt is LOCAL_REPLAY_ONLY and protected-label custody plus independent deployed-agent reproduction remain absent; the original homogeneous 169-entry panel does not establish breadth.",
           "blocked_gates": ["P8-U-T3_WORKFLOW", "P8-U-T4_UTILITY", "P8-U-T5_DUAL_INDEPENDENT_REVIEW"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json", "availability": "BASE_REVISION"},
             {"path": "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
             {"path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
             {"path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json", "availability": "BASE_REVISION"},
@@ -518,6 +579,7 @@
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze hidden authority labels, independently authored attacks, separately implemented comparators, current runtime binding, and a replay custodian before a deployed-agent campaign.",
             "command": "Bind the frozen V2/V3 local mechanics to hidden authority labels, independently authored attacks, separately implemented comparators, and an independent replay custodian before a deployed-agent campaign.",
             "success_condition": "A multi-domain protected campaign passes prespecified average and worst-domain gates under independent custody.",
             "failure_terminal": "P8_DEPLOYED_AUTHORITY_GENERALITY_REMAINS_OPEN"
@@ -546,6 +608,13 @@
           }
         },
         {
+          "item_id": "P9.T4.D1V1_3.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS",
+          "disposition": "The next D1 claim must represent order and multiplicity, require nonzero attack potency prospectively, and use a fresh protected split; zero-opportunity cells in T4 remain CANNOT_CHECK.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
           "item_id": "P9.D1V1_2.LOCKED_ENV.HISTORICAL",
           "category": "HISTORICAL_ADVERSE_RESULT",
           "claim_id": "P9.D1V1_2.LOCKED_ENV_REPRODUCTION",
@@ -576,6 +645,10 @@
             {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze D1v1.3 with ordered/multiplicity-preserving data, a pre-outcome attack-potency gate, a prospective applicability matrix, and a fresh protected split.",
+            "success_condition": "Every registered attack cell has a nonzero feature-change opportunity or is excluded before outcomes, and the new robustness gate is attainable.",
+            "failure_terminal": "P9_D1V1_3_SUCCESSOR_NOT_READY"
             "kind": "EXTERNAL_ACQUISITION",
             "command": "Bind the frozen D1v1.3 protocol to a fresh protected split, exact checkpoints, and provider/runtime custody, then execute once.",
             "success_condition": "Every registered attack cell has a nonzero feature-change opportunity or was excluded before outcomes, and the frozen robustness family passes on a fresh protected unit.",
@@ -591,6 +664,11 @@
           "existing_pr": {
             "number": 967,
             "url": "https://github.com/SzeChunYiu/ORION/pull/967",
+            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
             "head": "codex/p3-p9-p15-lifecycle",
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q"
           },
@@ -628,6 +706,22 @@
       "paper_id": "P10",
       "items": [
         {
+          "item_id": "P10.CLAIM_AUTHORITY.MISSING",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P10.STRUCTURED_PROBLEM_SOLVING.V1",
+          "disposition": "P10 contains a manuscript and successor manuscript but no machine-readable active authority, frozen protocol, result receipt, or executable claim-evidence ledger.",
+          "blocked_gates": ["P10-U-T1_NATIVE_STATE_SEARCH", "P10-U-T2_STRONG_PROVER_COMPARISON", "P10-U-T3_INDEPENDENT_OBSTRUCTION", "P10-U-T4_REAL_DOMAIN_EXTERNAL_REVIEW"],
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-10-structured-problem-solving/manuscript/sections/11-primary-hypotheses.tex", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-10-structured-problem-solving/manuscript/sections/16-claim-ladder-and-status.tex", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "LIFECYCLE_FREEZE",
+            "command": "Mint atomic P10 claim IDs and an active-authority ledger, then freeze donor-complete baselines, sampling units, attainable gates, negative-history rules, and protected custody before any confirmatory execution.",
+            "success_condition": "Every manuscript claim maps to one frozen gate and one prospective receipt path, with no result authority before execution.",
+            "failure_terminal": "P10_NO_ACTIVE_EMPIRICAL_AUTHORITY"
           "item_id": "P10.CLAIM_AUTHORITY.PR972",
           "category": "FIXED_BY_EXISTING_PR",
           "claim_id": "P10.STRUCTURED_PROBLEM_SOLVING.V1",
@@ -714,6 +808,11 @@
           "item_id": "P11.I.HIGH_WIDTH.PR959",
           "category": "FIXED_BY_EXISTING_PR",
           "claim_id": "P11.R7.POOLED_ATTACK_ADVANTAGE",
+          "disposition": "PR 959 adds a prospectively distinct high-width claim and active authority without superseding the r=3 attack result.",
+          "remaining_integration_blockers": [
+            {"blocker": "Submission TeX/PDF do not yet present P11I.", "next_executable_step": "Update manuscript/main.tex from the active-authority receipt, rebuild main.pdf, then require rg -n 'P11I|HIGH_WIDTH' papers/paper-11-state-as-computation/manuscript/main.tex to match."},
+            {"blocker": "An explicit P11I terminal-responsiveness and gate-attainability test is absent.", "next_executable_step": "Add hostile terminal mutations and boundary fixtures to test_p11i_wide_high_width_replication.py before manuscript promotion."}
+          ],
           "disposition": "PR 959 adds a prospectively distinct high-width claim and active authority without superseding the r=3 attack result; PR 971 completes terminal-responsiveness, attainability, deterministic revalidation, and submission PDF integration.",
           "post_hoc_relabeling_prohibited": true,
           "existing_pr": {
@@ -724,6 +823,7 @@
           },
           "source_refs": [
             {"path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"}
             {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
             {"path": "papers/paper-11-state-as-computation/P11I_REVALIDATION_RECEIPT_V1_1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
             {"path": "papers/paper-11-state-as-computation/manuscript/main.pdf", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
@@ -781,12 +881,17 @@
           "item_id": "P12.AUTHORITY_WITHHELD.PR966",
           "category": "FIXED_BY_EXISTING_PR",
           "claim_id": "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
+          "disposition": "PR 966 withholds superiority authority because one-axis baselines have action-set ceilings below the winner; the old positive terminal remains execution history only.",
+          "remaining_integration_blockers": [
+            {"blocker": "MANUSCRIPT.md and submission TeX/PDF retain stale strict-dominance wording.", "next_executable_step": "Replace strict-dominance prose with authority-withheld adjudication, rebuild main.pdf, and require rg -n 'AUTHORITY_WITHHELD|capability-matched' papers/paper-12-adaptive-state-reasoning/MANUSCRIPT.md papers/paper-12-adaptive-state-reasoning/manuscript/main.tex to match."}
+          ],
           "disposition": "PR 966 withholds superiority authority because one-axis baselines have action-set ceilings below the winner; the old positive terminal remains execution history only. PR 971 completes the scoped manuscript and PDF correction.",
           "post_hoc_relabeling_prohibited": true,
           "existing_pr": {
             "number": 966,
             "url": "https://github.com/SzeChunYiu/ORION/pull/966",
             "head": "codex/p12-p13-authority-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q"
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q"
           },
           "source_refs": [
@@ -796,12 +901,27 @@
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q",
             "command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q",
             "success_condition": "The active selector withholds superiority and preserves the earlier receipt as non-authoritative history.",
             "failure_terminal": "P12_COMPARISON_VALIDITY_AUTHORITY_REPAIR_NOT_VERIFIED"
           }
         },
         {
+          "item_id": "P12.B.CAPABILITY_MATCHED.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P12B.CAPABILITY_MATCHED_SIGNAL_VALUE",
+          "disposition": "The next claim must compare fixed policies with identical four-action sets and use family/domain-block inference; current matched-action gain is below the old gate.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Simulate and freeze an attainable P12B gate with identical four-action sets, fixed policies, family/domain blocks, and a worst-family endpoint before outcomes.",
+            "success_condition": "The new estimand isolates signal value rather than action availability and has prespecified power.",
+            "failure_terminal": "P12B_CAPABILITY_MATCHED_SUCCESSOR_NOT_READY"
           "item_id": "P12.B.CAPABILITY_MATCHED.ACTIVE",
           "category": "ACTIVE_POSITIVE_AUTHORITY",
           "claim_id": "P12B.EQUAL_ACTION.TWO_SIGNAL_COMPLEMENTARITY",
@@ -831,6 +951,10 @@
           "item_id": "P13.OUTCOME.AUTHORITY.PR966",
           "category": "FIXED_BY_EXISTING_PR",
           "claim_id": "P13.EMPIRICAL.SAFETY_COST.AUTHORITY_WITHHELD",
+          "disposition": "PR 966 separates exact constructed-world support from empirical safety-cost superiority, which is not entailed because the declared-support endpoint had zero live harm opportunities.",
+          "remaining_integration_blockers": [
+            {"blocker": "MANUSCRIPT.md and submission TeX/PDF retain stale measured-frontier and eliminates-unsafe-reuse wording.", "next_executable_step": "Scope prose to exact finite-world support, rebuild main.pdf, and require rg -n 'finite|constructed|CANNOT_CHECK' papers/paper-13-responsibility-carrying-state/MANUSCRIPT.md papers/paper-13-responsibility-carrying-state/manuscript/main.tex to match."}
+          ],
           "disposition": "PR 966 separates exact constructed-world support from empirical safety-cost superiority, which is not entailed because the declared-support endpoint had zero live harm opportunities. PR 971 completes the scoped manuscript and PDF correction.",
           "post_hoc_relabeling_prohibited": true,
           "existing_pr": {
@@ -872,6 +996,20 @@
           }
         },
         {
+          "item_id": "P13.B.INDEPENDENT_GOLD.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P13B.INDEPENDENTLY_GRADED_CERTIFICATE_SAFETY",
+          "disposition": "A new empirical claim requires independent gold support, live wrong/stale/forged/overbroad certificate opportunities, matched costs, and domain-block inference.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze P13B with independent gold grading, nonzero prespecified harm opportunities, matched cost/correctness frontiers, domain blocks, and a worst-domain gate.",
+            "success_condition": "The primary endpoint is evaluator-independent, exercised, and powered before protected execution.",
+            "failure_terminal": "P13B_INDEPENDENT_GOLD_SUCCESSOR_NOT_READY"
           "item_id": "P13.B.AUTHENTICATED.CORRUPTION.ACTIVE",
           "category": "ACTIVE_POSITIVE_AUTHORITY",
           "claim_id": "P13B.AUTHENTICATED_CERTIFICATE.CORRUPTION_SAFETY_COST",
@@ -962,6 +1100,15 @@
           "item_id": "P14.D.EXTERNAL_VALIDITY",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P14D.BLINDED_MULTI_DOMAIN_GOVERNANCE",
+          "disposition": "P14C uses internally authored specifications and does not establish external governance validity.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze P14D with blinded independently authored multi-domain cases, separately implemented comparators, unchanged attainable bars, co-primary false-promotion/recall, worst-domain analysis, and replay custody.",
           "disposition": "P14C uses internally authored specifications and does not establish external governance validity. PR 971 freezes a fail-closed P14D acquisition protocol and preflight, but blinded independent case packets and adjudicator custody are not available locally.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
@@ -986,11 +1133,21 @@
           "item_id": "P15.METHODS_SCOPE.PR967",
           "category": "FIXED_BY_EXISTING_PR",
           "claim_id": "P15.METHODS_SCOPE_ONLY",
+          "disposition": "PR 967 installs a lifecycle authority stating there is no active empirical claim, hypothesis, scientific result, or promotion.",
+          "remaining_integration_blockers": [
+            {"blocker": "The authority receipt still lists the claim ledger as missing while the PR adds it, and README.md still says no ledger exists.", "next_executable_step": "Regenerate the authority receipt after adding the ledger, update README.md, and require both files to agree before merge."}
+          ],
           "disposition": "PR 967 installs a lifecycle authority stating there is no active empirical claim, hypothesis, scientific result, or promotion; the later integration commits synchronize the authority receipt, claim ledger, and README.",
           "post_hoc_relabeling_prohibited": true,
           "existing_pr": {
             "number": 967,
             "url": "https://github.com/SzeChunYiu/ORION/pull/967",
+            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"}
             "head": "codex/p3-p9-p15-lifecycle",
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q"
           },
@@ -1009,6 +1166,18 @@
           "item_id": "P15.A.HARNESS.SUCCESSOR",
           "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
           "claim_id": "P15A.HARNESS.ADMISSION.SAFETY",
+          "disposition": "No empirical P15 claim exists; P15A must test a frozen harness revision over live host/capability failures and nonzero scientific-admission opportunities.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-15-orion-research-harness/README.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze one exact harness revision, live host/capability failure matrix, clean controls, targeted mutations, replay bundle, and zero-false-admission gate over nonzero opportunities.",
+            "success_condition": "All identities and mutation opportunities are bound before execution and the gate has a nonzero opportunity denominator.",
+            "failure_terminal": "P15A_PROSPECTIVE_HARNESS_NOT_READY"
           "disposition": "PR 971 freezes a fail-closed P15A acquisition protocol and preflight for one exact harness revision, live host/capability failures, clean controls, and nonzero admission opportunities. Execution remains blocked on the external donor matrix, protected corpus, and custody bindings.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,

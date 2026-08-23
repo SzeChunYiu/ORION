@@ -162,6 +162,8 @@ def _formal_checkers(root: Path, candidate_id: str) -> list[Path]:
 
 def _subject_identity(root: Path, candidate_id: str) -> Assessment:
     paper = _paper(root, candidate_id)
+    successor_manifest = paper / "CONTENT_MANIFEST_V2.json"
+    manifest_path = successor_manifest if successor_manifest.is_file() else paper / "CONTENT_MANIFEST_V1.json"
     manifest_path = paper / "CONTENT_MANIFEST_V1.json"
     sums_path = paper / "SHA256SUMS"
     manifest = _load_json(manifest_path)
@@ -172,6 +174,10 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
             "CONTENT_MANIFEST_V1.json and SHA256SUMS are both required",
         )
 
+    evidence = tuple(
+        path.relative_to(root).as_posix()
+        for path in (manifest_path, sums_path)
+        if path.is_file()
     evidence = (
         manifest_path.relative_to(root).as_posix(),
         sums_path.relative_to(root).as_posix(),
@@ -188,6 +194,53 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
             evidence,
             f"byte digests exist but subject_commit_status is {status}: {detail}",
         )
+
+    if manifest.get("schema_version") == "orion.candidate-content-binding.v2":
+        tree = manifest.get("subject_tree")
+        if not isinstance(tree, str) or not re.fullmatch(r"[0-9a-f]{40}", tree):
+            return Assessment("PARTIAL", evidence, "V2 manifest has no valid subject_tree")
+        try:
+            actual_tree = subprocess.run(
+                ["git", "-C", str(root), "rev-parse", f"{commit}^{{tree}}"],
+                capture_output=True,
+                text=True,
+                check=True,
+            ).stdout.strip()
+        except (OSError, subprocess.CalledProcessError):
+            return Assessment("PARTIAL", evidence, "V2 subject tree is unavailable")
+        if actual_tree != tree:
+            return Assessment("PARTIAL", evidence, "V2 subject_tree disagrees with subject_commit")
+
+        entries = manifest.get("bound_files")
+        if not isinstance(entries, list) or not entries:
+            return Assessment("PARTIAL", evidence, "V2 manifest has no bound files")
+        seen: set[str] = set()
+        for entry in entries:
+            if not isinstance(entry, dict):
+                return Assessment("PARTIAL", evidence, "V2 bound-file entry is malformed")
+            relative = entry.get("path")
+            digest = entry.get("sha256")
+            if not (
+                isinstance(relative, str)
+                and relative not in seen
+                and isinstance(digest, str)
+                and re.fullmatch(r"[0-9a-f]{64}", digest)
+            ):
+                return Assessment("PARTIAL", evidence, "V2 bound-file identity is invalid or duplicate")
+            seen.add(relative)
+            local_path = root / relative
+            if not local_path.is_file() or _sha256_file(local_path) != digest:
+                return Assessment("PARTIAL", evidence, f"V2 bound file drifted: {relative}")
+            try:
+                committed = subprocess.run(
+                    ["git", "-C", str(root), "show", f"{commit}:{relative}"],
+                    capture_output=True,
+                    check=True,
+                ).stdout
+            except (OSError, subprocess.CalledProcessError):
+                return Assessment("PARTIAL", evidence, f"V2 subject commit lacks: {relative}")
+            if hashlib.sha256(committed).hexdigest() != digest:
+                return Assessment("PARTIAL", evidence, f"V2 commit bytes disagree: {relative}")
 
     try:
         subprocess.run(
@@ -270,6 +323,81 @@ def _immutable_results(root: Path, candidate_id: str) -> Assessment:
             _relative(root, checkers),
             "no valid machine-readable result artifact exists under formal/mechanized",
         )
+    local_contracts = sorted(
+        (_paper(root, candidate_id) / "evidence/local").glob(
+            f"{candidate_id}_LOCAL_REPLAY_CONTRACT_V3.json"
+        )
+    )
+    if local_contracts:
+        contract_path = local_contracts[0]
+        contract = _load_json(contract_path)
+        bound_paths: list[Path] = []
+        valid_contract = contract is not None
+        if contract is not None:
+            valid_contract = valid_contract and (
+                contract.get("schema_version") == "orion.local-replay-contract.v3"
+                and contract.get("paper_id") == candidate_id
+                and contract.get("self_authorizing") is True
+                and contract.get("independent_replay") is False
+                and contract.get("grants_scientific_authority") == "NONE"
+                and isinstance(contract.get("one_command"), str)
+                and str(contract.get("one_command")).startswith("make ")
+            )
+            environment = contract.get("environment_lock")
+            if not isinstance(environment, dict):
+                valid_contract = False
+            else:
+                lock_path = environment.get("path")
+                lock_digest = environment.get("sha256")
+                local_lock = root / str(lock_path)
+                valid_contract = valid_contract and (
+                    isinstance(lock_path, str)
+                    and isinstance(lock_digest, str)
+                    and local_lock.is_file()
+                    and _sha256_file(local_lock) == lock_digest
+                )
+            for field in ("raw_inputs", "raw_outputs"):
+                artifacts = contract.get(field)
+                if not isinstance(artifacts, list) or not artifacts:
+                    valid_contract = False
+                    continue
+                for artifact in artifacts:
+                    if not isinstance(artifact, dict):
+                        valid_contract = False
+                        continue
+                    relative = artifact.get("path")
+                    digest = artifact.get("sha256")
+                    local_path = root / str(relative)
+                    if not (
+                        isinstance(relative, str)
+                        and isinstance(digest, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", digest)
+                        and local_path.is_file()
+                        and _sha256_file(local_path) == digest
+                    ):
+                        valid_contract = False
+                    else:
+                        bound_paths.append(local_path)
+            output_entries = contract.get("raw_outputs")
+            if isinstance(output_entries, list):
+                for artifact in output_entries:
+                    if not isinstance(artifact, dict) or not isinstance(artifact.get("path"), str):
+                        valid_contract = False
+                        continue
+                    output_path = root / str(artifact["path"])
+                    if output_path.suffix != ".json" or _load_json(output_path) is None:
+                        valid_contract = False
+        if valid_contract and set(outputs).issubset(bound_paths):
+            return Assessment(
+                "BOUND",
+                _relative(root, [contract_path] + outputs + checkers),
+            )
+        return Assessment(
+            "PARTIAL",
+            _relative(root, [contract_path] + outputs + checkers),
+            "local replay contract is malformed, stale, lacks raw inputs, or does not bind all outputs",
+        )
+
     manifest = _load_json(_paper(root, candidate_id) / "CONTENT_MANIFEST_V1.json") or {}
     entries = manifest.get("bound_files")
     entry_list = entries if isinstance(entries, list) else []
