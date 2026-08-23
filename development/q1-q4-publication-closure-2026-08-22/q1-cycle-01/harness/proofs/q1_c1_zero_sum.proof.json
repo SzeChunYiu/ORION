@@ -1,0 +1,68 @@
+{
+  "branches": [
+    {
+      "case": "zero_class_present",
+      "conclusion": "choose_the_zero_class_singleton",
+      "rules": [
+        "R1_ZERO_CLASS_SINGLETON",
+        "R6_NONEMPTY_PROPER_BOUND"
+      ]
+    },
+    {
+      "case": "repeated_class_present",
+      "conclusion": "choose_two_equal_classes",
+      "rules": [
+        "R2_REPEATED_CLASS_PAIR",
+        "R6_NONEMPTY_PROPER_BOUND"
+      ]
+    },
+    {
+      "case": "no_zero_class_and_no_repetition",
+      "conclusion": "contradicts_odd_alpha_total",
+      "rules": [
+        "R3_DISTINCT_NONZERO_EXHAUSTION",
+        "R4_NONZERO_TRIPLE_ALPHA_EVEN",
+        "R5_ODD_ALPHA_CONTRADICTION"
+      ]
+    }
+  ],
+  "conclusion": {
+    "maximum_subset_size": 2,
+    "minimum_support_size": 3,
+    "nonempty": true,
+    "proper": true,
+    "rule": "R7_ZERO_SUM_SUBSET_CONCLUSION",
+    "zero_sum_coordinates": [
+      "alpha",
+      "beta"
+    ]
+  },
+  "domain": {
+    "field": "F2",
+    "rule": "P1_F2_SQUARED_DOMAIN",
+    "vectors": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "premise": {
+    "alpha_total": 1,
+    "minimum_support_size": 3,
+    "rule": "P2_ODD_ALPHA_TOTAL"
+  },
+  "schema_version": "q1-c1-zero-sum-proof-v1"
+}
