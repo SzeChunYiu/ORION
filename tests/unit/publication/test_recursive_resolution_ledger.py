@@ -69,11 +69,25 @@ def test_validator_checks_base_source_existence(tmp_path):
 
 def test_validator_requires_steps_for_remaining_integration_blockers():
     document = _ledger()
-    item = next(
-        item
+    item = _first_item(document, "FIXED_BY_EXISTING_PR")
+    item["remaining_integration_blockers"] = [
+        {"blocker": "synthetic validator fixture", "next_executable_step": ""}
+    ]
+    assert any("remaining_integration_blockers" in error for error in validate_ledger(document))
+
+
+def test_executed_successors_are_positive_only_at_their_bounded_claim_leaves():
+    document = _ledger()
+    items = {
+        item["item_id"]: item
         for paper in document["papers"]
         for item in paper["items"]
-        if item.get("remaining_integration_blockers")
+    }
+    assert items["P12.B.CAPABILITY_MATCHED.ACTIVE"]["authority_artifact"].endswith(
+        "P12_ACTIVE_CLAIM_AUTHORITY_V3.json"
     )
-    item["remaining_integration_blockers"][0]["next_executable_step"] = ""
-    assert any("remaining_integration_blockers" in error for error in validate_ledger(document))
+    assert items["P13.B.AUTHENTICATED.CORRUPTION.ACTIVE"][
+        "authority_artifact"
+    ].endswith("P13_ACTIVE_CLAIM_AUTHORITY_V2.json")
+    assert items["P9.D1V1_2.LOCKED_ENV.HISTORICAL"]["immutable"] is True
+    assert items["P10.CLAIM_AUTHORITY.PR972"]["category"] == "FIXED_BY_EXISTING_PR"
