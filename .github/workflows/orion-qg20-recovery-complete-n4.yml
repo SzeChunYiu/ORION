@@ -1,0 +1,72 @@
+name: orion-qg20-recovery-complete-n4
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg20_recovery_complete_n4.py'
+      - 'development/orion-qg-regime-geometry/qg20_recovery_complete_n4_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg20_recovery_complete_n4_dual.py'
+      - 'development/orion-qg-regime-geometry/QG20_RECOVERY_COMPLETE_N4_CONFIRMATION_PROTOCOL_V1.md'
+      - '.github/workflows/orion-qg20-recovery-complete-n4.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg20-recovery-complete-n4-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  complete-n4-confirmation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run complete n4 confirmation dual harness
+        run: |
+          python development/orion-qg-regime-geometry/run_qg20_recovery_complete_n4_dual.py | tee /tmp/qg20-complete-n4.txt
+          grep '^ORIONQG_QG20_RECOVERY_COMPLETE_N4_DUAL=' /tmp/qg20-complete-n4.txt
+      - name: Enforce confirmation integrity without suppressing scientific disagreement
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('artifacts/orion-qg-qg20-recovery-complete-n4-dual.json').read_text())
+          if p.get('instances') != 36720:
+              raise SystemExit('complete n4 domain count mismatch')
+          if p.get('feature') != 'negative_weight_sum':
+              raise SystemExit('frozen discovered feature changed')
+          if p.get('feature_search_performed') is not False:
+              raise SystemExit('confirmation performed new feature search')
+          if p.get('analyzer_replay_identical') is not True:
+              raise SystemExit('complete n4 analyzer replay failed')
+          if p.get('verifier_decision') not in {'ACCEPT', 'REJECT'}:
+              raise SystemExit('verifier did not reach an inspectable scientific decision')
+          checks = p.get('verifier_checks')
+          if not isinstance(checks, dict) or not checks:
+              raise SystemExit('verifier decision lacks check-level evidence')
+          allowed = {
+              'QG20_RECOVERY_NEGATIVE_WEIGHT_SUM_DETERMINES_DONOR_EXACTNESS_COMPLETE_N4',
+              'QG20_RECOVERY_NEGATIVE_WEIGHT_SUM_REFUTED_COMPLETE_N4',
+              'QG20_RECOVERY_COMPLETE_N4_DUAL_DISAGREEMENT',
+          }
+          if p.get('terminal') not in allowed:
+              raise SystemExit(f"unexpected complete n4 terminal: {p.get('terminal')!r}")
+          if p.get('verifier_decision') == 'ACCEPT' and not all(checks.values()):
+              raise SystemExit('verifier ACCEPT contains a false check')
+          if p.get('verifier_decision') == 'REJECT' and all(checks.values()):
+              raise SystemExit('verifier REJECT is not explained by any failed check')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg20-recovery-complete-n4
+          path: |
+            artifacts/orion-qg-qg20-recovery-complete-n4.json
+            artifacts/orion-qg-qg20-recovery-complete-n4-verification.json
+            artifacts/orion-qg-qg20-recovery-complete-n4-dual.json
+            /tmp/qg20-complete-n4.txt
+          if-no-files-found: warn
+          retention-days: 30

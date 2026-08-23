@@ -1,0 +1,107 @@
+name: orion-qg-qg12-sixlcu-p0-theorem
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG12_*'
+      - 'development/orion-qg-regime-geometry/qg12_*'
+      - 'development/orion-qg-regime-geometry/run_qg12_dual_harness.py'
+      - 'research/extensions/orion-qg/qg12_sixlcu_p0_theorem.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg12_sixlcu_p0.py'
+      - '.github/workflows/orion-qg-qg12.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg12-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg12-sixlcu-p0-theorem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      QG12_FROZEN_BASE: 318d1cbbec451170448bb8e126c7ab50801930ce
+    steps:
+      - name: Checkout exact QG-12 head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG12_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG12_FROZEN_BASE}")" = "${QG12_FROZEN_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native QG-12 controller
+        run: pytest -q packages/orion-research-harness/tests/test_qg12_sixlcu_p0.py
+      - name: Execute theorem through both ORION instruments
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg12_dual_harness.py \
+            | tee artifacts/orion-qg-qg12-dual-summary.json
+      - name: Deterministic production-analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg12_sixlcu_p0_theorem.py \
+            --output artifacts/orion-qg-qg12-sixlcu-p0-theorem-replay.json \
+            | tee artifacts/orion-qg-qg12-replay.log
+          cmp \
+            artifacts/orion-qg-qg12-sixlcu-p0-theorem.json \
+            artifacts/orion-qg-qg12-sixlcu-p0-theorem-replay.json
+      - name: Enforce bounded theorem or honest negative
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          a = json.loads(Path('artifacts/orion-qg-qg12-sixlcu-p0-theorem.json').read_text())
+          g = json.loads(Path('artifacts/orion-qg-qg12-generic-verification.json').read_text())
+          d = json.loads(Path('artifacts/orion-qg-qg12-dual-harness.json').read_text())
+          positive = 'QG12_SIXLCU_P0_ALL_INSTANCE_THEOREM_MACHINE_CHECKED'
+          assert d['terminal'] in {positive, 'QG12_P0_THEOREM_OR_BINDING_REFUTED', 'QG12_NATIVE_GENERIC_DISAGREEMENT'}
+          assert a['novelty_authority'] is False
+          assert a['physical_quantum_advantage_claim'] is False
+          assert d['scope'] == 'SIXLCU_ONLY'
+          assert d['cross_family_transfer'] is False
+          if d['terminal'] == positive:
+              assert a['terminal'] == positive
+              assert all(a['gates'].values())
+              assert a['production_gain_decomposition']['partition_count'] == 203
+              assert a['production_gain_decomposition']['shape_count'] == 11
+              assert a['proof_ledger']['all_11_shapes_covered'] is True
+              assert a['proof_ledger']['converse_explicit_partition_witnesses'] is True
+              assert a['blind_complete_regression']['n1_count'] == 729
+              assert a['blind_complete_regression']['n2_count'] == 38760
+              assert a['blind_complete_regression']['zero_mismatches'] is True
+              assert a['qg4_binding']['all_bound'] is True
+              assert g['decision'] == 'ACCEPT' and all(g['checks'].values())
+              assert g['independent_complete_regression']['n1_count'] == 729
+              assert g['independent_complete_regression']['n2_count'] == 38760
+              assert g['independent_complete_regression']['zero_mismatches'] is True
+              assert d['both_accept'] is True
+              assert d['generic_lane']['decision'] == 'ACCEPT'
+              assert d['native_lane']['decision'] == 'ACCEPT'
+          PY
+      - name: Upload QG-12 receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg12-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg12-sixlcu-p0-theorem.json
+            artifacts/orion-qg-qg12-sixlcu-p0-theorem-replay.json
+            artifacts/orion-qg-qg12-generic-verification.json
+            artifacts/orion-qg-qg12-dual-harness.json
+            artifacts/orion-qg-qg12-dual-summary.json
+            artifacts/orion-qg-qg12-replay.log
+            .orion-qg-qg12-generic/.orion-harness/**
+            .orion-qg-qg12-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

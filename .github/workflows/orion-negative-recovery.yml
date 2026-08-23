@@ -1,0 +1,74 @@
+name: orion-negative-recovery
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/src/orion_research_harness/negative_recovery.py'
+      - 'packages/orion-research-harness/tests/test_negative_recovery.py'
+      - 'development/orion-research-harness/run_negative_recovery_r2_r3.py'
+      - 'research/negative-recovery/**'
+      - '.github/workflows/orion-negative-recovery.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-negative-recovery-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-generated-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION research harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run negative-recovery hostile tests
+        run: python -m pytest packages/orion-research-harness/tests/test_negative_recovery.py -q
+      - name: Execute frozen R2/R3 recovery twice
+        run: |
+          python development/orion-research-harness/run_negative_recovery_r2_r3.py | tee /tmp/orion-negative-recovery-run1.txt
+          cp /tmp/orion-negative-recovery-r2-r3.json /tmp/orion-negative-recovery-r2-r3-run1.json
+          python development/orion-research-harness/run_negative_recovery_r2_r3.py | tee /tmp/orion-negative-recovery-run2.txt
+          cp /tmp/orion-negative-recovery-r2-r3.json /tmp/orion-negative-recovery-r2-r3-run2.json
+          cmp /tmp/orion-negative-recovery-r2-r3-run1.json /tmp/orion-negative-recovery-r2-r3-run2.json
+          grep '^ORION_NEGATIVE_RECOVERY_R2_R3=' /tmp/orion-negative-recovery-run1.txt
+          grep 'ORION_NEGATIVE_RECOVERY_EXACT_GENERATED_WORLDS_SUPPORTED' /tmp/orion-negative-recovery-run1.txt
+      - name: Independently enforce frozen result gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(Path('/tmp/orion-negative-recovery-r2-r3-run1.json').read_text())
+          expected_terminal = 'ORION_NEGATIVE_RECOVERY_EXACT_GENERATED_WORLDS_SUPPORTED'
+          if result.get('terminal') != expected_terminal:
+              raise SystemExit(f"unexpected terminal: {result.get('terminal')!r}")
+          gates = result.get('gates')
+          if not isinstance(gates, dict) or not gates:
+              raise SystemExit('missing gate map')
+          failed = [name for name, value in gates.items() if value is not True]
+          if failed:
+              raise SystemExit('failed frozen recovery gates: ' + ','.join(failed))
+          metrics = result['metrics']
+          if metrics['strict_composite_first_action_agreement_descriptive'] >= 0.85:
+              raise SystemExit('ordering-control stopped demonstrating multiple valid recovery paths')
+          if metrics['dual_terminal_agreement'] != 1.0:
+              raise SystemExit('dual terminal agreement is not exact')
+          if metrics['exact_control_no_overescalation_rate'] != 1.0:
+              raise SystemExit('exact-sufficiency control was over-escalated')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-negative-recovery-r2-r3
+          path: |
+            /tmp/orion-negative-recovery-r2-r3-run1.json
+            /tmp/orion-negative-recovery-r2-r3-run2.json
+            /tmp/orion-negative-recovery-run1.txt
+            /tmp/orion-negative-recovery-run2.txt
+          if-no-files-found: error
+          retention-days: 30

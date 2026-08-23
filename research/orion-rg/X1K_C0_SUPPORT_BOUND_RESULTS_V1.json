@@ -1,0 +1,53 @@
+{
+  "schema": "ORION.RG.X1K.C0SupportBound.v1",
+  "authority": {
+    "bounded_exact_computation": true,
+    "mathematical_proposal": true,
+    "novelty_claim": false,
+    "theorem_authority": false,
+    "external_replay_required": true
+  },
+  "group": "C_5^3",
+  "target": "length-31 total-zero sequence with no nonempty zero-sum subsequence of length <=5",
+  "context": "Such a sequence is necessary for D_4(C_5^3)=31 under the X1-K total-zero extremal reduction. Proving none exists proves 31 in C_0(C_5^3), hence D_4(C_5^3)=30 because 30<=D_4<=31.",
+  "symbolic_reductions": {
+    "multiplicity_cap": "every support-point multiplicity is at most 4",
+    "support_8": "the only pattern is 4^7 3; restoring the missing fourth copy preserves short-freeness, so Property C applies. The support-level dual check enumerates 564 normalized admissible supports and finds zero satisfying -sigma(U) in U.",
+    "support_ge_9_saturated": "if a support>8 candidate were extendable by one nonzero point while remaining short-free, the resulting length-32 sequence would be Property-C with support 8; contradiction. Hence every support>8 candidate is Sigma_{<=4}-saturated.",
+    "no_multiplicity_3": "saturation excludes multiplicity 3",
+    "pattern_equations": "for support s>=9 write a=#mult1,b=#mult2,c=#mult4. Then b+3c=31-s and a=2s-31+2c.",
+    "multiplicity_4_projective_isolation": "a multiplicity-4 point cannot share its projective line with another support point",
+    "four_mult4_span_rank3": "four multiplicity-4 points cannot lie in rank <=2 because their 16 terms exceed eta(C_5^2)=13",
+    "mixed_basis_rule": "if the high-multiplicity seed plus the multiplicity-2 stratum would contain >13 terms in rank<=2, it must span rank3; this authorizes (2,2,2), (4,2,2), or (4,4,2) basis normalizations. The generic checker now fails closed unless the corresponding eta(C_5^2) inequality holds.",
+    "rank2_c4_3_outside_point": "if three multiplicity-4 points span a plane, then when b>0 and 12+2b>13 at least one multiplicity-2 point lies outside and is normalized to e3; when b=0, rank3 of the full 31-term candidate forces an outside singleton, normalized to e3."
+  },
+  "eliminated_supports": {
+    "8": {"method":"Property-C support-level dual enumeration","solutions":0},
+    "9": {"patterns":["1 2 4^7"],"verifier":"research/orion-rg/x1k_c0_support9_check.c","solutions":0},
+    "10": {"patterns":["1 2^3 4^6","1^3 4^7"],"solutions":0},
+    "11": {"patterns":["1 2^5 4^5","1^3 2^2 4^6"],"solutions":0},
+    "12": {"patterns":["1 2^7 4^4","1^3 2^4 4^5","1^5 2 4^6"],"solutions":0},
+    "13": {"patterns":["1 2^9 4^3","1^3 2^6 4^4","1^5 2^3 4^5","1^7 4^6"],"solutions":0},
+    "14": {"patterns":["1 2^11 4^2","1^3 2^8 4^3","1^5 2^5 4^4","1^7 2^2 4^5"],"solutions":0},
+    "15": {"patterns":["1 2^13 4","1^3 2^10 4^2","1^5 2^7 4^3","1^7 2^4 4^4","1^9 2 4^5"],"solutions":0},
+    "16": {"patterns":["1 2^15","1^3 2^12 4","1^5 2^9 4^2","1^7 2^6 4^3","1^9 2^3 4^4","1^11 4^5"],"solutions":0},
+    "17": {"patterns":["1^3 2^14","1^5 2^11 4","1^7 2^8 4^2","1^9 2^5 4^3","1^11 2^2 4^4"],"heavy_c4_nodes":11238173,"heavy_c4_lut_replay_nodes":11238173,"solutions":0},
+    "18": {"patterns":["1^5 2^13","1^7 2^10 4","1^9 2^7 4^2","1^11 2^4 4^3","1^13 2 4^4"],"c4_3_rank2_precompression_nodes":18279459,"c4_3_rank2_compressed_nodes":727818,"heavy_c4_nodes":17101721,"heavy_c4_lut_replay_nodes":17101721,"solutions":0},
+    "19": {"patterns":["1^7 2^12","1^9 2^9 4","1^11 2^6 4^2","1^13 2^3 4^3","1^15 4^4"],"nodes":{"c0":80203,"c1":80203,"c2":82231,"c3_rank3":7975804,"c3_rank2":5604240,"c4":8925311},"verifier":"research/orion-rg/x1k_c0_support19_dual.c","solutions":0},
+    "20": {"patterns":["1^9 2^11","1^11 2^8 4","1^13 2^5 4^2","1^15 2^2 4^3"],"nodes":{"c0":80203,"c1":80203,"c2":3029043,"c3_rank3":17985772,"c3_rank2":8556446},"primitive_addition_lut_replay":"exact node/leaf/solution agreement","solutions":0},
+    "21": {"patterns":["1^11 2^10","1^13 2^7 4","1^15 2^4 4^2","1^17 2 4^3"],"nodes":{"c0":80203,"c1":83145,"c2":17096882,"c3_rank3":18531596,"c3_rank2":4446694},"primitive_addition_lut_replay":"exact node/leaf/solution agreement","solutions":0},
+    "22": {"patterns":["1^13 2^9","1^15 2^6 4","1^17 2^3 4^2","1^19 4^3"],"nodes":{"c0":80203,"c1":6439213,"c2_monolithic":38189779,"c3_rank3":7304813,"c3_rank2_outside_singleton":10699676},"c2_partitioned_replay":{"partitions":123,"shift_nodes":76379554,"lut_nodes":76379554,"mismatches":0,"solutions":0,"note":"partitioned node sum is not compared to monolithic node count because each partition re-executes its prefix; equality is required per partition"},"other_lut_replay":"exact node/leaf/solution agreement","solutions":0}
+  },
+  "reproducibility": {
+    "mixed_basis_u128":"research/orion-rg/x1k_c0_support16_mixed_u128.c (generalized through c4=2)",
+    "mixed_basis_bytes":"research/orion-rg/x1k_c0_support16_mixed_bytes.c",
+    "rank3_high4_u128":"research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+    "rank3_lut_replay":"research/orion-rg/x1k_c0_rank3_lut_replay.c",
+    "rank2_c4_3_u128":"research/orion-rg/x1k_c0_c4rank2_outside2_u128.c (generalized to outside multiplicity-2 or singleton)",
+    "rank2_c4_3_bytes":"research/orion-rg/x1k_c0_c4rank2_outside2_bytes.c",
+    "agreement":"all support strata through 22 have independent exact replay; solver output never supplies theorem/novelty authority"
+  },
+  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 23.",
+  "what_this_does_not_prove": ["31 in C_0(C_5^3)","D_4(C_5^3)=30","novelty of the support bound"],
+  "next_hard_stratum": "support >=23; re-derive the normalization before each compute because the eta(C_5^2)-forced mixed-basis inequalities begin to stop holding in this regime"
+}

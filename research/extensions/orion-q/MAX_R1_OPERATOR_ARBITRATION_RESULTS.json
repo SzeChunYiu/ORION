@@ -1,0 +1,28 @@
+{
+  "schema": "ORIONQ.MAXR1OperatorArbitrationResult.v1",
+  "domains": ["SYNTHESIS", "ALGO_INTERFACE", "QEC_CODESIGN", "FORMAL_REASONING"],
+  "remints_per_domain": 100,
+  "sample_count": 3200,
+  "majority_accuracy": 0.25,
+  "view_ceilings": {
+    "V0_SURFACE": {"accuracy": 0.5, "distinct_views": 1600, "ambiguous_view_buckets": 1600},
+    "V1_UNTYPED_BAG": {"accuracy": 0.5, "distinct_views": 1600, "ambiguous_view_buckets": 1600},
+    "V2_RAW_HISTORY": {"accuracy": 0.5, "distinct_views": 1600, "ambiguous_view_buckets": 1600},
+    "V3_TYPED_STATE": {"accuracy": 0.875, "distinct_views": 2800, "ambiguous_view_buckets": 400},
+    "V4_TYPED_SCOPED_FAILURE": {"accuracy": 1.0, "distinct_views": 3200, "ambiguous_view_buckets": 0}
+  },
+  "v3_frozen_rule_accuracy": 0.875,
+  "v4_frozen_rule_accuracy_by_domain": {
+    "SYNTHESIS": 1.0,
+    "ALGO_INTERFACE": 1.0,
+    "QEC_CODESIGN": 1.0,
+    "FORMAL_REASONING": 1.0
+  },
+  "false_escalation_rate": 0.0,
+  "cannot_check_accuracy": 1.0,
+  "terminal": "MAX_R1_TYPED_RESEARCH_OPERATOR_ARBITRATION_SUPPORTED__EXACT_SYNTHETIC",
+  "authority": "exact_synthetic_state_only",
+  "p10_authorized": false,
+  "novelty_authorized": false,
+  "interpretation": "Role/binding semantics and scoped failure applicability carry exact decision information across all four synthetic quantum research domains. This does not establish superiority over a donor controller given the same typed state; the typed state is now absorbed into the MAX incumbent and the next programme stage must test donor-composed adaptive superiority."
+}

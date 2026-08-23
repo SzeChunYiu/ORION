@@ -1,0 +1,77 @@
+\section{An independence taxonomy}
+
+The word \emph{independent} is often applied to any two labeled runs. We replace
+that binary label with six ordered claim levels. Each level names the strongest
+separation that has actually been verified.
+
+\begin{definition}[Agreement levels]
+For a pair or set of executions, define:
+\begin{enumerate}[label=\textbf{L\arabic*.}]
+  \item \emph{Deterministic structural agreement}: no model calls; the same frozen
+        inputs are checked by deterministic procedures.
+  \item \emph{Cross-implementation agreement}: different decision code paths
+        agree, but evidence, executor or model may be shared.
+  \item \emph{Executor-independent replication}: authenticated executor principals,
+        sessions and workspaces are disjoint.
+  \item \emph{Model-independent replication}: provider and immutable checkpoint
+        identities are disjoint under a frozen admissibility rule.
+  \item \emph{Evidence-independent corroboration}: upstream evidence acquisition
+        and lineage are disjoint before adjudication.
+  \item \emph{Scientific corroboration}: evidence, execution and adjudication are
+        independent under a preregistered multi-instance scientific design.
+\end{enumerate}
+\end{definition}
+
+The levels are an authority ordering, not a claim that every application needs the
+highest level. A deterministic source audit may be valuable at L1. It becomes
+misleading only when described as L3--L6.
+
+For each level $L_j$, let $G_j$ be the set of required verified gates. Define the
+reported level
+\[
+\ell^*=\max\{j:\forall g\in G_j,\ g=\text{pass}\}.
+\]
+Unknown is not pass. If no gate set is complete, the result is reported as
+unclassified agreement with explicit failed or uncheckable predicates.
+
+\begin{proposition}[Monotone downgrade]
+If a required gate for level $L_j$ is false or uncheckable, no label $L_k$ with
+$k\geq j$ is admissible.
+\end{proposition}
+
+\begin{proof}
+The gate sets are cumulative: $G_j\subseteq G_k$ for $k\geq j$. Therefore a failed
+or unknown member of $G_j$ is also an unsatisfied member of $G_k$, so neither level
+satisfies the definition of $\ell^*$.
+\end{proof}
+
+\subsection{Required gates}
+
+The cumulative gates are:
+
+\begin{enumerate}[label=\textbf{G\arabic*.}]
+  \item protocol, prompts, normalization, scorer, endpoints and intended level are
+        frozen before either output;
+  \item executor principals are authenticated and distinct when executor
+        independence is claimed;
+  \item provider and checkpoint identities are distinct when model independence
+        is claimed;
+  \item sessions, workspaces, stores, seeds and temporary state are disjoint;
+  \item neither lane can read the other's prompt, state, receipt or output before
+        both terminals are sealed;
+  \item implementations share no hidden gold function or copied decision result,
+        and common libraries are enumerated;
+  \item evidence-lineage graphs are disjoint when evidence independence is claimed;
+  \item scoring is performed by a frozen third component or blinded adjudicator;
+  \item all attribution fields required by the level are bound in each receipt;
+  \item certificate issuer, subject, scope and signature satisfy the trust policy;
+  \item the substitution, replay, leakage, race and forgery attack suite passes;
+  \item general reliability uses prospectively sampled task or campaign units and
+        task-level uncertainty rather than repeated traces from one question.
+\end{enumerate}
+
+Lane names, process identifiers and different prompt strings are not substitutes
+for these gates. In particular, two logical lanes routed through one broker and one
+model are at most cross-implementation agreement if their decision code paths are
+actually distinct; otherwise they are repeated requests.
+

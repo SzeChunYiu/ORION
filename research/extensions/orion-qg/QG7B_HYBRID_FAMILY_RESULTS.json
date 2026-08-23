@@ -1,0 +1,8427 @@
+{
+  "authority": "ORIONQG_QG7B_HYBRID_FAMILY_CLOSES_ON_VERIFIED_DOMAINS__WEIGHT2_TAG_PHANTOM_BORROW_BSECOND__NOT_R6",
+  "base_revision": "e633a4619624de01bec639a804dce02ca0be277a",
+  "chemistry_data_read": false,
+  "claim_boundary": {
+    "covers": "The frozen closed-form family B'' (weight-2-Tag + phantom-borrow hybrids, two distinct tag anchors, phantom support-two frames borrowing their label-1 syndrome at an existing tag qubit) with a proof-carrying witness verifier, and the identity C_DP == C_D++ == min(C_D+, f_B', f_B'') tested on the frozen finite domains: the 64 QG-7 witnesses verbatim, the re-evaluated QG-7 H1-H5 panels, the QG-5b structured n=2 slice and fresh seeded panel, and a frozen adversarial anti-B'' panel.",
+    "does_not_cover": "Other objectives, other grammars, rotation-count trade-offs, chemistry subjects (no chemistry data is read in this lane), the protected stretched-N2 subject, or any donor/R6 novelty credit.",
+    "machine_evidenced_only": "The completeness of D+ union B' union B'' is machine-evidenced only on the frozen finite domains; the all-n identity remains CONJECTURE gated by the Q3 obligations L4b (weight-<=2-Tag consolidation of the tag-supported-phantom, double-borrow, cyclic-borrow and l1-phantom shapes) and L4c (tag-weight bound for weight->=3 Tags). A finite panel cannot authorize the all-n theorem.",
+    "proven_components": "C_DP <= C_D++ <= C_D+ (family containment, asserted per instance); C_DP <= f_B' and C_DP <= f_B'' (B'/B'' members are feasible frozen-grammar configurations; referee-asserted on every exactly computed row); C_DP == C_D++ for all n (committed machine-checked MAX-R6S theorem, re-bound here); the pinch min(C_D+, f_B') == C_D++ implies covered_min == C_D++ regardless of the exact f_B'' value."
+  },
+  "donor_novelty_credit": false,
+  "gates": {
+    "G1_tables_bound": true,
+    "G2_qg7_receipt_bound": true,
+    "G3_qg5b_receipt_bound": true,
+    "G4_witness_referees_pass": true,
+    "G5_sandwich_and_soundness_pass": true,
+    "G6_exact_matcher_binding_pass": true,
+    "G7_no_r6s_contradiction": true,
+    "G8_enumeration_counts_complete": true,
+    "G9_witness_coverage_accounted": true
+  },
+  "hostile_referee": {
+    "bprime_witness_exempt_infeasible": 0,
+    "bprime_witness_failures": [],
+    "bprime_witness_rows": 314,
+    "bsecond_witness_exempt_infeasible": 147,
+    "bsecond_witness_failures": [],
+    "bsecond_witness_rows": 205,
+    "containment_failures": [],
+    "containment_rows": 791,
+    "dxx_witness_failures": [],
+    "dxx_witness_rows": 415,
+    "exact_matcher_failures": [],
+    "exact_matcher_rows": 251,
+    "replay_failures": [],
+    "replay_rows": 0
+  },
+  "lane": "QG-7b frozen hybrid-family closed form (wave-2 successor)",
+  "novelty_credit": false,
+  "physical_quantum_advantage_claim": false,
+  "programme": "ORION-QG (charter PROGRAMME_CHARTER_V1.md, issue #740)",
+  "protocol": "QG7B_HYBRID_FAMILY_PROTOCOL_V1",
+  "protocol_sha256": "f45767bf3fd2d8b9a2d112089cdd681c2f14bef7c7255a8b29c0b788697fe6ac",
+  "q1_family": {
+    "bsecond_definition": "B''(t): Tag s = v_a@q_a . v_b@q_b over distinct qubits of the pool (union target support plus up to two empty representatives); per block, anchored (v@q, c@q) at a tag qubit (extra 0) or phantom (m0@q_h, ell@q_x . m1@q_h) with home q_h off the tag pair and borrow point q_x on it (extra 2); at least one phantom; centrals (1,1,1); value = min(sum extras + branch F3) + 4 == r6s.config_cost of the induced configuration; infeasible for every n <= 2",
+    "soundness": "structural (every member is a feasible frozen-grammar configuration) plus per-row referee assertion",
+    "witness_verifier": "verify_bsecond_witness: frozen shape predicate + r6s.config_labels == (0,1) + r6s.config_cost equality; run on 100% of exactly computed finite f_B'' values"
+  },
+  "q2": {
+    "bsecond_exact_rows": 352,
+    "bsecond_pinched_rows": 10129,
+    "covered_by_bsecond": 180,
+    "covered_without_bsecond": 10301,
+    "fifth_candidates_verbatim": [],
+    "fifth_configuration_candidates_total": 0,
+    "fifth_configuration_confirmed_total": 0,
+    "hard_assertion_failures_verbatim": [],
+    "instances_total": 10481,
+    "panel_f_fresh_seeded": {
+      "covered_count": 240,
+      "expected_instances": 240,
+      "generator": "digit-frozen copy of the QG-5 fresh panel (120 per n, n in {2,3})",
+      "instances": 240,
+      "qg5b_q2_zero_expected": 240,
+      "refuting_instance_bound": true,
+      "seed": 20260826
+    },
+    "panel_h_qg7_reevaluated": {
+      "covered_total": 740,
+      "expected_total": 740,
+      "fourth_rows_reencountered": 64,
+      "instances_evaluated_total": 740,
+      "panels": {
+        "H1_n3": {
+          "cap": 120,
+          "cap_hit": true,
+          "covered_count": 120,
+          "duplicate_skipped": 18,
+          "evaluated": 120,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 194,
+          "regime_census": {
+            "borrow": 70,
+            "fourth": 10,
+            "split": 30,
+            "tie": 10
+          },
+          "skeletons": 8,
+          "template_pair_space": 12800,
+          "zero_target_skipped": 56
+        },
+        "H1_n4": {
+          "cap": 40,
+          "cap_hit": true,
+          "covered_count": 40,
+          "duplicate_skipped": 4,
+          "evaluated": 40,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 48,
+          "regime_census": {
+            "borrow": 14,
+            "fourth": 5,
+            "split": 19,
+            "tie": 2
+          },
+          "skeletons": 10,
+          "template_pair_space": 28090,
+          "zero_target_skipped": 4
+        },
+        "H2_n3": {
+          "cap": 160,
+          "cap_hit": true,
+          "covered_count": 160,
+          "duplicate_skipped": 76,
+          "evaluated": 160,
+          "infeasible_skeletons": 8,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 264,
+          "regime_census": {
+            "borrow": 32,
+            "fourth": 14,
+            "split": 88,
+            "tie": 26
+          },
+          "skeletons": 16,
+          "template_pair_space": 25600,
+          "zero_target_skipped": 28
+        },
+        "H2_n4": {
+          "cap": 40,
+          "cap_hit": true,
+          "covered_count": 40,
+          "duplicate_skipped": 25,
+          "evaluated": 40,
+          "infeasible_skeletons": 7,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 65,
+          "regime_census": {
+            "borrow": 0,
+            "fourth": 9,
+            "split": 31,
+            "tie": 0
+          },
+          "skeletons": 10,
+          "template_pair_space": 28090,
+          "zero_target_skipped": 0
+        },
+        "H3_n3": {
+          "cap": 90,
+          "cap_hit": true,
+          "covered_count": 90,
+          "duplicate_skipped": 83,
+          "evaluated": 90,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 235,
+          "regime_census": {
+            "borrow": 26,
+            "fourth": 9,
+            "split": 9,
+            "tie": 46
+          },
+          "skeletons": 6,
+          "template_pair_space": 9600,
+          "zero_target_skipped": 62
+        },
+        "H3_n4": {
+          "cap": 24,
+          "cap_hit": true,
+          "covered_count": 24,
+          "duplicate_skipped": 15,
+          "evaluated": 24,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 41,
+          "regime_census": {
+            "borrow": 1,
+            "fourth": 2,
+            "split": 18,
+            "tie": 3
+          },
+          "skeletons": 6,
+          "template_pair_space": 16854,
+          "zero_target_skipped": 2
+        },
+        "H4_n3": {
+          "cap": 90,
+          "cap_hit": true,
+          "covered_count": 90,
+          "duplicate_skipped": 22,
+          "evaluated": 90,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 162,
+          "regime_census": {
+            "borrow": 40,
+            "fourth": 5,
+            "split": 30,
+            "tie": 15
+          },
+          "skeletons": 6,
+          "template_pair_space": 9600,
+          "zero_target_skipped": 50
+        },
+        "H4_n4": {
+          "cap": 32,
+          "cap_hit": true,
+          "covered_count": 32,
+          "duplicate_skipped": 44,
+          "evaluated": 32,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 84,
+          "regime_census": {
+            "borrow": 5,
+            "fourth": 10,
+            "split": 14,
+            "tie": 3
+          },
+          "skeletons": 8,
+          "template_pair_space": 22472,
+          "zero_target_skipped": 8
+        },
+        "H5_n3": {
+          "cap": 120,
+          "cap_hit": true,
+          "covered_count": 120,
+          "duplicate_skipped": 17,
+          "evaluated": 120,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": 0,
+          "raw_scanned": 335,
+          "regime_census": {
+            "borrow": 51,
+            "fourth": 0,
+            "split": 37,
+            "tie": 32
+          },
+          "skeletons": 3,
+          "template_pair_space": 2873,
+          "zero_target_skipped": 198
+        },
+        "H5_n4": {
+          "cap": 24,
+          "cap_hit": true,
+          "covered_count": 24,
+          "duplicate_skipped": 0,
+          "evaluated": 24,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": 0,
+          "raw_scanned": 47,
+          "regime_census": {
+            "borrow": 10,
+            "fourth": 0,
+            "split": 11,
+            "tie": 3
+          },
+          "skeletons": 3,
+          "template_pair_space": 2873,
+          "zero_target_skipped": 23
+        }
+      },
+      "receipt_binding_failures": []
+    },
+    "panel_s_structured_n2": {
+      "bsecond_note": "B'' requires two distinct tag qubits plus a nonempty home pool and is therefore structurally infeasible for every n <= 2; exact stride rows confirm INFEASIBLE",
+      "covered_count": 9261,
+      "dp_truth": "r6o.dp_cost_n2_reader (committed unrestricted DP reader)",
+      "dxx_exact_rows": 96,
+      "expected_instances": 9261,
+      "instances": 9261
+    },
+    "panel_w_witnesses": {
+      "all_covered": true,
+      "covered_count": 64,
+      "expected_witnesses": 64,
+      "receipt_binding_failures": [],
+      "rows": [
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 0,
+          "local_index": 2,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 1,
+          "local_index": 5,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 2,
+          "local_index": 10,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  4,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 3,
+          "local_index": 13,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                5
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 4,
+          "local_index": 24,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 5,
+          "local_index": 36,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                7,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 6,
+          "local_index": 42,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 7,
+          "local_index": 45,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 8,
+          "local_index": 58,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  1,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 9,
+          "local_index": 67,
+          "n": 3,
+          "panel": "H1_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                7,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 3,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 10,
+          "local_index": 6,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 11,
+          "local_index": 8,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  3,
+                  3
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 12,
+          "local_index": 10,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                3
+              ],
+              [
+                6,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 3,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 13,
+          "local_index": 28,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 14,
+          "local_index": 29,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  2,
+                  3
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 15,
+          "local_index": 30,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                3
+              ],
+              [
+                6,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  3,
+                  0
+                ],
+                "frame_comm": [
+                  2,
+                  2
+                ],
+                "kind": "phantom",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 16,
+          "local_index": 54,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  2,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 17,
+          "local_index": 56,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  3,
+                  3
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 18,
+          "local_index": 58,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                3
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  4,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 3,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 19,
+          "local_index": 83,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  4,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 20,
+          "local_index": 85,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                4,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  2
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 3,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 21,
+          "local_index": 101,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                6,
+                0
+              ]
+            ],
+            [
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  1,
+                  3
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 22,
+          "local_index": 103,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                3
+              ],
+              [
+                6,
+                4
+              ]
+            ],
+            [
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  3,
+                  0
+                ],
+                "frame_comm": [
+                  2,
+                  2
+                ],
+                "kind": "phantom",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 23,
+          "local_index": 111,
+          "n": 3,
+          "panel": "H2_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 24,
+          "local_index": 0,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 25,
+          "local_index": 2,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 26,
+          "local_index": 13,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                7,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 27,
+          "local_index": 22,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                6
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  2,
+                  6
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 28,
+          "local_index": 23,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                3,
+                6
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 9,
+          "C_Dplus": 10,
+          "C_Dxx": 9,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  0,
+                  4
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 3,
+            "v_b": 1,
+            "value": 9
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 9,
+          "index": 29,
+          "local_index": 30,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                5,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                6,
+                0
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  4,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 2,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 30,
+          "local_index": 33,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                7,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  2
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 3,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 31,
+          "local_index": 35,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 32,
+          "local_index": 76,
+          "n": 3,
+          "panel": "H3_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 33,
+          "local_index": 0,
+          "n": 3,
+          "panel": "H4_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 34,
+          "local_index": 13,
+          "n": 3,
+          "panel": "H4_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 35,
+          "local_index": 14,
+          "n": 3,
+          "panel": "H4_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  1,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 36,
+          "local_index": 37,
+          "n": 3,
+          "panel": "H4_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  1,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 37,
+          "local_index": 38,
+          "n": 3,
+          "panel": "H4_n3",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  10,
+                  10
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 38,
+          "local_index": 2,
+          "n": 4,
+          "panel": "H1_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                10,
+                10
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  9,
+                  9
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 39,
+          "local_index": 5,
+          "n": 4,
+          "panel": "H1_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                8,
+                0
+              ],
+              [
+                9,
+                9
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  10,
+                  10
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 40,
+          "local_index": 12,
+          "n": 4,
+          "panel": "H1_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                10,
+                10
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  8,
+                  9
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 41,
+          "local_index": 15,
+          "n": 4,
+          "panel": "H1_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                8,
+                0
+              ],
+              [
+                8,
+                9
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 2,
+                "frame_anti": [
+                  10,
+                  10
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 42,
+          "local_index": 28,
+          "n": 4,
+          "panel": "H1_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                10,
+                10
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  4,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 43,
+          "local_index": 2,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 44,
+          "local_index": 3,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  4,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 45,
+          "local_index": 9,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                7,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 46,
+          "local_index": 10,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                7,
+                6
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 47,
+          "local_index": 11,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                3
+              ],
+              [
+                7,
+                4
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  4,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 48,
+          "local_index": 17,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 49,
+          "local_index": 18,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                6
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  6,
+                  0
+                ],
+                "frame_comm": [
+                  2,
+                  2
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  0
+                ],
+                "frame_comm": [
+                  0,
+                  4
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 2,
+            "v_a": 1,
+            "v_b": 3,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 50,
+          "local_index": 20,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                2
+              ],
+              [
+                14,
+                8
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  2,
+                  6
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  4,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  8
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 2,
+            "q_tb": 3,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 51,
+          "local_index": 33,
+          "n": 4,
+          "panel": "H2_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                6
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 8,
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 8
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 8,
+          "index": 52,
+          "local_index": 3,
+          "n": 4,
+          "panel": "H3_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  0
+                ],
+                "frame_comm": [
+                  1,
+                  1
+                ],
+                "kind": "anchored",
+                "sigma": 1
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  4
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 2,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 53,
+          "local_index": 11,
+          "n": 4,
+          "panel": "H3_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 54,
+          "local_index": 0,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 6,
+          "C_Dplus": 7,
+          "C_Dxx": 6,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 6
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 7,
+          "f_Bsecond": 6,
+          "index": 55,
+          "local_index": 1,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 56,
+          "local_index": 8,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 57,
+          "local_index": 9,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                4,
+                0
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 58,
+          "local_index": 12,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                6,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  5,
+                  5
+                ],
+                "frame_comm": [
+                  4,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 59,
+          "local_index": 13,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                6,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  9,
+                  9
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 60,
+          "local_index": 16,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                8,
+                0
+              ],
+              [
+                13,
+                9
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  9,
+                  9
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 61,
+          "local_index": 17,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                8,
+                0
+              ],
+              [
+                13,
+                9
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  9,
+                  9
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  1,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 62,
+          "local_index": 20,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                12,
+                0
+              ],
+              [
+                9,
+                9
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "C_DP": 7,
+          "C_Dplus": 8,
+          "C_Dxx": 7,
+          "bsecond_witness_verbatim": {
+            "blocks": [
+              {
+                "block": "A",
+                "extra": 2,
+                "frame_anti": [
+                  9,
+                  9
+                ],
+                "frame_comm": [
+                  8,
+                  0
+                ],
+                "kind": "phantom",
+                "sigma": 0
+              },
+              {
+                "block": "B",
+                "extra": 0,
+                "frame_anti": [
+                  2,
+                  2
+                ],
+                "frame_comm": [
+                  2,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              },
+              {
+                "block": "C",
+                "extra": 0,
+                "frame_anti": [
+                  0,
+                  1
+                ],
+                "frame_comm": [
+                  1,
+                  0
+                ],
+                "kind": "anchored",
+                "sigma": 0
+              }
+            ],
+            "q_ta": 0,
+            "q_tb": 1,
+            "v_a": 1,
+            "v_b": 1,
+            "value": 7
+          },
+          "covered_by_bsecond": true,
+          "f_Bprime": 8,
+          "f_Bsecond": 7,
+          "index": 63,
+          "local_index": 21,
+          "n": 4,
+          "panel": "H4_n4",
+          "receipt_row_bound": true,
+          "target_pairs": [
+            [
+              [
+                12,
+                0
+              ],
+              [
+                9,
+                9
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        }
+      ],
+      "witnesses_bound": 64
+    },
+    "panel_x_adversarial": {
+      "covered_total": 176,
+      "fourth_rows_found": 52,
+      "generator": "frozen adversarial anti-Bsecond skeletons (X1 weight-3 Tag, X2 non-tag chain borrow, X3 tag-supported phantom, X4 double-borrow phantom) under the committed QG-7 Restore-template grammar",
+      "instances_evaluated_total": 176,
+      "panels": {
+        "X1_n4": {
+          "cap": 20,
+          "cap_hit": true,
+          "covered_count": 20,
+          "duplicate_skipped": 10,
+          "evaluated": 20,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 34,
+          "regime_census": {
+            "borrow": 0,
+            "fourth": 5,
+            "split": 14,
+            "tie": 1
+          },
+          "skeletons": 5,
+          "template_pair_space": 14045,
+          "zero_target_skipped": 4
+        },
+        "X2_n3": {
+          "cap": 40,
+          "cap_hit": true,
+          "covered_count": 40,
+          "duplicate_skipped": 12,
+          "evaluated": 40,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 71,
+          "regime_census": {
+            "borrow": 18,
+            "fourth": 16,
+            "split": 4,
+            "tie": 2
+          },
+          "skeletons": 4,
+          "template_pair_space": 6400,
+          "zero_target_skipped": 19
+        },
+        "X2_n4": {
+          "cap": 12,
+          "cap_hit": true,
+          "covered_count": 12,
+          "duplicate_skipped": 4,
+          "evaluated": 12,
+          "infeasible_skeletons": 2,
+          "max_gap_old": -1,
+          "min_gap_old": -1,
+          "raw_scanned": 18,
+          "regime_census": {
+            "borrow": 0,
+            "fourth": 12,
+            "split": 0,
+            "tie": 0
+          },
+          "skeletons": 2,
+          "template_pair_space": 5618,
+          "zero_target_skipped": 2
+        },
+        "X3_n3": {
+          "cap": 40,
+          "cap_hit": true,
+          "covered_count": 40,
+          "duplicate_skipped": 18,
+          "evaluated": 40,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 78,
+          "regime_census": {
+            "borrow": 11,
+            "fourth": 2,
+            "split": 11,
+            "tie": 16
+          },
+          "skeletons": 4,
+          "template_pair_space": 6400,
+          "zero_target_skipped": 20
+        },
+        "X3_n4": {
+          "cap": 12,
+          "cap_hit": true,
+          "covered_count": 12,
+          "duplicate_skipped": 1,
+          "evaluated": 12,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": 0,
+          "raw_scanned": 15,
+          "regime_census": {
+            "borrow": 12,
+            "fourth": 0,
+            "split": 0,
+            "tie": 0
+          },
+          "skeletons": 2,
+          "template_pair_space": 5618,
+          "zero_target_skipped": 2
+        },
+        "X4_n3": {
+          "cap": 40,
+          "cap_hit": true,
+          "covered_count": 40,
+          "duplicate_skipped": 10,
+          "evaluated": 40,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 54,
+          "regime_census": {
+            "borrow": 5,
+            "fourth": 10,
+            "split": 21,
+            "tie": 4
+          },
+          "skeletons": 4,
+          "template_pair_space": 6400,
+          "zero_target_skipped": 4
+        },
+        "X4_n4": {
+          "cap": 12,
+          "cap_hit": true,
+          "covered_count": 12,
+          "duplicate_skipped": 1,
+          "evaluated": 12,
+          "infeasible_skeletons": 0,
+          "max_gap_old": 0,
+          "min_gap_old": -1,
+          "raw_scanned": 13,
+          "regime_census": {
+            "borrow": 0,
+            "fourth": 7,
+            "split": 5,
+            "tie": 0
+          },
+          "skeletons": 2,
+          "template_pair_space": 5618,
+          "zero_target_skipped": 0
+        }
+      }
+    },
+    "pinch_policy": "f_B'' exact on every Panel W row, every gap row (C_D++ < min(C_D+, f_B')), and frozen strides (H/X gidx%32, S idx%64, F i%64); elsewhere the structural pinch C_D++ == C_DP <= f_B'' decides the identity (R6P/QG-5b precedent); counts disclosed above",
+    "r6s_contradictions_verbatim": [],
+    "uncovered_total": 0,
+    "verbatim_cap": 50
+  },
+  "q3_toward_all_n": {
+    "bound_values": {
+      "L1_domains": {
+        "N1": 768,
+        "N5": 27216
+      },
+      "L1_status": "CLOSED_ALL_N",
+      "L2_domains": {
+        "N0_lemma_b": 43688,
+        "N0_lemma_e": 18432,
+        "N3": 8
+      },
+      "L2_status": "CLOSED_ALL_N",
+      "L4_open_shapes_verbatim": [
+        "H1_multi_anchor_borrow_tag_weight_ge_2",
+        "H3_cyclic_borrow",
+        "H4_hybrid_split_borrow",
+        "H4b_l1_phantom_tag_letter_at_home"
+      ],
+      "L4a_domain_checked": 1440
+    },
+    "l1_l2_receipt_bound": true,
+    "now_covered_on_verified_domains_by_bsecond": [
+      "H1_multi_anchor_borrow_tag_weight_ge_2 (two distinct tag anchors, weight-2 Tag)",
+      "H4_hybrid_split_borrow (anchored + phantom mixtures)"
+    ],
+    "remaining_obligations": {
+      "L4b_weight_le2_tag_consolidation": {
+        "open_shape_classes": [
+          "tag_supported_phantom (comm frame at a tag qubit; grammar-feasible, probed by X2_n3/X3)",
+          "double_borrow_phantom (both frames support-two; probed by X4)",
+          "H3_cyclic_borrow (bound verbatim from the QG-7 open-shape list)",
+          "H4b_l1_phantom_tag_letter_at_home (bound verbatim from the QG-7 open-shape list)"
+        ],
+        "statement": "prove every support-two optimum with tag weight <= 2 consolidates without cost increase into D+ union B' union B''"
+      },
+      "L4c_tag_weight_bound": {
+        "empirical_probe_only": "Panel X1 (weight-3 Tag skeletons)",
+        "statement": "L4a prunes only tag letters outside the union FRAME support (complete 1,440-check domain, exact refund 2); a weight->=3 Tag with all letters frame-supported is not covered: owe an exchange lemma reducing it to weight <= 2 without cost increase, or a further family B'''"
+      }
+    },
+    "successor_definition": "QG-7c := close L4b and L4c; if both close, L5 inherits closure and C_DP == min(C_D+, f_B', f_B'') becomes all-n; this section states the obligations and proves nothing new"
+  },
+  "question": "Does the frozen closed-form family B'' (weight-2-Tag + phantom borrow, delimited by QG-7's L4a classification) restore the closed-form identity C_DP == C_D++ == min(C_D+, f_B', f_B'') on the QG-7 witness set, the re-evaluated QG-7 panels, the QG-5b domains, and a fresh frozen adversarial anti-B'' panel \u2014 or does a fifth support-two configuration exist?",
+  "r6_authority": false,
+  "receipt_bindings": {
+    "qg5b_authority": "ORIONQG_QG5B_EXACT_FORECASTER_THEOREM_BACKED_ZERO_ERROR__DPP_FAMILY_MIN__ENLARGED_BORROW_CLOSES__NOT_R6",
+    "qg5b_receipt_bound": true,
+    "qg7_authority": "ORIONQG_QG7_FOURTH_SUPPORT2_REGIME_FOUND__HOSTILE_SEARCH_WITNESS_REFEREE_CONFIRMED__NOT_R6",
+    "qg7_protocol_sha256_recomputed": "04281622fdbf5a71436e60e3b3aaee66d1b7b0e025f14eafdf073e9b52373645",
+    "qg7_receipt_bound": true,
+    "r6s_authority": "MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_ALL_N__NOT_R6",
+    "r6s_receipt_bound": true
+  },
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:BSECOND_COVERS_ALL_64_WITNESSES_AND_ALL_PANEL_GAPS__IDENTITY_MIN_DPLUS_BPRIME_BSECOND_EQUALS_CDP_ON_VERIFIED_DOMAINS__ALL_N_REMAINS_CONJECTURE_VIA_L4B_L4C",
+  "result_digest": "abc66e2626007c5eb6c048d4d32c17bb9d0633ff6be8a8222c2c6be86d95cc41",
+  "schema": "ORIONQG.QG7B.HybridFamily.v1",
+  "scope": "FROZEN_HYBRID_FAMILY_BSECOND_COMPLETENESS_RETEST__WEIGHT2_TAG_PHANTOM_BORROW__UNIT_SUPPORT_COUNT_OBJECTIVE_ONLY__NOT_R6",
+  "terminal": "QG7B_HYBRID_FAMILY_CLOSES_ON_VERIFIED_DOMAINS",
+  "timing": {
+    "convention": "R6P: timing fields excluded from the canonical stdout line and the result digest; present only in this file section and on stderr",
+    "panel_seconds": {
+      "panel_f": 49.667,
+      "panel_h": 527.659,
+      "panel_s": 238.432,
+      "panel_w": 127.596,
+      "panel_x": 208.713
+    },
+    "runtime_cap_seconds": 1500,
+    "runtime_seconds": 1152.109,
+    "runtime_under_cap": true
+  },
+  "verification_sample": [
+    {
+      "C_DP": 5,
+      "C_Dplus": 6,
+      "C_Dxx": 5,
+      "covered": true,
+      "f_Bprime": 5,
+      "f_Bsecond": 7,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 3,
+      "panel": "H1_n3",
+      "target_pairs": [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 8,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 60,
+      "n": 3,
+      "panel": "H1_n3",
+      "target_pairs": [
+        [
+          [
+            6,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 6,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 3,
+      "panel": "H2_n3",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 6,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 80,
+      "n": 3,
+      "panel": "H2_n3",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 9,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": 8,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 3,
+      "panel": "H3_n3",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            4
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 6,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 45,
+      "n": 3,
+      "panel": "H3_n3",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": 6,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 3,
+      "panel": "H4_n3",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 45,
+      "n": 3,
+      "panel": "H4_n3",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 6,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 3,
+      "panel": "H5_n3",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 60,
+      "n": 3,
+      "panel": "H5_n3",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            5,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 5,
+      "C_Dplus": 6,
+      "C_Dxx": 5,
+      "covered": true,
+      "f_Bprime": 5,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 4,
+      "panel": "H1_n4",
+      "target_pairs": [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 6,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 20,
+      "n": 4,
+      "panel": "H1_n4",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 4,
+      "panel": "H2_n4",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 9,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": 8,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 20,
+      "n": 4,
+      "panel": "H2_n4",
+      "target_pairs": [
+        [
+          [
+            3,
+            2
+          ],
+          [
+            14,
+            8
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 6,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 4,
+      "panel": "H3_n4",
+      "target_pairs": [
+        [
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ],
+        [
+          [
+            8,
+            8
+          ],
+          [
+            1,
+            9
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": 8,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 12,
+      "n": 4,
+      "panel": "H3_n4",
+      "target_pairs": [
+        [
+          [
+            10,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ],
+        [
+          [
+            8,
+            8
+          ],
+          [
+            1,
+            9
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": 6,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 4,
+      "panel": "H4_n4",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 8,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": 7,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 16,
+      "n": 4,
+      "panel": "H4_n4",
+      "target_pairs": [
+        [
+          [
+            8,
+            0
+          ],
+          [
+            13,
+            9
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 4,
+      "C_Dplus": 4,
+      "C_Dxx": 4,
+      "covered": true,
+      "f_Bprime": 5,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 4,
+      "panel": "H5_n4",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 12,
+      "n": 4,
+      "panel": "H5_n4",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 3,
+      "C_Dplus": 3,
+      "C_Dxx": null,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 2,
+      "panel": "panel_s",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 4,
+      "C_Dplus": 4,
+      "C_Dxx": null,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 4630,
+      "n": 2,
+      "panel": "panel_s",
+      "target_pairs": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 6,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "INFEASIBLE",
+      "local_index": 0,
+      "n": 2,
+      "panel": "panel_f",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 6,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 60,
+      "n": 2,
+      "panel": "panel_f",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 10,
+      "C_Dplus": 10,
+      "C_Dxx": 10,
+      "covered": true,
+      "f_Bprime": 10,
+      "f_Bsecond": 12,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 3,
+      "panel": "panel_f",
+      "target_pairs": [
+        [
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 60,
+      "n": 3,
+      "panel": "panel_f",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            7
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            4
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 8,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": 7,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 3,
+      "panel": "X2_n3",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 9,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 20,
+      "n": 3,
+      "panel": "X2_n3",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 5,
+      "C_Dplus": 5,
+      "C_Dxx": 5,
+      "covered": true,
+      "f_Bprime": 5,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 3,
+      "panel": "X3_n3",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 6,
+      "C_Dplus": 7,
+      "C_Dxx": 6,
+      "covered": true,
+      "f_Bprime": 6,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 20,
+      "n": 3,
+      "panel": "X3_n3",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 8,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": 7,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 3,
+      "panel": "X4_n3",
+      "target_pairs": [
+        [
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 20,
+      "n": 3,
+      "panel": "X4_n3",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 4,
+      "panel": "X1_n4",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            12,
+            12
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 7,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 10,
+      "n": 4,
+      "panel": "X1_n4",
+      "target_pairs": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ],
+        [
+          [
+            8,
+            8
+          ],
+          [
+            4,
+            12
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 8,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": 7,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 4,
+      "panel": "X2_n4",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            12,
+            12
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 9,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": 8,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 6,
+      "n": 4,
+      "panel": "X2_n4",
+      "target_pairs": [
+        [
+          [
+            6,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            12,
+            12
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 7,
+      "C_Dplus": 8,
+      "C_Dxx": 7,
+      "covered": true,
+      "f_Bprime": 7,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 0,
+      "n": 4,
+      "panel": "X3_n4",
+      "target_pairs": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            9
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 9,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 8,
+      "f_Bsecond": null,
+      "f_Bsecond_status": "PINCHED_GE_C_DP",
+      "local_index": 6,
+      "n": 4,
+      "panel": "X3_n4",
+      "target_pairs": [
+        [
+          [
+            4,
+            0
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 9,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": 8,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 0,
+      "n": 4,
+      "panel": "X4_n4",
+      "target_pairs": [
+        [
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      ]
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 9,
+      "C_Dxx": 8,
+      "covered": true,
+      "f_Bprime": 9,
+      "f_Bsecond": 8,
+      "f_Bsecond_status": "EXACT",
+      "local_index": 6,
+      "n": 4,
+      "panel": "X4_n4",
+      "target_pairs": [
+        [
+          [
+            5,
+            0
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      ]
+    }
+  ]
+}

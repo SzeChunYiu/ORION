@@ -1,0 +1,28 @@
+name: orion-q-max-r5h
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/**'
+      - 'development/orion-q-max-r0/**'
+      - '.github/workflows/orion-q-max-r5h.yml'
+
+jobs:
+  mixed-cardinality-subject:
+    strategy:
+      fail-fast: false
+      matrix:
+        subject: [H4, N2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run frozen R5H exact donor-composed subject
+        run: |
+          cd research/extensions/orion-q
+          python max_r5h_subject_fast.py '${{ matrix.subject }}' | tee /tmp/r5h-subject.txt
+          grep '^ORIONQ_MAX_R5H_SUBJECT=' /tmp/r5h-subject.txt

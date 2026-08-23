@@ -1,0 +1,33 @@
+\section{The general theorems}
+
+\textbf{Local mechanics.} Let a mechanic act on a state over an uninterpreted
+coordinate sort and an uninterpreted value sort, with a declared frame naming
+the coordinates it may write. The transformer itself is an uninterpreted
+function constrained only by that frame. Then: two mechanics whose frames are
+disjoint commute; separation is \emph{necessary} for commutation and not only
+sufficient; a mechanic writes only inside its frame; the frame and the input
+determine the output; and the fixpoint of a mechanic is conservative over
+coordinates outside its frame.
+
+Because the transformer is arbitrary, commutation is a property of separation.
+The bounded check of V4 instantiated it at modular arithmetic, which is a
+property of that arithmetic. The shipped mechanic is shown to obey its declared
+frame on all \textbf{5,280} exhaustive perturbations, so the bounded result is an
+instance.
+
+\textbf{Change propagation.} Over an uninterpreted node sort, with reachability
+axiomatised as the reflexive--transitive closure of the dependency edge:
+reopening is sound (every reopened node is reachable from a change), complete
+(every reachable non-changed node is reopened), minimal (no proper subset of the
+reopened set is closed under the edge relation from the changed set),
+conservative, monotone in the changed set, and a node lies in its own reopened
+set exactly when it lies on a cycle. Graphs of any size, cyclic or acyclic.
+
+One clause of the closure axiomatisation is load-bearing and easy to omit.
+Transitive closure is not first-order definable, so the four clauses \emph{are} the
+definition, and the fourth attaches a well-founded rank to each reachability
+fact. Without it a model may contain two reachability facts that justify each
+other in a cycle, and the completeness direction becomes unprovable. That was
+not anticipated: an earlier axiomatisation without the rank admitted a model in
+which a sink domain reached its own source, and a differential against the
+committed implementation is what exposed it.

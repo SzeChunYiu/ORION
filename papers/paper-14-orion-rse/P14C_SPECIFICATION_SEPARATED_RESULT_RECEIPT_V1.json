@@ -1,0 +1,51 @@
+{
+  "schema": "ORION.P14C.SpecificationSeparatedGovernanceReceipt.v1",
+  "protocol": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md",
+  "adjudication_spec": "P14C_ADJUDICATION_CASES_V1.json",
+  "terminal": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED",
+  "case_count": 28,
+  "canonical_sha256": "74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63",
+  "two_execution_hash_match": true,
+  "policy_input_contains_gold": false,
+  "strongest_non_orion_baseline": "MULTI_REVIEW",
+  "summary": {
+    "ORION_RSE_FULL": {
+      "disposition_accuracy": 1.0,
+      "false_promotion_rate": 0.0,
+      "useful_discovery_recall": 1.0,
+      "retain_negative_accuracy": 1.0,
+      "supported_reopen_accuracy": 1.0
+    },
+    "MULTI_REVIEW": {
+      "disposition_accuracy": 0.8571428571428571,
+      "false_promotion_rate": 0.14285714285714285,
+      "useful_discovery_recall": 1.0,
+      "retain_negative_accuracy": 0.0,
+      "supported_reopen_accuracy": 1.0
+    },
+    "RAW_POSITIVE": {
+      "disposition_accuracy": 0.42857142857142855,
+      "false_promotion_rate": 0.5357142857142857,
+      "useful_discovery_recall": 1.0
+    },
+    "REFLECTION_CHECKLIST": {
+      "disposition_accuracy": 0.5714285714285714,
+      "false_promotion_rate": 0.42857142857142855,
+      "useful_discovery_recall": 1.0
+    },
+    "DONOR_AWARE_REVIEW": {
+      "disposition_accuracy": 0.7142857142857143,
+      "false_promotion_rate": 0.2857142857142857,
+      "useful_discovery_recall": 1.0
+    }
+  },
+  "ablations": {
+    "ABLATE_EVIDENCE_INTEGRITY": {"disposition_accuracy": 0.9642857142857143},
+    "ABLATE_FREEZE": {"disposition_accuracy": 0.9642857142857143},
+    "ABLATE_IDENTIFIABILITY": {"disposition_accuracy": 0.9642857142857143},
+    "ABLATE_DONOR": {"disposition_accuracy": 0.8571428571428571},
+    "ABLATE_INTERACTION": {"disposition_accuracy": 0.8571428571428571},
+    "ABLATE_NEGATIVE_HISTORY": {"disposition_accuracy": 0.8571428571428571}
+  },
+  "claim_authority": "Specification-separated governance-contract conformance only. External scientific validity requires blinded independent adjudication."
+}

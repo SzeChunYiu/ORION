@@ -1,0 +1,228 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+% Typesetting only; no content change. The submission gate rejects any
+% Overfull \hbox, and these manuscripts are dense with unbreakable compounds --
+% "chart/location/objective/open-obligation", "request/handled/denied/committed"
+% -- because TeX does not break at "/" and will not hyphenate across it.
+%
+% microtype supplies character protrusion and font expansion, which is the
+% standard way to absorb a few points of overflow without touching prose.
+% \emergencystretch lets TeX stretch interword space in a final pass rather than
+% run past the margin.
+%
+% That second one is a deliberate trade, not a way around the gate: an overfull
+% box puts text into the margin, which is a real defect in a submitted PDF, while
+% the underfull box it may produce instead is loose spacing. The gate forbids the
+% former and permits the latter for exactly that reason.
+\usepackage{microtype}
+\emergencystretch=1em
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\title{Epistemic Navigation in Open Worlds: Closure Transport under Representation and Objective Change}
+\author{Sze Chun Yiu\\Department of Physics, Stockholm University, Stockholm, Sweden\\\texttt{sze-chun.yiu@fysik.su.se}}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Open-ended scientific inquiry is often modeled as search, but ordinary search assumes a representation in which states, actions, goals, and stopping conditions are already meaningful. Scientific agents can violate that premise: they may begin with an incomplete ontology, encounter censored routes, refine the representation used for action, or revise the objective whose satisfaction defines completion. Existing work already studies graph navigation, partial-observability planning, abstraction, schema and ontology transport, self-revising scientific regimes, world-model and goal evolution, and open-world stopping. We absorb these mechanisms into an epistemic atlas and isolate a narrower interface: what happens to scientific evidence and closure authority when the representation or objective changes. We prove an open-world stopping impossibility theorem under explicit extension ambiguity while rejecting the invalid converse from mere certificate absence. A fixed-latent construction shows that representation refinement can strictly increase solvability without adding states, dynamics, actions, goals, or raw sensing, with a matched harmful-coarsening control. We then prove that evidence preservation is strictly weaker than scientific closure preservation: unchanged valid evidence can fail to discharge a transformed obligation. A complete support-transport witness licenses closure transfer; incomplete target-ambiguous transport requires reopening, while unresolved non-ambiguous cases remain inability-to-check until another proof resolves them. Route stop, task stop, continuation, and inability to check remain distinct. Deterministic finite checkers and eight frozen reference contracts exercise these boundaries. The contribution is scientific closure/obligation transport and stopping across representation change, not representation transport itself.
+\end{abstract}
+
+\noindent\textbf{Keywords:} open-world search; scientific agents; representation change; epistemic navigation; closure; evidence transport; stopping
+
+\section{Introduction}
+A scientific search agent does not always know the search space it is searching. It may lack a stable ontology, know that a route is censored without knowing what lies behind it, discover that the current representation aliases scientifically distinct situations, or revise the objective whose satisfaction previously meant ``done.'' These are not merely longer search trajectories. They change the semantics of states, routes, or completion.
+
+The surrounding literature already contains powerful mechanisms. Search-on-Graph performs iterative navigation over structured knowledge \cite{sog2025}. POMDP and information-gathering methods address partial observability. Planning abstraction studies representation-dependent solvability and preservation \cite{banihashemi2017,dong2025}. Schema, ontology, and transformation systems formalize representational mappings. Goal-evolving agents explicitly revise scientific objectives \cite{saga2025}, and self-evolving world models revise predictive structure at deployment time \cite{sewm2026}. Most importantly for claim scope, recent categorical and sheaf-theoretic scientific-agent work directly formalizes representational-regime transport and obstruction \cite{categorical2026,sheaf2026}. P7 therefore does not claim that scientific agents can change representations, nor that artifacts can be transported across regimes.
+
+The residual problem is \emph{scientific closure transport}. Evidence can remain authentic and semantically useful after a representation or objective change while no longer discharging the active scientific obligation. Conversely, a representation transformation can be computationally beneficial without licensing a task-completion judgment. Open or censored obligations can survive local route exhaustion and must remain visible after a reframe.
+
+We formalize this interface through an epistemic atlas: a family of charts connected by partial representation\slash objective transformations and explicit preservation contracts. The central results are: (1) history-only task stopping is unsound under observational extension ambiguity; (2) representation refinement can change worst-case solvability with latent state and retained raw information fixed; (3) evidence preservation does not imply closure preservation; and (4) closure transfer requires a complete support/obligation witness or another proof that resolves the target ambiguity. The framework keeps route stop, task stop, continuation, and inability-to-check as distinct terminals.
+
+\section{Related work as donor structure}
+\subsection{Graph and open-world navigation}
+Search-on-Graph is a strong fixed-chart donor: it observes local graph structure and iteratively chooses navigation steps rather than planning from a fully known global graph \cite{sog2025}. Mind-ParaWorld evaluates search agents against parallel hidden worlds and exposes coverage, sufficiency, and stopping failures \cite{mpw2026}. The Initial Exploration Problem makes scope uncertainty and ontology opacity explicit before ordinary exploration begins \cite{iep2026}. These works own important navigation and orientation structure.
+
+Recent evaluation also separates completing a world task from knowing when one is entitled to stop. VIGIL independently scores world completion and terminal commitment \cite{vigil2026}. A broader science-of-intent proposal describes open-world closure gaps and delegation envelopes \cite{intent2026}. P7 therefore does not claim the generic distinction between undersearch and misclosure.
+
+\subsection{Planning abstraction and representation change}
+Planning abstraction studies mappings that preserve or expose structure relevant to solvability. Situation-calculus abstraction and generalized-planning work provide soundness\slash completeness conditions for transferred planning properties \cite{banihashemi2017,dong2025}. These results are natural providers of part of a P7 transport witness; P7 does not re-prove their native abstraction theorems.
+
+The closest scientific-representation donors are now explicit. Wang and Buehler model self-revising discovery as verified transitions between typed representational regimes, transporting old artifacts categorically while identifying residual content beyond transport \cite{categorical2026}. Olivieri and Hern\'andez use sheaf-theoretic transport and obstruction to detect when a scientific representation should deform or extend \cite{sheaf2026}. These works directly own representation-regime transport and obstruction. P7's distinct target is the additional question of when transported evidence still supports a \emph{scientific completion judgment} under a possibly changed obligation and incomplete/open coverage.
+
+\subsection{Goal and world-model evolution}
+SAGA evolves scientific goals in an outer loop \cite{saga2025}. Self-Evolving World Models adapt predictive representations at deployment time \cite{sewm2026}, while graph-world-model work surveys dynamic structured world representations \cite{gwm2026}. P7 treats goal changes and representation changes as legitimate inputs rather than novelty targets. Their presence creates an obligation-transport problem: retained evidence need not inherit the old `DONE' judgment.
+
+\subsection{Scientific exploration breadth and closure}
+Empirical work reports that research agents can narrow exploration breadth \cite{narrow2026}, and surveys of autonomous research systems emphasize evidence preservation, provenance, reproducibility, and accountable scientific closure as persistent challenges \cite{autoresearch2026}. P7 treats breadth and closure as distinct coordinates: more exploration does not itself prove completion, and low marginal utility does not itself disprove an open scientific obligation.
+
+\section{Epistemic atlases}
+An epistemic chart is
+\[
+T=(S,A,\delta,Y,h,\Omega,\mathcal C),
+\]
+where $S$ is latent state, $A$ actions, $\delta$ dynamics, $Y$ retained raw observations/evidence, $h:Y\rightarrow V$ the active representation, $\Omega$ scientific obligations\slash objectives, and $\mathcal C$ route\slash coverage\slash censoring constraints. An atlas is
+\[
+\mathfrak A=(\{T_i\}_{i\in I},\mathcal R,\Xi),
+\]
+where $\mathcal R$ contains partial chart/objective transformations and $\Xi$ contains explicit preservation contracts.
+
+A navigation state also records the active chart, current location or belief state, frontier, registered route structures, open obligations, censored/unknown regions, resource state, evidence identities, and history. Separating retained raw evidence $Y$ from representation $h$ lets us distinguish a true information gain from a new use of information that was already retained.
+
+\section{Open-world stopping}
+Let a finite exposed history be $h_t$. Two admissible world completions are observationally equivalent at $h_t$ if every observation, route response, cost, transition, and representation fact exposed so far is identical.
+
+\begin{definition}[Extension ambiguity]
+A history is extension-ambiguous for mandatory obligation set $O$ if there exist observationally equivalent admissible completions $W_0,W_1$ such that all obligations in $O$ are discharged in $W_0$ and at least one mandatory obligation is open in $W_1$.
+\end{definition}
+
+\begin{theorem}[Stopping impossibility under extension ambiguity]
+No rule that depends only on the exposed history can soundly output task completion for every admissible completion when that history is extension-ambiguous.
+\end{theorem}
+\begin{proof}
+The rule receives identical input in $W_0$ and $W_1$ and must return the same terminal, while task-completion truth differs. A task-stop output is false in $W_1$; a non-task-stop output does not certify completion in $W_0$.
+\end{proof}
+
+The theorem deliberately does not infer ambiguity from the absence of an object named ``closure certificate.'' A world class may be complete because of a finite manifest or another structural fact. Absence of an explicit certificate implies ambiguity only under an additional richness premise that permits observationally identical complete and incomplete extensions.
+
+Expected marginal utility is also insufficient to resolve this truth value: both completions can have equally low expected information gain while differing in whether a mandatory unseen witness exists. Resource policies may stop action without manufacturing scientific completion.
+
+\section{Four distinct stopping terminals}
+We distinguish:
+\begin{itemize}
+\item \texttt{ROUTE\_STOP}: a local route policy is exhausted or no longer justified;
+\item \texttt{TASK\_STOP}: all mandatory obligations are discharged or covered by valid completeness evidence;
+\item \texttt{CONTINUE}: an open mandatory obligation and an admissible next action remain;
+\item \texttt{CANNOT\_CHECK}: a mandatory obligation remains unresolved while access, evidence, or resources needed to decide it are unavailable.
+\end{itemize}
+
+Route exhaustion is not task completion when another route is censored, unavailable, or structurally uncovered. This local/global result is donor-owned by ORION's earlier search theory; P7's concern is preserving the distinction after a chart or objective change.
+
+A route identity binds the chart/objective, initial mandatory obligations, and
+normalized action\slash observation\slash evidence trace. Structural equivalence requires a
+protected renaming that preserves adjacency, actions, evidence identities,
+obligations, and terminal semantics; content overlap is insufficient. A
+refinement has a declared projection preserving every old relation and
+obligation while exposing additional distinctions. A route is called new only
+when neither relation reduces it to an archived route with the same reachable
+obligations and stop semantics.
+
+Recovery states are also explicit. \texttt{DEFER\_REVISIT} stores an open
+obligation and protected revisit trigger and is not completion. Backtracking is
+licensed by a dead-end, loop, or violated-premise witness plus an admissible
+alternative frontier. A forced reframe requires both the absence of a current
+authorized action capable of resolving an active obligation and a candidate
+chart that makes a relevant distinction expressible. A loop repeats the
+normalized chart\slash location\slash objective\slash open-obligation state without new support;
+a deceptive local optimum additionally needs an independent witness to a
+reachable obligation-improving alternative, not merely low marginal gain.
+
+\section{Representation refinement without new information}
+A weak ``topology change helps'' theorem can be obtained by adding a new goal state or sensor. We instead freeze the latent problem
+\[
+L=(S,A,\delta,Y,r,G)
+\]
+including states, actions, dynamics, raw sensing, reward/cost structure, and goal semantics. Only the representation $h:Y\to V$ changes.
+
+\begin{theorem}[Fixed-information representation refinement can increase solvability]
+There exists a fixed latent problem and two charts $h,h'$ over the same retained raw observations such that no deterministic stationary policy over $h$ succeeds from every admissible start, while one over $h'$ does.
+\end{theorem}
+\begin{proof}
+Construct two admissible start states requiring opposite actions. Their raw observations differ in a retained bit, but coarse representation $h$ discards that bit and aliases the states. Every stationary policy over $h$ chooses the same action for both and fails in at least one start. Refined representation $h'$ exposes the already-retained bit, allowing the required action to be chosen in each state. No latent state, action, transition, goal, or sensor value is added.
+\end{proof}
+
+A matched coarsening supplies the negative control: removing the distinction strictly decreases worst-case solvability. Reframing is therefore not a monotone progress operator and should itself be governed.
+
+\section{Evidence preservation is weaker than closure preservation}
+Suppose evidence item $e$ remains content-identical and valid after a transformation, but the scientific objective changes from obligation $o$ to $o'$.
+
+\begin{theorem}[Evidence/closure separation]
+There exist $e,o,o'$ such that $Sat(e,o)$ holds while $Sat(e,o')$ does not, although the identity and content of $e$ are unchanged.
+\end{theorem}
+\begin{proof}
+Let $e$ establish measurement $x=5$. Let $o$ require $x>3$ and $o'$ require $x>7$. The same evidence is authentic under both objectives, but it discharges only $o$.
+\end{proof}
+
+This elementary construction carries an important systems implication. Categorical, sheaf, lens, ontology, or planning transformations can correctly preserve an artifact or semantic relation without thereby preserving every scientific judgment that previously depended on it. Closure is a relation among evidence, obligation semantics, coverage, defeaters, and the active target—not an intrinsic bit on the evidence object.
+
+\section{Support transport across chart change}
+For a closure certificate $z$ for obligation $o$, let its support include every state/relation, semantic predicate, evidence identity, coverage premise, objective-satisfaction premise, and defeater-exclusion premise used in the derivation.
+
+A complete transport witness establishes:
+\begin{enumerate}
+\item all required support nodes and relations map;
+\item referents, predicates, and measurements used by the derivation preserve the required meaning;
+\item the target obligation preserves the relevant satisfaction semantics;
+\item evidence identity/provenance remains content-bound;
+\item the coverage/completeness assumptions remain valid; and
+\item no unresolved new in-scope defeater is introduced.
+\end{enumerate}
+
+\begin{theorem}[Positive closure transport]
+A valid complete witness transports the closure derivation to the target chart.
+\end{theorem}
+\begin{proof}
+Map every premise and inference dependency used by the original derivation through the witness. Since the obligation semantics, evidence identity, coverage, and defeater conditions required by the derivation are preserved, the corresponding target derivation remains valid.
+\end{proof}
+
+\begin{theorem}[Ambiguity-conditioned negative transport]
+If the witness is incomplete and the unresolved component admits two target completions consistent with all established facts---one preserving the closure and one invalidating it---uniformly retaining closure is unsound. The system must reopen the obligation or return inability-to-check until another proof resolves the ambiguity.
+\end{theorem}
+\begin{proof}
+Any policy that retains closure makes the same decision in the two target completions, but the closure truth differs. It is therefore unsound in one completion.
+\end{proof}
+
+If the witness is incomplete but the admissible target class is not ambiguous, P7 does not invent a falsifying completion. It records inability-to-check unless another proof establishes preservation or failure.
+
+\section{Conservative donor embeddings}
+With atlas transformations disabled, P7 reduces to fixed-chart navigation such as Search-on-Graph. A POMDP belief state and value-of-information policy can occupy the within-chart navigator unchanged. A planning-abstraction theorem can discharge the corresponding reachability-preservation component of a transport witness. A categorical\slash sheaf\slash lens\slash ontology mapping can discharge representation or semantic components without being forced to prove unrelated scientific coverage. Goal evolution becomes an explicit objective transformation; evidence is retained if its content/provenance remains valid, while closure is re-evaluated under the new obligation. World-model parameter updates with fixed vocabulary remain intra-chart updates; changes to distinctions, route identity, or objective semantics require inter-chart transport analysis.
+
+These embeddings are conservative by design: when P7-specific scientific-closure dimensions are inert, donor-native judgments should not change.
+
+\section{Strongest baseline and falsifiers}
+The strongest baseline is not an isolated graph searcher. It is an ideal integrated product of fixed-graph/POMDP navigation, planning abstraction, representation\slash ontology transport, goal evolution, world-model revision, provenance tracking, and correct stopping rules. If the product implements the same closure-transport contract, P7 predicts the same behavior. The contribution is then a common scientific interface and theorem boundary, not superior expressivity.
+
+A separate-paper claim should be withdrawn if an existing donor-complete system is shown to implement the same evidence\slash closure\slash obligation transport semantics under equivalent assumptions, if the formal object cannot conservatively embed the parent mechanisms, or if representation\slash objective transformations never alter a scientific closure judgment beyond what the donor product already exposes.
+
+\section{Deterministic theory support}
+The repository checker exercises an extension-ambiguous complete/incomplete pair; a closed-world counterexample to ``no certificate implies ambiguity''; fixed-information representation refinement; harmful coarsening; unchanged evidence with changed closure truth; all 64 combinations of six support-transport conditions, each against each of the 15 admissible target completion classes, so Definition~14 target-ambiguity is decided per case rather than supplied (960 cases); and the four stopping terminals. Eight frozen prospective reference contracts add hidden useful branches, unknown/censored coverage, deceptive route diversity, revisitation/dead ends, beneficial topology change, harmful unnecessary reframing, and a non-retrieval experimental-design transfer case.
+
+These artifacts test the formal contract and failure boundaries. They do not establish that a deployed LLM search agent outperforms the ideal donor product.
+
+\section{Implications for autonomous research systems}
+An agent architecture should store at least three different facts that are often collapsed: whether an evidence item remains authentic, whether it preserves the same semantic role under a transformed representation, and whether it still discharges the active scientific completion obligation. This separation lets a system reuse expensive evidence aggressively without laundering an old `DONE' judgment through a changed objective.
+
+The four-terminal stopping vocabulary also supports better recovery. A route stop invites route diversification; inability-to-check may invite access restoration or escalation; continuation selects a next research action; task stop asserts a stronger epistemic property. These states should not be compressed into one confidence score.
+
+\section{Limitations}
+The formalism assumes that transformation maps and scientific obligation schemas can be represented explicitly enough to audit. It does not solve representation discovery, ontology induction, or optimal exploration. Complete support witnesses may be expensive to construct, and the finite checker does not prove tractability at realistic scale. The theory establishes conditions for sound transport and stopping, not empirical superiority. Recent categorical and sheaf-theoretic work is very close to the representation-transport layer; P7's distinct publication claim therefore rests on scientific closure/obligation transport and open-world stopping, not on the existence of representational regime change.
+
+\section{Conclusion}
+Open-world scientific navigation requires more than an adaptive search policy. Once strong graph, POMDP, abstraction, representation-transport, goal-evolution, and world-model mechanisms are absorbed, one interface remains critical: a preserved artifact or observation does not automatically preserve the scientific judgment that the active task is complete. By making obligation, coverage, censoring, and representation transport explicit, an epistemic atlas can reuse evidence while reopening only the scientific judgments whose support no longer transports. The theory thereby connects representation change to honest stopping without claiming ownership of representation change itself.
+
+\section*{Declaration of generative AI and AI-assisted technologies in manuscript preparation}
+OpenAI ChatGPT (GPT-5.6 Sol) was used during research preparation to assist with broad literature discovery, adversarial formal checking, organization, and drafting/editing. The author reviewed and revised the manuscript, independently checked cited sources and formal claims against the recorded artifacts, and takes responsibility for the submitted content. The AI system is not an author and no empirical result is attributed to it.
+
+\section*{Data, code, and competing-interest statements}
+The formal checkers, frozen reference contracts, claim ledgers, and reproduction instructions are maintained in the ORION repository at the exact submission commit. This theoretical study reports no human-subject or animal data. Competing-interest and funding declarations are supplied through the journal submission interface after author confirmation; the scientific manuscript makes no claim about private funding or interests not present in the research record.
+
+\begin{thebibliography}{99}
+\bibitem{sog2025} J.A. Sun et al., Search-on-Graph: Iterative informed navigation for large language model reasoning on knowledge graphs, arXiv:2510.08825, 2025.
+\bibitem{mpw2026} J. Chen et al., Evaluating the search agent in a parallel world, arXiv:2603.04751, 2026.
+\bibitem{iep2026} C. McNamara, L. Hederman, D. O'Sullivan, The initial exploration problem in knowledge graph exploration, arXiv:2602.21066, 2026.
+\bibitem{banihashemi2017} B. Banihashemi, G. De Giacomo, Y. Lesp\'erance, Abstraction in situation calculus action theories, AAAI (2017). doi:10.1609/aaai.v31i1.10693.
+\bibitem{dong2025} H. Dong, Z. Shi, H. Zeng, Y. Liu, An automatic sound and complete abstraction method for generalized planning with baggable types, AAAI (2025) 14875--14884. doi:10.1609/aaai.v39i14.33631.
+\bibitem{saga2025} Y. Du et al., Accelerating scientific discovery with autonomous goal-evolving agents, arXiv:2512.21782, 2025.
+\bibitem{sewm2026} X. Zhang et al., Self-evolving world models for LLM agent planning, arXiv:2606.30639, 2026.
+\bibitem{gwm2026} J. Liu et al., Graph world models: Concepts, taxonomy, and future directions, arXiv:2604.27895, 2026.
+\bibitem{narrow2026} Y. Tang, Y. Yang, AI research agents narrow scientific exploration, arXiv:2605.27905, 2026.
+\bibitem{categorical2026} F.Y. Wang, M.J. Buehler, Self-revising discovery systems for science: A categorical framework for agentic artificial intelligence, arXiv:2606.01444, 2026.
+\bibitem{sheaf2026} D.N. Olivieri, R.J. Hern\'andez, Sheaf-theoretic transport and obstruction for detecting scientific theory shift in AI agents, arXiv:2605.14033, 2026.
+\bibitem{intent2026} M. Armesto, C. Kolb, Toward a science of intent: Closure gaps and delegation envelopes for open-world AI agents, arXiv:2604.25000, 2026.
+\bibitem{vigil2026} Y. Chen et al., Done, But Not Sure: Disentangling world completion from self-termination in embodied agents, arXiv:2605.08747, 2026.
+\bibitem{autoresearch2026} AutoResearch AI: Towards AI-powered research automation for scientific discovery, arXiv:2605.23204, 2026.
+\end{thebibliography}
+\end{document}

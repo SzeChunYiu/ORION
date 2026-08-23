@@ -7,6 +7,13 @@
 **Science terminal:** `P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`
 
 V3 preserves the protected V2 campaign and adds the independently verified P4-X successor as a separate post-saturation study. The two experiments are not pooled; together they raise the comparison standard from individual verification/provenance mechanisms to a donor-complete product already equipped with ordinary provenance, verification, custody, freshness, and generic authorization.
+**Paper IV current science manuscript specification**  
+**Date:** 2026-08-19  
+**Historical rendered base:** `manuscript/main.tex` (protected V2 paper; successor authority interface now source-included, full V3 replacement still deferred to the later PDF/render pass)  
+**Successor science:** `research/claim_expansion/p4/`  
+**Science terminal:** `P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`
+
+This V3 source is the current scientific manuscript specification. It preserves the protected V2 campaign, including the H2 clean-coverage guard and the non-discriminating H3 result, adds the independently verified P4-X successor as a separate post-saturation study, and records the merged discovery/failure/representation-transition authority boundary from the programme closure. The old 420-case V2 result, the 400-case P4-X successor, and the later Jump/failure studies are not pooled.
 
 ## Replacement abstract for V3
 
@@ -15,6 +22,7 @@ Scientific verification can establish plausibility, citation support, provenance
 The prospectively frozen protected V2 campaign requires exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, and contamination clearance. ORION produces **0 false promotions among 360 hostile opportunities**, compared with **180/360** for the strongest frozen mechanism proxy, while both systems promote **60/60 clean positives**. The paired false-promotion difference is $-0.50$ with 95% CI $[-0.553,-0.447]$. Every registered ORION ablation preserves clean coverage while increasing false promotion, showing that the effect is carried by the hard authority composition rather than blanket refusal.
 
 P4-X then asks the harder post-saturation question after a donor-complete comparison product is granted provenance, claim verification, artifact/version binding, evaluator custody, epoch handling, and generic authorization. Across **400 prospectively frozen exact scientific-promotion contracts** spanning five heterogeneous artifact domains and eight hostile/control archetypes, P4-X selects the correct terminal on **400/400** cases, versus **250/400** for the strong donor-complete generic-authorization product and **50/400** for a compensatory all-signal product. The paired P4-X minus strong-product effect is **+0.375** with domain-stratified bootstrap 95% CI **[0.3275,0.4225]**; P4-X makes zero false promotions, preserves clean promotion at 1.0, and has a positive effect in every exact domain. An information-equivalent typed donor product implementing the same scientific-promotion relation also attains 400/400.
+The combined evidence supports a bounded architecture claim: scientific claim promotion is a distinct non-compensatory authority relation above donor-owned provenance, verification, custody and generic permission mechanisms, and missing claim scope, evidence independence or unresolved scientific-authority obligations cannot be compensated by confidence or success elsewhere. Later discovery/failure/representation-transition studies reinforce this authority boundary but do not add a P4 performance claim: stable morphology/atlas records, structural-assimilation receipts, atom studies and transition witnesses remain proposal/evidence objects; a strongest-parent tie is subsumption rather than self-promotion. The result does not establish deployed/verifier/provider generality, universal evaluator security, generic authorization novelty, or inherent expressivity over an information-equivalent product.
 
 A second V2 result is methodological rather than comparative: the registered `CANNOT_CHECK` axis is **construct-non-identifying**. Evidence-list emptiness alone perfectly predicts the insufficient-evidence label across the frozen battery, so the score cannot distinguish evidential judgment from a trivial construction shortcut. The unsupported H3 superiority hypothesis therefore becomes an exact benchmark-validity result: this slice cannot authorize a comparative abstention claim.
 
@@ -84,6 +92,17 @@ The protected V2 study also demonstrates that secondary metrics must earn scient
 The original H3 `CANNOT_CHECK` family is different. Every insufficient-evidence case has an empty evidence list and every other registered case has exactly one evidence object. Therefore the deterministic shortcut `CANNOT_CHECK iff evidence-list-empty` classifies the full frozen battery correctly without evaluating evidential sufficiency. This yields an exact construction-level conclusion: **the registered H3 score is non-identifying for abstention competence**. The same observed 30/30 score is compatible with genuine evidential judgment or a trivial observable shortcut, so the axis cannot authorize a comparative abstention inference.
 
 H3 remains unsupported as a superiority hypothesis. The positive result is the benchmark audit theorem: P4 identifies exactly why the registered instrument has zero resolving power for its intended construct and prevents that saturated score from being promoted into a scientific claim. A harder evidential family is prospectively specified rather than retrofitted after outcome access.
+## 10. Merged discovery/failure/representation-transition authority boundary
+
+The merged recursive-discovery programme produces several new evidence objects but no new route around Paper IV's authority transition. A 51-episode Discovery Morphology Atlas reaches a stable descriptive basis while remaining mechanism-extraction/design evidence. A 30-episode Failure Atlas reaches `FAILURE_ATLAS_SCHEMA_STABLE` but not the stronger corpus-ready state because independent domain-expert agreement was not obtained. The structural-assimilation process is useful and non-authorizing, yet its programme terminal remains `CANNOT_CHECK` because the full MDA structural source was not source-grounded. These are examples of exactly the distinction Paper IV is designed to enforce: useful evidence structure does not imply permission to promote a stronger scientific claim.
+
+The protected zero-error regime-transition study supplies the strongest test of this principle. ORION-JUMP and the verified representation-regime revision parent tie exactly on both disjoint frozen splits, including zero false jumps and identical protected consequence/correspondence outcomes. The registered terminal is `REPRESENTATION_INVENTION_NO_INCREMENTAL_VALUE`. Paper IV therefore treats the correct programme action as strongest-parent subsumption, not as a successful internal pipeline authorizing a new ORION representation-invention claim.
+
+Likewise, a failure record can constrain a later proposal only while its scoped applicability conditions remain satisfied; reopening a failure after a load-bearing coordinate changes removes a prior prohibition but is not positive evidence. An atom-study report, thought experiment, concept candidate, correspondence map or regime-transition witness may make a later claim checkable. None certifies its own novelty, validity, adoption or promotion.
+
+This section adds no new P4 empirical effect size. Its authority is a merged governance consequence bound in `CLAIM_LEDGER_V3.md` row P4.V3.12 and the actual TeX interface `manuscript/discovery_failure_authority_interface.tex`.
+
+## V3 limitations and claim ceiling
 
 This is a methodological contribution to the same authority problem studied by the paper: **the evaluator's output is itself only locally valid evidence; it acquires scientific meaning only when the measurement construction warrants the target inference.**
 
@@ -92,6 +111,9 @@ This is a methodological contribution to the same authority problem studied by t
 P4-X establishes the scientific-promotion relation over five heterogeneous exact artifact domains and eight registered archetypes. Live stochastic agents, arbitrary external verifier implementations, and provider/model transfer are subsequent empirical extensions. Generic provenance, verification, authorization, evaluator auditing, contamination defense, and abstention remain donor-owned lower layers; their ownership does not reduce the demonstrated promotion-authority separation or the exact H3 benchmark non-identifiability result.
 
 The strongest current P4 claim is therefore architectural, empirical, and methodological within the registered contracts: **after strong local verification, provenance, custody, and generic authorization are granted, scientific claim promotion remains a distinct non-compensatory authority relation; making that relation explicit yields perfect registered promotion decisions against the strong donor-complete comparator, while the same authority discipline prevents a shortcut-saturated benchmark score from being mistaken for comparative abstention evidence.**
+The later discovery/failure/Jump evidence is separately scoped. Stable historical schemas are not independent expert agreement; a structural receipt with an unavailable full source remains `CANNOT_CHECK`; and strongest-parent equivalence is not evidence for a new ORION operator. None of these successor artifacts changes the deployed/verifier/provider ceiling.
+
+Accordingly, the strongest current P4 claim is architectural but bounded: **after strong local verification/provenance/authorization machinery is granted, scientific claim promotion remains a distinct non-compensatory authority relation in the tested heterogeneous exact contracts.** Deployed/verifier/provider generality remains `CANNOT_CHECK`.
 
 ## Replacement conclusion for V3
 
@@ -102,6 +124,9 @@ Across the 400-case heterogeneous exact successor, P4-X reaches **400/400** corr
 The adverse H3 result strengthens rather than weakens the paper's scientific-authority thesis. Because evidence-list emptiness perfectly identifies the H3 label in the registered battery, the score cannot identify the intended abstention competence. P4 therefore establishes an exact benchmark non-identifiability result and refuses to let an evaluator-local success acquire broader scientific authority than its construction supports.
 
 The strongest supported conclusion is direct: **local evidence quality, verification success, provenance correctness, generic permission, and benchmark score are all lower-level signals; none by itself authorizes a scientific claim to acquire promoted standing. Promotion requires target-bound discharge of the hard scientific-authority obligations, including a measurement construction capable of supporting the intended inference.** ORION's contribution is the explicit, non-compensatory composition law that makes that transition auditable and enforceable.
+The merged discovery/failure programme exercises the same rule outside P4-X: stable atlases remain evidence, incomplete structural receipts remain `CANNOT_CHECK`, and a zero-error Jump that ties the strongest verified parent is subsumed rather than promoted as a new operator. That is a governance consequence, not a third P4 performance experiment.
+
+That is the current P4 scientific contribution. Live verifier/provider generality, universal scientific-authority superiority and general abstention superiority remain separate questions.
 
 **Current science terminal:** `P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`.
 
@@ -117,3 +142,10 @@ When PDF generation is resumed, `manuscript/main.tex` should be updated from thi
 6. rebuilding and auditing the TMLR PDF/package from the merged V3 source.
 
 No pre-V3 PDF should be described as containing the P4-X successor.
+2. adding the donor-engulfment boundary to related work;
+3. retaining the now-included `discovery_failure_authority_interface.tex` and inserting `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex` after the historical V2 Results section and before final interpretation/conclusion;
+4. retaining the existing H2/H3 limitations verbatim in substance;
+5. replacing the conclusion with the V3 conclusion above;
+6. rebuilding and auditing the TMLR PDF/package from the merged V3 source.
+
+No pre-V3/writeback PDF should be described as containing the complete P4-X plus discovery/failure successor science.

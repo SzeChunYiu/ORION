@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+\title{A General Theory of Scientific Authority Composition and Revocation}
+\author{ORION Paper VIII Ultimate-Successor Working Manuscript}
+\date{August 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+Delegation logics, capability systems, attenuating credentials, provenance and formal agent authorization already prevent many forms of technical authority escalation. ORION Paper VIII therefore asks a different and stronger question: across typed scientific workflows, when can authority to construct state, verify an intermediate result, or use evidence compose into authority to promote a downstream scientific conclusion, and how must that authority be revoked after load-bearing evidence, representation, objective or evaluator change? Existing exhaustive evidence over 39,936 states and 169 ordered donor pairs remains a finite instance. P8-U seeks machine-checked scientific no-amplification, bridge, attenuation, fixed-point and exact-revocation laws, plus naturalistic evidence that they catch invalid scientific discharge missed by donor-complete authorization/provenance systems without excessive blocking. Every counterexample drives \textbf{Authority Bridge and Revocation Closure (ABRC)} toward a sharper authority primitive or impossibility boundary. The intended terminal is \textbf{GENERAL\_SCIENTIFIC\_AUTHORITY\_COMPOSITION\_AND\_REVOCATION\_THEOREM}.
+\end{abstract}
+
+\section{Donor boundary}
+Authorization logics already formalize delegation and speaks-for relationships \cite{authlogic}; macaroons provide decentralized credentials whose caveats monotonically attenuate delegated authority \cite{macaroons2014}. Modern evidence/provenance-bound agent authorization raises this baseline further. P8 therefore does not claim first non-amplifying delegation, capability attenuation or authorization certificates.
+
+The P8 residual is scientific responsibility composition: local technical permission or verification is insufficient when the downstream responsibility is broader than any evidence-bearing scientific scope actually discharged.
+
+\section{Authority semantics}
+An authority certificate binds
+\[
+(subject,target,responsibility,scope,support,context,evaluator,owner,time,revocation).
+\]
+Responsibilities include state construction, state-scope certification, downstream use, verification, scientific promotion and repair/revision. A producer cannot widen its own certificate by declaration.
+
+Let $\preceq$ be a prospectively frozen scientific-scope relation. A bridge $b:s\Rightarrow t$ is evidence-bearing only when independently valid evidence establishes the semantic relation required to move from scope $s$ to $t$ for the requested responsibility.
+
+\section{Target theorem family}
+\begin{theorem}[Scientific no amplification]
+For a well-founded typed workflow with complete declared load-bearing authority support, composition of locally valid certificates cannot authorize a final responsibility outside the closure of their scopes under explicitly valid bridges.
+\end{theorem}
+
+\begin{theorem}[Bridge soundness]
+Widening from scope $s$ to $t\not\preceq s$ requires an independently valid bridge whose own support and authority discharge the missing relation.
+\end{theorem}
+
+\begin{theorem}[Attenuation]
+Compatible composition may preserve or narrow authority without new evidence, but cannot broaden it beyond bridge closure.
+\end{theorem}
+
+\begin{theorem}[Exact revocation]
+Under complete load-bearing support/bridge information, a change revokes exactly the dependent authority obligations whose validity may change, while unaffected native scientific standing is preserved.
+\end{theorem}
+
+\begin{theorem}[State-interface non-amplification]
+Composing responsibility-scoped state interfaces cannot produce authority for a responsibility unsupported by the composed declared scopes and bridges.
+\end{theorem}
+
+\begin{proposition}[Hidden-support revocation limit]
+If load-bearing support is unobservable, exact revocation cannot be guaranteed in general; sound enforcement must over-revoke or acquire additional support information.
+\end{proposition}
+
+Cycles are admitted only under a well-founded or independently justified fixed-point condition. Circular authority in which a verifier/owner depends on the very conclusion it authorizes remains blocked/\textsc{CannotCheck}.
+
+\section{Authority Bridge and Revocation Closure}
+ABRC is the ChatGPT-led negative-to-positive formal programme. Counterexamples are classified as missing scope relation, missing bridge, aggregation/non-monotonicity, cycle, temporal expiry, representation transport, state-responsibility mismatch, support-incomplete revocation, evaluator/owner circularity or genuine non-composability.
+
+ABRC freezes each countermodel, derives the minimal evidence-bearing bridge or revocation condition that would make the target law sound, machine-checks the revised law, and tests it on a fresh workflow family. If no exact law is possible, ABRC proves the sharp information requirement or safe over-revocation boundary rather than hiding the failure.
+
+\section{Finite predecessor and naturalistic programme}
+The 39,936-state result and 169/169 ordered donor-pair law remain immutable finite instances; matched unbridged-widening failures remain necessity witnesses.
+
+Prospective workflows combine literature retrieval, data/statistical analysis, simulation, LLM/tool agents, state compilation/cache, external verifiers, human/institutional approval, cross-domain transport and model/objective/evaluator updates. Hostile pairs hold software permissions and local checks constant while varying whether the final scientific responsibility is actually supported.
+
+\section{Donor-complete baselines}
+Compare generic IAM/capabilities, authorization logic, macaroon-style attenuation, provenance, proof-carrying action/reasoning, workflow governance, state/certificate scope and a donor-complete union. An oracle receives the full authority graph only as an analysis ceiling.
+
+\section{Primary hypotheses}
+H1: lower invalid scientific discharge/promotion. H2: valid clean workflow completion remains non-inferior. H3: more exact revocation/revalidation with preservation of unaffected authority. H4: correct invariance under information-equivalent representation transport and correct failure when responsibility scope is lost. H5: cross-domain/workflow transfer. H6: at least one counterexample yields a new transferable authority primitive/bridge condition.
+
+Authority violations are non-compensatory; workflow is the independent empirical unit.
+
+\section{Framework correspondence}
+Current ORION already hard-codes proposal/adoption separation in revision/change gates, external evidence requires independent verifier lineage and exact subject binding, and REOPEN/transport/revalidation substrate can support revocation consequences. These are compatible primitives, not a universal authority-composition theorem. ABRC and the headline theorem remain prospective and are not represented as existing runtime authority.
+
+\section{Claim ladder}
+Primitive authority semantics $\rightarrow$ machine-checked no-amplification/bridge/revocation $\rightarrow$ finite predecessor as instance $\rightarrow$ naturalistic invalid-discharge superiority $\rightarrow$ cross-domain reproduction $\rightarrow$ \textbf{GENERAL\_SCIENTIFIC\_AUTHORITY\_COMPOSITION\_AND\_REVOCATION\_THEOREM} with ABRC expansion.
+
+\begin{thebibliography}{4}
+\bibitem{authlogic} A. Hirsch and M. Clarkson, work on authorization logics and delegation/``speaks for'' semantics, Cornell University research programme.
+\bibitem{macaroons2014} A. Birgisson, J. G. Politz, U. Erlingsson, A. Taly, M. Vrable, and M. Lentczner, ``Macaroons: Cookies with Contextual Caveats for Decentralized Authorization in the Cloud,'' NDSS 2014.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,19 @@
+{
+  "capability": "WEB_SEARCH",
+  "created_at": "2026-08-21T06:17:22.168175+00:00",
+  "payload": {
+    "instruction": "Use current web search. Open/inspect relevant primary or authoritative sources when useful. Return `items`, each with content, source_uri, optional item_id, and optional domain_ids. Do not fabricate sources.",
+    "limit": 8,
+    "query": {
+      "domain_hint": "software-verification",
+      "query_id": "q3",
+      "route_id": "route:adversarial-omission:untested-capabilities",
+      "route_kind": "ADVERSARIAL_OMISSION",
+      "text": "capability kinds documented in README or HOST_PROTOCOL but absent from the test suite (adversarial omission check for GITHUB or custom capabilities)"
+    }
+  },
+  "request_digest": "28a954fc0c34d927e0862a2f3a32eb36a9da6935eea3ec7af1206a33a268bc20",
+  "request_id": "hostreq:8cf25c5907ce89567f4d7ecb3ee264c50de6bf8224cefef6e256b96775382341",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

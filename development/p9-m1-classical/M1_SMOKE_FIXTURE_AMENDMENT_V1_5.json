@@ -1,0 +1,32 @@
+{
+  "schema": "P9.M1SmokeFixtureAmendment.v1.5",
+  "status": "PRE_OUTCOME_TEST_ONLY",
+  "scientific_protocol": "P9.M1Protocol.v1.3",
+  "execution_routing": "P9.M1ExecutionRouting.v1.4",
+  "trigger": "FOCUSED_SMOKE_FIXTURE_HAS_FEWER_TRAINING_SAMPLES_THAN_FROZEN_KNN_K15_REQUIRES",
+  "observed_failure": {
+    "stage": "M1_FOCUSED_SMOKE_TEST_BEFORE_PROTECTED_PROTOCOL_EXECUTION",
+    "exception": "ValueError",
+    "message_class": "N_NEIGHBORS_EXCEEDS_N_SAMPLES_FIT",
+    "n_neighbors": 15,
+    "n_samples_fit": 12,
+    "protected_experiment_executed": false,
+    "protected_outcome_accessed": false
+  },
+  "amendment": {
+    "test_only": true,
+    "smoke_train_pairs_per_family_before": 6,
+    "smoke_train_pairs_per_family_after": 8,
+    "reason": "The smoke test must be large enough to exercise every already-frozen model-grid configuration; 8 pairs per family yields at least 16 gluing training samples, so k=15 is defined.",
+    "scientific_corpus_or_split_changed": false,
+    "feature_semantics_changed": false,
+    "model_grid_changed": false,
+    "dev_selection_rule_changed": false,
+    "protected_test_rule_changed": false,
+    "terminal_rule_changed": false,
+    "official_train_pairs_per_family_remains": 64,
+    "official_dev_pairs_per_family_remains": 24,
+    "official_test_pairs_per_family_remains": 48
+  },
+  "authority": "NONE_TEST_HARNESS_COMPATIBILITY_ONLY"
+}

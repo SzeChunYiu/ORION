@@ -1,0 +1,41 @@
+name: orion-q-max-r6-native
+
+# Native Self-ORION confirmation lane.
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/**'
+      - 'development/orion-q-max-r0/**'
+      - '.github/workflows/orion-q-max-r6-native.yml'
+
+jobs:
+  native-self-orion-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install native ORION runtime dependencies
+        run: python -m pip install -e .
+      - name: Run blinded native Self-ORION N0 controller
+        env:
+          PYTHONPATH: src
+        run: |
+          python research/extensions/orion-q/max_r6_native_self_orion_n0.py | tee /tmp/r6-native-n0.txt
+          grep '^ORIONQ_MAX_R6_NATIVE_N0=' /tmp/r6-native-n0.txt
+      - name: Run donor-closure N1 native Self-ORION controller
+        env:
+          PYTHONPATH: src
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_native_self_orion_n1.py | tee /tmp/r6-native-n1.txt
+          grep '^ORIONQ_MAX_R6_NATIVE_N1=' /tmp/r6-native-n1.txt
+      - name: Run post-interface N2 native Self-ORION controller
+        env:
+          PYTHONPATH: src
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_native_self_orion_n2_atomic.py | tee /tmp/r6-native-n2.txt
+          grep '^ORIONQ_MAX_R6_NATIVE_N2=' /tmp/r6-native-n2.txt

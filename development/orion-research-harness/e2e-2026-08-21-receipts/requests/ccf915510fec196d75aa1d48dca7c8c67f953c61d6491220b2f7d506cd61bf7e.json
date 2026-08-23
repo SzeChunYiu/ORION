@@ -1,0 +1,15 @@
+{
+  "capability": "LLM_COMPLETE",
+  "created_at": "2026-08-21T06:21:38.166953+00:00",
+  "payload": {
+    "instruction": "Return an object with `content` containing the model response text. For ORION semantic tasks, content itself must be JSON matching response_schema.",
+    "response_schema": "{\"summary\":\"...\"}",
+    "system": "You are a semantic reasoning component inside ORION.\nYou may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.\nReturn only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.\nFor search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered.",
+    "task": "reconstruct",
+    "user": "{\"claims\": [], \"problem\": {\"initial_domain_ids\": [\"software-verification\"], \"problem_id\": \"file-ingest-demo\", \"question\": \"Demonstration problem for ingest --file.\", \"scope\": \"demo\", \"success_criteria\": []}, \"representation_mapping_ids\": [], \"source_projection_ids\": [], \"unresolved_residual_ids\": []}"
+  },
+  "request_digest": "d08532a55d2a5633213cb457eafdf073b9ba5181097eaa7f528124e7e685d1e4",
+  "request_id": "hostreq:df85ba4562f1f3f1bf2209c8223c76af35142957a3811e67645b3045a31a3911",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

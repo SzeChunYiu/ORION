@@ -1,0 +1,80 @@
+{
+  "version": "P1_U_ARD_EXPECTED_EXACT_RESULT_V1",
+  "issue": 696,
+  "status": "INDEPENDENT_RECONSTRUCTION_BEFORE_REPOSITORY_CI",
+  "protocol": "ARD_PROTOCOL_V1",
+  "implementation_commit_precondition": "8288eb2e2843af040eda17d7cdb5da7dfaac0150",
+  "distinct_template_count": 40,
+  "remints_per_template": 12,
+  "concrete_episode_count": 480,
+  "remints_are_independent_n": false,
+  "expected_summary": {
+    "B0_STATIC_NO_PROBE": {
+      "template_grs": 0,
+      "false_high_level": 20,
+      "missed_high_level": 15,
+      "mean_cost": 0.0
+    },
+    "B1_GREEDY_RESTORATION": {
+      "template_grs": 30,
+      "false_high_level": 5,
+      "missed_high_level": 5,
+      "mean_cost": 0.875
+    },
+    "B2_ONE_STEP_LABEL_VOI": {
+      "template_grs": 25,
+      "false_high_level": 5,
+      "missed_high_level": 10,
+      "mean_cost": 0.75
+    },
+    "B3_ONE_STEP_DECISION_VOI": {
+      "template_grs": 30,
+      "false_high_level": 5,
+      "missed_high_level": 5,
+      "mean_cost": 0.875
+    },
+    "B4_TWO_STEP_LABEL_PLANNER": {
+      "template_grs": 30,
+      "false_high_level": 5,
+      "missed_high_level": 5,
+      "mean_cost": 1.0
+    },
+    "P1_ARD_HORIZON2_SCIENTIFIC_RESPONSIBILITY": {
+      "template_grs": 40,
+      "false_high_level": 0,
+      "missed_high_level": 0,
+      "mean_cost": 1.125
+    },
+    "CEILING_HORIZON2_FULL_SCIENTIFIC_ORACLE": {
+      "template_grs": 40,
+      "false_high_level": 0,
+      "missed_high_level": 0,
+      "mean_cost": 1.125
+    }
+  },
+  "expected_ard_minus_b3_grs": 0.25,
+  "expected_domain_effects": {
+    "SOFTWARE_DEBUGGING": 0.25,
+    "SCIENTIFIC_RETRIEVAL": 0.25,
+    "SEMANTIC_INTEGRATION": 0.25,
+    "EVIDENCE_VERIFICATION": 0.25,
+    "MODEL_EXPERIMENT_DESIGN": 0.25
+  },
+  "expected_gates": {
+    "minimum_grs_difference_vs_b3": true,
+    "zero_protected_high_level_harm": true,
+    "all_non_identifiable_correct": true,
+    "exact_ceiling_match": true,
+    "all_remints_invariant": true,
+    "nonnegative_domain_effect_all": true,
+    "strictly_positive_domains_at_least_3": true
+  },
+  "expected_terminal": "ARD_EXACT_MECHANISM_POSITIVE",
+  "authority": {
+    "general_p1_u_superiority": false,
+    "naturalistic_transfer": false,
+    "runtime_registration": false,
+    "adoption_or_merge": false
+  },
+  "interpretation": "Exact authored mechanism discriminator only. This is not a random-population n=480 result; remints are metamorphic checks. Repository CI must execute the frozen implementation and match this reconstruction before the terminal is repository evidence."
+}

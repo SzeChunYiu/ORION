@@ -1,28 +1,29 @@
-% Evaluation: scoped prospective confirmatory mapping protocol.
-The empirical claim in this paper is governed by the additive execution-frozen
-protocol \texttt{P3.public-reference-mapping.v1.1-confirmatory}. It was created
-after the initial 32-case result but before any confirmatory system outputs were
-examined. The predecessor result was allowed to motivate replication; it was
-not allowed to change the second holdout, evaluator, margins, or pass criteria.
-The broader \texttt{P3.cross-domain-atlas.v1} raw-text/expert study remains a
-separate unexecuted follow-up protocol.
+% Evaluation: the prospective confirmatory mapping protocol.
+The empirical claim in this paper is governed by an execution-frozen protocol
+that was created after the initial 32-case result but before any confirmatory
+system output was examined. The predecessor result was allowed to motivate
+replication; it was not allowed to change the second holdout, the evaluator,
+the margins, or the pass criteria. The broader raw-text and expert-gold design
+remains a separate, unexecuted study. Both freezes are identified in
+Section~\ref{sec:availability}.
 
 \subsection{Primary confirmatory hypothesis}
 
 The frozen replication hypothesis has two non-compensatory conditions:
 
 \begin{description}
-    \item[False-merge superiority:] the ORION-minus-flat false-merge point
-        estimate must be at most $-0.05$, and the upper bound of the paired
-        95\% bootstrap interval must be below zero.
-    \item[False-split non-inferiority:] the ORION-minus-exact-conservative
-        false-split point estimate must be at most $+0.03$, and the upper
-        bound of its paired 95\% bootstrap interval must be at most $+0.03$.
+    \item[False-merge superiority:] the coordinate-governed-minus-flat
+        false-merge point estimate must be at most $-0.05$, and the upper
+        bound of the paired 95\% bootstrap interval must be below zero.
+    \item[False-split non-inferiority:] the
+        coordinate-governed-minus-exact-conservative false-split point
+        estimate must be at most $+0.03$, and the upper bound of its paired
+        95\% bootstrap interval must be at most $+0.03$.
 \end{description}
 
-The terminal is \texttt{PASS} only if both conditions hold. The confirmatory
-holdout contains 32 cases, has zero overlap with the initial 32-case set, and
-was bound by exact content hash before confirmatory outcome access.
+The holdout passes only if both conditions hold. It contains 32 cases, has
+zero overlap with the initial 32-case set, and was bound by exact content
+digest before any confirmatory outcome was accessed.
 
 \subsection{Compared mapping rules}
 
@@ -30,32 +31,32 @@ The confirmatory primary comparison uses three deterministic rules over the
 same already-structured mapping cases:
 
 \begin{enumerate}
-    \item \textbf{ORION typed mapping calculus}: evaluates the scientific
-        coordinates required by the case and can retain an obstruction rather
+    \item \textbf{Typed mapping calculus}: evaluates the scientific
+        coordinates the case requires and can retain an obstruction rather
         than force a merge.
     \item \textbf{Flat predicate canonicalization}: treats compatible surface
-        predicates as sufficient merge evidence without the scoped coordinate
+        predicates as sufficient merge evidence without the coordinate
         distinctions. This is the predeclared false-merge comparator.
     \item \textbf{Exact-coordinate conservative control}: requires exact
         coordinate compatibility and can abstain where it lacks such a match.
-        This is the predeclared false-split/non-inferiority control.
+        This is the predeclared false-split and non-inferiority control.
 \end{enumerate}
 
-These are mapping-layer comparators, not claims to reproduce full external KG,
-RAG, or schema-fusion systems. Stronger SCOPE/SCION-like and
-provenance/schema-contract baselines are useful post-outcome construct-validity
-pressure and are tracked under issue \#280, but they cannot rewrite the frozen
-confirmatory status after the fact.
+These are mapping-layer comparators, not attempts to reproduce a full external
+knowledge-graph, retrieval-augmented or schema-fusion system. Stronger
+schema-induction and provenance-contract baselines would be useful
+post-outcome construct-validity pressure, but they cannot rewrite a
+confirmatory status that was frozen beforehand.
 
 \subsection{Secondary ablations}
 
 The frozen mapping evaluator also reports descriptive paired ablations. The
-important covered attacks are:
+covered attacks are:
 
 \begin{itemize}
     \item \textbf{force compatibility without obstruction}: removes the
           explicit non-merge terminal and chooses a compatible mapping even
-          where the scoped coordinates prohibit it;
+          where the coordinates prohibit it;
     \item \textbf{remove modality/polarity/attribution/discourse}: removes the
           coordinate group carrying the main confirmatory discrimination;
     \item \textbf{remove referent}, \textbf{construct},
@@ -63,20 +64,20 @@ important covered attacks are:
           zero-effect controls on this particular holdout.
 \end{itemize}
 
-The ablations are secondary/descriptive. The protocol explicitly forbids
-turning their intervals into new confirmatory significance claims or using
-zero effect on under-supported strata as evidence that a coordinate is
-unnecessary.
+The ablations are secondary and descriptive. The protocol explicitly forbids
+turning their intervals into new confirmatory significance claims, and forbids
+reading zero effect on an under-supported stratum as evidence that a
+coordinate is unnecessary.
 
 \subsection{Metrics and statistics}
 
 The confirmatory decision uses case-level false-merge and false-split rates.
 Wilson 95\% intervals describe individual rates. Paired differences use a
-10,000-resample percentile bootstrap with frozen seed \texttt{20260817}. The
-mapping rules are deterministic, so the protocol uses one execution per case
-rather than artificial stochastic repeats. Results are reported pooled and
-descriptively by case family/source stratum. The initial 32 cases are never
-pooled into the confirmatory verdict.
+10,000-resample percentile bootstrap with frozen seed 20260817. The mapping
+rules are deterministic, so the protocol uses one execution per case rather
+than artificial stochastic repeats. Results are reported pooled and
+descriptively by case family and source stratum. The initial 32 cases are
+never pooled into the confirmatory verdict.
 
 The primary decision rule is therefore fixed entirely by the two paired
 comparisons above. No post-outcome margin change, exclusion, reweighting, or
@@ -84,38 +85,29 @@ replacement baseline can change whether the confirmatory run passed.
 
 \subsection{Custody and fail-closed rules}
 
-Before confirmatory outputs, the manifest bound:
-
-\begin{itemize}
-    \item portable confirmatory gold SHA-256
-          \texttt{13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b};
-    \item zero overlap with the predecessor gold;
-    \item exact MUSE, SciFact, and SciSchema source revisions;
-    \item evaluator component Git identities;
-    \item bootstrap seed and pass margins;
-    \item a rule that any hash mismatch, source drift, evaluator drift, or
-          overlap makes the result \conststatus{} rather than silently
-          re-evaluating a different study.
-\end{itemize}
+Before any confirmatory output was produced, the execution manifest bound the
+portable confirmatory gold digest, zero overlap with the predecessor gold, the
+exact MUSE, SciFact and SciSchema source revisions, the evaluator component
+identities, the bootstrap seed and pass margins, and a rule that any digest
+mismatch, source drift, evaluator drift or case overlap leaves the result
+undetermined rather than silently re-evaluating a different study.
 
 The gold is not an input to the evaluated mapping rule. The evaluator consumes
-the candidate mapping result and the protected expected decision after the
-system output has been sealed.
+the candidate mapping result and the protected expected decision only after
+the system output has been sealed.
 
 \subsection{Reproducibility}
 
-The scoped result is reproduced by the deterministic public-reference scripts
-and immutable archives under
-\texttt{evidence/public-reference-v1.1-confirmatory/}. The exact confirmatory
-analysis, publication figures/tables, source registry, evaluator identities,
-and independent replay receipt are retained in the repository. The commands
-\texttt{make paper03-public-reference} and
-\texttt{make paper03-public-reference-publication} regenerate the scoped
-headline analysis and publication artifacts from committed inputs.
+The result is reproduced by deterministic public-reference scripts over
+immutable archives: the confirmatory analysis, publication figures and tables,
+source registry, evaluator identities, and an independent replay receipt are
+all retained, and two make targets regenerate the headline analysis and the
+publication artifacts from committed inputs. Section~\ref{sec:availability}
+names each of them.
 
 This reproducibility claim does not extend to the unexecuted raw-text expert
-atlas, full external RAG/schema baselines, generated-portrait recoverability,
-or downstream answer-quality evaluation. Those remain \conststatus{} until
-their own prospective runs exist.
+atlas, to full external retrieval or schema baselines, to generated-portrait
+recoverability, or to downstream answer quality. Each of those remains
+undetermined until its own prospective run exists.
 
 \endinput

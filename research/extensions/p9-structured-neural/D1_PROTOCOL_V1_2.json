@@ -1,0 +1,25 @@
+{
+  "schema": "P9.D1MethodTransferProtocol.v1.2",
+  "supersedes_for_execution": "P9.D1MethodTransferProtocol.v1.1",
+  "outcome_accessed": false,
+  "review_finding": "The dependency corruption generator constructed (mechanics[1], mechanics[0]) after P1 canonical sorting. For some two-action methods this equals the already stored directed dependency and therefore produces no semantic mutation while the metadata still says dependencies was corrupted.",
+  "correction": {
+    "dependency_mutation": "reverse every existing directed dependency edge (left,right)->(right,left) in the current MethodRealization, not an edge synthesized from sorted mechanic positions",
+    "postcondition": "the D1 dependency topology signature must differ from the unmutated method or generation fails closed",
+    "self_loop_policy": "self-loop-only dependency structures are not admissible mutation seeds in D1 V1.2"
+  },
+  "unchanged": [
+    "domains and whole-domain holdout",
+    "all non-dependency corruption definitions",
+    "double-corruption families",
+    "unknown/unresolved construction",
+    "surface reminting",
+    "views and forbidden metadata",
+    "learned model arms and dev-selection rule",
+    "protected test rule",
+    "metrics and terminal rule",
+    "P10/P11 exclusion"
+  ],
+  "protected_test_effect": "Corrects generated test semantics before any result-bearing run; no model or outcome-driven change.",
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_AMENDMENT_ONLY"
+}

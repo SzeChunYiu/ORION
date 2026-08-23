@@ -24,6 +24,34 @@
       "role": "result-attestation"
     },
     {
+      "path": "evidence/protected_v3/FREEZE.md",
+      "role": "v3-prospective-freeze"
+    },
+    {
+      "path": "evidence/protected_v3/IDENTIFIABILITY_V3.json",
+      "role": "v3-identifiability-register"
+    },
+    {
+      "path": "evidence/protected_v3/PANEL_V3.json",
+      "role": "v3-panel-metrics"
+    },
+    {
+      "path": "evidence/protected_v3/RESULT.md",
+      "role": "v3-result-report"
+    },
+    {
+      "path": "evidence/protected_v3/README.md",
+      "role": "v3-promotion-provenance"
+    },
+    {
+      "path": "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+      "role": "panel-resolution-audit"
+    },
+    {
+      "path": "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json",
+      "role": "v3-claim-axis-adjudication"
+    },
+    {
       "path": "reproducibility/BINDING_MANIFEST_V2.md",
       "role": "reproducibility-bindings"
     },
@@ -79,9 +107,22 @@
     },
     {
       "id": "P4.H3",
-      "text": "ORION is superior on correct CANNOT_CHECK selection.",
+      "text": "On the prospectively frozen V3 battery, ORION selects the correct CANNOT_CHECK terminal on 30/30 gold cases with 0/360 false promotions, against 0/30 for the H1-selected comparator provenai-citation-fidelity-influence: effect 1.0, paired 95% CI [1.0, 1.0], pre-registered threshold ci95_low > 0.0. Against deepsciverify-abstract-to-full-escalation, which scores 15/30, the margin is 0.5, not 1.0; both numbers belong in any sentence about H3. Pre-registered reading, fixed in FREEZE.md section 5 before the panel ran: this measures terminal expressiveness under a non-compensatory gate lattice -- the ability to report an inability -- and not a finer-grained scientific judgement, because nine of the ten comparators score 0 for the reason that they cannot emit CANNOT_CHECK at all. Quotable only because the identifiability register clears at informedness 0.0 against a declared ceiling of 0.0 on the CANNOT_CHECK axis -- the axis this hypothesis is computed over -- across all 14 probes and all 13 seeds; the same register recovers the CANNOT_CHECK label at 1.0 on both the V1 and V2 constructions, which is why their H3 could not be a measurement. The register does not clear everywhere: on 3 of the 13 seeds the digest-prefix probe, declared in FREEZE.md section 3 as a noise control, recovers BLOCK or PROMOTE at 0.012 to 0.083. Those residuals are on axes H3 does not read, and a 0.0 ceiling cannot separate a small leak from sampling noise -- reported rather than tuned away.",
       "artifacts": [
-        "evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+        "evidence/protected_v3/PANEL_V3.json",
+        "evidence/protected_v3/IDENTIFIABILITY_V3.json",
+        "evidence/protected_v3/FREEZE.md",
+        "evidence/protected_v3/RESULT.md",
+        "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P4.H3.V2",
+      "text": "Retained historical entry, superseded rather than corrected. On the V1-construction battery the V2 campaign ran, H3 was declared NOT_SUPPORTED on correct_cannot_check_rate, which all eleven panel systems scored 1.0: declared CI95 [0.0, 0.0], metric_resolution SATURATED, verdict_could_have_differed false. The verdict records the benchmark, not the systems, so it is an instrument with no resolving power and not a comparative finding. The V2 artifacts are unedited and this row does not restate their number.",
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+        "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
       ],
       "status": "NOT_SUPPORTED"
     },

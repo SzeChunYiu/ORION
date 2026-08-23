@@ -1,0 +1,43 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#807",
+  "pr": "SzeChunYiu/ORION#809",
+  "workflow": {
+    "name": "orion-qg-qg9-v6-support1",
+    "run_id": 32501162020
+  },
+  "artifact": {
+    "id": 9453540270,
+    "name": "orion-qg-qg9-v6-9e658a5ef7a2eacbac56dfee2f9a569ed98ef093",
+    "digest": "sha256:b5190b151584a4758d3f6223442ac01d509140c696e52a2c30471e70a816bb8b"
+  },
+  "head_sha": "9e658a5ef7a2eacbac56dfee2f9a569ed98ef093",
+  "parent_support2_sha": "a80dbd57d9124f058de7465a13de8c69416c368b",
+  "parent_v5_sha": "49e21937f2bf28d8004b2eeb45a00da0d4efea30",
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED",
+  "source_result_digest": "587b4b803cfafa1b08a949b28ba8a626bd7bc405ca03a30ccd09e99651d31a4f",
+  "support_bound": 1,
+  "intrinsic_support_number": 1,
+  "support0_infeasible": true,
+  "generic_lane": {
+    "decision": "ACCEPT_SUPPORT1_THEOREM",
+    "all_checks": true
+  },
+  "native_lane": {
+    "decision": "ACCEPT_SUPPORT1_THEOREM",
+    "all_checks": true,
+    "support1_authority": true,
+    "tightness_by_support0_infeasibility": true
+  },
+  "both_accept": true,
+  "deterministic_replay": true,
+  "deletion_domain": 2880,
+  "alignment_domain": 6912,
+  "same_core_tag_domain": 576,
+  "distinct_core_tag_domain": 9216,
+  "stress_rows": 60,
+  "stress_failures": 0,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "successor_permission": "OBJECTIVE_INDEXED_SUPPORT1_PHASE_OR_CROSS_GRAMMAR_TRANSFER_MAY_OPEN_ONLY_AS_NEW_PROSPECTIVE_PACKET"
+}

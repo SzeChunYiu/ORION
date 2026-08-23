@@ -1,0 +1,171 @@
+{
+ "schema_version": "orion.p2.acquisition-ceiling-diagnosis.v1",
+ "paper_id": "P2",
+ "date": "2026-08-22",
+ "authority": "DIAGNOSIS_OF_A_FROZEN_NEGATIVE_NOT_A_REVISION_OF_IT",
+ "promotion": "FORBIDDEN -- this does not change the frozen verdict, it changes what the verdict is evidence about",
+ "finding": "The frozen IoU threshold was unreachable under the arm's own measured acquisition, and the programme already held the machinery that says so.",
+ "subject": {
+  "result": "P2_V2_WIDE_BOUNDED_MATCHED_RESULT_2026-08-18.json",
+  "diagnostic": "P2_V2_WIDE_BOUNDED_STAGE_DIAGNOSTIC_2026-08-18.json",
+  "frozen_verdict": "BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE",
+  "frozen_positive_rule": {
+   "iou_delta_at_least": 0.03,
+   "lexical_arxiv_ok_fraction_at_least": 0.8,
+   "recall_delta_at_least": 0.0
+  },
+  "tasks": 24,
+  "submitted_set_size": 20,
+  "submitted_set_size_derivation": "not assumed; implied to four significant figures by both arms' published avg_precision"
+ },
+ "scorer_model_validation": {
+  "closed_form": "hits / (submitted + gold - hits), averaged over tasks",
+  "note": "reproduced before it is trusted to bound anything",
+  "governed": {
+   "avg_iou_reproduced": 0.009958,
+   "avg_iou_published": 0.009958,
+   "avg_recall_reproduced": 0.041005,
+   "avg_recall_published": 0.041005
+  },
+  "lexical": {
+   "avg_iou_reproduced": 0.006271,
+   "avg_iou_published": 0.006271,
+   "avg_recall_reproduced": 0.024636,
+   "avg_recall_published": 0.024636
+  }
+ },
+ "acquisition": {
+  "gold_total": 229,
+  "acquired_by_any_route": 7,
+  "acquired_fraction": 0.030568,
+  "scored": 6,
+  "acquired_then_discarded": 1,
+  "never_acquired": 222,
+  "binding_stage": "CANDIDATE_GENERATION"
+ },
+ "ceiling": {
+  "metric": "avg_iou",
+  "observed": 0.009958,
+  "ceiling": 0.01126,
+  "selection_headroom": 0.001302,
+  "definition": "what the arm scores if a perfect selector submits every gold identifier its routes returned, capped by the submission size"
+ },
+ "programme_gate": {
+  "module": "orion.programme.gate_attainability",
+  "note": "pre-existing machinery; P2 never ran it. This module supplies only the retrieval-specific support it needs.",
+  "control_held_at_observed": {
+   "gate": {
+    "gate_id": "P2_V2_WIDE_BOUNDED_IOU_DELTA",
+    "reads": "iou_delta",
+    "threshold": 0.03,
+    "direction": "AT_LEAST",
+    "role": "HYPOTHESIS"
+   },
+   "outcome": "FAIL",
+   "reason": "THRESHOLD_UNATTAINABLE",
+   "best_value": 0.004988677536231885,
+   "worst_value": -0.00627105366235801,
+   "attainment_margin": -0.025011322463768113,
+   "refutation_margin": -0.036271053662358006,
+   "support": {
+    "statistic": "iou_delta",
+    "infimum": -0.00627105366235801,
+    "supremum": 0.004988677536231885,
+    "width": 0.011259731198589895,
+    "derivation": "wide_governed_multiroute acquisition ceiling: its routes returned 7 of 229 gold identifiers, bounding avg_iou at 0.011259731198589895; control held at its observed avg_iou of 0.00627105366235801"
+   }
+  },
+  "control_conceded_every_point": {
+   "gate": {
+    "gate_id": "P2_V2_WIDE_BOUNDED_IOU_DELTA",
+    "reads": "iou_delta",
+    "threshold": 0.03,
+    "direction": "AT_LEAST",
+    "role": "HYPOTHESIS"
+   },
+   "outcome": "FAIL",
+   "reason": "THRESHOLD_UNATTAINABLE",
+   "best_value": 0.011259731198589895,
+   "worst_value": 0.0,
+   "attainment_margin": -0.018740268801410102,
+   "refutation_margin": -0.03,
+   "support": {
+    "statistic": "iou_delta",
+    "infimum": 0.0,
+    "supremum": 0.011259731198589895,
+    "width": 0.011259731198589895,
+    "derivation": "wide_governed_multiroute acquisition ceiling: its routes returned 7 of 229 gold identifiers, bounding avg_iou at 0.011259731198589895; control conceded every point it scored"
+   }
+  },
+  "recall_delta_for_contrast": {
+   "gate": {
+    "gate_id": "P2_V2_WIDE_BOUNDED_RECALL_DELTA",
+    "reads": "recall_delta",
+    "threshold": 0.0,
+    "direction": "AT_LEAST",
+    "role": "HYPOTHESIS"
+   },
+   "outcome": "PASS",
+   "reason": "BOTH_OUTCOMES_REACHABLE",
+   "best_value": 0.019574175824175824,
+   "worst_value": -0.024636243386243387,
+   "attainment_margin": 0.019574175824175824,
+   "refutation_margin": -0.024636243386243387,
+   "support": {
+    "statistic": "recall_delta",
+    "infimum": -0.024636243386243387,
+    "supremum": 0.019574175824175824,
+    "width": 0.04421041921041921,
+    "derivation": "wide_governed_multiroute acquisition ceiling: its routes returned 7 of 229 gold identifiers, bounding avg_recall at 0.04421041921041921; control held at its observed avg_recall of 0.024636243386243387"
+   }
+  },
+  "shortfall_factor_against_observed_control": 6.01,
+  "shortfall_factor_against_conceded_control": 2.66,
+  "summed_per_task_iou_demanded": 0.870505,
+  "summed_per_task_iou_supported": 0.270234
+ },
+ "route_admissibility": {
+  "scheme": "arxiv",
+  "raw_gold_by_route": {
+   "arxiv": 7,
+   "openaire": 0,
+   "dblp": 0
+  },
+  "source_note": "OpenAIRE/DBLP returned records but zero scorer-gold arXiv identifiers on this slice; most tasks had zero final hits under both systems.",
+  "runner_route_note": "no_arxiv_identifier_in_response",
+  "not_a_failure": "all 72 requests returned OK carrying records",
+  "classification": {
+   "arxiv": "ADMISSIBLE",
+   "openaire": "INADMISSIBLE",
+   "dblp": "INADMISSIBLE"
+  }
+ },
+ "exposure": {
+  "predicate_used_by_the_campaign": "matched_provider_requests_per_task",
+  "campaign_value": true,
+  "governed": {
+   "total_requests": 3,
+   "admissible_requests": 1,
+   "scoring_eligible_fraction": 0.333333
+  },
+  "lexical": {
+   "total_requests": 3,
+   "admissible_requests": 3,
+   "scoring_eligible_fraction": 1.0
+  },
+  "matched_exposure": "FAIL",
+  "related_programme_module": "orion.programme.attainable_margin",
+  "note": "both arms spent three requests per task; the baseline spent three on the only route that can emit a scoring identifier and the governed arm spent one"
+ },
+ "despite_the_handicap": {
+  "governed_hits": 6,
+  "lexical_hits": 4,
+  "governed_tasks_with_any_hit": 4,
+  "lexical_tasks_with_any_hit": 3,
+  "governed_strictly_more_hits_tasks": 2,
+  "governed_fewer_hits_tasks": 0
+ },
+ "mechanism": "orion.study.p2.acquisition_ceiling",
+ "tests": "tests/unit/p2/test_p2_acquisition_ceiling.py",
+ "negative_controls": "five mutations of the mechanism were run; each failed the test that names it, including substituting the campaign's own matched_provider_requests_per_task predicate"
+}

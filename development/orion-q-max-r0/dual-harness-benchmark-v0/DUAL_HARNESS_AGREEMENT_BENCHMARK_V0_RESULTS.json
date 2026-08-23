@@ -1,0 +1,41 @@
+{
+  "claim_boundary": "One question instance; inter-instrument agreement only; no statistical claim about general reliability; no scientific authority.",
+  "coordinates": {
+    "1_diagnosed_layer": "AGREE \u2014 both name the representation-regime-characterization layer",
+    "2_selected_move": "AGREE \u2014 both select regime characterization as the primary move (Lane A additionally ranks the weight-2 closure test complementary; Lane B's mechanics reach it only after the predicate obligation resolves)",
+    "3_evidence_basis": "OVERLAPPING \u2014 both grounded exclusively in the committed R6N/R6O/R6M receipt corpus; Lane A cites paths through verified WEB_SEARCH items, Lane B consumes typed observations transcribed with per-field provenance",
+    "4_frontier_alignment": "SCORED \u2014 ALIGNED. Both instruments selected regime characterization as the primary move. The frontier outcomes reward it: R6Q found an EXACT regime-membership predicate (all gates true, authority MAX_R6Q_REGIME_PREDICATE_EXACT__TWO_TRADE_CHARACTERIZATION_ON_VERIFIED_DOMAINS__NOT_R6), and R6P (the complementary move Lane A ranked second) restored family closure at support two on all verified domains. Neither instrument selected the defeated moves (further search, donor absorption alone, method-language growth), which the outcomes also did not reward.",
+    "5_cost_profile": "Lane A: 13 host capability receipts, ~10 min wall including host reasoning; Lane B: 1 native cycle, sub-second decision after manifest construction"
+  },
+  "date": "2026-08-21",
+  "lane_a": {
+    "cost": {
+      "host_capability_receipts": 13
+    },
+    "diagnosed_layer": "REPRESENTATION_REGIME_CHARACTERIZATION",
+    "instrument": "generic orion-research-harness, recursive solve, session host",
+    "receipt": "development/orion-q-max-r0/dual-harness-benchmark-v0/DUAL_HARNESS_LANE_A_RECEIPT.json",
+    "selected_move": "REGIME_PREDICATE_CHARACTERIZATION_PRIMARY__WEIGHT2_CLOSURE_COMPLEMENTARY"
+  },
+  "lane_b": {
+    "cost": {
+      "cycles": 1,
+      "decision_digest": "d6ba348c0ee0d5098ea4a7fa52d8e021d4f34dc3ee7920b3e40495188b1b3904",
+      "manifest_digest": "064ead57c2e1b1f02426dfea4f5a1184cb95440db52b77c1642964e135757ed4"
+    },
+    "defeated_hypotheses": [
+      "RESP:CURRENT_SEARCH_INCOMPLETE",
+      "RESP:DONOR_FAMILY_INCOMPLETE",
+      "RESP:METHOD_LANGUAGE_INADEQUATE"
+    ],
+    "diagnosed_layer": "RESP:REPRESENTATION_REGIME_UNCHARACTERIZED",
+    "instrument": "orion-q campaign harness, native typed control (orion.transfer.v2 + orion.self_orion), no LLM",
+    "notable_mechanics": "revision gate UNRESOLVED (predicate obligation unresolved) so the framework itself withheld REV:SPLIT_REPRESENTATION_REGIME and selected the characterization computation",
+    "receipt": "development/orion-q-max-r0/DUAL_HARNESS_LANE_B_RECEIPT.json",
+    "selected_move": "COMPUTE:REGIME_CHARACTERIZATION"
+  },
+  "protocol": "development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md",
+  "question_id": "post-r6o-diagnosis",
+  "schema": "ORION.DualHarnessAgreementBenchmark.v0",
+  "verdict": "AGREE on all scored coordinates (1,2,4); coordinate 3 overlapping-by-construction; benchmark instance complete"
+}

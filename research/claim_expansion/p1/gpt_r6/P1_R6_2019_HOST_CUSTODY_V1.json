@@ -1,0 +1,31 @@
+{
+  "authority": "HOST_CUSTODY_ONLY_NO_SCIENTIFIC_OUTCOME",
+  "config_sha256": "7c1853dbfa0e4aac093eb109a358b6ab25fe86b7c15185a91322f0ed26f0f940",
+  "custody_probe_nonempty": true,
+  "custody_probe_output_sha256": "0426b57b36412de41c84a2f2361f2d88a22191469dd38c2000b69bf3f60bbf3f",
+  "custody_probe_prompt_sha256": "40d14a6920b0077f658a8142399fe8dcf1425963d517f981c452f07f019633ae",
+  "generation_parameters": {
+    "do_sample": false,
+    "max_new_tokens": 96,
+    "temperature_semantics": "not_applicable_when_do_sample_false"
+  },
+  "model_class": "T5ForConditionalGeneration",
+  "model_id": "google/flan-t5-base",
+  "no_gold_access": true,
+  "p1_2020_primary_outcome_accessed": false,
+  "promotion_authorized": false,
+  "python": "3.12.14",
+  "replication_source_or_gold_accessed": false,
+  "resolved_revision_sha": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+  "runtime_versions": {
+    "huggingface_hub": "1.28.0",
+    "safetensors": "0.8.0",
+    "sentencepiece": "0.2.2",
+    "torch": "2.13.0",
+    "transformers": "5.15.1"
+  },
+  "schema_version": "orion.p1.r6.changed-host-custody.v1",
+  "tokenizer_class": "T5Tokenizer",
+  "tokenizer_identity": "transformers.models.t5.tokenization_t5.T5Tokenizer",
+  "torch_device": "cpu"
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.p3.partial-identification-successor.v1",
+  "paper_id": "P3",
+  "claim_id": "P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1",
+  "protocol_status": "PROSPECTIVE_LOCAL_PREFLIGHT_COMPLETE__EXTERNAL_ATLAS_REQUIRED",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "historical_results_immutable": true,
+  "successor_of": ["P3.PARTIAL_OBSERVATION.A004"],
+  "material_change": "The endpoint counts only avoidable harm on protected distinctions that remain separable under the candidate-visible observation; it does not relax any failed A004 gate.",
+  "design": {
+    "independent_unit": "unique_source_artifact_family_cluster",
+    "not_independent_units": ["atlas_coordinate", "annotation", "pair_member", "probe", "metric_cell"],
+    "stratum_count": 16,
+    "units_per_stratum": 48,
+    "planned_independent_units": 768,
+    "domain_count": 4,
+    "coordinates_with_required_nonzero_variation": ["REFERENT", "CONSTRUCT", "MEASUREMENT", "TEMPORAL_CONTEXT"],
+    "opportunity_rule": "OBSERVATIONALLY_SEPARABLE_PROTECTED_DISTINCTION",
+    "primary_endpoint": "avoidable_false_merge_or_downstream_decision_harm_above_the_proven_observation_floor",
+    "zero_opportunity_stratum_cannot_authorize_a_claim": true,
+    "independent_gold_and_raw_text_attack_required": true
+  },
+  "power": {
+    "method": "SIDAK_EXACT_MAX_T_UNDER_DECLARED_INDEPENDENT_CONTRAST_PLANNING_MODEL",
+    "planned_independent_units": 768,
+    "comparator_count": 4,
+    "planning_delta": 0.15,
+    "superiority_margin": 0.05,
+    "planning_discordance": 0.4,
+    "familywise_alpha": 0.05,
+    "target_joint_power": 0.9,
+    "protected_predecessor_outcomes_used_for_calibration": false,
+    "analysis_unit": "source_artifact_family_cluster",
+    "multiplicity_family": "all_four_frozen_primary_comparators_for_floor_adjusted_avoidable_harm",
+    "claim_logic": "intersection_all_contrasts_must_pass"
+  },
+  "local_bindings": [
+    {
+      "binding_id": "A004_HISTORICAL_RECEIPT",
+      "path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json",
+      "sha256": "5b9108d5c86f378972aa090b19b69550a8df519fff8cd7c0ae1ac1a034c100fa"
+    },
+    {
+      "binding_id": "A004_HISTORICAL_PROTOCOL",
+      "path": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.json",
+      "sha256": "89525e0b40e8cdc036f2514754da4d18260a35a7c6ad12d4ff7fb7326d9d3e7c"
+    }
+  ],
+  "external_bindings_required": [
+    "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES",
+    "INDEPENDENT_PROTECTED_GOLD_LABELS",
+    "RAW_TEXT_ATTACK_CORPUS",
+    "DOWNSTREAM_DECISION_EVALUATOR_CUSTODY"
+  ],
+  "missing_external_terminal": "P3_PARTIAL_IDENTIFICATION_CANNOT_CHECK_EXTERNAL_ATLAS",
+  "possible_scientific_terminals_after_execution": [
+    "P3_FLOOR_ADJUSTED_AVOIDABLE_HARM_REDUCED",
+    "P3_FLOOR_ADJUSTED_AVOIDABLE_HARM_NOT_REDUCED",
+    "P3_PARTIAL_IDENTIFICATION_SUCCESSOR_CANNOT_CHECK"
+  ],
+  "current_terminal": "P3_PARTIAL_IDENTIFICATION_READY_FOR_EXTERNAL_ATLAS_NOT_A_SCIENTIFIC_RESULT"
+}

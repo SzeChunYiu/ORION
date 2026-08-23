@@ -1,0 +1,28 @@
+{
+  "schema": "P9.M1ExecutionRoutingAmendment.v1.4",
+  "supersedes_execution_only": "P9.M1Protocol.v1.3",
+  "outcome_accessed": false,
+  "trigger": "GITHUB_SHARED_RUNNER_BACKLOG_STALE_PENDING_RUN",
+  "superseded_run": {
+    "workflow": "p9-m1-experiment",
+    "run_id": 32244028193,
+    "status_at_amendment": "PENDING_OR_QUEUED",
+    "protected_result_accessed": false
+  },
+  "scientific_changes": {
+    "corpus": false,
+    "split": false,
+    "feature_semantics": false,
+    "model_grid": false,
+    "dev_selection": false,
+    "test_once_rule": false,
+    "metrics": false,
+    "terminal_rules": false,
+    "view_ceiling_rules": false,
+    "hostile_controls": false
+  },
+  "runtime": "unchanged P9.M1Protocol.v1.3 dense-DictVectorizer execution adapter",
+  "official_result_rule": "the stale run is superseded; only a workflow triggered by this amendment commit or a descendant containing no scientific M1 changes may produce the official M1 result",
+  "reason": "execution routing only; no protected result exists and no scientific parameter is changed",
+  "authority": "NONE_EXECUTION_ROUTING_ONLY"
+}

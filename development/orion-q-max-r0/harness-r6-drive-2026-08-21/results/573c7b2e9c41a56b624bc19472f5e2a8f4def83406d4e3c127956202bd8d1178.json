@@ -1,0 +1,21 @@
+{
+  "completed_at": "2026-08-21T06:57:24.173273+00:00",
+  "error": "",
+  "executor": "orion-harness-local",
+  "output": {
+    "argv": [
+      "python",
+      "max_r6_foqcs_interface_envelope.py"
+    ],
+    "cwd": "/home/user/ORION/research/extensions/orion-q",
+    "returncode": 0,
+    "sandboxed": false,
+    "stderr": "",
+    "stdout": "ORIONQ_MAX_R6_FOQCS_INTERFACE={\"authority\": \"INTERFACE_CANNOT_DOMINATE_EVEN_OPTIMISTIC\", \"current_method_incremental_value_on_h4\": \"NONE_OVER_DIRECT_CLIQUE_DONOR\", \"foqcs_dominates_incumbent\": false, \"foqcs_optimistic_envelope\": {\"Lambda\": 5.158046205600001, \"PREP_Ldag_two_qubit\": 0, \"PREP_R_two_qubit\": 0, \"PREP_T\": 0, \"achievable_claim\": false, \"activation_ancilla\": 16, \"ancilla\": 16, \"blocks\": 1, \"clifford_two_qubit_equiv\": 16, \"extra_PREP_ancilla\": 0, \"label\": \"OPTIMISTIC_FOQCS_ZERO_PREP_ENVELOPE\", \"projected_T\": 0, \"select_CNOT\": 8, \"select_CZ\": 8}, \"fresh_r6_subject_coefficients_accessed\": false, \"gates\": {\"foqcs_activation_ancilla_exact\": true, \"foqcs_is_distinct_pareto_capability\": true, \"foqcs_select_exact\": true, \"h4_pauli_l1_bound\": true, \"h4_qubits_bound\": true, \"hard_worsening_present\": true, \"incumbent_bound\": true, \"optimistic_envelope_not_dominating\": true, \"zero_prep_explicitly_optimistic\": true}, \"incumbent\": {\"Lambda\": 4.862157873932594, \"ancilla\": 0, \"blocks\": 246, \"clifford_two_qubit_equiv\": 1428, \"projected_T\": 5568, \"reference_total_T\": 31028}, \"incumbent_dominates_foqcs\": false, \"interface_envelope_registered\": true, \"pass\": true, \"schema\": \"ORIONQ.MAXR6.FOQCSInterfaceEnvelope.v1\", \"scope\": \"donor_favourable_interface_lower_bound__not_R6\", \"strictly_better_coordinates\": [\"clifford_two_qubit_equiv\", \"projected_T\", \"blocks\"], \"strictly_worse_hard_coordinates\": [\"Lambda\", \"ancilla\"]}\n"
+  },
+  "request_digest": "6f7ea3afc6ec287f94079a29e737f12e70e6d7dcb898504bb4730084b1fcc3f7",
+  "request_id": "hostreq:df8985f1b4977a51e7b5ba1ad4be7dc8679940dc0e7d49afa92c7b5bc9d03b61",
+  "result_digest": "3f91bd1373ad35ccefbe2975e04ea1e3638828fdedc84f5e3bf6d60283a38512",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

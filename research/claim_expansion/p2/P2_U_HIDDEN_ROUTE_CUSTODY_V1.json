@@ -1,0 +1,169 @@
+{
+  "schema_version": "orion.p2_u.hidden-route-custody.v1",
+  "date": "2026-08-21",
+  "parent_issue": 650,
+  "base_commit": "b422f1669e934a0117155b339820afef53412fff",
+  "parent_baseline_census": {
+    "path": "research/claim_expansion/p2/P2_U_BASELINE_CENSUS_V1.json",
+    "git_blob_sha": "bb1a7277ac8480d6d68b7936b7b747e91c7ac433"
+  },
+  "purpose": "Freeze the authority and custody boundary for future P2-U hidden-route naturalistic evaluation before any P2-U naturalistic protected outcome. This tranche removes leakage, denominator, route-deletion, and false-closure degrees of freedom; it does not freeze the final task corpus, metric margins, provider execution manifest, or protected result.",
+  "protected_outcome_state": {
+    "p2_u_naturalistic_protected_outcome_seen": false,
+    "narrow_p2_wide_campaigns_are_separate": true,
+    "narrow_p2_wide_outcomes_must_not_change_this_contract": true
+  },
+  "objects": {
+    "candidate_visible_task": "Task prompt plus only the source/search interfaces, public context, and resource budget prospectively declared for that task. Hidden material-route identities, route-completeness labels, evaluator utility weights, hidden evidence labels, and gold closure state are absent.",
+    "hidden_route_graph": "Evaluator-owned set of prospectively frozen material evidence routes and route dependencies for one task or prospectively frozen task cluster. A route is material only when its evidence can change a predeclared scientific decision, conclusion, uncertainty state, or admissible closure state.",
+    "hidden_evidence_item": "Evaluator-owned source snapshot or evidence record assigned to one or more material routes, with immutable source identity, retrieval-independent content hash where legally retainable, provenance, validity status, and predeclared decision relevance.",
+    "system_capture": "Immutable candidate or comparator search/retrieval/use/answer trace produced without access to hidden route labels or gold closure state.",
+    "closure_decision": "The system's task-global state at the frozen cutoff: COMPLETE/CLOSED, OPEN/INCOMPLETE, CANNOT_CHECK/ABSTAIN, or an equivalent mapping frozen before outcomes. Evaluator authority remains separate from the system declaration."
+  },
+  "custody_roles": {
+    "task_curator": {
+      "may_see": [
+        "full source universe used to construct hidden routes",
+        "hidden route graph",
+        "hidden evidence labels"
+      ],
+      "must_not": [
+        "run or tune candidate/comparator after protected outputs are opened",
+        "delete or relabel a route because it harms a system after outcome",
+        "serve as the sole final independent scorer"
+      ]
+    },
+    "candidate_and_comparator_workers": {
+      "may_see": [
+        "candidate_visible_task",
+        "matched source/search interfaces",
+        "matched task resource envelope",
+        "their own system state and outputs"
+      ],
+      "must_not_see": [
+        "hidden route graph",
+        "hidden route identities",
+        "hidden evidence labels",
+        "gold closure state",
+        "evaluator-only utility weights or adjudications",
+        "other arm's protected outcome before their own output freezes"
+      ]
+    },
+    "protected_evaluator": {
+      "may_see_after_all_system_outputs_freeze": [
+        "hidden route graph",
+        "hidden evidence labels",
+        "all immutable system captures",
+        "frozen scoring specification"
+      ],
+      "must_not": [
+        "alter candidate/comparator outputs",
+        "alter task/route eligibility after observing system identity or result",
+        "grant publication, registry, merge, or issue-closure authority"
+      ]
+    },
+    "independent_reproducer": {
+      "required": true,
+      "must_reconstruct": [
+        "eligible task denominator",
+        "route-level discovery/processing state",
+        "task-level false-closure classification",
+        "provider-invalid/CANNOT_CHECK handling",
+        "final reported metrics from immutable captures"
+      ],
+      "must_not_import": [
+        "candidate policy code as scoring authority",
+        "original evaluator terminal function as an oracle"
+      ]
+    }
+  },
+  "pre_outcome_freeze_order": [
+    "Freeze final task or task-cluster identities and eligibility rules.",
+    "Freeze hidden route graph and hidden evidence identities outside candidate/comparator custody.",
+    "Freeze exact candidate/comparator implementations, matched source/search interfaces, host/model identities, and total task budgets in the separate execution manifest.",
+    "Freeze metric definitions, uncertainty procedure, multiplicity policy, superiority/noninferiority margins, invalidity rules, and task-level terminal mapping in a separate scientific protocol.",
+    "Hash/seal all above before any protected candidate/comparator execution.",
+    "Run candidate/comparator workers without hidden route/gold access.",
+    "Freeze each system capture and output bytes before hidden route/evaluator material enters the scoring environment.",
+    "Only then permit protected evaluation and independent reconstruction."
+  ],
+  "information_and_budget_parity": {
+    "same_source_access_required": true,
+    "same_retrieval_api_classes_required": true,
+    "same_candidate_visible_task_required": true,
+    "same_total_task_budget_required_for_primary_causal_comparison": true,
+    "discovery_itself_is_part_of_the_outcome": true,
+    "shared_post_retrieval_capture_for_primary_comparison": false,
+    "reason_no_shared_capture": "P2-U asks whether systems discover more decision-relevant evidence under matched access and budget. Giving all arms one shared retrieved set would remove part of the causal target. Equality is at source/tool/access/budget level, while each arm's search trajectory remains its own frozen outcome.",
+    "charged_work": [
+      "search and retrieval calls",
+      "retrieved bytes/tokens where measurable",
+      "model tokens/compute",
+      "wall time under the frozen policy",
+      "external API cost",
+      "decision-time verifier calls",
+      "state compilation/index/cache construction",
+      "cache recovery and reopening",
+      "candidate-side route/accounting computation"
+    ],
+    "evaluator_only_work_not_charged_to_system": "Gold-only route adjudication/scoring performed after output freeze, because no arm may access it during execution."
+  },
+  "route_and_denominator_integrity": {
+    "inferential_unit": "research task or prospectively frozen task cluster",
+    "technical_repeats_do_not_inflate_n": true,
+    "all_frozen_eligible_tasks_retained": true,
+    "all_frozen_material_routes_retained": true,
+    "post_outcome_route_deletion_forbidden": true,
+    "post_outcome_task_deletion_forbidden": true,
+    "post_outcome_route_relevance_relabel_forbidden": true,
+    "provider_invalid_or_transport_invalid_task": "CANNOT_CHECK_OR_PROTOCOL_INVALID_PER_FROZEN_RULE; never score as a scientific miss, success, or equality by convenience.",
+    "missing_hidden_route_evidence_due_to_curator_failure": "CANNOT_CHECK; never assume the route is absent.",
+    "duplicate_sources": "May map to the same underlying evidence identity but cannot inflate route recall, evidence count, or inferential n.",
+    "retrieved_but_unprocessed": "Distinct from not retrieved. It counts as discovered only under the separately frozen discovery metric, and cannot count as decision-relevant use unless the immutable use trace proves processing under the frozen definition.",
+    "contradictory_sources": "Retain both sides and evaluator provenance. A system may not receive route-completeness credit merely for retrieving one side of a frozen material contradiction."
+  },
+  "false_closure_boundary": {
+    "task_level_only": true,
+    "candidate_self_declared_completion_is_not_authority": true,
+    "false_closure_candidate": "A system declares the task closed/complete or emits the protocol-mapped equivalent while at least one evaluator-frozen material route remains undiscovered, unprocessed, unresolved, contradicted without discharge, or provider-invalid in a way that the frozen closure rule requires to remain OPEN/CANNOT_CHECK.",
+    "abstention_is_not_automatic_success": true,
+    "reason": "P2-U must show discovery value without winning solely by refusing closure. Scientific utility/answer quality and discovery metrics remain co-primary or guarded according to the later frozen scientific protocol.",
+    "over_caution_guard_required": true,
+    "false_resolution_of_unresolved_route_forbidden": true
+  },
+  "capture_requirements": {
+    "raw_query_trace": true,
+    "retrieval_response_identity_or_hash": true,
+    "retrieved_document_use_trace": true,
+    "route_labels_absent_from_worker_capture": true,
+    "candidate_output_hash_before_gold": true,
+    "comparator_output_hash_before_gold": true,
+    "provider/model/tool identity_bound": true,
+    "resource_accounting_bound": true,
+    "all_failures_nulls_harmful_outcomes_retained": true,
+    "candidate_cannot_edit_evaluator_or_hidden_route_files": true
+  },
+  "anti_laundering_checks": [
+    "A route label or gold closure field appearing in a worker-visible packet is an invalid campaign, not a positive or negative result.",
+    "A hidden route added after one arm's protected output is opened cannot be used in the same campaign version.",
+    "A hidden route removed or downgraded after any protected output is opened invalidates the campaign version.",
+    "A comparator receiving less source access, search budget, model/tool capability, or donor functionality than frozen for the primary causal comparison invalidates that causal comparison.",
+    "A candidate receiving privileged route hints, curator vocabulary, hidden source identities, or evaluator feedback invalidates the campaign.",
+    "A provider outage or malformed response cannot be converted into evidence absence or a zero-recall task unless the separate frozen scientific protocol explicitly and prospectively defines that provider state as part of the task world.",
+    "Repeated samples/traces/retries cannot be promoted into independent task n.",
+    "The original evaluator cannot certify its own implementation as an independent reproduction.",
+    "A public benchmark score cannot substitute for hidden-route naturalistic authority.",
+    "A narrow P2 Wide positive or negative cannot modify this P2-U hidden-route contract."
+  ],
+  "required_successor_freezes_before_p2_u_result": [
+    "P2-U final naturalistic task/task-cluster corpus and source-snapshot manifest",
+    "P2-U metric/statistical/margin/terminal protocol",
+    "P2-U exact execution manifest binding host/model/tool/provider/comparator revisions and total budgets",
+    "P2-U independent evaluator/reproduction specification",
+    "Cross-domain and systematic-review-like replication protocol"
+  ],
+  "scientific_effect": "NONE_CUSTODY_AND_AUTHORITY_FREEZE_ONLY",
+  "promotion_authorized": false,
+  "issue_650_closure_authorized": false,
+  "authority": "PRE_OUTCOME_HIDDEN_ROUTE_CUSTODY_ONLY_NO_SUPERIORITY_NO_PROTOCOL_COMPLETION_NO_PROMOTION"
+}

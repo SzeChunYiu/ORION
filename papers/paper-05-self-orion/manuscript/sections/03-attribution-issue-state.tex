@@ -1,12 +1,12 @@
 \section{Causal discrimination and persistent issue state}
 
-A development issue persists across multiple investigations and interventions. \texttt{DevelopmentIssue.v1} keeps a stable issue identity together with candidate causes, supported causes, discriminator evidence, failure episodes, intervention outcomes and lifecycle transitions. This prevents each repair attempt from becoming a new context that forgets why earlier alternatives failed.
+A development issue persists across multiple investigations and interventions. A versioned development-issue record keeps a stable issue identity together with candidate causes, supported causes, discriminator evidence, failure episodes, intervention outcomes and lifecycle transitions. This prevents each repair attempt from becoming a new context that forgets why earlier alternatives failed.
 
 For issue $u$, let
 \[
 H(u)=\{h_1,h_2,\ldots,h_k\}
 \]
-be competing cause hypotheses. A repair is not licensed merely because one hypothesis is narratively plausible. Self-ORION requires discriminator evidence capable of separating relevant alternatives. Where the discriminator cannot distinguish the hypotheses, the correct state is unresolved rather than an invented causal label.
+be competing cause hypotheses. A repair is not licensed merely because one hypothesis is narratively plausible. It is licensed only by discriminator evidence capable of separating the relevant alternatives. Where the discriminator cannot distinguish the hypotheses, the correct state is unresolved rather than an invented causal label.
 
 This ordering is important:
 \[

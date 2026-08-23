@@ -1,0 +1,68 @@
+{
+  "schema": "ORION.QG.QG9.V6.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#807",
+  "pr": "SzeChunYiu/ORION#809",
+  "execution_head": "9e658a5ef7a2eacbac56dfee2f9a569ed98ef093",
+  "parent_support2_receipt_commit": "a80dbd57d9124f058de7465a13de8c69416c368b",
+  "parent_v5_receipt_commit": "49e21937f2bf28d8004b2eeb45a00da0d4efea30",
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED",
+  "source_result_digest": "587b4b803cfafa1b08a949b28ba8a626bd7bc405ca03a30ccd09e99651d31a4f",
+  "support_bound": 1,
+  "intrinsic_support_number": 1,
+  "support0_infeasible": true,
+  "finite_lemmas": {
+    "deletion": {
+      "rows": 2880,
+      "commuting_rows": 1728,
+      "anticommuting_rows": 1152,
+      "max_delta_commuting": -4,
+      "max_delta_anticommuting": -7
+    },
+    "core_alignment": {
+      "rows": 6912,
+      "frame_contribution_invariant": 10,
+      "max_restore_increase": 3,
+      "max_triple_hamming": 3
+    },
+    "same_qubit_tag_rigidity": {
+      "rows": 576,
+      "feasible_rows": 36,
+      "different_basis_counterexamples": 0
+    },
+    "distinct_qubit_tag": {
+      "rows": 9216,
+      "basis_pairs": 36,
+      "minimum_cost_all_basis_pairs": 8
+    },
+    "original_feasible_tag_cost_floor": 4
+  },
+  "composition": {
+    "extra_active_column_credit_floor": 4,
+    "core_alignment_ceiling": 3,
+    "distinct_core_new_tag_cost": 8,
+    "same_core_new_tag_cost": 4,
+    "all_cases_closed": true
+  },
+  "stress": {
+    "seed": 20260821,
+    "n_values": [2,3,4,5,6],
+    "rows": 60,
+    "failures": 0,
+    "max_delta": -7,
+    "min_delta": -33
+  },
+  "generic_orion": {
+    "decision": "ACCEPT_SUPPORT1_THEOREM",
+    "all_checks": true
+  },
+  "native_orion_q": {
+    "decision": "ACCEPT_SUPPORT1_THEOREM",
+    "all_checks": true,
+    "support1_authority": true,
+    "tightness_by_support0_infeasibility": true
+  },
+  "both_accept": true,
+  "interpretation": "The earlier fixed-Tag local-edit proof systems stopped at support2 because they preserved auxiliary Tag structure. Whole-system Tag relocation removes those method obstructions: every support<=2 feasible configuration can be normalized to support1 without increasing the unit objective. Support0 is infeasible, so kappa_R6I=1 exactly.",
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

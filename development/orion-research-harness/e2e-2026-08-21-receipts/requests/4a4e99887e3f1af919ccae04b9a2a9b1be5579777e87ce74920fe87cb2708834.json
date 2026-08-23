@@ -1,0 +1,15 @@
+{
+  "capability": "LLM_COMPLETE",
+  "created_at": "2026-08-21T06:21:16.938987+00:00",
+  "payload": {
+    "instruction": "Return an object with `content` containing the model response text. For ORION semantic tasks, content itself must be JSON matching response_schema.",
+    "response_schema": "{\"queries\":[{\"query_id\":\"...\",\"text\":\"...\",\"route_id\":\"...\",\"route_kind\":\"PARENT_DISCIPLINE\",\"domain_hint\":null}]}",
+    "system": "You are a semantic reasoning component inside ORION.\nYou may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.\nReturn only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.\nFor search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered.",
+    "task": "plan_search",
+    "user": "{\"active_domains\": [\"software-verification\"], \"candidate_domains\": [], \"covered_route_kinds\": [], \"problem\": {\"initial_domain_ids\": [\"software-verification\"], \"problem_id\": \"failpath-demo\", \"question\": \"Demonstration problem for the HOST_CAPABILITY_FAILED lane.\", \"scope\": \"orchestration demo\", \"success_criteria\": []}, \"representations\": [], \"searched_domains\": []}"
+  },
+  "request_digest": "18297dcf8943e0dee8b892fe7878271d98d6c34a657bb82b920d9efe5040c46a",
+  "request_id": "hostreq:9072a2e07b1e8599433d3129ce87afc77a0850e4b939e8581f51b84f9fb6eca0",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

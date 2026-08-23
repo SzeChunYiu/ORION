@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'papers/candidates/**'
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/**'
+      - 'papers/paper-07-epistemic-navigation-open-worlds/**'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/**'
       - 'tests/unit/candidates/**'
       - 'src/orion/**'
       - '.github/workflows/p6-p8-candidate-ci.yml'
@@ -11,6 +14,9 @@ on:
     branches: [main]
     paths:
       - 'papers/candidates/**'
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/**'
+      - 'papers/paper-07-epistemic-navigation-open-worlds/**'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/**'
       - 'tests/unit/candidates/**'
       - 'src/orion/**'
       - '.github/workflows/p6-p8-candidate-ci.yml'

@@ -3,10 +3,15 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{xurl}
 \usepackage{hyperref}
-\usepackage{url}
-\usepackage{xspace}
 \usepackage{placeins}
+\setlength{\emergencystretch}{3em}
+% Content digests and long identifiers cannot break inside \texttt, which is the
+% single cause of every overfull box this manuscript has had. \idt is \path: it
+% renders the same and breaks legally.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
 
 \title{Eliminating Scientific-Authority Laundering with Non-Compensatory Protected Verification}
 \author{Anonymous authors}
@@ -14,15 +19,12 @@
 \def\year{YYYY}
 \def\openreview{\url{https://openreview.net/forum?id=XXXX}}
 
-\newcommand{\cannot}{\texttt{CANNOT\_CHECK}\xspace}
-\newcommand{\blockstate}{\texttt{BLOCK}\xspace}
-\newcommand{\promote}{\texttt{PROMOTE}\xspace}
-
 \begin{document}
 \maketitle
 
 \begin{abstract}
 Scientific verification can establish that a claim is plausible, cited, or semantically supported without establishing that a particular source, checker, and evaluator jointly authorize a scientific claim transition. We test a non-compensatory authority pipeline that requires exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, protected-access clearance, and search-contamination clearance. Missing or failed prerequisites produce \cannot or \blockstate rather than a compensable confidence penalty. In a prospectively frozen, independently hosted 420-case protected campaign spanning 13 clean and hostile families, ORION eliminates false authority promotion across all 360 hostile opportunities, compared with 180/360 false promotions for the strongest frozen mechanism proxy (absolute difference $-0.50$, paired 95\% CI $[-0.553,-0.447]$). Both systems promote 60/60 clean positives, demonstrating that the gain is not produced by blanket refusal. Every registered ORION ablation preserves clean coverage while increasing false promotion, from 30/360 for several single-coordinate removals to 330/360 (91.7\%) when the hard terminal is replaced by a six-of-nine soft-confidence rule. Scored-process telemetry records zero protected-label identifiers and zero external-IP connections, and an independent implementation exactly reproduces the headline counts. A separate audit shows that the original \cannot comparison is saturated by an evidence-list shortcut and therefore cannot discriminate systems; rather than interpreting that equality as a scientific finding, we identify the construction defect and prospectively specify a harder evidential family. The protected V2 evidence therefore supports a strong benchmark-level conclusion: non-compensatory, content-bound authority gates can eliminate the scientific-authority laundering that survives strong citation, support, and provenance mechanisms while retaining full clean coverage.
+Scientific verification can establish that a claim is plausible, supported somewhere, or accompanied by a citation without establishing that a particular source, checker, and evaluator jointly justify a scientific-authority transition. We evaluate a non-escalating authority pipeline that requires exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, and search-contamination clearance. A missing prerequisite leaves the outcome undetermined and a failed one blocks it, rather than contributing a low score that confidence elsewhere can compensate for. In a prospectively frozen, independently hosted 420-case protected campaign covering 13 clean/hostile families, the governed pipeline produced 0 false authority promotions among 360 hostile opportunities, versus 180/360 for the strongest frozen comparator mechanism (absolute difference $-0.50$, paired 95\% CI $[-0.553,-0.447]$). Both promoted 60/60 clean positives, so the safety gain did not arise from total refusal. The predeclared abstention-superiority hypothesis was not supported on that battery: every system was correct on all eligible abstention cases, which we show is a property of how that family was constructed rather than a comparative finding. We then repair the construction under a protocol frozen beforehand and an identifiability register run before execution, and report one run of the same frozen panel on it: the governed pipeline selects the undetermined terminal on 30/30 eligible cases with 0/360 false promotions against 0/30 for the same strongest comparator (paired difference $1.0$, 95\% CI $[1.0,1.0]$), while the one comparator mechanism able to escalate selects it on 15/30, so the margin against that mechanism is $0.5$. Nine of the ten comparator mechanisms score zero because they cannot express an undetermined terminal at all, so this measures terminal expressiveness under a non-compensatory gate lattice --- the ability to report an inability --- and not a finer-grained scientific judgement. Every registered ablation increased false promotion while preserving clean coverage; replacing the non-compensatory terminal with a six-of-nine soft-confidence rule increased false promotion to 91.7\%. Scored-process telemetry recorded zero protected-label identifiers and zero external-IP connections, and an independent implementation reproduced the headline counts. The evidence supports the bounded claim that non-compensatory authority gates prevent authority laundering in this protected mechanical-gold benchmark; it does not establish universal evaluator security or superiority to the original external systems whose ideas motivated the comparator mechanisms.
 \end{abstract}
 
 \noindent\textbf{Keywords:} scientific verification; provenance; evaluator integrity; protected evaluation; abstention; AI assurance.
@@ -61,6 +63,8 @@ RewardHackingAgents treats evaluator manipulation and held-out leakage as an exp
 SciIntegrity-Bench constructs academic-integrity dilemmas in which honest acknowledgement of inability is the only correct outcome, while AgentAbstain evaluates paired should-act/should-abstain tasks in executable environments \citep{sciintegrity2026,agentabstain2026}. They establish abstention as an evaluation target distinct from generic task success. P4's \cannot and \blockstate terminals are authority-specific states determined by unresolved or failed evidence/checker/evaluator prerequisites. The V2 audit shows that its original insufficient-evidence family does not resolve comparative abstention ability, so that axis is treated as a measurement-design result rather than generalized beyond the battery.
 
 Comparator names therefore use ``-style'' or describe a mechanism. They are protocol-matched reimplementations under one candidate-visible packet and resource accounting, not executions of the external authors' software. Our empirical claim is about the frozen mechanisms in this benchmark, not about published systems in their native environments.
+
+\input{discovery_failure_authority_interface}
 
 \section{Non-escalating authority transition}
 Let a proposal contain claim $c$ and evidence references $E=\{e_1,\ldots,e_n\}$. Promotion is a conjunction of hard prerequisites rather than a weighted score:
@@ -196,5 +200,18 @@ The final hidden set was created only after the V2 public preflight and harness 
 
 \section{Ablation interpretation}
 Five 8.3\% ablations each expose a hostile family governed by the removed coordinate. Source/provenance collapse exposes two families (16.7\%), evaluator-protection removal exposes three (25\%), and soft confidence permits promotion in eleven of twelve hostile families (91.7\%). This monotone pattern is descriptive evidence that the final zero-false-promotion result is not generated by one redundant gate alone.
+
+\end{document}
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-non-escalating-authority-transition}
+\input{sections/04-methods}
+\input{sections/05-results}
+\input{sections/06-threat-model-limitations-and-interpretation}
+\input{sections/07-broader-impact-and-governance}
+\input{sections/08-data-and-code-availability}
+\input{sections/09-conclusion}
+\input{sections/10-freeze-and-custody-identifiers}
+\input{sections/11-ablation-interpretation}
 
 \end{document}

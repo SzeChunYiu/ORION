@@ -1,0 +1,34 @@
+{
+  "schema_version": "orion.p3.successor-acquisition-wording.v1",
+  "record": "P3_SUCCESSOR_ACQUISITION_WORDING",
+  "date": "2026-08-23",
+  "authority_scope": "OUTCOME_BLIND_FINDING",
+  "outcome_accessed": false,
+  "grants": "Nothing. P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1 stays at PROSPECTIVE_LOCAL_PREFLIGHT_COMPLETE__EXTERNAL_ATLAS_REQUIRED.",
+  "subject": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
+  "the_protocol_is_well_specified": {
+    "opportunity_rule": "OBSERVATIONALLY_SEPARABLE_PROTECTED_DISTINCTION",
+    "zero_opportunity_stratum_cannot_authorize_a_claim": true,
+    "power": "Sidak exact max-T over 768 independent source-family clusters and four comparators, familywise alpha 0.05, target joint power 0.9, intersection logic across all contrasts",
+    "planning_discordance": 0.4,
+    "note_on_the_planning_discordance": "0.4 is the conservative end, which is the right choice and is worth contrasting with P10's H1: that gate reaches only 0.46 power at the same discordance under its own Holm correction."
+  },
+  "the_defect": {
+    "where": "external_bindings_required[0]",
+    "text": "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES",
+    "problem": "The acquisition requirement is stated as NONZERO VARIATION while the protocol's own opportunity rule needs OBSERVATIONAL SEPARABILITY. Those are different properties, and an atlas satisfying the first can fail the second completely.",
+    "measured_proof": "In the current public-reference atlas, referent_ids carries 24 distinct values across 64 projections and construct_ids carries 12 -- abundant variation -- and neither ever differs between the two sides of a case: 0 of 32, in every case family. See P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json.",
+    "consequence": "An atlas procured to the letter of this binding name can reproduce every zero the current one has. The requirement licenses buying the wrong thing, and atlases are expensive.",
+    "same_wording_in_the_ledger": "The programme ledger's success condition for this item reads 'Every formerly inert coordinate varies', which carries the identical weakness."
+  },
+  "the_repair": {
+    "change": "State the acquisition requirement and the ledger's success condition in terms of nonzero WITHIN-CASE contrast on each of the four coordinates -- the property the opportunity rule already names.",
+    "why_now": "This is a pre-outcome wording fix that costs nothing today and cannot be made after an atlas is acquired against the current text.",
+    "not_done_here": "The protocol is frozen and belongs to its owner; this records the finding rather than editing the freeze."
+  },
+  "also_checked": {
+    "local_bindings_are_present_and_match": true,
+    "detail": "A004_HISTORICAL_RECEIPT and A004_HISTORICAL_PROTOCOL both exist on codex/p1-p5-successor-execution with content digests matching the protocol's declared sha256 exactly. An earlier note reporting them as missing was a sandbox artefact and is withdrawn."
+  },
+  "verdict": "The external atlas requirement is genuine. Its STATEMENT is not strict enough to procure something that would satisfy the protocol."
+}

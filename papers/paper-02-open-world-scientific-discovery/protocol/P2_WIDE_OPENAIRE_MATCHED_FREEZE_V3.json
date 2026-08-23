@@ -1,0 +1,88 @@
+{
+  "schema_version": "orion.p2.wide-openaire-matched-freeze.v3",
+  "paper_id": "P2",
+  "date": "2026-08-21",
+  "authority": "PROSPECTIVE_EXTERNAL_CONFIRMATION_PROTOCOL_TRANSPORT_PREREQUISITE",
+  "frozen_before_any_v3_scientific_outcome": true,
+  "parent_v2": {
+    "path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json",
+    "git_blob_sha": "36c923a416389be831333e8a02f75736278c8b3f",
+    "head_sha": "b96f1e70a65b73556c6bddb8189a5d6099937a48",
+    "retained_terminal": "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK",
+    "scientific_outcomes_reused": false
+  },
+  "scientific_inheritance": {
+    "benchmark": "EXACT_PARENT_V2",
+    "candidate_split": "EXACT_PARENT_V2",
+    "logical_requests_per_nonempty_task": "EXACT_PARENT_V2",
+    "provider_order": "EXACT_PARENT_V2",
+    "crossref_discovery": "EXACT_PARENT_V2",
+    "direct_openaire_discovery": "EXACT_PARENT_V2_V3_ENDPOINT",
+    "openaire_fallback_discovery": "EXACT_PARENT_V2_V3_ENDPOINT",
+    "identity_admission": "EXACT_PARENT_V2_STRUCTURED_PID_ONLY",
+    "systems": "EXACT_PARENT_V2",
+    "candidate_cap": "EXACT_PARENT_V2_20",
+    "evaluation": "EXACT_PARENT_V2",
+    "paired_inference": "EXACT_PARENT_V2",
+    "validity_thresholds": "EXACT_PARENT_V2",
+    "effect_thresholds": "EXACT_PARENT_V2",
+    "claim_boundary": "EXACT_PARENT_V2"
+  },
+  "v3_transport_change": {
+    "change_class": "DOI_CROSSWALK_TRANSPORT_ONLY",
+    "reason": "V2 retained a live HTTP-200 zero-yield discrepancy for repeated V3 pid parameters and failed to persist the unsuccessful provider body before the yield assertion. V3 uses the separately documented V4 identity-filter grammar and requires raw-byte persistence before any yield validation.",
+    "direct_and_fallback_endpoint_unchanged": "https://api.openaire.eu/graph/v3/research-products",
+    "crosswalk_endpoint": "https://api-beta.openaire.eu/graph/v4/research-products",
+    "crosswalk_api_status": "BETA",
+    "filter_grammar": "ids.doi:<doi1>|<doi2>|...,type:publication",
+    "doi_or_operator": "|",
+    "cross_field_and_operator": ",",
+    "page": 1,
+    "page_size": 100,
+    "select": "id,pids,type",
+    "identity_source": "structured pids scheme/value objects only",
+    "raw_regex_identity_extraction": false
+  },
+  "transport_probe": {
+    "required_before_v3_benchmark_acquisition": true,
+    "probe_dois": [
+      "10.5281/zenodo.8217359",
+      "10.1038/s41586-023-06221-2"
+    ],
+    "page_size": 10,
+    "must_return_http_200": true,
+    "minimum_result_count": 1,
+    "minimum_requested_doi_matches": 1,
+    "benchmark_gold_access": "NONE",
+    "raw_response_must_be_written_before_http_or_yield_assertion": true,
+    "pending_receipt_must_be_written_before_yield_assertion": true,
+    "final_receipt_only_after_raw_response_revalidation": true,
+    "failed_probe_bytes_must_be_uploaded": true,
+    "positive_terminal": "OPENAIRE_V4_DOI_FILTER_TRANSPORT_VALID",
+    "failure_terminal": "P2_WIDE_EXTERNAL_V3_CANNOT_CHECK_TRANSPORT"
+  },
+  "v3_scientific_terminals": {
+    "positive": "P2_WIDE_EXTERNAL_V3_SUPPORTED",
+    "negative_valid": "P2_WIDE_EXTERNAL_V3_NOT_SUPPORTED",
+    "invalid_or_transport": "P2_WIDE_EXTERNAL_V3_CANNOT_CHECK"
+  },
+  "outcome_tuning_forbidden": [
+    "benchmark_rows",
+    "queries",
+    "logical_request_budget",
+    "provider_order",
+    "candidate_cap",
+    "selection_rules",
+    "identity_admission",
+    "inferential_unit",
+    "bootstrap_resamples",
+    "bootstrap_seed",
+    "effect_thresholds",
+    "validity_thresholds",
+    "probe_dois",
+    "v4_filter_grammar",
+    "v4_crosswalk_endpoint"
+  ],
+  "implementation_gate": "A successful transport probe grants permission only to implement and execute the already-frozen V3 400-row campaign. It grants no scientific promotion, no issue closure, and no registry mutation.",
+  "claim_boundary": "V3 changes only the Crossref-DOI-to-OpenAIRE crosswalk transport from the V2 V3 repeated-pid encoding to the documented V4 beta ids.doi OR-list filter. Direct/fallback discovery, shared capture, candidate projections, comparator, metrics, thresholds, custody, and scientific claim boundary remain inherited from V2. V4 beta availability or transport success is not scientific evidence."
+}

@@ -1,7 +1,7 @@
 \section{Acquisition is not closure}
 \label{sec:acquisition-authority}
 
-The central design move in Paper II is to separate two problems that are often
+The central design move in this paper is to separate two problems that are often
 collapsed into one policy.  An \emph{acquisition policy} decides what to search,
 retrieve, inspect, expand or reread next.  A \emph{closure authority} decides
 whether the evidence state is allowed to support route-local stopping or
@@ -17,7 +17,7 @@ acquisition mechanism as
 \]
 where $a_t$ may be a lexical query, a reasoning-aware query, a fielded Boolean
 filter, a graph-expansion action, a selective fetch, a reranking operation, or a
-request for another retrieval round.  ORION places no novelty claim on the
+request for another retrieval round.  No novelty is claimed here for the
 internal form of $A$.  Instead, acquired evidence updates both an evidence state
 $E_t$ and a typed obligation state $O_t$.  Closure is a distinct map
 \[
@@ -26,8 +26,8 @@ $E_t$ and a typed obligation state $O_t$.  Closure is a distinct map
 \]
 A utility, relevance, confidence, sufficiency or coverage signal may influence
 $A$ and may recommend a local stop, but it cannot by itself delete an unresolved
-obligation in $O_t$.  This is the interface at which Paper II locates its
-candidate residual contribution.
+obligation in $O_t$.  This interface is where the residual contribution of this
+paper sits.
 
 \begin{figure}[t]
 \centering
@@ -36,10 +36,10 @@ candidate residual contribution.
 composable: lexical/metadata augmentation, reasoning-aware or hybrid retrieval,
 field-aware selective fetching, citation expansion and continuation signals may
 all improve what is acquired.  Their outputs update evidence and typed
-obligations, but a separate authority layer controls route stop, open or
-\texttt{CANNOT\_CHECK} states and task closure.  The figure therefore locates the
-candidate ORION residual at the meaning of acquisition outcomes rather than at a
-claim to have invented the strongest retriever.}
+obligations, but a separate authority layer controls route stop, open and
+undetermined states and task closure.  The figure therefore locates the residual
+at the meaning of acquisition outcomes rather than at a claim to have invented
+the strongest retriever.}
 \label{fig:p2-7}
 \end{figure}
 
@@ -54,10 +54,10 @@ shows that fielded Boolean admission, structure-rich inspection and selective
 section fetching can improve the accuracy--context tradeoff
 \cite{sieve2026}.  Breadth-first bibliography expansion can recover literature
 missed by API-only retrieval, while also demonstrating why citation-list recall
-cannot be the only evaluation axis \cite{rethinkinglitsearch2026}.  Paper II
-therefore treats lexical, metadata-augmented, reasoning-aware, field-aware and
-citation-expansion retrieval as candidate strengths to compose, not as ORION
-inventions.
+cannot be the only evaluation axis \cite{rethinkinglitsearch2026}.  Lexical,
+metadata-augmented, reasoning-aware, field-aware and citation-expansion
+retrieval are therefore treated as candidate strengths to compose, not as
+inventions of this work.
 
 The same rule applies to continuation and stopping signals.  DeepControl uses
 marginal information utility to regulate continued retrieval
@@ -69,7 +69,7 @@ reasoning to maintain a target coverage guarantee while permitting early stoppin
 \cite{micp2026}; and structured Search-R1 stopping judgments explicitly encode
 sufficiency and remaining gaps \cite{multiragstop2026}.  These signals and
 guarantees can all be useful inputs to acquisition or route-local stopping.  The
-ORION-specific question is narrower: what are those signals permitted to certify
+question asked here is narrower: what are those signals permitted to certify
 when routes are dependent, unavailable, censored or only locally exhausted?
 
 \subsection{The authority residual}
@@ -84,7 +84,7 @@ question-conditioned processing state must remain distinct so duplicate
 rediscovery does not inflate coverage while a genuinely changed scientific
 question can trigger justified rereading.
 
-The resulting system is deliberately asymmetric.  ORION is permissive about
+The resulting design is deliberately asymmetric.  It is permissive about
 \emph{how} evidence is acquired: a stronger retriever, query generator,
 expansion rule or verification signal can replace a weaker one.  It is
 conservative about \emph{what acquisition outcomes are allowed to mean}: local
@@ -103,6 +103,5 @@ should the closure layer be challenged with direct ablations and strong stopping
 baselines.  A positive external result must therefore show both acquisition
 quality and the incremental effect of typed closure authority; a cheaper stop
 that hides reachable relevant evidence is not a positive result.  Conversely,
-a stronger donor retriever that improves acquisition while leaving ORION's
-closure constraints intact strengthens the system rather than weakening the
-novelty claim.
+a stronger donor retriever that improves acquisition while leaving the closure
+constraints intact strengthens the system rather than weakening the claim.

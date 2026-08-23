@@ -1,0 +1,35 @@
+name: p11-p13-top-tier-theory-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/candidates/RESOURCE_LOCATION_SEMANTICS_V1.md'
+      - 'papers/candidates/check_p11_p13_top_tier_theory_v1.py'
+      - 'papers/paper-11-state-as-computation/TOP_TIER_THEORY_V1.md'
+      - 'papers/paper-12-adaptive-state-reasoning/TOP_TIER_THEORY_V1.md'
+      - 'papers/paper-13-responsibility-carrying-state/TOP_TIER_THEORY_V1.md'
+      - '.github/workflows/p11-p13-top-tier-theory-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  theory-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run independent finite theory checker
+        run: python papers/candidates/check_p11_p13_top_tier_theory_v1.py | tee p11_p13_theory_v1.json
+      - name: Verify deterministic second execution
+        run: |
+          python papers/candidates/check_p11_p13_top_tier_theory_v1.py > p11_p13_theory_v1_rerun.json
+          cmp p11_p13_theory_v1.json p11_p13_theory_v1_rerun.json
+          echo P11_P13_TOP_TIER_THEORY_V1_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-p13-top-tier-theory-v1
+          path: p11_p13_theory_v1.json

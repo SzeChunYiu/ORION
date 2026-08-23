@@ -1,0 +1,110 @@
+name: orion-qg-qg17-phase-sharpness
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG17_*'
+      - 'development/orion-qg-regime-geometry/qg17_*'
+      - 'development/orion-qg-regime-geometry/run_qg17_dual_harness.py'
+      - 'research/extensions/orion-qg/qg17_*'
+      - '.github/workflows/orion-qg-qg17-phase-sharpness.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg17-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg17-phase-sharpness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QG17_PARENT: 406886f55aaaa08a4b310d336e3c98a87371e97e
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG17_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG17_PARENT}")" = "${QG17_PARENT}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg17_r6i_phase_sharpness.py \
+            development/orion-qg-regime-geometry/qg17_generic_verify.py \
+            development/orion-qg-regime-geometry/qg17_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg17_dual_harness.py
+      - name: Execute full frozen V5 repricing through both ORION instruments
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg17_dual_harness.py \
+            | tee artifacts/orion-qg-qg17-dual-summary.json
+      - name: Deterministic scanner replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg17_r6i_phase_sharpness.py \
+            --output artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json \
+            > artifacts/orion-qg-qg17-replay.log
+          cmp \
+            artifacts/orion-qg-qg17-r6i-phase-sharpness.json \
+            artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json
+      - name: Enforce phase-witness or honest-negative gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg17-r6i-phase-sharpness.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg17-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg17-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg17-dual-harness.json').read_text())
+          pos='QG17_SUPPORT2_PHASE_WITNESS_FOUND_AT_FROZEN_OUTSIDE_OBJECTIVE'
+          neg='QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN'
+          assert a['terminal'] in {pos,neg}
+          assert all(a['gates'].values())
+          assert a['candidates_tested']==211248
+          assert a['objectives']['O0']['strict_count']==0
+          assert a['global_phase_boundary_complete'] is False
+          expected='ACCEPT_SUPPORT2_PHASE_WITNESS' if a['terminal']==pos else 'ACCEPT_BOUNDED_NEGATIVE'
+          assert g['decision']==expected and g['all_checks'] is True
+          assert n['decision']==expected and n['all_checks'] is True
+          assert d['terminal']==a['terminal'] and d['both_accept'] is True
+          assert d['global_phase_boundary_complete'] is False
+          if a['terminal']==pos:
+              assert a['outside_objectives_with_strict_witness']
+              for name in a['outside_objectives_with_strict_witness']:
+                  r=a['objectives'][name]['first']
+                  assert r['support2']['scaled_cost'] < r['cap1']['scaled_cost']
+          assert a['novelty_authority'] is False
+          assert a['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload QG-17 proof receipts and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg17-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg17-r6i-phase-sharpness.json
+            artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json
+            artifacts/orion-qg-qg17-generic-verification.json
+            artifacts/orion-qg-qg17-native-verification.json
+            artifacts/orion-qg-qg17-dual-harness.json
+            artifacts/orion-qg-qg17-dual-summary.json
+            artifacts/orion-qg-qg17-replay.log
+            .orion-qg-qg17-generic/.orion-harness/**
+            .orion-qg-qg17-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

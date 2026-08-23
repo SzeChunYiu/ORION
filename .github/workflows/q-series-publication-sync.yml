@@ -1,0 +1,111 @@
+name: q-series-publication-sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/Q_SERIES_FINAL_SPEC_V1.json'
+      - 'papers/Q_SERIES_CONTENT_BINDING_V1.json'
+      - 'papers/Q_SERIES_FINAL_READINESS_2026-08-22.md'
+      - 'papers/SYNC_CONTRACT.md'
+      - 'papers/FRAMEWORK_SNAPSHOT.json'
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q-paper-03-dual-instrument/**'
+      - 'papers/Q-paper-04-typed-state/**'
+      - 'src/orion/registry.py'
+      - 'src/orion/programme/q_series_sync.py'
+      - 'src/orion/programme/q_series_content_binding.py'
+      - 'src/orion/programme/content_binding_coverage.py'
+      - 'tests/unit/publication/test_framework_snapshot.py'
+      - 'tests/unit/publication/test_q_series_final_spec.py'
+      - 'tests/unit/publication/test_q_series_content_binding.py'
+      - 'tests/unit/programme/test_content_binding_coverage.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/publication_contract.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/recursive_runner.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/workspace.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/protocol.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/campaign_protocol.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/campaign_runner.py'
+      - 'packages/orion-research-harness/tests/test_publication_contract.py'
+      - 'packages/orion-research-harness/tests/test_invalid_content_recovery.py'
+      - '.github/workflows/q-series-publication-sync.yml'
+  pull_request:
+    paths:
+      - 'papers/Q_SERIES_FINAL_SPEC_V1.json'
+      - 'papers/Q_SERIES_CONTENT_BINDING_V1.json'
+      - 'papers/Q_SERIES_FINAL_READINESS_2026-08-22.md'
+      - 'papers/SYNC_CONTRACT.md'
+      - 'papers/FRAMEWORK_SNAPSHOT.json'
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q-paper-03-dual-instrument/**'
+      - 'papers/Q-paper-04-typed-state/**'
+      - 'src/orion/registry.py'
+      - 'src/orion/programme/q_series_sync.py'
+      - 'src/orion/programme/q_series_content_binding.py'
+      - 'src/orion/programme/content_binding_coverage.py'
+      - 'tests/unit/publication/test_framework_snapshot.py'
+      - 'tests/unit/publication/test_q_series_final_spec.py'
+      - 'tests/unit/publication/test_q_series_content_binding.py'
+      - 'tests/unit/programme/test_content_binding_coverage.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/publication_contract.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/recursive_runner.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/workspace.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/protocol.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/campaign_protocol.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/campaign_runner.py'
+      - 'packages/orion-research-harness/tests/test_publication_contract.py'
+      - 'packages/orion-research-harness/tests/test_invalid_content_recovery.py'
+      - '.github/workflows/q-series-publication-sync.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: q-series-publication-sync-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            packages/orion-research-harness/pyproject.toml
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Check framework and canonical Q publication package
+        run: |
+          python -m pytest -q \
+            tests/unit/publication/test_framework_snapshot.py \
+            tests/unit/publication/test_q_series_final_spec.py \
+            tests/unit/publication/test_q_series_content_binding.py \
+            tests/unit/programme/test_content_binding_coverage.py
+      - name: Check Q3 harness publication contract and invalid-content recovery
+        run: |
+          python -m pytest -q \
+            packages/orion-research-harness/tests/test_publication_contract.py \
+            packages/orion-research-harness/tests/test_invalid_content_recovery.py
+      - name: Re-run Q1 independent finite-core proof sanity check
+        run: |
+          python papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py > /tmp/q1-sanity.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          expected = json.loads(Path('papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json').read_text())
+          actual = json.loads(Path('/tmp/q1-sanity.json').read_text())
+          if actual != expected:
+              raise SystemExit('Q1 independent proof sanity output drifted from the bound result')
+          if actual.get('status') != 'PASS':
+              raise SystemExit('Q1 independent proof sanity check did not PASS')
+          PY

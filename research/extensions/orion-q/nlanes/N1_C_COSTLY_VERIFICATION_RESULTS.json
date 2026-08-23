@@ -1,0 +1,77 @@
+{
+  "arms": {
+    "CHEAPEST_FIRST": {
+      "false_escalation_rate": 1.0624,
+      "mean_unknown_remaining": 36.0693,
+      "mean_verifications": 3.9307,
+      "mean_verifier_cost": 3.9307,
+      "solve_rate": 0.67985
+    },
+    "IDEAL_VOI_PARENT": {
+      "false_escalation_rate": 0.0,
+      "mean_unknown_remaining": 38.697,
+      "mean_verifications": 1.303,
+      "mean_verifier_cost": 1.40025,
+      "solve_rate": 0.9866
+    },
+    "LEARNED_TYPED_SCOPED": {
+      "false_escalation_rate": 0.0,
+      "mean_unknown_remaining": 38.697,
+      "mean_verifications": 1.303,
+      "mean_verifier_cost": 1.40025,
+      "solve_rate": 0.9866
+    },
+    "LEARNED_UNSCOPED": {
+      "false_escalation_rate": 0.6959,
+      "mean_unknown_remaining": 38.07785,
+      "mean_verifications": 1.92215,
+      "mean_verifier_cost": 2.06105,
+      "solve_rate": 0.9595
+    },
+    "PERMANENT_PRUNE": {
+      "false_escalation_rate": 0.0,
+      "implicit_unverified_refutations_per_episode": 18.80235,
+      "mean_unknown_remaining": 36.0473,
+      "mean_verifications": 3.9527,
+      "mean_verifier_cost": 3.99955,
+      "solve_rate": 0.6395
+    }
+  },
+  "authority": "N1C_DIAGNOSTIC__NO_P10_AUTHORITY__NO_NOVELTY_AUTHORITY__EXACT_SYNTHETIC_ONLY",
+  "bootstrap_seed": 20260822,
+  "claim_boundary": "Exact-synthetic diagnostic only. Any positive is for typed scoped failure STATE as decision information under a binding verifier budget; the allocation POLICY is closed by the donor-complete value-of-information parent given the same typed facts. No P10, novelty, or real-quantum authority.",
+  "date": "2026-08-21",
+  "family": "N1-C",
+  "gates": {
+    "G1_WORLD_NONTRIVIAL": true,
+    "G2_BUDGET_BINDING": true,
+    "G3_PRUNE_NO_GAIN": true,
+    "G4_TYPED_OVER_UNSCOPED": true,
+    "G5_VOI_PARENT_MATCH": true
+  },
+  "issue": 674,
+  "paired_deltas": {
+    "typed_minus_unscoped_boot95": [
+      0.0248,
+      0.02955
+    ],
+    "typed_minus_unscoped_solve": 0.0271,
+    "typed_minus_voi_boot95": [
+      0.0,
+      0.0
+    ],
+    "typed_minus_voi_solve": 0.0
+  },
+  "protocol": "development/orion-q-nlane-closure/N1_C_PROTOCOL.md",
+  "reexecution_of": "issue-674 comment 5355071291 (original run never committed)",
+  "schema": "ORIONQ.N1C_CostlyVerificationVOI.v1",
+  "seed": 20260821,
+  "terminal": "N1C_TYPED_FAILURE_STATE_VALUE__VOI_POLICY_PARENT_SUFFICIENT",
+  "world": {
+    "candidates_per_episode": 40,
+    "eval_episodes": 20000,
+    "train_episodes": 5000,
+    "unknown_preserved": "unverified candidates stay UNKNOWN; counts reported per arm",
+    "verifier_cost_budget": 6
+  }
+}

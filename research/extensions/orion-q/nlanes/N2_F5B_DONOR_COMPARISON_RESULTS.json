@@ -1,0 +1,393 @@
+{
+  "authority": "exact_synthetic_frozen_world_only; not measured-implementation, hardware, or novelty authority",
+  "claim_boundary": "Donor comparison holds only for the frozen world pair of N2_F5B_DONOR_COMPARISON_PROTOCOL.md (ORIG imported unchanged from F5; MIS frozen here with true forms outside both libraries). DONOR_ABSORBED retires the F5 residual's standing-value claim without retiring F5's internal receipts; nothing here creates LOWER_BOUND, hardware, or novelty authority.",
+  "comparison_margin": 0.02,
+  "crossover_probes": {
+    "mis": {
+      "candidate": {
+        "d_fitted": 118.22882140669427,
+        "relative_error": 0.08390722078872771
+      },
+      "d_true": 129.05769381621548,
+      "donor": {
+        "d_fitted": 185.9993953710583,
+        "relative_error": 0.4412112123739839
+      }
+    },
+    "orig": {
+      "candidate": {
+        "d_fitted": 188.95382462702008,
+        "relative_error": 9.024969826307414e-16
+      },
+      "d_true": 188.95382462702025,
+      "donor": {
+        "d_fitted": 188.95382462702037,
+        "relative_error": 6.016646550871609e-16
+      }
+    },
+    "path": {
+      "L": 128,
+      "d_range": [
+        4,
+        4096
+      ],
+      "lam": 2.0
+    }
+  },
+  "eta_uncertain_band": 0.02,
+  "f5_residual_disposition": "mixed: donor absorbs the residual on the original (partly well-specified) world; candidate ahead only on the misspecified world",
+  "family": "f5_residual_donor_comparison",
+  "fitted": {
+    "candidate_mis": {
+      "wr": [
+        0.7384362617838046,
+        3.452439023342955
+      ],
+      "ws": [
+        1.3681190846052715,
+        11.812782899040206
+      ]
+    },
+    "candidate_orig": {
+      "wr": [
+        0.35000000000000003,
+        2.1
+      ],
+      "ws": [
+        0.9999999999999993,
+        25.000000000000014
+      ]
+    },
+    "donor_mis": {
+      "route_R": {
+        "selected": "M5_powerlaw",
+        "selection_scores": {
+          "M1_true_s_form": {
+            "finite": true,
+            "val_rel_rmse": 2.7867837424064352
+          },
+          "M2_true_r_form": {
+            "finite": true,
+            "val_rel_rmse": 0.12276527517999208
+          },
+          "M3_affine": {
+            "finite": true,
+            "val_rel_rmse": 3.84409828215423
+          },
+          "M4_bilinear": {
+            "finite": true,
+            "val_rel_rmse": 2.5539867426838665
+          },
+          "M5_powerlaw": {
+            "finite": true,
+            "val_rel_rmse": 0.025576020440203018
+          },
+          "M6_quad_mix": {
+            "finite": true,
+            "val_rel_rmse": 0.2010058802092048
+          }
+        },
+        "weights": [
+          0.6039190814717876,
+          6.661338147750939e-16,
+          2.099999999999994,
+          1.7357000830712253
+        ]
+      },
+      "route_S": {
+        "selected": "M6_quad_mix",
+        "selection_scores": {
+          "M1_true_s_form": {
+            "finite": true,
+            "val_rel_rmse": 0.1052269229430024
+          },
+          "M2_true_r_form": {
+            "finite": true,
+            "val_rel_rmse": 0.8816852686302719
+          },
+          "M3_affine": {
+            "finite": true,
+            "val_rel_rmse": 0.7062317248581003
+          },
+          "M4_bilinear": {
+            "finite": true,
+            "val_rel_rmse": 0.18419689657095042
+          },
+          "M5_powerlaw": {
+            "finite": true,
+            "val_rel_rmse": 0.1267710651032297
+          },
+          "M6_quad_mix": {
+            "finite": true,
+            "val_rel_rmse": 0.04139043394050661
+          }
+        },
+        "weights": [
+          71.19874672166465,
+          0.04843050327331133,
+          1.2583075542529198,
+          11.622689703046206
+        ]
+      }
+    },
+    "donor_orig": {
+      "route_R": {
+        "selected": "M2_true_r_form",
+        "selection_scores": {
+          "M1_true_s_form": {
+            "finite": true,
+            "val_rel_rmse": 2.0928628753372562
+          },
+          "M2_true_r_form": {
+            "finite": true,
+            "val_rel_rmse": 2.4642644441531453e-16
+          },
+          "M3_affine": {
+            "finite": true,
+            "val_rel_rmse": 2.9566793316708844
+          },
+          "M4_bilinear": {
+            "finite": true,
+            "val_rel_rmse": 1.9630571971641848
+          },
+          "M5_powerlaw": {
+            "finite": true,
+            "val_rel_rmse": 0.046473819297874974
+          },
+          "M6_quad_mix": {
+            "finite": true,
+            "val_rel_rmse": 0.29613411475071527
+          }
+        },
+        "weights": [
+          0.35000000000000003,
+          2.1
+        ]
+      },
+      "route_S": {
+        "selected": "M6_quad_mix",
+        "selection_scores": {
+          "M1_true_s_form": {
+            "finite": true,
+            "val_rel_rmse": 5.467330007943339e-16
+          },
+          "M2_true_r_form": {
+            "finite": true,
+            "val_rel_rmse": 1.0497118084873893
+          },
+          "M3_affine": {
+            "finite": true,
+            "val_rel_rmse": 0.507775762715917
+          },
+          "M4_bilinear": {
+            "finite": true,
+            "val_rel_rmse": 0.12319977708090851
+          },
+          "M5_powerlaw": {
+            "finite": true,
+            "val_rel_rmse": 0.10385066008749967
+          },
+          "M6_quad_mix": {
+            "finite": true,
+            "val_rel_rmse": 3.9963306735774564e-16
+          }
+        },
+        "weights": [
+          1.691041253250412e-12,
+          1.2212453270876722e-15,
+          0.9999999999999972,
+          24.999999999999968
+        ]
+      }
+    }
+  },
+  "gates": {
+    "F5B_G1_determinism": true,
+    "F5B_G2_f5_reproduction": true,
+    "F5B_G3_donor_sufficiency_orig": true,
+    "F5B_G4_mis_world_verdict": "CANDIDATE_AHEAD",
+    "F5B_G5_oracle_bound": true,
+    "F5B_G6_hostile_bite_both": true
+  },
+  "headline": {
+    "mis_primary": {
+      "candidate": 0.984375,
+      "donor": 0.953125
+    },
+    "orig_h2_broken": {
+      "candidate": 0.4427083333333333,
+      "donor": 0.4427083333333333
+    },
+    "orig_primary": {
+      "candidate": 0.9947916666666666,
+      "donor": 0.9947916666666666
+    }
+  },
+  "issue": "SzeChunYiu/ORION#675",
+  "mis_world_constants": {
+    "a1": 1.0,
+    "a2": 25.0,
+    "a3": 0.35,
+    "a4": 6.0,
+    "e_L": 0.9,
+    "e_d": 0.7,
+    "e_r": 2.1,
+    "e_s": 1.15
+  },
+  "mis_world_design_check_labels": {
+    "primary": {
+      "R": 78,
+      "S": 18
+    },
+    "train": {
+      "R": 150,
+      "S": 46
+    }
+  },
+  "n_train": 196,
+  "parent_run": {
+    "orion_scores": {
+      "h1": 1.0,
+      "h2": 0.4427083333333333,
+      "primary": 0.9947916666666666
+    },
+    "protocol": "development/orion-q-nlane-closure/N2_F5_PROTOCOL.md",
+    "results": "research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json",
+    "terminal": "N2_F5_CROSSOVER_PREDICTION_RESIDUAL_SUPPORTED__EXACT_SYNTHETIC_ONLY"
+  },
+  "protocol": "development/orion-q-nlane-closure/N2_F5B_DONOR_COMPARISON_PROTOCOL.md",
+  "schema": "ORIONQ.N2F5BDonorComparisonResult.v1",
+  "seed": 20260821,
+  "sufficiency_tolerance": 1e-09,
+  "terminal": "N2_F5B_MIXED__CANDIDATE_AHEAD_ON_MISSPECIFIED_ONLY__EXACT_SYNTHETIC_ONLY",
+  "worlds": {
+    "mis_primary_heldout": {
+      "b1_nearest_neighbor": {
+        "confident_accuracy": 0.8125,
+        "n_points": 96,
+        "score": 0.8125,
+        "uncertain_rate": 0.0
+      },
+      "b3_linear_classifier": {
+        "confident_accuracy": 0.9583333333333334,
+        "n_points": 96,
+        "score": 0.9583333333333334,
+        "uncertain_rate": 0.0
+      },
+      "candidate_orion_analytic_typed": {
+        "confident_accuracy": 0.9894736842105263,
+        "n_points": 96,
+        "score": 0.984375,
+        "uncertain_rate": 0.010416666666666666
+      },
+      "donor_model_selection": {
+        "confident_accuracy": 0.9578947368421052,
+        "n_points": 96,
+        "score": 0.953125,
+        "uncertain_rate": 0.010416666666666666
+      },
+      "oracle": {
+        "confident_accuracy": 1.0,
+        "n_points": 96,
+        "score": 1.0,
+        "uncertain_rate": 0.0
+      }
+    },
+    "orig_h1_far_extrapolation": {
+      "b1_nearest_neighbor": {
+        "confident_accuracy": 0.9444444444444444,
+        "n_points": 18,
+        "score": 0.9444444444444444,
+        "uncertain_rate": 0.0
+      },
+      "b3_linear_classifier": {
+        "confident_accuracy": 0.9444444444444444,
+        "n_points": 18,
+        "score": 0.9444444444444444,
+        "uncertain_rate": 0.0
+      },
+      "candidate_orion_analytic_typed": {
+        "confident_accuracy": 1.0,
+        "n_points": 18,
+        "score": 1.0,
+        "uncertain_rate": 0.0
+      },
+      "donor_model_selection": {
+        "confident_accuracy": 1.0,
+        "n_points": 18,
+        "score": 1.0,
+        "uncertain_rate": 0.0
+      },
+      "oracle": {
+        "confident_accuracy": 1.0,
+        "n_points": 18,
+        "score": 1.0,
+        "uncertain_rate": 0.0
+      }
+    },
+    "orig_h2_broken_form": {
+      "b1_nearest_neighbor": {
+        "confident_accuracy": 0.3541666666666667,
+        "n_points": 96,
+        "score": 0.3541666666666667,
+        "uncertain_rate": 0.0
+      },
+      "b3_linear_classifier": {
+        "confident_accuracy": 0.3645833333333333,
+        "n_points": 96,
+        "score": 0.3645833333333333,
+        "uncertain_rate": 0.0
+      },
+      "candidate_orion_analytic_typed": {
+        "confident_accuracy": 0.4421052631578947,
+        "n_points": 96,
+        "score": 0.4427083333333333,
+        "uncertain_rate": 0.010416666666666666
+      },
+      "donor_model_selection": {
+        "confident_accuracy": 0.4421052631578947,
+        "n_points": 96,
+        "score": 0.4427083333333333,
+        "uncertain_rate": 0.010416666666666666
+      },
+      "oracle": {
+        "confident_accuracy": 1.0,
+        "n_points": 96,
+        "score": 1.0,
+        "uncertain_rate": 0.0
+      }
+    },
+    "orig_primary_heldout": {
+      "b1_nearest_neighbor": {
+        "confident_accuracy": 0.9166666666666666,
+        "n_points": 96,
+        "score": 0.9166666666666666,
+        "uncertain_rate": 0.0
+      },
+      "b3_linear_classifier": {
+        "confident_accuracy": 0.9270833333333334,
+        "n_points": 96,
+        "score": 0.9270833333333334,
+        "uncertain_rate": 0.0
+      },
+      "candidate_orion_analytic_typed": {
+        "confident_accuracy": 1.0,
+        "n_points": 96,
+        "score": 0.9947916666666666,
+        "uncertain_rate": 0.010416666666666666
+      },
+      "donor_model_selection": {
+        "confident_accuracy": 1.0,
+        "n_points": 96,
+        "score": 0.9947916666666666,
+        "uncertain_rate": 0.010416666666666666
+      },
+      "oracle": {
+        "confident_accuracy": 1.0,
+        "n_points": 96,
+        "score": 1.0,
+        "uncertain_rate": 0.0
+      }
+    }
+  }
+}

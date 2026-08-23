@@ -1,0 +1,19 @@
+{
+  "capability": "WEB_SEARCH",
+  "created_at": "2026-08-21T06:19:19.170130+00:00",
+  "payload": {
+    "instruction": "Use current web search. Open/inspect relevant primary or authoritative sources when useful. Return `items`, each with content, source_uri, optional item_id, and optional domain_ids. Do not fabricate sources.",
+    "limit": 8,
+    "query": {
+      "domain_hint": "software-verification",
+      "query_id": "q4",
+      "route_id": "route:freshness:capability-surface-history",
+      "route_kind": "FRESHNESS",
+      "text": "most recent git commits touching packages/orion-research-harness capability surface (broker.py, local_tools.py, tests) to confirm the capability set is current as of 2026-08-21"
+    }
+  },
+  "request_digest": "918bafbcb8d9d84ff96f36ed41f3400e169804099c9180642b65854865d8eebf",
+  "request_id": "hostreq:5d295c4c00f04832ed111cc279f19d2c29bd25836dac2d627603205d690735c0",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

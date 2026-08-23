@@ -23,7 +23,14 @@ def test_figure_p2_2_check_mode():
         text=True,
     )
     assert result.returncode == 0, f"P2-2 figure check failed: {result.stderr}"
-    assert "P2-2 artifacts match source mechanisms JSON" in result.stdout
+    # Exit 0 is not the whole verdict: the checker also exits 0-adjacent (3) when
+    # the figure content could not be compared, and announces that weaker outcome
+    # on its own line. Assert the full-match line so a run that only compared the
+    # tex and the manifest hash cannot be read as a run that compared everything.
+    assert (
+        "P2-2 tex, figure content and manifest source hash all match the committed data"
+        in result.stdout
+    )
 
 
 def test_table_p2_2_check_mode():

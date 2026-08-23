@@ -1,0 +1,3866 @@
+{
+  "authority": "MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_NEGATIVE__NOT_R6",
+  "concurrent_lane_clause": "any stronger positive R6F/R6G incumbent frozen pre-outcome must be absorbed and replayed against R6I before any prospective promotion",
+  "config_count_per_partition": 54,
+  "development_supported": false,
+  "donor_novelty_credit": false,
+  "fresh_r6_subject_coefficients_accessed": false,
+  "gates": {
+    "all_candidate_witnesses_valid": true,
+    "exact_tare3_hostile_all_exact": true,
+    "exactly_ten_partitions": true,
+    "fresh_stretched_n2_unread": true,
+    "frozen_sixterm_batches_complete": true,
+    "hostile_dp_vs_brute_exact": true,
+    "incumbent_replay_valid": true,
+    "r6h_partial_tag_hostile_pass": true,
+    "source_blobs_observed_match": true,
+    "strict_budget_matched_point_eq_n2": false,
+    "strict_budget_matched_point_h4": false
+  },
+  "hostile": {
+    "all_pass": true,
+    "brute_solver": "global rank-2 pair enumeration with shared-Tag syndrome-class scan",
+    "gates": {
+      "different_block_target_case_present": true,
+      "dp_vs_brute_all_exact": true,
+      "exact_tare3_hostile_all_exact": true,
+      "n1_and_n2_panels_present": true,
+      "permuted_target_case_present": true,
+      "r6h_partial_tag_hostile_pass": true,
+      "tie_case_present": true
+    },
+    "inherited_exact_tare3_panels": {
+      "n2_a": {
+        "brute_cost": 7,
+        "dp_cost": 7,
+        "n": 2,
+        "pass": true
+      },
+      "n2_b": {
+        "brute_cost": 7,
+        "dp_cost": 7,
+        "n": 2,
+        "pass": true
+      },
+      "n3_a": {
+        "brute_cost": 11,
+        "dp_cost": 11,
+        "n": 3,
+        "pass": true
+      },
+      "n3_b": {
+        "brute_cost": 10,
+        "dp_cost": 10,
+        "n": 3,
+        "pass": true
+      }
+    },
+    "inherited_r6h_gates": {
+      "common_tag_with_different_restore_accepted": true,
+      "mismatched_tag_key_not_equal": true,
+      "partial_witness_checks_pass": true,
+      "r6b_signed_phase_hostile_pass": true
+    },
+    "panels": {
+      "n1_mixed": {
+        "brute_cost": 6,
+        "dp_cost": 6,
+        "n": 1,
+        "optimal_candidate_count": 108,
+        "pass": true,
+        "relative_B_permutation": [
+          0,
+          2,
+          1
+        ],
+        "witness_cost_recomputed": true
+      },
+      "n1_permuted_blocks": {
+        "brute_cost": 4,
+        "dp_cost": 4,
+        "n": 1,
+        "optimal_candidate_count": 54,
+        "pass": true,
+        "relative_B_permutation": [
+          1,
+          2,
+          0
+        ],
+        "witness_cost_recomputed": true
+      },
+      "n1_same_blocks": {
+        "brute_cost": 4,
+        "dp_cost": 4,
+        "n": 1,
+        "optimal_candidate_count": 54,
+        "pass": true,
+        "relative_B_permutation": [
+          0,
+          1,
+          2
+        ],
+        "witness_cost_recomputed": true
+      },
+      "n2_a": {
+        "brute_cost": 10,
+        "dp_cost": 10,
+        "n": 2,
+        "optimal_candidate_count": 108,
+        "pass": true,
+        "relative_B_permutation": [
+          2,
+          0,
+          1
+        ],
+        "witness_cost_recomputed": true
+      },
+      "n2_b": {
+        "brute_cost": 10,
+        "dp_cost": 10,
+        "n": 2,
+        "optimal_candidate_count": 108,
+        "pass": true,
+        "relative_B_permutation": [
+          1,
+          0,
+          2
+        ],
+        "witness_cost_recomputed": true
+      },
+      "n2_permuted_blocks": {
+        "brute_cost": 10,
+        "dp_cost": 10,
+        "n": 2,
+        "optimal_candidate_count": 108,
+        "pass": true,
+        "relative_B_permutation": [
+          1,
+          2,
+          0
+        ],
+        "witness_cost_recomputed": true
+      },
+      "n2_tie": {
+        "brute_cost": 4,
+        "dp_cost": 4,
+        "n": 2,
+        "optimal_candidate_count": 54,
+        "pass": true,
+        "relative_B_permutation": [
+          0,
+          1,
+          2
+        ],
+        "witness_cost_recomputed": true
+      }
+    }
+  },
+  "incumbent_definition": "min(FRAME_ONLY_STRONG, R6B_REUSE, R6H_PARTIAL_TAG) envelope at Lambda<=candidate+1e-12",
+  "novelty_credit": false,
+  "objective": "C_SHARED = C_Uanti(A) + C_Uanti(B) + 2(w(S0)+w(S1)) + sum_k w(TAk) + sum_k w(TBk); raw (4,4,4)/central-2 multiplicities, constant-20 subtraction",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:METHOD_LANGUAGE_INADEQUATE_AFTER_SHARED_TAG_RANK2_CLOSURE",
+  "schema": "ORIONQ.MAXR6I.ExactRank2SharedTagDP.v1",
+  "scope": "OPEN_H4_EQ_N2_R6B_SIXTERM_RANK2_SHARED_TAG_JOINT_DP__NOT_R6",
+  "state_count": 1024,
+  "subjects": {
+    "H4": {
+      "all_candidate_witnesses_valid": true,
+      "batch_complete": true,
+      "best_strict": null,
+      "eligible_partition_count": 10,
+      "frozen_source_indices": [
+        12,
+        18,
+        22,
+        25,
+        27,
+        31
+      ],
+      "incumbent_replay_valid": true,
+      "incumbent_rows": [
+        {
+          "C_R6H": 16,
+          "C_frame_only": 16,
+          "C_incumbent": 16,
+          "C_reuse": 34,
+          "Lambda_batch": 0.4155982751983884,
+          "incumbent_source": "FRAME_ONLY",
+          "partition": [
+            [
+              12,
+              18,
+              22
+            ],
+            [
+              25,
+              27,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 21,
+          "Lambda_batch": 0.41581747322653073,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              18,
+              25
+            ],
+            [
+              22,
+              27,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 27,
+          "Lambda_batch": 0.4158647328290657,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              18,
+              27
+            ],
+            [
+              22,
+              25,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 22,
+          "Lambda_batch": 0.41600316484504013,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              18,
+              31
+            ],
+            [
+              22,
+              25,
+              27
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 28,
+          "Lambda_batch": 0.4161464173724754,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              22,
+              25
+            ],
+            [
+              18,
+              27,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 28,
+          "Lambda_batch": 0.4161767469527802,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              22,
+              27
+            ],
+            [
+              18,
+              25,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 27,
+          "Lambda_batch": 0.4162607154970074,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              22,
+              31
+            ],
+            [
+              18,
+              25,
+              27
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 21,
+          "Lambda_batch": 0.41628123430734865,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              25,
+              27
+            ],
+            [
+              18,
+              22,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 28,
+          "Lambda_batch": 0.4163379167522089,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              25,
+              31
+            ],
+            [
+              18,
+              22,
+              27
+            ]
+          ]
+        },
+        {
+          "C_R6H": 15,
+          "C_frame_only": 18,
+          "C_incumbent": 15,
+          "C_reuse": 22,
+          "Lambda_batch": 0.4163512080270061,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              12,
+              27,
+              31
+            ],
+            [
+              18,
+              22,
+              25
+            ]
+          ]
+        }
+      ],
+      "max_imag": 6.938893903907228e-18,
+      "partition_count": 10,
+      "partitions": [
+        {
+          "C_incumbent_envelope": 16,
+          "C_shared": 16,
+          "Lambda_batch": 0.4155982751983884,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 16,
+            "C_frame_only": 16,
+            "C_incumbent": 16,
+            "C_reuse": 34,
+            "Lambda_batch": 0.4155982751983884,
+            "incumbent_source": "FRAME_ONLY",
+            "partition": [
+              [
+                12,
+                18,
+                22
+              ],
+              [
+                25,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              18,
+              22
+            ],
+            [
+              25,
+              27,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 16,
+            "RA": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "RB": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "S0": [
+              16,
+              0
+            ],
+            "S1": [
+              0,
+              16
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 324,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 6,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  16,
+                  68
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  80
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  16,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  144
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.41581747322653073,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              18,
+              25
+            ],
+            [
+              22,
+              27,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 6,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  200
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  144
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.4158647328290657,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              18,
+              27
+            ],
+            [
+              22,
+              25,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 6,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.41600316484504013,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              18,
+              31
+            ],
+            [
+              22,
+              25,
+              27
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.4161464173724754,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              22,
+              25
+            ],
+            [
+              18,
+              27,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  200
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  144
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.4161767469527802,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              22,
+              27
+            ],
+            [
+              18,
+              25,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.4162607154970074,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              22,
+              31
+            ],
+            [
+              18,
+              25,
+              27
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 7,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.41628123430734865,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              25,
+              27
+            ],
+            [
+              18,
+              22,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 7,
+            "restore_support_B": 4,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.4163379167522089,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              25,
+              31
+            ],
+            [
+              18,
+              22,
+              27
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 6,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 0.4163512080270061,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 18,
+            "C_incumbent": 15,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ]
+          },
+          "partition": [
+            [
+              12,
+              27,
+              31
+            ],
+            [
+              18,
+              22,
+              25
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S0": [
+              0,
+              64
+            ],
+            "S1": [
+              64,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 6,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  144
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  64,
+                  200
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        }
+      ],
+      "r6b_window_champions_available": 2,
+      "source_blob_expected": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+      "source_blob_observed": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+      "source_blob_verified": true,
+      "strict_budget_matched_improvement_exists": false,
+      "strict_count": 0,
+      "subject": "H4"
+    },
+    "N2": {
+      "all_candidate_witnesses_valid": true,
+      "batch_complete": true,
+      "best_strict": null,
+      "eligible_partition_count": 10,
+      "frozen_source_indices": [
+        0,
+        7,
+        11,
+        24,
+        31,
+        32
+      ],
+      "incumbent_replay_valid": true,
+      "incumbent_rows": [
+        {
+          "C_R6H": 15,
+          "C_frame_only": 16,
+          "C_incumbent": 15,
+          "C_reuse": 31,
+          "Lambda_batch": 1.1214349234652108,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              7,
+              11
+            ],
+            [
+              24,
+              31,
+              32
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 18,
+          "C_incumbent": 14,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1284595217109359,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              7,
+              24
+            ],
+            [
+              11,
+              31,
+              32
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 18,
+          "C_incumbent": 14,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1289894301061176,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              7,
+              31
+            ],
+            [
+              11,
+              24,
+              32
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 17,
+          "C_incumbent": 14,
+          "C_reuse": 25,
+          "Lambda_batch": 1.1289894301061176,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              7,
+              32
+            ],
+            [
+              11,
+              24,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 18,
+          "C_incumbent": 14,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1338081290651303,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              11,
+              24
+            ],
+            [
+              7,
+              31,
+              32
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 17,
+          "C_incumbent": 14,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1343057131727972,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              11,
+              31
+            ],
+            [
+              7,
+              24,
+              32
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 17,
+          "C_incumbent": 14,
+          "C_reuse": 31,
+          "Lambda_batch": 1.1343057131727972,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              11,
+              32
+            ],
+            [
+              7,
+              24,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 17,
+          "C_incumbent": 14,
+          "C_reuse": 25,
+          "Lambda_batch": 1.140374783289043,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              24,
+              31
+            ],
+            [
+              7,
+              11,
+              32
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 18,
+          "C_incumbent": 14,
+          "C_reuse": 23,
+          "Lambda_batch": 1.140374783289043,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              24,
+              32
+            ],
+            [
+              7,
+              11,
+              31
+            ]
+          ]
+        },
+        {
+          "C_R6H": 14,
+          "C_frame_only": 18,
+          "C_incumbent": 14,
+          "C_reuse": 22,
+          "Lambda_batch": 1.1408330196115304,
+          "incumbent_source": "R6H_PARTIAL_TAG",
+          "partition": [
+            [
+              0,
+              31,
+              32
+            ],
+            [
+              7,
+              11,
+              24
+            ]
+          ]
+        }
+      ],
+      "max_imag": 9.75781955236954e-19,
+      "partition_count": 10,
+      "partitions": [
+        {
+          "C_incumbent_envelope": 15,
+          "C_shared": 15,
+          "Lambda_batch": 1.1214349234652108,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_frame_only": 16,
+            "C_incumbent": 15,
+            "C_reuse": 31,
+            "Lambda_batch": 1.1214349234652108,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                11
+              ],
+              [
+                24,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              7,
+              11
+            ],
+            [
+              24,
+              31,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 15,
+            "RA": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "S0": [
+              4,
+              0
+            ],
+            "S1": [
+              4,
+              4
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 324,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 7,
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  256
+                ],
+                "phase": 3
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1284595217109359,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              7,
+              24
+            ],
+            [
+              11,
+              31,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1289894301061176,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              7,
+              31
+            ],
+            [
+              11,
+              24,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1289894301061176,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              7,
+              32
+            ],
+            [
+              11,
+              24,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1338081290651303,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              11,
+              24
+            ],
+            [
+              7,
+              31,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1343057131727972,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              11,
+              31
+            ],
+            [
+              7,
+              24,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1343057131727972,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              11,
+              32
+            ],
+            [
+              7,
+              24,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.140374783289043,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              24,
+              31
+            ],
+            [
+              7,
+              11,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.140374783289043,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              24,
+              32
+            ],
+            [
+              7,
+              11,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 5,
+            "restore_support_B": 5,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  272
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_incumbent_envelope": 14,
+          "C_shared": 14,
+          "Lambda_batch": 1.1408330196115304,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_frame_only": 18,
+            "C_incumbent": 14,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6H_PARTIAL_TAG",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ]
+          },
+          "partition": [
+            [
+              0,
+              31,
+              32
+            ],
+            [
+              7,
+              11,
+              24
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_shared": 14,
+            "RA": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "RB": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S0": [
+              0,
+              4
+            ],
+            "S1": [
+              4,
+              0
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "cost_recomputed": true,
+              "dependent_third_label": true,
+              "final_state_recomputed": true,
+              "labels_equal_across_blocks": true,
+              "labels_exactly_123": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_dependent_A": true,
+              "rank2_dependent_B": true,
+              "restore_A": true,
+              "restore_B": true,
+              "restore_phase_A_exact": true,
+              "restore_phase_B_exact": true,
+              "symplectic_basis_A": true,
+              "symplectic_basis_B": true,
+              "tag_label_formula": true
+            },
+            "config_count": 54,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "optimal_candidate_count": 216,
+            "relative_B_permutation": [
+              0,
+              1,
+              2
+            ],
+            "restore_support_A": 4,
+            "restore_support_B": 6,
+            "signed_T_A": [
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        }
+      ],
+      "r6b_window_champions_available": 2,
+      "source_blob_expected": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+      "source_blob_observed": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+      "source_blob_verified": true,
+      "strict_budget_matched_improvement_exists": false,
+      "strict_count": 0,
+      "subject": "N2"
+    }
+  }
+}

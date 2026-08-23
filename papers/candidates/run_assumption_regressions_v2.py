@@ -22,6 +22,10 @@ from types import ModuleType
 from typing import Any, Callable, Iterable, Mapping
 
 ROOT = Path(__file__).resolve().parent
+#: The paper packages were promoted out of papers/candidates/ into papers/;
+#: this runner stays behind as shared cross-paper apparatus, so the suite
+#: paths below resolve against the papers/ directory one level up.
+PAPERS = ROOT.parent
 
 SUITES: tuple[dict[str, str], ...] = (
     {
@@ -219,9 +223,9 @@ def build_receipt() -> dict[str, Any]:
 
     for suite in SUITES:
         name = suite["name"]
-        checker_path = ROOT / suite["checker"]
-        test_path = ROOT / suite["tests"]
-        cases_path = ROOT / suite["cases"]
+        checker_path = PAPERS / suite["checker"]
+        test_path = PAPERS / suite["tests"]
+        cases_path = PAPERS / suite["cases"]
         input_paths.extend((checker_path, test_path, cases_path))
 
         module = load_module(checker_path, f"orion_{name.lower()}_v2_checker")
@@ -246,9 +250,13 @@ def build_receipt() -> dict[str, Any]:
         total_checks += len(named_checks)
         total_cases += len(cases)
 
+    # Repo-relative keys: the inputs now straddle papers/ (the promoted paper
+    # packages) and papers/candidates/ (this runner), so no single one of those
+    # directories can anchor every hash entry.
+    repo_root = ROOT.parent.parent
     file_hashes = {
-        str(path.relative_to(ROOT)): sha256_file(path)
-        for path in sorted(set(input_paths), key=lambda item: str(item.relative_to(ROOT)))
+        str(path.relative_to(repo_root)): sha256_file(path)
+        for path in sorted(set(input_paths), key=lambda item: str(item.relative_to(repo_root)))
     }
     aggregate_material = "".join(f"{path}\0{digest}\n" for path, digest in sorted(file_hashes.items()))
     aggregate_hash = hashlib.sha256(aggregate_material.encode("utf-8")).hexdigest()

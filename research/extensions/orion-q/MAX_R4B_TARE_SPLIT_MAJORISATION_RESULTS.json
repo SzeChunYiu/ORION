@@ -1,0 +1,46 @@
+{
+  "authority": "proof_plus_deterministic_check; not compiled-resource or novelty authority",
+  "disordered_heisenberg_panel": {
+    "authority": "physical_model_synthetic_control_only",
+    "block_size": 8,
+    "max_optimal_reduction_vs_random_mean": 0.16872470461669087,
+    "median_optimal_overhead_vs_pauli_l1": 0.01572429675139808,
+    "median_optimal_reduction_vs_random_mean": 0.12424975884702422,
+    "min_optimal_reduction_vs_random_mean": 0.0764841000537021,
+    "random_splits_per_subject": 2000,
+    "subjects": 100
+  },
+  "exhaustive_checks": {
+    "L6_m3": {"failures": 0, "max_abs_gap": 0, "partition_evaluations": 300, "trials": 30},
+    "L8_m2": {"failures": 0, "max_abs_gap": 0, "partition_evaluations": 3150, "trials": 30},
+    "L8_m4": {"failures": 0, "max_abs_gap": 0, "partition_evaluations": 1050, "trials": 30},
+    "L9_m3": {"failures": 0, "max_abs_gap": 0, "partition_evaluations": 4200, "trials": 15}
+  },
+  "hard_boundary": "Pauli/Restore structure can trade circuit cost against the coefficient-optimal Lambda; theorem does not claim total-resource optimality.",
+  "lih_public_subject": {
+    "L": 26,
+    "block_size": 2,
+    "majorization_optimal_split_lambda": 0.9008505860898554,
+    "optimal_reduction_vs_random_mean": 0.18412225469931742,
+    "optimal_split_overhead_vs_pauli_l1": 0.004150856934176161,
+    "pauli_l1": 0.8971267413347512,
+    "random_split_draws": 100000,
+    "random_split_mean": 1.1041489871228893,
+    "random_split_p05": 1.0176713775178858,
+    "random_split_p50": 1.1120814325175314,
+    "random_split_p95": 1.1702744042143574,
+    "source": "SNIPRS/hamiltonian simulation-LiH.ipynb stdout, non-identity Pauli terms"
+  },
+  "schema": "ORIONQ.MAXR4BTARESplitMajorizationResult.v1",
+  "seed": 20260820,
+  "terminal": "R4B_TARE_SPLIT_MAJORISATION_THEOREM_SUPPORTED__COEFFICIENT_COORDINATE_ONLY",
+  "theorem": "equal-size sorted-contiguous coefficient partition minimizes split-TARE outer-LCU subnormalization",
+  "uniform_heisenberg_control": {
+    "L": 32,
+    "block_size": 8,
+    "exact_tie_to_l1": true,
+    "majorization_optimal_split_lambda": 16.000000000000004,
+    "pauli_l1": 16.0,
+    "tie_expected": true
+  }
+}

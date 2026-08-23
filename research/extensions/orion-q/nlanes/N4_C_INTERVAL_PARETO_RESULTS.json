@@ -1,0 +1,64 @@
+{
+  "arms": {
+    "BEST_CASE": {
+      "mean_regret": 1.267879405372331,
+      "median_regret": 0.9928163127706728,
+      "zero_regret_fraction": 0.29
+    },
+    "CLAIRVOYANT_ORACLE": {
+      "mean_regret": 0.0,
+      "median_regret": 0.0,
+      "zero_regret_fraction": 1.0
+    },
+    "MIDPOINT_OPTIMIZER": {
+      "mean_regret": 0.2621093920974687,
+      "median_regret": 0.0,
+      "zero_regret_fraction": 0.575
+    },
+    "ORION_INTERVAL_PARETO": {
+      "mean_regret": 0.10962008492273609,
+      "median_regret": 0.0,
+      "zero_regret_fraction": 0.765
+    },
+    "RANDOM_VERIFY_MIDPOINT": {
+      "mean_regret": 0.25184253920698213,
+      "median_regret": 0.0,
+      "zero_regret_fraction": 0.595
+    },
+    "ROBUST_WORSTCASE": {
+      "mean_regret": 0.7754808759417671,
+      "median_regret": 0.5041679258526743,
+      "zero_regret_fraction": 0.3175
+    }
+  },
+  "episodes": 400,
+  "family": "4_interval_cost_pareto_regret",
+  "gates": {
+    "G1_oracle_zero_regret": true,
+    "G2_orion_beats_no_verification": true,
+    "G3_targeting_beats_random_verification": true,
+    "G4_world_ambiguous": true
+  },
+  "interpretation": {
+    "authority": "exact-synthetic-bounded; no real-quantum, no P10, no novelty claims; regret is scalarized, not full-front hypervolume",
+    "claim_boundary": "Applies only to the frozen interval world and budget B=4; shows value of Pareto-ambiguity-targeted verification over untargeted verification and endpoint optimizers on this construction only.",
+    "novelty_authorized": false,
+    "p10_authorized": false
+  },
+  "issue": 677,
+  "protocol": "development/orion-q-nlane-closure/N4_C_INTERVAL_PARETO_PROTOCOL.md",
+  "schema": "ORIONQ.N4C.IntervalParetoRegret.v1",
+  "seed": 20260821,
+  "terminal": "N4_C_TARGETED_INTERVAL_PARETO_SUPPORTED__EXACT_SYNTHETIC",
+  "world": {
+    "layers": 3,
+    "mean_interval_dominance_survivors": 23.12,
+    "objectives": [
+      "cost",
+      "err"
+    ],
+    "p_wide_interval": 0.3,
+    "verification_budget": 4,
+    "width": 3
+  }
+}

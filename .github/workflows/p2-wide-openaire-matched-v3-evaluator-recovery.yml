@@ -1,0 +1,201 @@
+name: p2-wide-openaire-matched-v3-evaluator-recovery
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p2-wide-openaire-matched-v3-evaluator-recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  evaluate-frozen-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SOURCE_RUN_ID: '32494601555'
+      SOURCE_HEAD_SHA: 'd1e4f5c10d9a9df2dde2ff4e50eb976b62057c5d'
+      SOURCE_MERGE_SHA: '90697083ee75e3049c3fbb7dc58224104ac583b1'
+      SOURCE_CAPTURE_NAME: 'p2-wide-v3-capture-90697083ee75e3049c3fbb7dc58224104ac583b1'
+      SOURCE_CAPTURE_ARTIFACT_ID: '9453008818'
+      SOURCE_CAPTURE_ARCHIVE_SHA256: '982195db3d505021f96fbae9ef61c276eea24644c01c75fb23a80c1b775020cd'
+      PINNED_ARB_COMMIT: 'a46c9bfb8968786f73f0a6a5b365b5384cd0f96d'
+      PINNED_FULL_BENCHMARK_SHA256: 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6'
+      EXPECTED_PUBLIC_SHA256: 'af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae'
+      EXPECTED_GT_SHA256: 'fb95366de6ec2a614b498c2263c1ae6f5970b1cd316f2f606992d80a94c51a41'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install evaluator import surface only
+        run: python -m pip install -e '.[dev]' cryptography requests tiktoken openai
+
+      - name: Download exact pre-gold V3 capture from failed scorer run
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.SOURCE_CAPTURE_NAME }}
+          path: /tmp/p2-wide-v3-recovery/capture
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Revalidate source capture identity before any evaluator gold
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+
+          manifests = list(Path('/tmp/p2-wide-v3-recovery/capture').rglob('SHARED_ACQUISITION_MANIFEST.json'))
+          assert len(manifests) == 1, manifests
+          root = manifests[0].parent
+          manifest = json.loads(manifests[0].read_text())
+          assert manifest['campaign_version'] == 3
+          assert manifest['transport_encoding'] == 'v4_filter_ids_doi_or_list'
+          assert manifest['transport_probe_terminal'] == 'OPENAIRE_V4_DOI_FILTER_TRANSPORT_VALID'
+          assert manifest['v3_transport_only_change'] is True
+          assert manifest['v3_beta_transport_is_scientific_evidence'] is False
+          assert manifest['same_acquisition_capture_for_all_systems'] is True
+          assert manifest['candidate_cap'] == 20
+          assert manifest['raw_regex_arxiv_identity_extraction'] is False
+
+          binding = {}
+          for system_id, expected in manifest['candidate_hashes'].items():
+              path = root / f'candidate_{system_id}.jsonl'
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual == expected, (system_id, actual, expected)
+              binding[system_id] = actual
+
+          Path('/tmp/p2-wide-v3-recovery/PRE_GOLD_CANDIDATE_HASHES.json').write_text(
+              json.dumps(binding, sort_keys=True)
+          )
+          Path('/tmp/p2-wide-v3-recovery/CAPTURE_ROOT.txt').write_text(str(root))
+          Path('/tmp/p2-wide-v3-recovery/SOURCE_CUSTODY.json').write_text(json.dumps({
+              'source_run_id': int(os.environ['SOURCE_RUN_ID']),
+              'source_head_sha': os.environ['SOURCE_HEAD_SHA'],
+              'source_merge_sha': os.environ['SOURCE_MERGE_SHA'],
+              'source_capture_name': os.environ['SOURCE_CAPTURE_NAME'],
+              'source_capture_artifact_id': int(os.environ['SOURCE_CAPTURE_ARTIFACT_ID']),
+              'source_capture_archive_sha256': os.environ['SOURCE_CAPTURE_ARCHIVE_SHA256'],
+              'candidate_hashes': binding,
+              'gold_access_during_source_acquisition': False,
+              'recovery_changes_candidate_bytes': False,
+              'recovery_changes_scientific_protocol': False,
+          }, sort_keys=True, indent=2))
+          print('P2_WIDE_V3_RECOVERY_FROZEN_CAPTURE=PASS')
+          PY
+
+      - name: Materialize exact evaluator-only benchmark after capture revalidation
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/arb-upstream /tmp/p2-wide-v3-recovery/gold
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout "$PINNED_ARB_COMMIT"
+          mkdir -p /tmp/p2-wide-v3-recovery/gold
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl
+          echo "$PINNED_FULL_BENCHMARK_SHA256  /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl" | sha256sum -c -
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl \
+            --public /tmp/p2-wide-v3-recovery/gold/public_rederived_not_used_by_candidates.jsonl \
+            --gt /tmp/p2-wide-v3-recovery/gold/wide_gt.jsonl \
+            --manifest /tmp/p2-wide-v3-recovery/gold/split_manifest.json
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          public = Path('/tmp/p2-wide-v3-recovery/gold/public_rederived_not_used_by_candidates.jsonl')
+          gt = Path('/tmp/p2-wide-v3-recovery/gold/wide_gt.jsonl')
+          assert hashlib.sha256(public.read_bytes()).hexdigest() == os.environ['EXPECTED_PUBLIC_SHA256']
+          assert hashlib.sha256(gt.read_bytes()).hexdigest() == os.environ['EXPECTED_GT_SHA256']
+          manifest = json.loads(Path('/tmp/p2-wide-v3-recovery/gold/split_manifest.json').read_text())
+          assert manifest['wide_tasks'] == 400
+          assert manifest['public_sha256'] == os.environ['EXPECTED_PUBLIC_SHA256']
+          assert manifest['gt_sha256'] == os.environ['EXPECTED_GT_SHA256']
+          print('P2_WIDE_V3_RECOVERY_GOLD_IDENTITY=PASS')
+          PY
+
+      - name: Run unchanged pinned official Wide scorer on exact frozen candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-v3-recovery/CAPTURE_ROOT.txt)
+          mkdir -p /tmp/p2-wide-v3-recovery/results
+          for SYSTEM in wide_dual_backend_balanced wide_dual_backend_governed wide_dual_backend_direct_first; do
+            python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+              --input-file "$ROOT/candidate_${SYSTEM}.jsonl" \
+              --gt-file /tmp/p2-wide-v3-recovery/gold/wide_gt.jsonl \
+              --no-jina \
+              --output-file "/tmp/p2-wide-v3-recovery/results/eval_${SYSTEM}.json"
+          done
+
+      - name: Apply unchanged frozen V3 paired analysis and terminal
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-v3-recovery/CAPTURE_ROOT.txt)
+          PROBE=$(find /tmp/p2-wide-v3-recovery/capture -name transport_probe.json -type f -print -quit)
+          RESPONSE=$(find /tmp/p2-wide-v3-recovery/capture -name transport_probe_response.json -type f -print -quit)
+          test -n "$PROBE" && test -n "$RESPONSE"
+          python papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v3.py \
+            --v3-freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json \
+            --v2-freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
+            --manifest "$ROOT/SHARED_ACQUISITION_MANIFEST.json" \
+            --transport-probe "$PROBE" \
+            --transport-probe-response "$RESPONSE" \
+            --baseline-eval /tmp/p2-wide-v3-recovery/results/eval_wide_dual_backend_balanced.json \
+            --orion-eval /tmp/p2-wide-v3-recovery/results/eval_wide_dual_backend_governed.json \
+            --diagnostic-eval /tmp/p2-wide-v3-recovery/results/eval_wide_dual_backend_direct_first.json \
+            --baseline-candidate "$ROOT/candidate_wide_dual_backend_balanced.jsonl" \
+            --orion-candidate "$ROOT/candidate_wide_dual_backend_governed.jsonl" \
+            --diagnostic-candidate "$ROOT/candidate_wide_dual_backend_direct_first.jsonl" \
+            --output /tmp/p2-wide-v3-recovery/results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/p2-wide-v3-recovery/results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json').read_text())
+          print('P2_WIDE_V3_SCIENTIFIC_TERMINAL=' + result['terminal'])
+          print('P2_WIDE_V3_VALID=' + str(result['all_validity_conditions']))
+          print('P2_WIDE_V3_IOU_DELTA=' + str(result['scientific_rule']['official_avg_iou_delta']))
+          print('P2_WIDE_V3_CI95_LOW=' + str(result['scientific_rule']['paired_iou_ci95_low']))
+          PY
+
+      - name: Prove evaluator did not mutate source candidate bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path(Path('/tmp/p2-wide-v3-recovery/CAPTURE_ROOT.txt').read_text())
+          before = json.loads(Path('/tmp/p2-wide-v3-recovery/PRE_GOLD_CANDIDATE_HASHES.json').read_text())
+          for system_id, expected in before.items():
+              actual = hashlib.sha256((root / f'candidate_{system_id}.jsonl').read_bytes()).hexdigest()
+              assert actual == expected
+          print('P2_WIDE_V3_RECOVERY_POST_SCORE_CANDIDATE_IMMUTABILITY=PASS')
+          PY
+
+      - name: Upload recovered evaluator evidence; never upload evaluator GT
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-wide-v3-evaluator-recovery-${{ github.sha }}
+          path: |
+            /tmp/p2-wide-v3-recovery/results/*.json
+            /tmp/p2-wide-v3-recovery/PRE_GOLD_CANDIDATE_HASHES.json
+            /tmp/p2-wide-v3-recovery/SOURCE_CUSTODY.json
+            /tmp/p2-wide-v3-recovery/gold/split_manifest.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json
+          if-no-files-found: warn
+          retention-days: 30

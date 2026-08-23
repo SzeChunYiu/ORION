@@ -1,0 +1,106 @@
+{
+ "WARNING": "phenomenon-transfer check only; NOT a performance comparison; no cost number is comparable to ORION config_cost",
+ "orion_reference": {
+  "source": "QG-35 (verified via rtk proxy)",
+  "input_space": "715 local-Clifford orbit types (COMPLETE, exhaustive)",
+  "options": "384 Tag-constrained frames",
+  "joint_classes": 92,
+  "classes_nonconstant_OPTIMAL_VALUE": 0,
+  "classes_nonconstant_OPTIMAL_FRAME_SET": 85,
+  "frac": 0.924,
+  "distinct_optimal_frame_sets": 646,
+  "of_types": 715,
+  "note": "part (a) proved as an identity: spectrum IS the sorted response tuple"
+ },
+ "validation": {
+  "transpile_map_deterministic": "verified (repeat runs identical) for opt0/basic, opt2/sabre, opt3/sabre",
+  "relabelling_covariance": "8/8 after fixing the quotient to act on the BUILT CIRCUIT (first version, acting on Pauli strings, failed 0/4 - the CX ladder follows sorted support and is not relabel-equivariant)",
+  "canonical_quotient_no_alarm": "60 random circuits -> 60 distinct classes (quotient does not over-collapse)",
+  "witnesses_independently_re_derived": "4/4 disjoint-argmin witnesses recomputed from scratch with fresh transpile calls; no-alarm control (circuit against itself) PASSES",
+  "option_set_reflection_symmetry": "MEASURED, not assumed: cost is invariant under the line's reflection automorphism on 4/5 sampled circuits in each of n=4/opt0, n=5/opt0, n=5/opt3 - so the effective option count lies BETWEEN n!/2 and n!, not exactly n!/2 (transpiler tie-breaking is not reflection-equivariant)"
+ },
+ "scope_limits": {
+  "part_a_is_an_identity": "classes_nonconstant_OPTIMAL_VALUE = 0 is arithmetic, not measurement: min(spectrum) IS the optimal value by construction. ORION proves its part (a) the same way. The informative existence result is the bulk_only control.",
+  "orion_checks_more_of_part_a": "ORION verifies FIVE predicates split 0/92 (is donor optimal; improvement >= k for k=-3..3; optimal cost value; number of optimal frames; full achievable-cost multiset). This experiment checked only the optimal value; the number-of-optimal-options check was launched and killed while CPU-starved.",
+  "exact_collisions_need_low_entropy": "n=5 / 120 options / opt3 / 600 circuits gave ZERO bulk x spectrum collisions. Exact-collision analysis is only feasible for small option sets and few terms - NOT the regime Symphony/PCOAST target (up to 930 qubits, 8241 Pauli terms). This is a toy-scale existence demonstration of the phenomenon, not evidence about production-scale compilation.",
+  "input_family_is_narrow": "terms drawn with P(I)=2/5 per letter; every circuit containing a weight-1 term is excluded. Whether the separation survives on HamLib Trotter steps, UCCSD or QAOA is untested.",
+  "sample_not_exhaustive": "ORION's 92 classes partition the COMPLETE 715-type space. These class counts are properties of a finite sample at one seed and grow with sample size; the effective independent count is well below the nominal class count (median 2 distinct argmin sets per class)."
+ },
+ "compiler_runs": [
+  {
+   "compiler": "qiskit 2.5.2",
+   "setting": "opt3+sabre  n=4 m=3 [PRODUCTION]",
+   "n_options": 24,
+   "circuits": 3000,
+   "exact_collision_classes": 487,
+   "nontrivial_classes": 276,
+   "frac_nonconstant_ARGMIN": 0.931,
+   "classes_with_disjoint_argmin_pair": 249,
+   "classes_nonconstant_OPTIMAL_VALUE_identity_zero": 0,
+   "CONTROL_bulk_only_nonconstant_OPTIMAL_VALUE": "77/79",
+   "distinct_argmin_sets_overall": 60,
+   "median_distinct_sets_per_class": 2
+  },
+  {
+   "compiler": "qiskit 2.5.2",
+   "setting": "opt0+basic  n=4 m=3 [control]",
+   "n_options": 24,
+   "circuits": 2500,
+   "exact_collision_classes": 543,
+   "nontrivial_classes": 222,
+   "frac_nonconstant_ARGMIN": 0.995,
+   "classes_with_disjoint_argmin_pair": 210,
+   "classes_nonconstant_OPTIMAL_VALUE_identity_zero": 0,
+   "CONTROL_bulk_only_nonconstant_OPTIMAL_VALUE": "64/76",
+   "distinct_argmin_sets_overall": 75,
+   "median_distinct_sets_per_class": 2
+  },
+  {
+   "compiler": "qiskit 2.5.2",
+   "setting": "opt0+basic  n=5 m=3 [control]",
+   "n_options": 120,
+   "circuits": 1500,
+   "exact_collision_classes": 54,
+   "nontrivial_classes": 28,
+   "frac_nonconstant_ARGMIN": 1.0,
+   "classes_with_disjoint_argmin_pair": null,
+   "classes_nonconstant_OPTIMAL_VALUE_identity_zero": 0,
+   "CONTROL_bulk_only_nonconstant_OPTIMAL_VALUE": "84/91",
+   "distinct_argmin_sets_overall": null,
+   "median_distinct_sets_per_class": null
+  },
+  {
+   "compiler": "qiskit 2.5.2",
+   "setting": "opt3+sabre  n=5 m=4 [UNDERPOWERED]",
+   "n_options": 120,
+   "circuits": 600,
+   "exact_collision_classes": 0,
+   "nontrivial_classes": 0,
+   "frac_nonconstant_ARGMIN": null,
+   "classes_with_disjoint_argmin_pair": null,
+   "classes_nonconstant_OPTIMAL_VALUE_identity_zero": 0,
+   "CONTROL_bulk_only_nonconstant_OPTIMAL_VALUE": "87/88",
+   "distinct_argmin_sets_overall": null,
+   "median_distinct_sets_per_class": null
+  },
+  {
+   "compiler": "pytket 2.18.1",
+   "setting": "RoutingPass n=4 m=3",
+   "n_options": 24,
+   "circuits": 3000,
+   "exact_collision_classes": 258,
+   "nontrivial_classes": 90,
+   "frac_nonconstant_ARGMIN": 0.978,
+   "classes_with_disjoint_argmin_pair": 48,
+   "classes_nonconstant_OPTIMAL_VALUE_identity_zero": 0,
+   "CONTROL_bulk_only_nonconstant_OPTIMAL_VALUE": "54/79",
+   "distinct_argmin_sets_overall": 55,
+   "median_distinct_sets_per_class": 2
+  },
+  {
+   "compiler": "pytket 2.18.1",
+   "setting": "Routing+FullPeepholeOptimise",
+   "note": "NOT FINISHED: [Errno 2] No such file or directory: 'tket_n4_opt_c3000.json'"
+  }
+ ]
+}

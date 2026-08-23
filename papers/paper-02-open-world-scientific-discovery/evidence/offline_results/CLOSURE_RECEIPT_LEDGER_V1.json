@@ -1,0 +1,1455 @@
+{
+  "campaigns": {
+    "controlled_complete_gold_v1": {
+      "false_closure_guard": {
+        "non_inferiority_vs_comparators": {
+          "adaptive_multiroute_exploratory": {
+            "detail": "orion_full 0/260 vs adaptive_multiroute_exploratory 296/312 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "adaptive_multiroute_exploratory",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 312,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.003205128205128205,
+                "violation_rate": 0.9487179487179487,
+                "violations": 296
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "agentic_single_route": {
+            "detail": "orion_full 0/260 vs agentic_single_route 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "agentic_single_route",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "bm25_keyword": {
+            "detail": "orion_full 0/260 vs bm25_keyword 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "bm25_keyword",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "coverage_diagnostic_controls_stopping": {
+            "detail": "orion_full 0/260 vs coverage_diagnostic_controls_stopping 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "coverage_diagnostic_controls_stopping",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "dense_retrieval": {
+            "detail": "orion_full 0/260 vs dense_retrieval 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "dense_retrieval",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "no_content_identity_dedup": {
+            "detail": "orion_full 0/260 vs no_content_identity_dedup 0/192 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "no_content_identity_dedup",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 192,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.005208333333333333,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "no_question_conditioned_read_ledger": {
+            "detail": "orion_full 0/260 vs no_question_conditioned_read_ledger 0/260 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "no_question_conditioned_read_ledger",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "no_route_independence_check": {
+            "detail": "orion_full 0/260 vs no_route_independence_check 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "no_route_independence_check",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "no_unavailable_route_open_state": {
+            "detail": "orion_full 0/260 vs no_unavailable_route_open_state 12/331 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "no_unavailable_route_open_state",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 331,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0030211480362537764,
+                "violation_rate": 0.03625377643504532,
+                "violations": 12
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "one_pass_rag": {
+            "detail": "orion_full 0/260 vs one_pass_rag 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "one_pass_rag",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "protocol_driven_systematic_review": {
+            "detail": "orion_full 0/260 vs protocol_driven_systematic_review 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "protocol_driven_systematic_review",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "route_stop_can_close_task": {
+            "detail": "orion_full 0/260 vs route_stop_can_close_task 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "route_stop_can_close_task",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "sparse_dense_hybrid": {
+            "detail": "orion_full 0/260 vs sparse_dense_hybrid 390/390 within margin 0.0",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              },
+              {
+                "arm_id": "sparse_dense_hybrid",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          }
+        },
+        "per_arm": {
+          "adaptive_multiroute_exploratory": {
+            "detail": "adaptive_multiroute_exploratory: 296 violations in 312 opportunities is rate 0.9487179487179487, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "adaptive_multiroute_exploratory",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 312,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.003205128205128205,
+                "violation_rate": 0.9487179487179487,
+                "violations": 296
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "agentic_single_route": {
+            "detail": "agentic_single_route: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "agentic_single_route",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "bm25_keyword": {
+            "detail": "bm25_keyword: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "bm25_keyword",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "coverage_diagnostic_controls_stopping": {
+            "detail": "coverage_diagnostic_controls_stopping: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "coverage_diagnostic_controls_stopping",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "dense_retrieval": {
+            "detail": "dense_retrieval: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "dense_retrieval",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "no_content_identity_dedup": {
+            "detail": "no_content_identity_dedup: 0 violations in 192 opportunities (one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely)",
+            "exercises": [
+              {
+                "arm_id": "no_content_identity_dedup",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 192,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.005208333333333333,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "no_question_conditioned_read_ledger": {
+            "detail": "no_question_conditioned_read_ledger: 0 violations in 260 opportunities (one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely)",
+            "exercises": [
+              {
+                "arm_id": "no_question_conditioned_read_ledger",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "no_route_independence_check": {
+            "detail": "no_route_independence_check: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "no_route_independence_check",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "no_unavailable_route_open_state": {
+            "detail": "no_unavailable_route_open_state: 12 violations in 331 opportunities is rate 0.03625377643504532, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "no_unavailable_route_open_state",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 331,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0030211480362537764,
+                "violation_rate": 0.03625377643504532,
+                "violations": 12
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "one_pass_rag": {
+            "detail": "one_pass_rag: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "one_pass_rag",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "orion_full": {
+            "detail": "orion_full: 0 violations in 260 opportunities (one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely)",
+            "exercises": [
+              {
+                "arm_id": "orion_full",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 260,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.0038461538461538464,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "protocol_driven_systematic_review": {
+            "detail": "protocol_driven_systematic_review: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "protocol_driven_systematic_review",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "route_stop_can_close_task": {
+            "detail": "route_stop_can_close_task: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "route_stop_can_close_task",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          },
+          "sparse_dense_hybrid": {
+            "detail": "sparse_dense_hybrid: 390 violations in 390 opportunities is rate 1.0, above 0.0",
+            "exercises": [
+              {
+                "arm_id": "sparse_dense_hybrid",
+                "exercised": true,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 390,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": 0.002564102564102564,
+                "violation_rate": 1.0,
+                "violations": 390
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "FAIL",
+            "reason": "VIOLATED"
+          }
+        }
+      },
+      "ledger": {
+        "arms": [
+          "adaptive_multiroute_exploratory",
+          "agentic_single_route",
+          "bm25_keyword",
+          "coverage_diagnostic_controls_stopping",
+          "dense_retrieval",
+          "no_content_identity_dedup",
+          "no_question_conditioned_read_ledger",
+          "no_route_independence_check",
+          "no_unavailable_route_open_state",
+          "one_pass_rag",
+          "orion_full",
+          "protocol_driven_systematic_review",
+          "route_stop_can_close_task",
+          "sparse_dense_hybrid"
+        ],
+        "by_arm": {
+          "adaptive_multiroute_exploratory": {
+            "false_closure_exercise": {
+              "arm_id": "adaptive_multiroute_exploratory",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 312,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.003205128205128205,
+              "violation_rate": 0.9487179487179487,
+              "violations": 296
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 94,
+              "REACHABLE_GOLD_OUTSTANDING": 296
+            },
+            "route_stop_exercise": {
+              "arm_id": "adaptive_multiroute_exploratory",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 1560,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.000641025641025641,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 312,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 78,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "agentic_single_route": {
+            "false_closure_exercise": {
+              "arm_id": "agentic_single_route",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "agentic_single_route",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 390,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "bm25_keyword": {
+            "false_closure_exercise": {
+              "arm_id": "bm25_keyword",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "bm25_keyword",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 390,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "coverage_diagnostic_controls_stopping": {
+            "false_closure_exercise": {
+              "arm_id": "coverage_diagnostic_controls_stopping",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "coverage_diagnostic_controls_stopping",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 780,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.001282051282051282,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "dense_retrieval": {
+            "false_closure_exercise": {
+              "arm_id": "dense_retrieval",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "dense_retrieval",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 390,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "no_content_identity_dedup": {
+            "false_closure_exercise": {
+              "arm_id": "no_content_identity_dedup",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 192,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.005208333333333333,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 390,
+              "REACHABLE_GOLD_OUTSTANDING": 0
+            },
+            "route_stop_exercise": {
+              "arm_id": "no_content_identity_dedup",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 1950,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.0005128205128205128,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 145,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 192,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 9,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 44
+            }
+          },
+          "no_question_conditioned_read_ledger": {
+            "false_closure_exercise": {
+              "arm_id": "no_question_conditioned_read_ledger",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 260,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.0038461538461538464,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 390,
+              "REACHABLE_GOLD_OUTSTANDING": 0
+            },
+            "route_stop_exercise": {
+              "arm_id": "no_question_conditioned_read_ledger",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 1950,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.0005128205128205128,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 59,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 260,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 12,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 59
+            }
+          },
+          "no_route_independence_check": {
+            "false_closure_exercise": {
+              "arm_id": "no_route_independence_check",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "no_route_independence_check",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 780,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.001282051282051282,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "no_unavailable_route_open_state": {
+            "false_closure_exercise": {
+              "arm_id": "no_unavailable_route_open_state",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 331,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.0030211480362537764,
+              "violation_rate": 0.03625377643504532,
+              "violations": 12
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 12,
+              "NONE": 378,
+              "REACHABLE_GOLD_OUTSTANDING": 0
+            },
+            "route_stop_exercise": {
+              "arm_id": "no_unavailable_route_open_state",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 1950,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.0005128205128205128,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 59,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 331,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "one_pass_rag": {
+            "false_closure_exercise": {
+              "arm_id": "one_pass_rag",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "one_pass_rag",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 780,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.001282051282051282,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "orion_full": {
+            "false_closure_exercise": {
+              "arm_id": "orion_full",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 260,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.0038461538461538464,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 390,
+              "REACHABLE_GOLD_OUTSTANDING": 0
+            },
+            "route_stop_exercise": {
+              "arm_id": "orion_full",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 1950,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.0005128205128205128,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 59,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 260,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 12,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 59
+            }
+          },
+          "protocol_driven_systematic_review": {
+            "false_closure_exercise": {
+              "arm_id": "protocol_driven_systematic_review",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "protocol_driven_systematic_review",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 1170,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.0008547008547008547,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "route_stop_can_close_task": {
+            "false_closure_exercise": {
+              "arm_id": "route_stop_can_close_task",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "route_stop_can_close_task",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 390,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          },
+          "sparse_dense_hybrid": {
+            "false_closure_exercise": {
+              "arm_id": "sparse_dense_hybrid",
+              "exercised": true,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 390,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": 0.002564102564102564,
+              "violation_rate": 1.0,
+              "violations": 390
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 0,
+              "REACHABLE_GOLD_OUTSTANDING": 390
+            },
+            "route_stop_exercise": {
+              "arm_id": "sparse_dense_hybrid",
+              "exercised": true,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 780,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": 0.001282051282051282,
+              "violation_rate": 0.0,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 390,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 0
+            }
+          }
+        },
+        "campaign_id": "p2-controlled-complete-gold-v1",
+        "n_receipts": 5460,
+        "n_tasks": 390,
+        "schema_version": "orion.p2.closure-receipts.v1"
+      },
+      "replayed": true
+    },
+    "external_wide_acquisition_dev3r": {
+      "false_closure_guard": {
+        "per_arm": {
+          "wide_diversified_arxiv_atom_v3": {
+            "detail": "wide_diversified_arxiv_atom_v3 had 0 opportunities to violate P2.FALSE_TASK_CLOSURE (one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+            "exercises": [
+              {
+                "arm_id": "wide_diversified_arxiv_atom_v3",
+                "exercised": false,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 0,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": null,
+                "violation_rate": null,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "CANNOT_CHECK",
+            "reason": "NEVER_EXERCISED"
+          },
+          "wide_lexical_arxiv_atom_v3": {
+            "detail": "wide_lexical_arxiv_atom_v3 had 0 opportunities to violate P2.FALSE_TASK_CLOSURE (one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+            "exercises": [
+              {
+                "arm_id": "wide_lexical_arxiv_atom_v3",
+                "exercised": false,
+                "guard_id": "P2.FALSE_TASK_CLOSURE",
+                "opportunities": 0,
+                "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+                "resolution": null,
+                "violation_rate": null,
+                "violations": 0
+              }
+            ],
+            "guard_id": "P2.FALSE_TASK_CLOSURE",
+            "outcome": "CANNOT_CHECK",
+            "reason": "NEVER_EXERCISED"
+          }
+        }
+      },
+      "ledger": {
+        "arms": [
+          "wide_diversified_arxiv_atom_v3",
+          "wide_lexical_arxiv_atom_v3"
+        ],
+        "by_arm": {
+          "wide_diversified_arxiv_atom_v3": {
+            "false_closure_exercise": {
+              "arm_id": "wide_diversified_arxiv_atom_v3",
+              "exercised": false,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 0,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 24,
+              "REACHABLE_GOLD_OUTSTANDING": 0
+            },
+            "route_stop_exercise": {
+              "arm_id": "wide_diversified_arxiv_atom_v3",
+              "exercised": false,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 0,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 0,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 24
+            }
+          },
+          "wide_lexical_arxiv_atom_v3": {
+            "false_closure_exercise": {
+              "arm_id": "wide_lexical_arxiv_atom_v3",
+              "exercised": false,
+              "guard_id": "P2.FALSE_TASK_CLOSURE",
+              "opportunities": 0,
+              "opportunity_definition": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            },
+            "false_closure_kinds": {
+              "CENSORED_MATERIAL_OUTSTANDING": 0,
+              "NONE": 24,
+              "REACHABLE_GOLD_OUTSTANDING": 0
+            },
+            "route_stop_exercise": {
+              "arm_id": "wide_lexical_arxiv_atom_v3",
+              "exercised": false,
+              "guard_id": "P2.PREMATURE_ROUTE_STOP",
+              "opportunities": 0,
+              "opportunity_definition": "one route the system itself declared stopped; a route abandoned because its transport died was not the system's stopping decision to get wrong",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            },
+            "task_closure_kinds": {
+              "ABANDONED_BUDGET_EXHAUSTED": 0,
+              "ABANDONED_RUN_ERROR": 0,
+              "CLOSED_COMPLETE": 0,
+              "NO_CLOSURE_DECISION": 0,
+              "REFUSED_OPEN_OBLIGATIONS": 0,
+              "STOPPED_WITHOUT_CLOSURE_CLAIM": 24
+            }
+          }
+        },
+        "campaign_id": "p2-v2-external-wide-acquisition-dev3r",
+        "n_receipts": 48,
+        "n_tasks": 24,
+        "schema_version": "orion.p2.closure-receipts.v1"
+      },
+      "provenance": {
+        "derivation": "tasks_closed_as_complete == 0 and tasks_with_open_obligations == 0 for every arm, so every task maps to STOPPED_WITHOUT_CLOSURE_CLAIM; no run was re-executed and no outcome was re-scored",
+        "not_re_executed_because": [
+          "FROZEN_ADAPTER_REQUIRES_ARXIV",
+          "OFFICIAL_SCORER_ARXIV_ID_IOU",
+          "NO_ARXIV_MATCHED_RUNNER_ON_MAIN"
+        ],
+        "reconstructed_from": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+        "source_sha256": "84f976fab2685575e1946d4e3baf278baeca3fd1fc8132a6dfe2e5d8fa708633"
+      },
+      "replayed": false
+    }
+  },
+  "consistency_check_vs_published_v1": {
+    "agreement": true,
+    "by_arm": {
+      "adaptive_multiroute_exploratory": {
+        "published_v1_premature_closure": 296,
+        "receipt_violations": 296
+      },
+      "agentic_single_route": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "bm25_keyword": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "coverage_diagnostic_controls_stopping": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "dense_retrieval": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "no_content_identity_dedup": {
+        "published_v1_premature_closure": 0,
+        "receipt_violations": 0
+      },
+      "no_question_conditioned_read_ledger": {
+        "published_v1_premature_closure": 0,
+        "receipt_violations": 0
+      },
+      "no_route_independence_check": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "no_unavailable_route_open_state": {
+        "published_v1_premature_closure": 12,
+        "receipt_violations": 12
+      },
+      "one_pass_rag": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "orion_full": {
+        "published_v1_premature_closure": 0,
+        "receipt_violations": 0
+      },
+      "protocol_driven_systematic_review": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "route_stop_can_close_task": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      },
+      "sparse_dense_hybrid": {
+        "published_v1_premature_closure": 390,
+        "receipt_violations": 390
+      }
+    },
+    "compares": "false-closure numerators only; the denominator is what this ledger adds",
+    "disagreements": [],
+    "source": "evidence/offline_results/RESULTS_SUMMARY_V1.json",
+    "source_sha256": "ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b"
+  },
+  "guard_vocabulary": {
+    "guard_id": "P2.FALSE_TASK_CLOSURE",
+    "opportunity": "one task on which the system declared task-global completeness; a task the system never closed offers no opportunity to close it falsely",
+    "unexercised_verdict": "CANNOT_CHECK"
+  },
+  "headline": {
+    "controlled": {
+      "adaptive_multiroute_exploratory": {
+        "closures_claimed": 312,
+        "false_closures": 296,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "agentic_single_route": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "bm25_keyword": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "coverage_diagnostic_controls_stopping": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "dense_retrieval": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "no_content_identity_dedup": {
+        "closures_claimed": 192,
+        "false_closures": 0,
+        "guard_exercised": true,
+        "guard_outcome": "PASS"
+      },
+      "no_question_conditioned_read_ledger": {
+        "closures_claimed": 260,
+        "false_closures": 0,
+        "guard_exercised": true,
+        "guard_outcome": "PASS"
+      },
+      "no_route_independence_check": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "no_unavailable_route_open_state": {
+        "closures_claimed": 331,
+        "false_closures": 12,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "one_pass_rag": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "orion_full": {
+        "closures_claimed": 260,
+        "false_closures": 0,
+        "guard_exercised": true,
+        "guard_outcome": "PASS"
+      },
+      "protocol_driven_systematic_review": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "route_stop_can_close_task": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      },
+      "sparse_dense_hybrid": {
+        "closures_claimed": 390,
+        "false_closures": 390,
+        "guard_exercised": true,
+        "guard_outcome": "FAIL"
+      }
+    },
+    "external_wide_dev3r": {
+      "wide_diversified_arxiv_atom_v3": {
+        "closures_claimed": 0,
+        "false_closures": 0,
+        "guard_exercised": false,
+        "guard_outcome": "CANNOT_CHECK"
+      },
+      "wide_lexical_arxiv_atom_v3": {
+        "closures_claimed": 0,
+        "false_closures": 0,
+        "guard_exercised": false,
+        "guard_outcome": "CANNOT_CHECK"
+      }
+    },
+    "finding": "The false-closure guard reports zero violations in both campaigns. In the controlled campaign ORION earned that zero across a real denominator of 260 declared closures. On the external Wide slice both arms declared zero closures, so the same zero is an absent measurement and every arm's guard is CANNOT_CHECK. A violation count without its denominator cannot tell those apart."
+  },
+  "issue": 650,
+  "purpose": "route-level and task-level closure receipts, and the guard denominators they make explicit",
+  "schema_version": "orion.p2.closure-receipt-ledger.v1",
+  "seed": 20260816
+}

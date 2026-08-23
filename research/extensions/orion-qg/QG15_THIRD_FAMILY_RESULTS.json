@@ -1,0 +1,6522 @@
+{
+  "authority": "ORION_QG15_THIRD_FAMILY_TEMPLATE_TRANSFERRED__STABPREP_CLIFFORD_SYNTHESIS_REGIME_GEOMETRY_ON_VERIFIED_DOMAINS__NOT_R6",
+  "base_revision": "40e0160f3c54ecd7f3e0e0a82b1719ce09b90ab8",
+  "caps_disclosed": [
+    "runtime cap < 25 min per run",
+    "trade rows serialized: first 20 per n",
+    "one minimal witness per (n, trade class)",
+    "prospective refutation witnesses capped at 20",
+    "panel size 120; one deterministic optimal circuit per witness",
+    "verifier ladder scope: serialized witnesses only (per protocol section 7)"
+  ],
+  "chemistry_sources_read": false,
+  "claim_boundary": "Claims cover exactly the frozen StabPrep family: stabilizer-state preparation from |0..0> over {H,S,SDG,CNOT} with frozen costs (1,1,1,3), the frozen GE donor and its E1-E3 schedule enlargements, and the frozen structural lower bound LB = r_X + 3(n-c). All censuses, trade catalogues, sufficiency verdicts, predicates and forecasts are machine-evidenced only on the stated finite domains (exhaustive n<=3; one seeded n=4 panel); nothing is a theorem for all n, for other gate costs or gate sets, for mixed stabilizer codes, or for measurement-assisted preparation. The referee optimum is a shortest-path cost in the frozen metric; no physical runtime or quantum-advantage claim. The donor is standard Gaussian-elimination-style synthesis and earns no novelty credit. The template is the object under test. NOT_R6.",
+  "component1_regime_map": {
+    "outcome": "REGIME_MAP_COMPLETE",
+    "per_n": {
+      "n1": {
+        "cross_tab_rX_c__exact_trade": {
+          "rX=0,c=1": [
+            2,
+            0
+          ],
+          "rX=1,c=1": [
+            3,
+            1
+          ]
+        },
+        "donor_exact": 5,
+        "donor_exact_fraction": [
+          5,
+          6
+        ],
+        "gap_histogram": {
+          "0": 5,
+          "2": 1
+        },
+        "instances": 6
+      },
+      "n2": {
+        "cross_tab_rX_c__exact_trade": {
+          "rX=0,c=2": [
+            3,
+            1
+          ],
+          "rX=1,c=1": [
+            4,
+            4
+          ],
+          "rX=1,c=2": [
+            12,
+            4
+          ],
+          "rX=2,c=1": [
+            0,
+            16
+          ],
+          "rX=2,c=2": [
+            9,
+            7
+          ]
+        },
+        "donor_exact": 28,
+        "donor_exact_fraction": [
+          28,
+          60
+        ],
+        "gap_histogram": {
+          "0": 28,
+          "1": 3,
+          "2": 16,
+          "3": 5,
+          "4": 5,
+          "5": 2,
+          "7": 1
+        },
+        "instances": 60
+      },
+      "n3": {
+        "cross_tab_rX_c__exact_trade": {
+          "rX=0,c=3": [
+            4,
+            4
+          ],
+          "rX=1,c=1": [
+            5,
+            11
+          ],
+          "rX=1,c=2": [
+            21,
+            27
+          ],
+          "rX=1,c=3": [
+            27,
+            21
+          ],
+          "rX=2,c=1": [
+            15,
+            145
+          ],
+          "rX=2,c=2": [
+            36,
+            156
+          ],
+          "rX=2,c=3": [
+            54,
+            42
+          ],
+          "rX=3,c=1": [
+            0,
+            256
+          ],
+          "rX=3,c=2": [
+            0,
+            192
+          ],
+          "rX=3,c=3": [
+            27,
+            37
+          ]
+        },
+        "donor_exact": 189,
+        "donor_exact_fraction": [
+          189,
+          1080
+        ],
+        "gap_histogram": {
+          "0": 189,
+          "1": 56,
+          "10": 24,
+          "11": 11,
+          "12": 15,
+          "13": 3,
+          "14": 6,
+          "15": 3,
+          "17": 1,
+          "2": 216,
+          "3": 112,
+          "4": 158,
+          "5": 104,
+          "6": 67,
+          "7": 73,
+          "8": 18,
+          "9": 24
+        },
+        "instances": 1080
+      }
+    }
+  },
+  "component2_trades": {
+    "caps": "trade rows capped at 20 per n; one minimal witness per (n, class)",
+    "minimal_witnesses": [
+      {
+        "C_D": 4,
+        "C_E1": 4,
+        "C_E2": 4,
+        "C_E3": 4,
+        "C_opt": 2,
+        "LB": 1,
+        "c": 1,
+        "canonical_key": [
+          0,
+          3
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            0
+          ],
+          [
+            "SDG",
+            0
+          ],
+          [
+            "SDG",
+            0
+          ],
+          [
+            "SDG",
+            0
+          ]
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "gap": 2,
+        "group": [
+          "+I",
+          "+Y"
+        ],
+        "n": 1,
+        "optimal_circuit": [
+          [
+            "H",
+            0
+          ],
+          [
+            "S",
+            0
+          ]
+        ],
+        "r_X": 1,
+        "trade_class": "GLOBAL_TRADE"
+      },
+      {
+        "C_D": 9,
+        "C_E1": 9,
+        "C_E2": 6,
+        "C_E3": 6,
+        "C_opt": 6,
+        "LB": 5,
+        "c": 1,
+        "canonical_key": [
+          0,
+          12,
+          23,
+          27
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ],
+          [
+            "H",
+            0
+          ],
+          [
+            "H",
+            1
+          ],
+          [
+            "CX",
+            0,
+            1
+          ],
+          [
+            "H",
+            1
+          ],
+          [
+            "SDG",
+            0
+          ]
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "gap": 3,
+        "group": [
+          "+II",
+          "+XX",
+          "-YZ",
+          "-ZY"
+        ],
+        "n": 2,
+        "optimal_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ],
+          [
+            "H",
+            0
+          ],
+          [
+            "CX",
+            0,
+            1
+          ]
+        ],
+        "r_X": 2,
+        "trade_class": "PIVOT_TRADE"
+      },
+      {
+        "C_D": 7,
+        "C_E1": 7,
+        "C_E2": 7,
+        "C_E3": 5,
+        "C_opt": 5,
+        "LB": 5,
+        "c": 1,
+        "canonical_key": [
+          0,
+          6,
+          9,
+          15
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "H",
+            0
+          ],
+          [
+            "H",
+            1
+          ],
+          [
+            "CX",
+            0,
+            1
+          ],
+          [
+            "H",
+            1
+          ]
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "gap": 2,
+        "group": [
+          "+II",
+          "+XZ",
+          "+ZX",
+          "+YY"
+        ],
+        "n": 2,
+        "optimal_circuit": [
+          [
+            "H",
+            0
+          ],
+          [
+            "CX",
+            0,
+            1
+          ],
+          [
+            "H",
+            0
+          ]
+        ],
+        "r_X": 2,
+        "trade_class": "ROUTE_TRADE"
+      },
+      {
+        "C_D": 4,
+        "C_E1": 4,
+        "C_E2": 4,
+        "C_E3": 4,
+        "C_opt": 2,
+        "LB": 1,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          10,
+          11
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ]
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "gap": 2,
+        "group": [
+          "+II",
+          "+ZI",
+          "+IY",
+          "+ZY"
+        ],
+        "n": 2,
+        "optimal_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "S",
+            1
+          ]
+        ],
+        "r_X": 1,
+        "trade_class": "GLOBAL_TRADE"
+      },
+      {
+        "C_D": 12,
+        "C_E1": 10,
+        "C_E2": 10,
+        "C_E3": 10,
+        "C_opt": 10,
+        "LB": 8,
+        "c": 1,
+        "canonical_key": [
+          0,
+          7,
+          31,
+          40,
+          55,
+          88,
+          111,
+          112
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ],
+          [
+            "SDG",
+            1
+          ],
+          [
+            "CX",
+            1,
+            2
+          ],
+          [
+            "H",
+            0
+          ],
+          [
+            "SDG",
+            0
+          ],
+          [
+            "SDG",
+            0
+          ],
+          [
+            "CX",
+            0,
+            1
+          ]
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "gap": 2,
+        "group": [
+          "+III",
+          "+ZZZ",
+          "+YYZ",
+          "+XIX",
+          "+ZYY",
+          "-XXI",
+          "-YZY",
+          "-IXX"
+        ],
+        "n": 3,
+        "optimal_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "CX",
+            1,
+            2
+          ],
+          [
+            "H",
+            0
+          ],
+          [
+            "CX",
+            0,
+            1
+          ],
+          [
+            "S",
+            1
+          ],
+          [
+            "S",
+            1
+          ]
+        ],
+        "r_X": 2,
+        "trade_class": "ORDER_TRADE"
+      },
+      {
+        "C_D": 9,
+        "C_E1": 9,
+        "C_E2": 6,
+        "C_E3": 6,
+        "C_opt": 6,
+        "LB": 5,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          48,
+          49,
+          86,
+          87,
+          102,
+          103
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            2
+          ],
+          [
+            "SDG",
+            2
+          ],
+          [
+            "H",
+            1
+          ],
+          [
+            "H",
+            2
+          ],
+          [
+            "CX",
+            1,
+            2
+          ],
+          [
+            "H",
+            2
+          ],
+          [
+            "SDG",
+            1
+          ]
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "gap": 3,
+        "group": [
+          "+III",
+          "+ZII",
+          "+IXX",
+          "+ZXX",
+          "-IYZ",
+          "-ZYZ",
+          "-IZY",
+          "-ZZY"
+        ],
+        "n": 3,
+        "optimal_circuit": [
+          [
+            "H",
+            2
+          ],
+          [
+            "SDG",
+            2
+          ],
+          [
+            "H",
+            1
+          ],
+          [
+            "CX",
+            1,
+            2
+          ]
+        ],
+        "r_X": 2,
+        "trade_class": "PIVOT_TRADE"
+      },
+      {
+        "C_D": 7,
+        "C_E1": 7,
+        "C_E2": 7,
+        "C_E3": 5,
+        "C_opt": 5,
+        "LB": 5,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          20,
+          21,
+          34,
+          35,
+          54,
+          55
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            2
+          ],
+          [
+            "H",
+            1
+          ],
+          [
+            "H",
+            2
+          ],
+          [
+            "CX",
+            1,
+            2
+          ],
+          [
+            "H",
+            2
+          ]
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "gap": 2,
+        "group": [
+          "+III",
+          "+ZII",
+          "+IXZ",
+          "+ZXZ",
+          "+IZX",
+          "+ZZX",
+          "+IYY",
+          "+ZYY"
+        ],
+        "n": 3,
+        "optimal_circuit": [
+          [
+            "H",
+            1
+          ],
+          [
+            "CX",
+            1,
+            2
+          ],
+          [
+            "H",
+            1
+          ]
+        ],
+        "r_X": 2,
+        "trade_class": "ROUTE_TRADE"
+      },
+      {
+        "C_D": 4,
+        "C_E1": 4,
+        "C_E2": 4,
+        "C_E3": 4,
+        "C_opt": 2,
+        "LB": 1,
+        "c": 3,
+        "canonical_key": [
+          0,
+          1,
+          2,
+          3,
+          36,
+          37,
+          38,
+          39
+        ],
+        "donor_circuit": [
+          [
+            "H",
+            2
+          ],
+          [
+            "SDG",
+            2
+          ],
+          [
+            "SDG",
+            2
+          ],
+          [
+            "SDG",
+            2
+          ]
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "gap": 2,
+        "group": [
+          "+III",
+          "+ZII",
+          "+IZI",
+          "+ZZI",
+          "+IIY",
+          "+ZIY",
+          "+IZY",
+          "+ZZY"
+        ],
+        "n": 3,
+        "optimal_circuit": [
+          [
+            "H",
+            2
+          ],
+          [
+            "S",
+            2
+          ]
+        ],
+        "r_X": 1,
+        "trade_class": "GLOBAL_TRADE"
+      }
+    ],
+    "outcome": "TRADES_FOUND",
+    "per_n": {
+      "n1": {
+        "class_census": {
+          "GLOBAL_TRADE": 1
+        },
+        "first_20_trade_rows": [
+          {
+            "C_D": 4,
+            "C_opt": 2,
+            "canonical_key": [
+              0,
+              3
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          }
+        ],
+        "trade_count": 1
+      },
+      "n2": {
+        "class_census": {
+          "GLOBAL_TRADE": 24,
+          "PIVOT_TRADE": 4,
+          "ROUTE_TRADE": 4
+        },
+        "first_20_trade_rows": [
+          {
+            "C_D": 4,
+            "C_opt": 2,
+            "canonical_key": [
+              0,
+              1,
+              10,
+              11
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 4,
+            "C_opt": 2,
+            "canonical_key": [
+              0,
+              2,
+              5,
+              7
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              3,
+              13,
+              14
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              3,
+              17,
+              18
+            ],
+            "gap": 1,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 5,
+            "C_opt": 3,
+            "canonical_key": [
+              0,
+              4,
+              10,
+              14
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 5,
+            "C_opt": 3,
+            "canonical_key": [
+              0,
+              5,
+              8,
+              13
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 4,
+            "canonical_key": [
+              0,
+              5,
+              10,
+              15
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              5,
+              18,
+              23
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              5,
+              24,
+              29
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 6,
+            "C_opt": 4,
+            "canonical_key": [
+              0,
+              5,
+              26,
+              31
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              6,
+              9,
+              15
+            ],
+            "gap": 2,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 10,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              6,
+              11,
+              29
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              6,
+              13,
+              27
+            ],
+            "gap": 2,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 9,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              6,
+              25,
+              31
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 10,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              7,
+              9,
+              30
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 13,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              7,
+              11,
+              12
+            ],
+            "gap": 7,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 12,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              7,
+              14,
+              25
+            ],
+            "gap": 5,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 11,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              7,
+              27,
+              28
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              9,
+              14,
+              23
+            ],
+            "gap": 2,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 9,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              9,
+              22,
+              31
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          }
+        ],
+        "trade_count": 32
+      },
+      "n3": {
+        "class_census": {
+          "GLOBAL_TRADE": 614,
+          "ORDER_TRADE": 4,
+          "PIVOT_TRADE": 110,
+          "ROUTE_TRADE": 163
+        },
+        "first_20_trade_rows": [
+          {
+            "C_D": 4,
+            "C_opt": 2,
+            "canonical_key": [
+              0,
+              1,
+              2,
+              3,
+              36,
+              37,
+              38,
+              39
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 4,
+            "C_opt": 2,
+            "canonical_key": [
+              0,
+              1,
+              4,
+              5,
+              18,
+              19,
+              22,
+              23
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              1,
+              6,
+              7,
+              50,
+              51,
+              52,
+              53
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              1,
+              6,
+              7,
+              66,
+              67,
+              68,
+              69
+            ],
+            "gap": 1,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 5,
+            "C_opt": 3,
+            "canonical_key": [
+              0,
+              1,
+              16,
+              17,
+              36,
+              37,
+              52,
+              53
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 5,
+            "C_opt": 3,
+            "canonical_key": [
+              0,
+              1,
+              18,
+              19,
+              32,
+              33,
+              50,
+              51
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 4,
+            "canonical_key": [
+              0,
+              1,
+              18,
+              19,
+              36,
+              37,
+              54,
+              55
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              1,
+              18,
+              19,
+              68,
+              69,
+              86,
+              87
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              1,
+              18,
+              19,
+              96,
+              97,
+              114,
+              115
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 6,
+            "C_opt": 4,
+            "canonical_key": [
+              0,
+              1,
+              18,
+              19,
+              100,
+              101,
+              118,
+              119
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 7,
+            "C_opt": 5,
+            "canonical_key": [
+              0,
+              1,
+              20,
+              21,
+              34,
+              35,
+              54,
+              55
+            ],
+            "gap": 2,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 10,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              1,
+              20,
+              21,
+              38,
+              39,
+              114,
+              115
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              1,
+              20,
+              21,
+              50,
+              51,
+              102,
+              103
+            ],
+            "gap": 2,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 9,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              1,
+              20,
+              21,
+              98,
+              99,
+              118,
+              119
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 10,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              1,
+              22,
+              23,
+              34,
+              35,
+              116,
+              117
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 13,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              1,
+              22,
+              23,
+              38,
+              39,
+              48,
+              49
+            ],
+            "gap": 7,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 12,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              1,
+              22,
+              23,
+              52,
+              53,
+              98,
+              99
+            ],
+            "gap": 5,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 11,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              1,
+              22,
+              23,
+              102,
+              103,
+              112,
+              113
+            ],
+            "gap": 4,
+            "trade_class": "GLOBAL_TRADE"
+          },
+          {
+            "C_D": 8,
+            "C_opt": 6,
+            "canonical_key": [
+              0,
+              1,
+              34,
+              35,
+              52,
+              53,
+              86,
+              87
+            ],
+            "gap": 2,
+            "trade_class": "ROUTE_TRADE"
+          },
+          {
+            "C_D": 9,
+            "C_opt": 7,
+            "canonical_key": [
+              0,
+              1,
+              34,
+              35,
+              84,
+              85,
+              118,
+              119
+            ],
+            "gap": 2,
+            "trade_class": "GLOBAL_TRADE"
+          }
+        ],
+        "trade_count": 891
+      }
+    },
+    "total_trades": 924
+  },
+  "component3_sufficiency": {
+    "budget_bounds": {
+      "n1": {
+        "c_star_min_CNOT_budget": 0,
+        "h_star_min_H_budget": 2,
+        "max_r_X": 1,
+        "s_star_min_Sfamily_budget": 2,
+        "states_with_minimal_optimal_H_count_above_rX": 1
+      },
+      "n2": {
+        "c_star_min_CNOT_budget": 1,
+        "h_star_min_H_budget": 3,
+        "max_r_X": 2,
+        "s_star_min_Sfamily_budget": 4,
+        "states_with_minimal_optimal_H_count_above_rX": 15
+      },
+      "n3": {
+        "c_star_min_CNOT_budget": 2,
+        "h_star_min_H_budget": 4,
+        "max_r_X": 3,
+        "s_star_min_Sfamily_budget": 6,
+        "states_with_minimal_optimal_H_count_above_rX": 315
+      }
+    },
+    "exchange_check_n1": {
+      "normal_form": "<=2 H, no adjacent HH, no adjacent S/SDG pair, no S-run>=3",
+      "outcome": "EXCHANGE_NF1_HOLDS",
+      "word_count": 1093
+    },
+    "minimal_closing_level": null,
+    "outcome": "NO_STRICT_SUBEXTENSION_CLOSES",
+    "per_n_residuals": {
+      "n1": {
+        "E0_residual": 1,
+        "E1_residual": 1,
+        "E2_residual": 1,
+        "E3_residual": 1
+      },
+      "n2": {
+        "E0_residual": 32,
+        "E1_residual": 32,
+        "E2_residual": 28,
+        "E3_residual": 24
+      },
+      "n3": {
+        "E0_residual": 891,
+        "E1_residual": 887,
+        "E2_residual": 777,
+        "E3_residual": 614
+      }
+    }
+  },
+  "component4_predicate": {
+    "confusion_matrices": {
+      "n1": {
+        "P0": {
+          "FN": 0,
+          "FP": 1,
+          "TN": 0,
+          "TP": 5,
+          "errors": 1
+        },
+        "P1": {
+          "FN": 2,
+          "FP": 0,
+          "TN": 1,
+          "TP": 3,
+          "errors": 2
+        },
+        "P2": {
+          "FN": 3,
+          "FP": 0,
+          "TN": 1,
+          "TP": 2,
+          "errors": 3
+        },
+        "selected": {
+          "FN": 2,
+          "FP": 0,
+          "TN": 1,
+          "TP": 3,
+          "errors": 2
+        }
+      },
+      "n2": {
+        "P0": {
+          "FN": 0,
+          "FP": 16,
+          "TN": 16,
+          "TP": 28,
+          "errors": 16
+        },
+        "P1": {
+          "FN": 17,
+          "FP": 0,
+          "TN": 32,
+          "TP": 11,
+          "errors": 17
+        },
+        "P2": {
+          "FN": 23,
+          "FP": 0,
+          "TN": 32,
+          "TP": 5,
+          "errors": 23
+        },
+        "selected": {
+          "FN": 12,
+          "FP": 2,
+          "TN": 30,
+          "TP": 16,
+          "errors": 14
+        }
+      },
+      "n3_fit": {
+        "P0": {
+          "FN": 0,
+          "FP": 251,
+          "TN": 640,
+          "TP": 189,
+          "errors": 251
+        },
+        "P1": {
+          "FN": 134,
+          "FP": 0,
+          "TN": 891,
+          "TP": 55,
+          "errors": 134
+        },
+        "P2": {
+          "FN": 173,
+          "FP": 0,
+          "TN": 891,
+          "TP": 16,
+          "errors": 173
+        },
+        "selected": {
+          "FN": 99,
+          "FP": 18,
+          "TN": 873,
+          "TP": 90,
+          "errors": 117
+        }
+      },
+      "n4_panel_heldout": {
+        "P0": {
+          "FN": 0,
+          "FP": 31,
+          "TN": 57,
+          "TP": 32,
+          "errors": 31
+        },
+        "P1": {
+          "FN": 12,
+          "FP": 0,
+          "TN": 88,
+          "TP": 20,
+          "errors": 12
+        },
+        "P2": {
+          "FN": 23,
+          "FP": 0,
+          "TN": 88,
+          "TP": 9,
+          "errors": 23
+        },
+        "selected": {
+          "FN": 4,
+          "FP": 16,
+          "TN": 72,
+          "TP": 28,
+          "errors": 20
+        }
+      }
+    },
+    "fit_domain": "exhaustive n=3 (1080 instances)",
+    "held_out_labeled_after_selection": true,
+    "ladder": {
+      "P0": "nCZ==0",
+      "P1": "nCZ==0 AND nSignX==0 AND nSignZ==0",
+      "P2": "C_D==LB",
+      "P3": "best <=3-literal conjunction"
+    },
+    "outcome": "NO_CLEAN_PREDICATE",
+    "p3_search": {
+      "error": 117,
+      "indices": [
+        9
+      ],
+      "size": 1
+    },
+    "selected": "P3",
+    "selected_definition": "C_D<=2n",
+    "selected_literal_indices": [
+      9
+    ],
+    "target_label": "donor_exact := (C_opt == C_D)",
+    "training_errors": {
+      "P0": 251,
+      "P1": 134,
+      "P2": 173
+    }
+  },
+  "component5_prospective": {
+    "cost_correct": 67,
+    "cost_outcome": "COST_FORECAST_REFUTED",
+    "cost_refuted": 53,
+    "gap_forecast_table": {
+      "0,0,0,0": 0,
+      "0,0,0,1": 0,
+      "0,0,0,2": 0,
+      "0,0,0,3": 0,
+      "0,0,1,0": 0,
+      "0,0,1,1": 0,
+      "0,0,1,2": 1,
+      "0,0,1,3": 2,
+      "0,0,2,0": 1,
+      "0,0,2,1": 1,
+      "0,0,3,0": 2,
+      "0,1,0,0": 0,
+      "0,1,0,1": 2,
+      "0,1,0,2": 2,
+      "0,1,0,3": 2,
+      "0,1,1,0": 0,
+      "0,1,1,1": 2,
+      "0,1,1,2": 3,
+      "0,1,1,3": 4,
+      "0,1,2,0": 1,
+      "0,1,2,1": 3,
+      "0,2,0,0": 0,
+      "0,2,0,1": 2,
+      "0,2,0,2": 4,
+      "0,2,0,3": 4,
+      "0,2,1,0": 0,
+      "0,2,1,1": 2,
+      "0,2,1,2": 5,
+      "0,2,1,3": 6,
+      "0,3,0,0": 0,
+      "0,3,0,1": 2,
+      "0,3,0,2": 4,
+      "0,3,0,3": 6,
+      "1,0,0,0": 2,
+      "1,0,0,1": 2,
+      "1,0,0,2": 3,
+      "1,0,0,3": 3,
+      "1,0,1,0": 2,
+      "1,0,1,1": 2,
+      "1,0,1,2": 3,
+      "1,1,0,0": 2,
+      "1,1,0,1": 4,
+      "1,1,0,2": 4,
+      "1,1,0,3": 4,
+      "1,1,1,0": 2,
+      "1,1,1,1": 4,
+      "1,1,1,2": 4,
+      "1,2,0,0": 3,
+      "1,2,0,1": 5,
+      "1,2,0,2": 5,
+      "1,2,0,3": 6,
+      "1,2,1,0": 3,
+      "1,2,1,1": 5,
+      "1,2,1,2": 7,
+      "1,3,0,0": 3,
+      "1,3,0,1": 5,
+      "1,3,0,2": 7,
+      "1,3,0,3": 9,
+      "2,0,0,0": 4,
+      "2,0,0,1": 4,
+      "2,0,0,2": 5,
+      "2,0,0,3": 5,
+      "2,1,0,0": 4,
+      "2,1,0,1": 5,
+      "2,1,0,2": 6,
+      "2,1,0,3": 7,
+      "2,2,0,0": 5,
+      "2,2,0,1": 7,
+      "2,2,0,2": 7,
+      "2,2,0,3": 9,
+      "2,3,0,0": 7,
+      "2,3,0,1": 8,
+      "2,3,0,2": 9,
+      "2,3,0,3": 11,
+      "3,0,0,0": 6,
+      "3,0,0,1": 8,
+      "3,0,0,2": 10,
+      "3,0,0,3": 11,
+      "3,1,0,0": 8,
+      "3,1,0,1": 10,
+      "3,1,0,2": 10,
+      "3,1,0,3": 12,
+      "3,2,0,0": 10,
+      "3,2,0,1": 12,
+      "3,2,0,2": 12,
+      "3,2,0,3": 14,
+      "3,3,0,0": 11,
+      "3,3,0,1": 13,
+      "3,3,0,2": 15,
+      "3,3,0,3": 17
+    },
+    "panel": {
+      "circuit_length": 24,
+      "n": 4,
+      "n4_expected": 36720,
+      "n4_state_space": 36720,
+      "panel_keys_sha256": "de21f6bce80d8294c1a9ce464d191dbcd188906457d884d74d420e3bf5fdc636",
+      "seed": 20260821,
+      "size": 120
+    },
+    "predictions": [
+      {
+        "C_D": 13,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          14,
+          15,
+          102,
+          103,
+          164,
+          165,
+          194,
+          195,
+          360,
+          361,
+          426,
+          427,
+          460,
+          461
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 3
+        },
+        "index": 0,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 17,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          13,
+          37,
+          40,
+          81,
+          92,
+          116,
+          121,
+          147,
+          158,
+          187,
+          194,
+          231,
+          234,
+          438,
+          463
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 1,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 17,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          72,
+          73,
+          172,
+          173,
+          266,
+          267,
+          322,
+          323,
+          422,
+          423,
+          484,
+          485,
+          494,
+          495
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 1
+        },
+        "index": 2,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 2
+      },
+      {
+        "C_D": 26,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          62,
+          66,
+          145,
+          211,
+          237,
+          267,
+          309,
+          329,
+          375,
+          380,
+          410,
+          420,
+          431,
+          472,
+          486
+        ],
+        "features": {
+          "nCN": 4,
+          "nCZ": 2,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 1
+        },
+        "index": 3,
+        "predicted_C_opt": 26,
+        "predicted_donor_exact": false,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 15,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          8,
+          36,
+          44,
+          67,
+          75,
+          103,
+          111,
+          115,
+          123,
+          276,
+          284,
+          304,
+          312,
+          343,
+          351
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 4,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 22,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          35,
+          49,
+          94,
+          150,
+          218,
+          274,
+          332,
+          367,
+          381,
+          388,
+          423,
+          437,
+          456,
+          491,
+          505
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 3,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 5,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 9,
+        "r_X": 4
+      },
+      {
+        "C_D": 22,
+        "LB": 13,
+        "c": 1,
+        "canonical_key": [
+          0,
+          26,
+          35,
+          72,
+          82,
+          107,
+          133,
+          159,
+          166,
+          188,
+          205,
+          238,
+          313,
+          369,
+          471,
+          500
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 3,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 6,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 10,
+        "r_X": 4
+      },
+      {
+        "C_D": 8,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          5,
+          9,
+          12,
+          32,
+          37,
+          41,
+          44,
+          208,
+          240,
+          469,
+          473,
+          476,
+          501,
+          505,
+          508
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 7,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 21,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          12,
+          23,
+          27,
+          33,
+          45,
+          205,
+          214,
+          218,
+          236,
+          247,
+          251,
+          310,
+          314,
+          449,
+          480
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 2,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 8,
+        "predicted_C_opt": 14,
+        "predicted_donor_exact": false,
+        "predicted_gap": 7,
+        "r_X": 3
+      },
+      {
+        "C_D": 6,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          8,
+          17,
+          25,
+          32,
+          40,
+          49,
+          57,
+          64,
+          72,
+          81,
+          89,
+          96,
+          104,
+          113,
+          121
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 9,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 4,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          288,
+          292,
+          296,
+          300,
+          304,
+          308,
+          312,
+          316
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 10,
+        "predicted_C_opt": 4,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 10,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          34,
+          38,
+          144,
+          148,
+          178,
+          182,
+          272,
+          276,
+          306,
+          310,
+          384,
+          388,
+          418,
+          422
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 3,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 11,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 12,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          3,
+          52,
+          113,
+          114,
+          128,
+          131,
+          180,
+          241,
+          242,
+          311,
+          325,
+          326,
+          439,
+          453,
+          454
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 12,
+        "predicted_C_opt": 10,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 5,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          32,
+          36,
+          128,
+          132,
+          160,
+          164,
+          272,
+          276,
+          304,
+          308,
+          400,
+          404,
+          432,
+          436
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 13,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 13,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          4,
+          9,
+          13,
+          35,
+          39,
+          42,
+          46,
+          146,
+          150,
+          411,
+          415,
+          433,
+          437,
+          440,
+          444
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 14,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 2
+      },
+      {
+        "C_D": 21,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          10,
+          70,
+          76,
+          180,
+          235,
+          275,
+          281,
+          341,
+          351,
+          423,
+          429,
+          446,
+          481,
+          498,
+          504
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 2,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 3
+        },
+        "index": 15,
+        "predicted_C_opt": 14,
+        "predicted_donor_exact": false,
+        "predicted_gap": 7,
+        "r_X": 3
+      },
+      {
+        "C_D": 11,
+        "LB": 4,
+        "c": 4,
+        "canonical_key": [
+          0,
+          17,
+          32,
+          49,
+          136,
+          153,
+          168,
+          185,
+          324,
+          341,
+          356,
+          373,
+          460,
+          477,
+          492,
+          509
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 3
+        },
+        "index": 16,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 4
+      },
+      {
+        "C_D": 34,
+        "LB": 13,
+        "c": 1,
+        "canonical_key": [
+          0,
+          23,
+          39,
+          48,
+          79,
+          88,
+          104,
+          212,
+          228,
+          243,
+          383,
+          396,
+          411,
+          427,
+          444,
+          451
+        ],
+        "features": {
+          "nCN": 4,
+          "nCZ": 4,
+          "nSignX": 3,
+          "nSignZ": 0,
+          "nY": 4
+        },
+        "index": 17,
+        "predicted_C_opt": 34,
+        "predicted_donor_exact": false,
+        "predicted_gap": 0,
+        "r_X": 4
+      },
+      {
+        "C_D": 6,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          32,
+          33,
+          68,
+          69,
+          100,
+          101,
+          128,
+          129,
+          160,
+          161,
+          196,
+          197,
+          228,
+          229
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 18,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 5,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          4,
+          9,
+          13,
+          32,
+          36,
+          41,
+          45,
+          144,
+          148,
+          176,
+          180,
+          409,
+          413,
+          441,
+          445
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 19,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 8,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          8,
+          10,
+          20,
+          22,
+          28,
+          30,
+          81,
+          83,
+          89,
+          91,
+          325,
+          327,
+          333,
+          335
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 20,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 17,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          16,
+          42,
+          58,
+          72,
+          88,
+          98,
+          114,
+          134,
+          150,
+          206,
+          222,
+          228,
+          244,
+          428,
+          444
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 21,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 4
+      },
+      {
+        "C_D": 11,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          5,
+          115,
+          118,
+          136,
+          141,
+          251,
+          254,
+          290,
+          295,
+          337,
+          340,
+          426,
+          431,
+          473,
+          476
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 3
+        },
+        "index": 22,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 8,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          12,
+          14,
+          16,
+          18,
+          28,
+          30,
+          196,
+          198,
+          200,
+          202,
+          212,
+          214,
+          216,
+          218
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 23,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 5,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          8,
+          9,
+          100,
+          101,
+          108,
+          109,
+          288,
+          289,
+          296,
+          297,
+          324,
+          325,
+          332,
+          333
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 24,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 16,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          5,
+          8,
+          13,
+          35,
+          38,
+          43,
+          46,
+          83,
+          86,
+          91,
+          94,
+          112,
+          120,
+          373,
+          381
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 25,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 2
+      },
+      {
+        "C_D": 13,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          33,
+          69,
+          100,
+          136,
+          169,
+          205,
+          236,
+          257,
+          288,
+          324,
+          357,
+          393,
+          424,
+          460,
+          493
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 1,
+          "nY": 2
+        },
+        "index": 26,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 19,
+        "LB": 10,
+        "c": 1,
+        "canonical_key": [
+          0,
+          6,
+          9,
+          15,
+          242,
+          244,
+          247,
+          254,
+          259,
+          261,
+          266,
+          268,
+          497,
+          504,
+          507,
+          509
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 2,
+          "nY": 1
+        },
+        "index": 27,
+        "predicted_C_opt": 18,
+        "predicted_donor_exact": false,
+        "predicted_gap": 1,
+        "r_X": 1
+      },
+      {
+        "C_D": 0,
+        "LB": 0,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 28,
+        "predicted_C_opt": 0,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 0
+      },
+      {
+        "C_D": 8,
+        "LB": 0,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          2,
+          3,
+          12,
+          13,
+          14,
+          15,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 2,
+          "nY": 0
+        },
+        "index": 29,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 0
+      },
+      {
+        "C_D": 3,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          2,
+          8,
+          10,
+          16,
+          18,
+          24,
+          26,
+          324,
+          326,
+          332,
+          334,
+          340,
+          342,
+          348,
+          350
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 30,
+        "predicted_C_opt": 3,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 18,
+        "LB": 11,
+        "c": 1,
+        "canonical_key": [
+          0,
+          3,
+          9,
+          10,
+          181,
+          182,
+          188,
+          244,
+          321,
+          322,
+          328,
+          331,
+          447,
+          503,
+          509,
+          510
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 31,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 2
+      },
+      {
+        "C_D": 9,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          5,
+          8,
+          13,
+          34,
+          39,
+          42,
+          47,
+          337,
+          340,
+          345,
+          348,
+          371,
+          374,
+          379,
+          382
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 32,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 5,
+        "LB": 4,
+        "c": 3,
+        "canonical_key": [
+          0,
+          3,
+          4,
+          7,
+          8,
+          11,
+          12,
+          15,
+          305,
+          306,
+          309,
+          310,
+          313,
+          314,
+          317,
+          318
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 33,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 16,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          20,
+          67,
+          87,
+          101,
+          174,
+          186,
+          249,
+          294,
+          306,
+          369,
+          392,
+          412,
+          459,
+          479,
+          493
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 34,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 4
+      },
+      {
+        "C_D": 11,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          9,
+          32,
+          41,
+          65,
+          72,
+          97,
+          104,
+          148,
+          180,
+          213,
+          220,
+          245,
+          252,
+          413,
+          445
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 35,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 8,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          4,
+          10,
+          14,
+          16,
+          20,
+          26,
+          30,
+          162,
+          166,
+          168,
+          172,
+          178,
+          182,
+          184,
+          188
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 36,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 11,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          8,
+          20,
+          28,
+          32,
+          40,
+          52,
+          60,
+          69,
+          77,
+          101,
+          109,
+          337,
+          345,
+          369,
+          377
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 37,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 1,
+        "LB": 1,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          4,
+          5,
+          8,
+          9,
+          12,
+          13,
+          32,
+          33,
+          36,
+          37,
+          40,
+          41,
+          44,
+          45
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 38,
+        "predicted_C_opt": 1,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 20,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          28,
+          69,
+          121,
+          149,
+          169,
+          208,
+          236,
+          288,
+          316,
+          345,
+          357,
+          393,
+          437,
+          460,
+          496
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 39,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 7,
+        "r_X": 4
+      },
+      {
+        "C_D": 16,
+        "LB": 7,
+        "c": 3,
+        "canonical_key": [
+          0,
+          17,
+          38,
+          55,
+          66,
+          83,
+          236,
+          253,
+          356,
+          373,
+          392,
+          409,
+          430,
+          447,
+          458,
+          475
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 3
+        },
+        "index": 40,
+        "predicted_C_opt": 10,
+        "predicted_donor_exact": false,
+        "predicted_gap": 6,
+        "r_X": 4
+      },
+      {
+        "C_D": 10,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          6,
+          8,
+          14,
+          17,
+          23,
+          25,
+          31,
+          102,
+          110,
+          119,
+          127,
+          352,
+          360,
+          369,
+          377
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 41,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 4,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          32,
+          33,
+          128,
+          129,
+          160,
+          161,
+          324,
+          325,
+          356,
+          357,
+          452,
+          453,
+          484,
+          485
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 42,
+        "predicted_C_opt": 4,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 14,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          6,
+          7,
+          110,
+          111,
+          234,
+          235,
+          236,
+          237,
+          360,
+          361,
+          386,
+          387,
+          388,
+          389
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 43,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 3,
+        "r_X": 2
+      },
+      {
+        "C_D": 5,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          8,
+          9,
+          32,
+          33,
+          40,
+          41,
+          68,
+          69,
+          76,
+          77,
+          100,
+          101,
+          108,
+          109
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 44,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 12,
+        "LB": 7,
+        "c": 3,
+        "canonical_key": [
+          0,
+          24,
+          32,
+          56,
+          64,
+          88,
+          96,
+          120,
+          137,
+          169,
+          201,
+          233,
+          401,
+          433,
+          465,
+          497
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 45,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 4
+      },
+      {
+        "C_D": 6,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          68,
+          76,
+          84,
+          92,
+          100,
+          108,
+          116,
+          124
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 46,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 5,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          4,
+          5,
+          32,
+          33,
+          36,
+          37,
+          136,
+          137,
+          140,
+          141,
+          168,
+          169,
+          172,
+          173
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 47,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 16,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          13,
+          33,
+          44,
+          87,
+          178,
+          346,
+          374,
+          379,
+          403,
+          414,
+          447,
+          452,
+          457,
+          485,
+          488
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 48,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 3,
+        "r_X": 3
+      },
+      {
+        "C_D": 4,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          8,
+          32,
+          40,
+          64,
+          72,
+          96,
+          104,
+          273,
+          281,
+          305,
+          313,
+          337,
+          345,
+          369,
+          377
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 49,
+        "predicted_C_opt": 4,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 8,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          1,
+          12,
+          13,
+          32,
+          33,
+          44,
+          45,
+          196,
+          197,
+          200,
+          201,
+          228,
+          229,
+          232,
+          233
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 50,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 8,
+        "LB": 4,
+        "c": 4,
+        "canonical_key": [
+          0,
+          16,
+          98,
+          114,
+          170,
+          186,
+          200,
+          216,
+          290,
+          306,
+          320,
+          336,
+          392,
+          408,
+          490,
+          506
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 51,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 4
+      },
+      {
+        "C_D": 12,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          6,
+          16,
+          22,
+          130,
+          132,
+          146,
+          148,
+          232,
+          248,
+          362,
+          364,
+          378,
+          380,
+          494,
+          510
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 52,
+        "predicted_C_opt": 10,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 17,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          8,
+          48,
+          56,
+          67,
+          75,
+          276,
+          284,
+          292,
+          300,
+          343,
+          351,
+          359,
+          367,
+          371,
+          379
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 53,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 7,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          3,
+          4,
+          7,
+          185,
+          186,
+          189,
+          190,
+          305,
+          306,
+          309,
+          310,
+          392,
+          395,
+          396,
+          399
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 54,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 10,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          5,
+          8,
+          13,
+          81,
+          84,
+          89,
+          92,
+          288,
+          293,
+          296,
+          301,
+          369,
+          372,
+          377,
+          380
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 55,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 9,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          6,
+          9,
+          15,
+          144,
+          150,
+          251,
+          253,
+          354,
+          356,
+          363,
+          365,
+          409,
+          415,
+          498,
+          500
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 56,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 6,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          9,
+          11,
+          144,
+          146,
+          221,
+          223,
+          324,
+          326,
+          333,
+          335,
+          409,
+          411,
+          468,
+          470
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 57,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 25,
+        "LB": 10,
+        "c": 1,
+        "canonical_key": [
+          0,
+          6,
+          10,
+          12,
+          241,
+          254,
+          259,
+          261,
+          265,
+          271,
+          498,
+          500,
+          503,
+          504,
+          507,
+          509
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 3,
+          "nY": 1
+        },
+        "index": 58,
+        "predicted_C_opt": 25,
+        "predicted_donor_exact": false,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 6,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          8,
+          9,
+          34,
+          35,
+          42,
+          43,
+          324,
+          325,
+          332,
+          333,
+          358,
+          359,
+          366,
+          367
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 59,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 7,
+        "LB": 7,
+        "c": 2,
+        "canonical_key": [
+          0,
+          2,
+          5,
+          7,
+          9,
+          11,
+          12,
+          14,
+          208,
+          210,
+          469,
+          471,
+          473,
+          475,
+          476,
+          478
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 60,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 6,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          16,
+          20,
+          162,
+          166,
+          178,
+          182,
+          290,
+          294,
+          306,
+          310,
+          384,
+          388,
+          400,
+          404
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 61,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 18,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          2,
+          81,
+          83,
+          205,
+          207,
+          281,
+          283,
+          328,
+          330,
+          389,
+          391,
+          412,
+          414,
+          468,
+          470
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 62,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 7,
+        "r_X": 3
+      },
+      {
+        "C_D": 8,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          8,
+          10,
+          65,
+          67,
+          73,
+          75,
+          84,
+          86,
+          92,
+          94,
+          277,
+          279,
+          285,
+          287
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 63,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 12,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          9,
+          32,
+          41,
+          68,
+          77,
+          100,
+          109,
+          145,
+          152,
+          177,
+          184,
+          213,
+          220,
+          245,
+          252
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 64,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 17,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          17,
+          98,
+          115,
+          142,
+          159,
+          236,
+          253,
+          262,
+          279,
+          356,
+          373,
+          392,
+          409,
+          490,
+          507
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 1,
+          "nY": 3
+        },
+        "index": 65,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 6,
+        "r_X": 3
+      },
+      {
+        "C_D": 6,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          2,
+          64,
+          66,
+          128,
+          130,
+          192,
+          194,
+          257,
+          259,
+          321,
+          323,
+          385,
+          387,
+          449,
+          451
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 1,
+          "nY": 0
+        },
+        "index": 66,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 8,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          6,
+          8,
+          14,
+          16,
+          22,
+          24,
+          30,
+          98,
+          100,
+          106,
+          108,
+          114,
+          116,
+          122,
+          124
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 67,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 11,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          20,
+          22,
+          69,
+          71,
+          128,
+          130,
+          148,
+          150,
+          197,
+          199,
+          337,
+          339,
+          465,
+          467
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 68,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 14,
+        "LB": 7,
+        "c": 3,
+        "canonical_key": [
+          0,
+          59,
+          68,
+          127,
+          130,
+          168,
+          198,
+          236,
+          273,
+          298,
+          341,
+          366,
+          403,
+          441,
+          471,
+          509
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 3
+        },
+        "index": 69,
+        "predicted_C_opt": 10,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 4
+      },
+      {
+        "C_D": 21,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          15,
+          55,
+          99,
+          108,
+          149,
+          154,
+          162,
+          173,
+          193,
+          312,
+          340,
+          347,
+          462,
+          502,
+          505
+        ],
+        "features": {
+          "nCN": 4,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 70,
+        "predicted_C_opt": 17,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 6,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          8,
+          9,
+          68,
+          69,
+          76,
+          77,
+          290,
+          291,
+          298,
+          299,
+          358,
+          359,
+          366,
+          367
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 71,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 24,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          23,
+          37,
+          67,
+          102,
+          178,
+          212,
+          241,
+          306,
+          340,
+          369,
+          384,
+          407,
+          421,
+          451,
+          486
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 3,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 72,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 12,
+        "r_X": 4
+      },
+      {
+        "C_D": 9,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          4,
+          6,
+          24,
+          26,
+          28,
+          30,
+          385,
+          387,
+          389,
+          391,
+          409,
+          411,
+          413,
+          415
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 73,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 16,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          12,
+          13,
+          38,
+          39,
+          42,
+          43,
+          198,
+          199,
+          202,
+          203,
+          224,
+          225,
+          492,
+          493
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 74,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 2
+      },
+      {
+        "C_D": 13,
+        "LB": 7,
+        "c": 3,
+        "canonical_key": [
+          0,
+          57,
+          85,
+          108,
+          130,
+          187,
+          215,
+          238,
+          273,
+          296,
+          324,
+          381,
+          403,
+          426,
+          454,
+          511
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 75,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 4
+      },
+      {
+        "C_D": 17,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          18,
+          37,
+          55,
+          99,
+          198,
+          212,
+          241,
+          326,
+          340,
+          369,
+          384,
+          402,
+          421,
+          439,
+          483
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 76,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 4
+      },
+      {
+        "C_D": 7,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          1,
+          6,
+          7,
+          96,
+          97,
+          230,
+          231,
+          358,
+          359,
+          384,
+          385,
+          390,
+          391,
+          480,
+          481
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 77,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 12,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          64,
+          66,
+          137,
+          139,
+          201,
+          203,
+          281,
+          283,
+          345,
+          347,
+          400,
+          402,
+          464,
+          466
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 78,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 16,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          5,
+          40,
+          45,
+          85,
+          125,
+          138,
+          143,
+          223,
+          242,
+          336,
+          376,
+          418,
+          423,
+          474,
+          503
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 79,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 5,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          32,
+          33,
+          204,
+          205,
+          236,
+          237,
+          324,
+          325,
+          356,
+          357,
+          392,
+          393,
+          424,
+          425
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 80,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 17,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          1,
+          72,
+          73,
+          142,
+          143,
+          298,
+          299,
+          354,
+          355,
+          420,
+          421,
+          454,
+          455,
+          492,
+          493
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 81,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 6,
+        "r_X": 3
+      },
+      {
+        "C_D": 27,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          39,
+          49,
+          71,
+          81,
+          96,
+          118,
+          128,
+          167,
+          177,
+          199,
+          209,
+          224,
+          246,
+          278,
+          406
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 3,
+          "nSignX": 3,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 82,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 15,
+        "r_X": 4
+      },
+      {
+        "C_D": 11,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          1,
+          108,
+          109,
+          130,
+          131,
+          238,
+          239,
+          296,
+          297,
+          324,
+          325,
+          426,
+          427,
+          454,
+          455
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 83,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 14,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          2,
+          92,
+          94,
+          140,
+          142,
+          208,
+          210,
+          272,
+          274,
+          332,
+          334,
+          412,
+          414,
+          448,
+          450
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 84,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 12,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          8,
+          52,
+          60,
+          66,
+          74,
+          118,
+          126,
+          272,
+          280,
+          292,
+          300,
+          338,
+          346,
+          358,
+          366
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 85,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 3,
+        "r_X": 3
+      },
+      {
+        "C_D": 1,
+        "LB": 1,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          2,
+          3,
+          8,
+          9,
+          10,
+          11,
+          64,
+          65,
+          66,
+          67,
+          72,
+          73,
+          74,
+          75
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 86,
+        "predicted_C_opt": 1,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 7,
+        "LB": 1,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          8,
+          12,
+          33,
+          37,
+          41,
+          45,
+          257,
+          261,
+          265,
+          269,
+          288,
+          292,
+          296,
+          300
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 0
+        },
+        "index": 87,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 4,
+        "LB": 1,
+        "c": 4,
+        "canonical_key": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27,
+          29,
+          31
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 88,
+        "predicted_C_opt": 4,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 27,
+        "LB": 13,
+        "c": 1,
+        "canonical_key": [
+          0,
+          20,
+          46,
+          58,
+          75,
+          95,
+          113,
+          134,
+          146,
+          205,
+          357,
+          424,
+          444,
+          473,
+          483,
+          503
+        ],
+        "features": {
+          "nCN": 4,
+          "nCZ": 4,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 89,
+        "predicted_C_opt": 27,
+        "predicted_donor_exact": false,
+        "predicted_gap": 0,
+        "r_X": 4
+      },
+      {
+        "C_D": 22,
+        "LB": 13,
+        "c": 1,
+        "canonical_key": [
+          0,
+          45,
+          84,
+          107,
+          121,
+          130,
+          175,
+          189,
+          214,
+          251,
+          274,
+          319,
+          326,
+          400,
+          452,
+          489
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 3,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 90,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 10,
+        "r_X": 4
+      },
+      {
+        "C_D": 14,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          9,
+          33,
+          40,
+          146,
+          159,
+          179,
+          186,
+          260,
+          269,
+          293,
+          300,
+          406,
+          411,
+          439,
+          446
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 1,
+          "nY": 0
+        },
+        "index": 91,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 9,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          4,
+          8,
+          12,
+          33,
+          37,
+          41,
+          45,
+          274,
+          278,
+          282,
+          286,
+          307,
+          311,
+          315,
+          319
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 92,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 17,
+        "LB": 11,
+        "c": 1,
+        "canonical_key": [
+          0,
+          5,
+          10,
+          15,
+          163,
+          166,
+          169,
+          172,
+          245,
+          250,
+          339,
+          342,
+          345,
+          348,
+          496,
+          511
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 93,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 2
+      },
+      {
+        "C_D": 14,
+        "LB": 11,
+        "c": 1,
+        "canonical_key": [
+          0,
+          3,
+          12,
+          15,
+          52,
+          56,
+          241,
+          242,
+          311,
+          315,
+          453,
+          454,
+          457,
+          458,
+          509,
+          510
+        ],
+        "features": {
+          "nCN": 3,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 94,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 15,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          26,
+          64,
+          90,
+          162,
+          184,
+          226,
+          248,
+          266,
+          272,
+          330,
+          336,
+          424,
+          434,
+          488,
+          498
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 1,
+          "nY": 1
+        },
+        "index": 95,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 7,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          49,
+          53,
+          153,
+          157,
+          168,
+          172,
+          273,
+          277,
+          288,
+          292,
+          392,
+          396,
+          441,
+          445
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 96,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 3,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          32,
+          33,
+          64,
+          65,
+          96,
+          97,
+          128,
+          129,
+          160,
+          161,
+          192,
+          193,
+          224,
+          225
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 97,
+        "predicted_C_opt": 3,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 9,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          2,
+          13,
+          15,
+          192,
+          194,
+          337,
+          339,
+          348,
+          350,
+          401,
+          403,
+          412,
+          414,
+          461,
+          463
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 98,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 14,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          1,
+          38,
+          39,
+          100,
+          101,
+          202,
+          203,
+          322,
+          323,
+          392,
+          393,
+          430,
+          431,
+          492,
+          493
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 99,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 5,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          320,
+          328,
+          336,
+          344,
+          352,
+          360,
+          368,
+          376
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 100,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 10,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          4,
+          8,
+          12,
+          19,
+          23,
+          27,
+          31,
+          33,
+          37,
+          41,
+          45,
+          306,
+          310,
+          314,
+          318
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 101,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 2
+      },
+      {
+        "C_D": 16,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          9,
+          38,
+          47,
+          66,
+          75,
+          153,
+          191,
+          219,
+          244,
+          356,
+          365,
+          400,
+          438,
+          466,
+          509
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 102,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 11,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          3,
+          9,
+          10,
+          68,
+          71,
+          77,
+          78,
+          176,
+          244,
+          435,
+          441,
+          442,
+          503,
+          509,
+          510
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 103,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 2
+      },
+      {
+        "C_D": 14,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          8,
+          21,
+          29,
+          34,
+          42,
+          55,
+          63,
+          65,
+          73,
+          99,
+          107,
+          340,
+          348,
+          374,
+          382
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 104,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 13,
+        "LB": 5,
+        "c": 3,
+        "canonical_key": [
+          0,
+          6,
+          25,
+          31,
+          98,
+          100,
+          123,
+          125,
+          264,
+          270,
+          273,
+          279,
+          362,
+          364,
+          371,
+          373
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 1,
+          "nY": 2
+        },
+        "index": 105,
+        "predicted_C_opt": 10,
+        "predicted_donor_exact": false,
+        "predicted_gap": 3,
+        "r_X": 2
+      },
+      {
+        "C_D": 16,
+        "LB": 8,
+        "c": 2,
+        "canonical_key": [
+          0,
+          3,
+          8,
+          11,
+          53,
+          54,
+          61,
+          62,
+          69,
+          70,
+          77,
+          78,
+          112,
+          120,
+          371,
+          379
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 106,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 2
+      },
+      {
+        "C_D": 14,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          8,
+          34,
+          42,
+          276,
+          284,
+          310,
+          318,
+          325,
+          333,
+          337,
+          345,
+          359,
+          367,
+          371,
+          379
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 107,
+        "predicted_C_opt": 9,
+        "predicted_donor_exact": false,
+        "predicted_gap": 5,
+        "r_X": 3
+      },
+      {
+        "C_D": 20,
+        "LB": 10,
+        "c": 2,
+        "canonical_key": [
+          0,
+          17,
+          74,
+          91,
+          108,
+          125,
+          162,
+          179,
+          232,
+          249,
+          294,
+          311,
+          388,
+          405,
+          462,
+          479
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 2,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 108,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 7,
+        "r_X": 4
+      },
+      {
+        "C_D": 12,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          24,
+          34,
+          58,
+          64,
+          88,
+          98,
+          122,
+          264,
+          272,
+          298,
+          306,
+          328,
+          336,
+          362,
+          370
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 1,
+          "nY": 1
+        },
+        "index": 109,
+        "predicted_C_opt": 10,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 5,
+        "LB": 4,
+        "c": 3,
+        "canonical_key": [
+          0,
+          1,
+          4,
+          5,
+          10,
+          11,
+          14,
+          15,
+          418,
+          419,
+          422,
+          423,
+          424,
+          425,
+          428,
+          429
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 110,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 27,
+        "LB": 12,
+        "c": 1,
+        "canonical_key": [
+          0,
+          6,
+          26,
+          28,
+          107,
+          109,
+          119,
+          139,
+          141,
+          224,
+          369,
+          401,
+          407,
+          486,
+          506,
+          508
+        ],
+        "features": {
+          "nCN": 4,
+          "nCZ": 3,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 111,
+        "predicted_C_opt": 15,
+        "predicted_donor_exact": false,
+        "predicted_gap": 12,
+        "r_X": 3
+      },
+      {
+        "C_D": 10,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          12,
+          51,
+          63,
+          204,
+          209,
+          226,
+          255,
+          273,
+          285,
+          290,
+          302,
+          448,
+          477,
+          494,
+          499
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 1,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 112,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 17,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          13,
+          34,
+          47,
+          84,
+          89,
+          118,
+          123,
+          144,
+          178,
+          196,
+          201,
+          230,
+          235,
+          413,
+          447
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 3,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 113,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false,
+        "predicted_gap": 4,
+        "r_X": 3
+      },
+      {
+        "C_D": 14,
+        "LB": 9,
+        "c": 2,
+        "canonical_key": [
+          0,
+          11,
+          114,
+          121,
+          155,
+          162,
+          169,
+          208,
+          306,
+          313,
+          320,
+          331,
+          400,
+          475,
+          482,
+          489
+        ],
+        "features": {
+          "nCN": 2,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 114,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false,
+        "predicted_gap": 2,
+        "r_X": 3
+      },
+      {
+        "C_D": 7,
+        "LB": 2,
+        "c": 4,
+        "canonical_key": [
+          0,
+          2,
+          8,
+          10,
+          68,
+          70,
+          76,
+          78,
+          272,
+          274,
+          280,
+          282,
+          340,
+          342,
+          348,
+          350
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 2,
+          "nSignZ": 0,
+          "nY": 1
+        },
+        "index": 115,
+        "predicted_C_opt": 7,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 2
+      },
+      {
+        "C_D": 3,
+        "LB": 3,
+        "c": 4,
+        "canonical_key": [
+          0,
+          4,
+          16,
+          20,
+          32,
+          36,
+          48,
+          52,
+          128,
+          132,
+          144,
+          148,
+          160,
+          164,
+          176,
+          180
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 116,
+        "predicted_C_opt": 3,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 8,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          6,
+          16,
+          22,
+          234,
+          236,
+          250,
+          252,
+          354,
+          356,
+          370,
+          372,
+          392,
+          398,
+          408,
+          414
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 2
+        },
+        "index": 117,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 3
+      },
+      {
+        "C_D": 1,
+        "LB": 1,
+        "c": 4,
+        "canonical_key": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135
+        ],
+        "features": {
+          "nCN": 0,
+          "nCZ": 0,
+          "nSignX": 0,
+          "nSignZ": 0,
+          "nY": 0
+        },
+        "index": 118,
+        "predicted_C_opt": 1,
+        "predicted_donor_exact": true,
+        "predicted_gap": 0,
+        "r_X": 1
+      },
+      {
+        "C_D": 14,
+        "LB": 6,
+        "c": 3,
+        "canonical_key": [
+          0,
+          29,
+          32,
+          61,
+          77,
+          80,
+          109,
+          112,
+          264,
+          277,
+          296,
+          309,
+          325,
+          344,
+          357,
+          376
+        ],
+        "features": {
+          "nCN": 1,
+          "nCZ": 1,
+          "nSignX": 0,
+          "nSignZ": 1,
+          "nY": 2
+        },
+        "index": 119,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false,
+        "predicted_gap": 3,
+        "r_X": 3
+      }
+    ],
+    "predictions_sha256": "e456e9898862642483d44938769d2fd64c0df33a28b0b6206b5533f3fdc2da2e",
+    "predictions_stamped_before_referee": true,
+    "refutation_witnesses": [
+      {
+        "C_D": 17,
+        "C_opt_actual": 12,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          1,
+          72,
+          73,
+          172,
+          173,
+          266,
+          267,
+          322,
+          323,
+          422,
+          423,
+          484,
+          485,
+          494,
+          495
+        ],
+        "index": 2,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 26,
+        "C_opt_actual": 17,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          62,
+          66,
+          145,
+          211,
+          237,
+          267,
+          309,
+          329,
+          375,
+          380,
+          410,
+          420,
+          431,
+          472,
+          486
+        ],
+        "index": 3,
+        "predicted_C_opt": 26,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 22,
+        "C_opt_actual": 14,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          35,
+          49,
+          94,
+          150,
+          218,
+          274,
+          332,
+          367,
+          381,
+          388,
+          423,
+          437,
+          456,
+          491,
+          505
+        ],
+        "index": 5,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 22,
+        "C_opt_actual": 14,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          26,
+          35,
+          72,
+          82,
+          107,
+          133,
+          159,
+          166,
+          188,
+          205,
+          238,
+          313,
+          369,
+          471,
+          500
+        ],
+        "index": 6,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 6,
+        "C_opt_actual": 4,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          8,
+          17,
+          25,
+          32,
+          40,
+          49,
+          57,
+          64,
+          72,
+          81,
+          89,
+          96,
+          104,
+          113,
+          121
+        ],
+        "index": 9,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 34,
+        "C_opt_actual": 15,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          23,
+          39,
+          48,
+          79,
+          88,
+          104,
+          212,
+          228,
+          243,
+          383,
+          396,
+          411,
+          427,
+          444,
+          451
+        ],
+        "index": 17,
+        "predicted_C_opt": 34,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 6,
+        "C_opt_actual": 4,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          1,
+          32,
+          33,
+          68,
+          69,
+          100,
+          101,
+          128,
+          129,
+          160,
+          161,
+          196,
+          197,
+          228,
+          229
+        ],
+        "index": 18,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 8,
+        "C_opt_actual": 6,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          2,
+          8,
+          10,
+          20,
+          22,
+          28,
+          30,
+          81,
+          83,
+          89,
+          91,
+          325,
+          327,
+          333,
+          335
+        ],
+        "index": 20,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 17,
+        "C_opt_actual": 11,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          16,
+          42,
+          58,
+          72,
+          88,
+          98,
+          114,
+          134,
+          150,
+          206,
+          222,
+          228,
+          244,
+          428,
+          444
+        ],
+        "index": 21,
+        "predicted_C_opt": 12,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 8,
+        "C_opt_actual": 6,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          2,
+          12,
+          14,
+          16,
+          18,
+          28,
+          30,
+          196,
+          198,
+          200,
+          202,
+          212,
+          214,
+          216,
+          218
+        ],
+        "index": 23,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 16,
+        "C_opt_actual": 9,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          5,
+          8,
+          13,
+          35,
+          38,
+          43,
+          46,
+          83,
+          86,
+          91,
+          94,
+          112,
+          120,
+          373,
+          381
+        ],
+        "index": 25,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 13,
+        "C_opt_actual": 11,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          33,
+          69,
+          100,
+          136,
+          169,
+          205,
+          236,
+          257,
+          288,
+          324,
+          357,
+          393,
+          424,
+          460,
+          493
+        ],
+        "index": 26,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 19,
+        "C_opt_actual": 14,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          6,
+          9,
+          15,
+          242,
+          244,
+          247,
+          254,
+          259,
+          261,
+          266,
+          268,
+          497,
+          504,
+          507,
+          509
+        ],
+        "index": 27,
+        "predicted_C_opt": 18,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 8,
+        "C_opt_actual": 7,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          1,
+          2,
+          3,
+          12,
+          13,
+          14,
+          15,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267
+        ],
+        "index": 29,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 16,
+        "C_opt_actual": 12,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          20,
+          67,
+          87,
+          101,
+          174,
+          186,
+          249,
+          294,
+          306,
+          369,
+          392,
+          412,
+          459,
+          479,
+          493
+        ],
+        "index": 34,
+        "predicted_C_opt": 11,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 8,
+        "C_opt_actual": 6,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          4,
+          10,
+          14,
+          16,
+          20,
+          26,
+          30,
+          162,
+          166,
+          168,
+          172,
+          178,
+          182,
+          184,
+          188
+        ],
+        "index": 36,
+        "predicted_C_opt": 8,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 20,
+        "C_opt_actual": 14,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          28,
+          69,
+          121,
+          149,
+          169,
+          208,
+          236,
+          288,
+          316,
+          345,
+          357,
+          393,
+          437,
+          460,
+          496
+        ],
+        "index": 39,
+        "predicted_C_opt": 13,
+        "predicted_donor_exact": false
+      },
+      {
+        "C_D": 5,
+        "C_opt_actual": 3,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          1,
+          8,
+          9,
+          32,
+          33,
+          40,
+          41,
+          68,
+          69,
+          76,
+          77,
+          100,
+          101,
+          108,
+          109
+        ],
+        "index": 44,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 6,
+        "C_opt_actual": 4,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          68,
+          76,
+          84,
+          92,
+          100,
+          108,
+          116,
+          124
+        ],
+        "index": 46,
+        "predicted_C_opt": 6,
+        "predicted_donor_exact": true
+      },
+      {
+        "C_D": 5,
+        "C_opt_actual": 3,
+        "actual_donor_exact": false,
+        "canonical_key": [
+          0,
+          1,
+          4,
+          5,
+          32,
+          33,
+          36,
+          37,
+          136,
+          137,
+          140,
+          141,
+          168,
+          169,
+          172,
+          173
+        ],
+        "index": 47,
+        "predicted_C_opt": 5,
+        "predicted_donor_exact": true
+      }
+    ],
+    "regime_correct": 100,
+    "regime_outcome": "REGIME_FORECAST_REFUTED",
+    "regime_refuted": 20
+  },
+  "component_outcomes": {
+    "component1": "REGIME_MAP_COMPLETE",
+    "component2": "TRADES_FOUND",
+    "component3": "NO_STRICT_SUBEXTENSION_CLOSES",
+    "component4": "NO_CLEAN_PREDICATE",
+    "component5_cost": "COST_FORECAST_REFUTED",
+    "component5_regime": "REGIME_FORECAST_REFUTED"
+  },
+  "domains": {
+    "n1": {
+      "count": 6,
+      "enumeration_sha256": "eb0adc935c8d3aeb6f01f3241cf5309a3e040b981d3514edd46d461402c2544d",
+      "expected_count": 6,
+      "first_key": [
+        0,
+        1
+      ],
+      "last_key": [
+        0,
+        7
+      ],
+      "max_referee_cost": 4
+    },
+    "n2": {
+      "count": 60,
+      "enumeration_sha256": "bccfd6c57050caead9d35b605f518ecb830462e05d23c48b361e8862876899ed",
+      "expected_count": 60,
+      "first_key": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "last_key": [
+        0,
+        23,
+        25,
+        30
+      ],
+      "max_referee_cost": 9
+    },
+    "n3": {
+      "count": 1080,
+      "enumeration_sha256": "2ec85cbd5947f8caaf9de99797018a3b209ce4db2507a570e1a7d8412f4d106f",
+      "expected_count": 1080,
+      "first_key": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "last_key": [
+        0,
+        54,
+        57,
+        79,
+        85,
+        90,
+        99,
+        108
+      ],
+      "max_referee_cost": 13
+    }
+  },
+  "family": {
+    "donor": "frozen greedy echelon synthesis GE (ascending qubit order, min-key pivot, X-route)",
+    "gate_set": "H(1), S(1), SDG(1), CNOT(3)",
+    "instance": "n-qubit stabilizer state (full signed stabilizer group, canonical sorted-int key)",
+    "materially_different_from": "TARE (no Tag/Restore) and SixLCU (no PREP/SELECT): weighted-gate circuit synthesis against a shortest-path referee",
+    "name": "StabPrep",
+    "referee": "exact Dijkstra over the complete stabilizer-state graph per n"
+  },
+  "gate_costs": {
+    "CNOT": 3,
+    "H": 1,
+    "S": 1,
+    "SDG": 1
+  },
+  "gates": {
+    "G10_no_new_subject_data_no_network": true,
+    "G1_state_space_ground_truth": true,
+    "G2_bellman_ford_sweeps": 3,
+    "G2_independent_brute_agreement": true,
+    "G3_donor_validity_all_domains": true,
+    "G4_ladder_nesting_and_replay": true,
+    "G5_lower_bound_validity": true,
+    "G6_witness_recompute": true,
+    "G7_predicate_discipline": true,
+    "G8_prospective_stamp_before_referee": true,
+    "G9_determinism_no_wallclock_in_digest": true
+  },
+  "network_access": false,
+  "novelty_credit": false,
+  "predictions_sha256": "e456e9898862642483d44938769d2fd64c0df33a28b0b6206b5533f3fdc2da2e",
+  "programme": "ORION-QG lane QG-15 (PROGRAMME_CHARTER_V1.md, issue #740); third template-transfer instance",
+  "protocol": "development/orion-qg-regime-geometry/QG15_THIRD_FAMILY_PROTOCOL_V1.md",
+  "protocol_sha256": "765dc86a5451956552295b7a7c534458a468dfe4470cabf57df1518c54b38b3f",
+  "r6_authority": false,
+  "random_seed_panel": 20260821,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "qg15 lane, ORION-QG programme, 2026-08-21",
+  "result_digest": "04f19d33db6b4be3d964da541cbb6548e16a330b221e17e4b5a05aecf6f76ddc",
+  "schema": "orion-qg.qg15_third_family.v1",
+  "template_source": "TARE R6N..R6S (wave 1); SixLCU QG-4 upgraded by QG-12 (wave 2)",
+  "terminal": "TEMPLATE_TRANSFERRED",
+  "timing": {
+    "A_referees_brutes": 0.076,
+    "B_donor_structure": 0.146,
+    "C2_budgets": 0.21,
+    "C_ladder": 1.229,
+    "D_trades": 0.004,
+    "E_panel_referee4": 7.289,
+    "F_predicate": 0.001
+  },
+  "transfer_verdict": "TEMPLATE_TRANSFERRED"
+}

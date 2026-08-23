@@ -1,0 +1,92 @@
+{
+  "schema_version": "orion.p2.wide-openaire-matched-run-receipt.v3",
+  "paper_id": "P2",
+  "date": "2026-08-21",
+  "campaign_version": 3,
+  "protocol": {
+    "v3_path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json",
+    "v3_git_blob_sha": "25a55bcce02bc329b21af886a418beb30d99ebe2",
+    "parent_v2_path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json",
+    "parent_v2_git_blob_sha": "36c923a416389be831333e8a02f75736278c8b3f"
+  },
+  "protected_acquisition": {
+    "workflow_run_id": 32494601555,
+    "source_head_sha": "d1e4f5c10d9a9df2dde2ff4e50eb976b62057c5d",
+    "source_merge_sha": "90697083ee75e3049c3fbb7dc58224104ac583b1",
+    "capture_artifact_id": 9453008818,
+    "capture_artifact_name": "p2-wide-v3-capture-90697083ee75e3049c3fbb7dc58224104ac583b1",
+    "capture_archive_sha256": "982195db3d505021f96fbae9ef61c276eea24644c01c75fb23a80c1b775020cd",
+    "capture_manifest_sha256": "46c57cb6505f87320f9b0ca562ba8d1bf4d2826b0f2e20a44ea291e768afa3db",
+    "candidate_sha256": {
+      "wide_dual_backend_balanced": "b1be6f245bf7724810b31b44da88474602787a759f81d3eaac1a6a6e9bc8a1b5",
+      "wide_dual_backend_direct_first": "11c6bb03af16caf1a5342e2ec9e358320d08e1a70adcadd6e4b5e90bdb574f16",
+      "wide_dual_backend_governed": "ee687ccda83cf1331813e5733b11e4e29d1b3624ad3a01054e1331d4cede2bbf"
+    },
+    "candidate_frozen_before_gold": true,
+    "gold_access_during_acquisition": false
+  },
+  "first_evaluator_attempt": {
+    "workflow_run_id": 32494601555,
+    "job_id": 96826469418,
+    "official_score_produced": false,
+    "scientific_terminal_produced": false,
+    "failure_class": "EVALUATOR_RUNTIME_IMPORT_DEPENDENCY",
+    "failure": "ModuleNotFoundError: No module named 'openai'",
+    "scientific_objects_implicated": false,
+    "candidate_bytes_mutated": false,
+    "repair_allowed": "MECHANICAL_EVALUATOR_RUNTIME_ONLY"
+  },
+  "evaluator_recovery": {
+    "workflow_run_id": 32500120407,
+    "workflow_head_sha": "11e8e67b3b69cc8fe8e08a9b3102c77f98a62382",
+    "recovery_artifact_id": 9453161078,
+    "recovery_artifact_name": "p2-wide-v3-evaluator-recovery-b4941302ba8b22ef1692fd6fb471c621532beca1",
+    "recovery_archive_sha256": "5ed8d43b25f3b44fa900e4e4ade40c6ed7c90bf58c722f1d0fed5e0809582893",
+    "source_capture_reused_exactly": true,
+    "source_capture_archive_digest_revalidated_by_download_action": true,
+    "candidate_hashes_revalidated_before_gold": true,
+    "candidate_hashes_revalidated_after_score": true,
+    "recovery_changes_candidate_bytes": false,
+    "recovery_changes_comparator": false,
+    "recovery_changes_metric": false,
+    "recovery_changes_threshold": false,
+    "recovery_changes_bootstrap": false,
+    "recovery_changes_terminal_mapping": false,
+    "mechanical_runtime_change": "Install upstream scorer import dependency openai; official scorer source remains unchanged."
+  },
+  "evaluator_identity": {
+    "upstream_repository": "CherYou/AutoResearchBench",
+    "upstream_commit": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "official_scorer": "evaluate/evaluate_wide_search.py --no-jina",
+    "decrypted_benchmark_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "public_split_sha256": "af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae",
+    "gt_sha256": "fb95366de6ec2a614b498c2263c1ae6f5970b1cd316f2f606992d80a94c51a41",
+    "released_wide_rows": 400,
+    "distinct_question_units": 399
+  },
+  "result": {
+    "path": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json",
+    "artifact_result_sha256": "8917e562ae4b32afce344bb8fc7768abfd18f8b7cf862fb9e12f8945e669bc6e",
+    "terminal": "P2_WIDE_EXTERNAL_V3_CANNOT_CHECK",
+    "all_validity_conditions": false,
+    "scientific_supported": false,
+    "logical_provider_ok_fraction": 0.715833,
+    "minimum_logical_provider_ok_fraction": 0.9,
+    "official_avg_iou_delta": 0.0,
+    "paired_iou_ci95_low": 0.0,
+    "paired_iou_n": 399,
+    "paired_wins": 0,
+    "paired_ties": 399,
+    "paired_losses": 0,
+    "reason_terminal_is_invalid_not_negative": "The prospectively frozen provider-validity floor is 0.9 and the protected capture achieved 0.715833. The frozen rule therefore maps the campaign to CANNOT_CHECK before scientific support/non-support can be interpreted."
+  },
+  "authority": {
+    "campaign_terminal_is_final_for_v3_capture": true,
+    "positive_superiority_authorized": false,
+    "negative_scientific_claim_authorized": false,
+    "issue_650_closure_authorized": false,
+    "registry_promotion_authorized": false,
+    "future_campaign_may_not_reuse_v3_outcome_to_change_frozen_thresholds": true,
+    "future_transport_or_provider_campaign_requires_new_prospective_version": true
+  }
+}

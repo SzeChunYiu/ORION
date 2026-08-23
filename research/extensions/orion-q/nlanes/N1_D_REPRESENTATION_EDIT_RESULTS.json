@@ -1,0 +1,52 @@
+{
+  "arms": {
+    "EIGENDECOMPOSITION_PARENT": {
+      "conjugation_cost_total": 2000,
+      "max_nonunitarity": 1.536476549852605e-15,
+      "max_offdiag_residual": 1.5539853402318721e-15,
+      "mean_cost_per_target": 1.0,
+      "solved_of_2000": 2000
+    },
+    "FINITE_FRAME_MENU": {
+      "conjugation_cost_total": 10000,
+      "mean_cost_per_target": 5.0,
+      "solved_of_2000": 0
+    },
+    "GENERATED_FRAME_EDIT": {
+      "conjugation_cost_total": 2000,
+      "max_offdiag_residual": 3.325837565893806e-16,
+      "mean_cost_per_target": 1.0,
+      "roundtrip_max_error": 4.449557262054371e-16,
+      "solved_of_2000": 2000
+    }
+  },
+  "authority": "N1D_DIAGNOSTIC__NO_P10_AUTHORITY__NO_NOVELTY_AUTHORITY__EXACT_SYNTHETIC_ONLY",
+  "claim_boundary": "Exact-synthetic diagnostic only. A generated continuous frame beats a finite representation menu, but canonical eigendecomposition supplies the same representation once the full operator is visible; no representation-invention, novelty, P10, or real-quantum claim is authorized.",
+  "date": "2026-08-21",
+  "family": "N1-D",
+  "gates": {
+    "G1_WORLD_VALID": true,
+    "G2_GENERATED_EXACT": true,
+    "G3_ROUND_TRIP": true,
+    "G4_PARENT_GEQ_GENERATED": true
+  },
+  "issue": 674,
+  "protocol": "development/orion-q-nlane-closure/N1_D_PROTOCOL.md",
+  "reexecution_of": "issue-674 comment 5355080062 (original run never committed)",
+  "root_cause": "KNOWN_TRANSFORM_PARENT_SUFFICIENT",
+  "schema": "ORIONQ.N1D_RepresentationFrameEdit.v1",
+  "seed": 20260821,
+  "terminal": "N1D_CANONICAL_TRANSFORM_PARENT_SUFFICIENT",
+  "world": {
+    "family": "U(phi,theta) = Ry(phi) Rz(theta) Ry(-phi), continuous phi/theta",
+    "menu": [
+      -1.5707963267948966,
+      -0.7853981633974483,
+      0.0,
+      0.7853981633974483,
+      1.5707963267948966
+    ],
+    "targets": 2000,
+    "tolerance": 1e-12
+  }
+}

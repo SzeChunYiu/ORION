@@ -10,11 +10,12 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-CAND = ROOT / "papers" / "candidates"
+PAPERS = ROOT / "papers"
+CAND = PAPERS / "candidates"
 
-P6 = CAND / "paper-06-formal-epistemic-structures-and-mechanics" / "submission"
-P7 = CAND / "paper-07-epistemic-navigation-open-worlds" / "submission"
-P8 = CAND / "paper-08-epistemic-authority-autonomous-science" / "submission"
+P6 = PAPERS / "paper-06-formal-epistemic-structures-and-mechanics" / "submission"
+P7 = PAPERS / "paper-07-epistemic-navigation-open-worlds" / "submission"
+P8 = PAPERS / "paper-08-epistemic-authority-autonomous-science" / "submission"
 
 REQUIRED_PROGRAMME = [
     CAND / "P6_P10_ISSUE_RECONCILIATION_2026-08-18.md",

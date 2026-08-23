@@ -1,0 +1,68 @@
+{
+  "artifact": {
+    "digest": "sha256:837f65276646ac60662c31764034b376fa5a9e9e6ff298dd22c9bb71828ed475",
+    "id": 9446852495,
+    "name": "orion-qg-qg12-3addadd533d313276197027b23a533fdd71e4878"
+  },
+  "both_accept": true,
+  "cross_family_transfer": false,
+  "generic_lane": {
+    "analyzer_request": {
+      "capability": "PYTHON",
+      "created_at": "2026-08-21T12:42:58.168025+00:00",
+      "request_id": "hostreq:2cd31c2445adb9ce18a1dcbb6dbcd61e83c4281cc5f649cc63b90ca1faebe6b2"
+    },
+    "analyzer_result": {
+      "request_id": "hostreq:2cd31c2445adb9ce18a1dcbb6dbcd61e83c4281cc5f649cc63b90ca1faebe6b2",
+      "result_digest": "5c9cf3090b9b5c84b6c1cc492deba6acfb6de08d9e6a8e9311b2f05afef211c3",
+      "success": true
+    },
+    "checks": {
+      "all_analyzer_gates": true,
+      "analyzer_zero_mismatches": true,
+      "base": true,
+      "independent_zero_mismatches": true,
+      "n1_complete": true,
+      "n2_complete": true,
+      "no_novelty_authority": true,
+      "no_physical_advantage": true,
+      "novelty_hash": true,
+      "partition_count_203": true,
+      "protocol_hash": true,
+      "result_digest": true,
+      "schema": true,
+      "shape_count_11": true,
+      "shape_table_matches_analyzer": true,
+      "theorem_string": true
+    },
+    "decision": "ACCEPT",
+    "verifier_request": {
+      "capability": "PYTHON",
+      "created_at": "2026-08-21T12:43:02.599875+00:00",
+      "request_id": "hostreq:167542b70269cea46613f213aeb17eb13fd8460e704df5b6a0a6a318857dcb80"
+    },
+    "verifier_result": {
+      "request_id": "hostreq:167542b70269cea46613f213aeb17eb13fd8460e704df5b6a0a6a318857dcb80",
+      "result_digest": "15fd01fc6fc4f9351d1bf3afaee11bf1c3b6ae0a3308fe0097cbba5c5a99bf21",
+      "success": true
+    }
+  },
+  "head_sha": "3addadd533d313276197027b23a533fdd71e4878",
+  "issue": "SzeChunYiu/ORION#765",
+  "native_lane": {
+    "campaign_id": "orion-qg:qg12-sixlcu-p0-theorem",
+    "campaign_status": "TERMINAL",
+    "decision": "ACCEPT",
+    "final_phase": "ACCEPT_RECORDED"
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "scope": "SIXLCU_ONLY",
+  "source_result_digest": "3e6fe23ab095f89c60d96226d13baac4c4c6120dd1da782f871a35245303eef9",
+  "terminal": "QG12_SIXLCU_P0_ALL_INSTANCE_THEOREM_MACHINE_CHECKED",
+  "workflow": {
+    "name": "orion-qg-qg12-sixlcu-p0-theorem",
+    "run_id": 32483123123
+  }
+}

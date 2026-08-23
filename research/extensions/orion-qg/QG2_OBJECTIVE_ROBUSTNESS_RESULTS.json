@@ -1,0 +1,5592 @@
+{
+  "authority": "ORIONQ_QG2_OBJECTIVE_ROBUSTNESS_MIXED__FROZEN_REWEIGHTED_OBJECTIVES__NOT_R6",
+  "baseline_control_O0": {
+    "chemistry_summary": {
+      "confusion_P1": {
+        "errors": 0,
+        "fn": 0,
+        "fp": 0,
+        "tn": 0,
+        "tp": 30
+      },
+      "donor_exact_count": 30,
+      "identity_two_trade_count": 30,
+      "instances": 30,
+      "regime_borrow_count": 0,
+      "regime_split_count": 0
+    },
+    "random_summary": {
+      "confusion_P1": {
+        "errors": 0,
+        "fn": 0,
+        "fp": 0,
+        "tn": 40,
+        "tp": 80
+      },
+      "donor_exact_count": 80,
+      "identity_two_trade_count": 120,
+      "instances": 120,
+      "regime_borrow_count": 30,
+      "regime_split_count": 10
+    },
+    "role": "binding control only; not a new result",
+    "structured_summary": {
+      "confusion_P1": {
+        "errors": 0,
+        "fn": 0,
+        "fp": 0,
+        "tn": 2808,
+        "tp": 6453
+      },
+      "donor_exact_count": 6453,
+      "identity_two_trade_count": 9261,
+      "instances": 9261,
+      "regime_borrow_count": 486,
+      "regime_split_count": 2322
+    },
+    "support2": {
+      "chemistry_support2_unresolved": 0,
+      "chemistry_unpinched": 0,
+      "closed_count": 42,
+      "closure_mode": "DXX_ON_FIRST_12_STRUCTURED_CRITICALS_PLUS_RANDOM__REST_BY_R6P_RECEIPT",
+      "critical_random": 30,
+      "critical_structured": 486,
+      "dxx_binding": {
+        "ok": true,
+        "rows": 12
+      },
+      "failure_count": 0
+    },
+    "weights": {
+      "rho_per_rotation": 0,
+      "t_c": 2,
+      "t_nc": 4,
+      "t_r": 1,
+      "t_tag": 2
+    }
+  },
+  "bindings": {
+    "baseline_structured_counts_match_r6q_receipt": true,
+    "chemistry_o0_general_dp_binding": {
+      "ok": true,
+      "rows": 6
+    },
+    "chemistry_receipt_binding_all_30": true,
+    "random_borrow_binding": {
+      "ok": true,
+      "rows": 4
+    },
+    "random_dplus_binding": {
+      "ok": true,
+      "rows": 12
+    },
+    "random_r6l_binding": {
+      "ok": true,
+      "rows": 6
+    },
+    "structured_borrow_binding": {
+      "ok": true,
+      "rows": 10
+    },
+    "structured_dplus_binding": {
+      "ok": true,
+      "rows": 19
+    },
+    "structured_r6l_binding": {
+      "ok": true,
+      "rows": 19
+    }
+  },
+  "charter": "PROGRAMME_CHARTER_V1 lane QG-2",
+  "chemistry_sources_read_via_frozen_batch_only": true,
+  "chemistry_subjects": {
+    "H4": {
+      "matchings": 15,
+      "n_qubits": 8,
+      "source_blob_verified": true
+    },
+    "N2": {
+      "matchings": 15,
+      "n_qubits": 12,
+      "source_blob_verified": true
+    }
+  },
+  "claim_boundary": {
+    "covers": "Re-mapping of the frozen R6M grammar regime geometry (donor optimality, split and borrow trades, support-2 sufficiency, R6Q predicate) under two frozen linear re-weightings of the structural cost coordinates plus a rotation charge, on the stated finite domains.",
+    "does_not_cover": "Objectives outside the frozen linear family, other grammars, re-derivation of the two-M3 donor stack under O1 weights (the O1 cross-family comparison is out of scope by protocol), fresh subject data, or any donor/R6 novelty claim.",
+    "machine_evidenced_only": "All per-objective claims are machine-evidenced only on the exhaustive structured n=2 slice, the 120-instance seeded random panel (seed 20260823, n=2..3), and the 30 recorded chemistry matchings; support-2 sufficiency at chemistry is resolved only by the containment pinch and reported UNRESOLVED where the pinch fails. Nothing here is a theorem for all n or all objectives."
+  },
+  "donor_novelty_credit": false,
+  "gates": {
+    "baseline_structured_counts_match_r6q_receipt": true,
+    "chemistry_o0_general_dp_binding": true,
+    "chemistry_receipt_binding_all_30": true,
+    "hostile_all_pass": true,
+    "no_new_subject_data": true,
+    "o0_criticals_are_486": true,
+    "o0_dxx_binding": true,
+    "o0_support2_failures_zero": true,
+    "o2_constant_shift_lemma_premises": true,
+    "random_borrow_binding": true,
+    "random_dplus_binding": true,
+    "random_r6l_binding": true,
+    "sandwich_and_soundness_asserted": true,
+    "structured_borrow_binding": true,
+    "structured_dplus_binding": true,
+    "structured_r6l_binding": true
+  },
+  "heavy_subject_dp_rerun_baseline": false,
+  "hostile": {
+    "dp_vs_brute_configs": 320,
+    "dp_vs_brute_exact_O0_O1": true,
+    "f3_table_binds_at_baseline": true,
+    "frame_cost_table_binds_at_baseline": true,
+    "local_table_binding_rows": 64,
+    "local_table_binds_at_baseline": true,
+    "rotation_constant_is_nine": true,
+    "stack_rotation_constant_is_ten": true,
+    "tag_cost_table_binds_at_baseline": true
+  },
+  "lane": "QG-2",
+  "novelty_credit": false,
+  "o2_cross_family_comparator": {
+    "H4": {
+      "deltas_changed_count": 0,
+      "envelope_all_nine_rotation_O2": true,
+      "rows": [
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              18
+            ],
+            [
+              22,
+              25
+            ],
+            [
+              27,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              18
+            ],
+            [
+              22,
+              27
+            ],
+            [
+              25,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              18
+            ],
+            [
+              22,
+              31
+            ],
+            [
+              25,
+              27
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              22
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              27,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              22
+            ],
+            [
+              18,
+              27
+            ],
+            [
+              25,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              22
+            ],
+            [
+              18,
+              31
+            ],
+            [
+              25,
+              27
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              25
+            ],
+            [
+              18,
+              22
+            ],
+            [
+              27,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              25
+            ],
+            [
+              18,
+              27
+            ],
+            [
+              22,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              25
+            ],
+            [
+              18,
+              31
+            ],
+            [
+              22,
+              27
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              27
+            ],
+            [
+              18,
+              22
+            ],
+            [
+              25,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              27
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              22,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              27
+            ],
+            [
+              18,
+              31
+            ],
+            [
+              22,
+              25
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": -3,
+          "delta_baseline": -3,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              31
+            ],
+            [
+              18,
+              22
+            ],
+            [
+              25,
+              27
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              31
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              22,
+              27
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              12,
+              31
+            ],
+            [
+              18,
+              27
+            ],
+            [
+              22,
+              25
+            ]
+          ],
+          "strict_O2": false
+        }
+      ],
+      "strict_count_O2": 0,
+      "strict_count_baseline": 0
+    },
+    "N2": {
+      "deltas_changed_count": 0,
+      "envelope_all_nine_rotation_O2": true,
+      "rows": [
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              24
+            ],
+            [
+              31,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              31
+            ],
+            [
+              24,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              32
+            ],
+            [
+              24,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              11
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              31,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              11
+            ],
+            [
+              7,
+              31
+            ],
+            [
+              24,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              11
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              24,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              24
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              31,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              24
+            ],
+            [
+              7,
+              31
+            ],
+            [
+              11,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              24
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              11,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              31
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              24,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              31
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              11,
+              32
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              31
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              11,
+              24
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              32
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              24,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              32
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              11,
+              31
+            ]
+          ],
+          "strict_O2": false
+        },
+        {
+          "comparator_mode": "MATCHED_LOWER_ENVELOPE",
+          "delta_O2": 0,
+          "delta_baseline": 0,
+          "incumbent_kind_O2": "R6L_THREE_M2",
+          "incumbent_rotations_O2": 9,
+          "matching": [
+            [
+              0,
+              32
+            ],
+            [
+              7,
+              31
+            ],
+            [
+              11,
+              24
+            ]
+          ],
+          "strict_O2": false
+        }
+      ],
+      "strict_count_O2": 0,
+      "strict_count_baseline": 0
+    }
+  },
+  "o2_within_family_note": "Every member of the frozen grammar family carries exactly 9 rotations (committed constant), so O2 within-family costs are O0 costs plus the constant 45 and all within-family differences, regimes, trades and the predicate are exactly invariant; O2 rows are derived under this lemma. The substantive O2 content is the cross-family comparator re-pricing.",
+  "objectives": {
+    "O1": {
+      "chemistry_donor_exact_all_30": false,
+      "chemistry_donor_exact_count": 0,
+      "identity_two_trade_failures": 4484,
+      "membership_identical_to_baseline": false,
+      "membership_transition_witnesses": {
+        "DONOR_EXACT->BORROW": [
+          {
+            "O1": {
+              "C_DP": 8,
+              "C_Dplus": 10,
+              "C_R6L": 10,
+              "f_B": 11
+            },
+            "baseline": {
+              "C_DP": 4,
+              "C_Dplus": 4,
+              "C_R6L": 4,
+              "f_B": 6
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "instance_index": 3,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 8,
+              "C_Dplus": 10,
+              "C_R6L": 10,
+              "f_B": 11
+            },
+            "baseline": {
+              "C_DP": 4,
+              "C_Dplus": 4,
+              "C_R6L": 4,
+              "f_B": 6
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "instance_index": 4,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 8,
+              "C_Dplus": 10,
+              "C_R6L": 10,
+              "f_B": 11
+            },
+            "baseline": {
+              "C_DP": 4,
+              "C_Dplus": 4,
+              "C_R6L": 4,
+              "f_B": 6
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "instance_index": 5,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 13,
+              "C_R6L": 13,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 5,
+              "C_Dplus": 5,
+              "C_R6L": 5,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "instance_index": 8,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 13,
+              "C_R6L": 13,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 5,
+              "C_Dplus": 5,
+              "C_R6L": 5,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "instance_index": 9,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 13,
+              "C_R6L": 13,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 5,
+              "C_Dplus": 5,
+              "C_R6L": 5,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "instance_index": 10,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 13,
+              "C_R6L": 13,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 5,
+              "C_Dplus": 5,
+              "C_R6L": 5,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "instance_index": 12,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 13,
+              "C_R6L": 13,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 5,
+              "C_Dplus": 5,
+              "C_R6L": 5,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "instance_index": 13,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 13,
+              "C_R6L": 13,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 5,
+              "C_Dplus": 5,
+              "C_R6L": 5,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                5
+              ]
+            ],
+            "instance_index": 14,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 16,
+              "C_R6L": 16,
+              "f_B": 11
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 6,
+              "f_B": 6
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "instance_index": 15,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 16,
+              "C_R6L": 16,
+              "f_B": 11
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 6,
+              "f_B": 6
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "instance_index": 18,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 11,
+              "C_Dplus": 16,
+              "C_R6L": 16,
+              "f_B": 11
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 6,
+              "f_B": 6
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            "instance_index": 20,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          }
+        ],
+        "SPLIT->BORROW": [
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "instance_index": 36,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "instance_index": 39,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            "instance_index": 41,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "instance_index": 57,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "instance_index": 60,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            "instance_index": 62,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 13,
+              "C_Dplus": 17,
+              "C_R6L": 22,
+              "f_B": 15
+            },
+            "baseline": {
+              "C_DP": 7,
+              "C_Dplus": 7,
+              "C_R6L": 8,
+              "f_B": 8
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "instance_index": 141,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 13,
+              "C_Dplus": 17,
+              "C_R6L": 22,
+              "f_B": 15
+            },
+            "baseline": {
+              "C_DP": 7,
+              "C_Dplus": 7,
+              "C_R6L": 8,
+              "f_B": 8
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "instance_index": 144,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 13,
+              "C_Dplus": 17,
+              "C_R6L": 22,
+              "f_B": 15
+            },
+            "baseline": {
+              "C_DP": 7,
+              "C_Dplus": 7,
+              "C_R6L": 8,
+              "f_B": 8
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            "instance_index": 146,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "instance_index": 162,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "instance_index": 165,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "O1": {
+              "C_DP": 12,
+              "C_Dplus": 14,
+              "C_R6L": 19,
+              "f_B": 12
+            },
+            "baseline": {
+              "C_DP": 6,
+              "C_Dplus": 6,
+              "C_R6L": 7,
+              "f_B": 7
+            },
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                5,
+                5
+              ]
+            ],
+            "instance_index": 167,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          }
+        ]
+      },
+      "membership_transitions": {
+        "DONOR_EXACT->BORROW": 6014,
+        "SPLIT->BORROW": 1738
+      },
+      "new_trade_classes": [
+        "NEW_BEYOND_TWO_TRADES",
+        "NEW_SUPPORT3"
+      ],
+      "new_trade_witnesses": {
+        "NEW_BEYOND_TWO_TRADES": [
+          {
+            "C_DP": 8,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 8,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 11,
+            "instance_index": 3,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 8,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 11,
+            "instance_index": 4,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 8,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 11,
+            "instance_index": 5,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 12,
+            "instance_index": 8,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 12,
+            "instance_index": 9,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 12,
+            "instance_index": 10,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 12,
+            "instance_index": 12,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 12,
+            "instance_index": 13,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                5
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                0,
+                1
+              ]
+            },
+            "f_B": 12,
+            "instance_index": 14,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 8,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                1,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                1,
+                0
+              ]
+            },
+            "f_B": 11,
+            "instance_index": 63,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 9,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                1,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                1,
+                1
+              ]
+            },
+            "f_B": 13,
+            "instance_index": 66,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 13,
+            "C_R6L": 13,
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "dp_witness": {
+              "C_DP": 9,
+              "R": {
+                "A": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                0
+              ],
+              "centrals": [
+                0,
+                1,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 2,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                0,
+                1,
+                1
+              ]
+            },
+            "f_B": 13,
+            "instance_index": 67,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          }
+        ],
+        "NEW_SUPPORT3": [
+          {
+            "C_DP": 11,
+            "C_Dplus": 23,
+            "C_Dxx": 13,
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "B": [
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    6,
+                    3
+                  ]
+                ]
+              },
+              "S": [
+                0,
+                1
+              ],
+              "centrals": [
+                0,
+                0,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 135,
+              "frame_supports": [
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 1,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                1,
+                1,
+                2
+              ]
+            },
+            "index": 0,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                6,
+                3
+              ]
+            ]
+          },
+          {
+            "C_DP": 18,
+            "C_Dplus": 34,
+            "C_Dxx": 22,
+            "dp_witness": {
+              "C_DP": 18,
+              "R": {
+                "A": [
+                  [
+                    3,
+                    4
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "B": [
+                  [
+                    3,
+                    7
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "C": [
+                  [
+                    2,
+                    3
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ]
+              },
+              "S": [
+                0,
+                2
+              ],
+              "centrals": [
+                0,
+                0,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 135,
+              "frame_supports": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 3,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                2,
+                1
+              ]
+            },
+            "index": 1,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                3,
+                7
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          {
+            "C_DP": 21,
+            "C_Dplus": 32,
+            "C_Dxx": 24,
+            "dp_witness": {
+              "C_DP": 21,
+              "R": {
+                "A": [
+                  [
+                    6,
+                    5
+                  ],
+                  [
+                    4,
+                    0
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    4,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    6
+                  ]
+                ]
+              },
+              "S": [
+                4,
+                4
+              ],
+              "centrals": [
+                0,
+                1,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 4,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                1,
+                2
+              ]
+            },
+            "index": 2,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                6,
+                5
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                1,
+                6
+              ]
+            ]
+          },
+          {
+            "C_DP": 18,
+            "C_Dplus": 35,
+            "C_Dxx": 22,
+            "dp_witness": {
+              "C_DP": 18,
+              "R": {
+                "A": [
+                  [
+                    4,
+                    5
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    4,
+                    3
+                  ]
+                ],
+                "C": [
+                  [
+                    5,
+                    6
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ]
+              },
+              "S": [
+                4,
+                4
+              ],
+              "centrals": [
+                0,
+                1,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  2,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 1,
+              "relative_permutation_C": 1,
+              "restore_units_factored": 3,
+              "tag_weight": 1,
+              "uanti_ob": [
+                1,
+                2,
+                2
+              ]
+            },
+            "index": 3,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                6,
+                5
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                7,
+                6
+              ]
+            ]
+          },
+          {
+            "C_DP": 14,
+            "C_Dplus": 23,
+            "C_Dxx": 16,
+            "dp_witness": {
+              "C_DP": 14,
+              "R": {
+                "A": [
+                  [
+                    6,
+                    0
+                  ],
+                  [
+                    4,
+                    4
+                  ]
+                ],
+                "B": [
+                  [
+                    5,
+                    2
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ]
+              },
+              "S": [
+                2,
+                2
+              ],
+              "centrals": [
+                0,
+                0,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 135,
+              "frame_supports": [
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 1,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                1,
+                2,
+                1
+              ]
+            },
+            "index": 4,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                6,
+                0
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          {
+            "C_DP": 19,
+            "C_Dplus": 34,
+            "C_Dxx": 22,
+            "dp_witness": {
+              "C_DP": 19,
+              "R": {
+                "A": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    6
+                  ]
+                ],
+                "B": [
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    4,
+                    3
+                  ]
+                ],
+                "C": [
+                  [
+                    7,
+                    6
+                  ],
+                  [
+                    2,
+                    0
+                  ]
+                ]
+              },
+              "S": [
+                2,
+                2
+              ],
+              "centrals": [
+                1,
+                1,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 3,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                2,
+                2
+              ]
+            },
+            "index": 5,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                2,
+                3
+              ],
+              [
+                0,
+                7
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          },
+          {
+            "C_DP": 19,
+            "C_Dplus": 35,
+            "C_Dxx": 22,
+            "dp_witness": {
+              "C_DP": 19,
+              "R": {
+                "A": [
+                  [
+                    6,
+                    7
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "B": [
+                  [
+                    4,
+                    0
+                  ],
+                  [
+                    1,
+                    7
+                  ]
+                ],
+                "C": [
+                  [
+                    7,
+                    5
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ]
+              },
+              "S": [
+                0,
+                4
+              ],
+              "centrals": [
+                0,
+                1,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 135,
+              "frame_supports": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 3,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                2,
+                2
+              ]
+            },
+            "index": 7,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                6,
+                7
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                7,
+                5
+              ],
+              [
+                4,
+                5
+              ]
+            ]
+          },
+          {
+            "C_DP": 18,
+            "C_Dplus": 31,
+            "C_Dxx": 22,
+            "dp_witness": {
+              "C_DP": 18,
+              "R": {
+                "A": [
+                  [
+                    7,
+                    0
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ],
+                "B": [
+                  [
+                    4,
+                    0
+                  ],
+                  [
+                    7,
+                    4
+                  ]
+                ],
+                "C": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    5
+                  ]
+                ]
+              },
+              "S": [
+                4,
+                0
+              ],
+              "centrals": [
+                0,
+                1,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 1,
+              "restore_units_factored": 3,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                2,
+                1
+              ]
+            },
+            "index": 8,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                4,
+                2
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                7,
+                2
+              ],
+              [
+                7,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                3,
+                7
+              ]
+            ]
+          },
+          {
+            "C_DP": 15,
+            "C_Dplus": 28,
+            "C_Dxx": 19,
+            "dp_witness": {
+              "C_DP": 15,
+              "R": {
+                "A": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    2,
+                    6
+                  ]
+                ],
+                "B": [
+                  [
+                    4,
+                    0
+                  ],
+                  [
+                    6,
+                    5
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    5,
+                    7
+                  ]
+                ]
+              },
+              "S": [
+                4,
+                0
+              ],
+              "centrals": [
+                1,
+                1,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 1,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                1,
+                2,
+                2
+              ]
+            },
+            "index": 9,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                5
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                3,
+                6
+              ],
+              [
+                5,
+                7
+              ]
+            ]
+          },
+          {
+            "C_DP": 17,
+            "C_Dplus": 32,
+            "C_Dxx": 19,
+            "dp_witness": {
+              "C_DP": 17,
+              "R": {
+                "A": [
+                  [
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "B": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    7,
+                    2
+                  ]
+                ],
+                "C": [
+                  [
+                    6,
+                    0
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              },
+              "S": [
+                2,
+                0
+              ],
+              "centrals": [
+                0,
+                1,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 263,
+              "frame_supports": [
+                [
+                  2,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 1,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 3,
+              "tag_weight": 1,
+              "uanti_ob": [
+                1,
+                2,
+                1
+              ]
+            },
+            "index": 10,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                7,
+                5
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                3,
+                7
+              ]
+            ]
+          },
+          {
+            "C_DP": 14,
+            "C_Dplus": 26,
+            "C_Dxx": 16,
+            "dp_witness": {
+              "C_DP": 14,
+              "R": {
+                "A": [
+                  [
+                    6,
+                    5
+                  ],
+                  [
+                    4,
+                    0
+                  ]
+                ],
+                "B": [
+                  [
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    2
+                  ]
+                ],
+                "C": [
+                  [
+                    5,
+                    0
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ]
+              },
+              "S": [
+                1,
+                1
+              ],
+              "centrals": [
+                0,
+                0,
+                0
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 135,
+              "frame_supports": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 1,
+              "restore_units_factored": 2,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                1,
+                1
+              ]
+            },
+            "index": 11,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                6,
+                5
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                6,
+                6
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                5,
+                0
+              ]
+            ]
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 23,
+            "C_Dxx": 13,
+            "dp_witness": {
+              "C_DP": 11,
+              "R": {
+                "A": [
+                  [
+                    7,
+                    5
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ],
+                "B": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    4,
+                    5
+                  ]
+                ],
+                "C": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0,
+                    5
+                  ]
+                ]
+              },
+              "S": [
+                0,
+                1
+              ],
+              "centrals": [
+                0,
+                1,
+                1
+              ],
+              "cost_recomputed_ok": true,
+              "final_parity_state": 135,
+              "frame_supports": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "max_frame_support": 3,
+              "objective": "O1",
+              "relative_permutation_B": 0,
+              "relative_permutation_C": 0,
+              "restore_units_factored": 1,
+              "tag_weight": 1,
+              "uanti_ob": [
+                2,
+                1,
+                1
+              ]
+            },
+            "index": 12,
+            "n": 3,
+            "panel": "random",
+            "targets": [
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                0,
+                5
+              ]
+            ]
+          }
+        ]
+      },
+      "panels": {
+        "chemistry": {
+          "confusion_P1": {
+            "errors": 2,
+            "fn": 0,
+            "fp": 2,
+            "tn": 28,
+            "tp": 0
+          },
+          "donor_exact_count": 0,
+          "identity_two_trade_count": 0,
+          "instances": 30,
+          "regime_borrow_count": 30,
+          "regime_split_count": 0
+        },
+        "random_20260823": {
+          "confusion_P1": {
+            "errors": 1,
+            "fn": 0,
+            "fp": 1,
+            "tn": 119,
+            "tp": 0
+          },
+          "donor_exact_count": 0,
+          "identity_two_trade_count": 22,
+          "instances": 120,
+          "regime_borrow_count": 120,
+          "regime_split_count": 0
+        },
+        "structured_n2": {
+          "confusion_P1": {
+            "errors": 324,
+            "fn": 0,
+            "fp": 324,
+            "tn": 8388,
+            "tp": 549
+          },
+          "donor_exact_count": 549,
+          "identity_two_trade_count": 4905,
+          "instances": 9261,
+          "regime_borrow_count": 8118,
+          "regime_split_count": 594
+        }
+      },
+      "predicate": {
+        "confusion": {
+          "chemistry": {
+            "errors": 2,
+            "fn": 0,
+            "fp": 2,
+            "tn": 28,
+            "tp": 0
+          },
+          "random_20260823": {
+            "errors": 1,
+            "fn": 0,
+            "fp": 1,
+            "tn": 119,
+            "tp": 0
+          },
+          "structured_n2": {
+            "errors": 324,
+            "fn": 0,
+            "fp": 324,
+            "tn": 8388,
+            "tp": 549
+          }
+        },
+        "errors_total": 327,
+        "form": "P1_ob := [Gsplit_ob == 0] AND [f_B_ob >= C_R6L_ob]",
+        "reinduction": {
+          "confusion": {
+            "chemistry": {
+              "errors": 0,
+              "fn": 0,
+              "fp": 0,
+              "tn": 30,
+              "tp": 0
+            },
+            "random_20260823": {
+              "errors": 0,
+              "fn": 0,
+              "fp": 0,
+              "tn": 120,
+              "tp": 0
+            },
+            "structured_n2": {
+              "errors": 273,
+              "fn": 273,
+              "fp": 0,
+              "tn": 8712,
+              "tp": 276
+            }
+          },
+          "fit": {
+            "literals": [
+              "a3_eq_0",
+              "fB_ge_CR6L"
+            ],
+            "training_errors": 273
+          }
+        },
+        "verdict": "OBJECTIVE_SPECIFIC"
+      },
+      "support2": {
+        "chemistry_support2_unresolved": 30,
+        "chemistry_unpinched": 30,
+        "closed_count": 8185,
+        "closure_mode": "DXX_ON_ALL_CRITICALS_N_LE_3__CHEMISTRY_BY_PINCH_OR_UNRESOLVED",
+        "critical_random": 120,
+        "critical_structured": 8118,
+        "dxx_binding": null,
+        "failure_count": 53
+      },
+      "trades": {
+        "BORROW": {
+          "alive": true,
+          "chemistry_count": 30,
+          "minimal_witness": {
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "costs": {
+              "C_DP": 8,
+              "C_Dplus": 10,
+              "C_R6L": 10,
+              "f_B": 11
+            },
+            "instance_index": 3,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          "random_count": 120,
+          "structured_count": 8118
+        },
+        "SPLIT": {
+          "alive": true,
+          "chemistry_count": 0,
+          "minimal_witness": {
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "costs": {
+              "C_DP": 11,
+              "C_Dplus": 11,
+              "C_R6L": 19,
+              "f_B": 11
+            },
+            "instance_index": 37,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          "random_count": 0,
+          "structured_count": 594
+        }
+      },
+      "verdict": "GEOMETRY_OBJECTIVE_DEPENDENT",
+      "weights": {
+        "rho_per_rotation": 0,
+        "t_c": 1,
+        "t_nc": 7,
+        "t_r": 3,
+        "t_tag": 4
+      }
+    },
+    "O2": {
+      "chemistry_donor_exact_all_30": true,
+      "chemistry_donor_exact_count": 30,
+      "identity_two_trade_failures": 0,
+      "membership_identical_to_baseline": true,
+      "membership_transition_witnesses": {},
+      "membership_transitions": {},
+      "new_trade_classes": [],
+      "new_trade_witnesses": {},
+      "panels": {
+        "chemistry": {
+          "confusion_P1": {
+            "errors": 0,
+            "fn": 0,
+            "fp": 0,
+            "tn": 0,
+            "tp": 30
+          },
+          "donor_exact_count": 30,
+          "identity_two_trade_count": 30,
+          "instances": 30,
+          "regime_borrow_count": 0,
+          "regime_split_count": 0
+        },
+        "random_20260823": {
+          "confusion_P1": {
+            "errors": 0,
+            "fn": 0,
+            "fp": 0,
+            "tn": 40,
+            "tp": 80
+          },
+          "donor_exact_count": 80,
+          "identity_two_trade_count": 120,
+          "instances": 120,
+          "regime_borrow_count": 30,
+          "regime_split_count": 10
+        },
+        "structured_n2": {
+          "confusion_P1": {
+            "errors": 0,
+            "fn": 0,
+            "fp": 0,
+            "tn": 2808,
+            "tp": 6453
+          },
+          "donor_exact_count": 6453,
+          "identity_two_trade_count": 9261,
+          "instances": 9261,
+          "regime_borrow_count": 486,
+          "regime_split_count": 2322
+        }
+      },
+      "predicate": {
+        "confusion": {
+          "chemistry": {
+            "errors": 0,
+            "fn": 0,
+            "fp": 0,
+            "tn": 0,
+            "tp": 30
+          },
+          "random_20260823": {
+            "errors": 0,
+            "fn": 0,
+            "fp": 0,
+            "tn": 40,
+            "tp": 80
+          },
+          "structured_n2": {
+            "errors": 0,
+            "fn": 0,
+            "fp": 0,
+            "tn": 2808,
+            "tp": 6453
+          }
+        },
+        "errors_total": 0,
+        "form": "P1_ob := [Gsplit_ob == 0] AND [f_B_ob >= C_R6L_ob]",
+        "reinduction": null,
+        "verdict": "TRANSFERS_EXACTLY"
+      },
+      "support2": {
+        "chemistry_support2_unresolved": 0,
+        "chemistry_unpinched": 0,
+        "closed_count": 42,
+        "closure_mode": "DERIVED_FROM_O0_BY_CONSTANT_SHIFT_LEMMA",
+        "critical_random": 30,
+        "critical_structured": 486,
+        "dxx_binding": null,
+        "failure_count": 0
+      },
+      "trades": {
+        "BORROW": {
+          "alive": true,
+          "chemistry_count": 0,
+          "minimal_witness": {
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "costs": {
+              "C_DP": 50,
+              "C_Dplus": 51,
+              "C_R6L": 51,
+              "f_B": 50
+            },
+            "instance_index": 16,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          },
+          "random_count": 30,
+          "structured_count": 486
+        },
+        "SPLIT": {
+          "alive": true,
+          "chemistry_count": 0,
+          "minimal_witness": {
+            "block_pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "costs": {
+              "C_DP": 51,
+              "C_Dplus": 51,
+              "C_R6L": 52,
+              "f_B": 52
+            },
+            "instance_index": 36,
+            "panel": "structured",
+            "targets": [
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ]
+              ]
+            ]
+          },
+          "random_count": 10,
+          "structured_count": 2322
+        }
+      },
+      "verdict": "GEOMETRY_ROBUST",
+      "weights": {
+        "rho_per_rotation": 5,
+        "t_c": 2,
+        "t_nc": 4,
+        "t_r": 1,
+        "t_tag": 2
+      }
+    }
+  },
+  "outcome_overall": "MIXED",
+  "protocol": "QG2_OBJECTIVE_ROBUSTNESS_PROTOCOL (development/orion-qg-regime-geometry)",
+  "r6_authority": false,
+  "random_panel_size": 120,
+  "random_seed": 20260823,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:PER_OBJECTIVE_REGIME_MAPS_TRADE_PROFITABILITY_AND_PREDICATE_TRANSFER_REPORTED_WITH_WITNESSES",
+  "schema": "ORIONQG.QG2.ObjectiveRobustness.v1",
+  "scope": "TARE_REGIME_GEOMETRY_REMAP_UNDER_FROZEN_REWEIGHTED_OBJECTIVES__EXPLANATORY_GEOMETRY_ONLY__NOT_R6",
+  "witness_cap": 12
+}

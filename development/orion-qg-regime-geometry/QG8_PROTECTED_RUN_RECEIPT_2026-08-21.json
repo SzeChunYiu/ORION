@@ -1,0 +1,76 @@
+{
+  "artifact": {
+    "digest": "sha256:2f4010056349923d2e6ac4640f013f6a39a9a80c64cf22209d69b5b2cce07229",
+    "id": 9446557375,
+    "name": "orion-qg-qg8-63d6010fd0c7c5530f8145a7bfe321eb40a48a26"
+  },
+  "both_accept": true,
+  "generic_lane": {
+    "analyzer_request": {
+      "capability": "PYTHON",
+      "created_at": "2026-08-21T12:33:17.052558+00:00",
+      "request_id": "hostreq:6c55c0713e806cd307649a2f94aeab57b44ec20a13f73420bd22d81da0c7d42b"
+    },
+    "analyzer_result": {
+      "request_id": "hostreq:6c55c0713e806cd307649a2f94aeab57b44ec20a13f73420bd22d81da0c7d42b",
+      "result_digest": "819078fbb2296fe7065cde852cd923dcbf46fa073a08b9efe863601e16d93e2e",
+      "success": true
+    },
+    "checks": {
+      "analyzer_domain_matches": true,
+      "base": true,
+      "central_max2": true,
+      "global_sharpness_open": true,
+      "halfspaces_exact": true,
+      "independent_full_domain_18432": true,
+      "local_equality_exists": true,
+      "no_novelty_authority": true,
+      "no_physical_advantage": true,
+      "noncentral_max2": true,
+      "novelty_hash": true,
+      "o0_inside": true,
+      "o1_outside": true,
+      "o2_inside": true,
+      "protocol_hash": true,
+      "qg2_authority": true,
+      "qg2_hash": true,
+      "qg2_support3_global_control": true,
+      "r6s_hash": true,
+      "r6s_local_bound": true,
+      "r6s_machine_theorem": true,
+      "r6s_zero_sum": true,
+      "result_digest": true,
+      "schema": true
+    },
+    "decision": "ACCEPT",
+    "verifier_request": {
+      "capability": "PYTHON",
+      "created_at": "2026-08-21T12:33:17.459536+00:00",
+      "request_id": "hostreq:0ec49c8776ad4097a0619d0ee8a134872154cfd5923158fd5d5d2fa71a460905"
+    },
+    "verifier_result": {
+      "request_id": "hostreq:0ec49c8776ad4097a0619d0ee8a134872154cfd5923158fd5d5d2fa71a460905",
+      "result_digest": "76133086267fe034d7267ec3385c49d09c999e0c56718d7178d80b5749aa367b",
+      "success": true
+    }
+  },
+  "global_boundary_sharpness": "OPEN",
+  "head_sha": "63d6010fd0c7c5530f8145a7bfe321eb40a48a26",
+  "issue": "SzeChunYiu/ORION#760",
+  "native_lane": {
+    "campaign_id": "orion-qg:qg8-objective-support-phase",
+    "campaign_status": "TERMINAL",
+    "decision": "ACCEPT",
+    "final_phase": "ACCEPT_RECORDED"
+  },
+  "novelty_authority": false,
+  "outside_cone_semantics": "NOT_EQUAL_SUPPORT3_REQUIRED",
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "source_result_digest": "d41beb3f5c79851b6c51a7a8ef17b053ca8b2da4c75f997ccc72d229306095c1",
+  "terminal": "QG8_OBJECTIVE_INDEXED_SUPPORT2_CONE_ALL_N_MACHINE_CHECKED",
+  "workflow": {
+    "name": "orion-qg-qg8-objective-support-phase",
+    "run_id": 32480963358
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "full_result_sha256": "3ac625b799eeb00acee68deecb45ab9ae771b977dbf6303a0795cb80057a28fe",
+  "gates": {
+    "accuracy_gain_ge_0_08": false,
+    "each_ablation_worse": true,
+    "full_useful_discovery_recall_one": true,
+    "full_zero_false_promotion": true,
+    "history_reopen_exact": true,
+    "matched_decision_budget": true,
+    "strongest_baseline_false_promotion_ge_0_05": false
+  },
+  "protocol": "P14A_HIDDEN_GOLD_GOVERNANCE_PROTOCOL_V1.md",
+  "replay_status": "one protected execution completed; second replay deferred to successor package",
+  "schema": "ORION.P14A.ResearchGovernanceDecisionBenchReceipt.v1",
+  "seed": 2026082114,
+  "strongest_non_orion_baseline": "MULTI_REVIEW",
+  "summary": {
+    "DONOR_AWARE_REVIEW": {
+      "disposition_accuracy": 0.936,
+      "false_promotion_rate": 0.064
+    },
+    "MULTI_REVIEW": {
+      "disposition_accuracy": 0.981625,
+      "false_promotion_rate": 0.018375,
+      "history_reopen_accuracy": 0.5050505050505051,
+      "useful_discovery_recall": 1.0
+    },
+    "ORION_RSE_FULL": {
+      "disposition_accuracy": 1.0,
+      "false_promotion_rate": 0.0,
+      "history_reopen_accuracy": 1.0,
+      "useful_discovery_recall": 1.0
+    },
+    "RAW_POSITIVE": {
+      "disposition_accuracy": 0.6085,
+      "false_promotion_rate": 0.2615
+    },
+    "REFLECTION_CHECKLIST": {
+      "disposition_accuracy": 0.864875,
+      "false_promotion_rate": 0.135125
+    }
+  },
+  "terminal": "P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET"
+}

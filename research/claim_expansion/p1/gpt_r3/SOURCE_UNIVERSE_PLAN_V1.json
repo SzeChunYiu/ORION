@@ -1,0 +1,98 @@
+{
+  "schema": "P1U.SourceUniverse.v1",
+  "campaign_issue": 716,
+  "base_commit": "8c6a2d56b0ddcea24667da97df4445df5c714dae",
+  "created_before_any_2022_query_execution": true,
+  "primary_year": 2022,
+  "replication_year": 2021,
+  "search_engine": "web_fast",
+  "max_rank_scanned_per_query": 50,
+  "source_priority": ["primary_paper", "publisher_record", "official_artifact_repository"],
+  "selection_rule": "execute each query individually; scan returned order; admit first qualifying unique nonexcluded source; otherwise freeze NO_QUALIFYING_SOURCE",
+  "excluded_development_sources": [
+    "all sources opened or used during P1-U R2 acquisition",
+    "all results returned by the pre-freeze exploratory 2024 R3 development query: 2024 scientific model misspecification corrected mechanism experiment"
+  ],
+  "qualification": {
+    "publication_year_must_equal": 2022,
+    "must_be_distinct_episode": true,
+    "must_have_public_pre_resolution_tension_or_control": true,
+    "must_support_six_probe_encoding": true,
+    "must_support_gold_or_genuine_nonidentifiability": true,
+    "must_not_require_private_author_intent": true,
+    "must_be_source_disjoint": true,
+    "must_not_be_selected_or_removed_using_policy_performance": true
+  },
+  "case_schema": {
+    "required": ["id", "query_id", "query_class", "actual_domain", "source_id", "source_url", "source_year", "source_rank", "dossier", "probes", "gold_class", "admission_evidence"],
+    "dossier_max_words": 90,
+    "probe_names": ["P_SEARCH_COVERAGE", "P_REPRESENTATION_ROUNDTRIP", "P_ENVIRONMENT_REPLAY", "P_MEASUREMENT_CROSSCHECK", "P_OBJECTIVE_PREDICTIVE_CHECK", "P_BOUNDARY_COUNTERFACTUAL"],
+    "probe_values": ["SUPPORT", "REFUTE", "INCONCLUSIVE"]
+  },
+  "queries": [
+    {"id":"SEARCH-1","class":"SEARCH_OR_EVIDENCE","q":"2022 scientific study insufficient data additional observations changed conclusion evidence gap"},
+    {"id":"SEARCH-2","class":"SEARCH_OR_EVIDENCE","q":"2022 missing observations scientific inference new data resolved uncertainty study"},
+    {"id":"SEARCH-3","class":"SEARCH_OR_EVIDENCE","q":"2022 sparse sampling scientific result additional sampling correction primary study"},
+    {"id":"SEARCH-4","class":"SEARCH_OR_EVIDENCE","q":"2022 incomplete evidence scientific hypothesis additional experiment resolved primary research"},
+    {"id":"SEARCH-5","class":"SEARCH_OR_EVIDENCE","q":"2022 insufficient sample coverage scientific model prediction new measurements primary paper"},
+
+    {"id":"REP-1","class":"REPRESENTATION_OR_INTERFACE","q":"2022 scientific representation change coordinate transformation improved model primary study"},
+    {"id":"REP-2","class":"REPRESENTATION_OR_INTERFACE","q":"2022 scientific encoding representation mismatch corrected analysis primary research"},
+    {"id":"REP-3","class":"REPRESENTATION_OR_INTERFACE","q":"2022 interface access model representation scientific computation correction primary paper"},
+    {"id":"REP-4","class":"REPRESENTATION_OR_INTERFACE","q":"2022 basis transformation representation scientific discovery improved prediction study"},
+    {"id":"REP-5","class":"REPRESENTATION_OR_INTERFACE","q":"2022 schema mapping representation scientific data integration corrected result primary study"},
+
+    {"id":"IMPL-1","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2022 software bug corrected scientific result primary study"},
+    {"id":"IMPL-2","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2022 computational pipeline bug reproducibility corrected scientific analysis primary paper"},
+    {"id":"IMPL-3","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2022 dependency version scientific reproducibility error corrected result primary research"},
+    {"id":"IMPL-4","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2022 numerical implementation error corrected simulation scientific conclusion primary study"},
+    {"id":"IMPL-5","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2022 scientific computing configuration error corrected experiment analysis primary paper"},
+
+    {"id":"MEAS-1","class":"MEASUREMENT_OR_EVALUATOR","q":"2022 calibration error corrected scientific conclusion instrument primary study"},
+    {"id":"MEAS-2","class":"MEASUREMENT_OR_EVALUATOR","q":"2022 systematic measurement bias correction changed scientific result primary paper"},
+    {"id":"MEAS-3","class":"MEASUREMENT_OR_EVALUATOR","q":"2022 proxy measurement validity bias scientific conclusion primary study"},
+    {"id":"MEAS-4","class":"MEASUREMENT_OR_EVALUATOR","q":"2022 benchmark metric flaw corrected evaluation scientific primary research"},
+    {"id":"MEAS-5","class":"MEASUREMENT_OR_EVALUATOR","q":"2022 instrument measurement error correction scientific inference primary paper"},
+
+    {"id":"OBJ-1","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2022 model misspecification scientific mechanism corrected model primary study"},
+    {"id":"OBJ-2","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2022 missing mechanism model revision experimental validation primary research"},
+    {"id":"OBJ-3","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2022 wrong hypothesis model class scientific experiment revised model primary paper"},
+    {"id":"OBJ-4","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2022 objective misspecification loss function scientific machine learning corrected primary study"},
+    {"id":"OBJ-5","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2022 inadequate model class residual scientific discovery new mechanism primary study"},
+
+    {"id":"BOUND-1","class":"PROBLEM_BOUNDARY","q":"2022 omitted process model boundary corrected scientific result primary study"},
+    {"id":"BOUND-2","class":"PROBLEM_BOUNDARY","q":"2022 system boundary scientific model missing external process correction primary research"},
+    {"id":"BOUND-3","class":"PROBLEM_BOUNDARY","q":"2022 boundary condition omission changed scientific conclusion primary paper"},
+    {"id":"BOUND-4","class":"PROBLEM_BOUNDARY","q":"2022 population scope mismatch scientific result corrected broader population primary study"},
+    {"id":"BOUND-5","class":"PROBLEM_BOUNDARY","q":"2022 open system omitted interaction scientific model revision primary research"},
+
+    {"id":"CTRL-1","class":"NO_HIGH_LEVEL_REFORMULATION","q":"2022 independent replication confirms scientific result robust primary study"},
+    {"id":"CTRL-2","class":"NO_HIGH_LEVEL_REFORMULATION","q":"2022 reproducibility study confirms original scientific conclusion primary research"},
+    {"id":"CTRL-3","class":"NO_HIGH_LEVEL_REFORMULATION","q":"2022 validation study confirms model robust independent data primary paper"},
+    {"id":"CTRL-4","class":"NO_HIGH_LEVEL_REFORMULATION","q":"2022 multiple measurement methods confirm same scientific conclusion primary study"},
+    {"id":"CTRL-5","class":"NO_HIGH_LEVEL_REFORMULATION","q":"2022 independent software implementation reproduces scientific result primary paper"},
+
+    {"id":"UNRES-1","class":"UNRESOLVED","q":"2022 scientific mechanism underdetermined competing models indistinguishable available data primary study"},
+    {"id":"UNRES-2","class":"UNRESOLVED","q":"2022 scientific identifiability multiple explanations cannot distinguish data primary research"},
+    {"id":"UNRES-3","class":"UNRESOLVED","q":"2022 equifinality competing models observationally equivalent scientific primary paper"},
+    {"id":"UNRES-4","class":"UNRESOLVED","q":"2022 insufficient evidence distinguish competing scientific hypotheses primary study"},
+    {"id":"UNRES-5","class":"UNRESOLVED","q":"2022 nonidentifiable scientific model multiple mechanisms same observations primary research"}
+  ],
+  "corpus_quotas": {
+    "minimum_admitted_cases": 35,
+    "minimum_actual_domains": 5,
+    "minimum_per_class": {
+      "SEARCH_OR_EVIDENCE": 4,
+      "REPRESENTATION_OR_INTERFACE": 4,
+      "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+      "MEASUREMENT_OR_EVALUATOR": 4,
+      "OBJECTIVE_OR_MODEL_CLASS": 4,
+      "PROBLEM_BOUNDARY": 4,
+      "NO_HIGH_LEVEL_REFORMULATION": 4,
+      "UNRESOLVED": 4
+    },
+    "all_query_dispositions_required": true
+  },
+  "decision_rule_reused_from_r2": true,
+  "no_post_acquisition_mutation": true
+}

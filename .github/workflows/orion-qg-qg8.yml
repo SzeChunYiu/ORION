@@ -1,0 +1,102 @@
+name: orion-qg-qg8-objective-support-phase
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG8_*'
+      - 'development/orion-qg-regime-geometry/qg8_*'
+      - 'development/orion-qg-regime-geometry/run_qg8_dual_harness.py'
+      - 'research/extensions/orion-qg/qg8_support_phase.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg8_support_phase.py'
+      - '.github/workflows/orion-qg-qg8.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg8-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg8-objective-support-phase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG8_FROZEN_BASE: 318d1cbbec451170448bb8e126c7ab50801930ce
+    steps:
+      - name: Checkout exact QG-8 head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG8_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG8_FROZEN_BASE}")" = "${QG8_FROZEN_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native QG-8 controller
+        run: pytest -q packages/orion-research-harness/tests/test_qg8_support_phase.py
+      - name: Execute analyzer through generic + native harnesses
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg8_dual_harness.py \
+            | tee artifacts/orion-qg-qg8-dual-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg8_support_phase.py \
+            --output artifacts/orion-qg-qg8-support-phase-replay.json \
+            | tee artifacts/orion-qg-qg8-replay.log
+          cmp artifacts/orion-qg-qg8-support-phase.json artifacts/orion-qg-qg8-support-phase-replay.json
+      - name: Enforce theorem or honest negative
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          a = json.loads(Path('artifacts/orion-qg-qg8-support-phase.json').read_text())
+          g = json.loads(Path('artifacts/orion-qg-qg8-generic-verification.json').read_text())
+          d = json.loads(Path('artifacts/orion-qg-qg8-dual-harness.json').read_text())
+          positive = 'QG8_OBJECTIVE_INDEXED_SUPPORT2_CONE_ALL_N_MACHINE_CHECKED'
+          assert d['terminal'] in {positive, 'QG8_RESOURCE_VECTOR_OR_BINDING_REFUTED', 'QG8_NATIVE_GENERIC_DISAGREEMENT'}
+          assert a['novelty_authority'] is False
+          assert a['physical_quantum_advantage_claim'] is False
+          assert d['outside_cone_semantics'] == 'NOT_EQUAL_SUPPORT3_REQUIRED'
+          assert d['global_boundary_sharpness'] == 'OPEN'
+          if d['terminal'] == positive:
+              assert a['terminal'] == positive
+              assert all(a['gates'].values())
+              assert all(a['proof_audit'].values())
+              assert a['local_resource_domain']['domain_size'] == 18432
+              assert a['local_resource_domain']['max_delta_f3'] == {'central': 2, 'noncentral': 2}
+              assert a['support2_cone']['conditions'] == ['t_c >= 2*t_r', 't_nc >= 2*t_r']
+              assert a['qg2_binding']['objectives']['O0']['classification']['inside_support2_cone'] is True
+              assert a['qg2_binding']['objectives']['O1']['classification']['inside_support2_cone'] is False
+              assert a['qg2_binding']['objectives']['O2']['classification']['inside_support2_cone'] is True
+              assert a['qg2_binding']['support3_witnesses']
+              assert g['decision'] == 'ACCEPT' and all(g['checks'].values())
+              assert d['both_accept'] is True
+              assert d['generic_lane']['decision'] == 'ACCEPT'
+              assert d['native_lane']['decision'] == 'ACCEPT'
+          PY
+      - name: Upload QG-8 receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg8-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg8-support-phase.json
+            artifacts/orion-qg-qg8-support-phase-replay.json
+            artifacts/orion-qg-qg8-generic-verification.json
+            artifacts/orion-qg-qg8-dual-harness.json
+            artifacts/orion-qg-qg8-dual-summary.json
+            artifacts/orion-qg-qg8-replay.log
+            .orion-qg-qg8-generic/.orion-harness/**
+            .orion-qg-qg8-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

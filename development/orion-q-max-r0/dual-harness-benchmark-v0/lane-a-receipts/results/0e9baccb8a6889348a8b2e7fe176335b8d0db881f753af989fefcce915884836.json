@@ -1,0 +1,17 @@
+{
+  "completed_at": "2026-08-21T09:04:49.437577+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "certificate_ids": [
+      "certificate:source-check:nlane-ledger-and-r6-receipts-2026-08-21"
+    ],
+    "passed": true,
+    "reason": "Cross-checked against the replay-verification ledger (17/17 N-lane receipts deterministic) and the R6I/K/M receipts: the optimization-collapses and the typed-state positives are as stated; the inference that the missing object is a decidability criterion is supported by the absence of any such criterion in the receipt corpus (omission check item)."
+  },
+  "request_digest": "2d05f8e672d98a5f6da8cac138a01a92288af76a668430cbf7e307ecab58086d",
+  "request_id": "hostreq:b5ed6e57eaccf73de492b0aa20aefb0d23e0f5dad52e930d681ccb2a78d8c737",
+  "result_digest": "43d3aef2f7626dd9efd19c5b51403ceee10e5ded3786ea2ab87eb3cb822da754",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

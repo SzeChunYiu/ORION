@@ -1,0 +1,76 @@
+{
+  "artifact": {
+    "digest": "sha256:38e52779456ef7caf89015510c9873ac21554dba0a7f4265bb8051ba667d7133",
+    "id": 9446153368,
+    "name": "orion-qg-qg6-e424e9099aa1e2f260d0e6639c61c657dcc6ad63"
+  },
+  "both_accept": true,
+  "chemistry_sources_read": false,
+  "generic_lane": {
+    "analyzer_request": {
+      "capability": "PYTHON",
+      "created_at": "2026-08-21T12:19:14.637509+00:00",
+      "request_id": "hostreq:276592a1b3bd436de9c9d9b6e64e823ebe1464f609f3bba4ad21eccfac453425"
+    },
+    "analyzer_result": {
+      "request_id": "hostreq:276592a1b3bd436de9c9d9b6e64e823ebe1464f609f3bba4ad21eccfac453425",
+      "result_digest": "d34104fc6fc882469c8abb7dd40afba62efccfb247cfdc78e78b108f86a404f5",
+      "success": true
+    },
+    "checks": {
+      "base_revision": true,
+      "no_chemistry": true,
+      "no_novelty_authority": true,
+      "no_protected_subject": true,
+      "protocol_sha256": true,
+      "r6i_cost_count": true,
+      "r6i_cost_matches_production": true,
+      "r6i_cost_max_delta": true,
+      "r6i_cost_zero_violations": true,
+      "r6i_production_matches_independent": true,
+      "r6i_promotion_still_pending": true,
+      "r6i_rank5": true,
+      "r6i_rows": true,
+      "r6m_production_matches_independent": true,
+      "r6m_rank2": true,
+      "r6m_rows": true,
+      "r6s_authority": true,
+      "r6s_receipt_hash": true,
+      "r6s_required_gates": true,
+      "result_digest": true,
+      "schema": true
+    },
+    "decision": "ACCEPT",
+    "verifier_request": {
+      "capability": "PYTHON",
+      "created_at": "2026-08-21T12:19:15.259302+00:00",
+      "request_id": "hostreq:a0ba7a4b10b302460918fc1ff157ff3b587bfdee544129a972e5c3e4854755fe"
+    },
+    "verifier_result": {
+      "request_id": "hostreq:a0ba7a4b10b302460918fc1ff157ff3b587bfdee544129a972e5c3e4854755fe",
+      "result_digest": "47a3dd6bd520fa616081d6b2b5c99d650aede802dde58d1fdee387d1e9ddb0d9",
+      "success": true
+    }
+  },
+  "head_sha": "e424e9099aa1e2f260d0e6639c61c657dcc6ad63",
+  "issue": "SzeChunYiu/ORION#756",
+  "native_lane": {
+    "campaign_id": "orion-qg:qg6-syndrome-compression",
+    "campaign_status": "TERMINAL",
+    "decision": "ACCEPT",
+    "final_phase": "ACCEPT_RECORDED"
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "protected_subject_read": false,
+  "r6i_dimension": 5,
+  "r6i_theorem_promotion": "PENDING_QG1",
+  "r6m_dimension": 2,
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "source_result_digest": "f065afc8c4f5673931570c5dca6c1f47eb6cb602dbb15c4a1625be0346b023eb",
+  "terminal": "QG6_PRODUCTION_SYNDROME_RANK_INFERENCE_VERIFIED__R6M_D2_RECOVERS_SUPPORT2__R6I_D5_FOUND_THEOREM_PENDING_QG1",
+  "workflow": {
+    "name": "orion-qg-qg6-syndrome-compression",
+    "run_id": 32479741414
+  }
+}

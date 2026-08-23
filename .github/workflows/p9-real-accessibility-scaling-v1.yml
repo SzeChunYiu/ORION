@@ -1,0 +1,33 @@
+name: p9-real-accessibility-scaling-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/**'
+      - '.github/workflows/p9-real-accessibility-scaling-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-accessibility-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==1.26.4' 'scikit-learn==1.5.2'
+      - name: Execute prospective real-data accessibility study
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/run_real_accessibility_scaling_v1.py | tee p9_real_accessibility_v1.json
+      - name: Execute byte-replay run
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/run_real_accessibility_scaling_v1.py > p9_real_accessibility_v1_rerun.json
+          cmp p9_real_accessibility_v1.json p9_real_accessibility_v1_rerun.json
+          echo P9_REAL_ACCESSIBILITY_V1_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-real-accessibility-v1
+          path: p9_real_accessibility_v1.json

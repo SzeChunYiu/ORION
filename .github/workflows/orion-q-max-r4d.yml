@@ -1,0 +1,59 @@
+name: orion-q-max-r4d
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/**'
+      - 'development/orion-q-max-r0/**'
+      - '.github/workflows/orion-q-max-r4d.yml'
+
+jobs:
+  h2o-ducc-confirmation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Replay frozen R4B theorem and hostile matrix
+        run: |
+          cd research/extensions/orion-q
+          python max_r4b_tare_split_majorization.py | tee /tmp/r4b-result.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("/tmp/r4b-result.json").read_text())
+          if payload.get("theorem_gate_pass") is not True:
+              raise SystemExit("frozen R4B theorem hostile gate did not pass")
+          expected = "R4B_TARE_SPLIT_MAJORISATION_THEOREM_SUPPORTED__COEFFICIENT_COORDINATE_ONLY"
+          if payload.get("terminal") != expected:
+              raise SystemExit("R4B positive terminal missing after hostile replay")
+          PY
+      - name: Run frozen H2O DUCC R4D confirmation
+        run: |
+          cd research/extensions/orion-q
+          python max_r4d_h2o_ducc_confirmation_strict.py | tee /tmp/r4d-result.txt
+          grep '^ORIONQ_MAX_R4D_RESULT=' /tmp/r4d-result.txt
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          prefix = "ORIONQ_MAX_R4D_RESULT="
+          lines = [
+              line for line in Path("/tmp/r4d-result.txt").read_text().splitlines()
+              if line.startswith(prefix)
+          ]
+          if len(lines) != 1:
+              raise SystemExit(f"expected exactly one {prefix} receipt, got {len(lines)}")
+          payload = json.loads(lines[0][len(prefix):])
+          if payload.get("r4d_protocol_pass") is not True:
+              raise SystemExit("frozen R4D scientific gate did not pass")
+          PY
+      - name: Run H2O full m=2 TARE gate-accounting development only
+        run: |
+          cd research/extensions/orion-q
+          python max_r5_h2o_full_pair_gate_development.py | tee /tmp/r5-dev.txt
+          grep '^ORIONQ_MAX_R5_DEV=' /tmp/r5-dev.txt

@@ -1,0 +1,1629 @@
+{
+  "authority": "ORIONQG_QG5B_EXACT_FORECASTER_THEOREM_BACKED_ZERO_ERROR__DPP_FAMILY_MIN__ENLARGED_BORROW_CLOSES__NOT_R6",
+  "chemistry_sources_read_via_frozen_batch_only": true,
+  "claim_boundary": {
+    "covers": "The theorem-backed exact static forecaster F2(t) = C_Dxx(t) (exact minimum over the full support-<=2 family D++, frozen independent enumerator, no unrestricted DP call) and the enlarged closed-form borrow family B'(t) with out-of-support borrow homes, benchmarked against committed unrestricted-DP truth on the stated finite domains of the frozen R6L/R6M grammar under the frozen raw support-count objective.",
+    "does_not_cover": "Other objectives (QG-2 shows the support-2 world is the unit-cost objective's), other grammars, rotation-count trade-offs, Tag ranks above the enumerated families, the protected stretched-N2 subject, or any claim of donor or R6 novelty credit.",
+    "machine_evidenced_only": "The Q2 identity C_DP == min(C_R6L, C_Dplus, f_Bprime) is machine-evidenced only on the stated finite domains; for all n it remains CONJECTURE. Chemistry F2 values are obtained by the exact containment pinch (R6P precedent), never by a direct D++ sweep at n >= 8; chemistry f_Bprime is not computed (frozen runtime cap) and the chemistry Q2 identity is decided by the R6L pinch.",
+    "proven_components": "C_DP <= F2 <= C_Dplus <= C_R6L (family containment, hard-asserted); C_DP == C_Dxx for ALL n by the machine-checked MAX-R6S exchange theorem, so F2's exactness is theorem-backed (its empirical zero error here is a consistency check of the theorem's implementation, not the source of the claim); C_DP <= f_Bprime <= f_B (B' members are feasible grammar configurations; B subset-of B')."
+  },
+  "donor_novelty_credit": false,
+  "gates": {
+    "bprime_witness_referee_pass": true,
+    "chemistry_receipts_bound": true,
+    "dp_exact_matcher_binding": true,
+    "dxx_witness_referee_pass": true,
+    "f2_donor_predicate_exact": true,
+    "no_dp_call_in_forecast_path": true,
+    "p1_false_positive_reclassified": true,
+    "panel_bound_to_qg5_receipt": true,
+    "protected_stretched_n2_unreachable": true,
+    "refuting_instance_bound": true,
+    "sandwich_and_soundness": true,
+    "structured_receipt_bound": true,
+    "tables_bound": true,
+    "weight1_binding": true
+  },
+  "heavy_subject_dp_rerun": false,
+  "hostile_referee": {
+    "bprime_witness_exempt_infeasible": 0,
+    "bprime_witness_failures": [],
+    "bprime_witness_rows_verified": 611,
+    "dxx_witness_failures": [],
+    "dxx_witness_rows_verified": 658,
+    "exact_matcher_binding_failures": [],
+    "exact_matcher_binding_rows": 19,
+    "weight1_binding_failures": [],
+    "weight1_binding_rows": 61
+  },
+  "lane": "QG-5b exact forecaster (wave-2 lead, residual R1)",
+  "novelty_credit": false,
+  "panels": {
+    "panel_a_refuting_instance": {
+      "C_DP": 10,
+      "C_DP_exact_witnessed_matcher": 10,
+      "C_DP_frozen_configs": 10,
+      "C_Dplus": 11,
+      "C_R6L": 11,
+      "F2_C_Dxx": 10,
+      "bprime_witness_homes": [
+        {
+          "block": "C",
+          "home_qubit": 2,
+          "outside_own_target_support": true
+        }
+      ],
+      "bprime_witness_verbatim": {
+        "blocks": [
+          {
+            "block": "A",
+            "extra": 0,
+            "frame_anti": [
+              1,
+              0
+            ],
+            "frame_comm": [
+              1,
+              1
+            ],
+            "kind": "anchored",
+            "sigma": 1
+          },
+          {
+            "block": "B",
+            "extra": 0,
+            "frame_anti": [
+              1,
+              0
+            ],
+            "frame_comm": [
+              1,
+              1
+            ],
+            "kind": "anchored",
+            "sigma": 0
+          },
+          {
+            "block": "C",
+            "extra": 2,
+            "frame_anti": [
+              0,
+              5
+            ],
+            "frame_comm": [
+              4,
+              0
+            ],
+            "kind": "phantom",
+            "sigma": 1
+          }
+        ],
+        "q_t": 0,
+        "v": 2,
+        "value": 10
+      },
+      "dp_witness_checks_pass": true,
+      "dxx_witness_verbatim": {
+        "C_Dxx": 10,
+        "S": [
+          1,
+          1
+        ],
+        "blocks": [
+          {
+            "R0": [
+              1,
+              1
+            ],
+            "R1": [
+              1,
+              0
+            ],
+            "block": "A",
+            "central": 0,
+            "support": [
+              1,
+              1
+            ],
+            "target_permutation": 1,
+            "uanti": 0
+          },
+          {
+            "R0": [
+              1,
+              1
+            ],
+            "R1": [
+              1,
+              0
+            ],
+            "block": "B",
+            "central": 0,
+            "support": [
+              1,
+              1
+            ],
+            "target_permutation": 0,
+            "uanti": 0
+          },
+          {
+            "R0": [
+              4,
+              0
+            ],
+            "R1": [
+              0,
+              5
+            ],
+            "block": "C",
+            "central": 1,
+            "support": [
+              1,
+              2
+            ],
+            "target_permutation": 1,
+            "uanti": 2
+          }
+        ],
+        "labels": [
+          0,
+          1
+        ],
+        "max_frame_support": 2,
+        "tag_weight": 1
+      },
+      "f2_donor_predicate": false,
+      "f_B": 11,
+      "f_Bprime": 10,
+      "index_in_fresh_panel": 7,
+      "n": 3,
+      "predicate_P1": true,
+      "predicate_P1prime": false,
+      "q1_error": 0,
+      "q2_error": 0,
+      "q2_min": 10,
+      "qg5_predicted_C_DP": 11,
+      "qg5_regime": "donor_exact",
+      "receipt_row_bound": true,
+      "regime_f2": "borrow",
+      "target_pairs": [
+        [
+          [
+            3,
+            6
+          ],
+          [
+            7,
+            3
+          ]
+        ],
+        [
+          [
+            7,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ],
+      "truth_donor_exact": false
+    },
+    "panel_b_structured_n2": {
+      "dp_truth": "r6o.dp_cost_n2_reader (committed unrestricted DP reader)",
+      "f2_donor_predicate_mismatches": [],
+      "f2_regime_census": {
+        "beyond_enlarged_family": 0,
+        "borrow": 486,
+        "donor_exact": 6453,
+        "split": 2322
+      },
+      "instances": 9261,
+      "q1_nonzero_error_count": 0,
+      "q1_nonzero_errors_verbatim": [],
+      "q1_zero_error_count": 9261,
+      "q2_nonzero_error_count": 0,
+      "q2_nonzero_errors_verbatim": [],
+      "q2_zero_error_count": 9261,
+      "r6o_receipt_binding": {
+        "equal_count_bound": true,
+        "receipt_equal_count": 8775,
+        "recomputed_equal_count": 8775,
+        "verbatim_rows_bound": true
+      },
+      "verbatim_cap": 100
+    },
+    "panel_c_fresh_seeded": {
+      "dp_truth": "r6o.dp_cost_frozen_configs (unrestricted frozen-config DP)",
+      "f2_donor_predicate_mismatches": [],
+      "f2_regime_census": {
+        "beyond_enlarged_family": 0,
+        "borrow": 62,
+        "donor_exact": 152,
+        "split": 26
+      },
+      "generator": "digit-frozen copy of the QG-5 fresh panel (120 per n, n in {2,3})",
+      "instances": 240,
+      "q1_nonzero_error_count": 0,
+      "q1_nonzero_errors_verbatim": [],
+      "q1_zero_error_count": 240,
+      "q2_nonzero_error_count": 0,
+      "q2_nonzero_errors_verbatim": [],
+      "q2_zero_error_count": 240,
+      "qg5_receipt_bound": true,
+      "qg5_three_family_recomputed": {
+        "nonzero_error_count": 1,
+        "nonzero_errors_verbatim": [
+          {
+            "C_DP": 10,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "f_B": 11,
+            "index": 7,
+            "n": 3,
+            "qg5_predicted_C_DP": 11,
+            "target_pairs": [
+              [
+                [
+                  3,
+                  6
+                ],
+                [
+                  7,
+                  3
+                ]
+              ],
+              [
+                [
+                  7,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            ]
+          }
+        ],
+        "regime_census": {
+          "borrow": 61,
+          "donor_exact": 153,
+          "split": 26
+        }
+      },
+      "seed": 20260826
+    },
+    "panel_d_chemistry": {
+      "binding_failures": [],
+      "f2_donor_predicate_mismatches": [],
+      "listing_bound_to_r6r_receipt": true,
+      "pinched_exact_total": 45,
+      "q2_unresolved_rows": [],
+      "rows": {
+        "Benzene_DUCC2": [
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                7
+              ],
+              [
+                9,
+                72
+              ],
+              [
+                73,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                7
+              ],
+              [
+                9,
+                73
+              ],
+              [
+                72,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                7
+              ],
+              [
+                9,
+                74
+              ],
+              [
+                72,
+                73
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                9
+              ],
+              [
+                7,
+                72
+              ],
+              [
+                73,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                9
+              ],
+              [
+                7,
+                73
+              ],
+              [
+                72,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                9
+              ],
+              [
+                7,
+                74
+              ],
+              [
+                72,
+                73
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                72
+              ],
+              [
+                7,
+                9
+              ],
+              [
+                73,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                72
+              ],
+              [
+                7,
+                73
+              ],
+              [
+                9,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                72
+              ],
+              [
+                7,
+                74
+              ],
+              [
+                9,
+                73
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                73
+              ],
+              [
+                7,
+                9
+              ],
+              [
+                72,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                73
+              ],
+              [
+                7,
+                72
+              ],
+              [
+                9,
+                74
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                73
+              ],
+              [
+                7,
+                74
+              ],
+              [
+                9,
+                72
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                74
+              ],
+              [
+                7,
+                9
+              ],
+              [
+                72,
+                73
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                74
+              ],
+              [
+                7,
+                72
+              ],
+              [
+                9,
+                73
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                4,
+                74
+              ],
+              [
+                7,
+                73
+              ],
+              [
+                9,
+                72
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          }
+        ],
+        "H4": [
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                18
+              ],
+              [
+                22,
+                25
+              ],
+              [
+                27,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                18
+              ],
+              [
+                22,
+                27
+              ],
+              [
+                25,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                18
+              ],
+              [
+                22,
+                31
+              ],
+              [
+                25,
+                27
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                22
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                27,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                22
+              ],
+              [
+                18,
+                27
+              ],
+              [
+                25,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                22
+              ],
+              [
+                18,
+                31
+              ],
+              [
+                25,
+                27
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                25
+              ],
+              [
+                18,
+                22
+              ],
+              [
+                27,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                12,
+                25
+              ],
+              [
+                18,
+                27
+              ],
+              [
+                22,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                12,
+                25
+              ],
+              [
+                18,
+                31
+              ],
+              [
+                22,
+                27
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                27
+              ],
+              [
+                18,
+                22
+              ],
+              [
+                25,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                12,
+                27
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                22,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                12,
+                27
+              ],
+              [
+                18,
+                31
+              ],
+              [
+                22,
+                25
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "F2_C_Dxx_pinched": 11,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                12,
+                31
+              ],
+              [
+                18,
+                22
+              ],
+              [
+                25,
+                27
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                12,
+                31
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                22,
+                27
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "F2_C_Dxx_pinched": 8,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                12,
+                31
+              ],
+              [
+                18,
+                27
+              ],
+              [
+                22,
+                25
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          }
+        ],
+        "N2": [
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                0,
+                7
+              ],
+              [
+                11,
+                24
+              ],
+              [
+                31,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                0,
+                7
+              ],
+              [
+                11,
+                31
+              ],
+              [
+                24,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                7
+              ],
+              [
+                11,
+                32
+              ],
+              [
+                24,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                0,
+                11
+              ],
+              [
+                7,
+                24
+              ],
+              [
+                31,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                0,
+                11
+              ],
+              [
+                7,
+                31
+              ],
+              [
+                24,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                11
+              ],
+              [
+                7,
+                32
+              ],
+              [
+                24,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                0,
+                24
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                31,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                24
+              ],
+              [
+                7,
+                31
+              ],
+              [
+                11,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                24
+              ],
+              [
+                7,
+                32
+              ],
+              [
+                11,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 11,
+            "matching": [
+              [
+                0,
+                31
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                24,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                31
+              ],
+              [
+                7,
+                24
+              ],
+              [
+                11,
+                32
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                31
+              ],
+              [
+                7,
+                32
+              ],
+              [
+                11,
+                24
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "F2_C_Dxx_pinched": 10,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                32
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                24,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                32
+              ],
+              [
+                7,
+                24
+              ],
+              [
+                11,
+                31
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          },
+          {
+            "C_DP_from_receipt": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "F2_C_Dxx_pinched": 9,
+            "F2_status": "PINCHED_EXACT",
+            "f2_donor_predicate": true,
+            "f_B": 10,
+            "matching": [
+              [
+                0,
+                32
+              ],
+              [
+                7,
+                31
+              ],
+              [
+                11,
+                24
+              ]
+            ],
+            "q1_error": 0,
+            "q2_pinched_by_r6l": true,
+            "truth_donor_exact": true
+          }
+        ]
+      },
+      "rows_total": 45,
+      "subjects": {
+        "Benzene_DUCC2": {
+          "blob": "5c02c72b88e12b391ea1d8f77eb6b3e04fc2a915",
+          "dp_truth": "committed receipt (heavy DP never re-run)",
+          "f2_by": "exact containment pinch C_DP <= C_Dxx <= C_Dplus (R6P precedent)",
+          "fbprime_computed": false,
+          "fbprime_note": "frozen runtime cap: Q2 identity decided by the R6L pinch (C_R6L == C_DP receipt-bound) plus the B' soundness gate",
+          "matchings": 15,
+          "n_qubits": 12,
+          "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+          "pinched_exact_count": 15,
+          "q2_pinched_by_r6l_count": 15,
+          "unresolved_pinch_count": 0
+        },
+        "H4": {
+          "blob": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+          "dp_truth": "committed receipt (heavy DP never re-run)",
+          "f2_by": "exact containment pinch C_DP <= C_Dxx <= C_Dplus (R6P precedent)",
+          "fbprime_computed": false,
+          "fbprime_note": "frozen runtime cap: Q2 identity decided by the R6L pinch (C_R6L == C_DP receipt-bound) plus the B' soundness gate",
+          "matchings": 15,
+          "n_qubits": 8,
+          "path": "H4/cc-pVDZ/2.0au/DUCC3/H4.cc-pvdz_files/restricted/ducc/H4.cc-pvdz.ducc.results.txt",
+          "pinched_exact_count": 15,
+          "q2_pinched_by_r6l_count": 15,
+          "unresolved_pinch_count": 0
+        },
+        "N2": {
+          "blob": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+          "dp_truth": "committed receipt (heavy DP never re-run)",
+          "f2_by": "exact containment pinch C_DP <= C_Dxx <= C_Dplus (R6P precedent)",
+          "fbprime_computed": false,
+          "fbprime_note": "frozen runtime cap: Q2 identity decided by the R6L pinch (C_R6L == C_DP receipt-bound) plus the B' soundness gate",
+          "matchings": 15,
+          "n_qubits": 12,
+          "path": "N2/cc-pVTZ/6Elec_6Orbs/1.0_Eq-2.0680au/DUCC2/N2.cc-pvtz.ducc.results.txt",
+          "pinched_exact_count": 15,
+          "q2_pinched_by_r6l_count": 15,
+          "unresolved_pinch_count": 0
+        }
+      },
+      "unresolved_pinch_rows": []
+    }
+  },
+  "programme": "ORION-QG (charter PROGRAMME_CHARTER_V1.md, issue #740)",
+  "protocol": "QG5B_EXACT_FORECASTER_PROTOCOL",
+  "protocol_sha256": "b268c6c62c7f194aeef6d85b7ea892e209f4b6974497981b28c63390e240c911",
+  "q1": {
+    "chemistry_unresolved_rows": 0,
+    "dp_compared_instances_total": 9547,
+    "nonzero_error_total": 0,
+    "outcome": "Q1_ZERO_ERROR",
+    "question": "Does F2(t) = exact minimum over the full support-<=2 family (r6p.dxx_search, no unrestricted DP call) reproduce C_DP on the QG-5 refuting instance, the structured n=2 slice, the fresh seeded panel, and the receipted chemistry rows?",
+    "theorem_backing": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json: C_DP == C_Dxx for every n (support >= 3 never pays; machine-checked)"
+  },
+  "q2": {
+    "bprime_definition": "B'(t) = frozen R6Q borrow family B(t) with the single enlargement that each phantom block's home qubit q_h ranges over the union target support plus one empty representative (q_t excluded) instead of the block's own target support; weight-one Tag v@q_t, anchored/phantom options, all-anchored corner excluded, value = min(surcharges + branch F3) + 2.",
+    "chemistry_unresolved_rows": 0,
+    "outcome": "Q2_ENLARGED_BORROW_CLOSES",
+    "panel_a_repaired": true,
+    "question": "Does min(C_R6L, C_Dplus, f_Bprime) with the enlarged borrow family B' (out-of-support borrow homes) recover closed-form exactness on all panels, repairing the QG-5 counterexample and P1's false positive?",
+    "residual_gap_total": 0,
+    "smallest_counterexample_verbatim": null
+  },
+  "r6_authority": false,
+  "random_seed_fresh_panel": 20260826,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:R1_RESIDUAL_REPAIRED__F2_EXACT_EVERYWHERE_DP_COMPARED__BPRIME_RECOVERS_CLOSED_FORM_EXACTNESS_AND_REPAIRS_P1_FALSE_POSITIVE",
+  "schema": "ORIONQG.QG5B.ExactForecaster.v1",
+  "scope": "THEOREM_BACKED_EXACT_DPP_FORECASTER_AND_ENLARGED_BORROW_FAMILY__BENCHMARKED_AGAINST_COMMITTED_UNRESTRICTED_DP__NOT_R6",
+  "timing": {
+    "convention": "R6P: timing fields excluded from the canonical stdout line; present only in this file section and on stderr",
+    "panel_b_warm_cache_dp_vs_f2_plus_families": {
+      "instances_timed": 9261,
+      "median_dp_seconds": 0.012938676001795102,
+      "median_forecast_seconds": 0.00882722599999397,
+      "speedup_max": 12.077759622668237,
+      "speedup_median": 1.627224692880288,
+      "speedup_min": 0.01115748794959385,
+      "speedup_p10": 0.02776655549275971,
+      "speedup_p90": 5.450041960748456
+    },
+    "q3_panel_c_by_n": {
+      "2": {
+        "instances_timed": 120,
+        "median_dp_seconds": 0.12169145150073746,
+        "median_forecast_seconds": 0.0026810510007635457,
+        "speedup_max": 58.90806873518584,
+        "speedup_median": 45.39422544000245,
+        "speedup_min": 23.621353520280504,
+        "speedup_p10": 33.74355324932984,
+        "speedup_p90": 55.51665837332873
+      },
+      "3": {
+        "instances_timed": 120,
+        "median_dp_seconds": 0.1831460049997986,
+        "median_forecast_seconds": 0.026096353500179248,
+        "speedup_max": 9.244313919370867,
+        "speedup_median": 6.88776975493224,
+        "speedup_min": 4.153846680256689,
+        "speedup_p10": 5.526003339931302,
+        "speedup_p90": 8.276034650560746
+      }
+    },
+    "q3_panel_c_dp_vs_f2": {
+      "instances_timed": 240,
+      "median_dp_seconds": 0.14917069549846929,
+      "median_forecast_seconds": 0.014644776500063017,
+      "speedup_max": 58.90806873518584,
+      "speedup_median": 16.432833719825688,
+      "speedup_min": 4.153846680256689,
+      "speedup_p10": 5.942456028904973,
+      "speedup_p90": 54.15690120925373
+    },
+    "q3_panel_c_dp_vs_qg5_three_family": {
+      "instances_timed": 240,
+      "median_dp_seconds": 0.14917069549846929,
+      "median_forecast_seconds": 0.014390806501978659,
+      "speedup_max": 27.14539125593405,
+      "speedup_median": 9.881183193662817,
+      "speedup_min": 2.9168248324307524,
+      "speedup_p10": 3.711062131489388,
+      "speedup_p90": 19.07882020771068
+    },
+    "runtime_seconds": 495.403
+  }
+}

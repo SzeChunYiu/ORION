@@ -1,0 +1,15 @@
+\section{Stage A: native-state verified problem solving}
+The first empirical gate is real verifier-backed solving. Compare under matched verifier-call, time, token, memory, and preprocessing budgets:
+\begin{enumerate}
+    \item history/text only;
+    \item native proof state;
+    \item native state plus dependency/premise structure;
+    \item typed failure/repair state;
+    \item strong current prover/proof-repair baselines;
+    \item donor-complete state+search system;
+    \item ORION structured workspace.
+\end{enumerate}
+Measure solve rate, verifier calls, branching factor, search depth, time-to-first-correct, invalid tactic rate, and repair success. Better tactic prediction without verified solve/search benefit is not sufficient.
+
+The active \#618 lane already implements a prospectively frozen native-Lean extraction and cross-revision programme, but its own authority contract states that no positive native-state result is claimed until its frozen analyzers execute and pass. P10-U preserves that boundary.
+

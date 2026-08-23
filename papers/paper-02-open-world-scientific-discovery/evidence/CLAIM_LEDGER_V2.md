@@ -16,6 +16,7 @@ This ledger extends, but never rewrites, `CLAIM_LEDGER_V1.md`. The archived V1 e
 | V2-C4 | External discovery benefit does not trade away closure safety. | Joint primary discovery metric + frozen premature-closure/unresolved-obligation margin. | `CANNOT_CHECK` — no confirmatory external discovery benefit was earned. |
 | V2-C5 | The V2 result transfers beyond the development benchmark. | Separately frozen transfer axis with no tuning on transfer labels/outcomes. | `CANNOT_CHECK` — transfer stage was never entered. |
 | V2-C6 | ORION composes strong acquisition methods without granting them unearned global-closure authority. | Architecture/protocol evidence plus C1-C4 empirical support. | `PARTIAL_METHOD_SUPPORT`; empirical widening `NOT_PROMOTED`. |
+| V2-C7 | Source-grounded discovery morphology and failure-atlas records may be used as structure-conditioned acquisition/design evidence without becoming protected confirmatory gold or task-global closure authority. | Merged #506/#509 source-bound atlases; actual manuscript interface; authority boundary | `SUPPORTED_GOVERNANCE_BOUNDARY` — 51-episode morphology basis is frozen for descriptive use; 30-episode failure atlas reaches schema-stable only; neither is a P2 retrieval/closure performance result. |
 
 ## Final valid V2 development evidence
 
@@ -64,22 +65,19 @@ None of those artifacts may be relabelled as a V2 confirmatory positive, and the
 
 ## Post-V2 structured-identity campaign
 
-The separately frozen OpenAIRE/Crossref Wide campaign is not a V2 promotion
-escape hatch. Its 12-question identity discriminator established only that
-OpenAIRE can expose explicit structured arXiv PIDs; promotion from that probe was
-forbidden. In the subsequent 400-row matched capture, all 400 predeclared
-OpenAIRE DOI-crosswalk requests returned HTTP 400. The resulting
-`0.666667` provider-success fraction failed the frozen `0.90` validity gate, and
-all three candidate projections were byte-identical. The terminal is
-`P2_WIDE_EXTERNAL_CANNOT_CHECK`, archived in:
+The separately frozen OpenAIRE/Crossref Wide campaign is not a V2 promotion escape hatch. Its 12-question identity discriminator established only that OpenAIRE can expose explicit structured arXiv PIDs; promotion from that probe was forbidden. In the subsequent 400-row matched capture, all 400 predeclared OpenAIRE DOI-crosswalk requests returned HTTP 400. The resulting `0.666667` provider-success fraction failed the frozen `0.90` validity gate, and all three candidate projections were byte-identical. The terminal is `P2_WIDE_EXTERNAL_CANNOT_CHECK`, archived in:
 
 - `external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json`;
 - `external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json`;
 - the three `ci_mirror/p2-wide-openaire-matched-*.zip` archives.
 
-Those observed zeros are invalid for scientific comparison and cannot be
-relabeled as `NOT_SUPPORTED`. A new campaign requires a new prospective freeze
-after structured crosswalk request syntax is independently validated.
+Those observed zeros are invalid for scientific comparison and cannot be relabeled as `NOT_SUPPORTED`. A new campaign requires a new prospective freeze after structured crosswalk request syntax is independently validated.
+
+## Merged discovery/failure interface audit
+
+The manuscript's structure-conditioned/source-grounded successor section is a governance/interface writeback, not a new P2 empirical campaign. The abstract and existing Results were reviewed after #598 and are intentionally unchanged: inserting Jump, atom or atlas outcome numbers there would falsely make those studies P2 performance evidence. The actual manuscript interface instead records the owner-relevant consequences: historical discovery/failure episodes remain source-bound design evidence; private cognition stays non-inferable; the 51-episode morphology basis is descriptive; the 30-episode failure atlas is schema-stable but not independently corpus-ready; and none can erase an unresolved acquisition obligation or become protected gold by curation.
+
+The existing Limitations and Conclusion remain valid because their claim ceiling is already stricter than these successor objects: P2-X is exact-contract evidence only, external retrieval/provider generality remains bounded or `CANNOT_CHECK`, and acquisition signals do not acquire task-global closure authority. No successor result is promoted above `P2_NARROWED` by this writeback.
 
 ## Promotion rule and terminal
 

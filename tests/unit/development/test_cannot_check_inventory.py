@@ -155,14 +155,147 @@ def test_the_precision_fix_lost_no_classification() -> None:
     three reviewed classified obligations, T8's prospective preflight added two
     identity-bound obligations, and the integrated science-first closure stack
     adds five reviewed classified obligations: two INSUFFICIENT_EVIDENCE and
-    three MISSING_DECLARATION sites. The exact ratchet is therefore 151. Future
-    additions must update this sentinel deliberately rather than weakening it to
-    a lower-bound check.
+    three MISSING_DECLARATION sites. The P1-P10 superiority adjudicator
+    (``orion.programme.superiority``, issues #649-#663) adds four more reviewed
+    obligations: three MISSING_DECLARATION sites where a gate's evidence, its
+    artifact, or the independence of its reviewer is not recorded, and one
+    INSUFFICIENT_EVIDENCE site where a terminal demanding a claim wider than the
+    registered families has not yet been reached. The third MISSING_DECLARATION
+    site arrived with ``INDEPENDENT_REVIEW``, added after PR #739 review found
+    three review terminals unpassable via their own unblock path.
+
+    The guard-exercise vocabulary (``orion.programme.guard_exercise``, issue
+    #650) adds four more: three ``MISSING_DECLARATION`` sites where a guard's
+    exercise denominator is absent --- once for a single-arm guard, once for a
+    non-inferiority candidate, once for its comparator --- and one
+    ``INSUFFICIENT_EVIDENCE`` site where *neither* arm was exercised, which is
+    not a missing declaration but an absence of evidence on both sides. These
+    are the inventory working as designed: each is a checker that now reports
+    "no denominator" where the previous rate metric reported a pass.
+
+    The same wave adds six more of the same character. P3's coordinate-necessity
+    contrast (#651) adds one ``MISSING_DECLARATION`` where an ablation arm's
+    treatment was never applied. P4's identifiability audit (#652) adds four ---
+    two ``MISSING_DECLARATION`` where no probe is registered or no evaluation
+    split exists, and two ``INSUFFICIENT_EVIDENCE`` where a probe could not be
+    fitted or the audit's own evidence is too thin to license a verdict --- and
+    its promotion-cue adapter adds one ``MISSING_CUSTODY`` for a case whose
+    custody class declares no split.
+
+    P5's commitment-custody audit (``orion.programme.commitment_custody``, issue
+    #653) adds six ``MISSING_CUSTODY`` sites, all in
+    ``audit_commitment_custody``: the states in which a sealed secret's custody
+    cannot be judged rather than judged safe --- no probe registered, no probe
+    that computed anything, a canary that did not demonstrate the scheme, and
+    the rest. They are ``MISSING_CUSTODY`` rather than
+    ``MISSING_DECLARATION`` because what is absent is the protected material's
+    custody itself, not a declaration about it.
+
+    P7's decided-premise measure (``orion.programme.decided_premises``, issue
+    #655) adds two ``MISSING_DECLARATION`` sites in
+    ``measure_decision_constraint``: a premise whose deciding inputs the model
+    does not carry, and one no enumerated case constrains. Both are
+    ``CANNOT_CHECK`` rather than ``FAIL`` because a checker cannot be blamed for
+    a distinction its state space cannot express. P6's and P8's mechanisms add
+    none of their own --- they reach their blocked states through
+    ``guard_exercise.assess_guard``, whose sites are already inventoried. The
+    The construction-decided-verdict batch (P9, P10, P12, P14) adds six: four
+    ``MISSING_CUSTODY`` in ``comparator_response.measure_contrast_margin``, where
+    the comparator's own execution record is absent so no contrast can be taken;
+    one ``MISSING_ACCESS`` in ``assess_attainable_margin`` for a margin whose
+    reachable support cannot be read; and one ``MISSING_DECLARATION`` in
+    ``TerminalReach.outcome`` for a terminal whose admissible worlds were never
+    declared. All six report that a verdict could not be computed, which is the
+    distinction this whole batch exists to make: a gate no world can clear is
+    ``CANNOT_CHECK``, not a negative result. That put the exact ratchet at 179.
+
+    The P3 coordinate-necessity build adds the 180th, a ``MISSING_IDENTITY`` in
+    ``p3_coordinate_necessity_build`` emitted when the built atlas cannot be
+    identified against its frozen declaration --- schema version, atlas id,
+    freeze document and parent atlas among them. A build whose subject cannot be
+    named has not produced a negative result about that subject; it has produced
+    no result. (P4's identifiability audit moved within its module in the same
+    batch, which changes a line number and not a count.)
+
+    Three later batches take the ratchet from 180 to 195, and the inventory had
+    gone stale against all three before this was noticed --- the generator is
+    re-derivable precisely so that a drift like that is a test failure rather
+    than something a reader has to spot.
+
+    Eleven are ``MISSING_DECLARATION``. Eight sit in P3's partial-observation
+    probe: one where the probe does not have the structure its freeze specifies,
+    so it is not the world under study and no arm number is reported over it;
+    and seven across ``evaluate_gates`` where a gate's own denominator is
+    absent --- ``PROBE_DERIVATION`` produced no case, so the guard has no
+    exercise at all; an over-resolution rate is ``None``; a held-out probe
+    yields no rate; there are no intact failures to explain, or no
+    over-resolutions to explain them against. Two more sit in P9's frontier
+    grid, where a cell missing from an outcome file makes the whole grid
+    ``CANNOT_CHECK`` and a fully executed grid whose crossing tests never had
+    two uncensored frontiers is ``CANNOT_CHECK`` rather than ``PASS`` --- a
+    crossing rate over an empty set is not a rate. The eleventh is P9's
+    campaign runner refusing to report a verdict it did not compute.
+
+    Four are ``MISSING_CUSTODY``, all in P9's hostile representation battery,
+    and they are the same rule the battery states in prose: an attack that had
+    no opportunity is ``CANNOT_CHECK``, never "the attack failed". A component
+    whose comparator answered with a single label has no margin to be attacked,
+    so there is nothing for the attack to have failed against.
+
+    Every one of the fifteen reports that a verdict could not be computed, which
+    is the distinction this whole batch exists to make. Future additions must
+    update this sentinel deliberately rather than weakening it to a lower-bound
+    check.
+
+    P9's transfer audit takes the ratchet from 195 to 196 with a single
+    ``MISSING_IDENTITY`` in ``OracleIdentity.outcome``. It is the right category
+    and the right terminal: the D1 exact typed-relational comparator agrees with
+    the evaluator gold on every point of three separate spaces --- the frozen 512,
+    the protected 128, and 1,280 method pairs the D1 generator never builds ---
+    because it is the evaluator's own classification read back through the same
+    payload. That is an identity, so the failure branch it is supposed to grade
+    cannot be reached, and the honest report is that the check could not be taken
+    rather than that it failed. The same module's ``ViewCollapse.outcome`` is
+    ``UNCLASSIFIED`` and so is not counted here.
+
+    P3's partial-observation probe takes it 196 to 199 with three
+    ``MISSING_DECLARATION`` sites, all of them a gate declining to read a zero it
+    cannot use. ``G9_HARM_A3`` withholds a harm count of 0 three times over: on
+    the three symmetric atlases because no intact pair has a one-sided absence
+    for the arm to fire on, and on the harm corpus because that corpus's gold is
+    derived by the very criterion the arm decides by, so the arm reproduces it on
+    every case and its harm is 0 by arithmetic rather than by safety. A zero from
+    a denominator of nothing and a zero from a tautology are both absent
+    measurements, and the gate says so instead of reporting the arm as harmless.
+
+    P9's reproduction check takes it 199 to 200 with one more
+    ``MISSING_IDENTITY``, in ``ArmReproduction.outcome``. Re-running the frozen
+    D1 protocol reproduces three of the four archived arms exactly and disagrees
+    with the fourth --- ``TYPED_SERIALIZED_BAG``, same dataset digest and same
+    selected configuration, 0.75 against the archived 0.5. That disagreement is
+    not licensed to convict the archive, because the environment
+    ``RESULT_EXECUTION_ENVIRONMENT_V1`` records is not the one measuring: Python
+    3.12.13, numpy 2.5.2 and scipy 1.18.0 against 3.11.15, 2.4.6 and 1.17.1. Two
+    things changed and only one was measured, so the identity of the environment
+    is the blocker and the site names it. Under the recorded environment the same
+    divergence would be ``FAIL``, and that branch is reachable and tested.
+
+    Two ``INSUFFICIENT_EVIDENCE`` sites take it 200 to 202, and both are the
+    same shape: an instrument that produced no evidence either way, saying so.
+    P6's ``frame_conditions_are_load_bearing`` reports a condition whose
+    countermodel search did not settle --- no countermodel found, and none shown
+    not to exist --- rather than reporting it as an inert axiom, which is what a
+    loaded machine used to make it publish. P9's ``OracleIndependence.outcome``
+    reports a second comparator that turned out to be the first under another
+    name: there was no verdict it could have returned other than the one it did.
+    Both name their blocker in the returning statement so this inventory records
+    an examined site rather than one carrying no extractable reason, and
+    ``UNCLASSIFIED`` is unchanged at 385 across both.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 151, classified
+    assert sum(classified.values()) == 202, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
