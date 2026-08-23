@@ -1,0 +1,55 @@
+{
+  "atom": "QG-39 selection regret curve",
+  "authority": {
+    "NOT_R6": true,
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "novelty_claim": false,
+    "physical_advantage_claim": false
+  },
+  "boundaries": {
+    "NOT_R6": true,
+    "level": "column type, not instance",
+    "uncalibrated": "mapping these units to a hardware resource is the gap this programme has not closed",
+    "units": "frozen cost model (config_cost - baseline); NOT T-count, ancilla, depth or any physical resource"
+  },
+  "brute_force_witness": {
+    "class_size": 24,
+    "cost_under_best_committable_frame": 5,
+    "distinct_optimal_frame_sets_in_class": 24,
+    "excess": 5,
+    "frames_achieving_less": 0,
+    "of_frames": 384,
+    "own_optimum": 0,
+    "regret": 5,
+    "type": "IXIXYI"
+  },
+  "classes_with_nonzero_regret": {
+    "0": 76,
+    "1": 45,
+    "2": 7,
+    "3": 0
+  },
+  "consistency": "regret reaches 0 at budget 3, matching QG-35b's D_act* = 3",
+  "question": "QG-35 proves summary-only frame selection is impossible; what does that impossibility COST?",
+  "regret_curve": {
+    "0": 5,
+    "1": 3,
+    "2": 2,
+    "3": 0
+  },
+  "scale_reference": {
+    "K_range": [
+      -3,
+      7
+    ],
+    "optimal_value_range": [
+      -3,
+      4
+    ],
+    "reading": "budget-0 regret 5 against a total spread of optimal values of 7"
+  },
+  "schema": "ORION.QG.QG39.CommittedResult.v1",
+  "source_result_digest": "2f890c51d5de82a93b0b26113389fb8b8238b8483144307df77d67dbc1a9fbdc",
+  "worst_class_mean_regret_budget0": 3.0
+}
