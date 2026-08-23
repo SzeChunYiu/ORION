@@ -69,7 +69,10 @@ def per_structure_charges(domain, structures):
     reason_serve: serve_case with the structure never materialized.
     state_serve:  serve_case with the structure materialized (cache primed
                   for the singleton case, matching frozen accounting).
-    Outputs are captured for RG1 exactness.
+    Outputs are captured for RG1 exactness. serve_case aligns its outputs
+    list to the STRUCTURES passed in, so a singleton call wraps the
+    per-query list once: unwrap outs[0] to match ground_truth's
+    per-structure shape.
     """
     reason = {}
     state = {}
@@ -78,10 +81,10 @@ def per_structure_charges(domain, structures):
     for st in structures:
         sid = st["sid"]
         ops, outs = frozen.serve_case([st], set(), domain)
-        reason[sid], reason_out[sid] = ops, outs
+        reason[sid], reason_out[sid] = ops, outs[0]
         frozen.prime_caches(domain, [st])
         ops, outs = frozen.serve_case([st], {sid}, domain)
-        state[sid], state_out[sid] = ops, outs
+        state[sid], state_out[sid] = ops, outs[0]
     return reason, state, reason_out, state_out
 
 
