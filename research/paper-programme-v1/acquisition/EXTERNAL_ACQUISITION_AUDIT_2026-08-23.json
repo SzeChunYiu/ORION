@@ -342,5 +342,87 @@
     "how_to_read_the_zero": "externally_blocked_with_no_free_route = 0 means no item has zero free routes. It does NOT mean no item is blocked. P4 and P14D each carry a class-F residual -- a bespoke human panel adjudicating the candidate's own cases -- and remain blocked on it after every free route is taken. Read this field beside items_with_a_class_F_residual, never instead of it.",
     "nothing_executed": "This audit is classification plus verified reachability. No cell is executed, no replay bundle is packaged, no protocol is registered and no new claim identity exists yet."
   },
-  "correction": "An earlier revision of this audit ranked P9.T3 first on the ground that nothing was missing but a download. That was wrong: the cell-execution harness does not exist either. The reclassification is unchanged -- P9.T3 is still not externally blocked -- but the work is larger than fetching weights, and the ranking has been corrected."
+  "correction": "An earlier revision of this audit ranked P9.T3 first on the ground that nothing was missing but a download. That was wrong: the cell-execution harness does not exist either. The reclassification is unchanged -- P9.T3 is still not externally blocked -- but the work is larger than fetching weights, and the ranking has been corrected.",
+  "execution_pass_2026_08_23": {
+    "what_this_is": "Outcomes of actually attempting the ranked items, appended rather than folded into the entries above. Reclassification is one thing; execution is another, and they must stay separately readable.",
+    "outcomes": [
+      {
+        "item_id": "P5.H1_H4.EXTERNAL_IDENTITIES",
+        "outcome": "PARTIALLY_SOLVED",
+        "did": "Ran the local preflight and partitioned all nine blockers. Source-grounded the MDA donor from arXiv:2608.09696v3 primary full text, moving m_open_only from CANNOT_CHECK to MECHANISM_COMPARATOR_BOUND. Blocker count 9 -> 8.",
+        "residual": "Eight UNBOUND protocol fields -- digests, an epoch and a subject revision -- all authorable by the researcher. Status stays CANNOT_CHECK until they are bound.",
+        "residual_class": "B, plus a third-party timestamp to make the freeze pre-outcome",
+        "finding": "Zero of the nine required an outside party. The owner-independence check the preflight does enforce already passes and was never among the blockers.",
+        "artifacts": [
+          "research/self-orion-v3/MDA_SOURCE_GROUNDING_RECEIPT_2026-08-23.json",
+          "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V2.json",
+          "research/self-orion-v3/P5_H1_H4_BLOCKER_PARTITION_2026-08-23.json"
+        ]
+      },
+      {
+        "item_id": "P6.REPRODUCIBILITY.EXTERNAL",
+        "outcome": "PRECONDITION_SOLVED",
+        "did": "Replayed the frozen V3 bundle in a third environment: 7 of 7 steps exit 0 and all 8 pinned input and output digests match, under a different interpreter and a different z3 than the locked receipt records. Packaged what a custodian receives and wrote the verifier that checks what one returns.",
+        "residual": "A custodian who is not the candidate. That is the blocker itself and it is untouched.",
+        "residual_class": "D",
+        "finding": "The bundle is runnable by a stranger; what is missing is the stranger. The verifier rejects a receipt from the candidate, one that reused the candidate's execution unit, one missing a step, and one with a wrong digest.",
+        "artifacts": [
+          "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_THIRD_ENVIRONMENT_REPLAY_2026-08-23.json",
+          "papers/paper-06-formal-epistemic-structures-and-mechanics/P6_CLEAN_ROOM_REPLAY_PACKET_V1.json",
+          "papers/paper-06-formal-epistemic-structures-and-mechanics/verify_clean_room_receipt_v1.py"
+        ]
+      },
+      {
+        "item_id": "P9.T3.FRONTIER.EXECUTION",
+        "outcome": "CORRECTED_AND_SPECIFIED",
+        "did": "Established that the seven representations, the per-cell task items and the cell runner do not exist anywhere in the repository. Recorded the gap, the build order, and a prohibition on writing any stub to the freeze's expected_result_artifact path.",
+        "residual": "Build the item generator, the seven representations and the runner, then acquire checkpoints and execute. Zero of 1,344 cells are executed.",
+        "residual_class": "none external; construction work plus the researcher's own compute",
+        "finding": "Still not externally blocked, and not one download from execution either.",
+        "artifacts": [
+          "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_EXECUTION_GAP_2026-08-23.json"
+        ]
+      },
+      {
+        "item_id": "P2.TASK_WORLD.IDENTITY",
+        "outcome": "ADJACENT_DEFECT_SOLVED",
+        "did": "Diagnosed the live CI reproduction failure on the lexical-echo successor. Two fresh runs are bit-identical to each other; four mrr_at_50 values differ from the committed artifact by at most three units in the last place of a float64, and no gate reads mrr_at_50. Replaced the exact-equality comparison with one that is exact on every gate-read field and on all non-float values, and permits a declared four-ulp difference elsewhere.",
+        "residual": "The archived task-world baseline reproduction named in the blocker is a different object and is untouched.",
+        "residual_class": "A and D for the blocker proper",
+        "finding": "The CI failure was a comparison defect, not a result defect: bit-equality of a floating-point mean across library versions is an unattainable gate.",
+        "artifacts": [
+          "papers/paper-02-open-world-scientific-discovery/diagnose_lexical_echo_reproduction.py",
+          "papers/paper-02-open-world-scientific-discovery/P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS_2026-08-23.json",
+          "tests/unit/study/p2_open_world/test_p2_lexical_echo_successor.py"
+        ]
+      },
+      {
+        "item_id": "P9.T4.D1V1_3.SUCCESSOR",
+        "outcome": "HISTORICAL_NEGATIVE_EXPLAINED",
+        "did": "Reproduced D1 v1.2 in a third environment and matched the ARCHIVED numbers exactly, including TYPED_SERIALIZED_BAG at 0.5 with one distinct prediction. Attributed the 0.50 -> 0.75 locked-replay divergence: the arm is a constant predictor whose accuracy is a class prior, 32 of 128 protected cases lie within 0.05 of the decision boundary, the runner-up is correct on all 32, and 0.5 + 32/128 = 0.75 exactly.",
+        "residual": "The five required inputs of the D1 v1.3 freeze remain absent. The strongest single next step is the prospective power and attainability receipt, which is outcome-blind and local.",
+        "residual_class": "B and D",
+        "finding": "The archived and replayed values are two sides of one boundary on an unresponsive comparator, not two measurements that disagree. Neither is evidence about representation quality.",
+        "artifacts": [
+          "papers/paper-09-structured-epistemic-learning/diagnose_d1v1_2_divergence.py",
+          "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json",
+          "tests/unit/study/p9/test_p9_d1v1_2_divergence_root_cause.py"
+        ]
+      }
+    ],
+    "not_attempted": [
+      "P11.REAL_SYSTEMS.EXTERNAL",
+      "P5.WIDE.SUCCESSOR",
+      "P3.C6_C8.EXTERNAL",
+      "P3.PARTIAL_OBSERVATION.SUCCESSOR",
+      "P1.R7A.WIDE.SUCCESSOR",
+      "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
+      "P8.DEPLOYED.AGENT.EXTERNAL",
+      "P10.PROTECTED.EXECUTION.EXTERNAL",
+      "P15.A.HARNESS.SUCCESSOR",
+      "P4.NATURALISTIC.GENERALITY",
+      "P14.D.EXTERNAL_VALIDITY"
+    ],
+    "nothing_promoted": "No claim identity was created, no gate was evaluated, no protected outcome was read, and no registered claim changed authority. Every entry above is a diagnosis, a partition, a precondition or a correction."
+  }
 }
