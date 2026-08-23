@@ -18,11 +18,18 @@ RESULT_PREFIX = "ORIONQG_QG20_RECOVERY_COMPLETE_N4="
 VERIFY_PREFIX = "ORIONQG_QG20_RECOVERY_COMPLETE_N4_VERIFY="
 
 
-def execute(path: Path):
-    return subprocess.run(
+def execute(path: Path, *, allow_scientific_reject: bool = False):
+    completed = subprocess.run(
         [sys.executable, str(path)], cwd=REPO, text=True,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
     )
+    allowed_codes = {0, 2} if allow_scientific_reject else {0}
+    if completed.returncode not in allowed_codes:
+        raise RuntimeError(
+            f"{path.name} failed as an instrument with code {completed.returncode}: "
+            f"stdout={completed.stdout!r} stderr={completed.stderr!r}"
+        )
+    return completed
 
 
 def token(stdout: str, prefix: str):
@@ -38,7 +45,7 @@ def main() -> int:
         path.unlink(missing_ok=True)
 
     first = execute(ANALYZER)
-    first_token = token(first.stdout, RESULT_PREFIX)
+    token(first.stdout, RESULT_PREFIX)
     first_bytes = RESULT.read_bytes()
     first_sha = hashlib.sha256(first_bytes).hexdigest()
 
@@ -48,7 +55,8 @@ def main() -> int:
     if not replay_identical:
         raise RuntimeError("complete n4 analyzer replay mismatch")
 
-    verified = execute(VERIFIER)
+    # REJECT is a valid scientific verifier terminal and must remain observable.
+    verified = execute(VERIFIER, allow_scientific_reject=True)
     verify_token = token(verified.stdout, VERIFY_PREFIX)
     verify_payload = json.loads(VERIFY.read_text(encoding="utf-8"))
     if verify_token.get("verification_digest") != verify_payload.get("verification_digest"):
@@ -72,6 +80,7 @@ def main() -> int:
         "analyzer_sha256": first_sha,
         "verifier_decision": verify_payload.get("decision"),
         "verifier_checks": verify_payload.get("checks"),
+        "verifier_rebuilt": verify_payload.get("rebuilt"),
         "verifier_digest": verify_payload.get("verification_digest"),
         "feature_search_performed": False,
         "all_n_authority": False,
