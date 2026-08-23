@@ -1,0 +1,63 @@
+{
+  "schema": "ORION.RG.X1K.C0SupportBound.v1",
+  "authority": {
+    "bounded_exact_computation": true,
+    "mathematical_proposal": true,
+    "novelty_claim": false,
+    "theorem_authority": false,
+    "external_replay_required": true
+  },
+  "group": "C_5^3",
+  "target": "length-31 total-zero sequence with no nonempty zero-sum subsequence of length <=5",
+  "context": "Such a sequence is necessary for D_4(C_5^3)=31 under the X1-K total-zero extremal reduction; proving none exists proves 31 in C_0(C_5^3), hence D_4=30.",
+  "symbolic_reductions": {
+    "multiplicity_cap": "every point multiplicity <=4",
+    "support_minimum": 8,
+    "support_8": "multiplicity pattern 4^7 3; restoring the missing fourth copy cannot create a new <=5 zero-sum, so Property C applies. The committed support check enumerates 564 normalized admissible U and finds 0 with -sigma(U) in U.",
+    "support_ge_9_saturated": "otherwise a one-point extension gives a length-32 short-free sequence, which Property C forces to have support 8",
+    "no_multiplicity_3_in_saturated_case": "a <=4 representation of -x for a multiplicity-3 point must use all three copies of x, leaving at most one term y with y=x, impossible",
+    "multiplicity_4_projective_isolation": "a multiplicity-4 point cannot share its projective line with any other support point",
+    "four_mult4_span_rank3": "four multiplicity-4 support points cannot lie in rank <=2 because their 16 terms exceed eta(C_5^2)=13"
+  },
+  "support_9": {
+    "patterns": ["1^1 2^1 4^7"],
+    "verifier": "research/orion-rg/x1k_c0_support9_check.c",
+    "dual_engines": true,
+    "solutions": 0
+  },
+  "rank3_high4_rows": [
+    {"support":10,"a1":1,"b2":3,"c4":6,"nodes":272119,"forced_final_leaves":0,"solutions":0},
+    {"support":10,"a1":3,"b2":0,"c4":7,"nodes":210700,"forced_final_leaves":3558,"solutions":0},
+    {"support":11,"a1":1,"b2":5,"c4":5,"nodes":406521,"forced_final_leaves":0,"solutions":0},
+    {"support":11,"a1":3,"b2":2,"c4":6,"nodes":278515,"forced_final_leaves":0,"solutions":0},
+    {"support":12,"a1":1,"b2":7,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
+    {"support":12,"a1":3,"b2":4,"c4":5,"nodes":406521,"forced_final_leaves":0,"solutions":0},
+    {"support":12,"a1":5,"b2":1,"c4":6,"nodes":826347,"forced_final_leaves":0,"solutions":0},
+    {"support":13,"a1":3,"b2":6,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
+    {"support":13,"a1":5,"b2":3,"c4":5,"nodes":414477,"forced_final_leaves":0,"solutions":0},
+    {"support":13,"a1":7,"b2":0,"c4":6,"nodes":904555,"forced_final_leaves":0,"solutions":0},
+    {"support":13,"a1":1,"b2":9,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0}
+  ],
+  "support_13_c4_rank2_branch": {
+    "pattern": "1^1 2^9 4^3",
+    "normalization": "two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*; short-free seed filter leaves nine coefficient cases",
+    "u128_nodes": 1005159,
+    "byte_replay_nodes": 1005159,
+    "forced_final_leaves": 0,
+    "solutions": 0
+  },
+  "independent_replay": {
+    "rank3_u128": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+    "rank3_bytes": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+    "rank2_u128": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
+    "rank2_bytes": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+    "agreement": "exact on every row, including node/leaf counts"
+  },
+  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 14.",
+  "what_this_does_not_prove": [
+    "31 in C_0(C_5^3)",
+    "D_4(C_5^3)=30",
+    "novelty of the support bound"
+  ],
+  "next_hard_stratum": "support >=14; preserve saturation and no-multiplicity-3 constraints before any search widening"
+}
