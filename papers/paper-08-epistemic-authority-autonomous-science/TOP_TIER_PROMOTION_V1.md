@@ -2,13 +2,27 @@
 
 **Programme:** #977  
 **Existing controlled authority:** `THEORY_FINISHED_V2_1` / peer-review package remains valid.  
-**Top-tier state:** `EXTERNAL_PROMOTION_PENDING`
+**Top-tier state:** `BOUNDED_SCIENTIFIC_AUTHORIZATION_THEORY_EARNED__EXTERNAL_PROMOTION_PENDING`
 
 ## Maximum claim to earn
 
 > **Scientific authorization is a distinct decision layer from action authorization.** Even a donor-complete system for permission, delegation, provenance, revocation, effects and abstention can correctly authorize an action while lacking the typed evidence-to-obligation discharge needed to authorize a scientific commitment. P8 identifies that separation, gives protected coercion/revocation semantics and demonstrates its necessity across heterogeneous scientific decisions.
 
 Generic authorization, delegation, revocation, provenance, abstention and evidence-backed permission are donor-owned.
+
+## Post-outcome status — 2026-08-23
+
+The independent bounded checker now returns `P8_TOP_TIER_THEORY_V1_GREEN` with byte-identical replay. It verifies the finite T8.1–T8.3 witness layer:
+
+- an identical donor action-authorization record is `PERMITTED` in both members of a frozen pair while the scientific dispositions are respectively `AUTHORIZED` and `DENIED`;
+- unknown scientific target/evidence typing yields `CANNOT_CHECK` rather than implicit denial or promotion;
+- protected coercion composition succeeds only with matching intermediate full type and valid/protected coercions; ambiguous coercion remains `CANNOT_CHECK`;
+- revoking source A preserves an independent derivation `d2`, while revoking A+B removes all surviving registered support;
+- confidence values up to `1.0` do not repair a hard scientific type mismatch.
+
+**Earned claim:** action authorization does not in general determine scientific-commit authorization in the frozen semantics; full-type coercion and support-family revocation have executable bounded closure. **Not earned:** superiority across real formal, empirical and evidence-based agent-action domains with independent scientific adjudication.
+
+The August 2026 nearest-work delta donor-owns modern per-action authorization, evidence, freshness and delegation machinery. P8's residual claim is therefore the higher scientific-discharge layer, not those donor mechanisms.
 
 ## Donor-complete comparator
 
@@ -25,39 +39,31 @@ Construct an integrated comparator with:
 
 It must receive identical evidence, policy, source, scope and tool information.
 
+The current bounded pair equalizes the declared donor action-authorization facts, but does **not** substitute for an actual integrated real-system donor comparator.
+
 ## Upward formal programme
 
 ### T8.1 — Action/scientific authorization separation
 
-Construct a minimal pair where the donor product authorizes the physical/tool action under its own semantics but two scientifically distinct target obligations require different judgments. Prove why generic permission information cannot distinguish the pair without adding P8-equivalent scientific-discharge typing.
+The bounded identical-action-facts pair now witnesses the separation. Generalization against an actual donor-complete authorization product remains open.
 
 ### T8.2 — Full-type coercion closure
 
-Strengthen the protected coercion theorem over `(domain, kind, scope, content, epoch)` with explicit composition and non-composition conditions. Include ambiguous/missing coercion as `CANNOT_CHECK`, not implicit denial or promotion.
+The bounded checker now closes exact composition/non-composition over `(domain, kind, scope, content, epoch)`, including ambiguous/missing coercion as `CANNOT_CHECK`. Broader registry/interoperability semantics remain open.
 
 ### T8.3 — Support-family revocation under delegated authority
 
-Characterize revocation where one derivation/source loses authority but independent derivations remain. Show the failure of coarse claim-level revocation and the conditions for safe continued authorization.
+The bounded checker now distinguishes source-level revocation with surviving independent support from revocation that removes every registered derivation. Real delegated-authority systems remain an external target.
 
 ## Protected external evaluation
 
-Freeze at least three scientific-decision domains:
+The next empirical stage must freeze at least three real scientific-decision domains:
 
 1. **formal claim:** proof/theorem result proposed for scientific use;
 2. **empirical claim:** measurement/benchmark result proposed for generalization or publication;
 3. **agent action based on scientific evidence:** tool/action whose permissibility and scientific justification can diverge.
 
-For each domain include:
-
-- action permitted + scientific claim authorized;
-- action permitted + scientific claim denied;
-- action permitted + scientific claim `CANNOT_CHECK`;
-- stale evidence/epoch;
-- scope laundering;
-- provenance laundering;
-- valid protected coercion;
-- invalid/ambiguous coercion;
-- one support revoked while independent support remains.
+The current theory corpus is not counted as completing this external requirement.
 
 ### Primary endpoints
 
@@ -80,21 +86,22 @@ For each domain include:
 
 ## External authority
 
-Scientific correctness/novelty labels must come from deterministic verifiers or blinded external adjudicators distinct from candidate agents. The P8 calculus may decide whether its registered contract is discharged; it may not generate the gold scientific validity of the underlying claim.
+The current checker independently verifies the bounded formal semantics. That is not the same as supplying independent scientific correctness/novelty labels for real external claims. Those must come from deterministic verifiers or blinded adjudicators distinct from candidate agents.
 
 ## Top-tier promotion gate
 
 `P8_TOP_TIER_SUBMISSION_READY` requires:
 
-- [ ] T8.1 separation theorem/witness against donor-complete authorization;
-- [ ] T8.2 coercion composition closure;
-- [ ] T8.3 support-family revocation closure;
-- [ ] three protected domains executed;
-- [ ] donor-complete action-authorization baseline;
-- [ ] lower false scientific promotion without blanket abstention;
+- [x] bounded T8.1 action/scientific-authorization separation witness;
+- [x] bounded T8.2 coercion composition/non-composition closure;
+- [x] bounded T8.3 support-family revocation closure;
+- [ ] three protected real scientific-decision domains executed;
+- [ ] actual donor-complete action-authorization baseline;
+- [ ] lower false scientific promotion without blanket abstention on protected external cases;
 - [ ] independent scientific authority and blinded adjudication where needed;
-- [ ] explicit P4/P6/P7 ownership boundary;
+- [x] explicit August-2026 donor boundary that cedes generic authorization/evidence/freshness/delegation mechanisms;
+- [ ] final P4/P6/P7 ownership review at manuscript scope;
 - [ ] current agent-governance literature saturation immediately before submission;
-- [ ] exact reproducible package.
+- [ ] exact final reproducible package after all manuscript/evidence changes.
 
 If the strongest donor product becomes semantically equivalent after adding scientific-obligation typing, report P8 as a unifying formalization/equivalence result rather than claiming empirical superiority.
