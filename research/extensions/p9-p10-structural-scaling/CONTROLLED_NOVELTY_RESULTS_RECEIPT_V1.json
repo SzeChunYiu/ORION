@@ -1,0 +1,164 @@
+{
+  "schema": "P9P10.ControlledNoveltyResultsReceipt.v1",
+  "date": "2026-08-20",
+  "claim_authority": "CONTROLLED_GENERATED_WORLDS_ONLY_NO_LLM_OR_LEAN_PROMOTION",
+  "results": {
+    "N1_v1_1_failed_terminal": {
+      "terminal": "RELATIONAL_ACCESSIBILITY_PRIMARY_GATE_NOT_MET",
+      "disposition": "FAILED_FROZEN_HOSTILE_GATE_RETAINED",
+      "required_failed_check": "label_shuffle_lt_0_65_all_dimensions"
+    },
+    "N2_relational_accessibility_v2": {
+      "terminal": "RELATIONAL_ACCESSIBILITY_REPLICATED_CONTROLLED_CLASS",
+      "workflow_run_id": 32314020312,
+      "artifact_id": 9387438843,
+      "artifact_zip_sha256": "6769c944ba59fd81b9db921ec6eae0b35ed82fcea3c4119a33adca27cea6bb79",
+      "cell_count": 18,
+      "passed_cell_count": 18,
+      "mean_flat_accuracy": 0.5046895345052084,
+      "mean_relational_accuracy": 0.9999559190538194,
+      "median_delta": 0.4979248046875,
+      "minimum_delta": 0.45758056640625,
+      "maximum_delta": 0.51727294921875
+    },
+    "N3_relational_complexity_frontier": {
+      "terminal": "RELATIONAL_CAPACITY_FRONTIER_SUPPORTED_CONTROLLED_CLASS",
+      "workflow_run_id": 32333835844,
+      "artifact_id": 9393449190,
+      "artifact_zip_sha256": "6c04ac6b146b7087eaebd0b76dd45ccab6d61dee25be41553a83223cb6367263",
+      "k_grid": [3, 5, 9, 17, 33],
+      "relational_linear_sample_threshold_0_90": [64, 64, 128, 128, 512],
+      "flat_quadratic_sample_threshold_0_90": [64, 128, 512, 4096, null],
+      "flat_linear_sample_threshold_0_90": [null, null, null, null, null],
+      "observed_threshold_ratios_where_both_reach": [1.0, 2.0, 4.0, 32.0],
+      "median_threshold_ratio": 3.0,
+      "k17_threshold_ratio": 32.0,
+      "k33_flat_quadratic_accuracy_at_4096": 0.824951171875,
+      "feature_dimensions": {
+        "k3_flat_quadratic": 21,
+        "k33_flat_quadratic": 2211,
+        "k3_relational_linear": 6,
+        "k33_relational_linear": 66,
+        "flat_quadratic_growth_factor": 105.28571428571429,
+        "relational_growth_factor": 11.0
+      }
+    },
+    "N4_invertible_obfuscation_ladder": {
+      "terminal": "INVERTIBLE_OBFUSCATION_ACCESSIBILITY_TAX_SUPPORTED",
+      "workflow_run_id": 32333835844,
+      "artifact_id": 9393428588,
+      "artifact_zip_sha256": "013c8e1971b04675fdc9c6822ee399661357867cec5ce2d199eaa66e3acaa6d1",
+      "block_lengths": [1, 2, 4, 8, 16, 32, 65],
+      "mean_linear_accuracy": [1.0, 0.7505900065104166, 0.6684468587239584, 0.6175537109375, 0.5853373209635416, 0.563507080078125, 0.5369466145833334],
+      "all_adjacent_nonincreasing": true,
+      "canonical_minus_full_chain_gap": 0.46305338541666663,
+      "linear_accuracy_slope_vs_log2_block": -0.0672733,
+      "first_block_mean_below_0_80": 2,
+      "first_block_mean_below_0_70": 4,
+      "first_block_mean_below_0_60": 16,
+      "decode_failure_count": 0
+    },
+    "N5_semantic_orbit": {
+      "terminal": "RELATIONAL_SEMANTIC_ORBIT_STABILITY_SUPPORTED_CONTROLLED_CLASS",
+      "workflow_run_id": 32333934412,
+      "artifact_id": 9393963905,
+      "artifact_zip_sha256": "539ed0a44d55fabcc9a829c090fbe6458a8c8a5da70c977cf4a9da11018f1a4b",
+      "k_grid": [9, 17, 33],
+      "flat_quadratic_canonical_accuracy": [0.996826171875, 0.81591796875, 0.67236328125],
+      "relational_canonical_accuracy": [1.0, 1.0, 0.988525390625],
+      "flat_mean_oir": [0.00267791748046875, 0.1828923225402832, 0.31958818435668945],
+      "relational_mean_oir": [0.0, 0.0, 0.011238336563110352],
+      "flat_fraction_items_any_change": [0.076904296875, 0.820556640625, 0.993408203125],
+      "relational_fraction_items_any_change": [0.0, 0.0, 0.205322265625],
+      "mean_relational_oir_advantage": 0.1646397908528646,
+      "target_preservation_failures": 0
+    },
+    "N6_access_degree_recovery": {
+      "terminal": "ACCESS_DEGREE_RECOVERY_SUPPORTED_CONTROLLED_CLASS",
+      "workflow_run_id": 32334603320,
+      "artifact_id": 9394180680,
+      "artifact_zip_sha256": "ff7ca4e3f766f617d4a85817c18b8c7a3eef9e2816708fc700d06f0406a5e714",
+      "feature_dimensions_by_degree": {"1": 13, "2": 91, "3": 377, "4": 1092},
+      "mean_accuracy": {
+        "block_1": [1.0, 0.8183186848958334, 0.9817097981770834, 0.93084716796875],
+        "block_2": [0.7739461263020834, 1.0, 0.9552001953125, 0.9997151692708334],
+        "block_4": [0.6732177734375, 0.7780965169270834, 0.8521931966145834, 0.9334716796875],
+        "block_8": [0.6138102213541666, 0.67498779296875, 0.7288004557291666, 0.7745157877604166],
+        "block_13": [0.59814453125, 0.6220296223958334, 0.64068603515625, 0.6527303059895834]
+      },
+      "minimum_tested_degree_reaching_0_90": {"block_1": 1, "block_2": 2, "block_4": 4, "block_8": null, "block_13": null},
+      "decode_failure_count": 0
+    },
+    "N7_predictive_state_compression": {
+      "terminal": "PREDICTIVE_STATE_COMPRESSION_ADVANTAGE_SUPPORTED",
+      "workflow_run_id": 32334603344,
+      "workflow_head_sha": "835d4d1803a3feb8d48ecd576ceda040708fb9fd",
+      "artifact_id": 9394184994,
+      "artifact_zip_sha256": "531f5418c864763504c06e857fb1a48ecc71cbccb5ea8e4adbc17b682ef80d43",
+      "same_information_claim": false,
+      "exact_target_sufficient_statistic": "r=x*c",
+      "k_grid": [17, 33, 65],
+      "sample_threshold_0_90": {
+        "minimal": [64, 128, 512],
+        "full": [128, 256, 1024],
+        "padded": [512, 1024, 2048]
+      },
+      "full_to_minimal_threshold_ratios": [2.0, 2.0, 2.0],
+      "median_full_to_minimal_threshold_ratio": 2.0,
+      "padded_to_minimal_threshold_ratios": [8.0, 8.0, 4.0],
+      "median_padded_to_minimal_threshold_ratio": 8.0,
+      "maximum_abs_nuisance_label_correlation": 0.028611823521837474,
+      "frozen_nuisance_correlation_sentinel": 0.04,
+      "k65_at_4096": {
+        "minimal_accuracy": 1.0,
+        "minimal_log_loss": 0.03267176230898219,
+        "full_accuracy": 0.999755859375,
+        "full_log_loss": 0.03638179138153578,
+        "padded_accuracy": 0.9709065755208334,
+        "padded_log_loss": 0.07269767211825176
+      }
+    },
+    "N8_inductive_bias_substitution": {
+      "terminal": "STRUCTURAL_PRIOR_SUBSTITUTION_SUPPORTED_CONTROLLED_CLASS",
+      "sparsity_secondary_terminal": "SPARSITY_PRIOR_RECOVERY_GATE_NOT_MET",
+      "workflow_run_id": 32335536328,
+      "workflow_head_sha": "f70bb67c38727b073c82b3abb4d25ac62c85e6a9",
+      "artifact_id": 9394522424,
+      "artifact_zip_sha256": "5235d016252c762e4bb0a3a7e266fb94f7f199e291f25d5686ea5739c633776e",
+      "k_grid": [9, 17, 33],
+      "sample_threshold_0_90": {
+        "M0_flat_linear": [null, null, null],
+        "M1_generic_bilinear_l2": [512, 1024, null],
+        "M2_generic_bilinear_l1": [128, 256, 512],
+        "M3_diagonal_architecture": [64, 256, 512],
+        "M4_explicit_relation": [64, 256, 512]
+      },
+      "M1_to_M4_threshold_ratios_where_both_reach": [8.0, 4.0],
+      "median_M1_to_M4_threshold_ratio": 6.0,
+      "M3_M4_prediction_and_parameter_identity_all_cells": true,
+      "feature_dimensions": {
+        "k9_generic_bilinear": 81,
+        "k9_diagonal_or_relation": 9,
+        "k17_generic_bilinear": 289,
+        "k17_diagonal_or_relation": 17,
+        "k33_generic_bilinear": 1089,
+        "k33_diagonal_or_relation": 33
+      },
+      "l1_support_at_4096": {
+        "k9": {"diagonal_fraction_retained": 1.0, "off_diagonal_fraction_selected": 0.9861111111111112},
+        "k17": {"diagonal_fraction_retained": 1.0, "off_diagonal_fraction_selected": 0.9852941176470589},
+        "k33": {"diagonal_fraction_retained": 1.0, "off_diagonal_fraction_selected": 0.9128787878787878}
+      },
+      "claim_boundary": "Explicit relation features and an exactly matched diagonal interaction architecture are identical controls; generic bilinear capacity incurs a measured discovery/sample cost. The frozen L1 sparsity-prior terminal failed because off-diagonal support remained dense and is not promoted."
+    }
+  },
+  "runtime_gated_claims": {
+    "P9_LLM_structure_scale_compute": "CANNOT_CHECK_LLM_RUNTIME",
+    "P10_native_state_incremental_value": "CANNOT_CHECK_NATIVE_STATE_EXECUTION",
+    "P10_action_abstraction": "CANNOT_CHECK_NATIVE_RAW_TRACE_CORPUS",
+    "P10_same_information_Lean_feedback": "CANNOT_CHECK_LEAN_REPAIR_RUNTIME",
+    "P10_cross_revision": "CANNOT_CHECK_SECOND_FROZEN_MATHLIB_REVISION",
+    "cross_domain_structural_accessibility_law": "BLOCKED_PENDING_SECOND_DOMAIN_SAME_INFORMATION_RESULT"
+  },
+  "strongest_supported_statement": "For the frozen controlled generated-world families and restricted hypothesis classes, explicit relation coordinates can reduce interaction order, shift observed sample/capacity thresholds, improve stability across exact semantic symmetries, and avoid accessibility losses induced by higher-degree invertible coordinate maps. Increasing matching model interaction order can recover accessibility. The correct relational computation can be supplied equivalently as representation or as an exact architectural prior, while a generic bilinear model incurs a measurable discovery cost. Separately, an exact target-sufficient compressed state reduces nuisance-induced sample burden. These results do not establish an LLM scaling law, native Lean proof-state utility, or a universal computational law."
+}

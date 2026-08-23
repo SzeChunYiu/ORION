@@ -1,0 +1,53 @@
+{
+  "schema_version": "orion.p1.t2-status-ontology-correction.v1",
+  "artifact": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_baseline_ablation_results.json",
+  "authority": "representation_only__grants_no_scientific_promotion",
+  "raw_archive": {
+    "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl",
+    "records": 2880,
+    "scored_records": 2880,
+    "cannot_check_records": 0,
+    "sha256": "f37db6247dd1f5883e443b6d7b454e099759cb26baa3e09f74e7fd275e4d7f7b"
+  },
+  "before": {
+    "git_ref": "5cf210de2ff5105cc0154f75a33d4c690290d672",
+    "sha256": "28945162ede36e85f8f662dbef59d51d0623b5317c696db068c5303aed768b4a",
+    "cannot_check_scalar_count": 288,
+    "not_supported_assessment_count": 75,
+    "equivalent_assessment_count": 24
+  },
+  "after": {
+    "sha256": "4f1fb7f6c551f9ce8e24fb00dfc56b5254c39cf796c858be7a1581b1d92b886b",
+    "cannot_check_scalar_count": 0,
+    "not_applicable_scalar_count": 288,
+    "descriptive_only_assessment_count": 90,
+    "registered_not_supported_assessment_count": 6,
+    "registered_equivalent_assessment_count": 3
+  },
+  "allowed_changes": {
+    "inapplicable_status_relabels": 288,
+    "inapplicable_reason_additions": 288,
+    "descriptive_verdict_relabels": 90,
+    "descriptive_rationale_replacements": 90
+  },
+  "frozen_applicability_decomposition": {
+    "control_metrics_in_hidden_scopes": 180,
+    "hidden_shift_metrics_in_control_scopes": 108,
+    "total": 288
+  },
+  "scientific_invariants": {
+    "raw_records_changed": false,
+    "numerators_changed": false,
+    "denominators_changed": false,
+    "confidence_intervals_changed": false,
+    "paired_effects_changed": false,
+    "registered_p1_hypothesis_verdicts_changed": false,
+    "historical_p1_h1_terminal": "NOT_SUPPORTED",
+    "scientific_promotion_authorized": false
+  },
+  "notes": [
+    "NOT_APPLICABLE requires an explicit frozen scope-by-metric mapping; an applicable zero denominator remains CANNOT_CHECK.",
+    "DESCRIPTIVE_ONLY retains estimates and uncertainty for non-subject rows but records that no registered hypothesis exists.",
+    "The historical V1 reproduction receipt remains bound to the pre-correction artifact and is not rewritten."
+  ]
+}

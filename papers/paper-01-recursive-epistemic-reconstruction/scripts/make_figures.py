@@ -46,6 +46,18 @@ OUTPUT_DIR = PAPER / "results" / "figures"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Figure output paths
+#: PDF metadata that makes a figure a function of its data and nothing else.
+#:
+#: Matplotlib stamps a wall-clock ``CreationDate`` into every PDF it writes, so
+#: two runs over identical records produced different bytes and a different
+#: sha256. `manifest.json` therefore recorded when someone last ran the figure
+#: pipeline rather than what the figures contain, and a real change to a figure
+#: could not be told from a re-run --- every re-run rewrote the hash anyway.
+#: Passing ``None`` omits the key. The rest of this module already set seeds and
+#: font types "for reproducible output"; this is the field that was actually
+#: making it irreproducible.
+REPRODUCIBLE_PDF_METADATA = {"CreationDate": None}
+
 FIGURES = {
     "P1-2": OUTPUT_DIR / "P1-2_main_outcome.pdf",
     "P1-3": OUTPUT_DIR / "P1-3_selectivity_frontier.pdf",
@@ -222,7 +234,13 @@ def figure_p1_2_main_outcome(records: list[dict[str, Any]], plt) -> Path:
     fig.tight_layout()
 
     out_path = FIGURES["P1-2"]
-    fig.savefig(out_path, format="pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        out_path,
+        format="pdf",
+        dpi=300,
+        bbox_inches="tight",
+        metadata=REPRODUCIBLE_PDF_METADATA,
+    )
     plt.close(fig)
     return out_path
 
@@ -281,7 +299,13 @@ def figure_p1_3_selectivity_frontier(records: list[dict[str, Any]], plt) -> Path
     fig.tight_layout()
 
     out_path = FIGURES["P1-3"]
-    fig.savefig(out_path, format="pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        out_path,
+        format="pdf",
+        dpi=300,
+        bbox_inches="tight",
+        metadata=REPRODUCIBLE_PDF_METADATA,
+    )
     plt.close(fig)
     return out_path
 
@@ -339,7 +363,13 @@ def figure_p1_4_reopening(records: list[dict[str, Any]], plt) -> Path:
     fig.tight_layout()
 
     out_path = FIGURES["P1-4"]
-    fig.savefig(out_path, format="pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        out_path,
+        format="pdf",
+        dpi=300,
+        bbox_inches="tight",
+        metadata=REPRODUCIBLE_PDF_METADATA,
+    )
     plt.close(fig)
     return out_path
 
@@ -390,7 +420,13 @@ def figure_p1_5_efficiency(records: list[dict[str, Any]], plt) -> Path:
     fig.tight_layout()
 
     out_path = FIGURES["P1-5"]
-    fig.savefig(out_path, format="pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        out_path,
+        format="pdf",
+        dpi=300,
+        bbox_inches="tight",
+        metadata=REPRODUCIBLE_PDF_METADATA,
+    )
     plt.close(fig)
     return out_path
 
@@ -462,7 +498,13 @@ def figure_p1_6_recursion_stability(records: list[dict[str, Any]], plt) -> Path:
     fig.tight_layout()
 
     out_path = FIGURES["P1-6"]
-    fig.savefig(out_path, format="pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        out_path,
+        format="pdf",
+        dpi=300,
+        bbox_inches="tight",
+        metadata=REPRODUCIBLE_PDF_METADATA,
+    )
     plt.close(fig)
     return out_path
 

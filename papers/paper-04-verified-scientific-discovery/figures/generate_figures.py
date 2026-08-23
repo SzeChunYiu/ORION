@@ -186,7 +186,7 @@ Total & 420 & 60 & 360 & hidden \\\bottomrule
     (TABLES/"p4_t2_baseline_ablation_results.tex").write_text("\\begin{table}[t]\n\\centering\\scriptsize\n\\caption{Protected V2 results. Comparator names denote protocol-matched mechanism reimplementations, not original external software. FP is over 360 hostile opportunities; clean is over 60 clean positives.}\\label{tab:p4_t2}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{lrrrrr}\\toprule\nSystem / variant & FP & Clean & Clean FN & Latency (ms) & Resource \\\\ \\midrule\n"+"\n".join(rows)+"\n\\bottomrule\\end{tabular}}\n\\end{table}\n")
     strongest=METRICS["strongest_frozen_comparator"]
     lines=["ORION & 30/30 & 0/360 & 0/60 \\\\", f"ProvenAI-style & 30/30 & {METRICS['reproduction']['comparator_false_promotions']}/360 & 0/60 \\\\"]
-    (TABLES/"p4_t3_cannot_check_errors.tex").write_text("\\begin{table}[t]\n\\centering\\small\n\\caption{Fail-closed outcomes and false-negative cost in protected V2. The only gold \\texttt{CANNOT\\_CHECK} family contains 30 insufficient-evidence cases.}\\label{tab:p4_t3}\n\\begin{tabular}{lrrr}\\toprule\nSystem & Correct CANNOT\\_CHECK & False promotions & Clean FN \\\\ \\midrule\n"+"\n".join(lines)+"\n\\bottomrule\\end{tabular}\\end{table}\n")
+    (TABLES/"p4_t3_cannot_check_errors.tex").write_text("\\begin{table}[t]\n\\centering\\small\n\\caption{Fail-closed outcomes and false-negative cost in protected V2. The only gold family whose correct terminal is `undetermined' contains 30 insufficient-evidence cases.}\\label{tab:p4_t3}\n\\begin{tabular}{lrrr}\\toprule\nSystem & Correctly undetermined & False promotions & Clean FN \\\\ \\midrule\n"+"\n".join(lines)+"\n\\bottomrule\\end{tabular}\\end{table}\n")
 
 
 def main() -> None:

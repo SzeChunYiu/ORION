@@ -43,6 +43,7 @@ from .metrics import (
     SystemAggregate,
     SystemRole,
     aggregate,
+    blinded_case_id,
     case_score_from_record,
     matched_units,
 )
@@ -58,6 +59,9 @@ DEFAULT_ARCHIVE = Path("papers/paper-01-recursive-epistemic-reconstruction/resul
 DEFAULT_OUTPUT = Path("papers/paper-01-recursive-epistemic-reconstruction/results")
 DEFAULT_BOOTSTRAP_SEED = 20260815
 DEFAULT_REPRESENTATIVES = 3
+DEFAULT_DESIGN_MANIFEST = Path(
+    "papers/paper-01-recursive-epistemic-reconstruction/protocol/P1_TEST_ARCHIVE_DESIGN_V1.json"
+)
 
 SCOPE_ALL = "ALL"
 SCOPE_HIDDEN_SHIFT = "HIDDEN_SHIFT_SUBSET"
@@ -75,6 +79,47 @@ CONTROL_SCOPES = frozenset(
 STATUS_OK = "OK"
 STATUS_PARTIAL = "PARTIAL"
 STATUS_CANNOT_CHECK = "CANNOT_CHECK"
+STATUS_NOT_APPLICABLE = "NOT_APPLICABLE"
+STATUS_DESCRIPTIVE_ONLY = "DESCRIPTIVE_ONLY"
+
+HIDDEN_SHIFT_SCOPES = frozenset(
+    {
+        SCOPE_HIDDEN_SHIFT,
+        TaskFamily.HIDDEN_PARENT_DOMAIN.value,
+        TaskFamily.HIDDEN_REPRESENTATION.value,
+        TaskFamily.HIDDEN_DECOMPOSITION.value,
+        TaskFamily.HIDDEN_MEASUREMENT.value,
+    }
+)
+
+CONTROL_ONLY_METRICS = frozenset(
+    {
+        "control_abstention",
+        "control_correct_restraint",
+        "unnecessary_reframe",
+    }
+)
+
+HIDDEN_SHIFT_ONLY_METRICS = frozenset(
+    {
+        "hidden_shift_success",
+        "reframe_target_accuracy",
+        "stale_closure_survival",
+    }
+)
+
+UNIVERSAL_RATE_METRICS = frozenset(
+    {
+        "authority_violation",
+        "depth_adequacy",
+        "invariant_violation",
+        "root_success",
+        "trace_fidelity",
+    }
+)
+
+REGISTERED_RATE_METRICS = CONTROL_ONLY_METRICS | HIDDEN_SHIFT_ONLY_METRICS | UNIVERSAL_RATE_METRICS
+REGISTERED_SCOPES = HIDDEN_SHIFT_SCOPES | CONTROL_SCOPES | {SCOPE_ALL}
 
 
 def _scopes() -> tuple[tuple[str, Callable[[CaseScore], bool]], ...]:
@@ -177,7 +222,34 @@ class ArchiveIntegrity:
         }
 
 
-def check_archive(scores: Sequence[CaseScore], *, expected_repeats: int) -> ArchiveIntegrity:
+def load_archive_design(path: Path | None) -> dict | None:
+    if path is None:
+        return None
+    if not path.is_file():
+        raise ValueError(f"archive design manifest is absent: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or payload.get("schema_version") != "orion.p1.archive-design.v1":
+        raise ValueError(f"{path} is not an orion.p1.archive-design.v1 object")
+    required = {"suite_fingerprint", "subject_revision", "system_ids", "case_ids", "seeds", "expected_record_count"}
+    missing = sorted(required - set(payload))
+    if missing:
+        raise ValueError(f"archive design manifest missing {missing}")
+    for key in ("system_ids", "case_ids", "seeds"):
+        values = payload[key]
+        if not isinstance(values, list) or not values or len(set(values)) != len(values):
+            raise ValueError(f"archive design {key} must be a non-empty unique list")
+    expected = len(payload["system_ids"]) * len(payload["case_ids"]) * len(payload["seeds"])
+    if int(payload["expected_record_count"]) != expected:
+        raise ValueError("archive design expected_record_count does not match its Cartesian grid")
+    return payload
+
+
+def check_archive(
+    scores: Sequence[CaseScore],
+    *,
+    expected_repeats: int,
+    expected_design: dict | None = None,
+) -> ArchiveIntegrity:
     """Refuse to publish from an archive that cannot bind its own numbers.
 
     Blocking conditions, all of which make a published table unverifiable rather
@@ -219,6 +291,73 @@ def check_archive(scores: Sequence[CaseScore], *, expected_repeats: int) -> Arch
                 f"{len(offenders)} (system, case) group(s) do not carry the frozen {expected_repeats} stochastic repeats: {shown}"
                 + (" ..." if len(offenders) > 5 else "")
             )
+
+        if expected_design is not None:
+            expected_systems = set(map(str, expected_design["system_ids"]))
+            expected_cases = set(map(str, expected_design["case_ids"]))
+            expected_seeds = {int(seed) for seed in expected_design["seeds"]}
+            if len(expected_seeds) != expected_repeats:
+                blockers.append(
+                    "archive design seed count does not equal the frozen stochastic repeats"
+                )
+            expected_fingerprint = str(expected_design["suite_fingerprint"])
+            expected_revision = str(expected_design["subject_revision"])
+            if set(fingerprints) != {expected_fingerprint}:
+                blockers.append("archive suite_fingerprint does not match the expected design")
+            if set(revisions) != {expected_revision}:
+                blockers.append("archive subject_revision does not match the expected design")
+
+            observed_systems = {score.system_id for score in scores}
+            observed_cases = {score.case_id for score in scores}
+            observed_seeds = {score.seed for score in scores}
+            for label, missing, unexpected in (
+                ("systems", expected_systems - observed_systems, observed_systems - expected_systems),
+                ("cases", expected_cases - observed_cases, observed_cases - expected_cases),
+                ("seeds", expected_seeds - observed_seeds, observed_seeds - expected_seeds),
+            ):
+                if missing:
+                    shown = sorted(missing)
+                    if label == "cases":
+                        shown = [
+                            blinded_case_id(case_id, suite_fingerprint=expected_fingerprint)
+                            for case_id in shown
+                        ]
+                    blockers.append(f"archive missing expected {label}: {shown[:5]}")
+                if unexpected:
+                    blockers.append(f"archive contains unexpected {label}: {sorted(unexpected)[:5]}")
+
+            tuple_counts: dict[tuple[str, str, int], int] = {}
+            for score in scores:
+                key = (score.system_id, score.case_id, score.seed)
+                tuple_counts[key] = tuple_counts.get(key, 0) + 1
+            expected_tuples = {
+                (system_id, case_id, seed)
+                for system_id in expected_systems
+                for case_id in expected_cases
+                for seed in expected_seeds
+            }
+            missing_tuples = sorted(expected_tuples - set(tuple_counts))
+            duplicate_tuples = sorted(key for key, count in tuple_counts.items() if count != 1)
+            if missing_tuples:
+                shown = [
+                    f"{system}/{blinded_case_id(case, suite_fingerprint=expected_fingerprint)}/seed={seed}"
+                    for system, case, seed in missing_tuples[:5]
+                ]
+                blockers.append(
+                    f"archive missing {len(missing_tuples)} expected (system, blinded-case, seed) row(s): {shown}"
+                )
+            if duplicate_tuples:
+                shown = [
+                    f"{system}/{blinded_case_id(case, suite_fingerprint=expected_fingerprint)}/seed={seed}={tuple_counts[(system, case, seed)]}"
+                    for system, case, seed in duplicate_tuples[:5]
+                ]
+                blockers.append(
+                    f"archive has {len(duplicate_tuples)} non-unique (system, blinded-case, seed) row(s): {shown}"
+                )
+            if len(scores) != int(expected_design["expected_record_count"]):
+                blockers.append(
+                    f"archive has {len(scores)} records; expected {expected_design['expected_record_count']}"
+                )
 
     return ArchiveIntegrity(
         record_count=len(scores),
@@ -274,37 +413,95 @@ def select_comparator(aggregates: dict[tuple[str, str], SystemAggregate]) -> tup
     return winner, f"highest overall root_success ({best:.4f}) among BASELINE systems, ties broken on system_id"
 
 
-def _rate_block(rate, *, label: str) -> dict:
+def _metric_applicable(scope: str, metric: str) -> bool:
+    """Whether a frozen P1 metric is defined for a reporting scope.
+
+    Applicability is an independent schema dimension. It cannot be inferred from
+    an empty denominator because an applicable metric can also have ``n == 0``
+    when evidence is missing. The aggregate ``ALL`` scope contains both hidden
+    shifts and controls, so both metric families are defined there.
+    """
+
+    if scope not in REGISTERED_SCOPES:
+        raise ValueError(f"unregistered P1 reporting scope: {scope}")
+    if metric not in REGISTERED_RATE_METRICS:
+        raise ValueError(f"unregistered P1 binary-rate metric: {metric}")
+    if scope == SCOPE_ALL:
+        return True
+    if metric in CONTROL_ONLY_METRICS:
+        return scope in CONTROL_SCOPES
+    if metric in HIDDEN_SHIFT_ONLY_METRICS:
+        return scope in HIDDEN_SHIFT_SCOPES
+    return metric in UNIVERSAL_RATE_METRICS
+
+
+def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
     payload = {"metric": label, **rate.as_dict(), "interval": None}
     if rate.n > 0 and rate.unit == "case":
         payload["interval"] = stats.wilson_interval(rate.successes, rate.n).as_dict()
     elif rate.n == 0:
-        payload["status"] = STATUS_CANNOT_CHECK
+        if _metric_applicable(scope, label):
+            payload["status"] = STATUS_CANNOT_CHECK
+        else:
+            payload["status"] = STATUS_NOT_APPLICABLE
+            payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
     return payload
 
 
-def _mechanistic_block(item: SystemAggregate) -> dict:
+def _mechanistic_block(item: SystemAggregate, *, scope: str) -> dict:
     return {
         "responsibility_macro_f1": item.responsibility_macro_f1,
         "responsibility_labels": list(item.responsibility_labels),
-        "reframe_target_accuracy": _rate_block(item.reframe_target_accuracy, label="reframe_target_accuracy"),
+        "reframe_target_accuracy": _rate_block(
+            item.reframe_target_accuracy,
+            label="reframe_target_accuracy",
+            scope=scope,
+        ),
         "reopen": item.reopen.as_dict(),
         "reopen_by_dependency_depth": [
             {"dependency_depth": depth, **comparison.as_dict()} for depth, comparison in item.reopen_by_depth
         ],
-        "stale_closure_survival": _rate_block(item.stale_closure_survival, label="stale_closure_survival"),
-        "invariant_violation": _rate_block(item.invariant_violation, label="invariant_violation"),
-        "authority_violation": _rate_block(item.authority_violation, label="authority_violation"),
-        "trace_fidelity": _rate_block(item.trace_fidelity, label="trace_fidelity"),
+        "stale_closure_survival": _rate_block(
+            item.stale_closure_survival,
+            label="stale_closure_survival",
+            scope=scope,
+        ),
+        "invariant_violation": _rate_block(
+            item.invariant_violation,
+            label="invariant_violation",
+            scope=scope,
+        ),
+        "authority_violation": _rate_block(
+            item.authority_violation,
+            label="authority_violation",
+            scope=scope,
+        ),
+        "trace_fidelity": _rate_block(item.trace_fidelity, label="trace_fidelity", scope=scope),
         "trace_fidelity_by_dependency_depth": [
             {"dependency_depth": depth, **rate.as_dict()} for depth, rate in item.trace_fidelity_by_depth
         ],
-        "depth_adequacy": _rate_block(item.depth_adequacy, label="depth_adequacy"),
-        "control_abstention": _rate_block(item.control_abstention, label="control_abstention"),
-        "control_correct_restraint": _rate_block(item.control_correct_restraint, label="control_correct_restraint"),
-        "hidden_shift_success": _rate_block(item.hidden_shift_success, label="hidden_shift_success"),
-        "root_success": _rate_block(item.root_success, label="root_success"),
-        "unnecessary_reframe": _rate_block(item.unnecessary_reframe, label="unnecessary_reframe"),
+        "depth_adequacy": _rate_block(item.depth_adequacy, label="depth_adequacy", scope=scope),
+        "control_abstention": _rate_block(
+            item.control_abstention,
+            label="control_abstention",
+            scope=scope,
+        ),
+        "control_correct_restraint": _rate_block(
+            item.control_correct_restraint,
+            label="control_correct_restraint",
+            scope=scope,
+        ),
+        "hidden_shift_success": _rate_block(
+            item.hidden_shift_success,
+            label="hidden_shift_success",
+            scope=scope,
+        ),
+        "root_success": _rate_block(item.root_success, label="root_success", scope=scope),
+        "unnecessary_reframe": _rate_block(
+            item.unnecessary_reframe,
+            label="unnecessary_reframe",
+            scope=scope,
+        ),
         "resources": item.resources.as_dict(),
     }
 
@@ -320,17 +517,28 @@ def _difference_block(
     resamples: int,
     hypothesis_id: str,
     min_units: int,
+    inferential: bool,
 ) -> dict:
     values_a, values_b, matched, unmatched = matched_units(subject, comparator, metric)
     cannot_check_units = len(unmatched) + subject.cannot_check_cases + comparator.cannot_check_cases
     if not values_a:
-        assessment = stats.assess_hypothesis(
-            hypothesis_id=hypothesis_id,
-            direction=direction,
-            margin=margin,
-            difference=None,
-            cannot_check_units=cannot_check_units,
-        )
+        if inferential:
+            assessment = stats.assess_hypothesis(
+                hypothesis_id=hypothesis_id,
+                direction=direction,
+                margin=margin,
+                difference=None,
+                cannot_check_units=cannot_check_units,
+            ).as_dict()
+        else:
+            assessment = {
+                "hypothesis_id": hypothesis_id,
+                "verdict": STATUS_DESCRIPTIVE_ONLY,
+                "direction": direction.value,
+                "margin": margin,
+                "rationale": "NO_REGISTERED_HYPOTHESIS: descriptive comparator contrast only",
+                "difference": None,
+            }
         return {
             "metric": metric,
             "comparator_system_id": comparator.system_id,
@@ -339,7 +547,7 @@ def _difference_block(
             "cannot_check_units": cannot_check_units,
             "difference": None,
             "cohens_h": None,
-            "assessment": assessment.as_dict(),
+            "assessment": assessment,
             "status": STATUS_CANNOT_CHECK,
         }
 
@@ -351,16 +559,26 @@ def _difference_block(
         if subject_rate is not None and comparator_rate is not None
         else None
     )
-    assessment = stats.assess_hypothesis(
-        hypothesis_id=hypothesis_id,
-        direction=direction,
-        margin=margin,
-        difference=difference,
-        cannot_check_units=cannot_check_units,
-        min_units=min_units,
-        subject_abstention_rate=subject.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
-        comparator_abstention_rate=comparator.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
-    )
+    if inferential:
+        assessment = stats.assess_hypothesis(
+            hypothesis_id=hypothesis_id,
+            direction=direction,
+            margin=margin,
+            difference=difference,
+            cannot_check_units=cannot_check_units,
+            min_units=min_units,
+            subject_abstention_rate=subject.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
+            comparator_abstention_rate=comparator.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
+        ).as_dict()
+    else:
+        assessment = {
+            "hypothesis_id": hypothesis_id,
+            "verdict": STATUS_DESCRIPTIVE_ONLY,
+            "direction": direction.value,
+            "margin": margin,
+            "rationale": "NO_REGISTERED_HYPOTHESIS: descriptive comparator contrast only",
+            "difference": difference.as_dict(),
+        }
     # Diagnostic companion on the per-case seed means. Same resampling unit (the
     # case), but it keeps the within-case resolution that the frozen majority
     # reduction discards, so a real per-seed gap between two systems that both
@@ -392,7 +610,7 @@ def _difference_block(
         "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
         "cohens_h": effect_h,
         "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "assessment": assessment.as_dict(),
+        "assessment": assessment,
         "status": STATUS_OK if not cannot_check_units else STATUS_PARTIAL,
     }
 
@@ -447,7 +665,7 @@ def build_t2(
                 "cannot_check_blinded_case_ids": list(item.blinded(item.cannot_check_case_ids)),
                 "repeat_coverage_ok": item.repeat_coverage_ok,
                 "rate": _rate_block(rate, label=metric),
-                "mechanistic": _mechanistic_block(item),
+                "mechanistic": _mechanistic_block(item, scope=scope),
                 "difference_vs_comparator": None,
             }
             if item.cannot_check_cases or not item.repeat_coverage_ok or rate.n == 0:
@@ -474,6 +692,7 @@ def build_t2(
                     resamples=resamples,
                     hypothesis_id=hypothesis_id,
                     min_units=min_units,
+                    inferential=is_subject,
                 )
                 row["difference_vs_comparator"] = block
                 if block["status"] != STATUS_OK:
@@ -836,12 +1055,17 @@ def generate(
     resamples: int = stats.PROTOCOL_RESAMPLES,
     min_units: int = 0,
     representatives: int = DEFAULT_REPRESENTATIVES,
+    design_manifest: Path | None = None,
 ) -> tuple[dict, dict]:
     """Regenerate both tables from an archive and write JSON + markdown."""
 
     records = load_records(archive)
     scores = [case_score_from_record(record) for record in records]
-    integrity = check_archive(scores, expected_repeats=expected_repeats)
+    integrity = check_archive(
+        scores,
+        expected_repeats=expected_repeats,
+        expected_design=load_archive_design(design_manifest),
+    )
 
     t2 = build_t2(
         scores,
@@ -983,6 +1207,7 @@ def _check(args: argparse.Namespace) -> int:
                 resamples=args.resamples,
                 min_units=args.min_units,
                 representatives=args.representatives,
+                design_manifest=args.design_manifest,
             )
         except ValueError as error:
             print(f"P1 tables: archive is malformed and was not used: {error}", file=sys.stderr)
@@ -1059,6 +1284,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--min-units", type=int, default=0, help="declared prospective N; below it an inconclusive result reads UNDERPOWERED. No frozen default exists.")
     parser.add_argument("--representatives", type=int, default=DEFAULT_REPRESENTATIVES)
     parser.add_argument(
+        "--design-manifest",
+        type=Path,
+        default=DEFAULT_DESIGN_MANIFEST,
+        help="immutable expected system x case x seed design; pass an explicit path for another frozen split",
+    )
+    parser.add_argument(
         "--check",
         action="store_true",
         help=(
@@ -1080,6 +1311,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             resamples=args.resamples,
             min_units=args.min_units,
             representatives=args.representatives,
+            design_manifest=args.design_manifest,
         )
     except ValueError as error:
         print(f"P1 tables: archive is malformed and was not used: {error}", file=sys.stderr)

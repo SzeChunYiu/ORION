@@ -1,27 +1,26 @@
 {
-  "theorem_protocol_commit": "e5652cb127d02241757fa5b7312fb94357ecb071",
-  "checker_commit": "45b2dbfdfa081d61eb21fb92298185b54f7c21ba",
+  "cannot_check_reasons": [],
+  "canonical_rows_sha256": "9a181cc61f1a1b56daa8f313d63acc3928f758b4150d242fe03c14e347ec511c",
+  "no_alarm_cases": 24,
   "state_evaluations": 1536,
   "states_per_embedding": 512,
-  "embeddings": [
-    "DEPENDENCY_MAINTENANCE",
-    "EFFECTFUL_COMPUTATION",
-    "CONTINUING_AUTH_EXEC_PROVENANCE"
-  ],
+  "t1_donor_visible_states": 96,
+  "t1_status": "CHECKED",
   "t1_violations": 0,
-  "t2_separation_pairs": 96,
   "t2_coordinates_covered": [
     "claim_scope_supported",
     "evidence_version_current",
     "scientific_source_authorized",
     "verification_epoch_current"
   ],
+  "t2_separation_pairs": 96,
   "t3_cases": 96,
   "t3_violations": 0,
+  "t4_cannot_check_reason": null,
+  "t4_status": "CHECKED",
   "t4_violations": 0,
   "t5_countermodels": 96,
-  "no_alarm_cases": 24,
-  "canonical_rows_sha256": "9a181cc61f1a1b56daa8f313d63acc3928f758b4150d242fe03c14e347ec511c",
-  "terminal": "PASS",
-  "interpretation": "Bounded formal theorem-family evidence only. The ideal information-equivalent product is extensionally equal; no deployed-agent or universal-formalism superiority is claimed."
+  "t5_donor_valid_transitions": 2880,
+  "t5_violations": 0,
+  "terminal": "PASS"
 }

@@ -1,0 +1,86 @@
+{
+  "schema_version": "q1-c1-tex-mutations-v1",
+  "protocol_id": "Q1-C1",
+  "protocol_version": "1.0",
+  "candidate_ref": "158fcb08b612ffc82f5a5d2bed4917409084ded8",
+  "fixtures": {
+    "base_tex": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/tex/base.tex",
+      "sha256": "b70a93bf653d147dcf911ec4e44bdc985437e49f6e43326000685571e8b8e402",
+      "bytes": 262
+    },
+    "bibliography": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/tex/fixture.bib",
+      "sha256": "f7685a5ef4c402af0757f020ea0a2ce345ce2587279d3e837ccd40d8a5604515",
+      "bytes": 142
+    }
+  },
+  "engine": {
+    "latex": {
+      "command": "pdflatex",
+      "version": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)"
+    },
+    "bibliography": {
+      "command": "bibtex",
+      "version": "BibTeX 0.99d (TeX Live 2023/Debian)"
+    },
+    "build_commands": [
+      ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "base.tex"],
+      ["bibtex", "base"],
+      ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "base.tex"],
+      ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "base.tex"]
+    ]
+  },
+  "mutations": [
+    {
+      "id": "T01_UNDEFINED_TIGHTLIST",
+      "operator": "DELETE_COMPLETE_LINE",
+      "old": "\\newcommand{\\tightlist}{}\n",
+      "new": "",
+      "occurrence": "EXACTLY_ONE",
+      "expected_regex": [
+        "Undefined control sequence\\.",
+        "\\\\tightlist"
+      ],
+      "exit_code_policy": "MUST_BE_NONZERO",
+      "expected_terminal": "BLOCKED"
+    },
+    {
+      "id": "T02_UNSUPPORTED_UNICODE_MATH",
+      "operator": "REPLACE_FIRST_LITERAL",
+      "old": "Gate fixture",
+      "new": "Gate fixture ⟶",
+      "occurrence": "FIRST_ONLY",
+      "expected_regex": [
+        "Unicode character ⟶ \\(U\\+27F6\\)",
+        "not set up for use with LaTeX"
+      ],
+      "exit_code_policy": "MUST_BE_NONZERO",
+      "expected_terminal": "BLOCKED"
+    },
+    {
+      "id": "T03_UNDEFINED_REFERENCE",
+      "operator": "REPLACE_ONLY_LITERAL",
+      "old": "\\ref{sec:gate}",
+      "new": "\\ref{q1_missing_ref_mutant}",
+      "occurrence": "EXACTLY_ONE",
+      "expected_regex": [
+        "Reference [`']q1_missing_ref_mutant['`] on page [0-9]+ undefined"
+      ],
+      "exit_code_policy": "MAY_BE_ZERO",
+      "expected_terminal": "BLOCKED"
+    },
+    {
+      "id": "T04_UNDEFINED_CITATION",
+      "operator": "REPLACE_ONLY_LITERAL",
+      "old": "\\cite{fixture}",
+      "new": "\\cite{q1_missing_citation_mutant}",
+      "occurrence": "EXACTLY_ONE",
+      "expected_regex": [
+        "Citation [`']q1_missing_citation_mutant['`] on page [0-9]+ undefined"
+      ],
+      "exit_code_policy": "MAY_BE_ZERO",
+      "expected_terminal": "BLOCKED"
+    }
+  ]
+}

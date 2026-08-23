@@ -1,0 +1,60 @@
+name: frontier-f6-replay-tax
+
+on:
+  pull_request:
+    paths:
+      - 'research/frontier-support-state-v1/F6_PERSISTENCE_REPLAY_TAX_PROTOCOL_V1.md'
+      - 'research/frontier-support-state-v1/run_f6_persistence_replay_tax_v1.py'
+      - 'research/frontier-support-state-v1/results/F2_CERTIFICATE_RECEIPT_V1.json'
+      - 'research/frontier-support-state-v1/results/F6_RESULT_RECEIPT_V1.json'
+      - '.github/workflows/frontier-f6-replay-tax.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  replay-tax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact benchmark dependency
+        run: python -m pip install 'numpy>=2,<3'
+      - name: Reproduce frozen deterministic result
+        run: |
+          python research/frontier-support-state-v1/run_f6_persistence_replay_tax_v1.py \
+            --output /tmp/F6_RESULT_V1.json
+      - name: Compare authoritative controlled metrics
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          got=json.loads(Path('/tmp/F6_RESULT_V1.json').read_text())
+          receipt=json.loads(Path('research/frontier-support-state-v1/results/F6_RESULT_RECEIPT_V1.json').read_text())
+          assert got['terminal'] == receipt['terminal'] == 'PERSISTENT_SUFFICIENT_STATE_REDUCES_REPLAY_SCALING'
+          assert got['history_lengths'] == receipt['history_lengths']
+          assert got['branch_counts'] == receipt['branch_counts']
+          assert got['checks'] == receipt['checks']
+          ga=got['cells']; ra=receipt['cells']
+          assert len(ga)==len(ra)==16
+          for g,r in zip(ga,ra):
+              assert (g['L'],g['b']) == (r['L'],r['b'])
+              assert g['ops'] == r['ops']
+              assert g['correctness_mismatches'] == r['correctness_mismatches']
+              assert abs(g['ReplayTax_ops']-r['ReplayTax_ops']) < 1e-15
+              assert g['persisted_state_bits'] == r['persisted_state_bits']
+          assert sum(c['correctness_mismatches']['PERSIST_CERTIFIED'] for c in ga) == 0
+          assert sum(c['correctness_mismatches']['PERSIST_FULL'] for c in ga) == 0
+          assert sum(c['correctness_mismatches']['HEURISTIC_LAST4'] for c in ga) == 110656
+          high=next(c for c in ga if c['L']==64 and c['b']==16)
+          assert abs(high['ReplayTax_ops'] - (1072/112)) < 1e-15
+          print('F6 deterministic result receipt: PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontier-f6-replay-tax-${{ github.sha }}
+          path: /tmp/F6_RESULT_V1.json

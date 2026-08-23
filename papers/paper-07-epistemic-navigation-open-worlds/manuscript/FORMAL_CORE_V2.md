@@ -332,7 +332,7 @@ Therefore P7 treats breadth as a diagnostic coordinate, not a scalar objective t
 - fixed-latent, fixed-sensing representation-refinement strictness;
 - harmful coarsening;
 - evidence-preserved/closure-broken objective change;
-- all 64 combinations of the six support-transport coordinates;
+- all 64 combinations of the six support-transport coordinates, each paired with each of the 15 admissible target completion classes, so Definition 14 target-ambiguity is decided per case rather than supplied — 960 cases;
 - distinct `ROUTE_STOP`, `TASK_STOP`, `CONTINUE`, `CANNOT_CHECK` terminals;
 - fixed-chart identity special case.
 

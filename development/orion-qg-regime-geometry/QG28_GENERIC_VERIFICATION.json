@@ -1,0 +1,494 @@
+{
+ "determinism": {
+  "all_digest_covered_fields_identical": true,
+  "content_digest_identical": true,
+  "double_run": true,
+  "excluded_fields": [
+   "timings_excluded_from_digest",
+   "total_seconds"
+  ],
+  "how_stdout_was_obtained": "both runs were launched by this script with captured stdout and compared byte for byte; neither flag is asserted",
+  "stdout_bytes_compared": 227,
+  "stdout_identical": true
+ },
+ "enforced_not_merely_recorded": "validate_falsifiability_demonstration and validate_determinism are called above and this script exits without writing when either raises; the flags are consequences of that, not assertions beside it",
+ "falsifiability_demonstration": {
+  "all_tampered_copies_rejected": true,
+  "cases": [
+   {
+    "case": "T1_protocol_digest_swapped",
+    "expected_check": "protocol_digest_matches_committed_protocol",
+    "failed_checks": [
+     "protocol_digest_matches_committed_protocol"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T2_q1_relabelled_prospective",
+    "expected_check": "q1_and_q2_declared_not_prospective",
+    "failed_checks": [
+     "q1_and_q2_declared_not_prospective"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T3_q3_relabelled_retrospective",
+    "expected_check": "q3_declared_prospective",
+    "failed_checks": [
+     "q3_declared_prospective"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T4_scouting_disclosure_removed",
+    "expected_check": "scouting_disclosure_present",
+    "failed_checks": [
+     "scouting_disclosure_present"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T5_frame_pair_count_altered",
+    "expected_check": "frame_pair_counts_rederived",
+    "failed_checks": [
+     "frame_pair_counts_rederived"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T6_cell_model_row_altered",
+    "expected_check": "cell_model_rows_rederived",
+    "failed_checks": [
+     "cell_model_rows_rederived"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T7_crossover_moved",
+    "expected_check": "crossover_rederived",
+    "failed_checks": [
+     "crossover_rederived"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T8_tag_claim_contradicts_its_own_count",
+    "expected_check": "tag_dp_claims_are_internally_consistent",
+    "failed_checks": [
+     "tag_dp_claims_are_internally_consistent"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T9_domain_a_shortened",
+    "expected_check": "domain_a_is_the_complete_4096",
+    "failed_checks": [
+     "domain_a_is_the_complete_4096"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T10_domain_b_marked_incomplete",
+    "expected_check": "domain_b_is_the_complete_9261",
+    "failed_checks": [
+     "domain_b_is_the_complete_9261",
+     "gate_g5_matches_the_domains_as_recorded"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T11_sample_presented_as_enumeration",
+    "expected_check": "domain_d_is_declared_a_sample_not_an_enumeration",
+    "failed_checks": [
+     "domain_d_is_declared_a_sample_not_an_enumeration",
+     "gate_g5_matches_the_domains_as_recorded"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T12_agree_count_lowered_flag_left_true",
+    "expected_check": "every_domain_agree_flag_matches_its_own_counts",
+    "failed_checks": [
+     "every_domain_agree_flag_matches_its_own_counts"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T13_mismatches_carried_under_an_agreement_claim",
+    "expected_check": "no_domain_claims_agreement_while_carrying_mismatches",
+    "failed_checks": [
+     "no_domain_claims_agreement_while_carrying_mismatches"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T14_top_level_agreement_flipped",
+    "expected_check": "all_domains_agree_matches_the_domains",
+    "failed_checks": [
+     "all_domains_agree_matches_the_domains",
+     "terminal_follows_from_the_measurements"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T15_terminal_swapped",
+    "expected_check": "terminal_follows_from_the_measurements",
+    "failed_checks": [
+     "terminal_follows_from_the_measurements"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T16_novelty_authority_asserted",
+    "expected_check": "not_r6_and_no_novelty_asserted",
+    "failed_checks": [
+     "not_r6_and_no_novelty_asserted"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T17_donor_record_asserts_novelty",
+    "expected_check": "donor_records_assert_no_novelty",
+    "failed_checks": [
+     "donor_records_assert_no_novelty"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18_hostile_panel_value_altered",
+    "expected_check": "hostile_panel_rows_recomputed",
+    "failed_checks": [
+     "hostile_panel_rows_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T19a_dp_variant_crossover_moved",
+    "expected_check": "dp_variant_crossover_rederived",
+    "failed_checks": [
+     "dp_variant_crossover_rederived"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T19b_dp_variant_cell_count_altered",
+    "expected_check": "cell_model_rows_rederived",
+    "failed_checks": [
+     "cell_model_rows_rederived"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T19c_amendment_hidden",
+    "expected_check": "counting_rule_amendment_discloses_itself",
+    "failed_checks": [
+     "counting_rule_amendment_discloses_itself"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18a_dp_row_marked_disagreeing_flag_left_true",
+    "expected_check": "dp_driven_search_flag_matches_its_rows",
+    "failed_checks": [
+     "dp_driven_search_flag_matches_its_rows",
+     "licensing_record_matches_the_dp_rows"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18b_dp_driven_value_altered",
+    "expected_check": "dp_driven_search_rows_recomputed",
+    "failed_checks": [
+     "dp_driven_search_rows_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18c_dp_demonstration_reduced_to_n1",
+    "expected_check": "dp_driven_search_is_not_n1_only",
+    "failed_checks": [
+     "dp_driven_n2_rows_recomputed",
+     "dp_driven_search_is_not_n1_only",
+     "licensing_record_matches_the_dp_rows"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18d_dp_scope_statement_removed",
+    "expected_check": "dp_driven_search_declares_its_scope",
+    "failed_checks": [
+     "dp_driven_search_declares_its_scope"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18e_section_3_3_deviation_hidden",
+    "expected_check": "section_3_3_deviation_disclosed",
+    "failed_checks": [
+     "licensing_record_matches_the_dp_rows",
+     "section_3_3_deviation_disclosed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18f_dp_sample_disagrees_but_win_terminal_kept",
+    "expected_check": "dp_disagreement_would_move_the_terminal",
+    "failed_checks": [
+     "dp_disagreement_would_move_the_terminal",
+     "licensing_record_matches_the_dp_rows",
+     "terminal_follows_from_the_measurements"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18g_dp_n2_row_fabricated",
+    "expected_check": "dp_driven_n2_rows_recomputed",
+    "failed_checks": [
+     "dp_driven_n2_rows_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18h_licensing_counts_inflated",
+    "expected_check": "licensing_record_matches_the_dp_rows",
+    "failed_checks": [
+     "licensing_record_matches_the_dp_rows"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T18i_licensing_soft_reverted_to_prose",
+    "expected_check": "section_3_3_deviation_disclosed",
+    "failed_checks": [
+     "licensing_record_matches_the_dp_rows",
+     "section_3_3_deviation_disclosed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T19a_measured_wall_clock_returned_to_the_digest",
+    "expected_check": "measured_wall_clock_is_not_under_digest_custody",
+    "failed_checks": [
+     "measured_wall_clock_is_not_under_digest_custody"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T19b_model_ratio_altered",
+    "expected_check": "model_ratios_rederived",
+    "failed_checks": [
+     "model_ratios_rederived"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T19_wall_clock_caveat_removed",
+    "expected_check": "gate_g3_wall_clock_carries_no_argument",
+    "failed_checks": [
+     "gate_g3_wall_clock_carries_no_argument"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T20_instance_total_inflated",
+    "expected_check": "total_instances_is_the_sum_of_the_domains",
+    "failed_checks": [
+     "total_instances_is_the_sum_of_the_domains"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "verdict": "REJECT"
+   }
+  ],
+  "unexercised_checks_and_why": {
+   "content_digest_recomputes": "every tampered copy is resealed on purpose, so this check passes on all of them; a copy that could exercise it would be rejected on the hash and would demonstrate nothing about re-derivation",
+   "definitional_brute_force_agrees_on_declared_n1_sample": "the verifier brute-forces C_D++ from the frozen family definition and compares against dxx_search directly; it reads nothing from the receipt",
+   "protocol_carries_the_same_disclosure": "reads the committed protocol file and nothing from the receipt, so no edit to a receipt copy can move it",
+   "tag_dp_equals_tag_sweep_under_this_verifier": "the verifier runs its own DP against its own 4^n sweep and reads nothing from the receipt, so no receipt edit can move it"
+  },
+  "verifier": "development/orion-qg-regime-geometry/qg28_generic_verify.py"
+ },
+ "gates": {
+  "G7_every_case_rejected_by_the_check_it_targets": true,
+  "G7_unexercised_checks_named": [
+   "content_digest_recomputes",
+   "definitional_brute_force_agrees_on_declared_n1_sample",
+   "protocol_carries_the_same_disclosure",
+   "tag_dp_equals_tag_sweep_under_this_verifier"
+  ],
+  "G7_verifier_demonstrated_capable_of_failing": true,
+  "G8_double_run_identical_outside_timing": true
+ },
+ "lane": "QG-28",
+ "residual": "W9",
+ "schema": "ORIONQG.QG28.GenericVerification.v1",
+ "verification": {
+  "checks": {
+   "all_domains_agree_matches_the_domains": true,
+   "cell_model_rows_rederived": true,
+   "content_digest_recomputes": true,
+   "counting_rule_amendment_discloses_itself": true,
+   "crossover_rederived": true,
+   "definitional_brute_force_agrees_on_declared_n1_sample": true,
+   "domain_a_is_the_complete_4096": true,
+   "domain_b_is_the_complete_9261": true,
+   "domain_d_is_declared_a_sample_not_an_enumeration": true,
+   "donor_records_assert_no_novelty": true,
+   "dp_disagreement_would_move_the_terminal": true,
+   "dp_driven_n2_rows_recomputed": true,
+   "dp_driven_search_declares_its_scope": true,
+   "dp_driven_search_flag_matches_its_rows": true,
+   "dp_driven_search_is_not_n1_only": true,
+   "dp_driven_search_rows_recomputed": true,
+   "dp_variant_crossover_rederived": true,
+   "every_domain_agree_flag_matches_its_own_counts": true,
+   "frame_pair_counts_rederived": true,
+   "gate_g3_wall_clock_carries_no_argument": true,
+   "gate_g5_matches_the_domains_as_recorded": true,
+   "hostile_panel_rows_recomputed": true,
+   "licensing_record_matches_the_dp_rows": true,
+   "measured_wall_clock_is_not_under_digest_custody": true,
+   "model_ratios_rederived": true,
+   "no_domain_claims_agreement_while_carrying_mismatches": true,
+   "not_r6_and_no_novelty_asserted": true,
+   "protocol_carries_the_same_disclosure": true,
+   "protocol_digest_matches_committed_protocol": true,
+   "q1_and_q2_declared_not_prospective": true,
+   "q3_declared_prospective": true,
+   "scouting_disclosure_present": true,
+   "section_3_3_deviation_disclosed": true,
+   "tag_dp_claims_are_internally_consistent": true,
+   "tag_dp_equals_tag_sweep_under_this_verifier": true,
+   "terminal_follows_from_the_measurements": true,
+   "total_instances_is_the_sum_of_the_domains": true
+  },
+  "failed_checks": [],
+  "input": "research/extensions/orion-qg/QG28_SUPPORT_CAPPED_REALIZATION_RESULTS.json",
+  "notes": {
+   "crossover_dp_variant_rederived": 9,
+   "crossover_rederived": 7,
+   "definitional_brute_force_rows": [
+    {
+     "agree": true,
+     "brute": 4,
+     "dxx": 4,
+     "instance_index": 0
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 337
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 674
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 1011
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 1348
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 1685
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 2022
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 2359
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 2696
+    },
+    {
+     "agree": true,
+     "brute": 3,
+     "dxx": 3,
+     "instance_index": 3033
+    },
+    {
+     "agree": true,
+     "brute": 4,
+     "dxx": 4,
+     "instance_index": 3370
+    },
+    {
+     "agree": true,
+     "brute": 2,
+     "dxx": 2,
+     "instance_index": 3707
+    }
+   ],
+   "dp_driven_n2_rows_recomputed": 2,
+   "dp_driven_rows_recomputed": 6,
+   "frame_pair_counts_rederived": {
+    "1": 6,
+    "2": 120,
+    "3": 666
+   },
+   "model_ratios_rederived": {
+    "1": 12.15,
+    "2": 759.38,
+    "3": 1404.96
+   },
+   "tag_rows_checked_by_verifier": 328,
+   "terminal_rederived": "QG28_COROLLARY_REALIZED__PROJECTED_WIN_CONFIRMED_WITH_ITS_CROSSOVER"
+  },
+  "schema": "ORIONQG.QG28.GenericVerification.v1",
+  "verdict": "ACCEPT"
+ }
+}

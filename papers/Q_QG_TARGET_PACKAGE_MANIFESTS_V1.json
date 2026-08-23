@@ -1,0 +1,78 @@
+{
+  "schema": "ORIONQ.TargetPackageManifests.v1",
+  "date": "2026-08-21",
+  "authority": "PACKAGE_ROUTING_ONLY__NO_SUBMISSION_OR_SCIENTIFIC_PROMOTION",
+  "packages": {
+    "Q1_Quantum": {
+      "scientific_master": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
+      "citation_generator": "papers/build_q_qg_cited_masters.py",
+      "source_preparer": "papers/quantum_preprint/build_quantum_source.py",
+      "template": "papers/quantum_preprint/quantum_pandoc_template.tex",
+      "workflow": ".github/workflows/q1-qg2-quantum-preprint.yml",
+      "artifact_name": "q1-qg2-quantum-preprint-packages",
+      "expected_outputs": ["Q1/source/main.tex", "Q1/source/main.pdf", "Q1/Q1-quantum-preprint-source.zip", "Q1/rendered/page-*.png"],
+      "technical_state": "GENERATED_PREFLIGHT__VERIFY_CURRENT_HEAD_CI_AND_VISUAL_AUDIT",
+      "author_blockers": ["authors/affiliations", "archive DOI", "reuse licence", "target submission metadata"]
+    },
+    "Q2_AIJ": {
+      "scientific_master": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
+      "citation_generator": "papers/build_q_qg_cited_masters.py",
+      "source_preparer": "papers/Q-paper-02-recursive-recovery/submission_aij/build_aij_source.py",
+      "template": "papers/Q-paper-02-recursive-recovery/submission_aij/aij_pandoc_template.tex",
+      "workflow": ".github/workflows/q2-aij-package.yml",
+      "artifact_name": "q2-aij-preflight-package",
+      "expected_outputs": ["source/main.tex", "source/main.pdf", "q2-aij-preflight-source.zip", "source/HIGHLIGHTS.txt", "source/COVER_LETTER_DRAFT.md", "source/STATEMENTS_DRAFT.md", "rendered/page-*.png"],
+      "technical_state": "GENERATED_PREFLIGHT__VERIFY_CURRENT_HEAD_CI_AND_VISUAL_AUDIT",
+      "author_blockers": ["authors/affiliations/correspondence", "funding", "competing interests", "AI-use declaration confirmation", "originality confirmation", "archive DOI", "reuse licence"]
+    },
+    "Q4_TMLR": {
+      "scientific_master": "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
+      "citation_generator": "papers/build_q_qg_cited_masters.py",
+      "source_preparer": "papers/Q-paper-04-typed-state/submission_tmlr/build_tmlr_source.py",
+      "template": "papers/Q-paper-04-typed-state/submission_tmlr/tmlr_pandoc_template.tex",
+      "official_style_repo": "JmlrOrg/tmlr-style-file",
+      "official_style_commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
+      "workflow": ".github/workflows/q4-tmlr-package.yml",
+      "artifact_name": "q4-tmlr-review-package",
+      "expected_outputs": ["source/main.tex", "source/main.pdf", "q4-tmlr-review-source.zip", "rendered/page-*.png", "source/style_sha256.txt"],
+      "technical_state": "GENERATED_PREFLIGHT__VERIFY_CURRENT_HEAD_CI_AND_VISUAL_AUDIT",
+      "author_blockers": ["submission-system author metadata", "archive DOI", "reuse licence", "current TMLR declaration confirmation"]
+    },
+    "QG1_PRX": {
+      "scientific_master": "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
+      "citation_generator": "papers/build_q_qg_cited_masters.py",
+      "source_preparer": "papers/QG-paper-01-compilation-regime-geometry/submission_prx/build_prx_source.py",
+      "template": "papers/QG-paper-01-compilation-regime-geometry/submission_prx/prx_pandoc_template.tex",
+      "popular_summary": "papers/QG-paper-01-compilation-regime-geometry/submission_prx/POPULAR_SUMMARY.md",
+      "workflow": ".github/workflows/qg1-prx-preflight-v2.yml",
+      "artifact_name": "qg1-prx-preflight-v2-package",
+      "expected_outputs": ["source/main.tex", "source/main.pdf", "qg1-prx-preflight-v2-source.zip", "source/POPULAR_SUMMARY.md", "rendered/page-*.png"],
+      "technical_state": "GENERATED_PREFLIGHT__VERIFY_CURRENT_HEAD_CI_AND_VISUAL_AUDIT",
+      "known_legacy_check": "Older qg1-prx-preflight workflow still contains a stale two-column wrapper assertion and carries no package authority; V2 is the intended single-column review preflight.",
+      "author_blockers": ["authors/affiliations", "archive DOI", "reuse licence", "PRX-vs-Quantum routing confirmation at submission"]
+    },
+    "QG2_Quantum": {
+      "scientific_master": "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
+      "citation_generator": "papers/build_q_qg_cited_masters.py",
+      "source_preparer": "papers/quantum_preprint/build_quantum_source.py",
+      "template": "papers/quantum_preprint/quantum_pandoc_template.tex",
+      "workflow": ".github/workflows/q1-qg2-quantum-preprint.yml",
+      "artifact_name": "q1-qg2-quantum-preprint-packages",
+      "expected_outputs": ["QG2/source/main.tex", "QG2/source/main.pdf", "QG2/QG2-quantum-preprint-source.zip", "QG2/rendered/page-*.png"],
+      "technical_state": "GENERATED_PREFLIGHT__VERIFY_CURRENT_HEAD_CI_AND_VISUAL_AUDIT",
+      "author_blockers": ["authors/affiliations", "archive DOI", "reuse licence", "target submission metadata"]
+    }
+  },
+  "Q3": {
+    "technical_state": "NO_TARGET_PACKAGE_BY_DESIGN",
+    "reason": "Scientific multi-instance gate remains open; a submission wrapper must not imply readiness."
+  },
+  "shared_artifacts": {
+    "science_manifest": "papers/Q_QG_SCIENCE_MANIFESTS_V1.json",
+    "reference_report": "papers/Q_QG_REFERENCE_VERIFICATION_REPORT_V1.md",
+    "figure_source": "papers/Q_QG_FIGURE_SOURCE_V1.json",
+    "figure_workflow": ".github/workflows/q-qg-figures.yml",
+    "generic_pdf_workflow": ".github/workflows/q-qg-render-preflight.yml",
+    "author_input_contract": "papers/Q_QG_AUTHOR_INPUT_REQUIRED_V1.md"
+  }
+}

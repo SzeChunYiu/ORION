@@ -22,10 +22,23 @@ combinations", and its transport theorem reads::
 
 ``target_ambiguous_if_missing`` is the paper's C4 --- whether the unresolved part
 of a transport witness admits one target completion preserving the certificate
-and one invalidating it --- and the checker passes it in as ``True`` and then as
-``False`` for every one of the 64 states. Measured over that space, **0 of 64
-cases constrain it**: all 2**64 ambiguity predicates are accepted, including the
-constant-false one that is the exact V1 error the V2 core says it fixed.
+and one invalidating it --- and the checker used to pass it in as ``True`` and
+then as ``False`` for every one of the 64 states. Measured over that space, **0
+of 64 cases constrained it**: all 2**64 ambiguity predicates were accepted,
+including the constant-false one that is the exact V1 error the V2 core says it
+fixes.
+
+**Repaired 2026-08-22, and the repair is what the class prescribes.** The
+shipped checker now enumerates an admissible target-completion class beside each
+witness and decides the premise per case with its own ``extension_ambiguous``.
+The axis it needed was missing, not the assertion: 960 cases, 0 free, exactly one
+admissible rule, 0 of 5,000 random whole rules accepted, and
+``theory_closure_terminal`` moves ``CANNOT_CHECK`` to ``PASS``. The 960 is not a
+larger 64 --- it is 64 coordinate states crossed with 15 completion classes, and
+the two counts are incomparable, which the artifacts say. The pre-repair model is
+kept as an explicitly labelled counterfactual and still reports
+``UNDECIDABLE_IN_MODEL`` on its 64, so the contrast this module teaches from
+stays runnable.
 
 The failure class is recorded under
 ``research/failures/2026-08-supplied-premise-unbuilt-decision/``.

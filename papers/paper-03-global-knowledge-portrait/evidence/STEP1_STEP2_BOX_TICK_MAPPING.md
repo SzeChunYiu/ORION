@@ -1,5 +1,15 @@
 # ORION-P3 Step 1-2 Box-to-Artifact Mapping (Tick Pass Prep)
 
+> **Annotated 2026-08-22 after the manuscript house-style rewrite.** This is a
+> completed audit of the manuscript as it stood when the audit was run, and is
+> annotated rather than restated: no verdict, row or evidence pointer in it has
+> been edited. One pointer is now historical. The absorbed-boundary table
+> (Table 1 in `20-related-work.tex`) was removed from the manuscript; its
+> content is discussed as positioning prose in the same section, which retains
+> every citation the table carried, and the residual it summarized is stated
+> once in prose in Limitations. The dispositions themselves are unchanged and
+> still recorded in `NEAREST_WORK_DISPOSITIONS_V1.md`.
+
 **Purpose:** Verified mapping of the 19 "runnable-now" boxes from issue #100 (Step 1 literature review + Step 2 hypotheses) to their on-main artifacts for issue box ticking.
 
 **Status:** READY_FOR_TICK

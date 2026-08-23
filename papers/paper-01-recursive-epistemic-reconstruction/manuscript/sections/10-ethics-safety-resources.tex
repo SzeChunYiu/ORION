@@ -1,13 +1,32 @@
 \section{Ethics, safety, and resources}
 
 \subsection{Ethical considerations}
-This work studies mechanistic aspects of research workflow design rather than reporting a deployment in a human-facing domain. The frozen local evaluation uses constructed cases and does not require human-subject records or personally identifiable information. Any later external-provider or retrieval execution must be documented separately from this local evidence rather than inferred from the protocol design.
+This work studies mechanistic aspects of research workflow design rather than
+reporting a deployment in a human-facing domain. The frozen local evaluation
+uses constructed cases and does not require human-subject records or personally
+identifiable information. Any later external-provider or retrieval execution
+must be documented separately from this local evidence rather than inferred from
+the protocol design.
 
 \subsection{Safety considerations}
-ORION's design explicitly separates authority promotion (Paper IV) from formulation reconstruction (Paper I). Paper I mechanisms can expose possible method failures but cannot authorize $M_t$ to rewrite itself. The reframe gate is mechanically bounded: only formulation and search-universe coordinates may trigger a reframe, and evidence/execution-only negative controls exercise the corresponding non-reframe behavior in the frozen local suite.
+Authority promotion and formulation reconstruction are separate concerns, and
+only the second is studied here. The mechanisms described can expose a possible
+method failure but cannot authorize $M_t$ to rewrite itself. The reframe gate is
+mechanically bounded: only formulation and search-universe coordinates may
+trigger a reframe, and the evidence-only and execution-only negative controls
+exercise the corresponding non-reframe behaviour in the frozen local suite.
 
 \subsection{Resource usage and environmental impact}
-The repository does not yet contain an admissible clean-environment resource ledger for the full Paper I campaign. Numerical model-token, runtime, monetary-cost, or carbon-impact claims are therefore \texttt{CANNOT\_CHECK} in this revision. A future result-bearing run must retain actual resource usage under its frozen provider/environment bindings before those quantities are reported.
+The repository does not yet contain an admissible clean-environment resource
+ledger for the full campaign. Numerical model-token, runtime, monetary-cost and
+carbon-impact quantities therefore remain undetermined in this revision. A
+future result-bearing run must retain actual resource usage under its frozen
+provider and environment bindings before those quantities are reported.
 
 \subsection{Dual-use considerations}
-The epistemic-state machinery described here is general-purpose and could be applied outside scientific research. This paper evaluates scientific-workflow mechanics and does not present an empirical evaluation of military or other high-risk deployment applications. The authority boundaries above are part of the implemented design, but they should not be read as evidence of safety in domains that were not evaluated.
+The epistemic-state machinery described here is general-purpose and could be
+applied outside scientific research. This paper evaluates scientific-workflow
+mechanics and does not present an empirical evaluation of military or other
+high-risk deployment applications. The authority boundaries above are part of
+the implemented design, but they should not be read as evidence of safety in
+domains that were not evaluated.

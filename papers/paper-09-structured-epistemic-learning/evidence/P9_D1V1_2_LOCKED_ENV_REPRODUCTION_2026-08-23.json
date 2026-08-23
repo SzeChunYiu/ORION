@@ -1,0 +1,47 @@
+{
+  "schema_version": "orion.p9.d1v1_2-local-reproduction.v1",
+  "record": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION",
+  "terminal": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED",
+  "authority_scope": "LOCAL_REPLAY_ONLY",
+  "self_authorizing": true,
+  "independent_reproduction": false,
+  "independent_unit_credit": 0,
+  "same_historical_unit_as_source_result": true,
+  "grants_positive_authority": false,
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.5.2",
+    "scikit_learn": "1.9.0",
+    "lock": "uv.lock",
+    "lock_sha256": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+  },
+  "source_result": {
+    "path": "research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json",
+    "sha256": "bdd23c39d419aac3c8df7e8cd5c675c572e4cafb1cb8cc7d666522c265babc4a"
+  },
+  "scorer_identity": {
+    "module": "orion.study.p9.d1_experiment",
+    "estimator": "sklearn.linear_model.LogisticRegression",
+    "selected_config": "logistic-C1",
+    "selection_and_metric_audit": "orion.study.p9.transfer_audit"
+  },
+  "arms": {
+    "TRANSCRIPT_BAG": {"outcome":"PASS","archived_accuracy":0.25,"reproduced_accuracy":0.25},
+    "TYPED_RELATIONAL": {"outcome":"PASS","archived_accuracy":1.0,"reproduced_accuracy":1.0},
+    "UNTYPED_PAIR": {"outcome":"PASS","archived_accuracy":0.90625,"reproduced_accuracy":0.90625},
+    "TYPED_SERIALIZED_BAG": {
+      "outcome": "FAIL",
+      "reason": "SCORE_DIVERGED",
+      "selected_config": "logistic-C1",
+      "archived_accuracy": 0.5,
+      "reproduced_accuracy": 0.75,
+      "archived_distinct_predictions": 1,
+      "reproduced_distinct_predictions": 2,
+      "environment_departures": []
+    }
+  },
+  "overall_outcome": "FAIL",
+  "historical_policy": "Append-only; never relabel this locked-environment replay as PASS.",
+  "successor": "P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS",
+  "replay_command": "uv run --frozen python -m orion.study.p9.transfer_audit --json"
+}

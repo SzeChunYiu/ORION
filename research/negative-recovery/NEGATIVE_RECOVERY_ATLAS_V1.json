@@ -1,0 +1,138 @@
+{
+  "schema": "ORION.NegativeRecoveryAtlas.v1",
+  "status": "INITIAL_CALIBRATION_ATLAS__NOT_YET_SCORE_AUTHORITY",
+  "base_commit": "611b885c1e84719ea3e4791d4fb2d7b1b65219f0",
+  "purpose": "Cutoff-correct historical negative episodes for blind dual-harness recovery. Evaluator-only later trajectories must never be exposed to candidate recovery lanes.",
+  "episodes": [
+    {
+      "episode_id": "NR-R6O-REGIME-CHARACTERIZATION",
+      "owner": "ORION-Q-MAX",
+      "domain": "quantum-method-research-control",
+      "admissibility": "ADMISSIBLE_CONTENT_BOUND",
+      "negative_class": [
+        "REPRESENTATION_LIMIT",
+        "WRONG_RESPONSIBILITY_LEVEL"
+      ],
+      "cutoff_evidence": {
+        "protocol": "development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md",
+        "lane_a_receipt": "development/orion-q-max-r0/dual-harness-benchmark-v0/DUAL_HARNESS_LANE_A_RECEIPT.json",
+        "lane_b_receipt": "development/orion-q-max-r0/DUAL_HARNESS_LANE_B_RECEIPT.json",
+        "allowed_source_bundle": [
+          "committed R6N receipt",
+          "committed R6O receipt",
+          "committed R6M receipt",
+          "committed R6L receipt"
+        ]
+      },
+      "candidate_visible_question": "Which epistemic layer is responsible for the post-R6O residual, and what computation/revision should happen next?",
+      "evaluator_only_later_trajectory": {
+        "hidden_during_recovery": true,
+        "diagnosis": "REPRESENTATION_REGIME_CHARACTERIZATION",
+        "successful_successors": [
+          "R6Q exact regime-membership predicate",
+          "R6P complementary support-two family closure"
+        ],
+        "historical_disposition": "RECOVERED_WORKING_METHOD"
+      },
+      "score_role": "POSITIVE_RECOVERY_CALIBRATION"
+    },
+    {
+      "episode_id": "NR-P11H-WIDTH-REGIME",
+      "owner": "P11_STATE_AS_COMPUTATION",
+      "domain": "controlled-state-accessibility",
+      "admissibility": "ADMISSIBLE_BOUNDED_WITH_EXTERNAL_POINTERS",
+      "negative_class": [
+        "MODEL_CAPACITY_LIMIT",
+        "REPRESENTATION_LIMIT",
+        "RESOURCE_REGIME"
+      ],
+      "cutoff_evidence": {
+        "issue": 471,
+        "historical_state": "P11H pooled hostile decoder wins in registered narrow r=3 regime; high-width r=7 cells were not authorized by the P11H protected draw",
+        "binding_note": "Exact P11H result bytes must be bound before this episode enters scored training/evaluation. Current record is atlas-level only."
+      },
+      "candidate_visible_question": "Does the pooled hostile result invalidate state compilation generally, or identify a state-width/accessibility regime boundary requiring a separately frozen successor?",
+      "evaluator_only_later_trajectory": {
+        "hidden_during_recovery": true,
+        "successor_pr": 959,
+        "successor_head": "3952022e3d012426792cc3c236d4768455a66e10",
+        "successor_terminal": "P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL",
+        "historical_disposition": "REGIME_LIMITED_POSITIVE"
+      },
+      "score_role": "REGIME_BOUNDARY_CALIBRATION"
+    },
+    {
+      "episode_id": "NR-EA1-EXACT-REVISION",
+      "owner": "ORION_EA",
+      "domain": "exact-epistemic-revision",
+      "admissibility": "ADMISSIBLE_BOUNDED_WITH_EXTERNAL_POINTERS",
+      "negative_class": [
+        "EXACT_MECHANIC_SUFFICIENT",
+        "TRUE_LOWER_BOUND"
+      ],
+      "cutoff_evidence": {
+        "pr": 962,
+        "head": "8209e4e69afc8ac8cefe8f2e4fd4b829573967fd",
+        "exact_worlds": "src/orion/study/ea/exact_worlds.py",
+        "identifiability": "src/orion/study/ea/identifiability.py",
+        "tests": "tests/test_ea_exact_worlds.py"
+      },
+      "candidate_visible_question": "After full V0 state and the primitive intervention are explicit, should the programme train a neural propagator or move learning to another responsibility layer?",
+      "evaluator_only_later_trajectory": {
+        "hidden_during_recovery": true,
+        "correct_terminal": "EA1_DONOR_EXACT_REVISION_SUFFICIENT",
+        "correct_next_layer": "STATE_CONSTRUCTION_OR_METHOD_PROPOSAL",
+        "historical_disposition": "LOWER_BOUND_CLOSED"
+      },
+      "score_role": "DO_NOT_OVERESCALATE_CONTROL"
+    },
+    {
+      "episode_id": "NR-RG-X1I-PRIOR-ART-COLLAPSE",
+      "owner": "ORION_RG",
+      "domain": "pure-mathematics-research",
+      "admissibility": "ADMISSIBLE_CONTENT_BOUND",
+      "negative_class": [
+        "DONOR_DOMINATION",
+        "MISSING_PARENT_METHOD"
+      ],
+      "cutoff_evidence": {
+        "commit": "611b885c1e84719ea3e4791d4fb2d7b1b65219f0",
+        "historical_fact": "A regularity observed across large complete censuses was already Gao-Geroldinger Theorem 4.8; the next Gao-Zhuang target was also found mostly settled by prior work before compute was spent."
+      },
+      "candidate_visible_question": "When computation appears to reveal a theorem-like regularity, should the programme invest in proof/search or first widen prior-art reconstruction?",
+      "evaluator_only_later_trajectory": {
+        "hidden_during_recovery": true,
+        "correct_action": "ADOPT_DONOR_THEOREM_AND_MOVE_TO_GENUINELY_OPEN_RESIDUAL",
+        "historical_disposition": "DONOR_COMPLETE_FOR_REGISTERED_TARGET"
+      },
+      "score_role": "DONOR_SUFFICIENT_CONTROL"
+    },
+    {
+      "episode_id": "NR-P10-N1-COMMENT-ONLY-CHAIN",
+      "owner": "P10_N1",
+      "domain": "method-space-recovery",
+      "admissibility": "RECONSTRUCTION_REQUIRED",
+      "negative_class": [
+        "EVALUATOR_OR_CUSTODY_DEFECT"
+      ],
+      "cutoff_evidence": {
+        "issue": 674,
+        "reason_not_scored": "An independent audit recorded that N1-A/N1-C/N1-D successor executions and the finite-candidate lower-bound proposition existed only in the issue-comment thread, with no committed scripts/results receipts in repository history."
+      },
+      "candidate_visible_question": "Can this trajectory be admitted as recovery gold?",
+      "evaluator_only_later_trajectory": {
+        "hidden_during_recovery": false,
+        "correct_action": "RECONSTRUCT_OR_REJECT_AS_SCORED_GOLD_BEFORE_ANY_RECOVERY_CLAIM",
+        "historical_disposition": "EVIDENCE_ADMISSIBILITY_FAILURE"
+      },
+      "score_role": "INSTRUMENT_QUALITY_CONTROL"
+    }
+  ],
+  "hard_rules": [
+    "evaluator_only_later_trajectory is never passed to Lane A or Lane B during blind replay",
+    "RECONSTRUCTION_REQUIRED episodes do not contribute to recovery accuracy until immutable source reconstruction exists",
+    "LOWER_BOUND_CLOSED and DONOR_COMPLETE controls are required to defeat an always-escalate policy",
+    "functional successor equivalence is allowed; historical wording or exact historical method identity is not required",
+    "a candidate may propose an alternative successor that outperforms history if it was derivable from cutoff-valid evidence and survives protected verification"
+  ]
+}

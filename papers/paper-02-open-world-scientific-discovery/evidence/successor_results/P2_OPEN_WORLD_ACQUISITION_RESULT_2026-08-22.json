@@ -1,0 +1,603 @@
+{
+  "arms": {
+    "distinguishable": {
+      "A1_D5_QUERIES_ROUND_ROBIN": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.525,
+        "mean_iou": 0.22624999999999987,
+        "mean_precision": 0.22624999999999987,
+        "mean_recall": 1.0,
+        "tasks": 120,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "A2_D1_TERMS_COVERAGE_MERGE": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.525,
+        "mean_iou": 0.09539376686115816,
+        "mean_precision": 0.10666666666666656,
+        "mean_recall": 0.4813888888888884,
+        "tasks": 120,
+        "zero_hit_fraction": 0.058333333333333334,
+        "zero_hit_tasks": 7
+      },
+      "A3_D5_NO_EXPANSION": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.525,
+        "mean_iou": 0.22624999999999987,
+        "mean_precision": 0.22624999999999987,
+        "mean_recall": 1.0,
+        "tasks": 120,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "B0_ARCHIVED_WIDE_LEXICAL_V3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.525,
+        "mean_iou": 0.10157945918815484,
+        "mean_precision": 0.11333333333333323,
+        "mean_recall": 0.5180555555555549,
+        "tasks": 120,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "B1_SHIPPED_D1_D2_D3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.525,
+        "mean_iou": 0.16464626074408673,
+        "mean_precision": 0.1708333333333333,
+        "mean_recall": 0.7644444444444444,
+        "tasks": 120,
+        "zero_hit_fraction": 0.008333333333333333,
+        "zero_hit_tasks": 1
+      },
+      "S2_D5_GROUNDED_SPECIFICITY_LADDER": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.525,
+        "mean_iou": 0.22624999999999987,
+        "mean_precision": 0.22624999999999987,
+        "mean_recall": 1.0,
+        "tasks": 120,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      }
+    },
+    "no_bridge": {
+      "A1_D5_QUERIES_ROUND_ROBIN": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.45,
+        "mean_iou": 0.09980237154150196,
+        "mean_precision": 0.11125,
+        "mean_recall": 0.485,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "A2_D1_TERMS_COVERAGE_MERGE": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.45,
+        "mean_iou": 0.008,
+        "mean_precision": 0.009999999999999998,
+        "mean_recall": 0.03333333333333333,
+        "tasks": 40,
+        "zero_hit_fraction": 0.8,
+        "zero_hit_tasks": 32
+      },
+      "A3_D5_NO_EXPANSION": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.45,
+        "mean_iou": 0.09980237154150196,
+        "mean_precision": 0.11125,
+        "mean_recall": 0.485,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "B0_ARCHIVED_WIDE_LEXICAL_V3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.45,
+        "mean_iou": 0.009,
+        "mean_precision": 0.01125,
+        "mean_recall": 0.0375,
+        "tasks": 40,
+        "zero_hit_fraction": 0.775,
+        "zero_hit_tasks": 31
+      },
+      "B1_SHIPPED_D1_D2_D3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.45,
+        "mean_iou": 0.0968567664219838,
+        "mean_precision": 0.10625,
+        "mean_recall": 0.4704166666666666,
+        "tasks": 40,
+        "zero_hit_fraction": 0.125,
+        "zero_hit_tasks": 5
+      },
+      "S2_D5_GROUNDED_SPECIFICITY_LADDER": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.45,
+        "mean_iou": 0.09980237154150196,
+        "mean_precision": 0.11125,
+        "mean_recall": 0.485,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      }
+    },
+    "undistinguished": {
+      "A1_D5_QUERIES_ROUND_ROBIN": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.6,
+        "mean_iou": 0.06812798795407492,
+        "mean_precision": 0.0775,
+        "mean_recall": 0.3450000000000001,
+        "tasks": 40,
+        "zero_hit_fraction": 0.075,
+        "zero_hit_tasks": 3
+      },
+      "A2_D1_TERMS_COVERAGE_MERGE": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.6,
+        "mean_iou": 0.0363403914925654,
+        "mean_precision": 0.04125000000000002,
+        "mean_recall": 0.19208333333333336,
+        "tasks": 40,
+        "zero_hit_fraction": 0.45,
+        "zero_hit_tasks": 18
+      },
+      "A3_D5_NO_EXPANSION": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.6,
+        "mean_iou": 0.01951070487483531,
+        "mean_precision": 0.02250000000000001,
+        "mean_recall": 0.09833333333333334,
+        "tasks": 40,
+        "zero_hit_fraction": 0.65,
+        "zero_hit_tasks": 26
+      },
+      "B0_ARCHIVED_WIDE_LEXICAL_V3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.6,
+        "mean_iou": 0.006302536231884058,
+        "mean_precision": 0.0075,
+        "mean_recall": 0.03208333333333334,
+        "tasks": 40,
+        "zero_hit_fraction": 0.85,
+        "zero_hit_tasks": 34
+      },
+      "B1_SHIPPED_D1_D2_D3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.6,
+        "mean_iou": 0.035083545078110304,
+        "mean_precision": 0.04000000000000001,
+        "mean_recall": 0.17750000000000005,
+        "tasks": 40,
+        "zero_hit_fraction": 0.5,
+        "zero_hit_tasks": 20
+      },
+      "S2_D5_GROUNDED_SPECIFICITY_LADDER": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.6,
+        "mean_iou": 0.01951070487483531,
+        "mean_precision": 0.02250000000000001,
+        "mean_recall": 0.09833333333333334,
+        "tasks": 40,
+        "zero_hit_fraction": 0.65,
+        "zero_hit_tasks": 26
+      }
+    },
+    "variant_gap": {
+      "A1_D5_QUERIES_ROUND_ROBIN": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 3.975,
+        "mean_iou": 0.08334980237154146,
+        "mean_precision": 0.09249999999999996,
+        "mean_recall": 0.4441666666666668,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "A2_D1_TERMS_COVERAGE_MERGE": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 3.975,
+        "mean_iou": 0.004,
+        "mean_precision": 0.005,
+        "mean_recall": 0.016666666666666666,
+        "tasks": 40,
+        "zero_hit_fraction": 0.9,
+        "zero_hit_tasks": 36
+      },
+      "A3_D5_NO_EXPANSION": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 3.975,
+        "mean_iou": 0.08334980237154146,
+        "mean_precision": 0.09249999999999996,
+        "mean_recall": 0.4441666666666668,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "B0_ARCHIVED_WIDE_LEXICAL_V3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 3.975,
+        "mean_iou": 0.005,
+        "mean_precision": 0.00625,
+        "mean_recall": 0.020833333333333332,
+        "tasks": 40,
+        "zero_hit_fraction": 0.875,
+        "zero_hit_tasks": 35
+      },
+      "B1_SHIPPED_D1_D2_D3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 3.975,
+        "mean_iou": 0.08135587238848109,
+        "mean_precision": 0.08875,
+        "mean_recall": 0.44833333333333336,
+        "tasks": 40,
+        "zero_hit_fraction": 0.175,
+        "zero_hit_tasks": 7
+      },
+      "S2_D5_GROUNDED_SPECIFICITY_LADDER": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 3.975,
+        "mean_iou": 0.08334980237154146,
+        "mean_precision": 0.09249999999999996,
+        "mean_recall": 0.4441666666666668,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      }
+    },
+    "well_posed": {
+      "A1_D5_QUERIES_ROUND_ROBIN": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.275,
+        "mean_iou": 0.21375000000000005,
+        "mean_precision": 0.21375000000000005,
+        "mean_recall": 1.0,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "A2_D1_TERMS_COVERAGE_MERGE": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.275,
+        "mean_iou": 0.21375000000000005,
+        "mean_precision": 0.21375000000000005,
+        "mean_recall": 1.0,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "A3_D5_NO_EXPANSION": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.275,
+        "mean_iou": 0.21375000000000005,
+        "mean_precision": 0.21375000000000005,
+        "mean_recall": 1.0,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "B0_ARCHIVED_WIDE_LEXICAL_V3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.275,
+        "mean_iou": 0.21375000000000005,
+        "mean_precision": 0.21375000000000005,
+        "mean_recall": 1.0,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "B1_SHIPPED_D1_D2_D3": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.275,
+        "mean_iou": 0.21238095238095242,
+        "mean_precision": 0.21250000000000005,
+        "mean_recall": 0.9916666666666668,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      },
+      "S2_D5_GROUNDED_SPECIFICITY_LADDER": {
+        "mean_candidates_returned": 20.0,
+        "mean_gold_size": 4.275,
+        "mean_iou": 0.21375000000000005,
+        "mean_precision": 0.21375000000000005,
+        "mean_recall": 1.0,
+        "tasks": 40,
+        "zero_hit_fraction": 0.0,
+        "zero_hit_tasks": 0
+      }
+    }
+  },
+  "claim_scope": "CONSTRUCTED_REPRODUCTION_ONLY__DEVELOPMENT_EVIDENCE",
+  "date": "2026-08-22",
+  "example_tasks": [
+    {
+      "baseline_queries": [
+        "(all:protocol AND all:nephron) OR (all:nephron AND all:empirical) OR (all:empirical AND all:chondrite) OR (all:chondrite AND all:colloid)",
+        "all:protocol AND all:nephron",
+        "all:protocol OR all:nephron OR all:empirical OR all:chondrite OR all:colloid OR all:pericyte"
+      ],
+      "baseline_recall": 0.5,
+      "baseline_top_titles": [
+        "Nephron Chondrite Discussion",
+        "Nephron Protocol",
+        "Nephron Empirical",
+        "Nephron Protocol",
+        "Chondrite Colloid Comparison"
+      ],
+      "candidate_queries": [
+        "all:nephron AND all:chondrite",
+        "all:nephron OR all:chondrite OR all:colloid OR all:titration OR all:pericyte",
+        "(all:nephron AND all:chondrite) OR (all:chondrite AND all:colloid) OR (all:colloid AND all:titration) OR (all:titration AND all:pericyte)"
+      ],
+      "candidate_recall": 1.0,
+      "candidate_top_titles": [
+        "Nephron Chondrite Discussion",
+        "Chondrite Colloid Comparison",
+        "Pericyte Titration Outcome",
+        "Colloid Pericyte Note",
+        "Nephron Protocol"
+      ],
+      "content_df_fractions": {
+        "chondrite": 0.01796344647519582,
+        "colloid": 0.018903394255874673,
+        "nephron": 0.01587467362924282,
+        "pericyte": 0.021618798955613576,
+        "titration": 0.019843342036553524
+      },
+      "content_terms": [
+        "nephron",
+        "chondrite",
+        "colloid",
+        "pericyte",
+        "titration"
+      ],
+      "gold_count": 4,
+      "question": "I am looking for protocol nephron chondrite that empirical colloid; in particular the protocol empirical of pericyte and titration for nephron.",
+      "scaffold_df_fractions": {
+        "empirical": 0.27174934725848565,
+        "protocol": 0.3073629242819843
+      },
+      "scaffold_terms": [
+        "protocol",
+        "empirical"
+      ],
+      "task_id": "ACQ-0000"
+    },
+    {
+      "baseline_queries": [
+        "(all:reported AND all:cavitation) OR (all:cavitation AND all:protocol) OR (all:protocol AND all:myelination) OR (all:myelination AND all:paleosol)",
+        "all:reported AND all:cavitation",
+        "all:reported OR all:cavitation OR all:protocol OR all:myelination OR all:paleosol OR all:transducer"
+      ],
+      "baseline_recall": 0.4,
+      "baseline_top_titles": [
+        "Cavitation Myelination Section",
+        "Cavitation Reported",
+        "Myelination Paleosol Section",
+        "Myelination Reported",
+        "Cavitation Reported"
+      ],
+      "candidate_queries": [
+        "all:morphogen AND all:myelination",
+        "all:morphogen OR all:myelination OR all:paleosol OR all:transducer OR all:cavitation",
+        "(all:morphogen AND all:myelination) OR (all:myelination AND all:paleosol) OR (all:paleosol AND all:transducer) OR (all:transducer AND all:cavitation)"
+      ],
+      "candidate_recall": 1.0,
+      "candidate_top_titles": [
+        "Morphogen Cavitation Regime",
+        "Myelination Paleosol Section",
+        "Paleosol Transducer Presentation",
+        "Cavitation Myelination Section",
+        "Transducer Morphogen Account"
+      ],
+      "content_df_fractions": {
+        "cavitation": 0.027780678851174936,
+        "morphogen": 0.01681462140992167,
+        "myelination": 0.018590078328981723,
+        "paleosol": 0.02391644908616188,
+        "transducer": 0.027571801566579634
+      },
+      "content_terms": [
+        "cavitation",
+        "myelination",
+        "paleosol",
+        "transducer",
+        "morphogen"
+      ],
+      "gold_count": 5,
+      "question": "I am looking for reported cavitation myelination that protocol paleosol; in particular the reported protocol of transducer and morphogen for cavitation.",
+      "scaffold_df_fractions": {
+        "protocol": 0.3073629242819843,
+        "reported": 0.2603655352480418
+      },
+      "scaffold_terms": [
+        "reported",
+        "protocol"
+      ],
+      "task_id": "ACQ-0001"
+    },
+    {
+      "baseline_queries": [
+        "(all:empirical AND all:lyophilization) OR (all:lyophilization AND all:benchmark) OR (all:benchmark AND all:ionosphere) OR (all:ionosphere AND all:macrophage)",
+        "all:empirical AND all:lyophilization",
+        "all:empirical OR all:lyophilization OR all:benchmark OR all:ionosphere OR all:macrophage OR all:transducer"
+      ],
+      "baseline_recall": 0.4,
+      "baseline_top_titles": [
+        "Lyophilization Ionosphere Context",
+        "Lyophilization Empirical",
+        "Lyophilization Empirical",
+        "Ionosphere Macrophage Setting",
+        "Lyophilization Empirical"
+      ],
+      "candidate_queries": [
+        "all:vesicular AND all:lyophilization",
+        "all:vesicular OR all:lyophilization OR all:ionosphere OR all:macrophage OR all:transducer",
+        "(all:vesicular AND all:lyophilization) OR (all:lyophilization AND all:ionosphere) OR (all:ionosphere AND all:macrophage) OR (all:macrophage AND all:transducer)"
+      ],
+      "candidate_recall": 1.0,
+      "candidate_top_titles": [
+        "Vesicular Lyophilization Comparison",
+        "Transducer Vesicular Regime",
+        "Lyophilization Ionosphere Context",
+        "Macrophage Transducer Uncertainty",
+        "Ionosphere Macrophage Setting"
+      ],
+      "content_df_fractions": {
+        "ionosphere": 0.02276762402088773,
+        "lyophilization": 0.020469973890339426,
+        "macrophage": 0.025900783289817233,
+        "transducer": 0.027571801566579634,
+        "vesicular": 0.01712793733681462
+      },
+      "content_terms": [
+        "lyophilization",
+        "ionosphere",
+        "macrophage",
+        "transducer",
+        "vesicular"
+      ],
+      "gold_count": 5,
+      "question": "I am looking for empirical lyophilization ionosphere that benchmark macrophage; in particular the empirical benchmark of transducer and vesicular for lyophilization.",
+      "scaffold_df_fractions": {
+        "benchmark": 0.3127937336814621,
+        "empirical": 0.27174934725848565
+      },
+      "scaffold_terms": [
+        "empirical",
+        "benchmark"
+      ],
+      "task_id": "ACQ-0002"
+    }
+  ],
+  "freeze_document": "papers/paper-02-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md",
+  "freeze_provenance": {
+    "freeze_twin": "papers/paper-02-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.json",
+    "parameters_sha256": "ad7e4c6afd66943693ae732b2dde9131aa5bddd13b5632dc97c38223149f769a"
+  },
+  "gate_results": {
+    "G1_REPRODUCTION": {
+      "archived_reference": "DEV3R archived baseline: mean recall 0.051422, zero-hit 19/24 = 0.7917, mean_candidates_returned 20.0",
+      "baseline_mean_candidates_returned": 20.0,
+      "baseline_mean_recall": 0.5180555555555549,
+      "baseline_zero_hit_fraction": 0.0,
+      "blocking": true,
+      "passed": false
+    },
+    "G2_CANDIDATE": {
+      "absolute_gain": 0.48194444444444506,
+      "baseline_mean_recall": 0.5180555555555549,
+      "blocking": true,
+      "bootstrap_ci_high": 0.49916666666666715,
+      "bootstrap_ci_low": 0.46444444444444494,
+      "candidate_mean_recall": 1.0,
+      "passed": true,
+      "sign_test_p_value": 1.504632769052528e-36
+    },
+    "G3_MARGIN_OVER_SHIPPED": {
+      "blocking": true,
+      "candidate_mean_recall": 1.0,
+      "margin": 0.23555555555555563,
+      "passed": true,
+      "shipped_mean_recall": 0.7644444444444444
+    },
+    "G4_NO_HARM": {
+      "blocking": true,
+      "candidate_mean_recall_well_posed": 1.0,
+      "loss": 0.0,
+      "passed": true,
+      "reference_mean_recall_well_posed": 1.0,
+      "vacuous": false
+    },
+    "G5_BRIDGE_SPECIFICITY": {
+      "blocking": false,
+      "candidate_mean_recall_no_bridge": 0.485,
+      "gain": 0.0,
+      "no_expansion_mean_recall_no_bridge": 0.485,
+      "passed": true
+    },
+    "G6_UNDISTINGUISHED_CEILING": {
+      "baseline_mean_recall_undistinguished": 0.03208333333333334,
+      "blocking": false,
+      "candidate_mean_recall_undistinguished": 0.09833333333333334,
+      "gain": 0.06625,
+      "passed": true
+    }
+  },
+  "not_licensed": [
+    "any statement about mean recall on the official AutoResearchBench Wide benchmark",
+    "reopening or revising P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18",
+    "promotion of L1 P2_EXTERNAL_MECHANISM_SUPPORTED or L2 P2_EXTERNAL_DISCOVERY_SUPPORTED",
+    "any claim that D5 was executed against arXiv, OpenAlex or OpenAIRE",
+    "any change to the authorized scientific terminal P2_NARROWED"
+  ],
+  "paired_statistics": {
+    "bootstrap": {
+      "ci_high": 0.49916666666666715,
+      "ci_low": 0.46444444444444494,
+      "confidence": 0.95,
+      "mean": 0.48194444444444506,
+      "resamples": 10000,
+      "seed": 20260822
+    },
+    "sign_test": {
+      "losses": 0,
+      "p_value": 1.504632769052528e-36,
+      "trials": 120,
+      "wins": 120
+    }
+  },
+  "parameters_sha256": "ad7e4c6afd66943693ae732b2dde9131aa5bddd13b5632dc97c38223149f769a",
+  "record": "P2_OPEN_WORLD_ACQUISITION_RESULT",
+  "schema_version": "orion.p2.open-world-acquisition-result.v1",
+  "variant_gap_summary": {
+    "candidate_mean_recall": 0.4441666666666668,
+    "expansion_contribution": 0.0,
+    "no_expansion_mean_recall": 0.4441666666666668,
+    "note": "Descriptive. variant_gap enters no blocking gate; its paired control is no_bridge under G5."
+  },
+  "verdict": "REPRODUCTION_FAILED__NO_CANDIDATE_CLAIM",
+  "world_content_hash": "4e5bdea6f6a7f4031f6f395f43f42484ea2a789e9e89b09c2c2eec963a9b7c2a",
+  "world_precondition": {
+    "checks": {
+      "P1_scaffold_is_high_document_frequency": {
+        "median_observed": 0.2749869451697128,
+        "min_observed": 0.2557702349869452,
+        "passed": true,
+        "threshold": 0.2
+      },
+      "P2_content_is_low_document_frequency": {
+        "max_observed": 0.03404699738903394,
+        "median_observed": 0.019947780678851175,
+        "passed": true,
+        "threshold": 0.06
+      },
+      "P3_every_task_has_multiple_gold": {
+        "min_gold_per_task": 3,
+        "passed": true,
+        "threshold": 2
+      },
+      "P4_distinguishable_gold_outcovers_its_neighbourhood": {
+        "passed": true,
+        "violations": 0
+      },
+      "P5_neighbourhood_can_fill_the_result_cap": {
+        "min_neighbourhood": 24,
+        "passed": true,
+        "threshold": 20
+      },
+      "P6_distinguishable_gold_carries_no_question_apparatus": {
+        "passed": true,
+        "violations": 0
+      }
+    },
+    "documents": 9575,
+    "passed": true,
+    "tasks": 280
+  },
+  "world_seed": 20260822
+}

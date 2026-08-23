@@ -1,0 +1,216 @@
+{
+  "authority_status_all": "NOT_AUTHORITY",
+  "co_primary_promotion_condition": {
+    "reason": "Frontier-agent execution and independent human adjudication have not run; pilot systems are deterministic procedures, not adjudicators.",
+    "status": "PENDING_EXTERNAL"
+  },
+  "metrics": {
+    "SYSTEMA": {
+      "abstention_rate": 0.0299,
+      "cannot_check_precision": 1.0,
+      "cannot_check_recall": 0.6667,
+      "cohens_kappa": 0.0398,
+      "confusion_gold_rows_pred_cols": {
+        "CANNOT_CHECK": {
+          "CANNOT_CHECK": 2,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 1,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "INTERACTION_ONLY": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 7,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "NEGATIVE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 16,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "NON_IDENTIFIABLE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 3,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "NULL_LIVE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 9,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "PROMOTE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 11,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "REOPEN": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 6,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "SUBSUMED": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 12,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        }
+      },
+      "false_novelty_count_over_nonpromote_gold": 54,
+      "false_novelty_rate": 0.8308,
+      "negative_loss_rate": 1.0,
+      "promote_calls": 65,
+      "raw_agreement": 0.194,
+      "reopen_recall": 0.0,
+      "subsumption_detection_rate": 0.0,
+      "useful_discovery_recall": 1.0
+    },
+    "SYSTEMB": {
+      "abstention_rate": 0.1642,
+      "cannot_check_precision": 0.2727,
+      "cannot_check_recall": 1.0,
+      "cohens_kappa": 0.8061,
+      "confusion_gold_rows_pred_cols": {
+        "CANNOT_CHECK": {
+          "CANNOT_CHECK": 3,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 0,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "INTERACTION_ONLY": {
+          "CANNOT_CHECK": 5,
+          "INTERACTION_ONLY": 1,
+          "NEGATIVE": 1,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 0,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "NEGATIVE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 16,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 0,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "NON_IDENTIFIABLE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 3,
+          "NULL_LIVE": 0,
+          "PROMOTE": 0,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "NULL_LIVE": {
+          "CANNOT_CHECK": 1,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 7,
+          "PROMOTE": 1,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "PROMOTE": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 11,
+          "REOPEN": 0,
+          "SUBSUMED": 0
+        },
+        "REOPEN": {
+          "CANNOT_CHECK": 2,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 1,
+          "REOPEN": 3,
+          "SUBSUMED": 0
+        },
+        "SUBSUMED": {
+          "CANNOT_CHECK": 0,
+          "INTERACTION_ONLY": 0,
+          "NEGATIVE": 0,
+          "NON_IDENTIFIABLE": 0,
+          "NULL_LIVE": 0,
+          "PROMOTE": 0,
+          "REOPEN": 0,
+          "SUBSUMED": 12
+        }
+      },
+      "false_novelty_count_over_nonpromote_gold": 2,
+      "false_novelty_rate": 0.1538,
+      "negative_loss_rate": 0.0,
+      "promote_calls": 13,
+      "raw_agreement": 0.8358,
+      "reopen_recall": 0.5,
+      "subsumption_detection_rate": 1.0,
+      "useful_discovery_recall": 1.0
+    }
+  },
+  "schema_version": "P14_EXTERNAL_PILOT_ANALYTICS_V1",
+  "suite": {
+    "domains": 3,
+    "families": 8,
+    "packets": 67,
+    "round_pairs": 3
+  },
+  "systems": {
+    "SYSTEMA": {
+      "role": "governance-blind reference (vulnerable baseline)"
+    },
+    "SYSTEMB": {
+      "role": "contract-level governance check"
+    }
+  }
+}

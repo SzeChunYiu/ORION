@@ -1,0 +1,299 @@
+{
+  "all_discharged": true,
+  "chain_ladder": {
+    "beyond_the_bound": "lengths 7 to 12 were expanded and discharged three times each at a sixty-second timeout: 7 and 8 proved every time but took up to 13.7s and 26.0s, and 9, 10, 11 and 12 each returned unknown on at least one run. Nothing about the theorem changes at length nine -- the induction schema is what carries every length -- so the variance is the solver's and the bound is set where the ladder is a reliable corroboration rather than an intermittent one.",
+    "bound": 6,
+    "results": [
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "DONOR_CHAIN_CONFINEMENT_1",
+        "outcome": "PROVED",
+        "statement": "a chain of 1 donor hops confines the action's scope to the root donor's scope, its domain to the root's reach and its epoch to the root's epoch",
+        "why_it_matters": "P8's chain claim is this statement at length two, over thirteen named families; the ladder shows the length is not what carries it either"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "DONOR_CHAIN_CONFINEMENT_2",
+        "outcome": "PROVED",
+        "statement": "a chain of 2 donor hops confines the action's scope to the root donor's scope, its domain to the root's reach and its epoch to the root's epoch",
+        "why_it_matters": "P8's chain claim is this statement at length two, over thirteen named families; the ladder shows the length is not what carries it either"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "DONOR_CHAIN_CONFINEMENT_3",
+        "outcome": "PROVED",
+        "statement": "a chain of 3 donor hops confines the action's scope to the root donor's scope, its domain to the root's reach and its epoch to the root's epoch",
+        "why_it_matters": "P8's chain claim is this statement at length two, over thirteen named families; the ladder shows the length is not what carries it either"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "DONOR_CHAIN_CONFINEMENT_4",
+        "outcome": "PROVED",
+        "statement": "a chain of 4 donor hops confines the action's scope to the root donor's scope, its domain to the root's reach and its epoch to the root's epoch",
+        "why_it_matters": "P8's chain claim is this statement at length two, over thirteen named families; the ladder shows the length is not what carries it either"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "DONOR_CHAIN_CONFINEMENT_5",
+        "outcome": "PROVED",
+        "statement": "a chain of 5 donor hops confines the action's scope to the root donor's scope, its domain to the root's reach and its epoch to the root's epoch",
+        "why_it_matters": "P8's chain claim is this statement at length two, over thirteen named families; the ladder shows the length is not what carries it either"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "DONOR_CHAIN_CONFINEMENT_6",
+        "outcome": "PROVED",
+        "statement": "a chain of 6 donor hops confines the action's scope to the root donor's scope, its domain to the root's reach and its epoch to the root's epoch",
+        "why_it_matters": "P8's chain claim is this statement at length two, over thirteen named families; the ladder shows the length is not what carries it either"
+      }
+    ]
+  },
+  "composition_soundness": {
+    "composition_is_sound": true,
+    "computed_by": "the committed check_p8_x4_authority_lifting.scientific_terminal, on states this interpretation composes",
+    "discharging_composed_pairs": 81,
+    "discharging_representatives": 9,
+    "every_widening_hop_blocks": true,
+    "exercised_both_verdicts": true,
+    "representative_pairs_checked": 36864,
+    "representatives_checked": 192,
+    "unsound_examples": [],
+    "unsound_pairs": 0,
+    "what_the_identity_does_not_test": "the rule. compose is coordinate-wise, so a committed rule whose DISCHARGE stays a conjunction of the composed coordinates leaves this identity exact however else it changes; a rule that always refuses or always discharges satisfies it vacuously, which is what exercised_both_verdicts is for. What the identity tests is the composition operator, and every wrong operator tried moves it.",
+    "widening_examples": [],
+    "widening_hop_failures": 0
+  },
+  "date": "2026-08-22",
+  "frame_conditions": {
+    "baseline_discharged": [
+      "AN_UNBRIDGED_TYPE_GAP_IS_NOT_A_REACH",
+      "A_CHAIN_HOP_CONFINES_THE_ACTION_TO_THE_ROOT",
+      "A_DONOR_LINK_IS_A_CALCULUS_DELEGATION",
+      "A_WIDENING_HOP_IS_NEVER_AUTHORISED",
+      "THE_DONOR_FAMILY_ENTERS_ONLY_THROUGH_ITS_TYPE",
+      "THE_SHIPPED_CHAIN_STEP_IS_THE_REFLEXIVE_ONE",
+      "THE_THREE_STATE_BLOCKER_LAW"
+    ],
+    "every_condition_carries_a_theorem": true,
+    "how_measured": "a condition is load-bearing when dropping it yields a countermodel to a theorem it carried, found under finite sort bounds that are sound for refutation and never used for proof. An UNKNOWN is recorded and counts as nothing.",
+    "inert_conditions": [],
+    "theorems_left_undecided_by_dropping": {
+      "narrowing_is_scope_containment": [
+        "A_CHAIN_HOP_CONFINES_THE_ACTION_TO_THE_ROOT"
+      ]
+    },
+    "theorems_refuted_by_dropping": {
+      "a_protected_coercion_is_a_registered_conversion": [
+        "A_CHAIN_HOP_CONFINES_THE_ACTION_TO_THE_ROOT",
+        "A_DONOR_LINK_IS_A_CALCULUS_DELEGATION"
+      ],
+      "a_widening_hop_does_not_narrow": [
+        "A_WIDENING_HOP_IS_NEVER_AUTHORISED",
+        "THE_DONOR_FAMILY_ENTERS_ONLY_THROUGH_ITS_TYPE"
+      ],
+      "distinct_domains_are_type_disagreement": [
+        "AN_UNBRIDGED_TYPE_GAP_IS_NOT_A_REACH",
+        "THE_DONOR_FAMILY_ENTERS_ONLY_THROUGH_ITS_TYPE"
+      ],
+      "every_conversion_is_a_registered_coercion": [
+        "AN_UNBRIDGED_TYPE_GAP_IS_NOT_A_REACH"
+      ],
+      "every_donor_family_is_a_trusted_issuer": [
+        "A_DONOR_LINK_IS_A_CALCULUS_DELEGATION"
+      ],
+      "narrowing_is_scope_containment": [
+        "A_DONOR_LINK_IS_A_CALCULUS_DELEGATION",
+        "THE_DONOR_FAMILY_ENTERS_ONLY_THROUGH_ITS_TYPE"
+      ],
+      "the_blocker_takes_one_of_three_states": [
+        "THE_THREE_STATE_BLOCKER_LAW"
+      ],
+      "type_agreement_is_domain_identity": [
+        "A_CHAIN_HOP_CONFINES_THE_ACTION_TO_THE_ROOT",
+        "A_DONOR_LINK_IS_A_CALCULUS_DELEGATION",
+        "THE_DONOR_FAMILY_ENTERS_ONLY_THROUGH_ITS_TYPE",
+        "THE_SHIPPED_CHAIN_STEP_IS_THE_REFLEXIVE_ONE"
+      ]
+    },
+    "why_the_refuted_sets_vary_between_runs": "dropping narrowing_is_scope_containment leaves the solver searching for a model of two closely related claims, and over repeated runs it refutes one and gives up on the other, in either order. Which one is not stable; that the condition is load-bearing is, and so is the third theorem it refutes every time. Recorded because a varying set read as a fixed one is how an intermittent UNKNOWN gets promoted to a finding."
+  },
+  "interpretation_sensitivity": {
+    "baseline": {
+      "chain_successes": 169,
+      "chain_widening_countermodels": 169,
+      "unsound_pairs": 0
+    },
+    "every_wrong_composition_moves_the_soundness_count": true,
+    "the_success_count_does_not_discriminate": "8 of 8 wrong composition operators reproduce 169 successes exactly. The shipped chain state is clean at both hops, so every operator that is the identity on a clean pair -- which is all of them -- returns it. 169 tests nothing about how a chain composes.",
+    "the_widening_count_barely_discriminates": "2 of 8 wrong operators move the widening count, and both are operators that drop the downstream hop's narrowing. It is the better of the two published numbers and it still separates only two readings.",
+    "variants": {
+      "composition_ignores_the_downstream_hop": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 0,
+        "type_distinct_successes": 13,
+        "unsound_pairs": 1647
+      },
+      "composition_ignores_the_root_hop": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 169,
+        "type_distinct_successes": 169,
+        "unsound_pairs": 1647
+      },
+      "narrowing_composes_by_disjunction": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 0,
+        "type_distinct_successes": 13,
+        "unsound_pairs": 162
+      },
+      "native_validity_composes_by_disjunction": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 169,
+        "type_distinct_successes": 13,
+        "unsound_pairs": 162
+      },
+      "support_composes_by_disjunction": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 169,
+        "type_distinct_successes": 13,
+        "unsound_pairs": 54
+      },
+      "the_blocker_composes_by_the_weakest_link": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 169,
+        "type_distinct_successes": 13,
+        "unsound_pairs": 324
+      },
+      "the_domain_step_composes_by_disjunction": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 169,
+        "type_distinct_successes": 169,
+        "unsound_pairs": 54
+      },
+      "the_downstream_type_gap_is_ignored": {
+        "chain_successes": 169,
+        "chain_widening_countermodels": 169,
+        "type_distinct_successes": 13,
+        "unsound_pairs": 18
+      }
+    },
+    "variants_that_move_the_soundness_count": [
+      "composition_ignores_the_downstream_hop",
+      "composition_ignores_the_root_hop",
+      "narrowing_composes_by_disjunction",
+      "native_validity_composes_by_disjunction",
+      "support_composes_by_disjunction",
+      "the_blocker_composes_by_the_weakest_link",
+      "the_domain_step_composes_by_disjunction",
+      "the_downstream_type_gap_is_ignored"
+    ],
+    "variants_that_move_the_success_count": [],
+    "variants_that_move_the_widening_count": [
+      "composition_ignores_the_downstream_hop",
+      "narrowing_composes_by_disjunction"
+    ]
+  },
+  "not_licensed": [
+    "any claim that 169 measures heterogeneity; the shipped chain state agrees on all five type coordinates, which by THE_SHIPPED_CHAIN_STEP_IS_THE_REFLEXIVE_ONE puts both donors in one domain and consults no conversion",
+    "any claim that 169 is 169 results; the shipped loop ignores both donor variables and the 169 ordered pairs compose to one distinct state",
+    "any claim that reproducing 169 validates this interpretation; 6 of 8 wrong composition operators reproduce both published counts, and it is the exhaustive soundness identity that separates them",
+    "any claim that the soundness identity tests the committed rule; it tests the composition operator. A rule that always refuses satisfies it vacuously, which is why the corpus coverage is measured beside it, and a rule whose DISCHARGE stays a conjunction of the composed coordinates leaves it exact however else it changes",
+    "any claim about chains longer than the ladder bound beyond what the induction schema gives; the schema is the single hand step, inherited from the calculus",
+    "independent review: the interpretation, the theorems and the tests were written in the same lane as the model, which is P8-U-T5",
+    "any empirical claim whatsoever"
+  ],
+  "published_counts": {
+    "computed_by": "the committed check_p8_x4_authority_lifting.scientific_terminal, on the state each donor pair composes to under this interpretation",
+    "counts_reproduced": true,
+    "donor_families": 13,
+    "homogeneous_reading": {
+      "chain_successes": 169,
+      "chain_widening_countermodels": 169,
+      "distinct_composed_states": 1,
+      "ordered_pairs": 169
+    },
+    "published_chain_successes": 169,
+    "published_chain_widening_countermodels": 169,
+    "shipped_chain_loop_ignores_its_donor_variables": true,
+    "type_distinct_reading": {
+      "chain_successes": 13,
+      "chain_widening_countermodels": 169,
+      "distinct_composed_states": 2,
+      "ordered_pairs": 169
+    },
+    "type_distinct_with_every_bridge_registered": {
+      "chain_successes": 169,
+      "chain_widening_countermodels": 169,
+      "distinct_composed_states": 2,
+      "ordered_pairs": 169
+    },
+    "what_heterogeneity_would_cost": "Read the thirteen families as type-distinct -- a cross-family hop crosses a scientific type boundary unless a protected bridge is registered -- and the same committed rule returns 13 successes, not 169; registering every cross-family bridge returns 169. The published 169 therefore records the reading in which no two of the thirteen donor families differ in scientific type, which is the reading in which the chain is not heterogeneous.",
+    "what_the_169_is": "169 is one composition counted 169 times. The shipped chain loop is `for _left in DONORS: for _right in DONORS:` with a body that mentions neither variable, and under this interpretation the thirteen families present one profile, so all 169 ordered pairs compose to 1 distinct state(s). The donor axis is a multiplier here exactly as it is in the 39,936-state count, and here it is squared."
+  },
+  "record": "P8_CHAIN_COMPOSITION_INTERPRETATION",
+  "schema_version": "orion.p8.chain-composition-interpretation.v1",
+  "solver": "5.1.0",
+  "state_space_reduction": {
+    "classes_holding_more_than_one_terminal": [],
+    "conjunction_distribution_failures": 0,
+    "flag_pairs_checked": 1024,
+    "reduction_is_exact": true,
+    "representative_pairs_checked": 36864,
+    "state_pairs_represented": 9437184,
+    "states_enumerated": 3072,
+    "verdict_classes": 192
+  },
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "A_DONOR_LINK_IS_A_CALCULUS_DELEGATION",
+      "outcome": "PROVED",
+      "statement": "the five conditions P8's chain interface puts on one hop -- the donor-native verdict passes, authority narrows, the scientific type matches or a protected coercion is registered, the blocker is refuted and a support family survives -- entail every conjunct of the calculus's delegation hypothesis: valid, trusted, scope contained, domain reachable, epoch carried",
+      "why_it_matters": "This is the bridge the whole derivation crosses. Without it the chain theorem is a theorem about the calculus's delegation relation and P8's chain claim is a statement about seven booleans, and the two never meet."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "A_CHAIN_HOP_CONFINES_THE_ACTION_TO_THE_ROOT",
+      "outcome": "PROVED",
+      "statement": "if donor p's judgment delegates to donor q's and q's authorises an action, then the action's scope is inside p's scope, its domain is reachable from p's, and it carries p's epoch. Proved over an uninterpreted donor sort, so it holds for any number of donor families -- thirteen is an instance",
+      "why_it_matters": "The general form of P8's T7, 'every ordered pair among the thirteen donor families composes scientifically'. Quantified over the sort, the pair count carries no information: 169 is 13 squared and the theorem never mentions 13."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "A_WIDENING_HOP_IS_NEVER_AUTHORISED",
+      "outcome": "PROVED",
+      "statement": "if a hop does not narrow -- the downstream scope is not contained in the upstream one -- the calculus's rule refuses it, whatever the donor-native verdicts, the blocker, the support families or the registered coercions say",
+      "why_it_matters": "The general form of P8's 169 widening countermodels, and of T7's second sentence: the widening pair fails 'while both local donor verdicts remain intact'. It holds at every hop of a chain of any length because p and q here are arbitrary donors, which is why the widening result needs no ladder."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "AN_UNBRIDGED_TYPE_GAP_IS_NOT_A_REACH",
+      "outcome": "PROVED",
+      "statement": "with no protected coercion registered anywhere, one donor's domain is reachable from another's only when their scientific types agree -- so an unregistered similarity, however strong, moves no authority across a type gap",
+      "why_it_matters": "P8's T4. It is the theorem that needs the well-founded rank clause in the calculus's closure axioms: without the rank, spurious reachability facts can justify each other in a cycle and an unbridged gap becomes reachable."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "THE_SHIPPED_CHAIN_STEP_IS_THE_REFLEXIVE_ONE",
+      "outcome": "PROVED",
+      "statement": "when the five type coordinates agree the two donors occupy one domain, so the hop is a reach by reflexivity and holds even with no conversion registered anywhere in the calculus",
+      "why_it_matters": "This is the negative, stated as a theorem rather than as a caveat. P8's chain claim passes all five flags true and no coercion, so by this theorem it exercises only the identity step of Reach. Whatever the 169 measures, it is not cross-domain composition."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "THE_DONOR_FAMILY_ENTERS_ONLY_THROUGH_ITS_TYPE",
+      "outcome": "PROVED",
+      "statement": "two donors agreeing on scientific type, scope, epoch, issuer, native validity, blocker, support and registered coercions compose identically with any third: the family label is not a coordinate of the calculus",
+      "why_it_matters": "The theorem behind the arithmetic. If donor identity cannot change a composition, then thirteen families presenting one profile give one composition counted 169 times, and reporting 169 as breadth reports a replication factor as a dimension."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "THE_THREE_STATE_BLOCKER_LAW",
+      "outcome": "PROVED",
+      "statement": "a refuted blocker with a surviving support family satisfies the hard obligations and activates no defeater, and an established blocker activates one -- the obligation and the defeater are the two halves of X4's blocker",
+      "why_it_matters": "P8's T5. The 'no defeater' half is the one that needs the blocker to be in exactly one of its three states; without that condition a judgment could be refuted and established at once, and a chain could compose through a defeated link."
+    }
+  ],
+  "undischarged": [],
+  "what_the_169_costs": "The derivation lands, and what it lands on is small. The shipped chain loop ignores both of its donor variables, and under this interpretation all 169 ordered pairs compose to 1 distinct state: 169 is one composition counted 13 squared times. Because the shipped state passes all five type flags, the hop is a reach by reflexivity and no conversion is consulted, so nothing heterogeneous is exercised -- read the thirteen families as type-distinct with no bridge registered and the same committed rule returns 13. And 8 of 8 wrong composition operators reproduce 169 exactly, so the published count does not test the interpretation. What does is the exhaustive soundness identity, which every wrong operator breaks.",
+  "what_this_establishes": "P8's heterogeneous chain composition model is an interpretation of the authority calculus already proved general. A donor family is an element of an uninterpreted sort, its domain is its scientific type profile, its protected coercion is the calculus's registered conversion and its narrowing is scope containment; under those frame conditions seven theorems are discharged by Z3 over uninterpreted domain, object, issuer and donor sorts, and donor-level chain confinement is expanded and discharged at every length up to 6. P8's chain hop is the calculus's delegation, so P8's 169 chain claims are instances of a theorem that never mentions thirteen or two. The counts are then recomputed by composing donor judgments through the interpretation and handing each composed state to the committed scientific_terminal, and the composition is shown exact against the chain theorem on every pair of X4 states: compose(L,R) discharges when and only when L and R both do. Each of the eight frame conditions is shown load-bearing by a countermodel to a theorem it carries."
+}

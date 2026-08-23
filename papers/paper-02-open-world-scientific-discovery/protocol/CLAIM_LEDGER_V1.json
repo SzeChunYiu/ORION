@@ -1,80 +1,34 @@
 {
-  "schema_version": "orion.p2.claim-ledger.v1",
-  "purpose": "Machine-checkable binding between the claims the manuscript asserts and the archived evidence that supports them. Verified by scripts/check_claim_ledger.py. Sentences are curated, never auto-regenerated: when a sentence drifts the checker fails so a human re-verifies the claim instead of the ledger silently absorbing the change.",
-  "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
-  "matching_rule": "A stored sentence is compared to its manuscript region with every number replaced by a placeholder; each number slot is then bound in order of appearance to an artifact key and compared against the archived value. Slot count must equal binding count.",
-  "regions": {
-    "abstract": {
-      "file": "main.tex",
-      "mode": "ABSTRACT_ENV",
-      "hard_fail_unledgered": true
-    },
-    "conclusion": {
-      "file": "main.tex",
-      "mode": "SECTION",
-      "section": "Conclusion",
-      "hard_fail_unledgered": true
-    },
-    "limitations": {
-      "file": "main.tex",
-      "mode": "SECTION",
-      "section": "Limitations and integrity",
-      "hard_fail_unledgered": true
-    },
-    "results": {
-      "file": "sections/results.tex",
-      "mode": "PROSE_FILE",
-      "hard_fail_unledgered": true
-    }
-  },
   "artifacts": {
-    "results_summary": "evidence/offline_results/RESULTS_SUMMARY_V1.json",
-    "offline_mechanisms": "evidence/offline_results/OFFLINE_MECHANISMS_V1.json",
-    "route_stop_oracle": "evidence/offline_results/ROUTE_STOP_ORACLE_V1.json",
-    "offline_gold_manifest": "evidence/offline_gold/MANIFEST.json",
-    "metasyn_probe": "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
-    "metasyn_fn_ledger": "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json",
-    "suite_facts": "manuscript/generated/suite_facts.json",
-    "statistical_plan": "protocol/STATISTICAL_PLAN_V1.json",
-    "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
+    "comparison_resolution_audit": "evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json",
     "deep_official_archive": "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
+    "deep_stage_attribution": "evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
+    "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
+    "lexical_echo_successor": "evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
+    "metasyn_fn_ledger": "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json",
+    "metasyn_probe": "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
+    "offline_gold_manifest": "evidence/offline_gold/MANIFEST.json",
+    "offline_mechanisms": "evidence/offline_results/OFFLINE_MECHANISMS_V1.json",
     "openaire_identity_probe": "evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json",
-    "openaire_matched_result": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
-    "openaire_matched_receipt": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
     "openaire_matched_freeze": "protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json",
+    "openaire_matched_receipt": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
+    "openaire_matched_receipt_v2": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V2.json",
+    "openaire_matched_receipt_v3": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V3.json",
+    "openaire_matched_result": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
+    "openaire_matched_result_v3": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json",
+    "p2x_claim_values": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json",
     "p2x_result": "evidence/p2x/P2_X_PROTECTED_RESULT_V1.json",
     "p2x_verification": "evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json",
-    "p2x_claim_values": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json"
+    "results_summary": "evidence/offline_results/RESULTS_SUMMARY_V1.json",
+    "route_stop_oracle": "evidence/offline_results/ROUTE_STOP_ORACLE_V1.json",
+    "statistical_plan": "protocol/STATISTICAL_PLAN_V1.json",
+    "suite_facts": "manuscript/generated/suite_facts.json"
   },
-  "macro_sources": [
-    "generated/suite_facts.tex"
-  ],
-  "task_count_agreement": [
-    {
-      "artifact": "offline_gold_manifest",
-      "key": "task_count"
-    },
-    {
-      "artifact": "results_summary",
-      "key": "frozen_run.n_tasks"
-    },
-    {
-      "artifact": "offline_mechanisms",
-      "key": "n_tasks"
-    },
-    {
-      "artifact": "route_stop_oracle",
-      "key": "n_tasks"
-    }
-  ],
   "claims": [
     {
       "claim_id": "P2-C01",
-      "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "In a frozen 390-task complete-gold controlled index, full ORION reaches mean recall 0.979487 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Headline abstract comparison on the frozen controlled index.",
       "numeric_bindings": [
         {
           "artifact": "offline_gold_manifest",
@@ -89,6 +43,9 @@
           "key": "systems.protocol_driven_systematic_review.mean_complete_gold_recall"
         }
       ],
+      "region": "abstract",
+      "sentence": "In a frozen 390-task complete-gold controlled index, the governed system reaches mean recall 0.979487 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -99,16 +56,16 @@
           "key": "systems.orion_full.premature_task_closure_rate"
         }
       ],
-      "note": "Headline abstract comparison on the frozen controlled index."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C02",
-      "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen statistical plan awards this campaign its committed TIER_B_committed precision tier, but the achieved half-width still exceeds the frozen superiority margin, so the primary offline result carries the plan's mandatory underpowered label and these numbers support mechanism behavior rather than an inferential superiority claim.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Authority self-limitation; the artifact records DESCRIPTIVE_ONLY.",
       "numeric_bindings": [],
+      "region": "abstract",
+      "sentence": "The frozen statistical plan awards this campaign its committed precision tier, but the achieved half-width still exceeds the frozen superiority margin, so the primary offline result carries the plan's mandatory underpowered label and these numbers support mechanism behavior rather than an inferential superiority claim.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -119,16 +76,16 @@
           "key": "authority_reason"
         }
       ],
-      "note": "Authority self-limitation; the artifact records DESCRIPTIVE_ONLY."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C03",
-      "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference is therefore CANNOT_CHECK, not a valid null or negative result.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CANNOT_CHECK",
+      "note": "Abstract-level status of the archived transport-invalid Wide campaign; its zero effect is not scientific evidence.",
       "numeric_bindings": [],
+      "region": "abstract",
+      "sentence": "A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference therefore stays undetermined, not a valid null or negative result.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_result",
@@ -139,32 +96,32 @@
           "key": "validity.logical_provider_ok"
         }
       ],
-      "note": "Abstract-level status of the archived transport-invalid Wide campaign; its zero effect is not scientific evidence."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-C04",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen controlled-index companion supports a narrow engineering result: under a complete denominator and matched host-owned budgets, the route/read/stopping governance mechanisms behave in the intended fail-closed directions, and the strongest confirmatory controlled comparator still leaves substantial reachable gold.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Conclusion mechanism statement.",
       "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "The frozen controlled-index companion supports a narrow engineering result: under a complete denominator and matched host-owned budgets, the route/read/stopping governance mechanisms behave in the intended fail-closed directions, and the strongest confirmatory controlled comparator still leaves substantial reachable gold.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.route_task_stop_separation.orion_premature_closure_rate"
         }
       ],
-      "note": "Conclusion mechanism statement."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C05",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "The matched external superiority claim remains unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference remains CANNOT_CHECK rather than a valid null.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CANNOT_CHECK",
+      "note": "Conclusion preserves the external superiority claim as unpromoted after the invalid Wide campaign.",
       "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "The matched external superiority claim is unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference stays undetermined rather than becoming a valid null.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_result",
@@ -175,31 +132,28 @@
           "key": "validity.logical_provider_ok"
         }
       ],
-      "note": "Conclusion preserves the external superiority claim as unpromoted after the invalid Wide campaign."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-C06",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The observed +0.31282 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Non-transferability of the descriptive difference.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "headline.orion_minus_strongest_baseline_recall"
         }
       ],
+      "region": "limitations",
+      "sentence": "The observed +0.31282 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Non-transferability of the descriptive difference."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C07",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The suite carries 390 tasks, which reaches precision tier TIER_B_committed at an achieved half-width of 0.0496 for a standalone rate.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Suite size and achieved precision tier. Bound to the world manifest and the generated suite-facts sidecar so a scale-up cannot be forgotten here.",
       "numeric_bindings": [
         {
           "artifact": "offline_gold_manifest",
@@ -210,27 +164,30 @@
           "key": "OfflineAchievedHalfWidth"
         }
       ],
+      "region": "limitations",
+      "sentence": "The suite carries 390 tasks, which reaches the plan's committed precision tier at an achieved half-width of 0.0496 for a standalone rate.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "suite_facts",
           "key": "OfflineAchievedTier"
         }
       ],
-      "note": "Suite size and achieved precision tier. Bound to the world manifest and the generated suite-facts sidecar so a scale-up cannot be forgotten here."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C08",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign authority TIER_B_committed; because the achieved half-width still exceeds the frozen superiority margin of 0.03, the primary offline result carries the plan's underpowered label whatever the task count becomes.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "The frozen margin versus the achieved half-width; the underpowered label follows from the plan, not from the observed outcome.",
       "numeric_bindings": [
         {
           "artifact": "statistical_plan",
           "key": "margins.superiority_margin_delta_sup"
         }
       ],
+      "region": "limitations",
+      "sentence": "The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign that committed authority; because the achieved half-width still exceeds the frozen superiority margin of 0.03, the primary offline result carries the plan's underpowered label whatever the task count becomes.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -241,15 +198,12 @@
           "key": "OfflineUnderpowered"
         }
       ],
-      "note": "The frozen margin versus the achieved half-width; the underpowered label follows from the plan, not from the observed outcome."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C09",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "All 16,380 system/task/repeat executions reproduce exactly, and the 3 deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Repeats test harness stability only.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -260,33 +214,36 @@
           "key": "frozen_run.n_repeats"
         }
       ],
+      "region": "limitations",
+      "sentence": "All 16,380 system/task/repeat executions reproduce exactly, and the 3 deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Repeats test harness stability only."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C10",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Several external authorities remain partially unavailable rather than negative.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Unavailable authorities are retained as CANNOT_CHECK, never converted into negative evidence.",
       "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "Several external authorities remain partially unavailable rather than negative.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "external_access_audit",
           "key": "schema_version"
         }
       ],
-      "note": "Unavailable authorities are retained as CANNOT_CHECK, never converted into negative evidence."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-C11",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Removing the question coordinate from the read ledger changes legitimate reread behavior but does not change aggregate recall in this suite; removing the unavailable-route open state changes censoring/closure semantics while leaving aggregate recall numerically unchanged.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Null-on-recall mechanism findings retained as nulls.",
       "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "Removing the question coordinate from the read ledger changes legitimate reread behavior but does not change aggregate recall in this suite; removing the unavailable-route open state changes censoring/closure semantics while leaving aggregate recall numerically unchanged.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -297,19 +254,16 @@
           "key": "mechanism_checks.unavailable_route_open_state.orion_cannot_check_rate"
         }
       ],
-      "note": "Null-on-recall mechanism findings retained as nulls."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-C12",
-      "region": "abstract",
-      "manuscript_status": "ASSERTED",
-      "sentence": "A separate credential-free MetaSyn probe, evaluated with the pinned official ID-only evaluator on all 86 released test reviews, reaches retrieval recall 0.7485 and inclusion recall 0.5651; it is a bounded external retrieval/screening probe rather than evidence of full multi-provider ORION superiority.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Abstract-level external probe result with its scope limitation stated in the same sentence; not an ORION superiority claim.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
@@ -324,6 +278,9 @@
           "key": "macro_metrics.inclusion_recall"
         }
       ],
+      "region": "abstract",
+      "sentence": "A separate credential-free MetaSyn probe, evaluated with the pinned official ID-only evaluator on all 86 released test reviews, reaches retrieval recall 0.7485 and inclusion recall 0.5651; it is a bounded external retrieval/screening probe rather than evidence of multi-provider superiority for the full system.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [
         {
           "artifact": "metasyn_probe",
@@ -334,15 +291,12 @@
           "key": "coverage.succeeded_reviews"
         }
       ],
-      "note": "Abstract-level external probe result with its scope limitation stated in the same sentence; not an ORION superiority claim."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-C13",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Its exact evaluator-side ledger contains 1,677 reference links, of which 598 are missed at retrieval and another 343 are lost after retrieval, leaving 941 final false negatives.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Integer error decomposition of the external probe, derived from official deterministic selections after candidate freeze; characterizes the probe only.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_fn_ledger",
@@ -361,21 +315,21 @@
           "key": "aggregate.final_false_negative_count"
         }
       ],
+      "region": "limitations",
+      "sentence": "Its exact evaluator-side ledger contains 1,677 reference links, of which 598 are missed at retrieval and another 343 are lost after retrieval, leaving 941 final false negatives.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "metasyn_fn_ledger",
           "key": "authority"
         }
       ],
-      "note": "Integer error decomposition of the external probe, derived from official deterministic selections after candidate freeze; characterizes the probe only."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R01",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "First, the frozen offline complete-gold companion contains 390 tasks, 14 systems (full ORION, six confirmatory baselines, one explicitly exploratory comparator, and six ablations), and three predeclared repeat seeds, for 16,380 normalized run records.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Campaign shape.",
       "numeric_bindings": [
         {
           "artifact": "offline_gold_manifest",
@@ -390,37 +344,37 @@
           "key": "frozen_run.n_result_records"
         }
       ],
+      "region": "results",
+      "sentence": "First, the frozen offline complete-gold companion contains 390 tasks, 14 systems (the governed system, six confirmatory baselines, one explicitly exploratory comparator, and six ablations), and three predeclared repeat seeds, for 16,380 normalized run records.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "frozen_run.n_repeats"
         }
       ],
-      "note": "Campaign shape."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R02",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The systems are deterministic; the repeats therefore test harness stability and do not increase the statistical unit beyond 390 tasks.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Determinism does not raise the statistical unit.",
       "numeric_bindings": [
         {
           "artifact": "offline_gold_manifest",
           "key": "task_count"
         }
       ],
+      "region": "results",
+      "sentence": "The systems are deterministic; the repeats therefore test harness stability and do not increase the statistical unit beyond 390 tasks.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Determinism does not raise the statistical unit."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R03",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen statistical plan's committed tier TIER_B_committed requires 385 tasks, which the assembled 390 tasks reach at an achieved half-width of 0.0496 for a standalone rate.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Lowest inferential tier from the frozen plan.",
       "numeric_bindings": [
         {
           "artifact": "statistical_plan",
@@ -435,22 +389,25 @@
           "key": "OfflineAchievedHalfWidth"
         }
       ],
+      "region": "results",
+      "sentence": "The precision tier the frozen statistical plan committed to in advance requires 385 tasks, which the assembled 390 tasks reach at an achieved half-width of 0.0496 for a standalone rate.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Lowest inferential tier from the frozen plan."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R04",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "It binds the full 16,380-record set by SHA-256 27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525 and the corresponding rich-artifact hash list by ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Record-set digest binding.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "frozen_run.n_result_records"
         }
       ],
+      "region": "results",
+      "sentence": "It binds the full 16,380-record set by SHA-256 27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525 and the corresponding rich-artifact hash list by ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -461,15 +418,12 @@
           "key": "frozen_run.raw_artifact_hash_list_digest_sha256"
         }
       ],
-      "note": "Record-set digest binding."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R05",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Full ORION attains mean complete-gold recall 0.979487 and precision 1.0.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "ORION recall and precision.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -480,16 +434,16 @@
           "key": "systems.orion_full.mean_precision"
         }
       ],
+      "region": "results",
+      "sentence": "The governed system attains mean complete-gold recall 0.979487 and precision 1.0.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "ORION recall and precision."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R06",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "It passes 319 of 390 tasks, returns FAIL on 59 tasks after honestly exhausting its route-call budgets without certifying completeness, and returns CANNOT_CHECK on 12 tasks because a route holding unretrieved relevant material becomes unavailable; it never certifies a censored task complete.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Pass/censored split.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -508,58 +462,58 @@
           "key": "systems.orion_full.status_counts.CANNOT_CHECK"
         }
       ],
+      "region": "results",
+      "sentence": "It passes 319 of 390 tasks, fails on 59 tasks after honestly exhausting its route-call budgets without certifying completeness, and leaves 12 tasks undetermined because a route holding unretrieved relevant material becomes unavailable; it never certifies a censored task complete.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "systems.orion_full.status_counts.CANNOT_CHECK"
         }
       ],
-      "note": "Pass/censored split."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R07",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Its premature-task-closure rate is 0.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "ORION premature closure rate.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "systems.orion_full.premature_task_closure_rate"
         }
       ],
+      "region": "results",
+      "sentence": "Its premature-task-closure rate is 0.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "ORION premature closure rate."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R08",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The strongest of the six protocol-frozen confirmatory baselines is the protocol-driven systematic-review comparator, with mean recall 0.666667.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Strongest confirmatory comparator.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "systems.protocol_driven_systematic_review.mean_complete_gold_recall"
         }
       ],
+      "region": "results",
+      "sentence": "The strongest of the six protocol-frozen confirmatory baselines is the protocol-driven systematic-review comparator, with mean recall 0.666667.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "headline.strongest_confirmatory_baseline"
         }
       ],
-      "note": "Strongest confirmatory comparator."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R09",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "That comparator claims task completion on all 390 tasks while reachable gold remains, so its premature-closure rate is 1.0.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Comparator closes prematurely on every task.",
       "numeric_bindings": [
         {
           "artifact": "offline_gold_manifest",
@@ -570,16 +524,16 @@
           "key": "systems.protocol_driven_systematic_review.premature_task_closure_rate"
         }
       ],
+      "region": "results",
+      "sentence": "That comparator claims task completion on all 390 tasks while reachable gold remains, so its premature-closure rate is 1.0.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Comparator closes prematurely on every task."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R10",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The descriptive recall difference is therefore +0.31282, with a descriptive premature-closure difference of -1.0.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Descriptive differences, both signs bound.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -590,16 +544,16 @@
           "key": "headline.orion_minus_strongest_baseline_premature_closure"
         }
       ],
+      "region": "results",
+      "sentence": "The descriptive recall difference is therefore +0.31282, with a descriptive premature-closure difference of -1.0.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Descriptive differences, both signs bound."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R11",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The protocol-driven comparator then reaches mean recall 0.666667 by query 7 and remains at that value through query 12.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Comparator plateau on the query axis.",
       "numeric_bindings": [
         {
           "artifact": "offline_mechanisms",
@@ -614,16 +568,16 @@
           "key": "trajectory_systems.protocol_driven_systematic_review.12.queries"
         }
       ],
+      "region": "results",
+      "sentence": "The protocol-driven comparator then reaches mean recall 0.666667 by query 7 and remains at that value through query 12.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Comparator plateau on the query axis."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R12",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "ORION is at 0.757835 by query 7 and continues to gain, reaching 0.979487 by query 12.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "ORION continues gaining past the shared prefix.",
       "numeric_bindings": [
         {
           "artifact": "offline_mechanisms",
@@ -642,37 +596,37 @@
           "key": "trajectory_systems.orion_full.12.queries"
         }
       ],
+      "region": "results",
+      "sentence": "The governed system is at 0.757835 by query 7 and continues to gain, reaching 0.979487 by query 12.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "ORION continues gaining past the shared prefix."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R13",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Removing the route-independence check reduces mean recall to 0.444444 and produces premature closure on every task.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "H2 negative ablation.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.route_independence.ablated_recall"
         }
       ],
+      "region": "results",
+      "sentence": "Removing the route-independence check reduces mean recall to 0.444444 and produces premature closure on every task.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.route_independence.ablated_premature_closure_rate"
         }
       ],
-      "note": "H2 negative ablation."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R14",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Allowing a route stop to certify task closure yields recall 0.333333 with the same 100% premature-closure rate.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "H3 negative ablation. Second slot is the rate written as a percentage (scale 100).",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -684,37 +638,37 @@
           "scale": 100
         }
       ],
+      "region": "results",
+      "sentence": "Allowing a route stop to certify task closure yields recall 0.333333 with the same 100% premature-closure rate.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "H3 negative ablation. Second slot is the rate written as a percentage (scale 100)."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R15",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Letting a coverage diagnostic acquire stopping authority yields recall 0.555556 and again closes every task prematurely.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Coverage-authority negative control.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.coverage_diagnostic_non_authority.ablated_recall"
         }
       ],
+      "region": "results",
+      "sentence": "Letting a coverage diagnostic acquire stopping authority yields recall 0.555556 and again closes every task prematurely.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.coverage_diagnostic_non_authority.ablated_premature_closure_rate"
         }
       ],
-      "note": "Coverage-authority negative control."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R16",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Removing content-identity deduplication is less catastrophic but measurably wasteful in the controlled world: mean duplicate-processing rate rises from 0 to 0.101446, 145 of 390 tasks exhaust the read budget, pass rate falls from 0.817949 to 0.605128, and mean recall falls to 0.952707.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Dedup efficiency ablation.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -745,21 +699,21 @@
           "key": "systems.no_content_identity_dedup.mean_complete_gold_recall"
         }
       ],
+      "region": "results",
+      "sentence": "Removing content-identity deduplication is less catastrophic but measurably wasteful in the controlled world: mean duplicate-processing rate rises from 0 to 0.101446, 145 of 390 tasks exhaust the read budget, pass rate falls from 0.817949 to 0.605128, and mean recall falls to 0.952707.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.content_identity_dedup.ablated_budget_exhaustion_failures"
         }
       ],
-      "note": "Dedup efficiency ablation."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R17",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Removing the question coordinate from the read ledger leaves aggregate recall unchanged at 0.979487 but changes the extraction-question-shift mechanism exactly where expected: the mean count of legitimate rereads on that family falls from 3.666667 to 1.0.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "H4 mechanism diagnostic, null on aggregate recall.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -774,32 +728,32 @@
           "key": "mechanism_checks.question_conditioned_read_ledger.ablated_extraction_shift_legitimate_rereads"
         }
       ],
+      "region": "results",
+      "sentence": "Removing the question coordinate from the read ledger leaves aggregate recall unchanged at 0.979487 but changes the extraction-question-shift mechanism exactly where expected: the mean count of legitimate rereads on that family falls from 3.666667 to 1.0.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "H4 mechanism diagnostic, null on aggregate recall."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R18",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The lexical route contributes 3.0 first relevant identities per task on average.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Reference route contribution.",
       "numeric_bindings": [
         {
           "artifact": "offline_mechanisms",
           "key": "orion_route_first_relevant_contribution.LEXICAL.mean_first_relevant_contribution"
         }
       ],
+      "region": "results",
+      "sentence": "The lexical route contributes 3.0 first relevant identities per task on average.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Reference route contribution."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R19",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Semantic and citation routes each contribute 2.0 additional identities, reformulation contributes 0.848718, and the restricted route contributes 0.966667; the last mean is below one because tasks that end censored or budget-exhausted before the restricted route is consulted contribute zero.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Per-route contribution.",
       "numeric_bindings": [
         {
           "artifact": "offline_mechanisms",
@@ -814,42 +768,42 @@
           "key": "orion_route_first_relevant_contribution.RESTRICTED.mean_first_relevant_contribution"
         }
       ],
+      "region": "results",
+      "sentence": "Semantic and citation routes each contribute 2.0 additional identities, reformulation contributes 0.848718, and the restricted route contributes 0.966667; the last mean is below one because tasks that end censored or budget-exhausted before the restricted route is consulted contribute zero.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "offline_mechanisms",
           "key": "orion_route_first_relevant_contribution.CITATION.mean_first_relevant_contribution"
         }
       ],
-      "note": "Per-route contribution."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R20",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Conversely, lexical and semantic have nonzero mean overlap (0.07557) but remain structurally independent because neither backend nor query derivation is shared.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Overlap is measured; independence is structural.",
       "numeric_bindings": [
         {
           "artifact": "offline_mechanisms",
           "key": "orion_content_overlap_matrix.LEXICAL.SEMANTIC.mean_content_jaccard"
         }
       ],
+      "region": "results",
+      "sentence": "Conversely, lexical and semantic have nonzero mean overlap (0.07557) but remain structurally independent because neither backend nor query derivation is shared.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "offline_mechanisms",
           "key": "orion_content_overlap_matrix.LEXICAL.SEMANTIC.independence_verdict"
         }
       ],
-      "note": "Overlap is measured; independence is structural."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R21",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Full ORION's only terminal failure classification is honest budget exhaustion on 59 tasks: 319 tasks pass, 12 are censored, and premature closure remains at zero.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "No terminal failure class for full ORION.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -864,21 +818,21 @@
           "key": "systems.orion_full.status_counts.CANNOT_CHECK"
         }
       ],
+      "region": "results",
+      "sentence": "The governed system's only terminal failure classification is honest budget exhaustion on 59 tasks: 319 tasks pass, 12 are censored, and premature closure remains at zero.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
           "key": "systems.orion_full.failure_counts.NONE"
         }
       ],
-      "note": "No terminal failure class for full ORION."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R22",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Full ORION makes 13 route-stop false positives in 1,950 route-stop events (0.006667): those restricted-route cases still have a theoretically reachable gold identity when the route stops.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "O1 route-stop false positive, published rather than omitted.",
       "numeric_bindings": [
         {
           "artifact": "route_stop_oracle",
@@ -893,6 +847,9 @@
           "key": "systems.orion_full.route_stop_false_positive_rate"
         }
       ],
+      "region": "results",
+      "sentence": "The governed system makes 13 route-stop false positives in 1,950 route-stop events (0.006667): those restricted-route cases still have a theoretically reachable gold identity when the route stops.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "route_stop_oracle",
@@ -903,79 +860,79 @@
           "key": "oracle"
         }
       ],
-      "note": "O1 route-stop false positive, published rather than omitted."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R23",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Among the 1,878 ORION task-routes that reach the O1 oracle exhaustion point, there are zero route-stop false negatives.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Null-on-FN result, reported as a null.",
       "numeric_bindings": [
         {
           "artifact": "route_stop_oracle",
           "key": "systems.orion_full.routes_reaching_oracle_exhaustion"
         }
       ],
+      "region": "results",
+      "sentence": "Among the 1,878 governed task-routes that reach the oracle exhaustion point, there are zero route-stop false negatives.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "route_stop_oracle",
           "key": "systems.orion_full.route_stop_false_negative_count"
         }
       ],
-      "note": "Null-on-FN result, reported as a null."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R24",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The restricted route records 377 post-exhaustion attempts in total; no task takes the two or more further attempts required for an O1 false negative.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Post-exhaustion attempt accounting.",
       "numeric_bindings": [
         {
           "artifact": "route_stop_oracle",
           "key": "systems.orion_full.attempts_after_exhaustion_total"
         }
       ],
+      "region": "results",
+      "sentence": "The restricted route records 377 post-exhaustion attempts in total; no task takes the two or more further attempts required for a route-stop false negative.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "route_stop_oracle",
           "key": "false_negative_definition"
         }
       ],
-      "note": "Post-exhaustion attempt accounting."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R25",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Therefore the externally supported full-ORION discovery-benefit claim remains CANNOT_CHECK.",
-      "support_type": "NONE_YET",
-      "strength": "CANNOT_CHECK",
+      "note": "External benefit held at CANNOT_CHECK.",
       "numeric_bindings": [],
+      "region": "results",
+      "sentence": "Therefore the externally supported discovery-benefit claim for the full system remains undetermined.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "external_access_audit",
           "key": "schema_version"
         }
       ],
-      "note": "External benefit held at CANNOT_CHECK."
+      "support_type": "NONE_YET"
     },
     {
       "claim_id": "P2-R26",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Finally, removing the unavailable-route open state leaves mean recall numerically unchanged but turns the 12 censored CANNOT_CHECK cases into asserted completions and premature-closure failures.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Safety negative control: censoring semantics change while recall does not.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
           "key": "systems.orion_full.status_counts.CANNOT_CHECK"
         }
       ],
+      "region": "results",
+      "sentence": "Finally, removing the unavailable-route open state leaves mean recall numerically unchanged but turns the 12 censored undetermined cases into asserted completions and premature-closure failures.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -990,15 +947,12 @@
           "key": "mechanism_checks.unavailable_route_open_state.orion_cannot_check_rate"
         }
       ],
-      "note": "Safety negative control: censoring semantics change while recall does not."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R27",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Under the evaluator's fixed terminal-failure precedence, premature closure is the dominant failure class in the controlled companion; the exploratory adaptive comparator also exposes 65 transport-failure classifications, while the no-dedup ablation exposes 145 budget-exhaustion failures.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Failure-class distribution under the evaluator's fixed precedence.",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
@@ -1009,6 +963,9 @@
           "key": "systems.no_content_identity_dedup.failure_counts.budget_exhausted"
         }
       ],
+      "region": "results",
+      "sentence": "Under the evaluator's fixed terminal-failure precedence, premature closure is the dominant failure class in the controlled companion; the exploratory adaptive comparator also exposes 65 transport-failure classifications, while the no-dedup ablation exposes 145 budget-exhaustion failures.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -1023,16 +980,16 @@
           "key": "systems.protocol_driven_systematic_review.failure_counts.premature_closure"
         }
       ],
-      "note": "Failure-class distribution under the evaluator's fixed precedence."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R28",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The O4 unavailable-route obligation remains open, so ORION returns CANNOT_CHECK rather than asserting task completeness.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Open obligation prevents task closure; ORION returns CANNOT_CHECK.",
       "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The unavailable-route obligation remains open, so the governed system leaves the task undetermined rather than asserting completeness.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -1043,16 +1000,16 @@
           "key": "systems.orion_full.cannot_check_rate"
         }
       ],
-      "note": "Open obligation prevents task closure; ORION returns CANNOT_CHECK."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R29",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "This null-on-FN result is reported rather than being silently omitted, and it demonstrates why route-stop error and task-stop safety must be measured separately.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "The null is published rather than omitted.",
       "numeric_bindings": [],
+      "region": "results",
+      "sentence": "This null-on-FN result is reported rather than being silently omitted, and it demonstrates why route-stop error and task-stop safety must be measured separately.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "route_stop_oracle",
@@ -1063,15 +1020,12 @@
           "key": "false_negative_definition"
         }
       ],
-      "note": "The null is published rather than omitted."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R30",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "That judge has now executed for the declared keyless public-arXiv probe: all 600 released Deep tasks were scored under the pinned judge prompt and model reached through a local protocol adapter, and the judge matched the reference title on 0 of them, a hit rate of 0.000.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Bounded keyless-probe execution of the official Deep LLM title judge via a local protocol adapter; not a matched multi-provider ORION Deep comparison and not a Deep superiority claim.",
       "numeric_bindings": [
         {
           "artifact": "deep_official_archive",
@@ -1086,6 +1040,9 @@
           "key": "official_metrics.hit_rate"
         }
       ],
+      "region": "results",
+      "sentence": "That judge has now executed for the declared keyless public-arXiv probe: all 600 released Deep tasks were scored under the pinned judge prompt and model reached through a local protocol adapter, and the judge matched the reference title on 0 of them, a hit rate of 0.000.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "deep_official_archive",
@@ -1096,16 +1053,16 @@
           "key": "claim_scope"
         }
       ],
-      "note": "Bounded keyless-probe execution of the official Deep LLM title judge via a local protocol adapter; not a matched multi-provider ORION Deep comparison and not a Deep superiority claim."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R31",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The controlled-index result supports the narrower statement that the frozen governance mechanisms behave as designed under a complete denominator and matched host-owned budgets; the MetaSyn result supports only its declared external retrieval/screening probe.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Explicit scope limitation of the offline result and of the external probe.",
       "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The controlled-index result supports the narrower statement that the frozen governance mechanisms behave as designed under a complete denominator and matched host-owned budgets; the MetaSyn result supports only its declared external retrieval/screening probe.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -1116,25 +1073,25 @@
           "key": "claim_scope"
         }
       ],
-      "note": "Explicit scope limitation of the offline result and of the external probe."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-R32",
-      "region": "results",
-      "manuscript_status": "ASSERTED",
-      "sentence": "It completed all 86 released test reviews using the pinned MetaSyn BM25 title+abstract retriever followed by the predeclared public-protocol screening rule, and was scored by the pinned official ID-only evaluator.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Probe coverage: every released review scored under the official evaluator.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
           "key": "coverage.succeeded_reviews"
         }
       ],
+      "region": "results",
+      "sentence": "It completed all 86 released test reviews using the pinned MetaSyn BM25 title+abstract retriever followed by the predeclared public-protocol screening rule, and was scored by the pinned official ID-only evaluator.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [
         {
           "artifact": "metasyn_probe",
@@ -1145,19 +1102,16 @@
           "key": "coverage.failed_reviews"
         }
       ],
-      "note": "Probe coverage: every released review scored under the official evaluator."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R33",
-      "region": "results",
-      "manuscript_status": "ASSERTED",
-      "sentence": "Under the pinned official ID-only evaluator, macro retrieval recall is 0.7485 and retrieval precision 0.0627.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Official retrieval-stage metrics.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
@@ -1168,20 +1122,20 @@
           "key": "macro_metrics.retrieval_precision"
         }
       ],
+      "region": "results",
+      "sentence": "Under the pinned official ID-only evaluator, macro retrieval recall is 0.7485 and retrieval precision 0.0627.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [],
-      "note": "Official retrieval-stage metrics."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R34",
-      "region": "results",
-      "manuscript_status": "ASSERTED",
-      "sentence": "Conditional retention among retrieved reference items is 0.7224; final inclusion recall is 0.5651, inclusion precision 0.1426 and inclusion F1 0.2033.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Official screening-stage metrics.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
@@ -1200,20 +1154,20 @@
           "key": "macro_metrics.inclusion_f1"
         }
       ],
+      "region": "results",
+      "sentence": "Conditional retention among retrieved reference items is 0.7224; final inclusion recall is 0.5651, inclusion precision 0.1426 and inclusion F1 0.2033.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [],
-      "note": "Official screening-stage metrics."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R35",
-      "region": "results",
-      "manuscript_status": "ASSERTED",
-      "sentence": "The evaluator reports post-retrieval loss 0.1834 and screening accuracy 0.7228.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Official loss and accuracy metrics.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
@@ -1224,20 +1178,20 @@
           "key": "macro_metrics.screening_accuracy"
         }
       ],
+      "region": "results",
+      "sentence": "The evaluator reports post-retrieval loss 0.1834 and screening accuracy 0.7228.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [],
-      "note": "Official loss and accuracy metrics."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R36",
-      "region": "results",
-      "manuscript_status": "ASSERTED",
-      "sentence": "Mean candidate output is fixed at 200 retrieved and 60 included items per review by the declared probe budget.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Declared candidate budget, not an adaptive behaviour.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
@@ -1248,6 +1202,9 @@
           "key": "candidate_execution.screen_cap"
         }
       ],
+      "region": "results",
+      "sentence": "Mean candidate output is fixed at 200 retrieved and 60 included items per review by the declared probe budget.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [
         {
           "artifact": "metasyn_probe",
@@ -1258,15 +1215,12 @@
           "key": "candidate_execution.mean_included"
         }
       ],
-      "note": "Declared candidate budget, not an adaptive behaviour."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R37",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Across the 86 reviews there are 1,677 reference-article links.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Denominator of the evaluator-side integer ledger.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_fn_ledger",
@@ -1277,21 +1231,21 @@
           "key": "aggregate.reference_article_links"
         }
       ],
+      "region": "results",
+      "sentence": "Across the 86 reviews there are 1,677 reference-article links.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "metasyn_fn_ledger",
           "key": "authority"
         }
       ],
-      "note": "Denominator of the evaluator-side integer ledger."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R38",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The top-200 retrieval pools contain 1,079 of those links, so 598 are retrieval false negatives.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Retrieval-stage false negatives; the pool size itself is the declared budget ledgered as P2-R36.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_fn_ledger",
@@ -1302,16 +1256,16 @@
           "key": "aggregate.retrieval_false_negative_count"
         }
       ],
+      "region": "results",
+      "sentence": "The top-200 retrieval pools contain 1,079 of those links, so 598 are retrieval false negatives.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Retrieval-stage false negatives; the pool size itself is the declared budget ledgered as P2-R36."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R39",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Of the 1,079 retrieved reference links, 736 survive the deterministic screen and 343 are lost post retrieval.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Screening-stage false negatives.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_fn_ledger",
@@ -1326,79 +1280,82 @@
           "key": "aggregate.screening_false_negative_count"
         }
       ],
+      "region": "results",
+      "sentence": "Of the 1,079 retrieved reference links, 736 survive the deterministic screen and 343 are lost post retrieval.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Screening-stage false negatives."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R40",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The final included sets therefore miss 941 reference links in total.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Final false-negative total; sums the two loss stages.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_fn_ledger",
           "key": "aggregate.final_false_negative_count"
         }
       ],
+      "region": "results",
+      "sentence": "The final included sets therefore miss 941 reference links in total.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [],
-      "note": "Final false-negative total; sums the two loss stages."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R41",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen three-route live campaign also remains CANNOT_CHECK: its arXiv route is credential-free, but its two OpenAlex-backed route families require a funded OPENALEX_API_KEY, which the verified same-repository preflight did not find.",
-      "support_type": "NONE_YET",
-      "strength": "CANNOT_CHECK",
+      "note": "Live-provider campaign held at CANNOT_CHECK; a missing credential is an authority failure, not an outcome.",
       "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The frozen three-route live campaign also remains undetermined: its arXiv route is credential-free, but its two OpenAlex-backed route families require a funded OpenAlex API key, which the verified same-repository preflight did not find.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "external_access_audit",
           "key": "schema_version"
         }
       ],
-      "note": "Live-provider campaign held at CANNOT_CHECK; a missing credential is an authority failure, not an outcome."
+      "support_type": "NONE_YET"
     },
     {
       "claim_id": "P2-R42",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Because that half-width still exceeds the frozen superiority margin of 0.03, the plan's underpowered label attaches to the primary offline result: no superiority decision from the offline companion is promoted to a paper-level claim.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Mandatory underpowered label: achieved tier-B half-width 0.0496 exceeds the frozen superiority margin 0.03, so no superiority decision is promoted.",
       "numeric_bindings": [
         {
           "artifact": "statistical_plan",
           "key": "margins.superiority_margin_delta_sup"
         }
       ],
+      "region": "results",
+      "sentence": "Because that half-width still exceeds the frozen superiority margin of 0.03, the plan's underpowered label attaches to the primary offline result: no superiority decision from the offline companion is promoted to a paper-level claim.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "suite_facts",
           "key": "OfflineUnderpowered"
         }
       ],
-      "note": "Mandatory underpowered label: achieved tier-B half-width 0.0496 exceeds the frozen superiority margin 0.03, so no superiority decision is promoted."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X01",
-      "region": "results",
-      "manuscript_status": "ASSERTED",
-      "sentence": "The corrected MetaSyn probe completed all 86 released test reviews with no failed review.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CONFIRMATORY",
       "confirmatory_authority": {
         "artifact": "metasyn_probe",
         "key": "authority"
       },
+      "manuscript_status": "ASSERTED",
+      "note": "Promoted from NOT_ASSERTED_ARCHIVED_ONLY once the manuscript began reporting the probe (defect P2-D01's required fix). External official probe; bounded scope, not an ORION superiority result.",
       "numeric_bindings": [
         {
           "artifact": "metasyn_probe",
           "key": "coverage.succeeded_reviews"
         }
       ],
+      "region": "results",
+      "sentence": "The corrected MetaSyn probe completed all 86 released test reviews with no failed review.",
+      "strength": "CONFIRMATORY",
       "support_artifacts": [
         {
           "artifact": "metasyn_probe",
@@ -1413,16 +1370,16 @@
           "key": "github_actions.workflow_run_id"
         }
       ],
-      "note": "Promoted from NOT_ASSERTED_ARCHIVED_ONLY once the manuscript began reporting the probe (defect P2-D01's required fix). External official probe; bounded scope, not an ORION superiority result."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R43",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "A nine-case positive/negative judge control--verbatim, truncated, and case-variant matches alongside distinct-paper non-matches--passed in full before the archive was accepted, so a zero-match outcome is attributable to the probe rather than to an always-no-match judge failure.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Judge-control evidence for the official Deep title-judge archive; nine cases, no numeric slots in prose.",
       "numeric_bindings": [],
+      "region": "results",
+      "sentence": "A nine-case positive/negative judge control--verbatim, truncated, and case-variant matches alongside distinct-paper non-matches--passed in full before the archive was accepted, so a zero-match outcome is attributable to the probe rather than to an always-no-match judge failure.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "deep_official_archive",
@@ -1433,16 +1390,16 @@
           "key": "judge_control.passed"
         }
       ],
-      "note": "Judge-control evidence for the official Deep title-judge archive; nine cases, no numeric slots in prose."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-C14",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Limitations-region status sentence for the executed official Deep judge probe; execution and control outcome archived, matched comparison still unexecuted. No numeric slots in prose.",
       "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "deep_official_archive",
@@ -1457,16 +1414,16 @@
           "key": "judge_control.passed"
         }
       ],
-      "note": "Limitations-region status sentence for the executed official Deep judge probe; execution and control outcome archived, matched comparison still unexecuted. No numeric slots in prose."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-C15",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains CANNOT_CHECK; its observed zero paired effect is not a valid null or negative result.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CANNOT_CHECK",
+      "note": "Limitations-region interpretation guard for the transport-invalid Wide campaign.",
       "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains undetermined; its observed zero paired effect is not a valid null or negative result.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_result",
@@ -1481,15 +1438,12 @@
           "key": "observed_failure.candidate_files_identical"
         }
       ],
-      "note": "Limitations-region interpretation guard for the transport-invalid Wide campaign."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R44",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "A separate gold-blind OpenAIRE identity discriminator first established that structured scheme=arxiv PID objects were available on 3 of 12 frozen public Wide questions, with 12 of 12 HTTP requests successful; that discriminator was forbidden to score or promote the paper.",
-      "support_type": "EXTERNAL_DECLARED_DEVIATION",
-      "strength": "DESCRIPTIVE",
+      "note": "Gold-blind structured-identity availability discriminator only; its own receipt forbids scientific promotion.",
       "numeric_bindings": [
         {
           "artifact": "openaire_identity_probe",
@@ -1508,6 +1462,9 @@
           "key": "outcome.selected_tasks"
         }
       ],
+      "region": "results",
+      "sentence": "A separate gold-blind OpenAIRE identity discriminator first established that structured arXiv persistent-identifier objects were available on 3 of 12 frozen public Wide questions, with 12 of 12 HTTP requests successful; that discriminator was forbidden to score or promote the paper.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "openaire_identity_probe",
@@ -1522,15 +1479,12 @@
           "key": "independent_archive_check.performed"
         }
       ],
-      "note": "Gold-blind structured-identity availability discriminator only; its own receipt forbids scientific promotion."
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
     },
     {
       "claim_id": "P2-R45",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "A subsequently frozen 400-row OpenAIRE/Crossref matched campaign then issued exactly 1,200 logical provider requests over one shared capture.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Campaign-execution fact only; subsequent validity failure prevents a scientific comparison.",
       "numeric_bindings": [
         {
           "artifact": "openaire_matched_result",
@@ -1541,6 +1495,9 @@
           "key": "observed_failure.logical_provider_calls_planned"
         }
       ],
+      "region": "results",
+      "sentence": "A subsequently frozen 400-row OpenAIRE/Crossref matched campaign then issued exactly 1,200 logical provider requests over one shared capture.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_result",
@@ -1551,15 +1508,12 @@
           "key": "validity.logical_request_count_exact"
         }
       ],
-      "note": "Campaign-execution fact only; subsequent validity failure prevents a scientific comparison."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R46",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The 400 Crossref discovery calls and 400 direct OpenAIRE calls succeeded, but every predeclared OpenAIRE DOI-crosswalk call returned HTTP 400.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "DESCRIPTIVE",
+      "note": "Typed transport failure preserved from the shared capture; not evidence of scientific absence.",
       "numeric_bindings": [
         {
           "artifact": "openaire_matched_receipt",
@@ -1574,6 +1528,9 @@
           "key": "observed_failure.failed_route_calls"
         }
       ],
+      "region": "results",
+      "sentence": "The 400 Crossref discovery calls and 400 direct OpenAIRE calls succeeded, but every predeclared OpenAIRE DOI-crosswalk call returned HTTP 400.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_receipt",
@@ -1584,15 +1541,12 @@
           "key": "observed_failure.failed_route_status"
         }
       ],
-      "note": "Typed transport failure preserved from the shared capture; not evidence of scientific absence."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R47",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The observed provider-success fraction was therefore 0.666667, below the frozen 0.90 validity gate.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CANNOT_CHECK",
+      "note": "The predeclared validity condition fails; the campaign terminal is CANNOT_CHECK.",
       "numeric_bindings": [
         {
           "artifact": "openaire_matched_result",
@@ -1603,6 +1557,9 @@
           "key": "validity.minimum_logical_provider_ok_fraction"
         }
       ],
+      "region": "results",
+      "sentence": "The observed provider-success fraction was therefore 0.666667, below the frozen 0.90 validity gate.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_result",
@@ -1613,21 +1570,21 @@
           "key": "terminal"
         }
       ],
-      "note": "The predeclared validity condition fails; the campaign terminal is CANNOT_CHECK."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-R48",
-      "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Without a valid cross-backend route, the balanced baseline, direct-first diagnostic and governed projection were byte-identical; their paired IoU differences were zero on all 399 distinct questions.",
-      "support_type": "EXTERNAL_OFFICIAL",
-      "strength": "CANNOT_CHECK",
+      "note": "The zero paired effect is not a valid null result. The earlier wording attributed it to the invalid capture; the V3 campaign refutes that attribution, having a valid crosswalk and three distinct candidate files and still producing byte-identical evaluator output. See P2-R60.",
       "numeric_bindings": [
         {
           "artifact": "openaire_matched_result",
           "key": "paired_distinct_question_iou.n"
         }
       ],
+      "region": "results",
+      "sentence": "The balanced baseline, direct-first diagnostic and governed projection were byte-identical, and their paired IoU differences were zero on all 399 distinct questions.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "openaire_matched_receipt",
@@ -1638,15 +1595,12 @@
           "key": "paired_distinct_question_iou.ties"
         }
       ],
-      "note": "The zero paired effect is a consequence of the invalid capture and may not be interpreted as a valid null result."
+      "support_type": "EXTERNAL_OFFICIAL"
     },
     {
       "claim_id": "P2-X20",
-      "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "A separate post-saturation exact successor isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, P2-X attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "P2-X abstract headline; bounded exact heterogeneous-acquisition contract only.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_values",
@@ -1693,6 +1647,9 @@
           "key": "n"
         }
       ],
+      "region": "abstract",
+      "sentence": "A separate post-saturation exact-contract battery isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, the authority rule attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1703,15 +1660,12 @@
           "key": "ok"
         }
       ],
-      "note": "P2-X abstract headline; bounded exact heterogeneous-acquisition contract only."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X21",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, P2-X obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "P2-X conclusion headline; does not imply deployed retriever/provider generality.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_values",
@@ -1746,6 +1700,9 @@
           "key": "ci_high"
         }
       ],
+      "region": "conclusion",
+      "sentence": "After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, the authority rule obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1756,21 +1713,21 @@
           "key": "ok"
         }
       ],
-      "note": "P2-X conclusion headline; does not imply deployed retriever/provider generality."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X22",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "The effect is the unresolved-route authority rule: all 150 B1 errors are material unavailable/censored/provider-invalid routes that B1 excludes from the closure denominator.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Failure localization from the protected P2-X result.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_values",
           "key": "b1_errors"
         }
       ],
+      "region": "conclusion",
+      "sentence": "The effect is the unresolved-route authority rule: all 150 errors made by the donor-complete product are material unavailable/censored/provider-invalid routes that it excludes from the closure denominator.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1781,15 +1738,12 @@
           "key": "ok"
         }
       ],
-      "note": "Failure localization from the protected P2-X result."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X23",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "An ideal typed product supplied the same semantics ties 400/400.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Ideal-product non-expressivity boundary.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_values",
@@ -1800,6 +1754,9 @@
           "key": "n"
         }
       ],
+      "region": "conclusion",
+      "sentence": "An ideal typed product supplied the same semantics ties 400/400.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1810,16 +1767,16 @@
           "key": "ok"
         }
       ],
-      "note": "Ideal-product non-expressivity boundary."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X24",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes remain unresolved.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Bounded A2 architecture-principle statement; novelty remains donor-subtracted.",
       "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes are still unresolved.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1830,32 +1787,32 @@
           "key": "ok"
         }
       ],
-      "note": "Bounded A2 architecture-principle statement; novelty remains donor-subtracted."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X25",
-      "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "Deployed multi-provider/retrieval-engine generality remains CANNOT_CHECK.",
-      "support_type": "NONE_YET",
-      "strength": "CANNOT_CHECK",
+      "note": "A3 remains explicitly unpromoted.",
       "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "Deployed multi-provider and retrieval-engine generality stays undetermined.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [],
-      "note": "A3 remains explicitly unpromoted."
+      "support_type": "NONE_YET"
     },
     {
       "claim_id": "P2-X26",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Its 400-case exact battery spans five acquisition settings and includes seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Exact-benchmark scope limitation.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_values",
           "key": "n"
         }
       ],
+      "region": "limitations",
+      "sentence": "Its 400 cases span five acquisition settings and include seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1866,21 +1823,21 @@
           "key": "ok"
         }
       ],
-      "note": "Exact-benchmark scope limitation."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X27",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The 1.000 P2-X ESCD ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Exact-contract-only scope boundary.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_values",
           "key": "p2x_rate"
         }
       ],
+      "region": "limitations",
+      "sentence": "The 1.000 exact-closure ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1891,16 +1848,16 @@
           "key": "ok"
         }
       ],
-      "note": "Exact-contract-only scope boundary."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-X28",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and B3 shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "No deployed/retrieval-engine generality and no inherent-expressivity claim.",
       "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and the ideal-product arm shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_result",
@@ -1911,50 +1868,484 @@
           "key": "ok"
         }
       ],
-      "note": "No deployed/retrieval-engine generality and no inherent-expressivity claim."
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R55",
+      "manuscript_status": "ASSERTED",
+      "note": "V2 never scored. The probe met its HTTP condition and failed its yield condition.",
+      "numeric_bindings": [
+        {
+          "artifact": "openaire_matched_receipt_v2",
+          "key": "transport_probe.http_status"
+        }
+      ],
+      "region": "results",
+      "sentence": "A second campaign changed only the crosswalk encoding, from a single quoted OR expression to repeated persistent identifier parameters; its gold-blind transport probe returned HTTP 200 with an empty result array, below its prospectively frozen minimum of one, so acquisition never began and no score was produced.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "openaire_matched_receipt_v2",
+          "key": "transport_probe.parsed_results_count"
+        },
+        {
+          "artifact": "openaire_matched_receipt_v2",
+          "key": "transport_probe.frozen_minimum_results"
+        },
+        {
+          "artifact": "openaire_matched_receipt_v2",
+          "key": "terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R56",
+      "manuscript_status": "ASSERTED",
+      "note": "V3 completed acquisition and scoring, unlike V1 and V2.",
+      "numeric_bindings": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "official.wide_dual_backend_balanced.total_records"
+        }
+      ],
+      "region": "results",
+      "sentence": "All 400 rows were acquired and scored.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "validity.all_candidate_hashes_match"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R57",
+      "manuscript_status": "ASSERTED",
+      "note": "The V3 freeze inherits V1's validity thresholds exactly, so the 0.90 is bound to the V1 freeze.",
+      "numeric_bindings": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "validity.logical_provider_ok_fraction"
+        },
+        {
+          "artifact": "openaire_matched_freeze",
+          "key": "validity.minimum_logical_provider_ok_fraction"
+        }
+      ],
+      "region": "results",
+      "sentence": "Provider validity reached 0.715833, again below the frozen 0.90, so the analyzer again emitted an undetermined terminal rather than a negative result.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "terminal"
+        },
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "validity.logical_provider_ok"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R58",
+      "manuscript_status": "ASSERTED",
+      "note": "The measurement floor. Both campaigns score an order of magnitude below the delta their own rule requires.",
+      "numeric_bindings": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "scientific_rule.required_official_avg_iou_delta"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "official.wide_dual_backend_balanced.avg_iou"
+        },
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "official.wide_dual_backend_balanced.avg_iou"
+        }
+      ],
+      "region": "results",
+      "sentence": "The frozen decision rule requires an average-IoU difference of 0.03 before superiority is supported, and the best-scoring arm in both completed campaigns achieved an average IoU of 0.003924 and 0.004374 respectively -- roughly a seventh of the difference the campaign exists to detect.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "comparison_resolution_audit",
+          "key": "campaigns.P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json.floor.at_floor"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R59",
+      "manuscript_status": "ASSERTED",
+      "note": "A zero-width interval over identical differences. Reported so it is not read as equivalence evidence.",
+      "numeric_bindings": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "paired_distinct_question_iou.ci95_low"
+        },
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "paired_distinct_question_iou.ci95_high"
+        },
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "paired_distinct_question_iou.n"
+        },
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "paired_distinct_question_iou.ties"
+        }
+      ],
+      "region": "results",
+      "sentence": "Both campaigns report a paired bootstrap interval of [0.0, 0.0] over 399 matched questions, with 399 ties and no wins or losses, from ten thousand resamples, at the same confidence level and percentile method the campaign froze.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "openaire_matched_result",
+          "key": "paired_distinct_question_iou.ties"
+        },
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "paired_distinct_question_iou.bootstrap_resamples"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R60",
+      "manuscript_status": "ASSERTED",
+      "note": "States what the interval cannot express. Carries a number, so the allowlist refuses it and it is registered as a claim -- which is the right rule: a sentence with a figure in it is making a quantitative assertion whatever its grammatical mood.",
+      "numeric_bindings": [
+        {
+          "artifact": "openaire_matched_result_v3",
+          "key": "paired_distinct_question_iou.n"
+        }
+      ],
+      "region": "results",
+      "sentence": "It is not evidence of equivalence at all: resampling 399 identical differences returns a zero-width interval at any sample size, and the interval would appear exactly this conclusive with four questions rather than four hundred.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "comparison_resolution_audit",
+          "key": "campaigns.P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json.resolution"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-R61",
+      "manuscript_status": "ASSERTED",
+      "note": "Candidate generation is the failing stage, not judging. A judge-free string matcher recovers almost nothing from the candidate sets themselves.",
+      "numeric_bindings": [
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.total_candidate_titles"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.items_with_reference_and_candidates"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.exact_title_recoveries"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.substring_recoveries"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.token_overlap_ge_0.5_recoveries"
+        }
+      ],
+      "region": "results",
+      "sentence": "A judge-free stage attribution over the same archive compared all 10,850 returned candidate titles against the 564 tasks that carried both a reference and candidates: exact-title recovery 0, substring recovery 0, and token-overlap recovery at a half-token threshold on 8 of them.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "counts.total_items"
+        },
+        {
+          "artifact": "deep_stage_attribution",
+          "key": "conclusion"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R62",
+      "manuscript_status": "ASSERTED",
+      "note": "A description of the frozen successor rule. Its two thresholds are stated in words rather than as figures, so the sentence carries no numeric slot; the document-frequency ceiling it names is bound as a support artifact.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The successor, a discriminative term-gating mechanic, uses index statistics only--never the gold set, the target, or the task family--discarding question terms whose document frequency exceeds five percent of the corpus, ranking the survivors by inverse document frequency at the baseline's own query width, and demoting rather than deleting documents that agree on fewer than two discriminative terms.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "world_precondition.max_content_df_fraction"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "world_precondition.passed"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R63",
+      "manuscript_status": "ASSERTED",
+      "note": "Scoped CONSTRUCTED_REPRODUCTION_ONLY. The corpus is authored so the mechanism is present by construction; this is not evidence about any external benchmark.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "world_precondition.documents"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.S1_D4_DISCRIMINATIVE_TERM_GATING.tasks"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.S1_D4_DISCRIMINATIVE_TERM_GATING.hit_at_1"
+        }
+      ],
+      "region": "results",
+      "sentence": "On an authored corpus of 2,760 documents in which the named mechanism is present by construction and the denominator is complete, the current mechanic recovers the target for none of the 120 echo tasks within the top ten while the successor recovers all of them, at a rank-one recovery rate of 0.983.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.B0_CURRENT_D1_UNWEIGHTED.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.S1_D4_DISCRIMINATIVE_TERM_GATING.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "verdict"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R64",
+      "manuscript_status": "ASSERTED",
+      "note": "b=0 and c=120: no task moved against the successor. The p-value is bound as support rather than printed, since its exponent cannot be a numeric slot.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.discordant"
+        }
+      ],
+      "region": "results",
+      "sentence": "The paired McNemar test over those tasks is discordant on 120 pairs, every one of them favouring the successor.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.b"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.c"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "mcnemar_echo_hit_at_10.p_value"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R65",
+      "manuscript_status": "ASSERTED",
+      "note": "The guard's own vacuity flag is false and its measured loss is zero. A harm guard on a slice the baseline already fails would test nothing.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.no_echo.B0_CURRENT_D1_UNWEIGHTED.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.no_echo.B0_CURRENT_D1_UNWEIGHTED.tasks"
+        }
+      ],
+      "region": "results",
+      "sentence": "The harm guard is not vacuous: the current mechanic already scores 1.000 on the 60 tasks written without echo, and the successor does not damage them.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G3_HARM.vacuous"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G3_HARM.loss"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R66",
+      "manuscript_status": "ASSERTED",
+      "note": "Separates the successor's gain from ordinary term weighting. Non-blocking gate.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.B1_CURRENT_D1_BM25.hit_at_10"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.echo.B1_CURRENT_D1_BM25.hit_at_1"
+        }
+      ],
+      "region": "results",
+      "sentence": "BM25 over the same query recovers much of the top-ten rate (0.633) but almost none of the rank-one rate (0.0083), so the query-side gate rather than document-side weighting is what carries rank one.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G4_MARGINAL_OVER_BM25.margin"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G4_MARGINAL_OVER_BM25.blocking"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-R67",
+      "manuscript_status": "ASSERTED",
+      "note": "The control's own construction defect is recorded in the artifact: four of the forty tasks leak a content token through a non-disjoint synonym map, reported and not repaired. Non-blocking.",
+      "numeric_bindings": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "arms.paraphrase_gap.S1_D4_DISCRIMINATIVE_TERM_GATING.tasks"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G5_SPECIFICITY.gain"
+        }
+      ],
+      "region": "results",
+      "sentence": "A pre-registered specificity control behaves as required: on 40 tasks whose question and target share no content token, the successor gains exactly 0.000, confirming the arena isolates the lexical mechanism instead of rewarding the successor generally.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "gate_results.G5_SPECIFICITY.blocking"
+        },
+        {
+          "artifact": "lexical_echo_successor",
+          "key": "known_construction_defects"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
     }
   ],
+  "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
+  "known_defects": [],
+  "macro_sources": [
+    "generated/suite_facts.tex"
+  ],
+  "matching_rule": "A stored sentence is compared to its manuscript region with every number replaced by a placeholder; each number slot is then bound in order of appearance to an artifact key and compared against the archived value. Slot count must equal binding count.",
   "non_claim_sentences": [
     {
+      "reason": "Problem framing. Asserts a motivating condition of the field, not an outcome of this work.",
       "region": "abstract",
-      "sentence": "Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent.",
-      "reason": "Problem framing. Asserts a motivating condition of the field, not an ORION outcome."
+      "sentence": "Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent."
     },
     {
+      "reason": "States the hypothesis under test and the design commitments it implies. A hypothesis statement is not a result; the result it predicts is ledgered as P2-C01.",
       "region": "abstract",
-      "sentence": "ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines.",
-      "reason": "States the hypothesis under test and the design commitments it implies. A hypothesis statement is not a result; the result it predicts is ledgered as P2-C01."
+      "sentence": "ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines."
     },
     {
+      "reason": "Theoretical limit of finite search, not a measured outcome of this campaign.",
       "region": "limitations",
-      "sentence": "Open-world completeness remains generally unprovable from finite search.",
-      "reason": "Theoretical limit of finite search, not a measured outcome of this campaign."
+      "sentence": "Open-world completeness remains generally unprovable from finite search."
     },
     {
+      "reason": "Describes this ledger's own promotion rule rather than asserting a result.",
       "region": "limitations",
-      "sentence": "Rows without an archived supporting result remain CANNOT_CHECK; an access audit, implementation test, or credential preflight cannot substitute for a system outcome.",
-      "reason": "Describes this ledger's own promotion rule rather than asserting a result."
+      "sentence": "Rows without an archived supporting result stay undetermined; an access audit, implementation test, or credential preflight cannot substitute for a system outcome."
     },
     {
+      "reason": "Restates the frozen promotion rule's failure branch; asserts no result.",
       "region": "conclusion",
-      "sentence": "If those authorities remain unavailable or do not support the frozen promotion rule, the claim must remain narrowed rather than promoted.",
-      "reason": "Restates the frozen promotion rule's failure branch; asserts no result."
+      "sentence": "If those authorities remain unavailable or do not support the frozen promotion rule, the claim must remain narrowed rather than promoted."
     },
     {
+      "reason": "Labelling rule for future probe archives; asserts no result.",
       "region": "results",
-      "sentence": "Bounded AutoResearchBench probe results, when archived, must remain separately labeled unless they exercise the final matched ORION system under the frozen promotion plan.",
-      "reason": "Labelling rule for future probe archives; asserts no result."
+      "sentence": "Bounded AutoResearchBench probe results, when archived, must remain separately labeled unless they exercise the final matched system under the frozen promotion plan."
     },
     {
+      "reason": "Interpretive pointer to a figure. The measured overlap it refers to is ledgered as P2-R20.",
       "region": "results",
-      "sentence": "Figure exposes why ORION does not equate numerical disjointness with route independence.",
-      "reason": "Interpretive pointer to a figure. The measured overlap it refers to is ledgered as P2-R20."
+      "sentence": "Figure exposes why numerical disjointness is not equated with route independence."
     },
     {
+      "reason": "Design statement about how independence is decided, not a measured outcome.",
       "region": "results",
-      "sentence": "The independence decision is therefore made from capture construction, while overlap remains a measured diagnostic.",
-      "reason": "Design statement about how independence is decided, not a measured outcome."
+      "sentence": "The independence decision is therefore made from capture construction, while overlap remains a measured diagnostic."
+    },
+    {
+      "reason": "Arithmetic consequence of P2-R58, not a separate measurement: if the best arm's whole score is below the required delta, no deletion of a competitor produces it. Carries no number of its own.",
+      "region": "results",
+      "sentence": "Deleting a competing arm outright would not reach the threshold."
     }
   ],
-  "known_defects": []
+  "purpose": "Machine-checkable binding between the claims the manuscript asserts and the archived evidence that supports them. Verified by scripts/check_claim_ledger.py. Sentences are curated, never auto-regenerated: when a sentence drifts the checker fails so a human re-verifies the claim instead of the ledger silently absorbing the change.",
+  "regions": {
+    "abstract": {
+      "file": "main.tex",
+      "hard_fail_unledgered": true,
+      "mode": "ABSTRACT_ENV"
+    },
+    "conclusion": {
+      "file": "main.tex",
+      "hard_fail_unledgered": true,
+      "mode": "SECTION",
+      "section": "Conclusion"
+    },
+    "limitations": {
+      "file": "main.tex",
+      "hard_fail_unledgered": true,
+      "mode": "SECTION",
+      "section": "Limitations and integrity"
+    },
+    "results": {
+      "file": "sections/results.tex",
+      "hard_fail_unledgered": true,
+      "mode": "PROSE_FILE"
+    }
+  },
+  "schema_version": "orion.p2.claim-ledger.v1",
+  "task_count_agreement": [
+    {
+      "artifact": "offline_gold_manifest",
+      "key": "task_count"
+    },
+    {
+      "artifact": "results_summary",
+      "key": "frozen_run.n_tasks"
+    },
+    {
+      "artifact": "offline_mechanisms",
+      "key": "n_tasks"
+    },
+    {
+      "artifact": "route_stop_oracle",
+      "key": "n_tasks"
+    }
+  ]
 }

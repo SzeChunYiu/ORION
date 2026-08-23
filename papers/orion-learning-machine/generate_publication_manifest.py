@@ -17,13 +17,25 @@ OUTPUT = ROOT / "PUBLICATION_MANIFEST_SHA256.txt"
 
 
 def included_files() -> list[Path]:
+    # ``experiments/`` is a root because the code that produced a number is part
+    # of what a publication manifest binds. It was absent, so the manifest pinned
+    # every committed result and none of the six drivers that computed them --- a
+    # reader could verify the numbers had not changed while the program that made
+    # them changed underneath.
     roots = [
+        ROOT / "experiments",
         ROOT / "framework",
         ROOT / "results",
         PAPERS / "paper-xx-executable-research-core",
         PAPERS / "paper-xx-content-bound-math-evaluation",
     ]
-    suffixes = {".arff", ".bib", ".json", ".lean", ".md", ".py", ".sh", ".txt"}
+    # Build output only. This used to be an allowlist of eight suffixes, which
+    # silently dropped whatever did not appear on it: a Lean toolchain pin and a
+    # native shim, both of which decide what the proofs compile to, were outside
+    # the binding because nobody had thought to add ``lean-toolchain`` and
+    # ``.c``. An allowlist answers "what did we remember" and a denylist answers
+    # "what is deliberately out", and only the second is a denominator.
+    excluded_suffixes = {".pyc", ".pyo", ".pyd"}
     # The 2026-08-20 P10 publication overlay (PUBLICATION_MANIFEST_P10_V2.txt)
     # carries four ADDITIVE files by exact Git-blob identity; they are scoped to
     # the overlay only and must stay absent from this SHA256 manifest, whose V2
@@ -39,17 +51,26 @@ def included_files() -> list[Path]:
         for base in roots
         for path in base.rglob("*")
         if path.is_file()
-        and not any(part.startswith(".") or part == "__pycache__" for part in path.parts)
-        and (path.suffix in suffixes or path.name == "LICENSE")
+        # Dot-*directories* are caches and version-control internals; a dot-*file*
+        # such as .gitattributes is content the checkout depends on, so the
+        # exclusion is on directories only.
+        and not any(
+            (part.startswith(".") and part != path.name) or part == "__pycache__"
+            for part in path.parts
+        )
+        and path.suffix not in excluded_suffixes
         and path.relative_to(PAPERS).as_posix() not in v2_additive
     ]
     files.extend(
         [
             ROOT / "LOCAL_CLOSURE_AUTHORITY.json",
+            ROOT / "PUBLICATION_MANIFEST_P10_V2.txt",
+            ROOT / "README.md",
             ROOT / "REPRODUCE.md",
             ROOT / "REPRODUCE_LOCAL_CLOSURE.sh",
             ROOT / "SCRIPT_MANIFEST_SHA256.txt",
             ROOT / "VERIFY_LOCAL_CLOSURE.sh",
+            ROOT / "VERIFY_LOCAL_CLOSURE_V2.sh",
             ROOT / "generate_publication_manifest.py",
             PAPERS
             / "paper-08-epistemic-authority-autonomous-science"

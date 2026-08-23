@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p6.assumption-countermodels.v2",
+  "type": "object",
+  "required": ["id", "kind", "expected_verdict"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "kind": {
+      "type": "string",
+      "enum": [
+        "stale_certification",
+        "undeclared_write",
+        "nonseparated_composition",
+        "authority_escalation",
+        "recursive_cycle",
+        "self_authorization"
+      ]
+    },
+    "expected_verdict": {"type": "string", "enum": ["DETECTED", "NOT_DETECTED"]},
+    "path_realizable": {"type": "boolean"},
+    "retained_descendant": {"type": "boolean"},
+    "declared_write": {"type": "array", "items": {"type": "string"}},
+    "proposed_write": {"type": "array", "items": {"type": "string"}},
+    "left_write": {"type": "array", "items": {"type": "string"}},
+    "right_read": {"type": "array", "items": {"type": "string"}},
+    "scope_narrowing": {"type": "boolean"},
+    "call_edges": {"type": "array", "minItems": 1},
+    "candidate_controls_policy": {"type": "boolean"},
+    "candidate_controls_evidence": {"type": "boolean"}
+  }
+}

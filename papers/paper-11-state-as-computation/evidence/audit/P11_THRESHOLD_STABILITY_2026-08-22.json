@@ -1,0 +1,151 @@
+{
+  "cells_whose_threshold_moves": [
+    "(17,4,5)"
+  ],
+  "date": "2026-08-22",
+  "frozen_observations": {
+    "P11C": {
+      "l1_threshold": {
+        "(17,4,5)": 256,
+        "(19,3,7)": 256
+      },
+      "seed": 2026082111
+    },
+    "P11E": {
+      "l1_threshold": {
+        "(17,4,5)": 128,
+        "(19,3,7)": 256
+      },
+      "seed": 2026082117
+    }
+  },
+  "gate_boundary": 256,
+  "gate_pass_fraction": 0.55,
+  "not_licensed": [
+    "any change to P11C's terminal, or to P11D's or P11E's; sweeping seeds after an outcome is how a result gets selected rather than measured, and nothing here may be used to prefer one terminal over another",
+    "any claim about the other two universal arms; only UNIVERSAL_L1 is swept, because the frozen runs show it is the arm the boundary turns on",
+    "any claim about the compiler; this measures how much one draw of this benchmark is worth, not what the compiler does",
+    "any claim that the >=4x result is false; a gate that passes in 0.55 of draws is not decided in either direction by this construction at five queries per cell, which is a statement about the benchmark's power"
+  ],
+  "per_seed": {
+    "2026082101": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082102": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082103": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082104": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082105": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082106": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082107": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082108": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082109": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082110": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082111": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082112": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082113": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082114": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082115": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082116": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082117": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    },
+    "2026082118": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082119": {
+      "(17,4,5)": 256,
+      "(19,3,7)": 256
+    },
+    "2026082120": {
+      "(17,4,5)": 128,
+      "(19,3,7)": 256
+    }
+  },
+  "record": "P11_THRESHOLD_STABILITY",
+  "schema_version": "orion.p11.threshold-stability.v1",
+  "seeds": [
+    2026082101,
+    2026082102,
+    2026082103,
+    2026082104,
+    2026082105,
+    2026082106,
+    2026082107,
+    2026082108,
+    2026082109,
+    2026082110,
+    2026082111,
+    2026082112,
+    2026082113,
+    2026082114,
+    2026082115,
+    2026082116,
+    2026082117,
+    2026082118,
+    2026082119,
+    2026082120
+  ],
+  "seeds_passing_in_both_cells": 11,
+  "seeds_passing_the_gate_per_cell": {
+    "(17,4,5)": 11,
+    "(19,3,7)": 20
+  },
+  "threshold_distribution": {
+    "(17,4,5)": {
+      "128": 9,
+      "256": 11
+    },
+    "(19,3,7)": {
+      "256": 20
+    }
+  },
+  "what_this_establishes": "P11C's gate 3 asks whether the best hostile universal threshold is at least four times the compiled one. The compiled threshold is 64 in every frozen run of this construction, so the boundary is 256 exactly -- and the two frozen runs of the same construction sit on opposite sides of it in cell (17,4,5): P11E's seed gives 128 and P11C's gives 256. Swept over twenty seeds of the same construction, that cell returns 128 nine times and 256 eleven times, so the gate passes there in eleven draws of twenty. The other cell returns 256 every time. The conjunction the gate asks for therefore holds in 0.55 of draws -- close enough to a coin flip that neither a single positive nor a single negative is evidence about the compiler. Both frozen seeds fall inside the swept range and both reproduce exactly, which is what qualifies this sweep to say anything about them."
+}

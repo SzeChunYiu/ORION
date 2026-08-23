@@ -1,0 +1,58 @@
+name: p14-external-pilot-v1
+
+on:
+  pull_request:
+    paths:
+      - "papers/paper-14-orion-rse/top_tier/external_v1/**"
+      - ".github/workflows/p14-external-pilot-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate suite to scratch (determinism)
+        run: |
+          python3 papers/paper-14-orion-rse/top_tier/external_v1/generate_p14_external_packets_v1.py \
+            --out /tmp/p14regen
+      - name: Byte-compare regenerated suite against committed artifacts
+        run: |
+          set -e
+          base=papers/paper-14-orion-rse/top_tier/external_v1
+          diff -q /tmp/p14regen/packets/p14_external_packets_v1.jsonl  $base/packets/p14_external_packets_v1.jsonl
+          diff -q /tmp/p14regen/evidence/p14_external_evidence_v1.jsonl $base/evidence/p14_external_evidence_v1.jsonl
+          diff -q /tmp/p14regen/protected/p14_external_gold_v1.jsonl   $base/protected/p14_external_gold_v1.jsonl
+          echo "P14_PILOT_DETERMINISM_OK"
+      - name: Validate committed suite (schema + suite + leakage layers)
+        run: |
+          python3 papers/paper-14-orion-rse/top_tier/external_v1/validate_p14_external_packets_v1.py \
+            --base papers/paper-14-orion-rse/top_tier/external_v1
+      - name: Run pilot to scratch
+        run: |
+          python3 papers/paper-14-orion-rse/top_tier/external_v1/run_p14_external_pilot_v1.py \
+            --base papers/paper-14-orion-rse/top_tier/external_v1 \
+            --out /tmp/p14pilot
+      - name: Byte-compare pilot outputs against committed artifacts
+        run: |
+          set -e
+          base=papers/paper-14-orion-rse/top_tier/external_v1/pilot
+          diff -q /tmp/p14pilot/decisions/p14_external_decisions_SYSTEMA_v1.jsonl $base/decisions/p14_external_decisions_SYSTEMA_v1.jsonl
+          diff -q /tmp/p14pilot/decisions/p14_external_decisions_SYSTEMB_v1.jsonl $base/decisions/p14_external_decisions_SYSTEMB_v1.jsonl
+          diff -q /tmp/p14pilot/worksheets/p14_external_blinded_worksheet_v1.md  $base/worksheets/p14_external_blinded_worksheet_v1.md
+          diff -q /tmp/p14pilot/analytics/p14_external_pilot_analytics_v1.json   $base/analytics/p14_external_pilot_analytics_v1.json
+          diff -q /tmp/p14pilot/analytics/p14_external_pilot_analytics_v1.md     $base/analytics/p14_external_pilot_analytics_v1.md
+          echo "P14_PILOT_REPRODUCED_OK"
+      - name: Upload pilot artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-external-pilot-v1
+          path: |
+            /tmp/p14regen
+            /tmp/p14pilot
+          retention-days: 90

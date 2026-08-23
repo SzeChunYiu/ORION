@@ -1,0 +1,107 @@
+{
+  "authority": {
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false
+  },
+  "correction_to_the_task_anchor": {
+    "evidence": "over C_5^2 there are 18 classes; 4 of them have max multiplicity 3, so shape A (which needs multiplicity 4) cannot hold. Brute force over all 480 ordered bases: 0 classes fit neither shape.",
+    "what_was_stated": "the rank-2 form e^{p-1} * prod_{i=1}^{p-1}(a_i e + f) [shape A]",
+    "why_incomplete": "the full statement needs a second shape e^{p-2} * prod_{i=1}^{p}(a_i e + f) with sum a_i = 1 [shape B]"
+  },
+  "prior_art": {
+    "rank_2": "classical -- Property B (Gao-Geroldinger; proved for prime n by Reiher), with the Bhowmik-Schlage-Puchta / Gao-Geroldinger description of maximal zero-sum-free sequences over C_n^2",
+    "rank_3": "NOT known. Complete inverse results were found only for special families (Schmid, EJC 18 (2011) #P33 for C_2^2 + C_2n; Bhowmik-Schlage-Puchta 2007 for C_3+C_3+C_3d). The literature explicitly motivates the rank-2 structure by the fact that rank-3 Davenport is unresolved in general.",
+    "verdict": "no source gave a structural classification for C_p^3; this is new territory"
+  },
+  "problem": "the inverse Davenport problem for C_5^3: classify maximal zero-sum-free sequences (length d = 12) and minimal zero-sum sequences of maximal length (D = 13), up to GL(3,5)",
+  "proved": {
+    "P1": "sigma(S) != 0 for every zero-sum-free S, so U = S*(-sigma(S)) has length 13 and is a MINIMAL zero-sum sequence",
+    "P2_inductive_reduction": {
+      "boundary": "the argument fails at multiplicity 3, where j = 1,2 are unblocked",
+      "coverage": "17153 of 26369 classes (65.0%), 25,472,576,000 sequences",
+      "proof": "if a sub-multiset T' of T sums to 0 in G/<g> then sigma(T') = j g for some j in 0..4; j=0 makes T' a zero-sum in S, and j>0 makes T' * g^(5-j) a zero-sum in S since m(g)=4 >= 5-j; both contradict zero-sum-freeness",
+      "spot_check": "300 random such classes, 0 failures, quotients hitting all 18 rank-2 classes",
+      "statement": "if g in supp(S) has multiplicity 4 then S = g^4 * T, and the image of T in G/<g> = C_5^2 is a MAXIMAL zero-sum-free sequence of length 8, hence of shape A or B by the rank-2 theorem"
+    }
+  },
+  "provenance_the_two_headlines_rest_on_different_evidence": {
+    "26369": "validated the strong way -- predicted count N(C)/|Stab(C)| matches the observed normalized enumeration exactly for every class",
+    "3325": "NOT validated that way; it rests on the surjection argument, the sum-over-support identity above, and an anti-collapse control. Weaker evidence, recorded as such."
+  },
+  "results": {
+    "minimal_zero_sum_length_13": {
+      "gl_classes": 3325,
+      "note": "this is the inverse Davenport problem proper for C_5^3",
+      "stabilizer_histogram": {
+        "1": 3259,
+        "2": 63,
+        "4": 2,
+        "6": 1
+      },
+      "support_size_histogram": {
+        "10": 173,
+        "4": 2,
+        "5": 22,
+        "6": 198,
+        "7": 786,
+        "8": 1297,
+        "9": 847
+      },
+      "total_sequences": 4897256000
+    },
+    "zero_sum_free_length_12": {
+      "gl_classes": 26369,
+      "stabilizer_histogram": {
+        "1": 26250,
+        "2": 116,
+        "4": 2,
+        "6": 1
+      },
+      "support_size_histogram": {
+        "10": 261,
+        "3": 1,
+        "4": 28,
+        "5": 502,
+        "6": 3515,
+        "7": 9346,
+        "8": 9392,
+        "9": 3324
+      },
+      "total_sequences": 39147296000
+    }
+  },
+  "schema": "ORION.RG.X1G.CommittedResult.v1",
+  "source_result_digest": "03fd815a24e6f85efeb9b91ad2cab14b5a5b6639a6cea3a7fb02cc8325ee5f77",
+  "terminal": "X1G_EXACT_INVERSE_CLASSIFICATION_ESTABLISHED",
+  "validation": {
+    "anti_collapse": "inside one multiplicity profile, 129 sequences with distinct subsequence-sum signatures (an independently computed GL-invariant) received 129 DISTINCT canonical forms",
+    "bit_primitive_is_PROVED_not_sampled": "the u128 translation is OR-linear, so checking all 125 singleton masks under all 125 translations is a complete proof; 15625/15625 verified",
+    "canonicalizer_regression": "the optimized canonicalizer reproduces the already-validated one byte-for-byte on all 98622 D_2 witnesses",
+    "cross_classification_identity": {
+      "exact": true,
+      "left": 39147296000,
+      "right": 39147296000,
+      "statement": "every minimal zero-sum U of length 13 equals S*(-sigma(S)) for exactly the |supp(U)| choices S = U minus one element, so #(zero-sum-free length 12) = sum over U of |supp(U)|"
+    },
+    "minimality_spot_check": "120 random minimal-zero-sum representatives brute-forced over all 2^13 subsets: every one has exactly one zero-sum sub-multiset, itself",
+    "orbit_stabilizer": "N(C)/|Stab(C)| equals the observed multiplicity for every one of the 26369 classes, 0 mismatches, total 3,275,411; |Stab|*|orbit| = |GL(3,5)| throughout",
+    "rank2_anchor_reproduced": "all 8400 zero-sum-free length-8 sequences over C_5^2 enumerated with NO normalization give 18 classes summing to 8400, all fitting shape A or B",
+    "slice_completeness": "independent Python brute force over the |supp| <= 5 slice produced 7302 sequences; the C enumerator produced an IDENTICAL SET (0 only-in-Python, 0 only-in-C)",
+    "two_independent_enumerators": "position-recursive vs code-recursive with different pruning, both giving 3,275,411 normalized zero-sum-free sequences of length 12"
+  },
+  "verified_by_exhaustion_census_not_proof": {
+    "T1_projective_squarefreeness": {
+      "OPEN_CONJECTURE": "is every maximal zero-sum-free sequence over C_p^3 projectively squarefree? This is the one regularity found here that looks like a theorem waiting for a proof.",
+      "also_held_for": "all 1405 extremal D_2 witness classes (X1-F4)",
+      "not_locally_forced": "u^2 (2u)^1 is itself zero-sum-free, and the only local constraint is m(u)<=2, m(2u)<=1, yet it never occurs",
+      "scope": "two independent complete censuses, about 41 billion sequences, no exception",
+      "statement": "supp(S) injects into PG(2,5): no two support elements are scalar multiples"
+    },
+    "T2": "max multiplicity is 2, 3 or 4 (410 / 8806 / 17153 classes)",
+    "T3": "the projective support never contains a full line of PG(2,5)",
+    "T4": "support size lies in {3,...,10}"
+  }
+}

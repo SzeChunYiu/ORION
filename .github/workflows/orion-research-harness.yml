@@ -96,23 +96,70 @@ jobs:
         run: |
           orion-harness init /tmp/orion-q-r6 --project-root . --allow-process-tools
           orion-harness campaign-start /tmp/orion-q-r6 orion-q:max-r6-live
-      - name: Drive live campaign through current P10 boundary
+      - name: Drive live campaign through current fail-closed prospective verdict
+      - name: Drive live campaign through protected pre-access R6 boundary
         run: |
+          set -o pipefail
           orion-harness campaign-run /tmp/orion-q-r6 orion-q:max-r6-live --max-cycles 4 | tee /tmp/orion-q-r6-run.json
-          grep 'P10_FRAME_RESULT_READY__R6_STILL_CLOSED' /tmp/orion-q-r6-run.json
+          grep 'R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING' /tmp/orion-q-r6-run.json
           orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
-          grep 'P10_FRAME_GENERATION_TERMINAL' /tmp/orion-q-r6-state.json
-      - name: Fail closed if protected R6 discriminator was released
+          grep '"R6_EARNED"' /tmp/orion-q-r6-state.json
+      - name: Fail closed on current R6 verdict and protected-subject custody
+          orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
+      - name: Enforce terminal progression and protected R6 custody
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
+          run = json.loads(Path('/tmp/orion-q-r6-run.json').read_text())
           state = json.loads(Path('/tmp/orion-q-r6-state.json').read_text())
-          if state.get('phase_id') != 'P10_RESULT':
+
+          if run.get('status') != 'TERMINAL':
+              raise SystemExit(f"live campaign did not reach a terminal: {run.get('status')!r}")
+          cycles = run.get('cycles')
+          if not isinstance(cycles, list) or len(cycles) != 4:
+              raise SystemExit(f"expected four bounded live cycles, got {len(cycles) if isinstance(cycles, list) else type(cycles).__name__}")
+          last = cycles[-1]
+          if last.get('terminal') != 'R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING':
+              raise SystemExit(f"unexpected live campaign terminal: {last.get('terminal')!r}")
+          if last.get('status') != 'TERMINAL':
+              raise SystemExit(f"last campaign outcome is not terminal: {last.get('status')!r}")
+          if state.get('phase_id') != 'R6_VERDICT':
               raise SystemExit(f"unexpected campaign phase: {state.get('phase_id')!r}")
           if state.get('authority_ceiling') != 'BELOW_R6_UNTIL_PROTECTED_PROMOTION':
               raise SystemExit('campaign authority ceiling changed')
+          for key in (
+              'grants_adoption_authority',
+              'grants_global_task_stop_authority',
+              'grants_merge_authority',
+              'grants_novelty_authority',
+              'grants_promotion_authority',
+              'grants_scientific_authority',
+          ):
+              if state.get(key) is not False:
+                  raise SystemExit(f'fail-closed grant changed: {key}={state.get(key)!r}')
+
+          observations = dict(state.get('observations') or [])
+          if observations.get('R6_EARNED') != 'NO':
+              raise SystemExit(f"unexpected R6 earned observation: {observations.get('R6_EARNED')!r}")
+          if observations.get('R6_PROTECTED_SUBJECT_ACCESSED') != 'NO':
+              raise SystemExit('protected R6 subject was accessed during fail-closed live smoke')
+          if observations.get('R6_PROSPECTIVE_AUTHORITY') != 'MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED':
+              raise SystemExit(f"unexpected prospective authority: {observations.get('R6_PROSPECTIVE_AUTHORITY')!r}")
+
+          observations = dict(state.get('observations') or [])
+          expected_observations = {
+              'P10_FRAME_CANDIDATE_GENERATED': 'YES',
+              'P10_FRAME_GENERATION_TERMINAL': 'MAX_R6_P10_FRAME_CANDIDATE_GENERATED',
+              'R6_EARNED': 'NO',
+              'R6_PROSPECTIVE_AUTHORITY': 'MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED',
+              'R6_PROTECTED_SUBJECT_ACCESSED': 'NO',
+          }
+          for key, expected in expected_observations.items():
+              if observations.get(key) != expected:
+                  raise SystemExit(f"unexpected {key}: {observations.get(key)!r} != {expected!r}")
+
           protected = state.get('protected_refs')
           if not isinstance(protected, list) or len(protected) != 1:
               raise SystemExit('expected exactly one protected R6 reference')

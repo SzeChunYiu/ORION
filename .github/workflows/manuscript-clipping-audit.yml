@@ -1,0 +1,47 @@
+name: manuscript-clipping-audit
+
+# Clipped text is invisible to every text-level check the programme runs:
+# pdftotext returns characters that have run off the paper, so a manuscript can
+# pass a content audit while a referee sees a truncated SHA-256. This gate reads
+# geometry instead of text.
+
+on:
+  pull_request:
+    paths:
+      - 'papers/**/*.pdf'
+      - 'scripts/audit_manuscript_clipping.py'
+      - 'papers/MANUSCRIPT_CLIPPING_BASELINE.json'
+      - '.github/workflows/manuscript-clipping-audit.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pymupdf>=1.24'
+      - name: Audit every built manuscript PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t pdfs < <(find papers -type f \
+            \( -path '*/manuscript/main.pdf' -o -path '*/journal_package/manuscript.pdf' \) | sort)
+          if [ "${#pdfs[@]}" -eq 0 ]; then
+            echo "::error::no built manuscript PDF found -- the audit checked nothing"
+            exit 1
+          fi
+          echo "auditing ${#pdfs[@]} PDFs"
+          # Exit 2 = new clipping or a stale baseline entry. Exit 3 = could not
+          # check, which is failed here rather than reported as clean.
+          python scripts/audit_manuscript_clipping.py "${pdfs[@]}" \
+            --root "$PWD" --baseline papers/MANUSCRIPT_CLIPPING_BASELINE.json

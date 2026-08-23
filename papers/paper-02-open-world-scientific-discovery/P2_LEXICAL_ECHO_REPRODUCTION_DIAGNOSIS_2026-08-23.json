@@ -1,0 +1,65 @@
+{
+  "schema": "orion.p2.lexical-echo-reproduction-diagnosis.v1",
+  "record": "P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS",
+  "authority_scope": "DIAGNOSIS_ONLY",
+  "relabels_nothing": "The frozen result and its verdict are untouched.",
+  "environment": {
+    "python": "3.13.12",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O"
+  },
+  "gate_read_fields": [
+    "hit_at_1",
+    "hit_at_10"
+  ],
+  "smallest_gate_threshold": 0.01,
+  "float_differences": [
+    {
+      "path": "/echo/A1_D4_GATED_QUERY_UNWEIGHTED/mrr_at_50",
+      "committed": 0.8730555555555558,
+      "fresh": 0.8730555555555556,
+      "ulps": 2,
+      "relative": 2.543304415304208e-16,
+      "field": "mrr_at_50"
+    },
+    {
+      "path": "/echo/A2_D1_QUERY_WEIGHTED/mrr_at_50",
+      "committed": 0.17576529381932487,
+      "fresh": 0.17576529381932493,
+      "ulps": 2,
+      "relative": 3.1582543985230446e-16,
+      "field": "mrr_at_50"
+    },
+    {
+      "path": "/echo/B1_CURRENT_D1_BM25/mrr_at_50",
+      "committed": 0.16653981247523175,
+      "fresh": 0.16653981247523184,
+      "ulps": 3,
+      "relative": 4.999809091250799e-16,
+      "field": "mrr_at_50"
+    },
+    {
+      "path": "/no_echo/B0_CURRENT_D1_UNWEIGHTED/mrr_at_50",
+      "committed": 0.9472222222222222,
+      "fresh": 0.9472222222222223,
+      "ulps": 1,
+      "relative": 1.1720829585485523e-16,
+      "field": "mrr_at_50"
+    }
+  ],
+  "non_float_differences": [],
+  "max_ulps": 3,
+  "max_relative_difference": 4.999809091250799e-16,
+  "checks": {
+    "two_fresh_runs_are_bit_identical": true,
+    "frozen_parameter_digest_still_matches": true,
+    "verdict_unchanged": true,
+    "world_content_hash_unchanged": true,
+    "gate_results_unchanged": true,
+    "no_non_float_difference": true,
+    "no_gate_read_field_differs": true,
+    "every_float_difference_is_within_four_ulps": true
+  },
+  "finding": "Four mrr_at_50 values differ by at most three units in the last place of a float64. Two fresh runs are bit-identical to each other, the frozen parameter digest still matches, and the verdict and every gate result are unchanged. No gate reads mrr_at_50.",
+  "consequence": "The failure is a comparison defect. Bit-equality of a floating-point mean is not attainable across library versions, so a reproduction check that demands it is an unattainable gate. The check should compare gate-read fields and all non-float values exactly, and permit a declared ulp-scale difference only on reported floats no gate consumes.",
+  "all_checks_pass": true
+}

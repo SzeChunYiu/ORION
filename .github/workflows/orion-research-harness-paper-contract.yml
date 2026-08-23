@@ -1,0 +1,184 @@
+name: orion-research-harness-paper-contract
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/src/orion_research_harness/paper_*.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/epistemic_*.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_director.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_resolution.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_v3_conformance.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_v4_conformance.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/recursive_director_integration.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_saturation.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/ocme_*.py'
+      - 'packages/orion-research-harness/tests/test_paper_*.py'
+      - 'packages/orion-research-harness/tests/test_epistemic_*.py'
+      - 'packages/orion-research-harness/tests/test_p8_*.py'
+      - 'packages/orion-research-harness/tests/test_research_director_*.py'
+      - 'packages/orion-research-harness/tests/test_research_resolution_*.py'
+      - 'packages/orion-research-harness/tests/test_research_v3_*.py'
+      - 'packages/orion-research-harness/tests/test_research_v4_*.py'
+      - 'packages/orion-research-harness/tests/test_research_saturation_*.py'
+      - 'packages/orion-research-harness/tests/test_ocme_*.py'
+      - 'packages/orion-research-harness/pyproject.toml'
+      - 'src/orion/core/research_resolution.py'
+      - 'src/orion/registry.py'
+      - 'papers/FRAMEWORK_SNAPSHOT.json'
+      - 'papers/SYNC_CONTRACT.md'
+      - 'papers/paper-07-epistemic-navigation-open-worlds/**'
+      - 'papers/paper-10-structured-problem-solving/**'
+      - 'papers/paper-15-orion-research-harness/**'
+      - 'development/orion-research-harness/PAPER_CONTRACT_*'
+      - 'development/orion-research-harness/PAPER_PROGRAMME_*'
+      - 'development/orion-research-harness/PAPER_RESEARCH_*'
+      - 'development/orion-research-harness/PAPER_FRAMEWORK_*'
+      - '.github/workflows/orion-research-harness-paper-contract.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-research-harness-paper-contract-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  paper-contract-hostile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install canonical ORION and shared harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run frozen paper-contract hostile tests
+        run: |
+          python -m pytest -q \
+            packages/orion-research-harness/tests/test_paper_contract_runtime.py \
+            packages/orion-research-harness/tests/test_paper_runtime_cli.py \
+            packages/orion-research-harness/tests/test_paper_control_cli.py \
+            packages/orion-research-harness/tests/test_research_director_v3.py \
+            packages/orion-research-harness/tests/test_research_resolution_v4.py \
+            packages/orion-research-harness/tests/test_research_resolution_v4_cli.py \
+            packages/orion-research-harness/tests/test_research_v3_cli.py \
+            packages/orion-research-harness/tests/test_research_v4_conformance.py \
+            packages/orion-research-harness/tests/test_paper_structure_consensus_v3.py \
+            packages/orion-research-harness/tests/test_epistemic_mechanics_p6.py \
+            packages/orion-research-harness/tests/test_epistemic_authority_p8.py \
+            packages/orion-research-harness/tests/test_p8_scope_widening_regression.py \
+            packages/orion-research-harness/tests/test_research_saturation_route_independence_regression.py \
+            packages/orion-research-harness/tests/test_ocme_runtime.py \
+            packages/orion-research-harness/tests/test_ocme_lower_level_coverage_regression.py \
+            packages/orion-research-harness/tests/test_paper_programme_runtime.py
+      - name: Enforce registry-paper snapshot covariance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from orion import registry
+
+          snapshot = json.loads(Path('papers/FRAMEWORK_SNAPSHOT.json').read_text())
+          assert snapshot['framework_version'] == registry.FRAMEWORK_VERSION
+          assert snapshot['paper_sync_epoch'] == registry.PAPER_SYNC_EPOCH
+          assert snapshot['state_coordinates'] == list(registry.CORE_STATE_COORDINATES)
+          assert snapshot['core_operator_ids'] == list(registry.CORE_OPERATOR_IDS)
+          assert snapshot['mechanics_substrate_ids'] == list(registry.MECHANICS_SUBSTRATE_IDS)
+          assert 'ResearchResolutionObligation.v1' in registry.MECHANICS_SUBSTRATE_IDS
+          assert 'ResearchNegativeResult.v1' in registry.MECHANICS_SUBSTRATE_IDS
+          PY
+      - name: Execute P0 semantic paper-contract conformance gate
+        run: |
+          orion-harness-paper paper-contract-conformance | tee /tmp/orion-paper-contract.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-paper-contract.json').read_text())
+          assert report['schema'] == 'ORION.HarnessPaperContractConformance.v1'
+          assert report['terminal'] == 'ORION_HARNESS_PAPER_CONTRACT_P0_OPERATIONAL'
+          assert report['paper_contract_operational'] is True
+          assert report['failed_probes'] == []
+          assert report['probes'] and all(report['probes'].values())
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
+      - name: Execute full P1-P15 semantic programme conformance gate
+        run: |
+          orion-harness-paper paper-programme-conformance | tee /tmp/orion-paper-programme.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-paper-programme.json').read_text())
+          assert report['schema'] == 'ORION.HarnessPaperProgrammeConformance.v1'
+          assert report['terminal'] == 'ORION_HARNESS_P1_P15_OPERATIONAL'
+          assert report['paper_programme_operational'] is True
+          assert report['failed_paper_ids'] == []
+          assert len(report['papers']) == 15
+          assert [row['paper_id'] for row in report['papers']] == [f'P{i}' for i in range(1, 16)]
+          assert all(row['operational'] for row in report['papers'])
+          assert all(row['positive_probe'] for row in report['papers'])
+          assert all(row['fail_closed_probe'] for row in report['papers'])
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
+      - name: Execute research-director and consensus-extraction V3 gate
+        run: |
+          orion-harness-paper research-v3-conformance | tee /tmp/orion-research-v3.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-research-v3.json').read_text())
+          assert report['schema'] == 'ORION.HarnessResearchDirectorConsensusConformance.v3'
+          assert report['terminal'] == 'ORION_HARNESS_RESEARCH_DIRECTOR_CONSENSUS_EXTRACTION_V3_OPERATIONAL'
+          assert report['operational'] is True
+          assert report['failed_probes'] == []
+          assert report['probes'] and all(report['probes'].values())
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
+      - name: Execute paper-framework-harness covariance V4 gate
+        run: |
+          python -m orion_research_harness.research_v4_conformance | tee /tmp/orion-research-v4.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-research-v4.json').read_text())
+          assert report['schema'] == 'ORION.PaperFrameworkHarnessCovarianceConformance.v4'
+          assert report['terminal'] == 'ORION_PAPER_FRAMEWORK_HARNESS_COVARIANCE_V4_OPERATIONAL'
+          assert report['operational'] is True
+          assert report['failed_probes'] == []
+          assert report['probes'] and all(report['probes'].values())
+          assert report['framework_version'] == '0.3.10-shadow'
+          assert report['paper_sync_epoch'] == '2026-08-22-paper-framework-harness-covariance-v4'
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
+      - name: Run full shared-harness regression suite
+        run: python -m pytest -q packages/orion-research-harness/tests
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-paper-contract-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            /tmp/orion-paper-contract.json
+            /tmp/orion-paper-programme.json
+            /tmp/orion-research-v3.json
+            /tmp/orion-research-v4.json
+          if-no-files-found: warn
+          retention-days: 14
