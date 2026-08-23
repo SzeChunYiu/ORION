@@ -27,27 +27,11 @@
       "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
-      "id": "NR-04",
-      "paper": "P9",
-      "negative": "D-A CANNOT_CHECK: quality-transport < 0.965",
-      "hypothesis": "transport loses quality between arms",
-      "lever": "transport-mechanism fix + frozen five-cell re-run",
-      "solvability": "RESEARCH_SOLVABLE"
-    },
-    {
       "id": "NR-05",
       "paper": "P9",
       "negative": "T4 hostile attack defeated narrow representation claim",
       "hypothesis": "representation blind spot exploited",
       "lever": "representation hardening vs frozen attack class",
-      "solvability": "RESEARCH_SOLVABLE"
-    },
-    {
-      "id": "NR-06",
-      "paper": "P9",
-      "negative": "D1v1.2 locked-env replay 0.50 mismatch",
-      "hypothesis": "serialization/env-freeze divergence",
-      "lever": "root-cause serialization delta; D1v1.3 successor frozen",
       "solvability": "RESEARCH_SOLVABLE"
     },
     {
@@ -119,6 +103,16 @@
       "negative": "P10 module deltas: Control -0.033333 (7W/9L, MDA=10, p=0.804), CategoryTheory -0.005 (21W/22L, p=1.0)",
       "successor": "P10 module-negative revival V2 (#1021): one-stage attribution (Control: negative net concentrates in calculation context 5W/17L vs donor-pooled rewrite 46% plurality; CT: strongest structure LOO +0.3815, smallest shift JS 0.0265), donor-side levers data-rejected (confidence-gate 0.0968, majority-gate 0.0003), V2 exact paired claim rule alpha=0.05: 20/20 claimable-sign modules POSITIVE, 0 claimable negative, 6 sign-withheld; family sign test 1.049e-5 -> 1.907e-6",
       "status": "CORRECTED_UNRESOLVED_PER_MODULE_WITH_LANDED_V2_CLAIM_RULE (receipt P10_MODULE_NEGATIVE_REVIVAL_RECEIPT_V1, PR #1021)"
+    },
+    {
+      "negative": "P9 D-A transport instability (NR-04): CANNOT_CHECK, quality-transport below 0.965",
+      "successor": "Ensemble-level transport V2 (pre-registered, R=24 re-draws): representation channel bitwise lossless, evaluation channel was the lossy stage (noise-to-margin 8.47)",
+      "status": "diagnostic 5/5, all-cell decision agreement; D-A honestly stays CANNOT_CHECK (margin unresolvable at n=719); V2 stability clause withheld the full positive (P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1)"
+    },
+    {
+      "negative": "P9 D1v1.2 replay divergence (NR-06): archived 0.50 vs frozen-env reproduction",
+      "successor": "Replay lock pinned to archive-matching solver stack (sklearn 1.9.0 vs archive 1.8.0; data channel digest-identical)",
+      "status": "exact per-case reproduction of all four arms (TSB 0.5, constant predictor); locked-replay FAILED terminal stays append-only; scientific repair stays with frozen D1v1.3"
     }
   ],
   "workaround_protocol": {

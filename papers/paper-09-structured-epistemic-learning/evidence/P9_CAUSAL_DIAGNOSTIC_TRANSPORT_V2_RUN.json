@@ -1,0 +1,230 @@
+{
+  "diagnosis_accuracy": 1.0,
+  "digits_accuracy": 1.0,
+  "environment": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0"
+  },
+  "executable_accuracy": 1.0,
+  "false_compute_escalation": 0,
+  "generic_accuracy": 0.2,
+  "generic_false_compute_escalation": 4,
+  "half_draw_decision_stability": {
+    "D-A": {
+      "half_decisions": {
+        "probe:0": "CANNOT_CHECK",
+        "probe:1": "CANNOT_CHECK",
+        "protected:0": "CANNOT_CHECK",
+        "protected:1": "ACCESSIBILITY"
+      },
+      "halves_agree_with_full": false
+    },
+    "D-I": {
+      "half_decisions": {
+        "probe:0": "INFORMATION",
+        "probe:1": "INFORMATION",
+        "protected:0": "INFORMATION",
+        "protected:1": "INFORMATION"
+      },
+      "halves_agree_with_full": true
+    }
+  },
+  "half_draw_decision_stability_all_digits": false,
+  "mean_registered_cost_regret": 0.0,
+  "probe_protected_decision_agreement_all_cells": true,
+  "protected_target_reached_by_prediction": true,
+  "protocol_v2_sha256": "a6742ad73a79a4a67d7cf0faaf423f311244a996f3e8dd73da7a2197f5d19f1a",
+  "receipt_sha256": "662b772a3b6a929b8afe5112bfff28c10b0d4709e018abf4755391bbd6495ab2",
+  "rows": [
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "digits",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "half_draw_levels": {
+        "probe:ACCESSIBILITY:0": 0.9628597957288766,
+        "probe:ACCESSIBILITY:1": 0.9642525533890436,
+        "probe:COMPUTATION:0": 0.11652739090064994,
+        "probe:COMPUTATION:1": 0.11884865366759517,
+        "probe:INFORMATION:0": 0.931058495821727,
+        "probe:INFORMATION:1": 0.9213091922005571,
+        "protected:ACCESSIBILITY:0": 0.9624999999999999,
+        "protected:ACCESSIBILITY:1": 0.9662037037037038,
+        "protected:COMPUTATION:0": 0.11944444444444445,
+        "protected:COMPUTATION:1": 0.11944444444444445,
+        "protected:INFORMATION:0": 0.9298611111111112,
+        "protected:INFORMATION:1": 0.9331018518518518
+      },
+      "per_draw_protected_sd": {
+        "ACCESSIBILITY": 0.008380168975801188,
+        "COMPUTATION": 0.005049406995257698,
+        "INFORMATION": 0.0101540293500418
+      },
+      "predicted": "CANNOT_CHECK",
+      "predicted_protected_level": null,
+      "probe_levels": {
+        "ACCESSIBILITY": 0.9635561745589601,
+        "COMPUTATION": 0.11768802228412256,
+        "INFORMATION": 0.926183844011142
+      },
+      "probe_protected_decision_agreement": true,
+      "protected_gold": "CANNOT_CHECK",
+      "protected_levels": {
+        "ACCESSIBILITY": 0.9643518518518519,
+        "COMPUTATION": 0.11944444444444445,
+        "INFORMATION": 0.9314814814814816
+      },
+      "target": 0.965,
+      "task": "D-A"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "digits",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "half_draw_levels": {
+        "probe:ACCESSIBILITY:0": 0.11652739090064995,
+        "probe:ACCESSIBILITY:1": 0.12000928505106778,
+        "probe:COMPUTATION:0": 0.14020427112349118,
+        "probe:COMPUTATION:1": 0.15250696378830084,
+        "probe:INFORMATION:0": 0.9628597957288766,
+        "probe:INFORMATION:1": 0.9642525533890436,
+        "protected:ACCESSIBILITY:0": 0.11736111111111112,
+        "protected:ACCESSIBILITY:1": 0.11157407407407406,
+        "protected:COMPUTATION:0": 0.1550925925925926,
+        "protected:COMPUTATION:1": 0.14212962962962963,
+        "protected:INFORMATION:0": 0.9624999999999999,
+        "protected:INFORMATION:1": 0.9662037037037038
+      },
+      "per_draw_protected_sd": {
+        "ACCESSIBILITY": 0.011230612407018559,
+        "COMPUTATION": 0.018169004414581146,
+        "INFORMATION": 0.008380168975801188
+      },
+      "predicted": "INFORMATION",
+      "predicted_protected_level": 0.9643518518518519,
+      "probe_levels": {
+        "ACCESSIBILITY": 0.11826833797585885,
+        "COMPUTATION": 0.146355617455896,
+        "INFORMATION": 0.9635561745589601
+      },
+      "probe_protected_decision_agreement": true,
+      "protected_gold": "INFORMATION",
+      "protected_levels": {
+        "ACCESSIBILITY": 0.11446759259259259,
+        "COMPUTATION": 0.1486111111111111,
+        "INFORMATION": 0.9643518518518519
+      },
+      "target": 0.95,
+      "task": "D-I"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "half_draw_levels": null,
+      "per_draw_protected_sd": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "predicted": "INFORMATION",
+      "predicted_protected_level": 1.0,
+      "probe_levels": {
+        "ACCESSIBILITY": 0.52,
+        "COMPUTATION": 0.52,
+        "INFORMATION": 1.0
+      },
+      "probe_protected_decision_agreement": true,
+      "protected_gold": "INFORMATION",
+      "protected_levels": {
+        "ACCESSIBILITY": 0.5,
+        "COMPUTATION": 0.5,
+        "INFORMATION": 1.0
+      },
+      "target": 1.0,
+      "task": "B-I"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "half_draw_levels": null,
+      "per_draw_protected_sd": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "predicted": "ACCESSIBILITY",
+      "predicted_protected_level": 1.0,
+      "probe_levels": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.65
+      },
+      "probe_protected_decision_agreement": true,
+      "protected_gold": "ACCESSIBILITY",
+      "protected_levels": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.55
+      },
+      "target": 1.0,
+      "task": "B-A"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": true,
+      "generic_false_compute_escalation": false,
+      "generic_prediction": "COMPUTATION",
+      "half_draw_levels": null,
+      "per_draw_protected_sd": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "predicted": "COMPUTATION",
+      "predicted_protected_level": 1.0,
+      "probe_levels": {
+        "ACCESSIBILITY": 0.02,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.02
+      },
+      "probe_protected_decision_agreement": true,
+      "protected_gold": "COMPUTATION",
+      "protected_levels": {
+        "ACCESSIBILITY": 0.05,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.05
+      },
+      "target": 1.0,
+      "task": "B-C"
+    }
+  ],
+  "schema": "P9.CausalDiagnosticTransport.v2",
+  "task_count": 5,
+  "terminal": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET",
+  "transport": {
+    "R": 24,
+    "inner_seed0": 20261201,
+    "outer_seed0": 20261101
+  }
+}
