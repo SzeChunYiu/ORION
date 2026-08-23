@@ -1,0 +1,87 @@
+name: p11-donor-decoder-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-11-state-as-computation/top_tier/**'
+      - '.github/workflows/p11-donor-decoder-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  donor-comparator-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==1.26.4' 'scikit-learn==1.5.2'
+      - name: Execute donor-complete compiler comparator
+        run: python papers/paper-11-state-as-computation/top_tier/run_donor_compiler_comparator_v1.py | tee p11_donor_comparator_v1.json
+      - name: Execute byte-replay run
+        run: |
+          python papers/paper-11-state-as-computation/top_tier/run_donor_compiler_comparator_v1.py > p11_donor_comparator_v1_rerun.json
+          cmp p11_donor_comparator_v1.json p11_donor_comparator_v1_rerun.json
+          echo P11_DONOR_COMPARATOR_V1_BYTE_REPLAY_GREEN
+      - name: Run independent re-derivation checker
+        run: python papers/paper-11-state-as-computation/top_tier/check_donor_comparator_independent_v1.py | tee p11_donor_comparator_checker_v1.json
+      - name: Assert terminals
+        run: |
+          python - <<'PY'
+          import json
+          run = json.load(open("p11_donor_comparator_v1.json"))
+          chk = json.load(open("p11_donor_comparator_checker_v1.json"))
+          assert run["terminal"] == "P11_DONOR_COMPARATOR_V1_SUPPORTED", run["terminal"]
+          assert chk["terminal"] == "P11_DONOR_COMPARATOR_V1_INDEPENDENT_GREEN", chk["terminal"]
+          assert run["ep1_reproduction_ok"] is True
+          assert run["ep4_resource_parity_ok"] is True
+          print("DONOR_COMPARATOR_TERMINALS_GREEN")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-donor-comparator-v1
+          path: |
+            p11_donor_comparator_v1.json
+            p11_donor_comparator_checker_v1.json
+  decoder-attacks-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute decoder-attack frontier study
+        run: python papers/paper-11-state-as-computation/top_tier/run_decoder_attacks_v1.py | tee p11_decoder_attack_v1.json
+      - name: Execute byte-replay run
+        run: |
+          python papers/paper-11-state-as-computation/top_tier/run_decoder_attacks_v1.py > p11_decoder_attack_v1_rerun.json
+          cmp p11_decoder_attack_v1.json p11_decoder_attack_v1_rerun.json
+          echo P11_DECODER_ATTACK_V1_BYTE_REPLAY_GREEN
+      - name: Run independent Fourier-spectrum checker
+        run: python papers/paper-11-state-as-computation/top_tier/check_decoder_attacks_independent_v1.py | tee p11_decoder_attack_checker_v1.json
+      - name: Execute checker byte-replay run
+        run: |
+          python papers/paper-11-state-as-computation/top_tier/check_decoder_attacks_independent_v1.py > p11_decoder_attack_checker_v1_rerun.json
+          cmp p11_decoder_attack_checker_v1.json p11_decoder_attack_checker_v1_rerun.json
+          echo P11_DECODER_ATTACK_CHECKER_V1_BYTE_REPLAY_GREEN
+      - name: Assert terminals
+        run: |
+          python - <<'PY'
+          import json
+          run = json.load(open("p11_decoder_attack_v1.json"))
+          chk = json.load(open("p11_decoder_attack_checker_v1.json"))
+          assert run["terminal"] == "P11_DECODER_ATTACK_V1_GREEN", run["terminal"]
+          assert chk["terminal"] == "P11_DECODER_ATTACK_V1_INDEPENDENT_GREEN", chk["terminal"]
+          assert run["gold_agreement"] is True
+          print("DECODER_ATTACK_TERMINALS_GREEN")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-decoder-attack-v1
+          path: |
+            p11_decoder_attack_v1.json
+            p11_decoder_attack_checker_v1.json
