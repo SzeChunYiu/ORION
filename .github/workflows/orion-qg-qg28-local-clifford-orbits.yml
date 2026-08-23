@@ -1,0 +1,84 @@
+name: orion-qg-qg28-local-clifford-orbits
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG28_*'
+      - 'development/orion-qg-regime-geometry/qg28_*'
+      - 'development/orion-qg-regime-geometry/run_qg28_dual_harness.py'
+      - 'research/extensions/orion-qg/qg28_*'
+      - '.github/workflows/orion-qg-qg28-local-clifford-orbits.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg28-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  orbit-compression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg28_dual_harness.py | tee artifacts/orion-qg-qg28-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg28_local_clifford_orbits.py --output artifacts/orion-qg-qg28-replay.json > artifacts/orion-qg-qg28-replay.log
+          cmp artifacts/orion-qg-qg28-local-clifford-orbits.json artifacts/orion-qg-qg28-replay.json
+      - name: Enforce safe symmetry authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg28-local-clifford-orbits.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg28-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg28-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg28-dual-harness.json').read_text())
+          pos='QG28_TARE_EXACT_COST_DESCENDS_TO_715_LOCAL_CLIFFORD_COLUMN_ORBIT_COUNTS_ALL_N'
+          assert a['terminal']==pos
+          assert a['orbit_census']['enumerated_orbits']==715
+          assert a['orbit_census']['orbit_size_distribution']=={'1':1,'3':63,'6':651}
+          assert a['table_checks']['all_equivariant'] is True
+          assert a['baseline_quotient']['checks']['constant_on_orbits'] is True
+          assert a['baseline_quotient']['checks']['lift_exact'] is True
+          assert a['baseline_quotient']['checks']['distinct_quotient_vectors']==4
+          assert a['active_canonicalization_control']['rows']==1572864 and a['active_canonicalization_control']['all_match'] is True
+          assert g['decision']=='ACCEPT_LOCAL_CLIFFORD_ORBIT_COMPRESSION' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_LOCAL_CLIFFORD_ORBIT_COMPRESSION' and n['all_checks'] is True
+          assert n['responsibility']=='LOCAL_CLIFFORD_EQUIVARIANCE__715_ORBIT_HISTOGRAM_GEOMETRY'
+          assert d['terminal']==pos and d['both_accept'] is True
+          for x in (a,g,n,d):
+            assert x['LOCAL_CLIFFORD_EQUIVARIANCE_PER_QUBIT'] is True
+            assert x['LOCAL_CLIFFORD_ORBIT_COUNT']==715
+            assert x['ORBIT_HISTOGRAM_SUFFICIENT_STATISTIC_ALL_N'] is True
+            assert x['GUARDED_TROPICAL_GEOMETRY_DESCENDS_TO_715_COUNTS'] is True
+            assert x['INDEPENDENT_POSITION_RELABEL_PER_COLUMN'] is False
+            assert x['COMBINED_LOCAL_POSITION_QUOTIENT_54'] is False
+            assert x['EXPLICIT_TEMPLATE_BASIS_ENUMERATED'] is False
+            assert x['PRACTICAL_STATIC_FORECASTER'] is False
+            assert x['CHAIN_ALL_N'] is False and x['CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg28-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg28-*.json
+            artifacts/orion-qg-qg28-*.log
+            .orion-qg-qg28-generic/.orion-harness/**
+            .orion-qg-qg28-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn
