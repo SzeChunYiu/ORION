@@ -25,6 +25,7 @@ Earned evidence includes:
 - P11F historical nonlinear output, now **non-authoritative** because hostile PR review found a protocol mismatch (`n_jobs=-1` despite an otherwise-default frozen contract);
 - P11G fresh deterministic nonlinear successor, retained only at its arm-scoped authority; the later attainability audit showed its hostile survival gate was unreachable in the losing direction, so P11G cannot license a general hostile-nonlinear claim;
 - P11H/P11I width boundary: a pooled hostile attack wins at `r=3`, while the prospectively frozen `r=7` replication passes all nine prespecified seed×geometry cells with matched live narrow controls;
+- NR-07 low-width capacity law (`top_tier/P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1.md`): the `r=3` attack win is a decoder-CAPACITY consequence, not a decoder-mechanism deficit — support recovery costs `n ~ 1/ρ(r)²` samples with `ρ(r) = C(r-1,(r-1)/2)/2^(r-1)` exactly, so `n* = 2 ln p / ρ(r)²` retrodicts the full P11H 15-rung ladder with no free parameters, both P11D gap gates are unattainable at `r=3` against the capacity-augmented pool (max attainable delta64 = 0.1741 < 0.20; ratio ≤ 2 < 4), and the `r=7` window survives the strictly stronger attack (max below 256 = 0.9421 over all 21 `r=7` readings);
 - donor-complete compiler comparison (`P11_DONOR_COMPARATOR_RESULT_RECEIPT_V1.md`): the D5 mutual-information selection principle, raced at matched charged compiler work and matched `k`, does not beat the registered `f_classif` compiler on breast-cancer, wine or digits and is at accuracy parity on all three; the independent checker and byte replay are green;
 - exact decoder frontier (`P11_DECODER_ATTACK_RESULT_RECEIPT_V1.md`): on the frozen parity family, constants/signed singles/odd-majority/axis decision lists do not realize the target, while the realizing character has degree `k` and decision trees require exactly `2^k` leaves; a structurally independent exact checker agrees;
 - ten-responsibility real-data phase study (`P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md`): **authoritative negative retained without retuning**. The preregistered family-scale quality gate is not met — LINEAR `3/10`, RBF `5/10`, KNN `5/10` versus the frozen `>=8/10` requirement — while every registered resource identity is confirmed (memory crossover `U<=4`, break-even horizon `1917..19169`, nonzero future-query specialization cost).
@@ -48,6 +49,7 @@ Historical failures remain first-class artifacts. P11D, P11H and the ten-respons
 - `top_tier/P11_DECODER_ATTACK_RESULT_RECEIPT_V1.md` — exact decoder-family frontier
 - `top_tier/P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md` — bound ten-responsibility negative and phase boundary
 - `top_tier/P11_QUERY_FAMILY_PHASE_LEDGER_ADDENDUM_V1.md` — additive authority update for the negative
+- `top_tier/P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1.md` — NR-07 capacity attribution and proven width law for the `r=3` boundary
 - P11D/P11H adverse results, P11E replicated sparse, P11G arm-scoped nonlinear and P11I wide high-width receipts
 - `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` — arm-axis adjudication and decoder/state decomposition
 

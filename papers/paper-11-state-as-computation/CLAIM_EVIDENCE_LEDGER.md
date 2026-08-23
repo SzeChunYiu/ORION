@@ -90,6 +90,33 @@ The three execution seeds are the independent random units; geometry is a fixed
 within-seed stratum. `P11I_REVALIDATION_RECEIPT_V1_1.json` reproduces the result
 in two fresh subprocesses, byte-identically, while recording `n=3`.
 
+### P11I → NR-07 low-width capacity law (2026-08-23)
+
+NR-07 of the negative-revival backlog attributed the `r=3` gap failure to ONE
+stage: a decoder-CAPACITY (information) limit, not a decoder-mechanism deficit
+and not an attack-strength artifact. Distinct parity columns are pairwise
+independent, so each active column's first-order correlation with the
+majority-of-`r` label is exact — ρ(r) = C(r−1,(r−1)/2)/2^(r−1), giving
+ρ₃ = 0.5, ρ₅ = 0.375, ρ₇ = 0.3125 — while inactive columns are exactly 0.
+Support recovery is therefore marginal screening at cost n ~ 1/ρ(r)², and the
+no-free-parameter law **n\* = 2 ln p / ρ(r)²** retrodicts the full P11H 15-rung
+candidate table, rejected rows included (`r=5` sits on a predicted knife-edge,
+n\* ∈ [64.2, 110.6], matching its "unstable" rejections).
+
+Two consequences are proven, not measured against the registered pool but
+against a strictly stronger capacity-augmented pool (the registered three arms
+plus an exact hyperparameter-free screening decoder): at `r=3` both gap gates
+are unattainable — max attainable delta64 = 0.1741 < 0.20 and threshold ratio
+≤ 2 < 4 — so the `r=3` adverse terminal is a theorem-shaped capacity fact; and
+the `r=7` window survives the stronger attack at all 21 frozen `r=7` readings
+(max below 256 = 0.9421 < 0.95), leaving P11I untouched and its mechanism
+explained. No frozen byte of P11D/P11H/P11I is edited; the receipt
+(`top_tier/P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1.md` + `.json`,
+result SHA `1882b2fb…d094de`, byte-identical two-run replay) reclassifies the
+interpretation of the adverse terminal without moving any published number.
+The pre-registered screen@64 prediction missed (floor 0.7255) and is disclosed
+with the corrected (64, 128] boundary; nothing was tuned.
+
 
 ## Donor subtraction
 
@@ -102,7 +129,7 @@ in two fresh subprocesses, byte-identically, while recording `n=3`.
 
 ## Residual novelty
 
-P11's residual is the **placement law between state construction and downstream access**. A universal state can contain every task-relevant coordinate yet force a bounded decoder to discover which coordinates matter. Query-conditioned construction moves that discovery work upstream. Stronger sparse decoding buys part of the work back—as it should. P11H bounds the residual: with all three universal arms pooled, the attack wins at `r=3` and loses at `r=7`. P11I then prospectively replicates the high-width side across nine fresh seed×geometry units, with the attack live in every matched narrow control. The placement law is therefore about how much query-conditioned state the compiler resolves, not the size of the universal representation. The same upstream specialization has an exact future-query cost when raw/recoverable state is discarded.
+P11's residual is the **placement law between state construction and downstream access**. A universal state can contain every task-relevant coordinate yet force a bounded decoder to discover which coordinates matter. Query-conditioned construction moves that discovery work upstream. Stronger sparse decoding buys part of the work back—as it should. P11H bounds the residual: with all three universal arms pooled, the attack wins at `r=3` and loses at `r=7`. P11I then prospectively replicates the high-width side across nine fresh seed×geometry units, with the attack live in every matched narrow control. NR-07 gives the law its mechanism: the placement axis is the sample cost of discovering which coordinates matter, n ~ 1/ρ(r)², so the boundary is set by the width of the compiled state rather than by any decoder's cleverness. The placement law is therefore about how much query-conditioned state the compiler resolves, not the size of the universal representation. The same upstream specialization has an exact future-query cost when raw/recoverable state is discarded.
 
 ## Strongest authorized headline
 

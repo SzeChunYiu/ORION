@@ -35,14 +35,6 @@
       "solvability": "RESEARCH_SOLVABLE"
     },
     {
-      "id": "NR-07",
-      "paper": "P11",
-      "negative": "P11D sparse-decoder gap unmet at r=3",
-      "hypothesis": "gap is width-conditioned (r>=7 passes)",
-      "lever": "r=3-regime mechanism, decoder- or attack-side",
-      "solvability": "RESEARCH_SOLVABLE"
-    },
-    {
       "id": "NR-08",
       "paper": "P2",
       "negative": "external campaign 7/229 gold, delta beyond sampling ceiling",
@@ -113,6 +105,11 @@
       "negative": "P9 D1v1.2 replay divergence (NR-06): archived 0.50 vs frozen-env reproduction",
       "successor": "Replay lock pinned to archive-matching solver stack (sklearn 1.9.0 vs archive 1.8.0; data channel digest-identical)",
       "status": "exact per-case reproduction of all four arms (TSB 0.5, constant predictor); locked-replay FAILED terminal stays append-only; scientific repair stays with frozen D1v1.3"
+    },
+    {
+      "negative": "P11 r=3 gap unmet / pooled attack prevailed (NR-07)",
+      "successor": "decoder-CAPACITY attribution: proven width law n* = 2 ln p / rho(r)^2 with rho(r) = C(r-1,(r-1)/2)/2^(r-1); both gap gates unattainable at r=3 against the capacity-augmented pool; r=7 window survives the stronger attack",
+      "status": "P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1 (width-conditioned claim made precise; byte-identical replay)"
     }
   ],
   "workaround_protocol": {
