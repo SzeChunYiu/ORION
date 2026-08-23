@@ -1,199 +1,133 @@
-# P15 — Scientific Execution Integrity: the ORION research harness
+# P15 — Scientific Execution Integrity
 
-**Stable ID:** ORION-P15
-**Paper issue:** none yet — this directory was opened ahead of one.
-**Status:** `PROSPECTIVE_ACQUISITION_PROTOCOL_FROZEN / NO_SCIENTIFIC_RESULT`
-
-`P15_ACTIVE_CLAIM_AUTHORITY_V2.json` is the machine-readable active lifecycle
-record and `CLAIM_EVIDENCE_LEDGER.md` is its human-readable claim boundary. It
-binds the prospectively frozen `P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md`
-and its fail-closed preflight. P15 still has no H1 or protected experiment, so
-this state is neither a failed result nor an unchecked scientific claim and
-cannot be promoted as a positive empirical finding.
-**Status:** `METHODS_SCOPE_ONLY / NO_SCIENTIFIC_RESULT`
-
-`P15_ACTIVE_CLAIM_AUTHORITY_V1.json` is the machine-readable active lifecycle
-record and `CLAIM_EVIDENCE_LEDGER.md` is its human-readable claim boundary. P15
-has no H1 or protected experiment, so this state is neither a failed result nor
-an unchecked scientific claim and cannot be promoted as a positive empirical
-finding.
 **Stable ID:** ORION-P15  
 **Paper issue:** #979  
-**Promotion programme:** #977 / `TOP_TIER_PROMOTION_V1.md`  
-**Status:** `PAPER_ISSUE_OPEN / NO_PROTECTED_SEI_RESULT`
+**Promotion programme:** #977  
+**Current lifecycle:** `BOUNDED_SCIENTIFIC_RESULT_EARNED`  
+**Current authority:** `P15_ACTIVE_CLAIM_AUTHORITY_V3.json`
 
-P15 is the systems paper for the two execution harnesses ORION research runs on and
-the guarantees each provides. Its higher scientific object is **Scientific Execution
-Integrity (SEI)**: separating what execution receipts can establish about
-attribution/replay/agreement from what they cannot establish about scientific
-validity or claim authority.
+P15 is the systems paper for **Scientific Execution Integrity (SEI)**: what execution receipts, provenance records, replay, lane agreement and cryptographic attestations can establish—and what they still cannot establish—about a scientific claim.
 
-It carries no scientific superiority claim yet and grants no authority.
-
-## Why P15 rather than a new namespace
-
-The P-series already contains non-claim papers: #669 writes P14 (ORION-RSE) as a
-methods/evaluation-contract paper, and the merged P10 technical note was evaluation
-infrastructure. A systems paper is therefore in-series, not an exception.
-`Q-paper-NN-*` stays reserved for the ORION-Q programme's own scientific numbering.
-
-## Scientific separation ladder
-
-The publication target is not generic provenance. P15 must formalize and test the
-non-implications
+The core separation is:
 
 `ATTRIBUTABLE_EXECUTION`
 `!= REPLAYABLE_EXECUTION`
 `!= AGREEMENT_BETWEEN_EXECUTIONS`
+`!= ATTESTED_EXECUTION`
 `!= SCIENTIFICALLY_VALID_RESULT`
 `!= AUTHORIZED_SCIENTIFIC_CLAIM`.
 
-Some implications may hold under additional premises; those premises must be stated
-explicitly rather than smuggled into receipt semantics.
+Additional premises can connect some layers, but those premises must be explicit. A receipt, a replay, an agreement or a valid signature must never silently become scientific truth.
 
-## What it covers
+## Current bounded evidence
 
-### 1. The ORION research harness
+### 1. Scientific Execution Integrity fault study
 
-`packages/orion-research-harness/` — a turnkey local harness for tool-integrated
-research sessions, landed through #725 and hardened afterwards. Its guarantee surface
-is already under adversarial test:
+`top_tier/P15_SEI_RESULT_RECEIPT_V1.md` binds the prospectively frozen 18-case hostile fault study.
 
-| Concern | Test / gate |
-|---|---|
-| host/capability failures never enter scientific evidence | `test_governance_hardening.py` |
-| bounded file, process and directory output | `test_local_limits.py` |
-| strict, non-coercing receipt schemas | `test_hardening.py` |
-| race-safe receipt publication | `test_campaign_strictness.py` |
-| recovery from invalid content | `test_invalid_content_recovery.py` |
-| execution coverage accounting | `test_execution_coverage.py` |
-| paper mechanics execute positive + fail-closed semantics | `ORION_HARNESS_P1_P15_OPERATIONAL` |
-| verified answer does not self-authorize task stop | `ORION_HARNESS_RESEARCH_DIRECTOR_CONSENSUS_EXTRACTION_V3_OPERATIONAL` |
-| unresolved outcomes carry typed resolution obligations | V4 covariance gate |
-| verified negative results retain negative polarity and assimilation disposition | V4 covariance gate |
+| system | exact disposition accuracy | false authorized science |
+|---|---:|---:|
+| plain logs + exit/output | 0.2778 | 13 |
+| structured receipt/provenance | 0.7222 | 5 |
+| replay + lane agreement | 0.7222 | 4 |
+| SEI reference contract | **1.0000** | **0** |
 
-The original load-bearing claim is a separation: **a host or capability failure is
-reported without being recorded as a scientific result.** V4 adds two more
-separations that are equally important for a research harness:
+The study contains direct witnesses that complete execution evidence does not imply valid science and that lane agreement does not imply correctness. It also retains two `CANNOT_CHECK` cases rather than coercing missing scientific authority into either success or failure.
 
-1. **unresolved is not negative** — `CANNOT_CHECK` means the current contract cannot
-   decide the target judgment and normally creates an active
-   `ResearchResolutionObligation.v1` with admissible next actions;
-2. **negative is not unresolved** — a verified obstruction, donor subsumption,
-   falsification, non-identifiability result or bounded impossibility remains a
-   `ResearchNegativeResult.v1` and is assimilated into the next research move.
+### 2. Real provenance interoperability
 
-This means the harness should try to resolve uncertainty without pretending that
-all scientific questions are decidable, and it should learn from negative results
-without relabeling them until they look positive.
+`top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md` tests the same scientific-admission separation after exporting/importing execution facts through real provenance representations.
 
-### 2. Resolution-first research control
+Across 22 cases (18 hostile SEI cases + 4 real ORION workflow receipts):
 
-A bare `CANNOT_CHECK` is not an acceptable final harness interface when an admissible
-next action exists. The resolution object records the unresolved class, evidence or
-capability still required, prior attempts, blockers, and the next permitted actions.
-Typical actions include capability repair, evidence acquisition/verification,
-independent route expansion, orientation/reframe, responsibility diagnosis,
-representation repair, OCME, typed authority checking, or protocol-authorized
-resource/protected-evidence widening.
+- W3C PROV-JSON normalized execution-fact round trip: **1.0**;
+- RO-Crate 1.3 / Workflow-Run projection round trip: **1.0**;
+- native-vs-imported SEI disagreements: **0**;
+- scientific fields leaked into donor provenance: **0**;
+- provenance-only false scientific successes: **0**;
+- real-receipt false rejection: **0**;
+- real-receipt false promotion: **0**;
+- structurally independent implementation: GREEN.
 
-The resolution-first rule is explicitly **not** a promise that every question will
-become solvable. Protected evidence can remain unavailable; extension ambiguity or
-formal non-identifiability can be real; a frozen resource protocol can block further
-work; and the harness cannot mint external authority. Those cases remain typed open
-obligations rather than being rounded up to task completion.
+This establishes that P15's scientific-admission layer does not require a proprietary provenance format. Provenance carries execution facts; the separate scientific/authority record decides whether those facts license a claim.
 
-### 3. Negative-result assimilation
+### 3. Chained Ed25519 attestation composition
 
-A verified negative result is a successful research outcome when it eliminates or
-sharpens a live hypothesis. The harness must preserve its evidence and assign an
-assimilation disposition such as:
+`top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md` binds GitHub Actions run `32665597624` / artifact `9500055966`.
 
-- register an obstruction;
-- close a hypothesis branch;
-- reopen a dependency;
-- reframe or widen search;
-- register donor subsumption;
-- revise a paper claim;
-- revise a framework mechanic;
-- record a bounded negative terminal.
+Each case carries a three-link chain:
 
-These dispositions are non-authorizing control metadata. A negative result cannot
-self-grant novelty, publication, promotion, merge, or global-stop authority.
+`execution -> environment -> publication`.
 
-### 4. The ORION-Q dual harness
+Observed on the frozen 22-case corpus:
 
-The load-bearing boundary is that **a host or capability failure is reported without
-being recorded as a scientific result**. The publication protocol must independently
-freeze and test that boundary rather than treating implementation tests as paper
-authority.
+- untampered chain verification: **1.0**;
+- truncation: **66/66 detected**;
+- substitution: **22/22 detected**;
+- splice: **22/22 detected**;
+- reorder: **22/22 detected**;
+- cross-occurrence replay: **22/22 detected**;
+- stale-chain reuse: **22/22 detected**;
+- valid-workload chain false rejection: **0**;
+- valid-workload scientific-disposition false rejection: **0**;
+- chain + SEI agreement with frozen gold: **22/22**;
+- scientific-field leakage into the cryptographic/provenance layer: **0**;
+- independent endpoint checker: GREEN.
 
-### 2. The ORION-Q dual harness
+#### Full-key-compromise boundary
 
-`development/orion-q-max-r0/` — a two-lane agreement benchmark with per-lane receipts
-(`DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md`, lane A/B receipt sets, and
-content-addressed per-problem and per-request receipts).
+The frozen `A-COMPROMISE-FULL` arm deliberately asks the question signatures cannot answer. Six forged-clean fact sets are re-signed with the genuine keys:
 
-### 5. What the two share, and where they differ
-The object of interest is **agreement between independently executing lanes**, which
-is a different property from single-harness determinism and remains weaker than
-independently validated correctness.
+- signature-layer detections: **0/6**;
+- false promotions if a valid chain is treated as scientific truth: **6/6**;
+- false promotions even after chain + SEI if key custody is silently assumed: **6/6**.
 
-### 3. Shared and distinct semantics
+Therefore the current paper must state:
 
-Both harnesses bind results to content-addressed receipts. P15 must determine which
-receipt/integrity semantics genuinely compose across them and which are only similar
-implementations.
+> **Composed-signature validity is evidence about the key set, not about key custody or fact truth. Key custody is an additional premise, not a consequence of a valid signature.**
 
-The top-tier protocol additionally compares/interoperates with generic structured
-provenance, W3C PROV/RO-Crate-style workflow provenance, content-addressed execution,
-deterministic replay and signed/attested execution systems where feasible. P15's
-residual must be the **scientific evidence-admission boundary**, not ownership of
-provenance interchange.
+This negative boundary is part of the result, not a defect to tune away.
 
-## What this paper must not claim
+## Strongest paper-level claim
 
-- that a harness makes a scientific result valid — it makes a result *attributable*,
-  which is a strictly weaker property;
-- that resolution-first control makes every research question decidable;
-- that a negative result should or can always be converted into a positive result;
-- superiority over any other research-execution harness, absent a matched comparison
-  that does not currently exist;
-- that receipt coverage implies evidence quality.
-- that a harness makes a scientific result valid — attribution is strictly weaker;
-- that replayability or dual-lane agreement establishes correctness;
-- superiority over another research-execution system absent a matched protected
-  comparison;
-- that receipt or execution coverage implies evidence quality;
-- generic novelty for provenance, workflow reproducibility or proof-of-execution.
+> At bounded scope, execution integrity, provenance representation, cryptographic attestation, scientific validity and claim authority are distinct layers. SEI prevents execution/replay/agreement evidence from self-authorizing science on the frozen fault corpus; that separation survives W3C PROV and RO-Crate/Workflow-Run transport; and a three-link Ed25519 chain detects the registered non-compromise tamper/replay attacks with zero observed false rejection while explicitly failing under full key compromise, where signature validity has no authority over fact truth.
 
-A cautionary case already exists in the repository: the P1-U R6 campaign produced
-fully receipted rows that were rejected wholesale by a digest-representation type
-error. Receipts were complete and the result was scientifically unusable. See
-`research/failures/2026-08-digest-representation-boundary-mixup/`.
+## What P15 does not own
 
-## Before top-tier submission
+P15 does not claim generic provenance, W3C PROV, RO-Crate, cryptographic signatures, content addressing or deterministic replay as new primitives. Those are donors.
 
-Issue #979 now owns the paper identity and scientific question. Remaining scientific
-work is explicit rather than administrative:
+P15's residual object is the **scientific evidence-admission boundary above those primitives**: which execution facts are attributable/replayable/attested, which scientific validity/authority facts remain separate, and how failure of one layer is prevented from laundering into another.
 
-- [ ] claim/evidence ledger;
-- [ ] donor/interoperability matrix;
-- [ ] independent publication-specific hostile fault-injection protocol freeze;
-- [ ] H15.1–H15.5 executable/formal closure;
-- [ ] matched comparator benchmark;
-- [ ] independent result adjudication;
-- [ ] submission manuscript and reproducibility package;
-- [ ] separate content-addressed `P15_TOP_TIER_SUBMISSION_READY` closure receipt.
+## Historical lifecycle
 
-Per #670's rule — research decomposition is fine-grained, publication synthesis is
-coarse-grained — a directory is not an identity. The claim ledger now exists and
-records no empirical authority. Promotion still needs a paper issue, a donor
-matrix against existing research-execution and workflow-provenance systems, a
-protected hostile corpus, a matched comparator or explicitly noncomparative
-estimand, and evaluator separation. The protocol now exists; the other inputs
-do not. `P15A_ACQUISITION_PREFLIGHT_V1.json` records that boundary without
-turning locally authored labels into protected or independent evidence.
-matrix against existing research-execution and workflow-provenance systems, and
-a prospectively frozen protocol; none of those exists yet.
-The planning protocol itself can never emit the final readiness terminal.
+The old lifecycle records are preserved and remain reproducible:
+
+- `P15_ACTIVE_CLAIM_AUTHORITY_V1.json` — methods-only state before a P15 protected result existed;
+- `P15_ACTIVE_CLAIM_AUTHORITY_V2.json` — prospectively frozen acquisition state before protected execution;
+- `P15_ACTIVE_CLAIM_AUTHORITY_V3.json` — **current** bounded scientific authority after SEI + provenance interoperability + attestation composition.
+
+The earlier `NO_SCIENTIFIC_RESULT` states are historical, not current. They are retained so the paper's promotion path remains auditable rather than rewritten after success.
+
+## Core artifacts
+
+- `P15_ACTIVE_CLAIM_AUTHORITY_V3.json` — current machine-readable authority;
+- `CLAIM_EVIDENCE_LEDGER.md` — human-readable claim boundary;
+- `MANUSCRIPT.md` — manuscript surface;
+- `top_tier/P15_SEI_RESULT_RECEIPT_V1.md`;
+- `top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`;
+- `top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md`;
+- `top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V2.md`;
+- `top_tier/P15_INTEROP_LITERATURE_DELTA_2026-08-23.md`;
+- `top_tier/P15_NEAREST_WORK_DELTA_2026-08-23.md`.
+
+## Remaining top-tier work
+
+The main missing layer is now **production breadth and cost**, not another toy attestation example:
+
+- broader host/process fault injection: races, truncation/caps, cleanup, retry accounting, timeout/reap/finalization, stale publication and other production failure modes;
+- runtime/storage overhead and false-rejection characterization on larger valid workloads;
+- clean-environment independent replay of the final bounded stack;
+- immediate pre-submission provenance/attestation/systems literature refresh;
+- final manuscript/figure/evidence/environment/PDF byte binding.
+
+Do not infer production-scale reliability, trusted key custody, universal execution correctness, scientific truth from signatures, external validation, superiority over a real production attestation stack, or `TOP_TIER_SUBMISSION_READY` from the current bounded evidence.
