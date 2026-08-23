@@ -26,10 +26,12 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
+          from textwrap import dedent
 
           tables = Path('src/orion/study/p1/tables.py')
           text = tables.read_text(encoding='utf-8')
-          old = '''def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
+          old = dedent('''\
+          def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
               payload = {"metric": label, **rate.as_dict(), "interval": None}
               if rate.n > 0 and rate.unit == "case":
                   payload["interval"] = stats.wilson_interval(rate.successes, rate.n).as_dict()
@@ -40,8 +42,9 @@ jobs:
                       payload["status"] = STATUS_NOT_APPLICABLE
                       payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
               return payload
-          '''.replace('          ', '')
-          new = '''def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
+          ''')
+          new = dedent('''\
+          def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
               payload = {"metric": label, **rate.as_dict(), "interval": None}
               if not _metric_applicable(scope, label):
                   payload["status"] = STATUS_NOT_APPLICABLE
@@ -52,16 +55,16 @@ jobs:
               elif rate.n == 0:
                   payload["status"] = STATUS_CANNOT_CHECK
               return payload
-          '''.replace('          ', '')
+          ''')
           if text.count(old) != 1:
               raise SystemExit(f'expected exactly one _rate_block target, found {text.count(old)}')
           tables.write_text(text.replace(old, new), encoding='utf-8')
 
           applicability = Path('tests/unit/study/p1/test_table_applicability.py')
           text = applicability.read_text(encoding='utf-8')
-          marker = '''def test_unknown_scope_or_metric_fails_closed() -> None:
-          '''.replace('          ', '')
-          addition = '''def test_positive_denominator_does_not_override_metric_applicability() -> None:
+          marker = 'def test_unknown_scope_or_metric_fails_closed() -> None:\n'
+          addition = dedent('''\
+          def test_positive_denominator_does_not_override_metric_applicability() -> None:
               observed = BinaryRate(successes=1, n=2)
               block = tables._rate_block(
                   observed,
@@ -75,16 +78,16 @@ jobs:
               assert "outside its frozen applicability domain" in block["reason"]
 
 
-          '''.replace('          ', '')
+          ''')
           if text.count(marker) != 1:
               raise SystemExit(f'expected one applicability insertion marker, found {text.count(marker)}')
           applicability.write_text(text.replace(marker, addition + marker), encoding='utf-8')
 
           inventory_test = Path('tests/unit/development/test_cannot_check_inventory.py')
           text = inventory_test.read_text(encoding='utf-8')
-          marker = '''def test_committed_inventory_matches_derived() -> None:
-          '''.replace('          ', '')
-          addition = '''def test_committed_inventory_has_no_duplicate_json_object_keys() -> None:
+          marker = 'def test_committed_inventory_matches_derived() -> None:\n'
+          addition = dedent('''\
+          def test_committed_inventory_has_no_duplicate_json_object_keys() -> None:
               def reject_duplicates(pairs):
                   value = {}
                   for key, item in pairs:
@@ -99,7 +102,7 @@ jobs:
               )
 
 
-          '''.replace('          ', '')
+          ''')
           if text.count(marker) != 1:
               raise SystemExit(f'expected one inventory insertion marker, found {text.count(marker)}')
           inventory_test.write_text(text.replace(marker, addition + marker), encoding='utf-8')
