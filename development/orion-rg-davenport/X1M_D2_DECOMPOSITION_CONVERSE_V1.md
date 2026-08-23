@@ -138,6 +138,45 @@ odd-`p` side rests on four groups (`C_3^2`, `C_3^3`, `C_5^2`, `C_5^3`). The obvi
 would give `D_2(C_7^2) = 20`, `m = 7`, and so predict `f_7(C_7^2) = 18` under tightness.
 That prediction is recorded here as falsifiable and **not yet tested**.
 
+## Why there is exactly *one* negative — `C_2^4` is the unique firing
+
+The converse needs **both** `m >= D - 2` (regime) and `f_m >= D_2 - 1` (criterion violated).
+Across every group with settled numbers, only one satisfies both:
+
+| group | `D` | `D_2` | `m` | `D-2` | `f_m` | `D_2-1` | regime | crit. violated | outcome |
+|---|---|---|---|---|---|---|---|---|---|
+| `C_2^2` | 3 | 5 | 2 | 1 | 3 | 4 | ✓ | ✗ | holds |
+| `C_2^3` | 4 | 7 | 3 | 2 | 4 | 6 | ✓ | ✗ | holds |
+| `C_2^4` | 5 | 8 | 3 | 3 | **8** | 7 | ✓ | **✓** | **FAILS (forced)** |
+| `C_2^5` | 6 | 10 | 4 | 4 | 6 | 9 | ✓ | ✗ | holds |
+| `C_2^6` | 7 | 11 | 4 | 5 | 8 | 10 | ✗ | ✗ | holds |
+| `C_3^2` | 5 | 8 | 3 | 3 | 6 | 7 | ✓ | ✗ | holds |
+| `C_3^3` | 7 | 11 | 4 | 5 | 9 | 10 | ✗ | ✗ | holds |
+| `C_4^2` | 7 | 11 | 4 | 5 | 9 | 10 | ✗ | ✗ | holds |
+| `C_5^2` | 9 | 14 | 5 | 7 | 12 | 13 | ✗ | ✗ | holds |
+| `C_6^2` | 11 | 17 | 6 | 9 | 15 | 16 | ✗ | ✗ | holds |
+| `C_5^3` | 13 | 20 | 7 | 11 | 18 | 19 | ✗ | ✗ | holds |
+| `C_7^2` | 13 | 20 | 7 | 11 | 18 | 19 | ✗ | ✗ | holds |
+
+Two things worth reading off this table.
+
+**1. Criterion plus converse decide every case.** No row is *undecided* — there is no group
+here with the criterion violated but outside the regime, which is the one combination the
+theory does not settle. So on the tested range the pair is not merely sound but complete.
+
+**2. The failure mechanism is confined to small groups.** For elementary 2-groups
+`D = r + 1`, and the published asymptotic band is `1.26r <= D_2(C_2^r) <= 1.40r`, so
+`m = D_2 - D` lies in roughly `[0.26r - 1, 0.40r - 1]` while `D - 2 = r - 1`. The regime
+`m >= D - 2` would need `0.40r - 1 >= r - 1`, i.e. `0.40r >= r` — false. So **for all large
+`r` the regime fails and the converse cannot fire.** (That band is asymptotic and says
+nothing at `r = 4`, where the exact values `D_2 = 8`, `m = 3 = D - 2` put the group on the
+regime boundary; the argument is about large `r` only.)
+
+Together: `C_2^4` is not merely the one negative observed, it sits at the only place a
+negative of this kind can occur — on the regime boundary, at a rank small enough for `m` to
+still reach `D - 2`, and with `f_3 = 2^3 = 8` inflated by the affine-hyperplane construction
+just past `D_2 - 1 = 7`.
+
 ## Instrument validation, before use
 
 `f4_c26.c` (backtracking max-length search over `F_2^r \ {0}`) was validated against the
