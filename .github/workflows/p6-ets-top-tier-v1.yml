@@ -1,0 +1,31 @@
+name: p6-ets-top-tier-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/**'
+      - '.github/workflows/p6-ets-top-tier-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ets-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen P6 ETS checker
+        run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py | tee p6_ets_receipt_v1.json
+      - name: Verify deterministic second execution
+        run: |
+          python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py > p6_ets_receipt_v1_rerun.json
+          cmp p6_ets_receipt_v1.json p6_ets_receipt_v1_rerun.json
+          echo P6_ETS_V1_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p6-ets-v1-receipt
+          path: p6_ets_receipt_v1.json
