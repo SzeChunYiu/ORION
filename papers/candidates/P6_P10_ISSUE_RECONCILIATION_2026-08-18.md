@@ -28,7 +28,7 @@ unavailable evidence and standalone-only comparisons are never relabelled
 |---|---|
 | A. Core theory | Route identity/equivalence/refinement, four stopping terminals, defer/revisit, witness-backed backtracking, dead-end/loop/local-optimum boundaries, forced reframe, and closure transport in `FORMAL_CORE_V2.md` and checker. |
 | B. Novelty/ownership | Two-round donor absorption rejects generic search/topology/representation-transport novelty; P2 stopping remains P2-owned. |
-| C. Discriminator | Fixed-information refinement with harmful coarsening, extension ambiguity, 64 transport combinations, and eight frozen contracts including censored, dead-end/revisit, harmful-reframe and non-retrieval experimental-design cases. |
+| C. Discriminator | Fixed-information refinement with harmful coarsening, extension ambiguity, 960 transport cases (64 coordinate states crossed with 15 admissible target-completion classes; it enumerated 64 and decided 1 until 2026-08-22), and eight frozen contracts including censored, dead-end/revisit, harmful-reframe and non-retrieval experimental-design cases. |
 | D. Manuscript/claims | `submission/AIJ_MANUSCRIPT.tex`, V2 claim ledger, headline-authority ledger, hostile wording/citation linter. |
 | E. Package | One-command checkers, clean eight-page PDF build/audit, AIJ highlights/cover letter, venue metadata, exact-head archive rule. |
 

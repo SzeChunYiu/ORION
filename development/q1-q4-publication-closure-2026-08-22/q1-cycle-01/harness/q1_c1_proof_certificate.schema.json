@@ -1,0 +1,82 @@
+{
+  "$id": "https://orion.invalid/schemas/q1_c1_proof_certificate.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "branches": {
+      "items": false,
+      "maxItems": 3,
+      "minItems": 3,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "case": {"const": "zero_class_present"},
+            "conclusion": {"const": "choose_the_zero_class_singleton"},
+            "rules": {"const": ["R1_ZERO_CLASS_SINGLETON", "R6_NONEMPTY_PROPER_BOUND"]}
+          },
+          "required": ["case", "conclusion", "rules"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "case": {"const": "repeated_class_present"},
+            "conclusion": {"const": "choose_two_equal_classes"},
+            "rules": {"const": ["R2_REPEATED_CLASS_PAIR", "R6_NONEMPTY_PROPER_BOUND"]}
+          },
+          "required": ["case", "conclusion", "rules"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "case": {"const": "no_zero_class_and_no_repetition"},
+            "conclusion": {"const": "contradicts_odd_alpha_total"},
+            "rules": {"const": ["R3_DISTINCT_NONZERO_EXHAUSTION", "R4_NONZERO_TRIPLE_ALPHA_EVEN", "R5_ODD_ALPHA_CONTRADICTION"]}
+          },
+          "required": ["case", "conclusion", "rules"],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "conclusion": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum_subset_size": {"const": 2},
+        "minimum_support_size": {"const": 3},
+        "nonempty": {"const": true},
+        "proper": {"const": true},
+        "rule": {"const": "R7_ZERO_SUM_SUBSET_CONCLUSION"},
+        "zero_sum_coordinates": {"const": ["alpha", "beta"]}
+      },
+      "required": ["maximum_subset_size", "minimum_support_size", "nonempty", "proper", "rule", "zero_sum_coordinates"],
+      "type": "object"
+    },
+    "domain": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {"const": "F2"},
+        "rule": {"const": "P1_F2_SQUARED_DOMAIN"},
+        "vectors": {"const": [[0, 0], [0, 1], [1, 0], [1, 1]]}
+      },
+      "required": ["field", "rule", "vectors"],
+      "type": "object"
+    },
+    "premise": {
+      "additionalProperties": false,
+      "properties": {
+        "alpha_total": {"const": 1},
+        "minimum_support_size": {"const": 3},
+        "rule": {"const": "P2_ODD_ALPHA_TOTAL"}
+      },
+      "required": ["alpha_total", "minimum_support_size", "rule"],
+      "type": "object"
+    },
+    "schema_version": {"const": "q1-c1-zero-sum-proof-v1"}
+  },
+  "required": ["branches", "conclusion", "domain", "premise", "schema_version"],
+  "title": "Q1-C1 typed F2-squared zero-sum proof certificate",
+  "type": "object"
+}

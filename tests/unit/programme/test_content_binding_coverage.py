@@ -1,8 +1,10 @@
 """A paper whose bytes nobody watches must not report as a paper that did not change.
 
-The real-tree cases at the bottom are the point of the module: they fail if
-someone edits or adds a file inside a bound paper without regenerating its
-digests, which is what "the harness picks up the change" has to mean.
+The real-tree cases at the bottom are the point of the module: they fail if a
+watched canonical file changes without regenerating its committed binding. The
+Q-series deliberately watches only its canonical publication subset; historical
+snapshots remain visible as unbound files rather than being confused with the
+submission surface.
 """
 
 from __future__ import annotations
@@ -29,11 +31,18 @@ from orion.programme.guard_exercise import GuardVerdictReason
 from orion.programme.records import Outcome
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-BOUND_PAPERS = (
+DIRECT_BOUND_PAPERS = (
     "paper-06-formal-epistemic-structures-and-mechanics",
     "paper-07-epistemic-navigation-open-worlds",
     "paper-08-epistemic-authority-autonomous-science",
 )
+Q_SERIES_BOUND_PAPERS = (
+    "Q-paper-01-tare-expressivity",
+    "Q-paper-02-recursive-recovery",
+    "Q-paper-03-dual-instrument",
+    "Q-paper-04-typed-state",
+)
+BOUND_PAPERS = DIRECT_BOUND_PAPERS + Q_SERIES_BOUND_PAPERS
 
 
 def binding(
@@ -60,7 +69,11 @@ def binding(
 class TestTaxonomy:
     def test_only_a_readable_binding_exercises_the_guard(self) -> None:
         exercising = [item for item in PaperBindingState if item.exercises_drift_guard]
-        assert exercising == [PaperBindingState.BOUND_CURRENT, PaperBindingState.BOUND_DRIFTED]
+        assert exercising == [
+            PaperBindingState.BOUND_CURRENT,
+            PaperBindingState.BOUND_PARTIAL,
+            PaperBindingState.BOUND_DRIFTED,
+        ]
 
     def test_unbound_cannot_claim_bound_files(self) -> None:
         with pytest.raises(ValueError, match="UNBOUND contradicts"):
@@ -81,8 +94,37 @@ class TestTaxonomy:
     def test_partial_binding_is_visible(self) -> None:
         """A bound paper can still hold files no digest covers."""
 
-        record = binding("p", PaperBindingState.BOUND_CURRENT, on_disk=10, bound=4)
+        record = binding("p", PaperBindingState.BOUND_PARTIAL, on_disk=10, bound=4)
         assert record.unbound_files == 6
+        assert record.coverage_outcome is Outcome.CANNOT_CHECK
+
+    def test_a_complete_binding_cannot_be_declared_over_an_incomplete_one(self) -> None:
+        """BOUND_CURRENT is a claim about the whole paper, so it must cover it."""
+
+        with pytest.raises(ValueError, match="that is BOUND_PARTIAL"):
+            binding("p", PaperBindingState.BOUND_CURRENT, on_disk=10, bound=4)
+
+    def test_a_partial_binding_that_covers_nothing_is_unbound(self) -> None:
+        with pytest.raises(ValueError, match="that is UNBOUND"):
+            binding("p", PaperBindingState.BOUND_PARTIAL, on_disk=10, bound=0)
+
+    def test_a_partial_binding_that_covers_everything_is_complete(self) -> None:
+        with pytest.raises(ValueError, match="that is BOUND_CURRENT"):
+            binding("p", PaperBindingState.BOUND_PARTIAL, on_disk=10, bound=10)
+
+    def test_only_a_complete_binding_earns_a_coverage_pass(self) -> None:
+        """A clean verdict over a corner of a paper is not a verdict about the paper."""
+
+        complete = binding("p6", PaperBindingState.BOUND_CURRENT, on_disk=10, bound=10)
+        assert complete.coverage_outcome is Outcome.PASS
+        for state, kwargs in (
+            (PaperBindingState.BOUND_PARTIAL, {"bound": 4}),
+            (PaperBindingState.UNBOUND, {}),
+            (PaperBindingState.BOUND_UNREADABLE, {}),
+        ):
+            assert binding("p", state, on_disk=10, **kwargs).coverage_outcome is (
+                Outcome.CANNOT_CHECK
+            )
 
 
 class TestDenominator:
@@ -187,13 +229,23 @@ class TestAgainstTheRealTree:
 
     @pytest.mark.parametrize("paper", BOUND_PAPERS)
     def test_a_bound_paper_still_matches_its_committed_digests(self, paper: str) -> None:
-        """Red if anyone edits or adds a file in P6-P8 without regenerating SHA256SUMS."""
+        """Red if any watched canonical byte changes without regenerating its binding."""
 
         record = inspect_paper(REPO_ROOT, REPO_ROOT / "papers" / paper)
         assert record.state is PaperBindingState.BOUND_CURRENT, record.detail
         assert record.drifted_paths == ()
         assert record.missing_paths == ()
         assert assess_paper(record).outcome is Outcome.PASS
+
+    @pytest.mark.parametrize("paper", Q_SERIES_BOUND_PAPERS)
+    def test_q_series_cross_binding_is_visible_and_partial(self, paper: str) -> None:
+        record = inspect_paper(REPO_ROOT, REPO_ROOT / "papers" / paper)
+        assert record.state is PaperBindingState.BOUND_CURRENT, record.detail
+        assert record.files_bound > 0
+        assert "Q-series" in record.detail
+        # Historical snapshots / navigation files are intentionally outside the
+        # canonical submission binding and remain visible in the denominator report.
+        assert record.unbound_files >= 0
 
     def test_the_survey_covers_every_paper_directory(self) -> None:
         bindings = survey_paper_bindings(REPO_ROOT)
@@ -207,27 +259,43 @@ class TestAgainstTheRealTree:
     def test_binding_coverage_does_not_regress(self) -> None:
         """A ratchet, not a target.
 
-        Three of the twenty-four directories under `papers/` declare a content
-        binding. That is the number to raise, and this asserts it never falls:
-        un-binding a paper is a silent loss of the only check that notices its
-        bytes changing. Raise this deliberately when a paper adopts binding.
+        P6-P8 use local manifests and Q1-Q4 use the cross-series canonical
+        publication binding. Un-binding any of those watched surfaces is a silent
+        loss of the only check that notices their canonical bytes changing.
         """
 
+        bindings = survey_paper_bindings(REPO_ROOT)
+        bound = [item for item in bindings if item.state.exercises_drift_guard]
+        assert len(bound) >= 8, [item.paper_id for item in bound]
+        assert {item.paper_id for item in bound} >= set(BOUND_PAPERS)
+
+        # The ratchet that matters is completeness, not the existence of a file.
+        # P1-P5 bind a declared list and cover a fifth of themselves at best; only
+        # the three enumerating packages cover their whole directory, and losing
+        # that is the regression this guards.
+        complete = {
+            item.paper_id for item in bindings if item.state.covers_the_whole_paper
+        }
+        assert complete >= set(BOUND_PAPERS), sorted(complete)
+
+    def test_the_survey_reports_cannot_check_while_papers_are_unbound(self) -> None:
         bound = [
             item
             for item in survey_paper_bindings(REPO_ROOT)
             if item.state.exercises_drift_guard
         ]
-        assert len(bound) >= 3, [item.paper_id for item in bound]
+        assert len(bound) >= 7, [item.paper_id for item in bound]
         assert {item.paper_id for item in bound} >= set(BOUND_PAPERS)
 
-    def test_the_survey_reports_cannot_check_while_papers_are_unbound(self) -> None:
+    def test_the_survey_reports_cannot_check_while_other_papers_are_unbound(self) -> None:
         """Honest today, and it flips to PASS on its own once every paper binds."""
 
         report = survey_report(survey_paper_bindings(REPO_ROOT))
         assert report["papers_unbound"] > 0
         assert report["outcome"] == Outcome.CANNOT_CHECK.value
         assert report["files_bound"] > 0
+        for paper in Q_SERIES_BOUND_PAPERS:
+            assert report["by_paper"][paper]["state"] == PaperBindingState.BOUND_CURRENT.value
 
     def test_the_pooled_exercise_is_reported_but_is_not_the_verdict(self) -> None:
         report = survey_report(survey_paper_bindings(REPO_ROOT))

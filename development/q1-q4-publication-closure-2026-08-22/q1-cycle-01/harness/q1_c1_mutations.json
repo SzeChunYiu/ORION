@@ -1,0 +1,745 @@
+{
+  "candidate_ref": "158fcb08b612ffc82f5a5d2bed4917409084ded8",
+  "expected_mutation_count": 23,
+  "mutations": [
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M01_B0",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M01_B0",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 0,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M02_B1",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M02_B1",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 1,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M03_B2",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M03_B2",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 2,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M04_B3",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M04_B3",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 3,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M05_B4",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M05_B4",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 4,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M06_B5",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M06_B5",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 5,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M07_B6",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M07_B6",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 6,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M08_B7",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M08_B7",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 7,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M09_B8",
+        "input": {
+          "final_state": 135
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M09_B8",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "state in {135,263}",
+        "bit_index": 8,
+        "kind": "TOGGLE_FINAL_ACCEPTANCE_BIT_BEFORE_MEMBERSHIP",
+        "mutant_expression": "(state ^ (1 << bit_index)) in {135,263}",
+        "target": "accepting_state_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": true
+        },
+        "fixture_id": "DF_M10_LABEL_DISTINCT",
+        "input": {
+          "l0": 0,
+          "l1": 1
+        },
+        "mutant": {
+          "accepted": false
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M10_LABEL_DISTINCT",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "l0 != l1",
+        "kind": "REPLACE_COMPARISON",
+        "mutant_expression": "l0 == l1",
+        "target": "label_distinct_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "accepted": false
+        },
+        "fixture_id": "DF_M11_FRAME_NONZERO",
+        "input": {
+          "frame_letters": [
+            0,
+            0
+          ]
+        },
+        "mutant": {
+          "accepted": true
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M11_FRAME_NONZERO",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "support(R) > 0",
+        "kind": "RELAX_STRICT_NONZERO",
+        "mutant_expression": "support(R) >= 0",
+        "target": "frame_nonzero_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O3"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "block_frame_cost": 2
+        },
+        "fixture_id": "DF_M12_CENTRAL_MULTIPLIER",
+        "input": {
+          "baseline_constant": -6,
+          "central_support": 2,
+          "noncentral_multiplier": 4,
+          "noncentral_support": 1
+        },
+        "mutant": {
+          "block_frame_cost": 6
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M12_CENTRAL_MULTIPLIER",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_value": 2,
+        "kind": "REPLACE_INTEGER_CONSTANT",
+        "mutant_value": 4,
+        "target": "objective.central_frame_multiplier"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "block_frame_cost": 4
+        },
+        "fixture_id": "DF_M13_FRAME_COEFFICIENT",
+        "input": {
+          "baseline_constant": -6,
+          "central_multiplier": 2,
+          "central_support": 1,
+          "noncentral_support": 2
+        },
+        "mutant": {
+          "block_frame_cost": 2
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M13_FRAME_COEFFICIENT",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_value": 4,
+        "kind": "REPLACE_INTEGER_CONSTANT",
+        "mutant_value": 3,
+        "target": "objective.noncentral_frame_multiplier"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "tag_cost": 2
+        },
+        "fixture_id": "DF_M14_TAG_COEFFICIENT",
+        "input": {
+          "tag_support": 1
+        },
+        "mutant": {
+          "tag_cost": 1
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M14_TAG_COEFFICIENT",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_value": 2,
+        "kind": "REPLACE_INTEGER_CONSTANT",
+        "mutant_value": 1,
+        "target": "objective.tag_support_multiplier"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "objective_offset": -18
+        },
+        "fixture_id": "DF_M15_BASELINE",
+        "input": {
+          "all_nonbaseline_terms": 0
+        },
+        "mutant": {
+          "objective_offset": -17
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M15_BASELINE",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_value": -18,
+        "kind": "REPLACE_INTEGER_CONSTANT",
+        "mutant_value": -17,
+        "target": "objective.global_baseline"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "F3": 1
+        },
+        "fixture_id": "DF_M16_F3_SPECIAL",
+        "input": {
+          "letters": [
+            1,
+            1,
+            1
+          ]
+        },
+        "mutant": {
+          "F3": 3
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M16_F3_SPECIAL",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "1 if a == b == c != I else w(a)+w(b)+w(c)",
+        "kind": "DELETE_SPECIAL_CASE",
+        "mutant_expression": "w(a)+w(b)+w(c)",
+        "target": "objective.F3"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "branch_F3": [
+            1,
+            0
+          ],
+          "total_F3": 1
+        },
+        "fixture_id": "DF_M17_BRANCH_ASSIGNMENT",
+        "input": {
+          "A": [
+            1,
+            0
+          ],
+          "B": [
+            1,
+            0
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        "mutant": {
+          "branch_F3": [
+            2,
+            1
+          ],
+          "total_F3": 3
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M17_BRANCH_ASSIGNMENT",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "kind": "SWAP_ONE_BLOCK_BRANCHES",
+        "mutant_expression": "swap transformed A branch 0 and 1 after target assignment",
+        "target": "objective.branch_assignment"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "ordered_targets": [
+            0,
+            1
+          ]
+        },
+        "fixture_id": "DF_M18_TARGET_PERMUTATION",
+        "input": {
+          "declared_permutation": 1,
+          "target_pair": [
+            1,
+            0
+          ]
+        },
+        "mutant": {
+          "ordered_targets": [
+            1,
+            0
+          ]
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M18_TARGET_PERMUTATION",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "apply declared pi_j",
+        "kind": "FORCE_IDENTITY_PERMUTATION",
+        "mutant_expression": "pi_j := 0",
+        "target": "target_permutation"
+      },
+      "seed": 20260822,
+      "target_obligation": "O4"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "selected_key": [
+            1,
+            0
+          ],
+          "selected_weight": 1
+        },
+        "fixture_id": "DF_M19_MIN_TAG",
+        "input": {
+          "feasible_tags": [
+            {
+              "key": [
+                1,
+                1
+              ],
+              "weight": 2
+            },
+            {
+              "key": [
+                1,
+                0
+              ],
+              "weight": 1
+            }
+          ]
+        },
+        "mutant": {
+          "selected_key": [
+            1,
+            1
+          ],
+          "selected_weight": 2
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M19_MIN_TAG",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "argmin feasible Tag by (weight,x,z)",
+        "kind": "SELECT_FIRST_FEASIBLE_WITHOUT_MINIMIZATION",
+        "mutant_expression": "first feasible Tag in input order",
+        "target": "support_two.minimum_tag_rule"
+      },
+      "seed": 20260822,
+      "target_obligation": "O12"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "digit_zero": 4
+        },
+        "fixture_id": "DF_M20_PATTERN_TRANSFORM",
+        "input": {
+          "digit_costs": [
+            9,
+            4,
+            7,
+            6
+          ]
+        },
+        "mutant": {
+          "digit_zero": 9
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M20_PATTERN_TRANSFORM",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "digit_zero := min(digit_0,digit_1,digit_2,digit_3)",
+        "kind": "DELETE_DONT_CARE_MIN_TRANSFORM",
+        "mutant_expression": "digit_zero unchanged",
+        "target": "support_two.pattern_transform"
+      },
+      "seed": 20260822,
+      "target_obligation": "O12"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "branch_explored": true,
+          "result": 4
+        },
+        "fixture_id": "DF_M21_PRUNING_BOUND",
+        "input": {
+          "best_value": 5,
+          "branch_candidate_value": 4,
+          "lower_bound": 4
+        },
+        "mutant": {
+          "branch_explored": false,
+          "result": 5
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M21_PRUNING_BOUND",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "lower_bound >= best_value",
+        "kind": "ADD_ONE_TO_PRUNING_LOWER_BOUND",
+        "mutant_expression": "lower_bound + 1 >= best_value",
+        "target": "support_two.pruning_bound"
+      },
+      "seed": 20260822,
+      "target_obligation": "O12"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "C_2": 5
+        },
+        "fixture_id": "DF_M22_SUPPORT_CEILING",
+        "input": {
+          "fixture_id": "N2_SHARPNESS_000",
+          "fixture_json_pointer": "/n2_fixed/rows/0"
+        },
+        "mutant": {
+          "C_1": 6
+        }
+      },
+      "expected_terminal": "COUNTEREXAMPLE",
+      "id": "M22_SUPPORT_CEILING",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "baseline_expression": "support(R_jk) <= 2",
+        "kind": "LOWER_SUPPORT_CEILING",
+        "mutant_expression": "support(R_jk) <= 1",
+        "target": "support_two.family_predicate"
+      },
+      "seed": 20260822,
+      "target_obligation": "O11"
+    },
+    {
+      "distinguishing_fixture": {
+        "baseline": {
+          "schema_valid": true,
+          "semantics_valid": true
+        },
+        "fixture_id": "DF_M23_PROOF_CERTIFICATE_RULE",
+        "input": {
+          "proof_path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/proofs/q1_c1_zero_sum.proof.json"
+        },
+        "mutant": {
+          "schema_valid": false,
+          "semantics_valid": false
+        }
+      },
+      "expected_terminal": "INVALID",
+      "id": "M23_PROOF_CERTIFICATE_RULE",
+      "non_equivalence": {
+        "established": true,
+        "rationale": "baseline and mutant produce the distinct serialized outcomes in distinguishing_fixture"
+      },
+      "operator": {
+        "branch_index": 2,
+        "kind": "DELETE_USED_PROOF_RULE",
+        "rule_id": "R5_ODD_ALPHA_CONTRADICTION",
+        "target": "proof_certificate.branches[2].rules"
+      },
+      "seed": 20260822,
+      "target_obligation": "O6"
+    }
+  ],
+  "policy": {
+    "equivalent_mutant_terminal": "INVALID",
+    "pass_requires_all_non_equivalent_mutants_killed": true,
+    "surviving_mutant_terminal": "BLOCKED"
+  },
+  "protocol_id": "Q1-C1",
+  "protocol_version": "1.0",
+  "schema_version": "q1-c1-mutation-registry-v1",
+  "seed": 20260822
+}

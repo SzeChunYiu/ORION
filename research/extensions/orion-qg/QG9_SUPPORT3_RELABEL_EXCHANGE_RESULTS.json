@@ -1,0 +1,55 @@
+{
+  "schema": "ORION.QG.QG9.Support3CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#762",
+  "base_revision": "51d81c448a67c7da8e89310c02ef890f5afd0f7b",
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED",
+  "source_result_digest": "10d40d2346feb57bb607dde953a661a44634ef48f9d7c7b7954d83b560d3349c",
+  "support_bound": 3,
+  "action_profile_type_count": 46,
+  "parent_v2": {
+    "terminal": "QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED",
+    "support_bound": 4,
+    "both_accept": true,
+    "support4_retained": 432,
+    "support4_unsafe": 36
+  },
+  "support4_parent_survivors": {
+    "descriptor_survivors": 36,
+    "action_profile_type_cases": 288,
+    "safe_type_cases": 288,
+    "unsafe_type_cases": 0,
+    "worst_cost_histogram": {
+      "-10": 96,
+      "-9": 108,
+      "-8": 12,
+      "-6": 24,
+      "-5": 48
+    }
+  },
+  "support3_boundary_control": {
+    "descriptor_survivors": 180,
+    "action_profile_type_cases": 612,
+    "safe_type_cases": 591,
+    "unsafe_type_cases": 21,
+    "interpretation": "Broad-superset method boundary only. V3 grants no support<=2 or tightness authority. Full R6I acceptance is a successor question."
+  },
+  "generic_verification": {
+    "decision": "ACCEPT",
+    "action_profile_types": 46,
+    "support4_type_cases": 288,
+    "support4_unsafe_type_cases": 0,
+    "support3_type_cases": 612,
+    "support3_unsafe_type_cases": 21
+  },
+  "native_verification": {
+    "decision": "ACCEPT_SUPPORT3",
+    "scope": "R6I_UNIT_OBJECTIVE_ONLY",
+    "support2_authority": false,
+    "tightness_authority": false
+  },
+  "support2_claim": false,
+  "tightness_claim": false,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

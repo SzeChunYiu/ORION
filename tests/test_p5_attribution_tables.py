@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 
 from orion.study.p5.tables import (
+    CANNOT_CHECK_PRESENTATION,
     EXIT_ERROR,
     EXPECTED_CORRECT,
     EXPECTED_INCORRECT,
@@ -15,9 +16,11 @@ from orion.study.p5.tables import (
     EXPECTED_TOTAL,
     STATUS_CANNOT_CHECK,
     STATUS_OK,
+    cannot_check_artifact,
     generate,
     load_records,
     main,
+    render_cannot_check_tex,
     verify_frozen_archive,
 )
 
@@ -194,3 +197,58 @@ def test_manuscript_does_not_claim_stale_perfect_score() -> None:
     assert "P5-HC-002" in blob
     assert "24/24" not in blob
     assert "perfect attribution" not in blob.lower()
+
+
+def _brace_balance(text: str) -> int:
+    r"""Net brace depth, ignoring TeX's escaped literals ``\{`` and ``\}``."""
+
+    depth = 0
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if char == "\\":
+            index += 2
+            continue
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+        index += 1
+    return depth
+
+
+@pytest.mark.parametrize("table_id", sorted(CANNOT_CHECK_PRESENTATION))
+def test_awaiting_campaign_tables_compile_and_name_what_is_absent(table_id: str) -> None:
+    """A stub whose caption cannot compile reports nothing at all.
+
+    The previous renderer built its caption by concatenating an f-string with a
+    plain one, so the plain half's ``}}`` reached the file as two braces and TeX
+    would have rejected every one of these tables. It also collapsed each table
+    to a single ``Result`` column, which tells a reader that *something* could
+    not be measured but never which measurement is missing. Both are checked
+    here because both were invisible until a byte-identity gate caught the drift
+    rather than a test.
+    """
+
+    rendered = render_cannot_check_tex(cannot_check_artifact(table_id, table_id))
+    assert _brace_balance(rendered) == 0
+    presentation = CANNOT_CHECK_PRESENTATION[table_id]
+    headers = presentation["headers"]
+    assert len(headers) >= 2, "a one-column stub names no measurement"
+    assert len(presentation["column_spec"]) == len(headers)
+    for header in headers:
+        assert header in rendered
+    assert f"\\multicolumn{{{len(headers)}}}" in rendered
+    assert "CANNOT\\_CHECK" in rendered
+    assert not rendered.endswith("\n")
+
+
+def test_every_cannot_check_table_has_a_shape_declared(tmp_path: Path) -> None:
+    """Adding a table without its columns must fail here, not at TeX time."""
+
+    generated = generate(ARCHIVE, REPORT, tmp_path / "evidence", tmp_path / "tex")
+    blocked = {
+        key for key, table in generated.items() if table["status"] == STATUS_CANNOT_CHECK
+    }
+    assert blocked, "no CANNOT_CHECK tables; this test is inert"
+    assert blocked == set(CANNOT_CHECK_PRESENTATION)

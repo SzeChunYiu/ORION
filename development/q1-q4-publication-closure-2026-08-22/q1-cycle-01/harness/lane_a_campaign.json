@@ -1,0 +1,230 @@
+{
+  "schema_version": "q1-c1-lane-a-campaign-v1",
+  "protocol_id": "Q1-C1",
+  "protocol_version": "1.0",
+  "execution_status": "NOT_STARTED",
+  "result_authority": "NONE",
+  "candidate_ref": "158fcb08b612ffc82f5a5d2bed4917409084ded8",
+  "chronology": {
+    "protocol_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "protocol_sha256": "4d3c36fd6e6c815c738a80d73da3f6cc99888e83d0af5f21c6770cbdd8481684",
+    "contract_layer_commit": "44f649debe79642a6d951961bda65fa1e875fa1a",
+    "contract_layer_parent": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "ptrace_resource_amendment_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "portable_resource_closure_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "github_resource_closure_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "dedicated_environment_lock_commit": "d805be5a5045908d283e0e722fc2857861e04465",
+    "network_trace_failure_record_commit": "89b755eec5a25d23b50d3bb792676983c34d910d",
+    "campaign_artifact_commit": "READ_FROM_GIT_AT_EXECUTION",
+    "campaign_artifact_commit_parent": "READ_FROM_GIT_AT_EXECUTION",
+    "runner_commit": "READ_FROM_GIT_AT_EXECUTION",
+    "binding_rule": "the coordinator reads the commit containing this campaign and both runners plus its first parent from Git at execution; a missing binding or failed strict-ancestry check is INVALID",
+    "protocol_is_strict_ancestor_of_contract_layer": true,
+    "contract_layer_must_be_strict_ancestor_of_runners_campaigns_and_results": true,
+    "worktree_dirty_must_equal": false
+  },
+  "contract_artifacts": {
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/Q1_C1_NETWORK_TRACE_FAILURE_RECORD_PROTOCOL.md": {
+      "sha256": "33d5a74cc700e6a44828e3a22dacf0816db8a96bd967d85c340678c5b34c3242",
+      "bytes": 3216
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/q1_c1_small_domains.json": {
+      "sha256": "50d60befaab71dbbacf2d32fe4502705023f3cede34d5e61d101564cbf5113b9",
+      "bytes": 34614
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/tex/base.tex": {
+      "sha256": "b70a93bf653d147dcf911ec4e44bdc985437e49f6e43326000685571e8b8e402",
+      "bytes": 262
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/tex/fixture.bib": {
+      "sha256": "f7685a5ef4c402af0757f020ea0a2ce345ce2587279d3e837ccd40d8a5604515",
+      "bytes": 142
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/proofs/q1_c1_zero_sum.proof.json": {
+      "sha256": "5cf8462e1ea00a39b9d3992d7183cea3a0e248a5a45e3de8d5b80628ae6dc351",
+      "bytes": 1310
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_mutations.json": {
+      "sha256": "4bc04c589ff2bf5f2f8395e97e35763e365c427b3d7bb41bd6eb9d909a4ed618",
+      "bytes": 20986
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_proof_certificate.schema.json": {
+      "sha256": "d7fa9568c8b0b352e84b291082fc33cf3bc087e6253b90187df3044e4c58990d",
+      "bytes": 2944
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_result.schema.json": {
+      "sha256": "794046242d8f4009b2fdf6bceeb85e6c0765ceff8cbb5e3367d671c63f7f126d",
+      "bytes": 29355
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_tex_mutations.json": {
+      "sha256": "e8372268deeee0461281611ab0a96eac3a22366c02f0c3b5ae3a014263517e5e",
+      "bytes": 2802
+    }
+  },
+  "runner_sources": {
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/lane_a_r6s_replay.py": {
+      "sha256": "ff86881ed72437f5b5a7be55a2987aed89502c4e92832b9b67fc45c8f432298f"
+    },
+    "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/lane_a_author_stack_adapter.py": {
+      "sha256": "082875ab5a7ec9c12fe1b825e6cdde31af6df8a9c3e4a2e4a32d1d8d25de4205"
+    }
+  },
+  "candidate_source_hashes": {
+    "research/extensions/orion-q/max_r6s_all_n_composition.py": "6fad2d4f8f97b0a1b76428bff4fdd83dda18f9e3a49cdab7732391d4bcf3d41d",
+    "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+    "research/extensions/orion-q/max_r6p_weight2_frame_donor_closure.py": "1006ab0293727ebb994b1202118bc60e779eb5432f820222c6ffbf22304d5965",
+    "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json": "3eef07d16353b606a133d7fb977d5039ad1c639c7a531a47ae82be4be9051190",
+    "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90",
+    "research/extensions/orion-q/max_r6o_enlarged_tag_donor_closure.py": "37cfd64201312e4c7e670e2beefede0961c7dd6a4cd1e3bb2f1fb74afbdf8c17",
+    "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json": "e40e7a948061b9e4b647ba091c04a73b39cffa619ca829bbf4cef4beacdad352",
+    "development/orion-q-max-r0/MAX_R6S_ALL_N_COMPOSITION_PROTOCOL.md": "bb8a9d32176c5e13c4ce270b1f83a091b57ed6e00fe55e851bc6dee10027c602",
+    "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md": "b44c8b39363cdde2604c5cba7e8998bc34621623639a78007e78a856659ed171",
+    "papers/Q-paper-01-tare-expressivity/PROOF_AND_EVIDENCE_MAP_V2.md": "3e9494a68ded5b482d17fc0738c9b4bbd54df389a29de95bfec341e17b6b5ed1",
+    "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md": "94e07f841b58a0274c2503d89b011b117636f2e534c2439bd9f00a6aebd368f3",
+    "packages/orion-research-harness/pyproject.toml": "bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7",
+    "uv.lock": "62c5d787f3b411f54def8ec61584a8ec3a182003c0fbc013e1e396f37735a465"
+  },
+  "r6s_replay": {
+    "role": "HISTORICAL_EXECUTABLE_REPLAY_ONLY",
+    "source_path": "research/extensions/orion-q/max_r6s_all_n_composition.py",
+    "expected_result_path": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+    "expected_result_raw_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+    "expected_semantic_sha256": "b729ceace65c4e4ba4d3693fc5a3e814a3ef07ef9a745767f3241699a875e18c",
+    "semantic_projection": {
+      "method": "CANONICAL_JSON_SORTED_KEYS_NO_NAN",
+      "excluded_json_pointers": [
+        "/runtime_seconds"
+      ]
+    },
+    "stdout_prefix": "ORIONQ_MAX_R6S_ALL_N_COMPOSITION=",
+    "timeout_seconds": 120,
+    "out_of_band_capture_required": true,
+    "capability_output_is_not_authoritative": true
+  },
+  "author_stack_adapter": {
+    "role": "FINITE_PRODUCTION_AUTHOR_STACK_ADAPTER",
+    "fixture_path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/q1_c1_small_domains.json",
+    "n1_generator": "itertools.product(range(4), repeat=6)",
+    "n1_rows": 4096,
+    "n2_rows": 65,
+    "target_encodings": {
+      "n1_and_n2_seeded": "LOCAL_PAULI_CODES_Q0_FIRST",
+      "n2_sharpness_donor_object": "GLOBAL_XZ_KEYS"
+    },
+    "fields": [
+      "C_DP",
+      "C_2",
+      "C_1"
+    ],
+    "sharpness_witness_required": true,
+    "post_terminal_comparator": "EXACT_FIELDWISE",
+    "lane_b_reads_allowed": false,
+    "arbitrary_n_production_equivalence_authority": false
+  },
+  "research_workspace": {
+    "project_root": "ARCHIVE_ROOT",
+    "fresh_workspace_required": true,
+    "allow_process_tools": true,
+    "capability": "PYTHON",
+    "capability_role": "BOOTSTRAP_ONLY",
+    "model_capabilities_allowed": false
+  },
+  "execution_environment": {
+    "python_path": "RESOLVE_SYS_EXECUTABLE_AT_RUN_START",
+    "python_version": "3.12.13",
+    "python_sha256": "RECORD_AND_BIND_ONE_EXECUTABLE_PER_RUN",
+    "numpy_version": "2.3.5",
+    "strace_path": "/usr/bin/strace",
+    "strace_version": "strace -- version 6.8",
+    "strace_sha256": "28f957c227012de0b18d1bd7fff2d396cb693ea60ed8013be68de071e84b5001",
+    "bootstrap_template_sha256": "e3b276d725a25b7b0489350291b2bc3f439e9979ac50edb1af55cacce0014668",
+    "bootstrap_template_bytes": 176,
+    "environment_allowlist": {
+      "names": [
+        "PATH",
+        "LANG",
+        "LC_ALL",
+        "PYTHONHASHSEED",
+        "TZ"
+      ],
+      "values": {
+        "PATH": "/usr/bin:/bin",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PYTHONHASHSEED": "0",
+        "TZ": "UTC"
+      }
+    },
+    "network_control": {
+      "python_socket_audit_denial": true,
+      "AF_INET_negative_control": "MUST_PASS",
+      "strace_filter": "trace=network",
+      "network_syscall_count": 0,
+      "namespace_isolation": "NOT_APPLICABLE",
+      "sandboxed": false,
+      "ptrace_unavailable_behavior": "AUDIT_HOOK_PARTIAL_RUN_FORCES_BLOCKED"
+    },
+    "dependency_closure": {
+      "uv_frozen_offline_required_before_release_pass": true,
+      "current_status": "BLOCKED",
+      "known_missing_locked_distribution": "cryptography==50.0.0",
+      "diagnostic_environment_does_not_close_uv_lock": true
+    }
+  },
+  "argv_contract": {
+    "r6s_outer": [
+      "ARCHIVE_ROOT",
+      "STDOUT_PATH",
+      "STDERR_PATH",
+      "RESULT_PATH"
+    ],
+    "r6s_trace_template": [
+      "/usr/bin/strace",
+      "-f",
+      "-qq",
+      "-e",
+      "trace=network",
+      "-o",
+      "RESULT_PATH.network.strace",
+      "RUNNER_RESOLVED_PYTHON",
+      "-I",
+      "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/lane_a_r6s_replay.py",
+      "--child",
+      "ARCHIVE_ROOT",
+      "STDOUT_PATH",
+      "STDERR_PATH",
+      "RESULT_PATH"
+    ],
+    "adapter": [
+      "ARCHIVE_ROOT",
+      "FIXTURE_PATH",
+      "RESULT_PATH"
+    ],
+    "adapter_trace_template": [
+      "/usr/bin/strace",
+      "-f",
+      "-qq",
+      "-e",
+      "trace=network",
+      "-o",
+      "RESULT_PATH.network.strace",
+      "RUNNER_RESOLVED_PYTHON",
+      "-I",
+      "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/lane_a_author_stack_adapter.py",
+      "ARCHIVE_ROOT",
+      "FIXTURE_PATH",
+      "RESULT_PATH"
+    ]
+  },
+  "authority_limits": {
+    "r6s_replay_is_corroborative_only": true,
+    "adapter_is_finite_fixture_only": true,
+    "grants_mathematical_authority": false,
+    "grants_arbitrary_n_production_equivalence": false,
+    "grants_novelty_authority": false,
+    "grants_physical_resource_authority": false,
+    "grants_runtime_superiority_authority": false,
+    "grants_submission_authority": false,
+    "grants_merge_authority": false
+  }
+}

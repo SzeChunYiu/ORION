@@ -1,4 +1,4 @@
-% Introduction: scoped problem statement and bounded contribution for ORION Paper III.
+% Introduction: the problem, the mechanism, and the bounded evidence for it.
 Scientific claims are distributed across disciplines, each with its own
 terminology, measurement practices, contexts, and representational choices.
 A global synthesis can therefore fail even when every local statement is
@@ -11,76 +11,55 @@ statement.
 
 \subsection{The proposal in brief}
 
-ORION Paper III represents each source as a \emph{source-local scientific
-projection} bound to its provenance. A proposed cross-source mapping records
-scientific coordinates such as referent, construct, measurement,
-context, polarity, modality, and attribution separately rather than reducing
-them to one similarity score. When the coordinates required by the claim are
-compatible, the projections may be \textsc{glue}d. When a load-bearing
-coordinate is incompatible or unresolved, the mapping remains a typed
-\emph{obstruction} or plural view rather than being forced into a canonical
-merge.
+Each source is represented as a \emph{source-local scientific projection}
+bound to its provenance. A proposed cross-source mapping records scientific
+coordinates such as referent, construct, measurement, context, polarity,
+modality, and attribution separately rather than reducing them to one
+similarity score. When the coordinates required by the claim are compatible,
+the projections may be \emph{glued} into a single global statement. When a
+load-bearing coordinate is incompatible or unresolved, the mapping remains a
+typed \emph{obstruction} or a \emph{plural view} rather than being forced into
+a canonical merge.
 
-This paper evaluates that mapping rule at the layer for which external
-evidence currently exists. The initial public-reference study contains 32
-already-structured cases derived from pinned external sources. A second,
-disjoint 32-case holdout was selected and execution-frozen before its system
-outputs, including its exact gold hash, source revisions, evaluator code,
-bootstrap seed, margins, and pass rule. On that confirmatory holdout, ORION
-produced zero false merges versus 0.1875 for flat predicate canonicalization;
-the paired difference was $-0.1875$ with a 95\% bootstrap interval of
-$[-0.34375,-0.0625]$. The false-split difference versus an exact-coordinate
+That rule is evaluated at the layer for which external evidence currently
+exists. An initial public-reference study contains 32 already-structured cases
+derived from pinned external sources. A second, disjoint 32-case holdout was
+selected and execution-frozen before its system outputs, including its exact
+gold digest, source revisions, evaluator code, bootstrap seed, margins, and
+pass rule. On that confirmatory holdout, coordinate-governed mapping produced
+zero false merges against 0.1875 for flat predicate canonicalization; the
+paired difference was $-0.1875$ with a 95\% bootstrap interval of
+$[-0.34375,-0.0625]$. The false-split difference against an exact-coordinate
 conservative control was $0.000$ with interval $[0.000,0.000]$, satisfying the
-predeclared confirmatory rule.
+rule declared before those outputs were seen.
 
-The evidence is intentionally narrower than the full Global Knowledge
-Portrait programme. It does not establish raw-text extraction superiority,
-expert eight-family construct validity, reader-level recoverability of a
-generated portrait, downstream scientific-answer improvement, or necessity
-of every semantic coordinate. Those are follow-up claims and remain
-\conststatus{} rather than being inferred from the mapping result.
+The evidence is deliberately narrower than the mechanism's design ambition.
+It does not establish raw-text extraction superiority, expert construct
+validity across the eight case families the broader design describes,
+reader-level recoverability of a generated portrait, downstream
+scientific-answer improvement, or necessity of every semantic coordinate.
+Each of those remains undetermined rather than being inferred from the mapping
+result.
 
-\subsection{Claims and non-claims}
-
-The paper absorbs the following mechanism families as prior work rather than
-claiming them independently:
-
-\begin{itemize}
-    \item source-grounded scientific structure extraction and knowledge
-          assembly (MUSE~\cite{muse2026}, Discovery Engine~\cite{discoveryEngine2025});
-    \item multidisciplinary scientific schemas (SciSchema.org~\cite{scischema2026});
-    \item evidence-linked schema induction and fusion
-          (SCOPE/SCION~\cite{scopes2026});
-    \item provenance-aware schema-conditioned integration and retrieval
-          (Executable Schema Contracts~\cite{schemaContracts2026});
-    \item scientific entity/relation extraction (SciER~\cite{scier2024});
-    \item ontology and schema alignment
-          (Ontology Matching~\cite{euzenat2007ontology}, LLMATCH~\cite{llmatch2025});
-    \item heterogeneous knowledge-graph construction, entity resolution,
-          fusion, and provenance~\cite{hofer2024kgconstruction,verma2023scholarlykg};
-    \item stance and claim-comparison methods~\cite{hardalov2022stance};
-    \item literature-based discovery~\cite{swanson1986,swanson1997interactive};
-    \item scientific pluralism~\cite{kellert2006,cartwright1999};
-    \item retrieval-augmented scientific synthesis and cross-domain agent
-          orchestration~\cite{openScholar2024,biosage2025}.
-\end{itemize}
-
-The surviving scoped empirical claim is P3.C5: for the frozen
+The surviving empirical claim is the narrow one: for the frozen
 public-reference mapping task, explicit scientific-coordinate conditions plus
 an obstruction state reduce false merges relative to flat predicate
-canonicalization while satisfying the predeclared false-split guard. The
-initial 32 cases are not pooled into the confirmatory verdict. Zero-effect
-coordinate ablations are retained as limitations, not interpreted as proof
-that those coordinates are unnecessary.
+canonicalization while satisfying the false-split guard declared in advance.
+The initial 32 cases are not pooled into the confirmatory verdict, and
+coordinate ablations with no measured effect are reported as coverage limits
+rather than as proof that those coordinates are unnecessary.
 
 \subsection{Structure of the paper}
 
-Section~\ref{sec:related} establishes the absorbed prior-work boundary.
-Section~\ref{sec:method} defines source projections, mappings, \textsc{glue},
-and obstruction. Section~\ref{sec:dataset} describes the two public-reference
-mapping datasets and their provenance. Section~\ref{sec:eval} records the
-prospective confirmatory design and controls. Section~\ref{sec:results}
-reports the frozen result and ablations. Section~\ref{sec:limitations}
-separates the supported mapping claim from the broader unexecuted programme,
-and Section~\ref{sec:conclusion} states the bounded conclusion.
+Section~\ref{sec:related} positions the mapping rule among the extraction,
+schema-alignment, integration, stance and pluralism literatures it builds on.
+Section~\ref{sec:method} defines source projections, mappings, gluing,
+obstruction, and the three-valued reporting discipline. Section~\ref{sec:dataset}
+describes the two public-reference mapping datasets and their provenance.
+Section~\ref{sec:eval} records the prospective confirmatory design and its
+controls. Section~\ref{sec:results} reports the frozen result and the
+ablations. Section~\ref{sec:limitations} separates the supported mapping claim
+from what remains unmeasured, Section~\ref{sec:conclusion} states the bounded
+conclusion, and Section~\ref{sec:availability} lists every artifact behind a
+reported number.
 \endinput

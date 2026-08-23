@@ -1,0 +1,76 @@
+name: orion-qg20-recovery-v2
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg20_recovery_v2_frozen_grammar.py'
+      - 'development/orion-qg-regime-geometry/qg20_recovery_v2_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg20_recovery_v2_dual.py'
+      - 'development/orion-qg-regime-geometry/QG20_RECOVERY_V2_FROZEN_GRAMMAR_RESIDUAL_PROTOCOL.md'
+      - '.github/workflows/orion-qg20-recovery-v2.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg20-recovery-v2-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  v2-frozen-grammar-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run V2 dual recovery
+        run: |
+          python development/orion-qg-regime-geometry/run_qg20_recovery_v2_dual.py | tee /tmp/qg20-v2.txt
+          grep '^ORIONQG_QG20_RECOVERY_V2_DUAL=' /tmp/qg20-v2.txt
+      - name: Enforce frozen V2 custody and inspectable terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('artifacts/orion-qg-qg20-recovery-v2-dual.json').read_text())
+          if p.get('train_instances', 0) + p.get('holdout_instances', 0) != 36720:
+              raise SystemExit('V2 split does not cover complete n4 domain')
+          if p.get('selection_before_holdout') is not True:
+              raise SystemExit('V2 holdout opened before selection')
+          if p.get('new_feature_definitions_added') is not False:
+              raise SystemExit('V2 introduced post-refutation feature definitions')
+          if len(p.get('selected_companions', [])) > 2:
+              raise SystemExit('V2 selected more than two allowed companions')
+          if p.get('analyzer_replay_identical') is not True:
+              raise SystemExit('V2 analyzer replay mismatch')
+          if p.get('verifier_decision') not in {'ACCEPT', 'REJECT'}:
+              raise SystemExit('V2 verifier did not reach inspectable decision')
+          checks = p.get('verifier_checks')
+          if not isinstance(checks, dict) or not checks:
+              raise SystemExit('V2 verifier lacks check-level evidence')
+          if p.get('verifier_decision') == 'ACCEPT' and not all(checks.values()):
+              raise SystemExit('V2 ACCEPT contains failed check')
+          if p.get('verifier_decision') == 'REJECT' and all(checks.values()):
+              raise SystemExit('V2 REJECT lacks failed check')
+          allowed = {
+              'QG20_RECOVERY_V2_PREFROZEN_COORDINATES_RESTORE_COMPLETE_N4_DETERMINATION',
+              'QG20_RECOVERY_V2_TRAIN_EXACT__HOLDOUT_MIXED',
+              'QG20_RECOVERY_V2_NO_TWO_FEATURE_COMPANION__NEW_PHASE_DISTRIBUTION_STATE_REQUIRED',
+              'QG20_RECOVERY_V2_DUAL_DISAGREEMENT',
+          }
+          if p.get('terminal') not in allowed:
+              raise SystemExit(f"unexpected V2 terminal: {p.get('terminal')!r}")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg20-recovery-v2
+          path: |
+            artifacts/orion-qg-qg20-recovery-v2-selection.json
+            artifacts/orion-qg-qg20-recovery-v2.json
+            artifacts/orion-qg-qg20-recovery-v2-verification.json
+            artifacts/orion-qg-qg20-recovery-v2-dual.json
+            /tmp/qg20-v2.txt
+          if-no-files-found: warn
+          retention-days: 30

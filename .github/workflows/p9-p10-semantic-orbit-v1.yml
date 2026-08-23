@@ -1,0 +1,56 @@
+name: p9-p10-semantic-orbit-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/SEMANTIC_ORBIT_CONTROLLED_PROTOCOL_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_semantic_orbit_controlled_v1.py'
+      - '.github/workflows/p9-p10-semantic-orbit-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  orbit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen semantic orbit
+        run: python research/extensions/p9-p10-structural-scaling/run_semantic_orbit_controlled_v1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/SEMANTIC_ORBIT_CONTROLLED_V1.json /tmp/orbit-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_semantic_orbit_controlled_v1.py
+      - name: Require byte identity
+        run: cmp /tmp/orbit-first.json research/extensions/p9-p10-structural-scaling/results/SEMANTIC_ORBIT_CONTROLLED_V1.json
+      - name: Print orbit summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/SEMANTIC_ORBIT_CONTROLLED_V1.json').read_text())
+          print(json.dumps({'terminal':d['terminal'],'aggregate':d['aggregate'],'cells':[{'k':c['k'],'canonical':c['canonical_accuracy'],'orbit':c['orbit'],'preservation_failures':c['target_preservation_failure_count']} for c in d['cells']]},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semantic-orbit-v1-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/SEMANTIC_ORBIT_CONTROLLED_V1.json
+          if-no-files-found: error
+      - name: Enforce bounded-or-better terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/SEMANTIC_ORBIT_CONTROLLED_V1.json').read_text())
+          allowed={'RELATIONAL_SEMANTIC_ORBIT_STABILITY_SUPPORTED_CONTROLLED_CLASS','RELATIONAL_SEMANTIC_ORBIT_BOUNDED_STABILITY_ONLY'}
+          if d['terminal'] not in allowed:
+              raise SystemExit('semantic-orbit frozen stability gate not met; preserve artifact without retuning')
+          PY

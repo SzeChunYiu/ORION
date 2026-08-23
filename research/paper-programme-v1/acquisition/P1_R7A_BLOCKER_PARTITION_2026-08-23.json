@@ -1,0 +1,56 @@
+{
+  "schema_version": "orion.p1.r7a-blocker-partition.v1",
+  "record": "P1_R7A_BLOCKER_PARTITION",
+  "date": "2026-08-23",
+  "authority_scope": "PARTITION_OF_BLOCKERS_ONLY",
+  "grants": "Nothing. The terminal remains P1_R7A_CANNOT_CHECK_EXTERNAL_BINDINGS; outcomes_accessed, execution_authorized and grants_scientific_authority all remain false.",
+  "measured_by": "PYTHONPATH=src python research/paper-programme-v1/run_p1_p5_successor_preflight.py",
+  "measured": {
+    "status": "READY_FOR_EXTERNAL_BINDING",
+    "execution_terminal": "P1_R7A_CANNOT_CHECK_EXTERNAL_BINDINGS",
+    "local_blockers": 0,
+    "planned_independent_units": 384,
+    "minimum_independent_units": 384,
+    "projected_joint_power": 0.920216,
+    "power_passes": true
+  },
+  "the_asymmetry_with_P5": "P5's nine blockers are computed by a paper-specific assessor reading literal UNBOUND placeholders. R7A has no such assessor. Its five external_bindings_required are a declaration in the protocol JSON, not a gate any code evaluates: the only code touching the list blocks when the list is EMPTY, and P1's own binding checker emits dataset_unbound, model_provider_revisions_unbound, evaluator_hash_unbound, baseline_config_hashes_unbound and evaluation_epoch_unbound -- every branch a presence-or-equality test on a digest, identifier or epoch.",
+  "partition": {
+    "authorable_by_the_candidate": {
+      "count": 3,
+      "bindings": [
+        "PRIMARY_AND_CHANGED_REPLICATION_SEMANTIC_HOST_CUSTODY",
+        "INDEPENDENT_PRIMARY_AND_REPLICATION_SCORER_CUSTODY",
+        "PROTECTED_EXECUTION_ENVIRONMENT"
+      ],
+      "evidence": "The paper already discharged the host-custody binding locally one round earlier over a public host, with probe prompt and output digests computed by the researcher. 'Independent' is defined by the protocol itself as a second IMPLEMENTATION, not a second party."
+    },
+    "freely_retrievable": {
+      "count": 2,
+      "bindings": [
+        "PRIMARY_AND_REPLICATION_SOURCE_SNAPSHOTS",
+        "STRONGEST_RUNNABLE_EXTERNAL_COMPARATOR"
+      ],
+      "evidence": "Source identity is defined solely by URL, DOI, stable artifact id, title/author/year, repository identity or dataset family -- retrieval is work, not permission. The comparator is never named concretely anywhere in the P1 tree; it is classified here as an implementation the candidate obtains and runs under its own metered envelope.",
+      "weakest_row": "STRONGEST_RUNNABLE_EXTERNAL_COMPARATOR is inference rather than citation, because no concrete comparator is named. Even were it a paid product, access would be gated by purchase and not by anyone's identity, so the count is stable either way."
+    },
+    "requires_another_party": {
+      "count": 0,
+      "how_the_absence_was_justified": [
+        "The enforcement-idiom search was positive-controlled: the same pattern finds P5's real gate, where the candidate policy owner equalling the protected evaluator owner raises candidate_controls_protected_evaluator. A search that can find the positive is trustworthy on the negative.",
+        "The only other distinctness gate in the tree is not on any P1 import path.",
+        "P1's own independence machinery checks that JUDGES are distinct from EACH OTHER, never that any judge differs from the candidate. One researcher instantiating two distinctly labelled scorers passes it.",
+        "Each of the five binding names occurs exactly once repository-wide -- at its own declaration site. They have no consumers."
+      ],
+      "considered_and_rejected": "A noncompensatory EXTERNAL_EVALUATOR_CUSTODY gate exists in the design protocol, and a result document admits its evaluator is self-authored with internal custody. That is scoped to a different item, is prose self-assessment rather than an enforcing line, and the string has no consumer. It shows the researchers WANT external custody, not that any code requires it."
+    }
+  },
+  "finding": "Zero of P1 R7A's five external bindings require an outside party. Three are receipts and digests the researcher writes; two are retrieval campaigns. The preflight reports no local blockers at all and the design already carries 0.920216 joint power over its full 384 units.",
+  "consequence": "P1.R7A.WIDE.SUCCESSOR is misdescribed as blocked on external custody. It is locally unexecuted work plus a retrieval campaign.",
+  "incidental": "The same preflight reports LOCAL_PREOUTCOME_CHECK_FAILED for two sibling assessments, blocked on local_binding_missing:COMPARISON_RESOLUTION_CHECKER / _PROTOCOL and local_binding_missing:A004_HISTORICAL_PROTOCOL / _RECEIPT -- local bindings, named as such by the preflight's own vocabulary. -- SEE incidental_corrected: the A004 half of this note is withdrawn.",
+  "incidental_corrected": {
+    "withdrawn": "The incidental note below reported that the same preflight shows local_binding_missing for A004_HISTORICAL_PROTOCOL and A004_HISTORICAL_RECEIPT. That was an artefact of the sandbox the preflight ran in, not a defect.",
+    "checked": "Both paths exist on codex/p1-p5-successor-execution and their content digests match the successor protocol's declared sha256 exactly: A004_HISTORICAL_RECEIPT 5b9108d5c86f..., A004_HISTORICAL_PROTOCOL 89525e0b40e8....",
+    "still_true": "The COMPARISON_RESOLUTION_CHECKER and COMPARISON_RESOLUTION_PROTOCOL bindings reported for the sibling assessment were not re-checked and remain unverified either way."
+  }
+}

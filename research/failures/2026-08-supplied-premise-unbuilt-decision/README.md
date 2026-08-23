@@ -375,3 +375,49 @@ not vary, `UNAPPLIED_TREATMENT_VACUOUS_NULL` a cause that did not vary,
 this one a **decision that was never made**. Every check in this repository that
 reports "PASS over N cases" should be asked, of each of its rule's arguments,
 whether that argument is part of the question or part of the answer.
+
+---
+
+## Closed 2026-08-22
+
+Both P7 exhibits are repaired, and each repair is the one this class prescribes:
+supply the axis the decision needs, do not soften the assertion.
+
+**`bridge_match`** was free on 25 of 25 composition cases, admitting 33,554,432
+deciding rules including the constants. Two mechanisms compounded. The replay
+asserted `compose(c1, c2, bridged)` with the expected value chosen by `bridged`
+itself, so the premise stood on both sides. Underneath that was a fidelity error:
+the shipped block makes 50 assertions — 25 under the bridging registry and 25
+under the empty one — and the audit modelled 25 cases with one premise value
+each, folding two rows that disagree into one. The decision inputs were already
+in the repository; nothing was computing `Match(Tgt(d1), Src(d2))`. Now decided
+on 50 of 50 with exactly one admissible rule, 0 of 5,000 random whole rules
+accepted, and no published verdict moved: 50 of 50 agreement with the shipped
+literal, `canonical_rows_sha256` still `25f40385`.
+
+**`target_ambiguous_if_missing`** was the harder one and is the reason item 9
+deferred it: it was `UNDECIDABLE_IN_MODEL`, free on all 64 states, because
+`admissible_target_completions` was not an axis of anything the checker
+enumerated. The shipped file already contained a real decider,
+`extension_ambiguous`, and could not call it — there was no completion class to
+hand it. The checker now enumerates one beside each witness: **960 cases, 0 free,
+one admissible rule, 0 of 5,000 random rules accepted**, and
+`theory_closure_terminal` moves `CANNOT_CHECK` to `PASS`.
+
+Three things are reported rather than glossed. The 960 is **not a larger 64** —
+it is 64 coordinate states crossed with 15 completion classes, and both counts
+are carried side by side as incomparable. On the 15 complete-witness cases
+Theorem 6 returns `TRANSFER_CLOSURE` whatever ambiguity is, so those decide the
+premise without testing the terminal's dependence on it; the shipped body now
+asserts that insensitivity, making it a checked property rather than a gap, and a
+separate floor re-measures with the direct transcription dropped — **945 of 960
+cases still exclude a value**, leaving 2^15 rules against 2^64 before. And the
+pre-repair model is retained as an explicitly labelled counterfactual, still
+reporting `UNDECIDABLE_IN_MODEL` on its 64, so the contrast stays runnable rather
+than becoming a claim about a file nobody can execute.
+
+What remains open in P7 is a different question and is stated where it belongs:
+the decided hand-off is still inert against `left_donor` and `right_donor` — only
+the registry moves it — and no shipped function takes a donor argument at all.
+Deciding a premise is not the same as making it depend on what one hoped it
+would.

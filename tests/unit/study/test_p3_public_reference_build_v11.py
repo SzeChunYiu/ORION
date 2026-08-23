@@ -4,6 +4,7 @@ import json
 
 from orion.study.p3_public_reference_analysis import ablated_relation
 from orion.study.p3_public_reference_build_v11 import build_atlas_v11
+from tests.unit.study.test_p3_public_reference_build import declare
 
 
 def _write_muse(root):
@@ -72,11 +73,17 @@ def test_v11_build_has_stable_locators_required_relations_and_targeted_ablations
     _write_scifact(scifact)
     _write_scischema(schemas)
 
+    pins = (
+        declare("MUSE", *sorted(muse.rglob("*.json")))
+        + declare("SciFact", scifact)
+        + declare("SciSchema", *sorted(schemas.glob("*/*/master-schema.json")))
+    )
     cases, report = build_atlas_v11(
         muse_root=muse,
         scifact_claims=scifact,
         scischema_root=schemas,
         target_n=6,
+        pins=pins,
     )
 
     assert report["status"] == "READY_FOR_FREEZE"

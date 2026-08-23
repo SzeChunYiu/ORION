@@ -1,0 +1,14 @@
+\section{Outside-closure and semantics verification}
+A claimed method-space expansion must satisfy all of:
+\begin{enumerate}
+    \item an independent checker verifies that the candidate edit lies outside the frozen old closure;
+    \item the semantic target and verifier remain fixed, or an explicit valid correspondence is established;
+    \item no stronger oracle/tool/access channel is silently introduced;
+    \item the edit closes or materially moves the certified obstruction;
+    \item held-out tasks/families were frozen before edit generation and show positive transfer;
+    \item known-method controls show a low false-expansion rate;
+    \item strong search, synthesis, library-learning, and evolutionary baselines do not recover the same reach at matched cost;
+    \item an independent implementation/replay reproduces the reach expansion.
+\end{enumerate}
+The generated method cannot certify its own novelty, correctness, or adoption authority.
+

@@ -1,0 +1,1199 @@
+{
+  "schema_version": "orion.paper-programme.recursive-resolution-ledger.v1",
+  "ledger_date": "2026-08-23",
+  "base_revision": "fd9892fdafd7734b07c8b24a4384c9e9561b1349",
+  "purpose": "Route every paper-level adverse result or evidence boundary to an honest repair, prospective successor, or external acquisition while preserving atomic claim identity.",
+  "categories": [
+    "FIXED_BY_EXISTING_PR",
+    "ACTIVE_POSITIVE_AUTHORITY",
+    "HISTORICAL_ADVERSE_RESULT",
+    "PROSPECTIVE_SUCCESSOR_REQUIRED",
+    "EXTERNAL_EVIDENCE_BLOCKER"
+  ],
+  "historical_policy": {
+    "append_only_history": true,
+    "post_hoc_relabeling_prohibited": true,
+    "successor_requires_new_claim_id": true,
+    "outcome_blind_freeze_required": true,
+    "positive_result_not_guaranteed": true,
+    "rule": "An adverse terminal remains the result for its frozen claim. A successor uses a new identity, freezes its attainable gate before outcomes, and reports either terminal."
+  },
+  "papers": [
+    {
+      "paper_id": "P1",
+      "items": [
+        {
+          "item_id": "P1.H1.V1.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P1.H1.V1",
+          "disposition": "ORION achieved one root success in 48 and tied the strongest matched baseline; the run was also below the registered 385-case target.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-01-recursive-epistemic-reconstruction/journal_package/MANIFEST.json", "availability": "BASE_REVISION"},
+            {"path": "research/verification/records/P1.H1.root-success-not-supported.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/publication/test_journal_package.py -q",
+            "success_condition": "The frozen V1 result and NOT_SUPPORTED authority remain reproducible and unchanged.",
+            "failure_terminal": "P1_HISTORICAL_RECEIPT_INTEGRITY_FAILED"
+          }
+        },
+        {
+          "item_id": "P1.DIAGNOSTIC.ONTOLOGY.PR961",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P1.DIAGNOSTIC.ONTOLOGY.V1",
+          "disposition": "PR 961 separates structural non-applicability and unregistered descriptive cells from genuine registered evidential verdicts; it does not alter P1.H1.V1.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 961,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/961",
+            "head": "codex/p1-diagnostic-ontology-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p1/test_table_applicability.py -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_STATUS_ONTOLOGY_CORRECTION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-diagnostic-ontology-active-base"},
+            {"path": "tests/unit/study/p1/test_table_applicability.py", "availability": "EXISTING_PR", "ref": "codex/p1-diagnostic-ontology-active-base"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p1/test_table_applicability.py -q",
+            "success_condition": "All structural-zero cells are NOT_APPLICABLE, descriptive cells are DESCRIPTIVE_ONLY, and registered verdict counts are unchanged.",
+            "failure_terminal": "P1_DIAGNOSTIC_ONTOLOGY_REPAIR_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P1.R7.WIDE.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P1.H1.R7",
+          "disposition": "A wide successor protocol exists in PR 954, but no result is authorized until the outcome-blind source frame, max-T power, comparator, host, and scorer custody are frozen.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-r7-wide-successor"},
+            {"path": "research/claim_expansion/p1/gpt_r7/source_frame.py", "availability": "EXISTING_PR", "ref": "codex/p1-r7-wide-successor"},
+            {"path": "research/claim_expansion/p1/gpt_r7/query_frame.py", "availability": "EXISTING_PR", "ref": "codex/p1-r7-wide-successor"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "python research/claim_expansion/p1/gpt_r7/query_frame.py > /tmp/p1-r7-query-frame.json",
+            "success_condition": "The query frame is generated before search; the subsequently acquired source frame contains two waves totaling 512 source clusters and passes max-T power plus comparator/custody checks before scoring.",
+            "failure_terminal": "P1_R7_NOT_READY_FOR_PROTECTED_EXECUTION"
+          "item_id": "P1.R7A.WIDE.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P1.H1.R7A.MAXT_POWERED",
+          "disposition": "PR 973 prospectively freezes a 384-source-cluster, nine-comparator max-T design with conditional power 0.920216; local preflight passes, but protected execution remains blocked on source snapshots, comparator, hosts, environment, and independent scorer custody.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"},
+            {"path": "research/claim_expansion/p1/gpt_r7a/R7A_MAXT_POWER_RECEIPT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"},
+            {"path": "research/claim_expansion/p1/gpt_r7/source_frame.py", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_BINDING",
+            "command": "PYTHONPATH=src python research/paper-programme-v1/run_p1_p5_successor_preflight.py",
+            "success_condition": "Two source-disjoint waves bind 384 analysis clusters plus unresolved safety clusters per wave, the strongest comparator and two semantic hosts execute, and independent scorer custody is established before outcomes.",
+            "failure_terminal": "P1_R7A_CANNOT_CHECK_EXTERNAL_BINDINGS"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P2",
+      "items": [
+        {
+          "item_id": "P2.EXTERNAL_SIGNAL.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P2.BOUNDED_EXTERNAL_SIGNAL.V1",
+          "disposition": "The external campaign was not positive: only 7 of 229 gold items were acquired, the registered delta was beyond the sampling ceiling, and treatment/baseline admissible exposure was unmatched.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json >/dev/null",
+            "success_condition": "The 7/229 exposure and unattainable registered effect gate remain disclosed as historical execution evidence.",
+            "failure_terminal": "P2_HISTORICAL_ACQUISITION_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P2.COMPARISON.RESOLUTION.PR955",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P2.COMPARISON.RESOLUTION.V1",
+          "disposition": "PR 955 adds a pre-outcome resolution gate for saturated or indistinguishable comparator outputs; it repairs the checker, not the historical result.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 955,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/955",
+            "head": "codex/p2-resolution-gate",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p2/test_p2_comparison_resolution_gate.py -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-02-open-world-scientific-discovery/scripts/comparison_resolution_gate.py", "availability": "EXISTING_PR", "ref": "codex/p2-resolution-gate"},
+            {"path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_COMPARISON_RESOLUTION_GATE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p2-resolution-gate"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p2/test_p2_comparison_resolution_gate.py -q",
+            "success_condition": "Zero-resolution comparator campaigns are rejected before protected outcomes.",
+            "failure_terminal": "P2_COMPARISON_RESOLUTION_GATE_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P2.TASK_WORLD.IDENTITY",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P2.OPEN_WORLD.SUCCESSOR.V2",
+          "disposition": "The reconstructed baseline does not reproduce the archived baseline, so task, query, provider candidate, and scorer identity are not yet bound.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json", "availability": "BASE_REVISION"}
+          "disposition": "PR 973 freezes a powered 768-cluster, four-arena, equal-route successor, but the archived task-world baseline has not been reproduced and live provider, comparator, and evaluator identities remain unbound.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Bind one task/query/provider/scorer snapshot; reproduce archived baseline metrics within frozen tolerance; then freeze equal admissible route exposure in at least two arenas.",
+            "success_condition": "Baseline identity is reproduced and an independently scored, capability-matched, multi-arena protocol is frozen before treatment outcomes.",
+            "failure_terminal": "P2_REPRODUCTION_FAILED__NO_CANDIDATE_CLAIM"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P3",
+      "items": [
+        {
+          "item_id": "P3.PUBLIC_REFERENCE.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P3.C5.C9.PUBLIC_REFERENCE.V1_1",
+          "disposition": "The disjoint 32-case public-reference confirmatory set supports the bounded false-merge claim; it does not establish the broader partial-observation claim.",
+          "scope": "Thirty-two prespecified public-reference cases in the disjoint v1.1 confirmatory set.",
+          "authority_artifact": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python -m json.tool papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json >/dev/null",
+            "success_condition": "The bounded n=32 claim remains tied only to its disjoint confirmatory receipt.",
+            "failure_terminal": "P3_PUBLIC_REFERENCE_AUTHORITY_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P3.PARTIAL_OBSERVATION.A004.PR967",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P3.PARTIAL_OBSERVATION.A004",
+          "disposition": "PR 967 makes A004 the sole active partial-observation leaf and keeps all predecessor amendments historical; it does not convert failed G5, G6, G8, or G9 gates into support.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 967,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/967",
+            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            "head": "codex/p3-p9-p15-lifecycle",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q",
+            "success_condition": "One content-bound active leaf is selected and failed gates plus identifiability floors remain explicit.",
+            "failure_terminal": "P3_PARTIAL_OBSERVATION_LINEAGE_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1",
+          "disposition": "A new claim must estimate excess harm above the proven observation floor; relaxing the old G9 gate after A004 outcomes would be post-hoc.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze an independent source-anchored corpus, a partial-identification estimand, an excess-harm-above-floor gate, and protected replication under a new claim ID.",
+            "success_condition": "The new gate is simulation-attainable and frozen before any successor outcomes are observed.",
+            "failure_terminal": "P3_PARTIAL_IDENTIFICATION_SUCCESSOR_NOT_READY"
+          "disposition": "PR 973 freezes a new floor-adjusted partial-identification estimand over 768 source-family clusters; synthetic attainability passes, while the independent atlas, gold labels, raw-text attacks, and downstream evaluator remain externally unbound.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Bind the source-disjoint multi-domain atlas, independent protected gold, raw-text attack corpus, and downstream evaluator to the frozen PR 973 protocol before scoring.",
+            "success_condition": "Every formerly inert coordinate varies, every protected distinction has a nonzero separability opportunity, and the complete powered panel is independently scored.",
+            "failure_terminal": "P3_PARTIAL_IDENTIFICATION_CANNOT_CHECK_EXTERNAL_ATLAS"
+          }
+        },
+        {
+          "item_id": "P3.C6_C8.EXTERNAL",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P3.C6-C8.ATLAS_AND_DOWNSTREAM",
+          "disposition": "Four atlas coordinates (referent, construct, measurement, temporal context) are inert in the current artifact, and raw-text robustness plus downstream utility remain unexecuted follow-ups.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-03-global-knowledge-portrait/JOURNAL_READINESS.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze a targeted atlas that varies the four inert coordinates, then separately freeze raw-text attack and downstream-decision protocols with independent labels and domain-block gates.",
+            "success_condition": "Each coordinate has nonzero variation and each external endpoint has a protected, independently scored opportunity denominator.",
+            "failure_terminal": "P3_C6_C8_EXTERNAL_EVIDENCE_REMAINS_OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P4",
+      "items": [
+        {
+          "item_id": "P4.H3.V2.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P4.H3.V2",
+          "disposition": "The V2 method-authority metric saturated at 1.0 for all eleven systems and could not support the registered comparison.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_METHOD_AUTHORITY_PANEL_RESOLUTION_2026-08-22.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-04-verified-scientific-discovery/evidence/audit/P4_METHOD_AUTHORITY_PANEL_RESOLUTION_2026-08-22.json >/dev/null",
+            "success_condition": "The V2 zero-resolution limitation remains historical and distinct from V3.",
+            "failure_terminal": "P4_V2_RESOLUTION_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P4.H3.V3.EXACT_AXIS",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P4.H3.V3.CANNOT_CHECK",
+          "disposition": "The exact CANNOT_CHECK axis supports a bounded V3 claim; four off-axis V3 seed failures remain diagnostic disclosures.",
+          "scope": "Fourteen exact CANNOT_CHECK probes over thirteen prespecified seeds in the V3 protected panel.",
+          "authority_artifact": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-04-verified-scientific-discovery/evidence/protected_v3/RESULT.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p4-identifiability-worst-seed"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p4/test_p4_v3_claim_axis_authority.py -q",
+            "success_condition": "Only the exact v3/CANNOT_CHECK axis grants authority and off-axis seed failures remain non-authoritative diagnostics.",
+            "failure_terminal": "P4_V3_EXACT_AXIS_AUTHORITY_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P4.H3.V3.AUTHORITY.PR956",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P4.H3.V3.AUTHORITY_BINDING",
+          "disposition": "PR 956 binds the exact claim axis and worst-seed rule rather than aggregating unlike diagnostic labels.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 956,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/956",
+            "head": "codex/p4-identifiability-worst-seed",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p4/test_p4_v3_claim_axis_authority.py -q"
+          },
+          "source_refs": [
+            {"path": "src/orion/study/p4/claim_axis.py", "availability": "EXISTING_PR", "ref": "codex/p4-identifiability-worst-seed"},
+            {"path": "tests/unit/p4/test_p4_v3_claim_axis_authority.py", "availability": "EXISTING_PR", "ref": "codex/p4-identifiability-worst-seed"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p4/test_p4_v3_claim_axis_authority.py -q",
+            "success_condition": "The executable authority selector returns only the registered exact axis.",
+            "failure_terminal": "P4_CLAIM_AXIS_BINDING_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P4.NATURALISTIC.GENERALITY",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P4.H3.NATURALISTIC.V1",
+          "disposition": "The constructed V3 panel does not establish naturalistic multi-domain generality.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md", "availability": "BASE_REVISION"}
+          "disposition": "PR 973 freezes a powered paired naturalistic design over 768 source-case clusters; the blinded panel, external comparators, evaluator, and source-disjoint replication panel remain absent.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze a naturalistic multi-domain campaign with CANNOT_CHECK-capable comparators, an independent evaluator, and raw-case custody before execution.",
+            "success_condition": "Prespecified domain-block and worst-domain gates are attainable and independently scored.",
+            "failure_terminal": "P4_NATURALISTIC_GENERALITY_REMAINS_OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P5",
+      "items": [
+        {
+          "item_id": "P5.GLM52.RESIDUAL_ERRORS.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P5.GLM52.ATTRIBUTION.DIAGNOSTIC",
+          "disposition": "The descriptive 24-case diagnostic retains three errors (P5-HC-002, P5-HC-012, P5-HC-018), 21/24 accuracy, and corrected standard macro-F1 0.872619; it does not establish H1-H4.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-05-self-orion/evidence/DISCREPANCY_P5_D1_MACRO_F1_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json >/dev/null",
+            "success_condition": "All three residual errors and the corrected macro-F1 remain in the descriptive record.",
+            "failure_terminal": "P5_GLM52_DIAGNOSTIC_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P5.H1_H4.EXTERNAL_IDENTITIES",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P5.H1-H4.V3",
+          "disposition": "H1-H4 lack complete protected-suite, candidate, split, evaluator, baseline, environment, and epoch identities; the MDA baseline also lacks a source-ground structural binding.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json", "availability": "BASE_REVISION"},
+            {"path": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json", "availability": "BASE_REVISION"},
+            {"path": "src/orion/study/p5/revision_level_v3_preflight.py", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PREFLIGHT",
+            "command": "PYTHONPATH=src python research/self-orion-v3/run_confirmatory_preflight_v1.py",
+            "success_condition": "All nine identity and custody blockers clear without reading protected outcomes.",
+            "failure_terminal": "P5_V3_CONFIRMATORY_PREFLIGHT_BLOCKED"
+          }
+        },
+        {
+          "item_id": "P5.WIDE.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P5.REVISION_LEVEL.WIDE.V1",
+          "disposition": "A single issue-76 cycle and the 24-case GLM diagnostic are not a wide confirmatory basis; three diagnostic errors remain historical descriptive evidence.",
+          "disposition": "PR 973 freezes a powered 768-cluster, eight-domain, eight-revision-class successor with same-visible-symptom blocking; execution remains blocked on the protected project panel, final split, M-open donor binding, exact identities, and independent evaluators.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-05-self-orion/JOURNAL_READINESS.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "After preflight passes, freeze an attainable powered panel spanning multiple independent project and issue families, then execute once under protected evaluator custody.",
+            "success_condition": "The successor is family-wide, baseline-capability-matched, powered, and frozen before outcomes.",
+            "failure_terminal": "P5_WIDE_SUCCESSOR_NOT_READY"
+            {"path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_BINDING",
+            "command": "PYTHONPATH=src python research/paper-programme-v1/run_p1_p5_successor_preflight.py",
+            "success_condition": "All protected project, split, donor, identity, and independent evaluator bindings clear before the frozen powered panel executes once.",
+            "failure_terminal": "P5_WIDE_REVISION_LEVEL_CANNOT_CHECK_EXTERNAL_BINDINGS"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P6",
+      "items": [
+        {
+          "item_id": "P6.FORMAL.DONOR_STACK.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P6.CERTIFICATE_LIFTING.BOUNDED_FORMAL",
+          "disposition": "The bounded formal donor-stack certificate-lifting semantics are supported as an ideal-product equivalence; no empirical system claim follows.",
+          "scope": "Deterministic formal donor-stack artifact under the definitions and assumptions recorded in Claim Ledger V4.",
+          "authority_artifact": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python -m pytest tests/unit/publication/test_framework_snapshot.py -q",
+            "success_condition": "The publication snapshot preserves the bounded formal scope and does not promote an empirical claim.",
+            "failure_terminal": "P6_FORMAL_AUTHORITY_SCOPE_DRIFT"
+          }
+        },
+        {
+          "item_id": "P6.REPRODUCIBILITY.EXTERNAL",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P6.EMPIRICAL.LIFTING.V1",
+          "disposition": "The content manifest grants no authority and lacks a current subject binding, environment lock, immutable raw-result format, proof object, regeneration path, and independent replay.",
+          "disposition": "PR 972 closes the local schema, generator, subject/environment binding, proof-object, regeneration, and hostile-replay mechanics. The resulting receipt is LOCAL_REPLAY_ONLY; independent clean-room reproduction and any separately frozen empirical extension remain external.",
+          "blocked_gates": ["P6-U-T3_CORPUS", "P6-U-T4_INDEPENDENT_REVIEW", "P6-U-T5_EVIDENCE_ONTOLOGY"],
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "research/claim_expansion/p6/P6_X_INDEPENDENT_VERIFICATION_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_REPRODUCTION",
+            "command": "Bind the current subject commit and environment, emit immutable proof/result objects with a regeneration command, and obtain an independent clean-room replay receipt.",
+            "command": "Give the frozen V2 manifest and V3 local replay bundle to an independent custodian and obtain a signed clean-room replay receipt without reusing the local execution unit.",
+            "success_condition": "A third party reproduces the bounded formal artifact byte-for-byte and any empirical extension has a separately frozen claim identity.",
+            "failure_terminal": "P6_INDEPENDENT_REPRODUCTION_NOT_ESTABLISHED"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P7",
+      "items": [
+        {
+          "item_id": "P7.FORMAL.NAVIGATION.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P7.CLOSURE_CARRYING_NAVIGATION.BOUNDED_FORMAL",
+          "disposition": "The closure-carrying navigation theorem is active only as a bounded formal result; it is not evidence of an empirical open-world pipeline.",
+          "scope": "Formal navigation construction under the stated closure and transition assumptions in Claim Ledger V4.",
+          "authority_artifact": "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V4.md",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V4.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python -m pytest tests/unit/publication/test_framework_snapshot.py -q",
+            "success_condition": "The bounded formal theorem remains the only active authority.",
+            "failure_terminal": "P7_FORMAL_AUTHORITY_SCOPE_DRIFT"
+          }
+        },
+        {
+          "item_id": "P7.MATCH_NECESSITY.HISTORICAL_LIMITATION",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P7.COMPOSITION.MATCH_NECESSITY",
+          "disposition": "The mechanized analysis reports MATCH_IS_NOT_NECESSARY for the broader necessity reading; the supported theorem remains conditional and bounded.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json >/dev/null",
+            "success_condition": "The limitation remains explicit and no necessity claim is inferred from conditional soundness.",
+            "failure_terminal": "P7_MATCH_NECESSITY_LIMITATION_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P7.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1",
+          "disposition": "No naturalistic corpus, protected evaluator, current subject binding, environment lock, trace replay, or independent reproduction establishes empirical navigation.",
+          "disposition": "PR 972 closes the local schema, generator, subject/environment binding, and eight-of-eight trace-opportunity replay mechanics. That receipt is LOCAL_REPLAY_ONLY; a naturalistic corpus, protected evaluator, and independent reproduction are still absent.",
+          "blocked_gates": ["P7-U-T3_NATURALISTIC_ARENA", "P7-U-T4_NATURALISTIC_COMPARISON", "P7-U-T5_DUAL_INDEPENDENT_REVIEW"],
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze a multi-domain naturalistic corpus, donor-complete baselines, protected evaluator, trace schema, current environment, and independent replay plan before execution.",
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Bind the frozen V2/V3 mechanics to a multi-domain naturalistic corpus, donor-complete baselines, protected evaluator, and independent replay custodian before execution.",
+            "success_condition": "A powered cross-domain campaign and worst-domain gate are frozen and independently reproducible.",
+            "failure_terminal": "P7_EMPIRICAL_NAVIGATION_REMAINS_OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P8",
+      "items": [
+        {
+          "item_id": "P8.FORMAL.AUTHORITY_COMPOSITION.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P8.AUTHORITY_COMPOSITION.13_DONOR_FORMAL",
+          "disposition": "The thirteen-donor authority-composition envelope is supported as an ideal-product formal equivalence, not as a deployed autonomous-science result.",
+          "scope": "Thirteen formal donor objects under the mechanized ideal-product assumptions in Claim Ledger V3.",
+          "authority_artifact": "papers/paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V3.md",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V3.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python -m json.tool papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json >/dev/null",
+            "success_condition": "The mechanized receipt remains valid and the thirteen-donor formal scope is unchanged.",
+            "failure_terminal": "P8_FORMAL_AUTHORITY_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P8.DEPLOYED.AGENT.EXTERNAL",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P8.DEPLOYED.AUTHORITY_COMPOSITION.V1",
+          "disposition": "All expected labels are public, 169 composition entries are homogeneous/reflexive repetitions rather than heterogeneous breadth, and the manifest lacks current subject, protected-label custody, attack replay, environment, and independent reproduction; deployed-agent generality is untested.",
+          "disposition": "PR 972 closes the local schema, generator, current subject/environment binding, and five-of-five attack-opportunity replay mechanics. The receipt is LOCAL_REPLAY_ONLY and protected-label custody plus independent deployed-agent reproduction remain absent; the original homogeneous 169-entry panel does not establish breadth.",
+          "blocked_gates": ["P8-U-T3_WORKFLOW", "P8-U-T4_UTILITY", "P8-U-T5_DUAL_INDEPENDENT_REVIEW"],
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze hidden authority labels, independently authored attacks, separately implemented comparators, current runtime binding, and a replay custodian before a deployed-agent campaign.",
+            "command": "Bind the frozen V2/V3 local mechanics to hidden authority labels, independently authored attacks, separately implemented comparators, and an independent replay custodian before a deployed-agent campaign.",
+            "success_condition": "A multi-domain protected campaign passes prespecified average and worst-domain gates under independent custody.",
+            "failure_terminal": "P8_DEPLOYED_AUTHORITY_GENERALITY_REMAINS_OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P9",
+      "items": [
+        {
+          "item_id": "P9.T4.HOSTILE_ATTACK.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P9.U.T4",
+          "disposition": "Hostile attacks defeated the narrow representation claim; the adverse result constrains the successor rather than disappearing from the record.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json >/dev/null",
+            "success_condition": "The T4 attack outcome remains bound to its original claim and threat model.",
+            "failure_terminal": "P9_T4_HOSTILE_ATTACK_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P9.T4.D1V1_3.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS",
+          "disposition": "The next D1 claim must represent order and multiplicity, require nonzero attack potency prospectively, and use a fresh protected split; zero-opportunity cells in T4 remain CANNOT_CHECK.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+          "item_id": "P9.D1V1_2.LOCKED_ENV.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P9.D1V1_2.LOCKED_ENV_REPRODUCTION",
+          "disposition": "PR 972 records an append-only locked-environment replay failure: the archived TYPED_SERIALIZED_BAG accuracy was 0.50 but the frozen-environment reproduction was 0.75. The three other arms reproduced exactly; the replay is the same historical execution unit and grants no positive or independent-reproduction authority.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "uv run --frozen python -m orion.study.p9.transfer_audit --json",
+            "success_condition": "The divergence remains append-only, independent_unit_credit stays zero, and no D1v1.2 positive authority is minted from the replay.",
+            "failure_terminal": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P9.T4.D1V1_3.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS",
+          "disposition": "PR 972 freezes the D1v1.3 ordered/multiplicity-preserving protocol, nonzero pre-outcome potency gate, applicability matrix, and fail-closed active authority. Execution still requires a fresh protected split, frozen checkpoints, and provider custody; zero-opportunity T4 cells remain historical CANNOT_CHECK records.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/protocol/P9_D1V1_3_ORDERED_MULTIPLICITY_FREEZE_2026-08-23.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_3_ACTIVE_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze D1v1.3 with ordered/multiplicity-preserving data, a pre-outcome attack-potency gate, a prospective applicability matrix, and a fresh protected split.",
+            "success_condition": "Every registered attack cell has a nonzero feature-change opportunity or is excluded before outcomes, and the new robustness gate is attainable.",
+            "failure_terminal": "P9_D1V1_3_SUCCESSOR_NOT_READY"
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Bind the frozen D1v1.3 protocol to a fresh protected split, exact checkpoints, and provider/runtime custody, then execute once.",
+            "success_condition": "Every registered attack cell has a nonzero feature-change opportunity or was excluded before outcomes, and the frozen robustness family passes on a fresh protected unit.",
+            "failure_terminal": "P9_D1V1_3_PROTECTED_EXECUTION_UNAVAILABLE"
+          }
+        },
+        {
+          "item_id": "P9.T3.FRONTIER.LIFECYCLE.PR967",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P9.U.T3.FRONTIER.METADATA",
+          "disposition": "PR 967 marks the T3 frontier amendment as metadata-only; zero of 1,344 model-scale cells remain executed and no outcome authority is granted.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 967,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/967",
+            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            "head": "codex/p3-p9-p15-lifecycle",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q",
+            "success_condition": "Metadata amendments cannot be interpreted as model-scale execution evidence.",
+            "failure_terminal": "P9_T3_LIFECYCLE_REPAIR_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P9.T3.FRONTIER.EXECUTION",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P9.U.T3.FRONTIER.EXECUTION.V1",
+          "disposition": "The model-scale frontier has 0/1,344 executed cells and requires actual checkpoint, runtime, and compute custody.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_EXECUTION",
+            "command": "Acquire the frozen checkpoints and runtime, execute all registered frontier cells, and archive cell-level requests, outputs, metrics, failures, and environment hashes.",
+            "success_condition": "All prespecified cells have non-metadata execution receipts and the registered frontier gate is computed once.",
+            "failure_terminal": "P9_T3_FRONTIER_REMAINS_CANNOT_CHECK"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P10",
+      "items": [
+        {
+          "item_id": "P10.CLAIM_AUTHORITY.MISSING",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P10.STRUCTURED_PROBLEM_SOLVING.V1",
+          "disposition": "P10 contains a manuscript and successor manuscript but no machine-readable active authority, frozen protocol, result receipt, or executable claim-evidence ledger.",
+          "blocked_gates": ["P10-U-T1_NATIVE_STATE_SEARCH", "P10-U-T2_STRONG_PROVER_COMPARISON", "P10-U-T3_INDEPENDENT_OBSTRUCTION", "P10-U-T4_REAL_DOMAIN_EXTERNAL_REVIEW"],
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-10-structured-problem-solving/manuscript/sections/11-primary-hypotheses.tex", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-10-structured-problem-solving/manuscript/sections/16-claim-ladder-and-status.tex", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "LIFECYCLE_FREEZE",
+            "command": "Mint atomic P10 claim IDs and an active-authority ledger, then freeze donor-complete baselines, sampling units, attainable gates, negative-history rules, and protected custody before any confirmatory execution.",
+            "success_condition": "Every manuscript claim maps to one frozen gate and one prospective receipt path, with no result authority before execution.",
+            "failure_terminal": "P10_NO_ACTIVE_EMPIRICAL_AUTHORITY"
+          "item_id": "P10.CLAIM_AUTHORITY.PR972",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P10.STRUCTURED_PROBLEM_SOLVING.V1",
+          "disposition": "PR 972 installs machine-readable active authority and a frozen H1--H6 protocol. All six hypotheses remain PROSPECTIVE_NOT_EXECUTED and no scientific-result authority is granted until the donor, evaluator, verifier, and protected inputs are externally bound.",
+          "blocked_gates": ["P10-U-T1_NATIVE_STATE_SEARCH", "P10-U-T2_STRONG_PROVER_COMPARISON", "P10-U-T3_INDEPENDENT_OBSTRUCTION", "P10-U-T4_REAL_DOMAIN_EXTERNAL_REVIEW"],
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 972,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/972",
+            "head": "codex/p6-p10-evidence-closure-20260823",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p10 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-10-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p10 -q",
+            "success_condition": "Every H1--H6 claim maps to its frozen gate and receipt path while all remain PROSPECTIVE_NOT_EXECUTED before protected execution.",
+            "failure_terminal": "P10_PROSPECTIVE_AUTHORITY_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P10.MATHLIB.MODULE_NEGATIVES.HISTORICAL",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P10.MATHLIB_TRANSFER.V2_1.MODULE_ROBUSTNESS",
+          "disposition": "The post-hoc module analysis has positive pooled source-projection gain but retains negative deltas for Control (-0.033333) and CategoryTheory (-0.005780); it has no Lean kernel replay.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json >/dev/null",
+            "success_condition": "Both negative module deltas and the no-kernel-replay boundary remain in the historical receipt.",
+            "failure_terminal": "P10_MATHLIB_MODULE_ROBUSTNESS_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P10.WIDE.MULTI_DOMAIN.V1",
+          "disposition": "A wide, independently evaluated multi-domain execution corpus and protected result are absent.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-10-structured-problem-solving/manuscript/sections/09-cross-domain-programme.tex", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "After lifecycle freeze, execute the powered multi-domain panel under an independent evaluator with raw trace, environment, and scorer custody.",
+            "success_condition": "Prespecified aggregate and worst-domain gates are evaluated over the complete frozen panel.",
+            "failure_terminal": "P10_PROTECTED_MULTI_DOMAIN_EVIDENCE_ABSENT"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P11",
+      "items": [
+        {
+          "item_id": "P11.D_H.HISTORICAL_ADVERSE",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P11.D.P11.H",
+          "disposition": "P11D did not meet the sparse-decoder gap and the P11H pooled universal attack prevailed at r=3; both remain authoritative for their frozen claims.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-11-state-as-computation/P11D_SPARSE_DECODER_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json >/dev/null",
+            "success_condition": "The P11D and r=3 P11H adverse terminals remain in the authority history.",
+            "failure_terminal": "P11_HISTORICAL_ATTACK_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P11.I.HIGH_WIDTH.PR959",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P11.R7.POOLED_ATTACK_ADVANTAGE",
+          "disposition": "PR 959 adds a prospectively distinct high-width claim and active authority without superseding the r=3 attack result.",
+          "remaining_integration_blockers": [
+            {"blocker": "Submission TeX/PDF do not yet present P11I.", "next_executable_step": "Update manuscript/main.tex from the active-authority receipt, rebuild main.pdf, then require rg -n 'P11I|HIGH_WIDTH' papers/paper-11-state-as-computation/manuscript/main.tex to match."},
+            {"blocker": "An explicit P11I terminal-responsiveness and gate-attainability test is absent.", "next_executable_step": "Add hostile terminal mutations and boundary fixtures to test_p11i_wide_high_width_replication.py before manuscript promotion."}
+          ],
+          "disposition": "PR 959 adds a prospectively distinct high-width claim and active authority without superseding the r=3 attack result; PR 971 completes terminal-responsiveness, attainability, deterministic revalidation, and submission PDF integration.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 959,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/959",
+            "head": "codex/p11-wide-successor",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p11/test_p11_active_claim_authority.py tests/unit/study/p11/test_p11i_wide_high_width_replication.py -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"}
+            {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_REVALIDATION_RECEIPT_V1_1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-11-state-as-computation/manuscript/main.pdf", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p11/test_p11_active_claim_authority.py tests/unit/study/p11/test_p11i_wide_high_width_replication.py -q",
+            "success_condition": "The selector grants only the width-conditioned P11I claim and retains P11H as historical adverse evidence.",
+            "failure_terminal": "P11I_ACTIVE_AUTHORITY_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P11.I.HIGH_WIDTH.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P11.R7.POOLED_ATTACK_ADVANTAGE",
+          "disposition": "All nine prespecified high-width cells pass while all nine matched r=3 controls keep the attack live; the claim is width-conditioned, not universal.",
+          "scope": "Three independent RNG seeds by three fixed bank-geometry strata, five within-cell repeats, with matched r=3 controls.",
+          "authority_artifact": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p11/test_p11i_wide_high_width_replication.py -q",
+            "success_condition": "Nine of nine high-width cells and nine of nine attack-live controls remain bound to the frozen receipt.",
+            "failure_terminal": "P11I_HIGH_WIDTH_REPLICATION_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P11.REAL_SYSTEMS.EXTERNAL",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P11.REAL_SYSTEMS.WIDTH_ADVANTAGE.V1",
+          "disposition": "The constructed bank result does not establish a width advantage in independently implemented real systems.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-11-state-as-computation/PEER_REVIEW_READINESS.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze independently implemented real-system strata, matched low-width controls, terminal-responsiveness checks, and an independent scorer before execution.",
+            "success_condition": "The real-system panel passes an attainable prespecified width-conditioned gate and worst-stratum check.",
+            "failure_terminal": "P11_REAL_SYSTEM_WIDTH_CLAIM_REMAINS_OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P12",
+      "items": [
+        {
+          "item_id": "P12.AUTHORITY_WITHHELD.PR966",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
+          "disposition": "PR 966 withholds superiority authority because one-axis baselines have action-set ceilings below the winner; the old positive terminal remains execution history only.",
+          "remaining_integration_blockers": [
+            {"blocker": "MANUSCRIPT.md and submission TeX/PDF retain stale strict-dominance wording.", "next_executable_step": "Replace strict-dominance prose with authority-withheld adjudication, rebuild main.pdf, and require rg -n 'AUTHORITY_WITHHELD|capability-matched' papers/paper-12-adaptive-state-reasoning/MANUSCRIPT.md papers/paper-12-adaptive-state-reasoning/manuscript/main.tex to match."}
+          ],
+          "disposition": "PR 966 withholds superiority authority because one-axis baselines have action-set ceilings below the winner; the old positive terminal remains execution history only. PR 971 completes the scoped manuscript and PDF correction.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 966,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/966",
+            "head": "codex/p12-p13-authority-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q"
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q",
+            "success_condition": "The active selector withholds superiority and preserves the earlier receipt as non-authoritative history.",
+            "failure_terminal": "P12_COMPARISON_VALIDITY_AUTHORITY_REPAIR_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P12.B.CAPABILITY_MATCHED.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P12B.CAPABILITY_MATCHED_SIGNAL_VALUE",
+          "disposition": "The next claim must compare fixed policies with identical four-action sets and use family/domain-block inference; current matched-action gain is below the old gate.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Simulate and freeze an attainable P12B gate with identical four-action sets, fixed policies, family/domain blocks, and a worst-family endpoint before outcomes.",
+            "success_condition": "The new estimand isolates signal value rather than action availability and has prespecified power.",
+            "failure_terminal": "P12B_CAPABILITY_MATCHED_SUCCESSOR_NOT_READY"
+          "item_id": "P12.B.CAPABILITY_MATCHED.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P12B.EQUAL_ACTION.TWO_SIGNAL_COMPLEMENTARITY",
+          "disposition": "PR 971 prospectively freezes and executes a distinct equal-action successor. Across 32 independent simulated family RNG blocks, the two-signal policy gains 0.253906 over the stronger one-signal policy; the stratified family-block 95% bootstrap interval is [0.251221, 0.256653] and the minimum family gain is 0.196289.",
+          "scope": "Thirty-two independent simulated family RNG blocks in the registered equal-action four-regime world; four fixed sigma strata, 1,024 technical episodes per family, and identical four-action sets. This is not external-system generalization.",
+          "authority_artifact": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V3.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V3.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q",
+            "success_condition": "The V3 selector binds the locked-environment V1.1 result, treats family RNG blocks as n=32, preserves equal action sets, and forbids external promotion.",
+            "failure_terminal": "P12B_EQUAL_ACTION_AUTHORITY_INVALID"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P13",
+      "items": [
+        {
+          "item_id": "P13.OUTCOME.AUTHORITY.PR966",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P13.EMPIRICAL.SAFETY_COST.AUTHORITY_WITHHELD",
+          "disposition": "PR 966 separates exact constructed-world support from empirical safety-cost superiority, which is not entailed because the declared-support endpoint had zero live harm opportunities.",
+          "remaining_integration_blockers": [
+            {"blocker": "MANUSCRIPT.md and submission TeX/PDF retain stale measured-frontier and eliminates-unsafe-reuse wording.", "next_executable_step": "Scope prose to exact finite-world support, rebuild main.pdf, and require rg -n 'finite|constructed|CANNOT_CHECK' papers/paper-13-responsibility-carrying-state/MANUSCRIPT.md papers/paper-13-responsibility-carrying-state/manuscript/main.tex to match."}
+          ],
+          "disposition": "PR 966 separates exact constructed-world support from empirical safety-cost superiority, which is not entailed because the declared-support endpoint had zero live harm opportunities. PR 971 completes the scoped manuscript and PDF correction.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 966,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/966",
+            "head": "codex/p12-p13-authority-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p13 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p13 -q",
+            "success_condition": "Only the exact finite-world leaf receives authority; empirical superiority remains CANNOT_CHECK.",
+            "failure_terminal": "P13_OUTCOME_ENTAILMENT_AUTHORITY_REPAIR_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P13.EXACT.SUPPORT.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P13.EXACT.RESPONSIBILITY_RELATIVE_SUPPORT",
+          "disposition": "Responsibility-relative support is exact in the registered finite constructed world; this does not imply empirical safety-cost superiority.",
+          "scope": "The registered finite constructed world and exact support matrix only.",
+          "authority_artifact": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_PROTOCOL_ADJUDICATION_V2.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p13 -q",
+            "success_condition": "Exact support remains scoped to the finite registered matrix.",
+            "failure_terminal": "P13_EXACT_SUPPORT_AUTHORITY_INVALID"
+          }
+        },
+        {
+          "item_id": "P13.B.INDEPENDENT_GOLD.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P13B.INDEPENDENTLY_GRADED_CERTIFICATE_SAFETY",
+          "disposition": "A new empirical claim requires independent gold support, live wrong/stale/forged/overbroad certificate opportunities, matched costs, and domain-block inference.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze P13B with independent gold grading, nonzero prespecified harm opportunities, matched cost/correctness frontiers, domain blocks, and a worst-domain gate.",
+            "success_condition": "The primary endpoint is evaluator-independent, exercised, and powered before protected execution.",
+            "failure_terminal": "P13B_INDEPENDENT_GOLD_SUCCESSOR_NOT_READY"
+          "item_id": "P13.B.AUTHENTICATED.CORRUPTION.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P13B.AUTHENTICATED_CERTIFICATE.CORRUPTION_SAFETY_COST",
+          "disposition": "PR 971 prospectively freezes and executes a distinct authenticated-certificate successor. Every one of four corruption worlds has 30 live mutation opportunities, authenticated RCS has zero gold-scored unsafe reuses in every world, and its valid-panel cost is 0.611111 times always-raw.",
+          "scope": "Registered finite 30-case panel: six state forms by five tasks, four corruption worlds, and locally authored certificate-independent gold. This is controlled finite-world evidence, not external validation or real-agent safety.",
+          "authority_artifact": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V2.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V2.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13B_GOLD_SUPPORT_SPEC_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p13 -q",
+            "success_condition": "The V2 selector binds all 120 live corruption opportunities, zero gold-scored unsafe reuses, and the finite-world external boundary.",
+            "failure_terminal": "P13B_AUTHENTICATED_CORRUPTION_AUTHORITY_INVALID"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P14",
+      "items": [
+        {
+          "item_id": "P14.A.HISTORICAL.GATE_DEFECT",
+          "category": "HISTORICAL_ADVERSE_RESULT",
+          "claim_id": "P14A.CONTROLLED_GOVERNANCE.SUPERIORITY",
+          "disposition": "P14A did not meet its gate; adjudication shows both registered bars exceeded the statistic supremum, so the claim has no authority and the gate defect remains disclosed.",
+          "immutable": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "REPLAY_AND_RETAIN",
+            "command": "python -m json.tool papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json >/dev/null",
+            "success_condition": "P14A remains NOT_MET with authority NONE and the unattainable gate is explicit.",
+            "failure_terminal": "P14A_GATE_ADJUDICATION_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P14.C.CONFORMANCE.PR960",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P14.CURRENT.CONTROLLED_CONFORMANCE",
+          "disposition": "PR 960 selects P14C as the active claim and keeps P14A historical and P14B diagnostic.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 960,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/960",
+            "head": "codex/p14-positive-adjudication",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p14 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p14-positive-adjudication"},
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p14 -q",
+            "success_condition": "The selector grants only P14C controlled conformance and preserves P14A/P14B dispositions.",
+            "failure_terminal": "P14_ACTIVE_AUTHORITY_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P14.C.CONFORMANCE.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P14.CURRENT.CONTROLLED_CONFORMANCE",
+          "disposition": "P14C supports specification-separated governance conformance on the frozen register; it is not an external-validity claim.",
+          "scope": "Twenty-eight registered cases across seven controlled implementations.",
+          "authority_artifact": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p14-positive-adjudication"},
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p14 -q",
+            "success_condition": "The 28-case seven-implementation conformance result remains bound to P14C only.",
+            "failure_terminal": "P14C_CONFORMANCE_RECEIPT_INVALID"
+          }
+        },
+        {
+          "item_id": "P14.D.EXTERNAL_VALIDITY",
+          "category": "EXTERNAL_EVIDENCE_BLOCKER",
+          "claim_id": "P14D.BLINDED_MULTI_DOMAIN_GOVERNANCE",
+          "disposition": "P14C uses internally authored specifications and does not establish external governance validity.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Freeze P14D with blinded independently authored multi-domain cases, separately implemented comparators, unchanged attainable bars, co-primary false-promotion/recall, worst-domain analysis, and replay custody.",
+          "disposition": "P14C uses internally authored specifications and does not establish external governance validity. PR 971 freezes a fail-closed P14D acquisition protocol and preflight, but blinded independent case packets and adjudicator custody are not available locally.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-14-orion-rse/P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-14-orion-rse/P14D_EXTERNAL_ACQUISITION_PREFLIGHT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Supply the blinded independent case packets and adjudicator/custodian bindings required by the frozen P14D acquisition protocol, then rerun its fail-closed preflight.",
+            "success_condition": "Independent case authorship and implementation are hidden from candidate construction and all gates are frozen before execution.",
+            "failure_terminal": "P14_EXTERNAL_VALIDITY_REMAINS_OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "paper_id": "P15",
+      "items": [
+        {
+          "item_id": "P15.METHODS_SCOPE.PR967",
+          "category": "FIXED_BY_EXISTING_PR",
+          "claim_id": "P15.METHODS_SCOPE_ONLY",
+          "disposition": "PR 967 installs a lifecycle authority stating there is no active empirical claim, hypothesis, scientific result, or promotion.",
+          "remaining_integration_blockers": [
+            {"blocker": "The authority receipt still lists the claim ledger as missing while the PR adds it, and README.md still says no ledger exists.", "next_executable_step": "Regenerate the authority receipt after adding the ledger, update README.md, and require both files to agree before merge."}
+          ],
+          "disposition": "PR 967 installs a lifecycle authority stating there is no active empirical claim, hypothesis, scientific result, or promotion; the later integration commits synchronize the authority receipt, claim ledger, and README.",
+          "post_hoc_relabeling_prohibited": true,
+          "existing_pr": {
+            "number": 967,
+            "url": "https://github.com/SzeChunYiu/ORION/pull/967",
+            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"}
+            "head": "codex/p3-p9-p15-lifecycle",
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q"
+          },
+          "source_refs": [
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"}
+          ],
+          "next_executable_step": {
+            "kind": "MERGE_VERIFICATION",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q",
+            "success_condition": "P15 remains methods-scope only and cannot be promoted without a protected result.",
+            "failure_terminal": "P15_METHODS_SCOPE_AUTHORITY_NOT_VERIFIED"
+          }
+        },
+        {
+          "item_id": "P15.A.HARNESS.SUCCESSOR",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P15A.HARNESS.ADMISSION.SAFETY",
+          "disposition": "No empirical P15 claim exists; P15A must test a frozen harness revision over live host/capability failures and nonzero scientific-admission opportunities.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-15-orion-research-harness/README.md", "availability": "BASE_REVISION"}
+          ],
+          "next_executable_step": {
+            "kind": "PROSPECTIVE_FREEZE",
+            "command": "Freeze one exact harness revision, live host/capability failure matrix, clean controls, targeted mutations, replay bundle, and zero-false-admission gate over nonzero opportunities.",
+            "success_condition": "All identities and mutation opportunities are bound before execution and the gate has a nonzero opportunity denominator.",
+            "failure_terminal": "P15A_PROSPECTIVE_HARNESS_NOT_READY"
+          "disposition": "PR 971 freezes a fail-closed P15A acquisition protocol and preflight for one exact harness revision, live host/capability failures, clean controls, and nonzero admission opportunities. Execution remains blocked on the external donor matrix, protected corpus, and custody bindings.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-15-orion-research-harness/P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-15-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
+          ],
+          "next_executable_step": {
+            "kind": "EXTERNAL_ACQUISITION",
+            "command": "Supply the donor matrix, protected corpus, and independent custody bindings required by the frozen P15A acquisition protocol, then rerun its fail-closed preflight.",
+            "success_condition": "All identities and mutation opportunities are bound before execution and the gate has a nonzero opportunity denominator.",
+            "failure_terminal": "P15A_EXTERNAL_ACQUISITION_UNAVAILABLE"
+          }
+        }
+      ]
+    }
+  ]
+}

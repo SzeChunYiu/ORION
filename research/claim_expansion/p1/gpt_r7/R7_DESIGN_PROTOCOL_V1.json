@@ -1,0 +1,217 @@
+{
+  "schema_version": "orion.p1.r7.wide-design-protocol.v1",
+  "paper_id": "P1",
+  "claim_id": "P1.H1.R7",
+  "study_id": "R7",
+  "date_frozen": "2026-08-22",
+  "protocol_status": "DESIGN_AND_QUERY_FRAME_FROZEN__SOURCE_SNAPSHOT_POWER_AND_EXTERNAL_CUSTODY_NOT_BOUND",
+  "outcomes_accessed": false,
+  "authority": "PREOUTCOME_DESIGN_ONLY",
+  "execution_attempt_terminal_until_all_bindings_exist": "P1_R7_CANNOT_CHECK_PREOUTCOME_BINDINGS",
+  "successor_of": [
+    "P1.H1.V1",
+    "P1.H1.R6"
+  ],
+  "supersedes": [],
+  "claim_scope": "Two prospectively registered naturalistic acquisition frames over the named causal families and protected domains; never science in general.",
+  "acquisition_query_frame": {
+    "implementation": "research/claim_expansion/p1/gpt_r7/query_frame.py",
+    "frame_digest": "sha256:e05049feb3d5af23a7aca7757b42792182d77577b510518f8a62e402403cd22a",
+    "pair_query_count": 128,
+    "unresolved_query_count": 32,
+    "publication_year_min": 2019,
+    "publication_year_max": 2025,
+    "max_rank_per_query": 100,
+    "sampling_rule": "freeze all eligible source-family clusters within each cell, then sample by the registered wave seed; do not select by candidate outcome",
+    "primary_sampling_seed": 20260822,
+    "replication_sampling_seed": 20260823
+  },
+  "independent_unit": "unique_source_study_artifact_family_cluster",
+  "primary_frame": {
+    "causal_families": [
+      "LATENT_OBJECTIVE",
+      "CONTRADICTORY_OBJECTIVES",
+      "WRONG_MEASUREMENT",
+      "WRONG_REPRESENTATION",
+      "WRONG_PROBLEM_BOUNDARY",
+      "IMPLEMENTATION_OR_HARNESS_FAILURE",
+      "EVIDENCE_SCARCITY",
+      "NO_REFORMULATION_CONTROL"
+    ],
+    "protected_domains": [
+      "BIOMEDICAL_CLINICAL",
+      "EARTH_ENVIRONMENTAL",
+      "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "PHYSICAL_ENGINEERING"
+    ],
+    "pairs_per_family_domain_cell": 6,
+    "required_source_pairs": 192,
+    "unresolved_per_domain": 16,
+    "required_unresolved_sources": 64,
+    "required_total_source_clusters": 256,
+    "required_pair_episodes": 384,
+    "required_total_episodes": 448,
+    "all_cells_complete_before_scoring": true,
+    "source_family_deduplication": [
+      "normalized_url",
+      "doi",
+      "stable_artifact_id",
+      "title_first_author_year",
+      "official_repository_identity",
+      "shared_dataset_or_project_family"
+    ]
+  },
+  "replication_frame": {
+    "same_shape_as_primary": true,
+    "required_source_pairs": 192,
+    "required_unresolved_sources": 64,
+    "required_total_source_clusters": 256,
+    "source_disjoint_from_primary_and_p1_x_r1_r6": true,
+    "changed_semantic_host": true,
+    "independently_implemented_runner_and_scorer": true,
+    "at_least_two_domains_absent_from_policy_development_preferred": true,
+    "pool_with_primary_for_terminal": false
+  },
+  "primary_estimand": {
+    "cluster_success": "1 iff protected final scientific success holds on both the adverse and matched-control member with every integrity and harm gate satisfied; otherwise 0",
+    "cell_weighting": "equal mean over the 32 causal-family by protected-domain cells",
+    "contrast": "Delta_b = E_frame[S_source(ORION_R7) - S_source(b)]",
+    "superiority_margin_strictly_greater_than": 0.05,
+    "comparator_claim_logic": "intersection: every frozen primary comparator must pass",
+    "confidence_procedure": "family-domain-stratified source-cluster paired bootstrap/randomization with max-T simultaneous one-sided 95 percent lower bounds",
+    "required_bound_rule": "every simultaneous lower bound strictly greater than 0.05",
+    "global_iut_audit": "reject union null only when every fixed comparator-specific level-0.05 null rejects",
+    "fixed_n": true,
+    "outcome_interim_analysis": false,
+    "efficacy_early_stop": false
+  },
+  "power_design": {
+    "status": "REQUIRES_OUTCOME_BLIND_MAX_T_SIMULATION_BEFORE_EXECUTION_FREEZE",
+    "planned_n_pairs": 192,
+    "anticipated_delta": 0.20,
+    "margin": 0.05,
+    "anticipated_discordance": 0.40,
+    "target_power": 0.90,
+    "approximate_n_at_anticipated_delta": 179,
+    "sensitivity_n_if_delta_0_15": 410,
+    "invalid_pilots": [
+      "P1_V1_PROTECTED_OUTCOME",
+      "P1_R6_CORPUS_CO_DESIGNED_DETERMINISTIC_HOST_OUTCOME"
+    ]
+  },
+  "unresolved_safety": {
+    "required_n_per_wave": 64,
+    "gate": "zero observed false resolutions",
+    "population_rate_claim": "0 of 64 gives a one-sided exact 95 percent upper bound below 0.05",
+    "reported_separately_from_pair_selectivity": true
+  },
+  "mandatory_comparator_families": [
+    "P1_X_STATIC_HIDDEN_RESPONSIBILITY",
+    "GREEDY_IMMEDIATE_RESTORATION",
+    "UNIFORM_PROBING",
+    "CHEAPEST_FIRST_PROBING",
+    "UNCERTAINTY_OR_VOI_PROXY",
+    "DONOR_COMPLETE",
+    "DONOR_COMPLETE_FORCED_BUDGET",
+    "DONOR_COMPLETE_MATCHED_SCHEDULE",
+    "STRONGEST_RUNNABLE_EXTERNAL_SELF_REVISING_SCIENTIFIC_AGENT_AT_FREEZE"
+  ],
+  "candidate_visibility_contract": {
+    "one_canonical_payload_per_episode": true,
+    "identical_payload_bytes_and_digest_for_every_arm": true,
+    "visible": [
+      "opaque_episode_handle",
+      "dossier",
+      "source_evidence_objects",
+      "opaque_probe_handles",
+      "admissible_opaque_action_handles"
+    ],
+    "forbidden": [
+      "gold_class",
+      "causal_family",
+      "decision_class",
+      "pair_role",
+      "source_id",
+      "source_rank",
+      "query_id",
+      "evaluator_disposition",
+      "protected_outcome",
+      "filesystem_path",
+      "answer_correlated_ordering"
+    ],
+    "all_provider_transcripts_retained": true,
+    "missing_transcript_is_integrity_failure": true
+  },
+  "matched_resource_envelope": {
+    "same_model_class": true,
+    "same_retrieval_and_tool_access": true,
+    "same_visible_information": true,
+    "same_model_call_limit": true,
+    "same_token_limit": true,
+    "same_retrieval_limit": true,
+    "same_probe_limit": true,
+    "same_verifier_evaluator_call_limit": true,
+    "same_tool_call_limit": true,
+    "same_wall_clock_cap": true,
+    "all_accesses_metered": true,
+    "alternative_if_exact_match_impossible": "prospectively frozen cost-adjusted frontier for every arm"
+  },
+  "noncompensatory_gates": [
+    "ACQUISITION_FRAME_COMPLETE",
+    "SOURCE_CLUSTER_INDEPENDENCE",
+    "COMPARATOR_REGISTRY_COMPLETE",
+    "CANDIDATE_VISIBLE_PAYLOAD_DIGEST_EQUALITY",
+    "ZERO_FORBIDDEN_METADATA_LEAKAGE",
+    "MATCHED_RESOURCE_ENVELOPE",
+    "COMPLETE_DENOMINATORS",
+    "ZERO_FALSE_RESOLUTION_UNRESOLVED",
+    "FAMILY_DOMAIN_HARM_BOUNDS",
+    "REQUIRED_OPERATORS_EXERCISED",
+    "PROTOCOL_AND_ARTIFACT_BINDINGS_MATCH",
+    "EXTERNAL_EVALUATOR_CUSTODY"
+  ],
+  "missingness": {
+    "incomplete_acquisition_before_candidate_outcomes": "P1_R7_CANNOT_CHECK_SOURCE_UNIVERSE",
+    "mandatory_comparator_unavailable": "P1_R7_CANNOT_CHECK_MANDATORY_COMPARATOR",
+    "candidate_caused_timeout_malformed_output_or_abstention": "retain_and_score_failure",
+    "symmetric_infrastructure_retry": "allowed_only_by_predeclared_outcome_blind_rule_with_original_receipt_retained",
+    "completed_valid_data_missing_any_scientific_gate": "P1_R7_NOT_SUPPORTED"
+  },
+  "immutable_after_outcome_access": [
+    "queries",
+    "eligibility",
+    "source_snapshot",
+    "strata",
+    "weights",
+    "comparator_set",
+    "candidate_visibility",
+    "resource_envelope",
+    "evaluator",
+    "margins",
+    "confidence_procedure",
+    "sample_size",
+    "harm_gates"
+  ],
+  "terminal_rule": {
+    "primary_positive_pending_replication": "P1_R7_PRIMARY_PASS_PENDING_SOURCE_DISJOINT_REPLICATION",
+    "wide_positive": "P1_R7_WIDE_PROTECTED_SUPERIORITY_SUPPORTED_IN_REGISTERED_FRAMES",
+    "valid_adverse": "P1_R7_NOT_SUPPORTED",
+    "invalid_or_incomplete": "P1_R7_CANNOT_CHECK",
+    "wide_positive_requires_both_waves": true,
+    "positive_does_not_self_authorize_registry_or_manuscript_promotion": true
+  },
+  "bindings_required_before_execution": [
+    "ACQUISITION_QUERY_FRAME_DIGEST",
+    "SOURCE_ELIGIBILITY_AND_SNAPSHOT_DIGEST",
+    "POWER_SIMULATION_DIGEST",
+    "CANDIDATE_DIGEST",
+    "COMPARATOR_REGISTRY_DIGEST",
+    "VISIBILITY_CONTRACT_DIGEST",
+    "RESOURCE_ENVELOPE_DIGEST",
+    "PRIMARY_HOST_CUSTODY_DIGEST",
+    "REPLICATION_HOST_CUSTODY_DIGEST",
+    "PRIMARY_SCORER_CUSTODY_DIGEST",
+    "REPLICATION_SCORER_CUSTODY_DIGEST",
+    "ENVIRONMENT_DIGEST"
+  ]
+}

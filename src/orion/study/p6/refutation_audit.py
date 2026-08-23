@@ -101,6 +101,10 @@ def audit_p6_formal_checkers() -> tuple[dict[str, Any], ...]:
     lifting_report["reproduces_shipped_digest"] = (
         lifting.canonical_rows_digest() == lifting.SHIPPED_ROWS_SHA256
     )
+    # The inert donor axis is a reporting defect before it is anything else, so the
+    # published counts are carried here beside the number of distinct facts behind
+    # them rather than left for a reader to divide out.
+    lifting_report["multiplicity"] = lifting.published_count_multiplicity()
 
     finite_report = audit_checker(
         checker_id="check_p6_x_finite_models",
@@ -124,6 +128,8 @@ def report_as_json(reports: Sequence[dict[str, Any]]) -> dict[str, Any]:
             for key, value in report.items()
             if key not in {"capacities", "axes", "coverage", "independent_divergence"}
         }
+        if "multiplicity" in payload:
+            payload["multiplicity"] = [dict(row) for row in payload["multiplicity"]]
         payload["capacities"] = [item.as_json() for item in report["capacities"]]
         payload["axes"] = [item.as_json() for item in report["axes"]]
         payload["coverage"] = report["coverage"].as_json()
@@ -170,6 +176,15 @@ def _render(reports: Sequence[dict[str, Any]]) -> str:
                 f"change the verdict -> {state}"
                 + (f", every count repeated {axis.multiplier}x" if axis.inert else "")
             )
+            if axis.inert and axis.axis == "donor" and report.get("multiplicity"):
+                # Which counts, and to what. "Every count repeated 5x" is the fact;
+                # a reader needs the table, because 320 that is 64 observed five
+                # times is a number they will otherwise read as 320 observations.
+                for row in report["multiplicity"]:
+                    lines.append(
+                        f"      {row['count']}: published {row['published']} = "
+                        f"{row['distinct']} distinct x {row['factor']}"
+                    )
         coverage = report["coverage"]
         lines.append(
             f"  false theories rejected by no check: "

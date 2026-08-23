@@ -1,0 +1,73 @@
+{
+  "active_claim_leaf": {
+    "claim_id": "P11.R7.POOLED_ATTACK_ADVANTAGE",
+    "maximum_authorized_wording": "Across three independent RNG replicates and three fixed geometry strata, all nine prespecified r=7 seed-by-geometry cells passed the frozen non-compensatory gates while the matched r=3 controls kept the pooled attack live.",
+    "scope": {
+      "compiled_state_width": 7,
+      "execution_seeds": 3,
+      "fixed_geometry_strata": 3,
+      "independent_random_replicates": 3,
+      "prespecified_seed_x_geometry_cells": 9,
+      "repeated_queries_per_cell": 5
+    },
+    "status": "SUPPORTED_REPLICATED",
+    "terminal": "P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL"
+  },
+  "active_terminal": "P11_WIDTH_CONDITIONED_AUTHORITY_SUPPORTED",
+  "evidence_bindings": {
+    "p11h_result": {
+      "artifact": "papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json",
+      "sha256": "8436ff99ddec0ab11a16e1ac49a924f0d7c9019998cfc42e8275f71a2db39305"
+    },
+    "p11i_preflight": {
+      "artifact": "papers/paper-11-state-as-computation/P11I_PREFLIGHT_ATTAINABILITY_V1.json",
+      "sha256": "906babbcadda91ee839b064a81726b3cdcc9ed17b2c143485d6d8e41ed913cea"
+    },
+    "p11i_protocol": {
+      "artifact": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_PROTOCOL_V1.md",
+      "sha256": "705ffb8a94d23c12d7468e74ea5313c583b44817efdd80eaa3c16f8f38b72cf2"
+    },
+    "p11i_receipt": {
+      "artifact": "papers/paper-11-state-as-computation/P11I_EXECUTION_RECEIPT_V1.md",
+      "sha256": "a9b32e3206d191c1f2d287105f53e0e53b832a4a8d7379c13b44d09ed006712b"
+    },
+    "p11i_result": {
+      "artifact": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json",
+      "sha256": "adb473201618c6ab9bf15d9f8ee134fade1e49bb2ff3acfbbd56f2fb37f03aff"
+    },
+    "p11i_revalidation_receipt": {
+      "artifact": "papers/paper-11-state-as-computation/P11I_REVALIDATION_RECEIPT_V1_1.json",
+      "sha256": "1d05f2760b21a5797cdc3af647ee9e428e722adf23163cac1a6f2c6aa2eb69a4"
+    },
+    "p11i_revalidation_runner": {
+      "artifact": "papers/paper-11-state-as-computation/run_p11i_revalidation_v1_1.py",
+      "sha256": "5d20d7ac71e3f48f237e2c4d6f094452cfd60c3b6b5393df6628e3efbb4b5d64"
+    },
+    "p11i_runner": {
+      "artifact": "papers/paper-11-state-as-computation/run_p11i_wide_high_width_replication_v1.py",
+      "sha256": "e3add4718ec1b5bf7f86b1488c7874666636d6fb8aa080bdcfdbafdcf3e25743"
+    },
+    "p11i_unit_amendment": {
+      "artifact": "papers/paper-11-state-as-computation/P11I_REPLICATION_UNIT_AMENDMENT_V1_1.md",
+      "sha256": "d4e63d7e66bbb7ec59c0f4ed5ff0d2a108d01725e6dc9ee08a0f48eceb4eb674"
+    "p11i_runner": {
+      "artifact": "papers/paper-11-state-as-computation/run_p11i_wide_high_width_replication_v1.py",
+      "sha256": "e3add4718ec1b5bf7f86b1488c7874666636d6fb8aa080bdcfdbafdcf3e25743"
+    }
+  },
+  "forbidden_promotions": [
+    "UNCONDITIONAL_COMPILED_STATE_ADVANTAGE",
+    "NINE_INDEPENDENT_RANDOM_REPLICATES",
+    "REAL_SYSTEM_SUPERIORITY"
+  ],
+  "historical_boundary_leaf": {
+    "authority": "HISTORICAL_BOUNDARY_NOT_ACTIVE_POSITIVE_CLAIM",
+    "claim_id": "P11.R3.POOLED_ATTACK_ADVANTAGE",
+    "maximum_authorized_use": "Report that the pooled attack prevailed in the registered narrow-width regime; never generalize the r=7 result across state width.",
+    "terminal": "P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED"
+  },
+  "paper_id": "P11",
+  "paper_level_outcome": "SUPPORTED_WITH_EXPLICIT_WIDTH_BOUNDARY",
+  "promotion_allowed": true,
+  "schema": "ORION.P11.ActiveClaimAuthority.v1"
+}

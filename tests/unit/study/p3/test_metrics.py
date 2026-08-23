@@ -12,6 +12,8 @@ annotation_agreement_by_coordinate, cost_metrics, compute_all_metrics.
 """
 from __future__ import annotations
 
+import math
+
 import pytest
 from orion.study.metrics import (
     ALL_METRIC_FUNCTIONS,
@@ -74,11 +76,22 @@ def test_false_merge_rate_plural_view_counts_as_gold_obstruction():
 
 
 def test_false_merge_rate_empty_denominator():
+    """No measurable case must not report the best attainable harm rate.
+
+    This test previously asserted 0.0, which for a harm rate is a perfect score:
+    a metric that measured nothing reported that nothing went wrong, and any
+    threshold check on it passed. The rate is now nan, so every comparison
+    against it is False and the metric fails closed; the denominator stays
+    beside it for a caller that wants to tell the two apart.
+    """
+
     gold = [_g("OBSTRUCTION")]
     pred = [_p("UNRESOLVED")]
     out = false_merge_rate(gold, pred)
-    assert out["false_merge_rate"] == 0.0
+    assert math.isnan(out["false_merge_rate"])
     assert out["false_merge_n"] == 0
+    # Fails closed: a superiority check on an unmeasured rate does not pass.
+    assert not (out["false_merge_rate"] <= 0.05)
 
 
 # ── false_split_rate ──────────────────────────────────────────────────────────
@@ -372,10 +385,24 @@ def test_agreement_all_coords_present():
 
 
 def test_agreement_skips_unresolved():
+    """"Nothing was comparable" must not equal "they disagreed on everything".
+
+    Together with `test_agreement_zero_when_disagree` below, this pair used to
+    assert 0.0 for both --- so the suite pinned the two states as
+    indistinguishable, which is the whole defect written down as intended
+    behaviour. Total disagreement is still 0.0; nothing comparable is now nan.
+    """
+
     a = [_g("GLUE_ALLOWED", referent_relation="SAME")]
     b = [_g("GLUE_ALLOWED", referent_relation="UNRESOLVED")]
     out = annotation_agreement_by_coordinate(a, b)
-    assert out["agreement_referent_relation"] == 0.0  # skipped => total=0
+    assert math.isnan(out["agreement_referent_relation"])
+
+    disagreeing_a = [_g("GLUE_ALLOWED", referent_relation="SAME")]
+    disagreeing_b = [_g("GLUE_ALLOWED", referent_relation="DIFFERENT")]
+    disagreed = annotation_agreement_by_coordinate(disagreeing_a, disagreeing_b)
+    assert disagreed["agreement_referent_relation"] == 0.0
+    assert not math.isnan(disagreed["agreement_referent_relation"])
 
 
 def test_agreement_zero_when_disagree():

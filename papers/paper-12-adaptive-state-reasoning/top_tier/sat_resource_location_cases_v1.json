@@ -1,0 +1,25 @@
+{
+  "work_budget": 2000,
+  "adaptive_unit_threshold": 4,
+  "cases": [
+    {"id":"UHS-1","family":"UNIT_HEAVY_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5],[6],[7],[8],[9,10,11,12]]},
+    {"id":"UHS-2","family":"UNIT_HEAVY_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5],[6],[7],[8],[-9,10,11,12]]},
+    {"id":"UHS-3","family":"UNIT_HEAVY_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5],[6],[7],[8],[9,-10,11,12]]},
+    {"id":"UHS-4","family":"UNIT_HEAVY_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5],[6],[7],[8],[9,10],[11,12]]},
+
+    {"id":"UMS-1","family":"UNIT_MIXED_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5,6,7,8,9,10,11,12]]},
+    {"id":"UMS-2","family":"UNIT_MIXED_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5],[6],[7,8],[9,10,11,12]]},
+    {"id":"UMS-3","family":"UNIT_MIXED_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[-5,6,7],[8,9,10,11,12]]},
+    {"id":"UMS-4","family":"UNIT_MIXED_SAT","n_vars":12,"clauses":[[1],[2],[3],[4],[5],[6,7],[-6,8,9],[10,11,12]]},
+
+    {"id":"UC-1","family":"UNIT_CONTRADICTION","n_vars":12,"clauses":[[1],[-1],[2],[3]]},
+    {"id":"UC-2","family":"UNIT_CONTRADICTION","n_vars":12,"clauses":[[1],[2],[-2],[3],[4]]},
+    {"id":"UC-3","family":"UNIT_CONTRADICTION","n_vars":12,"clauses":[[1],[2],[3],[-3],[4],[5]]},
+    {"id":"UC-4","family":"UNIT_CONTRADICTION","n_vars":12,"clauses":[[1],[2],[3],[4],[-4],[5],[6]]},
+
+    {"id":"LES-1","family":"LOW_UNIT_EASY_SAT","n_vars":12,"clauses":[[1,2,3,4,5,6,7,8,9,10,11,12]]},
+    {"id":"LES-2","family":"LOW_UNIT_EASY_SAT","n_vars":12,"clauses":[[11,12],[-11,12]]},
+    {"id":"LES-3","family":"LOW_UNIT_EASY_SAT","n_vars":12,"clauses":[[10,11,12],[-10,11,12]]},
+    {"id":"LES-4","family":"LOW_UNIT_EASY_SAT","n_vars":12,"clauses":[[9,10,11,12],[-9,10,11,12],[9,-10,11,12]]}
+  ]
+}

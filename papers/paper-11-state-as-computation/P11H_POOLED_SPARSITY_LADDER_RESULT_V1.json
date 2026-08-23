@@ -1,0 +1,473 @@
+{
+  "gates": {
+    "attack_live_on_ladder": true,
+    "compiled_by_64": true,
+    "delta64_ge_0_20": false,
+    "no_answer_laundering": true,
+    "pooled_universal_threshold_ge_256": false,
+    "subprocesses_successful": true,
+    "two_fresh_subprocess_payloads_byte_identical": true
+  },
+  "protocol": "P11H_POOLED_SPARSITY_LADDER_PROTOCOL_V1.md",
+  "replay": {
+    "byte_identical": true,
+    "first_sha256": "61ecf79f652b74447dd70caa4cf019f2e35f67559583144d68d44cd7f92dd6dd",
+    "fresh_python_subprocesses": 2,
+    "second_sha256": "61ecf79f652b74447dd70caa4cf019f2e35f67559583144d68d44cd7f92dd6dd"
+  },
+  "schema": "ORION.P11H.PooledSparsityLadderAttack.v1",
+  "scientific_payload": {
+    "bank_geometries": [
+      [
+        14,
+        2
+      ],
+      [
+        14,
+        3
+      ],
+      [
+        19,
+        3
+      ]
+    ],
+    "decoder_control_arm": "COMPILED_EXTRA_TREES",
+    "defence_arm": "COMPILED_L2",
+    "gate_roles": {
+      "attack_live_on_ladder": "PRECONDITION",
+      "compiled_by_64": "PRECONDITION",
+      "delta64_ge_0_20": "HYPOTHESIS",
+      "no_answer_laundering": "PRECONDITION",
+      "pooled_universal_threshold_ge_256": "HYPOTHESIS"
+    },
+    "gate_statistics": {
+      "attack_live_on_ladder": 1.0,
+      "compiled_by_64": 1.0,
+      "delta64_ge_0_20": 0.050585937499999956,
+      "no_answer_laundering": 0.0,
+      "pooled_universal_threshold_ge_256": 1.0
+    },
+    "ladder": [
+      [
+        14,
+        2,
+        3
+      ],
+      [
+        14,
+        3,
+        3
+      ],
+      [
+        19,
+        3,
+        3
+      ],
+      [
+        14,
+        2,
+        7
+      ],
+      [
+        14,
+        3,
+        7
+      ],
+      [
+        19,
+        3,
+        7
+      ]
+    ],
+    "ladder_readings": [
+      {
+        "cell": [
+          14,
+          2,
+          3
+        ],
+        "compiled_at_64": 1.0,
+        "compiled_dimension": 3,
+        "curves": {
+          "COMPILED_EXTRA_TREES": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 1.0
+          },
+          "COMPILED_L2": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 1.0
+          },
+          "UNIVERSAL_EXTRA_TREES": {
+            "128": 0.937109375,
+            "256": 0.986669921875,
+            "64": 0.8517578125
+          },
+          "UNIVERSAL_L1": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 0.84775390625
+          },
+          "UNIVERSAL_L2": {
+            "128": 0.855126953125,
+            "256": 0.96171875,
+            "64": 0.7521484375
+          }
+        },
+        "decomposition": {
+          "linear_family_representation_gap": 0.24785156249999996,
+          "published_gap_at_64": 0.14824218749999996,
+          "tree_family": {
+            "decoder_family_gap": 0.0,
+            "representation_gap": 0.14824218749999996,
+            "state_share": 1.0
+          }
+        },
+        "delta64_vs_pool": 0.14824218749999996,
+        "laundering_failures": [],
+        "pooled_best_below_gate": 1.0,
+        "pooled_censored_threshold": 128,
+        "pooled_curve": {
+          "128": 1.0,
+          "256": 1.0,
+          "64": 0.8517578125
+        },
+        "representation_ratio": 30.333333333333332,
+        "rung": 0,
+        "universal_dimension": 91
+      },
+      {
+        "cell": [
+          14,
+          3,
+          3
+        ],
+        "compiled_at_64": 1.0,
+        "compiled_dimension": 3,
+        "curves": {
+          "COMPILED_EXTRA_TREES": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 1.0
+          },
+          "COMPILED_L2": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 1.0
+          },
+          "UNIVERSAL_EXTRA_TREES": {
+            "128": 0.77783203125,
+            "256": 0.875537109375,
+            "64": 0.689599609375
+          },
+          "UNIVERSAL_L1": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 0.900830078125
+          },
+          "UNIVERSAL_L2": {
+            "128": 0.68447265625,
+            "256": 0.7607421875,
+            "64": 0.622509765625
+          }
+        },
+        "decomposition": {
+          "linear_family_representation_gap": 0.37749023437499996,
+          "published_gap_at_64": 0.310400390625,
+          "tree_family": {
+            "decoder_family_gap": 0.0,
+            "representation_gap": 0.310400390625,
+            "state_share": 1.0
+          }
+        },
+        "delta64_vs_pool": 0.09916992187499996,
+        "laundering_failures": [],
+        "pooled_best_below_gate": 1.0,
+        "pooled_censored_threshold": 128,
+        "pooled_curve": {
+          "128": 1.0,
+          "256": 1.0,
+          "64": 0.900830078125
+        },
+        "representation_ratio": 121.33333333333333,
+        "rung": 1,
+        "universal_dimension": 364
+      },
+      {
+        "cell": [
+          19,
+          3,
+          3
+        ],
+        "compiled_at_64": 1.0,
+        "compiled_dimension": 3,
+        "curves": {
+          "COMPILED_EXTRA_TREES": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 1.0
+          },
+          "COMPILED_L2": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 1.0
+          },
+          "UNIVERSAL_EXTRA_TREES": {
+            "128": 0.698974609375,
+            "256": 0.802734375,
+            "64": 0.572216796875
+          },
+          "UNIVERSAL_L1": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 0.9494140625
+          },
+          "UNIVERSAL_L2": {
+            "128": 0.6224609375,
+            "256": 0.681005859375,
+            "64": 0.58984375
+          }
+        },
+        "decomposition": {
+          "linear_family_representation_gap": 0.41015625,
+          "published_gap_at_64": 0.42778320312499996,
+          "tree_family": {
+            "decoder_family_gap": 0.0,
+            "representation_gap": 0.42778320312499996,
+            "state_share": 1.0
+          }
+        },
+        "delta64_vs_pool": 0.050585937499999956,
+        "laundering_failures": [],
+        "pooled_best_below_gate": 1.0,
+        "pooled_censored_threshold": 128,
+        "pooled_curve": {
+          "128": 1.0,
+          "256": 1.0,
+          "64": 0.9494140625
+        },
+        "representation_ratio": 323.0,
+        "rung": 2,
+        "universal_dimension": 969
+      },
+      {
+        "cell": [
+          14,
+          2,
+          7
+        ],
+        "compiled_at_64": 0.984033203125,
+        "compiled_dimension": 7,
+        "curves": {
+          "COMPILED_EXTRA_TREES": {
+            "128": 0.90615234375,
+            "256": 0.964306640625,
+            "64": 0.840478515625
+          },
+          "COMPILED_L2": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 0.984033203125
+          },
+          "UNIVERSAL_EXTRA_TREES": {
+            "128": 0.8259765625,
+            "256": 0.885546875,
+            "64": 0.7369140625
+          },
+          "UNIVERSAL_L1": {
+            "128": 0.912890625,
+            "256": 1.0,
+            "64": 0.67802734375
+          },
+          "UNIVERSAL_L2": {
+            "128": 0.82353515625,
+            "256": 0.926904296875,
+            "64": 0.749072265625
+          }
+        },
+        "decomposition": {
+          "linear_family_representation_gap": 0.23496093750000002,
+          "published_gap_at_64": 0.24711914062499996,
+          "tree_family": {
+            "decoder_family_gap": 0.1435546875,
+            "representation_gap": 0.10356445312499996,
+            "state_share": 0.4190871369294605
+          }
+        },
+        "delta64_vs_pool": 0.23496093750000002,
+        "laundering_failures": [],
+        "pooled_best_below_gate": 0.912890625,
+        "pooled_censored_threshold": 256,
+        "pooled_curve": {
+          "128": 0.912890625,
+          "256": 1.0,
+          "64": 0.749072265625
+        },
+        "representation_ratio": 13.0,
+        "rung": 3,
+        "universal_dimension": 91
+      },
+      {
+        "cell": [
+          14,
+          3,
+          7
+        ],
+        "compiled_at_64": 0.998828125,
+        "compiled_dimension": 7,
+        "curves": {
+          "COMPILED_EXTRA_TREES": {
+            "128": 0.86025390625,
+            "256": 0.936376953125,
+            "64": 0.82177734375
+          },
+          "COMPILED_L2": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 0.998828125
+          },
+          "UNIVERSAL_EXTRA_TREES": {
+            "128": 0.6861328125,
+            "256": 0.777392578125,
+            "64": 0.604736328125
+          },
+          "UNIVERSAL_L1": {
+            "128": 0.8919921875,
+            "256": 1.0,
+            "64": 0.681591796875
+          },
+          "UNIVERSAL_L2": {
+            "128": 0.66552734375,
+            "256": 0.748193359375,
+            "64": 0.614501953125
+          }
+        },
+        "decomposition": {
+          "linear_family_representation_gap": 0.38432617187499996,
+          "published_gap_at_64": 0.39409179687499996,
+          "tree_family": {
+            "decoder_family_gap": 0.17705078124999996,
+            "representation_gap": 0.217041015625,
+            "state_share": 0.5507372072853427
+          }
+        },
+        "delta64_vs_pool": 0.3172363281249999,
+        "laundering_failures": [],
+        "pooled_best_below_gate": 0.8919921875,
+        "pooled_censored_threshold": 256,
+        "pooled_curve": {
+          "128": 0.8919921875,
+          "256": 1.0,
+          "64": 0.681591796875
+        },
+        "representation_ratio": 52.0,
+        "rung": 4,
+        "universal_dimension": 364
+      },
+      {
+        "cell": [
+          19,
+          3,
+          7
+        ],
+        "compiled_at_64": 0.9814453125,
+        "compiled_dimension": 7,
+        "curves": {
+          "COMPILED_EXTRA_TREES": {
+            "128": 0.8537109375,
+            "256": 0.938134765625,
+            "64": 0.844189453125
+          },
+          "COMPILED_L2": {
+            "128": 1.0,
+            "256": 1.0,
+            "64": 0.9814453125
+          },
+          "UNIVERSAL_EXTRA_TREES": {
+            "128": 0.62880859375,
+            "256": 0.666015625,
+            "64": 0.565966796875
+          },
+          "UNIVERSAL_L1": {
+            "128": 0.88759765625,
+            "256": 0.997900390625,
+            "64": 0.66396484375
+          },
+          "UNIVERSAL_L2": {
+            "128": 0.602978515625,
+            "256": 0.6373046875,
+            "64": 0.570849609375
+          }
+        },
+        "decomposition": {
+          "linear_family_representation_gap": 0.41059570312500004,
+          "published_gap_at_64": 0.41547851562500004,
+          "tree_family": {
+            "decoder_family_gap": 0.13725585937499996,
+            "representation_gap": 0.2782226562500001,
+            "state_share": 0.6696439064519921
+          }
+        },
+        "delta64_vs_pool": 0.31748046875,
+        "laundering_failures": [],
+        "pooled_best_below_gate": 0.88759765625,
+        "pooled_censored_threshold": 256,
+        "pooled_curve": {
+          "128": 0.88759765625,
+          "256": 0.997900390625,
+          "64": 0.66396484375
+        },
+        "representation_ratio": 138.42857142857142,
+        "rung": 5,
+        "universal_dimension": 969
+      }
+    ],
+    "n_jobs": 1,
+    "n_queries": 5,
+    "n_test": 4096,
+    "n_trees": 96,
+    "protected_cells": [
+      [
+        14,
+        2,
+        3
+      ],
+      [
+        19,
+        3,
+        3
+      ]
+    ],
+    "protected_regimes": [
+      0,
+      2
+    ],
+    "protocol": "P11H_POOLED_SPARSITY_LADDER_PROTOCOL_V1.md",
+    "schema": "ORION.P11H.PooledSparsityLadderAttack.ScientificPayload.v1",
+    "scientific_gates": {
+      "attack_live_on_ladder": true,
+      "compiled_by_64": true,
+      "delta64_ge_0_20": false,
+      "no_answer_laundering": true,
+      "pooled_universal_threshold_ge_256": false
+    },
+    "scientific_terminal": "P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED",
+    "seed": 2026082210,
+    "state_widths": [
+      3,
+      7
+    ],
+    "train_sizes": [
+      64,
+      128,
+      256
+    ],
+    "universal_pool": [
+      "UNIVERSAL_L1",
+      "UNIVERSAL_L2",
+      "UNIVERSAL_EXTRA_TREES"
+    ]
+  },
+  "terminal": "P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED"
+}

@@ -1,16 +1,133 @@
 {
-  "schema_version": "orion.journal-package.v1",
-  "paper_id": "P2",
-  "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "PEER_REVIEW_READY",
-  "claim_boundary": "NARROWED_METHODS_AND_CRITICAL_SYSTEM_DESIGN__NO_EXTERNAL_ORION_SUPERIORITY",
-  "audit_subject_revision": "714a7e771961c8ace08bb38d7dab6e2ba45b8ff7",
   "audit_date": "2026-08-21",
+  "audit_subject_revision": "ca7df1055a43f97eaf8d142a62011c4c261af368",
+  "claim_boundary": "NARROWED_METHODS_AND_CRITICAL_SYSTEM_DESIGN__NO_EXTERNAL_ORION_SUPERIORITY",
+  "claims": [
+    {
+      "artifacts": [
+        "evidence/offline_results/RESULTS_SUMMARY_V1.json",
+        "protocol/CLAIM_LEDGER_V1.json"
+      ],
+      "id": "P2.OFFLINE",
+      "status": "BOUNDED",
+      "text": "On the frozen 390-task complete-gold index, full ORION mean recall is 0.979487 versus 0.666667 for the strongest confirmatory comparator; the result remains descriptive and underpowered for the frozen superiority margin."
+    },
+    {
+      "artifacts": [
+        "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
+        "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json"
+      ],
+      "id": "P2.METASYN",
+      "status": "BOUNDED",
+      "text": "The 86-review MetaSyn ID-only retrieval/screening probe is a bounded external stage-failure result, not full ORION."
+    },
+    {
+      "artifacts": [
+        "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
+        "evidence/external_results/DEEP_JUDGE_CONTROL_2026-08-17.json"
+      ],
+      "id": "P2.DEEP",
+      "status": "BOUNDED",
+      "text": "The 600-task official Deep title-judge keyless probe produced a zero hit rate after a 9/9 judge control; it is a bounded negative diagnostic."
+    },
+    {
+      "artifacts": [
+        "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
+        "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
+        "evidence/ci_mirror/MANIFEST.json"
+      ],
+      "id": "P2.WIDE.OPENAIRE",
+      "status": "CANNOT_CHECK",
+      "text": "The prospective OpenAIRE/Crossref matched Wide campaign failed its transport-validity gate and cannot support either superiority or a valid null."
+    },
+    {
+      "artifacts": [
+        "evidence/CLAIM_LEDGER_V2.md"
+      ],
+      "id": "P2.H1",
+      "status": "CANNOT_CHECK",
+      "text": "ORION improves real scientific-literature discovery over matched strong baselines on external Wide/Deep evaluations."
+    },
+    {
+      "artifacts": [
+        "evidence/PEER_REVIEW_READY_BOUNDED_V2.md",
+        "manuscript/main.tex",
+        "protocol/CLAIM_LEDGER_V1.json"
+      ],
+      "id": "P2.NARROWED",
+      "status": "BOUNDED",
+      "text": "The paper's supported contribution is bounded to fail-closed route/read/stopping authority semantics and controlled mechanism behavior, with external stress tests kept at their exact authority."
+    },
+    {
+      "artifacts": [
+        "journal_package/manuscript.pdf",
+        "journal_package/RENDER_INPUT_CLOSURE.json",
+        "journal_package/CLAIM_PDF_AUDIT.md",
+        "evidence/FINAL_SATURATION_AUDIT.md"
+      ],
+      "id": "P2.PDF",
+      "status": "BOUNDED",
+      "text": "The independently inspected 24-page reproducible PDF is rebound to the exact rendered bytes and complete tracked TeX input closure; package release remains subject to final P2 manuscript/repository/package CI and the successor exact-main render check."
+    }
+  ],
+  "declared_paper_terminal": "PEER_REVIEW_READY",
   "issue": 393,
+  "missing_artifacts": [],
+  "package_status": "SUBMISSION_READY",
+  "paper_id": "P2",
+  "render_binding": {
+    "bridge_rule": "The V3 render subject is not relabelled. Package rebinding to this base is valid only because the full tracked TeX input closure is byte-identical; package/audit-only files are outside that closure. Any changed closure or PDF hash reopens visual/package authority.",
+    "exact_render_artifact": 9456829355,
+    "exact_render_artifact_digest": "sha256:f4d213ab9d84bb4e5bf60099e63e765221d0f25f45449933436276526f69bd51",
+    "exact_render_run": 32510318915,
+    "pdf_sha256": "90e424cff27f1a1cde8c37d774c3bcf17b7c1d98c0905c2f53e22b8753790fb3",
+    "rebind_base_revision": "ca7df1055a43f97eaf8d142a62011c4c261af368",
+    "render_subject_revision": "060ed7e6528a592cd3bef3db149b93e94652b2ec",
+    "render_toolchain_sha256": "4139104188327db25c3b85dad72fad0bf4d036ac675f1fe2a38c31946dff2b32",
+    "repository_input_closure_sha256": "91454e207b00a1de774264f0501e2032b7e3efdafebd58ba80040ec1b27d3ea9",
+    "repository_input_count": 31,
+    "source_date_epoch": 1787312452
+  },
   "required_files": [
     {
       "path": "manuscript/main.tex",
       "role": "canonical-manuscript-source"
+    },
+    {
+      "path": "manuscript/sections/formalism.tex",
+      "role": "manuscript-section-formalism"
+    },
+    {
+      "path": "manuscript/sections/methods.tex",
+      "role": "manuscript-section-methods"
+    },
+    {
+      "path": "manuscript/sections/acquisition_authority.tex",
+      "role": "manuscript-section-acquisition-authority"
+    },
+    {
+      "path": "manuscript/sections/structure-conditioned-discovery-interface.tex",
+      "role": "manuscript-section-structure-conditioned-interface"
+    },
+    {
+      "path": "manuscript/sections/results.tex",
+      "role": "manuscript-section-results"
+    },
+    {
+      "path": "manuscript/sections/availability.tex",
+      "role": "manuscript-section-availability"
+    },
+    {
+      "path": "manuscript/sections/p2x_unresolved_route_successor.tex",
+      "role": "manuscript-section-p2x-unresolved-route-successor"
+    },
+    {
+      "path": "manuscript/generated/suite_facts.tex",
+      "role": "generated-suite-facts-macros"
+    },
+    {
+      "path": "manuscript/figures/P2-1_pipeline.tex",
+      "role": "manuscript-figure-pipeline"
     },
     {
       "path": "manuscript/bibliography.bib",
@@ -71,110 +188,68 @@
     {
       "path": "JOURNAL_READINESS.md",
       "role": "readiness-gate"
-    }
-  ],
-  "missing_artifacts": [
+    },
+    {
+      "path": "protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md",
+      "role": "successor-study-prospective-freeze"
+    },
+    {
+      "path": "protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.json",
+      "role": "successor-study-frozen-parameter-twin"
+    },
+    {
+      "path": "evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
+      "role": "successor-study-result"
+    },
+    {
+      "path": "evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.md",
+      "role": "successor-study-result-narrative"
+    },
+    {
+      "path": "evidence/FINAL_SATURATION_AUDIT.md",
+      "role": "durable-render-visual-and-package-audit"
+    },
+    {
+      "path": "journal_package/RENDER_INPUT_CLOSURE.json",
+      "role": "exact-render-repository-input-closure"
+    },
     {
       "path": "journal_package/manuscript.pdf",
-      "role": "compiled-and-visually-reviewed-manuscript",
-      "status": "CANNOT_CHECK",
-      "reason": "Unready after the structure-conditioned discovery writeback: the pre-writeback PDF was deliberately removed, and the exact-head manuscript has not yet completed independent page-by-page visual inspection and package rebinding."
+      "role": "compiled-and-visually-reviewed-manuscript"
     }
   ],
+  "schema_version": "orion.journal-package.v1",
+  "scientific_result_verification": {
+    "owner_issue": 283,
+    "records_present": [
+      "research/verification/records/P2.controlled-complete-gold.json"
+    ],
+    "schema_name": "ScientificResultVerification.v1"
+  },
   "submission_operations": [
     {
       "path": "journal_package/DOI.txt",
+      "reason": "Mint only when the final reviewed package is deposited; repository mirrors already prevent CI evidence expiry.",
       "role": "repository-independent-archive-doi",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Mint only when the final reviewed package is deposited; repository mirrors already prevent CI evidence expiry."
+      "status": "SUBMISSION_OPERATION"
     },
     {
       "path": "notes/submission/IPM_TITLE_PAGE_TEMPLATE.md",
+      "reason": "Authors must supply names, order, affiliations, corresponding-author details, CRediT, funding, and conflicts.",
       "role": "author-metadata-and-title-page",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Authors must supply names, order, affiliations, corresponding-author details, CRediT, funding, and conflicts."
+      "status": "SUBMISSION_OPERATION"
     },
     {
       "path": "manuscript/ipm_submission.tex",
+      "reason": "Apply the current venue wrapper and final identity-signal review together with author-supplied metadata immediately before upload.",
       "role": "final-cas-wrapper-and-anonymization",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Apply the current venue wrapper and final identity-signal review together with author-supplied metadata immediately before upload."
+      "status": "SUBMISSION_OPERATION"
     },
     {
       "path": "protocol/P2_LITERATURE_ASSIMILATION_REFRESH_SUBMISSION.md",
+      "reason": "The 2026-08-17 source freeze is current through 2026-08-31; refresh only for a later upload.",
       "role": "submission-date-literature-refresh",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "The 2026-08-17 source freeze is current through 2026-08-31; refresh only for a later upload."
+      "status": "SUBMISSION_OPERATION"
     }
-  ],
-  "claims": [
-    {
-      "id": "P2.OFFLINE",
-      "text": "On the frozen 390-task complete-gold index, full ORION mean recall is 0.979487 versus 0.666667 for the strongest confirmatory comparator; the result remains descriptive and underpowered for the frozen superiority margin.",
-      "artifacts": [
-        "evidence/offline_results/RESULTS_SUMMARY_V1.json",
-        "protocol/CLAIM_LEDGER_V1.json"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P2.METASYN",
-      "text": "The 86-review MetaSyn ID-only retrieval/screening probe is a bounded external stage-failure result, not full ORION.",
-      "artifacts": [
-        "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
-        "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P2.DEEP",
-      "text": "The 600-task official Deep title-judge keyless probe produced a zero hit rate after a 9/9 judge control; it is a bounded negative diagnostic.",
-      "artifacts": [
-        "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
-        "evidence/external_results/DEEP_JUDGE_CONTROL_2026-08-17.json"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P2.WIDE.OPENAIRE",
-      "text": "The prospective OpenAIRE/Crossref matched Wide campaign failed its transport-validity gate and cannot support either superiority or a valid null.",
-      "artifacts": [
-        "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
-        "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
-        "evidence/ci_mirror/MANIFEST.json"
-      ],
-      "status": "CANNOT_CHECK"
-    },
-    {
-      "id": "P2.H1",
-      "text": "ORION improves real scientific-literature discovery over matched strong baselines on external Wide/Deep evaluations.",
-      "artifacts": [
-        "evidence/CLAIM_LEDGER_V2.md"
-      ],
-      "status": "CANNOT_CHECK"
-    },
-    {
-      "id": "P2.NARROWED",
-      "text": "The paper's supported contribution is bounded to fail-closed route/read/stopping authority semantics and controlled mechanism behavior, with external stress tests kept at their exact authority.",
-      "artifacts": [
-        "evidence/PEER_REVIEW_READY_BOUNDED_V2.md",
-        "manuscript/main.tex",
-        "protocol/CLAIM_LEDGER_V1.json"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P2.PDF",
-      "text": "The post-writeback manuscript PDF and independent page-by-page visual audit have not yet been rebound to the exact current source bytes.",
-      "artifacts": [],
-      "status": "OPEN"
-    }
-  ],
-  "scientific_result_verification": {
-    "owner_issue": 283,
-    "schema_name": "ScientificResultVerification.v1",
-    "records_present": [
-      "research/verification/records/P2.controlled-complete-gold.json"
-    ]
-  }
+  ]
 }

@@ -1,15 +1,18 @@
 {
-  "state": "BOUNDED_VERIFIED",
+  "discrepancies": [],
+  "donor_preservation_cannot_check_reason": "the comparison restated donor_ok; this model carries no forgetful map to apply, so donor preservation cannot be checked here",
+  "donor_preservation_failures": null,
+  "donor_preservation_status": "CANNOT_CHECK",
+  "ideal_product_mismatches": 0,
+  "imports_primary_checker": false,
+  "imports_primary_checker_is_not_independence": "imports_primary_checker records an import that did not happen, not a rule written twice; donor preservation is withdrawn above because its comparison restated its own input",
+  "independent_verifier_commit": "4c5d2e0e97aa9614d052060cfbf0642b4351d389",
+  "no_alarm_cases": 24,
   "primary_checker_commit": "45b2dbfdfa081d61eb21fb92298185b54f7c21ba",
   "primary_result_commit": "a01db5d0ad9ac788f534546ac8aeb42ef5caa44e",
-  "independent_verifier_commit": "4c5d2e0e97aa9614d052060cfbf0642b4351d389",
-  "imports_primary_checker": false,
+  "state": "CANNOT_CHECK",
   "state_evaluations": 1536,
-  "donor_preservation_failures": 0,
   "t2_separation_pairs": 96,
   "t3_conservative_cases": 96,
-  "ideal_product_mismatches": 0,
-  "t5_countermodels": 96,
-  "no_alarm_cases": 24,
-  "discrepancies": []
+  "t5_countermodels": 96
 }

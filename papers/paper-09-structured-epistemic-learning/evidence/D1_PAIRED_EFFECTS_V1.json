@@ -1,0 +1,210 @@
+{
+  "analysis_status": "POST_HOC_DERIVED_FROM_FROZEN_RAW_PREDICTIONS_NO_NEW_OUTCOME",
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 913771,
+  "claim_boundary": "Derived paired statistics quantify the already-frozen D1 held-out-domain effect. They are not a preregistered new endpoint and do not expand the D1 domain or model claim.",
+  "comparisons": {
+    "TRANSCRIPT_BAG": {
+      "absolute_accuracy_delta": 0.75,
+      "both_correct": 32,
+      "both_wrong": 0,
+      "comparator_accuracy": 0.25,
+      "discordant": {
+        "typed_correct_comparator_wrong": 96,
+        "typed_wrong_comparator_correct": 0
+      },
+      "exact_mcnemar_two_sided_p": 2.524354896707238e-29,
+      "n": 128,
+      "paired_bootstrap_95pct_interval": [
+        0.671875,
+        0.8203125
+      ],
+      "typed_accuracy": 1.0
+    },
+    "TYPED_SERIALIZED_BAG": {
+      "absolute_accuracy_delta": 0.5,
+      "both_correct": 64,
+      "both_wrong": 0,
+      "comparator_accuracy": 0.5,
+      "discordant": {
+        "typed_correct_comparator_wrong": 64,
+        "typed_wrong_comparator_correct": 0
+      },
+      "exact_mcnemar_two_sided_p": 1.0842021724855044e-19,
+      "n": 128,
+      "paired_bootstrap_95pct_interval": [
+        0.4140625,
+        0.5859375
+      ],
+      "typed_accuracy": 1.0
+    },
+    "UNTYPED_PAIR": {
+      "absolute_accuracy_delta": 0.09375,
+      "both_correct": 116,
+      "both_wrong": 0,
+      "comparator_accuracy": 0.90625,
+      "discordant": {
+        "typed_correct_comparator_wrong": 12,
+        "typed_wrong_comparator_correct": 0
+      },
+      "exact_mcnemar_two_sided_p": 0.00048828125,
+      "n": 128,
+      "paired_bootstrap_95pct_interval": [
+        0.046875,
+        0.1484375
+      ],
+      "typed_accuracy": 1.0
+    }
+  },
+  "primary_arm": "TYPED_RELATIONAL",
+  "protected_n": 128,
+  "schema": "P9.D1PairedEffects.v1",
+  "source_result": "research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json",
+  "source_result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a",
+  "stratified_accuracy": {
+    "TRANSCRIPT_BAG": {
+      "by_mutation_count": {
+        "0": {
+          "accuracy": 0.5,
+          "correct": 32,
+          "n": 64
+        },
+        "1": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 32
+        },
+        "2": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 32
+        }
+      },
+      "by_target": {
+        "ALIGNED": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        },
+        "OBSTRUCTION": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 64
+        },
+        "UNRESOLVED": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 32
+        }
+      }
+    },
+    "TYPED_RELATIONAL": {
+      "by_mutation_count": {
+        "0": {
+          "accuracy": 1.0,
+          "correct": 64,
+          "n": 64
+        },
+        "1": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        },
+        "2": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        }
+      },
+      "by_target": {
+        "ALIGNED": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        },
+        "OBSTRUCTION": {
+          "accuracy": 1.0,
+          "correct": 64,
+          "n": 64
+        },
+        "UNRESOLVED": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        }
+      }
+    },
+    "TYPED_SERIALIZED_BAG": {
+      "by_mutation_count": {
+        "0": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 64
+        },
+        "1": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        },
+        "2": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        }
+      },
+      "by_target": {
+        "ALIGNED": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 32
+        },
+        "OBSTRUCTION": {
+          "accuracy": 1.0,
+          "correct": 64,
+          "n": 64
+        },
+        "UNRESOLVED": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 32
+        }
+      }
+    },
+    "UNTYPED_PAIR": {
+      "by_mutation_count": {
+        "0": {
+          "accuracy": 1.0,
+          "correct": 64,
+          "n": 64
+        },
+        "1": {
+          "accuracy": 0.625,
+          "correct": 20,
+          "n": 32
+        },
+        "2": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        }
+      },
+      "by_target": {
+        "ALIGNED": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        },
+        "OBSTRUCTION": {
+          "accuracy": 0.8125,
+          "correct": 52,
+          "n": 64
+        },
+        "UNRESOLVED": {
+          "accuracy": 1.0,
+          "correct": 32,
+          "n": 32
+        }
+      }
+    }
+  }
+}

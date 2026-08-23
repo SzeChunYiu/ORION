@@ -46,12 +46,15 @@
         "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md :: External Deep exact-ID: `CANNOT_CHECK`",
         "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md :: Live provider: `CANNOT_CHECK`",
         "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md :: SAGE: `CANNOT_CHECK`",
+        "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md :: P2-X A3: `CANNOT_CHECK`",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-C03: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-C05: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R25: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R41: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-C15: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R47: CANNOT_CHECK",
-        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R48: CANNOT_CHECK"
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R48: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-X25: CANNOT_CHECK"
       ],
       "claim_ledgers": [
         "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md",
@@ -113,7 +116,7 @@
       "protocol_id": "P3.cross-domain-atlas.v1",
       "protocol_status": "DESIGN_FROZEN",
       "readme": "papers/paper-03-global-knowledge-portrait/README.md",
-      "readme_records_peer_review_ready": false,
+      "readme_records_peer_review_ready": true,
       "root": "papers/paper-03-global-knowledge-portrait",
       "status": "PEER_REVIEW_READY",
       "title": "Global Knowledge Portrait",
@@ -130,9 +133,7 @@
       ],
       "v2_protocol": "research/paper-programme-v2/protocols/P3_V2.json",
       "v2_protocol_status": "DESIGN_FROZEN",
-      "warnings": [
-        "papers/paper-03-global-knowledge-portrait/README.md: canonical README does not yet record PEER_REVIEW_READY (programme close still wants this; JOURNAL_READINESS remains the scoring terminal)"
-      ]
+      "warnings": []
     },
     {
       "attestation_paths": [
@@ -167,27 +168,23 @@
       ]
     },
     {
-      "attestation_paths": [],
+      "attestation_paths": [
+        "papers/paper-05-self-orion/evidence/PEER_REVIEW_READY_SCOPED_V1.md"
+      ],
       "claim_ledger_cannot_check": [
         "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
         "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Results: EXTERNAL NOT EXECUTED",
-        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion / prospective extension: EXTERNAL NOT EXECUTED"
       ],
       "claim_ledgers": [
         "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md"
       ],
       "issue": 102,
       "journal_readiness": "papers/paper-05-self-orion/JOURNAL_READINESS.md",
-      "journal_readiness_terminal": "CANNOT_CHECK",
-      "missing_artifacts": [
-        "papers/paper-05-self-orion/JOURNAL_READINESS.md: current terminal is CANNOT_CHECK, not PEER_REVIEW_READY",
-        "papers/paper-05-self-orion/protocol/PROTOCOL_V1.json: protocol_status=DESIGN_FROZEN; UNBOUND identities remain: $.baseline_config_hashes, $.dataset_revisions.fresh_transfer_split, $.dataset_revisions.hidden_cause_suite, $.dataset_revisions.motivating_replay_split, $.evaluation_epoch, $.evaluator_hash, $.model_provider_revisions, $.split_hashes, $.subject_revision",
-        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
-        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Results: EXTERNAL NOT EXECUTED",
-        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
-      ],
+      "journal_readiness_terminal": "PEER_REVIEW_READY",
+      "missing_artifacts": [],
       "notes": [
-        "Artifacts exist and the paper is not PEER_REVIEW_READY; listed missing_artifacts are the blockers."
+        "JOURNAL_READINESS declares PEER_REVIEW_READY and the paper-specific artifact/evidence gate corroborates it."
       ],
       "outcome_accessed": false,
       "paper_id": "P5",
@@ -197,7 +194,7 @@
       "readme": "papers/paper-05-self-orion/README.md",
       "readme_records_peer_review_ready": false,
       "root": "papers/paper-05-self-orion",
-      "status": "BLOCKED",
+      "status": "PEER_REVIEW_READY",
       "title": "Self-ORION",
       "unbound_execution_bindings": [
         "$.baseline_config_hashes",
@@ -213,21 +210,22 @@
       "v2_protocol": "research/paper-programme-v2/protocols/P5_V2.json",
       "v2_protocol_status": "DESIGN_FROZEN",
       "warnings": [
-        "papers/paper-05-self-orion/README.md: README does not record PEER_REVIEW_READY"
+        "papers/paper-05-self-orion/README.md: canonical README does not yet record PEER_REVIEW_READY (programme close still wants this; JOURNAL_READINESS remains the scoring terminal)"
       ]
     }
   ],
   "programme": {
-    "close_allowed": false,
+    "close_allowed": true,
     "issue": 97,
     "papers_peer_review_ready": [
       "P1",
       "P2",
       "P3",
-      "P4"
+      "P4",
+      "P5"
     ],
-    "reason": "Issue #97 may close only when P1–P5 are PEER_REVIEW_READY on main. ready=P1,P2,P3,P4; blocked=P5",
-    "status": "BLOCKED"
+    "reason": "All five papers are PEER_REVIEW_READY on repository artifacts.",
+    "status": "PEER_REVIEW_READY"
   },
   "schema_version": "orion.publication-status.v1"
 }

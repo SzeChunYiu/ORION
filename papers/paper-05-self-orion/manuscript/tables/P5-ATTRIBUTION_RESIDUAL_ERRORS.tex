@@ -4,13 +4,13 @@
   \caption{Retained residual attribution errors from the archived glm-5.2 diagnostic run. These three cases remain incorrect; they are not successes.}
   \label{tab:P5-residual-errors}
   \small
-  \begin{tabular}{llll}
+  \begin{tabular}{lp{0.30\linewidth}p{0.26\linewidth}l}
     \toprule
-    case & gold & attributed & confidence \\
+    case & gold cause & attributed cause & confidence \\
     \midrule
-    P5-HC-002 & RETRIEVAL\_MISS & REPRESENTATION\_GAP & MEDIUM \\
-    P5-HC-012 & ENVIRONMENT\_DEPENDENCY\_TOOL\_FAILURE & IMPLEMENTATION\_BUG & HIGH \\
-    P5-HC-018 & REPRESENTATION\_GAP & METHOD\_BASIS\_GAP & HIGH \\
+    P5-HC-002 & retrieval miss & representation gap & medium \\
+    P5-HC-012 & environment dependency or tool failure & implementation bug & high \\
+    P5-HC-018 & representation gap & method basis gap & high \\
     \bottomrule
   \end{tabular}
 \end{table}

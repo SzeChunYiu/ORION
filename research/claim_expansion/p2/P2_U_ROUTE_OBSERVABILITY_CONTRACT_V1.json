@@ -1,0 +1,158 @@
+{
+  "schema_version": "orion.p2_u.route-observability-contract.v1",
+  "date": "2026-08-21",
+  "parent_issue": 650,
+  "base_commit": "ca7df1055a43f97eaf8d142a62011c4c261af368",
+  "purpose": "Prospectively separate hidden-route infeasibility from system discovery performance before the first authority-bearing P2-U naturalistic execution. Every evaluator-frozen material route must have a protected pre-execution witness that at least one valid hidden evidence identity is reachable through the exact source-access/interface class granted symmetrically to both primary arms. This contract does not make the route easier to discover, expose hidden identities to workers, change a metric or threshold, or create a scientific result.",
+  "bound_pre_outcome_contracts": {
+    "baseline_census": {
+      "path": "research/claim_expansion/p2/P2_U_BASELINE_CENSUS_V1.json",
+      "git_blob_sha": "bb1a7277ac8480d6d68b7936b7b747e91c7ac433"
+    },
+    "hidden_route_custody": {
+      "path": "research/claim_expansion/p2/P2_U_HIDDEN_ROUTE_CUSTODY_V1.json",
+      "git_blob_sha": "ac4a64f560e90e1137fc521aae282e7a798da863"
+    },
+    "scientific_protocol_v1": {
+      "path": "research/claim_expansion/p2/P2_U_SCIENTIFIC_PROTOCOL_V1.json",
+      "git_blob_sha": "fe29b653cd079334c1b8ec94e8472151a8aaa9a3"
+    },
+    "scientific_protocol_v2": {
+      "path": "research/claim_expansion/p2/P2_U_SCIENTIFIC_PROTOCOL_V2.json",
+      "git_blob_sha": "78e0c8013ecdf91abb9295af5d73a85d2eec7bd2"
+    },
+    "task_execution_contract": {
+      "path": "research/claim_expansion/p2/P2_U_TASK_EXECUTION_CONTRACT_V1.json",
+      "git_blob_sha": "1a26d0093a1765724ff954297528d9c13d20dbe4"
+    }
+  },
+  "protected_outcome_state": {
+    "p2_u_naturalistic_protected_output_seen": false,
+    "route_observability_contract_frozen_before_hidden_naturalistic_execution": true,
+    "narrow_p2_wide_outcomes_are_separate": true,
+    "narrow_p2_wide_outcomes_must_not_tune_route_observability": true
+  },
+  "identified_gap": {
+    "existing_strength": "The merged custody and execution contracts already freeze task eligibility, hidden route graphs, hidden evidence identities, matched source/search access, provider-world invalidity, temporal pairing, and pre-gold capture custody.",
+    "remaining_ambiguity": "They do not yet require an explicit pre-execution proof that every material route has at least one valid evidence identity reachable through the exact allowed source-access/interface class. Without that proof, an impossible gold route could be scored as a discovery miss, confounding task construction infeasibility with system performance.",
+    "repair_type": "PRE_OUTCOME_ELIGIBILITY_IDENTIFIABILITY_STRENGTHENING_ONLY"
+  },
+  "definitions": {
+    "route_observable_at_freeze": "For a prospectively frozen material route, at least one evaluator-owned valid hidden evidence identity required by that route is present in the frozen task world and can be retrieved or opened through the exact source-access/interface class granted to both primary arms, assuming its evaluator-known locator or source identity is supplied solely to the protected accessibility probe. Observability proves access feasibility, not that either arm can discover the locator under its search policy.",
+    "route_observability_witness": "A protected, content-addressed record proving route observability before primary-arm execution. It remains outside worker custody until all primary captures freeze.",
+    "discoverability_is_not_observability": "The protected witness may use evaluator-known identifiers or locators only to test whether the frozen interface can reach the evidence. It may not test, tune, seed, or score candidate/comparator query generation, route generation, ranking, stopping, or evidence-use policy.",
+    "required_route_side": "A separately required evidence side within a route, including each side of a pre-frozen material contradiction when the scientific task requires both sides to be discharged."
+  },
+  "pre_execution_observability_gate": {
+    "every_material_route_requires_witness": true,
+    "every_required_route_side_requires_witness": true,
+    "witness_must_exist_before_final_task_manifest_seal": true,
+    "witness_must_exist_before_first_primary_arm_output": true,
+    "minimum_valid_evidence_identities_per_required_route_side": 1,
+    "same_source_access_scope_as_primary_arms_required": true,
+    "same_interface_class_as_primary_arms_required": true,
+    "candidate_or_comparator_policy_execution_forbidden": true,
+    "worker_visible_route_hint_generation_forbidden": true,
+    "route_without_valid_witness_before_execution": "TASK_INELIGIBLE_FOR_THIS_CAMPAIGN_VERSION",
+    "task_ineligibility_must_be_logged_with_reason_in_protected_curator_ledger": true,
+    "ineligible_task_must_not_be_replaced_after_primary_outputs_begin": true,
+    "replacement_before_execution_requires_existing_prefrozen_deterministic_selection_rule": true
+  },
+  "witness_minimum_fields": [
+    "campaign_version",
+    "task_id and task_cluster_id_or_null",
+    "hidden route id",
+    "required route side id or null",
+    "hidden evidence identity hash or protected source-snapshot identity",
+    "source-access scope id",
+    "retrieval/search interface class id",
+    "provider/snapshot world identity",
+    "accessibility-probe implementation digest",
+    "probe request or locator hash",
+    "probe response/content identity hash",
+    "machine-checkable validity result",
+    "pre-execution timestamp or immutable snapshot revision",
+    "witness record digest"
+  ],
+  "accessibility_probe_rules": {
+    "custody": "Task-curator/protected-evaluator custody only; no worker token may fetch witness contents before every primary capture is sealed.",
+    "candidate_blind": true,
+    "comparator_blind": true,
+    "arm_identity_must_not_change_probe": true,
+    "snapshot_interface": "Prove that the bound hidden evidence identity is present and readable through the exact frozen snapshot/source-access abstraction granted to both arms.",
+    "live_provider_interface": "Use the evaluator-known source identity or locator only to test transport/access feasibility through the same provider/interface class. The locator is never emitted to workers and cannot become a candidate/comparator query, cache seed, ranking feature, or warm-start artifact.",
+    "multi_provider_route": "If the final task contract requires a specific provider or source class, witness that required class. If it prospectively permits a frozen equivalence set, witness at least one member and seal the entire equivalence mapping before execution.",
+    "provider_health_at_probe_time": "A failed live-provider probe prevents sealing that task version; it is not converted into a system miss. A later campaign may be sealed only before any protected primary output under a new immutable witness set.",
+    "probe_cost_not_charged_to_either_arm": "The witness is gold/task-construction work performed before execution and is inaccessible to both arms. It cannot be used to reduce their matched retrieval budget or to grant them free retrieval credit.",
+    "no_scientific_credit": "Passing an observability witness contributes zero route-discovery, route-use, closure, utility, or calibration credit to either arm."
+  },
+  "evidence_identity_and_equivalence": {
+    "identity_mapping_must_be_frozen_before_execution": true,
+    "content_or_snapshot_hash_required_where_legally_retainable": true,
+    "mirrors_versions_and_repositories": "If multiple manifestations are scientifically equivalent for one hidden evidence identity, the equivalence mapping must be sealed before execution. Post-outcome source substitution or equivalence expansion is forbidden.",
+    "material_version_difference": "Versions that can change the task decision, route materiality, contradiction state, or closure state are distinct evidence identities and cannot be silently treated as mirrors.",
+    "duplicate_manifestations_cannot_inflate_route_credit": true,
+    "worker_may_receive_credit_for_any_prefrozen_equivalent_manifestation_reached_under_its_own_policy": true
+  },
+  "separation_from_execution_time_invalidity": {
+    "pre_execution_missing_route_access": "Task-construction/eligibility failure. Exclude before the campaign seal and log under the deterministic curator rule; it is not a scientific arm outcome.",
+    "post_seal_common_world_provider_or_index_drift": "Use the already-frozen P2_U_TASK_EXECUTION_CONTRACT_V1 temporal-pairing/common-world sentinel and P2_U_SCIENTIFIC_PROTOCOL_V1 validity-floor mapping. Do not retroactively rewrite route observability.",
+    "healthy_common_world_arm_specific_failure": "Scientific performance under the existing protocol; do not relabel it as route infeasibility.",
+    "post_output_discovery_that_a_witness_was_forged_or_invalid": "Campaign integrity failure for the affected task/campaign under the frozen audit rule, never a favorable denominator repair."
+  },
+  "independent_reconstruction": {
+    "required": true,
+    "reconstructor_receives_witnesses_only_after_primary_captures_freeze": true,
+    "must_verify": [
+      "every frozen material route and required route side had a pre-execution witness",
+      "witness source-access/interface identifiers match the sealed primary execution manifest",
+      "witness timestamps or snapshot revisions predate primary execution",
+      "no witness locator or hidden evidence identity entered worker-visible manifests or captures",
+      "equivalence mappings were frozen pre-outcome",
+      "any task exclusions occurred before execution under the prefrozen deterministic selection rule"
+    ],
+    "reconstructor_must_not_trust_precomputed_observability_flag": true
+  },
+  "inherited_scientific_gates_unchanged": {
+    "primary_comparator": "same-host, same-retrieval, same-source-access, same-total-budget donor-complete controller",
+    "route_use_recall_superiority_effect_floor": 0.05,
+    "false_closure_noninferiority_margin": 0.02,
+    "valid_closure_yield_point_floor": -0.02,
+    "valid_closure_yield_interval_margin": 0.05,
+    "minimum_valid_paired_task_fraction_overall": 0.95,
+    "minimum_valid_paired_task_fraction_per_domain": 0.9,
+    "power_target_at_least": 0.8,
+    "bootstrap_replicates": 20000,
+    "guard_exercise_v2_remains_required": true,
+    "all_v1_v2_task_execution_and_temporal_pairing_rules_remain_required": true
+  },
+  "anti_laundering": [
+    "Do not call a hidden route observable merely because its evidence exists somewhere on the public internet; it must be reachable through the exact frozen source-access/interface class available to both primary arms.",
+    "Do not use the protected observability probe as a search oracle, query template, cache warmer, route hint, ranking feature, or retrieval result for either arm.",
+    "Do not add, remove, downgrade, or replace a material route after observing any protected primary output.",
+    "Do not relabel an arm-specific query/parsing/budget/control failure as an unobservable route when the common world is healthy.",
+    "Do not expand a mirror/equivalence set after outcomes merely to award route credit.",
+    "Do not weaken any existing comparator, metric, margin, power, validity, GuardExercise, utility, or terminal gate because an observability witness is hard to obtain.",
+    "Do not treat this protocol-only contract as P2-U superiority, a negative result, promotion evidence, or publication authority."
+  ],
+  "terminal_authority": {
+    "this_contract_terminal": "P2_U_ROUTE_OBSERVABILITY_CONTRACT_FROZEN_NO_OUTCOME",
+    "positive_primary_terminal_remains": "P2_U_PRIMARY_NATURALISTIC_SUPPORTED_PENDING_REPLICATION",
+    "valid_negative_terminal_remains": "P2_U_PRIMARY_NATURALISTIC_NOT_SUPPORTED",
+    "invalid_or_underpowered_terminal_remains": "P2_U_PRIMARY_CANNOT_CHECK",
+    "this_contract_can_grant_superiority": false,
+    "this_contract_can_grant_promotion": false,
+    "this_contract_can_authorize_issue_650_closure": false,
+    "issue_650_still_requires": [
+      "authority-bearing hidden-route naturalistic primary",
+      "cross-domain replication including a systematic-review-like setting",
+      "independent reproduction of route accounting and final decisions",
+      "prospectively validated stronger successor search mechanic from a negative, tied, or failure family",
+      "final claim-ledger and publication-authority review"
+    ]
+  },
+  "scientific_effect": "PRE_OUTCOME_ROUTE_FEASIBILITY_AND_GOLD_IDENTIFIABILITY_STRENGTHENING_ONLY",
+  "promotion_authorized": false,
+  "issue_650_closure_authorized": false,
+  "authority": "PRE_OUTCOME_P2_U_ROUTE_OBSERVABILITY_ONLY_NO_RESULT_NO_SUPERIORITY_NO_PROMOTION"
+}
