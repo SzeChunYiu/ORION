@@ -32,7 +32,8 @@ def cj(o):
 
 def kpub(role, cid):
     s = hashlib.sha256(b"P15-ATTESTATION-COMPOSITION-V2-KEY-" + role.encode() + b"-" + cid.encode()).digest()
-    return Ed25519PrivateKey.from_private_bytes(s).public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+    return Ed25519PrivateKey.from_private_bytes(s).public_key().public_bytes(
+        Encoding.Raw, PublicFormat.Raw).hex()
 
 
 def ldigest(l):
