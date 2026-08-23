@@ -1,0 +1,78 @@
+{
+  "schema": "orion.cross-paper-preservation.dichotomy-support.v2",
+  "ladder": [
+    "L0_identity",
+    "L1_support",
+    "L2_semantic",
+    "L3_obligation",
+    "L4_authority"
+  ],
+  "laws": {
+    "determination": {
+      "discharged": true,
+      "pairs_checked": 1024,
+      "states_per_model": 32
+    },
+    "soundness_and_forced_abstention": {
+      "discharged": true,
+      "unsound_verdicts": 0,
+      "abstention_forced_whenever_a_required_coordinate_is_missing": true
+    },
+    "ladder_irredundancy": {
+      "discharged": true,
+      "load_bearing_levels": [
+        "L0_identity",
+        "L1_support",
+        "L2_semantic",
+        "L3_obligation",
+        "L4_authority"
+      ],
+      "inert_coordinate_correctly_found_redundant": true
+    },
+    "selective_revalidation": {
+      "discharged": true,
+      "total_revalidations_restoring_standing": 31,
+      "proper_subset_revalidations_denied": 211
+    },
+    "ideal_product_equivalence": {
+      "discharged": true,
+      "centralized_vs_ideal_product_mismatches": 0
+    },
+    "verdict_composition_insufficiency": {
+      "discharged": true,
+      "stacks_enumerated": 256,
+      "stacks_admitting_a_sound_decisive_join": 108,
+      "stacks_where_no_join_over_all_joins_suffices": 148,
+      "informative_stacks_enumerated": 196,
+      "informative_stacks_admitting_a_sound_decisive_join": 100,
+      "informative_stacks_where_no_join_suffices": 96,
+      "named_witness_blocked": true,
+      "named_witness": "donor A answers L2 or L3; donor B answers L2; both observe L2 and L3",
+      "every_stack_observes_all_required_coordinates": true,
+      "ideal_coordinate_exposing_stack_still_decides": true,
+      "first_blocked_witness": {
+        "donor_a_truth_table": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "donor_b_truth_table": [
+          false,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    "no_alarm_transport_succeeds": {
+      "discharged": true,
+      "contracts_granted_when_fully_satisfied": 243,
+      "spurious_abstentions": 0
+    }
+  },
+  "laws_discharged": 7,
+  "laws_total": 7,
+  "failures": [],
+  "scope": "Exhaustive over the registered finite coordinate model. Proof support for that model; not an empirical claim about deployed donor stacks, and not a minimality claim outside the registered vocabulary."
+}

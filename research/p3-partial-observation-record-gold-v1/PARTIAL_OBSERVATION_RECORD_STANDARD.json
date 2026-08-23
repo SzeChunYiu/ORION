@@ -1,0 +1,105 @@
+{
+  "absent_values": {
+    "assumption_ids": [],
+    "attribution_id": "",
+    "construct_ids": [],
+    "discourse_relation": "",
+    "measurement_ids": [],
+    "modality": "UNKNOWN",
+    "polarity": "UNKNOWN",
+    "referent_ids": [],
+    "temporal_context_ids": []
+  },
+  "atlas_id": "partial-observation-record-gold-v1",
+  "census": "one LA case and one LD case per coordinate, so the harm denominator is whatever compare_meaning's own absence reading makes it and not whatever the author wanted. Dropping either half of any coordinate's pair is refused by verify().",
+  "coordinate_precedence": [
+    "referent_ids",
+    "construct_ids",
+    "measurement_ids",
+    "temporal_context_ids",
+    "attribution_id",
+    "discourse_relation",
+    "assumption_ids",
+    "polarity",
+    "modality"
+  ],
+  "derivation_rule": "identity:frozen-source-record-relation",
+  "derivation_rule_statement": "Every case of this corpus is a pair of source records, and each record states all nine identity coordinates from this table. Gold is the relation between the two records: read the coordinates in the order referent, construct, measurement, then the contextual coordinates (temporal, attribution, discourse, assumption, modal force), then polarity, and take the first that separates them. The projections a case ships are the records after an extraction loss, which blanks one coordinate on one side. The loss does not reach this rule and does not move gold: the record still states what it states.",
+  "disciplines": [
+    "biology",
+    "chemistry",
+    "materials",
+    "physics"
+  ],
+  "external_validity": "The cases are synthetic: the source records are a frozen table this module emits, not an upstream expert corpus, because the upstream corpora the public-reference builder draws on are not reachable from this environment. This corpus can establish what a decisiveness-aware abstention costs when gold is anchored to the source record rather than to the projections. It cannot establish that extraction drops a coordinate on one side only at any particular rate in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "gate_note": "G9_HARM_A3 reads 'A3_decisive_absence_only destroys 0 correct answers on every intact corpus, and at least one intact corpus supplies independent evidence for that zero'. Adding a corpus to that gate can only leave it where it is or make it fail; no construction of this corpus can turn a destroyed answer into an undestroyed one. The gate's threshold is not amended, only its denominator.",
+  "not_an_accuracy_benchmark": "This corpus is a harm-gate denominator, not an accuracy benchmark. Its gold is the relation between two fully stated source records, and on record pairs with nothing missing that relation is what compare_meaning already answers, by construction. That is what a harm measurement needs --- its question is whether a candidate rule moves a decision the current rule already gets right --- and it is what an accuracy claim must not be built on. No accuracy, false-merge, false-split or superiority number over this corpus is evidence about ORION's competence.",
+  "predicate": "reports_quantity",
+  "protocol_id": "P3.partial-observation-record-gold-corpus.v1",
+  "record_values": {
+    "assumption_ids": [
+      [
+        "porec:assumption:00"
+      ],
+      [
+        "porec:assumption:01"
+      ]
+    ],
+    "attribution_id": [
+      "porec:attribution:00",
+      "porec:attribution:01"
+    ],
+    "construct_ids": [
+      [
+        "porec:construct:00"
+      ],
+      [
+        "porec:construct:01"
+      ]
+    ],
+    "discourse_relation": [
+      "porec:discourse:00",
+      "porec:discourse:01"
+    ],
+    "measurement_ids": [
+      [
+        "porec:measurement:00"
+      ],
+      [
+        "porec:measurement:01"
+      ]
+    ],
+    "modality": [
+      "ASSERTED",
+      "POSSIBLE"
+    ],
+    "polarity": [
+      "POSITIVE",
+      "NEGATED"
+    ],
+    "referent_ids": [
+      [
+        "porec:referent:00"
+      ],
+      [
+        "porec:referent:01"
+      ]
+    ],
+    "temporal_context_ids": [
+      [
+        "porec:temporal:00"
+      ],
+      [
+        "porec:temporal:01"
+      ]
+    ]
+  },
+  "schema_version": "orion.p3.partial-observation-record-standard.v1",
+  "strata": {
+    "LA_LOSS_ON_AGREEING_RECORDS": "the two records state the same value of the lost coordinate and agree everywhere else; gold COMPATIBLE",
+    "LD_LOSS_ON_DIFFERING_RECORDS": "the two records state different values of the lost coordinate and agree everywhere else; gold is what that difference makes it",
+    "LU_LOSS_A_HIGHER_COORDINATE_DECIDES": "the records differ on referent_ids, which survives extraction on both sides, and the loss is of a lower-precedence coordinate; gold DISTINCT_REFERENT",
+    "NL_NO_LOSS": "no extraction loss; gold is the plain record relation"
+  },
+  "why_this_is_not_the_criterion_a3_decides_by": "A3_decisive_absence_only abstains where the admissible completions of a one-sided absence disagree about the relation. This corpus's gold never asks that question: relation_from_records is defined only on records that state every coordinate and raises on anything else, so there is no completion for it to quantify over. The two therefore disagree wherever the records determine a relation that the projections do not, which is the LA and LD strata, and that disagreement is what makes the harm number a measurement rather than a restatement. If a later edit removed the strata on which they disagree, the corpus's gold would coincide with A3's rule wherever A3 can fire and the corpus would be circular again; verify() refuses to emit such a corpus and the probe withholds the evidence of one."
+}

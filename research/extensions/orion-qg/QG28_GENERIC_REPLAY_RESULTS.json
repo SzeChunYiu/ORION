@@ -1,0 +1,52 @@
+{
+  "burnside": {
+    "group_order": 6,
+    "identity_fixed": [
+      4096
+    ],
+    "orbit_count": 715,
+    "sum": 4290,
+    "three_cycle_fixed": [
+      1,
+      1
+    ],
+    "transposition_fixed": [
+      64,
+      64,
+      64
+    ]
+  },
+  "burnside_matches_enumeration": true,
+  "equivariance_checks": {
+    "mul_equivariant": true,
+    "n_automorphisms": 6,
+    "symp_invariant": true,
+    "wt_invariant": true
+  },
+  "explicit_enumeration": {
+    "canonical_rep_is_lex_min": true,
+    "orbit_count": 715,
+    "orbit_size_histogram": {
+      "1": 1,
+      "3": 63,
+      "6": 651
+    },
+    "types": 4096
+  },
+  "issue": "SzeChunYiu/ORION#888",
+  "issue_888_expected": {
+    "orbit_count": 715,
+    "size_1": 1,
+    "size_3": 63,
+    "size_6": 651
+  },
+  "rebuilt_from": "F_2^2 symplectic coordinates; no production R6M table imported",
+  "schema": "ORION.QG.QG28.GenericReplay.v1",
+  "unsafe_symmetry_barrier": {
+    "combined_orbit_count": 54,
+    "group": "S_3(letters) x (S_2^3 : S_3)(positions)",
+    "position_group_order": 48,
+    "strictly_coarser_than_715": true,
+    "verdict": "aggregating under the position group is a strictly coarser quotient; INDEPENDENT_POSITION_RELABEL_PER_COLUMN must stay false"
+  }
+}

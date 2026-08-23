@@ -128,6 +128,26 @@ def _measurement_equivalence_accurate(gold: Annotation, pred: Prediction) -> boo
 
 # ── headline metrics ──────────────────────────────────────────────────────────
 
+#: What a rate is when nothing was measured.
+#:
+#: Every rate below divides by the number of non-abstained cases, and that
+#: number can be zero. Returning ``0.0`` there is not a neutral choice: for a
+#: *harm* rate zero is the best attainable score, so a metric that measured
+#: nothing reported a perfect result, and a threshold check on it passed. This
+#: is the ``VACUOUS_GUARD_ZERO_DENOMINATOR`` shape
+#: (``research/failures/2026-08-vacuous-guard-zero-denominator/``), and it was
+#: found here after the same shape turned up in a P3 guard that had never once
+#: had an opportunity to fire.
+#:
+#: ``nan`` rather than ``None``: every comparison against ``nan`` is ``False``,
+#: so ``rate >= margin`` and ``rate <= threshold`` both fail, and the metric
+#: fails closed wherever it is read. ``None`` would be worse than the bug --- a
+#: caller writing ``not rate`` sees ``not None`` as ``True`` and reports clean.
+#: The companion ``*_n`` field carries the denominator either way, so a caller
+#: that wants to distinguish "measured, and it was zero" from "not measured" can.
+NO_CASES = float("nan")
+
+
 def false_merge_rate(gold: Sequence[Annotation],
                      preds: Sequence[Prediction]) -> dict[str, float]:
     """False merge rate = (false merges) / (non-abstained cases)."""
@@ -139,7 +159,7 @@ def false_merge_rate(gold: Sequence[Annotation],
             total += 1
             if v:
                 false_merges += 1
-    return {"false_merge_rate": false_merges / total if total else 0.0,
+    return {"false_merge_rate": false_merges / total if total else NO_CASES,
             "false_merge_n": float(total)}
 
 
@@ -153,7 +173,7 @@ def false_contradiction_rate(gold: Sequence[Annotation],
             total += 1
             if v:
                 false_contra += 1
-    return {"false_contradiction_rate": false_contra / total if total else 0.0,
+    return {"false_contradiction_rate": false_contra / total if total else NO_CASES,
             "false_contradiction_n": float(total)}
 
 
@@ -167,7 +187,7 @@ def missed_contradiction_rate(gold: Sequence[Annotation],
             total += 1
             if v:
                 missed += 1
-    return {"missed_contradiction_rate": missed / total if total else 0.0,
+    return {"missed_contradiction_rate": missed / total if total else NO_CASES,
             "missed_contradiction_n": float(total)}
 
 
@@ -181,7 +201,7 @@ def false_split_rate(gold: Sequence[Annotation],
             total += 1
             if v:
                 false_splits += 1
-    return {"false_split_rate": false_splits / total if total else 0.0,
+    return {"false_split_rate": false_splits / total if total else NO_CASES,
             "false_split_n": float(total)}
 
 
@@ -196,7 +216,7 @@ def valid_integration_rate(gold: Sequence[Annotation],
             total += 1
             if v:
                 correct += 1
-    return {"valid_integration_rate": correct / total if total else 0.0,
+    return {"valid_integration_rate": correct / total if total else NO_CASES,
             "valid_integration_n": float(total)}
 
 
@@ -273,7 +293,7 @@ def measurement_equivalence_accuracy(
             total += 1
             if v:
                 correct += 1
-    return {"measurement_equivalence_accuracy": correct / total if total else 0.0,
+    return {"measurement_equivalence_accuracy": correct / total if total else NO_CASES,
             "measurement_equivalence_n": float(total)}
 
 
@@ -320,7 +340,7 @@ def source_recoverability_rate(gold: Sequence[Annotation],
             total += 1
             if v:
                 recoverable += 1
-    return {"source_recoverability_rate": recoverable / total if total else 0.0,
+    return {"source_recoverability_rate": recoverable / total if total else NO_CASES,
             "source_recoverability_n": float(total)}
 
 
@@ -337,7 +357,7 @@ def preservation_condition_accuracy(
             total += 1
             if v:
                 correct += 1
-    return {"preservation_condition_accuracy": correct / total if total else 0.0,
+    return {"preservation_condition_accuracy": correct / total if total else NO_CASES,
             "preservation_condition_n": float(total)}
 
 
@@ -390,7 +410,7 @@ def downstream_answer_accuracy(gold: Sequence[Annotation],
             continue
         correct += int(bool(gd) == bool(pd))
         total += 1
-    return {"downstream_answer_accuracy": correct / total if total else 0.0,
+    return {"downstream_answer_accuracy": correct / total if total else NO_CASES,
             "downstream_answer_n": float(total)}
 
 
@@ -411,7 +431,7 @@ def unresolved_abstention_calibration(
             unresolved += 1
             if gv == "UNRESOLVED":
                 truly_unresolved += 1
-    unresolved_rate = unresolved / total if total else 0.0
+    unresolved_rate = unresolved / total if total else NO_CASES
     calibration = truly_unresolved / unresolved if unresolved else 0.0
     return {"unresolved_rate": unresolved_rate,
             "unresolved_calibration": calibration,
@@ -443,7 +463,7 @@ def annotation_agreement_by_coordinate(
             total += 1
             if va == vb:
                 agree += 1
-        result[f"agreement_{coord}"] = agree / total if total else 0.0
+        result[f"agreement_{coord}"] = agree / total if total else NO_CASES
     return result
 
 

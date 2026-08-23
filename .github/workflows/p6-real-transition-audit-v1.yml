@@ -1,0 +1,49 @@
+name: p6-real-transition-audit-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_PROTOCOL_V1.md'
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_cases_v1.json'
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json'
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py'
+      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py'
+      - '.github/workflows/p6-real-transition-audit-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-transition-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Execute heterogeneous real transition audit
+        run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py | tee p6_real_transition_audit_v1.json
+      - name: Verify deterministic primary replay
+        run: |
+          python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py > p6_real_transition_audit_v1_rerun.json
+          cmp p6_real_transition_audit_v1.json p6_real_transition_audit_v1_rerun.json
+      - name: Execute independent defect-set verifier
+        run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py | tee p6_real_transition_audit_independent_v1.json
+      - name: Verify cross-implementation authority
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p6_real_transition_audit_v1.json'));q=json.load(open('p6_real_transition_audit_independent_v1.json'))
+          assert p['terminal']=='P6_REAL_TRANSITION_AUDIT_V1_SUPPORTED',p
+          assert q['terminal']=='P6_REAL_TRANSITION_AUDIT_SECOND_INDEPENDENT_CHECKER_GREEN',q
+          assert p['case_count']==q['case_count']==16
+          assert p['source_token_audit']==q['source_token_audit']=='GREEN'
+          assert p['ets']['accuracy']==1.0 and q['exact_gold_agreement']
+          assert p['ets']['unsafe_false_admissible']==0 and p['ets']['unnecessary_reopen']==0
+          assert p['donor_unsafe_family_count']>=3 and len(q['lower_layer_unsafe_families'])>=3
+          print('P6_REAL_TRANSITION_AUDIT_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p6-real-transition-audit-v1
+          path: |
+            p6_real_transition_audit_v1.json
+            p6_real_transition_audit_independent_v1.json

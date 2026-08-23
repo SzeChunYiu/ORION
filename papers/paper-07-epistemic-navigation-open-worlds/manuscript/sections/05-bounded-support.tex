@@ -1,0 +1,28 @@
+\section{Exhaustive bounded support (unchanged, re-read)}
+
+The enumeration of V3 is unchanged on disk and its digest is unchanged:
+
+\begin{itemize}
+  \item states: \textbf{320}; donor-conservativity violations: \textbf{0}; ideal-product
+    mismatches: \textbf{0};
+  \item minimal one-coordinate closure separations: \textbf{25};
+  \item donor-product nonclosure countermodels: \textbf{31};
+  \item exact full closure-refinement successes: \textbf{155};
+  \item proper-subset closure-refinement failures: \textbf{1,055};
+  \item heterogeneous composition successes under exact bridge: \textbf{25};
+  \item bridge-mismatch composition countermodels: \textbf{25};
+  \item canonical rows SHA-256:\\
+    \idt{25f40385714adb15bca298a8cfd2b7fe2b28c96bfe462f6b60583be8f735b95f}.
+\end{itemize}
+
+What V4 changes is the reading. The 155 and 1,055 are a five-way donor
+multiplication of 31 and 211: the donor loop enters neither the closure vector
+nor the repair set. Neither does anything else under it --- 320 states is the
+64-point (native verdict, closure vector) space enumerated once per family, the
+25 minimal separations are 5 counted five times, and the 25 successes and 25
+bridge countermodels are one of each counted once per ordered donor pair. Only
+the 31 nonclosure countermodels are 31 distinct facts, and the \idt{donor\_axis}
+block of the result artifact carries the same table. The composition pair is
+discussed in \S20. The counts remain
+correct and remain reproducible; they are support for a bounded instance, and
+the general claims are now carried by \S\S18--19 instead.

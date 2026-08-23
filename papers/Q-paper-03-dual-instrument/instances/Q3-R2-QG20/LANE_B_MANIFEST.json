@@ -1,0 +1,18 @@
+{
+  "frontier_question_id": "QG-20",
+  "instance_id": "Q3-R2",
+  "outcome_paths_excluded": [
+    "research/extensions/orion-qg/QG20*",
+    "artifacts/*qg20*"
+  ],
+  "rule_set": "q3_replacement_controller.py::decide",
+  "schema": "ORIONQ.Q3LaneBManifest.v2",
+  "shared_packet_sha256": "c047d9a9c14b219d154d1444a34bba21418a336fa11a5134b0b5d6db9a5ee9df",
+  "typed_observations": {
+    "complete_n1_n2_domain_defined": true,
+    "o20_objective": "2*SELECT+PREP+WIDTH",
+    "objective_changes_select_gain_coefficients": true,
+    "qg12_p0_theorem_objective": "SELECT+PREP+WIDTH",
+    "unary_incumbent_remains_incumbent": true
+  }
+}

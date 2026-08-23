@@ -57,3 +57,70 @@ This is a general formal architecture claim only over the registered certificate
 
 ## Reopen rule
 Reopen if a primary formal system supplies an equivalent scientific lift/preservation/revalidation calculus over equally rich donor certificates, or if a countermodel breaks selective revalidation under the registered interface assumptions.
+
+## Addendum 2026-08-22 — what those zeros were, and what they are now
+
+Two of the eight quantities listed under *Exhaustive support* were not
+measurements when this terminal was written, and the artifact did not say so.
+
+`0 donor-conservativity violations` was computed as `projected_native =
+native_valid` followed by `if projected_native != native_valid`: one variable
+compared with itself, 0 under every theory of lifting. `0 ideal
+enriched-product mismatches` compared `liftable(...)` against an inline copy of
+`liftable`'s own body, so under a consistently applied theory it was `x == x`.
+Neither could have come out any other way, which is the failure class recorded
+at `research/failures/2026-08-unfalsifiable-check-zero-refutation-capacity/`.
+
+Both are measurements now, and neither number moved. What changed is what the
+checker is able to say:
+
+- **T1 gained the projection.** `check_p6_x2_certificate_lifting.py` now carries
+  `project_to_donor`, and states conservativity about the *image of `liftable`
+  along it*: a donor certificate is certified by the lifted semantics exactly
+  when it is certified by the donor theory. The comparison reads the lifting
+  rule, and the fibre quantification visits the 32 `native_valid = False` states
+  that no assertion in the file previously reached — so
+  `assertion_coverage_status` moved from `PARTIAL` to `COMPLETE` without a
+  bolt-on "nothing lifts without a donor" assertion.
+- **T5 gained a constructed ideal product.** The ideal enriched donor product is
+  now the donor theory's own validator run over a requirement set enlarged by
+  the five scientific coordinates, rather than the lifting predicate written
+  twice. It never mentions `liftable`, so a wrong theory of lifting cannot
+  co-mutate it.
+
+Measured against a register of nine wrong theories of lifting
+(`python -m orion.study.p6.refutation_audit`), all five published quantities now
+reject at least one, and every wrong theory in the register is rejected by at
+least one quantity. Before the repair, T1 and T5 rejected none of the eight then
+registered, and `science_lifts_without_donor` — scientific standing preserved
+with no valid donor certificate underneath it, the direct denial of P6.V4.1 —
+was rejected by no check at all.
+
+The ninth entry is new and is this document's own third falsifier made
+executable: `unbridged_donor_discharges_coordinate`, under which one donor family
+discharges `evidence_semantics` with no bridge rule binding it. It is the only
+registered theory in which the donor coordinate and the scientific coordinates
+interact, and it is rejected by the separation witnesses, the revalidation block
+and the reconstructed ideal product.
+
+### Multiplicity of the reported counts
+
+`liftable` does not take the donor family as an argument, so donor-independence
+holds by construction and the five-family loop repeats every quantity enumerated
+inside it. The published counts and their distinct content:
+
+| published | distinct | multiplicity |
+| --- | --- | --- |
+| 320 state evaluations | 64 | ×5 |
+| 25 separation witnesses | 5 | ×5 |
+| 155 full revalidation successes | 31 | ×5 |
+| 1,055 proper-subset failures | 211 | ×5 |
+| 31 product countermodels | 31 | ×1 |
+
+This is not a defect in the rule — donor-independence is a claim P6 makes, and a
+theory under which the issuing family decides the verdict is registered as false
+— but reporting 320 without reporting 64 overstates the enumeration. The result
+JSON now carries a `donor_axis` block with both. Giving the five families
+distinct native validators, as the finite-model checker's three embeddings have,
+would change the enumerated space and therefore `canonical_rows_sha256`; that is
+a new theorem instance, not an edit to this one.

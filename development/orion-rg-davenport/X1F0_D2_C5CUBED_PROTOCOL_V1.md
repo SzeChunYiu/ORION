@@ -37,7 +37,7 @@ Consistency control (pre-registered, executed): the Freeze–Schmid `k=2` witnes
 of length 19 must then have minimum zero-sum length `>= 19 - 13 + 1 = 7`.
 Executed value: exactly 7. Lemma A is tight on the donor witness.
 
-## Lemma B — NOT NEW. This is Freeze–Schmid 2010, Proposition 3.2(3)
+## Lemma B — NOT NEW. This is Freeze–Schmid 2010, Proposition 3.1(3)
 
 **Correction, recorded after a hostile literature check.** An earlier version of
 this document presented the following as a new lemma:
@@ -48,14 +48,14 @@ D_{k+1}(G)  <=  max( eta_T(G),  D_k(G) + T ).
 
 It is published. Freeze & Schmid, *Remarks on a generalization of the Davenport
 constant*, Discrete Math. 310 (2010) 3373–3389 (arXiv:0905.4248),
-**Proposition 3.2(3)**:
+**Proposition 3.1(3)**:
 
 > for each `l` in `N`, `D_{k+1}(G) <= max{ D_k(G) + l, s_{<=l}(G) - 1 }`
 
 with `s_{<=l}(G)` exactly our `eta_l(G)`. Their form is **strictly stronger than
 the one claimed here**: `eta_l - 1` where this document had `eta_l`.
 
-The same paper's Proposition 3.2(2) is sharper still:
+The same paper's Proposition 3.1(2) is sharper still:
 `D_{k+1}(G) <= D_k(G) + M`, where `M` is the minimum length of a minimal
 zero-sum sequence dividing an extremal `B`.
 
@@ -130,7 +130,7 @@ disjoint nonempty zero-sum subsequences (two independent implementations, see
 
 Either way `S` has two disjoint nonempty zero-sums, so `D_2 <= 20`. ∎
 
-Equivalently, via Freeze–Schmid Prop. 3.2(3) with `k = 1`, `l = 7`:
+Equivalently, via Freeze–Schmid Prop. 3.1(3) with `k = 1`, `l = 7`:
 `D_2 <= max(D + 7, eta_7 - 1) = max(20, 18) = 20`, exactly tight.
 
 ## Donor position
@@ -245,7 +245,7 @@ and `f_T(G)` for small `G` by complete enumeration; every `(G, k)` step below
 compares the Lemma B bound against the true constant and against the classical
 `D_{k+1} <= D_k + D`.
 
-| group | `k` | true `D_{k+1}` | FS 3.2(3) | classical | best `l` | tight |
+| group | `k` | true `D_{k+1}` | FS 3.1(3) | classical | best `l` | tight |
 |-------|-----|----------------|---------|-----------|----------|-------|
 | `C_2^2` | 1 | 5 | 5 | 6 | 2 | yes |
 | `C_2^2` | 2 | 7 | 7 | 8 | 2 | yes |

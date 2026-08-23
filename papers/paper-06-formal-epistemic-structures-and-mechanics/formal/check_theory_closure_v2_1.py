@@ -30,6 +30,51 @@ def affected(certified: frozenset[str], edges: frozenset[tuple[str, str]], chang
     return frozenset((certified & changed) | (certified & descendants(edges, changed)))
 
 
+def transitive_closure(edges: frozenset[tuple[str, str]]) -> dict[str, frozenset[str]]:
+    """Strict reachability per node, by relational composition rather than by traversal.
+
+    The independent route `check_root_inclusive_safety` measures `descendants`
+    and `affected` against. It is an all-pairs composition over the whole edge
+    relation with no notion of a root set and no frontier, so it cannot agree
+    with `descendants` by sharing its code path.
+    """
+
+    order = {name: position for position, name in enumerate(NODES)}
+    size = len(NODES)
+    reach = [[False] * size for _ in range(size)]
+    for source, target in edges:
+        reach[order[source]][order[target]] = True
+    for middle in range(size):
+        middle_row = reach[middle]
+        for source in range(size):
+            if reach[source][middle]:
+                source_row = reach[source]
+                for target in range(size):
+                    if middle_row[target]:
+                        source_row[target] = True
+    return {
+        name: frozenset(NODES[target] for target in range(size) if reach[order[name]][target])
+        for name in NODES
+    }
+
+
+def specified_affected_terms(
+    certified: frozenset[str],
+    closure: dict[str, frozenset[str]],
+    changed: frozenset[str],
+) -> tuple[frozenset[str], frozenset[str]]:
+    """The two terms of `Aff_D(E,X)` from FORMAL_CORE_V2.1, built from the closure.
+
+    Returns `(X and certified, Desc_D(X) and certified)`. Neither term calls
+    `affected` or `descendants`, which is the whole point: the shipped
+    assertions used to take their left-hand sides from the same union
+    `affected` returns, so they held whatever the graph operator did.
+    """
+
+    downstream = frozenset(node for root in changed for node in closure[root])
+    return certified & changed, certified & downstream
+
+
 def all_forward_dags():
     possible = tuple((NODES[i], NODES[j]) for i in range(len(NODES)) for j in range(i + 1, len(NODES)))
     for bits in product((0, 1), repeat=len(possible)):
@@ -37,15 +82,44 @@ def all_forward_dags():
 
 
 def check_root_inclusive_safety() -> tuple[int, int]:
+    """Check `affected` against an independently constructed `Aff_D(E,X)`.
+
+    Until 2026-08-22 the two assertions here were `certified & changed <= got`
+    and `certified & descendants(edges, changed) <= got`, where `got` is
+    `affected(certified, edges, changed)` and `affected`'s body is the union of
+    those two expressions. Inlined, that is `A <= A | B` and `B <= A | B`: true
+    of every graph operator. Replacing `descendants` with the empty set, with
+    every node, or with the direct successors each still reported `(960, 2048)`,
+    and nothing bounded `got` from above at all, so full reset -- the operator
+    Corollary 4.1 calls strictly non-minimal -- was accepted too.
+
+    Both counts are unchanged. What changed is that a wrong operator now moves
+    them.
+    """
+
     certified = frozenset(NODES)
     cases = changed_root_occurrences = 0
     for edges in all_forward_dags():
+        closure = transitive_closure(edges)
         for r in range(1, len(NODES) + 1):
             for combo in combinations(NODES, r):
                 changed = frozenset(combo)
                 got = affected(certified, edges, changed)
-                assert certified & changed <= got
-                assert certified & descendants(edges, changed) <= got
+                roots, downstream = specified_affected_terms(certified, closure, changed)
+
+                # Theorem 1, root term: a directly changed certified claim is
+                # reopened. This is the correction V2.1 exists for.
+                assert roots <= got
+
+                # Theorem 1, descendant term: measured against the closure, so an
+                # operator that drops transitivity is rejected here.
+                assert downstream <= got
+
+                # Theorem 4 (uniform graph-only minimality): and nothing outside
+                # the affected set is reopened. Nothing checked this direction
+                # before, which is why full reset passed.
+                assert got <= roots | downstream
+
                 cases += 1
                 changed_root_occurrences += len(certified & changed)
     return cases, changed_root_occurrences

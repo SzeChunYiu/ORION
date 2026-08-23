@@ -1,0 +1,78 @@
+name: orion-qg-qg36-fair-adaptivity-composition
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg36_fair_adaptivity_composition.py'
+      - 'research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json'
+      - 'development/orion-qg-regime-geometry/QG35_PROTECTED_RUN_RECEIPT_2026-08-22.json'
+      - 'development/orion-qg-regime-geometry/QG36_FAIR_ADAPTIVITY_COMPOSITION_PROTOCOL_V1.md'
+      - 'development/orion-qg-regime-geometry/qg36_generic_verify.py'
+      - 'development/orion-qg-regime-geometry/qg36_native_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg36_dual_harness.py'
+      - '.github/workflows/orion-qg-qg36.yml'
+  workflow_dispatch:
+jobs:
+  fair-composition:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Freeze / target presence check
+        id: target
+        shell: bash
+        run: |
+          python -m py_compile research/extensions/orion-qg/qg36_fair_adaptivity_composition.py development/orion-qg-regime-geometry/qg36_generic_verify.py development/orion-qg-regime-geometry/qg36_native_verify.py development/orion-qg-regime-geometry/run_qg36_dual_harness.py
+          if [[ -f research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json && -f development/orion-qg-regime-geometry/QG35_PROTECTED_RUN_RECEIPT_2026-08-22.json ]]; then
+            echo 'present=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'present=false' >> "$GITHUB_OUTPUT"
+            echo 'QG-35 target intentionally absent; comparator remains frozen and inert.'
+          fi
+      - name: Execute receipt-only dual harness
+        if: steps.target.outputs.present == 'true'
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg36_dual_harness.py | tee artifacts/orion-qg-qg36-summary.json
+      - name: Deterministic composition replay
+        if: steps.target.outputs.present == 'true'
+        run: |
+          python research/extensions/orion-qg/qg36_fair_adaptivity_composition.py --output artifacts/orion-qg-qg36-replay.json > artifacts/orion-qg-qg36-replay.log
+          cmp artifacts/orion-qg-qg36-fair-adaptivity-composition.json artifacts/orion-qg-qg36-replay.json
+      - name: Self-consistent QG-35 parent-array tamper must be rejected
+        if: steps.target.outputs.present == 'true'
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from collections import Counter
+          from pathlib import Path
+          p=Path('research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json');d=json.loads(p.read_text());i=next(i for i,x in enumerate(d['class_minima']) if x>0);d['class_minima'][i]+=1;d['worst_case_class_conditioned_fixed_minimum']=max(d['class_minima']);d['minimum_histogram']={str(k):v for k,v in sorted(Counter(d['class_minima']).items())}
+          u={k:v for k,v in d.items() if k!='result_digest'};d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest();Path('artifacts/orion-qg-qg35-parent-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg36_generic_verify.py --input artifacts/orion-qg-qg36-fair-adaptivity-composition.json --qg35 artifacts/orion-qg-qg35-parent-tampered.json --qg35-dual development/orion-qg-regime-geometry/QG35_PROTECTED_RUN_RECEIPT_2026-08-22.json --output artifacts/orion-qg-qg36-tampered-verify.json > artifacts/orion-qg-qg36-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg36-tampered-verify.json').read_text());assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce fair-comparison authority boundary
+        if: steps.target.outputs.present == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('artifacts/orion-qg-qg36-fair-adaptivity-composition.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg36-generic-verification.json').read_text());n=json.loads(Path('artifacts/orion-qg-qg36-native-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg36-dual-harness.json').read_text())
+          assert d['both_accept'] is True;assert g['all_checks'] is True and n['all_checks'] is True;assert s['pointwise_violation_count']==0
+          for x in (s,g,n,d):
+              assert x['COMPILER_OPTIMIZATION_COST_ADVANTAGE'] is False;assert x['HARDWARE_MEASUREMENT_MINIMUM'] is False;assert x['MINIMUM_FULL_FINITE_OPTIMUM_PROBES'] is False;assert x['GENERIC_ADAPTIVE_TESTING_NOVELTY'] is False;assert x['AUTONOMOUS_SKILL_SELECTION_AUTHORITY'] is False;assert x['physical_quantum_advantage_claim'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.target.outputs.present == 'true'
+        with:
+          name: orion-qg-qg36-${{ github.sha }}
+          path: |
+            artifacts/orion-qg-qg36-*.json
+            artifacts/orion-qg-qg36-*.log
+            artifacts/orion-qg-qg35-parent-tampered.json

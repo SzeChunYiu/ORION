@@ -1,0 +1,23 @@
+{
+  "claim_id": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY",
+  "failure_terminal": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_GATE_NOT_MET",
+  "independent_unit": "family_rng_block",
+  "n_independent_units": 32,
+  "negative_witness": "an uninformative or corrupted second signal can make TWO_SIGNAL fail the fixed effect gates",
+  "planning_only_monte_carlo": {
+    "episodes_per_sigma": 200000,
+    "planning_seed": 1001,
+    "sigma_gain_estimates": {
+      "0.2": 0.2545,
+      "0.4": 0.2954,
+      "0.6": 0.2614,
+      "0.8": 0.2144
+    },
+    "used_for_protected_outcome_selection": false
+  },
+  "positive_witness": "with exact signals TWO_SIGNAL distinguishes all four actions while either one-signal arm cannot distinguish a balanced duplicate-coordinate pair",
+  "protocol": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_PROTOCOL_V1.md",
+  "schema": "ORION.P12B.PreflightAttainability.v1",
+  "success_terminal": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED"
+}
+

@@ -1,5 +1,22 @@
 # ORION-P4 Claim Ledger — protected V2
 
+> **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
+> subsequently rewritten so that its claims are about the mechanism rather than
+> about a named system, so that internal status tokens do not appear in its
+> prose, and so that repository paths sit in Data Availability instead of the
+> narrative. The claim wording below is the wording of the manuscript as it stood
+> when this ledger was cut. **No number, evidence path, artifact, authority or
+> status in this table changed in that rewrite**, and none has been edited here:
+> a ledger is a record of what was allowed and on what evidence, so it is
+> annotated rather than restated. Two rows read differently in the rewritten
+> prose without their evidence moving: row 3's subject is now "the governed
+> pipeline" rather than the implementation name, and row 6's `CANNOT_CHECK`
+> selection is now written as leaving a claim "undetermined". Row 6 is still
+> **NOT SUPPORTED**, and the rewritten Results and Limitations sections state
+> more explicitly than the original why — the eligible family is saturated by
+> construction, so the comparison had no resolving power and its null is an
+> inability to discriminate rather than evidence that no difference exists.
+
 | # | Manuscript claim | Evidence | Status |
 |---|---|---|---|
 | 1 | Citation correctness, support, attribution, influence, and scientific authority are distinct coordinates. | Related-work audit; authority gate implementation. | Bounded conceptual/implementation claim |
@@ -29,3 +46,43 @@
 ## Negative claims retained
 
 Paper IV does not claim provenance tracking, attribution evaluation, iterative verification, evidence escalation, contamination detection, evaluator tamper detection, or auditability as standalone novelties. It does not claim H3 superiority, universal evaluator security, performance of the external authors' original systems, or naturalistic scientific fact-checking accuracy.
+
+## Addendum, 2026-08-22 — row 6 and the H3 negative
+
+Annotated, not restated: row 6 and the last sentence of "Negative claims
+retained" are the record of what was allowed on the V2 evidence, and they stay
+as written.
+
+Row 6's **NOT SUPPORTED — H3 null** is correct about the battery it was allowed
+on and was never a comparative finding. `evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json`
+puts a number on that: for the V2 panel, `correct_cannot_check_rate` is 1.0 for
+all eleven systems, `metric_resolution` is `SATURATED`, `declared_ci95` is
+`[0.0, 0.0]` and `verdict_could_have_differed` is `false`. A guard no system in
+the panel can fail has not been passed, and a negative decided on it records the
+instrument.
+
+A battery on which the axis moves now exists and has been run once, under a
+protocol frozen before the construction was repaired:
+`evidence/protected_v3/` (`FREEZE.md`, `IDENTIFIABILITY_V3.json`, `PANEL_V3.json`,
+`RESULT.md`). On it H3 is **SUPPORTED** at 1.0, CI95 `[1.0, 1.0]`: ORION selects
+the correct `CANNOT_CHECK` terminal on 30/30 gold cases with 0/360 false
+promotions, and the H1-selected comparator `provenai-citation-fidelity-influence`
+scores 0/30. **`deepsciverify-abstract-to-full-escalation` scores 15/30, so
+against it the margin is 0.5, not 1.0**; both numbers belong in any sentence
+about H3. Reportable because the exact V3/`CANNOT_CHECK` claim axis clears at
+informedness 0.0 over fourteen probes and thirteen seeds against a declared
+ceiling of 0.0 — the same register recovers the V1 and V2 `CANNOT_CHECK` label at
+1.0. Four registered digest-prefix noise-control residuals on `BLOCK`/`PROMOTE`
+remain disclosed; no whole-register clearance is asserted.
+
+What this does and does not change in the negatives above. `P4.H3` in
+`journal_package/MANIFEST.json` is now SUPPORTED on the V3 artifacts, and the V2
+entry is retained beside it as `P4.H3.V2`. What is claimed is **terminal
+expressiveness under a non-compensatory gate lattice — the ability to report an
+inability** — pre-registered in `FREEZE.md` §5 before the panel ran, and not a
+finer-grained scientific judgement: nine of the ten comparators score 0 because
+they cannot emit `CANNOT_CHECK` at all. So the retained negative "does not claim
+H3 superiority" narrows rather than lifts. **General abstention superiority is
+still not claimed**, and a panel of eleven systems in which ten are two-valued
+cannot separate "better at knowing when it cannot check" from "the only one that
+can say so". No number, evidence path or status on the V2 rows has been edited.

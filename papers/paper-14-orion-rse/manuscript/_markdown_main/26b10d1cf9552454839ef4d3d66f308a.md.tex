@@ -1,0 +1,11 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{P14A — preserved negative mixed benchmark}\markdownRendererInterblockSeparator
+{}P14A used 20 held-out families × 400 cases with independently varied fact rates. Full ORION-RSE produced false promotion \markdownRendererCodeSpan{0.000000}, useful-discovery recall \markdownRendererCodeSpan{1.000000}, disposition accuracy \markdownRendererCodeSpan{1.000000} and history/reopen accuracy \markdownRendererCodeSpan{1.000000}.\markdownRendererInterblockSeparator
+{}The strongest comparator, \markdownRendererCodeSpan{MULTI\markdownRendererUnderscore{}REVIEW}, produced false promotion \markdownRendererCodeSpan{0.018375}, useful-discovery recall \markdownRendererCodeSpan{1.000000}, disposition accuracy \markdownRendererCodeSpan{0.981625} and history/reopen accuracy \markdownRendererCodeSpan{0.505051}.\markdownRendererInterblockSeparator
+{}The frozen protocol required strongest-baseline false promotion ≥0.05 and accuracy separation ≥0.08. Both gates failed. Terminal: \markdownRendererCodeSpan{P14A\markdownRendererUnderscore{}CONTROLLED\markdownRendererUnderscore{}GOVERNANCE\markdownRendererUnderscore{}SUPERIORITY\markdownRendererUnderscore{}GATE\markdownRendererUnderscore{}NOT\markdownRendererUnderscore{}MET}. This terminal is permanent.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Root cause}\markdownRendererInterblockSeparator
+{}After validity, freeze, identifiability, donor and interaction checks, the only difference between \markdownRendererCodeSpan{MULTI\markdownRendererUnderscore{}REVIEW} and full ORION-RSE is live negative history without material new evidence. In the realized random mixture, that effective discriminator occupied only \markdownRendererStrongEmphasis{1.8375\markdownRendererPercentSign{}} of cases, so the maximum possible aggregate accuracy gap was also 1.8375 points. The result identifies a benchmark-design problem: natural/random mixtures may underweight the decision boundary being tested. P14A is not retuned; it motivates a balanced successor.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

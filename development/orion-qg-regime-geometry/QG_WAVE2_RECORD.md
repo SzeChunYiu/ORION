@@ -91,6 +91,50 @@ BSECOND__NOT_R6`).
   an exchange lemma or a B‴). If both close, L5 inherits and
   `C_DP == min(C_D+, f_B′, f_B″)` becomes an all-n theorem.
 
+## QG-9 ladder — R6I INTRINSIC SUPPORT NUMBER κ = 1 (all n), and QG-16's objective cone
+
+Merged `beea3034` (delivery PR #830 of the stacked lanes #786/#789/#792/#796/#809/#813/#815).
+Independently verified before merge: V6's analyzer re-run reproduced `result_digest`
+`587b4b80…d31a4f` bit-identically against its committed protected receipt and again on the
+merged tree; support-4/3/2 analyzers re-run with all gates true; `qg9_support2_generic_verify`
+ACCEPT and `qg16_generic_verify` ACCEPT_SUPPORT; harness suite 132 passed.
+
+| Rung | Terminal |
+|---|---|
+| QG-1 | support ≤ 5 all n |
+| V2 | `QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED` |
+| V3 | `QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED` |
+| V4 | `QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED` |
+| V5 | `QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL` (honest negative; correctly granted no support-1 authority) |
+| **V6** | **`QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED`** — `C_DP = C_cap1` all n; support-0 infeasible ⇒ **κ_R6I = 1 exactly** |
+| QG-16 | `QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED`; `GLOBAL_PHASE_BOUNDARY_SHARPNESS = OPEN` preserved |
+
+**Method finding.** V1–V5 all stalled because their edit grammars were per-block and
+syndrome-preserving. V6 closed the ladder by *relocating* the shared Tag after localizing
+each rank-2 block to one anticommuting core — a whole-system rebuild. The five earlier
+rungs were not wasted: each obstruction census is what showed the residue was structural
+rather than local, motivating a change of proof system instead of a bigger move menu.
+This directly answers, for R6I, the question QG-7's ladder poses for TARE.
+
+**Consequence for the tightness hunts**: "is support-4 tight?" (#797) and "is support-2
+tight?" (#805) are both answered NO by V6 — the ladder settled them two rungs below.
+
+## QG-6 — production syndrome-rank inference, and a sound-but-loose bound
+
+Merged `c5ba39fe` (delivery PR #833 of #759); digest `f065afc8…b023eb` reproduced
+bit-identically, independent generic verifier (no `_DELTA` import) ACCEPT, 10/10 gates.
+Terminal: rank **2** for every R6M frame slot (recovering the earned support-2 theorem
+from production semantics alone), rank **5** for R6I block deletion.
+
+**Cross-lane finding (visible only once QG-6 and QG-9 V6 are both bound):** the
+syndrome-quotient rank for R6I is 5 while its true intrinsic support number is 1. The
+production-syndrome pipeline is therefore **sound but loose** — it certifies that *some*
+finite-support normal form exists, but the rank is not the intrinsic support number.
+Closing that gap needed exactly the whole-system Tag relocation of V6, which no
+per-block syndrome-preserving argument — including the rank argument itself — can
+express. This is the programme's sharpest statement about the reach of its own
+meta-method.
+
 ## QG-15 — THIRD FAMILY TRANSFERRED; BOUNDARY-IS-LOW-ORDER REFUTED AS A UNIVERSAL MOTIF
 
 `QG15_THIRD_FAMILY_RESULTS.json` (protocol frozen pre-outcome, sha256 `765dc86a…4b38b3f`;
@@ -184,9 +228,1269 @@ census equality — ACCEPT, independently re-run by the orchestrator; terminal
   The single remaining link to the all-n theorem `C_DP == min(C_D+, f_B′, f_B″)` is
   the comm-s2 pinned sector.
 
+## R7 — REAL-CHEMISTRY TRADE HUNT EXECUTED: HONEST NEGATIVE, CENSUS EXTENDED TO 16 QUBITS
+
+`QG_R7_REAL_TRADE_HUNT_RESULTS.json` + `QG_R7_EXECUTION_RECORD.md`. Terminal
+`QG3_NO_POSITIVE_PREDICTION_IN_FROZEN_SCAN`; authority
+`ORIONQG_R7_REAL_TRADE_HUNT_EXECUTED__…__NOVELTY_NOT_AUTHORIZED__NOT_R6`; stage-1
+digest `0a62b73a…c8a0f294`. The instrument (#745/#746) had been merged but **never
+run**; this is its first execution.
+
+- **Census: 12 candidates scanned, 12 admitted, 0 skipped; 180 matchings evaluated
+  structurally; `positive_matching_found: false` on every one.** No matching anywhere
+  had `predicted_C_DP < C_R6L`, so `positive_found: false` and `selected: null`.
+- **The result is a prospective confirmation, not merely an absence.** Candidates 1–6
+  are the batches already carrying committed DP ground truth in
+  `QG3_BOUNDARY_PROSPECTIVE_RESULTS.json` (recomputed structurally, same donor-exact
+  verdict). Candidates **7–12 are six genuinely unread 16-qubit batches** — outside the
+  boundary receipt, outside the R6R blob list, beyond wave-1's scan cap of 6. All six
+  admitted; all 90 of their matchings predicted donor-exact. The real-library
+  donor-exact census now spans **180 matchings at 12, 14 and 16 qubits**, with the 16q
+  tier added under DP-forbidden custody. Wave-1's census — that trade regimes require
+  weight-2 structure these DUCC batches do not produce — held prospectively on a qubit
+  tier it had never seen.
+- **Custody intact throughout**: `dp_call_count = 0`, ground truth never opened (with
+  no positive selected, the honest-terminal branch returns before the referee is
+  reached), protected stretched-N2 never a candidate and never read, both lanes
+  independently `NO_POSITIVE` on the same stage-1 digest (a concordant negative, not a
+  disagreement), stage-2 referee double-run byte-identical, and the workflow's own
+  gate-enforcement block re-run verbatim to `ALL_WORKFLOW_GATES_PASS`.
+- **Two plumbing fixes were required and are disclosed verbatim** in the receipt's
+  `execution_notes`, both wall-clock/transport only with no scientific parameter,
+  threshold, cap, gate, ordering, exclusion or predicate touched: the harness's 120 s
+  process clamp (a single 16q candidate measures 213 s, so twelve could never fit) and
+  a bounded retry for a transient 502 from the egress proxy, which never retries
+  401/403/407 and leaves the pinned blob-SHA gate deciding what bytes are admitted.
+  Four run attempts were needed; the artifacts bind the fourth (1,952 s).
+- **Disclosed limitation**: run locally rather than in CI, so the workflow's two
+  lineage assertions (exact protected-head checkout, merge-base against the frozen
+  base) were not re-implemented; the frozen base remains bound inside the stage-1
+  packet and is checked by both lanes.
+- Residual **W5 is discharged** as far as this instrument reaches. The open successor
+  is not "hunt harder" but QG-2's reading: a real trade-regime batch is far likelier
+  under a re-weighted objective (O1-style), where chemistry flips to borrow regime on
+  all 30 receipted rows.
+
+## QG-7d — THE LAST LINK: 12 STATES FROM THE ALL-N THEOREM
+
+`QG7D_LAST_LINK_RESULTS.json` (protocol frozen pre-outcome, sha256 `e9ebe4e6…3c65bd0e`;
+double-run canonical stdout and RESULTS-minus-timing byte-identical, digest
+`cdca51a1…0ff9650c`; independent pure-primitive generic verifier ACCEPT 9/9, re-deriving
+the residue row-for-row; all 10 gates true; terminal `QG7D_PARTIAL__P1_RESIDUE_OPEN`,
+authority `ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6`).
+
+- **A2 (domination) was the winning attack**, as the hostile evidence predicted. Its
+  decisive ingredient is not a bigger move menu but the **MG mirror** of the whole
+  configuration combined with the per-block **target permutation** — a configuration
+  degree of freedom of the committed `r6p.dxx_search` that T4b's per-block menu never
+  exploited. A1's joint exchange and A3's chain induction fold in as special cases and
+  covered geometries (double pinner 136, comm-s2 chain 323 — both of QG-7c's
+  declared-open sub-cases are now covered domains).
+- **P1 domain: 6,341,787,648 states** (27 roles → 378 geometries × 16,777,216), no
+  sampling. **373/378 geometries closed; residue 12 states** (worst local deficit +1)
+  in 5 geometries, serialized verbatim. P1 also **supersedes T4a** as an independent
+  cross-check — and a mid-run discrepancy against T4a is what exposed a real
+  menu-reduction bug (see `RECEIPT_CHURN_HAZARD_2026-08-21.md`).
+- **Census dispatch**: T4b independently re-derived, reproducing the committed
+  536,870,912-domain / 135,604-failure / worst-+2 values verbatim; **all 135,604
+  patterns dispatched CLOSED, 0 open**. The 12 residual states lie *outside* the T4b
+  census entirely — they are a newly located obstruction, not the old one.
+- **Hostile arm**: 229 instances (census realizations, frozen random controls, and
+  P1-residue-extremal instances at n = 2/3/4) → **0 gap rows**, full referee coverage,
+  0 sandwich failures. Every realized residue state shows gap 0. No fifth configuration.
+- **Chain status**: steps 1–6 and 8–11 of the assembled `proof_audit` carry
+  (R6S → MG/G2 → G3 gauge → L1/L2/Lemma-E/L4a → M1 → T1/T2 → P1 → induction → T3 → T5 →
+  sandwich). Step 7 is closed on 6,341,787,636 of 6,341,787,648 states. **The TARE all-n
+  classification theorem is twelve states from complete.**
+- **Why those twelve resist**: at each, the Δ ≤ 0 optimum is itself comm-s2 on a
+  *different* block, so the comm-s2 count does not strictly decrease — the frozen A3
+  induction cannot apply. The honest successor is a composition/fixpoint argument, which
+  is exactly the FAILED_DECOMPOSITION move the reopen adjudication independently derived
+  for this negative.
+
+## QG-21 — REAL CHEMISTRY UNDER A FAULT-TOLERANT OBJECTIVE: A TRUE IMPROVEMENT THAT IS NOT A WIN
+
+`QG21_FT_CHEMISTRY_RESULTS.json` (protocol frozen pre-outcome, sha256 `88c2e5fa…7fc9`;
+13/13 gates; double-run byte-identical incl. the stage-1 predictions file; independent
+verifier **ACCEPT**, re-run by the orchestrator). Terminal
+`QG21_REAL_CHEMISTRY_STRICTLY_IMPROVED_UNDER_FT_OBJECTIVE` — and the qualification is the
+result.
+
+**Q1 refuted the premise the lane was launched on.** The lane was commissioned on the
+reasoning that QG-2's O1 shows chemistry flipping to trade regimes under a T-weighted
+objective, so a better FT compilation must exist. Deriving the cost model from the
+committed circuit protocols instead of adopting O1 by fiat shows **O1 is not derivable
+from fault-tolerant accounting**: O1 charges T per *support unit of a frame branch*,
+while the physics charges T per *rotation*, and a rotation's T cost is **independent of
+its axis weight**. O1 is retained only as a control point, flagged
+`derivable_from_ft_accounting: false`.
+
+**The structural consequence bounds the entire programme's applied ceiling.** Every
+compilation in this grammar carries exactly **9 arbitrary-angle rotations**
+(`ROTATIONS_R6M == 9`, verified in-run) — one per exponential, `2m−1 = 3` per block —
+and **no member of the family can change that number**. Frames, Tags and Restores are
+Clifford. So TARE-family regime geometry can optimize Clifford two-qubit gates and
+*nothing else*; the T-count, which dominates fault-tolerant cost, is fixed by the grammar
+before any optimization begins. That is a limit on what this line of work could ever
+deliver for FT compilation, and it was not previously stated anywhere.
+
+**The lane also disclosed, in advance, that its primary result was entailed.** A frozen
+reduction lemma notes that within this family θ_FT differences equal the committed
+objective's differences plus a constant `9κ_T` — so θ_FT's outcome on the receipted rows
+follows from the R6Q receipt rather than being discovered. Written into the protocol
+*before* the run.
+
+**Results on 90 real DUCC matchings** (30 receipted rows + 60 fresh QG-3 track-A Benzene
+rows), predictions digest-stamped `d0332530…` with the referee **structurally stubbed**
+during stage 1 (`referee_calls_during_stage1: 0`):
+
+| objective | FT-derivable | donor-exact | strictly improved | Δmax | predicted == referee |
+|---|---|---|---|---|---|
+| **θ_FT (4,2,2,1)** | yes | **90/90** | **0** | 0 | 90/90 |
+| S1 (4,2,4,2) | yes | 72/90 | **18** | 2 | **90/90** |
+| S2, S3 | yes | 90/90 | 0 | 0 | 90/90 |
+| O1 (control) | **no** | 0/90 | 90 | 13 | **0/90** |
+
+The 18 S1 improvements are real: every one predicted exactly before ground truth opened,
+Δ = 2 on all, mechanism the committed **borrow** trade (a weight-2 central-branch frame
+costing 2 buying two Restore units worth 4), with all 108 improved compilations
+serialized verbatim as usable artifacts. The O1 control is instructive in the opposite
+direction — 90 improvements but `predicted == referee` on **0/90**, because O1's optima
+lie outside the committed two-trade families entirely, exactly as QG-2's
+`identity_two_trade_count: 0` records.
+
+**Q3, stated honestly**: Δ = 2 two-qubit Clifford gates, median 10% of the donor's
+Clifford cost — against a compilation whose FT cost is dominated by ~270–900 T gates the
+grammar cannot touch. **Well under 1% of fault-tolerant cost. It is not a
+fault-tolerant win.** And under the primary, properly-derived θ_FT there is no
+improvement at all: donor-exactness survives on all 90 rows, extending the programme's
+real-library donor-exact census by 60 fresh rows.
+
+**Reading**: the applicability question this lane was built to settle is now settled, in
+the direction the evidence pointed rather than the direction the hypothesis hoped. The
+machinery does find real, prospectively-predicted improvements on real chemistry — and
+they are negligible where it counts, for a structural reason (fixed rotation count) that
+no further lane in this family can overcome.
+
+## QG-15c — THE VOCABULARY: FLOOR 43 → 1, AND THE COLLISION DIAGNOSED
+
+`QG15C_VOCABULARY_RESULTS.json` (protocol frozen pre-outcome, sha256 `75481fb4…89feb`;
+double-run byte-identical, `result_digest` `45f0797d…0adae7`; 10/10 gates; independent
+verifier **ACCEPT**, 27/27 checks, re-run by the orchestrator). Terminal
+`QG15C_FLOOR_PERSISTS__COLLISIONS_CHARACTERIZED` — an honest negative, and a near-miss:
+the irreducible floor drops **43 → 1** and mixed cells **12 → 1**.
+
+- **Q1 diagnosed the collision precisely.** Rebuilt QG-15b's 12 mixed cells from
+  primitives and matched them verbatim. In **all 12**, the minimal distinguishing pair
+  differs in the **ordered per-step cost profile of the donor schedule**, while agreeing
+  on `C_D` and every aggregate counter. V1 was a *bag of donor events plus a total*, but
+  donor suboptimality is a **per-step** property: a step paying a Y-correction *and* a
+  sign-correction on one pivot costs 4 where the referee pays 2. V1 cannot see whether
+  two events landed on one step or two. Sharper still — in cells 0, 2, 8 the cost
+  *multisets agree and only the order differs* (`[6,0,4]` vs `[0,6,4]`), so
+  order-insensitive summaries are insufficient too.
+- **Q2**: the frozen V2 vocabulary (V1's 13 features verbatim + 20 schedule/path-aware
+  ones) cuts the domain from 243 cells / 12 mixed / floor 43 to **1043 cells / 1 mixed /
+  floor 1**. Admissibility is enforced *structurally*, not asserted: the referee entry
+  points are replaced by a raising stub for the whole feature-computation phase (gate G4,
+  never triggered) — so no feature can be secretly circular.
+- **Q3 — the surviving collision, and a refusal.** One n=3 pair survives (both `C_D=11`,
+  gap 2). It has **identical donor step-cost profiles `[7,4,0]`**, so the entire
+  schedule-shape block is blind to it, unlike all 12 V1 collisions; same tensor-factor
+  profile, same weight enumerator, same `C_E3`, not permutation-related. The frozen
+  battery *did* find a discriminant V2 lacks — the **negative-sign census** (3 vs 1) —
+  and the lane **deliberately did not add it**, because adding a feature after seeing
+  which one separates the surviving pair is exactly the post-hoc tuning the freeze
+  discipline exists to prevent. No impossibility is claimed; the obligation a real
+  impossibility theorem would carry is stated instead.
+- **Held-out n=4 (untouched, stage digest stamped first)**: the cell-lookup rule is
+  refuted 32/120 — *instructively*, since **120/120 V2 vectors are unseen at n=4**, so a
+  cell table trained at n≤3 transfers not at all (`C_D`, `LB`, `C_E3` leave the n≤3
+  grid). The lattice predicate is refuted 3/120 — **the best held-out number in the
+  series** against QG-15's baselines of 31 / 12 / 23 / 20, and still not exact.
+
+**Reading**: feature-determination for the StabPrep boundary is *nearly* restored by
+making the donor's schedule shape visible, which confirms Q1's diagnosis was right about
+the mechanism. The residue is a single pair that the schedule-shape lens cannot see at
+all — so the open question is no longer "is the vocabulary too coarse" but "what class
+of features could separate a pair with identical schedule geometry", which is the precise
+form an impossibility result would have to address.
+
+## QG-17b — THE TIE LOCUS: A NEGATIVE CONVERTED, AND TWO BOUNDARY FACES THE CERTIFICATE MISSES
+
+`QG17B_TIE_LOCUS_RESULTS.json` (protocol frozen pre-outcome, sha256 `27ede632…54f889`;
+double-run byte-identical; 17/17 gates; independent verifier `ACCEPT_EXACT_PHASE_BOUNDARY`
+with `failed: []`, re-run by the orchestrator). Terminal
+`QG17B_EXACT_PHASE_BOUNDARY_LOCATED`. The annotation
+`QG17B_QG16_FACET_LOCALLY_SHARP_BY_TIE_LOCUS` was **not** earned — see Q3.
+
+**The conversion worked.** The reopen adjudication read QG-17's exact-zero tie on 4,896
+of 211,248 candidates at `O_nc_out` as the signature of sitting *on* the phase boundary
+rather than of narrowly missing a witness, and derived the move: solve for the tie locus.
+Executed:
+
+- **Q1** — the 4,896 ties reproduce verbatim with **zero degenerate (d = 0)** ties and
+  collapse to exactly **two** hyperplanes: `t_c + t_nc = t_tag + 2·t_r` (2,456 ties) and
+  `t_c + t_nc = 3·t_r` (2,440), each realized by a single raw `d`. `O_nc_out =
+  (3/2, 3/2, 1, 1)` lies **exactly on both**, verified over the integers for all 4,896.
+- **Q2** — both hyperplanes sign-flip, completely: on the minus side **every** tying
+  candidate becomes a strict support-2 winner (4,896 crossing witnesses at an exact
+  rational offset of 1/128); on the plus side, zero. Since `C_DP ≤ C2 < C_cap1`, these are
+  the **first machine-checked points in the programme where support 1 provably fails**.
+  Representative: candidate 1309 at θ = (191,191,129,130)/128 gives `C2 = 511/64` against
+  `C_cap1 = 259/32`, gap 7/64.
+- **Q3 — the more interesting branch, and the reason the sharpness annotation was
+  refused.** Neither tie-hyperplane is proportional to any QG-16 facet normal; both are
+  classified `NEW_TRUE_BOUNDARY_FACE_NOT_IN_QG16_CERTIFICATE`. **The true boundary has two
+  faces QG-16's certificate does not describe.** The near-misses are instructive:
+  `[1,1,0,-3]` against facet `[1,1,0,-5]`, and `[1,1,-1,-2]` against facet `[1,1,-2,-2]`
+  — same direction in the frame coordinates, differing in the Restore/Tag trade. So
+  QG-16 facet local sharpness remains **undemonstrated**, and the certificate is now known
+  to be incomplete in a located, quantified way rather than merely unproven.
+
+Anti-overclaim intact and verified: `global_phase_boundary_sharpness: OPEN`,
+`global_phase_boundary_complete: false`, `qg16_certificate_refuted: false`,
+`support2_required_anywhere_else_claimed: false`. The lane also passes a **tamper test** —
+injecting a false gap and a phantom witness index flips the verifier to REJECT on three
+independent checks.
+
+## QG-7e — THE TARE ALL-N CLASSIFICATION THEOREM IS COMPLETE
+
+`QG7E_TWELVE_STATES_RESULTS.json` (protocol frozen pre-outcome, sha256 `dee3ff16…fb62`,
+with two pre-outcome corrections disclosed inside it; double-run byte-identical, digest
+`099359e4…4eb3642`, 334.4 s / 331.7 s; **all 12 gates true**; independent pure-primitive
+verifier ACCEPT with `failed: []`, re-run by the orchestrator). Terminal
+`QG7E_ALL_N_CLASSIFICATION_THEOREM_COMPLETE`; authority
+`ORIONQG_QG7E_ALL_N_CLASSIFICATION_THEOREM_COMPLETE__COMM_S2_SECTOR_CLOSED_BY_PER_BLOCK_
+TARGET_PERMUTATION_DOMINATION__NOT_R6`.
+
+**`C_DP == min(C_D+, f_B′, f_B″)` now holds for all n.** With R6S (`C_DP == C_D++`, all n)
+and QG-18 (κ_TARE = 2, two-sided), unit-cost TARE becomes the field's first **fully
+closed regime-geometry object**: a provably exhaustive four-configuration trade basis, an
+all-n support bound, an exact intrinsic support number, an all-n cost envelope, an exact
+decidable predicate, and a certified forecaster — every link machine-checked and
+receipt-named in a 12-step `proof_audit`.
+
+**What actually closed it.** QG-7d's own protocol declares the **per-block target
+permutation** a configuration degree of freedom of `r6p.dxx_search`, and
+`r6p._block_arrays` enumerates it independently per block. QG-7d's implemented P1 menu
+realized only the **global MG mirror** — all three blocks swapped together, `p ∈ {000,
+111}` of the eight subsets. Admitting all eight closes the residue: **378/378 geometries,
+residue 0 over the complete 6,341,787,648-state domain**, covering both of QG-7c's
+declared-open sub-cases (double-pinner 136, comm-s2-chain 323).
+
+**The control that makes this credible** (gate G7): with the enlargement switched off,
+the menu reproduces QG-7d's 12 residual states **row-for-row over 83,886,080 states, 0
+mismatches** — so the *enlargement*, not an implementation difference between the two
+lanes, is what closed them. The orchestrator's independent verifier reproduces both
+sides: residue 0 enlarged, residue 12 un-enlarged. Gate G8 binds the permutation itself
+on 5,340,816 rows with 0 mismatches plus an operational n=2 panel against `dxx_search`.
+
+**E1 refuted its own premise, and this falsifies a programme prediction.** The frozen E1
+attack assumed a Δ ≤ 0 replacement always exists and merely relocates comm-s2 to another
+block. Exact enumeration shows **10 of the 12 states admit no Δ ≤ 0 alternative at all**
+(empty replacement set, empty orbit); only 2 have images, all re-entrant. So the residue
+was a **local-optimality failure, not a descent failure**, and no re-choice of descent
+measure could ever have repaired it.
+
+That matters beyond this lane. The reopen adjudication classified N1 as
+`FAILED_DECOMPOSITION` and predicted the fix would be to *change the decomposition, not
+enlarge the move menu* — explicitly citing the "enlarging move menus failed repeatedly;
+redefinition succeeded repeatedly" method finding. **The prediction was wrong.** What
+closed the residue was precisely a move-menu enlargement (admitting the full permutation
+subgroup), and the decomposition-change attack was refuted by exact enumeration. The
+method finding is therefore not a law: a negative *can* be an insufficient search, and
+here it was — specifically, a menu that failed to realize a degree of freedom its own
+protocol had already declared. Recorded as a falsified prediction rather than quietly
+dropped; the reopen adjudication's terminal stands as issued, with this outcome scored
+against it.
+
+## QG-22 — NO SEPARATION FOR UNIT-COST TARE, AND THE COLLAPSE AGENT IS NOT WHAT WE THOUGHT
+
+`QG22_COMPLEXITY_SEPARATION_RESULTS.json` (protocol frozen pre-outcome, sha256
+`1b91a106…b170`; result digest `109b1db8…fa54`; 10/10 gates; double-run byte-identical;
+independent verifier **ACCEPT**, 29/29 checks, 0 failed, re-run by the orchestrator;
+runtime 536.97 s under a 1,500 s cap, timing excluded from the digest by gate G9).
+Terminal `QG22_PARTIAL__HARDNESS_LOCATED_ELSEWHERE`. Authority carries NOT_R6 and
+`donor_novelty_credit: false`.
+
+**The lane refused the terminal this programme expected it to reach.** Among the frozen
+terminals was `QG22_NO_SEPARATION__CLASSIFICATION_COLLAPSES_THE_PROBLEM`. The lane
+declined it and recorded why, verbatim: *"its name asserts a collapse agent this lane's
+own measurements contradict."* Selecting it *"would have recorded a false attribution;
+the PARTIAL terminal records the true one."*
+
+**The gap runs the wrong way.** Two proven counting arguments, each corroborated by a
+wall-clock ladder with reported fits, residuals and domain:
+
+| object | cost | status |
+| --- | --- | --- |
+| unrestricted syndrome DP referee (`r6m._solve_config`) | **Θ(n)** | PROVEN |
+| QG-7e certified closed form `min(C_D+, f_B′, f_B″)` | **O(n⁶)**, dominated by `f_B″` | PROVEN |
+| naive configuration enumeration | **Θ(A^{Ln}) = Θ(4^{7n})** | PROVEN (closed-form count, checked against direct enumeration for n ≤ 3) |
+| committed family search `r6p.dxx_search` | **O(n·4^{3n})** | PROVEN |
+
+*"The referee the closed form was meant to replace is asymptotically cheaper than the
+closed form."* So **Q2-A answers NO**: `C_DP` is not polynomial *because of* QG-7e. The
+syndrome DP was already affine in n before QG-7e existed. The exponential collapse that
+does exist runs from the naive Θ(4^{7n}) enumeration down to the Θ(n) DP — and it is
+effected by **the fixed 9-bit conserved syndrome, QG-6's meta-theorem object**, not by
+the classification.
+
+**This corrects, not extends, the provisional reading committed in `5912f2c9`.** That
+commit message said QG-7e's closed form "collapses the very hardness a separation would
+have claimed." It does not. *"The programme's classification is not what removed the
+hardness — the fixed-dimension conserved syndrome already had."* The closed form's value
+is that it is a theorem about the shape of the optimum for all n, and a human-readable
+optimum — **not** that it is a faster optimizer. The wave-2 record now states that
+attribution and the provisional one is superseded.
+
+**Q2-B closes the escape hatch.** QG-2 records that the two-trade identity *fails* under
+O1 (4,484 identity-two-trade failures), so under O1 there is no closed form. Hardness
+does not reappear there: O1 re-weights the local cost table but leaves the 9-bit
+acceptance syndrome untouched, so the same DP composes and the exact O1 optimum is
+computed in the same affine-in-n time. The receipt records the O1 DP optima across
+n ∈ {1,2,3,4,6,8,12,16} — 7, 10, 18, 25, 37, 47, 96, 121 — growing affinely, with no
+regime of super-polynomial cost anywhere on the ladder. **"No closed form" does not
+imply "no polynomial exact algorithm."**
+
+**Q2-C**: deciding optimality is Θ(n), the same order as computing the optimum — one
+objective evaluation plus one DP call. No verification/computation asymmetry to exploit.
+
+**The defensible general statement (Q3), quantifiers explicit.** Let F be a compilation
+family whose configuration space factorizes over n positions with a per-position local
+alphabet of fixed size A, whose feasibility predicate is a **fixed-dimension conserved
+syndrome** (a group homomorphism into a fixed finite abelian group of order 2^D, D
+independent of n), and whose objective is a **sum of per-position local terms**. Then the
+exact optimum is computable in time `O(C_ext · 2^{2D} · n + n·A^L)` — **linear in n** — by
+min-plus DP over the syndrome; deciding optimality costs the same order; and naive
+enumeration costs Θ(A^{Ln}). And the sentence that most constrains this programme's own
+claims:
+
+> **An all-n finite-support classification of the optimum — such as QG-7e's
+> `C_DP == min(C_D+, f_B′, f_B″)` — is NEITHER NECESSARY NOR SUFFICIENT for this
+> collapse**, and for TARE it is strictly more expensive to evaluate (O(n⁶)) than the DP
+> it characterizes (Θ(n)).
+
+Four stated failure modes for that statement are registered in the receipt, each with the
+mechanism that kills the DP argument: a feasibility certificate that grows with n
+(StabPrep, state space 2^{Θ(n²)}); a non-local objective (rotation count, depth); the
+alphabet/arity as input rather than frozen constant (at best XP in block count K); a
+configuration space that does not factorize over positions (the D3 phase-ordering
+setting, where optimal ordering is undecidable — Touati et al. 2006).
+
+**What the terminal does NOT assert, in its own words.** *"The word 'hardness' in the
+frozen terminal name is a lane label, not a result. No reduction is supplied, no lower
+bound is proved, and nothing here says any problem lies outside P. Every exponential
+quantity in this receipt is the work of an algorithm we wrote, never a property of a
+problem."* `lower_bound_supplied: false`, `reduction_supplied: false`,
+`complexity_class_claim: none`. The located candidate — families without a conserved
+syndrome, with StabPrep as this programme's own instance — is **CONJECTURE**, and is
+labelled as such in the Q3 component table alongside the general-F statement (also
+CONJECTURE: the DP argument transfers verbatim as standard donor mathematics, but this
+lane executed only TARE).
+
+**A sharp engineering finding falls out of Q1.** QG-6's committed corollary
+`Σ_{k≤d} C(n,k)·A^k = O(n^d A^d)` bounds the **support-≤d certified search space** per
+structural generator (d=2, A=4 for TARE) — i.e. O(n²·16) frame-pair candidates per block
+would suffice. The committed `r6p.dxx_search` does **not** realize that corollary: it
+reaches the same D++ optimum through an A^{2n}-cell don't-care pattern space and an
+A^n − 1 Tag sweep, O(n·A^{3n}) cells. So *"the exponential behaviour measured for
+`r6p.dxx_search` is an artefact of that implementation, exactly as the exponential
+behaviour of the naive configuration referee is an artefact of that referee. Neither is
+evidence about the difficulty of the problem. This is the single sharpest reason why no
+separation can be read off our own runtimes."* Registered as residual **W9 — realize
+QG-6's support-capped corollary in the committed family search**; it is a projected
+exponential-to-polynomial implementation win with a committed bound already proved, not a
+new theorem.
+
+**Why this lane is a positive result despite a PARTIAL terminal.** It removes a claim the
+programme was one step from making (a classification-driven complexity separation),
+supplies the correct attribution with proven bounds on both sides, closes the O1 escape
+hatch that would have rescued the claim, and converts a vague intuition about "where the
+hardness lives" into a **decidable structural criterion** — fixed-dimension conserved
+syndrome, factorizing configuration space, local-sum objective — with four named failure
+modes and one in-programme instance (StabPrep) on the far side of it. That criterion, not
+the separation, is the transferable object.
+
+## QG-19 — THE HOSTILE NOVELTY LANE: THE HEADLINE CRITERION IS A 1978 CODING-THEORY THEOREM
+
+`QG19_HOSTILE_NOVELTY_RESULTS.json`, `QG19_QUERY_LOG.md`, `QG_EXTERNAL_DONOR_REGISTER_V2.md`
+(protocol frozen pre-search, commit `aaf0987a`; 52 of 90 queries spent; all three query
+families run for all six claims; 8/8 gates). Terminal
+`QG19_SUBSUMPTION_FOUND__NOVELTY_REDUCED` — **the success branch**, since this lane was
+scored on how much novelty it removes.
+
+| claim | verdict | covering source |
+| --- | --- | --- |
+| **C-A** QG-22's Q3 structural criterion | **SUBSUMED** | Wolf, *Efficient Maximum Likelihood Decoding of Linear Block Codes Using a Trellis*, IEEE Trans. IT 24(1):76–80, **1978** |
+| **C-B** intrinsic support number κ | INSTANCE_OF_KNOWN_GENERAL | Aliev, De Loera, Eisenbrand, Oertel, Weismantel, *The Support of Integer Optimal Solutions*, SIAM J. Optim. 28(3), 2018 |
+| **C-C** five-component regime-geometry template | NEAREST_MISS | egg / equality saturation (Willsey et al. 2021; Tate et al. 2011) |
+| **C-D** κ ≠ syndrome rank under rewrite | INSTANCE_OF_KNOWN_GENERAL | Vanderbeck & Wolsey, reformulation/decomposition of integer programs |
+| **C-E** negative-history typology | INSTANCE_OF_KNOWN_GENERAL | Maheshwari et al., negative and null results in eScience, 2017 |
+| **C-F** digest custody ≠ correctness | **SUBSUMED** | Meyman, *Governance Laundering: A Taxonomy of Failure Modes in AI Compliance Architectures*, SSRN 6293818, **Feb 2026** |
+
+**C-A, stated without softening.** The criterion QG-22 produced — factorizing configuration
+space, feasibility predicate a homomorphism into a fixed finite abelian group, objective a
+sum of per-position local terms, therefore exact optimum linear in n by min-plus DP — is
+the **syndrome trellis**. Wolf 1978: *"soft decision maximum likelihood decoding of any
+(n,k) linear block code over GF(q) can be accomplished using the Viterbi algorithm applied
+to a trellis with no more than q^{n−k} states."* The DP state **is** the partial syndrome;
+the local terms **are** the per-symbol soft-decision metrics; our
+`O(C_ext·2^{2D}·n + n·A^L)` is that bound with `2^D = q^{n−k}` held fixed, i.e. the
+constant-redundancy specialization where Wolf's state count stops growing. Wolf states it
+for an **arbitrary** linear code, not one hand-built family.
+
+It is available three further times at greater generality, all predating us: the
+generalized distributive law over a commutative semiring (Aji & McEliece 2000); bucket
+elimination at `O(n·exp(w*))` (Dechter 1999) and the bounded-treewidth metatheorems; and
+Gomory's group relaxation, solved as a shortest path over a finite abelian group
+(1965/68). **The programme's headline transferable object has a parent, and the parent is
+older than the programme by forty-eight years.**
+
+**C-F is subsumed including the part the code was written to enforce.** The
+artifact-is-not-evidence failure is a named, taxonomized family — Meyman's *governance
+laundering*, with a **`custody gaps`** subcategory and the phrase **`replay-insufficient
+records`** — published **six months before** our 2026-08-21 finding. The typed-grade
+mechanism that refuses to let weak evidence be presented as strong is the operating design
+of ACM artifact badging, and *"Reproducible research can still be wrong"* is a 2015 PNAS
+title (Leek & Peng). The same phenomenon has a second name in the AI-research-pipeline
+setting: **replication laundering** (arXiv 2606.04220).
+
+**Gate G4 — did the lane merely report its priors?** No, and the receipt argues it against
+itself. C-A's HIGH-risk annotation was borne out, but *the killing source came from a donor
+field the frozen attack vector never named*: the protocol named algebraic DP, treewidth and
+FPT, and the kill came from trellis decoding. C-F was expected to fall to SLSA/in-toto or
+proof-carrying code and was instead subsumed by an AI-governance taxonomy nobody
+predicted. C-C, for which the protocol named superoptimization and equality saturation,
+came back **weaker** than expected. The lane over-predicted the relevance of its own named
+donor fields and under-predicted C-F.
+
+**Gate G5 — three contradicting sources kept, not discarded.** The NP-hardness results for
+circuit optimization (2310.05958, 2510.16420), which contradict any reading of C-A as a
+statement about compilation in general; and **Bravyi, Shaydulin, Hu & Maslov,
+arXiv:2105.02291**, which is simultaneously a hostile datum against the programme's
+donor-exact picture *and* a prior instance of C-A's own method inside our own domain —
+its symbolic peephole procedure works by *"optimally recompiling the projected subcircuit
+via dynamic programming."*
+
+### Orchestrator re-verification, and the one number that did not survive it
+
+Because C-A's subsumption removes the campaign's headline object, I re-ran the decisive
+retrievals independently rather than taking the lane's word:
+
+- **Wolf 1978 — CONFIRMED.** An independent search returns the bound sentence verbatim,
+  plus a second corroborating statement of the state count as `q^{min(K,N−K)}`.
+- **Aliev et al. 2018 — CONFIRMED.** SIAM J. Optim. 28:2152–2157, support bound
+  `2m·log(2√m‖A‖_∞)`, objective-independent, with the nearly matching asymptotic lower
+  bound the lane cited. (arXiv 1712.08923, DOI 10.1137/17M1162792.)
+- **Meyman 2026 — CONFIRMED, including the phrase.** SSRN 6293818, 23 Feb 2026, seven
+  failure-mode families with `custody gaps` among them; `replay-insufficient records`
+  confirmed on a second targeted search.
+- **Bravyi et al. 2105.02291 — PARTIALLY CONFIRMED, and the discrepancy is recorded.**
+  The paper, its authors and the dynamic-programming peephole method are confirmed, and
+  the direction of the hostile datum holds: the independent source states the
+  Aaronson–Gottesman algorithm produces **up to 8× more CZ gates** than their procedure.
+  The lane's specific figure — *64.7% average two-qubit gate reduction* — **was not
+  reproduced by independent search** and is therefore carried as **unconfirmed at the
+  number**, confirmed in direction. It is not cited as a quantitative datum anywhere.
+
+**The retrieval limitation, stated because it bounds every verdict above.** The egress
+proxy refused direct document retrieval on all 11 attempts (arXiv, Wikipedia, ACM, Springer,
+Semantic Scholar and others; the proxy's own status endpoint records the 403 CONNECT
+denials). **Every passage in this lane is search-tool text, not a document read**, and each
+source carries `document_level_verification: false`. My re-verification above has the same
+limitation — it is a second independent retrieval, not a reading of the primary sources.
+The lane logged this as a protocol objection and executed anyway: §5's terminals have no
+branch for *search works, fetch doesn't*, and G2 as written cannot be cleanly satisfied in
+that state. A successor protocol must define a `PARTIAL_NETWORK` terminal or state
+explicitly that search-snippet text satisfies G2.
+
+### Required corrections, and the one this record makes immediately
+
+The receipt issues seven required actions. They are obligations on how every future
+statement of these claims must be phrased, and they are binding on the closure packet and
+the paper series:
+
+1. **C-A** must be presented as the trellis/syndrome instance of maximum-likelihood
+   decoding, citing Wolf 1978 as the covering theorem and Aji–McEliece, Dechter and the
+   Gomory group relaxation as the general frameworks. The word *criterion* must not imply
+   the criterion was identified here.
+2. **C-B** — κ must be described as the exact value, for two specific families, of the
+   studied quantity "smallest support size of an optimal solution", not as a new kind of
+   two-sided family invariant.
+3. **C-C** — cite equality saturation wherever a complete trade set plus a local cost model
+   plus an optimality certificate is described, and the dominance-rule literature wherever
+   a donor-optimal region with a sufficiency bound is described.
+4. **C-D** — present the rank/κ mismatch as formulation-dependent bound strength; drop any
+   framing in which the programme discovered the phenomenon.
+5. **C-E** — cite Maheshwari et al. 2017 wherever the negative typology is introduced.
+6. **C-F** — cite Meyman 2026, replication laundering, Leek & Peng 2015, the SLSA scope
+   statements and ACM artifact badging wherever the corroboration-strength type is
+   motivated. **`corroboration.py`'s docstring narrated the finding as discovered on
+   2026-08-21; that has been corrected in this branch to name the prior art.** The lane
+   correctly refused to touch the file itself, being outside its declared write set.
+7. Register **V2 supersedes V1** as the citation source; V1 retained unmodified.
+
+### What survives, honestly
+
+Not much of the novelty, and that was the point of running the lane. What survives is
+**exact values on named families under a frozen cost model, machine-checked**: κ_R6I = 1,
+κ_TARE = 2, the all-n TARE classification `C_DP == min(C_D+, f_B′, f_B″)`, the exact tie
+locus and its two hyperplanes, the StabPrep feature-determination floor. Those are
+measurements, not frameworks, and no source found here computes them. The frameworks
+around them are borrowed, and the register now says from whom.
+
+Two campaign-level lessons the programme has to keep:
+
+- **Every novelty freeze authored without literature access was wrong in the same
+  direction.** Six claims went in; none came out with its novelty intact. The correct
+  default is that a clean structural statement about DP over a bounded state has a parent
+  in coding theory, constraint satisfaction or integer programming, and the burden is on
+  us to find it *before* the freeze, not after.
+- **The lane that removes your best result is worth more than the lane that produces it.**
+  C-A took one lane to derive and one lane to demolish, and the demolition is the item
+  that makes the rest of the programme citable rather than embarrassing.
+
+## QG-10 — CERTIFIED INTERVAL GEOMETRY: DECIDING OPTIMALITY WITHOUT A REFEREE, AND A THIRD PREMISE REFUTED
+
+`QG10_INTERVAL_GEOMETRY_RESULTS.json` (protocol frozen before the analyzer was written,
+sha256 `678357bf…dd1b`; result digest `16365a0d…45e2`; file sha256 `61768d29…eb61`; 13/13
+gates; two runs 501.7 s / 460.1 s under a 1,500 s cap, receipt **byte-identical** — timing
+is on stderr only, precisely so the receipt is byte-stable). Terminal
+`QG10_CERTIFIED_INTERVAL_GEOMETRY_ESTABLISHED`, authority NOT_R6.
+
+**The object.** A two-sided interval `L ≤ C_DP ≤ U` computed **without calling the
+referee**, so that on the rows where `L == U` the optimum is *certified*, not measured.
+
+* **U — proven by exhibition, no theorem and no referee.** `U = min(U_W1, U_B′, U_B″)`;
+  every member minimizes over *accepted* configurations and returns a witness, replayed
+  per instance through `r6s.config_labels` + `r6s.config_cost` at the instance's full n:
+  **48,309/48,309 replays exact, 0 failures** (gate G7).
+* **L = max(L_TRIV, L_COL, L_SEP), every component PROVEN**, each on a complete domain:
+  `L_TRIV = 2`; `L_COL = 2 + W − 18 − 2·M_free` from a per-column inequality checked over
+  the **complete 32,768**-case domain (0 violations) plus a cost identity over a
+  **complete 536,870,912**-case local domain and 279,936 refereed n=1 configurations;
+  `L_SEP` the exact optimum under the F₂-linear syndrome projection `π: F₂⁹ → F₂⁶`, with π
+  verified linear on all 512×512 pairs and `RED = π(FULL)` on the complete 16,384-option
+  domain, kernel rank 3.
+
+**`L_SEP` has a clean physical reading, and it is the lane's best structural sentence**:
+it is the cost the instance would have **if the three blocks were not required to share one
+Tag label orientation**. So `C_DP − L_SEP` is *exactly the price of cross-block label
+consistency*. It binds on 47,805 of 48,309 rows (L_TRIV on the other 504); L_COL never
+binds — recorded rather than pruned, because a component that never binds is a finding
+about the geometry, not dead weight.
+
+**Tightness geometry.** 29,174 / 48,309 rows decided (**60.4 %**); gaps are 0, 1 or 2 and
+**never larger**. Tightness *rises* with n — 0.598 at n=2 (complete weight-one panel,
+46,656 rows) against 0.900 at n=24 and n=96 — so the hard instances are the small crowded
+ones, not the large ones. Every `gap > 0` row is reported UNDECIDED and carries no regime
+label. The structural characterization is labelled **EVIDENCED**, not a theorem.
+
+**The sandwich holds.** `L ≤ C_DP ≤ U` asserted on 48,285 refereed instances: **0
+failures, 0 lower-bound violations, 0 interval inversions**, with 1,377 referee-binding
+checks against the committed `max_r6o.dp_cost_frozen_configs` at 0 mismatches.
+
+### The premise correction — and it independently corroborates QG-22
+
+The charter's premise was *"no exact referee at large n for TARE."* The lane recorded it
+**false for this grammar**, machine-derived: the committed referee is a nine-bit XOR DP
+that is **linear in n** (recorded shape, measured at n=384). What is actually capped is the
+committed **family** enumerator `r6p.dxx_search` — `EXPECTED_PAIR_COUNTS` keys `[1,2,3,4]`,
+`4^{2n}` tables, `KeyError: 5` at n=5, captured verbatim.
+
+This is the **third lane in the campaign to refute the premise it was launched on** —
+QG-21 refuted O1's derivability from FT accounting, QG-22 refuted the classification as
+collapse agent, QG-10 refutes the referee scarcity its own charter assumed. It is also
+**cross-lemma corroboration of QG-22** in the strongest available sense: QG-22 *proved*
+the syndrome DP is Θ(n) by a counting argument, and QG-10 *independently rediscovered the
+same fact* from the opposite direction while trying to work around a referee it turned
+out not to need. Two lanes, different instruments, same object — and the object is again
+the fixed-dimension conserved syndrome, not the classification.
+
+So **the referee-free frontier of this programme sits at the *family* level (`C_D+`,
+`C_D++`), not at the optimum.** That relocates the whole motivation for interval methods
+here, and the receipt says so rather than quietly keeping the original framing.
+
+**Which makes `U_W1` the lane's most useful artifact.** It is this lane's own enumerator of
+the complete weight-one-frame family, machine-checked equal to the committed
+`r6p.dxx_search(max_weight=1)` on **all 1,029 instances where the committed enumerator can
+run (n ≤ 4), 0 mismatches** — and it *extends `C_D+` to any n*, which the committed
+machinery cannot do. That is direct progress on residual **W9** (QG-22's finding that
+`dxx_search` fails to realize QG-6's own support-capped corollary): the weight-one case now
+has a working uncapped enumerator, checked against the capped one on every instance where
+both are defined.
+
+### Where it certifies beyond any committed receipt
+
+* Panels **D (n=5,6,8,12)** and **E (n=24,48,96)** — 600 rows — lie beyond every committed
+  receipt's referee domain: no committed lane can evaluate `C_D+`/`C_D++` there, so the
+  QG-7e classification **cannot even be stated numerically** there with committed
+  machinery. The method certifies **427/600 = 71.2 %** of those rows exactly, max gap 2.
+  Labelled `VERIFIED_BY_LANE_EXTENDED_REFEREE`, never `VERIFIED`.
+* Panel **F (n = 192, 384; 24 rows)** runs with the referee **deliberately withheld** —
+  only the 64-state projected accumulation is ever built for those columns — and certifies
+  **24/24 tight, gap 0**, labelled `CERTIFIED_NOT_VERIFIED`. Those rows carry the proofs of
+  L and U and **no empirical confirmation**, and the label says exactly that.
+
+### Corroboration, including the part that went wrong and was caught
+
+`qg10_generic_verify.py` → **ACCEPT, 0 failures**, imports nothing from the analyzer and
+nothing from `orion-q`/`orion-qg`: over 2,853 serialized rows it rebuilt the algebra, the
+acceptance predicate, the cost function, the nine-bit syndrome and the six-bit projection,
+then performed 2,853 witness replays, 2,853 `L_COL`/`L_SEP` re-derivations, **2,829
+independent `C_DP` re-derivations**, 2,829 sandwich re-checks, and 24 confirmations that
+the withheld-referee rows carry no `C_DP`.
+
+**Orchestrator checks on top of the lane's own:**
+
+1. **Re-ran the verifier independently → ACCEPT**, binding `results_sha256`
+   `61768d29…eb61`, matching the receipt on disk.
+2. **Demonstrated the verifier can fail.** ~~Two tampered copies both REJECT: inflating a
+   row's `L` to break the sandwich, and corrupting a row's `C_DP`.~~ **Corrected and
+   replaced with evidence — see `QG10_FALSIFIABILITY.json`.** That sentence was prose with
+   no machine-readable record, and it was wrong about the mechanism: inflating `L` is caught
+   by `lower_bound_mismatch`, **not** the sandwich, because `L` is recomputed from
+   primitives before the sandwich is evaluated. **QG-10's sandwich check had never been
+   exercised by any tamper.** The demonstration is now seven cases, each declaring the check
+   that must catch it and validated through `orion_research_harness.falsifiability`; T7
+   lowers `U` below the recomputed `C_DP` and fires `sandwich_violated` for the first time.
+   Two tooling defects had to be fixed before the demonstration could be run at all: the
+   verifier's results path was hardcoded, so it could never be pointed at a tampered copy,
+   and its **output** path was hardcoded too, so testing it overwrote the committed
+   verification artifact — the act of testing destroyed the record of it passing.
+3. **Caught a stale binding mid-flight.** An earlier verification, committed in
+   `4b6c7992`, bound the *superseded* receipt `1e14cafd…` after the lane re-emitted its
+   receipt with an added cap disclosure (`integer_checked_rows: 48309`), moving the digest
+   `488fb032… → 16365a0d…`. Terminal and all 13 gates were unchanged and the only delta was
+   a disclosure — but "the only delta looks harmless" is precisely the reasoning
+   `RECEIPT_CHURN_HAZARD_2026-08-21.md` exists to forbid. The lane was held UNBOUND until
+   the verifier re-ran against the current digest. Corroboration kind:
+   `FROM_PRIMITIVES_VERIFIED`.
+
+**Disclosed caps**, all in `caps_disclosed`: panel B is complete over the *stated*
+weight-one-target sub-domain (6⁶), not the full 15⁶; the committed borrow enumerators
+`B′`/`B″` cost seconds to ~30 s per instance at n ≥ 5, so they run under a per-panel call
+budget (540 B′, 160 B″) and rows past budget carry `U = U_W1` flagged
+`BUDGET_EXHAUSTED_W1_ONLY` — still a valid witness-proven upper bound, since U is a minimum
+over an *evaluated subset* of families; 1,200 of 46,656 panel-B rows serialized for the
+verifier, all other panels in full.
+
+## QG-23 — N4 CONVERTED TO A DIAGNOSED NEGATIVE: THE FORECAST LEFT ITS SUPPORT, AND NORMALIZING DOES NOT BRING IT BACK
+
+`QG23_FORECAST_N_DEPENDENCE_RESULTS.json` (protocol frozen pre-run, sha256 `4896c8ea…6725`;
+result digest `4de58b2b…9d05`; stage-1 digest `a0e15f7c…f739`; 10/10 gates; double run
+byte-identical outside timing; verifier **ACCEPT, 36 checks, 0 failed**, re-run
+independently by the orchestrator). Terminal
+`QG23_PARTIAL__SUPPORT_DIAGNOSED_BUT_NORMALIZATION_DOES_NOT_TRANSFER`.
+
+**Frozen verdicts: H0 BORNE_OUT, H1 REFUTED.** N4 converts to a *diagnosed* negative, not
+a rescued forecast — which §1 of the protocol said in advance would still count as a
+conversion.
+
+**Q1 — the census answers H0 cleanly.** Over the complete n ≤ 3 domain (1,146 instances),
+the 33 V2 features split **23 EXTENSIVE_LINEAR / 9 EXTENSIVE_OTHER / 1 INTENSIVE
+(`sched_cost_last`) / 0 DEGENERATE**. On the 120-instance panel the support failure is
+carried *entirely* by the extensive features: **INTENSIVE + DEGENERATE alone put 0/120 out
+of support**, extensive combined put **76/120** out. The protocol's H0-killing condition —
+intensive features alone putting the panel out of support — is not met, so H0 stands. Worst
+single offenders: `c` 33/120, `nCN−(n−1)` 33, `sched_cost_moment` 29, `LB` 24.
+
+**Q2 — coverage rises, accuracy does not follow.** Baselines recomputed in-run rather than
+copied: cell lookup **32/120 ✓**, lattice **3/120 ✓**, headline cell and witness
+byte-identical to QG-15c's.
+
+| measure | un-normalized | normalized |
+| --- | --- | --- |
+| box support in | 44/120 | **71/120** (+27) |
+| **exact-cell seen** — what the lookup rule actually consumes | 0/120 | **0/120 (+0)** |
+
+The second row is the finding. Normalization raises the *box* by 27 and moves the measure
+the predictor actually keys on **not at all**. And the refit lattice predicate on normalized
+features is **28/120 — far worse** than the un-normalized incumbent's 3/120. For the
+incumbent itself the split runs the wrong way: 2.82 % error in-support against 2.04 %
+out-of-support.
+
+**Q3 — a null result, flagged as one.** Across the frozen ladder τ ∈ {0, .05, .10, .25,
+.50, 1, 2, 4, 8, ∞} **the error rate is flat as coverage runs 0.558 → 1.000, for every
+predictor.** The raw lattice goes 2.82 % at 71 predicted to 2.50 % at 120 predicted —
+*abstaining raises the error rate.* Error-rate spans 0.003–0.084. The receipt carries
+`null_result: true`. The abstaining forecaster the lane was built to produce does not exist
+for this family, and the two-sided reporting rule (G6) is what makes that visible rather
+than hideable behind a coverage number.
+
+**One effect recorded rather than buried**: normalized box membership *is* weakly associated
+with the label — panel positives are enriched *outside* it, Fisher one-sided p = 0.012 —
+and that association is absent, indeed slightly reversed, un-normalized. So `φ_n` does put
+a real if modest signal into support membership. It never becomes forecast accuracy.
+
+### The disclosed criterion change, and the orchestrator's adjudication
+
+The lane discloses, in a `criterion_disclosure` field it did not have to write, that **its
+first coded operationalization of H1 read BORNE_OUT** and it then restricted the criterion.
+That is exactly the shape of post-hoc tuning the freeze discipline exists to catch, so it
+is adjudicated here rather than accepted on the lane's say-so.
+
+*The two readings.* Under **all pairs** (any refit predictor × any support measure) H1
+passes on **one of six pairs**. Under **consumed measure** (each predictor scored on the
+support notion it acts on) H1 fails on all.
+
+**Adjudication: the restriction is correct and REFUTED stands.** Four reasons, the first
+decisive:
+
+1. **H1's first clause fails for the passing pair on its own terms.** H1 as frozen requires
+   that *"n=4 vectors fall back inside the n≤3 support"* **and** that the forecast on that
+   covered fraction improve. The passing pair is the cell-lookup rule scored against *box*
+   support — but that rule keys on the whole 33-vector, so the support it consumes is
+   exact-cell membership, which is **0/120 before and 0/120 after**. Its coverage was never
+   restored. Scoring clause (b) on box support while clause (a) is false on exact-cell
+   support is a category mismatch, not a reading.
+2. **The passing predictor is constant.** It predicts negative on all 120 panel instances,
+   so its "error rate" on any subset is just that subset's positive rate, and its total
+   error is 32/120 — identical to the un-normalized baseline. Admitting this pair would let
+   a constant predictor certify a competence region.
+3. **The margin is 0.028** (ratio 0.472 against a 0.500 threshold).
+4. **The protocol already ruled on it**: §4 says *"a normalization that raises coverage
+   without separating accuracy has explained nothing"*, and Q3 shows the error rate flat
+   across coverage for every predictor.
+
+The lane's own symmetry check points the same way and is verified: the restriction is
+structurally **more** favourable to H1 for the only predictor with real accuracy — the
+lattice predicate, failed under all-pairs partly on a measure it does not use, gains a
+material +27 coverage on the measure it does use — and it still fails, at 0.690. A
+correction that helps the strong candidate and still yields REFUTED is not outcome-directed.
+
+**The adjudication is independently checkable, which is why it can be trusted.** The
+verifier does not read the verdict — it **re-derives** it, reporting `H1: REFUTED` and
+`H1_all_pairs_reading: BORNE_OUT` from its own numbers, and one of its eight falsifiability
+tampers is precisely `H1_verdict_flipped_to_BORNE_OUT`, caught by two checks. Both readings
+stay on the record; a reader who disagrees with this adjudication has every number needed
+to overturn it.
+
+### Corroboration
+
+`qg23_generic_verify.py` → **ACCEPT, 36/36**, re-run by the orchestrator with the same
+result. It imports nothing from the analyzer chain and rebuilds the referee, donor, schedule
+trace, all 33 features, the census with both fits in both coordinates, `φ_n`, the panel and
+its labels, the trade-off curves, the H0/H1/terminal chain and the stage-1 digest field by
+field, plus a **complete brute-force sub-lattice minimum-error search on both arms** with no
+reductions and no pruning bounds. Falsifiability **DEMONSTRATED**: 8 tampered copies, each
+with its `result_digest` recomputed so the copy is internally self-consistent — so a tamper
+is caught by re-derivation, never by a hash mismatch — and **all 8 REJECTED**.
+
+Gate G3 is enforced structurally as required: `qg15c.RefereeStub` physically replaced
+`referee`, `referee_lex` and `extract_optimal_circuit` across the whole prediction stage,
+recorded installed, recorded removed, and **never triggered**; the stage-1 digest was
+printed before any n=4 referee call and is bit-stable across runs. Corroboration kind:
+`FROM_PRIMITIVES_VERIFIED`.
+
+### n=5, and the third instance of the same pattern
+
+`n5_attempted: false`, component `NOT_ATTEMPTED`, no sub-panel formed, no n=5 outcome
+observed — G5 intact. **The referee is not the obstacle**: a Dial bucket queue settles
+40,000 of 2,423,520 states, projecting ~338 s, inside the cap. The blocker is **the frozen
+V2 feature map** at ~42 ms/state → **~28.4 h, about 38× the cap**.
+
+That is the third time in this campaign the binding cost turned out to be our own
+instrumentation rather than the problem: `r6p.dxx_search` failing to realize QG-6's
+support-capped corollary (W9), QG-10 finding the referee linear in n while the *family*
+enumerator was the wall, and now the feature map costing 38× what the referee would.
+Registered as residual **W10 — the V2 feature map, not the referee, is what caps this
+family's reach.**
+
+### A process hazard this lane surfaced
+
+The lane reports that orchestrator commits — driven by a repository hook demanding a clean
+tree — **swept its analyzer and verifier into commits mid-flight**, before it had finished
+writing them. No artifact was corrupted (each such commit was labelled provisional, carried
+no scientific reading, and was superseded on completion), but the hazard is real: a
+clean-tree policy and an in-flight lane are in direct tension, and the resolution used here
+— commit as provisional, state facts only, bind nothing until the verifier decides — is the
+one that keeps both. Recorded so the next campaign does not have to rediscover it.
+
+### Four protocol objections, all executed as written
+
+Recorded verbatim in the receipt: §3.1 names an unnamed statistic; §4 leaves the divisor
+undefined when the three-point range fit is ≤ 0 at n=1 (executed with a disclosed floor of
+1.0); §4.1's "no referee output" was read as "no *n=4* referee output"; and §5 conditions
+the prospective component on the referee when the feature map is the binding cost. All four
+are protocol defects worth fixing in a successor, and none was used as licence to deviate.
+
+## QG-24 — THE APPLIED CEILING WAS A FAMILY ARTIFACT, AND MORE THAN HALF OF QG-21'S OWN WITNESSES ALREADY BROKE IT
+
+`QG24_ROTATION_REGIME_RESULTS.json` (protocol frozen pre-run at `bece8910`; result digest
+`5aba1652…6017`; file sha256 `aa0c429a…63a5`; 9/9 gates; double run **byte-identical**,
+322.6 s / 329.3 s against a 45-minute cap, timing on stderr only; verifier **ACCEPT, 18
+checks, 0 failures**, re-run independently by the orchestrator). Terminal
+`QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME`, authority NOT_R6.
+
+### Q1 — the ceiling is not structural
+
+QG-21 measured `ROTATIONS_R6M == 9` and the programme read it as a wall. **It is a property
+of the family menu, not of the grammar.**
+
+**Lemma L1 (proved, then checked exhaustively).** The merge relation can only ever admit
+the two block seams — positions (3,4), (6,7), and long-range (3,7). Everything intra-block
+is blocked by the grammar's own `symp(a_j,b_j) = 1`. Checked against an independent
+general 36-pair search over the complete n=1 domain (196,608 checks, 0 mismatches, observed
+pair support exactly {(3,4),(6,7)}) and over all 2,444 n=2 slot patterns × all 2¹²
+Restore-commutation vectors (12,160,768 checks, 0 mismatches).
+
+| n | domain (exact) | model | 7 rot | 8 rot | 9 rot |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 98,304 | factored | 15,360 | 43,008 | 39,936 |
+| 1 | 98,304 | in-place | 960 | 16,512 | 80,832 |
+| 2 | 515,396,075,520 | factored | 2,768,240,640 | 72,980,889,600 | 439,646,945,280 |
+| 8 | 2.993×10⁵¹ | factored | 6.97×10⁴¹ | 1.03×10⁴⁷ | 2.993×10⁵¹ |
+
+Exact integers at all six sizes (1, 2, 4, 8, 12, 14 — covering QG-21's D1 n=8/12 and D2
+n=12/14) are in the receipt. Method: local 17-bit histogram → Walsh–Hadamard → Möbius over
+three axis-equality ANDs → CRT over 20 primes (620-bit modulus). **No sampling anywhere.**
+Cross-checked three ways: exact agreement with pure brute force at n=1; the sum-to-domain
+identity `Σ = 8·adm(n)·4^{4n}` at every n against an independent 9-bit DP; and verifier
+re-derivation.
+
+**The sharpest datum turns QG-21's own evidence against its reading.** Re-measuring
+QG-21's 108 serialized improved compilations under the frozen merge relation: factored
+**14×7 / 38×8 / 56×9**; in-place 2×7 / 20×8 / 86×9. Just over half of QG-21's own witnesses
+already carry fewer than nine rotations. "Every member carries exactly nine" was true of
+the menu and false of the compilations. Per gate G6, QG-21's receipt is **not edited** —
+verified untouched since the charter — and the qualification lives here.
+
+### Q2 — why this is PARTIAL and not CEILING_LIFTED
+
+Floor is **7** (L1: at most two seams). Membership is decidable in O(n): min = 7 iff
+`P_A0·P_A1 ≠ I ∧ P_B0·P_B1 ≠ I` (in-place), unconditionally (factored). And it is **true on
+all 90 receipted rows under both models** — so the donor-optimal region is empty, there is
+no elementary trade, and the sufficiency condition is also necessary and always
+satisfiable. **A currency whose optimum never moves has no geometry.** The template is not
+instantiated, so the lane refused the CEILING_LIFTED terminal despite a large Q3 number.
+Prospective forecast 60/60 on the D2 held-out panel, stage-1 digest `8e595555…` stamped
+with the raising referee stub recording **0** calls in stage 1 (G4).
+
+### Q3 — the applied number, and it is not negligible
+
+* Rotations removed: **2 of 9 = 22.2 %** of magic-state/T cost — 60–200 T gates against
+  QG-21's 270–900 backdrop.
+* FT fraction moved: 21.5 % at κ_T/c_T = 30, 22.0 % at 100, 22.2 % in the limit.
+* **Clifford price in the factored model: 0 on all 90 rows** (min = median = max = 0). The
+  exact constrained DP finds a 7-rotation compilation at *exactly* R6M's θ_FT optimum on
+  every row. Free. In-place: median 1, max 14, free on 36/90.
+
+QG-21 reported ≈0.7 % and called it negligible. This is **~30× larger** — and it is
+entirely donor property, which §1 establishes below.
+
+### The donor search ran first, and took the whole result away
+
+Four claims, all validated in-run by `orion_research_harness.donor_search` and re-validated
+by the orchestrator against the **committed module** (not the verifier's re-implementation):
+
+| claim | verdict | source |
+| --- | --- | --- |
+| C1 merge relation | **SUBSUMED** | TMerge, arXiv:2407.07846 |
+| C2 that this is the right rewrite | **SUBSUMED** | Cole, *Quantum Circuit Optimisation Through Stabiliser Reduction of Pauli Exponentials* (Oxford) |
+| C3 7-floor + decidability as regime geometry — *the only claim asserting novelty* | INSTANCE_OF_KNOWN_GENERAL | arXiv:2407.07846; van de Wetering & Amy arXiv:2310.05958 |
+| C4 own-vocabulary framing | NO_PRIOR_ART_FOUND — **not a grant** | — |
+
+C2 is quoted as saying merging same-Pauli exponentials with only commuting Paulis between
+them *"is essentially the best possible rewrite strategy when minimising the number of
+non-Clifford components."* What survives C3 is at most the arithmetic that **this grammar's
+relation admits exactly two seams**. All fetches were `EGRESS_BLOCKED`; every passage is
+snippet-level with `document_level_verification: false`. Retrieval itself worked, so the
+BLOCKED terminal was correctly not taken.
+
+**C4 is the gate's mechanism working in the open.** Family 1 (own vocabulary) returned
+exchange-rate-regime economics and formal-logic decidability — nothing. The claim that
+emptiness would have protected was then killed by Family 2 (donor-field translation). That
+is QG-19's finding reproduced prospectively: the direct query's phrasing hides the parent,
+and the mandatory translated family is what finds it.
+
+### Corroboration, and the verifier change that had to be adjudicated
+
+Verifier: no analyzer import, no numpy, no harness import. **ACCEPT, 18/18.** It re-derives
+all four digests, the donor gate from its stated rules *plus* passage location in the
+committed log, Lemma L1 by an independent merge search, the complete n=1 distribution by
+re-enumeration (98,304 configurations), the domain-size identity at all six n from an
+independent 9-bit DP, and **all 90 panel rows** — each 7-rotation witness re-checked for
+admissibility, re-counted to 7, and its θ_FT cost recomputed from scratch. Falsifiability
+**DEMONSTRATED**: 6 tampered copies with `result_digest` recomputed so each is internally
+self-consistent, **all 6 REJECT**, every one caught by re-derivation rather than a hash
+mismatch — including a copy that flips the ceiling to STRUCTURAL and one that strips the
+SUBSUMED passage.
+
+**The orchestrator's own checks, including one that had to be adjudicated:**
+
+1. **Two REJECTs were observed before this ACCEPT, and neither was waved through.** The
+   first receipt failed `panel_witnesses_reverified_from_primitives` — a defect an
+   automated reviewer flagged independently and I confirmed by running the verifier. The
+   re-emitted receipt (digest `538b38aa… → 5aba1652…`) fixed it and still failed
+   `donor_search_gate_reimplemented`.
+2. **The lane then changed the verifier to obtain the ACCEPT, which is exactly the move
+   this programme forbids — so it was tested rather than trusted.** The change strips
+   markdown blockquote markers before matching a cited passage against the log. I confirmed
+   the passages are genuinely present and only blockquote-wrapped (raw substring match
+   False for all three, len 171/273/265), and — decisively — that **a fabricated passage
+   still REJECTs** under the fixed matcher. The check retains its power to fail, so this is
+   a formatting fix, not laundering.
+3. **The binding is current**, not stale: the verification artifact binds `aa0c429a…`,
+   which is the on-disk hash of the receipt as committed. QG-10's stale-binding failure is
+   not repeated here.
+4. **G6 verified independently**: QG-21's receipt has zero commits touching it since the
+   QG-24 charter.
+
+### Three protocol objections, executed as written
+
+Recorded under `protocol_objections`: the merge relation does not say where the
+branch-controlled Restore sits (**both readings enumerated**, which is why every table
+above has two models); §3 step 2 presumes 9 is the only candidate invariant; and §6 has no
+terminal for *variation found, template fails, FT fraction nonetheless material* — PARTIAL
+was taken on Q2 as the binding clause, **with the 22 % reported in full rather than lost to
+the terminal name**. That last one is a real gap in my protocol drafting and belongs in any
+successor.
+
+### What this costs the programme, and what it buys
+
+It costs the applied ceiling as a *proved* wall: 9 was never a grammar invariant, and
+QG-21's own witnesses said so. It buys a materially larger applied number — 22 % of FT
+cost, free in the factored model — that is **entirely donor property**, subsumed twice over
+before it could be claimed. The one thing left standing is arithmetic about this grammar:
+its merge relation admits exactly two seams, and that is a fact about R6M, not a
+contribution to compilation.
+
+## QG-25 — QG-22 WAS RIGHT ABOUT STABPREP FOR A REASON IT DID NOT GIVE
+
+Protocol `QG25_NO_SYNDROME_FAMILY_PROTOCOL_V1.md`, frozen at `48058887`. Terminal
+**`QG25_NO_CONSERVED_SYNDROME_PROVED__COLLAPSE_MECHANISM_ABSENT`**. Verifier ACCEPT on
+16 checks, none failed; ten tampered copies with recomputed digests all REJECT, each
+caught by the check it names, validated through `orion_research_harness.falsifiability`;
+double run byte-identical.
+
+**The lane's agent died twice before writing a verifier, so the adjudicator wrote one.**
+That is the ordinary case rather than a special circumstance — an independent verifier
+should not come from the lane — and it carries its own single-qubit stabilizer simulation
+so the load-bearing witness is re-derived from the Clifford action on Pauli operators
+rather than read back out of the receipt.
+
+### The result
+
+QG-22's **conclusion** stands: StabPrep has no fixed-dimension conserved syndrome. Its
+**reason** does not. QG-22 inferred absence from the 2^Θ(n²) size of the state space, and
+size does not entail absence — the lane exhibits `PARITY_GRID(n)`, a family with a 2^(n²)
+configuration space and a conserved syndrome of dimension **1**, verified independently at
+n = 1, 2, 3.
+
+The real obstruction is that StabPrep's transition monoid is **non-commutative**, and the
+witness is two gates:
+
+| word | reaches | prepares target |
+|---|---|---|
+| `S` then `H` | stabilizer ⟨X⟩ | yes |
+| `H` then `S` | stabilizer ⟨Y⟩ | no |
+
+Both are the same multiset `{H, S}`, so **every** commutative-monoid homomorphism assigns
+them the same value while one prepares the target and the other does not. That kills
+abelian syndromes at *every* dimension, fixed or growing — strictly stronger than QG-22
+claimed, and resting on a two-gate witness rather than a counting argument. I re-derived
+both states from `H: X↔Z` and `S: X→Y` independently of the lane's code; they reproduce.
+
+### The finding about this programme, stated plainly
+
+**QG-22 reached a true conclusion by an inference that does not support it**, and that
+inference was load-bearing in its component table for a whole wave. "The state space is
+huge, therefore there is no small conserved quantity" is invalid. It should be read as a
+lucky guess that the donor literature later justified by a different route.
+
+No hardness result is claimed and none exists: per QG-25's own donor search the field puts
+Clifford synthesis **in NP** and records only exponential algorithms. Gates G3 and G4 hold.
+
+### Donor search (bound earlier, at `5958ae08`)
+
+
+
+Protocol `QG25_NO_SYNDROME_FAMILY_PROTOCOL_V1.md`, frozen at `48058887` before any
+outcome-determining run. Donor search committed at `5958ae08`. **Q1 — running QG-6's
+syndrome-inference machinery unmodified on StabPrep — is still executing, and nothing
+below depends on its outcome.** The two findings here are properties of the literature,
+not of a run, which is why they can be bound while the lane is open.
+
+### The finding that reaches back through the whole programme
+
+QG-25's own claim was going to be: *the minimum dimension of a feasibility-deciding
+state abstraction for StabPrep is ⌈log₂|S_n|⌉, and it grows quadratically.* The
+donor-field translation query returned the parent immediately:
+
+> "The number of states in a minimal machine equals the index of the right language
+> equivalence relation, which represents the minimum cardinality for any DFA accepting
+> the language."
+
+That is Myhill–Nerode, 1958. **This programme's "minimum dimension of a conserved
+syndrome" is the index of the right-congruence, written in base two.** QG-6 through
+QG-22 built a private vocabulary — *conserved syndrome*, *collapse agent*, *regime
+geometry* — for a quantity automata theory named sixty-eight years ago.
+
+The cost of that vocabulary is measurable in the search itself, and it is the reason
+all three query families are mandatory. Family 1, this programme's own words, returned
+neural-collapse geometry in contrastive learning, a delayed Lotka–Volterra model, and
+patents on collapsible wound dressings. It found nothing because the words are ours.
+Family 2, the translation into the donor field, found the parent on its first query.
+That is exactly QG-19's mechanism reproducing itself one wave later: six novelty claims
+died in QG-19 because they were frozen without literature access, and the seventh would
+have died the same way had the gate not been made a precondition in code.
+
+Verdict on the claim: `INSTANCE_OF_KNOWN_GENERAL`. Novelty is at most the arithmetic
+for this particular family.
+
+### The second finding cuts against QG-22 directly
+
+QG-22 closed by locating hardness in families *without* a conserved syndrome, naming
+StabPrep as its in-programme instance, and labelling the claim CONJECTURE with the
+basis stated honestly: "StabPrep's 2^Θ(n²) state space … no reduction, no lower bound."
+The inverted/survey family returned:
+
+> "The Clifford synthesis problem is contained in the first level of the polynomial
+> hierarchy (NP), while the classical synthesis problem for logical circuits is known
+> to be complete for the second level of the polynomial hierarchy (Σ₂ᴾ)."
+
+So whatever QG-22's conjecture can mean, **it cannot mean hardness above NP for this
+family**, and the field records no hardness result for it at all — only exponential
+*algorithms*, and a published exhaustive database (Bravyi–Latone–Maslov 2022, 100 days
+of brute force, 2.1 TB, all six-qubit Cliffords) an order of magnitude larger than
+anything this programme enumerates.
+
+That is QG-22's own gate G3 turned back on QG-22. G3 forbids inferring hardness from
+wall-clock because every exponential this programme observed was a property of an
+algorithm we wrote. The same discipline applied to the literature says: an exponential
+algorithm in the donor field is not a hard problem either.
+
+### The obstruction is not the one QG-22 named
+
+The second donor query returned the structural reading:
+
+> "A DFA is called a permutation DFA if its transition monoid is a permutation group on
+> the states, and in this case the transition monoid is called the transition group
+> rather than the transition monoid."
+
+> "For a permutation DFA, the following are equivalent: the automaton is accessible,
+> the automaton is strongly connected, and the transition group is transitive."
+
+StabPrep's referee graph is a permutation DFA whose transition group is the n-qubit
+Clifford group acting on stabilizer states — transitive, and non-abelian for n ≥ 1.
+An abelian image of a non-abelian transition monoid cannot separate the states. So if
+StabPrep turns out to have no conserved syndrome, **the reason is non-commutativity of
+the transition monoid, not the size of the state space** — and QG-22's inference,
+"2^Θ(n²) states, therefore no fixed-dimension syndrome", was never valid on its own
+terms. Size is not absence. Whether the conclusion survives its bad argument is exactly
+what Q1 is measuring.
+
+Verdict: `INSTANCE_OF_KNOWN_GENERAL`. Novelty removed; what survives is the exhibited
+witness for this specific alphabet, if Q1 produces one.
+
+### Retrieval limitation, stated not glossed
+
+Every direct document fetch was refused by the session's egress proxy (`arxiv.org`,
+`www.scottaaronson.com`, `EGRESS_BLOCKED`). Every passage above is search-snippet text
+and every record carries `document_level_verification: false`. The two load-bearing
+passages — the permutation-DFA equivalence and the NP-containment sentence — were
+re-run independently by the adjudicator and both reproduce; the Myhill–Nerode framing
+is textbook and needs no snippet. The Bravyi–Latone–Maslov figures reach us through
+LIPiCS SAT 2025 and are cited at that remove.
+
+`novelty_credit: false`, `novelty_authority: false`. The `NO_PRIOR_ART_FOUND` verdict
+on record C4 is a statement about this programme's private vocabulary, **not a grant.**
+
+### What this obliges
+
+W12 (new residual): QG-6's nine-bit TARE syndrome has never been checked for
+minimality in the Nerode sense. If the syndrome is the right-congruence index in base
+two, then two syndrome values that are Nerode-equivalent mean the nine bits are not
+tight and the true dimension is smaller. That check is decidable on the committed
+domains and has not been run.
+
+## QG-26 — W12 CLOSED: THE COMMITTED 1024-STATE SYNDROME IS THE NERODE INDEX, EXACTLY
+
+Protocol `QG26_NERODE_MINIMALITY_PROTOCOL_V1.md`, frozen at `eeaa3433` before the
+analyzer was written. Terminal **`QG26_SYNDROME_IS_NERODE_MINIMAL`**. Verifier ACCEPT
+on 15 checks, none failed; **eleven** tampered copies with recomputed digests all REJECT;
+analyzer and verifier both byte-identical on a double run. Runtime 0.1 s.
+
+**Amended within the hour.** The first version of this lane's verifier carried 13 checks
+and eight tampers, and did not look at the `criterion_binding` block at all. The
+analyzer validated its own records in-run, which is custody standing in for
+corroboration — precisely the substitution `corroboration` exists to refuse. A copy
+whose criterion record claimed a changed criterion and flipped its verdict, resealed
+coherently, **was ACCEPTed**. Gate G5 of this lane's own protocol says that if the gate
+is not exercised here it is not a gate, and it was not. The verifier now reimplements
+the churn rules independently (the same pattern QG-24 uses for the donor gate, so the
+`independent_of` claim still holds), checks the bound frozen digest against the
+criterion text in the frozen protocol rather than against the receipt's own word, and
+carries five tamper cases for it — T9 through T13 — all REJECT, and the suite is now
+**thirteen** cases against **15** checks.
+
+One further correction, from the same review round. The first T9 changed the applied
+digest *and* flipped the verdict to FAIL — and a negative under a changed criterion is
+deliberately not gated, so it was caught by the terminal-consistency check and not by
+the churn gate it was named after. **The hazard the gate exists for had no tamper at
+all.** That is the third time on this branch a tamper rejected for the wrong reason
+(QG-24's T6 twice over), so the fix is structural rather than another patch: every
+tamper now declares the check that must catch it, and both assemblers refuse to write
+if any case is rejected by a different one. Demonstrated by reverting T9 to its old
+shape, which is now refused with the reason named. The verification
+artifact was regenerated rather than relabelled, so every digest binds a file that
+exists.
+
+### What was asked
+
+QG-25's donor search named the quantity: the minimum dimension of a
+feasibility-deciding syndrome is the index of the right-congruence in base two,
+Myhill–Nerode. The translation carried an obligation nobody here had discharged.
+`max_r6i_exact_rank2_shared_tag_dp` declares `STATES = 1024`, and every complexity
+statement this programme has made about that DP rests on the number — but **nothing
+established that 1024 was the index rather than merely a state space large enough to
+work.** A sufficient state space is not a minimal one, and we had been quoting the
+difference as if it were exact.
+
+### What was measured
+
+| quantity | value |
+|---|---|
+| option rows enumerated | 4⁶ = 4096, complete |
+| distinct letters in the alphabet (image of `_DELTA`) | 1024 |
+| GF(2) rank of the alphabet | **10** |
+| Nerode index, structural (2^rank = order of ⟨Σ⟩) | **1024** |
+| Moore refinement blocks, target 0 | **1024** |
+| Moore refinement blocks, target 239 (the receipted final parity state) | **1024** |
+| committed `STATES` | 1024 |
+| looseness factor | **1** |
+
+Both methods were mandatory under G2 and both agree.
+
+**Qualification added by QG-27, and it concerns the argument rather than the result.**
+QG-26's receipt states its structural argument as "for s ≠ s′ in that subgroup the word
+summing to s ⊕ t distinguishes them". That reasoning is **incomplete** in exactly the way
+QG-27's first separation check was: a full span makes it vacuously available, and what
+distinguishability actually needs is the accepting set's translation stabiliser being
+trivial. QG-27 computes that stabiliser and finds it **{0}**, so QG-26's conclusion is
+correct — and it never rested on the flawed argument anyway, because the mandatory second
+method was generic Moore refinement, which tests distinguishability directly and returned
+1024 twice. Per gate G6 the receipt is not edited; the qualification lives here. That the
+two-method requirement is what saved the result is the argument for the two-method
+requirement. The structural method uses the
+fact that the transition monoid is translation by F₂¹⁰ — abelian, which is exactly the
+property QG-25 found StabPrep to lack — so the reachable set from the zero state is
+the subgroup generated by the letters, and for s ≠ s′ in that subgroup the word summing
+to s ⊕ t distinguishes them. The mechanical method is generic partition refinement that
+does not know the automaton is abelian, so it cannot silently reproduce the structural
+answer it is there to corroborate.
+
+### What this is and is not
+
+It is a confirmation, and the protocol froze confirmation as a first-class terminal
+before the run. The committed number is tight; every complexity statement resting on
+it stands as written; **W12 is closed.**
+
+It is not a statement about speed, and gate G3 forbids making one. Nerode minimality is
+a property of the *feasibility* language. The committed DP is min-plus and carries cost,
+and whether the cost DP admits any reduction is a question this lane did not ask and
+must not be read as answering. The receipt carries that sentence and the verifier
+checks that it carries it — tamper case T6 replaces the scope statement with the speed
+claim G3 forbids, and is REJECTed.
+
+### The methodological point, which is the reason the lane exists
+
+QG-26 could not have been written a day earlier. The question is obvious once the
+quantity has its donor-field name and invisible while it has only ours. That is the
+positive half of the ledger QG-19 opened: absorbing a donor field costs novelty and
+**buys the field's standard questions**, and this programme had been paying the cost
+without collecting.
+
+## QG-27 — THE COST DP IS ALREADY MINIMAL, AND THE LANE'S OWN FROZEN DEFINITION WAS WRONG
+
+Protocol `QG27_COST_MINIMALITY_PROTOCOL_V1.md`, frozen at `587843d2` before the analyzer
+was written. Terminal **`QG27_COST_DP_IS_ALREADY_MINIMAL`**. Verifier ACCEPT on 16 checks,
+none failed; ten tampered copies with recomputed digests all REJECT, each caught by the
+check it names, validated through `orion_research_harness.falsifiability`; both double runs
+byte-identical.
+
+### The question
+
+QG-26's gate G3 forbade it from saying anything about cost, in its own receipt: *"nothing
+here shows any algorithm is faster, and whether the cost DP admits the same reduction is
+not answered."* This lane asks. Two states can be feasibility-distinguishable and still
+carry identical cost behaviour, in which case the min-plus DP does work the feasibility
+argument cannot see.
+
+### The lane's frozen criterion was wrong, and running it is what found that
+
+Protocol §4 defined cost-equivalence as `C_r[s] − C_r[s']` constant at every horizon —
+which subtracts each state's own baseline. Run as frozen it collapsed 1024 states to
+**three**, and it is refuted by exhibition, not argument:
+
+> the relation places state **387**, an accepting state with cost-to-go **0**, in the same
+> class as state **0** with cost-to-go **30**. Merging them changes the optimum by 30.
+
+The cause: cost-to-go is flat in the horizon here, because extra steps never help when
+every letter cost is non-negative. So every finite state normalises to all-zeros and the
+frozen relation retains **no information at all**.
+
+### Both horizon scans were beside the point
+
+Equal cost-to-go — normalised or absolute — is **necessary for merging and never
+sufficient**: it says what finishing costs, never where a state lands. The corrected
+absolute relation gives 29 classes and that number means nothing either. Both are in the
+receipt because the lane ran them, not because either answers the question.
+
+### What settles it
+
+The committed cost table is indexed by **delta alone** — there is no state axis for a cost
+to depend on — so a word costs the same from every state. By Mohri's pushing condition,
+residual cost functions can then differ **only** through admissibility, which is the
+feasibility language.
+
+Separation then needs a specific fact, and **the first version of this lane certified it
+with a check that could not test it.** It asked whether every state can reach one accepting
+state, which a full letter span already guarantees — a vacuous pass, exactly the failure
+mode `falsifiability`'s own docstring names. What separation actually requires is that the
+accepting set have a **trivial translation stabiliser**: states s, s′ are indistinguishable
+precisely when A ⊕ (s⊕s′) = A. Computed: the stabiliser of the six-element accepting set is
+**{0}**, trivial. So the terminal was right and the check was not, and the check now
+computes the stabiliser. Caught by Cursor Bugbot; tamper T11 misreports the stabiliser and
+is REJECTed.
+
+**No two states are mergeable; 1024 is minimal for cost as well as for feasibility.**
+
+No efficiency claim is made and none is available: §5 requires an exhibited quotient with
+identical optima, and there is no reduction to exhibit. Scope is one cost-table key,
+declared in the protocol before any run and never changed.
+
+### The gate built that morning refused this lane
+
+The terminal is a PASS under a criterion changed after the outcome, where the frozen
+criterion gave FAIL — so `criterion_binding` demanded an `exhibited_rejection_ref` and
+would not let the record stand without one. **That is the gate working on its author, hours
+after its author wrote it.** The demonstration supplied: run the applied criterion on the
+committed letter set restricted to a proper subgroup (rank 3, order 8) and it returns
+**not-minimal**, as it should. The relaxed rule still discriminates.
+
+### And assembling the verification found a hole in the gate itself
+
+Tamper **T6** conceals the criterion change by setting `applied_criterion_digest` equal to
+the frozen one — and the verifier **ACCEPTed it**, because with the digests equal none of
+the gated checks run. The same hole was in the committed `criterion_binding` module. Both
+now refuse a record that declares the criterion unchanged while carrying `deviation`,
+`verdict_under_frozen_criterion` or `exhibited_rejection_ref` — fields that exist only
+because a criterion changed. QG-26's verifier carried the same shape and is fixed with it;
+its artifact was **regenerated rather than relabelled**.
+
+Harness suite 223 passing.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
-- **QG-7d — the last link.** Close the comm-s2 pinned sector: a sharper exchange
+- ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where
+  strict descent fails because the replacement optimum is comm-s2 on another block. The
+  reopen adjudication classifies this negative FAILED_DECOMPOSITION and predicts it
+  converts (`reopen-adjudication/REOPEN_TERMINAL.json`).
+- ~~QG-7d~~ **EXECUTED — see above.** Close the comm-s2 pinned sector: a sharper exchange
   (the T4b failure census delimits exactly which 135,604 patterns need it, worst
   residue +2) or a new composition argument for the two declared-open sub-cases
   (double pinners; comm-s2 chains). The hostile evidence says the identity holds

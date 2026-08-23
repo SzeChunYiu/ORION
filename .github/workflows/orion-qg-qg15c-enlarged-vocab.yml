@@ -1,0 +1,73 @@
+name: orion-qg-qg15c-enlarged-vocab
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG15C_*'
+      - 'development/orion-qg-regime-geometry/qg15c_*'
+      - 'development/orion-qg-regime-geometry/run_qg15c_dual_harness.py'
+      - 'research/extensions/orion-qg/qg15c_*'
+      - '.github/workflows/orion-qg-qg15c-enlarged-vocab.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg15c-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg15c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG15C_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout exact head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${QG15C_BASE}")" = "${QG15C_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax
+        run: python -m py_compile research/extensions/orion-qg/qg15c_enlarged_vocab.py development/orion-qg-regime-geometry/qg15c_generic_verify.py development/orion-qg-regime-geometry/qg15c_native_verify.py development/orion-qg-regime-geometry/run_qg15c_dual_harness.py
+      - name: Execute complete n-le-3 vocabulary discriminator through both instruments
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg15c_dual_harness.py | tee artifacts/orion-qg-qg15c-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg15c_enlarged_vocab.py --output artifacts/orion-qg-qg15c-enlarged-vocab-replay.json > artifacts/orion-qg-qg15c-replay.log
+          cmp artifacts/orion-qg-qg15c-enlarged-vocab.json artifacts/orion-qg-qg15c-enlarged-vocab-replay.json
+      - name: Enforce Stage-1 terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg15c-enlarged-vocab.json').read_text()); g=json.loads(Path('artifacts/orion-qg-qg15c-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-qg15c-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-qg15c-dual.json').read_text())
+          neg='QG15C_ENLARGED_DONOR_PATH_VOCABULARY_STILL_INSUFFICIENT__MIXED_CELLS_MACHINE_VERIFIED'; pos='QG15C_L2_FEATURE_DETERMINED_ON_COMPLETE_NLE3__HELDOUT_STAGE_REQUIRED'; assert a['terminal'] in {neg,pos}; assert a['all_gates'] is True and a['training_rows']==1146 and a['feature_count']==66; exp='ACCEPT_INSUFFICIENT' if a['terminal']==neg else 'ACCEPT_HELDOUT_REQUIRED'; assert g['decision']==exp and g['all_checks'] is True; assert n['decision']==exp and n['all_checks'] is True; assert d['terminal']==a['terminal'] and d['both_accept'] is True; assert d['scientifically_closed'] is (a['terminal']==neg); assert a['novelty_authority'] is False and a['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg15c-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg15c-enlarged-vocab.json
+            artifacts/orion-qg-qg15c-enlarged-vocab-replay.json
+            artifacts/orion-qg-qg15c-generic.json
+            artifacts/orion-qg-qg15c-native.json
+            artifacts/orion-qg-qg15c-dual.json
+            artifacts/orion-qg-qg15c-summary.json
+            .orion-qg-qg15c-generic/.orion-harness/**
+            .orion-qg-qg15c-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

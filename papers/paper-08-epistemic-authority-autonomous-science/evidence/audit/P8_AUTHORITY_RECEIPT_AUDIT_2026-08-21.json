@@ -1,0 +1,138 @@
+{
+  "ceiling": {
+    "emitted": "On this frozen panel of 15 cases, coercion was blocked and revocation propagated as the declared contracts specify. Bounded to those cases and that protocol: not evidence of method validity, novelty, utility or adoption, and no claim about any run outside the panel.",
+    "field": "claim_ceiling",
+    "injected": "This suite establishes real method validity, novelty, utility and adoption.",
+    "label": "P8.P9P10AntiLaundering.v1/claim_ceiling",
+    "outcome": "PASS",
+    "subject_controlled": false
+  },
+  "date": "2026-08-21",
+  "declared_gold": {
+    "applied": false,
+    "divergence_rate": 0.0,
+    "points": 15,
+    "points_changed": 0,
+    "theory_id": "P8.P9P10AntiLaundering.v1/declared-gold"
+  },
+  "donor_axis": {
+    "axis": "donor",
+    "comparable_pairs": 239616,
+    "inert": true,
+    "multiplier": 13,
+    "values": 13,
+    "varied": true,
+    "verdict_changing_pairs": 0
+  },
+  "donor_reporting": {
+    "axis": {
+      "axis": "donor",
+      "comparable_pairs": 239616,
+      "inert": true,
+      "multiplier": 13,
+      "values": 13,
+      "varied": true,
+      "verdict_changing_pairs": 0
+    },
+    "claim_file": "papers/paper-08-epistemic-authority-autonomous-science/manuscript/FINAL_V3.md",
+    "distinct_states": 3072,
+    "outcome": "PASS",
+    "reading": "the donor axis is verdict-inert over 239,616 sibling pairs, and the paper reports 3,072 distinct states with the thirteen donor families named as a replication factor. Inertness is the conservativity result, and it is not being counted as coverage.",
+    "replication_named": true,
+    "states_reported_distinctly": true,
+    "total_evaluations": 39936
+  },
+  "gold_outcome": "PASS",
+  "outcome": "PASS",
+  "principled_gold": {
+    "baseline_divergence": {
+      "applied": false,
+      "divergence_rate": 0.0,
+      "points": 15,
+      "points_changed": 0,
+      "theory_id": "P8.P9P10AntiLaundering.v1/principled-gold"
+    },
+    "gold_can_disagree": true,
+    "gold_does_disagree": false,
+    "outcome": "PASS",
+    "perturbation": "LEGAL grants P7_NAVIGATION authority over SEARCH_STOP",
+    "perturbed_divergence": {
+      "applied": true,
+      "divergence_rate": 0.06666666666666667,
+      "points": 15,
+      "points_changed": 1,
+      "theory_id": "P8.P9P10AntiLaundering.v1/principled-gold"
+    },
+    "reading": "The principled gold objects to a laundered table and does not object to the shipped one, so the tables agree with the paper's stated authority principle on all fifteen frozen cases. This is agreement between two independently derived specifications, not a transcription agreeing with itself."
+  },
+  "produced_by": "python -m orion.study.p8.terminal_audit",
+  "reading": "All four legs pass. Three were repaired and one was reclassified. The claim ceiling is derived from the terminal rather than echoed from the panel, so an injected overreaching bound no longer returns. The declared gold remains a transcription of the tables it grades and is still reported as departing at 0 of 15 -- it is joined by a principled gold adjudicated from the paper stated authority principle, independent of both the tables and the panel expectations, whose capacity to disagree is demonstrated by perturbation and which agrees on all 15. The donor axis is still inert over 239,616 sibling pairs; that is the donor-conservativity result rather than a defect, and what was wrong was reporting 3,072 distinct states replayed thirteen times as 39,936 states of coverage. The paper now reports the distinct count and names the replication, so the leg passes on the claim rather than on the axis.",
+  "record": "P8_AUTHORITY_RECEIPT_AUDIT",
+  "responsiveness": {
+    "assessment": {
+      "detail": "declared-withholding-cases: 0 violations in 3 opportunities (registered inputs that must not earn 'P8_P9_P10_ANTI_LAUNDERING_CLEAR' and that move at least one of 4 traced quantities of the 'terminal' receipt)",
+      "exercises": [
+        {
+          "arm_id": "declared-withholding-cases",
+          "exercised": true,
+          "guard_id": "P8.P9P10AntiLaundering.v1/terminal",
+          "opportunities": 3,
+          "opportunity_definition": "registered inputs that must not earn 'P8_P9_P10_ANTI_LAUNDERING_CLEAR' and that move at least one of 4 traced quantities of the 'terminal' receipt",
+          "resolution": 0.3333333333333333,
+          "violation_rate": 0.0,
+          "violations": 0
+        }
+      ],
+      "guard_id": "P8.P9P10AntiLaundering.v1/terminal",
+      "outcome": "PASS",
+      "reason": "HELD_UNDER_EXERCISE"
+    },
+    "baseline_verdict": "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
+    "contradicted": [],
+    "inert_cases": [],
+    "label": "P8.P9P10AntiLaundering.v1/terminal",
+    "responses": [
+      {
+        "case_id": "every-expectation-inverted",
+        "contradicted": false,
+        "evidence_moved": [
+          "contract_accuracy",
+          "illicit_coercion_block_rate",
+          "clean_legal_coverage",
+          "revocation_accuracy"
+        ],
+        "inert": false,
+        "verdict": "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+        "verdict_moved": true
+      },
+      {
+        "case_id": "authority-table-launders-everything",
+        "contradicted": false,
+        "evidence_moved": [
+          "contract_accuracy",
+          "illicit_coercion_block_rate"
+        ],
+        "inert": false,
+        "verdict": "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+        "verdict_moved": true
+      },
+      {
+        "case_id": "defeaters-propagate-nowhere",
+        "contradicted": false,
+        "evidence_moved": [
+          "contract_accuracy",
+          "revocation_accuracy"
+        ],
+        "inert": false,
+        "verdict": "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+        "verdict_moved": true
+      }
+    ],
+    "unmoved": [],
+    "verdict_field": "terminal",
+    "verdicts_observed": [
+      "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
+      "P8_P9_P10_ANTI_LAUNDERING_VIOLATED"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+name: orion-qg-qg23-support-compactness
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG23_*'
+      - 'development/orion-qg-regime-geometry/qg23_*'
+      - 'development/orion-qg-regime-geometry/run_qg23_dual_harness.py'
+      - 'research/extensions/orion-qg/qg23_*'
+      - '.github/workflows/orion-qg-qg23-support-compactness.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg23-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  compactness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg23_dual_harness.py | tee artifacts/orion-qg-qg23-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg23_aux_support_compactness.py --output artifacts/orion-qg-qg23-replay.json > artifacts/orion-qg-qg23-replay.log
+          cmp artifacts/orion-qg-qg23-aux-support-compactness.json artifacts/orion-qg-qg23-replay.json
+      - name: Enforce frozen authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg23-aux-support-compactness.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg23-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg23-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg23-dual-harness.json').read_text())
+          pos='QG23_TARE_AUXILIARY_SUPPORT_SKELETON_AT_MOST_6_ALL_N_MACHINE_CHECKED'
+          assert a['terminal']==pos and a['auxiliary_support_compactness_authority'] is True
+          assert a['maximum_auxiliary_support']==6 and len(a['shape_count_lattice'])==10
+          assert g['decision']=='ACCEPT_AUXILIARY_SUPPORT_COMPACTNESS' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_AUXILIARY_SUPPORT_COMPACTNESS' and n['all_checks'] is True
+          assert n['responsibility']=='AUXILIARY_SUPPORT_COMPACTNESS'
+          assert d['terminal']==pos and d['both_accept'] is True
+          for x in (a,g,n,d):
+            assert x['FULL_STATE_DIMENSION_6'] is False
+            assert x['CHAIN_ALL_N'] is False
+            assert x['GLOBAL_BDOUBLEPRIME_COMPLETENESS'] is False
+            assert x['FIFTH_REGIME_FOUND'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          assert a['target_spectator_state']=='OPEN_AND_NOT_BOUNDED_BY_6'
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg23-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg23-*.json
+            artifacts/orion-qg-qg23-*.log
+            .orion-qg-qg23-generic/.orion-harness/**
+            .orion-qg-qg23-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

@@ -1,0 +1,16 @@
+{
+  "schema_version": "orion.p5.revision-level-attainability-fixture.v1",
+  "authority": "SYNTHETIC_KNOWN_ANSWER_ONLY",
+  "admissible_terminals": ["PASS", "FAIL"],
+  "rows": [
+    {"cluster_id": "P5-FIX-01", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "EVIDENCE_REPAIR"},
+    {"cluster_id": "P5-FIX-02", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "MEASUREMENT_REPAIR"},
+    {"cluster_id": "P5-FIX-03", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "WITHIN_CLASS_MODEL_REPAIR"},
+    {"cluster_id": "P5-FIX-04", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "MODEL_CLASS_EXPANSION"},
+    {"cluster_id": "P5-FIX-05", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "REPRESENTATION_REGIME_REPAIR"},
+    {"cluster_id": "P5-FIX-06", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "EXECUTION_REPAIR"},
+    {"cluster_id": "P5-FIX-07", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "EVALUATOR_REPAIR"},
+    {"cluster_id": "P5-FIX-08", "candidate_visible_symptom_digest": "sha256:synthetic-shared-symptom", "protected_revision_class": "UNRESOLVED"}
+  ],
+  "grants_scientific_authority": false
+}

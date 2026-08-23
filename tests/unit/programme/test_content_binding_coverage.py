@@ -69,7 +69,11 @@ def binding(
 class TestTaxonomy:
     def test_only_a_readable_binding_exercises_the_guard(self) -> None:
         exercising = [item for item in PaperBindingState if item.exercises_drift_guard]
-        assert exercising == [PaperBindingState.BOUND_CURRENT, PaperBindingState.BOUND_DRIFTED]
+        assert exercising == [
+            PaperBindingState.BOUND_CURRENT,
+            PaperBindingState.BOUND_PARTIAL,
+            PaperBindingState.BOUND_DRIFTED,
+        ]
 
     def test_unbound_cannot_claim_bound_files(self) -> None:
         with pytest.raises(ValueError, match="UNBOUND contradicts"):
@@ -90,8 +94,37 @@ class TestTaxonomy:
     def test_partial_binding_is_visible(self) -> None:
         """A bound paper can still hold files no digest covers."""
 
-        record = binding("p", PaperBindingState.BOUND_CURRENT, on_disk=10, bound=4)
+        record = binding("p", PaperBindingState.BOUND_PARTIAL, on_disk=10, bound=4)
         assert record.unbound_files == 6
+        assert record.coverage_outcome is Outcome.CANNOT_CHECK
+
+    def test_a_complete_binding_cannot_be_declared_over_an_incomplete_one(self) -> None:
+        """BOUND_CURRENT is a claim about the whole paper, so it must cover it."""
+
+        with pytest.raises(ValueError, match="that is BOUND_PARTIAL"):
+            binding("p", PaperBindingState.BOUND_CURRENT, on_disk=10, bound=4)
+
+    def test_a_partial_binding_that_covers_nothing_is_unbound(self) -> None:
+        with pytest.raises(ValueError, match="that is UNBOUND"):
+            binding("p", PaperBindingState.BOUND_PARTIAL, on_disk=10, bound=0)
+
+    def test_a_partial_binding_that_covers_everything_is_complete(self) -> None:
+        with pytest.raises(ValueError, match="that is BOUND_CURRENT"):
+            binding("p", PaperBindingState.BOUND_PARTIAL, on_disk=10, bound=10)
+
+    def test_only_a_complete_binding_earns_a_coverage_pass(self) -> None:
+        """A clean verdict over a corner of a paper is not a verdict about the paper."""
+
+        complete = binding("p6", PaperBindingState.BOUND_CURRENT, on_disk=10, bound=10)
+        assert complete.coverage_outcome is Outcome.PASS
+        for state, kwargs in (
+            (PaperBindingState.BOUND_PARTIAL, {"bound": 4}),
+            (PaperBindingState.UNBOUND, {}),
+            (PaperBindingState.BOUND_UNREADABLE, {}),
+        ):
+            assert binding("p", state, on_disk=10, **kwargs).coverage_outcome is (
+                Outcome.CANNOT_CHECK
+            )
 
 
 class TestDenominator:
@@ -231,6 +264,21 @@ class TestAgainstTheRealTree:
         loss of the only check that notices their canonical bytes changing.
         """
 
+        bindings = survey_paper_bindings(REPO_ROOT)
+        bound = [item for item in bindings if item.state.exercises_drift_guard]
+        assert len(bound) >= 8, [item.paper_id for item in bound]
+        assert {item.paper_id for item in bound} >= set(BOUND_PAPERS)
+
+        # The ratchet that matters is completeness, not the existence of a file.
+        # P1-P5 bind a declared list and cover a fifth of themselves at best; only
+        # the three enumerating packages cover their whole directory, and losing
+        # that is the regression this guards.
+        complete = {
+            item.paper_id for item in bindings if item.state.covers_the_whole_paper
+        }
+        assert complete >= set(BOUND_PAPERS), sorted(complete)
+
+    def test_the_survey_reports_cannot_check_while_papers_are_unbound(self) -> None:
         bound = [
             item
             for item in survey_paper_bindings(REPO_ROOT)

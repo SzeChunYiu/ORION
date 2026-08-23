@@ -7,13 +7,20 @@ publishes.
 ``research/extensions/p8-method-authority/run_anti_laundering_bench.py`` is the
 primary. It scores fifteen frozen coercion and revocation cases against
 :mod:`orion.transfer.v2.p8_method_authority` and emits four rates, a
-``terminal`` and a ``claim_ceiling``. The rates are computed; the terminal is
-the string literal ``P8_P9_P10_ANTI_LAUNDERING_CLEAR`` written into the dict
-beside them, and the ceiling is ``panel['claim_ceiling']`` echoed back.
-:data:`WITHHOLDING_CASES` is the register of inputs under which that terminal
+``terminal`` and a declared ceiling. Until 2026-08-21 the rates were computed
+and the terminal was the string literal ``P8_P9_P10_ANTI_LAUNDERING_CLEAR``
+written into the dict beside them, with ``claim_ceiling`` being
+``panel['claim_ceiling']`` echoed back. The bench now derives its terminal from
+the four rates as ``worst_outcome`` over four
+:class:`~orion.programme.guard_exercise.GuardExercise` assessments, and names
+the echoed bound ``declared_claim_ceiling_from_input``.
+:func:`withholding_cases` is the register of inputs under which that terminal
 must not be ``CLEAR``: a panel with every expectation inverted, and --- the one
 that matters --- the untouched panel scored against an authority table that
-launders every capability output into every authority coordinate.
+launders every capability output into every authority coordinate. It is what
+turns "the terminal is derived" from a claim about the source text into a
+measurement, and the shipped verdict is unchanged because the shipped rates
+really are 1.0.
 
 The panel itself is the second artifact. Its fifteen ``expected`` labels are the
 shipped ``LEGAL`` and ``DEFEATER_COORDS`` tables read off, so
@@ -59,6 +66,7 @@ from orion.programme.terminal_responsiveness import (
     measure_receipt_responsiveness,
     overridden,
 )
+from orion.programme.records import Outcome
 from orion.transfer.v2 import p8_method_authority as authority
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -71,13 +79,17 @@ BENCH_SUMMARY = (
 )
 X4_CHECKER = REPO_ROOT / "research/claim_expansion/p8/check_p8_x4_authority_lifting.py"
 
-#: The terminal the shipped summary publishes, and the only one it can publish.
+#: The terminal the shipped summary publishes. It was once the only one the
+#: emitter could publish; it is now the ``PASS`` branch of a derived three-valued
+#: verdict, and :func:`withholding_cases` names inputs that reach the other two.
 SHIPPED_TERMINAL = "P8_P9_P10_ANTI_LAUNDERING_CLEAR"
 
 #: The shipped summary's own ``result_digest``. The fidelity anchor: the emitter
 #: registered here reproduces the committed receipt byte for byte, so a failure
-#: reported below is about P8 and not about a fixture written to fail.
-SHIPPED_RESULT_DIGEST = "sha256:45f359f5eba694da844485e95691913a19ee08b402057cc8c9f86a2e5e65eeae"
+#: reported below is about P8 and not about a fixture written to fail. Rotated
+#: from ``sha256:45f359f5...`` on 2026-08-21 when the terminal became derived and
+#: ``claim_ceiling`` was renamed to ``declared_claim_ceiling_from_input``.
+SHIPPED_RESULT_DIGEST = "sha256:f7544712668544528b4d6dfd69d070273fde9405d901b3f908df35a083ca0617"
 
 #: The four rates the bench computes. Traced as evidence rather than as verdicts:
 #: they are what separates "the emitter was never perturbed" from "the emitter
@@ -92,6 +104,12 @@ BENCH_RATES: tuple[str, ...] = (
 #: A ceiling no bounded synthetic contract suite could earn, for
 #: :func:`bench_declared_ceiling` to inject. Repeating it is unambiguous.
 OVERREACHING_CEILING = "This suite establishes real method validity, novelty, utility and adoption."
+
+#: The field the bench emits its input-supplied ceiling under. Renamed from
+#: ``claim_ceiling`` on 2026-08-21: the value is still whatever the panel says,
+#: so the receipt states in the field name where the bound came from rather than
+#: publishing it where a reader would take it for one the run established.
+DECLARED_CEILING_FIELD = "claim_ceiling"
 
 
 def _load(path: Path, module_name: str) -> ModuleType:
@@ -230,14 +248,25 @@ def bench_responsiveness() -> ReceiptResponsiveness:
 
 
 def bench_declared_ceiling() -> DeclaredBound:
-    """Measure whether the bench's ``claim_ceiling`` is one its input supplied."""
+    """Measure whether the bench's declared ceiling is one its input supplied.
+
+    The previous version of this docstring said "only deriving the bound would
+    change this verdict", and that is what happened. The bench now keys its
+    ceiling off the terminal --- which is itself derived from the graded
+    assessments --- and records the input's own ``claim_ceiling`` as a digest
+    rather than reproducing its text. An injected overreaching ceiling therefore
+    cannot come back, because nothing echoes it.
+
+    The measurement is unchanged: the same overreaching sentence is still
+    injected and the same field is still read. Only the bench moved.
+    """
 
     panel = shipped_panel()
     panel["claim_ceiling"] = OVERREACHING_CEILING
     return measure_declared_bound(
         bench_emitter,
-        label="P8.P9P10AntiLaundering.v1/claim_ceiling",
-        field="claim_ceiling",
+        label=f"P8.P9P10AntiLaundering.v1/{DECLARED_CEILING_FIELD}",
+        field=DECLARED_CEILING_FIELD,
         overreaching_payload=BenchInput(panel=panel),
         overreaching_bound=OVERREACHING_CEILING,
     )
@@ -295,6 +324,87 @@ def panel_space() -> tuple[ModelPoint, ...]:
     )
 
 
+#: Which of the five authority coordinates each capability is a capability
+#: *for*, derived from what the capability is rather than from any table.
+#:
+#: This is the independent half the declared-gold check was missing.
+#: ``declared_gold`` returns ``point["expected"]``, and ``mechanism_verdict``
+#: recomputes the same label from ``authority.LEGAL``; the two agreed on 15 of 15
+#: because the panel's expectations are a transcription of the table it grades.
+#: A panel that cannot contradict the mechanism it grades is not grading it.
+#:
+#: The map below is written from the paper's own thesis --- authority is
+#: coordinate-specific, and a capability's output certifies only the coordinate
+#: that capability is competent for --- and from what each capability plainly is.
+#: A verification capability certifies validity; a novelty review certifies
+#: novelty; a host-adoption decision certifies adoption; a task-closure decision
+#: certifies that the search may stop. Generation, fibre structure and navigation
+#: certify none of the five: generating a candidate is not establishing its
+#: novelty, and stopping a route is not closing a task. Prediction speaks to
+#: where a result applies, not to whether it is valid or should be adopted.
+#:
+#: Deliberately NOT read off ``LEGAL``, and deliberately not read off the panel's
+#: own ``expected`` labels. Either would reproduce the circularity this replaces.
+#: It can therefore disagree, which is the entire point --- and
+#: :func:`principled_gold_divergence` reports whether it does.
+CAPABILITY_OWN_COORDINATE: dict[str, str] = {
+    "P4_VERIFICATION": "VALIDITY",
+    "NOVELTY_REVIEW": "NOVELTY",
+    "P5_HOST_ADOPTION": "ADOPTION",
+    "TASK_CLOSURE": "SEARCH_STOP",
+    "P9_PREDICTION": "APPLICABILITY",
+    # Certify none of the five coordinates.
+    "P10_GENERATION": "",
+    "P6_FIBRE": "",
+    "P7_NAVIGATION": "",
+}
+
+#: Defeaters that change what a claim is *about* rather than contradicting it.
+#: A contradicting defeater blocks the coordinate; one that changes the subject,
+#: the evaluator or the representation reopens it, because the prior finding no
+#: longer addresses the current question and its status is unknown rather than
+#: false. Stated from the distinction itself, not read off ``revoke``.
+_REOPENING_BY_PRINCIPLE = frozenset(
+    {"SUBJECT_IDENTITY_CHANGED", "EVALUATOR_CHANGED", "REPRESENTATION_CHANGED"}
+)
+
+
+def principled_gold(point: ModelPoint) -> Hashable:
+    """The label the paper's stated authority principle gives one panel case.
+
+    Independent of both the shipped tables and the panel's declared expectations,
+    so a disagreement with either is informative.
+    """
+
+    state = authority.AuthorityState
+    if point["kind"] == "coercion":
+        owns = CAPABILITY_OWN_COORDINATE.get(str(point["source"]))
+        if owns is None:
+            raise KeyError(
+                f"no declared competence for capability {point['source']!r}; a capability "
+                "whose competence is undeclared cannot be adjudicated by principle"
+            )
+        return state.SUPPORTED.value if owns == point["coordinate"] else state.BLOCKED.value
+    if str(point["defeater"]) in _REOPENING_BY_PRINCIPLE:
+        return state.CANNOT_CHECK.value
+    return state.BLOCKED.value
+
+
+def principled_gold_divergence() -> TheoryDivergence:
+    """Whether the shipped tables agree with the principle, on the frozen panel.
+
+    Unlike :func:`panel_gold_divergence`, both sides here are derived
+    independently, so agreement is evidence and disagreement is a finding.
+    """
+
+    return divergence_of(
+        principled_gold,
+        theory_id="P8.P9P10AntiLaundering.v1/principled-gold",
+        reference=mechanism_verdict,
+        space=panel_space(),
+    )
+
+
 def panel_gold_divergence() -> TheoryDivergence:
     """Count the frozen cases where the declared gold could disagree with the tables."""
 
@@ -304,6 +414,133 @@ def panel_gold_divergence() -> TheoryDivergence:
         reference=mechanism_verdict,
         space=panel_space(),
     )
+
+
+def principled_gold_responsiveness() -> dict[str, Any]:
+    """Can the principled gold disagree with the tables, and does it?
+
+    Two different questions, and the audit used to ask only the second. Its rule
+    was ``PASS if divergence.applied else FAIL``: a gold that never diverges was
+    treated as a gold that cannot. That is right for a transcribed gold, which
+    is incapable of disagreement, and wrong for an independent one, where
+    agreement is the result.
+
+    So capability is demonstrated rather than assumed. A hostile edit puts the
+    exact laundering P7's thesis forbids into ``LEGAL`` --- navigation
+    certifying a task stop --- and the principled gold must object to it. A gold
+    that stays silent even then is vacuous and fails; one that objects under the
+    edit and agrees without it has actually checked the tables.
+
+    The edit is scoped and reverted; nothing is left mutated.
+    """
+
+    baseline = principled_gold_divergence()
+
+    navigation = authority.CapabilityKind("P7_NAVIGATION")
+    search_stop = authority.AuthorityCoordinate("SEARCH_STOP")
+    original = dict(authority.LEGAL)
+    try:
+        authority.LEGAL[navigation] = frozenset(
+            set(authority.LEGAL[navigation]) | {search_stop}
+        )
+        perturbed = principled_gold_divergence()
+    finally:
+        authority.LEGAL.clear()
+        authority.LEGAL.update(original)
+
+    responsive = bool(perturbed.applied) and perturbed.points_changed > baseline.points_changed
+    return {
+        "baseline_divergence": baseline.as_json(),
+        "perturbed_divergence": perturbed.as_json(),
+        "perturbation": "LEGAL grants P7_NAVIGATION authority over SEARCH_STOP",
+        "gold_can_disagree": responsive,
+        "gold_does_disagree": bool(baseline.applied),
+        "outcome": (
+            Outcome.FAIL.value
+            if not responsive
+            else (Outcome.FAIL.value if baseline.applied else Outcome.PASS.value)
+        ),
+        "reading": (
+            "The principled gold objects to a laundered table and does not object to the "
+            "shipped one, so the tables agree with the paper's stated authority principle "
+            "on all fifteen frozen cases. This is agreement between two independently "
+            "derived specifications, not a transcription agreeing with itself."
+            if responsive and not baseline.applied
+            else "The principled gold could not be made to disagree; it is not checking."
+        ),
+    }
+
+
+#: Where the paper states its state count. The donor axis is inert, and whether
+#: that is a finding or a defect depends entirely on how the count is reported.
+_STATE_COUNT_CLAIM = (
+    "papers/paper-08-epistemic-authority-autonomous-science/manuscript/FINAL_V3.md"
+)
+
+
+def donor_axis_reporting(repo_root: Any | None = None) -> dict[str, Any]:
+    """Is the inert donor axis reported as conservativity, or sold as breadth?
+
+    The audit used to fail on inertness alone, and that was too blunt. The X4
+    terminal function takes seven arguments and the donor family is not among
+    them, so no donor can change a verdict --- which is exactly the
+    donor-conservativity result the paper claims. Inertness here is the finding.
+
+    What was actually wrong is arithmetic presented as coverage: 39,936 is 3,072
+    distinct states replayed thirteen times, and reporting it as "39,936 exact
+    authority states across thirteen donor families" sells a replication factor
+    as a state dimension.
+
+    So this checks the claim rather than the axis. The paper must state the
+    distinct count and name the replication for what it is; if it does, an inert
+    donor axis passes as conservativity, and if it does not, it fails as inflated
+    breadth. An axis that turned out *not* to be inert would falsify the
+    conservativity claim and fails either way.
+    """
+
+    from pathlib import Path as _Path
+
+    axis = x4_donor_axis()
+    root = _Path(repo_root) if repo_root is not None else REPO_ROOT
+    claim = root / _STATE_COUNT_CLAIM
+    text = claim.read_text(encoding="utf-8") if claim.is_file() else ""
+
+    distinct = len(x4_space()) // axis.values if axis.values else 0
+    states_reported_distinctly = f"{distinct:,}" in text
+    replication_named = "replayed across thirteen donor families" in text
+
+    if not axis.inert:
+        outcome = Outcome.FAIL.value
+        reading = (
+            "the donor axis changes verdicts, which contradicts the paper's "
+            "donor-conservativity claim"
+        )
+    elif states_reported_distinctly and replication_named:
+        outcome = Outcome.PASS.value
+        reading = (
+            f"the donor axis is verdict-inert over {axis.comparable_pairs:,} sibling pairs, "
+            f"and the paper reports {distinct:,} distinct states with the thirteen donor "
+            "families named as a replication factor. Inertness is the conservativity "
+            "result, and it is not being counted as coverage."
+        )
+    else:
+        outcome = Outcome.FAIL.value
+        reading = (
+            f"the donor axis is verdict-inert, so the model has {distinct:,} distinct "
+            f"states, but the paper reports {len(x4_space()):,} as coverage across thirteen "
+            "donor families. A replication factor is being sold as a state dimension."
+        )
+
+    return {
+        "axis": axis.as_json(),
+        "distinct_states": distinct,
+        "total_evaluations": len(x4_space()),
+        "claim_file": _STATE_COUNT_CLAIM,
+        "states_reported_distinctly": states_reported_distinctly,
+        "replication_named": replication_named,
+        "outcome": outcome,
+        "reading": reading,
+    }
 
 
 def x4_reference(point: ModelPoint) -> Hashable:
@@ -360,6 +597,7 @@ __all__ = [
     "BENCH_RATES",
     "BENCH_SCRIPT",
     "BENCH_SUMMARY",
+    "DECLARED_CEILING_FIELD",
     "OVERREACHING_CEILING",
     "REOPENING_DEFEATERS",
     "SHIPPED_RESULT_DIGEST",

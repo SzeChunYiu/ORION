@@ -1,0 +1,280 @@
+{
+  "H1": {
+    "ci95_high": -0.45,
+    "ci95_low": -0.55,
+    "orion_minus_baseline_false_promotion": -0.5,
+    "practical_margin": -0.05,
+    "status": "PASS"
+  },
+  "H2": {
+    "ci95_high": 0.0,
+    "ci95_low": 0.0,
+    "noninferiority_margin": -0.05,
+    "orion_minus_baseline_clean_coverage": 0.0,
+    "status": "PASS"
+  },
+  "H3": {
+    "ci95_high": 1.0,
+    "ci95_low": 1.0,
+    "note": "Secondary hypothesis; equality does not invalidate H1/H2 or the typed safety panel.",
+    "orion_minus_baseline_correct_cannot_check": 1.0,
+    "status": "SUPPORTED"
+  },
+  "battery_seed": "p4-v3-panel-20260821",
+  "campaign_run_id": "p4-v3-local-20260821",
+  "cannot_check_family_summary": {
+    "ORION": {
+      "correct_terminal": 30,
+      "correct_terminal_rate": 1.0,
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0,
+      "n": 30
+    },
+    "attributionbench-multisource-attribution": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.5,
+      "false_promotions": 15,
+      "n": 30
+    },
+    "citation-presence-format": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 1.0,
+      "false_promotions": 30,
+      "n": 30
+    },
+    "claim-level-auditability-provenance": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0,
+      "n": 30
+    },
+    "claimbench-sciclaimhunt-scientific-evidence": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.5,
+      "false_promotions": 15,
+      "n": 30
+    },
+    "deepsciverify-abstract-to-full-escalation": {
+      "correct_terminal": 15,
+      "correct_terminal_rate": 0.5,
+      "false_promotion_rate": 0.5,
+      "false_promotions": 15,
+      "n": 30
+    },
+    "fire-iterative-retrieve-or-verify": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.5,
+      "false_promotions": 15,
+      "n": 30
+    },
+    "pooled-evidence-nli-support": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.5,
+      "false_promotions": 15,
+      "n": 30
+    },
+    "provenai-citation-fidelity-influence": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0,
+      "n": 30
+    },
+    "provenanceguard-style-source-routing": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0,
+      "n": 30
+    },
+    "rewardhackingagents-search-contamination": {
+      "correct_terminal": 0,
+      "correct_terminal_rate": 0.0,
+      "false_promotion_rate": 0.5,
+      "false_promotions": 15,
+      "n": 30
+    }
+  },
+  "case_construction": "v3",
+  "case_count": 420,
+  "freeze_document": "research/campaigns/2026-08-21-p4-battery-v3-identifiable/FREEZE.md",
+  "panel_pass": true,
+  "repeat_count": 5,
+  "schema": "P4PanelV3.v1",
+  "strongest_frozen_comparator": "provenai-citation-fidelity-influence",
+  "systems": {
+    "ORION": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 30,
+      "correct_cannot_check_rate": 1.0,
+      "false_promotion_ci95": [
+        0.0,
+        0.010558056888693507
+      ],
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0
+    },
+    "attributionbench-multisource-attribution": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.6593779530061684,
+        0.7528895232902094
+      ],
+      "false_promotion_rate": 0.7083333333333334,
+      "false_promotions": 255
+    },
+    "citation-presence-format": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.9894419431113063,
+        0.9999999999999999
+      ],
+      "false_promotion_rate": 1.0,
+      "false_promotions": 360
+    },
+    "claim-level-auditability-provenance": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.6164370892983055,
+        0.7133768917387966
+      ],
+      "false_promotion_rate": 0.6666666666666666,
+      "false_promotions": 240
+    },
+    "claimbench-sciclaimhunt-scientific-evidence": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.9323990572519006,
+        0.9745893906001303
+      ],
+      "false_promotion_rate": 0.9583333333333334,
+      "false_promotions": 345
+    },
+    "deepsciverify-abstract-to-full-escalation": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 15,
+      "correct_cannot_check_rate": 0.5,
+      "false_promotion_ci95": [
+        0.5739179444882184,
+        0.6734425412896082
+      ],
+      "false_promotion_rate": 0.625,
+      "false_promotions": 225
+    },
+    "fire-iterative-retrieve-or-verify": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.8368286942096774,
+        0.9052527631238023
+      ],
+      "false_promotion_rate": 0.875,
+      "false_promotions": 315
+    },
+    "pooled-evidence-nli-support": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.9323990572519006,
+        0.9745893906001303
+      ],
+      "false_promotion_rate": 0.9583333333333334,
+      "false_promotions": 345
+    },
+    "provenai-citation-fidelity-influence": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.4486237971218836,
+        0.5513762028781164
+      ],
+      "false_promotion_rate": 0.5,
+      "false_promotions": 180
+    },
+    "provenanceguard-style-source-routing": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.5317882359812938,
+        0.6331187545372574
+      ],
+      "false_promotion_rate": 0.5833333333333334,
+      "false_promotions": 210
+    },
+    "rewardhackingagents-search-contamination": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "correct_cannot_check": 0,
+      "correct_cannot_check_rate": 0.0,
+      "false_promotion_ci95": [
+        0.5739179444882184,
+        0.6734425412896082
+      ],
+      "false_promotion_rate": 0.625,
+      "false_promotions": 225
+    }
+  },
+  "typed_panel_blockers": [],
+  "typed_panel_status": "PASS"
+}

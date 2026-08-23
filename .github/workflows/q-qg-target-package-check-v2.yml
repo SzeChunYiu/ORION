@@ -1,0 +1,36 @@
+name: q-qg-target-package-check-v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q_QG_TARGET_PACKAGE_MANIFESTS_V2.json'
+      - 'papers/Q_QG_FIGURE_AUTHORITY_V2.md'
+      - 'papers/check_q_qg_target_packages_v2.py'
+      - 'papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md'
+      - 'papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md'
+      - 'papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md'
+      - 'papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md'
+      - 'papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md'
+      - '.github/workflows/q-qg-target-package-check-v2.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q_QG_TARGET_PACKAGE_MANIFESTS_V2.json'
+      - 'papers/Q_QG_FIGURE_AUTHORITY_V2.md'
+      - 'papers/check_q_qg_target_packages_v2.py'
+      - '.github/workflows/q-qg-target-package-check-v2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  target-package-routing-v2:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate V2 target packages and standalone figure authority
+        run: python papers/check_q_qg_target_packages_v2.py

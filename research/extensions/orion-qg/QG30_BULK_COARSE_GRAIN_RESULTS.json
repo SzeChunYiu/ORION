@@ -1,0 +1,66 @@
+{
+  "schema": "ORIONQG.QG30.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#893",
+  "pr": "SzeChunYiu/ORION#902",
+  "execution_head": "eafb9d236cef7f145715270b7f757234e7e44c9d",
+  "workflow_run_id": 32569106009,
+  "workflow_artifact_id": 9474853363,
+  "workflow_artifact_sha256": "ec67a44a57443d17699821852642df4b529cdd652118c771c4126cca9d2c38f2",
+  "terminal": "QG30_TARE_BULK_GEOMETRY_COMPRESSES_EXACTLY_TO_45_SIGNATURE_COUNTS__DEFECT_INFORMATION_REMAINS",
+  "source_result_digest": "5f740f8d230d2519b8abf46a743d67bdc2bf89ce1c1449943541f2bcfd20edc5",
+  "finite_size_safe_statistic": {
+    "local_clifford_orbit_count": 715,
+    "authority_parent": "QG-28"
+  },
+  "bulk_coarse_graining": {
+    "bulk_signature_count": 45,
+    "asymptotic_density_sufficient": true,
+    "asymptotic_phase_geometry_descends": true,
+    "bulk_form_count": 4
+  },
+  "finite_defect_census": {
+    "complete_one_active_profile_rows": 274560,
+    "distinct_one_active_defect_profiles": 54,
+    "bulk_signatures_with_multiple_defect_profiles": 15
+  },
+  "first_information_loss_witness": {
+    "common_bulk_signature": [2, 2, 2, 2],
+    "representative_1": [0, 0, 0, 0, 1, 1],
+    "representative_2": [0, 0, 0, 0, 1, 2],
+    "representative_1_profile_sha256": "e85a4e5ad5c81f5dce1e2e80d726e5d2fe6e648af72176b6dedc42a3966cf82e",
+    "representative_2_profile_sha256": "90158f77a4158c60bcbd6f062c12de19aa2c72a2d52b9fac89c99d7eee6e02ec",
+    "representative_1_K_histogram": {"3": 32, "5": 224, "6": 128},
+    "representative_2_K_histogram": {"4": 96, "5": 128, "6": 160},
+    "first_ordered_difference": {
+      "target_permutation": [0, 0, 0],
+      "auxiliary_frames": [1, 2, 1, 2, 1, 2],
+      "auxiliary_tag": 1,
+      "K_1": 5,
+      "K_2": 4
+    }
+  },
+  "generic_orion": {
+    "decision": "ACCEPT_BULK45_DEFECT_SEPARATION",
+    "all_checks": true
+  },
+  "native_orion_q": {
+    "decision": "ACCEPT_BULK45_DEFECT_SEPARATION",
+    "all_checks": true,
+    "responsibility": "BULK45_ASYMPTOTIC_SUFFICIENCY__FINITE_DEFECT_INFORMATION_BARRIER"
+  },
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "BULK_SIGNATURE_COUNT_45": 45,
+  "BULK_45_HISTOGRAM_SUFFICIENT_FOR_ASYMPTOTIC_DENSITY": true,
+  "ASYMPTOTIC_PHASE_GEOMETRY_DESCENDS_TO_45_COUNTS": true,
+  "BULK_DEFECT_SCALE_SEPARATION": true,
+  "BULK_SIGNATURE_SUFFICIENT_FOR_FULL_DEFECT": false,
+  "FULL_FINITE_N_OPTIMUM_FROM_45_COUNTS": false,
+  "PHYSICAL_RENORMALIZATION_GROUP": false,
+  "FINITE_N_GLOBAL_PHASE_BOUNDARY": false,
+  "CHAIN_ALL_N": false,
+  "CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS": false,
+  "novelty_authority": false,
+  "r6_authority": false,
+  "physical_quantum_advantage_claim": false
+}

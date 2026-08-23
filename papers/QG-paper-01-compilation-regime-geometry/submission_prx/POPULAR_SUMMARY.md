@@ -1,0 +1,5 @@
+# Popular Summary
+
+Quantum compilers often contain many mathematically valid ways to implement the same operation, and the cheapest choice can depend on the structure of the input and on how cost is defined. We study several exact compiler models to separate different kinds of statements that are often blended together: a provable limit on the search space, the smallest structure an optimum truly needs, a cost region where a proof remains valid, an explicit counterexample that defeats a simpler rule, and a feature representation that may or may not determine which regime applies. In one model, support two is always sufficient; in another, the intrinsic support is exactly one even though a simpler proof gives a looser bound of five. These examples motivate a falsifiable framework for analyzing compiler regimes without assuming that every compiler has a simple phase diagram.
+
+**Internal package note (not part of the summary):** final PRX Quantum word-count/format instructions must be rechecked immediately before submission. This summary intentionally avoids a universality or physical-advantage claim.

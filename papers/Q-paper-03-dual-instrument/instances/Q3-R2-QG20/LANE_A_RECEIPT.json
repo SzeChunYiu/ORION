@@ -1,0 +1,22 @@
+{
+  "confidence": "HIGH",
+  "executor": {
+    "model": "GPT-5.6 Sol",
+    "provider": "OpenAI",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "frontier_question_id": "QG-20",
+  "instance_id": "Q3-R2",
+  "primary_diagnosis": "S1_P0_BOUNDARY_OBJECTIVE_SCOPED",
+  "primary_move": "N1_COMPLETE_REWEIGHTED_CENSUS",
+  "rationale": [
+    "QG12's proof combines SELECT gain coefficients with PREP/WIDTH constants under the frozen objective.",
+    "Doubling SELECT changes the gain inequalities while leaving the unary incumbent well-defined.",
+    "The complete frozen n=1/n=2 census is the direct falsifier before transferring the iff boundary."
+  ],
+  "schema": "ORIONQ.Q3LaneAReceipt.v2",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "secondary_move_if_zero_mismatches": "N2_PROVE_WEIGHTED_P0_THEOREM_FIRST",
+  "shared_packet_sha256": "c047d9a9c14b219d154d1444a34bba21418a336fa11a5134b0b5d6db9a5ee9df"
+}

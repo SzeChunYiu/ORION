@@ -1,0 +1,173 @@
+{
+  "schema": "orion.p9.d1v1_3-prospective-attainability.v1",
+  "record": "P9_D1V1_3_PROSPECTIVE_ATTAINABILITY",
+  "authority_scope": "PROSPECTIVE_OUTCOME_BLIND_ONLY",
+  "outcome_accessed": false,
+  "grants": "Nothing. The D1 v1.3 protocol remains PROSPECTIVE_FROZEN_NOT_EXECUTED.",
+  "discharges": "required_inputs[4] prospective_power_and_attainability_receipt, partially -- see coverage",
+  "coverage": {
+    "arms_measured": [
+      "TRANSCRIPT_BAG",
+      "UNTYPED_PAIR",
+      "TYPED_RELATIONAL",
+      "TYPED_SERIALIZED_BAG"
+    ],
+    "arms_registered_but_unbuilt": [
+      "TYPED_ORDERED_MULTIPLICITY",
+      "STRONGEST_DONOR_COMPLETE_SERIALIZATION"
+    ],
+    "attacks_measured": [
+      "EQUAL_LENGTH",
+      "ORDER_PERMUTATION",
+      "SEMANTIC_ORBIT"
+    ],
+    "attacks_registered_but_unbuilt": [
+      "DUPLICATE_INSERTION"
+    ],
+    "why_partial": "Two of the four registered arms and one of the four registered attack families have no implementation. Their opportunity cannot be measured and is not guessed."
+  },
+  "opportunity_gate": {
+    "minimum_changed_fraction": 0.25,
+    "zero_opportunity_pass_prohibited": true,
+    "protected_cases": 128,
+    "cells": [
+      {
+        "attack_family": "EQUAL_LENGTH",
+        "arm": "TRANSCRIPT_BAG",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "EQUAL_LENGTH",
+        "arm": "UNTYPED_PAIR",
+        "cases": 128,
+        "changed": 48,
+        "changed_fraction": 0.375,
+        "meets_opportunity_gate": true,
+        "zero_opportunity": false
+      },
+      {
+        "attack_family": "EQUAL_LENGTH",
+        "arm": "TYPED_RELATIONAL",
+        "cases": 128,
+        "changed": 48,
+        "changed_fraction": 0.375,
+        "meets_opportunity_gate": true,
+        "zero_opportunity": false
+      },
+      {
+        "attack_family": "EQUAL_LENGTH",
+        "arm": "TYPED_SERIALIZED_BAG",
+        "cases": 128,
+        "changed": 48,
+        "changed_fraction": 0.375,
+        "meets_opportunity_gate": true,
+        "zero_opportunity": false
+      },
+      {
+        "attack_family": "ORDER_PERMUTATION",
+        "arm": "TRANSCRIPT_BAG",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "ORDER_PERMUTATION",
+        "arm": "UNTYPED_PAIR",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "ORDER_PERMUTATION",
+        "arm": "TYPED_RELATIONAL",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "ORDER_PERMUTATION",
+        "arm": "TYPED_SERIALIZED_BAG",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "SEMANTIC_ORBIT",
+        "arm": "TRANSCRIPT_BAG",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "SEMANTIC_ORBIT",
+        "arm": "UNTYPED_PAIR",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "SEMANTIC_ORBIT",
+        "arm": "TYPED_RELATIONAL",
+        "cases": 128,
+        "changed": 0,
+        "changed_fraction": 0.0,
+        "meets_opportunity_gate": false,
+        "zero_opportunity": true
+      },
+      {
+        "attack_family": "SEMANTIC_ORBIT",
+        "arm": "TYPED_SERIALIZED_BAG",
+        "cases": 128,
+        "changed": 128,
+        "changed_fraction": 1.0,
+        "meets_opportunity_gate": true,
+        "zero_opportunity": false
+      }
+    ],
+    "cells_total": 12,
+    "cells_meeting_gate": 4,
+    "cells_with_zero_opportunity": 8,
+    "attack_families_with_no_opportunity_against_any_measured_arm": [
+      "ORDER_PERMUTATION"
+    ]
+  },
+  "power": {
+    "primary_paired_margin": 0.08,
+    "n_total": 512,
+    "n_per_family": 128,
+    "alpha": 0.05,
+    "note": "Power depends on the discordance rate, which is unknown before the run, so it is reported across a range rather than assumed at one value.",
+    "primary_gate_power_by_discordance": {
+      "0.05": 0.9919,
+      "0.10": 0.8883,
+      "0.20": 0.6477,
+      "0.40": 0.4154
+    },
+    "primary_gate_power_if_true_margin_equals_gate": 0.05,
+    "worst_family_noninferiority_power_by_discordance": {
+      "0.05": 0.2634,
+      "0.10": 0.1764,
+      "0.20": 0.1274,
+      "0.40": 0.099
+    }
+  },
+  "verdict": "OPPORTUNITY_GATE_UNATTAINABLE_ON_EXISTING_ARMS",
+  "finding": "ORDER_PERMUTATION changes nothing in any of the four existing arms: every one of them reduces to a bag or set, which is the normalization the D1 v1.3 representation contract names as forbidden. SEMANTIC_ORBIT reaches only the serialized arm, and EQUAL_LENGTH misses TRANSCRIPT_BAG entirely. So the protocol's own opportunity gate cannot be satisfied on the arms that exist, and TYPED_ORDERED_MULTIPLICITY is not an additional arm -- it is the only arm on which the order and multiplicity attacks can have any opportunity at all.",
+  "consequence": "Build TYPED_ORDERED_MULTIPLICITY and DUPLICATE_INSERTION before acquiring anything else the freeze asks for. An attack cannot fail against a margin that was never measured, and a cell with no opportunity must be excluded before outcomes rather than passed."
+}

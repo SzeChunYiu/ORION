@@ -1,0 +1,41 @@
+{
+  "schema_version": "orion.p5.donor-source-grounding-receipt.v1",
+  "record": "MDA_SOURCE_GROUNDING",
+  "date": "2026-08-23",
+  "clears_blocker": "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19",
+  "authority_scope": "SOURCE_GROUNDING_ONLY",
+  "grants": "A mechanism-comparator binding. Not an official reproduction, not a donor-equivalence claim, and not evidence for any P5 hypothesis.",
+  "donor": {
+    "donor_id": "arxiv:2608.09696",
+    "version_read": "v3",
+    "title": "Model Discovery Agent: LLM-Assisted Bayesian Experiment Design for Data-Efficient Discovery of Mechanistic World Models",
+    "author": "Kevin Murphy",
+    "dated_in_source": "13 Aug 2026",
+    "retrieval": "arXiv abs and pdf both resolve; primary full text read, not the abstract"
+  },
+  "structural_reading": {
+    "revision_unit": "the pool of candidate mechanistic structures, held as a posterior over models",
+    "what_is_revised": "the hypothesis space itself. On an out-of-sample predictive check failing, the LLM proposer is asked for a novel unnamed mechanism with broad priors and the space EXPANDS; when the posterior has confidently identified a fitting model the pool SHRINKS to suppress near-duplicates.",
+    "what_stays_frozen": [
+      "the held-out query distribution, which the paper states stays untouched by the design loop",
+      "the learned summary encoder s_phi, frozen across all worlds, protocols and pools",
+      "the benchmark environments"
+    ],
+    "identification_step": "value-of-information experiment design identifies the parameters of the newly proposed mechanism; sequential Monte Carlo carries the structure and parameter posteriors, with the marginal likelihood supplying an Occam penalty.",
+    "verification_obligation": {
+      "name": "particle-filter spot-check",
+      "rule": "whenever a cheap observation model is selected, the collected data are re-scored with both it and the particle filter over the top candidates, and on MAP disagreement the run falls back to the filter",
+      "why_it_matters_here": "this is a verified-sufficiency obligation on a cheaper representation, discharged against an assumption-free anchor rather than assumed. It is the closest structure in this donor to a preservation or transport obligation, and it is what makes the binding a mechanism comparator rather than a surface analogy.",
+      "reported_operation": "of 18 open-world runs the final observation model was the learned summary on 2, the fixed feature likelihood on 5, and the particle filter on 11, all 11 reached through a spot-check disagreement"
+    },
+    "separation_the_donor_itself_flags": "a QUERY check on the task functional versus the default SUMMARY residual, with the paper arguing the two coincide in every benchmark it runs because the summary contains the target, and stating that QUERY becomes the operative safeguard only when the summary is lossy for the target."
+  },
+  "limits_recorded_from_the_source": [
+    "Level-2 interventional causality by the paper's own statement; not counterfactual level 3.",
+    "Every reported run uses CHECK=SUMMARY. The QUERY variant is argued to be redundant on these benchmarks rather than executed, so its safeguard is not exercised anywhere in the reported results.",
+    "The single-shot discrimination probe does not perfectly predict the full-loop outcome; the paper reports D-TYPE as a case where the probe favours the particle filter yet the cheap feature likelihood does better at budget."
+  ],
+  "why_this_does_not_upgrade_further": "An official reproduction would require running the donor's benchmarks under matched settings and reproducing its reported numbers. Reading the primary text supports a mechanism comparator and nothing beyond it. The two sibling records in this file carry the same disposition for the same reason.",
+  "disposition_supported": "MECHANISM_COMPARATOR_BOUND",
+  "structural_binding_id": "ssa:v1:model-discovery-agent-2608.09696v3"
+}

@@ -61,7 +61,12 @@ def main() -> None:
 
     digest = hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     assert len(rows) == 18432
-    assert digest == "f69a60c890b6f9f3636864c639769bc5a145f7224dccd16390cad8d01e92f096"
+    # Corrected 2026-08-22. This literal was "f69a60c890b6...", a digest neither
+    # this file nor check_p8_x2_authority_lifting.py has ever produced, so the X2
+    # independent verifier exited 1 on its own assertion from the commit that
+    # added it and P8-X2's "a separate implementation reproduces the enumeration"
+    # was never true. Both implementations produce the value below.
+    assert digest == "059687eb8a5a058f808a15da968a01cca99dcaf2731ddefebb8fae6d45aee0b3"
     assert dict(terminals) == {
         "NO_DONOR_AUTHORITY": 9216,
         "BLOCK": 7086,

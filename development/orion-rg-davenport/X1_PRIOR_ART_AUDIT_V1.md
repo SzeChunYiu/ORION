@@ -12,7 +12,7 @@ not summarized from search results.
 
 | claim made in this branch | verdict |
 |---|---|
-| `D_{k+1}(G) <= max(eta_T, D_k + T)` presented as a new lemma | **KILLED.** Freeze–Schmid Prop. 3.2(3), and their form is stronger |
+| `D_{k+1}(G) <= max(eta_T, D_k + T)` presented as a new lemma | **KILLED.** Freeze–Schmid Prop. 3.1(3), and their form is stronger |
 | `D_k` values for `C_2^2`, `C_2^3`, `C_2^4` | **KNOWN.** Replication; instrument validation only |
 | coding-theory reading of these constants | **KNOWN.** Schmid, *An Application of Coding Theory to Estimating Davenport Constants* |
 | `D_2(C_5^3) = 20` | **not found in the literature** |
@@ -26,11 +26,17 @@ the higher-rank Davenport surveys, and the coding-theory-to-Davenport line.
 
 ## What Freeze–Schmid actually establish (the relevant parts)
 
-- **Prop. 3.2(2)** `D_{k+1}(G) <= D_k(G) + M`, with `M` the minimum length of a
-  minimal zero-sum sequence dividing an extremal `B`. Sharper than 3.2(3), and
+- **Prop. 3.1(2)** `D_{k+1}(G) <= D_k(G) + M`, with `M` the minimum length of a
+  minimal zero-sum sequence dividing an extremal `B`. Sharper than 3.1(3), and
   the natural place a genuine refinement would live.
-- **Prop. 3.2(3)** for each `l`, `D_{k+1}(G) <= max{D_k(G) + l, s_{<=l}(G) - 1}`.
-  Their `s_{<=l}` is our `eta_l`.
+- **Prop. 3.1(3)** for each `l`, `D_{k+1}(G) <= max{D_k(G) + l, s_{<=l}(G) - 1}`.
+
+  **Notation correction.** Their slot is `s_{<=l}(G)`, the smallest length forcing
+  a zero-sum of length `<= l`. This branch renamed it `eta_l`, which is loose:
+  `eta(G)` conventionally denotes `s_{<=exp(G)}(G)` *specifically*, so `eta_l`
+  coincides with the standard `eta` only at `l = exp(G)`. The quantity computed
+  in this branch is `s_{<=l}(C_5^3)` and should be written that way. The numbers
+  are unaffected; the name was wrong.
 - `D_k(G) = D_0(G) + k*exp(G)` for all sufficiently large `k`; this holds for all
   `k` when `r(G) <= 2`, and **fails for elementary 2- and 3-groups of rank >= 3**.
 - Exact `D_k` for elementary 2-groups of **rank 4 and 5**; rank `<= 3` already
@@ -89,3 +95,19 @@ Run the hostile prior-art check **before** investing in a direction, not after
 writing it up. The killed claim here cost a protocol rewrite, a receipt rewrite,
 a PR retitle, and a re-scoped agent — all of which a fifteen-minute search
 beforehand would have avoided.
+
+## Corrections to this audit itself
+
+**Citation.** An earlier version of this document, and the PR that merged it,
+cited the bound as Freeze–Schmid **Proposition 3.2**. It is **Proposition 3.1**;
+items (2) and (3) fall under Prop. 3.1, verified directly against the extracted
+text (Prop. 3.1 is stated at the head of that block, and Prop. 3.2 is a different,
+`s_{<=l}`-based counting statement used later in Section 4). Corrected
+throughout. The mathematical content of the audit is unchanged — the bound is
+still published and still stronger than the form this branch claimed.
+
+**Notation.** `eta_l` was a loose renaming of the paper's `s_{<=l}(G)`; see the
+note above. The computed values are unaffected.
+
+Both errors were caught by an adversarial re-read commissioned *after* the audit
+was merged. An audit is not exempt from being audited.

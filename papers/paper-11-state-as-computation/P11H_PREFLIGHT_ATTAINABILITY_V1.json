@@ -1,0 +1,963 @@
+{
+  "distinct_terminals": 2,
+  "execution_seed": 2026082210,
+  "ladder": [
+    [
+      14,
+      2,
+      3
+    ],
+    [
+      14,
+      3,
+      3
+    ],
+    [
+      19,
+      3,
+      3
+    ],
+    [
+      14,
+      2,
+      7
+    ],
+    [
+      14,
+      3,
+      7
+    ],
+    [
+      19,
+      3,
+      7
+    ]
+  ],
+  "ladder_readings": [
+    {
+      "compiled_at_64": 1.0,
+      "delta64_vs_pool": 0.0,
+      "laundering_count": 0.0,
+      "pooled_best_below_gate": 1.0,
+      "rung": 0.0
+    },
+    {
+      "compiled_at_64": 1.0,
+      "delta64_vs_pool": 0.09912109375,
+      "laundering_count": 0.0,
+      "pooled_best_below_gate": 1.0,
+      "rung": 1.0
+    },
+    {
+      "compiled_at_64": 1.0,
+      "delta64_vs_pool": 0.07558593749999998,
+      "laundering_count": 0.0,
+      "pooled_best_below_gate": 1.0,
+      "rung": 2.0
+    },
+    {
+      "compiled_at_64": 0.982177734375,
+      "delta64_vs_pool": 0.24819335937499998,
+      "laundering_count": 0.0,
+      "pooled_best_below_gate": 0.885400390625,
+      "rung": 3.0
+    },
+    {
+      "compiled_at_64": 0.9701171875,
+      "delta64_vs_pool": 0.23671874999999998,
+      "laundering_count": 0.0,
+      "pooled_best_below_gate": 0.880810546875,
+      "rung": 4.0
+    },
+    {
+      "compiled_at_64": 1.0,
+      "delta64_vs_pool": 0.37602539062499996,
+      "laundering_count": 0.0,
+      "pooled_best_below_gate": 0.846337890625,
+      "rung": 5.0
+    }
+  ],
+  "preflight_seed": 2026082201,
+  "protected_regimes_drawn_per_run": 2,
+  "protocol": "P11H_POOLED_SPARSITY_LADDER_PROTOCOL_V1.md",
+  "schema": "ORION.P11H.PreflightAttainability.v1",
+  "terminal_reach": {
+    "clearing_every_gate": [
+      "regimes-3-4",
+      "regimes-3-5",
+      "regimes-4-5"
+    ],
+    "distinct_terminals": 2,
+    "gates": [
+      {
+        "assessment": {
+          "detail": "declared-admissible-worlds: 0 violations in 15 opportunities (registered inputs the frozen protocol admits, scored on active components equal to or negating the signed label on the protected test set, summed over the drawn regimes against AT_MOST 0.0)",
+          "exercises": [
+            {
+              "arm_id": "declared-admissible-worlds",
+              "exercised": true,
+              "guard_id": "no_answer_laundering",
+              "opportunities": 15,
+              "opportunity_definition": "registered inputs the frozen protocol admits, scored on active components equal to or negating the signed label on the protected test set, summed over the drawn regimes against AT_MOST 0.0",
+              "resolution": 0.06666666666666667,
+              "violation_rate": 0.0,
+              "violations": 0
+            }
+          ],
+          "guard_id": "no_answer_laundering",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "attainment_margin": 0.0,
+        "best_value": 0.0,
+        "gate": {
+          "direction": "AT_MOST",
+          "gate_id": "no_answer_laundering",
+          "reads": "active components equal to or negating the signed label on the protected test set, summed over the drawn regimes",
+          "role": "PRECONDITION",
+          "threshold": 0.0
+        },
+        "outcome": "PASS",
+        "readings": [
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-0-1"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-0-2"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-0-3"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-0-4"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-0-5"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-1-2"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-1-3"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-1-4"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-1-5"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-2-3"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-2-4"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-2-5"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-3-4"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-3-5"
+          },
+          {
+            "margin": 0.0,
+            "satisfied": true,
+            "value": 0.0,
+            "world_id": "regimes-4-5"
+          }
+        ],
+        "reason": "THRESHOLD_UNCONDITIONAL",
+        "refuting": [],
+        "satisfying": [
+          "regimes-0-1",
+          "regimes-0-2",
+          "regimes-0-3",
+          "regimes-0-4",
+          "regimes-0-5",
+          "regimes-1-2",
+          "regimes-1-3",
+          "regimes-1-4",
+          "regimes-1-5",
+          "regimes-2-3",
+          "regimes-2-4",
+          "regimes-2-5",
+          "regimes-3-4",
+          "regimes-3-5",
+          "regimes-4-5"
+        ]
+      },
+      {
+        "assessment": {
+          "detail": "declared-admissible-worlds: 0 violations in 15 opportunities (registered inputs the frozen protocol admits, scored on the pooled universal attack's best mean test accuracy at a registered size below n=256, maximised over every rung of the frozen ladder against AT_LEAST 0.95)",
+          "exercises": [
+            {
+              "arm_id": "declared-admissible-worlds",
+              "exercised": true,
+              "guard_id": "attack_live_on_ladder",
+              "opportunities": 15,
+              "opportunity_definition": "registered inputs the frozen protocol admits, scored on the pooled universal attack's best mean test accuracy at a registered size below n=256, maximised over every rung of the frozen ladder against AT_LEAST 0.95",
+              "resolution": 0.06666666666666667,
+              "violation_rate": 0.0,
+              "violations": 0
+            }
+          ],
+          "guard_id": "attack_live_on_ladder",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "attainment_margin": 0.050000000000000044,
+        "best_value": 1.0,
+        "gate": {
+          "direction": "AT_LEAST",
+          "gate_id": "attack_live_on_ladder",
+          "reads": "the pooled universal attack's best mean test accuracy at a registered size below n=256, maximised over every rung of the frozen ladder",
+          "role": "PRECONDITION",
+          "threshold": 0.95
+        },
+        "outcome": "PASS",
+        "readings": [
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-1"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-2"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-3"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-5"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-1-2"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-1-3"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-1-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-1-5"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-2-3"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-2-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-2-5"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-3-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-3-5"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-4-5"
+          }
+        ],
+        "reason": "THRESHOLD_UNCONDITIONAL",
+        "refuting": [],
+        "satisfying": [
+          "regimes-0-1",
+          "regimes-0-2",
+          "regimes-0-3",
+          "regimes-0-4",
+          "regimes-0-5",
+          "regimes-1-2",
+          "regimes-1-3",
+          "regimes-1-4",
+          "regimes-1-5",
+          "regimes-2-3",
+          "regimes-2-4",
+          "regimes-2-5",
+          "regimes-3-4",
+          "regimes-3-5",
+          "regimes-4-5"
+        ]
+      },
+      {
+        "assessment": {
+          "detail": "declared-admissible-worlds: 0 violations in 15 opportunities (registered inputs the frozen protocol admits, scored on the compiled arm's smallest mean test accuracy at n=64 over the drawn regimes against AT_LEAST 0.95)",
+          "exercises": [
+            {
+              "arm_id": "declared-admissible-worlds",
+              "exercised": true,
+              "guard_id": "compiled_by_64",
+              "opportunities": 15,
+              "opportunity_definition": "registered inputs the frozen protocol admits, scored on the compiled arm's smallest mean test accuracy at n=64 over the drawn regimes against AT_LEAST 0.95",
+              "resolution": 0.06666666666666667,
+              "violation_rate": 0.0,
+              "violations": 0
+            }
+          ],
+          "guard_id": "compiled_by_64",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "attainment_margin": 0.050000000000000044,
+        "best_value": 1.0,
+        "gate": {
+          "direction": "AT_LEAST",
+          "gate_id": "compiled_by_64",
+          "reads": "the compiled arm's smallest mean test accuracy at n=64 over the drawn regimes",
+          "role": "PRECONDITION",
+          "threshold": 0.95
+        },
+        "outcome": "PASS",
+        "readings": [
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-1"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-2"
+          },
+          {
+            "margin": 0.032177734375000044,
+            "satisfied": true,
+            "value": 0.982177734375,
+            "world_id": "regimes-0-3"
+          },
+          {
+            "margin": 0.020117187500000022,
+            "satisfied": true,
+            "value": 0.9701171875,
+            "world_id": "regimes-0-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-0-5"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-1-2"
+          },
+          {
+            "margin": 0.032177734375000044,
+            "satisfied": true,
+            "value": 0.982177734375,
+            "world_id": "regimes-1-3"
+          },
+          {
+            "margin": 0.020117187500000022,
+            "satisfied": true,
+            "value": 0.9701171875,
+            "world_id": "regimes-1-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-1-5"
+          },
+          {
+            "margin": 0.032177734375000044,
+            "satisfied": true,
+            "value": 0.982177734375,
+            "world_id": "regimes-2-3"
+          },
+          {
+            "margin": 0.020117187500000022,
+            "satisfied": true,
+            "value": 0.9701171875,
+            "world_id": "regimes-2-4"
+          },
+          {
+            "margin": 0.050000000000000044,
+            "satisfied": true,
+            "value": 1.0,
+            "world_id": "regimes-2-5"
+          },
+          {
+            "margin": 0.020117187500000022,
+            "satisfied": true,
+            "value": 0.9701171875,
+            "world_id": "regimes-3-4"
+          },
+          {
+            "margin": 0.032177734375000044,
+            "satisfied": true,
+            "value": 0.982177734375,
+            "world_id": "regimes-3-5"
+          },
+          {
+            "margin": 0.020117187500000022,
+            "satisfied": true,
+            "value": 0.9701171875,
+            "world_id": "regimes-4-5"
+          }
+        ],
+        "reason": "THRESHOLD_UNCONDITIONAL",
+        "refuting": [],
+        "satisfying": [
+          "regimes-0-1",
+          "regimes-0-2",
+          "regimes-0-3",
+          "regimes-0-4",
+          "regimes-0-5",
+          "regimes-1-2",
+          "regimes-1-3",
+          "regimes-1-4",
+          "regimes-1-5",
+          "regimes-2-3",
+          "regimes-2-4",
+          "regimes-2-5",
+          "regimes-3-4",
+          "regimes-3-5",
+          "regimes-4-5"
+        ]
+      },
+      {
+        "assessment": {
+          "detail": "declared-admissible-worlds: 12 violations in 15 opportunities (registered inputs the frozen protocol admits, scored on the pooled universal attack's best mean test accuracy at a registered size below n=256, over the drawn regimes against AT_MOST 0.95)",
+          "exercises": [
+            {
+              "arm_id": "declared-admissible-worlds",
+              "exercised": true,
+              "guard_id": "pooled_universal_threshold_ge_256",
+              "opportunities": 15,
+              "opportunity_definition": "registered inputs the frozen protocol admits, scored on the pooled universal attack's best mean test accuracy at a registered size below n=256, over the drawn regimes against AT_MOST 0.95",
+              "resolution": 0.06666666666666667,
+              "violation_rate": 0.8,
+              "violations": 12
+            }
+          ],
+          "guard_id": "pooled_universal_threshold_ge_256",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "attainment_margin": 0.06918945312499991,
+        "best_value": 0.880810546875,
+        "gate": {
+          "direction": "AT_MOST",
+          "gate_id": "pooled_universal_threshold_ge_256",
+          "reads": "the pooled universal attack's best mean test accuracy at a registered size below n=256, over the drawn regimes",
+          "role": "HYPOTHESIS",
+          "threshold": 0.95
+        },
+        "outcome": "PASS",
+        "readings": [
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-0-1"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-0-2"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-0-3"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-0-4"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-0-5"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-1-2"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-1-3"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-1-4"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-1-5"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-2-3"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-2-4"
+          },
+          {
+            "margin": -0.050000000000000044,
+            "satisfied": false,
+            "value": 1.0,
+            "world_id": "regimes-2-5"
+          },
+          {
+            "margin": 0.06459960937499998,
+            "satisfied": true,
+            "value": 0.885400390625,
+            "world_id": "regimes-3-4"
+          },
+          {
+            "margin": 0.06459960937499998,
+            "satisfied": true,
+            "value": 0.885400390625,
+            "world_id": "regimes-3-5"
+          },
+          {
+            "margin": 0.06918945312499991,
+            "satisfied": true,
+            "value": 0.880810546875,
+            "world_id": "regimes-4-5"
+          }
+        ],
+        "reason": "BOTH_OUTCOMES_REACHABLE",
+        "refuting": [
+          "regimes-0-1",
+          "regimes-0-2",
+          "regimes-0-3",
+          "regimes-0-4",
+          "regimes-0-5",
+          "regimes-1-2",
+          "regimes-1-3",
+          "regimes-1-4",
+          "regimes-1-5",
+          "regimes-2-3",
+          "regimes-2-4",
+          "regimes-2-5"
+        ],
+        "satisfying": [
+          "regimes-3-4",
+          "regimes-3-5",
+          "regimes-4-5"
+        ]
+      },
+      {
+        "assessment": {
+          "detail": "declared-admissible-worlds: 12 violations in 15 opportunities (registered inputs the frozen protocol admits, scored on the smallest compiled-minus-pooled mean accuracy at n=64 over the drawn regimes against AT_LEAST 0.2)",
+          "exercises": [
+            {
+              "arm_id": "declared-admissible-worlds",
+              "exercised": true,
+              "guard_id": "delta64_ge_0_20",
+              "opportunities": 15,
+              "opportunity_definition": "registered inputs the frozen protocol admits, scored on the smallest compiled-minus-pooled mean accuracy at n=64 over the drawn regimes against AT_LEAST 0.2",
+              "resolution": 0.06666666666666667,
+              "violation_rate": 0.8,
+              "violations": 12
+            }
+          ],
+          "guard_id": "delta64_ge_0_20",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "attainment_margin": 0.04819335937499997,
+        "best_value": 0.24819335937499998,
+        "gate": {
+          "direction": "AT_LEAST",
+          "gate_id": "delta64_ge_0_20",
+          "reads": "the smallest compiled-minus-pooled mean accuracy at n=64 over the drawn regimes",
+          "role": "HYPOTHESIS",
+          "threshold": 0.2
+        },
+        "outcome": "PASS",
+        "readings": [
+          {
+            "margin": -0.2,
+            "satisfied": false,
+            "value": 0.0,
+            "world_id": "regimes-0-1"
+          },
+          {
+            "margin": -0.2,
+            "satisfied": false,
+            "value": 0.0,
+            "world_id": "regimes-0-2"
+          },
+          {
+            "margin": -0.2,
+            "satisfied": false,
+            "value": 0.0,
+            "world_id": "regimes-0-3"
+          },
+          {
+            "margin": -0.2,
+            "satisfied": false,
+            "value": 0.0,
+            "world_id": "regimes-0-4"
+          },
+          {
+            "margin": -0.2,
+            "satisfied": false,
+            "value": 0.0,
+            "world_id": "regimes-0-5"
+          },
+          {
+            "margin": -0.12441406250000003,
+            "satisfied": false,
+            "value": 0.07558593749999998,
+            "world_id": "regimes-1-2"
+          },
+          {
+            "margin": -0.10087890625000001,
+            "satisfied": false,
+            "value": 0.09912109375,
+            "world_id": "regimes-1-3"
+          },
+          {
+            "margin": -0.10087890625000001,
+            "satisfied": false,
+            "value": 0.09912109375,
+            "world_id": "regimes-1-4"
+          },
+          {
+            "margin": -0.10087890625000001,
+            "satisfied": false,
+            "value": 0.09912109375,
+            "world_id": "regimes-1-5"
+          },
+          {
+            "margin": -0.12441406250000003,
+            "satisfied": false,
+            "value": 0.07558593749999998,
+            "world_id": "regimes-2-3"
+          },
+          {
+            "margin": -0.12441406250000003,
+            "satisfied": false,
+            "value": 0.07558593749999998,
+            "world_id": "regimes-2-4"
+          },
+          {
+            "margin": -0.12441406250000003,
+            "satisfied": false,
+            "value": 0.07558593749999998,
+            "world_id": "regimes-2-5"
+          },
+          {
+            "margin": 0.03671874999999997,
+            "satisfied": true,
+            "value": 0.23671874999999998,
+            "world_id": "regimes-3-4"
+          },
+          {
+            "margin": 0.04819335937499997,
+            "satisfied": true,
+            "value": 0.24819335937499998,
+            "world_id": "regimes-3-5"
+          },
+          {
+            "margin": 0.03671874999999997,
+            "satisfied": true,
+            "value": 0.23671874999999998,
+            "world_id": "regimes-4-5"
+          }
+        ],
+        "reason": "BOTH_OUTCOMES_REACHABLE",
+        "refuting": [
+          "regimes-0-1",
+          "regimes-0-2",
+          "regimes-0-3",
+          "regimes-0-4",
+          "regimes-0-5",
+          "regimes-1-2",
+          "regimes-1-3",
+          "regimes-1-4",
+          "regimes-1-5",
+          "regimes-2-3",
+          "regimes-2-4",
+          "regimes-2-5"
+        ],
+        "satisfying": [
+          "regimes-3-4",
+          "regimes-3-5",
+          "regimes-4-5"
+        ]
+      }
+    ],
+    "label": "P11H pooled sparsity-ladder terminal",
+    "outcome": "PASS",
+    "unattainable": [],
+    "unconditional": [
+      "no_answer_laundering",
+      "attack_live_on_ladder",
+      "compiled_by_64"
+    ],
+    "worlds": [
+      "regimes-0-1",
+      "regimes-0-2",
+      "regimes-0-3",
+      "regimes-0-4",
+      "regimes-0-5",
+      "regimes-1-2",
+      "regimes-1-3",
+      "regimes-1-4",
+      "regimes-1-5",
+      "regimes-2-3",
+      "regimes-2-4",
+      "regimes-2-5",
+      "regimes-3-4",
+      "regimes-3-5",
+      "regimes-4-5"
+    ]
+  },
+  "threshold_panel": {
+    "discriminating_hypotheses": [
+      "pooled_universal_threshold_ge_256",
+      "delta64_ge_0_20"
+    ],
+    "gates": [
+      {
+        "attainment_margin": 0.0,
+        "best_value": 0.0,
+        "gate": {
+          "direction": "AT_MOST",
+          "gate_id": "no_answer_laundering",
+          "reads": "active components equal to or negating the signed label on the protected test set, summed over the drawn regimes",
+          "role": "PRECONDITION",
+          "threshold": 0.0
+        },
+        "outcome": "PASS",
+        "reason": "THRESHOLD_UNCONDITIONAL",
+        "refutation_margin": 0.0,
+        "support": {
+          "derivation": "the draw takes 2 of 6 rungs and the statistic is their sum, so the interval runs from the 2 smallest rung readings to the 2 largest; rung readings measured by the frozen runner at the preflight seed 2026082201, which is not the seed the terminal is read at",
+          "infimum": 0.0,
+          "statistic": "active components equal to or negating the signed label on the protected test set, summed over the drawn regimes (over every pair of rungs the frozen ladder admits)",
+          "supremum": 0.0,
+          "width": 0.0
+        },
+        "worst_value": 0.0
+      },
+      {
+        "attainment_margin": 0.050000000000000044,
+        "best_value": 1.0,
+        "gate": {
+          "direction": "AT_LEAST",
+          "gate_id": "attack_live_on_ladder",
+          "reads": "the pooled universal attack's best mean test accuracy at a registered size below n=256, maximised over every rung of the frozen ladder",
+          "role": "PRECONDITION",
+          "threshold": 0.95
+        },
+        "outcome": "PASS",
+        "reason": "THRESHOLD_UNCONDITIONAL",
+        "refutation_margin": 0.050000000000000044,
+        "support": {
+          "derivation": "the statistic reduces the whole frozen ladder by max, so the draw cannot move it: it is the single value 1.0 in every admissible world; rung readings measured by the frozen runner at the preflight seed 2026082201, which is not the seed the terminal is read at",
+          "infimum": 1.0,
+          "statistic": "the pooled universal attack's best mean test accuracy at a registered size below n=256, maximised over every rung of the frozen ladder (over every pair of rungs the frozen ladder admits)",
+          "supremum": 1.0,
+          "width": 0.0
+        },
+        "worst_value": 1.0
+      },
+      {
+        "attainment_margin": 0.050000000000000044,
+        "best_value": 1.0,
+        "gate": {
+          "direction": "AT_LEAST",
+          "gate_id": "compiled_by_64",
+          "reads": "the compiled arm's smallest mean test accuracy at n=64 over the drawn regimes",
+          "role": "PRECONDITION",
+          "threshold": 0.95
+        },
+        "outcome": "PASS",
+        "reason": "THRESHOLD_UNCONDITIONAL",
+        "refutation_margin": 0.020117187500000022,
+        "support": {
+          "derivation": "the draw takes 2 of 6 rungs without replacement and the statistic is their min; over all draws that is minimised on the smallest rung reading and maximised on the 2 largest, so the interval is the first and (5)th order statistics of the rung readings; rung readings measured by the frozen runner at the preflight seed 2026082201, which is not the seed the terminal is read at",
+          "infimum": 0.9701171875,
+          "statistic": "the compiled arm's smallest mean test accuracy at n=64 over the drawn regimes (over every pair of rungs the frozen ladder admits)",
+          "supremum": 1.0,
+          "width": 0.029882812500000022
+        },
+        "worst_value": 0.9701171875
+      },
+      {
+        "attainment_margin": 0.06918945312499991,
+        "best_value": 0.880810546875,
+        "gate": {
+          "direction": "AT_MOST",
+          "gate_id": "pooled_universal_threshold_ge_256",
+          "reads": "the pooled universal attack's best mean test accuracy at a registered size below n=256, over the drawn regimes",
+          "role": "HYPOTHESIS",
+          "threshold": 0.95
+        },
+        "outcome": "PASS",
+        "reason": "BOTH_OUTCOMES_REACHABLE",
+        "refutation_margin": -0.050000000000000044,
+        "support": {
+          "derivation": "the draw takes 2 of 6 rungs without replacement and the statistic is their max; over all draws that is minimised on the 2 smallest rung readings and maximised on the largest, so the interval is the (2)th and last order statistics of the rung readings; rung readings measured by the frozen runner at the preflight seed 2026082201, which is not the seed the terminal is read at",
+          "infimum": 0.880810546875,
+          "statistic": "the pooled universal attack's best mean test accuracy at a registered size below n=256, over the drawn regimes (over every pair of rungs the frozen ladder admits)",
+          "supremum": 1.0,
+          "width": 0.11918945312499996
+        },
+        "worst_value": 1.0
+      },
+      {
+        "attainment_margin": 0.04819335937499997,
+        "best_value": 0.24819335937499998,
+        "gate": {
+          "direction": "AT_LEAST",
+          "gate_id": "delta64_ge_0_20",
+          "reads": "the smallest compiled-minus-pooled mean accuracy at n=64 over the drawn regimes",
+          "role": "HYPOTHESIS",
+          "threshold": 0.2
+        },
+        "outcome": "PASS",
+        "reason": "BOTH_OUTCOMES_REACHABLE",
+        "refutation_margin": -0.2,
+        "support": {
+          "derivation": "the draw takes 2 of 6 rungs without replacement and the statistic is their min; over all draws that is minimised on the smallest rung reading and maximised on the 2 largest, so the interval is the first and (5)th order statistics of the rung readings; rung readings measured by the frozen runner at the preflight seed 2026082201, which is not the seed the terminal is read at",
+          "infimum": 0.0,
+          "statistic": "the smallest compiled-minus-pooled mean accuracy at n=64 over the drawn regimes (over every pair of rungs the frozen ladder admits)",
+          "supremum": 0.24819335937499998,
+          "width": 0.24819335937499998
+        },
+        "worst_value": 0.0
+      }
+    ],
+    "label": "P11H pooled universal-decoder battery",
+    "outcome": "PASS",
+    "unattainable": [],
+    "unconditional_hypotheses": []
+  },
+  "thresholds": {
+    "delta64": 0.2,
+    "inherited_from": "P11G_DETERMINISTIC_TREE_DECODER_PROTOCOL_V1.md, unedited",
+    "target_accuracy": 0.95
+  },
+  "universal_pool": [
+    "UNIVERSAL_L1",
+    "UNIVERSAL_L2",
+    "UNIVERSAL_EXTRA_TREES"
+  ],
+  "worlds_clearing_every_gate": [
+    "regimes-3-4",
+    "regimes-3-5",
+    "regimes-4-5"
+  ]
+}

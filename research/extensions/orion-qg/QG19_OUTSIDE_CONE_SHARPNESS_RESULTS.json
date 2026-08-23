@@ -1,0 +1,67 @@
+{
+  "anti_instrument_import_gate": {
+    "forbidden_imports": [],
+    "imports": [
+      "__future__",
+      "argparse",
+      "ast",
+      "hashlib",
+      "json",
+      "numpy",
+      "pathlib",
+      "qg2_objective_robustness",
+      "sys",
+      "typing"
+    ],
+    "pass": true
+  },
+  "authority": "EXACT_FROZEN_PANEL_ONLY__NO_ALL_N_SHARPNESS_AUTHORITY__NOT_R6",
+  "base_revision": "c5ba39fef4f25c46de5fb69bf07f50530f4693ca",
+  "first_gap_rows": [],
+  "gaps_by_source": {
+    "HOSTILE_N1_n1": 0,
+    "HOSTILE_N2_n2": 0,
+    "RANDOM_n2": 0,
+    "RANDOM_n3": 0
+  },
+  "gates": {
+    "all_serialized_gap_witnesses_support_gt2": true,
+    "all_unrestricted_le_dxx": true,
+    "chemistry_sources_read": false,
+    "no_instrument_import": true,
+    "protected_subject_read": false
+  },
+  "n1_independent_brute_gate": {
+    "all_exact": true,
+    "hostile_n1_panels_checked": 3
+  },
+  "novelty_authority": false,
+  "objective": {
+    "rho": 0,
+    "t_c": 3,
+    "t_nc": 4,
+    "t_r": 2,
+    "t_tag": 2
+  },
+  "panel": {
+    "counts_by_source": {
+      "HOSTILE_N1_n1": 3,
+      "HOSTILE_N2_n2": 2,
+      "RANDOM_n2": 24,
+      "RANDOM_n3": 24
+    },
+    "random_per_n": 24,
+    "seed": 20260822,
+    "total_rows": 53
+  },
+  "physical_quantum_advantage_claim": false,
+  "protocol_sha256": "5f644cee8a3328cd90334f48fc8cb4f9fd007f54b646159274d4b310175b7f2c",
+  "qg8_margins": {
+    "central": -1,
+    "noncentral": 0
+  },
+  "result_digest": "9bb73057ca74ab368ed867a5ff962af64e8d474de8a21c84a38bd304a812e2e5",
+  "schema": "ORION.QG.QG19.OutsideConeSharpness.v1",
+  "support3_gap_count": 0,
+  "terminal": "QG19_ZERO_GAP_ON_FROZEN_PANEL__SHARPNESS_REMAINS_OPEN"
+}

@@ -1,0 +1,18 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Accessible-rank theory}\markdownRendererInterblockSeparator
+{}Let \markdownRendererCodeSpan{X} be a domain with distribution \markdownRendererCodeSpan{mu}, and let \markdownRendererCodeSpan{F=\markdownRendererLeftBrace{}f\markdownRendererUnderscore{}1,...,f\markdownRendererUnderscore{}N\markdownRendererRightBrace{}} be query functions in \markdownRendererCodeSpan{L2(mu)}. A fixed query-agnostic representation is \markdownRendererCodeSpan{phi:X->R\markdownRendererCircumflex{}m}. It supports exact linear query answering when, for every \markdownRendererCodeSpan{q}, some \markdownRendererCodeSpan{w\markdownRendererUnderscore{}q} satisfies \markdownRendererCodeSpan{f\markdownRendererUnderscore{}q(x) = <w\markdownRendererUnderscore{}q, phi(x)>} almost surely.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Query-family accessible-rank bound}\markdownRendererInterblockSeparator
+{}If \markdownRendererCodeSpan{span(F)} has dimension \markdownRendererCodeSpan{r}, every fixed representation supporting exact linear readout of all queries has \markdownRendererCodeSpan{m >= r}.\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{Proof.} Every \markdownRendererCodeSpan{f\markdownRendererUnderscore{}q} lies in the span of the \markdownRendererCodeSpan{m} coordinate functions of \markdownRendererCodeSpan{phi}. That span has dimension at most \markdownRendererCodeSpan{m} and must contain the \markdownRendererCodeSpan{r}-dimensional span of \markdownRendererCodeSpan{F}; hence \markdownRendererCodeSpan{m>=r}. The theorem is elementary linear algebra; its role here is as a systems resource boundary, not as a claim of mathematical novelty.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Approximate orthonormal frontier}\markdownRendererInterblockSeparator
+{}For orthonormal \markdownRendererCodeSpan{f\markdownRendererUnderscore{}1,...,f\markdownRendererUnderscore{}N} and any \markdownRendererCodeSpan{m}-dimensional linearly accessible subspace \markdownRendererCodeSpan{U}, Bessel's inequality gives \markdownRendererCodeSpan{(1/N) sum\markdownRendererUnderscore{}q \markdownRendererPipe{}\markdownRendererPipe{}f\markdownRendererUnderscore{}q - P\markdownRendererUnderscore{}U f\markdownRendererUnderscore{}q\markdownRendererPipe{}\markdownRendererPipe{}\markdownRendererUnderscore{}2\markdownRendererCircumflex{}2 >= 1 - m/N}. This is an access-class statement, not a lower bound on unrestricted nonlinear decoding.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Parity corollary}\markdownRendererInterblockSeparator
+{}For \markdownRendererCodeSpan{X=\markdownRendererLeftBrace{}-1,+1\markdownRendererRightBrace{}\markdownRendererCircumflex{}d} under the uniform measure and all size-\markdownRendererCodeSpan{s} subsets \markdownRendererCodeSpan{S}, define \markdownRendererCodeSpan{f\markdownRendererUnderscore{}S(x)=product\markdownRendererUnderscore{}\markdownRendererLeftBrace{}i in S\markdownRendererRightBrace{} x\markdownRendererUnderscore{}i}. Distinct parity characters are orthogonal. A fixed exact linear-accessible representation supporting all size-\markdownRendererCodeSpan{s} queries therefore requires at least \markdownRendererCodeSpan{binom(d,s)} coordinates. A query-conditioned construction need expose only the selected query structure. This establishes an exact accessible-representation gap, not a total-time lower bound.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

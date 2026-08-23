@@ -1,0 +1,537 @@
+{
+  "authority": "ORIONQG_QG20_RANK_KAPPA_SLACK_MEASURED_EXACTLY__SLACK_EQUALS_EXCHANGE_MARGIN_ON_BOTH_MEASURED_FAMILIES_UNDER_THE_QG6_CERTIFIED_RANKS__BUT_FAILS_UNDER_THE_MARGIN_ALIGNED_BLOCK_REWRITE__CANDIDATE_RELATION_FROM_TWO_POINTS__NOT_A_LAW__THIRD_FAMILY_STABPREP_NOT_DERIVABLE__NOT_R6",
+  "chemistry_sources_read": false,
+  "claim_boundary": {
+    "alternative_accounts_not_excluded_by_the_data": [
+      "slack = mu (H1)",
+      "slack = rank - 1 if mu >= 1 else 0",
+      "slack = (rank - 1) * [mu >= 1]  (identical to the previous on both points)",
+      "slack = mu^2 / 4 on the measured range",
+      "any monotone f with f(0) = 0 and f(4) = 4",
+      "no relation at all -- the certified-rank agreement is an artifact of the per-slot vs per-block rewrite mismatch between QG-6's two rank scopes"
+    ],
+    "covers": "An exact measurement, on the two ORION-QG families that carry both a certified QG-6 syndrome rank and a two-sided intrinsic support number (R6I and R6M/TARE), of rank, kappa, slack = rank - kappa, and the QG-18 exchange margin mu, with every input bound verbatim to its committed receipt and every rank and margin independently recomputed from production primitives on its complete local domain in exact integer arithmetic.",
+    "does_not_cover": "Any law, theorem or general claim relating slack to mu. The agreement slack == mu is a COINCIDENCE OVER TWO DATA POINTS, one of which (mu = 0) tests only a qualitative implication that QG-18 already established structurally. At least one alternative account (slack = rank - 1 whenever mu >= 1) fits the same data identically and is not excluded. The agreement is furthermore REWRITE-DEPENDENT: see q2_relation.rewrite_dependence, where the same two families under the margin-aligned block-zeroing rewrite do NOT satisfy slack == mu. Nothing here extends to other objectives, other grammars, other rewrites, other n, or to any family outside the two measured. No novelty credit, no donor credit, no physical or chemistry claim. NOT_R6."
+  },
+  "donor_novelty_credit": false,
+  "gates": {
+    "G10_runtime_within_cap": true,
+    "G11_rewrite_alignment_diagnostic_reported": true,
+    "G12_no_existing_repository_file_modified": true,
+    "G1_receipts_sha256_exact": true,
+    "G2_exact_integer_arithmetic": true,
+    "G3_domains_complete_no_truncation": true,
+    "G4_margin_recomputed_equals_receipt": true,
+    "G5_rank_recomputed_equals_receipt": true,
+    "G6_kappa_two_sided": true,
+    "G7_authority_ceiling_not_r6": true,
+    "G8_no_chemistry_no_protected_no_network": true,
+    "G9_claim_boundary_states_two_point_limit": true
+  },
+  "lane": "QG-20",
+  "network_access": false,
+  "novelty_credit": false,
+  "physical_quantum_advantage_claim": false,
+  "programme": "ORION-QG regime geometry, wave 3",
+  "protected_subject_read": false,
+  "protocol": "development/orion-qg-regime-geometry/QG20_RANK_KAPPA_SLACK_PROTOCOL_V1.md",
+  "protocol_sha256": "b6b6426ce070ba867f013028e3fa873b39369f7a1d76055d42698ae2c5acdfc2",
+  "q1_recomputations": {
+    "exactness_comparisons_checked": 22,
+    "float_violations": [],
+    "margin_r6i": {
+      "class_domain_sizes": {
+        "anticommuting": 1152,
+        "commuting": 1728
+      },
+      "credit_floor_by_class": {
+        "anticommuting": 7,
+        "commuting": 4
+      },
+      "domain": "15 letter pairs x 64 Restore targets x 3 central slots",
+      "domain_size": 2880,
+      "expected_anticommuting_1152": true,
+      "expected_commuting_1728": true,
+      "expected_domain_2880": true,
+      "family": "R6I",
+      "max_delta": {
+        "anticommuting": -7,
+        "commuting": -4
+      },
+      "max_witness": {
+        "anticommuting": {
+          "central_slot": 0,
+          "delta": -7,
+          "dependent_triple": [
+            "X",
+            "Y",
+            "Z"
+          ],
+          "frame_letters": [
+            "X",
+            "Y"
+          ],
+          "refund": 10,
+          "restore_penalty": 3,
+          "target_letters": [
+            "X",
+            "Y",
+            "Z"
+          ]
+        },
+        "commuting": {
+          "central_slot": 1,
+          "delta": -4,
+          "dependent_triple": [
+            "I",
+            "X",
+            "X"
+          ],
+          "frame_letters": [
+            "I",
+            "X"
+          ],
+          "refund": 6,
+          "restore_penalty": 2,
+          "target_letters": [
+            "I",
+            "X",
+            "X"
+          ]
+        }
+      },
+      "min_delta": {
+        "anticommuting": -13,
+        "commuting": -10
+      },
+      "mu": 4,
+      "strict": true,
+      "zero_credit_rows": {
+        "anticommuting": 0,
+        "commuting": 0
+      }
+    },
+    "margin_r6m_tare": {
+      "anticommuting": {
+        "credit_floor": 2,
+        "domain_size": 147456,
+        "letter_pairs": 6,
+        "max_delta": -2,
+        "max_witness": {
+          "central_bit": 0,
+          "delta": -2,
+          "frame_letters": [
+            "X",
+            "Y"
+          ],
+          "multipliers": [
+            2,
+            4
+          ],
+          "other_slots_branch0": [
+            "Z",
+            "Z"
+          ],
+          "other_slots_branch1": [
+            "Z",
+            "Z"
+          ],
+          "refund": 6,
+          "restore_penalty": 4,
+          "slot": "A",
+          "target_letters": [
+            "Y",
+            "X"
+          ]
+        },
+        "min_delta": -10,
+        "per_slot_max_delta": {
+          "A": -2,
+          "B": -2,
+          "C": -2
+        },
+        "slot_symmetric": true,
+        "zero_credit_rows": 0
+      },
+      "commuting": {
+        "credit_floor": 0,
+        "domain_size": 221184,
+        "letter_pairs": 9,
+        "max_delta": 0,
+        "max_witness": {
+          "central_bit": 0,
+          "delta": 0,
+          "frame_letters": [
+            "X",
+            "I"
+          ],
+          "multipliers": [
+            2,
+            4
+          ],
+          "other_slots_branch0": [
+            "Z",
+            "Z"
+          ],
+          "other_slots_branch1": [
+            "I",
+            "I"
+          ],
+          "refund": 2,
+          "restore_penalty": 2,
+          "slot": "A",
+          "target_letters": [
+            "Y",
+            "I"
+          ]
+        },
+        "min_delta": -10,
+        "per_slot_max_delta": {
+          "A": 0,
+          "B": 0,
+          "C": 0
+        },
+        "slot_symmetric": true,
+        "zero_credit_rows": 2304
+      },
+      "credit_floor_by_class": {
+        "anticommuting": 2,
+        "commuting": 0
+      },
+      "domain": "letter pairs x 3 block slots x 2 central bits x 4^6 free letters",
+      "domain_size": 368640,
+      "expected_anticommuting_147456": true,
+      "expected_commuting_221184": true,
+      "expected_domain_368640": true,
+      "family": "R6M_TARE",
+      "mu": 0,
+      "strict": false
+    },
+    "production_algebra_agrees_across_modules": true,
+    "rank_r6i": {
+      "auto_dimension": 5,
+      "distinct_ranks": [
+        5
+      ],
+      "domain_complete": true,
+      "expected_local_option_rows": 4096,
+      "local_option_rows": 4096,
+      "per_block_rank": {
+        "A": 5,
+        "B": 5
+      },
+      "production_state_bits": 10,
+      "rewrite": "ZERO_BOTH_INDEPENDENT_GENERATORS_OF_ONE_BLOCK",
+      "unique_change_counts": {
+        "A": 26,
+        "B": 26
+      }
+    },
+    "rank_r6m": {
+      "auto_dimension": 2,
+      "distinct_ranks": [
+        2
+      ],
+      "domain_complete": true,
+      "expected_local_option_rows": 16384,
+      "local_option_rows": 16384,
+      "per_slot_rank": {
+        "A0": 2,
+        "A1": 2,
+        "B0": 2,
+        "B1": 2,
+        "C0": 2,
+        "C1": 2
+      },
+      "production_state_bits": 9,
+      "rewrite": "ZERO_ONE_FRAME_LOCAL_LETTER",
+      "unique_change_counts": {
+        "A0": 4,
+        "A1": 4,
+        "B0": 4,
+        "B1": 4,
+        "C0": 4,
+        "C1": 4
+      }
+    }
+  },
+  "q1_slack_table": [
+    {
+      "exchange_inequality_strict": true,
+      "family": "R6I",
+      "kappa": 1,
+      "kappa_two_sided": true,
+      "mu": 4,
+      "mu_domain_size": 2880,
+      "mu_recompute_agrees": true,
+      "mu_recomputed": 4,
+      "rank": 5,
+      "rank_recompute_agrees": true,
+      "rank_recomputed": 5,
+      "rank_rewrite": "ZERO_BOTH_INDEPENDENT_GENERATORS_OF_ONE_BLOCK",
+      "slack": 4,
+      "slack_equals_mu": true,
+      "tag_relocation_available": true
+    },
+    {
+      "exchange_inequality_strict": false,
+      "family": "R6M_TARE",
+      "kappa": 2,
+      "kappa_two_sided": true,
+      "mu": 0,
+      "mu_domain_size": 368640,
+      "mu_recompute_agrees": true,
+      "mu_recomputed": 0,
+      "rank": 2,
+      "rank_recompute_agrees": true,
+      "rank_recomputed": 2,
+      "rank_rewrite": "ZERO_ONE_FRAME_LOCAL_LETTER",
+      "slack": 0,
+      "slack_equals_mu": true,
+      "tag_relocation_available": false
+    }
+  ],
+  "q1b_margin_aligned_slack_table": {
+    "certified_and_aligned_agree": false,
+    "consequence": "The Q1 agreement slack == mu is REWRITE-DEPENDENT. Under the rewrite that the margin domains themselves use -- zeroing both frame letters of one block, which is exactly R6I's certified rewrite -- the R6M/TARE syndrome rank is 3 rather than the certified slotwise 2, giving slack 1 against mu 0. H1 therefore holds on the certified table and FAILS on the margin-aligned table, on the same two families with the same kappa values and the same margins. This is a first-order weakening of H1 and was declared in protocol section 5 before the outcome was known.",
+    "relation_holds_under_aligned_rewrite": false,
+    "rows": [
+      {
+        "family": "R6I",
+        "kappa": 1,
+        "moved_from_certified_table": false,
+        "mu": 4,
+        "rank_under_margin_aligned_rewrite": 5,
+        "rewrite": "ZERO_BOTH_FRAME_LETTERS_OF_ONE_BLOCK",
+        "slack": 4,
+        "slack_equals_mu": true
+      },
+      {
+        "family": "R6M_TARE",
+        "kappa": 2,
+        "moved_from_certified_table": true,
+        "mu": 0,
+        "rank_under_margin_aligned_rewrite": 3,
+        "rewrite": "ZERO_BOTH_FRAME_LETTERS_OF_ONE_BLOCK",
+        "slack": 1,
+        "slack_equals_mu": false
+      }
+    ]
+  },
+  "q2_relation": {
+    "already_known_structural_content_not_at_issue": "QG-18's Q3 diagnosis -- Tag relocation is available iff the per-column exchange inequality is STRICT -- is independently argued from the lemma chain and is not what H1 adds. H1 adds only the quantitative identity, and that is the part the data cannot yet support.",
+    "prediction_of_the_relation_for_a_third_family": "kappa = rank - mu, with mu the deletion credit floor measured on the family's complete local deletion domain. Concretely: a rank-5 family with measured mu = 2 must have kappa = 3; observing kappa = 1 there refutes H1.",
+    "relation_as_the_data_shows_it": "On both families that carry a certified syndrome rank and a two-sided intrinsic support number, slack = rank - kappa equals the exchange margin mu exactly: R6I has rank 5, kappa 1, slack 4 and mu 4; R6M/TARE has rank 2, kappa 2, slack 0 and mu 0. Both mu values are recomputed here from production primitives on complete local deletion domains (2880 and 368640 rows) in exact integer arithmetic and agree with their committed receipts.",
+    "relation_holds_on_measured_families": true,
+    "rewrite_dependence": {
+      "certified_and_aligned_agree": false,
+      "consequence": "The Q1 agreement slack == mu is REWRITE-DEPENDENT. Under the rewrite that the margin domains themselves use -- zeroing both frame letters of one block, which is exactly R6I's certified rewrite -- the R6M/TARE syndrome rank is 3 rather than the certified slotwise 2, giving slack 1 against mu 0. H1 therefore holds on the certified table and FAILS on the margin-aligned table, on the same two families with the same kappa values and the same margins. This is a first-order weakening of H1 and was declared in protocol section 5 before the outcome was known.",
+      "relation_holds_under_aligned_rewrite": false,
+      "rows": [
+        {
+          "family": "R6I",
+          "kappa": 1,
+          "moved_from_certified_table": false,
+          "mu": 4,
+          "rank_under_margin_aligned_rewrite": 5,
+          "rewrite": "ZERO_BOTH_FRAME_LETTERS_OF_ONE_BLOCK",
+          "slack": 4,
+          "slack_equals_mu": true
+        },
+        {
+          "family": "R6M_TARE",
+          "kappa": 2,
+          "moved_from_certified_table": true,
+          "mu": 0,
+          "rank_under_margin_aligned_rewrite": 3,
+          "rewrite": "ZERO_BOTH_FRAME_LETTERS_OF_ONE_BLOCK",
+          "slack": 1,
+          "slack_equals_mu": false
+        }
+      ]
+    },
+    "status": "CANDIDATE_RELATION_FROM_TWO_POINTS__NOT_A_LAW__NOT_A_THEOREM",
+    "what_a_third_family_would_have_to_show": "A family with a certified syndrome rank R, a two-sided kappa, and a measured exchange margin mu with 0 < mu < R - 1. At such a point H1 predicts kappa = R - mu, while the competing 'relocation collapses to 1' account predicts kappa = 1, i.e. slack = R - 1 != mu. One such family separates the two accounts in a single measurement. A family with mu = 0 or with mu = R - 1 adds a point but discriminates nothing.",
+    "why_two_families_cannot_establish_a_law": [
+      "Two points determine a line, so a two-point agreement has zero residual degrees of freedom and therefore zero evidential surplus: any relation f with f(0) = 0 and f(4) = 4 fits the data exactly as well as f(mu) = mu.",
+      "One of the two points sits at mu = 0, where slack = 0 is forced by the qualitative fact QG-18 already proved structurally (mu = 0 means the V6 Tag relocation has no budget, so kappa cannot fall below the bound). That point therefore tests only the qualitative implication 'mu = 0 => slack = 0', not the quantitative identity.",
+      "The whole quantitative content of H1 rests on the single non-trivial point R6I, where 4 = 4. No mechanism has been exhibited that would make the deletion credit floor numerically equal to the rank deficit rather than merely co-nonzero with it.",
+      "A competing account fits the same two points with no worse residual: 'whenever Tag relocation is available (mu >= 1), the normal form collapses all the way to kappa = 1, so slack = rank - 1; otherwise slack = 0.' On R6I this gives 5 - 1 = 4 and on TARE 0 -- identical predictions.",
+      "The QG-6 rank itself is only certified per-slot for R6M and per-block for R6I, i.e. under two DIFFERENT rewrites, while both margins are measured under the same block-deletion rewrite; the rewrite-alignment diagnostic in this receipt records what the margin-aligned R6M rank actually is."
+    ]
+  },
+  "q3_third_family": {
+    "T1_transition_table": {
+      "criterion": "T1 -- a production local transition table over packed state bits exists, indexed by local option letters, on which a local zeroing rewrite is defined",
+      "evidence": {
+        "delta_table_symbol_hits": 0,
+        "dijkstra_hits": 8,
+        "referee": "exact Dijkstra over the complete stabilizer-state graph per n",
+        "why": "StabPrep's exact optimum is a shortest-path cost from a Dijkstra relaxation over the complete stabilizer-state graph (6/60/1080 states at n=1..3). There is no per-column DP whose local option rows could be differenced, so the XOR change-vector of QG-6 section 2.1 has no domain to be taken over. The QG-6 rank is undefined for this family, not zero."
+      },
+      "holds": false
+    },
+    "T2_structural_generator_support": {
+      "criterion": "T2 -- the solution object has structural generators carrying a global support, so kappa is a discovered invariant rather than fixed by the alphabet",
+      "evidence": {
+        "gate_costs": {
+          "CNOT": 3,
+          "H": 1,
+          "S": 1,
+          "SDG": 1
+        },
+        "max_gate_arity_in_frozen_alphabet": 2,
+        "solution_object": "a gate word over {H(1), S(1), SDG(1), CNOT(3)}",
+        "why": "The only support-like attribute of a StabPrep solution is gate arity, which the frozen alphabet caps at 2 by construction (CNOT is the unique multi-qubit gate). A 'support bound' of 2 would hold definitionally and 1 would be infeasible whenever any CNOT is required -- QG-15 records c_star_min_CNOT_budget 1 at n=2 and 2 at n=3 -- so the two-sided value would be 2 for every family over this alphabet, carrying no information about the family. kappa in the manuscript sense is not defined here."
+      },
+      "holds": false
+    },
+    "T3_refund_penalty_decomposition": {
+      "criterion": "T3 -- the local cost admits a frame-refund / Restore-penalty decomposition at a column, so the exchange margin mu of section 2.4 is defined",
+      "evidence": {
+        "cost_structure": "additive over gates; no frame/Restore split, no Tag",
+        "restore_symbol_hits": 1,
+        "tag_symbol_hits": 1,
+        "why": "There is nothing to refund: deleting a gate does not release a frame contribution that a Restore letter must then absorb. mu is therefore UNDEFINED for StabPrep -- which is emphatically not the same as mu = 0. The TARE point mu = 0 is a measured tie set on a complete 368640-row domain; StabPrep has no such domain at all."
+      },
+      "holds": false
+    },
+    "derivable_cheaply": false,
+    "family": "StabPrep",
+    "first_failing_criterion": "T1",
+    "referee": "exact Dijkstra over the complete stabilizer-state graph per n",
+    "structural_scan": {
+      "delta_table_symbol_hits": 0,
+      "dijkstra_hits": 8,
+      "frame_symbol_hits": 0,
+      "packed_state_bit_table_hits": 0,
+      "restore_symbol_hits": 1,
+      "source_lines": 1093,
+      "source_sha256": "a17e027fc934eeffc3e598f6016a1f258bc89ad5958ff1f3370a674855874c70",
+      "tag_symbol_hits": 1
+    },
+    "verdict": "DOES_NOT_TRANSFER: StabPrep supplies none of T1, T2, T3. The QG-6 rank construction is specific to families with R6M/R6I's block/frame/Tag structure; StabPrep was chosen in QG-15 precisely because it is materially different from them, and that same difference is what blocks this lane.",
+    "what_a_fourth_candidate_would_need": [
+      "a production DP whose local option rows are indexed by per-column letters and whose packed transition table can be differenced under a zeroing rewrite (supplies the QG-6 rank)",
+      "structural generators carrying a global Pauli support whose optimal value is not pinned by the alphabet (supplies a non-trivial two-sided kappa)",
+      "a local cost split into a per-column refundable contribution and a penalty term, enumerable on a complete finite domain (supplies mu)",
+      "and, to DISCRIMINATE rather than merely add a point, a measured mu outside {0, 4} -- ideally 0 < mu < rank - 1"
+    ]
+  },
+  "question": "Is the QG-6 syndrome-rank / intrinsic-support-number slack governed by the QG-18 per-column exchange margin?",
+  "r6_authority": false,
+  "receipt_bindings": {
+    "R6I": {
+      "kappa": {
+        "corroborating_fields": {
+          "both_accept": true,
+          "support0_infeasible": true,
+          "support_bound": 1,
+          "terminal": "QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED"
+        },
+        "field": "intrinsic_support_number",
+        "receipt": "QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json",
+        "sha256": "f8df10d5604267e43701adb032f33baf1dfaa5a6572e5bdeaeda7707c4100b66",
+        "value": 1
+      },
+      "mu": {
+        "corroborating_fields": {
+          "finite_lemmas.deletion.max_delta_anticommuting": -7,
+          "finite_lemmas.deletion.max_delta_commuting": -4,
+          "finite_lemmas.deletion.rows": 2880
+        },
+        "cross_binding_from_qg18": {
+          "q2_tag_relocation_transfer.l1_deletion_credit.r6i_reference_credit_floor": 4,
+          "q3_structural_diagnosis.measured_comparison.deletion_credit_floor.R6I": 4,
+          "receipt_bindings.r6i_reference_numbers_from_qg9v6.credit_floor": 4
+        },
+        "field": "composition.extra_active_column_credit_floor",
+        "receipt": "QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json",
+        "sha256": "f8df10d5604267e43701adb032f33baf1dfaa5a6572e5bdeaeda7707c4100b66",
+        "value": 4
+      },
+      "rank": {
+        "corroborating_fields": {
+          "r6i.all_block_ranks_5": true,
+          "r6i.blocks.A.rank": 5,
+          "r6i.blocks.B.rank": 5,
+          "r6i.rewrite": "ZERO_BOTH_INDEPENDENT_GENERATORS_OF_ONE_BLOCK"
+        },
+        "field": "r6i.auto_dimension",
+        "receipt": "QG6_SYNDROME_DIMENSION_RESULTS.json",
+        "sha256": "51d5ffcdd682384cc2259146d0c7e9a835c4644d1cffa36c6d9fca0d1c06f884",
+        "value": 5
+      }
+    },
+    "R6M_TARE": {
+      "kappa": {
+        "corroborating_fields": {
+          "kappa_interval": [
+            2,
+            2
+          ],
+          "lower_bound_source": "QG-18 canonical support-2 necessity witness",
+          "terminal": "QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS",
+          "upper_bound_source": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json (support <= 2 for all n)"
+        },
+        "field": "intrinsic_support_number",
+        "receipt": "QG18_TARE_KAPPA_RESULTS.json",
+        "sha256": "ace665d82f07bc7ffc12f51fb5813ab7886f4d9bcc415f8f3d1bca6b2610f013",
+        "value": 2
+      },
+      "mu": {
+        "corroborating_fields": {
+          "q2_tag_relocation_transfer.composition.tare_credit_floor": 0,
+          "q2_tag_relocation_transfer.first_failing_obligation": "L1_DELETION_CREDIT",
+          "q2_tag_relocation_transfer.l1_deletion_credit.holds": false,
+          "q3_structural_diagnosis.measured_comparison.deletion_credit_floor.R6M_TARE": 0
+        },
+        "field": "q2_tag_relocation_transfer.l1_deletion_credit.credit_floor",
+        "receipt": "QG18_TARE_KAPPA_RESULTS.json",
+        "sha256": "ace665d82f07bc7ffc12f51fb5813ab7886f4d9bcc415f8f3d1bca6b2610f013",
+        "value": 0
+      },
+      "rank": {
+        "corroborating_fields": {
+          "r6m.all_slot_ranks_2": true,
+          "r6m.r6s_binding.receipt_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+          "r6m.r6s_binding.reported_class_dimension": 2,
+          "r6m.rewrite": "ZERO_ONE_FRAME_LOCAL_LETTER"
+        },
+        "field": "r6m.auto_dimension",
+        "receipt": "QG6_SYNDROME_DIMENSION_RESULTS.json",
+        "sha256": "51d5ffcdd682384cc2259146d0c7e9a835c4644d1cffa36c6d9fca0d1c06f884",
+        "value": 2
+      }
+    }
+  },
+  "receipt_sha256": {
+    "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+    "QG15_THIRD_FAMILY_RESULTS.json": "30011c45adc85918ce535f71c87ba7a1dbbea7ee87dc209810d65a1f22066e51",
+    "QG18_TARE_KAPPA_RESULTS.json": "ace665d82f07bc7ffc12f51fb5813ab7886f4d9bcc415f8f3d1bca6b2610f013",
+    "QG6_SYNDROME_DIMENSION_RESULTS.json": "51d5ffcdd682384cc2259146d0c7e9a835c4644d1cffa36c6d9fca0d1c06f884",
+    "QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json": "f8df10d5604267e43701adb032f33baf1dfaa5a6572e5bdeaeda7707c4100b66"
+  },
+  "repository_files_modified": false,
+  "result_digest": "cfb3adabed40050dacdadcc493942f225465cef5903e8a2462150b82aa8dd3f8",
+  "rewrite_alignment_diagnostic": {
+    "block_level_auto_dimension": 3,
+    "distinct_ranks": [
+      3
+    ],
+    "domain_complete": true,
+    "expected_local_option_rows": 16384,
+    "local_option_rows": 16384,
+    "matches_certified_slotwise_rank_2": false,
+    "note": "Declared in protocol section 5 BEFORE the outcome was known. Q1's table uses the QG-6 certified slotwise rank; this is the margin-aligned alternative, reported whichever way it lands.",
+    "per_block_rank": {
+      "A": 3,
+      "B": 3,
+      "C": 3
+    },
+    "rewrite": "ZERO_BOTH_FRAME_LETTERS_OF_ONE_BLOCK"
+  },
+  "runtime_cap_seconds": 1500,
+  "schema": "ORION.QG.QG20.RankKappaSlack.v1",
+  "terminal": "QG20_PARTIAL__THIRD_FAMILY_NOT_DERIVABLE"
+}

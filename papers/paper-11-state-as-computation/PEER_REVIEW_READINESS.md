@@ -11,7 +11,9 @@
 
 ### 2. Experimental-design lens
 
-**Pass after P11G correction.** P11/P11B are frozen controlled results with explicit no-answer-laundering checks. P11D is permanently negative against its preregistered ≥4×-in-both-cells sparse-decoder gate; P11E independently tests and reproduces the weaker residual on a fresh seed. P11C remains `CANNOT_CHECK`. P11F is retained as non-authoritative because hostile review found a protocol mismatch (`n_jobs=-1` versus the written otherwise-default configuration). P11G was frozen afterward with a fresh seed, explicit single-thread trees and replay enforcement inside the terminal path.
+**Pass after P11G correction.** P11/P11B are frozen controlled results with explicit no-answer-laundering checks. P11D is permanently negative against its preregistered ≥4×-in-both-cells sparse-decoder gate; P11E independently tests and reproduces the weaker residual on a fresh seed. P11C, after an amendment that vectorized only its parity-bank evaluation, ran to completion twice at `P11C_STRONGER_DECODER_GAP_SUPPORTED` but passes its pooled ≥4× gate at exactly the boundary — 11 of 20 draws of the same construction — so it carries no claim authority in either direction. P11F is retained as non-authoritative because hostile review found a protocol mismatch (`n_jobs=-1` versus the written otherwise-default configuration). P11G was frozen afterward with a fresh seed, explicit single-thread trees and replay enforcement inside the terminal path.
+
+**One standing defect, disclosed rather than repaired.** All four of P11G's scientific gates hold in every world its own freeze admits (48 of 48 fresh seeds), so its survival was fixed before the seed was drawn; and its terminal is a function of which of the three registered universal arms is placed in its gate, while the receipt carries that axis with one value. `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` states both, retains the frozen terminal verbatim, narrows the ledger row from `PRIMARY` to `ARM-SCOPED`, and says what a successor would need. `python -m orion.study.p11.attack_audit` exits `3` while the attainability finding stands.
 
 ### 3. Statistics / reproducibility lens
 
@@ -37,7 +39,16 @@
 - [x] P11D root cause and replay defect documented
 - [x] fresh seeded sparse replication P11E
 - [x] P11E byte-identical replay
-- [x] P11C non-terminating nonlinear attempt retained as CANNOT_CHECK
+- [x] P11C execution history retained: non-termination, amendment, completed run, boundary-passing pooled gate, no claim authority
+- [x] P11G arm axis measured and declared; terminal retained verbatim and scoped
+- [x] P11G `n=64` gap decomposed into decoder-family and state halves
+- [x] P11H successor freezes the universal-arm pool and gates through it
+- [x] P11H hostile gate has both terminals reachable before execution
+- [x] P11I prospectively replicates the positive high-width regime across three independent execution seeds and three fixed geometry strata
+- [x] P11I includes nine matched low-width controls where the pooled attack remains live
+- [x] P11I fresh two-subprocess revalidation records `n=3`, reproduces every cell byte-identically and has terminal-responsiveness tests
+- [x] P11I prospectively replicates the positive high-width regime across nine fresh units
+- [x] P11I includes nine matched low-width controls where the pooled attack remains live
 - [x] P11F protocol mismatch disclosed and removed from claim authority
 - [x] P11G frozen after review finding
 - [x] P11G single-thread deterministic trees
@@ -52,6 +63,6 @@
 
 ## Referee-facing positioning
 
-> **A representation is a computational placement decision.** P11 derives and measures how structural-search work can be moved from a downstream access mechanism into state construction. Dense universal access shows the largest gains; a hostile sparse decoder buys part of that work back but leaves a fresh deterministic 2×/4× threshold residual; and a separately frozen deterministic nonlinear tree successor remains below the registered target through `n=1024` where compiled state succeeds at `n=64`. Specialization also creates exact future-query option debt.
+> **A representation is a computational placement decision.** P11 derives and measures how structural-search work can be moved from a downstream access mechanism into state construction. Dense universal access shows the largest gains; a hostile sparse decoder buys part of that work back but leaves a fresh deterministic 2×/4× threshold residual; and a separately frozen deterministic 96-tree ExtraTrees decoder remains below the registered target through `n=1024` where compiled state succeeds at `n=64`, scoped to that arm. Specialization also creates exact future-query option debt.
 
 This framing uses negative results and protocol failures as causal/audit evidence about *where the computation moved*, rather than narrowing around or hiding them.

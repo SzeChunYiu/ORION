@@ -4,27 +4,95 @@
   "hash_kind": "git_blob_sha1",
   "claim_boundary": "Binds the bytes of the canonical Q-series publication/specification files. It is a drift detector only; it grants no scientific, novelty, submission, or security authority.",
   "files": [
-    {"path": "papers/Q_SERIES_FINAL_SPEC_V1.json", "git_blob_sha1": "2956f7944eb45e301decd30bff19f4427a1df03b", "role": "final publication specification"},
-
-    {"path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md", "git_blob_sha1": "7cb04501f168f83de99ad949563ae249179ae866", "role": "Q1 canonical manuscript"},
-    {"path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md", "git_blob_sha1": "83ea3dc4e244ad996607bbbb73692aa5a2833329", "role": "Q1 claim ledger"},
-    {"path": "papers/Q-paper-01-tare-expressivity/FIGURES_PLAN_V2.md", "git_blob_sha1": "ea1a2996ddf0ec661825c384acc9c8970cb71160", "role": "Q1 figures plan"},
-    {"path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md", "git_blob_sha1": "a22754e8afef0e9914b75b37f0aee673ccd2ca95", "role": "Q1 analytic flagship proof"},
-    {"path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R4B_MAJORISATION_2026-08-22.md", "git_blob_sha1": "3012417488db475fb2ecdcb0607881e68b3d3e14", "role": "Q1 supporting analytic proof"},
-    {"path": "papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json", "git_blob_sha1": "d75e36ea64509b63b782ca580aef6878df39e09a", "role": "Q1 standalone proof sanity result"},
-    {"path": "papers/Q-paper-01-tare-expressivity/NOVELTY_RESEARCH_2026-08-22.md", "git_blob_sha1": "c727a3fbc191ae4e17b70869877374df1ee1589a", "role": "Q1 main hostile novelty map"},
-    {"path": "papers/Q-paper-01-tare-expressivity/NOVELTY_REFRESH_FINAL_2026-08-22.md", "git_blob_sha1": "38d7f1529792c2beb8617dc1df8a2d60787ae39b", "role": "Q1 final exact-statement novelty refresh"},
-
-    {"path": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md", "git_blob_sha1": "881403accbeb5f3be1fc508467b8454dbe48d081", "role": "Q2 canonical manuscript"},
-    {"path": "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX_V2.md", "git_blob_sha1": "1004edbfed3a06a8a9638c7768b43c8b5dc6051b", "role": "Q2 final receipt index extension"},
-    {"path": "papers/Q-paper-02-recursive-recovery/NOVELTY_RESEARCH_2026-08-22.md", "git_blob_sha1": "081d4136b2c791407116aa9922f9e06057fb6a12", "role": "Q2 novelty map"},
-
-    {"path": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md", "git_blob_sha1": "f364544897541d929a01d35e160303f9c502c305", "role": "Q3 canonical manuscript"},
-    {"path": "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md", "git_blob_sha1": "f218f93bb8d4efe3f0b184069a11fd56f71b7f50", "role": "Q3 claim ledger"},
-    {"path": "papers/Q-paper-03-dual-instrument/NOVELTY_RESEARCH_2026-08-22.md", "git_blob_sha1": "a9bd7c3c41727f5c16940e3dc63ae1893e34dabf", "role": "Q3 novelty map"},
-
-    {"path": "papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md", "git_blob_sha1": "665a366d24a8f4040c2177b8ddd6e68ef10f4df0", "role": "Q4 canonical manuscript"},
-    {"path": "papers/Q-paper-04-typed-state/CLAIM_LEDGER_V2.md", "git_blob_sha1": "27511c23774d480aab027bfaece202f6154dbed3", "role": "Q4 claim ledger"},
-    {"path": "papers/Q-paper-04-typed-state/NOVELTY_RESEARCH_2026-08-22.md", "git_blob_sha1": "19bc9032277f6cd9a736af13527032f8ff9494f4", "role": "Q4 novelty map"}
+    {
+      "path": "papers/Q_SERIES_FINAL_SPEC_V1.json",
+      "git_blob_sha1": "2956f7944eb45e301decd30bff19f4427a1df03b",
+      "role": "final publication specification"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md",
+      "git_blob_sha1": "7cb04501f168f83de99ad949563ae249179ae866",
+      "role": "Q1 canonical manuscript"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md",
+      "git_blob_sha1": "83ea3dc4e244ad996607bbbb73692aa5a2833329",
+      "role": "Q1 claim ledger"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/FIGURES_PLAN_V2.md",
+      "git_blob_sha1": "ea1a2996ddf0ec661825c384acc9c8970cb71160",
+      "role": "Q1 figures plan"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+      "git_blob_sha1": "a22754e8afef0e9914b75b37f0aee673ccd2ca95",
+      "role": "Q1 analytic flagship proof"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R4B_MAJORISATION_2026-08-22.md",
+      "git_blob_sha1": "3012417488db475fb2ecdcb0607881e68b3d3e14",
+      "role": "Q1 supporting analytic proof"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json",
+      "git_blob_sha1": "660894097318367009e253aba8b19351fe642546",
+      "role": "Q1 standalone proof sanity result"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/NOVELTY_RESEARCH_2026-08-22.md",
+      "git_blob_sha1": "c727a3fbc191ae4e17b70869877374df1ee1589a",
+      "role": "Q1 main hostile novelty map"
+    },
+    {
+      "path": "papers/Q-paper-01-tare-expressivity/NOVELTY_REFRESH_FINAL_2026-08-22.md",
+      "git_blob_sha1": "38d7f1529792c2beb8617dc1df8a2d60787ae39b",
+      "role": "Q1 final exact-statement novelty refresh"
+    },
+    {
+      "path": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md",
+      "git_blob_sha1": "881403accbeb5f3be1fc508467b8454dbe48d081",
+      "role": "Q2 canonical manuscript"
+    },
+    {
+      "path": "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX_V2.md",
+      "git_blob_sha1": "1004edbfed3a06a8a9638c7768b43c8b5dc6051b",
+      "role": "Q2 final receipt index extension"
+    },
+    {
+      "path": "papers/Q-paper-02-recursive-recovery/NOVELTY_RESEARCH_2026-08-22.md",
+      "git_blob_sha1": "081d4136b2c791407116aa9922f9e06057fb6a12",
+      "role": "Q2 novelty map"
+    },
+    {
+      "path": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md",
+      "git_blob_sha1": "f364544897541d929a01d35e160303f9c502c305",
+      "role": "Q3 canonical manuscript"
+    },
+    {
+      "path": "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md",
+      "git_blob_sha1": "f218f93bb8d4efe3f0b184069a11fd56f71b7f50",
+      "role": "Q3 claim ledger"
+    },
+    {
+      "path": "papers/Q-paper-03-dual-instrument/NOVELTY_RESEARCH_2026-08-22.md",
+      "git_blob_sha1": "a9bd7c3c41727f5c16940e3dc63ae1893e34dabf",
+      "role": "Q3 novelty map"
+    },
+    {
+      "path": "papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md",
+      "git_blob_sha1": "665a366d24a8f4040c2177b8ddd6e68ef10f4df0",
+      "role": "Q4 canonical manuscript"
+    },
+    {
+      "path": "papers/Q-paper-04-typed-state/CLAIM_LEDGER_V2.md",
+      "git_blob_sha1": "27511c23774d480aab027bfaece202f6154dbed3",
+      "role": "Q4 claim ledger"
+    },
+    {
+      "path": "papers/Q-paper-04-typed-state/NOVELTY_RESEARCH_2026-08-22.md",
+      "git_blob_sha1": "19bc9032277f6cd9a736af13527032f8ff9494f4",
+      "role": "Q4 novelty map"
+    }
   ]
 }

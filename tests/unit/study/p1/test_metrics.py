@@ -998,6 +998,117 @@ def test_an_archive_missing_stochastic_repeats_is_refused(tmp_path):
     assert "stochastic repeats" in t2["reason"]
 
 
+def test_exact_archive_design_rejects_zero_of_five_and_missing_dimensions(tmp_path):
+    archive, _ = build_archive(tmp_path)
+    records = [json.loads(line) for line in (archive / "records.jsonl").read_text().splitlines()]
+    systems = sorted({row["system_id"] for row in records})
+    cases = sorted({row["case_id"] for row in records})
+    seeds = sorted({row["seed"] for row in records})
+    design = {
+        "schema_version": "orion.p1.archive-design.v1",
+        "suite_fingerprint": records[0]["suite_fingerprint"],
+        "subject_revision": records[0]["subject_revision"],
+        "system_ids": systems,
+        "case_ids": cases,
+        "seeds": seeds,
+        "expected_record_count": len(systems) * len(cases) * len(seeds),
+    }
+    design_path = tmp_path / "design.json"
+    design_path.write_text(json.dumps(design))
+
+    variants = {
+        "missing-cell": [
+            row for row in records
+            if not (row["system_id"] == systems[0] and row["case_id"] == cases[0])
+        ],
+        "missing-system": [row for row in records if row["system_id"] != systems[0]],
+        "missing-case": [row for row in records if row["case_id"] != cases[0]],
+    }
+    for name, changed in variants.items():
+        changed_path = tmp_path / name
+        changed_path.mkdir()
+        (changed_path / "records.jsonl").write_text(
+            "\n".join(json.dumps(row) for row in changed) + "\n"
+        )
+        t2, _ = tables.generate(
+            changed_path,
+            tmp_path / f"out-{name}",
+            resamples=20,
+            bootstrap_seed=7,
+            design_manifest=design_path,
+        )
+        assert t2["status"] == tables.STATUS_CANNOT_CHECK, name
+        assert "expected" in t2["reason"], name
+
+
+def test_exact_archive_design_rejects_duplicate_seed_replacing_required_seed(tmp_path):
+    archive, _ = build_archive(tmp_path)
+    records = [json.loads(line) for line in (archive / "records.jsonl").read_text().splitlines()]
+    systems = sorted({row["system_id"] for row in records})
+    cases = sorted({row["case_id"] for row in records})
+    seeds = sorted({row["seed"] for row in records})
+    design = {
+        "schema_version": "orion.p1.archive-design.v1",
+        "suite_fingerprint": records[0]["suite_fingerprint"],
+        "subject_revision": records[0]["subject_revision"],
+        "system_ids": systems,
+        "case_ids": cases,
+        "seeds": seeds,
+        "expected_record_count": len(records),
+    }
+    design_path = tmp_path / "design.json"
+    design_path.write_text(json.dumps(design))
+    target = next(
+        row for row in records
+        if row["system_id"] == systems[0] and row["case_id"] == cases[0] and row["seed"] == seeds[-1]
+    )
+    target["seed"] = seeds[0]
+    (archive / "records.jsonl").write_text("\n".join(json.dumps(row) for row in records) + "\n")
+
+    t2, _ = tables.generate(
+        archive,
+        tmp_path / "out-duplicate-seed",
+        resamples=20,
+        bootstrap_seed=7,
+        design_manifest=design_path,
+    )
+    assert t2["status"] == tables.STATUS_CANNOT_CHECK
+    assert "non-unique" in t2["reason"]
+
+
+def test_exact_archive_design_rejects_unexpected_system_and_case(tmp_path):
+    archive, _ = build_archive(tmp_path)
+    records = [json.loads(line) for line in (archive / "records.jsonl").read_text().splitlines()]
+    systems = sorted({row["system_id"] for row in records})
+    cases = sorted({row["case_id"] for row in records})
+    seeds = sorted({row["seed"] for row in records})
+    design = {
+        "schema_version": "orion.p1.archive-design.v1",
+        "suite_fingerprint": records[0]["suite_fingerprint"],
+        "subject_revision": records[0]["subject_revision"],
+        "system_ids": systems,
+        "case_ids": cases,
+        "seeds": seeds,
+        "expected_record_count": len(records),
+    }
+    design_path = tmp_path / "design.json"
+    design_path.write_text(json.dumps(design))
+    records[0]["system_id"] = "unexpected-system"
+    records[1]["case_id"] = "unexpected-case"
+    (archive / "records.jsonl").write_text("\n".join(json.dumps(row) for row in records) + "\n")
+
+    t2, _ = tables.generate(
+        archive,
+        tmp_path / "out-unexpected-identities",
+        resamples=20,
+        bootstrap_seed=7,
+        design_manifest=design_path,
+    )
+    assert t2["status"] == tables.STATUS_CANNOT_CHECK
+    assert "unexpected systems" in t2["reason"]
+    assert "unexpected cases" in t2["reason"]
+
+
 def test_a_malformed_record_is_refused_rather_than_skipped(tmp_path):
     archive = tmp_path / "raw"
     archive.mkdir()

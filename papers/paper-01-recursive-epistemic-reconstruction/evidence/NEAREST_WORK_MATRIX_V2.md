@@ -1,5 +1,11 @@
 # Nearest-work mechanism matrix V2 — ORION Paper I
 
+> **Annotated 2026-08-22.** This matrix is no longer typeset as a manuscript
+> table. The manuscript's Related work section now discusses these neighbours in
+> prose and cites every one of them; this file remains the full record behind
+> that section and is named as such in the manuscript's Data and code
+> availability. No row, disposition or verification gap below changed.
+
 **Publication target:** Table P1-T1 (nearest-work mechanism matrix).
 **Label note:** `JOURNAL_READINESS.md` §6 calls this artifact **Table P1-1**; the Step-1 task calls it **Table P1-T1**. One label must be chosen before submission. No third label is introduced here.
 

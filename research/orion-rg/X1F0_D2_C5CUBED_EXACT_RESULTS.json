@@ -205,11 +205,11 @@
     "SzeChunYiu/ORION#894"
   ],
   "prior_art_correction": {
-    "also_sharper": "their Prop 3.2(2): D_{k+1} <= D_k + M, M the minimum length of a minimal zero-sum sequence dividing an extremal B",
+    "also_sharper": "their Prop 3.1(2): D_{k+1} <= D_k + M, M the minimum length of a minimal zero-sum sequence dividing an extremal B",
     "credit": "no ORION credit is taken for the bound; the contribution is the instantiation",
     "effect_on_the_exact_constants": "none; D_2 = 20 and D_3 = 25 stand, and the correct form still gives D_2 <= max(20, 18) = 20",
     "effect_on_the_generality_table": "the extra -1 closes the C_2^4 k=1 gap, so it is tight in 10 of 11, not 9 of 11, and exactly one genuine gap remains (C_5^3 k=2)",
-    "prior_art": "Freeze & Schmid, Remarks on a generalization of the Davenport constant, Discrete Math. 310 (2010) 3373-3389, arXiv:0905.4248, Proposition 3.2(3)",
+    "prior_art": "Freeze & Schmid, Remarks on a generalization of the Davenport constant, Discrete Math. 310 (2010) 3373-3389, arXiv:0905.4248, Proposition 3.1(3)",
     "relation": "identical, and their form is STRICTLY STRONGER (eta_l - 1 versus eta_l)",
     "their_statement": "for each l in N, D_{k+1}(G) <= max{D_k(G) + l, s_{<=l}(G) - 1}, with s_{<=l} = eta_l",
     "what_was_overclaimed": "an earlier version presented D_{k+1} <= max(eta_T, D_k+T) as a new lemma (Lemma B)"
