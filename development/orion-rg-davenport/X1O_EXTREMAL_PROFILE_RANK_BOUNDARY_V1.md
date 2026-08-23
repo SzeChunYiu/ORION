@@ -1,5 +1,14 @@
 # ORION-RG X1-O — the extremal shape is unique at rank 2 and **not** at rank 3
 
+> **CORRECTED by X1-Q (2026-08-23).** Two corrections. (1) The figure "80 basis triangles
+> `{a,b,a+b}` in `C_5^2`" below is **wrong**; the correct count is **240** (divisor 2, not
+> 6 — only one of the three pairs sums to the remaining element). (2) **The rank-2 profile
+> uniqueness result below is published**: it is *Property C*, established unconditionally
+> (Schmid, Q. J. Math. 63 (2012), via Reiher's Property B). The rank-2 content of this atom
+> is a rediscovery. All enumerated counts are correct and independently confirmed. The
+> **rank-3** result (`C_3^3` at `T = 4`) is a different constant (`s_{≤4}`, not `η`) and is
+> *not* retracted.
+
 ## What was being tested
 
 X1-N proved that rank-2 groups sit exactly on the criterion boundary via the explicit
@@ -44,7 +53,7 @@ merely *an* extremal object, its **shape is the only shape**.
 
 ### But the *configuration* is not unique — only the profile is
 
-This distinction matters and is easy to get wrong. There are only `480/6 = 80` unordered
+This distinction matters and is easy to get wrong. There are only 240 unordered
 triples of the "basis triangle" form `{a, b, a+b}` in `C_5^2`, against **720** extremals.
 So the extremal set is `9×` larger than the `S_n` family, and other linear configurations
 qualify — verified directly:

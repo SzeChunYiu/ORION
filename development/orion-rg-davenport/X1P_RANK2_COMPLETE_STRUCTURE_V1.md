@@ -1,10 +1,19 @@
 # ORION-RG X1-P — the complete rank-2 extremal structure, with an exact count
 
+> **RETRACTED as new work by X1-Q (2026-08-23).** This characterisation is **published**:
+> Grynkiewicz & Liu (arXiv:2109.10309), Conjecture 1.1 Part 4(a) at `m = 1, s = 1`, which
+> they state is *known* — extremals are `e_1^(n-1) e_2^(n-1) (x e_1 + e_2)^(n-1)` with
+> `gcd(x,n) = 1`. That is equivalent to the condition derived below, and generating from it
+> reproduces this atom's counts exactly (24, 48, 720, 144, 5040 at `n = 3..7`). Also: "80
+> basis triangles" should read **240**. The mathematics and the count formula
+> `N(C_n^2) = |GL(2,Z_n)|·(φ(n)-1)/2` are correct and stand as independent confirmation of
+> a known theorem — but nothing here is new.
+
 ## What this closes
 
 X1-O established that at rank 2 the extremal **profile** is unique — every extremal
 sequence for `f_n(C_n ⊕ C_n)` is `a^(n-1) b^(n-1) c^(n-1)` — but left the
-**configuration** unresolved: 720 extremals in `C_5^2` against only 80 "basis triangles"
+**configuration** unresolved: 720 extremals in `C_5^2` against only 240 "basis triangles"
 `{a, b, a+b}`, and explicitly *not* "any pairwise-independent triple" (which would give
 1280). This atom closes that gap with a characterisation and an exact count.
 

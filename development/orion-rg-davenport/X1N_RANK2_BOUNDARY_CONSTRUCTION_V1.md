@@ -1,5 +1,15 @@
 # ORION-RG X1-N — rank-2 groups sit *exactly* on the criterion boundary, for every `n`
 
+> **CORRECTED by X1-Q (2026-08-23).** The headline value `f_n(C_n^2) = 3n-3` of this
+> document is **published, not new**: it equals `η(C_n ⊕ C_n) - 1`, and `η(C_p ⊕ C_p) =
+> 3p-2` is classical (Freeze–Schmid Prop. 3.5 proof gives `s_{≤p}(C_p^2) ≤ 3p-2` and notes
+> the bound is sharp at `r = 2`). `D_2(C_n ⊕ C_n) = 3n-1` is likewise published
+> (Geroldinger–Halter-Koch Thm 6.1.5; Freeze–Schmid Remark 5.3(2)), for **all `n`**, so the
+> composite values `n = 4, 6` are inside the published range too. `S_n` is the standard
+> extremal example for `η`. The proofs
+> and computations below are correct; the implied claim of discovery was not. See
+> `X1Q_PRIOR_ART_CORRECTION_AND_ETA_BOUNDARY_V1.md`.
+
 ## The question this answers
 
 X1-M left a dichotomy as a bare observation over nine groups. Writing X1-K's criterion as
