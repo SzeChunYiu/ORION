@@ -17,7 +17,7 @@
 | adaptive test-time compute is novel to P12 | FALSE / DONOR-OWNED | current literature | do not claim |
 | dynamic state/context selection is novel to P12 | FALSE / DONOR-OWNED | retrieval/memory/state literature | do not claim |
 | two-axis state–reasoning allocation has controlled superiority under matched total compute | **NOT AUTHORIZED** | `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` | identical budget did not mean identical action capability |
-| two signals improve exact allocation when all arms share the same four actions | **SUPPORTED / CONTROLLED P12B** | `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json` | mean gain 0.253906 across 32 family RNG blocks; stratified 95% CI [0.251221, 0.256653] |
+| two signals improve exact allocation when all arms share the same four actions | **SUPPORTED / CONTROLLED P12B** | `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json` | mean gain 0.253906 across 32 family RNG blocks; stratified 95% CI [0.251221, 0.256653]; locked CPython 3.12.13 / NumPy 2.5.2 replay |
 | real LLM/prover superiority | OPEN | no real-system result | not authorized |
 
 ## Evidence correction
@@ -25,7 +25,12 @@
 The historical P12A terminal remains `P12A_SUPERIORITY_AUTHORITY_WITHHELD` in
 `P12_ACTIVE_CLAIM_AUTHORITY_V1.json`. Current bounded authority is
 `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED` in
-`P12_ACTIVE_CLAIM_AUTHORITY_V2.json`.
+`P12_ACTIVE_CLAIM_AUTHORITY_V3.json`.
+
+The V1 P12B receipt is preserved unchanged. Its scientific counts and estimates
+reconstruct under the repository lock, but strict whole-core replay rejects its
+NumPy 2.3.5 environment field. The append-only V1.1 result binds `uv.lock`,
+CPython 3.12.13 and NumPy 2.5.2 and passes two fresh byte-identical subprocesses.
 
 The original P12A executable evaluated seven frozen scientific gates but did not put the protocol's byte-identical replay requirement into its own terminal decision. That is an evidence-adjudication defect, not a change in the scientific comparison. The V1 runner terminal is therefore **non-authoritative alone**.
 

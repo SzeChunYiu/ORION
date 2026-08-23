@@ -4,9 +4,9 @@
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`; controlled equal-action world
 
-**Current authority:** `P12_ACTIVE_CLAIM_AUTHORITY_V2.json`. It retains P12A's
+**Current authority:** `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`. It retains P12A's
 comparison failure and activates only the prospectively frozen P12B equal-action
-signal-complementarity result.
+signal-complementarity result after locked-environment V1.1 revalidation.
 
 ## Abstract
 
@@ -144,7 +144,7 @@ No policy is tuned on protected family outcomes.
 The historical P12A protected terminal is
 `P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`; its historical superiority authority is
 withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. Current authority
-comes from `P12_ACTIVE_CLAIM_AUTHORITY_V2.json`.
+comes from `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`.
 
 | policy | mean verified success |
 |---|---:|
@@ -187,6 +187,9 @@ Mean two-signal gain over the stronger one-signal arm is **0.253906**. The
 stratified family-block 95% bootstrap interval is **[0.251221, 0.256653]**,
 minimum family gain is **0.196289**, and fixed-stratum mean gains range from
 0.213379 to 0.291138. All frozen gates and the byte-identical replay gate pass.
+An append-only V1.1 revalidation reproduces these values under the repository
+lock's CPython 3.12.13 and NumPy 2.5.2 environment; the original receipt remains
+unchanged.
 Terminal: `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED`.
 
 ## 7. Resource-accounting contract for real systems

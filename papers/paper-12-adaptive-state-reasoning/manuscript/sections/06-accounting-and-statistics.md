@@ -25,3 +25,8 @@ The analysis does not pool P12A's 8,192 or P12B's 32,768 technical episodes as
 independent domains. Hyperparameters are frozen before protected evaluation. The
 worst-family and minimum-stratum gains prevent a favorable mean from hiding a
 family- or stratum-level failure.
+
+Strict reconstruction also binds the execution environment. The active V1.1
+receipt records the repository `uv.lock` digest, CPython 3.12.13 and NumPy 2.5.2;
+an environment-field mutation is a noncompensatory failure even when every
+scientific value is unchanged.

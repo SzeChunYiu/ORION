@@ -13,9 +13,9 @@
 
 `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED / CONTROLLED_EQUAL_ACTION_WORLD`
 
-`P12_ACTIVE_CLAIM_AUTHORITY_V2.json` is the current authority. It retains the
+`P12_ACTIVE_CLAIM_AUTHORITY_V3.json` is the current authority. It retains the
 P12A comparison failure and activates only P12B's equal-action, exact-allocation
-signal-complementarity claim.
+signal-complementarity claim after locked-environment V1.1 revalidation.
 
 ### Protected result
 
@@ -47,6 +47,8 @@ independent family RNG blocks (1,024 technical episodes each), mean gain over
 the stronger one-signal policy is **0.253906**. The prospectively corrected
 stratified family-block 95% bootstrap interval is **[0.251221, 0.256653]**;
 minimum family gain is **0.196289**, and every fixed noise stratum passes.
+V1.1 reproduces the same scientific values in the repository lock's CPython
+3.12.13 / NumPy 2.5.2 environment, with two byte-identical fresh subprocesses.
 
 Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`.
 
@@ -64,8 +66,10 @@ Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`.
 - `P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json`
 - `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`
 - `P12_ACTIVE_CLAIM_AUTHORITY_V1.json` (historical P12A boundary)
-- `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json`
-- `P12_ACTIVE_CLAIM_AUTHORITY_V2.json` (current)
+- `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json` (historical environment receipt)
+- `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json` (locked revalidation)
+- `P12_ACTIVE_CLAIM_AUTHORITY_V2.json` (superseded P12B authority)
+- `P12_ACTIVE_CLAIM_AUTHORITY_V3.json` (current)
 - protected protocol and executable harness
 
 ## Boundary

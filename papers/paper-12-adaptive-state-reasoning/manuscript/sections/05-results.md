@@ -44,4 +44,6 @@ two-signal gain over the stronger one-signal arm is 0.253906. The stratified
 family-block 95% bootstrap interval is [0.251221, 0.256653], minimum family gain
 is 0.196289, and every fixed sigma stratum exceeds 0.21. Two fresh subprocess
 payloads are byte-identical, supporting the controlled equal-action
-signal-complementarity claim.
+signal-complementarity claim. An append-only V1.1 revalidation reproduces the
+same values under the repository lock's CPython 3.12.13 and NumPy 2.5.2
+environment; the original environment receipt remains unchanged.

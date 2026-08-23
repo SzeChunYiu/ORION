@@ -3,7 +3,7 @@
 **Decision:** `READY_FOR_CONTROLLED_P12B_CLAIM__EXTERNAL_GENERALIZATION_OPEN`
 
 Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`, from
-`P12_ACTIVE_CLAIM_AUTHORITY_V2.json`. P12A's comparator-confounded result remains
+`P12_ACTIVE_CLAIM_AUTHORITY_V3.json`. P12A's comparator-confounded result remains
 historical and withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 ## Five-lens hostile review
@@ -26,8 +26,9 @@ noise stratum. Technical episodes are not counted as independent units.
 
 ### Reproducibility / protocol authority
 
-**Pass.** P12B binds its protocol, pre-outcome bootstrap amendment, runner and two
-byte-identical protected subprocess payloads.
+**Pass.** P12B binds its protocol, pre-outcome bootstrap amendment, runner,
+`uv.lock`, CPython 3.12.13, NumPy 2.5.2 and two byte-identical protected
+subprocess payloads. The original environment receipt remains immutable.
 
 ### Novelty
 
@@ -56,6 +57,7 @@ from P12B's active equal-action result.
 - [x] prospectively frozen P12B equal-action protocol
 - [x] stratified family-block bootstrap frozen before execution
 - [x] all P12B gates and byte replay pass
+- [x] append-only locked-environment V1.1 revalidation
 - [x] claim/evidence ledger
 - [x] current donor subtraction
 - [x] explicit real-system promotion gate

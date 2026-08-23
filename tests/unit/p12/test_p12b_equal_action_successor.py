@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from hashlib import sha256
 import json
 from pathlib import Path
 
-from orion.study.p12.equal_action_successor import (
+from orion.study.p12.equal_action_successor_v1_1 import (
     ACTIONS,
     EPISODES_PER_FAMILY,
     N_FAMILIES,
@@ -20,8 +21,9 @@ from orion.study.p12.successor_authority import build_active_claim_authority
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
-RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json"
-AUTHORITY = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V2.json"
+HISTORICAL_RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json"
+RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json"
+AUTHORITY = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V3.json"
 
 
 def test_typed_views_do_not_carry_a_withheld_signal() -> None:
@@ -76,7 +78,27 @@ def test_replay_is_a_noncompensatory_gate() -> None:
     assert adjudicate(build_core(), byte_identical_replay=False)["terminal"] == NOT_SUPPORTED
 
 
-def test_v2_authority_rebuilds_and_keeps_p12a_historical() -> None:
+def test_locked_environment_identity_is_a_noncompensatory_gate() -> None:
+    core = build_core()
+    for field, replacement in (
+        ("python_version", "3.12.12"),
+        ("numpy_version", "2.5.1"),
+        ("uv_lock_sha256", "0" * 64),
+    ):
+        drifted = deepcopy(core)
+        drifted["environment"][field] = replacement
+        result = adjudicate(drifted, byte_identical_replay=True)
+        assert result["gates"]["locked_environment_identity_matches_v1_1"] is False
+        assert result["terminal"] == NOT_SUPPORTED
+
+
+def test_v1_receipt_is_preserved_append_only() -> None:
+    assert sha256(HISTORICAL_RESULT.read_bytes()).hexdigest() == (
+        "76fed7d0b539e561036401a988cf2cfeaf6f12c2c5ddc7c42548513df96eb78e"
+    )
+
+
+def test_v3_authority_rebuilds_and_keeps_p12a_historical() -> None:
     authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
     assert authority == build_active_claim_authority()
     assert authority["active_claim_leaf"]["terminal"] == SUPPORTED
@@ -84,3 +106,9 @@ def test_v2_authority_rebuilds_and_keeps_p12a_historical() -> None:
         "P12A_SUPERIORITY_AUTHORITY_WITHHELD"
     )
     assert authority["active_claim_leaf"]["scope"]["independent_family_rng_blocks"] == 32
+    environment = json.loads(RESULT.read_text(encoding="utf-8"))["core"]["environment"]
+    assert authority["active_claim_leaf"]["scope"]["locked_environment"] == {
+        "python_version": environment["python_version"],
+        "numpy_version": environment["numpy_version"],
+        "uv_lock_sha256": environment["uv_lock_sha256"],
+    }

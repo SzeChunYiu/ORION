@@ -7,21 +7,32 @@ import json
 from pathlib import Path
 from typing import Any
 
-from orion.study.p12.equal_action_successor import SUPPORTED, adjudicate, build_core
+from orion.study.p12.equal_action_successor_v1_1 import (
+    LOCKED_NUMPY_VERSION,
+    LOCKED_PYTHON_VERSION,
+    LOCKED_UV_LOCK_SHA256,
+    SUPPORTED,
+    adjudicate,
+    build_core,
+)
 
-SCHEMA = "ORION.P12.ActiveClaimAuthority.v2"
+SCHEMA = "ORION.P12.ActiveClaimAuthority.v3"
 ACTIVE_TERMINAL = "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 PAPER = REPO_ROOT / "papers/paper-12-adaptive-state-reasoning"
 PATHS = {
     "historical_p12a_authority": PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V1.json",
+    "previous_p12b_authority": PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V2.json",
+    "historical_p12b_result_v1": PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json",
     "p12b_protocol": PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_PROTOCOL_V1.md",
     "p12b_protocol_amendment": PAPER / "P12B_PROTOCOL_AMENDMENT_V1_1.md",
     "p12b_preflight": PAPER / "P12B_PREFLIGHT_ATTAINABILITY_V1_1.json",
-    "p12b_subject_module": REPO_ROOT / "src/orion/study/p12/equal_action_successor.py",
-    "p12b_runner": PAPER / "run_p12b_equal_action_signal_complementarity_v1.py",
-    "p12b_result": PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json",
+    "p12b_locked_environment_revalidation": PAPER / "P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md",
+    "p12b_subject_module_v1_1": REPO_ROOT / "src/orion/study/p12/equal_action_successor_v1_1.py",
+    "p12b_runner_v1_1": PAPER / "run_p12b_equal_action_signal_complementarity_v1_1.py",
+    "p12b_result_v1_1": PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json",
+    "uv_lock": REPO_ROOT / "uv.lock",
 }
 
 
@@ -33,7 +44,7 @@ def _binding(path: Path) -> dict[str, str]:
 
 
 def _verified_result() -> dict[str, Any]:
-    result = json.loads(PATHS["p12b_result"].read_text(encoding="utf-8"))
+    result = json.loads(PATHS["p12b_result_v1_1"].read_text(encoding="utf-8"))
     if result["core"] != build_core():
         raise ValueError("P12B committed core does not match fresh reconstruction")
     replay = result.get("replay", {})
@@ -57,7 +68,7 @@ def build_active_claim_authority() -> dict[str, Any]:
         "promotion_allowed": True,
         "active_claim_leaf": {
             "claim_id": "P12B.EQUAL_ACTION.TWO_SIGNAL_COMPLEMENTARITY",
-            "status": "SUPPORTED_REPLICATED_FAMILY_PANEL",
+            "status": "SUPPORTED_LOCKED_ENVIRONMENT_REVALIDATED_FAMILY_PANEL",
             "terminal": result["terminal"],
             "scope": {
                 "independent_family_rng_blocks": 32,
@@ -66,6 +77,11 @@ def build_active_claim_authority() -> dict[str, Any]:
                 "identical_action_count_per_arm": 4,
                 "budget": 2,
                 "scoring": "exact_required_allocation",
+                "locked_environment": {
+                    "python_version": LOCKED_PYTHON_VERSION,
+                    "numpy_version": LOCKED_NUMPY_VERSION,
+                    "uv_lock_sha256": LOCKED_UV_LOCK_SHA256,
+                },
             },
             "effect": {
                 "mean_gain_vs_stronger_one_signal": summary["mean_delta_vs_stronger_one_signal"],
