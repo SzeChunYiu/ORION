@@ -10,6 +10,25 @@
 
 Adaptive test-time compute, best-of-N/search, context selection, uncertainty allocation and value-of-computation metareasoning are donors.
 
+## Post-outcome status — 2026-08-23
+
+The independent bounded theory checker now closes the current marginal resource-location construction, a weight-free substitution/complementarity criterion, and a `2ε` oracle-regret bound under the frozen finite assumptions. These results support T12.1/T12.2 only at the stated theoretical scope.
+
+The prospectively frozen verifier-backed SAT study now returns `P12_VERIFIER_RESOURCE_LOCATION_V1_SUPPORTED` with byte-identical replay. Every arm receives the same 2,000-literal-evaluation work budget and every returned SAT/UNSAT disposition is independently verified.
+
+Protected outcomes over 16 cases:
+
+- `ADAPTIVE_LOCATION`: `16/16` solved, mean solved work `50.25`, maximum work `272`;
+- `PROPAGATE_FIRST`: `16/16` solved, mean solved work `52.375`, maximum work `272`;
+- `REASON_ONLY`: `4/16` solved with `12` budget exhaustions;
+- adaptive regret relative to the per-case oracle: maximum `0`, mean `0.0`.
+
+The low-unit easy family is an anti-preprocessing control: adaptive mean work is `11.75`, exactly matching reason-only and improving on always-propagate `20.25`. Unit-heavy and contradiction families require state construction to avoid budget exhaustion.
+
+**Earned claim:** on this frozen verifier-backed SAT family, resource *location* is causally consequential, and the preregistered structural signal selects the per-case optimal state-vs-search allocation with zero observed oracle regret. This does not establish a transferable multi-domain allocator or a full vector-valued end-to-end resource law.
+
+Exact execution hashes and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
+
 ## Generalized action space
 
 Move beyond the current two-locus scalar controlled world. Freeze a resource-location action set including at least:
@@ -92,15 +111,17 @@ Freeze one allocator or a small registered family before target-domain outcomes.
 
 `P12_TOP_TIER_SUBMISSION_READY` requires:
 
-- [ ] T12.1 resource-location decision rule;
-- [ ] T12.2 substitution/complementarity criteria;
-- [ ] real vector-valued resource accounting;
+- [x] T12.1 bounded resource-location decision rule;
+- [x] T12.2 bounded substitution/complementarity criteria;
+- [ ] real vector-valued resource accounting across the programme-wide resource vector;
 - [ ] open-weight/procedural replication;
-- [ ] verifier-backed search replication;
+- [x] verifier-backed search replication with matched literal-evaluation budget and independent correctness verification;
 - [ ] frozen cross-domain transfer test;
-- [ ] strict comparisons to adaptive-compute-only and adaptive-state-only donors;
-- [ ] no hidden resource advantage;
-- [ ] family/domain-block uncertainty and independent replay;
+- [ ] strict intended-scope comparisons to adaptive-compute-only and adaptive-state-only donors;
+- [x] no hidden total-work advantage in the protected SAT study;
+- [ ] family/domain-block uncertainty plus independent replay/authority beyond same-workflow deterministic byte replay;
 - [ ] donor refresh and exact submission binding.
+
+The unchecked items are not clerical. The current SAT result is a strong verifier-backed resource-location demonstration, but it does not by itself justify cross-domain or multi-locus generality.
 
 If no transferable allocator wins, retain the domain-specific crossover laws and characterize the information required for a general allocator rather than weakening the matched-budget requirement.
