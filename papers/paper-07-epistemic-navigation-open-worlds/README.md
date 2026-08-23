@@ -53,14 +53,30 @@ A separate implementation independently reconstructs the result.
 
 P2 retains generic open-world retrieval/search stopping. P7 does **not** claim graph search, planning, abstraction/refinement, CEGAR, round-trip migration, world-model revision, terminal commitment, or generic closure-gap terminology as new. An ideal donor product carrying the exact same scientific closure fields and bridge rules ties P7 extensionally.
 
+## Real regime-transport evidence (three change classes)
+
+Witness-aware closure transport holds at exact accuracy `1.0` on three qualitatively distinct non-synthetic change classes, each against the same two donor-complete baselines (value-only transport and always-reopen):
+
+1. **Representation change** — public RO-Crate `1.2 -> 1.3` standard transition, 14 frozen cases: witness-aware `1.0` with 4 correct `CANNOT_CHECK`; value-only `0.428571...` with 8 false closures; always-reopen `0.285714...` with 6 unnecessary reopens.
+2. **Responsibility/ontology change** — UCI Wine recognition data, three fine classes coarsened to `class0_vs_other`, 712 protected rows: witness-aware `1.0` with 238 correct `CANNOT_CHECK`; value-only `0.665730...` with 238 false closures; always-reopen `0.0` with 474 unnecessary reopens.
+3. **Objective/obligation change** — Wisconsin Diagnostic Breast Cancer, the obligation moves from `accuracy >= 0.95` to `malignant-class recall >= 0.95` after predictions are frozen, 5 protected stratified folds in 2 evidence states (10 cells): witness-aware `1.0` with 5 correct `CANNOT_CHECK`; value-only `0.3` with 5 false closures; always-reopen `0.1` with 4 unnecessary reopens.
+
+Bound receipts: `top_tier/P7_REAL_REGIME_TRANSPORT_RESULT_RECEIPT_V1.md` (classes 1–2) and `top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md` (class 3).
+
+The third class closes the objective/world/obligation gap: the goal structure itself changes while representations and responsibilities are held fixed, so value-level preservation cannot even express the new obligation — accuracy-only summaries are `CANNOT_CHECK` — and the change cuts both ways (one fold satisfies the old accuracy obligation but fails the new recall obligation, a value-only false closure; one fold fails the old and satisfies the new, where value-only needlessly reopens).
+
+This licenses the bounded claim that witness/evidence-aware closure transport — not value preservation alone, not unconditional reopening — survives all three executed change classes. It does **not** license universal scientific-regime transport across arbitrary world-model, objective or agent changes.
+
 ## Current source map
 
 - `manuscript/FINAL_V3.md` — current science manuscript overlay;
 - `CLAIM_LEDGER_V3.md` — current claim authority;
 - `submission/P7_X2_CLOSURE_CARRYING_SECTION.tex` — render-ready successor section;
 - `research/claim_expansion/p7/P7_X2_DONOR_ENGULFMENT_V1.md` — donor extraction/improvement map;
-- `research/claim_expansion/p7/P7_X2_SCIENCE_TERMINAL_V1.md` — science terminal.
+- `research/claim_expansion/p7/P7_X2_SCIENCE_TERMINAL_V1.md` — science terminal;
+- `top_tier/P7_REAL_REGIME_TRANSPORT_PROTOCOL_V1.md` + `top_tier/P7_REAL_REGIME_TRANSPORT_RESULT_RECEIPT_V1.md` — classes 1–2;
+- `top_tier/P7_OBJECTIVE_CHANGE_PROTOCOL_V1.md` + `top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md` — class 3.
 
 ## Explicit nonclaims
 
-No universal completeness, deployed-agent superiority, universal minimality of the registered closure coordinates, inference that missing closure proof automatically establishes ambiguity, or inherent centralization/expressivity advantage. PDF/package generation is deferred.
+No universal completeness, deployed-agent superiority, universal minimality of the registered closure coordinates, inference that missing closure proof automatically establishes ambiguity, inherent centralization/expressivity advantage, or universal scientific-regime transport across arbitrary world-model/objective/agent changes beyond the three executed families. PDF/package generation is deferred.
