@@ -57,7 +57,7 @@ jobs:
           uv python install 3.12.13
           uv venv --clear --python 3.12.13
           uv pip install --require-hashes -r "$Q1_LOCK"
-          uv run python - <<'PY'
+          uv run --no-sync python - <<'PY'
           import importlib.metadata as metadata
           import platform
           import sys
@@ -88,7 +88,7 @@ jobs:
           test -z "$(git status --porcelain)"
           artifact_commit=$(git rev-parse HEAD)
           artifact_parent=$(git rev-parse HEAD^)
-          uv run python -I "$COORDINATOR" prepare \
+          uv run --no-sync python -I "$COORDINATOR" prepare \
             --repo-root "$GITHUB_WORKSPACE" \
             --result-root "$RESULT_ROOT" \
             --artifact-commit "$artifact_commit" \
@@ -142,7 +142,7 @@ jobs:
       - name: Compare only committed immutable terminals
         run: |
           set -euo pipefail
-          uv run python -I "$COORDINATOR" compare \
+          uv run --no-sync python -I "$COORDINATOR" compare \
             --repo-root "$GITHUB_WORKSPACE" \
             --result-root "$RESULT_ROOT"
           test "$(jq -r '.terminal' "$RESULT_ROOT/coordinator/coordinator_result.json")" = PASS
