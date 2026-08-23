@@ -1,0 +1,59 @@
+name: orion-qg20-recovery-v5-n5
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg20_recovery_v5_n5_collision.py'
+      - 'development/orion-qg-regime-geometry/qg20_recovery_v5_n5_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg20_recovery_v5_n5_dual.py'
+      - 'development/orion-qg-regime-geometry/QG20_RECOVERY_V5_N5_COLLISION_PROTOCOL_V1.md'
+      - '.github/workflows/orion-qg20-recovery-v5-n5.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg20-recovery-v5-n5-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  n5-collision-challenge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run n5 collision-challenge dual harness
+        run: |
+          python development/orion-qg-regime-geometry/run_qg20_recovery_v5_n5_dual.py | tee /tmp/qg20-v5-n5.txt
+          grep '^ORIONQG_QG20_RECOVERY_V5_N5_DUAL=' /tmp/qg20-v5-n5.txt
+      - name: Enforce V5 custody and inspectable terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('artifacts/orion-qg-qg20-recovery-v5-n5-dual.json').read_text())
+          if p.get('selection_before_labels') is not True: raise SystemExit('n5 exact labels accessed before selection')
+          if p.get('representation_changed_after_v4') is not False: raise SystemExit('V4 representation changed on n5')
+          if p.get('analyzer_replay_identical') is not True: raise SystemExit('n5 analyzer replay mismatch')
+          if p.get('verifier_decision') not in {'ACCEPT','REJECT'}: raise SystemExit('n5 verifier decision missing')
+          checks=p.get('verifier_checks')
+          if not isinstance(checks,dict) or not checks: raise SystemExit('n5 verifier checks missing')
+          if p['verifier_decision']=='ACCEPT' and not all(checks.values()): raise SystemExit('n5 ACCEPT contains failed check')
+          if p['verifier_decision']=='REJECT' and all(checks.values()): raise SystemExit('n5 REJECT lacks failed check')
+          allowed={'QG20_RECOVERY_V5_SIGNED_COMPLETE_WEIGHT_SURVIVES_N5_COLLISION_CHALLENGE','QG20_RECOVERY_V5_SIGNED_COMPLETE_WEIGHT_REFUTED_BY_N5_COLLISION','CANNOT_CHECK_N5_COLLISION_DENSITY','CANNOT_CHECK_EXACT_N5_RESOURCE','CANNOT_CHECK_LABEL_DIVERSITY','QG20_RECOVERY_V5_DUAL_DISAGREEMENT'}
+          if p.get('terminal') not in allowed: raise SystemExit(f"unexpected V5 terminal: {p.get('terminal')!r}")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg20-recovery-v5-n5
+          path: |
+            artifacts/orion-qg-qg20-recovery-v5-n5-selection.json
+            artifacts/orion-qg-qg20-recovery-v5-n5.json
+            artifacts/orion-qg-qg20-recovery-v5-n5-verification.json
+            artifacts/orion-qg-qg20-recovery-v5-n5-dual.json
+            /tmp/qg20-v5-n5.txt
+          if-no-files-found: warn
+          retention-days: 30
