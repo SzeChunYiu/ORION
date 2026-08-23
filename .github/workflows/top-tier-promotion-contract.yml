@@ -24,18 +24,18 @@ jobs:
         with:
           python-version: '3.11'
       - name: Audit P6-P15 promotion contracts
-        env:
-          PYTHONPATH: src
         run: python papers/candidates/check_top_tier_promotion.py
       - name: Verify fail-closed non-self-promotion invariant
-        env:
-          PYTHONPATH: src
         run: |
           python - <<'PY'
           from pathlib import Path
-          from orion.programme.top_tier_promotion import audit_top_tier_promotion
+          import runpy
 
-          findings = audit_top_tier_promotion(Path('.').resolve())
+          root = Path('.').resolve()
+          module = runpy.run_path(
+              str(root / 'src' / 'orion' / 'programme' / 'top_tier_promotion.py')
+          )
+          findings = module['audit_top_tier_promotion'](root)
           assert not findings, '\n'.join(
               f'{f.code}: {f.path}: {f.detail}' for f in findings
           )
