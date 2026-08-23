@@ -28,6 +28,12 @@ candidates = ["numpy>=2", "scikit-learn>=1.5"]
 # silently skips them reports "no theorem failed" for "no theorem was checked" --
 # so the tests importorskip and say why, and this extra is how CI gets them.
 proofs = ["z3-solver>=4.13"]
+# scripts/write_render_closure_state.py reads the packaged and built PDFs to
+# answer "is this journal package current?" from the tree rather than only from
+# a failed job. Without pypdf that check raises ModuleNotFoundError and the test
+# reports an error instead of an answer -- which is the failure mode the script's
+# own comment was written to prevent.
+render = ["pypdf>=5"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
