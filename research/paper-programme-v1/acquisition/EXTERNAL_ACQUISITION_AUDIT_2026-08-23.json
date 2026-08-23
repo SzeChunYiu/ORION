@@ -459,6 +459,30 @@
           "item_id": "P11.REAL_SYSTEMS.EXTERNAL",
           "measured": "LOCALLY_UNEXECUTED",
           "detail": "Five unchecked readiness boxes, none needing an outside party, and one of them is contradicted by the paper's own code. A P11G fidelity digest could not be separated from environment drift and is recorded CANNOT_CHECK rather than as a defect."
+        },
+        {
+          "item_id": "P4.NATURALISTIC.GENERALITY",
+          "measured": "BLOCKED_BY_CONSTANT_AND_PERMISSIVE",
+          "detail": "The preflight reports READY_FOR_EXTERNAL_BINDING with zero blockers while opening three files and no case artifact, against a declared 768 clusters over 4 domains and 8 mechanisms. Replacing external_bindings_required with a single nonsense string still reports READY -- its only consumer tests non-emptiness. unidentifiability_mechanism does not occur anywhere in the readiness module. Zero blockers carry a citable enforcing line.",
+          "artifact": "research/paper-programme-v1/acquisition/P4_P14D_BLOCKED_BY_CONSTANT_2026-08-23.json"
+        },
+        {
+          "item_id": "P14.D.EXTERNAL_VALIDITY",
+          "measured": "BLOCKED_BY_CONSTANT_AND_REFUSING",
+          "detail": "Creating all eight required artifacts leaves terminal, execution_authorized and external_custody_verified unchanged: they are hardcoded literals and only present/missing are computed. The refusal is deliberate and test-pinned and the stance is right, but with no attestation format, signature check or custodian allowlist no input from any party could be accepted. Five of eight artifacts are authorable locally; three need another party; none is code-enforced as external.",
+          "artifact": "research/paper-programme-v1/acquisition/P4_P14D_BLOCKED_BY_CONSTANT_2026-08-23.json"
+        },
+        {
+          "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
+          "measured": "GENUINELY_EXTERNAL_BUT_MISSTATED",
+          "detail": "The protocol is well specified -- opportunity rule OBSERVATIONALLY_SEPARABLE_PROTECTED_DISTINCTION, zero-opportunity strata barred, Sidak exact max-T over 768 clusters at a conservative 0.4 planning discordance. But its acquisition binding is named ...WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES, and variation is not separability: referent_ids already carries 24 distinct values with zero within-case contrast. An atlas bought to the letter of that binding reproduces every zero.",
+          "artifact": "papers/paper-03-global-knowledge-portrait/evidence/P3_SUCCESSOR_ACQUISITION_WORDING_2026-08-23.json"
+        },
+        {
+          "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
+          "measured": "ONE_REQUIRED_INPUT_PRODUCED",
+          "detail": "The prospective power and attainability receipt is now derived. H5 is a zero-tolerance gate: the exact Clopper-Pearson upper bound over 80 controls is 0.0368 at zero false expansions and 0.0579 at one, so a single slip fails it. H1 reaches only 0.46 power at 20 percent discordance under its own Holm correction, against 0.72 if the correction were ignored.",
+          "artifact": "papers/paper-10-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json"
         }
       ],
       "counterweights_recorded": [
@@ -467,12 +491,24 @@
         "P3's blocker is real. Only its remedy is misdirected."
       ],
       "tally": {
-        "items_measured_across_both_waves": 9,
-        "measured_and_found_locally_unexecuted_or_locally_broken": 8,
+        "items_measured_across_both_waves": 13,
+        "measured_and_found_locally_unexecuted_or_locally_broken": 10,
+        "measured_and_found_blocked_by_a_constant": 2,
+        "measured_real_but_with_a_misdirected_remedy": 2,
         "measured_and_found_externally_blocked_as_the_next_step": 0,
-        "measured_real_but_with_a_misdirected_remedy": 1,
-        "still_unmeasured": 7,
-        "reading": "Every item measured so far has turned out to be local work as its NEXT step. That does not mean the external residues are imaginary -- several are real further down each protocol -- it means the thing standing in front of them is not."
+        "still_unmeasured": 3,
+        "note": "P3.C6_C8 and P3.PARTIAL_OBSERVATION both count as misdirected-remedy; P4 and P14D as blocked-by-constant. The categories overlap where an item is both.",
+        "reading": "Thirteen of sixteen measured, and not one is waiting on an outside party as its NEXT step. Two are waiting on an acceptance path that does not exist yet, which is a stricter thing to be blocked on than a missing custodian."
+      },
+      "blocking_patterns_found": {
+        "1_PLACEHOLDER": "a literal UNBOUND, present:false or artifact:null in a protocol JSON -- P5, P10",
+        "2_NAME_GATED": "externality enforced only when the input identifier contains 'independent', 'custod' or 'gold' -- P10",
+        "3_BLOCKED_BY_CONSTANT": "the status is a hardcoded literal in the code that reports it, which no input can move in either direction -- P4 permissively, P14D restrictively"
+      },
+      "route_tested_and_rejected": {
+        "route": "publicly adjudicated retraction records as independently authored P14D cases",
+        "verdict": "FAILS",
+        "why": "An ORION governance decision is a pure function of eight booleans emitting a six-value vocabulary; a retraction record is binary and cannot yield SUBSUMED versus INTERACTION_ONLY versus RETAIN_NEGATIVE. Authoring that mapping reintroduces the self-authorship P14D exists to exclude."
       }
     }
   }
