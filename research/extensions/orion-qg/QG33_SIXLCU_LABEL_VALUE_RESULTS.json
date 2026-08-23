@@ -1,0 +1,147 @@
+{
+  "ALL_N_VALUE_THEOREM": false,
+  "COMPLETE_N2_DOMAIN": true,
+  "FULL_FEATURE_VECTOR_VALUE_SUFFICIENT": false,
+  "GLOBAL_PREDICATE_MINIMALITY": false,
+  "LABEL_QUOTIENT_VALUE_SUFFICIENT": false,
+  "NEW_FEATURE_VOCABULARY_AUTHORITY": false,
+  "NO_POST_OUTCOME_FEATURE_INVENTION": true,
+  "analysis_checks": {
+    "exact_optimizer_nonnegative_gap": true,
+    "literal_exact_label": true,
+    "p0_exact_label": true,
+    "parents": true,
+    "positive_count": true,
+    "rows_38760": true
+  },
+  "binary_label_delta_histograms": {
+    "false": {
+      "1": 189,
+      "10": 1287,
+      "11": 1053,
+      "12": 1338,
+      "13": 270,
+      "14": 138,
+      "16": 108,
+      "2": 1002,
+      "23": 9,
+      "3": 3711,
+      "4": 5511,
+      "5": 4914,
+      "6": 6348,
+      "7": 5436,
+      "8": 3125,
+      "9": 4320
+    },
+    "true": {
+      "0": 1
+    }
+  },
+  "bounded_gain_surrogate": {
+    "authority_gate": false,
+    "complete_all": false,
+    "complete_count": 32391,
+    "incomplete_count": 6369,
+    "note": "Diagnostic only. QG-33 value authority uses exact C_F from the frozen optimizer, not the optional bounded-gain surrogate."
+  },
+  "delta_histogram": {
+    "0": 1,
+    "1": 189,
+    "10": 1287,
+    "11": 1053,
+    "12": 1338,
+    "13": 270,
+    "14": 138,
+    "16": 108,
+    "2": 1002,
+    "23": 9,
+    "3": 3711,
+    "4": 5511,
+    "5": 4914,
+    "6": 6348,
+    "7": 5436,
+    "8": 3125,
+    "9": 4320
+  },
+  "full_feature_vector": {
+    "cell_count": 310,
+    "feature_names": [
+      "maxg2",
+      "best2",
+      "best3",
+      "maxg3",
+      "maxg4",
+      "maxg5",
+      "g6",
+      "W",
+      "wF6",
+      "maxwt",
+      "maxpair"
+    ],
+    "first_mixed_delta_cell": {
+      "delta_histogram": {
+        "4": 252,
+        "5": 72
+      },
+      "example_1": {
+        "A_label": false,
+        "C_F": 27,
+        "C_U": 31,
+        "Delta": 4,
+        "P0": false,
+        "codes": [1,1,1,2,5,7],
+        "feature_vector": [2,4,2,3,3,-21,-15,8,0,2,1]
+      },
+      "example_2": {
+        "A_label": false,
+        "C_F": 26,
+        "C_U": 31,
+        "Delta": 5,
+        "P0": false,
+        "codes": [1,1,1,4,5,10],
+        "feature_vector": [2,4,2,3,3,-21,-15,8,0,2,1]
+      },
+      "feature_vector": [2,4,2,3,3,-21,-15,8,0,2,1]
+    },
+    "irreducible_exact_value_error_floor": 411,
+    "mixed_delta_cell_count": 8
+  },
+  "instance_count": 38760,
+  "issue": "SzeChunYiu/ORION#920",
+  "label_confusion": {"FN":0,"FP":0,"TN":38759,"TP":1,"errors":0},
+  "label_literal": {"feature":"maxg2","negated":false,"op":"==","threshold":-2},
+  "label_value_separation_witness": [
+    {
+      "A_label": false,
+      "C_F": 15,
+      "C_U": 27,
+      "Delta": 12,
+      "P0": false,
+      "codes": [1,1,1,1,1,1],
+      "feature_vector": [2,5,8,3,5,5,12,6,1,1,1],
+      "label": false
+    },
+    {
+      "A_label": false,
+      "C_F": 21,
+      "C_U": 27,
+      "Delta": 6,
+      "P0": false,
+      "codes": [1,1,1,1,1,2],
+      "feature_vector": [2,5,4,3,5,5,-11,6,0,1,1],
+      "label": false
+    }
+  ],
+  "novelty_authority": false,
+  "p0_confusion": {"FN":0,"FP":0,"TN":38759,"TP":1,"errors":0},
+  "parent_checks": {"qg12":true,"qg15b":true},
+  "parent_hashes": {
+    "qg12": "6b829cf0fa19629522df3c5907fa3c14ac4e49f6c32b4ed1227e486b202a9329",
+    "qg15b": "d3353ce926b1f2ff2ecab3da68c4fbd545ec820a9e372d6f288ec9daed1b6e82"
+  },
+  "physical_quantum_advantage_claim": false,
+  "protocol_sha256": "bc278e0bdd0a577c9baa5239cfbb93b3dd5fe3df759c81f0f5c53a7cadbdd237",
+  "result_digest": "64b8c8f85bd07086fc92671b2ec8e353bd927983db2173a801096f1d597350d3",
+  "schema": "ORIONQG.QG33.SixLCULabelValue.v1",
+  "terminal": "QG33_SIXLCU_EXACT_LABEL_QUOTIENT_IS_NOT_EXACT_VALUE_QUOTIENT__N2_COMPLETE"
+}
