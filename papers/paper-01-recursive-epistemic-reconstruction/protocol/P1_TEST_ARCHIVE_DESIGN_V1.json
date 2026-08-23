@@ -1,0 +1,35 @@
+{
+  "schema_version": "orion.p1.archive-design.v1",
+  "paper_id": "P1",
+  "split": "test",
+  "suite_fingerprint": "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420",
+  "subject_revision": "0cf4e8d82771252de94be8c696a3f39fd3191019",
+  "system_ids": [
+    "arex_like_recursive_audit_followup",
+    "full_reset_instead_of_dependency_reopen",
+    "generic_retry_instead_of_typed_reframe",
+    "iris_like_information_state_revision",
+    "orion_full",
+    "orion_live_provider",
+    "orion_without_explicit_M",
+    "orion_without_explicit_W",
+    "orion_without_mechanic_self_audit",
+    "scion_like_dependency_execution_plan",
+    "static_react_tool_workflow",
+    "tree_search_iterative_research"
+  ],
+  "case_ids": [
+    "p1-c101", "p1-c102", "p1-c103", "p1-c104", "p1-c105", "p1-c106",
+    "p1-c107", "p1-c108", "p1-c109", "p1-c110", "p1-c111", "p1-c112",
+    "p1-c113", "p1-c114", "p1-c115", "p1-c116", "p1-c117", "p1-c118",
+    "p1-c119", "p1-c120", "p1-c121", "p1-c122", "p1-c123", "p1-c124",
+    "p1-c125", "p1-c126", "p1-c127", "p1-c128", "p1-c129", "p1-c130",
+    "p1-c131", "p1-c132", "p1-c133", "p1-c134", "p1-c135", "p1-c136",
+    "p1-c137", "p1-c138", "p1-c139", "p1-c140", "p1-c141", "p1-c142",
+    "p1-c143", "p1-c144", "p1-c145", "p1-c146", "p1-c147", "p1-c148"
+  ],
+  "seeds": [0, 1, 2, 3, 4],
+  "expected_record_count": 2880,
+  "derivation": "12 protocol systems x 48 frozen test cases x 5 frozen stochastic seeds; identities independently source-bound and checked against the committed complete archive"
+}
+

@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.p2.wide-openaire-matched-run-receipt.v2",
+  "paper_id": "P2",
+  "date": "2026-08-21",
+  "subject": {
+    "pull_request": 752,
+    "branch_head": "36e323022768455a5ad2eda28d4a3c7a9c7b2c9d",
+    "pull_request_merge_ref": "8f1296edd5bb7b30a5c9569906eafcb1de6d331c",
+    "freeze_git_blob": "36c923a416389be831333e8a02f75736278c8b3f",
+    "runner_git_blob": "da3ba72d17dffe51c7642c1badbdc740b754c4d6"
+  },
+  "workflow": {
+    "run_id": 32482374503,
+    "host_public_split_job": 96771347792,
+    "acquisition_job": 96771764909,
+    "evaluate_job": 96772149059,
+    "conclusion": "failure",
+    "failure_stage": "pre_benchmark_transport_probe",
+    "benchmark_acquisition_started": false,
+    "official_evaluator_started": false
+  },
+  "transport_probe": {
+    "encoding": "repeated_pid_parameters",
+    "requested_dois": [
+      "10.5281/zenodo.8217359",
+      "10.1038/s41586-023-06221-2"
+    ],
+    "canonical_request_url_sha256": "fedb9d2ef93b3c318ec006ff38480ad548b83e5b6b1504e7b05ce8f6a2581c73",
+    "http_status": 200,
+    "parsed_results_count": 0,
+    "frozen_minimum_results": 1,
+    "frozen_minimum_requested_doi_matches": 1,
+    "gate_failure": "AssertionError: (0, 1)",
+    "benchmark_gold_accessed": false,
+    "promotion_authorized": false
+  },
+  "artifact": {
+    "artifact_id": 9446629015,
+    "name": "p2-wide-v2-capture-8f1296edd5bb7b30a5c9569906eafcb1de6d331c",
+    "archive_sha256": "2cdcba7f993f67c696afd338057bdb6266a0773fdc256687be2a04554198044f",
+    "files_present": [
+      "P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json",
+      "P2_OPENAIRE_IDENTITY_PROBE_V1.json"
+    ],
+    "raw_transport_response_archived": false,
+    "raw_transport_response_absence_reason": "the workflow asserted the frozen minimum result count before writing response bytes; therefore exact response-byte revalidation is impossible for this failed probe"
+  },
+  "independent_current_provider_check": {
+    "date": "2026-08-21",
+    "single_pid_url": "https://api.openaire.eu/graph/v3/research-products?pid=10.1038/s41586-023-06221-2",
+    "single_pid_observed_num_found": 1,
+    "documentation_version": "11.3.0",
+    "documentation_state": "V3 is current; documentation states repeated parameters or comma-separated values combine with OR, while the production single-pid example for the frozen Nature DOI resolves one research product",
+    "interpretation": "the repeated-pid production probe did not establish the frozen transport prerequisite despite a currently resolvable constituent DOI; this is transport/provider behavior, not a scientific zero"
+  },
+  "terminal": "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK",
+  "authority": "PRE_BENCHMARK_TRANSPORT_CANNOT_CHECK__NO_SCIENTIFIC_PROMOTION",
+  "scientific_outcome_generated": false,
+  "scientific_outcomes_from_v1_reused": false,
+  "failure_preservation_defect": "raw provider response bytes were not persisted before the minimum-yield assertion; any successor campaign must preserve the raw response before validating its yield",
+  "reopen_condition": "A separately versioned campaign may be frozen before any Wide scientific outcome only after an independently validated one-request DOI crosswalk encoding is selected and failed transport responses are durably captured before validation. V2 itself is terminal CANNOT_CHECK and must not be rerun opportunistically to select a favorable provider response.",
+  "claim_boundary": "No ORION-vs-baseline AutoResearchBench Wide scientific comparison was executed in V2. This receipt records only a failed, gold-blind transport prerequisite and cannot support #650 superiority."
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "P1P2.SuccessorWritebackLineage.v1",
+  "date": "2026-08-21",
+  "pull_request": 755,
+  "purpose": "force exact current-main merge-ref recomputation while retaining fail-closed publication authority",
+  "writeback": {
+    "source_pr": 736,
+    "source_head": "a91cb92ff98e0605af31466d86ba9dc78a03ae9e",
+    "fresh_replay_initial_base": "0fc0c62a1b6d0fce146f4450c1ea099c187fc5d0",
+    "fresh_replay_head_before_lineage_receipt": "0b1e87c0e23f76d132e8ac2ee3ddab72a5dd1bfe"
+  },
+  "current_main_observed_before_receipt": "318d1cbbec451170448bb8e126c7ab50801930ce",
+  "current_main_delta_since_pr_base": {
+    "prior_pr_base": "09f0666c43227a1e1a8bc9d66eae7195e35c6ea3",
+    "publication_writeback_path_overlap": false,
+    "relevant_ci_repair_present_on_current_main": "src/orion/publication/peer_review_ready.py now scopes the flagship readiness tree to canonical P<n> package ids, repairing the pre-existing candidate-paper enumeration failure seen on the stale merge ref"
+  },
+  "authority": {
+    "scientific_results_changed": false,
+    "comparators_changed": false,
+    "metrics_changed": false,
+    "thresholds_changed": false,
+    "claim_terminals_changed": false,
+    "p1_pdf_authority": "OPEN",
+    "p2_pdf_authority": "OPEN",
+    "package_state": "SCAFFOLDING",
+    "merge_authorizes_submission": false
+  },
+  "required_successor_order": [
+    "integrate writeback on current main",
+    "render exact resulting-head P1 and P2 PDFs",
+    "inspect every rendered page",
+    "rebind PDF audits, manifests, and SHA256SUMS to exact rendered bytes",
+    "run final manuscript and ordinary repository/package CI",
+    "close #489/#490 only if their own acceptance criteria are then satisfied"
+  ]
+}

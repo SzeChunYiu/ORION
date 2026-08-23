@@ -1,0 +1,99 @@
+{
+  "already_known": {
+    "consequence": "an attack cannot fail against a margin that was never measured",
+    "source": "research/failures/2026-08-unresponsive-comparator-prior-valued-margin/README.md",
+    "transcript_bag": "one label on all 128 protected cases; accuracy 0.25 = prior(ALIGNED)",
+    "typed_serialized_bag": "one label on all 128 protected cases; accuracy 0.5 = prior(OBSTRUCTION)"
+  },
+  "attacks_named_at": "papers/paper-09-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex, sections 'Frozen factorial design', 'Adaptive Access Geometry Discovery' and hypothesis H4",
+  "date": "2026-08-21",
+  "environment_boundary": {
+    "attacks_run_against": "D1 v1.2, the only representation contrast P9 publishes",
+    "open_weight_checkpoint_present": false,
+    "outbound_provider_access": "proxy returns 403 to CONNECT for external providers",
+    "successor_llm_run_exists": false
+  },
+  "expected_result_artifact": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+  "freeze_document": "papers/paper-09-structured-epistemic-learning/protocol/P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.md",
+  "gate_served": "P9-U-T4",
+  "issue_refs": [
+    "#662"
+  ],
+  "ledger_blocker": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
+  "ledger_unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices.",
+  "outcome_accessed": false,
+  "parameters": {
+    "arms": [
+      "TRANSCRIPT_BAG",
+      "UNTYPED_PAIR",
+      "TYPED_RELATIONAL",
+      "TYPED_SERIALIZED_BAG",
+      "LENGTH_ONLY",
+      "LENGTH_RELATIONAL",
+      "SERIALIZED_INDEXED",
+      "SERIALIZED_PATHONLY"
+    ],
+    "attacked_result": {
+      "artifact": "research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json",
+      "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "protected_cases": 128,
+      "seed": "p9-d1-method-transfer-v1"
+    },
+    "claim_scope": "BOUNDED_D1_ONLY. Whatever this study returns is a statement about the D1 v1.2 classical-learner benchmark on its 128-case held-out-domain protected split and about nothing else. It licenses no statement about any language model, any scale, any second model family, or the successor experiment of issue #618.",
+    "dataset_variants": [
+      "BASE",
+      "EQUAL_LENGTH",
+      "SEMANTIC_ORBIT",
+      "ORDER_PERMUTATION"
+    ],
+    "equal_length_rule": "a sequence coordinate is corrupted by replacing its last-in-canonical-order element with the mutation token instead of appending it; scalar coordinates and dependency reversal already preserve cardinality and are unchanged",
+    "freeze_document": "papers/paper-09-structured-epistemic-learning/protocol/P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.md",
+    "gate_served": "P9-U-T4",
+    "indexing_rule": "replace each string leaf value by '#i', i being its position in the sorted list of distinct string atoms occurring in that instance's serialized token list; LEN tokens, <NONE> markers and integer leaves are untouched",
+    "model_grid": "frozen d1_experiment.model_specs(); selection by (-dev_accuracy, complexity_rank, config_id)",
+    "orbit": {
+      "coordinates": [
+        "preconditions",
+        "invariants",
+        "effects",
+        "failure_modes",
+        "progress_measure",
+        "terminal_condition",
+        "reconstruction_map"
+      ],
+      "must_be_injective": true,
+      "prefix": "v_",
+      "salt": "p9-t4-orbit-2026-08-21",
+      "width": 12
+    },
+    "order_permutation_rule": "reverse every sequence-valued comparison coordinate before rebuilding",
+    "preconditions": [
+      "PC-1 DATASET FIDELITY: the regenerated dataset reproduces the shipped manifest digest",
+      "PC-2 GOLD PRESERVATION: every derived variant reproduces every gold label, position for position",
+      "PC-3 CARDINALITY MATCH: the equal-length control preserves cardinality and presence on every coordinate and side",
+      "PC-4 ORBIT BIJECTIVITY: the symbol remint is injective on the atom alphabet",
+      "PC-5 INDEX REVERSIBILITY: the reversible-indexed serialization decodes back to the original token list",
+      "PC-6 LABEL VARIETY: the protected split's gold takes more than one value"
+    ],
+    "record": "P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE",
+    "thresholds": {
+      "case_resolution": 0.0078125,
+      "equal_length_unchanged_floor": 0.95,
+      "max_orbit_violation_rate": 0.0,
+      "reformat_gap_fraction": 0.5,
+      "reformat_min_base_gap": 0.03125
+    },
+    "verdicts": {
+      "attack_succeeded": "T4_ATTACK_SUCCEEDED",
+      "attacks_did_not_succeed": "T4_ATTACKS_DID_NOT_SUCCEED_ON_D1",
+      "attacks_unexercised": "T4_ATTACKS_UNEXERCISED",
+      "construction_failed": "T4_CONSTRUCTION_FAILED",
+      "no_measurable_contrast": "T4_NO_MEASURABLE_CONTRAST"
+    }
+  },
+  "parameters_sha256": "sha256:3a4c8a1e4211e8032ab3bbee0f9bb16f0d1f626b42f9c96c6b40cf0f115e18eb",
+  "record": "P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE",
+  "runner": "orion.study.p9.hostile_representation_attacks",
+  "terminal_disposition": "P9-U-T4 stays BLOCKED whatever this returns. The gate guards the successor direct-LLM result, which has no outcome. This work can only subtract: if an attack succeeds, the D1 representation reading is narrowed or withdrawn; if none succeeds, the sentence earned is only that on D1 these two alternatives do not account for the margin against the one comparator that answered.",
+  "written_before_any_new_arm_was_run": true
+}

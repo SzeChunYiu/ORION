@@ -1,24 +1,44 @@
-\section{Ethics, safety, and reproducibility}
+\section{Data and code availability}
+\label{sec:availability}
 
-\subsection{Ethical considerations}
-This paper studies governed method evolution for research software. The frozen local falsifier and the diagnostic attribution suite use constructed hidden-cause cases. They do not involve human-subject records or personally identifiable information. No live provider campaign was executed in this revision.
+The implementation repository contains the development controller, the protected assurance path, the local hostile falsifier suite, the hidden-cause case suite, the diagnostic attribution archive and the table generator. Every artifact named in the narrative is listed here with its path, so that no repository location has to be carried in the prose. Source, protocols and evidence are version-controlled in the \idt{SzeChunYiu/ORION} repository, under \idt{papers/paper-05-self-orion/}; persistent DOI assignment remains pending publication.
 
-\subsection{Safety and authority}
-Self-ORION has no self-merge primitive. The strongest internal terminal remains a host-only promotion recommendation. Isolated self-certification ablations, if ever executed, are forbidden on the production/main authority path. Negative, null, blocked and cannot-check outcomes are retained rather than dropped.
+\subsection*{Preregistration}
 
-\subsection{Reproducibility and data/code availability}
-Source, protocol, the diagnostic JSONL, and the table generator are version-controlled in \texttt{SzeChunYiu/ORION}. Persistent DOI assignment remains pending publication.
+The study was designed and frozen before any outcome was accessed, under the identifier \texttt{P5.hidden-cause-fresh-transfer.v1}. Its recorded state is a design freeze with no outcome accessed. A reader checking whether a reported analysis was planned or chosen after the fact should compare against that freeze; it is the reason the prospective margins in Section~\ref{sec:methods} can be read as commitments made before, rather than after, seeing any result.
 
-Archived-result regeneration, without executing a live system, is:
+\subsection*{Frozen design, case structure and acceptance rules}
+
+The design freeze is \idt{protocol/PROTOCOL_V1.json}; the hidden-cause case structure is \idt{protocol/HIDDEN_CAUSE_CASE_SCHEMA_V1.json}; replay/freshness definitions and harm accounting are \idt{protocol/FRESH_TRANSFER_POLICY_V1.md}; and the staged acceptance rules and their successor revision are \idt{protocol/PROTOCOL_V2.json} and \idt{protocol/STAGED_ACCEPTANCE_POLICY_V2.md}. The protected-suite freeze procedure is \idt{protocol/PROTECTED_SUITE_FREEZE_V1.md}, and the retention chain for negative history is \idt{protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json}. The revision-level successor benchmark of Section~\ref{sec:methods} is frozen as \idt{protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json}. The external transfer benchmark used as a reference point is pinned to \idt{Gen-Verse/PAST-Bench@f8223517ae7491e776b69793d9f11e9d074ab42e}; any use of it still requires a frozen task and split manifest.
+
+The mapping from every result-bearing sentence in this manuscript to the archived artifact that supports it is \idt{evidence/CLAIM_LEDGER_V1.json}, with a human-readable view at \idt{evidence/CLAIM_LEDGER_V1.md}. The local hostile falsifier suite is \idt{evidence/FALSIFIER_V1.md}; the protected hidden-cause suite is \idt{evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json}; and the nearest-work dispositions that Section~\ref{sec:related} discusses in prose are recorded per mechanism in \idt{evidence/TABLE_P5_1_NEAREST_WORK.json}.
+
+\subsection*{Diagnostic attribution archive}
+
+The raw per-case records are \idt{evidence/glm-5.2-attribution/results.jsonl}, the checked sidecar report is \idt{evidence/glm-5.2-attribution/report.json}, and the reproduction receipt is \idt{evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json}. The generated table data are under \idt{evidence/tables/} and their rendered forms under \idt{manuscript/tables/}. Architecture diagrams and pseudocode for the controller, and the historical technical companions this design inherits from, are retained under \idt{research/technical-companions/}.
+
+\section{Reproducibility}
+\label{sec:reproducibility}
+
+Regeneration of every archived result, without executing a live system, is
 
 \begin{verbatim}
 make paper05-results
 \end{verbatim}
 
-which runs \texttt{python -m orion.study.p5.tables}. The command recomputes 21/24 from \texttt{evidence/glm-5.2-attribution/results.jsonl}, writes Table P5-3 and the residual-error ledger, and writes \texttt{CANNOT\_CHECK} stubs for P5-2, P5-4, P5-5, P5-6, P5-7 and Tables P5-T2/P5-T3. A rewrite of the archive that hides the three errors is refused (exit 2). A missing archive is \texttt{CANNOT\_CHECK} (exit 3). Exact commands are in \texttt{papers/paper-05-self-orion/REPRODUCE.md}.
+\noindent which runs \texttt{python -m orion.study.p5.tables}. The command recomputes 21/24 from the raw records, writes the confusion matrix and the residual-error ledger, and writes stubs for the seven tables that have no admissible rows. A rewrite of the archive that hides the three residual errors is refused with an error exit; a missing archive is reported as undetermined under its own distinct exit code rather than as a build failure, so that an absent measurement cannot be read as a failed build or as a negative result. Exact commands are in \idt{papers/paper-05-self-orion/REPRODUCE.md}. Continuous integration regenerates these artifacts on a clean checkout and requires every committed file to be byte-identical to what the command produces.
 
-\subsection{Compute and conservative-abstention cost}
-The diagnostic archive records 14\,190 tokens and mean latency $\approx$13\,s per case for glm-5.2 attribution only. Cost and time to \emph{protected validated improvement} remain \texttt{CANNOT\_CHECK}. No campaign-level abstention/cost trade-off is reported.
+\subsection*{Compute and conservative-abstention cost}
 
-\subsection{Licensing}
-This revision does not add a repository-level license. Redistribution terms remain \texttt{CANNOT\_CHECK} from the repository state until they are declared explicitly.
+The diagnostic archive records 14\,190 tokens and a mean latency of $\approx$13\,s per case, for attribution only. Cost and time to \emph{protected validated improvement} remain undetermined. No campaign-level abstention/cost trade-off is reported.
+
+\subsection*{Licensing}
+
+This revision does not add a repository-level license. Redistribution terms therefore remain undetermined from the repository state until they are declared explicitly.
+
+\section{Ethics and safety}
+\label{sec:ethics}
+
+This work studies governed method evolution for research software. The frozen local falsifier and the diagnostic attribution suite use constructed hidden-cause cases. They do not involve human-subject records or personally identifiable information. No live provider campaign was executed in this revision.
+
+The controller has no self-merge primitive, and its strongest internal terminal is a host-only promotion recommendation. Isolated self-certification ablations, if ever executed, are forbidden on the production authority path. Negative, null, blocked and undetermined outcomes are retained rather than dropped.

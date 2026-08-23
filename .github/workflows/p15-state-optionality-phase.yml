@@ -1,0 +1,37 @@
+name: p15-state-optionality-phase
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-frontier-v2/**'
+      - '.github/workflows/p15-state-optionality-phase.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact replay 1
+        run: |
+          python research/extensions/orion-frontier-v2/run_p15_state_optionality_phase_v1.py
+          cp research/extensions/orion-frontier-v2/results/P15_STATE_OPTIONALITY_PHASE_V1.json /tmp/p15-1.json
+      - name: Exact replay 2
+        run: |
+          python research/extensions/orion-frontier-v2/run_p15_state_optionality_phase_v1.py
+          cp research/extensions/orion-frontier-v2/results/P15_STATE_OPTIONALITY_PHASE_V1.json /tmp/p15-2.json
+      - name: Require exact terminal and byte identity
+        run: |
+          cmp /tmp/p15-1.json /tmp/p15-2.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/p15-1.json').read_text())
+          assert d['terminal']=='P15_STATE_OPTIONALITY_PHASE_DIAGRAM_ESTABLISHED'
+          assert all(d['gates'].values())
+          assert d['uniform_closed_form_max_abs_diff']==0
+          assert d['uniform_crossover_horizon_ratio']['2048']=={'0.25':0.5,'0.5':1.0,'0.75':2.0}
+          PY

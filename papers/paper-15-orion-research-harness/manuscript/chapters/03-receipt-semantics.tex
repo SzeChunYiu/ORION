@@ -1,0 +1,71 @@
+\section{Request and receipt semantics}
+
+\subsection{Canonical request}
+
+\begin{definition}[Execution request]
+An execution request is the canonical tuple
+\[
+q=(p,c,i,e,v,t,m,s,b),
+\]
+where $p$ is the protocol digest, $c$ the code digest, $i$ the ordinary input
+manifest, $e$ the scientific-evidence manifest, $v$ the environment and tool
+manifest, $t$ the requested terminal schema, $m$ the required executor/model
+identity policy, $s$ the seed and session policy, and $b$ the resource and access
+budget. Its request identifier is $H(\operatorname{canon}(q))$.
+\end{definition}
+
+Canonicalization is part of the protocol, not an implementation detail. Every
+field that changes observable execution or admissibility must either occur in $q$
+or be prohibited. The request identifier therefore binds declared semantics, not
+only a prompt string. The scientific-evidence manifest is distinct from ordinary
+inputs because source bytes, credentials, caches and auxiliary configuration have
+different authority.
+
+\subsection{Result receipt}
+
+\begin{definition}[Result receipt]
+A result receipt is
+\[
+r=(h_q,h_o,z,u,k,g,w,\tau,\sigma),
+\]
+where $h_q$ is the request identifier, $h_o$ the output-manifest digest, $z$ a
+typed terminal, $u$ an authenticated executor subject, $k$ provider/model/checkpoint
+identity when applicable, $g$ the realized code/tool/environment configuration,
+$w$ the evidence-lineage graph, $\tau$ timing and epoch data, and $\sigma$ an
+attestation over the canonical receipt payload.
+\end{definition}
+
+The terminal $z$ belongs to a closed sum type:
+\[
+z\in\{\textsc{completed},\textsc{valid-negative},\cannotcheck,
+       \failure,\textsc{invalid-result}\}.
+\]
+A host or capability failure is therefore not encoded as a numerical outcome or a
+successful empty result. A valid negative is a result of the scientific protocol;
+an execution failure is a result of the computing environment. Conflating them is
+a type error.
+
+\subsection{Verification predicates}
+
+For a request $q$, receipt $r$ and trust policy $T$, define:
+
+\begin{align*}
+S(q,r) &:\text{ schema and canonicalization are valid},\\
+D(q,r) &:\text{ request, output and manifest digests match},\\
+I(q,r,T) &:\text{ executor/model identities satisfy }T,\\
+C(q,r,T) &:\text{ attestation chain and issuer scope satisfy }T,\\
+E(q,r) &:\text{ evidence lineage is complete for the claimed level},\\
+Z(r) &:\text{ terminal is admissible for the requested scientific endpoint}.
+\end{align*}
+
+The mechanical admission predicate is
+\[
+M(q,r,T)=S\land D\land I\land C\land E.
+\]
+Scientific admission additionally requires a frozen adjudication rule $F$:
+\[
+\operatorname{Admit}(q,r,T,F)=M(q,r,T)\land Z(r)\land F(q,r).
+\]
+No missing predicate is coerced to true. Missing or unverifiable identity,
+lineage, trust or protocol data produce \cannotcheck{} for the associated claim.
+

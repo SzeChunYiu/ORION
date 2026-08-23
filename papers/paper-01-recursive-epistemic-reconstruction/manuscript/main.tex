@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb}
 \usepackage[margin=1in]{geometry}
+\usepackage{xurl}
 \usepackage{hyperref}
 % figure/table infrastructure
 \usepackage{graphicx}
@@ -14,8 +15,13 @@
 \graphicspath{{figures/}{../results/figures/}}
 \captionsetup{font=small,labelfont=bf}
 \setlength{\emergencystretch}{2em}
+% Long snake_case identifiers, repository paths and content hashes appear only in
+% Data and code availability, and need legal breakpoints when they do.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
 
-\title{ORION Paper I: Recursive Epistemic Reconstruction under Changing Problem Formulations}
+\title{Protected Necessity Certificates for Scientific Problem Reformulation}
+\title{Recursive Epistemic Reconstruction under Changing Problem Formulations}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -25,7 +31,8 @@
 \input{generated/suite_facts}
 
 \begin{abstract}
-Recent research-agent architectures increasingly expose structured plans, persistent information state, recursive auditing, targeted follow-up, causal failure attribution, and dependency-aware repair. ORION Paper I therefore studies a narrower residual: should a high-level scientific formulation or search-universe mutation require a protected counterfactual necessity certificate after those mechanisms are absorbed as prior-art substrate? ORION separates object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$; tests lower-level alternatives before high-level mutation; requires a same-task counterfactual effect and protected-sibling preservation; and binds any accepted change to its dependency impact. A prospectively frozen credential-free study evaluates nine systems and five direct ablations on 2,882 worlds, including 480 hidden shifts and 2,402 evidence/execution controls. In both the primary run and a pre-bound disjoint replication, ORION attains 1.000 protected hidden-shift success versus 0.494/0.483 for each strongest parent, with paired advantages 0.506 and 0.517 whose 95\% intervals exceed the registered 0.10 margin. Both runs have zero unnecessary high-level reframes, protected-sibling regressions, and forbidden high-level mutations for ORION. An independent implementation recomputes all 40,348 score rows per run with zero score or analysis mismatches. A separate post-saturation successor tests the wider control contract on 400 exact heterogeneous revision-responsibility cases: after preserving a comparator-defective V1 and prospectively repairing only that defect in a disjoint V2, P1-X attains 400/400 exact revision decisions versus 275/400 for a donor-complete greedy product (paired difference 0.3125, 95\% CI [0.2675,0.3575]); an ideal product given identical semantics ties 400/400. The authorized claims remain bounded to the registered mechanical and exact-contract families; model-general and open-ended scientific-agent superiority remain untested.
+Scientific agents can already plan, maintain structured information state, audit failures, repair dependencies, and revise intermediate work. A harder control problem remains: when is a high-level change to the scientific formulation or search universe actually necessary and authorized, rather than a convenient reaction to failure? We study that decision as a protected epistemic-mutation contract. ORION separates object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$; excludes lower-level explanations before high-level mutation; requires a same-task counterfactual benefit; preserves protected sibling invariants; and binds each accepted change to its exact dependency impact. A prospectively frozen credential-free study evaluates nine systems and five direct ablations on 2,882 worlds, including 480 hidden shifts and 2,402 evidence/execution controls. In both the primary run and a pre-bound disjoint replication, ORION attains 1.000 protected hidden-shift success versus 0.494 and 0.483 for the strongest frozen parent, yielding paired advantages of 0.506 and 0.517 whose 95\% intervals exceed the registered 0.10 margin. ORION simultaneously records zero unnecessary high-level reframes, protected-sibling regressions, and forbidden high-level mutations. An independent implementation recomputes all 40,348 score rows per run with zero score or analysis mismatches. A separate post-saturation successor tests revision responsibility on 400 exact heterogeneous contracts: after prospectively repairing only a comparator defect, P1-X attains 400/400 exact revision decisions versus 275/400 for a donor-complete greedy product (paired difference 0.3125, 95\% CI [0.2675,0.3575]), again with zero false high-level reframes and zero protected-invariant violations. An ideal product supplied the same scientific responsibility, preservation, reopening, and authority semantics also attains 400/400, showing that the contract is sufficient and donor-compatible rather than dependent on centralized ORION expressivity. Together, the studies establish a strong bounded result: protected necessity gating can make high-level scientific reformulation both substantially more successful under hidden formulation shifts and fully selective on the registered mechanical and exact-contract families.
+Research-agent architectures increasingly expose structured plans, persistent information state, recursive auditing, targeted follow-up, causal failure attribution, and dependency-aware repair. This paper studies a narrower residual that survives those mechanisms: should a high-level scientific formulation or search-universe mutation require a protected counterfactual necessity certificate? The mechanism under test separates object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$; tests lower-level alternatives before high-level mutation; requires a same-task counterfactual effect and protected-sibling preservation; and binds any accepted change to its dependency impact. A prospectively frozen credential-free study evaluates nine systems and five direct ablations on 2,882 worlds, including 480 hidden shifts and 2,402 evidence/execution controls. In both the primary run and a pre-bound disjoint replication, the governed policy attains 1.000 protected hidden-shift success versus 0.494/0.483 for each strongest parent, with paired advantages 0.506 and 0.517 whose 95\% intervals exceed the registered 0.10 margin. Both runs have zero unnecessary high-level reframes, protected-sibling regressions, and forbidden high-level mutations. An independent implementation recomputes all 40,348 score rows per run with zero score or analysis mismatches. A separate post-saturation revision-responsibility battery tests the wider control contract on 400 exact heterogeneous cases: after preserving a comparator-defective first execution and prospectively repairing only that defect in a disjoint second, the escalation contract attains 400/400 exact revision decisions versus 275/400 for a donor-complete greedy product (paired difference 0.3125, 95\% CI [0.2675,0.3575]); an ideal product given identical semantics ties 400/400. The authorized claims remain bounded to the registered mechanical and exact-contract families; model-general and open-ended scientific-agent superiority remain undetermined.
 \end{abstract}
 
 \noindent\textbf{Keywords:} autonomous scientific research; problem reformulation; epistemic state; dependency reopening; metareasoning; research agents.
@@ -40,10 +47,11 @@ Recent research-agent architectures increasingly expose structured plans, persis
 \input{sections/05c-revision-responsibility-successor}
 \input{sections/06-related-work-boundary}
 \input{sections/06a-post-saturation-novelty-refresh}
+\input{sections/06b-successor-discovery-failure-interface}
 \input{sections/07-limitations}
-\input{sections/08-conclusion}
 \input{sections/09-reproducibility}
 \input{sections/10-ethics-safety-resources}
+\input{sections/08-conclusion}
 
 \bibliographystyle{plain}
 \bibliography{bibliography,novelty_refresh_2026}

@@ -1,0 +1,61 @@
+\section{Reproducibility and relation to prior work}
+
+\subsection{Provenance and workflow packaging}
+
+W3C PROV supplies a domain-independent model of entities, activities and agents
+\citep{moreau2013prov}. CWLProv maps workflow executions into interoperable
+provenance records \citep{khan2019cwlprov}; RO-Crate packages research artifacts
+and contextual metadata \citep{soilandreyes2022rocrate}; and Workflow Run RO-Crate
+extends that packaging to multiple granularities of execution provenance
+\citep{leo2024workflowrun}. This paper does not replace those models. It isolates a
+narrower boundary: which additional trust, terminal and independence predicates
+are required before execution records support specific research claims.
+
+\subsection{Attestation and supply-chain integrity}
+
+in-toto protects a software supply chain by linking authorized steps and materials
+\citep{torresarias2019intoto}. SLSA defines provenance for artifacts produced by a
+build platform \citep{slsa2026provenance}, and Sigstore combines identity-based
+signing with transparency infrastructure \citep{sigstore2026signing}. These systems
+motivate authenticated, scoped receipts and substitution attacks. The distinction
+is that a scientifically admissible result needs more than an authentic execution:
+it also needs a frozen evidence and adjudication protocol.
+
+\subsection{Computational reproducibility and prospective control}
+
+ReproZip captures dependencies and environments for computational experiments
+\citep{chirigati2016reprozip}; broader reproducibility guidance calls for available
+and cited data, code and workflows \citep{stodden2016enhancing}; and ACM artifact
+badging separates artifact properties from reproduced or replicated results
+\citep{acm2020badging}. Preregistration and Registered Reports address analytic and
+publication decisions made after outcomes are known
+\citep{nosek2018preregistration,chambers2015registered}. The present framework
+connects these lines through a fail-closed rule: the receipt may support only the
+claim whose protocol, identities and independence predicates it actually binds.
+
+\subsection{Artifact requirements for this paper}
+
+A submission package must contain complete tracked TeX chapters, the bibliography,
+the canonical build command and dependency versions, a source-closure manifest,
+the protocol and claim-ledger digests, the attack fixtures after protected release,
+the raw receipt set, verification and adjudication code, and a source-to-PDF text
+equivalence report. A clean build must not depend on an untracked cache or runtime
+network access.
+
+The current manuscript is a framework version. It contains no protected receipt
+set and therefore makes no implementation-performance or reliability claim. This
+status must remain synchronized across the abstract, Results chapter, claim ledger,
+README and generated PDF.
+
+\section{Conclusion}
+
+Research-execution records are valuable only when their authority is stated
+precisely. This paper separates request identity, result integrity, executor
+attribution, evidence admission and scientific authority; defines a six-level
+independence taxonomy; and specifies hostile tests that can falsify each guarantee.
+The formal contract prevents typed capability failures from entering scientific
+evidence and prevents an agreement label from exceeding its weakest verified gate.
+These are framework properties, not a reliability result. The immediate empirical
+task is therefore not to claim successful independent research execution, but to
+freeze and run the adversarial protocol under authenticated, separated custody.
+

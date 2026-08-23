@@ -1,0 +1,25 @@
+{
+  "schema": "orion.p9.order-permutation-noop.v1",
+  "record": "P9_ORDER_PERMUTATION_IS_A_NOOP",
+  "authority_scope": "OUTCOME_BLIND_FINDING",
+  "outcome_accessed": false,
+  "relabels_nothing": "The P9-U-T4 terminal remains P9_T4_HOSTILE_ATTACK_PREVAILED.",
+  "p1_tuple_source": "def _tuple(values: Sequence[str] | None) -> tuple[str, ...]:\n    return tuple(sorted({str(x) for x in (values or ())}))",
+  "protected_cases": 128,
+  "identical_cases_under_order_permutation": 128,
+  "left_sequence_coordinates_with_length_above_one": 256,
+  "order_sensitive_arm_cases_changed": 0,
+  "order_sensitive_arm_contract_violations": [],
+  "checks": {
+    "p1_tuple_computes_the_forbidden_normalization": true,
+    "order_dataset_digest_equals_base": true,
+    "every_protected_case_identical": true,
+    "there_was_something_to_reorder": true,
+    "an_order_sensitive_arm_still_sees_no_change": true,
+    "that_arm_satisfies_its_own_contract": true,
+    "the_orbit_attack_does_change_the_data": true
+  },
+  "finding": "The order attack reverses each sequence coordinate and the method-realization constructor sorts it back, so the ORDER_PERMUTATION dataset is byte-identical to the base one: same manifest digest, 128 of 128 protected cases unchanged, with 256 left-side coordinates long enough to reorder. The orbit attack over the same machinery does change the data, so this is specific to order and multiplicity rather than a broken harness.",
+  "consequence": "D1 v1.3 registers ORDER_PERMUTATION and DUPLICATE_INSERTION as two of its four attack families and TYPED_ORDERED_MULTIPLICITY as one of its four arms. None of the three is reachable while the P1 primitive normalizes to a sorted set. The fix is one function in orion.transfer.v2.p1_method_realization, and because every realization in the programme is built through it, that is a programme-wide change and not a P9 one.",
+  "all_checks_pass": true
+}

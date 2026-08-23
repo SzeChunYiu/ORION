@@ -4,7 +4,7 @@ This directory governs **prospective paper candidates**, not current flagship id
 
 ## Layout note (2026-08-21)
 
-The candidate paper packages themselves — `paper-06-formal-epistemic-structures-and-mechanics/`, `paper-07-epistemic-navigation-open-worlds/`, `paper-08-epistemic-authority-autonomous-science/`, `paper-09-executable-research-core/`, `paper-09-structured-epistemic-learning/`, `paper-10-content-bound-math-evaluation/`, `paper-10-structured-problem-solving/`, and the shared P9/P10 lane `orion-learning-machine/` — now live directly under `papers/`. That is a directory move only: it does not promote any candidate to flagship identity, and every programme gate below still applies. This directory retains the shared cross-paper apparatus: the checkers (`checkers/`), the hostile review suite (`hostile_review_v1/`), the submission gate (`submission/`), the assumption-regression runner, the review/adjudication records, and the assumption-regression runner.
+The candidate paper packages themselves — `paper-06-formal-epistemic-structures-and-mechanics/`, `paper-07-epistemic-navigation-open-worlds/`, `paper-08-epistemic-authority-autonomous-science/`, `paper-xx-executable-research-core/`, `paper-09-structured-epistemic-learning/`, `paper-xx-content-bound-math-evaluation/`, `paper-10-structured-problem-solving/`, and the shared P9/P10 lane `orion-learning-machine/` — now live directly under `papers/`. That is a directory move only: it does not promote any candidate to flagship identity, and every programme gate below still applies. This directory retains the shared cross-paper apparatus: the checkers (`checkers/`), the hostile review suite (`hostile_review_v1/`), the submission gate (`submission/`), the assumption-regression runner, the review/adjudication records, and the assumption-regression runner.
 
 The q-lane candidates named in an earlier draft of this note — `paper-q1-tare-expressivity/`, `paper-q3-dual-instrument/`, `paper-q4-typed-state/`, `orion-q-recursive-recovery/` — are **not** here: the ORION-Q programme moved to its own top-level namespace as `../Q-paper-01-tare-expressivity/`, `../Q-paper-02-recursive-recovery/`, `../Q-paper-03-dual-instrument/` and `../Q-paper-04-typed-state/`. That namespace has its own numbering and its own issues, and is deliberately out of scope for the `P<n>-U` terminal adjudication in `src/orion/programme/`.
 
@@ -29,8 +29,8 @@ tests and other papers cite their results:
 
 | Retired directory | Its own terminal | Why it is kept |
 |---|---|---|
-| `paper-09-executable-research-core/` | `MERGED INTO P8/PROGRAMME`, no standalone manuscript | cited by `tests/unit/candidates/test_p9_p10_learning_machine.py`, by P8's benchmark companion, and by the `orion-learning-machine/` lane |
-| `paper-10-content-bound-math-evaluation/` | `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`, deliberately not a standalone paper | P10's predecessor evidence in the superiority ledger; cited by a live test and by the RSE wave-closure manifest |
+| `paper-xx-executable-research-core/` | `MERGED INTO P8/PROGRAMME`, no standalone manuscript | cited by `tests/unit/candidates/test_p9_p10_learning_machine.py`, by P8's benchmark companion, and by the `orion-learning-machine/` lane |
+| `paper-xx-content-bound-math-evaluation/` | `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`, deliberately not a standalone paper | P10's predecessor evidence in the superiority ledger; cited by a live test and by the RSE wave-closure manifest |
 
 This differs from the P1–P5 retirements in `../PAPER_ALIASES.md`, which were deleted
 only because they "contained no independent manuscript content". These two hold

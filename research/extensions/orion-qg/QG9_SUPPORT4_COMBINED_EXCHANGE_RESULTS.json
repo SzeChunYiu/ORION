@@ -1,0 +1,82 @@
+{
+  "schema": "ORION.QG.QG9.Support4CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#762",
+  "base_revision": "f90c7dfa484791d5c0fa325bf0d1b13c68b5f72d",
+  "source_result_digest": "1f67dd1d22e3bd3d32cc6f3d6b0f3452929548d3ca7095fedca5e7511a045b22",
+  "protocol_sha256": "a512eebc6749f4aa5f692b544a5785b3f91d45b09240a5b1190df466adedf04a",
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED",
+  "support_bound": 4,
+  "descriptor_count": 28,
+  "local_representative_count": 240,
+  "action_profile_target_cases": 119808,
+  "production_binding": {
+    "all_exact": true,
+    "mul_exact": true,
+    "symp_exact": true,
+    "weight_exact": true
+  },
+  "parent_qg1": {
+    "authority": "ORIONQ_QG1_RANK2_ALL_N_THEOREM_MACHINE_CHECKED__GENERATOR_SUPPORT5_SUFFICES_ALL_N__CAP5_EQUALS_UNRESTRICTED__NOT_R6",
+    "sha256": "a04142b9ebefc6582937a353a1ef13ef094ff6093a9698296b09aabf0c5caf2f",
+    "all_gates": true,
+    "support5_parent": true
+  },
+  "support5_boundary": {
+    "retained_irreducible_patterns": 324,
+    "safe_count": 324,
+    "unsafe_count": 0,
+    "worst_cost_histogram": {
+      "-22": 72,
+      "-18": 72,
+      "-15": 60,
+      "-14": 12,
+      "-4": 72,
+      "0": 36
+    }
+  },
+  "support4_control": {
+    "retained_irreducible_patterns": 432,
+    "safe_count": 396,
+    "unsafe_count": 36,
+    "worst_cost_histogram": {
+      "-18": 72,
+      "-11": 120,
+      "-6": 12,
+      "-4": 36,
+      "-3": 12,
+      "0": 144
+    },
+    "interpretation": "The frozen deletion-only combined edit grammar does not close support 4. This blocks a support<=3 claim from this grammar but is not support-4 tightness evidence."
+  },
+  "proof_audit": {
+    "qg1_supplies_support5_all_n": true,
+    "candidate_domain_is_superset_of_valid_qg1_irreducibles": true,
+    "combined_signature_preserves_five_block_invariants": true,
+    "tag_pair_unchanged": true,
+    "dependent_third_recomputed_by_production_mul": true,
+    "cost_is_qubit_additive_no_restore_factor_rule": true,
+    "global_symp_one_preserved_implies_generators_nonzero": true,
+    "combined_move_never_adds_generator_support": true,
+    "support5_boundary_all_reducible": true,
+    "support4_boundary_not_closed_by_same_grammar": true
+  },
+  "generic_verification": {
+    "decision": "ACCEPT",
+    "descriptor_count": 28,
+    "support5_retained": 324,
+    "support5_unsafe": 0,
+    "support4_retained": 432,
+    "support4_unsafe": 36
+  },
+  "native_verification": {
+    "decision": "ACCEPT_SUPPORT4",
+    "scope": "R6I_UNIT_OBJECTIVE_ONLY",
+    "support3_authority": false,
+    "tightness_authority": false
+  },
+  "support3_claim": false,
+  "tightness_claim": false,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

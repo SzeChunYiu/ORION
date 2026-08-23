@@ -88,6 +88,53 @@ def _unbound_values(value: object) -> list[str]:
     return [str(value)] if value == "UNBOUND" else []
 
 
+#: The three-valued boundary, in the two forms a manuscript may state it.
+#:
+#: This used to be one check: the literal token ``CANNOT\\_CHECK`` had to appear
+#: in the TeX. The token is internal vocabulary, and a manuscript that spells the
+#: idea out in prose instead is stating the boundary *better*, not dropping it --
+#: so requiring the token would push papers to keep a machine identifier in their
+#: body to satisfy a test. What has to survive is the distinction itself: an
+#: outcome that could not be determined is reported separately from one
+#: determined to be false, and the two are never merged.
+#:
+#: So either form is accepted, and the prose form is not a loophole: it must name
+#: the third value, name the negative it is being kept apart from, and say they
+#: are kept apart -- all three in one sentence. A paper that quietly drops the
+#: boundary satisfies neither branch.
+THIRD_VALUE_TERMS = ("undetermined", "indeterminate", "could not be determined")
+NEGATIVE_RESULT_TERMS = (
+    "is false",
+    "to be false",
+    "a negative",
+    "negative result",
+    "evidence of absence",
+    "refuted",
+)
+SEPARATION_TERMS = (
+    "separately",
+    "never merged",
+    "never silently resolved",
+    "distinct from",
+    "not the same as",
+    "rather than",
+)
+
+
+def _states_the_three_valued_boundary(tex: str) -> bool:
+    """True when one sentence names the third value, the negative, and their separation."""
+
+    flat = " ".join(tex.split()).lower()
+    for sentence in re.split(r"(?<=[.;])\s+", flat):
+        if not any(term in sentence for term in THIRD_VALUE_TERMS):
+            continue
+        if not any(term in sentence for term in NEGATIVE_RESULT_TERMS):
+            continue
+        if any(term in sentence for term in SEPARATION_TERMS):
+            return True
+    return False
+
+
 def test_all_five_canonical_manuscripts_are_structurally_complete():
     for paper_id, paper in PAPERS.items():
         manuscript = paper / "manuscript"
@@ -96,7 +143,11 @@ def test_all_five_canonical_manuscripts_are_structurally_complete():
         assert "\\begin{abstract}" in tex and "\\end{abstract}" in tex, paper_id
         assert "\\textbf{Keywords:" in tex, paper_id
         assert _bibliography_names(tex, paper_id), paper_id
-        assert "CANNOT\\_CHECK" in tex, f"{paper_id} must preserve the external evidence boundary"
+        assert "CANNOT\\_CHECK" in tex or _states_the_three_valued_boundary(tex), (
+            f"{paper_id} must preserve the external evidence boundary: either the "
+            "machine token, or one sentence naming the third value, the negative it "
+            "is kept apart from, and that they are kept apart"
+        )
 
         protocol = json.loads((paper / "protocol" / "PROTOCOL_V1.json").read_text(encoding="utf-8"))
         assert protocol["protocol_id"] in tex, f"{paper_id} manuscript must name its prospective protocol"

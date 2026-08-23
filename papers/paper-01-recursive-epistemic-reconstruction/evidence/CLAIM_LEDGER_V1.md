@@ -1,5 +1,21 @@
 # P1 claim ledger V1
 
+> **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
+> subsequently rewritten so that its claims are about the mechanism rather than
+> about a named system, so that internal status tokens do not appear in its
+> prose, and so that repository paths and artifact filenames live only in Data
+> and code availability. The claim sentences quoted below are the wording of the
+> manuscript as it stood when this ledger was cut. **No number, authority,
+> supporting artifact or status in this table changed in that rewrite**, and
+> none has been edited here: a ledger is a record of what was allowed and on
+> what evidence, so it is annotated rather than restated. Where a row names
+> `ORION` as the subject of a claim, the rewritten manuscript states the same
+> claim about the mechanism and calls the implementation under test the
+> *governed policy*; the artifact each row cites is unchanged. Where a row
+> records a `CANNOT_CHECK` status, the manuscript now says that the outcome
+> *remains undetermined*, which is the same three-valued state under a
+> reader-facing name.
+
 This ledger maps every abstract and conclusion claim to a supporting artifact. A row is `SUPPORTED` only when the cited artifact exists in the repository and the stated authority matches that artifact. External superiority remains `CANNOT_CHECK` until the live campaign completes.
 
 | Claim surface | Claim allowed in this revision | Authority | Supporting artifact | Status |

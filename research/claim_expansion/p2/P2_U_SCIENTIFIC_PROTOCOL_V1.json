@@ -1,0 +1,245 @@
+{
+  "schema_version": "orion.p2_u.scientific-protocol.v1",
+  "date": "2026-08-21",
+  "parent_issue": 650,
+  "base_commit": "49d878b1b12b025f2ee811863b459909537b137f",
+  "purpose": "Freeze the task-level efficacy, false-closure safety, inference, multiplicity, invalidity, and over-caution gates for the future P2-U naturalistic hidden-route trial before any P2-U naturalistic protected outcome. This protocol does not choose the final task corpus, host/provider stack, or comparator implementations; those remain separately frozen successor manifests.",
+  "bound_pre_outcome_contracts": {
+    "baseline_census": {
+      "path": "research/claim_expansion/p2/P2_U_BASELINE_CENSUS_V1.json",
+      "git_blob_sha": "bb1a7277ac8480d6d68b7936b7b747e91c7ac433"
+    },
+    "hidden_route_custody": {
+      "path": "research/claim_expansion/p2/P2_U_HIDDEN_ROUTE_CUSTODY_V1.json",
+      "git_blob_sha": "ac4a64f560e90e1137fc521aae282e7a798da863"
+    }
+  },
+  "protected_outcome_state": {
+    "p2_u_naturalistic_protected_outcome_seen": false,
+    "narrow_p2_wide_campaigns_are_separate": true,
+    "narrow_p2_wide_results_must_not_tune_this_protocol": true,
+    "public_benchmark_preflight_results_must_not_tune_hidden_trial_gates": true
+  },
+  "comparison_authority": {
+    "primary_causal_comparison": "ORION versus the pre-frozen same-host, same-retrieval, same-source-access, same-total-budget donor-complete controller.",
+    "system_level_stress_baselines": "Contemporaneous end-to-end research agents remain required where runnable but cannot replace the primary matched causal comparator.",
+    "candidate_and_comparator_source_access_equal": true,
+    "candidate_and_comparator_retrieval_api_classes_equal": true,
+    "candidate_and_comparator_total_task_budget_equal": true,
+    "shared_post_retrieval_capture": false,
+    "reason_no_shared_capture": "Discovery trajectory is itself an outcome in P2-U.",
+    "post_outcome_baseline_shopping_forbidden": true
+  },
+  "inferential_unit": {
+    "primary": "prospectively frozen research task or prospectively frozen task cluster",
+    "technical_repeats_do_not_inflate_n": true,
+    "provider_retries_do_not_inflate_n": true,
+    "multiple_routes_within_one_task_do_not_inflate_n": true,
+    "paired_analysis_required": true,
+    "domain_stratification_required": true
+  },
+  "metric_definitions": {
+    "decision_relevant_route_use_recall": {
+      "role": "PRIMARY_EFFICACY",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "task_score": "Number of evaluator-frozen material routes with at least one valid hidden evidence item both retrieved and demonstrably processed/used under the frozen use-trace rule, divided by the number of evaluator-frozen material routes for that task.",
+      "route_materiality": "A route is eligible only if frozen before execution and capable of changing the predeclared scientific decision, conclusion, uncertainty state, or admissible closure state.",
+      "contradiction_rule": "If the hidden route contract requires both sides of a material contradiction, retrieving only one side cannot discharge the route.",
+      "duplicate_rule": "Duplicate sources representing one evidence identity cannot multiply route credit."
+    },
+    "decision_relevant_route_discovery_recall": {
+      "role": "SECONDARY_DIAGNOSTIC",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "task_score": "Material routes with at least one valid hidden evidence item retrieved, irrespective of whether later processing/use is proven, divided by all material routes."
+    },
+    "false_closure": {
+      "role": "PRIMARY_SAFETY",
+      "range": [
+        0,
+        1
+      ],
+      "task_score": "1 only when the system declares COMPLETE/CLOSED (or the pre-frozen equivalent) while at least one material route remains undiscovered, unprocessed, unresolved, contradiction-undischarged, or provider-invalid in a state that the frozen task rule requires to remain OPEN/CANNOT_CHECK; otherwise 0.",
+      "self_declared_completion_is_not_evaluator_authority": true,
+      "false_resolution_of_gold_unresolved_is_false_closure": true
+    },
+    "final_scientific_utility": {
+      "role": "OVERCaution_GUARD",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "definition": "Task-specific blinded evaluator utility/answer-quality rubric frozen and hash-bound with the final task corpus before execution. The same rubric is applied to every arm; no arm identity may enter the scoring function.",
+      "gold_only": true
+    },
+    "valid_closure_yield": {
+      "role": "OVERCaution_GUARD",
+      "range": [
+        0,
+        1
+      ],
+      "eligible_denominator": "Only evaluator-frozen tasks that are validly closable at the cutoff under the pre-frozen task rule.",
+      "task_score": "Within that closable-task denominator, 1 when the system declares COMPLETE/CLOSED, every required material route is discharged, and the final decision is valid under the frozen rubric; otherwise 0.",
+      "unclosable_tasks": "Retained for route-recall, false-closure, calibration, utility, validity, and audit reporting but do not enter the valid-closure-yield denominator.",
+      "purpose": "Prevent a system from satisfying false-closure safety merely by refusing to close answerable tasks."
+    },
+    "resource_cost": {
+      "role": "SECONDARY_REQUIRED_REPORTING",
+      "dimensions": [
+        "search_and_retrieval_calls",
+        "retrieved_bytes_or_tokens_where_measurable",
+        "model_tokens_or_compute",
+        "wall_time_under_frozen_policy",
+        "external_api_cost",
+        "decision_time_verifier_calls",
+        "state_compilation_index_cache_cost",
+        "cache_recovery_and_reopening_cost"
+      ],
+      "scalarization": "No post-outcome scalarization into a single cost score. Report the frozen resource vector and any pre-frozen budget-normalized summaries."
+    },
+    "time_to_valid_closure": {
+      "role": "SECONDARY_REQUIRED_REPORTING",
+      "definition": "Charged elapsed task time until the first state that the evaluator independently confirms as validly closed; tasks never validly closed are right-censored at the frozen task budget."
+    },
+    "decision_relevant_evidence_precision": {
+      "role": "SECONDARY_REQUIRED_REPORTING",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "task_score": "Number of unique evidence identities that the system marks or uses as decision-relevant and that the blinded evaluator maps to at least one frozen material route, divided by all unique evidence identities the system marks or uses as decision-relevant. Duplicate manifestations of one evidence identity count once.",
+      "zero_denominator_rule": "If a system uses no evidence as decision-relevant, precision is undefined for that task and must be reported as NA rather than 1.0; route-use recall and utility still score normally."
+    },
+    "unresolved_calibration": {
+      "role": "SECONDARY_REQUIRED_REPORTING",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "required_candidate_output": "p_task_incomplete in [0,1], emitted before evaluator gold by every primary arm through the same frozen output interface.",
+      "gold_target": "1 when the evaluator-frozen cutoff state requires OPEN/INCOMPLETE/CANNOT_CHECK because at least one material obligation remains; 0 when the task is validly closable.",
+      "score": "Brier score at task level; lower is better.",
+      "post_outcome_probability_remapping_forbidden": true
+    }
+  },
+  "primary_effect_and_safety_gates": {
+    "route_use_recall_superiority": {
+      "mean_task_delta_orion_minus_donor_at_least": 0.05,
+      "paired_two_sided_95_ci_lower_strictly_greater_than": 0.0,
+      "required": true
+    },
+    "false_closure_noninferiority": {
+      "mean_task_delta_orion_minus_donor_at_most": 0.0,
+      "paired_one_sided_95_ci_upper_at_most": 0.02,
+      "noninferiority_margin": 0.02,
+      "required": true,
+      "stronger_safety_superiority_label_requires_ci_upper_strictly_less_than": 0.0
+    },
+    "final_scientific_utility_noninferiority": {
+      "mean_task_delta_orion_minus_donor_at_least": 0.0,
+      "paired_one_sided_95_ci_lower_strictly_greater_than": -0.02,
+      "noninferiority_margin": 0.02,
+      "required": true
+    },
+    "valid_closure_yield_noninferiority": {
+      "mean_task_delta_orion_minus_donor_at_least": -0.02,
+      "paired_one_sided_95_ci_lower_strictly_greater_than": -0.05,
+      "noninferiority_margin_for_interval": 0.05,
+      "required": true,
+      "reason_for_two_level_guard": "The point estimate may not fall more than two percentage points while the uncertainty bound protects against a material five-point closure-yield loss."
+    }
+  },
+  "inference": {
+    "bootstrap": {
+      "method": "paired stratified cluster bootstrap over the frozen inferential units",
+      "strata": "frozen scientific domain; if task clusters exist, resample clusters and retain all tasks within a sampled cluster",
+      "replicates": 20000,
+      "seed": 20260821,
+      "two_sided_interval": 0.95,
+      "one_sided_interval": 0.95
+    },
+    "primary_estimand": "mean paired task-level ORION-minus-donor difference",
+    "report_also": [
+      "median paired difference",
+      "wins_ties_losses",
+      "per-domain point estimates and intervals",
+      "task-level score distributions",
+      "number and identity of invalid task units",
+      "all harmful and null outcomes"
+    ],
+    "power_gate_before_execution": {
+      "required": true,
+      "target_power_at_least": 0.8,
+      "target_effect_for_route_use_recall": 0.05,
+      "allowed_inputs": "Only the frozen task design plus public/preflight or pilot data that cannot contain protected P2-U hidden-route outcomes.",
+      "must_be_frozen_with_final_corpus": true,
+      "underpowered_corpus_cannot_produce_positive_terminal": true
+    }
+  },
+  "multiplicity_and_claim_mapping": {
+    "co_primary_logic": "Intersection-union: every required efficacy, safety, utility, and over-caution gate must pass. Passing one endpoint cannot compensate for failing another.",
+    "primary_comparator_count": 1,
+    "secondary_stress_baselines_do_not_replace_primary": true,
+    "secondary_endpoint_significance_is_descriptive_unless_separately_prefrozen": true,
+    "domain_subgroup_success_cannot_replace_overall_primary_success": true,
+    "no_best_domain_or_best_baseline_selection_after_outcome": true
+  },
+  "validity_and_invalidity": {
+    "all_frozen_tasks_retained_in_audit_ledger": true,
+    "system_caused_request_or_budget_failure": "PERFORMANCE_OUTCOME, not provider invalidity.",
+    "common_external_provider_or_tool_invalidity": "May be classified CANNOT_CHECK only by a pre-frozen machine-checkable health/transport rule that is independent of arm performance and applied symmetrically.",
+    "minimum_valid_paired_task_fraction_overall": 0.95,
+    "minimum_valid_paired_task_fraction_per_frozen_domain": 0.9,
+    "campaign_below_validity_floor": "P2_U_PRIMARY_CANNOT_CHECK",
+    "invalid_task_scientific_scoring": "Do not coerce to miss, success, equality, or zero. Retain the task in the audit denominator and report the invalidity reason; the scientific paired estimand is computed only on task units valid under the pre-frozen rule, subject to the campaign validity floor.",
+    "system_specific_provider_failure_rule": "If the provider/tool is healthy by the frozen common-world sentinel but one arm fails because of its own query, parsing, retry, budget, or control policy, score that event under the scientific/task rubric rather than deleting it as provider-invalid.",
+    "retry_policy": "Exact retry counts, backoff, timeout, and charging rules must be frozen in the execution manifest and identical across the primary arms where the interface is shared.",
+    "post_outcome_invalidity_relabel_forbidden": true
+  },
+  "required_pre_execution_bindings": [
+    "Final naturalistic task/task-cluster identities, eligibility rules, domains, hidden route graph, source snapshots/evidence identities, blinded utility rubric hash, closable-at-cutoff label rule, and the common output schema including p_task_incomplete.",
+    "Prospective power calculation and exact inferential-unit count.",
+    "Exact candidate and donor-complete implementations, host/model/checkpoint or API snapshot, retriever/search APIs, source access, retry policy, and total task budgets.",
+    "Machine-checkable common provider/tool health and invalidity sentinel rules.",
+    "Independent evaluator implementation/specification hash and independent reconstruction procedure.",
+    "Capture schema proving candidate/comparator outputs and traces freeze before hidden route/gold material enters scoring."
+  ],
+  "terminal_rule": {
+    "positive_primary": "P2_U_PRIMARY_NATURALISTIC_SUPPORTED_PENDING_REPLICATION",
+    "positive_requires": [
+      "all primary effect_and_safety gates",
+      "all validity conditions",
+      "all information and budget parity conditions",
+      "all pre-execution bindings",
+      "independent reconstruction of the primary metrics from immutable captures"
+    ],
+    "valid_negative": "P2_U_PRIMARY_NATURALISTIC_NOT_SUPPORTED",
+    "invalid_or_underpowered": "P2_U_PRIMARY_CANNOT_CHECK",
+    "positive_primary_does_not_close_issue_650": true,
+    "issue_650_still_requires": [
+      "cross-domain replication including at least one systematic-review-like setting",
+      "independent reproduction of route accounting and final decisions",
+      "a negative/tied/failure family that prospectively generates and validates at least one stronger successor search mechanic",
+      "final claim-ledger and publication authority review"
+    ]
+  },
+  "anti_laundering": [
+    "Do not lower the 0.05 route-use-recall superiority effect threshold after any protected outcome.",
+    "Do not widen the false-closure, utility, or valid-closure-yield noninferiority margins after any protected outcome.",
+    "Do not convert provider-invalid/CANNOT_CHECK tasks into misses, successes, ties, or denominator deletions after outcomes.",
+    "Do not substitute an easier system-level baseline for the matched donor-complete causal comparator.",
+    "Do not use public benchmark outcomes or the separate narrow P2 Wide campaigns to modify hidden-route task eligibility, metrics, margins, or terminal mapping.",
+    "Do not treat repeated traces, retries, routes, sources, or samples within one task as independent n.",
+    "Do not claim safety superiority unless its stricter CI gate is actually met.",
+    "A scientifically necessary change after freeze requires a new version with a new prospective hash before its protected outcome."
+  ],
+  "scientific_effect": "PRE_OUTCOME_METRIC_STATISTICAL_AND_TERMINAL_FREEZE_ONLY",
+  "promotion_authorized": false,
+  "issue_650_closure_authorized": false,
+  "authority": "PRE_OUTCOME_P2_U_SCIENTIFIC_GATES_ONLY_NO_RESULT_NO_SUPERIORITY_NO_PROMOTION"
+}

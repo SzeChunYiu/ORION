@@ -63,7 +63,76 @@ def descendants(
     return frozenset(seen.difference(changed))
 
 
+def transitive_closure(
+    node_count: int,
+    edges: Sequence[tuple[int, int]],
+) -> tuple[tuple[bool, ...], ...]:
+    """Strict reachability, by relational composition rather than by traversal.
+
+    This is the independent route `check_reopening` measures `descendants`
+    against, and it is deliberately a different algorithm: an all-pairs
+    composition over the whole edge relation, carrying no notion of a changed set
+    and no frontier. An expected value computed by the same route as the actual
+    one cannot disagree with it, which is how the earlier version of that check
+    came to assert set-algebra identities over 130,320 cases. See
+    `research/failures/2026-08-tautological-assertion-in-finite-check/`.
+    """
+
+    reach = [[False] * node_count for _ in range(node_count)]
+    for source, target in edges:
+        reach[source][target] = True
+    for middle in range(node_count):
+        middle_row = reach[middle]
+        for source in range(node_count):
+            if reach[source][middle]:
+                source_row = reach[source]
+                for target in range(node_count):
+                    if middle_row[target]:
+                        source_row[target] = True
+    return tuple(tuple(row) for row in reach)
+
+
+def specified_downstream(
+    closure: tuple[tuple[bool, ...], ...],
+    changed: FrozenSet[int],
+) -> FrozenSet[int]:
+    """`Desc_D(X)` of FORMAL_CORE_V1 Definition 8, read off the closure.
+
+    Deliberately not `descendants`' return value: `descendants` subtracts
+    `changed`, so the two differ exactly on the changed nodes reachable from
+    another changed node. That difference is the root-inclusive gap V2.1's
+    `Aff_D(E,X)` closes, and keeping the specification's own definition here is
+    what lets `check_reopening` say which of the two operators it is checking.
+    """
+
+    return frozenset(
+        target
+        for target in range(len(closure))
+        if any(closure[source][target] for source in changed)
+    )
+
+
 def check_reopening(node_count: int = 4) -> tuple[int, int]:
+    """Check the V1 reopening operator against an independently derived specification.
+
+    The operator under test is `retained = certified - descendants(...)`:
+    Definition 8's selective reopening, restricted -- as V1 states it -- to the
+    strict downstream closure. Every assertion below compares it against
+    `specified_downstream`, which is derived from `transitive_closure` and never
+    calls `descendants`.
+
+    Until 2026-08-22 the two assertions here were `not retained & downstream` and
+    `retained == certified - downstream`: set difference's defining property, and
+    a name compared with the expression it was just assigned from. Both hold for
+    any `descendants` whatsoever. Replacing it with the empty set, with every
+    node, with the changed set itself, or with the direct successors each
+    reported the same `(543, 130320)`, so neither sufficiency nor minimality was
+    checked and the case count counted vacuous assertions.
+
+    The counts returned here are unchanged. What changed is that they can now
+    come out otherwise.
+    """
+
     possible_edges = [
         (source, target)
         for source in range(node_count)
@@ -82,24 +151,38 @@ def check_reopening(node_count: int = 4) -> tuple[int, int]:
         if not is_dag(node_count, edges):
             continue
         dag_count += 1
+        closure = transitive_closure(node_count, edges)
 
         for changed_raw in powerset(range(node_count)):
             changed = frozenset(int(value) for value in changed_raw)
             if not changed:
                 continue
             downstream = descendants(node_count, edges, changed)
+            specified = specified_downstream(closure, changed)
+            # What V1's Definition 8 makes this operator responsible for.
+            must_reopen = specified.difference(changed)
 
             for certified_raw in powerset(range(node_count)):
                 certified = frozenset(int(value) for value in certified_raw)
                 retained = certified.difference(downstream)
 
-                # Sufficiency on the graph abstraction: no downstream
-                # certified node survives.
-                assert not retained.intersection(downstream)
+                # Sufficiency on the graph abstraction (Theorem 1): no certified
+                # node the specification puts downstream of the change survives.
+                # The specification side comes from the closure, so an operator
+                # that under-reopens is rejected here rather than agreeing with
+                # itself.
+                assert not retained.intersection(must_reopen)
 
-                # Minimality of the implementation: no non-descendant is
-                # reopened by this operator.
-                assert retained == certified.difference(downstream)
+                # Minimality of the implementation (Corollary 2.1): no node the
+                # specification leaves outside the closure is reopened. This is
+                # the direction nothing checked before, and it is the one full
+                # reset fails.
+                assert certified.difference(specified).issubset(retained)
+
+                # Exactness: sufficiency and minimality together still leave the
+                # operator free on the changed nodes, so pin the whole set. This
+                # is what fixes which of the two reopening operators V1 runs.
+                assert retained == certified.difference(must_reopen)
                 case_count += 1
 
     return dag_count, case_count

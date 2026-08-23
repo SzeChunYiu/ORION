@@ -1,0 +1,156 @@
+{
+  "all_discharged": true,
+  "axioms_are_definitional": "reachability is axiomatised as the reflexive-transitive closure by the four clauses in closure_axioms, including a well-founded rank on justification. Transitive closure is not first-order definable, so those clauses are the definition used here and are not derived from anything more primitive.",
+  "chain_ladder": {
+    "bound": 8,
+    "results": [
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_1",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 1 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_2",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 2 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_3",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 3 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_4",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 4 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_5",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 5 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_6",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 6 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_7",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 7 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_NON_AMPLIFICATION_8",
+        "outcome": "PROVED",
+        "statement": "a delegation chain of length 8 confines the action's scope to the root judgment's scope and its domain to the root's reach",
+        "why_it_matters": "the expanded form of the induction the one-step lemma supports"
+      }
+    ]
+  },
+  "differential_against_executable_model": {
+    "agreed": true,
+    "agreements": 400,
+    "disagreements": [],
+    "exercised_both_verdicts": true,
+    "informative": true,
+    "positive_trials": 51,
+    "trials": 400
+  },
+  "induction_is_meta": "the chain theorem holds for unbounded length by induction on the one-step lemma. The step is machine-checked; the induction schema is standard and is the single hand step in this development.",
+  "not_licensed": [
+    "any claim that the 13 donor types or the 39,936-state instance are hereby re-derived; deriving those as instances of this calculus is a separate piece of work",
+    "any claim of independent formal review; these proofs have been checked by a solver, not reviewed by a person outside this lane",
+    "any empirical or systems claim whatsoever"
+  ],
+  "record": "P8_AUTHORITY_CALCULUS_MECHANIZED",
+  "schema_version": "orion.p8.authority-calculus-smt.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "SCOPE_NON_AMPLIFICATION",
+      "outcome": "PROVED",
+      "statement": "for every judgment and action over any object universe, if the action is authorised then its scope is a subset of the judgment's scope",
+      "why_it_matters": "the finite core checks this on two authored judgments over three named claims; this is the same statement with the universe left free"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "DOMAIN_CONFINEMENT",
+      "outcome": "PROVED",
+      "statement": "an authorised action's domain is reachable from the judgment's domain through the registered conversion relation",
+      "why_it_matters": "authority never arrives in a domain except along conversions someone registered; reaching a domain is always a licensed step, never a default"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "NO_LAUNDERING_GENERAL",
+      "outcome": "PROVED",
+      "statement": "if no conversion is registered, an authorised action's domain equals the judgment's domain, for a domain sort of any cardinality",
+      "why_it_matters": "this is the generalisation of the thirty-six-pair enumeration: the finite core asserts result is (source == target) over six authored domains, and the same claim holds here over all of them"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "NON_COMPENSATORY",
+      "outcome": "PROVED",
+      "statement": "if any hard obligation is unmet, no configuration of issuer, scope, domain or epoch authorises the action",
+      "why_it_matters": "a non-compensatory gate is the paper's central structural claim; if a strong enough elsewhere could outweigh an unmet obligation the whole authority argument collapses into a score"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "DEFEATER_MONOTONICITY",
+      "outcome": "PROVED",
+      "statement": "activating a defeater can only remove authorisations, never create one",
+      "why_it_matters": "revocation must be monotone or a revoked authority could be restored by revoking something else, which is the laundering shape one level up"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "EPOCH_ISOLATION",
+      "outcome": "PROVED",
+      "statement": "an authorised action carries the judgment's epoch, so replay across epochs is impossible",
+      "why_it_matters": "a judgment is authority about a state of the world, not a bearer token"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ONE_STEP_LEMMA",
+      "outcome": "PROVED",
+      "statement": "if a judgment delegates to a second and the second authorises an action, the first's scope contains the action's scope and the first's domain reaches the action's domain",
+      "why_it_matters": "this is the induction step from which chain non-amplification follows for delegation graphs of unbounded depth"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CONV_IMPLIES_REACH",
+      "outcome": "PROVED",
+      "statement": "a registered conversion is itself a reach",
+      "why_it_matters": "the bridge from the conversion relation to reachability; stated as its own lemma because the cycle theorem needs it and, proved together, the two were more than the solver would discharge"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CYCLE_COLLAPSE",
+      "outcome": "PROVED",
+      "statement": "if two domains reach each other then they reach exactly the same domains, so a cycle merges its members into one authority class",
+      "why_it_matters": "the requested characterisation of cycles: a registered cycle is not a loophole that manufactures authority, it is a declaration that the domains it joins are authority-equivalent, and it says so in advance"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ACYCLIC_STRICTNESS",
+      "outcome": "PROVED",
+      "statement": "if reachability is antisymmetric --- the acyclic case --- then two distinct domains cannot each authorise action in the other",
+      "why_it_matters": "names what acyclicity buys, so the general theorems are not silently credited with it: non-amplification holds either way, and antisymmetry is what additionally forbids mutual authority"
+    }
+  ],
+  "undischarged": []
+}

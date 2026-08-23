@@ -1,72 +1,50 @@
 # P11 — State as Computation
 
-**Stable ID:** ORION-P11
-**Paper issue:** #471
-**Programme:** #670 — P11–P14 portfolio (State as Computation, adaptive state–reasoning,
-responsibility-carrying state, ORION-RSE)
+**Stable ID:** ORION-P11  
+**Paper issue:** #471  
+**Shared tracks:** #664 accessibility-work accounting · #667 state optionality  
+**Programme:** #670
 
-## What this paper asks
+## Canonical manuscript
 
-`raw evidence -> task-specific state -> downstream reasoner`
+`MANUSCRIPT.md` is the current peer-review manuscript. It supersedes the stale `papers/candidates/paper-11-state-as-computation/MANUSCRIPT.md` path on draft PR #715; that older file remains historical input and is not the canonical submission surface.
 
-- what state should be constructed?
-- how much downstream capacity/sample/search burden does it remove?
-- what does construction cost?
-- what future optionality is lost or preserved?
-- when should state be compiled, cached, recovered or universally materialized?
+## Current evidence status
 
-## Absorbed research tracks
+`PEER_REVIEW_PACKAGE_READY / CONTROLLED_THEORY_SYSTEMS_SUPERIORITY_SUPPORTED`
 
-#670 retired the standalone paper numbering of two tracks into this identity. Both
-remain open as falsifiable research tracks; only the publication identity moved:
+Earned evidence includes:
 
-| Issue | Track |
-|---|---|
-| #664 | accessibility work and representation–computation accounting |
-| #667 | state optionality: compile, cache, recover or materialize |
+- exact query-family rank lower bound for fixed linear-accessible state;
+- 91×–1820× registered universal/compiled representation ratios;
+- 4× to >32× dense-decoder sample-threshold gains;
+- no-answer-laundering P11B result;
+- exact compile/cache/recover/materialize optionality laws;
+- P11D hostile sparse-decoder result: **permanently negative** against the preregistered ≥4×-in-both-cells gate, but retaining 2×/4× threshold gaps;
+- P11E fresh deterministic replication of the sparse residual: sparse/compiled thresholds `128/64` and `256/64`, with +0.2912/+0.3307 accuracy gaps at `n=64` and byte-identical two-run payload SHA `1097d94b…a4536`;
+- P11F historical nonlinear output, now **non-authoritative** because hostile PR review found a protocol mismatch (`n_jobs=-1` despite an otherwise-default frozen contract);
+- P11G fresh deterministic nonlinear successor: `n_jobs=1`, explicit random states, replay enforced inside the terminal path; universal ExtraTrees remains `NOT_REACHED` at 0.95 through `n=1024` in both cells while compiled state reaches `n=64`, with +0.4624/+0.3942 gaps at `n=64`; two fresh subprocess scientific payloads share SHA `a2b0c33c…79a7cc`. `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` scopes that terminal to the arm it names — on P11G's own data the sparse arm reaches the target at `n=128` in the first cell, which P11G's own gate reads as `NOT_MET` — and decomposes the two gaps into 86.7%/55.4% state and 13.3%/44.6% decoder family.
+- P11I prospective wide replication of the high-width regime: across three independent RNG replicates and three fixed geometry strata, all nine prespecified `r=7` seed×geometry cells pass the pooled-attack gates, while the same pool scores 1.0000 in all nine matched `r=3` controls; high-width pooled accuracy stays 0.8489–0.9421 below `n=256`, `delta64` is +0.2463–+0.3543, and two fresh subprocess payloads share SHA `b50ace30…e0ce`.
 
-## Evidence status as claimed on PR #715
+`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary, binds the corrected execution-seed replication unit and fresh `P11I_REVALIDATION_RECEIPT_V1_1.json`, and forbids an unconditional promotion.
+`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary and forbids an unconditional promotion.
 
-Reported by the authoring lane, not verified here: controlled/theorem claims are
-earned from the Frontier V2 receipts including deterministic P11/P11B replays and
-optionality laws. Broad promotion remains blocked on learned/non-oracle
-compilation, a stronger-decoder attack, full accessibility-work accounting and
-real-system replication.
+Historical failures remain first-class artifacts. P11D and P11H are never relabelled positive, P11F is not used as claim authority, and P11C — which after its vectorization amendment did run to completion at `P11C_STRONGER_DECODER_GAP_SUPPORTED`, at exactly its gate boundary — carries no claim authority either. P11E, P11G and P11I are independent successor protocols, not edits to those outcomes.
 
-## Status
+## Strongest paper-level claim
 
-`DIRECTORY_OPENED / NO_PROTECTED_RESULT`
+> **State is a computational placement decision.** In controlled query families, query-conditioned state construction externalizes structural search from a bounded downstream access mechanism. A pooled hostile attack wins at narrow compiled-state width `r=3`; in a prospectively frozen wider replication, it loses in all nine prespecified `r=7` seed×geometry cells across three independent RNG replicates and three fixed geometry strata while remaining live in every matched narrow control. The same specialization incurs calculable future-query option debt unless raw, cached or universal state is retained.
 
-This directory exists so the identity has a home under the post-2026-08-21 layout,
-where papers live directly under `papers/` rather than `papers/candidates/`. It
-carries no scientific result and grants no authority.
+## Peer-review artifacts
 
-The manuscript work is in flight on **PR #715**, which is a **draft** by its own
-decision — `CURRENT_EVIDENCE_DRAFT_COMPLETE / EXTERNAL_PROMOTION_BLOCKED` — and
-was authored against the pre-refactor tree, so its `MANUSCRIPT.md` currently
-targets `papers/candidates/paper-11-state-as-computation/`. That file belongs here instead. Relocating it
-is the authoring lane's call; this README does not pre-empt it, and adds no
-`MANUSCRIPT.md` of its own so the two cannot collide.
-
-## Programme rules that bind this paper
-
-From #670, verbatim in force:
-
-- a later paper may consume an earlier paper's interface/evidence **without
-  inheriting scientific authority**;
-- compiler/preprocessing work is never free; #664 owns the common accounting;
-- null, negative, donor-subsumed and interaction-only outcomes remain **first-class
-  results**;
-- **P11 cannot call answer laundering `state compilation`.**
-
-## Completion criteria
-
-#670 requires each of P11–P14 to have its own claim ledger, protocol freeze, donor
-matrix, hostile controls, result receipts, reproduction route and publication
-decision. None of those exists here yet.
+- `MANUSCRIPT.md` — full paper
+- `CLAIM_EVIDENCE_LEDGER.md` — claim authority and donor subtraction
+- `PEER_REVIEW_READINESS.md` — five-lens hostile review/checklist
+- `REVIEWER_SUMMARY.md` and `PR_SCOPE.md`
+- P11/P11B/P11C/P11D/P11E/P11F/P11G/P11H/P11I protocols and harnesses — full evidence history
+- P11D/P11H adverse results, P11E replicated sparse, P11G arm-scoped nonlinear and P11I wide high-width receipts
+- `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` — arm-axis adjudication and decoder/state decomposition
 
 ## Not authorized
 
-Any statement that this paper has a protected result, a comparative superiority
-claim, or a promotion decision. The programme hypothesis in #670 is explicitly
-"a programme hypothesis, not an earned unified claim".
+No universal nonlinear lower bound, transformer/agent superiority, free preprocessing claim, or broad statement that compiled state always dominates universal state. A future real-system claim must charge compiler work and beat strong state/search/decoder baselines under a common resource boundary.

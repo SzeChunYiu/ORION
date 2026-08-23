@@ -735,7 +735,7 @@ def audit_p1(root: Path, independent_hash: str) -> list[dict[str, Any]]:
         ),
         "denominator_statistics": layer_result(
             "PASS" if h1["n_records"] == 2880 else "FAIL",
-            "2880=12 systems × 48 cases × 5 repeats; case is the unit. Live-provider CANNOT_CHECK records are not recoded as zeros for offline H1.",
+            "2880=12 systems × 48 cases × 5 repeats; case is the unit. The current frozen archive has no missing records.",
             {"n_records": h1["n_records"], "orion_n": h1["orion_n"]},
         ),
         "baseline_pressure": layer_result(
@@ -755,7 +755,7 @@ def audit_p1(root: Path, independent_hash: str) -> list[dict[str, Any]]:
             paper_id="P1",
             claim_id="P1.H1",
             atomic="P1 H1 (root-success superiority vs strongest matched baseline) is NOT_SUPPORTED on the frozen TEST split (ORION 1/48).",
-            bounded="The null is preserved. Mechanistic subclaims must not be rewritten as H1 support. n=48 is below required inferential n=385.",
+            bounded="The registered superiority gate returned NOT_SUPPORTED; this does not establish the null. Mechanistic subclaims must not be rewritten as H1 support. Design authority remains blocked by conflicting prospective-power specifications.",
             subject_commit=str(t2["provenance"]["integrity"]["subject_revisions"][0]),
             protocol_id="P1.hidden-formulation.v1",
             protocol_path=protocol_path,
@@ -768,7 +768,7 @@ def audit_p1(root: Path, independent_hash: str) -> list[dict[str, Any]]:
                 "eligible_n": 48,
                 "unit": "case after majority reduction of 5 repeats",
                 "repeats_nested_not_inflating_n": True,
-                "cannot_check_or_invalid_handling": "offline H1 uses SCORED repeats; live-provider CANNOT_CHECK isolated to that system",
+                "cannot_check_or_invalid_handling": "the recovered frozen archive contains all 2880 expected SCORED repeats; any future missing or partial cell must fail closed as CANNOT_CHECK",
                 "post_outcome_exclusions": 0,
             },
             layers=h1_layers,

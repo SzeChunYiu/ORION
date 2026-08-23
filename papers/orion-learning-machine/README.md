@@ -26,8 +26,8 @@ not.
 
 Its own `REPRODUCE.md` names them:
 
-> **Papers:** `../paper-09-executable-research-core/` and
-> `../paper-10-content-bound-math-evaluation/`
+> **Papers:** `../paper-xx-executable-research-core/` and
+> `../paper-xx-content-bound-math-evaluation/`
 
 Those are the two **retired predecessor** identities, not the active P9 and P10.
 The live identities are `paper-09-structured-epistemic-learning/` (#662) and
@@ -46,7 +46,7 @@ no `P<n>-U` terminal.
 
 Thirteen tracked files reference this path, including two CI workflows
 (`p9-p10-publication-closure.yml`, `p10-publication-overlay-v2.yml`), three
-benchmark scripts under `paper-10-content-bound-math-evaluation/`, a live test
+benchmark scripts under `paper-xx-content-bound-math-evaluation/`, a live test
 (`tests/unit/candidates/test_p9_p10_learning_machine.py`), and the manifest
 digests in this directory bind file paths.
 

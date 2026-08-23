@@ -1,6 +1,16 @@
 {
   "framework_version": "0.3.9-shadow",
-  "paper_sync_epoch": "2026-08-16-phase1-rakl-donor-closure-v3",
+  "paper_sync_epoch": "2026-08-22-q-series-final-v1",
+  "q_series_publication_spec_id": "ORION.QSeriesFinalPublicationSpec.v1",
+  "q_series_sync_epoch": "2026-08-22-q-series-final-v1",
+  "q_series_paper_ids": ["Q1", "Q2", "Q3", "Q4"],
+  "q_series_canonical_manuscripts": [
+    "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md",
+    "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md",
+    "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md",
+    "papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md"
+  ],
+  "q3_harness_publication_contract_id": "ORION.Q3.HarnessPublicationContract.v1",
   "state_coordinates": ["K", "W", "M"],
   "core_operator_ids": [
     "FRAME.v1",

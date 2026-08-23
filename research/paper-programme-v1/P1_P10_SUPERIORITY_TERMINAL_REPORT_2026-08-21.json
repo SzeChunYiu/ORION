@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "e8c78bd52da4586eba41f36d607ec1654ca507e4754098bc9dc47ca997e6dd4d",
+    "content_digest": "7d416595b5bfcdfcc0c3db4c34cab62bff6fbde04016f080d158d7d778a8f333",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -79,7 +79,7 @@
         "check_id": "HC-SUP-STALE-PAPER-IDENTITY",
         "findings": [],
         "outcome": "PASS",
-        "reason": "every paper-numbered directory is registered: 10 active identities and 2 recorded predecessor(s)"
+        "reason": "every paper-numbered directory is registered: 10 active identities and 0 recorded predecessor(s)"
       },
       {
         "check_id": "HC-SUP-SPLIT-PAPER-IDENTITY",
@@ -91,7 +91,7 @@
         "check_id": "HC-SUP-UNCLASSIFIED-BLOCKER",
         "findings": [],
         "outcome": "PASS",
-        "reason": "all 49 blocked terminal(s) carry a responsibility class and an unblock action"
+        "reason": "all 43 blocked terminal(s) carry a responsibility class and an unblock action"
       },
       {
         "check_id": "HC-SUP-PREDECESSOR-REUSE",
@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "4284101bd9aaf2489bdcf2638a34eae4c8a8cb64349e6c1153f656f81b11dec7",
+  "content_digest": "791b67d755244fd4e07dc95f75ac1c931520df9f49c743c5d6415cbf4e723623",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -176,6 +176,21 @@
           "artifact_ref": "development/p1-u-gpt-r4-matched-pairs/DEVELOPMENT_PACKET.md",
           "grade": "CANNOT_CHECK",
           "terminal": ""
+        },
+        {
+          "artifact_ref": "research/claim_expansion/p1/claude_t3/REPAIRED_GUARD_RUN_V1.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED"
+        },
+        {
+          "artifact_ref": "research/claim_expansion/p1/claude_anon/ROLE_FREE_RERUN_V4.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION__FROZEN_DETERMINISTIC_HOST_ONLY"
+        },
+        {
+          "artifact_ref": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P1_CONFIRMATORY_PANEL_DISCRIMINATES_ON_EVERY_REGISTERED_METRIC"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -184,29 +199,29 @@
       "work_queue": [
         {
           "actionability": "BLOCKED_ON_UPSTREAM",
-          "gate_id": "P1-U-T1",
-          "refs": [
-            "#723",
-            "#730",
-            "#732",
-            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md",
-            "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-            "src/orion/core/digests.py"
-          ],
-          "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The digest defect that rejected 100% of native rows is solved: with the repair installed the frozen 2020 primary runs to a scored result (48/48 rows bound, ARD 0.708 vs B3 0.208). But the result is not attributable. ORION_NATIVE_BASE returns UNRESOLVED on 48/48 episodes because the solver never reaches DIAGNOSE, so the ablation arm #723 added to prove the gain comes from the ARD addition rather than from runtime wrapping is inert, and all six families 'differ from BASE' trivially. 'Materially outperform BASE' is not computed anywhere.",
-          "unblock": "Give the BASE arm a reachable DIAGNOSE path and compute a per-family ARD-vs-BASE margin with a frozen threshold and a stability bound, then rerun. Also make the digest repair durable inside _native_row_valid rather than as a sibling monkey-patch: the primary run directly still returns 48/48 invalid, silently, and the wrapper is non-idempotent so a double install reverts to 100% rejection without an exception."
-        },
-        {
-          "actionability": "BLOCKED_ON_UPSTREAM",
           "gate_id": "P1-U-T3",
           "refs": [
             "#723",
             "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "Two frozen guards do not test what they are named. Class noninferiority files both members of every pair under adverse_class, so the NO_HIGH_LEVEL_REFORMULATION control class — the entire point of the matched control — is never evaluated. Domain noninferiority has 26 strata of 1-2 episodes, so the -0.10 margin is really a hard 'ARD may never lose a single episode' rule. The leakage guard is fail-open on a missing key and omits pair role as a token.",
-          "unblock": "Accumulate each pair member under its own gold class; widen the domain stratifier or restate the margin as the zero-loss rule it actually is; add pair role to the forbidden token set and make _leakage_free fail closed. These are pre-outcome protocol repairs under the R4 PRE_OUTCOME_PROTOCOL_REPAIR precedent and must land before the outcome is read."
+          "statement": "The three specification defects this terminal named are closed, and closing them made the result worse rather than better. Class noninferiority filed 0 of 48 episodes under their own gold class and now accumulates each episode under its own, as a conjunction with the original check retained bit-for-bit so the repair cannot loosen anything; the control stratum comes out at +0.364 over 22 episodes. The domain margin was never a margin -- 26 strata of one or two episodes, where clearing -0.10 needs at least ten -- and is renamed domain_zero_loss for the rule it arithmetically is, with the evaluator raising if the two predicates ever disagree; it holds under all four readings. The leakage guard was fail-open on a missing key and blind to pair role, and is now three-valued with a __bool__ that raises rather than picking a polarity.",
+          "unblock": "Nothing further is owed against T3 itself. What the repair exposed is a new and separate blocker, and it is the one that now holds P1-U-T1: the frozen core builds problem_id as p1-r6-root:{episode_id}, and episode ids are R5-<QUERY>-A/-C/-U, so the pair role crosses the provider boundary on all 48 episodes and both arms. Mint a role-free root problem id under its own pre-outcome freeze. It was not done here because it changes every runtime digest including the committed DR1 receipt, which is a re-run and not a repair. Recorded and deliberately not repaired: the same margin-over-tiny-strata shape exists in the R2, R3 and R4 evaluators, which T3 does not name."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P1-U-T1",
+          "refs": [
+            "#723",
+            "#730",
+            "#732",
+            "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+            "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The identifier leak that held this terminal is closed and the primary survives it. Episode identifiers crossing the provider boundary are now opaque handles, verified role-free against a 1000-permutation null on a role-stratified held-out split; the unchanged leakage audit passes on all 96 episode-arms where it previously failed on all 96, and every scored statistic is bit-identical to the identified run (ROLE_FREE_RERUN_V4, terminal P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION). Three things still stand between that and this terminal. The host is a frozen deterministic provider, which cannot exploit a leaked label, so identical scores there are close to true by construction rather than evidence about a semantic model. Evaluator custody is internal -- the evaluator is authored in the same lane as the candidate -- and PROTECTED_SUPERIORITY admits only PROSPECTIVE_PROTECTED evidence, which requires external custody. And the terminal the run reports is itself conditional on the 2019 replication that P1-U-T2 is blocked on.",
+          "unblock": "Three steps, in this order, none of which is the identifier work -- that is done. Re-run the now-clean boundary against a changed semantic host, where the identical-scores finding becomes a real result instead of a property of a provider that cannot read. Move evaluator custody outside the authoring lane, since no amount of internal re-running reaches PROSPECTIVE_PROTECTED. And unblock P1-U-T2 by removing the hardcoded source_year == 2020, because the terminal this run reports is pending that replication by its own name. One residual is recorded and deliberately not repaired: the words 'adverse' and 'control' occur in dossier text at in-sample informedness 0.000 and 0.072 over 5 of 88 payloads, which is incidental scientific vocabulary rather than an encoded label, and repairing corpus content during an identifier repair would change the arena mid-run."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -217,8 +232,8 @@
             "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
           "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
-          "statement": "The 2019 replication cannot run through this evaluator at all. source_year == 2020, the exact retained-failure list ['MEAS-P2','BOUND-P1'] and n_episodes == 48 are hard-wired; a 2019 corpus identical in every other respect returns P1_R6_CANNOT_CHECK_FIXED_DATA with zero episodes executed and no exception raised. No 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
-          "unblock": "Read year, retained-route list and expected episode count from the fixed-source JSON, which already carries expected_episode_count, rather than from literals. Then build the 2019 corpus and run it with an independent scorer on a live/open-weight host."
+          "statement": "The evaluator no longer refuses another year by construction. The primary year is read from FIXED_SOURCE_SET_V1.json, which has always carried primary_year, rather than written as the literal 2020 in two row checks; the expected episode count was already read from that file. And being handed a corpus built from different sources is now a determinate refusal, P1_R6_REFUSED_NOT_THE_FROZEN_SOURCE_SET, rather than a frozen-corpus CANNOT_CHECK reported with zero episodes scored and nothing raised -- the evaluator can tell that it was given a different object, so saying it could not tell was the wrong report. A frozen corpus that is merely incomplete still reports as undetermined, which is what that terminal is for. What remains is external and unchanged: no 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
+          "unblock": "Build the 2019 corpus -- the evaluator will now run it -- and score it with an independent scorer on a live or open-weight host."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -237,12 +252,12 @@
           "gate_id": "P1-U-T5",
           "refs": [
             "#649",
-            "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-            "src/orion/core/digests.py",
-            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+            "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+            "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+            "research/failures/2026-08-digest-representation-boundary-mixup/README.md"
           ],
           "responsibility": "SEARCH_OR_EVIDENCE",
-          "statement": "Three failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary and a failure record; and the inert-ablation regime found by cross-agent verification. None has been prospectively validated, and the second and third are engineering mechanics rather than scientific ones.",
+          "statement": "Four failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary; and the unreachable-operator regime, converted into run-level operator coverage that raises rather than returning False. None has been prospectively validated, and the engineering conversions are not scientific mechanics.",
           "unblock": "Carry the acquisition-regime conversion through an attributable scored run so it is prospectively validated rather than merely designed. The engineering conversions should not be counted toward this terminal."
         }
       ]
@@ -293,6 +308,16 @@
           "artifact_ref": "research/claim_expansion/p2/P2_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P2_WIDER_ROUTE_AUTHORITY_CLAIM_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_ACQUISITION_CONTRACTS__A3_CANNOT_CHECK"
+        },
+        {
+          "artifact_ref": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "VALIDATED_ON_CONSTRUCTED_REPRODUCTION__CONSTRUCTED_REPRODUCTION_ONLY"
+        },
+        {
+          "artifact_ref": "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "BOTH_COMPLETED_WIDE_CAMPAIGNS_RAN_AT_THE_MEASUREMENT_FLOOR"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -300,26 +325,26 @@
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
         {
-          "actionability": "BLOCKED_ON_UPSTREAM",
+          "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P2-U-T1",
           "refs": [
             "#650",
-            "#733"
+            "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "SEARCH_OR_EVIDENCE",
-          "statement": "No naturalistic open-world arena with hidden distributed evidence and multiple material routes exists; the P2-X predecessor scored exact acquisition contracts, which is a different object.",
-          "unblock": "PR #733 reopens the external Wide campaign with a transport-valid OpenAIRE V2 source. Land it, then build the adversarial route families #650 enumerates (missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated)."
+          "statement": "The blocker this replaces named PR #733 as in-flight upstream work. #733 was closed unmerged on 2026-08-21, superseded by #752, which also closed unmerged after running. So nothing is in flight, and two completed campaigns now exist whose results the ledger had not recorded. V2 never scored: its repeated-pid crosswalk probe returned HTTP 200 with an empty results array, below its prospectively frozen minimum of one, so acquisition never started. V3 changed the crosswalk encoding, did run all 400 rows, and terminated P2_WIDE_EXTERNAL_V3_CANNOT_CHECK on provider validity: 0.716 against a frozen 0.90. Underneath that correct terminal is a harder finding, measured rather than asserted (P2_COMPARISON_RESOLUTION_2026-08-22). Both completed campaigns ran at the measurement floor. The frozen rule requires an average-IoU delta of 0.03 before superiority is supported, and every arm in both campaigns scores about 0.004, so the entire measured performance of the best arm is smaller than the difference the campaign exists to detect. Deleting a competing arm outright would not reach the threshold. Everything else follows: all 399 paired questions tie, the bootstrap interval is [0.0, 0.0] which reads as the strongest possible equivalence evidence and is instead the signature of an instrument with no resolution, and in V3 three distinct candidate files produced one byte-identical evaluator output. In V1 the three arms shared one candidate digest outright, so that campaign scored a single system against itself three times.",
+          "unblock": "Raise the arms off the floor before running another campaign; a fourth transport version scored at IoU 0.004 would spend the same effort to learn the same nothing. That means finding out why retrieval scores near zero on a benchmark whose own gold is reachable -- which the resolution audit deliberately does not diagnose, because it measures the instrument and not the retrieval. Only then are the route families #650 enumerates worth building: missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated. Independently of all of it, this terminal is PROTECTED_SUPERIORITY and admits only PROSPECTIVE_PROTECTED evidence, which requires external evaluator custody that no campaign here has had."
         },
         {
-          "actionability": "BLOCKED_ON_UPSTREAM",
+          "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P2-U-T2",
           "refs": [
             "#650",
-            "#733"
+            "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "False-closure non-inferiority cannot be measured without route-level and task-level closure receipts over a naturalistic arena.",
-          "unblock": "Require closure receipts per route and per task in the Wide campaign schema before outcomes are accessed."
+          "statement": "This is the terminal the resolution finding matters most to, because a non-inferiority guard is exactly what a degenerate interval would wrongly discharge. Both completed Wide campaigns report a paired interval of [0.0, 0.0] over 399 matched questions with 399 ties, no wins and no losses. Read at face value that is conclusive equivalence. It is instead a zero-width interval over identical differences, which a bootstrap produces at any sample size, and it arises because every arm sits at the measurement floor -- about 0.004 average IoU against a frozen required delta of 0.03. Route-level and task-level closure receipts over a naturalistic arena are still missing, which was the original statement and remains true; what is added is that the instrument that would carry them currently has no resolution, so collecting receipts through it would produce another interval that could not have come out any other way. Three reporting defects travel with both artifacts: they publish the unseeded max_iou_at_k family that the paper's own score_wide_comparison.py excludes by rule, that family decreases in k which a maximum over the top k cannot do, and every runtime total is exactly zero, which is untransported measurement rather than measured cost.",
+          "unblock": "Require the resolution audit to pass before a campaign's paired interval is allowed to discharge anything: an interval from an all-ties split, from arms whose evaluator output is byte-identical, or from arms below the campaign's own frozen effect threshold must map to CANNOT_CHECK rather than to non-inferiority. Then require closure receipts per route and per task in the campaign schema before outcomes are accessed. The guard exists and reports both campaigns as ZERO_RESOLUTION; wiring it into the campaign's own terminal rule is the step that has not been taken."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -338,8 +363,8 @@
             "#650"
           ],
           "responsibility": "SEARCH_OR_EVIDENCE",
-          "statement": "No negative or tied family has yet produced a validated stronger successor search mechanic.",
-          "unblock": "Mine each false closure and missed-evidence event from the first scored campaign for a candidate mechanic, then validate it prospectively on a held-out route family."
+          "statement": "A candidate successor mechanic has been generated from the named failure mechanism and prospectively validated on an authored reproduction of it (P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21). No successor has been validated on a real route family under external evaluator custody, which is what this terminal asks for.",
+          "unblock": "The mining half is done: the stage attribution named lexical echo, and gating question terms by corpus document frequency lifts hit@10 on the reproduced mode from 0.00 to 1.00 with the harm guard non-vacuous. What remains is arena, not mechanic — run the same frozen arms on a held-out route family of the Wide campaign (blocked with P2-U-T1 on provider access; arXiv and OpenAlex both return CONNECT tunnel failed, response 403 here), with the target set held outside the lane that authored the mechanic. The successor also needs corpus-level document frequencies, which offline are exact and against a live provider require a result-count endpoint or sampled index that this study does not discharge."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -399,6 +424,16 @@
           "artifact_ref": "research/claim_expansion/p3/P3_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P3_WIDER_SCIENTIFIC_COMPATIBILITY_CLAIM_SUPPORTED__BOUNDED_EXACT_STRUCTURED_CONTRACTS__A3_CANNOT_CHECK"
+        },
+        {
+          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "P3_PARTIAL_OBSERVATION_RESULT__NULL_FOR_T5__OVER_RESOLUTION_GUARD_NO_LONGER_VACUOUS"
+        },
+        {
+          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "FOUR_OF_SIX_P3_COORDINATES_ARE_UNTESTABLE_ON_THIS_CORPUS"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -409,11 +444,12 @@
           "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P3-U-T5",
           "refs": [
-            "#651"
+            "#651",
+            "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "REPRESENTATION_OR_INTERFACE",
-          "statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
-          "unblock": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+          "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL). A second reading of the same emptiness is now on record and points at what to build (P3_PANEL_RESOLUTION_2026-08-22). Four of the six registered ablations -- remove_construct, remove_measurement, remove_referent, remove_temporal_context -- move none of accuracy, false merge or false split, each with a zero-width interval; only forcing compatibility without the obstruction distinction and removing the modality/polarity/attribution/discourse group move anything. P3's manuscript already says this and preserves those zeros as coverage limitations rather than reading them as dispensability, which is the correct reading and the only one the artifact supports. What the audit adds is that four coordinates are named as untestable on this corpus, executably, rather than in a results paragraph -- so the corpus a successor coordinate would have to be mined from is the one that makes those four consultable, not merely one with false merges in it.",
+          "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -504,6 +540,11 @@
           "artifact_ref": "research/claim_expansion/p4/P4_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK"
+        },
+        {
+          "artifact_ref": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "A_STATED_SATURATION_LIMIT_MADE_EXECUTABLE_AND_LEDGER_VISIBLE"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -544,11 +585,12 @@
           "actionability": "BLOCKED_ON_NEW_ARENA",
           "gate_id": "P4-U-T2",
           "refs": [
-            "#652"
+            "#652",
+            "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all — that is what H3 taught.",
-          "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report."
+          "statement": "There is no identifiability audit that runs as a gate, and without one no score from this benchmark can be used at all -- that is what H3 taught. What now exists is one leg of it, executable (P4_PANEL_RESOLUTION_2026-08-22): read each metric across every system in a published panel and ask whether it takes more than one value. Run over the V2 panel it reports that two of the three hypotheses are decided on metrics no system varies on -- clean_coverage is exactly 1.0 for all eleven systems, so H2 reports [0.0, 0.0] and PASS, and correct_cannot_check_rate is also 1.0 for all eleven, so H3 reports [0.0, 0.0] and NOT_SUPPORTED. Saturation is not a bias toward optimism: the same panel yields one PASS and one NOT_SUPPORTED from it. Only false_promotion_rate discriminates, over six distinct values, and H1's interval is earned. None of this is new to the paper: P4's manuscript already states it in prose, with the same counts, and already concludes that H2 and H3 'should be read as design limits rather than as comparative findings'. What was missing is that the limitation was a caveat rather than a gate, and that the ledger did not carry it at all. The later identifiable V3 panel repairs correct_cannot_check_rate, which varies there; clean_coverage remains saturated at 1.0 across every system in both constructions.",
+          "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report -- and make the saturation check its cheapest leg, since it needs only the per-system rates and would have refused H2 in both constructions rather than leaving it to a limitations paragraph. Then the harder leg the H3 lesson names: labels provably unrecoverable from evidence-list length, missingness pattern, template or source count. A clean-coverage guard also needs a construction containing clean positives that a weaker governance mechanism actually declines; the paper says as much, and until such cases exist non-inferiority on that metric cannot be a comparative finding."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -679,15 +721,15 @@
           "findings": [],
           "gate_id": "P6-U-T1",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json, papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json"
         },
         {
           "findings": [],
           "gate_id": "P6-U-T2",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json, papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json"
         },
         {
           "findings": [],
@@ -725,7 +767,7 @@
           "terminal": ""
         }
       ],
-      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "strongest_grade": "MECHANIZED_THEOREM",
       "terminal": "CANNOT_CHECK",
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
@@ -738,27 +780,6 @@
           "responsibility": "SEARCH_OR_EVIDENCE",
           "statement": "No naturalistic multi-domain change corpus exists — code patch, dataset revision, model revision, analysis change, instrument recalibration, manuscript claim revision.",
           "unblock": "Build the change corpus and measure revalidation cost saved against revalidate-everything and dependency-graph-only comparators."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P6-U-T1",
-          "refs": [
-            "#654",
-            "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
-          "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P6-U-T2",
-          "refs": [
-            "#654"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
-          "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -777,8 +798,8 @@
             "#654"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "No discovered counterexample has yet caused a principled framework extension rather than an ad hoc exception.",
-          "unblock": "Treat each theorem counterexample as a candidate missing primitive and extend the semantics, not the exception list."
+          "statement": "The unblock has been performed and the terminal is not thereby discharged; what changed is that the extension now exists and can be inspected. A counterexample the whole lifting battery accepted, science_lifts_without_donor, was traced to a missing primitive rather than patched: the semantics could not express the projection from a lifted state to the donor certificate under it, so conservativity could only be stated about the donor atom, which is how it became a comparison of a name against itself. Adding the projection, an enriched donor product built from the donor theory's own validator over a requirement set enlarged by the scientific coordinates, and donor-valid transitions repaired five checks that had refuted nothing; both checkers moved FAIL to PASS and every published count and digest was preserved. The ad hoc alternative -- a one-line 'nothing lifts without a valid donor' exception -- is kept beside the extension, unshipped, with a test pinning that its refuted set is a strict subset, so the distinction this terminal asks about is a comparison a reviewer can run. What remains is a judgement about whether one such episode establishes the practice, which is a grading call and not a further repair.",
+          "unblock": "Decide whether the recorded extension episode discharges the terminal, or set the number of independent episodes it requires; the machinery to produce and compare further ones is in place."
         }
       ]
     },
@@ -789,15 +810,15 @@
           "findings": [],
           "gate_id": "P7-U-T1",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json"
         },
         {
           "findings": [],
           "gate_id": "P7-U-T2",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json"
         },
         {
           "findings": [],
@@ -830,7 +851,7 @@
           "terminal": "P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT"
         }
       ],
-      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "strongest_grade": "MECHANIZED_THEOREM",
       "terminal": "CANNOT_CHECK",
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
@@ -856,27 +877,6 @@
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P7-U-T1",
-          "refs": [
-            "#655",
-            "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
-          "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P7-U-T2",
-          "refs": [
-            "#655"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
-          "unblock": "Derive the finite results as instances once the calculus is mechanized."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
           "gate_id": "P7-U-T5",
           "refs": [
             "#655"
@@ -894,15 +894,15 @@
           "findings": [],
           "gate_id": "P8-U-T1",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json"
         },
         {
           "findings": [],
           "gate_id": "P8-U-T2",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json, papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json"
         },
         {
           "findings": [],
@@ -930,12 +930,17 @@
       "paper_id": "P8",
       "predecessor_artifacts": [
         {
+          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "P8_AUTHORITY_RECEIPT_AUDIT__FAIL"
+        },
+        {
           "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
         }
       ],
-      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "strongest_grade": "MECHANIZED_THEOREM",
       "terminal": "CANNOT_CHECK",
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
@@ -958,27 +963,6 @@
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
           "statement": "Empirical utility versus over-blocking cannot be measured without those workflows.",
           "unblock": "Measure invalid discharge, unnecessary blocking, revocation accuracy and workflow cost on one object."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P8-U-T1",
-          "refs": [
-            "#656",
-            "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The 169/169 valid compositions with 169 matched unbridged-widening failures are a finite instance over 13 donor types, not a theorem over arbitrary delegation graphs.",
-          "unblock": "Define primitive scientific authority and discharge semantics independent of the 13 donor types, then prove non-amplification for arbitrary acyclic graphs and characterize cycles."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P8-U-T2",
-          "refs": [
-            "#656"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The 39,936-state result cannot follow as an instance while no general theorem exists.",
-          "unblock": "Derive it as a finite instance once the composition and revocation theorem is mechanized."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1045,6 +1029,21 @@
           "artifact_ref": "papers/paper-09-structured-epistemic-learning/P9_SCIENTIFIC_CLOSURE_RECEIPT_V1.md",
           "grade": "BOUNDED_PROTECTED",
           "terminal": "P9_BOUNDED_STRUCTURAL_LEARNING_SUPPORTED"
+        },
+        {
+          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "T4_ATTACK_SUCCEEDED"
+        },
+        {
+          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
+          "grade": "ABSENT",
+          "terminal": "T3_GRID_DECLARED_NO_CELL_EXECUTED"
+        },
+        {
+          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "ONE_OF_THREE_P9_HOSTILE_VARIANTS_NEVER_CHANGED_ITS_INPUT"
         }
       ],
       "strongest_grade": "BOUNDED_PROTECTED",
@@ -1080,18 +1079,19 @@
             "#662"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The critical scale S*(k,q) and critical inference budget C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather than fitted.",
-          "unblock": "Freeze the relational-complexity x representation x model-scale x inference-budget grid before outcomes, and preserve any null cell rather than fitting an exponent post hoc."
+          "statement": "The grid is now prospectively defined and it is empty. 1344 cells over k, representation family, model, inference budget and domain, read at three thresholds, with S* and C* defined as the first declared ladder point reaching q and RIGHT_CENSORED otherwise -- no interpolation, extrapolation or fitted exponent anywhere in the definition. Zero cells carry an outcome, so the denominator is 0 of 1344 and the status is CANNOT_CHECK. A crossing cannot be detected because nothing has been measured, which is now a stated denominator rather than an absent grid.",
+          "unblock": "Execute cells. The ladder needs real model scales, which this environment cannot provide -- and the freeze explicitly refuses a surrogate, because a classical-learner capacity ladder is not a model-scale ladder and substituting one would answer a different question. Any cell left unexecuted keeps the whole grid at CANNOT_CHECK by construction; a fully executed grid with no evaluable crossing test is also CANNOT_CHECK, not a pass."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P9-U-T4",
           "refs": [
-            "#662"
+            "#662",
+            "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
-          "unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices."
+          "statement": "The representation-length and format-prior attacks have now been run, and one of them succeeds. Length does not explain the typed arm; it explains most of the untyped comparator, which drops 0.906 to 0.609 under an equal-token control while typed holds 1.0. Format prior does succeed: TYPED_SERIALIZED_BAG moves 0.75 to 0.50 under a bijection on the value alphabet that preserves every gold label, so the published typed-minus-serialized margin measures which symbols were drawn rather than the information the representation carries. The surviving margin is the one the existing failure record already identified, TYPED_RELATIONAL minus UNTYPED_PAIR at +0.09375, whose both arms are orbit-invariant. A prior question has now been put to the battery that produced that result, and one of its three hostile variants turns out never to have attacked anything (P9_ATTACK_POTENCY_2026-08-22). Fifteen of the twenty-four (variant, arm) cells leave the arm's feature vector unchanged on all 512 instances, and eight of those fifteen are the whole ORDER_PERMUTATION row. That variant's dataset is identical to the base, manifest digest included: it reverses every sequence-valued coordinate and then rebuilds through a normaliser that maps each one to tuple(sorted(set(...))), so the reversal is undone on the following line. The consequence is larger than a wiring bug. Ordering is not representable in MethodRealization at all -- the coordinates the battery names as sequences are stored as sorted sets -- so repairing the wiring would not produce an order attack, and the order-blindness of every feature family follows from the same fact rather than being a separate coincidence. PC-2_GOLD_PRESERVATION reports zero labels changed over 512 instances for that variant, which is trivially true of an identity. EQUAL_LENGTH reaches seven of eight arms on 112 instances each and SEMANTIC_ORBIT reaches two of eight on all 512, so this is a statement about specific cells and not about the battery, which is otherwise careful and already refuses a contrast whose comparator answered with a single label.",
+          "unblock": "The attacks now exist as runnable gates with stated denominators, so what is owed is not instrumentation. Two things. Withdraw or re-scope the typed-minus-serialized sentence in the manuscript, since its margin is alphabet-dependent. And run both attacks against the result they were written for -- the frozen Qwen2.5 successor run of #618, which has no outcome here and cannot be reached: this execution was against D1 v1.2, the only representation contrast P9 currently publishes, and that scope is stated in the artifact. Before any of that: add the precondition the battery is missing, which is its own eligibility rule one level earlier -- an attack cannot fail against an input it did not change, so a (variant, arm) cell whose feature vectors are unchanged must read NOT_ATTACKED rather than held. Then decide what to do about ORDER_PERMUTATION. It cannot be repaired in place; either the comparison coordinates carry an order in the representation, in which case the variant becomes a real attack and the feature families stop being order-blind for free, or the variant is withdrawn and the claim it appeared to support is withdrawn with it. The same normaliser drops duplicates, so a multiplicity attack is unavailable for the same reason and would be the second thing a carrying representation buys."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1148,7 +1148,7 @@
       "paper_id": "P10",
       "predecessor_artifacts": [
         {
-          "artifact_ref": "papers/paper-10-content-bound-math-evaluation/README.md",
+          "artifact_ref": "papers/paper-xx-content-bound-math-evaluation/README.md",
           "grade": "BOUNDED_PROTECTED",
           "terminal": "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME"
         },
@@ -1156,6 +1156,11 @@
           "artifact_ref": "papers/paper-10-structured-problem-solving/successor/P10_U_MANUSCRIPT.tex",
           "grade": "MANUSCRIPT_COMPLETION",
           "terminal": ""
+        },
+        {
+          "artifact_ref": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json",
+          "grade": "BOUNDED_PROTECTED",
+          "terminal": "SOURCE_PROJECTION_TRANSFER_MEASURED__NATIVE_REPLAY_PENDING"
         }
       ],
       "strongest_grade": "BOUNDED_PROTECTED",
@@ -1212,23 +1217,6 @@
   "work_queue": [
     {
       "actionability": "BLOCKED_ON_UPSTREAM",
-      "gate_id": "P1-U-T1",
-      "issue": 649,
-      "paper_id": "P1",
-      "refs": [
-        "#723",
-        "#730",
-        "#732",
-        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md",
-        "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-        "src/orion/core/digests.py"
-      ],
-      "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The digest defect that rejected 100% of native rows is solved: with the repair installed the frozen 2020 primary runs to a scored result (48/48 rows bound, ARD 0.708 vs B3 0.208). But the result is not attributable. ORION_NATIVE_BASE returns UNRESOLVED on 48/48 episodes because the solver never reaches DIAGNOSE, so the ablation arm #723 added to prove the gain comes from the ARD addition rather than from runtime wrapping is inert, and all six families 'differ from BASE' trivially. 'Materially outperform BASE' is not computed anywhere.",
-      "unblock": "Give the BASE arm a reachable DIAGNOSE path and compute a per-family ARD-vs-BASE margin with a frozen threshold and a stability bound, then rerun. Also make the digest repair durable inside _native_row_valid rather than as a sibling monkey-patch: the primary run directly still returns 48/48 invalid, silently, and the wrapper is non-idempotent so a double install reverts to 100% rejection without an exception."
-    },
-    {
-      "actionability": "BLOCKED_ON_UPSTREAM",
       "gate_id": "P1-U-T3",
       "issue": 649,
       "paper_id": "P1",
@@ -1237,8 +1225,8 @@
         "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "Two frozen guards do not test what they are named. Class noninferiority files both members of every pair under adverse_class, so the NO_HIGH_LEVEL_REFORMULATION control class — the entire point of the matched control — is never evaluated. Domain noninferiority has 26 strata of 1-2 episodes, so the -0.10 margin is really a hard 'ARD may never lose a single episode' rule. The leakage guard is fail-open on a missing key and omits pair role as a token.",
-      "unblock": "Accumulate each pair member under its own gold class; widen the domain stratifier or restate the margin as the zero-loss rule it actually is; add pair role to the forbidden token set and make _leakage_free fail closed. These are pre-outcome protocol repairs under the R4 PRE_OUTCOME_PROTOCOL_REPAIR precedent and must land before the outcome is read."
+      "statement": "The three specification defects this terminal named are closed, and closing them made the result worse rather than better. Class noninferiority filed 0 of 48 episodes under their own gold class and now accumulates each episode under its own, as a conjunction with the original check retained bit-for-bit so the repair cannot loosen anything; the control stratum comes out at +0.364 over 22 episodes. The domain margin was never a margin -- 26 strata of one or two episodes, where clearing -0.10 needs at least ten -- and is renamed domain_zero_loss for the rule it arithmetically is, with the evaluator raising if the two predicates ever disagree; it holds under all four readings. The leakage guard was fail-open on a missing key and blind to pair role, and is now three-valued with a __bool__ that raises rather than picking a polarity.",
+      "unblock": "Nothing further is owed against T3 itself. What the repair exposed is a new and separate blocker, and it is the one that now holds P1-U-T1: the frozen core builds problem_id as p1-r6-root:{episode_id}, and episode ids are R5-<QUERY>-A/-C/-U, so the pair role crosses the provider boundary on all 48 episodes and both arms. Mint a role-free root problem id under its own pre-outcome freeze. It was not done here because it changes every runtime digest including the committed DR1 receipt, which is a re-run and not a repair. Recorded and deliberately not repaired: the same margin-over-tiny-strata shape exists in the R2, R3 and R4 evaluators, which T3 does not name."
     },
     {
       "actionability": "BLOCKED_ON_UPSTREAM",
@@ -1256,32 +1244,6 @@
     },
     {
       "actionability": "BLOCKED_ON_UPSTREAM",
-      "gate_id": "P2-U-T1",
-      "issue": 650,
-      "paper_id": "P2",
-      "refs": [
-        "#650",
-        "#733"
-      ],
-      "responsibility": "SEARCH_OR_EVIDENCE",
-      "statement": "No naturalistic open-world arena with hidden distributed evidence and multiple material routes exists; the P2-X predecessor scored exact acquisition contracts, which is a different object.",
-      "unblock": "PR #733 reopens the external Wide campaign with a transport-valid OpenAIRE V2 source. Land it, then build the adversarial route families #650 enumerates (missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated)."
-    },
-    {
-      "actionability": "BLOCKED_ON_UPSTREAM",
-      "gate_id": "P2-U-T2",
-      "issue": 650,
-      "paper_id": "P2",
-      "refs": [
-        "#650",
-        "#733"
-      ],
-      "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "False-closure non-inferiority cannot be measured without route-level and task-level closure receipts over a naturalistic arena.",
-      "unblock": "Require closure receipts per route and per task in the Wide campaign schema before outcomes are accessed."
-    },
-    {
-      "actionability": "BLOCKED_ON_UPSTREAM",
       "gate_id": "P9-U-T1",
       "issue": 662,
       "paper_id": "P9",
@@ -1296,6 +1258,23 @@
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P1-U-T1",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#723",
+        "#730",
+        "#732",
+        "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+        "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The identifier leak that held this terminal is closed and the primary survives it. Episode identifiers crossing the provider boundary are now opaque handles, verified role-free against a 1000-permutation null on a role-stratified held-out split; the unchanged leakage audit passes on all 96 episode-arms where it previously failed on all 96, and every scored statistic is bit-identical to the identified run (ROLE_FREE_RERUN_V4, terminal P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION). Three things still stand between that and this terminal. The host is a frozen deterministic provider, which cannot exploit a leaked label, so identical scores there are close to true by construction rather than evidence about a semantic model. Evaluator custody is internal -- the evaluator is authored in the same lane as the candidate -- and PROTECTED_SUPERIORITY admits only PROSPECTIVE_PROTECTED evidence, which requires external custody. And the terminal the run reports is itself conditional on the 2019 replication that P1-U-T2 is blocked on.",
+      "unblock": "Three steps, in this order, none of which is the identifier work -- that is done. Re-run the now-clean boundary against a changed semantic host, where the identical-scores finding becomes a real result instead of a property of a provider that cannot read. Move evaluator custody outside the authoring lane, since no amount of internal re-running reaches PROSPECTIVE_PROTECTED. And unblock P1-U-T2 by removing the hardcoded source_year == 2020, because the terminal this run reports is pending that replication by its own name. One residual is recorded and deliberately not repaired: the words 'adverse' and 'control' occur in dossier text at in-sample informedness 0.000 and 0.072 over 5 of 88 payloads, which is incidental scientific vocabulary rather than an encoded label, and repairing corpus content during an identifier repair would change the arena mid-run."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
       "gate_id": "P1-U-T2",
       "issue": 649,
       "paper_id": "P1",
@@ -1305,8 +1284,8 @@
         "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
       ],
       "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
-      "statement": "The 2019 replication cannot run through this evaluator at all. source_year == 2020, the exact retained-failure list ['MEAS-P2','BOUND-P1'] and n_episodes == 48 are hard-wired; a 2019 corpus identical in every other respect returns P1_R6_CANNOT_CHECK_FIXED_DATA with zero episodes executed and no exception raised. No 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
-      "unblock": "Read year, retained-route list and expected episode count from the fixed-source JSON, which already carries expected_episode_count, rather than from literals. Then build the 2019 corpus and run it with an independent scorer on a live/open-weight host."
+      "statement": "The evaluator no longer refuses another year by construction. The primary year is read from FIXED_SOURCE_SET_V1.json, which has always carried primary_year, rather than written as the literal 2020 in two row checks; the expected episode count was already read from that file. And being handed a corpus built from different sources is now a determinate refusal, P1_R6_REFUSED_NOT_THE_FROZEN_SOURCE_SET, rather than a frozen-corpus CANNOT_CHECK reported with zero episodes scored and nothing raised -- the evaluator can tell that it was given a different object, so saying it could not tell was the wrong report. A frozen corpus that is merely incomplete still reports as undetermined, which is what that terminal is for. What remains is external and unchanged: no 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
+      "unblock": "Build the 2019 corpus -- the evaluator will now run it -- and score it with an independent scorer on a live or open-weight host."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1329,12 +1308,12 @@
       "paper_id": "P1",
       "refs": [
         "#649",
-        "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-        "src/orion/core/digests.py",
-        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+        "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+        "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+        "research/failures/2026-08-digest-representation-boundary-mixup/README.md"
       ],
       "responsibility": "SEARCH_OR_EVIDENCE",
-      "statement": "Three failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary and a failure record; and the inert-ablation regime found by cross-agent verification. None has been prospectively validated, and the second and third are engineering mechanics rather than scientific ones.",
+      "statement": "Four failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary; and the unreachable-operator regime, converted into run-level operator coverage that raises rather than returning False. None has been prospectively validated, and the engineering conversions are not scientific mechanics.",
       "unblock": "Carry the acquisition-regime conversion through an attributable scored run so it is prospectively validated rather than merely designed. The engineering conversions should not be counted toward this terminal."
     },
     {
@@ -1363,6 +1342,32 @@
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P2-U-T1",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650",
+        "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "The blocker this replaces named PR #733 as in-flight upstream work. #733 was closed unmerged on 2026-08-21, superseded by #752, which also closed unmerged after running. So nothing is in flight, and two completed campaigns now exist whose results the ledger had not recorded. V2 never scored: its repeated-pid crosswalk probe returned HTTP 200 with an empty results array, below its prospectively frozen minimum of one, so acquisition never started. V3 changed the crosswalk encoding, did run all 400 rows, and terminated P2_WIDE_EXTERNAL_V3_CANNOT_CHECK on provider validity: 0.716 against a frozen 0.90. Underneath that correct terminal is a harder finding, measured rather than asserted (P2_COMPARISON_RESOLUTION_2026-08-22). Both completed campaigns ran at the measurement floor. The frozen rule requires an average-IoU delta of 0.03 before superiority is supported, and every arm in both campaigns scores about 0.004, so the entire measured performance of the best arm is smaller than the difference the campaign exists to detect. Deleting a competing arm outright would not reach the threshold. Everything else follows: all 399 paired questions tie, the bootstrap interval is [0.0, 0.0] which reads as the strongest possible equivalence evidence and is instead the signature of an instrument with no resolution, and in V3 three distinct candidate files produced one byte-identical evaluator output. In V1 the three arms shared one candidate digest outright, so that campaign scored a single system against itself three times.",
+      "unblock": "Raise the arms off the floor before running another campaign; a fourth transport version scored at IoU 0.004 would spend the same effort to learn the same nothing. That means finding out why retrieval scores near zero on a benchmark whose own gold is reachable -- which the resolution audit deliberately does not diagnose, because it measures the instrument and not the retrieval. Only then are the route families #650 enumerates worth building: missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated. Independently of all of it, this terminal is PROTECTED_SUPERIORITY and admits only PROSPECTIVE_PROTECTED evidence, which requires external evaluator custody that no campaign here has had."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P2-U-T2",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650",
+        "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "This is the terminal the resolution finding matters most to, because a non-inferiority guard is exactly what a degenerate interval would wrongly discharge. Both completed Wide campaigns report a paired interval of [0.0, 0.0] over 399 matched questions with 399 ties, no wins and no losses. Read at face value that is conclusive equivalence. It is instead a zero-width interval over identical differences, which a bootstrap produces at any sample size, and it arises because every arm sits at the measurement floor -- about 0.004 average IoU against a frozen required delta of 0.03. Route-level and task-level closure receipts over a naturalistic arena are still missing, which was the original statement and remains true; what is added is that the instrument that would carry them currently has no resolution, so collecting receipts through it would produce another interval that could not have come out any other way. Three reporting defects travel with both artifacts: they publish the unseeded max_iou_at_k family that the paper's own score_wide_comparison.py excludes by rule, that family decreases in k which a maximum over the top k cannot do, and every runtime total is exactly zero, which is untransported measurement rather than measured cost.",
+      "unblock": "Require the resolution audit to pass before a campaign's paired interval is allowed to discharge anything: an interval from an all-ties split, from arms whose evaluator output is byte-identical, or from arms below the campaign's own frozen effect threshold must map to CANNOT_CHECK rather than to non-inferiority. Then require closure receipts per route and per task in the campaign schema before outcomes are accessed. The guard exists and reports both campaigns as ZERO_RESOLUTION; wiring it into the campaign's own terminal rule is the step that has not been taken."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
       "gate_id": "P2-U-T3",
       "issue": 650,
       "paper_id": "P2",
@@ -1382,8 +1387,8 @@
         "#650"
       ],
       "responsibility": "SEARCH_OR_EVIDENCE",
-      "statement": "No negative or tied family has yet produced a validated stronger successor search mechanic.",
-      "unblock": "Mine each false closure and missed-evidence event from the first scored campaign for a candidate mechanic, then validate it prospectively on a held-out route family."
+      "statement": "A candidate successor mechanic has been generated from the named failure mechanism and prospectively validated on an authored reproduction of it (P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21). No successor has been validated on a real route family under external evaluator custody, which is what this terminal asks for.",
+      "unblock": "The mining half is done: the stage attribution named lexical echo, and gating question terms by corpus document frequency lifts hit@10 on the reproduced mode from 0.00 to 1.00 with the harm guard non-vacuous. What remains is arena, not mechanic — run the same frozen arms on a held-out route family of the Wide campaign (blocked with P2-U-T1 on provider access; arXiv and OpenAlex both return CONNECT tunnel failed, response 403 here), with the target set held outside the lane that authored the mechanic. The successor also needs corpus-level document frequencies, which offline are exact and against a live provider require a result-count endpoint or sampled index that this study does not discharge."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1391,11 +1396,12 @@
       "issue": 651,
       "paper_id": "P3",
       "refs": [
-        "#651"
+        "#651",
+        "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
       ],
       "responsibility": "REPRESENTATION_OR_INTERFACE",
-      "statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
-      "unblock": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+      "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL). A second reading of the same emptiness is now on record and points at what to build (P3_PANEL_RESOLUTION_2026-08-22). Four of the six registered ablations -- remove_construct, remove_measurement, remove_referent, remove_temporal_context -- move none of accuracy, false merge or false split, each with a zero-width interval; only forcing compatibility without the obstruction distinction and removing the modality/polarity/attribution/discourse group move anything. P3's manuscript already says this and preserves those zeros as coverage limitations rather than reading them as dispensability, which is the correct reading and the only one the artifact supports. What the audit adds is that four coordinates are named as untestable on this corpus, executably, rather than in a results paragraph -- so the corpus a successor coordinate would have to be mined from is the one that makes those four consultable, not merely one with false merges in it.",
+      "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1503,8 +1509,8 @@
         "#662"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The critical scale S*(k,q) and critical inference budget C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather than fitted.",
-      "unblock": "Freeze the relational-complexity x representation x model-scale x inference-budget grid before outcomes, and preserve any null cell rather than fitting an exponent post hoc."
+      "statement": "The grid is now prospectively defined and it is empty. 1344 cells over k, representation family, model, inference budget and domain, read at three thresholds, with S* and C* defined as the first declared ladder point reaching q and RIGHT_CENSORED otherwise -- no interpolation, extrapolation or fitted exponent anywhere in the definition. Zero cells carry an outcome, so the denominator is 0 of 1344 and the status is CANNOT_CHECK. A crossing cannot be detected because nothing has been measured, which is now a stated denominator rather than an absent grid.",
+      "unblock": "Execute cells. The ladder needs real model scales, which this environment cannot provide -- and the freeze explicitly refuses a surrogate, because a classical-learner capacity ladder is not a model-scale ladder and substituting one would answer a different question. Any cell left unexecuted keeps the whole grid at CANNOT_CHECK by construction; a fully executed grid with no evaluable crossing test is also CANNOT_CHECK, not a pass."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1512,11 +1518,12 @@
       "issue": 662,
       "paper_id": "P9",
       "refs": [
-        "#662"
+        "#662",
+        "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
-      "unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices."
+      "statement": "The representation-length and format-prior attacks have now been run, and one of them succeeds. Length does not explain the typed arm; it explains most of the untyped comparator, which drops 0.906 to 0.609 under an equal-token control while typed holds 1.0. Format prior does succeed: TYPED_SERIALIZED_BAG moves 0.75 to 0.50 under a bijection on the value alphabet that preserves every gold label, so the published typed-minus-serialized margin measures which symbols were drawn rather than the information the representation carries. The surviving margin is the one the existing failure record already identified, TYPED_RELATIONAL minus UNTYPED_PAIR at +0.09375, whose both arms are orbit-invariant. A prior question has now been put to the battery that produced that result, and one of its three hostile variants turns out never to have attacked anything (P9_ATTACK_POTENCY_2026-08-22). Fifteen of the twenty-four (variant, arm) cells leave the arm's feature vector unchanged on all 512 instances, and eight of those fifteen are the whole ORDER_PERMUTATION row. That variant's dataset is identical to the base, manifest digest included: it reverses every sequence-valued coordinate and then rebuilds through a normaliser that maps each one to tuple(sorted(set(...))), so the reversal is undone on the following line. The consequence is larger than a wiring bug. Ordering is not representable in MethodRealization at all -- the coordinates the battery names as sequences are stored as sorted sets -- so repairing the wiring would not produce an order attack, and the order-blindness of every feature family follows from the same fact rather than being a separate coincidence. PC-2_GOLD_PRESERVATION reports zero labels changed over 512 instances for that variant, which is trivially true of an identity. EQUAL_LENGTH reaches seven of eight arms on 112 instances each and SEMANTIC_ORBIT reaches two of eight on all 512, so this is a statement about specific cells and not about the battery, which is otherwise careful and already refuses a contrast whose comparator answered with a single label.",
+      "unblock": "The attacks now exist as runnable gates with stated denominators, so what is owed is not instrumentation. Two things. Withdraw or re-scope the typed-minus-serialized sentence in the manuscript, since its margin is alphabet-dependent. And run both attacks against the result they were written for -- the frozen Qwen2.5 successor run of #618, which has no outcome here and cannot be reached: this execution was against D1 v1.2, the only representation contrast P9 currently publishes, and that scope is stated in the artifact. Before any of that: add the precondition the battery is missing, which is its own eligibility rule one level earlier -- an attack cannot fail against an input it did not change, so a (variant, arm) cell whose feature vectors are unchanged must read NOT_ATTACKED rather than held. Then decide what to do about ORDER_PERMUTATION. It cannot be repaired in place; either the comparison coordinates carry an order in the representation, in which case the variant becomes a real attack and the feature families stop being order-blind for free, or the variant is withdrawn and the claim it appeared to support is withdrawn with it. The same normaliser drops duplicates, so a multiplicity attack is unavailable for the same reason and would be the second thing a carrying representation buys."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1621,11 +1628,12 @@
       "issue": 652,
       "paper_id": "P4",
       "refs": [
-        "#652"
+        "#652",
+        "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all — that is what H3 taught.",
-      "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report."
+      "statement": "There is no identifiability audit that runs as a gate, and without one no score from this benchmark can be used at all -- that is what H3 taught. What now exists is one leg of it, executable (P4_PANEL_RESOLUTION_2026-08-22): read each metric across every system in a published panel and ask whether it takes more than one value. Run over the V2 panel it reports that two of the three hypotheses are decided on metrics no system varies on -- clean_coverage is exactly 1.0 for all eleven systems, so H2 reports [0.0, 0.0] and PASS, and correct_cannot_check_rate is also 1.0 for all eleven, so H3 reports [0.0, 0.0] and NOT_SUPPORTED. Saturation is not a bias toward optimism: the same panel yields one PASS and one NOT_SUPPORTED from it. Only false_promotion_rate discriminates, over six distinct values, and H1's interval is earned. None of this is new to the paper: P4's manuscript already states it in prose, with the same counts, and already concludes that H2 and H3 'should be read as design limits rather than as comparative findings'. What was missing is that the limitation was a caveat rather than a gate, and that the ledger did not carry it at all. The later identifiable V3 panel repairs correct_cannot_check_rate, which varies there; clean_coverage remains saturated at 1.0 across every system in both constructions.",
+      "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report -- and make the saturation check its cheapest leg, since it needs only the per-system rates and would have refused H2 in both constructions rather than leaving it to a limitations paragraph. Then the harder leg the H3 lesson names: labels provably unrecoverable from evidence-list length, missingness pattern, template or source count. A clean-coverage guard also needs a construction containing clean positives that a weaker governance mechanism actually declines; the paper says as much, and until such cases exist non-inferiority on that metric cannot be a comparative finding."
     },
     {
       "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -1701,31 +1709,6 @@
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P6-U-T1",
-      "issue": 654,
-      "paper_id": "P6",
-      "refs": [
-        "#654",
-        "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
-      "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P6-U-T2",
-      "issue": 654,
-      "paper_id": "P6",
-      "refs": [
-        "#654"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
-      "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
       "gate_id": "P6-U-T4",
       "issue": 654,
       "paper_id": "P6",
@@ -1745,33 +1728,8 @@
         "#654"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "No discovered counterexample has yet caused a principled framework extension rather than an ad hoc exception.",
-      "unblock": "Treat each theorem counterexample as a candidate missing primitive and extend the semantics, not the exception list."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P7-U-T1",
-      "issue": 655,
-      "paper_id": "P7",
-      "refs": [
-        "#655",
-        "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
-      "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P7-U-T2",
-      "issue": 655,
-      "paper_id": "P7",
-      "refs": [
-        "#655"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
-      "unblock": "Derive the finite results as instances once the calculus is mechanized."
+      "statement": "The unblock has been performed and the terminal is not thereby discharged; what changed is that the extension now exists and can be inspected. A counterexample the whole lifting battery accepted, science_lifts_without_donor, was traced to a missing primitive rather than patched: the semantics could not express the projection from a lifted state to the donor certificate under it, so conservativity could only be stated about the donor atom, which is how it became a comparison of a name against itself. Adding the projection, an enriched donor product built from the donor theory's own validator over a requirement set enlarged by the scientific coordinates, and donor-valid transitions repaired five checks that had refuted nothing; both checkers moved FAIL to PASS and every published count and digest was preserved. The ad hoc alternative -- a one-line 'nothing lifts without a valid donor' exception -- is kept beside the extension, unshipped, with a test pinning that its refuted set is a strict subset, so the distinction this terminal asks about is a comparison a reviewer can run. What remains is a judgement about whether one such episode establishes the practice, which is a grading call and not a further repair.",
+      "unblock": "Decide whether the recorded extension episode discharges the terminal, or set the number of independent episodes it requires; the machinery to produce and compare further ones is in place."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
@@ -1787,31 +1745,6 @@
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P8-U-T1",
-      "issue": 656,
-      "paper_id": "P8",
-      "refs": [
-        "#656",
-        "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The 169/169 valid compositions with 169 matched unbridged-widening failures are a finite instance over 13 donor types, not a theorem over arbitrary delegation graphs.",
-      "unblock": "Define primitive scientific authority and discharge semantics independent of the 13 donor types, then prove non-amplification for arbitrary acyclic graphs and characterize cycles."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P8-U-T2",
-      "issue": 656,
-      "paper_id": "P8",
-      "refs": [
-        "#656"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The 39,936-state result cannot follow as an instance while no general theorem exists.",
-      "unblock": "Derive it as a finite instance once the composition and revocation theorem is mechanized."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
       "gate_id": "P8-U-T5",
       "issue": 656,
       "paper_id": "P8",
@@ -1824,15 +1757,15 @@
     }
   ],
   "work_queue_by_actionability": {
-    "BLOCKED_ON_CAMPAIGN": 19,
+    "BLOCKED_ON_CAMPAIGN": 22,
     "BLOCKED_ON_NEW_ARENA": 14,
-    "BLOCKED_ON_PROOF": 10,
-    "BLOCKED_ON_UPSTREAM": 6
+    "BLOCKED_ON_PROOF": 4,
+    "BLOCKED_ON_UPSTREAM": 3
   },
   "work_queue_by_responsibility": {
     "IMPLEMENTATION_OR_ENVIRONMENT": 3,
     "MEASUREMENT_OR_EVALUATOR": 19,
-    "OBJECTIVE_OR_MODEL_CLASS": 8,
+    "OBJECTIVE_OR_MODEL_CLASS": 2,
     "REPRESENTATION_OR_INTERFACE": 1,
     "SEARCH_OR_EVIDENCE": 18
   }

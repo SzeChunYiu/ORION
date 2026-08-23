@@ -1,0 +1,28 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#762",
+  "pr": "SzeChunYiu/ORION#792",
+  "workflow": {"name":"orion-qg-qg9-support2","run_id":32493415691},
+  "head_sha": "0689e42cde3c5dffaf7f25a440060a3abd6e2116",
+  "artifact": {
+    "id": 9450792101,
+    "name": "orion-qg-qg9-support2-0689e42cde3c5dffaf7f25a440060a3abd6e2116",
+    "digest": "sha256:8731f0516f65a0266753afa6113ecc44fd1b2700655fd020e9c6093d92d434ab"
+  },
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED",
+  "source_result_digest": "7b74b8e687f2d07cc9b92bb89a8827d61dc2b0aa317c55d5e92117724c73e452",
+  "generic_lane": {
+    "decision": "ACCEPT",
+    "support3": {"accepted_type_cases":300,"accepted_unsafe":0,"broad_unsafe":21,"retained":252,"survivors":180,"type_cases":612},
+    "support2": {"accepted_type_cases":72,"accepted_unsafe":36,"broad_unsafe":93,"retained":72,"survivors":72,"type_cases":144}
+  },
+  "native_lane": {
+    "decision": "ACCEPT_SUPPORT2",
+    "scope": "R6I_UNIT_OBJECTIVE_ONLY"
+  },
+  "both_accept": true,
+  "support1_authority": false,
+  "tightness_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

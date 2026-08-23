@@ -1,21 +1,16 @@
-\section{Diagnostic attribution archive}
+\section{Results: the diagnostic attribution archive}
+\label{sec:results}
 
-The only result-bearing P5 archive currently bound in the repository is a single-model glm-5.2 hidden-cause attribution run over 24 cases (three cases in each of the eight registered families). Metrics below are recomputed from the raw JSONL; the sidecar report is checked against those rows and is refused if it disagrees.
+The only result-bearing archive in this revision is a single-model hidden-cause attribution run over 24 constructed cases, three in each of the eight registered families, produced with the glm-5.2 model. The metrics below are recomputed from the raw per-case records; the sidecar report is checked against those rows and is refused if it disagrees.
 
-Accuracy is 21/24 $= 0.875$ (Wilson 95\% interval in Table~\ref{tab:P5-3}). This is a descriptive diagnostic score. It is not protected fresh-task improvement, not a matched baseline comparison, and not an H1 result.
+Accuracy is 21/24 $= 0.875$, with the Wilson 95\% interval given in Table~\ref{tab:P5-3}. This is a descriptive diagnostic score. It is not protected fresh-task improvement, it is not a matched baseline comparison, and it does not test the primary hypothesis.
 
-Three residual errors are retained and are not relabeled as successes (Table~\ref{tab:P5-residual-errors}):
-
-\begin{itemize}
-  \item \texttt{P5-HC-002}: gold \texttt{RETRIEVAL\_MISS}, attributed \texttt{REPRESENTATION\_GAP} (MEDIUM);
-  \item \texttt{P5-HC-012}: gold \texttt{ENVIRONMENT\_DEPENDENCY\_TOOL\_FAILURE}, attributed \texttt{IMPLEMENTATION\_BUG} (HIGH);
-  \item \texttt{P5-HC-018}: gold \texttt{REPRESENTATION\_GAP}, attributed \texttt{METHOD\_BASIS\_GAP} (HIGH).
-\end{itemize}
+Three residual errors are retained and are not relabeled as successes (Table~\ref{tab:P5-residual-errors}). Case P5-HC-002, whose protected cause was a retrieval miss, was attributed to a representation gap at medium confidence; case P5-HC-012, an environment, dependency or tool failure, was attributed to an implementation bug at high confidence; and case P5-HC-018, a representation gap, was attributed to a method-basis gap at high confidence.
 
 \input{tables/P5-3_cause_confusion}
 \input{tables/P5-ATTRIBUTION_RESIDUAL_ERRORS}
 
-Replay-versus-fresh scatter, longitudinal specialist-regression, improvement/integrity frontier, failure-recurrence, cost-to-protected-improvement, baseline/ablation Table P5-T2, and campaign harmful/null Table P5-T3 have no admissible rows in this archive. Those artifacts are emitted as \texttt{CANNOT\_CHECK} stubs by \texttt{python -m orion.study.p5.tables} and are not imputed from the 21/24 accuracy.
+Replay-versus-fresh scatter, longitudinal specialist regression, the improvement/integrity frontier, failure recurrence, cost to protected improvement, the matched baseline and ablation comparison, and the campaign record of harmful and null interventions all have no admissible rows in this archive. Each of the seven tables below therefore names the measurement it would carry and leaves its result undetermined; no number in them is imputed from the diagnostic accuracy above.
 
 \input{tables/P5-2_replay_vs_fresh_scatter}
 \input{tables/P5-4_longitudinal_specialist_regression}

@@ -27,6 +27,6 @@ print(f"authority: {authority['authority']}")
 PY
 
 PYTHONPATH=framework python -m pytest -q framework/tests
-python ../paper-09-executable-research-core/check_merged_ready.py
-python ../paper-10-content-bound-math-evaluation/check_technical_note_ready.py
+python ../paper-xx-executable-research-core/check_merged_ready.py
+python ../paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
 printf 'P9/P10 bounded local closure: PASS\n'

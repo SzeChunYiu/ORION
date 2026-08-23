@@ -12,7 +12,7 @@ Scientific inquiry is often described as search, but ordinary search presumes a 
 
 We formalize inquiry as navigation in a family of charts linked by partial representation/objective transformations and explicit preservation contracts. We prove an open-world stopping impossibility theorem under observational extension ambiguity, while separating that condition from the mere absence of a closure certificate. We give a fixed-latent, fixed-sensing construction in which refining only the representation strictly increases worst-case solvability, alongside a harmful-coarsening negative control. We prove that evidence preservation is strictly weaker than closure preservation: an unchanged, valid observation may cease to satisfy a transformed obligation. Complete support-transport witnesses license closure transfer; incomplete and target-ambiguous transport requires reopening, while incomplete but non-ambiguous transport yields `CANNOT_CHECK` unless another proof resolves the question. Route stopping, task stopping, continuation and inability to check remain distinct terminals throughout.
 
-A standard-library finite checker exercises stopping countermodels, representation-only refinement, harmful reframing, evidence-versus-closure separation, all 64 combinations of six support-transport conditions, and stopping-terminal distinctions. A donor-complete programme additionally compares the atlas semantics to fixed-graph search, belief-space planning, planning abstractions, schema/lens preservation, goal evolution and world-model revision, and requires comparison against an ideal product of those donors rather than weak single-module baselines. The contribution is therefore not “adaptive search” or “changing graphs,” but a preservation semantics connecting representation/objective evolution to evidence reuse, reopening, censoring, and scientific stopping.
+A standard-library finite checker exercises stopping countermodels, representation-only refinement, harmful reframing, evidence-versus-closure separation, all 64 combinations of six support-transport conditions against each of 15 admissible target completion classes (960 cases, with Definition 14 target-ambiguity decided per case rather than supplied), and stopping-terminal distinctions. A donor-complete programme additionally compares the atlas semantics to fixed-graph search, belief-space planning, planning abstractions, schema/lens preservation, goal evolution and world-model revision, and requires comparison against an ideal product of those donors rather than weak single-module baselines. The contribution is therefore not “adaptive search” or “changing graphs,” but a preservation semantics connecting representation/objective evolution to evidence reuse, reopening, censoring, and scientific stopping.
 
 ## 1. Introduction
 
@@ -258,7 +258,7 @@ The standard-library V2 checker verifies:
 - representation-only strict solvability under fixed latent information;
 - harmful coarsening;
 - unchanged evidence with changed closure truth;
-- all 64 combinations of six transport-preservation dimensions;
+- all 64 combinations of six transport-preservation dimensions, each against 15 admissible target completion classes (960 cases);
 - distinct route/task/continue/cannot-check terminals;
 - fixed-chart identity embedding.
 

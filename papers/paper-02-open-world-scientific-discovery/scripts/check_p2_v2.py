@@ -116,8 +116,22 @@ def validate() -> list[str]:
     authority = (MANUSCRIPT / "sections" / "acquisition_authority.tex").read_text(encoding="utf-8")
     if r"\input{sections/acquisition_authority}" not in main:
         errors.append("main manuscript does not include acquisition-authority section")
-    if r"\texttt{CANNOT\_CHECK}" not in main and authorized == "P2_NARROWED":
-        errors.append("narrowed manuscript lost explicit CANNOT_CHECK external gate")
+    # While the authorized claim is P2_NARROWED the manuscript body must carry
+    # an explicit external gate: the matched external superiority claim is held
+    # at the third value, neither supported nor refuted.  This used to be
+    # detected by requiring the literal machine token ``\texttt{CANNOT\_CHECK}``
+    # in the prose.  The manuscript now writes that third value out in English,
+    # so the gate is detected in the words it is actually written in.  Both
+    # halves are required, because either alone is satisfiable without the gate:
+    # the word "undetermined" can be about anything, and naming the matched
+    # external claim proves nothing if the sentence goes on to report it as a
+    # negative result.
+    undetermined = any(
+        phrase in main for phrase in ("remains undetermined", "stays undetermined")
+    )
+    names_external_claim = "matched external superiority claim" in main
+    if authorized == "P2_NARROWED" and not (undetermined and names_external_claim):
+        errors.append("narrowed manuscript lost explicit undetermined external gate")
     if r"\input{figures/P2-7_acquisition_authority}" not in authority:
         errors.append("authority section does not include P2-7 architecture figure")
     for phrase in (

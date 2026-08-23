@@ -1,0 +1,285 @@
+name: p1-p2-exact-main-render
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p1-p2-exact-main-render.yml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
+      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+  # Publication authority is bound to an exact main SHA, not merely manuscript
+  # bytes. Run on every main advance so unrelated merges cannot silently make the
+  # latest exact-main render stale. PR renders remain path-filtered diagnostics.
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render-subject:
+    # Keep the OS family explicit; authority-bearing TeX package versions are
+    # checked below and fail closed before rendering if the hosted image drifts.
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact event subject
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: subject
+          # The reproducible-build epoch is the latest commit that actually
+          # touched each manuscript tree, so path history must not be shallow.
+          fetch-depth: 0
+      - name: Freeze source-derived TeX epochs
+        shell: bash
+        run: |
+          set -euo pipefail
+          p1_epoch="$(git -C subject log -1 --format=%ct -- papers/paper-01-recursive-epistemic-reconstruction/manuscript)"
+          p2_epoch="$(git -C subject log -1 --format=%ct -- papers/paper-02-open-world-scientific-discovery/manuscript)"
+          test -n "$p1_epoch"
+          test -n "$p2_epoch"
+          {
+            echo "P1_SOURCE_DATE_EPOCH=$p1_epoch"
+            echo "P2_SOURCE_DATE_EPOCH=$p2_epoch"
+          } >> "$GITHUB_ENV"
+      - name: Install TeX and render dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-science latexmk poppler-utils
+      - name: Verify frozen render toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          cat > out/expected-render-packages.tsv <<'EOF'
+          texlive-binaries	2023.20230311.66589-9build3
+          texlive-base	2023.20240207-1
+          texlive-latex-base	2023.20240207-1
+          texlive-latex-recommended	2023.20240207-1
+          texlive-latex-extra	2023.20240207-1
+          texlive-fonts-recommended	2023.20240207-1
+          texlive-bibtex-extra	2023.20240207-1
+          texlive-science	2023.20240207-1
+          texlive-pictures	2023.20240207-1
+          texlive-plain-generic	2023.20240207-1
+          texlive-lang-greek	2023.20240207-1
+          latexmk	1:4.83-1
+          libkpathsea6	2023.20230311.66589-9build3
+          libptexenc1	2023.20230311.66589-9build3
+          libsynctex2	2023.20230311.66589-9build3
+          libtexlua53-5	2023.20230311.66589-9build3
+          fonts-lmodern	2.005-1
+          lmodern	2.005-1
+          fonts-texgyre	20180621-6
+          fonts-texgyre-math	20180621-6
+          fonts-urw-base35	20200910-8
+          poppler-utils	24.02.0-1ubuntu9.9
+          libpoppler134	24.02.0-1ubuntu9.9
+          poppler-data	0.4.12-1
+          fontconfig	2.15.0-1.1ubuntu2
+          libc-bin	2.39-0ubuntu8.8
+          EOF
+          : > out/render-toolchain.tsv
+          while IFS=$'\t' read -r pkg expected; do
+            actual="$(dpkg-query -W -f='${Version}' "$pkg")"
+            printf '%s\t%s\n' "$pkg" "$actual" >> out/render-toolchain.tsv
+            if [ "$actual" != "$expected" ]; then
+              echo "render toolchain drift: $pkg expected $expected, got $actual" >&2
+              exit 1
+            fi
+          done < out/expected-render-packages.tsv
+          {
+            pdflatex --version | head -n 1
+            latexmk -v | grep -m1 'Latexmk, John Collins'
+            pdfinfo -v 2>&1 | head -n 1
+          } > out/render-tool-versions.txt
+          diff -u out/expected-render-packages.tsv out/render-toolchain.tsv
+          sha256sum out/render-toolchain.tsv > out/render-toolchain.tsv.sha256
+      - name: Compile P1 exact subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          export SOURCE_DATE_EPOCH="$P1_SOURCE_DATE_EPOCH"
+          export FORCE_SOURCE_DATE=1
+          cd subject/papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          bibtex main
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
+            echo 'P1 exact render contains undefined citations or references' >&2
+            grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log >&2
+            exit 1
+          fi
+          first_sha="$(sha256sum main.pdf | awk '{print $1}')"
+          latexmk -C main.tex >/dev/null
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          bibtex main
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
+            echo 'P1 reproducibility render contains undefined citations or references' >&2
+            exit 1
+          fi
+          second_sha="$(sha256sum main.pdf | awk '{print $1}')"
+          test "$first_sha" = "$second_sha" || {
+            echo "P1 PDF is not byte-reproducible under the frozen source epoch: $first_sha != $second_sha" >&2
+            exit 1
+          }
+          mkdir -p "$GITHUB_WORKSPACE/out/p1/pages"
+          cp main.pdf "$GITHUB_WORKSPACE/out/p1/manuscript.pdf"
+          cp main.log "$GITHUB_WORKSPACE/out/p1/main.log"
+          cp main.fls "$GITHUB_WORKSPACE/out/p1/main.fls"
+          pdfinfo main.pdf > "$GITHUB_WORKSPACE/out/p1/pdfinfo.txt"
+          sha256sum main.pdf > "$GITHUB_WORKSPACE/out/p1/manuscript.pdf.sha256"
+          printf '%s\n' "$SOURCE_DATE_EPOCH" > "$GITHUB_WORKSPACE/out/p1/source_date_epoch.txt"
+          pdftoppm -png -r 180 main.pdf "$GITHUB_WORKSPACE/out/p1/pages/page" >/dev/null
+      - name: Compile P2 exact subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          export SOURCE_DATE_EPOCH="$P2_SOURCE_DATE_EPOCH"
+          export FORCE_SOURCE_DATE=1
+          cd subject/papers/paper-02-open-world-scientific-discovery/manuscript
+          latexmk -recorder -pdf -interaction=nonstopmode -halt-on-error main.tex
+          python ../scripts/check_manuscript_typography.py --log main.log
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
+            echo 'P2 exact render contains undefined citations or references' >&2
+            grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log >&2
+            exit 1
+          fi
+          first_sha="$(sha256sum main.pdf | awk '{print $1}')"
+          latexmk -C main.tex >/dev/null
+          latexmk -recorder -pdf -interaction=nonstopmode -halt-on-error main.tex
+          python ../scripts/check_manuscript_typography.py --log main.log
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
+            echo 'P2 reproducibility render contains undefined citations or references' >&2
+            exit 1
+          fi
+          second_sha="$(sha256sum main.pdf | awk '{print $1}')"
+          test "$first_sha" = "$second_sha" || {
+            echo "P2 PDF is not byte-reproducible under the frozen source epoch: $first_sha != $second_sha" >&2
+            exit 1
+          }
+          mkdir -p "$GITHUB_WORKSPACE/out/p2/pages"
+          cp main.pdf "$GITHUB_WORKSPACE/out/p2/manuscript.pdf"
+          cp main.log "$GITHUB_WORKSPACE/out/p2/main.log"
+          cp main.fls "$GITHUB_WORKSPACE/out/p2/main.fls"
+          pdfinfo main.pdf > "$GITHUB_WORKSPACE/out/p2/pdfinfo.txt"
+          sha256sum main.pdf > "$GITHUB_WORKSPACE/out/p2/manuscript.pdf.sha256"
+          printf '%s\n' "$SOURCE_DATE_EPOCH" > "$GITHUB_WORKSPACE/out/p2/source_date_epoch.txt"
+          pdftoppm -png -r 180 main.pdf "$GITHUB_WORKSPACE/out/p2/pages/page" >/dev/null
+      - name: Bind render subject and tracked input closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+
+          subject = Path('subject').resolve()
+          out = Path('out')
+          revision = subprocess.check_output(
+              ['git', '-C', str(subject), 'rev-parse', 'HEAD'], text=True
+          ).strip()
+          tracked = set(
+              subprocess.check_output(['git', '-C', str(subject), 'ls-files', '-z'])
+              .decode('utf-8')
+              .split('\0')
+          )
+          tracked.discard('')
+
+          def committed_bytes(relpath: str) -> bytes:
+              return subprocess.check_output(
+                  ['git', '-C', str(subject), 'show', f'HEAD:{relpath}']
+              )
+
+          def bind_input_closure(manuscript_rel: str, fls_rel: str, output_rel: str):
+              # Conservatively include every tracked file in the manuscript subtree
+              # (covers bibliography and generated source inputs consumed before TeX)
+              # plus every additional tracked repository file that TeX records as an
+              # INPUT (covers figures or other dependencies outside that subtree).
+              prefix = manuscript_rel.rstrip('/') + '/'
+              selected = {p for p in tracked if p.startswith(prefix)}
+              workdir = subject / manuscript_rel
+              for line in (subject / fls_rel).read_text(errors='replace').splitlines():
+                  if not line.startswith('INPUT '):
+                      continue
+                  raw = line[6:].strip()
+                  candidate = Path(raw)
+                  resolved = candidate.resolve() if candidate.is_absolute() else (workdir / candidate).resolve()
+                  try:
+                      rel = resolved.relative_to(subject).as_posix()
+                  except ValueError:
+                      continue
+                  if rel in tracked:
+                      selected.add(rel)
+
+              digest = hashlib.sha256()
+              files = []
+              for rel in sorted(selected):
+                  data = committed_bytes(rel)
+                  file_sha = hashlib.sha256(data).hexdigest()
+                  # Canonical framing prevents path/content concatenation ambiguity.
+                  digest.update(rel.encode('utf-8'))
+                  digest.update(b'\0')
+                  digest.update(str(len(data)).encode('ascii'))
+                  digest.update(b'\0')
+                  digest.update(data)
+                  files.append({'path': rel, 'bytes': len(data), 'sha256': file_sha})
+              record = {
+                  'schema': 'P1P2.RepositoryRenderInputClosure.v1',
+                  'subject_revision': revision,
+                  'manuscript_root': manuscript_rel,
+                  'selection_policy': 'all tracked manuscript-subtree files union tracked TeX recorder INPUT files',
+                  'canonical_digest_policy': 'sha256(sorted(path_utf8 NUL decimal_byte_length NUL committed_blob_bytes))',
+                  'repository_input_closure_sha256': digest.hexdigest(),
+                  'repository_input_count': len(files),
+                  'files': files,
+              }
+              Path(output_rel).write_text(json.dumps(record, indent=2, sort_keys=True) + '\n')
+              return record
+
+          p1 = bind_input_closure(
+              'papers/paper-01-recursive-epistemic-reconstruction/manuscript',
+              'papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.fls',
+              'out/p1/repository-input-closure.json',
+          )
+          p2 = bind_input_closure(
+              'papers/paper-02-open-world-scientific-discovery/manuscript',
+              'papers/paper-02-open-world-scientific-discovery/manuscript/main.fls',
+              'out/p2/repository-input-closure.json',
+          )
+
+          receipt = {
+              'schema': 'P1P2.ExactRenderReceipt.v3',
+              'subject_revision': revision,
+              'event_name': '${{ github.event_name }}',
+              'render_environment_policy': 'ubuntu-24.04 + exact known-green dpkg render-set from workflow run 32496130558',
+              'render_toolchain_sha256': hashlib.sha256((out / 'render-toolchain.tsv').read_bytes()).hexdigest(),
+              # Keep the historical entrypoint hashes, but name them precisely;
+              # authority-bearing source provenance is the repository input closure.
+              'p1_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex')).hexdigest(),
+              'p2_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/paper-02-open-world-scientific-discovery/manuscript/main.tex')).hexdigest(),
+              'p1_repository_input_closure_sha256': p1['repository_input_closure_sha256'],
+              'p2_repository_input_closure_sha256': p2['repository_input_closure_sha256'],
+              'p1_repository_input_count': p1['repository_input_count'],
+              'p2_repository_input_count': p2['repository_input_count'],
+              'p1_source_date_epoch': int((out / 'p1/source_date_epoch.txt').read_text().strip()),
+              'p2_source_date_epoch': int((out / 'p2/source_date_epoch.txt').read_text().strip()),
+              'p1_pdf_sha256': hashlib.sha256((out / 'p1/manuscript.pdf').read_bytes()).hexdigest(),
+              'p2_pdf_sha256': hashlib.sha256((out / 'p2/manuscript.pdf').read_bytes()).hexdigest(),
+              'pdf_byte_reproducibility_checked': True,
+              'visual_audit_complete': False,
+              'package_rebind_complete': False,
+              'submission_authority': False,
+          }
+          (out / 'EXACT_RENDER_RECEIPT.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          PY
+      - name: Upload exact render bundle
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: p1-p2-exact-render-${{ github.event.pull_request.head.sha || github.sha }}
+          path: out/**
+          if-no-files-found: error
+          retention-days: 30

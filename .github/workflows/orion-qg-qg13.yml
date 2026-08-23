@@ -1,0 +1,90 @@
+name: orion-qg-qg13-theorem-miner
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG13_*'
+      - 'development/orion-qg-regime-geometry/qg13_*'
+      - 'development/orion-qg-regime-geometry/run_qg13_dual_harness.py'
+      - 'research/extensions/orion-qg/qg13_theorem_miner.py'
+      - '.github/workflows/orion-qg-qg13.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg13-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg13-theorem-miner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QG13_FROZEN_BASE: beac25450b5d95dd766345dcee872fed840f833b
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert exact head and frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG13_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG13_FROZEN_BASE}")" = "${QG13_FROZEN_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Compile recovery instruments
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg13_theorem_miner.py \
+            development/orion-qg-regime-geometry/qg13_generic_verify.py \
+            development/orion-qg-regime-geometry/qg13_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg13_dual_harness.py
+      - name: Execute theorem miner through ORION + ORION-Q harness paths
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg13_dual_harness.py | tee artifacts/orion-qg-qg13-summary.json
+      - name: Deterministic theorem-miner replay
+        run: |
+          python research/extensions/orion-qg/qg13_theorem_miner.py --output artifacts/orion-qg-qg13-replay.json > artifacts/orion-qg-qg13-replay.log
+          cmp artifacts/orion-qg-qg13-theorem-miner.json artifacts/orion-qg-qg13-replay.json
+      - name: Enforce bounded recovery terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg13-theorem-miner.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg13-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg13-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg13-dual-harness.json').read_text())
+          pos='QG13_AUTOMATIC_THEOREM_MINER_RECOVERS_R6M_AND_R6I_PARENT_THEOREMS'
+          assert d['terminal'] in {pos,'QG13_GENERIC_NATIVE_DISAGREEMENT','QG13_QUOTIENT_OR_RESOURCE_INFERENCE_REFUTED'}
+          assert a['new_theorem_authority'] is False and a['novelty_authority'] is False
+          assert d['new_theorem_authority'] is False and d['novelty_authority'] is False
+          if d['terminal']==pos:
+              assert all(a['gates'].values())
+              assert a['r6m_theorem_candidate']['support_bound']==2
+              assert a['r6i_theorem_candidate']['support_bound']==5
+              assert a['r6m_theorem_candidate']['resource_cone']['objective_cone']==['t_c >= 2*t_r','t_nc >= 2*t_r']
+              assert a['r6i_theorem_candidate']['unit_objective_resource']['max_delta_c']<=0
+              assert g['decision']=='ACCEPT' and all(g['checks'].values())
+              assert n['decision']=='ACCEPT_RECOVERY' and all(n['checks'].values())
+              assert d['both_accept'] is True
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg13-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg13-theorem-miner.json
+            artifacts/orion-qg-qg13-generic-verification.json
+            artifacts/orion-qg-qg13-native-verification.json
+            artifacts/orion-qg-qg13-dual-harness.json
+            artifacts/orion-qg-qg13-summary.json
+            artifacts/orion-qg-qg13-replay.json
+            artifacts/orion-qg-qg13-replay.log
+            .orion-qg-qg13-generic/.orion-harness/**
+            .orion-qg-qg13-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

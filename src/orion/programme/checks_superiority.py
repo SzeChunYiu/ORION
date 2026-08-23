@@ -516,6 +516,10 @@ _PAPER_DIR_PATTERN = re.compile(r"^paper-(\d{2})-")
 #: exclusion reads as a decision rather than an accident of the regex.
 _OUT_OF_SCOPE_PREFIXES = ("Q-",)
 
+#: ``paper-xx-*`` is a former candidate whose number has been vacated. The
+#: pattern above already excludes it by requiring two digits; this names the
+#: exclusion so it reads as a decision. See ``VACATED_PAPER_NUMBERS``.
+
 
 def _holds_content(directory: Path) -> bool:
     """True if a directory holds anything but Python build artifacts.

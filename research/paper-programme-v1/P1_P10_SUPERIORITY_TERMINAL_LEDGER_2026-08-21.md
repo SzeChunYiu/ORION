@@ -108,16 +108,18 @@ result and is distinct from both a pass and a build failure.
 | P3 | #651 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
 | P4 | #652 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
 | P5 | #653 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 0/5 |
-| P6 | #654 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
-| P7 | #655 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
-| P8 | #656 | `CANNOT_CHECK` | `MECHANISM_NON_VACUITY` | 0/5 |
+| P6 | #654 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
+| P7 | #655 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
+| P8 | #656 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
 | P9 | #662 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 1/6 |
 | P10 | #663 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 1/5 |
 
-**2 of 51 gates pass.** Both are scope gates — `P9-U-T6` and `P10-U-T5` — and
+**8 of 51 gates pass.** Two are scope gates — `P9-U-T6` and `P10-U-T5` — and
 they pass because those two papers do keep their advertised claims inside what
-they earned. Nothing else is discharged, and the thirteen-check battery is clean:
-no substitution is currently being made anywhere in the ledger.
+they earned. Six are formal-generalization gates discharged by mechanized
+theorems: `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2`, `P8-U-T1` and `P8-U-T2`.
+Nothing empirical is discharged anywhere, and the fourteen-check battery is
+clean: no substitution is currently being made in the ledger.
 
 The full battery is clean *and* the report still blocks. That combination is the
 object working as intended: "nobody is cheating" and "nothing is established" are
@@ -137,17 +139,37 @@ own frozen taxonomy in
 unblock it and how near that is. `HC-SUP-UNCLASSIFIED-BLOCKER` fails on a blocked
 gate with no recorded cause, so the ledger cannot quietly go back to one word.
 
-All 49 blocked terminals are classified. The queue, nearest first:
+Forty-three of the fifty-one registered terminals are blocked, and all forty-three
+are classified. Eight are discharged: `P9-U-T6` and `P10-U-T5` on scope
+discipline, and `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2`, `P8-U-T1` and
+`P8-U-T2` on mechanized theorems, which is what a `FORMAL_GENERALIZATION`
+terminal admits. Four of those six had been blocked on blocker text asking for
+evaluator custody; custody is a precondition of an empirical campaign, and
+requiring it of a proof blocks every provable gate on a category error. Two were
+not. `P7-U-T2` was blocked a second time *after* its derivation existed, because
+instrumenting the finite result it derived showed the shipped composition loop
+evaluating its rule at two of eight argument triples with the donor never
+entering the function. It moved only once the five donor families were
+interpreted as transformations with their own hand-off contracts, so the
+intermediate-contract test is computed from the pair rather than typed by the
+caller. `P8-U-T2` was blocked on a second object: its 3,072-state model was
+already an instance of the calculus, but the 169 heterogeneous chain
+compositions were not, and deriving them needed the chain theorem instantiated
+at the donor level. It moved when that instantiation was built — and the same
+instrumentation found the shipped chain loop ignoring both of its donor
+variables, so the 169 is one composition counted thirteen times thirteen, and
+reading the thirteen families as type-distinct returns 13. The queue, nearest
+first:
 
 | Actionability | Terminals | Meaning |
 | --- | --- | --- |
-| `BLOCKED_ON_UPSTREAM` | 6 | another lane's in-flight work, nameable by PR |
-| `BLOCKED_ON_CAMPAIGN` | 19 | arena and comparator exist; no protected run scored |
+| `BLOCKED_ON_UPSTREAM` | 3 | another lane's in-flight work, nameable by PR |
+| `BLOCKED_ON_CAMPAIGN` | 22 | arena and comparator exist; no protected run scored |
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
-| `BLOCKED_ON_PROOF` | 10 | needs a mechanized theorem from primitive semantics |
+| `BLOCKED_ON_PROOF` | 4 | needs a mechanized theorem from primitive semantics |
 
 By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
-`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
+`OBJECTIVE_OR_MODEL_CLASS` 2, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
 `REPRESENTATION_OR_INTERFACE` 1.
 
 These counts are pinned against the generated report by
@@ -157,6 +179,14 @@ beside a generated one drifts on the first regeneration.
 Nothing is `ACTIONABLE_NOW`, and that is a real finding rather than a formality:
 after the P1 implementation defect below, the nearest work is other lanes'
 in-flight PRs, and everything past that needs a campaign, an arena or a proof.
+
+`BLOCKED_ON_UPSTREAM` fell from five to three when P2's two entries were checked
+against GitHub rather than against their own text. Both named PR #733 as the
+work that would move them. #733 closed unmerged on 2026-08-21, superseded by
+#752, which also closed unmerged — after running and producing a result the
+ledger did not know about. A blocker pointing at a dead pull request will never
+move, and it reads as though someone else is already handling the work. Both are
+now `BLOCKED_ON_CAMPAIGN` and say what the completed campaigns actually found.
 
 ## P1: the defect is solved, and the result is not yet attributable
 
@@ -207,40 +237,53 @@ promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
   old H3 slice was non-identifying, which is why the issue asks for a new one.
 - **P5 #653** — everything downstream of a matched baseline. The `21/24`
   attribution record's own `baseline_pressure` layer is `CANNOT_CHECK`.
-- **P6 #654** / **P7 #655** / **P8 #656** — `FORMAL_GENERALIZATION` gates need a
-  mechanized theorem from primitive semantics. The existing checkers are
-  exhaustive finite enumeration, which is what the issues ask to *stop* being the
-  primary authority.
+- **P6 #654** / **P7 #655** / **P8 #656** — the `FORMAL_GENERALIZATION` gates
+  these three issues raise are the only ones now discharged, on mechanized
+  theorems over uninterpreted sorts rather than on the exhaustive finite
+  enumeration the issues asked to stop being the primary authority. What holds
+  each paper's terminal is everything else: a naturalistic arena, a cost model,
+  and independent reproduction. P7's second gate took two attempts — the first
+  derivation was refused because the finite result it derived exercised its own
+  composition rule at two of eight argument triples — and the record of what its
+  published counts do and do not carry is in
+  `papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json`.
+  P8's second gate needed a second object: its 3,072-state model was already an
+  instance, but its 169 heterogeneous chain compositions were not, and the same
+  kind of instrumentation found the shipped chain loop ignoring both of its
+  donor variables. What that leaves the number carrying is in
+  `papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json`.
 - **P9 #662** — the direct open-weight scaling run and its second family. The
   scope gate already passes.
 - **P10 #663** — native-state extraction and verified solve benefit. The scope
   gate already passes; the successor `.tex` is a manuscript and is listed as a
   predecessor precisely so it cannot be counted.
 
-## Paper identity: P9 and P10 each carry two directories
+## Paper identity — resolved 2026-08-21
 
-Found while auditing which artifacts the ledger should cite. `papers/candidates/`
-holds two `paper-09-*` and two `paper-10-*` directories; P1–P8 have exactly one
-each.
+When this ledger was first written, `papers/` held two `paper-09-*` and two
+`paper-10-*` directories where P1–P8 held one each. That is now resolved, and the
+resolution is worth recording because the first diagnosis was wrong.
 
-Neither extra directory is a stale duplicate to delete. Both self-declare as merged
-predecessors, and both are cited by live tests and by other papers — removing either
-would delete evidence and red the suite. `papers/PAPER_ALIASES.md` deleted the P1–P5
-retirements only because they "contained no independent manuscript content", and that
-test fails here.
+They were never second versions of P9 and P10. They were a **benchmark package**
+and a **benchmark corpus** wearing paper numbers — different *layers* of the same
+research stack, not competing *lineages*. The live P9 manuscript does not cite
+`executable-research-core` at all.
 
-What was actually stale was the *index*: `papers/candidates/README.md` still listed
-both retired titles as the current P9 and P10 candidates, with "no issue yet" against
-each, when #662 and #663 exist. `PAPER_ALIASES.md` — the repository's "single place
-for historical ORION paper-directory aliases" — covered only P1–P5, so nothing
-recorded the succession and a reader had to open each README to learn which directory
-carried the identity.
+Both were already routed elsewhere by dated terminal decisions — into P8 and
+P4/P8 respectively — so neither was available for renumbering into P11–P14 either:
+re-absorbing them would contradict a recorded terminal and move them away from the
+papers that own their subjects. Both now carry the `paper-xx-` prefix, which
+vacates the number without deleting content that live tests and other papers cite.
+See `VACATED_PAPER_NUMBERS` and `papers/PAPER_ALIASES.md`.
 
-Both files are now corrected, and `PAPER_DIRECTORIES` in
-`src/orion/programme/superiority_terminals.py` is the machine-readable form.
-`HC-SUP-STALE-PAPER-IDENTITY` fails on any paper-numbered directory that is neither a
-registered active identity nor a recorded predecessor, so a third directory cannot
-appear under a number without someone saying which one is which.
+`papers/` now holds exactly one directory per paper, `paper-01` through
+`paper-15`, plus `orion-learning-machine/` (the shared P9/P10 lane, not a paper,
+recorded in `SHARED_LANES`) and the two vacated candidates.
+
+Three checks hold that shape: `HC-SUP-STALE-PAPER-IDENTITY` on any paper-numbered
+directory nobody registered, `HC-SUP-SPLIT-PAPER-IDENTITY` on one identity holding
+content in two locations, and `validate_registry` on a directory registered to two
+papers.
 
 ## Boundary
 

@@ -1,0 +1,810 @@
+{
+  "absence_reading_census": {
+    "by_coordinate": {
+      "assumption_ids": {
+        "case_id": "poharm-7483695934052301",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "attribution_id": {
+        "case_id": "poharm-7107155715232349",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "construct_ids": {
+        "case_id": "poharm-8635640208241562",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "discourse_relation": {
+        "case_id": "poharm-5227452220152613",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "measurement_ids": {
+        "case_id": "poharm-4780800249256407",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "modality": {
+        "case_id": "poharm-2297575733973065",
+        "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+        "freeze_declared_reading": "DISTINCT_VALUE",
+        "matches_freeze": true,
+        "observed_reading": "SEPARATION_WARD"
+      },
+      "polarity": {
+        "case_id": "poharm-5475112887557232",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "referent_ids": {
+        "case_id": "poharm-5461814837320198",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "temporal_context_ids": {
+        "case_id": "poharm-5181676530061585",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      }
+    },
+    "counts": {
+      "MERGE_WARD": 8,
+      "SEPARATION_WARD": 1
+    },
+    "every_cell_matches_the_freeze": true
+  },
+  "absent_value_agreement": {
+    "agrees": true,
+    "coordinates_compared": [
+      "assumption_ids",
+      "attribution_id",
+      "construct_ids",
+      "discourse_relation",
+      "measurement_ids",
+      "modality",
+      "polarity",
+      "referent_ids",
+      "temporal_context_ids"
+    ],
+    "mismatched": []
+  },
+  "atlas_id": "partial-observation-harm-v1",
+  "builder": "src/orion/study/p3/partial_observation_harm_build.py",
+  "built_n": 33,
+  "cases_hash": "5fc4dfecfbdd60aa79b2ceee10f7f053d204b32f3e1a0d3f3d94fb39f3e1e251",
+  "construction_document": "research/p3-partial-observation-harm-v1/CONSTRUCTION_2026-08-22.md",
+  "construction_receipts": [
+    {
+      "absent_coordinate": "temporal_context_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-0231137187652053",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "construct_ids",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "temporal_context_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": null,
+      "absent_side": null,
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-0359469077600215",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "C_FULLY_OBSERVED"
+    },
+    {
+      "absent_coordinate": "assumption_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-0733338410893801",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "assumption_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "modality",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-1746236646276573",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "construct_ids",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "modality"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "discourse_relation",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-1948099355905321",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "attribution_id",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-2070825991487816",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "discourse_relation",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-2103709937633599",
+      "compare_meaning": "UNRESOLVED",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "predicate",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "relations_over_admissible_completions": [
+        "UNRESOLVED"
+      ],
+      "stratum": "S_INCOMPARABLE"
+    },
+    {
+      "absent_coordinate": "modality",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-2297575733973065",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "modality",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "modality"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "attribution_id",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-2677793909078050",
+      "compare_meaning": "UNRESOLVED",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "predicate",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "relations_over_admissible_completions": [
+        "UNRESOLVED"
+      ],
+      "stratum": "S_INCOMPARABLE"
+    },
+    {
+      "absent_coordinate": "construct_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-2863552982692546",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "construct_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "temporal_context_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-2905631327449922",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "temporal_context_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": null,
+      "absent_side": null,
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-4142662784731050",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "C_FULLY_OBSERVED"
+    },
+    {
+      "absent_coordinate": "polarity",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-4692170497070993",
+      "compare_meaning": "UNRESOLVED",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "predicate",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "polarity"
+      ],
+      "relations_over_admissible_completions": [
+        "UNRESOLVED"
+      ],
+      "stratum": "S_INCOMPARABLE"
+    },
+    {
+      "absent_coordinate": "measurement_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-4780800249256407",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "measurement_ids",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_MEASUREMENT"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "temporal_context_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-5181676530061585",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "temporal_context_ids",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "temporal_context_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "discourse_relation",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-5227452220152613",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "discourse_relation",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "referent_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-5461814837320198",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "referent_ids",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "referent_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "polarity",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-5475112887557232",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "polarity",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "polarity"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTRADICTORY"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "measurement_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-5568134998399182",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "attribution_id",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-5818987471462570",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "construct_ids",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "measurement_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-6112663470145368",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "construct_ids",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": null,
+      "absent_side": null,
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-6985211149910235",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "referent_ids",
+      "gold": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [],
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "C_FULLY_OBSERVED"
+    },
+    {
+      "absent_coordinate": "attribution_id",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-7107155715232349",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "attribution_id",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": null,
+      "absent_side": null,
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-7317956411030504",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": null,
+      "gold": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "one_sided_absences": [],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE"
+      ],
+      "stratum": "C_FULLY_OBSERVED"
+    },
+    {
+      "absent_coordinate": "assumption_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-7483695934052301",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "assumption_ids",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "assumption_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "referent_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-7954246622786171",
+      "compare_meaning": "UNRESOLVED",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "predicate",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "referent_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "UNRESOLVED"
+      ],
+      "stratum": "S_INCOMPARABLE"
+    },
+    {
+      "absent_coordinate": "modality",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-8249972569520583",
+      "compare_meaning": "UNRESOLVED",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "predicate",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "modality"
+      ],
+      "relations_over_admissible_completions": [
+        "UNRESOLVED"
+      ],
+      "stratum": "S_INCOMPARABLE"
+    },
+    {
+      "absent_coordinate": "construct_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-8635640208241562",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": false,
+      "decided_by": "construct_ids",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "construct_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "D_DECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": null,
+      "absent_side": null,
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-8822678091273745",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": null,
+      "gold": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "one_sided_absences": [],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE"
+      ],
+      "stratum": "C_FULLY_OBSERVED"
+    },
+    {
+      "absent_coordinate": "discourse_relation",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-9619450113703903",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "construct_ids",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": null,
+      "absent_side": null,
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-9676895727172266",
+      "compare_meaning": "COMPATIBLE",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": null,
+      "gold": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "one_sided_absences": [],
+      "relations_over_admissible_completions": [
+        "COMPATIBLE"
+      ],
+      "stratum": "C_FULLY_OBSERVED"
+    },
+    {
+      "absent_coordinate": "assumption_ids",
+      "absent_side": "right",
+      "abstain_on_one_sided_absence_would_change_the_answer": true,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": true,
+      "case_id": "poharm-9694147915592523",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "construct_ids",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "one_sided_absences": [
+        "assumption_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "H_UNDECISIVE_ABSENCE"
+    },
+    {
+      "absent_coordinate": "measurement_ids",
+      "absent_side": "left",
+      "abstain_on_one_sided_absence_would_change_the_answer": false,
+      "abstain_on_one_sided_absence_would_destroy_a_correct_answer": false,
+      "case_id": "poharm-9992185827184415",
+      "compare_meaning": "UNRESOLVED",
+      "compare_meaning_reproduces_gold": true,
+      "decided_by": "predicate",
+      "gold": "UNRESOLVED",
+      "gold_is_determinate": false,
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "relations_over_admissible_completions": [
+        "UNRESOLVED"
+      ],
+      "stratum": "S_INCOMPARABLE"
+    }
+  ],
+  "date": "2026-08-22",
+  "expected_relations": {
+    "COMPATIBLE": 3,
+    "DISTINCT_CONSTRUCT": 6,
+    "DISTINCT_REFERENT": 9,
+    "UNRESOLVED": 15
+  },
+  "external_validity": "The cases are synthetic: gold follows from the emitted standard table by the rule identity:observed-coordinate-precedence-with-completion-invariance, not from an upstream expert corpus. This corpus can establish that compare_meaning misreads a one-sided absence and that an abstain-on-asymmetry repair destroys correct answers on pairs of this shape. It cannot establish that such pairs are frequent in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "gate_note": "G6_HARM_A1 reads 'A1_observedness_asymmetric changes 0 decisions on all intact corpora'. Adding a corpus to that gate can only leave it where it is or make it fail; no construction of this corpus can turn it into a pass. The gate's threshold is not amended, only its denominator.",
+  "gate_served": "G6_HARM_A1",
+  "harm_preview": {
+    "correct_answers_it_would_destroy": 12,
+    "decisions_it_would_change": 21,
+    "destroyed_case_ids": [
+      "poharm-0231137187652053",
+      "poharm-0733338410893801",
+      "poharm-1746236646276573",
+      "poharm-1948099355905321",
+      "poharm-2070825991487816",
+      "poharm-2863552982692546",
+      "poharm-2905631327449922",
+      "poharm-5568134998399182",
+      "poharm-5818987471462570",
+      "poharm-6112663470145368",
+      "poharm-9619450113703903",
+      "poharm-9694147915592523"
+    ],
+    "n_cases": 33,
+    "pairs_where_it_could_fire": 27
+  },
+  "not_an_accuracy_benchmark": "This corpus is a harm-gate denominator, not an accuracy benchmark. Its gold on the fully determined strata is derived by a precedence rule that coincides with what compare_meaning does on fully observed pairs, so the current system answers those by construction. That is what a harm measurement needs --- its question is whether a candidate rule moves a decision the current rule already gets right --- and it is what an accuracy claim must not be built on. No accuracy, false-merge, false-split or superiority number over this corpus is evidence about ORION's competence.",
+  "one_sided_absence_census": {
+    "by_coordinate": {
+      "assumption_ids": 3,
+      "attribution_id": 4,
+      "construct_ids": 2,
+      "discourse_relation": 4,
+      "measurement_ids": 4,
+      "modality": 3,
+      "polarity": 2,
+      "referent_ids": 2,
+      "temporal_context_ids": 3
+    },
+    "coordinates_never_one_sided": [],
+    "n_pairs": 33,
+    "n_pairs_with_a_one_sided_absence": 27
+  },
+  "protocol_id": "P3.partial-observation-harm-corpus.v1",
+  "record": "P3_PARTIAL_OBSERVATION_HARM_CORPUS_BUILD",
+  "rule_agreement_on_fully_observed": {
+    "agrees_everywhere": true,
+    "completed_pairs_compared": 85,
+    "disagreements": 0,
+    "offenders": []
+  },
+  "schema_version": "orion.p3.partial-observation-harm-build-report.v1",
+  "shape_invariants": {
+    "authority_kind": [
+      "DERIVED_FROM_ALLOWED"
+    ],
+    "case_id_alpha_prefix": [
+      "poharm"
+    ],
+    "case_id_hyphen_count": [
+      1
+    ],
+    "case_id_length": [
+      23
+    ],
+    "derivation_rule": [
+      "identity:observed-coordinate-precedence-with-completion-invariance"
+    ],
+    "projection_id_length": [
+      25
+    ],
+    "source_record_count": [
+      1
+    ],
+    "source_span_length": [
+      67
+    ]
+  },
+  "standard_sha256": "ccd5a89f9fe9cb17bac88f1a4a28d12e0e76993ea02d123701068cb639dc85cb",
+  "strata": {
+    "C_FULLY_OBSERVED": 6,
+    "D_DECISIVE_ABSENCE": 9,
+    "H_UNDECISIVE_ABSENCE": 12,
+    "S_INCOMPARABLE": 6
+  },
+  "synthetic_case_count": 33
+}

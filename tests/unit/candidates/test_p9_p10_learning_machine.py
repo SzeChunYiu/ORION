@@ -82,7 +82,7 @@ def test_phase1_false_commit_is_explicitly_not_measured() -> None:
     ).read_text(encoding="utf-8")
     result = PHASE1_V2.read_text(encoding="utf-8")
     readme = (
-        ROOT / "papers" / "paper-09-executable-research-core" / "README.md"
+        ROOT / "papers" / "paper-xx-executable-research-core" / "README.md"
     ).read_text(encoding="utf-8")
 
     assert "'false_commit':0.0" in delivered, "delivered defect identity changed"
@@ -198,10 +198,10 @@ def test_current_closure_is_runnable_and_explicitly_bounded() -> None:
 @pytest.mark.parametrize(
     ("paper", "must_contain"),
     (
-        ("paper-09-executable-research-core", "does not claim novelty"),
-        ("paper-10-content-bound-math-evaluation", "does not claim novelty"),
-        ("paper-09-executable-research-core", "CANNOT_CHECK"),
-        ("paper-10-content-bound-math-evaluation", "CANNOT_CHECK"),
+        ("paper-xx-executable-research-core", "does not claim novelty"),
+        ("paper-xx-content-bound-math-evaluation", "does not claim novelty"),
+        ("paper-xx-executable-research-core", "CANNOT_CHECK"),
+        ("paper-xx-content-bound-math-evaluation", "CANNOT_CHECK"),
     ),
 )
 def test_both_candidates_state_their_limits(paper: str, must_contain: str) -> None:

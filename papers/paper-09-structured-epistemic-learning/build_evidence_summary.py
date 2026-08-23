@@ -4,7 +4,13 @@ import json
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
+# parents[2], not parents[3]. This file used to sit one directory deeper; the
+# papers-directory refactor moved it up and the index was not followed, so ROOT
+# resolved to the repository's *parent* and every source path missed. The script
+# then exited with "missing official P9 evidence" for files that were present all
+# along, and P9's manuscript has been unbuildable ever since: main.tex inputs
+# generated_result_macros.tex, which is generated from the summary this produces.
+ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 RESEARCH = ROOT / "research" / "extensions" / "p9-structured-neural"
 OUT = HERE / "evidence" / "OFFICIAL_EVIDENCE_SUMMARY_V1.json"

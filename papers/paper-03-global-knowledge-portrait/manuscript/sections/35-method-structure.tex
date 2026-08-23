@@ -1,23 +1,71 @@
 \subsection{Method-structure projection}
 \label{sec:method-structure-projection}
 
-Scientific meaning coordinates describe what a source claims. For downstream structural learning ORION also needs a source-local account of \emph{how the source's method transforms its problem}. Paper III therefore adds the versioned \texttt{MethodStructureProjection.v1} object. It is derived from a provenance-bound Paper-I \texttt{MethodRealization.v1} and retains exact source/document/version/span identity, the target role and initial obstruction, assumptions/preconditions, representation changes and auxiliary objects where source-supported, the transformation/mechanic graph, invariants, progress and termination semantics, reconstruction to the original target, failure/negative-result statements, explicit author rationale when the source actually supplies it, and typed \texttt{UNKNOWN} coordinates otherwise.
+Scientific meaning coordinates describe what a source claims. Structural
+learning downstream of that also needs a source-local account of \emph{how the
+source's method transforms its problem}, so the representation is extended
+with a versioned method-structure projection. It is derived from a
+provenance-bound method-realization record of the kind produced by
+source-local epistemic reconstruction~\cite{orion2025paper1}, and retains
+exact source, document, version and span identity, the target role and initial
+obstruction, assumptions and preconditions, representation changes and
+auxiliary objects where the source supports them, the transformation graph,
+invariants, progress and termination semantics, reconstruction to the original
+target, failure and negative-result statements, explicit author rationale when
+the source actually supplies it, and coordinates typed as unknown otherwise.
 
-This projection remains source-local. In particular, absence of an author rationale is not permission for ORION to invent one. The projection stores the exact realization and span digests that licensed each structured interpretation and has no authority to declare a Paper-VI method fibre.
+This projection stays source-local. In particular, the absence of an author
+rationale is not permission to invent one. The projection stores the exact
+realization and span digests that licensed each structured interpretation, and
+carries no authority to declare that two methods belong to the same formal
+family.
 
 \subsection{Cross-domain method alignment and plural views}
 \label{sec:method-alignment}
 
-Given two source-local projections, Paper III may propose a claim-relative mapping $\mu$ by comparing declared coordinates such as preconditions, assumptions, invariants, progress, termination and reconstruction. The alignment state is one of \texttt{ALIGNED}, \texttt{RELATED}, \texttt{OBSTRUCTION}, or \texttt{UNRESOLVED}. The record preserves both projection identities, source-local names and meanings, unmatched assumptions, coordinate-level support/obstruction, and the exact reasons for refusing a merge. \texttt{ALIGNED} means only that the declared source-local coordinates agree for the proposed mapping purpose; formal equivalence remains Paper VI's responsibility.
+Given two source-local projections, a claim-relative mapping $\mu$ may be
+proposed by comparing declared coordinates such as preconditions,
+assumptions, invariants, progress, termination and reconstruction. The
+alignment outcome is one of aligned, related, obstructed, or unresolved. The
+record preserves both projection identities, source-local names and meanings,
+unmatched assumptions, coordinate-level support and obstruction, and the exact
+reasons for refusing a merge. An aligned outcome means only that the declared
+source-local coordinates agree for the proposed mapping purpose; establishing
+formal equivalence is outside this mechanism's authority.
 
-A clean vocabulary-changing example is numerical bisection versus monotone threshold calibration. Their operation names differ, but under the narrow purpose ``bounded monotone localization'' both require an ordered domain, a bracketed monotone target, preserve a target-containing bracket, make progress by shrinking the admissible interval, terminate at a tolerance, and reconstruct a representative in the original target space. Paper III may therefore record a candidate alignment while preserving each donor's vocabulary and lineage.
+A clean vocabulary-changing example is numerical bisection against monotone
+threshold calibration. Their operation names differ, but under the narrow
+purpose ``bounded monotone localization'' both require an ordered domain and a
+bracketed monotone target, preserve a target-containing bracket, make progress
+by shrinking the admissible interval, terminate at a tolerance, and
+reconstruct a representative in the original target space. A candidate
+alignment may therefore be recorded while each donor's vocabulary and lineage
+is preserved.
 
-A false-merge control uses the same-looking midpoint/discard-half surface sequence on a non-monotone response. The monotonicity/bracketing contract no longer holds and the invariant can fail, so the correct result is \texttt{OBSTRUCTION}; topology or lexical similarity cannot override that coordinate. A third control uses an opaque recovery procedure whose source does not establish progress or reconstruction semantics. Even when its known effects resemble a rollback method, the alignment remains \texttt{UNRESOLVED} rather than filling the missing coordinates from analogy.
+A false-merge control uses the same-looking midpoint-and-discard-half surface
+sequence on a non-monotone response. The monotonicity and bracketing contract
+no longer holds and the invariant can fail, so the correct result is an
+obstruction; topology or lexical similarity cannot override that coordinate. A
+third control uses an opaque recovery procedure whose source does not
+establish progress or reconstruction semantics. Even when its known effects
+resemble a rollback method, the alignment stays unresolved rather than filling
+the missing coordinates from analogy.
 
-Plural views are therefore first-class outcomes: structurally suggestive sources need not collapse into one global method. An obstruction certificate records exactly which coordinates prevent a merge and keeps both source projections recoverable.
+Plural views are therefore first-class outcomes: structurally suggestive
+sources need not collapse into one global method. An obstruction certificate
+records exactly which coordinates prevent a merge and keeps both source
+projections recoverable.
 
 \subsection{Downstream structural-learning boundary}
 
-Paper III owns source-local method projection and candidate plural alignment. Paper VI owns claim-relative structural reduction, substitution and method-fibre membership. Paper IX may learn distributions over these versioned objects, and Paper X may later propose new method structures. Neither learned similarity nor generated structure changes the source projection or grants scientific authority. The bounded pilot reported in Section~\ref{sec:method-structure-eval} tests only representation/alignment non-vacuity; it is not evidence of general extraction from arbitrary papers.
+What this mechanism owns is source-local method projection and candidate
+plural alignment. Claim-relative structural reduction, substitution and
+method-family membership are outside it, as is any learned distribution over
+these versioned objects and any generated method structure proposed from such
+a distribution. Neither learned similarity nor generated structure changes a
+source projection or confers scientific authority on it. The bounded pilot
+reported in Section~\ref{sec:method-structure-eval} tests only representation
+and alignment non-vacuity; it is not evidence of general extraction from
+arbitrary papers.
 
 \endinput

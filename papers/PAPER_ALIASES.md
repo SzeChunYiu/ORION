@@ -36,31 +36,57 @@ The former `shadow-mechanics-v1/` directory was never assigned ORION-P1..P5 but 
 
 The archive preserves the original bytes and chronology but is not a publication identity.
 
-## P6–P10 candidate succession
+## P6–P15 identity — one directory per paper
 
-The sections above cover the five flagship identities. Candidate papers P6–P10 live
-under `candidates/` and are not flagship identities, but two of their numbers are
-carried by more than one directory, so the succession is recorded here.
+Every paper carries exactly one directory. P6, P7 and P8 always did; P9 and P10 no
+longer sit beside a second `paper-NN-*` directory.
 
-| Stable ID | Active directory | Retired directory | Disposition |
-|---|---|---|---|
-| ORION-P9 | `papers/paper-09-structured-epistemic-learning/` | `papers/paper-09-executable-research-core/` | retained |
-| ORION-P10 | `papers/paper-10-structured-problem-solving/` | `papers/paper-10-content-bound-math-evaluation/` | retained |
+### The two that used to
 
-**Retained, not removed.** The P1–P5 redirects above were deleted because they
-"contained no independent manuscript content". That test fails here: both retired
-directories hold results that live tests and other papers cite, and
-`paper-10-content-bound-math-evaluation/` is the predecessor evidence P10's own
-successor issue (#663) rests on. Deleting either would remove evidence and red the
-suite.
+They were never second versions of P9 and P10. They were a **benchmark package**
+and a **benchmark corpus** that happened to wear paper numbers, and both had
+already been routed elsewhere by a dated decision:
 
-P6, P7 and P8 each have exactly one directory and need no alias.
+| Directory | Was | Its own terminal |
+|---|---|---|
+| `paper-xx-executable-research-core/` | P9 | `MERGED INTO P8/PROGRAMME`, no standalone manuscript |
+| `paper-xx-content-bound-math-evaluation/` | P10 | `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`, 2026-08-18 |
 
-The machine-readable registry is `PAPER_DIRECTORIES` in
-`src/orion/programme/superiority_terminals.py`. `HC-SUP-STALE-PAPER-IDENTITY` fails
-on any paper-numbered directory that is neither a registered active identity nor a
-recorded predecessor, so a third directory cannot appear under a number without
-someone recording which one carries the identity.
+The `paper-xx-` prefix vacates the number while keeping the record that each was a
+paper candidate. Neither directory was deleted: both hold results that live tests
+and other papers cite.
+
+**Neither could be renumbered into P11–P14.** Not because those numbers are taken,
+but because both are already absorbed — into P8 and P4/P8 respectively — and
+re-absorbing them would contradict a recorded terminal while moving them away from
+the papers that own their subjects. `content-bound-math-evaluation` is not even
+dormant: its `FOLLOW_UPS.md` carries active reopen triggers, and trigger 5 routes
+any surviving positive through P4 and P8.
+
+### Correcting an earlier framing in this file
+
+An earlier revision described these pairs as *active identity* and *retired
+predecessor*. That was the wrong lens and is withdrawn. For P9 it was simply false:
+the live manuscript does not cite `executable-research-core` at all, so there is no
+lineage between them.
+
+What actually distinguishes the directories under `papers/` is **layer**, not
+lineage:
+
+- the **manuscript** — the publication identity, one per paper;
+- the **benchmark** — corpus, results, technical notes, now `paper-xx-` prefixed
+  where it once carried a number;
+- the **shared lane** — `orion-learning-machine/`, the framework and experiments
+  both benchmark packages run on, which is not a paper and now says so in its own
+  README.
+
+### P15
+
+`paper-15-orion-research-harness/` is opened ahead of an issue, as a systems paper
+introducing the ORION research harness and the ORION-Q dual harness. The P-series
+already contains non-claim papers — #669 writes P14 as a methods/evaluation-contract
+paper — so a systems paper is in-series rather than an exception. A programme issue
+assigning this subject a different number would override that.
 
 ## P11–P14, and why absorption retires a number rather than renumbering a paper
 

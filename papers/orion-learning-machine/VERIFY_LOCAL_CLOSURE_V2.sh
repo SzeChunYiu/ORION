@@ -23,11 +23,11 @@ assert isinstance(expected, dict) and len(expected) == 9
 
 def canonical_overlay_key(manifest_relative: str) -> str | None:
     # Historical P10 manifest entries are rooted from orion-learning-machine as
-    # ../paper-10-content-bound-math-evaluation/... . Normalize only that exact
+    # ../paper-xx-content-bound-math-evaluation/... . Normalize only that exact
     # namespace; no other legacy path may be skipped.
-    prefix = '../paper-10-content-bound-math-evaluation/'
+    prefix = '../paper-xx-content-bound-math-evaluation/'
     if manifest_relative.startswith(prefix):
-        return 'paper-10-content-bound-math-evaluation/' + manifest_relative[len(prefix):]
+        return 'paper-xx-content-bound-math-evaluation/' + manifest_relative[len(prefix):]
     return None
 
 manifest = root / 'PUBLICATION_MANIFEST_SHA256.txt'
@@ -68,6 +68,6 @@ print(f"authority: {authority['authority']}")
 PY
 
 PYTHONPATH=framework python -m pytest -q framework/tests
-python ../paper-09-executable-research-core/check_merged_ready.py
-python ../paper-10-content-bound-math-evaluation/check_technical_note_ready.py
+python ../paper-xx-executable-research-core/check_merged_ready.py
+python ../paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
 printf 'P9/P10 bounded local closure V2: PASS\n'

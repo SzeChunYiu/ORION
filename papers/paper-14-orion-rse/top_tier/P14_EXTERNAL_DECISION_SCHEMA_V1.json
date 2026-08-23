@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.invalid/schemas/p14-external-decision-v1.json",
+  "title": "P14 External Research Decision V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_id",
+    "system_id",
+    "final_claim",
+    "claim_scope",
+    "donor_ownership",
+    "retained_evidence",
+    "protocol_deviations",
+    "disposition",
+    "confidence",
+    "authority_status",
+    "requested_followups",
+    "resource_usage"
+  ],
+  "properties": {
+    "schema_version": {"const": "P14_EXTERNAL_DECISION_V1"},
+    "packet_id": {"type": "string"},
+    "system_id": {"type": "string"},
+    "final_claim": {"type": "string"},
+    "claim_scope": {"type": "string"},
+    "donor_ownership": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "owned_mechanism", "disposition"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "owned_mechanism": {"type": "string"},
+          "disposition": {"enum": ["ADOPT", "ADAPT", "COMPOSE", "DEFER", "REJECT"]}
+        }
+      }
+    },
+    "retained_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifact_id", "polarity", "material"],
+        "properties": {
+          "artifact_id": {"type": "string"},
+          "polarity": {"enum": ["POSITIVE", "NULL", "NEGATIVE", "SUBSUMED", "NON_IDENTIFIABLE"]},
+          "material": {"type": "boolean"}
+        }
+      }
+    },
+    "protocol_deviations": {"type": "array", "items": {"type": "string"}},
+    "disposition": {
+      "enum": ["PROMOTE", "SUBSUMED", "INTERACTION_ONLY", "NEGATIVE", "NULL_LIVE", "NON_IDENTIFIABLE", "CANNOT_CHECK", "REOPEN", "STOP"]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "authority_status": {"enum": ["NOT_AUTHORITY", "CANNOT_CHECK", "EXTERNALLY_AUTHORIZED"]},
+    "requested_followups": {"type": "array", "items": {"type": "string"}},
+    "resource_usage": {
+      "type": "object",
+      "additionalProperties": {"type": ["integer", "number", "string"]}
+    }
+  }
+}

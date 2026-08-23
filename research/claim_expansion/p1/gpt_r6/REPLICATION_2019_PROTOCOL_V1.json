@@ -1,0 +1,204 @@
+{
+  "schema_version": "orion.p1.r6.replication-2019-protocol.v1",
+  "paper_id": "P1",
+  "parent_issue": 723,
+  "authority_parent": 649,
+  "date_frozen": "2026-08-21",
+  "base_commit": "d7312bc7fda4a84490acbc8b7964904fbedb3a93",
+  "frozen_before_r6_2020_primary_terminal": true,
+  "mission": "Source-disjoint changed-host replication of the native ORION R6 reformulation-superiority trial. This protocol is non-authorizing until the 2020 primary is positive and every replication gate below passes.",
+  "parent_doctrine": {
+    "r4_plan": "research/claim_expansion/p1/gpt_r4/MATCHED_PAIR_PLAN_V1.json",
+    "r4_plan_replication_year": 2019,
+    "r6_issue_requirement": "source-disjoint 2019 replication, native runtime, independently implemented scorer/direct reconstruction, changed provider/host axis, same frozen superiority/no-regression margins"
+  },
+  "source_custody": {
+    "replication_year": 2019,
+    "search_engine": "web_fast",
+    "max_rank_scanned_per_query": 50,
+    "source_priority": [
+      "primary_paper",
+      "publisher_record",
+      "official_artifact_repository"
+    ],
+    "pair_source_rule": "For substantive queries admit only the first unique nonexcluded 2019 source that contains both a source-grounded adverse condition for the query class and a matched same-study control condition where no objective/model-class or problem-boundary reformulation is required.",
+    "unresolved_source_rule": "For unresolved queries admit only the first unique nonexcluded 2019 source establishing genuine non-identifiability under available evidence.",
+    "exclusion_rule": "Reject any candidate whose normalized URL, DOI, stable source id, paper title+first-author+year identity, or official artifact identity matches any source opened/admitted/used by P1-X or P1 R1-R6 before this freeze. Reject all 2020 primary sources even if mirrored under a different URL.",
+    "exclusion_roots": [
+      "research/claim_expansion/p1/P1_X_CONTAMINATION_EXCLUSIONS_V1.md",
+      "research/claim_expansion/p1/gpt_r1/**",
+      "research/claim_expansion/p1/gpt_r2/**",
+      "research/claim_expansion/p1/gpt_r3/**",
+      "research/claim_expansion/p1/gpt_r4/**",
+      "research/claim_expansion/p1/gpt_r5/FIXED_SOURCE_SET_V1.json@ab5a1d4937c884a975c90f90fc619964cd740582",
+      "R6 2020 fixed source universe inherited byte-for-byte from the R5 fixed source set"
+    ],
+    "all_search_results_and_skips_logged": true,
+    "no_source_replacement_after_policy_outcome": true,
+    "no_gold_or_policy_outcome_visible_during_acquisition": true
+  },
+  "pair_matching": {
+    "same_source_required": true,
+    "same_scientific_objective_or_task_required": true,
+    "same_study_or_artifact_family_required": true,
+    "match_domain": true,
+    "match_measurement_system_when_possible": true,
+    "match_implementation_family_when_possible": true,
+    "match_population_material_or_system_when_possible": true,
+    "control_gold_class": "NO_HIGH_LEVEL_REFORMULATION",
+    "control_may_require_lower_level_action": true,
+    "control_must_not_require_objective_or_boundary_reformulation": true,
+    "source_with_only_adverse_condition_is_ineligible": true
+  },
+  "case_schema": {
+    "pair_required": [
+      "pair_id",
+      "query_id",
+      "adverse_class",
+      "actual_domain",
+      "source_id",
+      "source_url",
+      "source_year",
+      "source_rank",
+      "adverse",
+      "control",
+      "pair_evidence"
+    ],
+    "episode_required": ["id", "dossier", "probes", "gold_class"],
+    "unresolved_required": [
+      "id",
+      "query_id",
+      "actual_domain",
+      "source_id",
+      "source_url",
+      "source_year",
+      "source_rank",
+      "dossier",
+      "probes",
+      "gold_class",
+      "admission_evidence"
+    ],
+    "dossier_max_words": 90,
+    "probe_names": [
+      "P_SEARCH_COVERAGE",
+      "P_REPRESENTATION_ROUNDTRIP",
+      "P_ENVIRONMENT_REPLAY",
+      "P_MEASUREMENT_CROSSCHECK",
+      "P_OBJECTIVE_PREDICTIVE_CHECK",
+      "P_BOUNDARY_COUNTERFACTUAL"
+    ],
+    "probe_values": ["SUPPORT", "REFUTE", "INCONCLUSIVE"]
+  },
+  "queries": [
+    {"id":"SEARCH-P1","class":"SEARCH_OR_EVIDENCE","q":"2019 scientific study reduced data versus sufficient data comparison inference primary"},
+    {"id":"SEARCH-P2","class":"SEARCH_OR_EVIDENCE","q":"2019 additional observations improve scientific inference compared limited observations primary study"},
+    {"id":"SEARCH-P3","class":"SEARCH_OR_EVIDENCE","q":"2019 low sample versus high sample scientific model performance comparison primary research"},
+    {"id":"SEARCH-P4","class":"SEARCH_OR_EVIDENCE","q":"2019 missing data versus complete data scientific analysis comparison primary paper"},
+    {"id":"REP-P1","class":"REPRESENTATION_OR_INTERFACE","q":"2019 scientific representation encoding comparison original transformed data primary study"},
+    {"id":"REP-P2","class":"REPRESENTATION_OR_INTERFACE","q":"2019 coordinate system transformation comparison scientific model primary research"},
+    {"id":"REP-P3","class":"REPRESENTATION_OR_INTERFACE","q":"2019 raw versus transformed representation scientific prediction comparison primary study"},
+    {"id":"REP-P4","class":"REPRESENTATION_OR_INTERFACE","q":"2019 schema mapping harmonization comparison scientific data integration primary paper"},
+    {"id":"IMPL-P1","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2019 software bug corrected version comparison scientific result primary study"},
+    {"id":"IMPL-P2","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2019 low precision versus high precision scientific simulation comparison primary research"},
+    {"id":"IMPL-P3","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2019 dependency version comparison reproducibility scientific software primary study"},
+    {"id":"IMPL-P4","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2019 configuration error corrected configuration scientific pipeline comparison primary paper"},
+    {"id":"MEAS-P1","class":"MEASUREMENT_OR_EVALUATOR","q":"2019 calibrated versus uncalibrated instrument comparison scientific measurement primary study"},
+    {"id":"MEAS-P2","class":"MEASUREMENT_OR_EVALUATOR","q":"2019 self report versus reference standard measurement bias comparison primary research"},
+    {"id":"MEAS-P3","class":"MEASUREMENT_OR_EVALUATOR","q":"2019 corrected versus uncorrected sensor bias comparison primary study"},
+    {"id":"MEAS-P4","class":"MEASUREMENT_OR_EVALUATOR","q":"2019 benchmark metric alternative metric comparison scientific evaluation primary paper"},
+    {"id":"OBJ-P1","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2019 misspecified versus correctly specified model comparison scientific primary study"},
+    {"id":"OBJ-P2","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2019 inadequate versus adequate model class scientific prediction comparison primary research"},
+    {"id":"OBJ-P3","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2019 loss function objective comparison scientific machine learning primary study"},
+    {"id":"OBJ-P4","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2019 omitted mechanism versus full mechanism model comparison scientific primary paper"},
+    {"id":"BOUND-P1","class":"PROBLEM_BOUNDARY","q":"2019 truncated versus full domain boundary scientific model comparison primary study"},
+    {"id":"BOUND-P2","class":"PROBLEM_BOUNDARY","q":"2019 narrow versus broad population scope scientific inference comparison primary research"},
+    {"id":"BOUND-P3","class":"PROBLEM_BOUNDARY","q":"2019 closed versus open system boundary scientific model comparison primary study"},
+    {"id":"BOUND-P4","class":"PROBLEM_BOUNDARY","q":"2019 partial versus full lifecycle system boundary assessment comparison primary paper"},
+    {"id":"UNRES-P1","class":"UNRESOLVED","q":"2019 competing scientific models indistinguishable available data identifiability primary study"},
+    {"id":"UNRES-P2","class":"UNRESOLVED","q":"2019 nonidentifiable parameters multiple mechanisms same observations primary research"},
+    {"id":"UNRES-P3","class":"UNRESOLVED","q":"2019 equifinality scientific models observationally equivalent primary paper"},
+    {"id":"UNRES-P4","class":"UNRESOLVED","q":"2019 insufficient evidence distinguish competing scientific hypotheses primary study"}
+  ],
+  "corpus_requirements": {
+    "required_pair_sources": 24,
+    "required_pairs_per_substantive_class": 4,
+    "required_unresolved_sources": 4,
+    "required_total_sources": 28,
+    "required_total_episodes": 52,
+    "minimum_actual_domains": 5,
+    "all_queries_must_admit": true,
+    "source_disjointness_required": true,
+    "cannot_check_if_incomplete": true
+  },
+  "candidate_and_baselines": {
+    "primary_comparator": "B3_HORIZON2_DONOR_COMPLETE",
+    "candidate_ablation": "ORION_NATIVE_BASE",
+    "candidate_target": "ORION_NATIVE_ARD",
+    "native_runtime_required": true,
+    "same_visible_evidence": true,
+    "same_action_budget": true,
+    "registry_promotion_before_terminal": false,
+    "provider_receives_gold": false,
+    "provider_receives_pair_role": false,
+    "provider_receives_source_class": false,
+    "provider_receives_evaluator_disposition": false
+  },
+  "changed_host": {
+    "required": true,
+    "host_class": "open_weight_semantic_reasoner",
+    "model_id": "google/flan-t5-base",
+    "model_revision_policy": "Resolve and persist the exact Hugging Face repository commit SHA in a no-gold host-custody job before any 2019 source dossier is scored; all replication scoring must load exactly that SHA.",
+    "generation": {
+      "do_sample": false,
+      "temperature": 0.0,
+      "max_new_tokens": 96
+    },
+    "fallback_to_deterministic_2020_provider": false,
+    "cannot_check_if_model_unavailable": true,
+    "host_receipt_required_fields": [
+      "model_id",
+      "resolved_revision_sha",
+      "config_sha256",
+      "tokenizer_identity",
+      "generation_parameters",
+      "runtime_versions",
+      "no_gold_access"
+    ]
+  },
+  "independent_evaluator": {
+    "required": true,
+    "must_not_import_2020_primary_scoring_or_terminal_functions": true,
+    "may_parse_shared_case_schema": true,
+    "direct_reconstruction_of_metrics_required": true,
+    "bootstrap_seed": 20260820,
+    "bootstrap_replicates": 20000,
+    "stability_interval": 0.95
+  },
+  "frozen_outcome_requirements": {
+    "episode_grs_orion_native_ard_minus_b3_at_least": 0.10,
+    "paired_bootstrap_95_lower_strictly_greater_than": 0.0,
+    "matched_pair_macro_selectivity_difference_at_least": 0.10,
+    "matched_pair_stratified_lower_strictly_greater_than": 0.0,
+    "domain_and_class_noninferiority_floor": -0.10,
+    "zero_harmful_lower_level_skip": true,
+    "zero_harmful_high_level_escalation_on_controls": true,
+    "zero_false_resolution_of_gold_unresolved": true,
+    "zero_source_gold_pair_role_leakage": true,
+    "every_scored_native_row_valid": true,
+    "ard_must_materially_differ_from_native_base_on_at_least_one_protected_adverse_family": true
+  },
+  "terminal_rule": {
+    "positive": "P1_R6_2019_REPLICATION_PASS",
+    "valid_negative": "P1_R6_2019_REPLICATION_NOT_SUPPORTED",
+    "incomplete_or_invalid": "P1_R6_2019_REPLICATION_CANNOT_CHECK",
+    "positive_requires_2020_primary_positive": true,
+    "positive_does_not_self_authorize_registry_promotion": true
+  },
+  "integrity": [
+    "No query, source rule, margin, bootstrap seed, provider model family, or scoring rule may change after any 2019 policy outcome is accessed.",
+    "No failed query may be replaced by a hand-picked source outside its frozen rank scan.",
+    "No source may be deleted because it harms ORION.",
+    "A transport/model/source-acquisition failure is CANNOT_CHECK, never a scientific zero or positive.",
+    "A valid negative must be retained verbatim and must not be rerun under altered thresholds as the same campaign version."
+  ]
+}

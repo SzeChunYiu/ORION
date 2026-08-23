@@ -1,0 +1,184 @@
+{
+  "schema_version": "orion.p1-p15.active-blocker-matrix.v1",
+  "date": "2026-08-22",
+  "authority": "DIAGNOSTIC_ONLY",
+  "acceptance_criterion": "zero unresolved ACTIVE claim-authority blockers under the typed lifecycle query; historical adverse results, scoped claims, invalid-design runs, expected negative controls and projections remain visible but do not inflate the active count",
+  "raw_string_count_is_authoritative": false,
+  "counting_rule": {
+    "paper_assignment": "explicit record paper_id, never enclosing directory",
+    "deduplication": "record lifecycle identity plus canonical measurement_id and verified result/artifact digest",
+    "active_leaf": "ACTIVE PRIMARY/SECONDARY SCIENTIFIC_RESULT, non-projection, verified digest, not validly superseded by the same frozen study coordinates",
+    "historical_retention": "successor_of, narrows and adjudicates never delete or retire historical adverse evidence"
+  },
+  "papers": [
+    {
+      "paper_id": "P1",
+      "state": "ACTIVE_SUCCESSOR_CAMPAIGN_DESIGN",
+      "historical_adverse": ["P1.H1.V1_NOT_SUPPORTED"],
+      "invalid_or_bounded_predecessors": ["P1.H1.R6_COMPARATOR_INFORMATION_AND_RESOURCE_ASYMMETRY"],
+      "active_blockers": [
+        "R7 source snapshot incomplete",
+        "outcome-blind max-T power simulation not bound",
+        "strongest external comparator not frozen",
+        "changed semantic hosts and external scorer custody not bound"
+      ],
+      "repair_or_campaign": "P1 R7: 192 matched source pairs + 64 unresolved sources per wave; 8 causal families x 4 domains x 6 sources; equally sized source-disjoint changed-host replication",
+      "refs": [
+        "development/p1-r7-wide-successor/DEVELOPMENT_PACKET.md",
+        "research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json",
+        "papers/paper-01-recursive-epistemic-reconstruction/protocol/P1_TEST_ARCHIVE_DESIGN_V1.json"
+      ]
+    },
+    {
+      "paper_id": "P2",
+      "state": "DEFECTIVE_GATE_PLUS_ACTIVE_REPRODUCTION_BLOCKER",
+      "historical_adverse": ["BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE"],
+      "not_adverse": ["P2_NARROWED", "P2_STRUCTURAL_DISCOVERY_NARROWED"],
+      "active_blockers": [
+        "archived-vs-reconstructed acquisition world discrepancy",
+        "retrieval evaluator operates at measurement floor",
+        "strong deep-research comparator and external evaluator custody absent",
+        "second domain and systematic-review-like arena absent"
+      ],
+      "repair_or_campaign": "repair resolution first, reproduce the frozen task/world, then freeze a reachable external acquisition gate and execute held-out route families",
+      "refs": [
+        "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json",
+        "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json"
+      ]
+    },
+    {
+      "paper_id": "P3",
+      "state": "ACTIVE_PARTIAL_OBSERVATION_SUCCESSOR_REQUIRED",
+      "historical_adverse": ["latest P3 partial-observation result retains scientifically material FAIL cells"],
+      "active_blockers": [
+        "four coordinates are inert on the current corpus",
+        "successive amendment projections require typed lineage",
+        "raw-text extraction and strong external baselines remain outside the bounded mapping claim"
+      ],
+      "repair_or_campaign": "build a corpus where construct, measurement, referent and temporal-context coordinates are independently consultable; execute only the latest typed amendment leaf",
+      "refs": [
+        "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/",
+        "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
+      ]
+    },
+    {
+      "paper_id": "P4",
+      "state": "ACTIVE_IDENTIFIABILITY_BLOCKER",
+      "historical_adverse": ["P4.V2.H3_NOT_SUPPORTED_ON_SATURATED_METRIC"],
+      "active_blockers": [
+        "IDENTIFIABILITY_V3 contains ten LABEL_RECOVERED_BY_CUE seed-invariance failures",
+        "CLAIM_LEDGER_V3 clearance statement conflicts with the artifact",
+        "independent protected validation remains required"
+      ],
+      "repair_or_campaign": "withhold V3 authority; compute and bind the worst-seed informedness ceiling, remove label-recoverable cues prospectively, then rerun under protected custody",
+      "refs": [
+        "papers/paper-04-verified-scientific-discovery/evidence/protected_v3/IDENTIFIABILITY_V3.json",
+        "papers/paper-04-verified-scientific-discovery/evidence/CLAIM_LEDGER_V3.md"
+      ]
+    },
+    {
+      "paper_id": "P5",
+      "state": "ACTIVE_MISSING_PROSPECTIVE_EVIDENCE",
+      "historical_adverse": [],
+      "active_blockers": [
+        "matched baseline fresh hidden-cause campaign absent",
+        "protected promotion evaluation absent",
+        "journal readiness remains CANNOT_CHECK for governed self-improvement benefit"
+      ],
+      "repair_or_campaign": "execute frozen STATIC -> REPLAY -> FRESH -> PROTECTED non-compensatory campaign with external custody",
+      "refs": ["papers/paper-05-self-orion/JOURNAL_READINESS.md"]
+    },
+    {
+      "paper_id": "P6",
+      "state": "ACTIVE_REPRODUCIBILITY_BINDING_BLOCKER",
+      "historical_adverse": [],
+      "active_blockers": ["missing reproducibility artifacts", "stale subject-commit binding"],
+      "repair_or_campaign": "rebind exact subject/environment and regenerate immutable replay artifacts",
+      "refs": ["papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json"]
+    },
+    {
+      "paper_id": "P7",
+      "state": "ACTIVE_EXECUTION_ARTIFACT_BLOCKER",
+      "historical_adverse": [],
+      "active_blockers": ["generator absent", "trace replay absent", "immutable results and environment binding absent"],
+      "repair_or_campaign": "execute the frozen generator and trace replay under bound environment custody",
+      "refs": ["papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json"]
+    },
+    {
+      "paper_id": "P8",
+      "state": "ACTIVE_CUSTODY_AND_ATTACK_REPLAY_BLOCKER",
+      "historical_adverse": [],
+      "active_blockers": ["custody receipt absent", "attack replay absent", "immutable results/environment binding absent"],
+      "repair_or_campaign": "bind evaluator custody and execute the frozen authority attack battery",
+      "refs": ["papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json"]
+    },
+    {
+      "paper_id": "P9",
+      "state": "SCHEMA_REPAIR_PLUS_ACTIVE_FRONTIER_CAMPAIGN",
+      "historical_adverse": ["P9 D1 hostile attacks honestly narrow the representation claim"],
+      "active_blockers": [
+        "zero-opportunity invariance cells are typed as CANNOT_CHECK rather than NOT_APPLICABLE/ZERO_OPPORTUNITY",
+        "registered frontier grid has no executed model-scale cells"
+      ],
+      "repair_or_campaign": "repair diagnostic applicability without changing hostile outcomes; execute the frozen model-scale frontier grid",
+      "refs": [
+        "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+        "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json"
+      ]
+    },
+    {
+      "paper_id": "P10",
+      "state": "NO_CURATED_NEGATIVE_TERMINAL__LIFECYCLE_AUDIT_REQUIRED",
+      "historical_adverse": [],
+      "active_blockers": ["typed active-leaf migration and current evidence audit not yet completed"],
+      "repair_or_campaign": "migrate claim records and run active-leaf/integrity audit; no result is presumed positive by absence from a string scan",
+      "refs": []
+    },
+    {
+      "paper_id": "P11",
+      "state": "HONEST_ADVERSE_RESULTS_REQUIRE_NEW_MECHANISM",
+      "historical_adverse": ["P11D_SPARSE_DECODER_GAP_NOT_MET"],
+      "active_blockers": ["P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED"],
+      "repair_or_campaign": "retain both terminals; freeze a materially new decoder/state mechanism and test a narrower width-conditioned claim before any universal successor",
+      "refs": [
+        "papers/paper-11-state-as-computation/P11D_SPARSE_DECODER_RESULT_RECEIPT_V1.json",
+        "papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json"
+      ]
+    },
+    {
+      "paper_id": "P12",
+      "state": "NO_CURATED_NEGATIVE_TERMINAL__LIFECYCLE_AUDIT_REQUIRED",
+      "historical_adverse": [],
+      "active_blockers": ["typed active-leaf migration and current evidence audit not yet completed"],
+      "repair_or_campaign": "migrate claim records and run active-leaf/integrity audit",
+      "refs": []
+    },
+    {
+      "paper_id": "P13",
+      "state": "PROJECTION_CONTAMINATION_PLUS_COMPARATIVE_GAP",
+      "historical_adverse": ["P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET retained beneath supported P13A successor"],
+      "active_blockers": ["two RCS-only metrics have no comparative panel"],
+      "repair_or_campaign": "deduplicate the copied global panel by paper_id/measurement_id and add a prospective comparator panel for RCS-only metrics",
+      "refs": ["papers/paper-13-responsibility-carrying-state/evidence/audit/P13_PANEL_RESOLUTION_2026-08-22.json"]
+    },
+    {
+      "paper_id": "P14",
+      "state": "DEFECTIVE_GATE_WITH_EXTERNAL_VALIDATION_BLOCKER",
+      "historical_adverse": ["P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET"],
+      "active_blockers": ["blinded independent external validation absent"],
+      "repair_or_campaign": "retain P14A terminal and attach attainability adjudication; use P14C only for conformance; freeze a reachable externally validated successor",
+      "refs": [
+        "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
+        "papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json"
+      ]
+    },
+    {
+      "paper_id": "P15",
+      "state": "NO_CURATED_NEGATIVE_TERMINAL__LIFECYCLE_AUDIT_REQUIRED",
+      "historical_adverse": [],
+      "active_blockers": ["typed active-leaf migration and current evidence audit not yet completed"],
+      "repair_or_campaign": "migrate claim records and run active-leaf/integrity audit",
+      "refs": []
+    }
+  ]
+}

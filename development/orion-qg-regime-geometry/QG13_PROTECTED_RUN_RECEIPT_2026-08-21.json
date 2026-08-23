@@ -1,0 +1,38 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#767",
+  "workflow": {
+    "name": "orion-qg-qg13-theorem-miner",
+    "run_id": 32489747661
+  },
+  "head_sha": "fd672b346fab7193c64cdf887bbb29b271d0cff9",
+  "artifact": {
+    "id": 9449329955,
+    "name": "orion-qg-qg13-fd672b346fab7193c64cdf887bbb29b271d0cff9",
+    "digest": "sha256:51045f75770f2035ab34bdcd61a95a8f0a527b216e70b3274e7c803df22c5ea0"
+  },
+  "terminal": "QG13_AUTOMATIC_THEOREM_MINER_RECOVERS_R6M_AND_R6I_PARENT_THEOREMS",
+  "source_result_digest": "b167074ca350078d51a7873fa15ba6dd6083fd930906cab601968f046a87581d",
+  "generic_lane": {
+    "decision": "ACCEPT",
+    "analyzer_request_digest": "15edd0b3528a4909a21e3cebf75b09bf7144430b6e93783d7d82854436759814",
+    "analyzer_result_digest": "b499d371a57116a8820291e2d238c31b90b4c508f5b9ef8621a918383309bc21",
+    "verifier_request_digest": "3a68f04eaeb473e29cf363eb0db9d1ca958ad29f433532c873bf5f77e5a920e9",
+    "verifier_result_digest": "7bef6fd12b4f12c9862b38a32749ecd31e171702a26ebdbda0920ca82a60e0bd",
+    "r6m_ranks": [2,2,2,2,2,2],
+    "r6i_ranks": [5,5],
+    "r6m_max_delta_f3": {"central": 2, "noncentral": 2},
+    "r6i_max_delta_c": -4
+  },
+  "native_lane": {
+    "decision": "ACCEPT_RECOVERY",
+    "request_digest": "8a2464b43ecf22ab2c6c4fde3cd4767b8acc2c243db38f9207df6b192c1badd1",
+    "result_digest": "33c0bdddfece026103ccfdcb532a60ff54caa65d469574cd5958bfc1f2a2cd42",
+    "scope": "R6M_R6I_RECOVERY_ONLY",
+    "new_edit_requires_new_freeze": true
+  },
+  "both_accept": true,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

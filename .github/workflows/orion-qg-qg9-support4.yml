@@ -1,0 +1,89 @@
+name: orion-qg-qg9-support4
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG9_SUPPORT4_*'
+      - 'development/orion-qg-regime-geometry/qg9_support4_*'
+      - 'development/orion-qg-regime-geometry/run_qg9_support4_dual_harness.py'
+      - 'research/extensions/orion-qg/qg9_support4_combined_exchange.py'
+      - '.github/workflows/orion-qg-qg9-support4.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg9-support4-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  support4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      QG9_FROZEN_BASE: f90c7dfa484791d5c0fa325bf0d1b13c68b5f72d
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert exact head and frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG9_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG9_FROZEN_BASE}")" = "${QG9_FROZEN_BASE}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Compile theorem instruments
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg9_support4_combined_exchange.py \
+            development/orion-qg-regime-geometry/qg9_support4_generic_verify.py \
+            development/orion-qg-regime-geometry/qg9_support4_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg9_support4_dual_harness.py
+      - name: Execute support-4 theorem through both ORION instruments
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg9_support4_dual_harness.py | tee artifacts/orion-qg-qg9-support4-summary.json
+      - name: Deterministic theorem replay
+        run: |
+          python research/extensions/orion-qg/qg9_support4_combined_exchange.py --output artifacts/orion-qg-qg9-support4-replay.json > artifacts/orion-qg-qg9-support4-replay.log
+          cmp artifacts/orion-qg-qg9-support4-combined-exchange.json artifacts/orion-qg-qg9-support4-replay.json
+      - name: Enforce theorem or honest counterexample
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg9-support4-combined-exchange.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg9-support4-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg9-support4-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg9-support4-dual-harness.json').read_text())
+          pos='QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED'
+          assert d['terminal'] in {pos,'QG9_SUPPORT5_COMBINED_EXCHANGE_COUNTEREXAMPLE_FOUND','QG9_GENERIC_NATIVE_DISAGREEMENT'}
+          assert a['support3_claim'] is False and a['tightness_claim'] is False
+          assert d['support3_authority'] is False and d['tightness_authority'] is False
+          if d['terminal']==pos:
+              assert all(a['gates'].values()) and all(a['proof_audit'].values())
+              assert a['support_bound']==4
+              assert a['support5_boundary']['unsafe_count']==0
+              assert a['support5_boundary']['retained_irreducible_patterns']>0
+              assert a['support4_control']['unsafe_count']>0
+              assert g['decision']=='ACCEPT' and all(g['checks'].values())
+              assert n['decision']=='ACCEPT_SUPPORT4' and all(n['checks'].values())
+              assert d['both_accept'] is True
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg9-support4-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg9-support4-combined-exchange.json
+            artifacts/orion-qg-qg9-support4-generic-verification.json
+            artifacts/orion-qg-qg9-support4-native-verification.json
+            artifacts/orion-qg-qg9-support4-dual-harness.json
+            artifacts/orion-qg-qg9-support4-summary.json
+            artifacts/orion-qg-qg9-support4-replay.json
+            artifacts/orion-qg-qg9-support4-replay.log
+            .orion-qg-qg9-support4-generic/.orion-harness/**
+            .orion-qg-qg9-support4-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

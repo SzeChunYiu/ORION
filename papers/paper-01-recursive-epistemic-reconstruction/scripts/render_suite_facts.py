@@ -56,6 +56,40 @@ TIERS = [
 ]
 
 
+class _FamilyMacros(dict):
+    """Family name -> macro name, matched with separators normalised.
+
+    An unregistered family raises instead of falling back to a derived name: a
+    derived name would contain underscores or digits, which TeX cannot use in a
+    control sequence, so the failure would surface as an uncompilable manuscript
+    rather than as a missing entry here.
+    """
+
+    @staticmethod
+    def _key(family: str) -> str:
+        return family.replace("-", "_").lower()
+
+    def __getitem__(self, family: str) -> str:
+        try:
+            return super().__getitem__(self._key(family))
+        except KeyError:
+            raise KeyError(
+                f"no LaTeX macro registered for task family {family!r}; "
+                "add one to FAMILY_MACROS rather than deriving it"
+            ) from None
+
+
+#: Registered task family -> the LaTeX macro the manuscript cites for its count.
+FAMILY_MACROS = _FamilyMacros({
+    "execution_only_negative_control": "ExecutionOnlyCount",
+    "evidence_only_negative_control": "EvidenceOnlyCount",
+    "hidden_decomposition_or_interface": "HiddenDecompositionCount",
+    "hidden_parent_domain": "HiddenParentDomainCount",
+    "hidden_representation_or_coordinate_system": "HiddenRepresentationCount",
+    "hidden_measurement_or_operationalization": "HiddenMeasurementCount",
+})
+
+
 def _fmt_int(value: int) -> str:
     """Thousands separators, so 16,380 reads as a count rather than a serial."""
     return f"{value:,}".replace(",", "{,}")
@@ -116,21 +150,25 @@ def collect() -> dict[str, Any]:
         # Precision tier
         "AchievedTier": tier,
         "AchievedHalfWidth": f"{half_width:.4f}",
-        "RequiredNForH1": _fmt_int(required_n_for_half_width(H1_SUPERIORITY_MARGIN)),
-        "RequiredNForH2": _fmt_int(required_n_for_half_width(H2_NON_INFERIORITY_MARGIN)),
+        "RequiredNForHOne": _fmt_int(required_n_for_half_width(H1_SUPERIORITY_MARGIN)),
+        "RequiredNForHTwo": _fmt_int(required_n_for_half_width(H2_NON_INFERIORITY_MARGIN)),
         # Stochastic repeats
         "StochasticRepeats": stochastic_repeats,
         # Underpowered flag
         "Underpowered": "yes" if half_width > H1_SUPERIORITY_MARGIN else "no",
         # H1/H2 margins
-        "H1Margin": f"{H1_SUPERIORITY_MARGIN:.2f}",
-        "H2Margin": f"{H2_NON_INFERIORITY_MARGIN:.2f}",
+        "POneHOneMargin": f"{H1_SUPERIORITY_MARGIN:.2f}",
+        "POneHTwoMargin": f"{H2_NON_INFERIORITY_MARGIN:.2f}",
         # Family breakdown (for descriptive reporting)
     }
 
-    # Add family-specific counts
+    # Add family-specific counts. A LaTeX control sequence is letters only, so a
+    # family key cannot be used as a macro name directly: `\hidden_parent_domain_count`
+    # and `\RequiredNForH1` are not names TeX can define, and a file full of them
+    # would fail to compile rather than drift quietly. The mapping below is the
+    # registry of the names the manuscript actually uses.
     for family, count in family_counts.items():
-        facts[f"{family.replace('-', '_')}_count"] = count
+        facts[FAMILY_MACROS[family]] = count
 
     return facts
 
