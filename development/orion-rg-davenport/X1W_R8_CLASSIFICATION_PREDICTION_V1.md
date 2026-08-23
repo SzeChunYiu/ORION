@@ -76,6 +76,31 @@ The complete orbit table of this lane now reads:
 (`r = 7` has ≥ 13 fingerprint classes and is left open; `r = 9` follows from the
 `[15,6]` uniqueness plus the nondegeneracy argument of X1-V.)
 
+## Instrument bug found and fixed — a false negative caught by a certificate
+
+The original `r = 9, k = 6` exhaustive run returned `disjointfree = 0` — **contradicting**
+both the machine-verified BCH certificate of X1-V and BSS's published `D_2(C_2^9) = 16`.
+Diagnosis: `fullcheck()` stored subset-XORs in `unsigned char`. Elements fit 8 bits up to
+`r = 8` — which is exactly why every validated run (`r ≤ 8`) was correct — but `r = 9`'s
+9-bit elements truncate (`256 → 0`), flooding the check with fake zero-sums (127 reported
+against the true 63, demonstrated by unit test) and rejecting every leaf.
+
+Blast radius audited: **zero committed claims affected.** The `r = 7` negative is
+triple-covered (independent Python DFS + Fontaine–Peterson 1959), the `r = 8` census is
+Kurz-confirmed to the digit above, the `r ≤ 6` runs are orbit-validated, and the corrupted
+`r = 9` output was never used (the value came from the certificate + BSS before the run
+finished). Fixed (`unsigned short`, valid to `r = 15`), revalidated on `r = 6`/`r = 7`, and
+unit-tested against the certificate.
+
+The instructive part: had the certificate not existed, this false negative would have
+**"confirmed" the already-falsified conjecture** (`D_2(C_2^9) = 15`) in direct
+contradiction of the literature — a silent wrong answer from an exhaustively-validated
+instrument, one rank past its validated regime. Certificates-first is not optional.
+
+**Registered for the rerun (in progress):** `disjointfree > 0`; exactly **one** fingerprint
+class, profile `{6:30, 8:15, 10:18}` (the BCH weight enumerator), by the X1-V nondegeneracy
+argument plus Kurz's `[15,6]` uniqueness.
+
 ## Lane status
 
 This is the closing atom of the RG lane. Per the standing venue calibration, everything

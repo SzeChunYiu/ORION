@@ -11,13 +11,16 @@
 static int R,K,N,MINZS,np;
 static int pool[256], cur[8];
 static long long leaves=0, found=0, nodes=0;
+#define MAXFP 128
+static unsigned long long fpkey[MAXFP]; static long long fpcnt[MAXFP];
+static int fprep[MAXFP][8]; static int nfp=0;
 static FILE*wf=NULL;
 static int wt(int x){ return __builtin_popcount(x); }
 static int fullcheck(void){
     int n=R+K, W[16];
     for(int i=0;i<R;i++) W[i]=1<<i;
     for(int i=0;i<K;i++) W[R+i]=cur[i];
-    static unsigned char x[1<<15];
+    static unsigned short x[1<<15];
     int total=1<<n, zs[1<<15], nz=0, mn=99;
     x[0]=0;
     for(int s=1;s<total;s++){
@@ -29,6 +32,16 @@ static int fullcheck(void){
     for(int i=0;i<nz;i++) for(int j=i+1;j<nz;j++)
         if(!(zs[i]&zs[j])) return 0;
     if(mn<MINZS) printf("THEORY-VIOLATION minzs=%d\n",mn);
+    { int wc[24]; for(int i=0;i<24;i++)wc[i]=0;
+      for(int i=0;i<nz;i++) wc[__builtin_popcount(zs[i])]++;
+      unsigned long long key=0;
+      for(int w=1;w<=16;w++) key = key*97ULL + (unsigned)wc[w];
+      int f=-1;
+      for(int i=0;i<nfp;i++) if(fpkey[i]==key){ f=i; break; }
+      if(f<0 && nfp<MAXFP){ f=nfp++; fpkey[f]=key; fpcnt[f]=0;
+          for(int i=0;i<K;i++) fprep[f][i]=cur[i]; }
+      if(f>=0) fpcnt[f]++;
+    }
     return 1;
 }
 static void rec(int start,int k){
@@ -66,5 +79,8 @@ int main(int argc,char**argv){
     printf("r=%d k=%d minzs=%d pool=%d nodes=%lld leaves=%lld disjointfree=%lld\n",R,K,MINZS,np,nodes,leaves,found);
     if(found) printf("WITNESS EXISTS: length %d over C_2^%d => D_2(C_2^%d) >= %d\n",R+K,R,R,R+K+1);
     else printf("NO WITNESS of length %d over C_2^%d\n",R+K,R);
+    printf("fingerprint classes (kernel weight-enum): %d\n",nfp);
+    for(int f=0;f<nfp;f++){ printf("  class %d count %lld rep",f,fpcnt[f]);
+        for(int i=0;i<K;i++) printf(" %d",fprep[f][i]); printf("\n"); }
     return 0;
 }
