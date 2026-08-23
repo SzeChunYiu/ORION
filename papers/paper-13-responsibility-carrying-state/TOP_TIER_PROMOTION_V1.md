@@ -20,6 +20,8 @@ The prospectively frozen real-data study returns `P13_REAL_RESPONSIBILITY_SHIFT_
 
 Fold by fold, responsibility-carrying state (RCS) exactly matches always-raw accuracy on both responsibilities while reading only 33 floats per episode instead of 64. Aggregate state-read reduction is `0.484375` (48.4375%). RCS reopens on half the episodes and never reuses unsupported compact state for exact-digit responsibility.
 
+Handwritten digits are shared programme infrastructure (P9's cubic/`D-A` diagnostic and P11's 64→32 compiler use the same public dataset). The frozen quantities owned here are P13's own 17,970 parity→exact-digit responsibility episodes and CNF transport witnesses. The parity responsibility shares its protected target family with P11's T11.2 parity checker witnesses, but the P13 episodes and the P11 witnesses are separately frozen corpora with no shared protected outcomes.
+
 Protected comparator outcomes:
 
 - RCS: combined accuracy `0.9435169727`, exact-digit accuracy `0.9699499165`, parity accuracy `0.9170840289`, unsupported exact-digit reuse `0`;
@@ -67,7 +69,9 @@ For representation/state `S` and responsibility `r`, define support/sufficiency 
 
 ### T13.2 — Transport and revocation
 
-Define how a responsibility certificate transports under representation/compiler version change, source/evidence update, context/epoch change, responsibility upgrade and loss of raw-recovery availability. Compose with P6/P7/P8 only through frozen interfaces; P13 owns the state-reuse contract, not their general transition/transport/authority claims.
+Define how a responsibility certificate transports under representation/compiler version change, source/evidence update, context/epoch change, responsibility upgrade and loss of raw-recovery availability. Compose with P6/P7/P8 only through frozen interfaces; P13 owns the state-reuse contract, not their general transition/transport/authority claims. Within-regime source-level revocation semantics (revoking a source while independent derivations survive) are donor-owned by P8, extended here only by the responsibility-indexed part (`papers/SYNC_CONTRACT.md`). The digits responsibility upgrade is the question-changes-under-fixed-map dual of P7's wine coarsening (map-changes-under-fixed-question); P7 is cited as donor of the transport-witness machinery, and P13's residual is the query-level sufficiency/reuse contract.
+
+Recovery and reopen costs are priced through P11's optionality/recovery costing (donor, `papers/SYNC_CONTRACT.md`); P13's endpoint remains the non-compensatory unsafe-reuse contract — optionality cost-optimality alone certifies nothing here.
 
 The CNF study now supplies a bounded exact semantic/epoch-change witness: the old certificate is valid for `R_old` and is revoked/non-transportable for `R_new` after the added clause.
 

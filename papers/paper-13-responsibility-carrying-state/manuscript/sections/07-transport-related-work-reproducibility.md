@@ -7,6 +7,18 @@ RCS object does not certify its own scientific authority. An evaluator can
 establish operational support; that role grants no novelty, publication or
 deployment authority.
 
+Two donor boundaries are explicit. Within-regime source-level revocation —
+revoking a source while independently derived support survives — is owned by P8
+and consumed here as a frozen interface; P13's extension is the
+responsibility-indexed part. And the responsibility upgrade studied here
+(question strengthened under a fixed representation) is the dual of P7's
+coarsening regime change (map changed under a fixed question); P7 is the donor
+of the transport-witness machinery. Recovery and reopen costs reuse P11's
+optionality/recovery costing as the pricing layer, while the endpoint of this
+paper remains the non-compensatory unsafe-reuse contract. The digits episodes
+used here and P11's parity checker witnesses are separately frozen corpora
+with no shared protected outcomes, per `papers/SYNC_CONTRACT.md`.
+
 Recent proof-carrying agent-action work attaches model-agnostic certificates to actions and runtime governance. Provenance traces evidence and execution. Memory-staleness systems detect that stored state is no longer valid. These donors make it insufficient to claim simply that “state should carry a certificate.” P13's discriminator is the **responsibility key plus reopen semantics**: a state may be current, well-provenanced and high-confidence yet insufficient for another downstream responsibility.
 
 The support matrix is deterministic and exact. The historical negative is

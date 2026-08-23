@@ -75,9 +75,11 @@ The bounded checker distinguishes fact/value preservation, evidence-meaning pres
 
 The bounded checker has assumption-invalidation and interface-mismatch counterexamples to naïve witness composition. The wine support-history construction supplies a non-synthetic sequential witness layer with 119 disposition differences.
 
+P7's witnesses consume P6 transition-admissibility certificates as typed inputs that may become uninterpretable under regime change; the certificate layer is donor-owned by P6, and P6's epoch/scope matching conditions are intra-regime (frozen upstream donor per `papers/SYNC_CONTRACT.md`). P7 owns only the regime-level transport decision. The wine coarsening studied here is the map-changes-under-fixed-question dual of P13's responsibility upgrade (question-changes-under-fixed-map); mapping-level transport is P7's object, query-level sufficiency is P13's.
+
 ### T7.3 — Open/censored transport impossibility
 
-The observed-only closed/open pair establishes a finite `0.5` indistinguishability boundary without an external coverage witness. Generalization to real censored/open research systems remains open.
+The observed-only closed/open pair establishes a finite `0.5` indistinguishability boundary without an external coverage witness. Route-versus-task stopping semantics are consumed as a frozen invariant from P2 (donor, `papers/SYNC_CONTRACT.md`) across chart changes; P7 owns only the transport claim, not the stopping semantics. Generalization to real censored/open research systems remains open.
 
 ## Protected regime-change benchmark
 
@@ -88,6 +90,8 @@ The external benchmark target contains three change classes:
 3. **objective/world change:** task objective, operational definition or environment dynamics change after initial evidence collection.
 
 The current wave executes class 1 through RO-Crate standard evolution and class 2 through wine ontology/responsibility refinement. Class 3 remains open.
+
+Wine is shared programme infrastructure (also used by P9's null accessibility cell and P11's compiler positive cell); the frozen quantity owned here is P7's own 712-row wine transport/support-history construction with its 119 disposition differences — a distinct object from P9's accessibility measurements and P11's compiler endpoints on the same public dataset.
 
 ### Primary endpoints
 

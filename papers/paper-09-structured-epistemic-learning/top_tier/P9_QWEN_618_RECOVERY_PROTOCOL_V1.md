@@ -48,7 +48,7 @@ It freezes:
 - budgets `(8,32,96)`;
 - target qualities `(0.50,0.70,0.85)`;
 - scales `(0.5B,1.5B,3B)`;
-- representations `R1_SAME_INFO` and `R2_TYPED_STATE`;
+- representations `R1_SAME_INFO` and `R2_STRUCTURED_STATE`;
 - domain-block bootstrap seed `914031`;
 - `10,000` bootstrap draws;
 - exactly `192` primary rows per representation/budget/model cell;

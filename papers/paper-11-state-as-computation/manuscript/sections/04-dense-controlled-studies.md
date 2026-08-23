@@ -11,7 +11,7 @@ The confirmatory experiment compares raw linear input, a fixed universal parity 
 
 At `n=1024`, compiled accuracy is 1.0 in every cell. Raw linear remains near chance. The result is consistent with a structural-search interpretation: decisive coordinates exist in the universal bank, but a bounded dense decoder must identify them among many irrelevant candidates.
 
-## No-answer-laundering control
+## No-answer-content-leakage control
 
 P11B exposes only the `r` active parity components selected by a query, with `r` in `{5,7}`. The downstream logistic learner must still infer an odd-cardinality majority target; no compiled component equals or negates the final label.
 
@@ -22,4 +22,4 @@ P11B exposes only the `r` active parity components selected by a query, with `r`
 | 17 | 4 | 5 | 2380 | `NOT_REACHED` by 2048 | 64 |
 | 19 | 3 | 7 | 969 | `NOT_REACHED` by 2048 | 64 |
 
-The high-dimensional cells therefore exhibit at least 32× threshold separation under the registered dense decoder without answer laundering.
+The high-dimensional cells therefore exhibit at least 32× threshold separation under the registered dense decoder without answer-content leakage.
