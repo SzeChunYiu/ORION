@@ -49,13 +49,15 @@ Define a state transition as a product of at least:
 
 `(computational support, evidence meaning, scientific obligation, authority/commit)`.
 
+The fourth factor is authority/commit status as defined by the P8 layer (frozen upstream donor per `papers/SYNC_CONTRACT.md`), preserved or explicitly reopened by the transition — P6 does not re-own the authorization semantics that determine the status, only the transition-admissibility consequence. The P1/P4/P8 donor declaration above therefore extends from the comparator baseline to the factor definitions themselves.
+
 The finite four-factor factorization/non-implication object is executable and independently reproduced. A broader theorem beyond the frozen finite semantics remains open.
 
 ### T6.2 — Composition under transport
 
 For transitions `A -> B -> C`, characterize when admissibility certificates compose and when intermediate evidence/obligation transport forces reopening.
 
-The bounded primary checker covers positive composition plus epoch/scope/open-obligation counterexamples, and the independent verifier reconstructs the same protected semantic boundary through different implementation structure. A proof-assistant generalization beyond this finite scope remains optional future strengthening, not authority already claimed here.
+The bounded primary checker covers positive composition plus epoch/scope/open-obligation counterexamples, and the independent verifier reconstructs the same protected semantic boundary through different implementation structure. The epoch/scope matching conditions here are intra-regime: they are written within one fixed semantic regime's token vocabulary. Whether support survives when that vocabulary itself is replaced is regime-level transport and is owned by P7, which takes these certificates as typed inputs. A proof-assistant generalization beyond this finite scope remains optional future strengthening, not authority already claimed here.
 
 ### T6.3 — Erasure non-full-abstraction generalization
 

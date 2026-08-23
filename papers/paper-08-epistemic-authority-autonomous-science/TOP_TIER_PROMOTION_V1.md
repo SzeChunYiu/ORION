@@ -57,6 +57,8 @@ The bounded checker now distinguishes source-level revocation with surviving ind
 
 ## Protected external evaluation
 
+Within-scientific-assertion authority — content-bound evidence, protected-evaluator identity and the five within-domain promotion gates dispositioned `MERGE_EXISTING` in the `P1_P5_OWNERSHIP_MATRIX_V1` — is frozen upstream donor semantics owned by P4 (per `papers/SYNC_CONTRACT.md`). P8's residual is the cross-domain typed coercion calculus and authority-laundering composition only. P15 SEI receipts are admissible here as an execution-evidence substrate (evidence plumbing) with their dispositions imported as frozen inputs; P15 corpus outcomes must not be counted as P8's own protected evidence.
+
 The next empirical stage must freeze at least three real scientific-decision domains:
 
 1. **formal claim:** proof/theorem result proposed for scientific use;

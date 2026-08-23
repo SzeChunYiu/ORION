@@ -51,6 +51,14 @@ non-implications
 Some implications may hold under additional premises; those premises must be stated
 explicitly rather than smuggled into receipt semantics.
 
+The top two rungs are externally supplied frozen disposition types, donor-owned by
+the P6/P8 authorization layer (typing) and the P14 admission layer (decision), with
+P13-class responsibility-scoped sufficiency likewise entering only as a frozen
+disposition type. Every scientific disposition in P15's receipts is an imported
+frozen judgment from its source paper or a deterministic contract — never an
+output of the provenance layer, which records dispositions and does not decide
+them.
+
 ## What it covers
 
 ### 1. The ORION research harness

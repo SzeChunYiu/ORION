@@ -46,7 +46,7 @@ Exact outcomes:
 - independent second implementation: GREEN;
 - deterministic replay: GREEN.
 
-The real receipt set includes a bounded positive, an authoritative negative, a two-checker formal result, and a native-Lean execution whose stronger scientific claim is `CANNOT_CHECK`. That last case remains `CANNOT_CHECK` after both provenance round trips, demonstrating on a real execution record that provenance completeness is not scientific admission.
+The real receipt set includes a bounded positive, an authoritative negative, a two-checker formal result, and a native-Lean execution whose stronger scientific claim is `CANNOT_CHECK`. Source papers, per receipt (auditable under `papers/SYNC_CONTRACT.md`): the bounded positive is P6's bounded ETS positive; the authoritative negative is P9's authoritative Qwen negative; the two-checker formal result and the native-Lean `CANNOT_CHECK` execution are P10 artifacts (bounded OCME positive and native-Lean record). The fixtures carry no new scientific authority here; they reuse dispositions already bound by their source receipts. That last case remains `CANNOT_CHECK` after both provenance round trips, demonstrating on a real execution record that provenance completeness is not scientific admission.
 
 Bound receipt: `top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`. Current donor refresh: `top_tier/P15_INTEROP_LITERATURE_DELTA_2026-08-23.md`.
 
@@ -59,6 +59,8 @@ Bound receipt: `top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`. Current d
 `!= AGREEMENT_BETWEEN_EXECUTIONS`
 `!= SCIENTIFICALLY_VALID_RESULT`
 `!= AUTHORIZED_SCIENTIFIC_CLAIM`
+
+The top two rungs are not semantics P15 defines: they are externally supplied frozen disposition types, donor-owned by the P6/P8 authorization layer (typing) and the P14 admission layer (decision), with P13-class responsibility-scoped sufficiency likewise entering only as a frozen disposition type. Every scientific disposition in P15's receipts is an imported frozen judgment from its source paper or a deterministic contract — never an output of the provenance layer, which records dispositions and does not decide them.
 
 The protected fault corpus supplies explicit witnesses for each required bounded non-implication, and the provenance-interoperability study demonstrates that the ladder is not an artifact of a proprietary execution representation.
 

@@ -35,11 +35,13 @@ Three protected result families now constrain the higher claim.
 
 **Earned claim:** accessibility can change under an information-preserving representation intervention for a fixed access mechanism, and explicit representation repair can recover that accessibility. The wine cell forbids a universal-dataset statement.
 
+Wine and digits are shared programme infrastructure (wine also carries P7's transport rows and P11's compiler positive cell; digits also carry P11's 64→32 compiler and P13's parity→exact-digit episodes). The frozen quantities owned here are P9's own accessibility measurements: the wine null cell above, and the digits cubic-representation gap plus `D-A` diagnostic — distinct objects from the other papers' endpoints on the same public datasets.
+
 ### Protected Qwen2.5 model-size/inference sweep — negative
 
 The immutable Qwen2.5 Q4_K_M 0.5B/1.5B/3B outputs originally generated on PR #618 were recovered without rerunning inference or changing any scientific threshold. The frozen analyzer deterministically returns `LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED`.
 
-At primary budget 32, `R2_TYPED_STATE - R1_SAME_INFO` is `-0.140625` for 0.5B and `0.0` for both 1.5B and 3B. The positive-delta-every-size gate fails, the largest-model domain-block bootstrap lower bound is not above zero, no smaller-structured substitution is observed, and the aggregate hostile-control gate fails; ORDER is negative at both 0.5B and 3B.
+At primary budget 32, `R2_STRUCTURED_STATE - R1_SAME_INFO` is `-0.140625` for 0.5B and `0.0` for both 1.5B and 3B. The positive-delta-every-size gate fails, the largest-model domain-block bootstrap lower bound is not above zero, no smaller-structured substitution is observed, and the aggregate hostile-control gate fails; ORDER is negative at both 0.5B and 3B.
 
 **Required claim subtraction:** P9 must not state or imply a universal monotone law in which larger LLM capacity reveals a stable typed-state accessibility advantage.
 
@@ -74,6 +76,8 @@ Executed at bounded scope through the real-data intervention and protected Qwen 
 ### E9.2 — Causal diagnostic intervention
 
 Executed at bounded scope. Failures are diagnosed from prospectively frozen intervention response and protected causal gold rather than post-hoc labels.
+
+Scoping: this diagnostic is an ex-post attribution instrument, not an online policy (P12 owns pre-outcome regret-bounded allocation) and not a placement/optionality law (P11 owns the design-time resource-placement crossover); P9 claims neither placement-optimality nor runtime-allocation semantics.
 
 ### E9.3 — Cross-domain transfer of the diagnostic
 
@@ -122,7 +126,7 @@ The causal study additionally includes the generic compute-escalation heuristic.
 - [ ] unified matched full model/inference/representation resource accounting for the final headline;
 - [x] protected model-size and inference-budget comparators executed; their Qwen result is negative and retained;
 - [x] exact preservation of the bounded P9 negative/sufficiency history;
-- [x] no universal representation-superiority language;
+- [x] no universal representation-superiority language, extended to no placement-optimality or online-policy language;
 - [x] second independently implemented diagnostic verifier plus deterministic replay for the causal study;
 - [ ] immediate pre-submission nearest-work refresh and exact final artifact/manuscript binding.
 

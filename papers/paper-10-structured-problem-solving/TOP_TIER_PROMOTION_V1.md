@@ -88,6 +88,8 @@ The **broad native problem-solving claim** still requires matched real donor sys
 - search-more / compute-more controls;
 - ORION structured workspace with method language frozen.
 
+Ladder position: P9 repairs access to a fixed method space; P10 certifies that the method space itself is insufficient (hence P9-repair appears in the refused-donor list above). P11's compilation stays within the registered method basis (`KNOWN_COMPOSITION` in P10's terms); only an outside-closure edit changes the basis — the two expansions are distinct operations, per `papers/SYNC_CONTRACT.md`.
+
 A native result requires verified correctness, not tactic prediction/evaluator score alone.
 
 ## Stage 2 — obstruction certification

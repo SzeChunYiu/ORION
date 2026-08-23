@@ -42,6 +42,8 @@ Build blinded research packets requiring systems to:
 
 Packets must not reveal ORION disposition vocabulary as gold labels to candidate systems.
 
+The adjudication design consumes frozen upstream donor semantics it does not own (per `papers/SYNC_CONTRACT.md`): P6's transition-admissibility/disposition semantics, P7's regime-change reopen semantics and P8's authorization-typing/discharge semantics enter the packet/adjudication design as frozen disposition types, and P5's evaluator-custody/authority-separation rules fix the evaluator-versus-authority split. P14's owned claim is the decision-process result — that this fail-closed governance process reduces false novelty/unsupported widening at matched capability — not authorization-semantics novelty. P15 SEI receipts are admissible as execution-evidence substrate for packet provenance/replay, with their dispositions imported as frozen inputs and never re-adjudicated here.
+
 The schema/contract for this object is now frozen under `top_tier/`; the substantial packet corpus and external outputs remain to be populated by independent execution.
 
 ## Comparator stack

@@ -55,6 +55,8 @@ Move beyond the current two-locus demonstrations. Freeze a resource-location act
 
 Not every domain must expose every action, but unavailable actions must be declared before protected outcomes.
 
+Donor declarations for the action set and allocator framing (per `papers/SYNC_CONTRACT.md`): the recover/reopen-after-unsupported-responsibility action executes P13's reopen/recovery semantics and the regime-change action executes P7's regime-transport semantics — both are consumed as frozen upstream donor interfaces, not re-owned here; P9's ex-post causal diagnostic is cited as the offline upper-information comparator (what an allocator could do with causal gold it must not have), and P11's optionality law is cited as the offline design-time analysis layer that the runtime rule partially observes (P12's query-count signal is P11's horizon parameter observed online). P12's owned object is pre-outcome online marginal allocation under one envelope with oracle-regret semantics — neither the diagnostic nor the placement law.
+
 ## Resource vector
 
 Use the programme-wide vector:

@@ -12,7 +12,7 @@ Task-conditioned retrieval/memory, feature selection, partial evaluation, knowle
 
 ## Post-outcome status — 2026-08-23
 
-The independent finite theory checker closes the bounded exact/approximate query-family accessibility extension, the **relative** no-answer-laundering witness, and the exact optionality/caching crossover construction. For T11.2 it exhaustively checks parity witnesses for `k = 2,3,4`: neither constants nor any signed single selected coordinate realize the protected parity target, while the separately registered compositional decoder does. This earns T11.1, T11.2 and T11.3 only within the stated finite/relative model; it does not create an unrestricted nonlinear/time lower bound or prove that arbitrary learned compilers cannot launder answers.
+The independent finite theory checker closes the bounded exact/approximate query-family accessibility extension, the **relative** no-answer-content-leakage witness, and the exact optionality/caching crossover construction. For T11.2 it exhaustively checks parity witnesses for `k = 2,3,4`: neither constants nor any signed single selected coordinate realize the protected parity target, while the separately registered compositional decoder does. This earns T11.1, T11.2 and T11.3 only within the stated finite/relative model; it does not create an unrestricted nonlinear/time lower bound or prove that arbitrary learned compilers cannot launder answers.
 
 A prospectively frozen real-data learned-compiler study now returns `P11_REAL_LEARNED_COMPILER_V1_SUPPORTED` with byte-identical replay. The non-oracle compiler learns from development data and reduces state dimension from `13 -> 7` on wine and `64 -> 32` on digits while meeting the frozen near-performance criterion on both datasets. Breast cancer is a retained negative cell: dimension falls `30 -> 15`, but the frozen performance gate is not met.
 
@@ -22,7 +22,7 @@ Selected protected means:
 - digits: compiled linear `0.9577050449` vs universal linear `0.9682776230`; compiled forest `0.9666155989` vs universal forest `0.9732869081`;
 - breast cancer: compiled linear `0.9489675516` vs universal linear `0.9753609688`, so this dataset does not satisfy the frozen positive gate.
 
-**Earned claim:** non-oracle task-state compilation can substantially reduce state dimension while retaining near-universal performance on two protected real datasets. This does not yet establish full end-to-end Pareto superiority, a universal compiler law, or the headline smaller-reasoner-vs-larger-universal substitution claim.
+**Earned claim:** non-oracle task-state compilation can substantially reduce state dimension while retaining near-universal performance on two protected real datasets. These comparisons are movements of P9's accessibility coordinate `A` under matched information `I` (donor-owned coordinate system, `papers/SYNC_CONTRACT.md`); P11's own object is the placement/optionality resource law, not the causal-diagnostic coordinate. This does not yet establish full end-to-end Pareto superiority, a universal compiler law, or the headline smaller-reasoner-vs-larger-universal substitution claim. The optionality law prices the *cost* of retained optionality versus reconstruction; it does not certify the *safety* of reuse, which is owned by P13's responsibility-scoped sufficiency contract. Wine and digits are shared programme infrastructure (P7 transport rows, P9 accessibility cells); the frozen quantities owned here are P11's own compiler endpoints above and the T11.2 parity checker witnesses, which are a separately frozen corpus from P13's parity episodes with no shared protected outcomes.
 
 Exact execution hashes and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
 
@@ -39,9 +39,9 @@ Generalize the exact parity/rank substrate to arbitrary finite linearly independ
 
 No unrestricted nonlinear/time lower bound may be implied.
 
-### T11.2 — No-answer-laundering condition
+### T11.2 — No-answer-content-leakage condition
 
-Formalize a sufficient condition under which compiled state is informative/access-enhancing without containing or trivially encoding the final protected answer. Include hostile constructions showing why query identity or latent-feature selection can otherwise leak answer authority.
+Formalize a sufficient condition of no answer-content leakage — compiled state being informative/access-enhancing without containing or trivially encoding (laundering) the final protected answer — as an information-hiding property of compilation. This is distinct from P8's authority laundering, which is a decision-layer confusion owned by P8 (donor, `papers/SYNC_CONTRACT.md`). Include hostile constructions showing why query identity or latent-feature selection can otherwise leak answer content.
 
 ### T11.3 — Optionality law
 
@@ -96,7 +96,7 @@ Prospectively freeze query horizon, overlap/diversity, drift and memory/compute 
 
 - critical resource required to hit frozen quality target;
 - total Pareto dominance/non-dominance;
-- compiler leakage/answer-laundering rate;
+- compiler leakage/answer-content-leakage rate;
 - learned-vs-oracle compiler gap;
 - future-query service probability;
 - rare critical-query loss;
@@ -119,7 +119,7 @@ Prospectively freeze query horizon, overlap/diversity, drift and memory/compute 
 `P11_TOP_TIER_SUBMISSION_READY` requires:
 
 - [x] T11.1 bounded general/approximate query-family extension;
-- [x] T11.2 bounded relative no-answer-laundering contract + finite parity hostile witnesses;
+- [x] T11.2 bounded relative no-answer-content-leakage contract + finite parity hostile witnesses;
 - [x] T11.3 bounded optionality law/crossover predictions;
 - [x] learned non-oracle compiler with two protected positive real-data cells and one retained negative cell;
 - [ ] stronger sparse/nonlinear decoder attacks survived or causally adjudicated at the intended headline scope;
