@@ -178,6 +178,25 @@ def test_p9_p10_protocols_validate_but_execution_stays_blocked() -> None:
     assert p10["multiplicity"]["worst_domain_gates_are_noncompensatory"] is True
 
 
+def test_p9_locked_environment_reproduction_failure_is_append_only() -> None:
+    path = (
+        ROOT
+        / "papers/paper-09-structured-epistemic-learning/evidence/"
+        "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json"
+    )
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload["overall_outcome"] == "FAIL"
+    assert payload["self_authorizing"] is True
+    assert payload["independent_reproduction"] is False
+    assert payload["independent_unit_credit"] == 0
+    assert payload["scorer_identity"]["selected_config"] == "logistic-C1"
+    serialized = payload["arms"]["TYPED_SERIALIZED_BAG"]
+    assert serialized["environment_departures"] == []
+    assert serialized["archived_accuracy"] == 0.5
+    assert serialized["reproduced_accuracy"] == 0.75
+    assert payload["successor"] == "P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS"
+
+
 def test_p10_rejects_stale_subject_and_laundered_hypothesis() -> None:
     payload = load_protocol(ROOT / P10_PROTOCOL)
     stale = copy.deepcopy(payload)

@@ -384,7 +384,7 @@ def test_every_declared_false_comparator_states_what_it_breaks():
 def test_the_audit_blocks_and_names_the_arms_that_never_answered(audit_report):
     report = audit_report
 
-    assert report["outcome"] is Outcome.CANNOT_CHECK
+    assert report["outcome"] is Outcome.FAIL
     with pytest.raises(PriorValuedMargin, match="TRANSCRIPT_BAG"):
         require_responsive_comparator(report["margins"], label="P9 D1")
 
@@ -396,7 +396,7 @@ def test_the_audit_entry_point_exits_three_and_serialises(audit_report):
 
     assert code == 3
     payload = json.loads(buffer.getvalue())
-    assert payload["outcome"] == "CANNOT_CHECK"
+    assert payload["outcome"] == "FAIL"
     assert payload["result_digest"] == p9.D1_RESULT_DIGEST
     assert {item["reason"] for item in payload["margins"]} == {
         "COMPARATOR_CONSTANT",
@@ -567,16 +567,17 @@ def test_the_reproduced_serialized_bag_arm_is_not_constant(reproduction) -> None
     assert item.reproduced_distinct_predictions == 2
 
 
-def test_a_divergence_off_the_recorded_environment_does_not_convict_the_archive(
+def test_a_divergence_on_the_recorded_environment_convicts_the_replay(
     reproduction,
 ) -> None:
     """Two things changed and only one was measured, so the verdict says so."""
 
     item = reproduction["TYPED_SERIALIZED_BAG"]
 
-    assert item.environment_departures, "this environment is not the recorded one"
-    assert item.outcome is Outcome.CANNOT_CHECK
-    assert "does not convict the archive" in item.detail
+    assert not item.environment_departures, "the lock now reproduces the recorded environment"
+    assert item.outcome is Outcome.FAIL
+    assert "same dataset digest" in item.detail
+    assert "scored 0.75 against the archived 0.5" in item.detail
 
 
 def test_the_same_divergence_under_the_recorded_environment_would_be_a_failure() -> None:
@@ -968,7 +969,7 @@ def test_the_audit_carries_the_independence_check_without_promoting_the_archive(
     # The archive still does not clear: the view collapse and the unreproduced
     # serialized arm block, and the artifact's own branch is still an identity.
     assert report["oracle_outcome"] is Outcome.CANNOT_CHECK
-    assert report["outcome"] is Outcome.CANNOT_CHECK
+    assert report["outcome"] is Outcome.FAIL
     encoded = report_as_json(report)
     assert encoded["independence"]["verdict"] == "INDEPENDENT_AND_AGREED"
     assert encoded["independence"]["against_shipped_comparator"]["points_changed"] == 384

@@ -162,7 +162,8 @@ def _formal_checkers(root: Path, candidate_id: str) -> list[Path]:
 
 def _subject_identity(root: Path, candidate_id: str) -> Assessment:
     paper = _paper(root, candidate_id)
-    manifest_path = paper / "CONTENT_MANIFEST_V1.json"
+    successor_manifest = paper / "CONTENT_MANIFEST_V2.json"
+    manifest_path = successor_manifest if successor_manifest.is_file() else paper / "CONTENT_MANIFEST_V1.json"
     sums_path = paper / "SHA256SUMS"
     manifest = _load_json(manifest_path)
     if manifest is None or not sums_path.is_file():
@@ -172,9 +173,10 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
             "CONTENT_MANIFEST_V1.json and SHA256SUMS are both required",
         )
 
-    evidence = (
-        manifest_path.relative_to(root).as_posix(),
-        sums_path.relative_to(root).as_posix(),
+    evidence = tuple(
+        path.relative_to(root).as_posix()
+        for path in (manifest_path, sums_path)
+        if path.is_file()
     )
     commit = manifest.get("subject_commit")
     status = manifest.get("subject_commit_status")
@@ -188,6 +190,53 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
             evidence,
             f"byte digests exist but subject_commit_status is {status}: {detail}",
         )
+
+    if manifest.get("schema_version") == "orion.candidate-content-binding.v2":
+        tree = manifest.get("subject_tree")
+        if not isinstance(tree, str) or not re.fullmatch(r"[0-9a-f]{40}", tree):
+            return Assessment("PARTIAL", evidence, "V2 manifest has no valid subject_tree")
+        try:
+            actual_tree = subprocess.run(
+                ["git", "-C", str(root), "rev-parse", f"{commit}^{{tree}}"],
+                capture_output=True,
+                text=True,
+                check=True,
+            ).stdout.strip()
+        except (OSError, subprocess.CalledProcessError):
+            return Assessment("PARTIAL", evidence, "V2 subject tree is unavailable")
+        if actual_tree != tree:
+            return Assessment("PARTIAL", evidence, "V2 subject_tree disagrees with subject_commit")
+
+        entries = manifest.get("bound_files")
+        if not isinstance(entries, list) or not entries:
+            return Assessment("PARTIAL", evidence, "V2 manifest has no bound files")
+        seen: set[str] = set()
+        for entry in entries:
+            if not isinstance(entry, dict):
+                return Assessment("PARTIAL", evidence, "V2 bound-file entry is malformed")
+            relative = entry.get("path")
+            digest = entry.get("sha256")
+            if not (
+                isinstance(relative, str)
+                and relative not in seen
+                and isinstance(digest, str)
+                and re.fullmatch(r"[0-9a-f]{64}", digest)
+            ):
+                return Assessment("PARTIAL", evidence, "V2 bound-file identity is invalid or duplicate")
+            seen.add(relative)
+            local_path = root / relative
+            if not local_path.is_file() or _sha256_file(local_path) != digest:
+                return Assessment("PARTIAL", evidence, f"V2 bound file drifted: {relative}")
+            try:
+                committed = subprocess.run(
+                    ["git", "-C", str(root), "show", f"{commit}:{relative}"],
+                    capture_output=True,
+                    check=True,
+                ).stdout
+            except (OSError, subprocess.CalledProcessError):
+                return Assessment("PARTIAL", evidence, f"V2 subject commit lacks: {relative}")
+            if hashlib.sha256(committed).hexdigest() != digest:
+                return Assessment("PARTIAL", evidence, f"V2 commit bytes disagree: {relative}")
 
     try:
         subprocess.run(
