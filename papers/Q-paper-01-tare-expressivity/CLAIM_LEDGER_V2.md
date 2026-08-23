@@ -1,7 +1,7 @@
 # Paper Q1 claim ledger V2 — sharp support-two normal forms
 
 **Manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`
-**Date:** 2026-08-22
+**Date:** 2026-08-23
 
 Status vocabulary:
 - `THEOREM`: all-instance statement within the explicitly frozen grammar/objective, proved analytically in the publication proof; machine checks are retained as independent corroboration where available.
@@ -31,6 +31,10 @@ Status vocabulary:
 | Q1V2-C17 | Public H2O/cc-pVTZ DUCC (20 qubits, 8082 nonidentity Paulis) has a registered structural compiler point reducing `C 8078 -> 4972` (38.45%) at relative normalization overhead `9.087e-6`. | `MAX_R4D_H2O_DUCC_CONFIRMATION_RESULTS.json` | SUPPORTING real-Hamiltonian evidence; not full circuit/resource claim |
 | Q1V2-C18 | The 2026-08-22 bounded hostile search did not locate a direct prior equivalent of the sharp `kappa_R6M=2` theorem, while identifying TARE, unitary partitioning, PCOAST, PHOENIX/Symphony and current block-encoding complexity papers as strong donor/adjacent literatures. | `NOVELTY_RESEARCH_2026-08-22.md` | BOUNDED_NOVELTY_RESEARCH |
 | Q1V2-C19 | A standalone no-ORION-import sanity checker reconstructs the one-qubit phase-ignored Pauli algebra and independently reproduces the analytic finite cores: Restore `max ΔF3 = 2` over the 192 mathematically relevant cases with histogram `{-2:6,-1:48,0:84,1:48,2:6}`, and exactly four odd-alpha support-2 class failures with zero failures for supports 3 through 8. | `independent_human_proof_sanity.py`; `INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json` | INDEPENDENT IMPLEMENTATION SANITY; not external peer review |
+| Q1V2-C20 | In any deletion-dominated binary representation system, if the active coordinates of an object carry a rank-`d` constraint signature whose required sum is nonzero, every optimum has an equally good representative of support at most `d`. | Analytic proof in `CONSTRAINT_RANK_NORMAL_FORM_2026-08-23.md`; integrated manuscript Theorem 1 | THEOREM |
+| Q1V2-C21 | The rank bound is sharp over the abstract class: `d` basis-signature positions with required sum equal to the sum of all basis vectors force minimum support exactly `d`. | `CONSTRAINT_RANK_NORMAL_FORM_2026-08-23.md` Section 3 | THEOREM / ABSTRACT SHARPNESS |
+| Q1V2-C22 | A frame constrained by one partner-anticommutation parity and `s` independent shared-Tag/label syndromes has a conditional support-`s+1` normal form whenever the coupled local deletion penalty is no larger than the direct support refund. The parameter is constraint rank, so dependent syndromes do not increase the bound. | `CONSTRAINT_RANK_NORMAL_FORM_2026-08-23.md` Section 4 | CONDITIONAL THEOREM; not an empirical or universal multi-Tag TARE claim |
+| Q1V2-C23 | The exchange proof applies throughout the objective region in which every local support refund `m_q` dominates the worst constraint-preserving coupled penalty `lambda_q`; crossing that inequality removes the theorem's guarantee but does not prove higher support necessary. | `CONSTRAINT_RANK_NORMAL_FORM_2026-08-23.md` Section 5 | THEOREM CONDITION / RESEARCH PHASE BOUNDARY |
 
 ## Forbidden promotions
 
@@ -40,7 +44,10 @@ Status vocabulary:
 - The O(n^12) count is a cardinality bound on a direct normal-form frame candidate family, not a lower/upper bound on the complexity of the production DP.
 - H2O, LiH, H4 and N2 results do not establish fault-tolerant physical-resource advantage.
 - No internal authority string grants novelty or physical quantum advantage.
+- The constraint-rank theorem does not assert that every multi-Tag TARE grammar
+  is deletion-dominated, nor that every rank `d` is sharply attained by a TARE
+  instance.
 
 ## Allowed flagship headline
 
-> For the frozen three-block shared-Tag TARE-M2 compiler under its support-count objective, the exact optimum has a sharp intrinsic frame-support number of two for arbitrary system size: support >=3 can always be exchanged away without increasing cost, while an explicit two-qubit instance proves support one insufficient. The analytic proof fails precisely at the same weight-two coupling pattern realized by the optimal counterexample.
+> In deletion-dominated binary representation systems, optimal support is bounded by the rank of the preserved constraint signature, independently of ambient system size. The frozen shared-Tag TARE-M2 compiler is a sharp rank-two realization: support >=3 can always be exchanged away without increasing cost, while an explicit two-qubit instance proves support one insufficient.
