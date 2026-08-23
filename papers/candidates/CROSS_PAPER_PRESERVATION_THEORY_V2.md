@@ -3,6 +3,7 @@
 **Date:** 2026-08-23
 **Base:** `CROSS_PAPER_PRESERVATION_THEORY_V1.md` (2026-08-17), `DONOR_PROJECTION_SEPARATION_THEOREM_V1.md` (2026-08-18)
 **Support:** `check_preservation_dichotomy_v2.py`, 7 of 7 laws discharged by exhaustive enumeration
+**Weighting:** one law (§4) carries the contribution; six are internal-consistency checks — see §3.1
 **Publication terminal:** `SYNTHESIS_WITH_MECHANIZED_SUPPORT` — up from V1's `SYNTHESIS_ONLY`
 **Novelty terminal:** `PARTIALLY_RESOLVED` — see §6; still not `RESOLVED`
 
@@ -49,22 +50,41 @@ projection the standing value is constant on each fibre.
 Checked over all 1,024 (required, retained) pairs of the five-level ladder, 32 states each:
 decidable ≡ separating ≡ required ⊆ retained, with no exception.
 
-**The mathematics here is elementary — factorization through a quotient.** The content is not the
-theorem; it is the claim that the five levels are the right coordinates, and that claim is what
-§3.1 and §3.2 make refutable.
+**The mathematics here is elementary — factorization through a quotient.**
 
-### 3.1 The ladder is irredundant
+### 3.1 What §3.2 and §3.3 do and do not establish — read this before quoting them
 
-Each of `L0_identity`, `L1_support`, `L2_semantic`, `L3_obligation`, `L4_authority` is load-bearing:
-dropping any one makes the full contract undecidable. This is *irredundancy in the registered
-model*, not universal minimality — P6.V4.4, P7.V3.4 and P8's ledger each forbid the universal claim,
-and this does not make it. The checker also plants an inert sixth coordinate and correctly finds it
-redundant, so irredundancy is **decided per model rather than assumed**.
+An earlier draft of this document claimed that the irredundancy and selective-revalidation checks
+below make the five-coordinate claim *refutable*. **That was wrong and is withdrawn.** Both are
+consequences of the model's own definition of standing (`AND` over the required coordinates), so
+neither can ever come out any other way, for any vocabulary:
 
-### 3.2 Repairing part of what broke restores nothing
+- §3.2 asks whether dropping a required coordinate loses decidability. By the determination theorem
+  it must, for every coordinate of every vocabulary. The planted inert coordinate is outside the
+  required set, so retaining the rest keeps `required ⊆ retained` and it must come back redundant.
+  The check is law 3.3 restated, not evidence about L0–L4.
+- §3.3's counts are subset combinatorics of a conjunction: 31 = 2⁵ − 1 and
+  211 = Σₖ C(5,k)(2ᵏ − 1). They would be those numbers for any five coordinates whatsoever.
+
+Of the seven laws the checker discharges, **six are internal-consistency checks on the model** —
+worth having, since a core that failed one would be broken, but carrying no information about
+whether these are the right coordinates. **One law has content: §4.** The claim that L0–L4 are the
+right coordinate system for scientific standing is, as of this document, **unvalidated**. What would
+validate it is §8 step 1, and only that.
+
+### 3.2 Dropping a required coordinate loses decidability
+
+Each of `L0_identity`, `L1_support`, `L2_semantic`, `L3_obligation`, `L4_authority` is load-bearing
+in the sense above, and a planted inert sixth coordinate is correctly found redundant — so the
+engine can return both answers rather than only ever "load-bearing". This is *irredundancy in the
+registered model*, not universal minimality: P6.V4.4, P7.V3.4 and P8's ledger each forbid the
+universal claim, and this does not make it.
+
+### 3.3 Repairing part of what broke restores nothing
 
 Over every affected set and every repair of it: 31 total revalidations restore standing, and all
-211 proper-subset repairs are denied. P6.V4.4 and P7.V3.4, generalized.
+211 proper-subset repairs are denied. P6.V4.4 and P7.V3.4, generalized — and see §3.1 on what these
+counts are and are not.
 
 ## 4. The result that changes the programme's position
 
@@ -133,7 +153,17 @@ governance.
   transformation**. Preservation across change is absent from their model.
 - No determination theorem — decidable iff the retained coordinates separate — appears there.
 - Their subsumption asymmetry is *structural vs. content*. The §4 dichotomy is *coordinate-exposing
-  vs. verdict-exposing*, a different axis, and it is the one that governs the P6–P8 negatives.
+  vs. verdict-exposing*. This is the objection a reviewer will press hardest — same theorem shape,
+  five primitives, minimality, machine-checked — so it is worth arguing rather than asserting.
+  Their asymmetry is about **what the wrapper mediates**: a structural wrapper interposes on every
+  effect, a content filter only rewrites returned values, so the filter cannot prevent an
+  unauthorized effect from occurring at all. Both sides of their comparison are *mediators*, and the
+  question is where the mediator sits. The §4 dichotomy is about **what an interface reveals to a
+  composer**: both donor stacks observe exactly the same coordinates and are equally trustworthy
+  locally, and the only difference is whether a downstream composer receives the coordinates or a
+  verdict computed from them. Nothing is mediated, blocked or filtered in either regime; what
+  differs is what survives the hop. The two results are compatible and neither implies the other —
+  a structurally governed system whose donors expose only verdicts still loses §4's information.
 - `L3_obligation` and `L4_authority` — discharge of a target obligation, and commit-time authority —
   have no counterpart in their capability taxonomy.
 
@@ -153,10 +183,19 @@ they are one theorem with a positive half.
 
 ## 8. Next, in order
 
-1. **Re-derive the three registered instances through the general core.** P6's 320 / 25 / 31 / 155 /
-   1,055; P7's plus 25 compositions and 25 bridge countermodels; P8's 39,936 / 65 / 65+65 / 26 / 13 /
-   169 / 169. If the general engine reproduces those counts exactly, the unification is load-bearing
-   rather than decorative. If any count differs, that is the finding — investigate before adjusting.
+1. **Re-derive the three registered instances through the general core — this now carries all the
+   empirical weight.** Since §3.1 establishes that six of the seven laws are vacuous, instance
+   reproduction is the *only* thing that can validate the coordinate claim. Targets: P6's
+   320 / 25 / 31 / 155 / 1,055; P7's plus 25 compositions and 25 bridge countermodels; P8's
+   39,936 / 65 / 65+65 / 26 / 13 / 169 / 169. If the general engine reproduces those counts exactly,
+   the unification is load-bearing rather than decorative. If any count differs, that is the finding —
+   investigate before adjusting.
+
+   **Known structural blocker.** The core enumerates `2ⁿ` bit-vectors over coordinates. But
+   320 = 2⁶ × 5 and 39,936 = 2¹⁰ × 39 are not powers of two — P8's 13 donor families are visible in
+   its count — so the registered models are not bit-vectors and **the core as written cannot
+   enumerate those state spaces at all**. Step 1 is a core-generalization task (coordinates with
+   arbitrary finite domains, plus a donor-family index), not a parameterization task. Start there.
 2. **Finish the novelty search** across the remaining eight formalisms of V1 §9, non-interference
    first.
 3. **Decide the publication identity** only after 1 and 2. Both of V1 §11's terminals must move.
