@@ -101,6 +101,28 @@ instrument, one rank past its validated regime. Certificates-first is not option
 class, profile `{6:30, 8:15, 10:18}` (the BCH weight enumerator), by the X1-V nondegeneracy
 argument plus Kurz's `[15,6]` uniqueness.
 
+## The fixed `r = 9` rerun — registered prediction confirmed again
+
+```
+r=9 k=6 minzs=6 pool=256 nodes=2972084535 leaves=174310920 disjointfree=2540160
+fingerprint classes (kernel weight-enum): 1
+  class 0 count 2540160 rep 31 103 171 213 310 348
+```
+
+Exactly **one** class, profile `{6:30, 8:15, 10:18}` — the BCH weight enumerator, as
+registered — with the representative independently re-verified as a witness. The identity
+closes with exact division: `b = 2520` independent 9-subsets, so `|Aut| = 2520·9!/2,540,160
+= 360` — the automorphism group order of the unique minimal `[15,6]` code, obtained here as
+a byproduct of the census (and divisible by the cyclic-times-multiplier order 60, as it must
+be for a cyclic code of length 15).
+
+> **The extremal `D_2` witnesses of `C_2^9` form exactly one `GL(9,2)`-orbit** — the
+> parity-check views of the unique extremal minimal `[15,6]` code — with stabiliser order
+> 360.
+
+**Final orbit table of the lane** (`r = 2..9`): **2, 1, 3, 1, 4, ≥13, 2, 1** — with `r = 7`
+(≥ 13 fingerprint classes) the one row left open.
+
 ## Lane status
 
 This is the closing atom of the RG lane. Per the standing venue calibration, everything
