@@ -2,7 +2,14 @@
 
 **Active authority:** `P10_ACTIVE_CLAIM_AUTHORITY_V1.json`
 
-**Lifecycle:** `PROSPECTIVE_MAXIMUM_CLAIM_MANUSCRIPT / NO_P10_PROTECTED_RESULT`
+**Lifecycle:** `PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT / NO_P10_PROTECTED_RESULT`
+
+The outcome-free H1--H6 protocol is frozen in
+`protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json`. Its protected task manifest,
+donor-complete executables, blinded obstruction gold, independent OCME witness,
+cross-domain replication split, scorer custody, and power/attainability receipt
+are absent. Consequently execution is forbidden and all six hypotheses remain
+`PROSPECTIVE_NOT_EXECUTED`.
 
 | Claim family | Current authority | Required promotion evidence |
 |---|---|---|

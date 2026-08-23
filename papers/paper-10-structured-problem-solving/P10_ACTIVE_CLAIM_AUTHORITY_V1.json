@@ -14,6 +14,10 @@
       "artifact": "papers/paper-10-structured-problem-solving/manuscript/main.tex",
       "sha256": "cd8bcce020175b39113f1a22cb1f9a41e74be4a4154dd9a091383dcc26f9553f"
     },
+    "prospective_protocol": {
+      "artifact": "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
+      "sha256": "8e32c2bee514d246bcd503fc2f0ef078bcc52adb7f40abdbcb642b703aec355c"
+    },
     "shared_predecessor_authority": {
       "artifact": "papers/orion-learning-machine/LOCAL_CLOSURE_AUTHORITY.json",
       "sha256": "15eb07d78a8f3c0b75ff9ea4e440cd773d042d254765bfc805c59d6a51162da6"
@@ -33,7 +37,9 @@
     "H5": "PROSPECTIVE_NOT_EXECUTED",
     "H6": "PROSPECTIVE_NOT_EXECUTED"
   },
-  "lifecycle_state": "PROSPECTIVE_MAXIMUM_CLAIM_MANUSCRIPT",
+  "execution_authorized": false,
+  "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
+  "lifecycle_state": "PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT",
   "paper_id": "P10",
   "predecessor_boundary": {
     "authority": "LOCAL_REPRODUCIBLE_CORE_ONLY",
@@ -49,7 +55,6 @@
   },
   "promotion_allowed": false,
   "promotion_requirements": [
-    "prospectively_frozen_p10_protocol",
     "native_verifier_backed_execution",
     "strong_donor_complete_comparators",
     "independently_witnessed_ocme_case",

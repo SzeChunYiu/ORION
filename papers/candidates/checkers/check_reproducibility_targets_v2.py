@@ -270,6 +270,81 @@ def _immutable_results(root: Path, candidate_id: str) -> Assessment:
             _relative(root, checkers),
             "no valid machine-readable result artifact exists under formal/mechanized",
         )
+    local_contracts = sorted(
+        (_paper(root, candidate_id) / "evidence/local").glob(
+            f"{candidate_id}_LOCAL_REPLAY_CONTRACT_V3.json"
+        )
+    )
+    if local_contracts:
+        contract_path = local_contracts[0]
+        contract = _load_json(contract_path)
+        bound_paths: list[Path] = []
+        valid_contract = contract is not None
+        if contract is not None:
+            valid_contract = valid_contract and (
+                contract.get("schema_version") == "orion.local-replay-contract.v3"
+                and contract.get("paper_id") == candidate_id
+                and contract.get("self_authorizing") is True
+                and contract.get("independent_replay") is False
+                and contract.get("grants_scientific_authority") == "NONE"
+                and isinstance(contract.get("one_command"), str)
+                and str(contract.get("one_command")).startswith("make ")
+            )
+            environment = contract.get("environment_lock")
+            if not isinstance(environment, dict):
+                valid_contract = False
+            else:
+                lock_path = environment.get("path")
+                lock_digest = environment.get("sha256")
+                local_lock = root / str(lock_path)
+                valid_contract = valid_contract and (
+                    isinstance(lock_path, str)
+                    and isinstance(lock_digest, str)
+                    and local_lock.is_file()
+                    and _sha256_file(local_lock) == lock_digest
+                )
+            for field in ("raw_inputs", "raw_outputs"):
+                artifacts = contract.get(field)
+                if not isinstance(artifacts, list) or not artifacts:
+                    valid_contract = False
+                    continue
+                for artifact in artifacts:
+                    if not isinstance(artifact, dict):
+                        valid_contract = False
+                        continue
+                    relative = artifact.get("path")
+                    digest = artifact.get("sha256")
+                    local_path = root / str(relative)
+                    if not (
+                        isinstance(relative, str)
+                        and isinstance(digest, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", digest)
+                        and local_path.is_file()
+                        and _sha256_file(local_path) == digest
+                    ):
+                        valid_contract = False
+                    else:
+                        bound_paths.append(local_path)
+            output_entries = contract.get("raw_outputs")
+            if isinstance(output_entries, list):
+                for artifact in output_entries:
+                    if not isinstance(artifact, dict) or not isinstance(artifact.get("path"), str):
+                        valid_contract = False
+                        continue
+                    output_path = root / str(artifact["path"])
+                    if output_path.suffix != ".json" or _load_json(output_path) is None:
+                        valid_contract = False
+        if valid_contract and set(outputs).issubset(bound_paths):
+            return Assessment(
+                "BOUND",
+                _relative(root, [contract_path] + outputs + checkers),
+            )
+        return Assessment(
+            "PARTIAL",
+            _relative(root, [contract_path] + outputs + checkers),
+            "local replay contract is malformed, stale, lacks raw inputs, or does not bind all outputs",
+        )
+
     manifest = _load_json(_paper(root, candidate_id) / "CONTENT_MANIFEST_V1.json") or {}
     entries = manifest.get("bound_files")
     entry_list = entries if isinstance(entries, list) else []

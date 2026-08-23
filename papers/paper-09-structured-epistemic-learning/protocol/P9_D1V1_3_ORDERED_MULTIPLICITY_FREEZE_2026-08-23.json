@@ -1,0 +1,73 @@
+{
+  "schema_version": "orion.p9.d1v1_3-protocol-freeze.v1",
+  "protocol_id": "P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS",
+  "frozen_date": "2026-08-23",
+  "lifecycle_state": "PROSPECTIVE_FROZEN_NOT_EXECUTED",
+  "positive_authority_granted": false,
+  "outcome_artifact": null,
+  "historical_predecessor": {
+    "claim_id": "P9.U.T4",
+    "terminal": "P9_T4_HOSTILE_ATTACK_PREVAILED",
+    "immutable": true,
+    "result": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json"
+  },
+  "representation_contract": {
+    "preserves_order": true,
+    "preserves_multiplicity": true,
+    "forbidden_normalization": "tuple(sorted(set(values)))",
+    "round_trip_required": true
+  },
+  "independent_unit": "one source-disjoint protected method-comparison case",
+  "technical_repeats_do_not_increase_n": true,
+  "design": {
+    "minimum_families": 4,
+    "minimum_independent_cases_per_family": 128,
+    "minimum_total_independent_cases": 512,
+    "fresh_split_disjoint_from": ["D1.v1", "D1.v1.1", "D1.v1.2", "P9.U.T4"],
+    "arms": [
+      "TYPED_ORDERED_MULTIPLICITY",
+      "TYPED_RELATIONAL",
+      "TYPED_SERIALIZED_BAG",
+      "STRONGEST_DONOR_COMPLETE_SERIALIZATION"
+    ],
+    "attack_families": [
+      "EQUAL_LENGTH",
+      "ORDER_PERMUTATION",
+      "DUPLICATE_INSERTION",
+      "SEMANTIC_ORBIT"
+    ]
+  },
+  "opportunity_gate": {
+    "registered_cells": "every attack_family x applicable arm x protected family",
+    "minimum_changed_fraction_per_registered_cell": 0.25,
+    "zero_opportunity_pass_prohibited": true,
+    "cell_excluded_only_before_outcomes": true
+  },
+  "confirmatory_gates": {
+    "primary_paired_accuracy_margin": 0.08,
+    "paired_bootstrap_lower_bound_strictly_above": 0.0,
+    "worst_family_noninferiority_margin": -0.02,
+    "maximum_attack_degradation": 0.03,
+    "round_trip_failures_allowed": 0,
+    "hidden_access_model_widening_allowed": 0,
+    "all_gates_required": true
+  },
+  "multiplicity": {
+    "familywise_alpha": 0.05,
+    "method": "HOLM_BONFERRONI",
+    "family": "all confirmatory attack-family contrasts",
+    "worst_family_gate_is_noncompensatory": true
+  },
+  "missing_run_policy": "FAIL_CLOSED_NO_PASS",
+  "required_inputs": [
+    {"id": "fresh_protected_split", "required": true, "present": false, "artifact": null},
+    {"id": "independent_split_custodian", "required": true, "present": false, "artifact": null},
+    {"id": "independent_scorer_implementation", "required": true, "present": false, "artifact": null},
+    {"id": "strongest_donor_complete_comparator", "required": true, "present": false, "artifact": null},
+    {"id": "prospective_power_and_attainability_receipt", "required": true, "present": false, "artifact": null}
+  ],
+  "execution_authorized": false,
+  "execution_blocker": "P9_D1V1_3_PROTECTED_INPUTS_ABSENT",
+  "success_terminal": "P9_D1V1_3_ORDERED_MULTIPLICITY_ROBUSTNESS_SUPPORTED",
+  "failure_terminal": "P9_D1V1_3_ORDERED_MULTIPLICITY_ROBUSTNESS_NOT_SUPPORTED"
+}
