@@ -57,13 +57,27 @@
       "unresponsive": true
     }
   },
-  "checks": {
-    "reproduces_the_archived_accuracy": true,
-    "arm_is_a_constant_predictor": true,
-    "flipping_the_boundary_set_reaches_the_locked_replay_value": true,
-    "every_boundary_case_runner_up_is_correct": true
+  "label_counts": {
+    "ALIGNED": 32,
+    "OBSTRUCTION": 64,
+    "UNRESOLVED": 32
   },
-  "finding": "TYPED_SERIALIZED_BAG predicts one class on all 128 protected cases, and that class is exactly half the split, so 0.5 is a prior and not a measurement. 32 of 128 cases lie within 0.05 of the boundary and the runner-up is correct on all 32, so tipping that set gives 0.5 + 32/128 = 0.75 exactly. The archived and replayed values are two sides of one boundary on an unresponsive comparator, not two measurements that disagree.",
+  "observed_in_this_environment": {
+    "accuracy": 0.5,
+    "distinct_predictions": 1,
+    "matches": "ARCHIVED",
+    "boundary_cases": 32,
+    "boundary_cases_whose_runner_up_is_correct": 32,
+    "accuracy_if_boundary_set_flips": 0.75
+  },
+  "checks": {
+    "the_gap_between_the_two_reported_values_is_a_quarter_of_the_split": true,
+    "a_quarter_of_the_split_is_exactly_thirty_two_cases": true,
+    "the_modal_class_is_exactly_half_the_split": true,
+    "the_archived_value_equals_the_modal_class_prior": true,
+    "this_environment_lands_on_one_of_the_two_reported_values": true
+  },
+  "finding": "The archived 0.5 is exactly the modal class prior on the protected split (64 of 128 OBSTRUCTION), so it is a prior and not a measurement. The gap to the locked replay's 0.75 is exactly a quarter of the split -- 32 cases -- which is the set sitting on the decision boundary, and the runner-up is the correct label on all of it. The two reported values are two sides of one boundary on an unresponsive comparator, not two measurements that disagree. Which side a given solver lands on is reported here, never asserted: this diagnosis was first run in an environment that reproduces the archived value.",
   "consequence": "The divergence is not evidence about representation quality in either direction, because neither number measures it. TRANSCRIPT_BAG is degenerate the same way at the ALIGNED prior. This is the case D1 v1.3's STRONGEST_DONOR_COMPLETE_SERIALIZATION arm exists to replace.",
   "all_checks_pass": true
 }
