@@ -1,9 +1,9 @@
 {
   "atomic_claim_text": "P1 H1 (root-success superiority vs strongest matched baseline) is NOT_SUPPORTED on the frozen TEST split (ORION 1/48).",
-  "bounded_claim_text": "The null is preserved. Mechanistic subclaims must not be rewritten as H1 support. n=48 is below required inferential n=385.",
+  "bounded_claim_text": "The registered superiority gate returned NOT_SUPPORTED; this does not establish the null. Mechanistic subclaims must not be rewritten as H1 support. Design authority remains blocked by conflicting prospective-power specifications.",
   "claim_id": "P1.H1",
   "denominator": {
-    "cannot_check_or_invalid_handling": "offline H1 uses SCORED repeats; live-provider CANNOT_CHECK isolated to that system",
+    "cannot_check_or_invalid_handling": "the recovered frozen archive contains all 2880 expected SCORED repeats; any future missing or partial cell must fail closed as CANNOT_CHECK",
     "eligible_n": 48,
     "post_outcome_exclusions": 0,
     "repeats_nested_not_inflating_n": true,
@@ -35,7 +35,7 @@
         "orion_n": 48
       },
       "status": "PASS",
-      "summary": "2880=12 systems \u00d7 48 cases \u00d7 5 repeats; case is the unit. Live-provider CANNOT_CHECK records are not recoded as zeros for offline H1."
+      "summary": "2880=12 systems \u00d7 48 cases \u00d7 5 repeats; case is the unit. The current frozen archive has no missing records."
     },
     "holdout_cross_host": {
       "status": "CANNOT_CHECK",
@@ -130,7 +130,7 @@
       "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_baseline_ablation_results.json",
       "present": true,
       "role": "aggregate",
-      "sha256": "28945162ede36e85f8f662dbef59d51d0623b5317c696db068c5303aed768b4a"
+      "sha256": "4f1fb7f6c551f9ce8e24fb00dfc56b5254c39cf796c858be7a1581b1d92b886b"
     },
     {
       "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
@@ -140,14 +140,14 @@
     }
   ],
   "record_id": "P1.H1.root-success-not-supported",
-  "record_sha256": "d1d6cef36aa99b0f7653ffcdf2a044e119fbd4b19170c9ff59045ba21e17014f",
+  "record_sha256": "cf29fd7c0dc81c5c7bef72094daba750700c138563ddb2ade98716116b8febd6",
   "schema_version": "orion.scientific-result-verification.v1",
   "scorers": {
     "adjudication": [],
     "agreement": "EXACT",
     "independent_from_written_spec": true,
     "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
-    "original_hash_sha256": "28945162ede36e85f8f662dbef59d51d0623b5317c696db068c5303aed768b4a"
+    "original_hash_sha256": "4f1fb7f6c551f9ce8e24fb00dfc56b5254c39cf796c858be7a1581b1d92b886b"
   },
   "self_authorizing": false,
   "subject": {

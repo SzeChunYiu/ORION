@@ -59,7 +59,28 @@
           "id": {"type": "string"},
           "text": {"type": "string"},
           "artifacts": {"type": "array", "items": {"type": "string"}},
-          "status": {"enum": ["SUPPORTED", "NOT_SUPPORTED", "BOUNDED", "CANNOT_CHECK", "OPEN"]}
+          "status": {"enum": ["SUPPORTED", "NOT_SUPPORTED", "BOUNDED", "CANNOT_CHECK", "OPEN"]},
+          "lifecycle": {"enum": ["ACTIVE_CENTRAL", "ACTIVE_SUPPORTING", "HISTORICAL_IMMUTABLE"]},
+          "current_claim": {"type": "boolean"},
+          "design_adequacy": {"type": "string"},
+          "narrower_successor": {"type": "string"},
+          "scope_ceiling": {"type": "string"},
+          "relationship_to_previous": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "NARROWER_SUCCESSOR_OF"},
+              "claim_id": {"type": "string"},
+              "scientific_supersession": {"const": false}
+            }
+          },
+          "authority": {
+            "type": "object",
+            "properties": {
+              "external_superiority_authorized": {"type": "boolean"},
+              "naturalistic_evidence": {"type": "boolean"},
+              "publication_novelty_authorized": {"type": "boolean"}
+            }
+          }
         }
       }
     },
