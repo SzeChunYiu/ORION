@@ -12,7 +12,7 @@ Task-conditioned retrieval/memory, feature selection, partial evaluation, knowle
 
 ## Post-outcome status — 2026-08-23
 
-The independent finite theory checker now closes the bounded exact/approximate query-family accessibility extension and the exact optionality/caching crossover construction. This earns T11.1 and T11.3 only within the stated finite/approximate model; it does not create an unrestricted nonlinear or time lower bound.
+The independent finite theory checker closes the bounded exact/approximate query-family accessibility extension, the **relative** no-answer-laundering witness, and the exact optionality/caching crossover construction. For T11.2 it exhaustively checks parity witnesses for `k = 2,3,4`: neither constants nor any signed single selected coordinate realize the protected parity target, while the separately registered compositional decoder does. This earns T11.1, T11.2 and T11.3 only within the stated finite/relative model; it does not create an unrestricted nonlinear/time lower bound or prove that arbitrary learned compilers cannot launder answers.
 
 A prospectively frozen real-data learned-compiler study now returns `P11_REAL_LEARNED_COMPILER_V1_SUPPORTED` with byte-identical replay. The non-oracle compiler learns from development data and reduces state dimension from `13 -> 7` on wine and `64 -> 32` on digits while meeting the frozen near-performance criterion on both datasets. Breast cancer is a retained negative cell: dimension falls `30 -> 15`, but the frozen performance gate is not met.
 
@@ -119,7 +119,7 @@ Prospectively freeze query horizon, overlap/diversity, drift and memory/compute 
 `P11_TOP_TIER_SUBMISSION_READY` requires:
 
 - [x] T11.1 bounded general/approximate query-family extension;
-- [ ] T11.2 no-answer-laundering theorem/contract;
+- [x] T11.2 bounded relative no-answer-laundering contract + finite parity hostile witnesses;
 - [x] T11.3 bounded optionality law/crossover predictions;
 - [x] learned non-oracle compiler with two protected positive real-data cells and one retained negative cell;
 - [ ] stronger sparse/nonlinear decoder attacks survived or causally adjudicated at the intended headline scope;
