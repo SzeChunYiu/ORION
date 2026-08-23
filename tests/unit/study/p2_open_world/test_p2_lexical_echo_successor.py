@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import inspect
 import json
+import math
 import subprocess
 import sys
 from pathlib import Path
@@ -299,6 +300,58 @@ def test_mcnemar_exact_known_values() -> None:
 # ---------------------------------------------------------------------------
 
 
+# Every arm field a gate consumes. G1, G2, G3 and G5 read hit_at_10; G4 reads
+# hit_at_1. These are compared exactly -- the tolerance below must never be able
+# to reach a number a gate acts on, or it would launder a real change.
+GATE_READ_FIELDS = ("hit_at_1", "hit_at_10")
+
+# A mean of reciprocal ranks is a floating-point sum, and its last bits depend on
+# summation order, which moves between library versions. Bit-equality across
+# environments is therefore not something any environment can promise, and a
+# reproduction check that demands it is an unattainable gate rather than a failed
+# one. Four mrr_at_50 values were observed at up to three units in the last
+# place; the smallest gate threshold is 0.01, thirteen orders of magnitude away.
+# See papers/paper-02-open-world-scientific-discovery/
+# P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS_2026-08-23.json.
+MAX_ULPS = 4
+
+
+def _ulp_distance(left: float, right: float, cap: int = 4096) -> int:
+    if left == right:
+        return 0
+    low, high = min(left, right), max(left, right)
+    steps = 0
+    while low < high and steps < cap:
+        low = math.nextafter(low, math.inf)
+        steps += 1
+    return steps
+
+
+def _assert_arms_reproduce(fresh, recorded, path: str = "arms") -> None:
+    """Exact everywhere except reported floats no gate reads, which get MAX_ULPS."""
+
+    assert type(fresh) is type(recorded), f"{path}: type changed"
+    if isinstance(fresh, dict):
+        assert set(fresh) == set(recorded), f"{path}: field set changed"
+        for key in sorted(fresh):
+            _assert_arms_reproduce(fresh[key], recorded[key], f"{path}/{key}")
+        return
+    if isinstance(fresh, list):
+        assert len(fresh) == len(recorded), f"{path}: length changed"
+        for index, (a, b) in enumerate(zip(fresh, recorded)):
+            _assert_arms_reproduce(a, b, f"{path}[{index}]")
+        return
+    field = path.rsplit("/", 1)[-1]
+    if isinstance(fresh, float) and isinstance(recorded, float) and field not in GATE_READ_FIELDS:
+        distance = _ulp_distance(fresh, recorded)
+        assert distance <= MAX_ULPS, (
+            f"{path}: {recorded!r} -> {fresh!r} is {distance} ulps, beyond the "
+            f"{MAX_ULPS}-ulp reproduction tolerance; this is a changed result, not float noise"
+        )
+        return
+    assert fresh == recorded, f"{path}: {recorded!r} -> {fresh!r}"
+
+
 def test_result_artifact_matches_a_fresh_run(payload: dict) -> None:
     """The archived numbers must be the ones the frozen code still produces."""
 
@@ -307,8 +360,29 @@ def test_result_artifact_matches_a_fresh_run(payload: dict) -> None:
     assert recorded["parameters_sha256"] == campaign.frozen_digest()
     assert recorded["verdict"] == payload["verdict"]
     assert recorded["world_content_hash"] == payload["world_content_hash"]
-    assert recorded["arms"] == payload["arms"]
+    _assert_arms_reproduce(payload["arms"], recorded["arms"])
     assert recorded["gate_results"] == payload["gate_results"]
+
+
+def test_the_reproduction_tolerance_cannot_hide_a_real_change(payload: dict) -> None:
+    """The no-alarm case's twin: a tolerance that accepts anything checks nothing."""
+
+    recorded = json.loads(RESULT_JSON.read_text(encoding="utf-8"))
+    arm = dict(recorded["arms"]["echo"]["B0_CURRENT_D1_UNWEIGHTED"])
+    arm["mrr_at_50"] = arm["mrr_at_50"] + 1e-9
+    tampered = json.loads(json.dumps(recorded["arms"]))
+    tampered["echo"]["B0_CURRENT_D1_UNWEIGHTED"] = arm
+    with pytest.raises(AssertionError, match="ulps"):
+        _assert_arms_reproduce(tampered, recorded["arms"])
+
+
+def test_a_gate_read_field_is_never_given_any_tolerance() -> None:
+    """One ulp on hit_at_10 must still fail: gates act on it."""
+
+    fresh = {"echo": {"ARM": {"hit_at_10": math.nextafter(0.5, math.inf), "tasks": 1}}}
+    recorded = {"echo": {"ARM": {"hit_at_10": 0.5, "tasks": 1}}}
+    with pytest.raises(AssertionError):
+        _assert_arms_reproduce(fresh, recorded)
 
 
 def test_verdict_follows_the_frozen_rule(payload: dict) -> None:
