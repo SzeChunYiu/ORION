@@ -67,3 +67,12 @@ Selection stability (folds): per query, 1–5 distinct 16-coordinate selections 
 ## Scientific disposition
 
 `GATE_NOT_MET` — negative retained, no retuning, thresholds as frozen in #978. The earlier single-responsibility learned-compiler placement claim does not extend to a ten-responsibility family on digits; the phase diagram (memory crossover, linear break-even growth, nonzero future-query tax) is confirmed exactly, so the placement question on this domain resolves on the quality axis against compilation at family scale. This is a boundary characterization of the P11 compile/cache/materialize option on digits, not a refutation of the resource identities themselves.
+
+## Reconciliation with prior failed run 32661332644 (added 2026-08-23, post-binding)
+
+An earlier execution harness, `.github/workflows/p11-query-family-phase-v1.yml` (frozen with the protocol/runner/checker in #978), already executed this study on PR #994's head `aedcaf93` at 2026-08-23T19:31:51Z: run `32661332644`, conclusion FAILURE.
+
+- **Classification: the failure IS the preregistered negative, not a harness defect.** The run installed the identical pinned environment (numpy 2.3.2, scikit-learn 1.7.1), executed the identical frozen runner blob (`7b5d13fe1abb8a9351cf0481c26b079b8f877098` at both `aedcaf93` and this receipt's executed head `ed5a2ac7`), ran the full study, and failed only at the runner's own terminal assert `assert positive` (line 78) — exactly the `GATE_NOT_MET` outcome bound above. The benign `f_classif` constant-feature warnings in its log match this run's.
+- **Why that run is not the bound receipt:** its failure occurred before the upload-artifact step (no artifacts exist), and the assert's message — which carried the full receipt repr — was line-truncated out of the GitHub log, so no per-query table is recoverable from it.
+- **Record:** run `32661332644` is the first observation of the negative; runs `32663348906` (bound) and `32664737225` (final-head re-verification) are the authoritative verdict-agnostic captures of the same frozen execution.
+- **Hygiene note for the fold-in pass:** the older workflow red-Xes by design on this negative (its replay step asserts the positive terminal). Retiring or annotating it is a post-#993 ledger decision, not a study change; this PR leaves it untouched.
