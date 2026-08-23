@@ -10,6 +10,27 @@
 
 Predictive/control abstractions, causal/interventional sufficiency, confidence gating, provenance, proof-carrying actions, stale-memory detection and certified abstractions are donor-owned.
 
+## Post-outcome status — 2026-08-23
+
+The independent bounded theory checker now closes the current responsibility-indexed support construction, transport/revocation conditions, and approximate-support/calibration model under the frozen finite assumptions. These are bounded formal results, not a claim that every real responsibility family forms one total ladder.
+
+The prospectively frozen real-data responsibility-shift study now returns `P13_REAL_RESPONSIBILITY_SHIFT_V1_SUPPORTED` with byte-identical replay over 17,970 episodes. A compact state is learned for parity responsibility and is then confronted with the stronger exact-digit responsibility.
+
+Fold by fold, responsibility-carrying state (RCS) exactly matches always-raw accuracy on both responsibilities while reading only 33 floats per episode instead of 64. Aggregate state-read reduction is `0.484375` (48.4375%). RCS reopens on half the episodes and never reuses unsupported compact state for exact-digit responsibility.
+
+Protected comparator outcomes:
+
+- RCS: combined accuracy `0.9435169727`, exact-digit accuracy `0.9699499165`, parity accuracy `0.9170840289`, unsupported exact-digit reuse `0`;
+- ALWAYS_RAW: identical task accuracy, 64 floats read/episode, reopen rate `1.0`;
+- CONFIDENCE_ONLY: exact-digit accuracy `0.3956594324`, unsupported exact-digit reuse rate `0.7774067891`;
+- PROVENANCE_ONLY / UNQUALIFIED: exact-digit accuracy `0.2376182526`, unsupported exact-digit reuse rate `1.0`.
+
+The raw-vs-compact exact-digit accuracy gap is `0.7323316639`. Thus the compact state can be current, provenanced and highly confident for the old responsibility while being structurally inadequate for the upgraded responsibility.
+
+**Earned claim:** in this protected real-data responsibility shift, responsibility support rather than confidence/provenance alone determines safe reuse; RCS matches the always-raw safety ceiling while avoiding nearly half of raw-state reads. This does not yet establish verifier-backed higher responsibilities, semantic-change certificate transport on a live system, or broad cross-domain authority.
+
+Exact execution hashes and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
+
 ## Responsibility ladder
 
 Freeze at least:
@@ -97,16 +118,18 @@ Safety gain cannot be purchased by abstaining/reopening everything.
 
 `P13_TOP_TIER_SUBMISSION_READY` requires:
 
-- [ ] T13.1 responsibility-indexed support closure;
-- [ ] T13.2 transport/revocation closure;
-- [ ] T13.3 approximate-support calibration protocol;
-- [ ] verifier-backed responsibility shift;
+- [x] T13.1 bounded responsibility-indexed support closure;
+- [x] T13.2 bounded transport/revocation closure;
+- [x] T13.3 bounded approximate-support calibration protocol/model;
+- [ ] verifier-backed responsibility shift at the intended formal/problem-solving scope;
 - [ ] second qualitatively different responsibility-shift domain for broad headline;
 - [ ] real semantic-change certificate transport/revocation benchmark;
-- [ ] reduced unsafe reuse without always-reopen degeneration;
-- [ ] meaningful resource saving versus always-raw safety ceiling;
-- [ ] independent evaluator/authority;
-- [ ] preserved historical negative and replay corrections;
+- [x] reduced unsafe reuse without always-reopen degeneration in the protected real-data shift;
+- [x] meaningful resource saving versus always-raw safety ceiling (`48.4375%` fewer raw-state floats read);
+- [ ] independent evaluator/authority at the intended scientific responsibility scope;
+- [x] current protected negative/comparator outcomes and deterministic replay corrections retained;
 - [ ] current donor saturation and exact package replay.
 
-If responsibility support is not ordered in a domain, preserve the partial-order/non-comparability result rather than forcing a universal ladder.
+The unchecked items are genuine remaining promotion requirements. The current real-data result establishes responsibility-relative reuse under a clean controlled shift but does not substitute for verifier-backed scientific responsibility or cross-domain semantic transport.
+
+If responsibility support is not ordered in a later domain, preserve the partial-order/non-comparability result rather than forcing a universal ladder.
