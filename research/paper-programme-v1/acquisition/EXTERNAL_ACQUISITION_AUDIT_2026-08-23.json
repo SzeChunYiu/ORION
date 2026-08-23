@@ -25,22 +25,36 @@
       "item_id": "P9.T3.FRONTIER.EXECUTION",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "LOCALLY_UNEXECUTED",
-      "requirement_classes": ["E"],
+      "requirement_classes": [
+        "E"
+      ],
       "why": "The freeze document already declares the 1,344-cell grid before any outcome and pins it by sha256. Its environment_boundary records open_weight_checkpoint_present=false and an outbound proxy returning 403 -- properties of the box it was written on, not of the world. The declared scale ladders are LLAMA3_2 (1B, 3B) and QWEN2_5 (0.5B, 1.5B, 3B, 7B): six openly published checkpoints, all six resolving live.",
-      "free_routes": ["huggingface open-weight checkpoints", "the researcher's own cluster compute"],
+      "free_routes": [
+        "huggingface open-weight checkpoints",
+        "the researcher's own cluster compute"
+      ],
       "friction": "Two of six ladder points (Llama-3.2 1B and 3B) are gated=manual: free, but requiring an accepted licence on an account. The four Qwen points are ungated; Qwen2.5-3B carries a non-commercial research licence rather than Apache-2.0.",
       "residual_requirement": null,
       "new_claim_id_required": false,
-      "note": "No new claim identity is needed here, and that is the point: the grid was frozen before outcomes and its own crossing rule already forbids extrapolation, interpolation and off-grid frontiers. Executing declared cells against the existing freeze is exactly what it was written for.",
-      "rank": 1
+      "note": "No new claim identity is needed: the grid was frozen before outcomes and its crossing rule already forbids extrapolation, interpolation and off-grid frontiers. The repository's own acquisition-reachability record says what would unblock it -- 'a checkpoint set placed on disk, an allowlisted mirror for one, or execution in an environment that already holds them' -- and all six checkpoints resolve from an ordinary network. What that record does not say, and what this audit adds, is that the executing code is also absent.",
+      "rank": 3,
+      "blocking_precondition": "No cell-execution harness exists. The freeze names orion.study.p9.frontier_grid as its runner, but that module declares the grid and scores an outcome file: its CLI takes --outcomes as an INPUT, documented as 'an outcome file for the declared cells; omit while none exists'. Nothing in the repository produces P9.UT3FrontierGridOutcomes.v1. Fetching the six checkpoints is necessary and not sufficient -- the harness that walks a cell and emits a verified count has to be written first. That is local work with no external component."
     },
     {
       "item_id": "P6.REPRODUCIBILITY.EXTERNAL",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PROCURABLE_FREE",
-      "requirement_classes": ["A", "D"],
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
       "why": "Wants a clean-room byte-for-byte replay of a bounded FORMAL artifact by someone who is not the candidate. No data, no hidden labels, no human panel, no compute at scale. The only requirement is that the runner is not the author.",
-      "free_routes": ["ML Reproducibility Challenge", "Zenodo DOI-bound container", "Software Heritage archival", "artifact-evaluation tracks at open venues"],
+      "free_routes": [
+        "ML Reproducibility Challenge",
+        "Zenodo DOI-bound container",
+        "Software Heritage archival",
+        "artifact-evaluation tracks at open venues"
+      ],
       "residual_requirement": null,
       "new_claim_id_required": true,
       "blocking_precondition": "The replay bundle has to exist and run from a cold start before any custodian can be asked. That packaging is local work and is not done.",
@@ -50,88 +64,148 @@
       "item_id": "P2.TASK_WORLD.IDENTITY",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "LOCALLY_BROKEN",
-      "requirement_classes": ["A", "D"],
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
       "why": "The disposition's first clause is 'the archived task-world baseline has not been reproduced'. That is a local reproduction failure filed inside an external-blocker item. P2's own acquisition-ceiling diagnosis shows the binding stage was CANDIDATE_GENERATION: the arm's routes returned 7 of 229 gold identifiers, capping avg_iou at 0.011 against a 0.03 threshold. That is a retrieval problem, and free keyless bibliographic APIs address retrieval.",
-      "free_routes": ["OpenAlex (321.9M works, no key)", "Crossref (185.7M works, no key)", "arXiv API", "Semantic Scholar (free key needed; unauthenticated requests are rate-limited)"],
+      "free_routes": [
+        "OpenAlex (321.9M works, no key)",
+        "Crossref (185.7M works, no key)",
+        "arXiv API",
+        "Semantic Scholar (free key needed; unauthenticated requests are rate-limited)"
+      ],
       "residual_requirement": "D -- an independent scorer for the successor arm",
       "new_claim_id_required": true,
       "see_also": "A second, distinct P2 reproducibility failure is live in CI: tests/unit/study/p2_open_world/test_p2_lexical_echo_successor.py, where the frozen parameter digest matches while the per-arm numbers do not.",
-      "rank": 3
+      "rank": 4
     },
     {
       "item_id": "P5.H1_H4.EXTERNAL_IDENTITIES",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "LOCALLY_UNEXECUTED",
-      "requirement_classes": ["B"],
+      "requirement_classes": [
+        "B"
+      ],
       "why": "Its own next_executable_step is a PREFLIGHT running a local script, and its success condition is that nine identity and custody blockers clear without reading protected outcomes. Identity bindings are authored, not bought. What cannot be authored is the third-party timestamp proving they were fixed before outcomes -- and that is free.",
-      "free_routes": ["OSF Registries", "AsPredicted", "Zenodo DOI"],
+      "free_routes": [
+        "OSF Registries",
+        "AsPredicted",
+        "Zenodo DOI"
+      ],
       "residual_requirement": null,
       "new_claim_id_required": false,
       "note": "Run the preflight and count which of the nine actually require an outside party. The item currently asserts all nine are external without that count.",
-      "rank": 4
+      "rank": 5
     },
     {
       "item_id": "P11.REAL_SYSTEMS.EXTERNAL",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "D"],
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
       "why": "Wants 'independently implemented real-system strata'. Open-source systems are independently implemented by definition and their authorship predates any ORION protocol, which is exactly the independence the item asks for.",
-      "free_routes": ["public open-source system corpora selected by a preregistered rule", "GitHub API for revision and issue history"],
+      "free_routes": [
+        "public open-source system corpora selected by a preregistered rule",
+        "GitHub API for revision and issue history"
+      ],
       "residual_requirement": "D -- an independent scorer for the width-conditioned gate",
       "new_claim_id_required": true,
-      "rank": 5
+      "rank": 6
     },
     {
       "item_id": "P5.WIDE.SUCCESSOR",
       "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "B", "D"],
+      "requirement_classes": [
+        "A",
+        "B",
+        "D"
+      ],
       "why": "The frozen design needs a protected project panel over eight domains and eight revision classes with same-visible-symptom blocking. Real projects with real revision histories are public, and their revisions were authored before any ORION protocol existed.",
-      "free_routes": ["GitHub API revision histories under a preregistered domain and revision-class sampling rule", "OSF Registries for the pre-outcome freeze"],
+      "free_routes": [
+        "GitHub API revision histories under a preregistered domain and revision-class sampling rule",
+        "OSF Registries for the pre-outcome freeze"
+      ],
       "residual_requirement": "D -- independent evaluators",
       "new_claim_id_required": true,
-      "rank": 6
+      "rank": 7
     },
     {
       "item_id": "P3.C6_C8.EXTERNAL",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "C", "D"],
+      "requirement_classes": [
+        "A",
+        "C",
+        "D"
+      ],
       "why": "Four atlas coordinates -- referent, construct, measurement, temporal context -- are inert in the current artifact. Making them vary is a corpus-selection problem, and multi-domain corpora that vary all four are public.",
-      "free_routes": ["OpenAlex and Crossref for source-disjoint multi-domain selection", "public annotated corpora with existing third-party gold"],
+      "free_routes": [
+        "OpenAlex and Crossref for source-disjoint multi-domain selection",
+        "public annotated corpora with existing third-party gold"
+      ],
       "residual_requirement": "D -- a downstream evaluator",
       "new_claim_id_required": true,
-      "rank": 7
+      "rank": 8
     },
     {
       "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
       "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "B", "C", "D"],
+      "requirement_classes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
       "why": "Same corpus argument as P3.C6_C8, plus a raw-text attack corpus. Attacks authored by other people and published before the protocol satisfy the independence requirement without a panel.",
-      "free_routes": ["public multi-domain corpora with third-party gold", "publicly published attack and perturbation corpora", "OSF Registries for the pre-outcome freeze"],
+      "free_routes": [
+        "public multi-domain corpora with third-party gold",
+        "publicly published attack and perturbation corpora",
+        "OSF Registries for the pre-outcome freeze"
+      ],
       "residual_requirement": "D -- independent scoring of the powered panel",
       "new_claim_id_required": true,
-      "rank": 8
+      "rank": 9
     },
     {
       "item_id": "P9.T4.D1V1_3.SUCCESSOR",
       "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
       "reclassified_as": "PROCURABLE_FREE",
-      "requirement_classes": ["B", "E"],
+      "requirement_classes": [
+        "B",
+        "E"
+      ],
       "why": "Needs a fresh protected split, frozen checkpoints and provider custody. Checkpoints are the same open weights as P9.T3. A split is protected in the sense that matters when it is fixed before outcomes and timestamped by a third party.",
-      "free_routes": ["the same six open-weight checkpoints", "OSF Registries or AsPredicted for the split freeze", "the researcher's own compute"],
+      "free_routes": [
+        "the same six open-weight checkpoints",
+        "OSF Registries or AsPredicted for the split freeze",
+        "the researcher's own compute"
+      ],
       "residual_requirement": null,
       "new_claim_id_required": true,
-      "rank": 9
+      "rank": 1,
+      "note": "Ranked first because it is the only fully procurable item that also has a runner: orion.study.p9.d1_experiment.run_d1 exists, where the T3 frontier's executing code does not."
     },
     {
       "item_id": "P1.R7A.WIDE.SUCCESSOR",
       "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "B", "D", "E"],
+      "requirement_classes": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
       "why": "384 source clusters and nine comparators. Sources are public; comparators that the candidate did not write are open-source; hosts are compute. Conditional power is already computed at 0.920216 and the local preflight passes.",
-      "free_routes": ["OpenAlex and Crossref source snapshots", "open-source comparator implementations", "OSF Registries for the pre-outcome freeze"],
+      "free_routes": [
+        "OpenAlex and Crossref source snapshots",
+        "open-source comparator implementations",
+        "OSF Registries for the pre-outcome freeze"
+      ],
       "residual_requirement": "D -- independent scorer custody, which the design names explicitly",
       "new_claim_id_required": true,
       "rank": 10
@@ -140,9 +214,16 @@
       "item_id": "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "D"],
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
       "why": "Needs a naturalistic multi-domain corpus, donor-complete baselines and an independent replay custodian. Corpus and baselines are public; the custodian is the same free-route question as P6.",
-      "free_routes": ["public multi-domain corpora", "open-source donor baselines", "ML Reproducibility Challenge for the replay custodian"],
+      "free_routes": [
+        "public multi-domain corpora",
+        "open-source donor baselines",
+        "ML Reproducibility Challenge for the replay custodian"
+      ],
       "residual_requirement": "D -- a protected evaluator",
       "new_claim_id_required": true,
       "rank": 11
@@ -151,9 +232,17 @@
       "item_id": "P8.DEPLOYED.AGENT.EXTERNAL",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "C", "D"],
+      "requirement_classes": [
+        "A",
+        "C",
+        "D"
+      ],
       "why": "Needs independently authored attacks, separately implemented comparators and hidden authority labels. Published attack corpora are authored by others; open-source agent frameworks are separately implemented; a benchmark whose test labels the candidate never sees supplies hidden labels without a panel.",
-      "free_routes": ["published attack corpora predating the protocol", "open-source agent frameworks as comparators", "held-out public benchmarks for label hiding"],
+      "free_routes": [
+        "published attack corpora predating the protocol",
+        "open-source agent frameworks as comparators",
+        "held-out public benchmarks for label hiding"
+      ],
       "residual_requirement": "D -- an independent replay custodian for the deployed campaign",
       "new_claim_id_required": true,
       "caution": "The ledger records that the original homogeneous 169-entry panel does not establish breadth. A free corpus that is also homogeneous does not fix that; the sampling rule must be preregistered to force domain spread.",
@@ -163,9 +252,16 @@
       "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "B", "D"],
+      "requirement_classes": [
+        "A",
+        "B",
+        "D"
+      ],
       "why": "A wide multi-domain execution corpus is public; the lifecycle freeze is local; raw trace and environment custody is the researcher's own archival discipline.",
-      "free_routes": ["public multi-domain task corpora", "Zenodo and Software Heritage for trace and environment custody"],
+      "free_routes": [
+        "public multi-domain task corpora",
+        "Zenodo and Software Heritage for trace and environment custody"
+      ],
       "residual_requirement": "D -- an independent evaluator with scorer custody",
       "new_claim_id_required": true,
       "rank": 13
@@ -174,9 +270,17 @@
       "item_id": "P15.A.HARNESS.SUCCESSOR",
       "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "B", "D"],
+      "requirement_classes": [
+        "A",
+        "B",
+        "D"
+      ],
       "why": "Needs a donor matrix, a protected corpus and custody bindings for one exact harness revision with live host and capability failures. Donor harnesses are open-source; live failures can be induced locally; the corpus can be drawn from public sources under a preregistered rule.",
-      "free_routes": ["open-source harness donors", "public task corpora", "OSF Registries for the pre-outcome freeze"],
+      "free_routes": [
+        "open-source harness donors",
+        "public task corpora",
+        "OSF Registries for the pre-outcome freeze"
+      ],
       "residual_requirement": "D -- independent custody bindings",
       "new_claim_id_required": true,
       "rank": 14
@@ -185,9 +289,17 @@
       "item_id": "P4.NATURALISTIC.GENERALITY",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "C", "D", "F"],
+      "requirement_classes": [
+        "A",
+        "C",
+        "D",
+        "F"
+      ],
       "why": "Needs a blinded panel, external comparators, an independent evaluator and a source-disjoint replication panel. The cases can be public and authored by others; the blinding of a panel that adjudicates the candidate's own cases cannot be self-supplied.",
-      "free_routes": ["public naturalistic case corpora with existing third-party outcomes", "open-source CANNOT_CHECK-capable comparators"],
+      "free_routes": [
+        "public naturalistic case corpora with existing third-party outcomes",
+        "open-source CANNOT_CHECK-capable comparators"
+      ],
       "residual_requirement": "F -- a blinded adjudicating panel",
       "new_claim_id_required": true,
       "honest_alternative": "State the claim as bounded to publicly adjudicated cases. That is correct scoping, not narrowing: it changes what the result is evidence about, not how strong it is.",
@@ -197,9 +309,19 @@
       "item_id": "P14.D.EXTERNAL_VALIDITY",
       "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
       "reclassified_as": "PARTIALLY_PROCURABLE",
-      "requirement_classes": ["A", "C", "D", "F"],
+      "requirement_classes": [
+        "A",
+        "C",
+        "D",
+        "F"
+      ],
       "why": "The item asks for blinded independent case packets and adjudicator custody, with case authorship and implementation hidden from candidate construction. The adjudicator panel is class F. The case authorship is not: the scientific record already contains a very large corpus of promotion, retention and reopen decisions adjudicated by editors and publishers, authored by people who are not the candidate, and timestamped long before any ORION protocol -- 134,509 works flagged retracted in OpenAlex and 74,828 retraction-notice works in Crossref, with the Retraction Watch database itself free via Crossref Labs.",
-      "free_routes": ["OpenAlex is_retracted", "Crossref update-type:retraction", "Retraction Watch data via Crossref Labs", "PCI Registered Reports for protocol review before results exist"],
+      "free_routes": [
+        "OpenAlex is_retracted",
+        "Crossref update-type:retraction",
+        "Retraction Watch data via Crossref Labs",
+        "PCI Registered Reports for protocol review before results exist"
+      ],
       "residual_requirement": "F -- a bespoke panel adjudicating the candidate's own packets",
       "new_claim_id_required": true,
       "caution": "A retraction record is an adjudicated outcome, not a governance-contract case packet. Whether the ORION promotion or reopen decision is even defined on such a record has to be established before this is called a substitute -- and if it is not, this route fails and should be recorded as having failed.",
@@ -217,5 +339,6 @@
     "items_with_a_class_F_residual": 2,
     "most_common_residual": "D -- an independent scorer or adjudicator, which free venues address but only on a publication timescale",
     "headline": "Not one of the sixteen is blocked by lack of an institution. Two are simply unexecuted, one is locally broken, and the residual on eleven others is a single requirement class."
-  }
+  },
+  "correction": "An earlier revision of this audit ranked P9.T3 first on the ground that nothing was missing but a download. That was wrong: the cell-execution harness does not exist either. The reclassification is unchanged -- P9.T3 is still not externally blocked -- but the work is larger than fetching weights, and the ranking has been corrected."
 }
