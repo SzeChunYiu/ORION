@@ -1,0 +1,78 @@
+name: orion-qg-qg31-query-abstraction
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG31_*'
+      - 'development/orion-qg-regime-geometry/qg31_*'
+      - 'development/orion-qg-regime-geometry/run_qg31_dual_harness.py'
+      - 'research/extensions/orion-qg/qg31_*'
+      - '.github/workflows/orion-qg-qg31-query-abstraction.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg31-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  query-abstraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual confirmation
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg31_dual_harness.py | tee artifacts/orion-qg-qg31-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg31_query_indexed_abstraction.py --output artifacts/orion-qg-qg31-replay.json > artifacts/orion-qg-qg31-replay.log
+          cmp artifacts/orion-qg-qg31-query-abstraction.json artifacts/orion-qg-qg31-replay.json
+      - name: Enforce query-scoped authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg31-query-abstraction.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg31-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg31-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg31-dual-harness.json').read_text())
+          pos='QG31_QUERY_INDEXED_ABSTRACTION_LADDER_CONFIRMED__INDEXED_LOCAL_RESPONSE_INJECTIVE_ON_715_ORBITS'
+          assert a['terminal']==pos and a['class_counts']=={'bulk':45,'spectrum':54,'indexed':715}
+          assert a['partition_relations']['indexed_refines_bulk'] is True
+          assert a['partition_relations']['indexed_refines_spectrum'] is True
+          assert a['witnesses']['same_spectrum_different_indexed'] is not None
+          assert g['decision']=='ACCEPT_QUERY_INDEXED_ABSTRACTION' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_QUERY_INDEXED_ABSTRACTION' and n['all_checks'] is True
+          assert n['responsibility']=='QUERY_SCOPED_ABSTRACTION__INDEXED_RESPONSE_MINIMALITY_ONLY'
+          assert d['terminal']==pos and d['both_accept'] is True
+          for x in (a,g,n,d):
+            assert x['BULK_QUERY_CLASSES_45'] is True
+            assert x['DEFECT_SPECTRUM_QUERY_CLASSES_54'] is True
+            assert x['INDEXED_LOCAL_RESPONSE_CLASSES_715'] is True
+            assert x['INDEXED_RESPONSE_MINIMALITY_715'] is True
+            assert x['QUERY_INDEXED_ABSTRACTION_REQUIRED'] is True
+            assert x['FULL_FINITE_N_OPTIMUM_REQUIRES_715_CLASSES'] is False
+            assert x['QG28_ORBIT_HISTOGRAM_GLOBALLY_MINIMAL'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg31-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg31-*.json
+            artifacts/orion-qg-qg31-*.log
+            .orion-qg-qg31-generic/.orion-harness/**
+            .orion-qg-qg31-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn
