@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from itertools import product
 import hashlib
 import json
@@ -246,19 +247,8 @@ def main() -> int:
     a = summaries["ADAPTIVE_LOCATION"]
     r = summaries["REASON_ONLY"]
     p = summaries["PROPAGATE_FIRST"]
-    frontier_positive = (
-        a["solve_rate"] >= r["solve_rate"]
-        and a["solve_rate"] >= p["solve_rate"]
-        and (
-            (a["mean_work_solved"] < r["mean_work_solved"] and a["mean_work_solved"] < p["mean_work_solved"])
-            or (
-                (a["solve_rate"] > r["solve_rate"] or a["solve_rate"] > p["solve_rate"])
-                and a["mean_work_solved"] <= min(x for x in (r["mean_work_solved"], p["mean_work_solved"]) if x is not None)
-            )
-        )
-    )
-    # The protocol also allows strict solve improvement vs one comparator while no more
-    # mean work than the other. Express that disjunct directly to avoid over-constraining.
+    # The protocol allows strict solve improvement vs one comparator while no more
+    # mean work than the other, or lower mean work than both at equal-or-better solve rate.
     allowed_second_disjunct = (
         a["solve_rate"] > r["solve_rate"] and a["mean_work_solved"] <= p["mean_work_solved"]
     ) or (
@@ -271,7 +261,7 @@ def main() -> int:
             (a["mean_work_solved"] < r["mean_work_solved"] and a["mean_work_solved"] < p["mean_work_solved"])
             or allowed_second_disjunct
         )
-        and all(summaries[p]["all_verifier_correct"] for p in policies)
+        and all(summaries[policy]["all_verifier_correct"] for policy in policies)
     )
 
     receipt = {
