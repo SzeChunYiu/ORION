@@ -9,75 +9,42 @@
   },
   "group": "C_5^3",
   "target": "length-31 total-zero sequence with no nonempty zero-sum subsequence of length <=5",
-  "context": "Such a sequence is necessary for D_4(C_5^3)=31 under the X1-K total-zero extremal reduction; proving none exists proves 31 in C_0(C_5^3), hence D_4=30.",
+  "context": "Such a sequence is necessary for D_4(C_5^3)=31 under the X1-K total-zero extremal reduction. Proving none exists proves 31 in C_0(C_5^3), hence D_4(C_5^3)=30 because 30<=D_4<=31.",
   "symbolic_reductions": {
-    "multiplicity_cap": "every point multiplicity <=4",
-    "support_minimum": 8,
-    "support_8": "multiplicity pattern 4^7 3; restoring the missing fourth copy cannot create a new <=5 zero-sum, so Property C applies. The committed support check enumerates 564 normalized admissible U and finds 0 with -sigma(U) in U.",
-    "support_ge_9_saturated": "otherwise a one-point extension gives a length-32 short-free sequence, which Property C forces to have support 8",
-    "no_multiplicity_3_in_saturated_case": "a <=4 representation of -x for a multiplicity-3 point must use all three copies of x, leaving at most one term y with y=x, impossible",
-    "multiplicity_4_projective_isolation": "a multiplicity-4 point cannot share its projective line with any other support point",
-    "four_mult4_span_rank3": "four multiplicity-4 support points cannot lie in rank <=2 because their 16 terms exceed eta(C_5^2)=13",
-    "support15_mixed_basis": "for pattern 1 2^13 4, the multiplicity-4 point plus the 13 multiplicity-2 points must span rank 3; otherwise their 30 terms lie in rank <=2 and force a <=5 zero sum. Hence normalize multiplicities (4,2,2) on e1,e2,e3."
+    "multiplicity_cap": "every support-point multiplicity is at most 4",
+    "support_8": "the only pattern is 4^7 3; restoring the missing fourth copy preserves short-freeness, so Property C applies. The support-level dual check enumerates 564 normalized admissible supports and finds zero satisfying the total-zero deletion condition -sigma(U) in U.",
+    "support_ge_9_saturated": "if a length-31 short-free sequence of support >8 were extendable by one nonzero point while remaining short-free, the resulting length-32 sequence would be Property-C and have support 8; contradiction. Hence every support>8 candidate is Sigma_{<=4}-saturated.",
+    "no_multiplicity_3": "saturation at a multiplicity-3 point x would require a <=4 representation of -x; avoiding a pre-existing <=5 zero-sum forces all three copies of x into that representation, leaving at most one term which would have to equal x, impossible.",
+    "pattern_equations": "for support s>=9 write a=#mult1,b=#mult2,c=#mult4. Then a+b+c=s and a+2b+4c=31, equivalently b+3c=31-s and a=2s-31+2c.",
+    "multiplicity_4_projective_isolation": "a multiplicity-4 point cannot share its projective line with another support point",
+    "four_mult4_span_rank3": "four multiplicity-4 points cannot lie in rank <=2 because their 16 terms exceed eta(C_5^2)=13",
+    "mixed_basis_rule": "whenever a high-multiplicity seed together with the multiplicity-2 stratum would exceed eta(C_5^2)=13 if rank<=2, the seed-plus-mult2 stratum must span rank3; this authorizes normalizations such as (2,2,2), (4,2,2), and (4,4,2) on e1,e2,e3.",
+    "rank2_c4_3_outside2": "if the three multiplicity-4 points span a plane and the multiplicity-2 stratum would make >13 terms in that plane, at least one multiplicity-2 point lies outside; the plane stabilizer normalizes that point to e3."
   },
-  "support_9": {
-    "patterns": ["1^1 2^1 4^7"],
-    "verifier": "research/orion-rg/x1k_c0_support9_check.c",
-    "dual_engines": true,
-    "solutions": 0
+  "eliminated_supports": {
+    "8": {"method":"Property-C support-level dual enumeration","solutions":0},
+    "9": {"patterns":["1 2 4^7"],"verifier":"research/orion-rg/x1k_c0_support9_check.c","dual_engines":true,"solutions":0},
+    "10": {"patterns":["1 2^3 4^6","1^3 4^7"],"solutions":0},
+    "11": {"patterns":["1 2^5 4^5","1^3 2^2 4^6"],"solutions":0},
+    "12": {"patterns":["1 2^7 4^4","1^3 2^4 4^5","1^5 2 4^6"],"solutions":0},
+    "13": {"patterns":["1 2^9 4^3","1^3 2^6 4^4","1^5 2^3 4^5","1^7 4^6"],"rank2_c4_3_nodes":1005159,"solutions":0},
+    "14": {"patterns":["1 2^11 4^2","1^3 2^8 4^3","1^5 2^5 4^4","1^7 2^2 4^5"],"solutions":0},
+    "15": {"patterns":["1 2^13 4","1^3 2^10 4^2","1^5 2^7 4^3","1^7 2^4 4^4","1^9 2 4^5"],"mixed_4_2_2_nodes":80202,"solutions":0},
+    "16": {"patterns":["1 2^15","1^3 2^12 4","1^5 2^9 4^2","1^7 2^6 4^3","1^9 2^3 4^4","1^11 4^5"],"mixed_c0_nodes":80202,"mixed_c1_nodes":80202,"solutions":0},
+    "17": {"patterns":["1^3 2^14","1^5 2^11 4","1^7 2^8 4^2","1^9 2^5 4^3","1^11 2^2 4^4"],"heavy_c4_nodes":11238173,"heavy_c4_lut_replay_nodes":11238173,"solutions":0},
+    "18": {"patterns":["1^5 2^13","1^7 2^10 4","1^9 2^7 4^2","1^11 2^4 4^3","1^13 2 4^4"],"c4_3_rank2_precompression_nodes":18279459,"c4_3_rank2_compressed_nodes":727818,"heavy_c4_nodes":17101721,"heavy_c4_lut_replay_nodes":17101721,"solutions":0},
+    "19": {"patterns":["1^7 2^12","1^9 2^9 4","1^11 2^6 4^2","1^13 2^3 4^3","1^15 4^4"],"nodes":{"c0":80203,"c1":80203,"c2":82231,"c3_rank3":7975804,"c3_rank2":5604240,"c4":8925311},"dual_translation_replay":"exact node/leaf/solution agreement for all five patterns","verifier":"research/orion-rg/x1k_c0_support19_dual.c","solutions":0}
   },
-  "rank3_high4_rows": [
-    {"support":10,"a1":1,"b2":3,"c4":6,"nodes":272119,"forced_final_leaves":0,"solutions":0},
-    {"support":10,"a1":3,"b2":0,"c4":7,"nodes":210700,"forced_final_leaves":3558,"solutions":0},
-    {"support":11,"a1":1,"b2":5,"c4":5,"nodes":406521,"forced_final_leaves":0,"solutions":0},
-    {"support":11,"a1":3,"b2":2,"c4":6,"nodes":278515,"forced_final_leaves":0,"solutions":0},
-    {"support":12,"a1":1,"b2":7,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
-    {"support":12,"a1":3,"b2":4,"c4":5,"nodes":406521,"forced_final_leaves":0,"solutions":0},
-    {"support":12,"a1":5,"b2":1,"c4":6,"nodes":826347,"forced_final_leaves":0,"solutions":0},
-    {"support":13,"a1":3,"b2":6,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
-    {"support":13,"a1":5,"b2":3,"c4":5,"nodes":414477,"forced_final_leaves":0,"solutions":0},
-    {"support":13,"a1":7,"b2":0,"c4":6,"nodes":904555,"forced_final_leaves":0,"solutions":0},
-    {"support":13,"a1":1,"b2":9,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
-    {"support":14,"a1":3,"b2":8,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
-    {"support":14,"a1":5,"b2":5,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
-    {"support":14,"a1":7,"b2":2,"c4":5,"nodes":2151495,"forced_final_leaves":0,"solutions":0},
-    {"support":15,"a1":5,"b2":7,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
-    {"support":15,"a1":7,"b2":4,"c4":4,"nodes":299329,"forced_final_leaves":0,"solutions":0},
-    {"support":15,"a1":9,"b2":1,"c4":5,"nodes":5356287,"forced_final_leaves":0,"solutions":0}
-  ],
-  "support_13_c4_rank2_branch": {
-    "pattern": "1^1 2^9 4^3",
-    "normalization": "two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*; short-free seed filter leaves nine coefficient cases",
-    "u128_nodes": 1005159,
-    "byte_replay_nodes": 1005159,
-    "forced_final_leaves": 0,
-    "solutions": 0
-  },
-  "support_14_lowrank_branches": [
-    {"pattern":"1^1 2^11 4^2","normalization":"two multiplicity-4 points -> e1,e2","u128_nodes":1967110,"byte_replay_nodes":1967110,"forced_final_leaves":0,"solutions":0},
-    {"pattern":"1^3 2^8 4^3","high4_rank":2,"normalization":"two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*","u128_nodes":1005159,"byte_replay_nodes":1005159,"forced_final_leaves":0,"solutions":0}
-  ],
-  "support_15_lowrank_and_mixed_branches": [
-    {"pattern":"1^3 2^10 4^2","normalization":"two multiplicity-4 points -> e1,e2","u128_nodes":1967110,"byte_replay_nodes":1967110,"forced_final_leaves":0,"solutions":0},
-    {"pattern":"1^5 2^7 4^3","high4_rank":2,"normalization":"two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*","u128_nodes":1005159,"byte_replay_nodes":1005159,"forced_final_leaves":0,"solutions":0},
-    {"pattern":"1^1 2^13 4^1","normalization":"mixed-multiplicity basis e1^4 e2^2 e3^2","u128_nodes":80202,"byte_replay_nodes":80202,"forced_final_leaves":0,"solutions":0}
-  ],
   "independent_replay": {
-    "rank3_u128": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
-    "rank3_bytes": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
-    "rank2_support13_u128": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
-    "rank2_support13_bytes": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
-    "support14_lowrank_u128": "research/orion-rg/x1k_c0_support14_lowrank_u128.c",
-    "support14_lowrank_bytes": "research/orion-rg/x1k_c0_support14_lowrank_bytes.c",
-    "support15_mixedbasis_u128": "research/orion-rg/x1k_c0_support15_mixedbasis_u128.c",
-    "support15_mixedbasis_bytes": "research/orion-rg/x1k_c0_support15_mixedbasis_bytes.c",
-    "agreement": "exact on every row, including node/leaf counts"
+    "byte_reachability": "used on the smaller and compressed rows",
+    "primitive_addition_lut": "research/orion-rg/x1k_c0_rank3_lut_replay.c and support19 dual verifier; translation tables are constructed from primitive ADD[src][v], independently of the coordinate-mask shift primitive",
+    "agreement": "all eliminated rows through support19 have an independent replay; heavy rank3 rows use the primitive-addition LUT replay and match exact node/leaf/solution counts"
   },
-  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 16.",
+  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 20.",
   "what_this_does_not_prove": [
     "31 in C_0(C_5^3)",
     "D_4(C_5^3)=30",
     "novelty of the support bound"
   ],
-  "next_hard_stratum": "support >=16; preserve saturation and no-multiplicity-3 constraints before any search widening"
+  "next_hard_stratum": "support >=20; preserve saturation, no-multiplicity-3, projective-isolation, and mixed-basis normalizations before any search widening"
 }
