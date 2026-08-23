@@ -72,6 +72,18 @@
 
 **Authority:** `CANNOT_CHECK` pending C15.5/C15.6 and external independent validation.
 
+## C15.8 — cryptographic attestation composition is not scientific admission
+
+**Statement.** Under the frozen attestation-composition V2 protocol, three-link Ed25519 chains over execution/environment/publication facts verify and fail closed against truncation, substitution, splice-with-partial-re-signing, reorder, replay and stale/consumed re-presentation (22/22-case corpus, all arms 100% detected), yet (a) collapsing the chain into the scientific-admission decision false-promotes `12` cases while the properly scoped cryptographic-only reading returns `CANNOT_CHECK` everywhere, and (b) a full key-set compromise is detected `0/6` at the signature layer and also false-promotes through `CHAIN_PLUS_SEI` (`6/6`) — key custody is an inherited, now explicitly registered premise, not something the signature layer observes.
+
+**Authority:** `BOUNDED_EXECUTABLE_VERIFIED` (for the composition-and-boundary statement; C15.5 superiority remains `CANNOT_CHECK`).
+
+**Evidence:** run `32664075763`, artifact `9499830847` (ZIP SHA-256 `fccf3b28f3f33af8b07a87eab6764742c7882de88018d65be16e2dba1dee3bff`), receipt `top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md` with second independent implementation GREEN and all 13 agreement-table entries matching.
+
+**False-rejection endpoints:** `0/11` chain-layer and `0/5` disposition-level over the full valid workload (7 execution-valid fault cases + 4 real receipts); `0/4` real false promotion. The admission layer does not win by rejecting everything.
+
+**Scope:** frozen 22-case corpus, simulated per-role keys, full-compromise simulated by re-signing with genuine key material. No hardware-backed custody, external timestamping/KMS, or production Sigstore/in-toto product comparison is claimed.
+
 ## Publication rule
 
 The bounded V1 result may be submitted as a controlled systems/semantics contribution if venue strategy requires, but `P15_TOP_TIER_SUBMISSION_READY` cannot be emitted until the real comparator/interoperability/independent-authority gates close.
