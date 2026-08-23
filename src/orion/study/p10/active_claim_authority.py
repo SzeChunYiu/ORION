@@ -33,7 +33,6 @@ def build_active_claim_authority() -> dict[str, Any]:
         "execution_authorized": False,
         "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
         "lifecycle_state": "PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT",
-        "lifecycle_state": "PROSPECTIVE_MAXIMUM_CLAIM_MANUSCRIPT",
         "scientific_result_state": "NO_P10_PROTECTED_RESULT",
         "active_empirical_claim": None,
         "promotion_allowed": False,
