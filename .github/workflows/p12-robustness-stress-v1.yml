@@ -1,0 +1,111 @@
+name: p12-robustness-stress-v1
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_PROTOCOL_V2.md'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py'
+      - '.github/workflows/p12-robustness-stress-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  robustness-stress-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert frozen-generator byte-identity of the expanded case file
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py > p12_expanded_regen.json
+          cmp papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json p12_expanded_regen.json
+          python - <<'EOF'
+          import json
+          d = json.load(open('p12_expanded_regen.json'))
+          assert d['schema'] == 'p12-transfer-allocation-cases-expanded-v1'
+          assert sum(len(x['cases']) for x in d['domains']) == 27
+          print('P12_EXPANDED_CASES_BYTE_IDENTITY_GREEN')
+          EOF
+      - name: Execute hidden-parameterization audit
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py | tee p12_hidden_parameterization_audit_v1.json
+      - name: Verify audit replay, self-validation and terminal
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py > p12_audit_replay.json
+          cmp p12_hidden_parameterization_audit_v1.json p12_audit_replay.json
+          python - <<'EOF'
+          import json
+          a = json.load(open('p12_hidden_parameterization_audit_v1.json'))
+          assert a['terminal'] == 'P12_HIDDEN_PARAMETERIZATION_AUDIT_GREEN', a['terminal']
+          assert a['self_validation_valid'] is True
+          assert a['static_axis_ok'] is True and a['static_findings'] == []
+          assert a['dynamic_stripped_input_ok'] is True and a['dynamic_findings'] == []
+          print('P12_HIDDEN_PARAMETERIZATION_AUDIT_GREEN_REPLAY')
+          EOF
+      - name: Execute robustness stress runner (5 price regimes, mixes, expansion)
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py | tee p12_robustness_stress_v1.json
+      - name: Verify runner replay, integrity gates and coverage
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py > p12_robustness_replay.json
+          cmp p12_robustness_stress_v1.json p12_robustness_replay.json
+          python - <<'EOF'
+          import json
+          r = json.load(open('p12_robustness_stress_v1.json'))
+          assert r['terminal'] == 'P12_ROBUSTNESS_STRESS_V1_EXECUTED', r['terminal']
+          gates = r['gates']
+          assert gates['RG1_exact_outputs_all_arms_all_regimes'] is True
+          assert gates['RG3_coverage_complete'] is True
+          assert r['v1_set']['v1_flat_zero_regret_replicated'] is True
+          cov = r['coverage']
+          assert cov['v1_case_regime_cells'] == 45, cov
+          assert cov['expanded_case_regime_cells'] == 135, cov
+          assert cov['b1_mixes'] == 4 and cov['b2_joint_mixes'] == 3, cov
+          assert r['v1_set']['case_count'] == 9
+          assert r['expanded_set']['case_count'] == 27
+          # every case cell present with per-arm priced regrets
+          for key in ('v1_set', 'expanded_set'):
+              for d in r[key]['domains']:
+                  assert d['flat_direct_accounting_consistent'] is True, \
+                      d.get('flat_direct_accounting_violation')
+                  for c in d['cases']:
+                      assert c['outputs_exact_all_arms_all_regimes'] is True
+                      assert set(c['regimes']) == {'FLAT', 'MEM2X', 'CMP2X',
+                                                   'MEM4X', 'CMP4X'}
+          for m in r['b2_joint_mixes']:
+              assert m['outputs_exact_all_arms_all_regimes'] is True
+          print('P12_ROBUSTNESS_RUNNER_BYTE_REPLAY_GREEN')
+          EOF
+      - name: Execute independent second checker
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py | tee p12_robustness_independent_v1.json
+      - name: Verify checker replay and two-implementation agreement
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py > p12_robustness_independent_replay.json
+          cmp p12_robustness_independent_v1.json p12_robustness_independent_replay.json
+          python - <<'EOF'
+          import json
+          c = json.load(open('p12_robustness_independent_v1.json'))
+          assert c['terminal'] == 'P12_ROBUSTNESS_SECOND_CHECKER_GREEN', c['terminal']
+          assert c['discrepancy_count'] == 0 and c['discrepancies'] == []
+          assert c['cases_checked'] == 36, c['cases_checked']
+          r = json.load(open('p12_robustness_stress_v1.json'))
+          assert r['terminal'] == 'P12_ROBUSTNESS_STRESS_V1_EXECUTED'
+          print('P12_ROBUSTNESS_TWO_IMPLEMENTATIONS_AGREE')
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p12-robustness-stress-v1
+          path: |
+            p12_robustness_stress_v1.json
+            p12_robustness_replay.json
+            p12_robustness_independent_v1.json
+            p12_robustness_independent_replay.json
+            p12_hidden_parameterization_audit_v1.json
+            p12_audit_replay.json
