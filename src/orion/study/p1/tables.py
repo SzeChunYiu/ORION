@@ -79,6 +79,47 @@ CONTROL_SCOPES = frozenset(
 STATUS_OK = "OK"
 STATUS_PARTIAL = "PARTIAL"
 STATUS_CANNOT_CHECK = "CANNOT_CHECK"
+STATUS_NOT_APPLICABLE = "NOT_APPLICABLE"
+STATUS_DESCRIPTIVE_ONLY = "DESCRIPTIVE_ONLY"
+
+HIDDEN_SHIFT_SCOPES = frozenset(
+    {
+        SCOPE_HIDDEN_SHIFT,
+        TaskFamily.HIDDEN_PARENT_DOMAIN.value,
+        TaskFamily.HIDDEN_REPRESENTATION.value,
+        TaskFamily.HIDDEN_DECOMPOSITION.value,
+        TaskFamily.HIDDEN_MEASUREMENT.value,
+    }
+)
+
+CONTROL_ONLY_METRICS = frozenset(
+    {
+        "control_abstention",
+        "control_correct_restraint",
+        "unnecessary_reframe",
+    }
+)
+
+HIDDEN_SHIFT_ONLY_METRICS = frozenset(
+    {
+        "hidden_shift_success",
+        "reframe_target_accuracy",
+        "stale_closure_survival",
+    }
+)
+
+UNIVERSAL_RATE_METRICS = frozenset(
+    {
+        "authority_violation",
+        "depth_adequacy",
+        "invariant_violation",
+        "root_success",
+        "trace_fidelity",
+    }
+)
+
+REGISTERED_RATE_METRICS = CONTROL_ONLY_METRICS | HIDDEN_SHIFT_ONLY_METRICS | UNIVERSAL_RATE_METRICS
+REGISTERED_SCOPES = HIDDEN_SHIFT_SCOPES | CONTROL_SCOPES | {SCOPE_ALL}
 
 
 def _scopes() -> tuple[tuple[str, Callable[[CaseScore], bool]], ...]:
@@ -372,37 +413,95 @@ def select_comparator(aggregates: dict[tuple[str, str], SystemAggregate]) -> tup
     return winner, f"highest overall root_success ({best:.4f}) among BASELINE systems, ties broken on system_id"
 
 
-def _rate_block(rate, *, label: str) -> dict:
+def _metric_applicable(scope: str, metric: str) -> bool:
+    """Whether a frozen P1 metric is defined for a reporting scope.
+
+    Applicability is an independent schema dimension. It cannot be inferred from
+    an empty denominator because an applicable metric can also have ``n == 0``
+    when evidence is missing. The aggregate ``ALL`` scope contains both hidden
+    shifts and controls, so both metric families are defined there.
+    """
+
+    if scope not in REGISTERED_SCOPES:
+        raise ValueError(f"unregistered P1 reporting scope: {scope}")
+    if metric not in REGISTERED_RATE_METRICS:
+        raise ValueError(f"unregistered P1 binary-rate metric: {metric}")
+    if scope == SCOPE_ALL:
+        return True
+    if metric in CONTROL_ONLY_METRICS:
+        return scope in CONTROL_SCOPES
+    if metric in HIDDEN_SHIFT_ONLY_METRICS:
+        return scope in HIDDEN_SHIFT_SCOPES
+    return metric in UNIVERSAL_RATE_METRICS
+
+
+def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
     payload = {"metric": label, **rate.as_dict(), "interval": None}
     if rate.n > 0 and rate.unit == "case":
         payload["interval"] = stats.wilson_interval(rate.successes, rate.n).as_dict()
     elif rate.n == 0:
-        payload["status"] = STATUS_CANNOT_CHECK
+        if _metric_applicable(scope, label):
+            payload["status"] = STATUS_CANNOT_CHECK
+        else:
+            payload["status"] = STATUS_NOT_APPLICABLE
+            payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
     return payload
 
 
-def _mechanistic_block(item: SystemAggregate) -> dict:
+def _mechanistic_block(item: SystemAggregate, *, scope: str) -> dict:
     return {
         "responsibility_macro_f1": item.responsibility_macro_f1,
         "responsibility_labels": list(item.responsibility_labels),
-        "reframe_target_accuracy": _rate_block(item.reframe_target_accuracy, label="reframe_target_accuracy"),
+        "reframe_target_accuracy": _rate_block(
+            item.reframe_target_accuracy,
+            label="reframe_target_accuracy",
+            scope=scope,
+        ),
         "reopen": item.reopen.as_dict(),
         "reopen_by_dependency_depth": [
             {"dependency_depth": depth, **comparison.as_dict()} for depth, comparison in item.reopen_by_depth
         ],
-        "stale_closure_survival": _rate_block(item.stale_closure_survival, label="stale_closure_survival"),
-        "invariant_violation": _rate_block(item.invariant_violation, label="invariant_violation"),
-        "authority_violation": _rate_block(item.authority_violation, label="authority_violation"),
-        "trace_fidelity": _rate_block(item.trace_fidelity, label="trace_fidelity"),
+        "stale_closure_survival": _rate_block(
+            item.stale_closure_survival,
+            label="stale_closure_survival",
+            scope=scope,
+        ),
+        "invariant_violation": _rate_block(
+            item.invariant_violation,
+            label="invariant_violation",
+            scope=scope,
+        ),
+        "authority_violation": _rate_block(
+            item.authority_violation,
+            label="authority_violation",
+            scope=scope,
+        ),
+        "trace_fidelity": _rate_block(item.trace_fidelity, label="trace_fidelity", scope=scope),
         "trace_fidelity_by_dependency_depth": [
             {"dependency_depth": depth, **rate.as_dict()} for depth, rate in item.trace_fidelity_by_depth
         ],
-        "depth_adequacy": _rate_block(item.depth_adequacy, label="depth_adequacy"),
-        "control_abstention": _rate_block(item.control_abstention, label="control_abstention"),
-        "control_correct_restraint": _rate_block(item.control_correct_restraint, label="control_correct_restraint"),
-        "hidden_shift_success": _rate_block(item.hidden_shift_success, label="hidden_shift_success"),
-        "root_success": _rate_block(item.root_success, label="root_success"),
-        "unnecessary_reframe": _rate_block(item.unnecessary_reframe, label="unnecessary_reframe"),
+        "depth_adequacy": _rate_block(item.depth_adequacy, label="depth_adequacy", scope=scope),
+        "control_abstention": _rate_block(
+            item.control_abstention,
+            label="control_abstention",
+            scope=scope,
+        ),
+        "control_correct_restraint": _rate_block(
+            item.control_correct_restraint,
+            label="control_correct_restraint",
+            scope=scope,
+        ),
+        "hidden_shift_success": _rate_block(
+            item.hidden_shift_success,
+            label="hidden_shift_success",
+            scope=scope,
+        ),
+        "root_success": _rate_block(item.root_success, label="root_success", scope=scope),
+        "unnecessary_reframe": _rate_block(
+            item.unnecessary_reframe,
+            label="unnecessary_reframe",
+            scope=scope,
+        ),
         "resources": item.resources.as_dict(),
     }
 
@@ -418,17 +517,28 @@ def _difference_block(
     resamples: int,
     hypothesis_id: str,
     min_units: int,
+    inferential: bool,
 ) -> dict:
     values_a, values_b, matched, unmatched = matched_units(subject, comparator, metric)
     cannot_check_units = len(unmatched) + subject.cannot_check_cases + comparator.cannot_check_cases
     if not values_a:
-        assessment = stats.assess_hypothesis(
-            hypothesis_id=hypothesis_id,
-            direction=direction,
-            margin=margin,
-            difference=None,
-            cannot_check_units=cannot_check_units,
-        )
+        if inferential:
+            assessment = stats.assess_hypothesis(
+                hypothesis_id=hypothesis_id,
+                direction=direction,
+                margin=margin,
+                difference=None,
+                cannot_check_units=cannot_check_units,
+            ).as_dict()
+        else:
+            assessment = {
+                "hypothesis_id": hypothesis_id,
+                "verdict": STATUS_DESCRIPTIVE_ONLY,
+                "direction": direction.value,
+                "margin": margin,
+                "rationale": "NO_REGISTERED_HYPOTHESIS: descriptive comparator contrast only",
+                "difference": None,
+            }
         return {
             "metric": metric,
             "comparator_system_id": comparator.system_id,
@@ -437,7 +547,7 @@ def _difference_block(
             "cannot_check_units": cannot_check_units,
             "difference": None,
             "cohens_h": None,
-            "assessment": assessment.as_dict(),
+            "assessment": assessment,
             "status": STATUS_CANNOT_CHECK,
         }
 
@@ -449,16 +559,26 @@ def _difference_block(
         if subject_rate is not None and comparator_rate is not None
         else None
     )
-    assessment = stats.assess_hypothesis(
-        hypothesis_id=hypothesis_id,
-        direction=direction,
-        margin=margin,
-        difference=difference,
-        cannot_check_units=cannot_check_units,
-        min_units=min_units,
-        subject_abstention_rate=subject.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
-        comparator_abstention_rate=comparator.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
-    )
+    if inferential:
+        assessment = stats.assess_hypothesis(
+            hypothesis_id=hypothesis_id,
+            direction=direction,
+            margin=margin,
+            difference=difference,
+            cannot_check_units=cannot_check_units,
+            min_units=min_units,
+            subject_abstention_rate=subject.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
+            comparator_abstention_rate=comparator.control_abstention.value if direction is stats.HypothesisDirection.NON_INFERIORITY else None,
+        ).as_dict()
+    else:
+        assessment = {
+            "hypothesis_id": hypothesis_id,
+            "verdict": STATUS_DESCRIPTIVE_ONLY,
+            "direction": direction.value,
+            "margin": margin,
+            "rationale": "NO_REGISTERED_HYPOTHESIS: descriptive comparator contrast only",
+            "difference": difference.as_dict(),
+        }
     # Diagnostic companion on the per-case seed means. Same resampling unit (the
     # case), but it keeps the within-case resolution that the frozen majority
     # reduction discards, so a real per-seed gap between two systems that both
@@ -490,7 +610,7 @@ def _difference_block(
         "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
         "cohens_h": effect_h,
         "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "assessment": assessment.as_dict(),
+        "assessment": assessment,
         "status": STATUS_OK if not cannot_check_units else STATUS_PARTIAL,
     }
 
@@ -545,7 +665,7 @@ def build_t2(
                 "cannot_check_blinded_case_ids": list(item.blinded(item.cannot_check_case_ids)),
                 "repeat_coverage_ok": item.repeat_coverage_ok,
                 "rate": _rate_block(rate, label=metric),
-                "mechanistic": _mechanistic_block(item),
+                "mechanistic": _mechanistic_block(item, scope=scope),
                 "difference_vs_comparator": None,
             }
             if item.cannot_check_cases or not item.repeat_coverage_ok or rate.n == 0:
@@ -572,6 +692,7 @@ def build_t2(
                     resamples=resamples,
                     hypothesis_id=hypothesis_id,
                     min_units=min_units,
+                    inferential=is_subject,
                 )
                 row["difference_vs_comparator"] = block
                 if block["status"] != STATUS_OK:
