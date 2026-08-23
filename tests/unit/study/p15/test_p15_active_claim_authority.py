@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from hashlib import sha1
 from pathlib import Path
 
 from orion.study.p15.active_claim_authority import (
@@ -19,6 +20,12 @@ PAPER = ROOT / "papers/paper-15-orion-research-harness"
 V1_AUTHORITY = PAPER / "P15_ACTIVE_CLAIM_AUTHORITY_V1.json"
 V2_AUTHORITY = PAPER / "P15_ACTIVE_CLAIM_AUTHORITY_V2.json"
 V3_AUTHORITY = PAPER / "P15_ACTIVE_CLAIM_AUTHORITY_V3.json"
+
+
+def _git_blob_sha(path: Path) -> str:
+    payload = path.read_bytes()
+    header = f"blob {len(payload)}\0".encode()
+    return sha1(header + payload).hexdigest()
 
 
 def test_historical_methods_authority_still_rebuilds() -> None:
@@ -57,7 +64,10 @@ def test_current_authority_binds_all_three_result_layers() -> None:
     for record in results.values():
         path = ROOT / record["artifact"]
         assert path.is_file()
-        assert len(record["git_blob_sha"]) == 40
+        assert record["git_blob_sha"] == _git_blob_sha(path)
+    historical = authority["historical_authority"]
+    historical_path = ROOT / historical["artifact"]
+    assert historical["git_blob_sha"] == _git_blob_sha(historical_path)
 
 
 def test_attestation_boundary_cannot_be_promoted_to_truth_or_key_custody() -> None:
