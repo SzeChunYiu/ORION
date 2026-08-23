@@ -16,7 +16,7 @@
       "negative": "3 residual attribution errors P5-HC-002/012/018, 21/24",
       "hypothesis": "symptom-ambiguity error class",
       "lever": "attribution-mechanism refinement + frozen 24-case re-run",
-      "solvability": "RESEARCH_SOLVABLE"
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
       "id": "NR-02",
@@ -32,7 +32,7 @@
       "negative": "H3.V2 metric saturated 1.0 on all 11 systems",
       "hypothesis": "degenerate measurement (ceiling artifact)",
       "lever": "non-saturating discriminative V2.1 metric + registered re-run",
-      "solvability": "RESEARCH_SOLVABLE"
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
       "id": "NR-04",
@@ -72,7 +72,7 @@
       "negative": "external campaign 7/229 gold, delta beyond sampling ceiling",
       "hypothesis": "acquisition mechanism vs ceiling unattributed",
       "lever": "bounded-internal acquisition simulation",
-      "solvability": "RESEARCH_SOLVABLE"
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
       "id": "NR-09",
@@ -80,7 +80,7 @@
       "negative": "1 root success in 48, below 385-case target",
       "hypothesis": "underpowered execution",
       "lever": "execute frozen R7A powered successor",
-      "solvability": "EXECUTION_SOLVABLE"
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
       "id": "NR-10",
@@ -97,6 +97,14 @@
       "hypothesis": "design defect, superseded",
       "lever": "verify P14C closure; re-register only if superiority re-claimed",
       "solvability": "CLOSED_BY_SUCCESSOR_VERIFY"
+    },
+    {
+      "id": "NR-12",
+      "paper": "P11",
+      "negative": "query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET)",
+      "hypothesis": "compile-tolerance is per-(responsibility x access-class), not family-wide",
+      "lever": "pre-registered compile-tolerance selector applied per responsibility; re-run frozen family",
+      "solvability": "RESEARCH_SOLVABLE"
     }
   ],
   "already_revived": [
@@ -126,5 +134,35 @@
       "frontier_checkpoints": "maximal in-custody scale slice; scaling-trajectory bound with custody boundary",
       "protected_executions": "run frozen protocols in CI with protected seeds (execution lanes, not blockers)"
     }
+  },
+  "ownership_split": {
+    "directive_date": "2026-08-23",
+    "codex_lane": [
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5"
+    ],
+    "codex_branch": "codex/p1-p15-takeover-20260823",
+    "this_session_lane": [
+      "P6",
+      "P7",
+      "P8",
+      "P9",
+      "P10",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P15"
+    ],
+    "this_session_duty": "drive P6-P15 to top-tier-ready, fix every negative, combine codex-contributed P6-P15 branches instead of duplicating",
+    "transferred_lanes": [
+      "NR-01",
+      "NR-03",
+      "NR-08",
+      "NR-09"
+    ]
   }
 }

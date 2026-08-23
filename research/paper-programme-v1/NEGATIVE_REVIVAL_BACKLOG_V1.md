@@ -6,6 +6,16 @@ dead end. Discipline per RAKL revival doctrine: attribute the failure to ONE sta
 matching lever, re-test against the strongest parent — all costs charged, hard gates executed.
 **Positive outcomes are earned by mechanic improvement, never by tuning outcomes.**
 
+## Ownership split (operator directive 2026-08-23, refined same day)
+
+- **P1–P5: Codex lane.** Codex sessions own the active dirty P1–P5 wave
+  (`codex/p1-p15-takeover-20260823`, 202 commits; also carries P6–P15 evidence to combine).
+  Revival lanes NR-01 (P5), NR-03 (P4), NR-08 (P2), NR-09 (P1) transfer to that lane.
+- **P6–P15: this session's lane.** Drive to top-tier-ready, fix every negative, and
+  **combine Codex-contributed P6–P15 branches** (codex/orion-qg-* forest, chatgpt recuts)
+  instead of duplicating them — check `git log --all` / open PRs for foreign work on the
+  same paths before starting any lane. Merge lane stays single (this session).
+
 Source: `P1_P15_RECURSIVE_RESOLUTION_LEDGER_2026-08-23.json` (47 items, 5 categories) +
 active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_BACKLOG_V1.json`.
 
@@ -19,7 +29,7 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 
 | ID | Paper | Negative | Root-cause hypothesis | Lever | Lane |
 |---|---|---|---|---|---|
-| NR-01 | P5 | 3 residual attribution errors (P5-HC-002/012/018), 21/24 | Error-class analysis not yet done; likely symptom-ambiguity class | attribution-mechanism refinement (structured symptom decomposition), re-run frozen 24-case set | P5 residual-error autopsy |
+| NR-01 | P5 | **[CODEX LANE]**  3 residual attribution errors (P5-HC-002/012/018), 21/24 | Error-class analysis not yet done; likely symptom-ambiguity class | attribution-mechanism refinement (structured symptom decomposition), re-run frozen 24-case set | P5 residual-error autopsy |
 | NR-02 | P10 | Module deltas negative: Control −0.033333, CategoryTheory −0.005 | Pooled gain positive; per-module failure stage unattributed | per-module conditioning/selectivity; module-specific donor matching, re-test | P10 module revival |
 | NR-03 | P4 | H3.V2 metric saturated at 1.0 for all 11 systems — comparison impossible | Degenerate measurement, not a finding: ceiling artifact of the metric design | non-saturating V2.1 metric (discriminative range), re-run registered comparison | P4 metric de-degeneration |
 | NR-04 | P9 | D-A cell CANNOT_CHECK: quality-transport below 0.965 target | Transport mechanism loses quality between arms | transport-mechanism fix (encoding/fidelity), re-run frozen five-cell diagnostic | P9 transport revival |
@@ -27,9 +37,11 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | NR-06 | P9 | D1v1.2 locked-env replay: archived 0.50 vs frozen-env reproduction (append-only failure) | Serialization/env-freeze divergence — replay-infrastructure defect | root-cause serialization delta; D1v1.3 ordered/multiplicity protocol already frozen as successor | P9 replay root-cause |
 | NR-07 | P11 | P11D sparse-decoder gap unmet at r=3; pooled universal attack prevailed | Gap is width-conditioned (P11.I high-width cells pass at r≥7) | close the r=3 regime: decoder-side or attack-side mechanism at low width | P11 low-width gap |
 | NR-08 | P2 | External campaign: 7/229 gold acquired; delta beyond sampling ceiling | Acquisition mechanism, not information absence (unproven) | bounded-internal acquisition simulation to attribute: search-mechanism vs ceiling | P2 acquisition autopsy |
-| NR-09 | P1 | 1 root success in 48; run below 385-case registered target | Underpowered execution (not a mechanism refutation) | R7A powered successor already frozen (384 clusters, max-T, power 0.920216) — execute it | P1 R7A execution |
+| NR-09 | P1 | **[CODEX LANE]**  1 root success in 48; run below 385-case registered target | Underpowered execution (not a mechanism refutation) | R7A powered successor already frozen (384 clusters, max-T, power 0.920216) — execute it | P1 R7A execution |
 | NR-10 | P7 | MATCH_IS_NOT_NECESSARY for the broader necessity reading | The broader reading genuinely fails in the mechanized frame | tighten the claim to the conditional theorem (already supported) OR construct the frame where necessity holds | P7 necessity scoping |
 | NR-11 | P14 | P14A gate defect: both bars exceeded statistic supremum | Gate registered above achievable range — design defect, superseded by P14C | document + close: P14C conformance successor is active; remaining work only if a superiority claim is re-registered | closed-by-successor (verify) |
+
+| NR-12 | P11 | Query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, `P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET`) | Compile-tolerance is a per-(responsibility x access-class) property (<=5/10 members), not family-wide | selective compilation placement: pre-registered compile-tolerance selector applied per responsibility, re-run frozen family | P11 selective placement |
 
 ## Already revived this session (evidence the pipeline works)
 
