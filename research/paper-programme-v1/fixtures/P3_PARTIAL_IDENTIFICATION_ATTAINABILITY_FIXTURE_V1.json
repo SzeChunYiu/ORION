@@ -1,0 +1,13 @@
+{
+  "schema_version": "orion.p3.partial-identification-attainability-fixture.v1",
+  "authority": "SYNTHETIC_KNOWN_ANSWER_ONLY",
+  "admissible_terminals": ["PASS", "FAIL"],
+  "rows": [
+    {"cluster_id": "P3-FIX-REF", "varied_coordinate": "REFERENT", "observationally_separable": true},
+    {"cluster_id": "P3-FIX-CON", "varied_coordinate": "CONSTRUCT", "observationally_separable": true},
+    {"cluster_id": "P3-FIX-MEA", "varied_coordinate": "MEASUREMENT", "observationally_separable": true},
+    {"cluster_id": "P3-FIX-TIM", "varied_coordinate": "TEMPORAL_CONTEXT", "observationally_separable": true},
+    {"cluster_id": "P3-FIX-FLOOR", "varied_coordinate": "NONE", "observationally_separable": false}
+  ],
+  "grants_scientific_authority": false
+}

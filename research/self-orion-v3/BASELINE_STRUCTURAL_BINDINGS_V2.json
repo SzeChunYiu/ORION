@@ -1,0 +1,53 @@
+{
+ "schema_version": "orion.p5.self-orion-v3-baseline-bindings.v2",
+ "protocol_id": "P5.self-orion-v3.revision-level.v1",
+ "owner_issue": 454,
+ "programme_receipt_frozen": true,
+ "authority_scope": "T8_PREFLIGHT_ONLY",
+ "records": [
+  {
+   "baseline_id": "m_open_only",
+   "donor_id": "arxiv:2608.09696",
+   "source_identity": "MDA:mechanism-class-expansion",
+   "disposition": "MECHANISM_COMPARATOR_BOUND",
+   "structural_binding_id": "ssa:v1:model-discovery-agent-2608.09696v3",
+   "official_reproduction": false,
+   "notes": [
+    "Source-grounded from the primary full text of arXiv:2608.09696v3 on 2026-08-23; see MDA_SOURCE_GROUNDING_RECEIPT_2026-08-23.json.",
+    "MDA revises the hypothesis space over mechanistic structures: an out-of-sample predictive check failing triggers LLM-proposed expansion with broad priors, and a confident posterior triggers pruning. Parameters of the new mechanism are then identified by value-of-information experiment design.",
+    "Bound as a mechanism comparator only. Its closest structure to a preservation obligation is the particle-filter spot-check, which permits a cheaper observation model only where it is verifiably sufficient against an assumption-free anchor. No official reproduction and no donor-equivalence claim.",
+    "Recorded limit: every reported MDA run uses CHECK=SUMMARY, so the QUERY safeguard the paper describes is argued rather than exercised."
+   ]
+  },
+  {
+   "baseline_id": "world_model_revision",
+   "donor_id": "arxiv:2606.30639v1",
+   "source_identity": "world-model:self-revision-mechanism",
+   "disposition": "MECHANISM_COMPARATOR_BOUND",
+   "structural_binding_id": "ssa:v1:worldevolver-2606.30639v1",
+   "official_reproduction": false,
+   "notes": [
+    "Bound to the source-grounded #454 structural receipt as a mechanism comparator only; this is not an official reproduction or donor-equivalence claim.",
+    "WorldEvolver revises deployment memory/context while model parameters and the downstream agent remain frozen, so it is a strong bounded memory-revision parent rather than generic representation-regime revision."
+   ]
+  },
+  {
+   "baseline_id": "representation_regime_revision",
+   "donor_id": "arxiv:2606.01444v1",
+   "source_identity": "representation-regime:transition-mechanism",
+   "disposition": "MECHANISM_COMPARATOR_BOUND",
+   "structural_binding_id": "ssa:v1:self-revising-2606.01444v1",
+   "official_reproduction": false,
+   "notes": [
+    "Bound to the source-grounded #454 structural receipt as a mechanism comparator only; no official-reproduction or donor-equivalence claim is made.",
+    "Self-Revising Discovery Systems is the strong parent for verified representation-regime transition with explicit preservation/transport obligations."
+   ]
+  }
+ ],
+ "confirmatory_rule": "Every required baseline must move to MECHANISM_COMPARATOR_BOUND or OFFICIAL_REPRODUCTION_BOUND with a nonempty structural binding identity before READY_TO_FREEZE_CONFIRMATORY.",
+ "current_terminal": "MECHANISM_COMPARATOR_BOUND",
+ "current_blocker": null,
+ "supersedes": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json",
+ "supersession_basis": "research/self-orion-v3/MDA_SOURCE_GROUNDING_RECEIPT_2026-08-23.json",
+ "append_only_note": "V1 is retained unchanged. The m_open_only disposition moves forward on new evidence -- the donor's primary full text was read -- which is the transition V1's own confirmatory_rule anticipates. Nothing recorded in V1 is relabelled."
+}
