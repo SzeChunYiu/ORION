@@ -1,0 +1,73 @@
+name: q-qg-publication
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q-paper-03-dual-instrument/**'
+      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/QG-paper-01-compilation-regime-geometry/**'
+      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/literature_cards/**'
+      - 'papers/Q_QG_**'
+      - 'papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib'
+      - 'papers/check_q_qg_publication.py'
+      - 'papers/check_q_qg_science_manifests.py'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json'
+      - 'research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json'
+      - '.github/workflows/q-qg-publication.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q-paper-03-dual-instrument/**'
+      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/QG-paper-01-compilation-regime-geometry/**'
+      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/literature_cards/**'
+      - 'papers/Q_QG_**'
+      - 'papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib'
+      - 'papers/check_q_qg_publication.py'
+      - 'papers/check_q_qg_science_manifests.py'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json'
+      - 'research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json'
+      - '.github/workflows/q-qg-publication.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  publication-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run fail-closed Q/QG publication checker
+        run: python papers/check_q_qg_publication.py
+      - name: Validate Q2 transition graph and frozen denominator
+        run: python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
+      - name: Replay and validate completed Q3 prospective series
+        run: |
+          python papers/Q-paper-03-dual-instrument/replay_q3_v0.py
+          python papers/Q-paper-03-dual-instrument/check_q3_result_bindings.py
+          python papers/Q-paper-03-dual-instrument/check_q3_completion.py
+      - name: Validate paper-specific science manifests against frozen cuts
+        run: python papers/check_q_qg_science_manifests.py
+      - name: Generate cited submission masters from final scientific text
+        run: python papers/build_q_qg_cited_masters.py --clean
+      - name: Archive cited masters and verified bibliography
+        uses: actions/upload-artifact@v4
+        with:
+          name: q-qg-cited-masters
+          path: build/q_qg_cited
+          if-no-files-found: error
+          retention-days: 30
