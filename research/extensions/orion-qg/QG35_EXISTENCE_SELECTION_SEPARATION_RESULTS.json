@@ -1,0 +1,112 @@
+{
+  "atom": "QG-35 existence/selection separation for TARE frame choice",
+  "authority": {
+    "NOT_R6": true,
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false
+  },
+  "criterion": {
+    "statement": "a predicate B on column types is decidable from a summary A iff B is a union of blocks of A's partition",
+    "why_it_is_decisive_here": "A = bulk x spectrum has exactly 92 blocks, recomputed from main, so the question is settled by inspection of those blocks"
+  },
+  "explicit_witnesses": {
+    "count": 85,
+    "examples": [
+      {
+        "a": "IXIYXZ",
+        "argmin_a_size": 6,
+        "argmin_b_size": 6,
+        "b": "IXIYYZ",
+        "joint_class_size": 48,
+        "shared_optimal_frames": 0,
+        "shared_optimal_value": 0
+      },
+      {
+        "a": "IXXYYZ",
+        "argmin_a_size": 2,
+        "argmin_b_size": 2,
+        "b": "IXXYZY",
+        "joint_class_size": 48,
+        "shared_optimal_frames": 0,
+        "shared_optimal_value": -2
+      },
+      {
+        "a": "IIIXXY",
+        "argmin_a_size": 32,
+        "argmin_b_size": 32,
+        "b": "IIIXYX",
+        "joint_class_size": 24,
+        "shared_optimal_frames": 8,
+        "shared_optimal_value": 2
+      },
+      {
+        "a": "IXIXIY",
+        "argmin_a_size": 2,
+        "argmin_b_size": 2,
+        "b": "IXIXYI",
+        "joint_class_size": 24,
+        "shared_optimal_frames": 0,
+        "shared_optimal_value": 0
+      },
+      {
+        "a": "IXIYXX",
+        "argmin_a_size": 8,
+        "argmin_b_size": 8,
+        "b": "IXIYYY",
+        "joint_class_size": 24,
+        "shared_optimal_frames": 0,
+        "shared_optimal_value": 0
+      }
+    ],
+    "independent_verification": "research/extensions/orion-qg/qg35_witness_independent_verify.py recomputes bulk, spectrum and the full 384-response from the primitives rather than reading any cache; IXIYXZ/IXIYYZ, IXXYYZ/IXXYZY and IXIXIY/IXIXYI all confirmed with 0 shared optimal frames",
+    "property": "same joint class (hence identical bulk AND identical spectrum), same optimal VALUE, different optimal FRAMES",
+    "strongest": "several pairs share ZERO optimal frames, so a compiler reading bulk+spectrum cannot select even one correct frame"
+  },
+  "provenance": {
+    "exploratory_before_protocol": true,
+    "note": "the separation was found by exploration before this protocol was written; the committed scripts are replay instruments, not prospective discovery instruments, following the convention already used in this programme",
+    "primitives": "recomputed from main; no unmerged PR is required"
+  },
+  "relates_to": [
+    "SzeChunYiu/ORION#911",
+    "SzeChunYiu/ORION#924",
+    "SzeChunYiu/ORION#904",
+    "SzeChunYiu/ORION#740"
+  ],
+  "schema": "ORION.QG.QG35.CommittedResult.v1",
+  "sharpens": "QG-2's negative result, from 'no predicate in the frozen literal family is exact' to 'no predicate computable from bulk+spectrum exists, at any expressiveness'",
+  "source_result_digest": "cf72a0eef67fab88a562dd70b91abccc22d170a7f4e1945f76a3c3af3706b900",
+  "theorem": {
+    "part_a_existence_is_free": {
+      "joint_classes_split": 0,
+      "proof": "the spectrum IS the sorted 384-response tuple, so any symmetric function of the responses factors through it",
+      "statement": "every function of the achievable-cost multiset is determined by bulk+spectrum",
+      "verified_instances": [
+        "is the donor optimal",
+        "is an improvement of >= k available for k = -3..3",
+        "the optimal cost value itself",
+        "the number of optimal frames",
+        "the full multiset of achievable costs"
+      ]
+    },
+    "part_b_selection_is_impossible": {
+      "individual_frame_optimality_predicates_not_determined": 352,
+      "joint_classes_with_nonconstant_optimal_frame_set": 85,
+      "lexicographically_first_optimal_frame_split_classes": 77,
+      "of_total_frames": 384,
+      "of_total_joint_classes": 92,
+      "of_total_types": 715,
+      "statement": "the optimal-frame set is NOT determined by bulk+spectrum",
+      "types_living_in_such_a_class": 708,
+      "worst_single_frame_splits_classes": 48
+    },
+    "part_c_the_price": {
+      "source": "QG-34, D_* = 3, with a matching depth-2 infeasibility certificate on all 16 worst classes",
+      "statement": "the residual costs exactly 3 adaptive indexed probes",
+      "sufficiency": "cost is letter-S_3 invariant, so the 715 orbit types resolve selection completely; 646 distinct optimal-frame sets occur across them"
+    }
+  }
+}
