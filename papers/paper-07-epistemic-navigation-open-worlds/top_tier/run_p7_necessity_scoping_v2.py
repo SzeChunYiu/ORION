@@ -262,6 +262,15 @@ def run_frame(n_obl: int, n_con: int, *, leg_level_e: bool):
             for y in fr.contracts
             if x != y and comp_of[x] == comp_of[y]
         )
+        # N2-E2 second half is a TABLE-LEVEL iff: some pair separates match
+        # from connectivity  iff  T is not component-complete.
+        mismatch_exists = any(
+            fr.match(x, y, table) != (comp_of[x] == comp_of[y])
+            for x in fr.contracts
+            for y in fr.contracts
+        )
+        if mismatch_exists != (not component_complete):
+            e2_iff_violations += 1
         for a in fr.contracts:
             for b in fr.contracts:
                 counts["observations_checked"] += 1
@@ -276,8 +285,6 @@ def run_frame(n_obl: int, n_con: int, *, leg_level_e: bool):
                     )
                 if e2_separating is None and licenseable and not matched:
                     e2_separating = {"a": a, "b": b, "table": sorted(table)}
-                if (matched != connected) != (not component_complete):
-                    e2_iff_violations += 1
                 # second implementation: leg-level enumeration, both directions
                 if leg_level_e:
                     failing_instance = None
