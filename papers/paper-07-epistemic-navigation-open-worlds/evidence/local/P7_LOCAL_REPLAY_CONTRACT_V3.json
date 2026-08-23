@@ -1,20 +1,37 @@
 {
-  "schema_version": "orion.local-replay-contract.v3",
-  "paper_id": "P7",
-  "terminal": "LOCAL_REFERENCE_REPLAY_ONLY",
-  "self_authorizing": true,
-  "independent_replay": false,
+  "environment_lock": {
+    "path": "uv.lock",
+    "sha256": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+  },
   "grants_scientific_authority": "NONE",
-  "environment_lock": {"path":"uv.lock","sha256":"4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"},
+  "independent_replay": false,
   "one_command": "make -C papers/paper-07-epistemic-navigation-open-worlds reproduce-v3",
+  "paper_id": "P7",
   "raw_inputs": [
-    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl","sha256":"af0da57558026e17c24742ca2a38c3d2cf5a4e854a534928ac79f944b09347a0"},
-    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json","sha256":"c1b03d29ec59fac64704d7bbe347af9825465027223d6ebb13960a0225d582a6"},
-    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl","sha256":"af0da57558026e17c24742ca2a38c3d2cf5a4e854a534928ac79f944b09347a0"}
+    {
+      "path": "papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json",
+      "sha256": "c1b03d29ec59fac64704d7bbe347af9825465027223d6ebb13960a0225d582a6"
+    }
   ],
   "raw_outputs": [
-    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json","sha256":"c175f712201ef32c592f9182b8d932a99628e70234195462fa2e3bf2daab2209"},
-    {"path":"papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json","sha256":"3db379d23daf43dff7e41576f7ee233dc9b4d5168dd0f3688e51ba736d7d31e4"},
-    {"path":"papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json","sha256":"441661a7720dc56f6b00e9333f94c7360e019436136f4676fceb98b9d00b7da7"}
-  ]
+    {
+      "path": "papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl",
+      "sha256": "af0da57558026e17c24742ca2a38c3d2cf5a4e854a534928ac79f944b09347a0"
+    },
+    {
+      "path": "papers/paper-07-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json",
+      "sha256": "c175f712201ef32c592f9182b8d932a99628e70234195462fa2e3bf2daab2209"
+    },
+    {
+      "path": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
+      "sha256": "3db379d23daf43dff7e41576f7ee233dc9b4d5168dd0f3688e51ba736d7d31e4"
+    },
+    {
+      "path": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json",
+      "sha256": "441661a7720dc56f6b00e9333f94c7360e019436136f4676fceb98b9d00b7da7"
+    }
+  ],
+  "schema_version": "orion.local-replay-contract.v3",
+  "self_authorizing": true,
+  "terminal": "LOCAL_REFERENCE_REPLAY_ONLY"
 }
