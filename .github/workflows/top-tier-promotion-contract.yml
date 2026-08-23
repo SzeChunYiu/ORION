@@ -1,0 +1,43 @@
+name: top-tier-promotion-contract
+
+on:
+  pull_request:
+    paths:
+      - 'papers/TOP_TIER_PROMOTION_*.md'
+      - 'papers/paper-*/TOP_TIER_PROMOTION_V1.md'
+      - 'papers/candidates/TOP_TIER_PROMOTION_*.md'
+      - 'papers/candidates/check_top_tier_promotion.py'
+      - 'src/orion/programme/top_tier_promotion.py'
+      - 'tests/unit/programme/test_top_tier_promotion.py'
+      - '.github/workflows/top-tier-promotion-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  promotion-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit P6-P15 promotion contracts
+        env:
+          PYTHONPATH: src
+        run: python papers/candidates/check_top_tier_promotion.py
+      - name: Verify fail-closed non-self-promotion invariant
+        env:
+          PYTHONPATH: src
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from orion.programme.top_tier_promotion import audit_top_tier_promotion
+
+          findings = audit_top_tier_promotion(Path('.').resolve())
+          assert not findings, '\n'.join(
+              f'{f.code}: {f.path}: {f.detail}' for f in findings
+          )
+          print('P6_P15_TOP_TIER_PROMOTION_NON_SELF_PROMOTION_GREEN')
+          PY
