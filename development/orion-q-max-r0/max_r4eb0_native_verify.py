@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Native ORION-Q gate for MAX-R4E-B0 held-out TARE action transfer."""
+from __future__ import annotations
+import argparse,hashlib,json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];A=ROOT/"artifacts/orion-q-max-r4eb0-heldout-qg32.json";G=ROOT/"artifacts/orion-q-max-r4eb0-generic-verification.json";P=ROOT/"development/orion-q-max-r0/MAX_R4EB0_HELDOUT_QG32_FORECAST_PROTOCOL.md";OUT=ROOT/"artifacts/orion-q-max-r4eb0-native-verification.json";TOKEN="ORIONQ_MAX_R4EB0_NATIVE=";POS="MAX_R4EB0_QG_DERIVED_AUTHORITY_SKILL_TRANSFERS_PROSPECTIVELY_TO_HELD_OUT_TARE_QUERY"
+def canon(v):return json.dumps(v,sort_keys=True,separators=(",",":"),allow_nan=False)
+def valid(r):
+ u={k:v for k,v in r.items() if k!="result_digest"};return r.get("result_digest")==hashlib.sha256(canon(u).encode()).hexdigest()
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument("--analyzer",type=Path,default=A);ap.add_argument("--generic",type=Path,default=G);ap.add_argument("--output",type=Path,default=OUT);ns=ap.parse_args();a=json.loads(ns.analyzer.read_text());g=json.loads(ns.generic.read_text());positive=a.get("terminal")==POS
+ checks={"analyzer_digest":valid(a),"protocol_bound":a.get("protocol_sha256")==hashlib.sha256(P.read_bytes()).hexdigest(),"generic":g.get("all_checks") is True and g.get("source_result_digest")==a.get("result_digest"),"positive_consistency":g.get("positive_transfer") is positive,"number_free":a.get("forecast_number_present") is False,"hidden_outcome_free":a.get("hidden_outcome_dependency_count")==0,"false_authority_zero":a.get("false_authority_count")==0,"scope":all(a.get(k) is False and g.get(k) is False for k in ("MAX_R4E_QG_SKILLS_COMPILER_GENERAL","MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE","MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER","AUTONOMOUS_SKILL_SELECTION_AUTHORITY","GENERAL_QUANTUM_SCIENCE_IMPROVEMENT","NOVELTY_AUTHORITY"))}
+ ok=all(checks.values());decision="ACCEPT_HELDOUT_TARE_ACTION_TRANSFER" if ok and positive else ("ACCEPT_HELDOUT_NONPOSITIVE_ADJUDICATION" if ok else "REJECT");out={"schema":"ORIONQ.MAXR4EB0.NativeVerification.v1","decision":decision,"responsibility":"PROSPECTIVE_SAME_DOMAIN_ACTION_TRANSFER_ONLY" if ok else "CANNOT_CHECK","all_checks":bool(ok),"checks":checks,"source_result_digest":a.get("result_digest"),"MAX_R4EB0_HELDOUT_TARE_TRANSFER":bool(ok and positive),"MAX_R4E_QG_SKILLS_COMPILER_GENERAL":False,"MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE":False,"MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER":False,"AUTONOMOUS_SKILL_SELECTION_AUTHORITY":False,"GENERAL_QUANTUM_SCIENCE_IMPROVEMENT":False,"NOVELTY_AUTHORITY":False};ns.output.parent.mkdir(parents=True,exist_ok=True);ns.output.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n");print(TOKEN+canon({"decision":decision,"responsibility":out["responsibility"],"positive":out["MAX_R4EB0_HELDOUT_TARE_TRANSFER"]}));return 0
+if __name__=="__main__":raise SystemExit(main())
