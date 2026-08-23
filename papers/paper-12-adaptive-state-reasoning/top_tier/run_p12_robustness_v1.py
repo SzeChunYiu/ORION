@@ -94,6 +94,9 @@ def evaluate_case(domain, case):
     structures = case["structures"]
     sids = [st["sid"] for st in structures]
     declared = {st["sid"]: st["declared_cost"] for st in structures}
+    # V1 cache protocol: prime the case before any frozen serving/truth call
+    # (sat_indexed_up indexes the global _CLAUSE_CACHE via local occ maps).
+    frozen.prime_caches(domain, structures)
     truth, verify_ops = frozen.ground_truth(domain, structures)
     reason, state, reason_out, state_out = per_structure_charges(
         domain, structures)
@@ -288,6 +291,7 @@ def joint_mix_evaluation(expanded_cases):
         for domain in DOMAIN_ORDER:
             structs = [st for d, st in union if d == domain]
             by_domain[domain] = structs
+            frozen.prime_caches(domain, structs)
             t, vops = frozen.ground_truth(domain, structs)
             truth[domain] = t
 
