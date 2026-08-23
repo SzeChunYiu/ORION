@@ -10,6 +10,10 @@ on:
       - 'papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py'
       - 'papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py'
       - 'papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py'
+      - 'papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json'
+      - 'papers/paper-09-structured-epistemic-learning/build_evidence_summary.py'
+      - 'papers/paper-09-structured-epistemic-learning/build_result_macros.py'
+      - 'papers/paper-09-structured-epistemic-learning/build_headline_tables.py'
       - '.github/workflows/p9-unified-resource-ledger-v2.yml'
   workflow_dispatch:
 permissions:
@@ -65,3 +69,21 @@ jobs:
             p9_unified_resource_ledger_v2.json
             p9_unified_resource_ledger_independent_v2.json
             p9_causal_diagnostic_v1_rerun.json
+      # Bind the unified ledger into the fail-closed evidence summary. Skipped
+      # on the first run of this workflow (before the ledger JSON and its run
+      # receipt are committed); from the receipt commit onward this regenerates
+      # the summary from the committed ledger and publishes it for committing.
+      - name: Regenerate official evidence summary under the unified ledger
+        if: hashFiles('papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json') != ''
+        run: |
+          python papers/paper-09-structured-epistemic-learning/build_evidence_summary.py
+          python papers/paper-09-structured-epistemic-learning/build_result_macros.py
+          python papers/paper-09-structured-epistemic-learning/build_headline_tables.py
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json') != ''
+        with:
+          name: p9-evidence-summary-v2
+          path: |
+            papers/paper-09-structured-epistemic-learning/evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json
+            papers/paper-09-structured-epistemic-learning/evidence/HEADLINE_TABLES_V1.json
+            papers/paper-09-structured-epistemic-learning/evidence/HEADLINE_TABLES_V1.md

@@ -48,14 +48,16 @@ Pre-registered exact-domain vectors `R9` (I_sem, A_dim, A_transform, M_state, C_
 | B-I | INFORMATION | 4 | 4 | 0 | 0 | 0 | 1 | 4 | 8 |
 | B-I | ACCESSIBILITY | 3 | 3 | 3 | 0 | 0 | 1 | 3 | 2 |
 | B-I | COMPUTATION | 3 | 3 | 0 | 0 | 0 | 1 | 8 | 12 |
-| B-A | INFORMATION | 2 | 2 | 0 | 0 | 0 | 1 | 0 | 4 |
+| B-A | INFORMATION | 2 | 2 | 0 | 0 | 0 | 1 | 0 | 8 |
 | B-A | ACCESSIBILITY | 2 | 2 | 1 | 0 | 0 | 1 | 0 | 2 |
 | B-A | COMPUTATION | 2 | 2 | 0 | 0 | 0 | 1 | 1 | 12 |
-| B-C | INFORMATION | 7 | 7 | 0 | 0 | 0 | 1 | 0 | 4 |
+| B-C | INFORMATION | 7 | 7 | 0 | 0 | 0 | 1 | 0 | 8 |
 | B-C | ACCESSIBILITY | 7 | 7 | 7 | 0 | 0 | 1 | 0 | 2 |
 | B-C | COMPUTATION | 7 | 7 | 0 | 0 | 0 | 1 | 7 | 12 |
 
 Digits-domain vectors are fit-dependent (`n_train = 1078`): logistic `M_state = 650` for 64-feature arms and `20` for 1-feature arms before scaler correction; SVC `M_state = C_infer = support-vector coordinate count`. `D-A` all arms add the shared base scaler (128). `D-I` `INFORMATION` `M_state = 650 + 128`; `D-I` `ACCESSIBILITY` `M_state = 20 + 2`; `D-I` `COMPUTATION` adds the shared 1-feature base scaler (2).
+
+**Erratum (pre-execution, 2026-08-23).** Two `R_registered` cells in the table above were transcribed as `4` where the frozen rule `R_registered = COST[intervention]` with `INFORMATION = 8` requires `8`: `B-A` `INFORMATION` and `B-C` `INFORMATION`. The correction is fully determined by the frozen `COST` dictionary of `run_causal_diagnostic_v1.py`, was made before any workflow run of this protocol completed (the sole queued run was cancelled and superseded), and touches no quality value, no target, no prediction and no protected gold. The builder and the independent checker implement `R_registered = COST[intervention]` throughout and never read this table.
 
 ## Re-derivation under matched full accounting
 
