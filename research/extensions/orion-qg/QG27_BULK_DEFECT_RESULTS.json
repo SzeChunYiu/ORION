@@ -1,0 +1,66 @@
+{
+  "schema": "ORIONQG.QG27.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#886",
+  "pr": "SzeChunYiu/ORION#887",
+  "execution_head": "a64f2fa4dbf7f77403f78c7b55a2d9c9ef65da87",
+  "workflow_run_id": 32564758674,
+  "workflow_artifact_id": 9473773863,
+  "workflow_artifact_sha256": "005ad9346ceea0800a659797345900b1505eaa13ff942c91736f96e21296014f",
+  "terminal": "QG27_TARE_BULK_DEFECT_LAW_AND_EXACT_ASYMPTOTIC_COST_DENSITY_ALL_N_MACHINE_CHECKED",
+  "source_result_digest": "64b78cbebc567f32970036fe7f05369cb2004a40f43ce31fc252d25798d29074",
+  "uniform_all_n_band": "B_min(N)-34 <= C_DP(N) <= B_min(N)+8",
+  "defect_constants": {"lower":-34,"upper":8,"claimed_sharp":false},
+  "local_bounds": {
+    "spectator_range": [0,6],
+    "one_branch_active_f3_range": [0,3],
+    "one_branch_correction_range": [-3,3],
+    "two_branch_active_f3_range": [0,6],
+    "two_branch_correction_range": [-6,6],
+    "one_active_feasible_rows": 48,
+    "one_active_structural_cost_values": [2],
+    "global_structural_lower_bound": 2
+  },
+  "bulk": {
+    "eight_permutation_vectors": 8,
+    "distinct_forms": 4,
+    "coefficient_range": [0,6],
+    "asymptotic_density": "e(p)=min_r sum_t p_t b_r(t)",
+    "optimized_auxiliary_term_is_subextensive_O1": true
+  },
+  "scaling_rays": {
+    "eventually_exactly_affine": true,
+    "period": 1,
+    "slope": "B_min(h)",
+    "global_threshold_and_intercept_computed": false
+  },
+  "bulk_tie_geometry": {
+    "pairwise_tie_forms": 6,
+    "each_pair_nonzero_coefficients": 528,
+    "common_difference_coefficient_histogram": {"-4":6,"-2":258,"0":3568,"2":258,"4":6}
+  },
+  "frozen_controls": {
+    "unary_XXXXXX": [2,2,2,2],
+    "strict_000": [2,6,6,6],
+    "strict_001": [6,2,6,6],
+    "strict_010": [6,6,2,6],
+    "strict_011": [6,6,6,2],
+    "two_way_000_011": [4,6,6,4],
+    "all_match": true
+  },
+  "generic_orion": {"decision":"ACCEPT_BULK_DEFECT_THERMODYNAMIC_LIMIT","all_checks":true},
+  "native_orion_q": {"decision":"ACCEPT_BULK_DEFECT_THERMODYNAMIC_LIMIT","all_checks":true,"responsibility":"BULK_DEFECT__ASYMPTOTIC_COST_DENSITY__PERIOD1_SCALING_RAYS"},
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "BULK_DEFECT_UNIFORM_BOUND_ALL_N": true,
+  "ASYMPTOTIC_COST_DENSITY_EXACT": true,
+  "PURE_SCALING_RAY_EVENTUALLY_AFFINE": true,
+  "ASYMPTOTIC_COUNT_SPACE_PHASE_GEOMETRY": true,
+  "DEFECT_CONSTANTS_SHARP": false,
+  "FINITE_N_GLOBAL_PHASE_BOUNDARY": false,
+  "PHYSICAL_PHASE_TRANSITION": false,
+  "CHAIN_ALL_N": false,
+  "CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS": false,
+  "novelty_authority": false,
+  "r6_authority": false,
+  "physical_quantum_advantage_claim": false
+}
