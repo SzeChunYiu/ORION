@@ -1,6 +1,11 @@
 name: temp-regenerate-p6-p8-binding
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/temp-regenerate-p6-p8-binding.yml
   push:
     branches:
       - research/top-tier-p6-p15-2026-08-23
@@ -15,6 +20,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
