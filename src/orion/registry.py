@@ -2,8 +2,6 @@
 
 FRAMEWORK_VERSION = "0.3.10-shadow"
 PAPER_SYNC_EPOCH = "2026-08-22-paper-framework-harness-covariance-v4"
-FRAMEWORK_VERSION = "0.3.9-shadow"
-PAPER_SYNC_EPOCH = "2026-08-22-q-series-recursive-v2"
 Q_SERIES_PUBLICATION_SPEC_ID = "ORION.QSeriesFinalPublicationSpec.v1"
 Q_SERIES_SYNC_EPOCH = "2026-08-22-q-series-recursive-v2"
 Q_SERIES_PAPER_IDS = ("Q1", "Q2", "Q3", "Q4")
