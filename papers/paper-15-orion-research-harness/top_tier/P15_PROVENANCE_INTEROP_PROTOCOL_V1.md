@@ -7,6 +7,8 @@
 
 This protocol and the real-receipt fixture file are committed before the interoperability adapter, scorer or independent verifier. The existing 18-case `P15_SEI_FAULT_PROTOCOL_V1` corpus remains immutable and is reused only as already-frozen hostile science/execution input.
 
+**Pre-outcome correction:** the first protocol draft listed only seven normalized execution fields. Before any adapter/checker existed or any interoperability outcome was observed, that was corrected because the seven-field projection could not represent existing frozen SEI distinctions such as cleanup omission, finalization-before-reap, stale replay and coverage omission. The authoritative V1 execution vector below therefore contains every execution coordinate needed by the pre-existing SEI contract.
+
 ## Donor formats
 
 ### W3C PROV
@@ -58,15 +60,17 @@ The fixture stores only facts already bound by paper-local/programme receipts; i
 
 ## Round-trip execution fact set
 
-Every donor representation must recover exactly this normalized set when supplied by the source fixture:
+Every donor representation must recover exactly the following execution-only coordinates when supplied by the source fixture:
 
-`(execution_id, input_digest, output_digest, exit_success, replayable, occurrence_id, tool_id)`.
+`(execution_id, occurrence_id, tool_id, input_digest, output_digest, spawn_ok, host_ok, timeout, exit_zero, output_present, output_complete, reaped, finalized_after_reap, cleanup_complete, retry_accounting_valid, invocation_match, input_digest_match, result_digest_match, occurrence_unique, fresh, coverage_complete, replay_match, lane_applicable, lane_agree)`.
+
+The provenance projection may additionally carry neutral transport metadata such as timestamps, software version, artifact URI and representation version, but those fields cannot participate in scientific admission.
 
 Scientific fields are intentionally excluded:
 
-`scientific_validity`, `scientific_disposition`, `claim_authorized`.
+`scientific_contract_available`, `scientific_contract_valid`, `claim_authority_available`, `claim_authority`, `scientific_disposition`.
 
-If those scientific fields appear in the provenance-only projection, the test fails for leakage.
+If any scientific field appears in the provenance-only projection, the test fails for leakage.
 
 ## Scientific-admission comparison
 
