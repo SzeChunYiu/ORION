@@ -1,0 +1,175 @@
+name: q1-c1-portable-resource-closure
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/q-paper-publication-wave-2026-08-22
+    paths:
+      - '.github/workflows/q1-c1-portable-resource-closure.yml'
+      - 'development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/**'
+
+concurrency:
+  group: q1-c1-portable-resource-closure-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  RESULT_ROOT: development/q1-q4-publication-closure-2026-08-22/q1-cycle-02/results
+  COORDINATOR: development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/run_q1_c1_dual_harness.py
+
+jobs:
+  prepare-and-freeze-lanes:
+    if: github.repository == 'SzeChunYiu/ORION'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      evidence_branch: ${{ steps.freeze.outputs.evidence_branch }}
+      lane_result_commit: ${{ steps.freeze.outputs.lane_result_commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch and bind the fixed candidate object
+        run: |
+          set -euo pipefail
+          candidate=158fcb08b612ffc82f5a5d2bed4917409084ded8
+          git fetch --no-tags origin "$candidate" \
+            || git fetch --no-tags origin pull/829/head:refs/remotes/origin/q1-fixed-candidate
+          test "$(git rev-parse "$candidate^{commit}")" = "$candidate"
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: '0.11.33'
+
+      - name: Install exact interpreter, dependency lock, and tracer
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq strace
+          uv python install 3.12.13
+          uv sync --frozen --all-extras --python 3.12.13
+          uv run python - <<'PY'
+          import importlib.metadata as metadata
+          import platform
+          import sys
+
+          expected = {
+              'python': '3.12.13',
+              'numpy': '2.3.5',
+              'cryptography': '50.0.0',
+          }
+          actual = {
+              'python': platform.python_version(),
+              'numpy': metadata.version('numpy'),
+              'cryptography': metadata.version('cryptography'),
+          }
+          if actual != expected:
+              raise SystemExit(f'lock-exact environment mismatch: {actual!r}')
+          print({'environment': actual, 'executable': sys.executable})
+          PY
+          strace -f -qq -e trace=network -o "$RUNNER_TEMP/strace-preflight.trace" /usr/bin/true
+
+      - name: Run separated dual lanes without comparison
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          artifact_commit=$(git rev-parse HEAD)
+          artifact_parent=$(git rev-parse HEAD^)
+          uv run python -I "$COORDINATOR" prepare \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --result-root "$RESULT_ROOT" \
+            --artifact-commit "$artifact_commit" \
+            --artifact-parent "$artifact_parent"
+          test "$(jq -r '.comparison_executed' "$RESULT_ROOT/PREPARE_MANIFEST.json")" = false
+          test ! -e "$RESULT_ROOT/coordinator"
+
+      - name: Freeze every lane byte before comparison
+        id: freeze
+        run: |
+          set -euo pipefail
+          evidence_branch="q1-c1-evidence-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git switch -c "$evidence_branch"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$RESULT_ROOT"
+          git diff --cached --check
+          git commit -m "evidence(q1): freeze portable separated lane terminals"
+          lane_result_commit=$(git rev-parse HEAD)
+          git push origin "HEAD:$evidence_branch"
+          {
+            echo "evidence_branch=$evidence_branch"
+            echo "lane_result_commit=$lane_result_commit"
+          } >> "$GITHUB_OUTPUT"
+
+  compare-immutable-lanes:
+    needs: prepare-and-freeze-lanes
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare-and-freeze-lanes.outputs.evidence_branch }}
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: '0.11.33'
+
+      - name: Recreate exact comparison environment
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq strace
+          uv python install 3.12.13
+          uv sync --frozen --all-extras --python 3.12.13
+          test "$(git rev-parse HEAD)" = "${{ needs.prepare-and-freeze-lanes.outputs.lane_result_commit }}"
+          test -z "$(git status --porcelain)"
+
+      - name: Compare only committed immutable terminals
+        run: |
+          set -euo pipefail
+          uv run python -I "$COORDINATOR" compare \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --result-root "$RESULT_ROOT"
+          test "$(jq -r '.terminal' "$RESULT_ROOT/coordinator/coordinator_result.json")" = PASS
+          test "$(jq -r '.payload.resource_closure' "$RESULT_ROOT/coordinator/coordinator_result.json")" = true
+          test "$(jq -r '.payload.finite_adapter_comparison.exact' "$RESULT_ROOT/coordinator/coordinator_result.json")" = true
+          test "$(jq -r '.payload.finite_adapter_comparison.compared_rows' "$RESULT_ROOT/coordinator/coordinator_result.json")" = 4161
+          test "$(jq '.semantic_diff | length' "$RESULT_ROOT/coordinator/coordinator_result.json")" = 0
+
+      - name: Freeze coordinator terminal
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$RESULT_ROOT/coordinator"
+          git diff --cached --check
+          git commit -m "evidence(q1): close portable dual-lane resources"
+          git push origin "HEAD:${{ needs.prepare-and-freeze-lanes.outputs.evidence_branch }}"
+
+      - name: Upload complete Cycle 02 evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1-c1-cycle-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.RESULT_ROOT }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish non-authoritative run summary
+        run: |
+          {
+            echo '## Q1-C1 Cycle 02 resource closure'
+            echo
+            echo "Evidence branch: \`${{ needs.prepare-and-freeze-lanes.outputs.evidence_branch }}\`"
+            echo
+            echo '```json'
+            jq '{terminal, obligations: [.obligations[] | {id,status}], payload: {finite_adapter_comparison, r6s_replay_match, dependency_gate, syscall_trace_gates, resource_closure}}' \
+              "$RESULT_ROOT/coordinator/coordinator_result.json"
+            echo '```'
+            echo
+            echo 'This workflow grants no novelty, manuscript-quality, submission, or publication authority.'
+          } >> "$GITHUB_STEP_SUMMARY"
