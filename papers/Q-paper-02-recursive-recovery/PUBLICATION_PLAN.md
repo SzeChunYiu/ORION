@@ -1,5 +1,7 @@
 # ORION-Q publication plan — 2026-08-21
 
+> **Historical planning snapshot — superseded 2026-08-22.** This file is preserved to show the publication plan before R6Q/R6R/R6S and the 2026-08-22 literature/refactor pass. Do not use its `pending` gates, all-`n`-open statement, or broad novelty wording as the current submission authority. The current cross-paper plan is `papers/Q_SERIES_TOP_TIER_REFACTOR_2026-08-22.md`; canonical current manuscripts/protocols are listed in `papers/README.md`.
+
 Every novelty statement below is written to survive the framework's own rules: donor
 subtraction first, claims bounded to verified domains, negatives as results. Each paper
 lists its submission gates — receipts that must exist before it goes out. Venue classes are

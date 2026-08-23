@@ -6,15 +6,17 @@
    against ``orion.registry``. Machine-checked, and the contract is explicit
    that matching it "proves only terminology/mechanic synchronization, not
    scientific validity or empirical support".
-2. *Paper content binding* --- a committed digest per file, so that changing a
-   paper's bytes without regenerating its manifest fails a check.
+2. *Paper content binding* --- a committed digest per watched file, so that
+   changing canonical paper bytes without regenerating its binding fails a check.
 
 The second is what makes a content change visible. Measured on this tree by the
 survey below: **eight of the twenty-four directories under ``papers/`` bind
 something, 214 files bound, 1 427 unbound, 0 drifted** --- and only three of the
 eight bind their whole selves. P6, P7 and P8 enumerate their directories and
-cover them completely. P1-P5 bind a declared list from a ``journal_package/``,
-covering between 10% and 22% of their files; the rest of the tree binds nothing.
+cover them completely. P1-P5 bind a declared list from a ``journal_package/``.
+The Q1-Q4 publication wave additionally carries a deliberate cross-paper
+binding over its canonical submission surfaces while leaving historical
+snapshots outside that subset. The remaining tree binds nothing.
 
 Both halves of that sentence are corrections to this module's first version,
 which looked for a digest file at each paper's root and nowhere else. It
@@ -39,14 +41,15 @@ its guard :data:`~orion.programme.records.Outcome.CANNOT_CHECK` rather than a
 pass --- and by ``Outcome.blocks`` that stops a promotion exactly as a ``FAIL``
 would.
 
-The verification is deliberately independent of
+The per-directory verification is deliberately independent of
 ``papers/candidates/checkers/check_content_binding_v1.py``. That checker is the
 generator for the P6-P8 packages and derives the manifest it then compares
 against; this one only reads what is committed and hashes what is on disk, so
-the two disagree if either is wrong. It also discovers bindings by convention
-rather than from a hardcoded candidate table, so a paper that adopts binding
-tomorrow is covered without editing this file --- an enumerated list of who is
-watched is the same failure one level up.
+the two disagree if either is wrong. The shared Q-series Git-blob binding is
+independently recomputed through ``orion.programme.q_series_content_binding``.
+Local bindings remain convention-discovered, while the explicit cross-paper
+adapter preserves the difference between a canonical submission subset and a
+whole paper directory.
 """
 
 from __future__ import annotations
@@ -63,6 +66,11 @@ from orion.programme.guard_exercise import (
     GuardExercise,
     assess_guard,
     worst_outcome,
+)
+from orion.programme.q_series_content_binding import (
+    BINDING_PATH as Q_SERIES_BINDING_PATH,
+    git_blob_sha1,
+    q_series_bound_rows_for_directory,
 )
 from orion.programme.records import Outcome
 
@@ -274,6 +282,72 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _inspect_q_series_cross_binding(
+    repo_root: Path, directory: Path, *, files_on_disk: int
+) -> PaperBinding | None:
+    """Inspect one Q paper's canonical subset in the shared cross-paper binding."""
+
+    relative = directory.relative_to(repo_root).as_posix()
+    if not (repo_root / Q_SERIES_BINDING_PATH).is_file():
+        return None
+    try:
+        rows = q_series_bound_rows_for_directory(repo_root, directory)
+    except (OSError, TypeError, ValueError, json.JSONDecodeError) as error:
+        if directory.name.startswith("Q-paper-"):
+            return PaperBinding(
+                paper_id=directory.name,
+                directory=relative,
+                state=PaperBindingState.BOUND_UNREADABLE,
+                files_on_disk=files_on_disk,
+                files_bound=0,
+                drifted_paths=(),
+                missing_paths=(),
+                detail=f"{Q_SERIES_BINDING_PATH.as_posix()} could not be read: {error}",
+            )
+        return None
+    if not rows:
+        return None
+
+    drifted: list[str] = []
+    missing: list[str] = []
+    for row in rows:
+        path_value = str(row["path"])
+        expected = str(row["git_blob_sha1"])
+        target = repo_root / path_value
+        if not target.is_file():
+            missing.append(path_value)
+        elif git_blob_sha1(target.read_bytes()) != expected:
+            drifted.append(path_value)
+
+    if drifted or missing:
+        state = PaperBindingState.BOUND_DRIFTED
+        detail = (
+            f"{relative}: Q-series canonical binding has {len(drifted)} changed and "
+            f"{len(missing)} missing path(s) among {len(rows)} watched publication files"
+        )
+    elif len(rows) >= files_on_disk:
+        state = PaperBindingState.BOUND_CURRENT
+        detail = f"{relative}: all {len(rows)} files match the shared Q-series binding"
+    else:
+        state = PaperBindingState.BOUND_PARTIAL
+        detail = (
+            f"{relative}: {len(rows)} of {files_on_disk} files match the shared Q-series "
+            "canonical binding; the remainder are historical or non-canonical unless "
+            "separately bound"
+        )
+
+    return PaperBinding(
+        paper_id=directory.name,
+        directory=relative,
+        state=state,
+        files_on_disk=files_on_disk,
+        files_bound=len(rows),
+        drifted_paths=tuple(sorted(drifted)),
+        missing_paths=tuple(sorted(missing)),
+        detail=detail,
+    )
+
+
 def _sums_files(directory: Path) -> tuple[Path, ...]:
     """Every digest file anywhere under a paper, not only one at its root.
 
@@ -321,6 +395,9 @@ def inspect_paper(repo_root: Path, directory: Path) -> PaperBinding:
     paper_id = directory.name
     relative = directory.relative_to(repo_root).as_posix()
     on_disk = _files_on_disk(directory)
+    q_series = _inspect_q_series_cross_binding(repo_root, directory, files_on_disk=on_disk)
+    if q_series is not None:
+        return q_series
     sums_files = _sums_files(directory)
 
     if not sums_files:

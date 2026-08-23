@@ -1,0 +1,111 @@
+{
+  "schema": "ORION.QSeriesFinalPublicationSpec.v1",
+  "sync_epoch": "2026-08-22-q-series-final-v1",
+  "programme": "ORION-Q",
+  "programme_status": "CLOSED",
+  "scope_rule": "ORION-Q is the primary claim source. ORION-QG may be cited only as later follow-up, limitation, or sequel unless a QG paper owns the result.",
+  "authority_rule": "Repository checks, internal receipts, and this specification do not self-certify novelty, physical quantum advantage, or external scientific authority.",
+  "owner_decisions": {
+    "external_quantum_expert_review": "SKIPPED_BY_OWNER",
+    "effect": "The expert-review gate is removed from the internal submission checklist and grants no scientific approval or authority.",
+    "future_prospective_upgrade_studies": "DEFERRED_OPTIONAL_FOR_HIGHER_GENERALITY",
+    "effect_on_current_papers": "Q2-Q4 are finalized at their currently supported scoped claims; the frozen upgrade protocols remain successor research, not blockers for those scoped manuscripts."
+  },
+  "papers": {
+    "Q1": {
+      "directory": "papers/Q-paper-01-tare-expressivity",
+      "canonical_manuscript": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md",
+      "claim_ledger": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md",
+      "figure_plan": "papers/Q-paper-01-tare-expressivity/FIGURES_PLAN_V2.md",
+      "primary_claim_id": "Q1.R6M.SHARP_SUPPORT_TWO",
+      "primary_claim": "For the frozen R6M three-block shared-one-bit-Tag TARE-M2 grammar under the frozen support-count objective, the intrinsic uniform frame-support number is exactly kappa_R6M=2 for arbitrary n.",
+      "required_internal_evidence": [
+        "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+        "papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json",
+        "papers/Q-paper-01-tare-expressivity/NOVELTY_RESEARCH_2026-08-22.md",
+        "papers/Q-paper-01-tare-expressivity/NOVELTY_REFRESH_FINAL_2026-08-22.md",
+        "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+        "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+        "development/orion-q-max-r0/MAX_R6O_ENLARGED_TAG_DONOR_PROTOCOL.md"
+      ],
+      "publication_scope": "THEOREM_PAPER_GRAMMAR_AND_OBJECTIVE_SPECIFIC",
+      "current_internal_status": "COMPLETE_FOR_SCOPED_THEOREM_PAPER__SUBMISSION_FORMATTING_REMAINS",
+      "novelty_search_status": "NOT_LOCATED_IN_BOUNDED_SEARCH__NOT_NOVELTY_CERTIFICATE",
+      "forbidden_promotions": [
+        "general TARE support-two theorem",
+        "general block-encoding support-two theorem",
+        "fault-tolerant resource advantage",
+        "physical quantum advantage",
+        "universal two-trade taxonomy"
+      ]
+    },
+    "Q2": {
+      "directory": "papers/Q-paper-02-recursive-recovery",
+      "canonical_manuscript": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md",
+      "receipt_index": "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX_V2.md",
+      "primary_claim_id": "Q2.NEGATIVE_RECOVERY.CASE_STUDY",
+      "primary_claim": "The closed ORION-Q programme is a fully receipted case study of explicit negative-result recovery in which donor absorption, saturation, targeted refutation, repair, prospective prediction, and theorem closure remain separately recorded rather than being rewritten into a single positive narrative.",
+      "required_internal_evidence": [
+        "development/orion-q-max-r0/PROGRAMME_CLOSURE_PACKET_2026-08-21.md",
+        "papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX_V2.md",
+        "papers/Q-paper-02-recursive-recovery/NOVELTY_RESEARCH_2026-08-22.md"
+      ],
+      "publication_scope": "SINGLE_PROGRAMME_METHOD_CASE_STUDY",
+      "current_internal_status": "COMPLETE_FOR_SCOPED_CASE_STUDY",
+      "successor_research": "papers/Q-paper-02-recursive-recovery/TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md",
+      "forbidden_promotions": [
+        "provenance itself is novel",
+        "cross-domain productivity superiority",
+        "autonomous-science reliability from one programme",
+        "self-certified novelty"
+      ]
+    },
+    "Q3": {
+      "directory": "papers/Q-paper-03-dual-instrument",
+      "canonical_manuscript": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md",
+      "claim_ledger": "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md",
+      "primary_claim_id": "Q3.DUAL_INSTRUMENT.BENCHMARK_V0",
+      "primary_claim": "A receipt-replay host-driven research instrument and a typed non-LLM campaign controller can be posed the same frozen frontier question with disagreement admissible and later outcomes used only as deferred scoring; Benchmark V0 is one measurement of this benchmark class.",
+      "required_harness_contract": "ORION.Q3.HarnessPublicationContract.v1",
+      "required_internal_evidence": [
+        "development/orion-q-max-r0/dual-harness-benchmark-v0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_RESULTS.json",
+        "packages/orion-research-harness/tests/test_invalid_content_recovery.py",
+        "packages/orion-research-harness/src/orion_research_harness/publication_contract.py"
+      ],
+      "publication_scope": "SYSTEMS_AND_BENCHMARK_DEFINITION_WITH_ONE_MEASUREMENT",
+      "current_internal_status": "COMPLETE_FOR_SCOPED_SYSTEMS_PAPER",
+      "successor_research": "papers/Q-paper-03-dual-instrument/TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md",
+      "forbidden_promotions": [
+        "agreement predicts correctness",
+        "one-item reliability estimate",
+        "security boundary or tamper-proof storage",
+        "LLM-free manifest construction"
+      ]
+    },
+    "Q4": {
+      "directory": "papers/Q-paper-04-typed-state",
+      "canonical_manuscript": "papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md",
+      "claim_ledger": "papers/Q-paper-04-typed-state/CLAIM_LEDGER_V2.md",
+      "primary_claim_id": "Q4.TYPED_STATE.SYNTHETIC_MECHANISMS",
+      "primary_claim": "Across six prospectively frozen exact-synthetic matched-information studies, explicit scientific state typing/scoping can be load-bearing for decision quality under the declared constructions, while matched strong donors and no-value regimes delimit where it adds nothing.",
+      "required_internal_evidence": [
+        "papers/Q-paper-04-typed-state/NOVELTY_RESEARCH_2026-08-22.md",
+        "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json"
+      ],
+      "publication_scope": "EXACT_SYNTHETIC_MECHANISM_AND_BENCHMARK_PAPER",
+      "current_internal_status": "COMPLETE_FOR_SCOPED_MECHANISM_PAPER",
+      "successor_research": "papers/Q-paper-04-typed-state/TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md",
+      "forbidden_promotions": [
+        "typed memory was introduced here",
+        "real scientific-agent performance",
+        "real-adversary security",
+        "general value-of-information theorem"
+      ]
+    }
+  }
+}
