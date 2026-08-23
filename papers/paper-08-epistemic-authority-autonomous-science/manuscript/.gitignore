@@ -1,0 +1,9 @@
+# Only the latexmk sidecars. main.pdf is deliberately NOT here: the built
+# manuscript is the artifact a reader holds, and the repository-wide
+# .gitignore already covers .aux/.bbl/.blg/.fdb_latexmk/.fls plus
+# manuscript/main.log, .out and .toc.
+main.aux
+main.bbl
+main.blg
+main.log
+main.out

@@ -8,7 +8,7 @@ receipt cannot tell them apart, because a constant and a computed value look
 identical once serialized.
 
 P8 is the live example, measured both ways.
-``research/extensions/p8-method-authority/run_anti_laundering_bench.py`` builds
+``research/extensions/p8-method-authority/run_anti_laundering_bench.py`` built
 its summary as
 
 .. code-block:: python
@@ -17,16 +17,19 @@ its summary as
            ..., 'terminal': 'P8_P9_P10_ANTI_LAUNDERING_CLEAR',
            'claim_ceiling': panel['claim_ceiling']}
 
-Four rates are computed. The terminal is a literal, and the claim ceiling is the
-input echoed back. Replacing the authority mechanism with one that launders
+Four rates are computed. The terminal was a literal, and the claim ceiling was
+the input echoed back. Replacing the authority mechanism with one that launders
 every capability into every authority coordinate drops
 ``illicit_coercion_block_rate`` from 1.0 to 0.0 --- all seven named attack cases
-flip from ``BLOCKED`` to ``SUPPORTED`` --- and the emitted terminal is still
+flip from ``BLOCKED`` to ``SUPPORTED`` --- and the emitted terminal was still
 ``P8_P9_P10_ANTI_LAUNDERING_CLEAR``. Inverting every expectation in the frozen
-panel puts all four rates at 0.0, and the terminal does not move. Over every
-input tried, the number of distinct terminals the emitter can produce is one.
+panel puts all four rates at 0.0, and the terminal did not move. Over every
+input tried, the number of distinct terminals the emitter could produce was one.
 
-The failure class is recorded under
+That bench derives its terminal from the four rates as of 2026-08-21, so the
+register below now moves it and the responsiveness leg passes; the measurement is
+what established that, and the ceiling half of the receipt is still an input
+echo. The failure class is recorded under
 ``research/failures/2026-08-unconditional-terminal-self-issued-authority/``.
 
 This is not the failure :mod:`orion.programme.refutation_capacity` catches, and

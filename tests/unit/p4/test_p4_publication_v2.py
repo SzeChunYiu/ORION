@@ -3,10 +3,23 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from orion.publication.manuscript_source import assemble
+
 ROOT = Path(__file__).resolve().parents[3]
 P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
 METRICS = P4 / "evidence" / "protected_v2" / "PUBLICATION_METRICS_V2.json"
 MANUSCRIPT = P4 / "manuscript" / "main.tex"
+
+
+def _manuscript_text() -> str:
+    """The document LaTeX builds, not just its entry file.
+
+    ``main.tex`` is a preamble and eleven ``\\input`` lines since the split, so
+    reading it alone would find neither the phrases these tests require nor the
+    ones they forbid, and would pass on both counts without checking anything.
+    """
+
+    return assemble(MANUSCRIPT)
 
 
 def test_publication_metrics_match_reproduced_headline() -> None:
@@ -32,7 +45,7 @@ def test_publication_metrics_match_reproduced_headline() -> None:
 
 
 def test_manuscript_uses_v2_and_reports_null_h3() -> None:
-    text = MANUSCRIPT.read_text()
+    text = _manuscript_text()
     assert "31976589735" in text
     assert "0/360" in text and "180/360" in text and "60/60" in text
     assert "H3 was not supported" in text

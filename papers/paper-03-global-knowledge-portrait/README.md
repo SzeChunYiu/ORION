@@ -1,7 +1,7 @@
 # Paper 03 — Global Knowledge Portrait
 
 **Stable ID:** ORION-P3  
-**Status:** `PEER_REVIEW_READY` — scoped P3.C5/P3.C9 already-structured public-reference mapping claim; broader raw-text/downstream claims remain follow-up / `CANNOT_CHECK`.
+**Status:** `PEER_REVIEW_READY` for the scoped scientific-identity-authority paper.
 
 ## Scoped contribution
 

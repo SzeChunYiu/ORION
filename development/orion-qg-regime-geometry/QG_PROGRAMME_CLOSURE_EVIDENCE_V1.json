@@ -1,0 +1,102 @@
+{
+  "schema": "ORION.QG.ProgrammeClosureEvidence.v1",
+  "issue": "SzeChunYiu/ORION#839",
+  "programme_issue": "SzeChunYiu/ORION#740",
+  "canonical_main": "c5ba39fef4f25c46de5fb69bf07f50530f4693ca",
+  "evidence": {
+    "portfolio": {
+      "source_pr": 854,
+      "source_head": "2e14fad23f0812e4f0a7d3ab957fece89c6322b7",
+      "run_head": "9fedf40f83fb80035a0bbc9e3da90faa7adcee11",
+      "run_id": 32528493138,
+      "artifact_digest": "sha256:5e6bc001a9e2a1559a91237e316564b5a291bdb428dea02371e2ee5a94d2be2c",
+      "result_digest": "0ea834fe39a0415334c02c35d0201fcf6ca177b7ab869ac48457b7762ba4fdc8",
+      "terminal": "ORION_QG_EARNED_PORTFOLIO_LANES_ADJUDICATED_CLOSED__MIXED_THEOREM_REFUTATION_BOUNDARIES_PRESERVED",
+      "covers": ["QG-2","QG-3","QG-4","QG-5","QG-6","QG-8","QG-12","QG-13"],
+      "authority": "NO_NOVELTY_R6_OR_PHYSICAL_ADVANTAGE"
+    },
+    "qg18": {
+      "source_pr": 852,
+      "source_head": "49b6ebd0b885e197d510eca353603c55feb43961",
+      "run_head": "30171f327e6344b6bb5260fb813e4df5736b24e7",
+      "run_id": 32527480712,
+      "artifact_digest": "sha256:b5eb392f02ca333792391f7ea0d2f626d0d70b309893de200585925714c857fc",
+      "result_digest": "c975a71a49e812af441c7f34796731e04c16838f0481c0a9355e89f9c8ee2c17",
+      "terminal": "QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS_MACHINE_VERIFIED",
+      "facts": {"kappa_TARE": 2, "cap1": 8, "dp": 7, "independent_cap1_states": 122112},
+      "authority": "NO_NOVELTY_R6_OR_PHYSICAL_ADVANTAGE"
+    },
+    "qg17r": {
+      "source_pr": 855,
+      "source_head": "2c85aa73962470865873e7eee5a8cec489c08460",
+      "run_head": "aa03a3c064c419c164a5d38e17c4e8f7ea55f993",
+      "run_id": 32529563653,
+      "artifact_digest": "sha256:f2aa074bac1a599c772ebaba379640fdbf0723dca3b28ca6dcc79405606f5d10",
+      "result_digest": "30338474f41c5e1362d4c44ff455b3e5b8496b0210e61945bf7ee9668c6a60cd",
+      "terminal": "QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN",
+      "facts": {"candidates": 211248, "strict_O0": 0, "strict_O_tag_out": 0, "strict_O_restore_out": 0, "strict_O_nc_out": 0, "global_phase_boundary_complete": false},
+      "authority": "BOUNDED_NEGATIVE_ONLY"
+    },
+    "qg15c": {
+      "source_pr": 856,
+      "source_head": "387063bcbf3e7e72390ea45284f22318f9038751",
+      "run_head": "60e0047bb4857ff8426a5fdedc5fcd7c6985cf57",
+      "run_id": 32530154614,
+      "artifact_digest": "sha256:1fc9cdffe3b2cd610497de067827a8bb173034ba849d6a8f2a20e8d64710140d",
+      "result_digest": "c0bdf73640301439b20d9f51062ddea1e92dd4be946dfae1f83f4fe71268b216",
+      "terminal": "QG15C_ENLARGED_DONOR_PATH_VOCABULARY_STILL_INSUFFICIENT__MIXED_CELLS_MACHINE_VERIFIED",
+      "facts": {"features": 66, "instances": 1146, "mixed_cells": 3, "irreducible_floor": 5, "heldout_stage_authorized": false},
+      "authority": "FIRST_CLASS_NEGATIVE"
+    },
+    "qg10c": {
+      "source_pr": 857,
+      "source_head": "4fa68f485ca029666875d0b53711314c807d24b2",
+      "run_head": "80d244be8d106a78558067a2902644c7eceb68a6",
+      "run_id": 32530462750,
+      "artifact_digest": "sha256:6de1ad3261d7551510c17bc3f32a84d8b0f091400a5ed240924c25f62ec59e88",
+      "result_digest": "135f9f6155492b6c4d749009ee5747e8e79929714be86c834aa5329b5450c233",
+      "terminal": "QG10_SOUND_CERTIFICATION_CALIBRATED__INCREMENTAL_INTERVAL_VALUE_DONOR_DEPENDENT_OR_WEAK",
+      "facts": {"sixlcu_resolved": 39489, "sixlcu_false": 0, "tare_coarse_resolved": 0, "tare_theorem_assisted_resolved": 50, "new_scalable_interval_value_supported": false},
+      "authority": "BOUNDED_CALIBRATION_NO_INCREMENTAL_SCALABLE_VALUE"
+    },
+    "qg11c": {
+      "source_pr": 858,
+      "source_head": "cfa1d644b9f48386f31b75c62d8137a54ed6e4ab",
+      "run_head": "0a6180e328a93571545eec1acbfe815e1938f035",
+      "run_id": 32530653675,
+      "artifact_digest": "sha256:7710e2b5667398043848c2316d66c176e2253eebab1b3f4078f5c0d5c1c05851",
+      "result_digest": "5066cd8cad9529a528d28c68b7b06bcb1d4d16f1adaf7e0cbdd1251f84cc46a9",
+      "terminal": "QG11_AFFINE_FT_PHASE_PULLBACK_PROVED__NONLINEAR_FACTORY_COUNTEREXAMPLE__REAL_ESTIMATOR_CANNOT_CHECK",
+      "facts": {"affine_failures": 0, "route_A_structural": 9, "route_B_structural": 10, "route_A_physical": 20, "route_B_physical": 12, "real_ft_estimator": "CANNOT_CHECK_REAL_ESTIMATOR"},
+      "authority": "THEOREM_PLUS_BOUNDARY_CANNOT_CHECK"
+    },
+    "qg14c": {
+      "source_pr": 859,
+      "source_head": "aa5c27891affdb25f61fe093f1994e687b1816e1",
+      "run_head": "2ee964e5190e9f3959dca07b42f11cf04d86e215",
+      "run_id": 32531208256,
+      "artifact_digest": "sha256:62d1e5ef5cb565928be737f2a805d7d17f7e4bde7cd47641d8340f40652dc8af",
+      "result_digest": "bf0ec684d1b4d6ea1e7a666af651212967b6d39bb16d95f9eb36703154a16c8d",
+      "terminal": "QG14_SEPARABLE_COMPOSITION_PROVED__HIDDEN_COUPLING_REFUTES_LOCAL_SELECTION__COUPLING_AWARE_SUMMARY_RECOVERS_CONTROL",
+      "facts": {"separable_proved": true, "independent_hidden_coupling_wrong": true, "coupling_summary_recovers_control": true, "universal_interface_compression_claim": false},
+      "authority": "BOUNDED_THEOREM_REFUTATION_PAIR"
+    },
+    "qg7d": {
+      "source_pr": 860,
+      "source_head": "b6384048cbddbbf0dc84c6a310a686cfa0a43131",
+      "run_head": "7949f36b6f0ec2ca4c28e7ad6d5cd293937f65cc",
+      "run_id": 32531469260,
+      "artifact_digest": "sha256:4fa2cfa0825539d189a429ad2fddad075ee47f4ac550de65dc86001c3786f80c",
+      "result_digest": "15115a9e557995088e83c2a5773325d6b8c42b8d5e71289bfcb09ac2eb132b0d",
+      "terminal": "QG7D_CANNOT_CHECK_ALL_N_PINNED_CLOSURE__PP_HIDDEN_HOME_ENVIRONMENT_NOT_IN_PARENT_STATE__PADDING_ABLATION_NEGATIVE",
+      "facts": {"pp_parent_failures": 32556, "hidden_home_domain": 4096, "hidden_home_delta_min": -4, "hidden_home_delta_max": 4, "all_n_identity": "UNPROVED_CANNOT_CHECK_FROM_CURRENT_PARENT_QUOTIENT", "btripleprime": "UNFOUND_IN_FROZEN_PADDING_ABLATION"},
+      "authority": "SCIENTIFICALLY_CLOSED_CANNOT_CHECK_NO_THEOREM"
+    }
+  },
+  "global_authority": {
+    "novelty": false,
+    "r6": false,
+    "physical_quantum_advantage": false,
+    "publication_acceptance": false
+  }
+}

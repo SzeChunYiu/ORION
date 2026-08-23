@@ -1,0 +1,38 @@
+{
+  "diagnosis_vocabulary": [
+    "S1_P0_BOUNDARY_OBJECTIVE_SCOPED",
+    "S2_P0_STRUCTURALLY_INVARIANT_UNDER_SELECT_RESCALE",
+    "S3_REWEIGHTED_INCUMBENT_OR_REFEREE_SCOPE_DEFECT",
+    "S4_CANNOT_CHECK"
+  ],
+  "domain": {
+    "n1_ordered": 729,
+    "n2_reorder_quotiented": 38760
+  },
+  "excluded_outcome_prefixes": [
+    "QG20",
+    "qg20"
+  ],
+  "frontier_question_id": "QG-20",
+  "instance_id": "Q3-R2",
+  "move_vocabulary": [
+    "N1_COMPLETE_REWEIGHTED_CENSUS",
+    "N2_PROVE_WEIGHTED_P0_THEOREM_FIRST",
+    "N3_TRANSFER_P0_WITHOUT_RETEST",
+    "N4_REAUDIT_REWEIGHTED_REFEREE",
+    "N5_STOP_CANNOT_CHECK"
+  ],
+  "objective": {
+    "prep": 1,
+    "select": 2,
+    "width": 1
+  },
+  "permitted_sources": [
+    "development/orion-qg-regime-geometry/QG12_SIXLCU_P0_THEOREM_PROTOCOL_V1.md",
+    "research/extensions/orion-qg/QG12_SIXLCU_P0_THEOREM_RESULTS.json",
+    "research/extensions/orion-qg/qg4_second_family.py"
+  ],
+  "question": "Under O20=2*SELECT+PREP+WIDTH, before opening the complete reweighted census, should the theorem-grade SixLCU P0 boundary be treated as structurally invariant or objective-scoped, and what is the responsible next move?",
+  "schema": "ORIONQ.Q3SharedQuestionPacket.v2",
+  "scientific_base": "c5ba39fef4f25c46de5fb69bf07f50530f4693ca"
+}

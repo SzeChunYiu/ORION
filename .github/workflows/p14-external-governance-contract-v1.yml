@@ -1,0 +1,22 @@
+name: p14-external-governance-contract-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-14-orion-rse/top_tier/**'
+      - '.github/workflows/p14-external-governance-contract-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  external-contract-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate blinded external governance contract
+        run: python papers/paper-14-orion-rse/top_tier/check_external_contract_v1.py

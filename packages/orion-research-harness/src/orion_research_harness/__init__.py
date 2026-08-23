@@ -37,7 +37,16 @@ from .mechanics_bridge import (
     run_mechanic_receipts,
     saturation_surface,
 )
+from .ocme_programme_hardening import install_ocme_programme_hardening
+from .paper_structure_consensus import run_paper_structure_consensus
 from .protocol import CapabilityRequest, CapabilityResult
+from .recursive_runner import RecursiveRunLimits
+from .publication_contract import (
+    Q3_HARNESS_PUBLICATION_CONTRACT_ID,
+    Q3_HARNESS_REQUIRED_PROPERTIES,
+    q3_publication_contract,
+    validate_q3_publication_contract,
+)
 from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .recursive_budget_hardening import install_recursive_budget_hardening
 from .recursive_cost_hardening import install_recursive_cost_hardening
@@ -45,6 +54,14 @@ from .recursive_experience_binding import (
     WorkspaceRecursiveLLMResearchReasoner,
     install_workspace_recursive_reasoner,
 )
+from .recursive_director_integration import install_research_director_integration
+from .recursive_runner import run_problem_recursive
+from .research_resolution import (
+    assimilate_negative_result,
+    build_resolution_obligation,
+    resolution_plan_from_mapping,
+)
+from .research_v4_conformance import research_v4_conformance
 from .runner import run_problem
 from .workspace import ResearchWorkspace
 
@@ -64,32 +81,43 @@ __all__ = [
     "HostCapabilityFailed",
     "HostCapabilityRequired",
     "ProtectedReference",
+    "Q3_HARNESS_PUBLICATION_CONTRACT_ID",
+    "Q3_HARNESS_REQUIRED_PROPERTIES",
     "RecursiveRunLimits",
     "ResearchWorkspace",
     "WorkspaceRecursiveLLMResearchReasoner",
+    "assimilate_negative_result",
     "atom_calculus_surface",
+    "build_resolution_obligation",
     "compile_workspace_development_fibre",
     "decide_campaign",
     "execution_coverage",
     "initialize_campaign",
     "install_governance_hardening",
+    "install_ocme_programme_hardening",
     "install_recursive_budget_hardening",
     "install_recursive_cost_hardening",
+    "install_research_director_integration",
     "install_workspace_recursive_reasoner",
     "mechanic_catalog",
     "mechanic_detail",
     "mechanics_coverage",
     "method_fibre_surface",
     "navigate_mechanics",
+    "q3_publication_contract",
     "rank_workspace_development_fibres",
     "request_benchmark",
     "request_independent_review",
+    "research_v4_conformance",
+    "resolution_plan_from_mapping",
     "run_campaign",
     "run_campaign_cycle",
     "run_mechanic_receipts",
+    "run_paper_structure_consensus",
     "run_problem",
     "run_problem_recursive",
     "saturation_surface",
     "select_context",
     "validate_manifest",
+    "validate_q3_publication_contract",
 ]

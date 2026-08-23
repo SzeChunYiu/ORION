@@ -1,67 +1,66 @@
-\section{Results status}
+\section{Results}
 \label{sec:results}
 
-ORION Paper III has deliberately separate evidence layers. The scoped
-public-reference projection-to-mapping protocol has been executed twice: an
-initial frozen 32-case study followed by a disjoint, prospectively
-execution-frozen 32-case confirmation. The broader raw-text expert-atlas,
-generated-portrait recoverability, downstream utility, and full coordinate
-necessity questions are follow-up claims and remain \conststatus{} rather than
-being treated as missing pieces of the reported mapping result. All numbers
-below come from immutable archived artifacts.
+The evidence layers are deliberately kept separate. The public-reference
+projection-to-mapping protocol has been executed twice: an initial frozen
+32-case study, followed by a disjoint, prospectively execution-frozen 32-case
+confirmation. The broader raw-text expert atlas, generated-portrait
+recoverability, downstream utility and full coordinate necessity are separate
+questions whose outcomes remain undetermined; they are not treated as missing
+pieces of the mapping result reported here. All numbers below come from
+immutable archived artifacts, listed in Section~\ref{sec:availability}.
 
 \subsection{Initial public-reference mapping result}
 
 The public-reference builder used pinned external source authorities from
 MUSE, SciFact, and SciSchema and did not fill unsupported semantic coordinates
-with model guesses. The first deterministic build produced 32 already-structured
-mapping cases across five recorded strata and three case families:
-different-name/same-referent, polarity/modality/attribution/context, and
-valid/invalid representation mappings. The portable gold artifact has SHA-256
-\texttt{35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8}.
-A second freeze pass reproduced it byte-for-byte.
+with model guesses. The first deterministic build produced 32
+already-structured mapping cases across five recorded strata and three case
+families: different-name/same-referent, polarity/modality/attribution/context,
+and valid/invalid representation mappings. A second freeze pass reproduced the
+portable gold artifact byte for byte.
 
-On those 32 cases, the ORION semantic comparison rule classified all expected
-relations correctly (accuracy 1.000), with false-merge rate 0.000 and
+On those 32 cases, the coordinate-governed comparison rule classified all
+expected relations correctly (accuracy 1.000), with false-merge rate 0.000 and
 false-split rate 0.000. Flat predicate canonicalization had accuracy 0.875 and
-false-merge rate 0.125, with no false splits. The paired ORION-minus-flat
-false-merge difference was $-0.125$ with a 95\% paired percentile-bootstrap
-interval of $[-0.250,-0.03125]$ (10,000 resamples; seed 20260817).
+false-merge rate 0.125, with no false splits. The paired false-merge
+difference was $-0.125$ with a 95\% paired percentile-bootstrap interval of
+$[-0.250,-0.03125]$ (10,000 resamples; seed 20260817).
 
 An exact-coordinate conservative control also produced zero false merges but
 abstained on 0.125 of cases and achieved accuracy 0.875. The initial result
-therefore motivated a prospective replication but did not itself become the
+therefore motivated a prospective replication without itself becoming the
 final confirmatory authority.
 
 \subsection{Prospectively frozen confirmatory replication}
 
 A second, disjoint 32-case holdout was selected with the same outcome-blind
 round-robin construction at selection offset 32, excluding every initial case
-identifier. It was frozen before any confirmatory ORION or control output was
-examined. Its portable SHA-256 is
-\texttt{13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b}.
-The execution manifest \texttt{P3.public-reference-mapping.v1.1-confirmatory}
-bound that hash, upstream source revisions, evaluator Git identities,
-bootstrap seed, margins, and the terminal rule before evaluation.
+identifier. It was frozen before any confirmatory output of any compared rule
+was examined; the execution manifest bound its portable digest, upstream
+source revisions, evaluator identities, bootstrap seed, margins, and the
+terminal rule before evaluation.
 
-The predeclared rule required both (i) an ORION-minus-flat false-merge
-difference at most $-0.05$ with the upper end of its paired 95\% bootstrap
-interval below zero, and (ii) an ORION-minus-exact false-split difference no
-larger than $+0.03$ with the interval upper bound no larger than $+0.03$.
-The holdout passed both conditions. ORION had false-merge rate 0.000 and
-false-split rate 0.000. Flat predicate canonicalization had false-merge rate
-0.1875 and accuracy 0.8125. The paired ORION-minus-flat false-merge difference
-was $-0.1875$ with 95\% interval $[-0.34375,-0.0625]$. The
-ORION-minus-exact false-split difference was 0.000 with interval
-$[0.000,0.000]$. The confirmatory primary verdict was therefore
-\textbf{PASS} under the rule frozen before those outputs.
+The rule declared in advance required both (i) a coordinate-governed-minus-flat
+false-merge difference at most $-0.05$ with the upper end of its paired 95\%
+bootstrap interval below zero, and (ii) a
+coordinate-governed-minus-exact-conservative false-split difference no larger
+than $+0.03$ with the interval upper bound no larger than $+0.03$. The holdout
+met both conditions. Coordinate-governed mapping had false-merge rate 0.000
+and false-split rate 0.000. Flat predicate canonicalization had false-merge
+rate 0.1875 and accuracy 0.8125. The paired false-merge difference was
+$-0.1875$ with 95\% interval $[-0.34375,-0.0625]$. The false-split difference
+against the exact-coordinate control was 0.000 with interval $[0.000,0.000]$.
+The confirmatory primary verdict was therefore a \textbf{pass} under the rule
+frozen before those outputs.
 
 The effect is localized to the strata that discriminate the tested rules.
-Among 13 polarity/modality/attribution/context cases, flat canonicalization
-false-merged 6/13 (0.4615), whereas ORION false-merged none. The 13
-different-name/same-referent cases and six representation-mapping cases were
-correct under all compared rules. These strata are reported descriptively and
-are not pooled with the initial 32 cases to inflate confirmatory sample size.
+Among the 13 polarity/modality/attribution/context cases, flat
+canonicalization false-merged 6/13 (0.4615), where coordinate-governed mapping
+false-merged none. The 13 different-name/same-referent cases and the six
+representation-mapping cases were correct under all compared rules. These
+strata are reported descriptively and are not pooled with the initial 32 cases
+to inflate the confirmatory sample size.
 
 \subsection{Covered ablations}
 
@@ -74,43 +73,43 @@ claim-verification cases.
 
 Removing referent, construct, measurement, or temporal context has zero
 measured effect on this holdout. Those zero effects are preserved as coverage
-limitations, not interpreted as proof that the coordinates are unnecessary or
+limitations, not read as proof that the coordinates are unnecessary or
 dispensable. The confirmatory protocol treats all ablations as descriptive
-secondary analyses rather than new significance claims.
+secondary analyses rather than as new significance claims.
 
 \subsection{Independent verification and local falsifiers}
 
-A separate implementation independently reproduced the P3.C5 confirmatory
-mapping result and its case-level decisions under the programme verification
-stack. The verification is bounded to the public-reference mapping claim; it
-does not promote the raw-text or downstream follow-up claims.
+A separate implementation independently reproduced the confirmatory mapping
+result and its case-level decisions. The verification is bounded to the
+public-reference mapping claim; it does not promote the raw-text or downstream
+questions.
 
 Synthetic exact-world tests separately exercise referent and construct
-identity, measurement equivalence, context, \glue{}, \obstruction{},
-\pluralview{}, preservation conditions, and typed mapping hypotheses. These
-remain engineering/semantic falsifiers rather than external empirical evidence.
+identity, measurement equivalence, context, gluing, obstruction, plural views,
+preservation conditions, and typed mapping hypotheses. These remain
+engineering and semantic falsifiers rather than external empirical evidence.
 
-\subsection{Explicit follow-up nonclaims}
+\subsection{What this result does not establish}
 
-The scoped result does not establish:
+The reported result does not establish:
 
 \begin{itemize}
-  \item \textbf{Raw-text end-to-end superiority (P3.C7):} no prospectively
-        bound raw-text extractor/model comparison against strong RAG/schema
-        systems supports this paper's headline;
-  \item \textbf{Generated-portrait recoverability or downstream utility
-        (P3.C8):} no frozen reader/downstream task result is promoted here;
-  \item \textbf{Universal coordinate necessity (P3.C6):} targeted cases for
-        referent, construct, measurement, temporal context and additional
-        obstruction families belong to follow-up issue \#280;
-  \item \textbf{Executed expert eight-family gold:} the repository's broader
-        seed templates and annotation protocol remain prospective rather than
-        being relabelled as the public-reference dataset.
+  \item \textbf{Raw-text end-to-end superiority:} no prospectively bound
+        raw-text extractor or model comparison against strong
+        retrieval-augmented or schema systems supports this paper's headline;
+  \item \textbf{Generated-portrait recoverability or downstream utility:} no
+        frozen reader-level or downstream task result is promoted here;
+  \item \textbf{Universal coordinate necessity:} targeted cases for referent,
+        construct, measurement, temporal context and additional obstruction
+        families do not exist in these datasets;
+  \item \textbf{An executed expert eight-family gold:} the broader seed
+        templates and annotation protocol remain prospective rather than being
+        relabelled as the public-reference dataset.
 \end{itemize}
 
-Those nonclaims remain visible so the replicated mapping result cannot be read
-as authority for the broader research programme. Any future positive must be
-added through a new prospectively frozen artifact rather than by widening the
-current claim in prose.
+Each of those outcomes therefore remains undetermined, and stays visible as
+undetermined so that the replicated mapping result cannot be read as authority
+for the wider design. Any future positive has to arrive as a new prospectively
+frozen artifact rather than as a widening of the current claim in prose.
 
 \endinput

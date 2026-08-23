@@ -1,0 +1,45 @@
+{
+  "diagnosis_vocabulary": [
+    "R1_CERTIFICATE_SILENCE_SHARPNESS_OPEN",
+    "R2_SUPPORT3_LIKELY_NEAR_CENTRAL_FACE",
+    "R3_OBJECTIVE_PARAMETERIZATION_OR_REFEREE_DEFECT",
+    "R4_CANNOT_CHECK"
+  ],
+  "excluded_outcome_prefixes": [
+    "QG19",
+    "qg19"
+  ],
+  "frontier_question_id": "QG-19",
+  "instance_id": "Q3-R1",
+  "move_vocabulary": [
+    "M1_TARGETED_EXACT_OUTSIDE_CONE_PANEL",
+    "M2_ATTEMPT_STRONGER_BEYOND_CONE_PROOF",
+    "M3_ENLARGE_FAMILY_BEFORE_WITNESS",
+    "M4_REAUDIT_WEIGHTED_REFEREE",
+    "M5_STOP_CANNOT_CHECK"
+  ],
+  "objective": {
+    "rho": 0,
+    "t_c": 3,
+    "t_nc": 4,
+    "t_r": 2,
+    "t_tag": 2
+  },
+  "panel": {
+    "hostile_n1_n2": "all committed R6M hostile panels",
+    "random_per_n": {
+      "2": 24,
+      "3": 24
+    },
+    "random_seed": 20260822
+  },
+  "permitted_sources": [
+    "development/orion-qg-regime-geometry/QG8_OBJECTIVE_SUPPORT_PHASE_PROTOCOL_V1.md",
+    "research/extensions/orion-qg/QG8_OBJECTIVE_SUPPORT_PHASE_RESULTS.json",
+    "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+    "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+  ],
+  "question": "At O19=(t_nc=4,t_c=3,t_tag=2,t_r=2,rho=0), just outside the central QG8 support-two sufficient-cone face, what is the responsible diagnosis before exact truth is opened, and what next scientific move should be taken?",
+  "schema": "ORIONQ.Q3SharedQuestionPacket.v2",
+  "scientific_base": "c5ba39fef4f25c46de5fb69bf07f50530f4693ca"
+}

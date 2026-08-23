@@ -860,23 +860,58 @@ def test_ledger_refuses_two_blockers_for_one_gate() -> None:
 
 
 def test_committed_ledger_classifies_every_blocked_terminal() -> None:
+    """Every blocked terminal says why, and the blocked count is pinned.
+
+    The count was 49 of 51 until the three formal-generalization papers were
+    adjudicated on their own terms. P6-U-T1, P6-U-T2, P7-U-T1, P7-U-T2, P8-U-T1
+    and P8-U-T2 are discharged by mechanized theorems, which is what those gates
+    admit; the blockers written against them had been asking for evaluator
+    custody, and custody is a precondition of an empirical campaign, not of a
+    proof. Two of them cost more than the rest. P7-U-T2 was blocked a second
+    time after the derivation existed, because the finite result it derived
+    turned out to evaluate its composition rule at two of eight argument
+    triples, and it moved only once the donor families were interpreted as
+    transformations with their own hand-off contracts. P8-U-T2 moved only when
+    the 169 heterogeneous chain compositions -- an object separate from the
+    3,072-state model, and the one its blocker named -- were derived from the
+    chain theorem instantiated at the donor level; instrumenting them showed the
+    shipped chain loop ignoring both of its donor variables, so the 169 is one
+    composition counted thirteen times thirteen. The number is pinned rather
+    than computed so that a terminal moving in either direction has to be
+    noticed here.
+    """
+
     ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
     for paper in ledger.papers:
         assert paper.unclassified_blocked_gate_ids() == (), paper.paper_id
     total = sum(len(paper.work_queue()) for paper in ledger.papers)
-    assert total == 49, "49 of the 51 registered terminals are blocked"
+    assert total == 43, "43 of the 51 registered terminals are blocked"
 
 
 def test_committed_ledger_pins_the_p1_diagnosis() -> None:
-    """P1's terminal is blocked on attribution, not on evidence or implementation.
+    """P1's terminal is blocked on a role leak into the candidate payload.
 
-    This pin has already earned itself once. It was written asserting
-    ``IMPLEMENTATION_OR_ENVIRONMENT`` — the digest defect that rejected 100% of
-    R6's native rows — and failed when cross-agent verification showed that defect
-    solved and the real blocker one layer up: ``ORION_NATIVE_BASE`` returns
-    UNRESOLVED on 48/48 episodes, so the ablation arm cannot attribute the gain to
-    the ARD mechanism. Reclassifying P1's headline blocker should always cost
-    someone a deliberate edit here.
+    This pin has now earned itself twice, and the history is the point. It was
+    first written asserting ``IMPLEMENTATION_OR_ENVIRONMENT`` — the digest defect
+    that rejected 100% of R6's native rows — and failed when cross-agent
+    verification showed that defect solved and the real blocker one layer up:
+    ``ORION_NATIVE_BASE`` returned UNRESOLVED on 48/48 episodes, so the ablation
+    arm could not attribute the gain. It was then ``MEASUREMENT_OR_EVALUATOR`` /
+    ``BLOCKED_ON_UPSTREAM`` and failed again when that cause was repaired,
+    DIAGNOSE became reachable on 48/48, and repairing the three guards P1-U-T3
+    named moved the terminal to NOT_SUPPORTED — because ``problem_id`` is built as
+    ``p1-r6-root:{episode_id}`` and episode ids end in ``-A``/``-C``/``-U``, so the
+    pair role reaches the candidate-visible payload on 96 of 96 episode-arms.
+
+    It has since earned itself a third time. The role leak was closed under its
+    own freeze, the primary survived it with every scored statistic bit-identical,
+    and the blocker moved back to ``MEASUREMENT_OR_EVALUATOR`` — because what now
+    holds the terminal is not an implementation defect at all but evaluator
+    custody: the evaluator is authored in the same lane as the candidate, and
+    ``PROTECTED_SUPERIORITY`` admits only ``PROSPECTIVE_PROTECTED`` evidence.
+
+    Each reclassification cost a deliberate edit here, which is what this pin is
+    for. Reclassifying P1's headline blocker should never be free.
     """
 
     ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
@@ -885,8 +920,10 @@ def test_committed_ledger_pins_the_p1_diagnosis() -> None:
 
     t1 = p1.blockers_by_gate["P1-U-T1"]
     assert t1.responsibility is ResponsibilityClass.MEASUREMENT_OR_EVALUATOR
-    assert t1.actionability is Actionability.BLOCKED_ON_UPSTREAM
-    assert any("claude_r6_verification" in ref for ref in t1.refs)
+    assert t1.actionability is Actionability.BLOCKED_ON_CAMPAIGN
+    # The leak is closed; what remains is custody and the semantic host.
+    assert "custody" in t1.statement
+    assert "bit-identical" in t1.statement
 
     # The replication gate is the one still held by an implementation literal:
     # the evaluator hard-wires source_year == 2020.
@@ -902,12 +939,12 @@ def test_report_emits_a_cross_paper_work_queue() -> None:
     ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
     report = build_report(ledger)
     queue = report["work_queue"]
-    assert len(queue) == 49
+    assert len(queue) == 43
     ranks = [Actionability(item["actionability"]).queue_rank for item in queue]
     assert ranks == sorted(ranks), "the queue must be ordered by actionability"
     assert all({"paper_id", "gate_id", "responsibility", "unblock"} <= set(item) for item in queue)
-    assert sum(report["work_queue_by_actionability"].values()) == 49
-    assert sum(report["work_queue_by_responsibility"].values()) == 49
+    assert sum(report["work_queue_by_actionability"].values()) == 43
+    assert sum(report["work_queue_by_responsibility"].values()) == 43
 
 
 def test_ledger_document_counts_match_the_report() -> None:

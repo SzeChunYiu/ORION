@@ -1,7 +1,19 @@
 {
   "schema": "P6.X2.CertificateLiftingResult.v1",
-  "donor_families": ["POE", "PCE", "PCAA", "WORKFLOW_SIGNATURE", "CERTIFIED_PURITY"],
-  "science_coordinates": ["claim_content_binding", "measurement_semantics", "evidence_semantics", "inferential_obligation", "scientific_epoch"],
+  "donor_families": [
+    "POE",
+    "PCE",
+    "PCAA",
+    "WORKFLOW_SIGNATURE",
+    "CERTIFIED_PURITY"
+  ],
+  "science_coordinates": [
+    "claim_content_binding",
+    "measurement_semantics",
+    "evidence_semantics",
+    "inferential_obligation",
+    "scientific_epoch"
+  ],
   "state_evaluations": 320,
   "donor_conservativity_violations": 0,
   "single_coordinate_separation_witnesses": 25,
@@ -11,5 +23,26 @@
   "ideal_product_mismatches": 0,
   "canonical_rows_sha256": "e1e3c48bcefea3750d952c6b0ff37ac660a2e21f9823fdfdeb50bb62e819ff93",
   "interpretation": "Strong donor-native certificates are absorbed as valid lower-level objects. Their validity is conservatively preserved, but it does not by itself lift to preserved scientific standing when a load-bearing scientific continuity coordinate changes. Exact revalidation of every affected coordinate restores the lift; an information-equivalent enriched donor product ties exactly.",
-  "claim_ceiling": "BOUNDED_FORMAL_CERTIFICATE_LIFTING; no deployed-agent or inherent-expressivity claim"
+  "claim_ceiling": "BOUNDED_FORMAL_CERTIFICATE_LIFTING; no deployed-agent or inherent-expressivity claim",
+  "assertion_coverage_status": "COMPLETE",
+  "assertion_covered_states": 64,
+  "assertion_covered_states_native_invalid": 32,
+  "assertion_state_space": 64,
+  "assertion_uncovered_states": 0,
+  "cannot_check_reasons": [],
+  "donor_conservativity_status": "CHECKED",
+  "ideal_product_status": "CHECKED",
+  "terminal": "PASS",
+  "donor_axis": {
+    "distinct_full_revalidation_successes": 31,
+    "distinct_partial_revalidation_failures": 211,
+    "distinct_product_countermodels": 31,
+    "distinct_separation_witnesses": 5,
+    "distinct_state_evaluations": 64,
+    "multiplier": 5,
+    "read_by_liftable": false,
+    "values": 5
+  },
+  "donor_conservativity_distinct_states": 2,
+  "donor_conservativity_states": 10
 }

@@ -1,10 +1,43 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-MANUSCRIPT = HERE / "manuscript" / "main.tex"
-BIB = HERE / "manuscript" / "references.bib"
+MANUSCRIPT_DIR = HERE / "manuscript"
+MANUSCRIPT = MANUSCRIPT_DIR / "main.tex"
+BIB = MANUSCRIPT_DIR / "references.bib"
+
+#: ``main.tex`` carries the preamble and a list of ``\input`` lines; the prose
+#: lives in ``manuscript/sections/NN-name.tex`` and the evidence tables in the
+#: generated artifacts. Auditing ``main.tex`` alone would therefore audit the
+#: preamble and find none of the claims, citations or forbidden phrases it is
+#: supposed to police -- and report PASS for having read nothing. The audit
+#: assembles the same document LaTeX does before checking it.
+_INPUT = re.compile(r"\\input\{([^}]+)\}")
+
+
+def assemble(entry: Path, _seen: frozenset[Path] = frozenset()) -> str:
+    r"""``entry`` with every ``\input`` file it pulls in, resolved recursively.
+
+    A cycle or a missing file yields the unresolved ``\input`` line rather than
+    an exception: the audit's job is to fail on manuscript content, and the
+    LaTeX build is what fails on a broken include.
+    """
+
+    text = entry.read_text(encoding="utf-8")
+    seen = _seen | {entry.resolve()}
+
+    def expand(match: re.Match[str]) -> str:
+        target = MANUSCRIPT_DIR / match.group(1)
+        if target.suffix != ".tex":
+            target = target.with_suffix(".tex")
+        if not target.is_file() or target.resolve() in seen:
+            return match.group(0)
+        return match.group(0) + "\n" + assemble(target, seen)
+
+    return _INPUT.sub(expand, text)
+
 
 REQUIRED_CITATION_KEYS = {
     "ying2021graphormer",
@@ -60,7 +93,7 @@ def _fail(message: str) -> None:
 def main() -> None:
     if not MANUSCRIPT.is_file() or not BIB.is_file():
         _fail("missing final manuscript or bibliography")
-    text = MANUSCRIPT.read_text(encoding="utf-8")
+    text = assemble(MANUSCRIPT)
     lower = text.lower()
     bib = BIB.read_text(encoding="utf-8")
 

@@ -1,0 +1,58 @@
+name: p15-provenance-interop-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-15-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_PROTOCOL_V1.md'
+      - 'papers/paper-15-orion-research-harness/top_tier/p15_real_workflow_receipts_v1.json'
+      - 'papers/paper-15-orion-research-harness/top_tier/run_provenance_interop_v1.py'
+      - 'papers/paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py'
+      - '.github/workflows/p15-provenance-interop-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  interop-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install current W3C PROV implementation
+        run: python -m pip install 'prov==3.1.0'
+      - name: Execute PROV and RO-Crate interoperability study
+        run: python papers/paper-15-orion-research-harness/top_tier/run_provenance_interop_v1.py | tee p15_provenance_interop_v1.json
+      - name: Verify deterministic primary replay
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/run_provenance_interop_v1.py > p15_provenance_interop_v1_rerun.json
+          cmp p15_provenance_interop_v1.json p15_provenance_interop_v1_rerun.json
+          echo P15_PROVENANCE_INTEROP_V1_BYTE_REPLAY_GREEN
+      - name: Execute independent interoperability verifier
+        run: python papers/paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py | tee p15_provenance_interop_independent_v1.json
+      - name: Verify independent replay and agreement
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py > p15_provenance_interop_independent_v1_rerun.json
+          cmp p15_provenance_interop_independent_v1.json p15_provenance_interop_independent_v1_rerun.json
+          python - <<'PY'
+          import json
+          p=json.load(open('p15_provenance_interop_v1.json'))
+          q=json.load(open('p15_provenance_interop_independent_v1.json'))
+          assert p['terminal']=='P15_PROVENANCE_INTEROP_V1_SUPPORTED', p
+          assert q['terminal']=='P15_PROVENANCE_INTEROP_SECOND_INDEPENDENT_CHECKER_GREEN', q
+          assert p['case_count']==q['case_count']==22
+          assert p['prov_roundtrip_rate']==q['prov_roundtrip_rate']==1.0
+          assert p['rocrate_roundtrip_rate']==q['rocrate_roundtrip_rate']==1.0
+          assert p['scientific_field_leakage_count']==q['scientific_field_leakage_count']==0
+          assert p['native_import_disagreement_count']==q['disagreement_count']==0
+          assert p['provenance_only_false_scientific_success_count']==q['false_scientific_success_count']==0
+          print('P15_PROVENANCE_INTEROP_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p15-provenance-interop-v1
+          path: |
+            p15_provenance_interop_v1.json
+            p15_provenance_interop_independent_v1.json

@@ -1,0 +1,40 @@
+name: orion-frontier-recursive-registry-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-frontier-v2/**'
+      - '.github/workflows/orion-frontier-recursive-registry-v1.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install ORION
+        run: python -m pip install -e '.[dev,candidates]'
+      - name: Validate recursive atom registry and derive queue
+        run: |
+          python research/extensions/orion-frontier-v2/validate_frontier_atom_registry_v1.py --write-queue | tee /tmp/frontier-registry-summary.json
+          test -s research/extensions/orion-frontier-v2/FRONTIER_ATOM_QUEUE_V1.json
+          grep -F 'FRONTIER_RECURSIVE_ATOM_REGISTRY_VALID' /tmp/frontier-registry-summary.json
+      - name: Re-run controlled positive frontier foundations
+        run: |
+          python research/extensions/orion-frontier-v2/run_p11_query_compiler_confirmatory_v1.py
+          python research/extensions/orion-frontier-v2/run_p11b_no_answer_laundering_v1.py
+          python research/extensions/orion-frontier-v2/run_p15_state_optionality_phase_v1.py
+      - name: Upload queue and controlled results
+        uses: actions/upload-artifact@v4
+        with:
+          name: recursive-frontier-registry-${{ github.sha }}
+          path: |
+            research/extensions/orion-frontier-v2/FRONTIER_ATOM_QUEUE_V1.json
+            research/extensions/orion-frontier-v2/results/P11_QUERY_COMPILER_CONFIRMATORY_V1.json
+            research/extensions/orion-frontier-v2/results/P11B_NO_ANSWER_LAUNDERING_V1.json
+            research/extensions/orion-frontier-v2/results/P15_STATE_OPTIONALITY_PHASE_V1.json

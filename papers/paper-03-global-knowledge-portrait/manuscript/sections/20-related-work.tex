@@ -1,179 +1,140 @@
-% Related work: absorb prior mechanism families while retaining a bounded residual.
-ORION Paper III's contribution is deliberately narrow. Rather than claiming
-novelty in extraction, schema matching, data integration, contradiction/stance
-analysis, or literature-based discovery, we treat those capabilities as prior
-work and ask a smaller question: whether coordinate-wise scientific meaning
-can govern when already-structured source projections may be merged and when a
-provenance-bound obstruction should remain visible.
+% Related work: position the mapping decision among the literatures it consumes.
+The question asked here sits downstream of most of the machinery that
+cross-domain scientific integration usually needs. Extraction, schema
+matching, entity resolution, fusion, contradiction and stance analysis, and
+literature-based discovery are all treated as available capability. What
+remains is smaller and, we argue, unresolved by any of them: given two
+already-structured source projections, which coordinate differences license a
+merge, and which oblige the system to keep a provenance-bound obstruction
+visible instead.
 
 \subsection{Structured scientific knowledge bases and extraction}
 
 MUSE~\cite{muse2026} constructs a full-text, multi-domain resource of
-source-grounded problem--solution--rationale structures. This absorbs
-source-grounded cross-domain scientific structure extraction as prior work.
-Its representational target is problem, solution, rationale, and their links;
-our scoped object instead tests whether referent, construct, measurement,
-context, modality, and attribution distinctions can govern a downstream
-mapping decision and produce an obstruction when compatibility is not earned.
-The Discovery Engine~\cite{discoveryEngine2025} likewise distils literature
-into structured knowledge artifacts and an integrated computational landscape.
-Both are important neighboring knowledge-assembly systems, not mechanisms that
-ORION may relabel as its own.
-
-SciER~\cite{scier2024} provides scientific entity and relation annotations for
-datasets, methods, and tasks in full-text scientific documents. Scientific
-information extraction, discourse processing, and entity/relation recovery are
-therefore outside the scoped novelty claim. The residual question is downstream
-of extraction: given structured projections, which coordinate differences
-license a merge and which require preservation as an obstruction.
+source-grounded problem--solution--rationale structures, and the Discovery
+Engine~\cite{discoveryEngine2025} distils literature into structured knowledge
+artifacts and an integrated computational landscape. Both target the
+representation itself: what a source contains, recovered at scale. The
+decision studied here begins after that representation exists, and asks
+whether referent, construct, measurement, context, modality and attribution
+distinctions can govern a downstream mapping outcome and produce an
+obstruction when compatibility has not been earned. SciER~\cite{scier2024}
+supplies scientific entity and relation annotations for datasets, methods and
+tasks in full text, which makes information extraction, discourse processing
+and entity/relation recovery an input to this work rather than part of it.
 
 \subsection{Schema-centric approaches}
 
 SciSchema.org~\cite{scischema2026} provides multidisciplinary,
 expert-reviewed scientific-process schemas with parameters, measurements,
-procedures, and provenance. This is strong prior art for reusable scientific
-schema design. ORION does not claim expert schema construction; its scoped
-mapping result instead treats each source projection as locally addressable and
-asks whether a proposed cross-source mapping preserves the coordinates required
-for the claim at hand.
-
-SCOPE and SCION~\cite{scopes2026} introduce an auditable benchmark and
-reference pipeline for evidence-linked schema induction and optional fusion
-from text. Schema induction, evidence-linked candidate construction, and
-conservative fusion are therefore absorbed. The P3 discriminator is different:
-it evaluates a coordinate-wise \textsc{glue}-or-obstruction rule over
-already-structured scientific projections, including cases in which refusing a
-merge is the correct outcome.
-
-Executable Schema Contracts~\cite{schemaContracts2026} automatically discover
-an executable schema from heterogeneous sources and use it to drive
-provenance-aware construction and multi-source retrieval. This absorbs
-schema-conditioned integration, provenance-aware construction, and retrieval.
-ORION's bounded residual is not shared-schema discovery; it is explicit
-retention of the conditions and non-preserved scientific coordinates that can
-make a proposed mapping inadmissible.
+procedures and provenance, and is strong prior art for reusable scientific
+schema design. SCOPE and SCION~\cite{scopes2026} introduce an auditable
+benchmark and reference pipeline for evidence-linked schema induction and
+optional fusion from text, including conservative fusion behaviour. Executable
+Schema Contracts~\cite{schemaContracts2026} discover an executable schema from
+heterogeneous sources and use it to drive provenance-aware construction and
+multi-source retrieval. Each of these produces a shared structure that a
+downstream consumer can rely on; none of them is asked whether a particular
+proposed mapping preserves the coordinates a specific scientific claim depends
+on. That is the discriminator evaluated here, over already-structured
+projections and including cases in which refusing a merge is the correct
+outcome.
 
 \subsection{Alignment, integration, and resolution}
 
-Ontology matching~\cite{euzenat2007ontology} explicitly studies
-correspondences such as equivalence, subsumption, and disjointness between
-ontology entities. LLM-based systems such as LLMATCH~\cite{llmatch2025} add
-modern schema-preparation, candidate-selection, and column-alignment machinery.
-These mechanisms are prior art. P3's scoped distinction is to bind a mapping
-decision to several scientific coordinates simultaneously and retain exact
-source/provenance and non-preserved-coordinate information for the resulting
-\textsc{glue} or obstruction decision.
-
-Modern knowledge-graph construction surveys~\cite{hofer2024kgconstruction}
-cover heterogeneous-source integration, ontology/schema matching, entity
-resolution, fusion, provenance, and quality assurance, while reviews of
+Ontology matching~\cite{euzenat2007ontology} studies correspondences such as
+equivalence, subsumption and disjointness between ontology entities, and
+language-model systems such as LLMATCH~\cite{llmatch2025} add modern
+schema-preparation, candidate-selection and column-alignment machinery.
+Surveys of knowledge-graph construction~\cite{hofer2024kgconstruction} cover
+heterogeneous-source integration, ontology and schema matching, entity
+resolution, fusion, provenance and quality assurance, while reviews of
 scholarly knowledge graphs~\cite{verma2023scholarlykg} cover extraction,
-construction, refinement, and use of semantic scholarly infrastructures.
-Those families are not P3 novelty. Entity resolution and fusion are especially
-useful pressure cases because a record-level match may be appropriate even
-when a scientific claim-level merge remains unsafe due to construct,
-measurement, context, or modality differences.
+construction, refinement and use of semantic scholarly infrastructures. The
+distinction pursued here is that a mapping decision is bound to several
+scientific coordinates at once, and that the exact source, provenance and
+non-preserved-coordinate information is retained with the resulting decision.
+Entity resolution and fusion are especially useful pressure cases, because a
+record-level match may be appropriate at exactly the moment a claim-level
+merge remains unsafe on construct, measurement, context or modality grounds.
 
 \subsection{Claim comparison and stance}
 
-Stance detection assigns target-relative labels such as support/opposition or
-other task-specific stance categories; surveys document its use in
-fact-checking and misinformation settings~\cite{hardalov2022stance}. P3 does
-not claim stance detection. Its scoped claim is that apparent scientific
-disagreement may arise from different context, modality, measurement, or
-attribution coordinates, and that a mapping system should preserve those
-reasons rather than convert every difference into one generic opposition or
-contradiction label.
+Stance detection assigns target-relative labels such as support or opposition;
+surveys document its use in fact-checking and misinformation
+settings~\cite{hardalov2022stance}. Apparent scientific disagreement, however,
+frequently arises from different context, modality, measurement or attribution
+coordinates rather than from a genuine opposition, and a mapping record that
+collapses every difference into one generic contradiction label discards the
+reason. Preserving that reason, rather than detecting stance, is what is
+evaluated here.
 
-\subsection{Scientific-variable semantics}
+\subsection{Scientific-variable semantics and interoperability}
 
 The I-ADOPT interoperability framework~\cite{iadopt2021} provides a
 community-developed semantic decomposition for machine-readable observable and
-scientific-variable descriptions. A current Semantic Web Journal benchmark
-builds an expert-annotated corpus of more than one hundred scientific variables
-and reports that large language models still struggle to construct those
-structured representations accurately~\cite{iadoptbench2026}. Scientific-
-variable semantics and variable-to-knowledge-graph construction are therefore
-explicit donor territory. P3 neither invents those components nor evaluates
-raw variable extraction; it consumes already-structured source-local
-projections and tests the downstream merge-versus-obstruction decision.
+scientific-variable descriptions, and a recent benchmark builds an
+expert-annotated corpus of more than one hundred scientific variables and
+reports that large language models still struggle to construct those
+structured representations accurately~\cite{iadoptbench2026}. FAIR~2.0
+separates terminological, ontological, referential, schema and logical
+interoperability, and argues that semantic interoperability requires explicit
+mappings rather than one privileged ontology~\cite{fair2_2024}. Recent
+provenance work goes further: DEC reads provenance-bearing statements as
+epistemic stance and preserves source-relative disagreement instead of
+collapsing every attributed assertion into a single factual
+core~\cite{dec2026}. Structured variable semantics, generic semantic
+interoperability and provenance-aware pluralism are therefore supplied by this
+literature. The residual question is claim-relative and downstream of all of
+it: once a strong semantic integration stack has produced structured candidate
+mappings, what further conditions license an assertion of \emph{scientific
+identity}? The decision contract studied here consumes ontology and schema
+alignment, provenance, plural-view machinery and consistency checks as inputs,
+and returns a glue, obstruction, plural-view or unresolved outcome from
+load-bearing construct, measurement, context, provenance-stance and
+global-composition conditions.
 
 \subsection{Measurement equivalence and construct validity}
 
-Measurement-equivalence and replication literatures have long established
-that nominally identical outcome measures need not be comparable across
-settings and that equivalence can require explicit testing
-\cite{jilke2017measurement}. ORION does not claim this principle. It makes
-measurement/operationalization one explicit coordinate in the scientific
-mapping record and allows an unresolved measurement relation to block a global
-merge.
+Measurement-equivalence and replication literatures established long ago that
+nominally identical outcome measures need not be comparable across settings,
+and that equivalence can require explicit testing~\cite{jilke2017measurement}.
+The mechanism here makes measurement and operationalization one explicit
+coordinate of the mapping record and allows an unresolved measurement relation
+to block a global merge on its own.
 
-\subsection{Literature-based discovery}
+\subsection{Literature-based discovery and pluralism}
 
-Swanson's literature-based discovery lineage~\cite{swanson1986,swanson1997interactive}
-shows how complementary literatures can expose implicit connections without
-direct citation links. Discovery of cross-literature bridges is therefore
-prior art. P3 adds only a bounded mapping requirement: the bridge concept must
-retain compatible scientific meaning across the two source-local projections;
-otherwise the bridge remains an obstruction rather than being promoted as a
-scientific integration.
+Swanson's literature-based discovery
+lineage~\cite{swanson1986,swanson1997interactive} shows how complementary
+literatures can expose implicit connections without direct citation links. The
+bounded requirement added here is on the bridge concept itself: it must retain
+compatible scientific meaning across the two source-local projections, or the
+bridge stays an obstruction rather than being promoted to a scientific
+integration. Scientific pluralism has similarly argued that multiple
+representations may remain legitimate without collapsing into one complete
+account~\cite{kellert2006,cartwright1999}; the computational question is
+whether an integration record can carry a plural or obstructed outcome, with
+exact source lineage, instead of forcing a canonical merged statement.
 
-\subsection{Scientific pluralism}
+\subsection{Scientific retrieval and cross-domain synthesis}
 
-Scientific pluralism has long argued that multiple representations may remain
-legitimate without collapsing into one complete account
-\cite{kellert2006,cartwright1999}. ORION does not claim pluralism as a new
-philosophical result. The computational question is whether an integration
-record can preserve a plural or obstructed outcome, with exact source lineage,
-instead of forcing a canonical merged statement.
+OpenScholar~\cite{openScholar2024} performs retrieval-augmented synthesis
+over the scientific literature at scale, and BioSage~\cite{biosage2025} combines
+retrieval, specialized agents, cross-disciplinary translation and reasoning
+for scientific tasks. Retrieval, synthesis, agent orchestration and
+cross-domain translation are baseline capability for the problem, as are
+language-model-assisted schema matching and induction. The experiment reported
+here deliberately holds all of that fixed and varies only the decision rule
+applied after scientific projections are already structured, so that the
+construct-validity question can be asked without a retrieval confound.
 
-\subsection{Scientific RAG and cross-domain synthesis}
-
-OpenScholar~\cite{openScholar2024} provides retrieval-augmented scientific
-literature synthesis at scale, while BioSage~\cite{biosage2025} combines
-retrieval, specialized agents, cross-disciplinary translation, and reasoning
-for scientific tasks. Retrieval, synthesis, agent orchestration, and
-cross-domain translation are therefore baseline capabilities, not P3 novelty.
-Likewise, LLM-assisted schema matching and induction are represented by
-LLMATCH and SCOPE/SCION~\cite{llmatch2025,scopes2026}. These systems address
-important acquisition and synthesis problems; the scoped P3 experiment asks a
-separate construct-validity question about the decision rule used after
-scientific projections are already structured.
-
-\subsection{Summary of the absorbed boundary and residual}
-
-\begin{table}[t]
-\centering
-\small
-\begin{tabular}{p{0.32\textwidth}p{0.28\textwidth}p{0.28\textwidth}}
-\toprule
-\textbf{Mechanism family} & \textbf{Absorbed prior work} & \textbf{Scoped P3 residual} \\
-\midrule
-Source-grounded structured KB & MUSE, Discovery Engine & Coordinate-governed mapping of source-local projections \\
-Expert scientific schemas & SciSchema.org & Mapping may remain obstructed rather than globally canonical \\
-Scientific-variable semantics & I-ADOPT & Downstream merge/obstruction after structured projection \\
-Schema induction/fusion & SCOPE/SCION & Conditional \textsc{glue} with explicit obstruction \\
-Provenance-aware integration & Executable Schema Contracts & Preserve non-preserved scientific coordinates \\
-Scientific IE & SciER & Mapping semantics downstream of extraction \\
-Ontology/schema alignment & Ontology Matching, LLMATCH & Scientific-coordinate conditions on mapping \\
-Measurement equivalence & Measurement-invariance literature & Measurement as an explicit blocking coordinate \\
-KG integration / entity fusion & KG-construction literature & Claim-level non-merge remains possible \\
-Stance / claim comparison & Stance-detection literature & Typed reason for apparent disagreement \\
-Literature-based discovery & Swanson lineage & Meaning-stability requirement on bridges \\
-Scientific pluralism & Philosophy of science & Provenance-bound plural/obstructed output \\
-Scientific RAG / cross-domain synthesis & OpenScholar, BioSage & Evaluate mapping rule independently of retrieval/synthesis \\
-\bottomrule
-\end{tabular}
-\caption{The absorbed boundary for the scoped paper. The middle column is prior
-work; the last column states the narrower object tested by P3.C5.}
-\label{tab:absorbed}
-\end{table}
-
-The current empirical claim is not that this combination solves raw-text
-scientific integration end to end. It is the narrower P3.C5 result: on a
-disjoint, prospectively frozen public-reference holdout of already-structured
-scientific projections, the typed mapping calculus reduced false merges versus
-flat predicate canonicalization while satisfying the predeclared false-split
-guard. Raw-text extraction, full expert-atlas construct validity,
-recoverability, and downstream utility remain separate follow-up claims.
+The empirical claim is correspondingly narrow. It is not that this combination
+solves raw-text scientific integration end to end; it is that on a disjoint,
+prospectively frozen public-reference holdout of already-structured scientific
+projections, the typed mapping calculus reduced false merges against flat
+predicate canonicalization while satisfying the false-split guard declared in
+advance. Raw-text extraction, full expert construct validity, recoverability
+and downstream utility are separate questions with separate evidence
+requirements.
 \endinput

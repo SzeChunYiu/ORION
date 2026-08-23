@@ -1,0 +1,31 @@
+name: p15-sei-fault-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-15-orion-research-harness/top_tier/**'
+      - '.github/workflows/p15-sei-fault-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sei-fault-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute frozen SEI fault benchmark
+        run: python papers/paper-15-orion-research-harness/top_tier/check_sei_fault_v1.py | tee p15_sei_fault_v1.json
+      - name: Verify deterministic replay
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/check_sei_fault_v1.py > p15_sei_fault_v1_rerun.json
+          cmp p15_sei_fault_v1.json p15_sei_fault_v1_rerun.json
+          echo P15_SEI_FAULT_V1_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p15-sei-fault-v1
+          path: p15_sei_fault_v1.json

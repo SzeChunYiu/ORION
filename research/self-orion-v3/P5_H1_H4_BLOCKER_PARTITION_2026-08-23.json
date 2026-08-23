@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p5.h1-h4-blocker-partition.v1",
+  "record": "P5_H1_H4_BLOCKER_PARTITION",
+  "date": "2026-08-23",
+  "authority_scope": "PARTITION_OF_BLOCKERS_ONLY",
+  "grants": "Nothing. This says what kind of thing each blocker is. Status remains CANNOT_CHECK and execution remains unauthorized.",
+  "question": "The programme ledger files P5.H1_H4.EXTERNAL_IDENTITIES as an EXTERNAL_EVIDENCE_BLOCKER on the ground that nine identity and custody bindings are missing. The item's own next_executable_step is a local preflight, so the partition can be measured rather than asserted.",
+  "measured_by": "PYTHONPATH=src python research/self-orion-v3/run_confirmatory_preflight_v1.py",
+  "before": {
+    "baselines": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json",
+    "blocker_count": 9,
+    "status": "CANNOT_CHECK"
+  },
+  "after": {
+    "baselines": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V2.json",
+    "blocker_count": 8,
+    "status": "CANNOT_CHECK",
+    "note": "Status is unchanged and must be: eight bindings remain. Only the count moved."
+  },
+  "partition": {
+    "authorable_by_the_candidate": {
+      "count": 8,
+      "requirement_class": "B -- artifacts the researcher builds, whose only external need is a third-party timestamp proving they were fixed before outcomes",
+      "blockers": [
+        "subject_revision_unbound_or_invalid",
+        "protected_suite_commitment_unbound_or_invalid",
+        "candidate_packet_sha256_unbound_or_invalid",
+        "final_split_sha256_unbound_or_invalid",
+        "evaluator_sha256_unbound_or_invalid",
+        "evaluation_epoch_unbound",
+        "baseline_config_sha256_unbound_or_invalid",
+        "fresh_transfer_evaluator_sha256_unbound_or_invalid"
+      ],
+      "evidence": "Each of these fields carries the literal string UNBOUND in SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json. They are digests of artifacts, an epoch, and a revision identifier -- values that are computed and written, not obtained from anyone."
+    },
+    "discharged_by_this_pass": {
+      "count": 1,
+      "requirement_class": "A -- an artifact not authored by the candidate, freely retrievable",
+      "blocker": "baseline_binding_not_confirmatory:m_open_only:CANNOT_CHECK",
+      "was_blocked_on": "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19",
+      "how": "arXiv:2608.09696v3 primary full text read and structurally interpreted; see MDA_SOURCE_GROUNDING_RECEIPT_2026-08-23.json. Disposition moves CANNOT_CHECK -> MECHANISM_COMPARATOR_BOUND with a nonempty binding identity, which is the transition the V1 confirmatory_rule anticipates.",
+      "not_claimed": "No official reproduction and no donor-equivalence claim. The sibling records carry the same bounded disposition."
+    },
+    "requiring_someone_other_than_the_candidate": {
+      "count": 0,
+      "evidence": "The assessor enforces owner independence at revision_level_v3_preflight, which raises candidate_controls_protected_evaluator when the candidate policy owner equals the protected evaluator owner. That blocker is absent from both runs: the protocol already binds result_verifier_owner, candidate_policy_owner and protected_evaluator_owner to three distinct identities, so the independence constraint passes today."
+    }
+  },
+  "finding": "Zero of the nine blockers require an outside party. Eight are values the researcher writes; the ninth needed a freely retrievable paper to be read. The identity-independence check -- the one place the preflight does demand separation -- already passes and was never among the blockers.",
+  "consequence": "P5.H1_H4.EXTERNAL_IDENTITIES is misfiled as an external evidence blocker. It is locally unexecuted work. That does not make the hypotheses supported, and nothing here reads a protected outcome.",
+  "still_true": "outcome_accessed remains false, authorizes_execution remains false, grants_scientific_authority remains false."
+}

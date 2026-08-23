@@ -1,7 +1,7 @@
 # Paper 05 — Self-ORION
 
 **Stable ID:** ORION-P5  
-**Status:** SCOPED WORKING MANUSCRIPT COMPLETE / LOCAL FAILURE-GOVERNANCE FALSIFIER V1 PASSED / EXTERNAL GOVERNED SELF-IMPROVEMENT `CANNOT_CHECK`
+**Status:** `PEER_REVIEW_READY` for the scoped non-self-promotion claim; transferable improvement remains `CANNOT_CHECK`.
 
 ## Scoped claim
 

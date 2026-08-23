@@ -1,0 +1,57 @@
+name: p7-objective-change-transport-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-07-epistemic-navigation-open-worlds/top_tier/P7_OBJECTIVE_CHANGE_PROTOCOL_V1.md'
+      - 'papers/paper-07-epistemic-navigation-open-worlds/top_tier/run_objective_change_transport_v1.py'
+      - 'papers/paper-07-epistemic-navigation-open-worlds/top_tier/check_objective_change_transport_independent_v1.py'
+      - '.github/workflows/p7-objective-change-transport-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  objective-change-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==2.3.2' 'scikit-learn==1.7.1'
+      - name: Execute protected objective-change transport study
+        run: python papers/paper-07-epistemic-navigation-open-worlds/top_tier/run_objective_change_transport_v1.py | tee p7_objective_change_transport_v1.json
+      - name: Verify deterministic primary replay
+        run: |
+          python papers/paper-07-epistemic-navigation-open-worlds/top_tier/run_objective_change_transport_v1.py > p7_objective_change_transport_v1_rerun.json
+          cmp p7_objective_change_transport_v1.json p7_objective_change_transport_v1_rerun.json
+      - name: Execute independent verifier
+        run: python papers/paper-07-epistemic-navigation-open-worlds/top_tier/check_objective_change_transport_independent_v1.py | tee p7_objective_change_transport_independent_v1.json
+      - name: Verify independent replay and agreement
+        run: |
+          python papers/paper-07-epistemic-navigation-open-worlds/top_tier/check_objective_change_transport_independent_v1.py > p7_objective_change_transport_independent_v1_rerun.json
+          cmp p7_objective_change_transport_independent_v1.json p7_objective_change_transport_independent_v1_rerun.json
+          python - <<'PY'
+          import json,math
+          p=json.load(open('p7_objective_change_transport_v1.json'))
+          q=json.load(open('p7_objective_change_transport_independent_v1.json'))
+          assert p['terminal']=='P7_OBJECTIVE_CHANGE_TRANSPORT_V1_SUPPORTED',p
+          assert q['terminal']=='P7_OBJECTIVE_CHANGE_TRANSPORT_SECOND_INDEPENDENT_CHECKER_GREEN',q
+          assert p['case_count']==q['case_count']==10
+          assert p['full_witness_counts']==q['full_witness_counts']
+          assert p['systems']['WITNESS_AWARE']['correct_cannot_check']==q['correct_cannot_check']==5
+          a={c['fold']:c for c in p['cells'] if c['evidence_kind']=='FULL_CLASS_WITNESS'}
+          b={r['fold']:r for r in q['folds']}
+          for fold,x in a.items():
+              y=b[fold]
+              assert x['gold']==y['full_gold']
+              assert math.isclose(x['facts']['accuracy'],y['accuracy'],abs_tol=1e-12)
+              assert math.isclose(x['facts']['malignant_recall'],y['malignant_recall'],abs_tol=1e-12)
+          print('P7_OBJECTIVE_CHANGE_TRANSPORT_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p7-objective-change-transport-v1
+          path: |
+            p7_objective_change_transport_v1.json
+            p7_objective_change_transport_independent_v1.json

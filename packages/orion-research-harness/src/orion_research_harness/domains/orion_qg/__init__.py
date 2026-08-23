@@ -1,3 +1,6 @@
+from .qg1_support5 import QG1_SUPPORT5_CAMPAIGN_MANIFEST
+
+__all__ = ["QG1_SUPPORT5_CAMPAIGN_MANIFEST"]
 from .qg3_positive_forecast import QG3_POSITIVE_FORECAST_CAMPAIGN_MANIFEST
 from .qg6_syndrome_compression import QG6_SYNDROME_COMPRESSION_CAMPAIGN_MANIFEST
 from .qg7_classification import QG7_CLASSIFICATION_CAMPAIGN_MANIFEST

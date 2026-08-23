@@ -1,0 +1,18 @@
+{
+  "schema": "ORION.P11I.PreflightAttainability.v1",
+  "protocol": "P11I_WIDE_HIGH_WIDTH_REPLICATION_PROTOCOL_V1.md",
+  "outcome_accessed": false,
+  "basis": "P11H preflight seeds only; no P11I execution seed has been run",
+  "historical_support": {
+    "state_width_3_pooled_best_below_256": [1.0, 1.0],
+    "state_width_7_pooled_best_below_256": [0.845, 0.922],
+    "state_width_7_compiled_at_64": [0.97, 1.0],
+    "state_width_7_delta64_vs_pool": [0.237, 0.376]
+  },
+  "thresholds": {
+    "target_accuracy": 0.95,
+    "delta64": 0.2
+  },
+  "assessment": "PROSPECTIVE_REPLICATION_FALSIFIABLE_ON_FRESH_SEEDS",
+  "note": "Historical P11H support places every frozen gate inside observed support. P11I authority depends only on the prospectively frozen fresh-seed panel."
+}

@@ -1,0 +1,60 @@
+{
+  "all_discharged": true,
+  "instantiation_node_count": 5,
+  "instantiation_of_the_committed_mechanic": {
+    "agreed": true,
+    "agreements": 5280,
+    "disagreements": [],
+    "exercised_both_verdicts": true,
+    "informative": true,
+    "positive_trials": 5120,
+    "trials": 5280
+  },
+  "not_licensed": [
+    "any claim that P6's full 155-restoration / 1,055-strict-subset result is hereby re-derived; the reopening and restoration theorems are not lifted here",
+    "any claim of independent formal review; these proofs have been checked by a solver, not reviewed by a person outside this lane",
+    "any empirical claim whatsoever"
+  ],
+  "record": "P6_SEPARATION_CALCULUS_MECHANIZED",
+  "schema_version": "orion.p6.separation-calculus-smt.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "SEPARATED_COMMUTATION",
+      "outcome": "PROVED",
+      "statement": "two local mechanics with distinct write coordinates, neither reading what the other writes, commute on any state over any value domain, for every transformer obeying its declared frame",
+      "why_it_matters": "the finite core checks this for four binary coordinates and one modular transformer; against an arbitrary transformer the result can only be a property of separation rather than of the arithmetic that instantiated it"
+    },
+    {
+      "detail": "a disagreeing model exists, so separation is not merely sufficient",
+      "name": "SEPARATION_IS_NECESSARY",
+      "outcome": "PROVED",
+      "statement": "if one mechanic reads the coordinate the other writes, commutation is not entailed: there is a state and a pair of frame-respecting transformers whose two orders disagree",
+      "why_it_matters": "states the converse, so separation is reported as the boundary it is and not as one sufficient condition among unnamed others"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "WRITE_LOCALITY",
+      "outcome": "PROVED",
+      "statement": "a local mechanic changes its own write coordinate and no other",
+      "why_it_matters": "the soundness half: a mechanic declared local must actually be local, or every separation argument built on the declaration is void"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "FRAME_DETERMINACY",
+      "outcome": "PROVED",
+      "statement": "two states agreeing on a mechanic's declared frame produce the same written value, so nothing outside the frame can influence the result",
+      "why_it_matters": "the minimality half: the declared read set is the whole dependency, which is what makes a dependency graph a description of the computation rather than a comment on it"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "IDEMPOTENT_ON_FIXPOINT",
+      "outcome": "PROVED",
+      "statement": "a mechanic that leaves its state unchanged leaves it unchanged when reapplied",
+      "why_it_matters": "the conservativity half: reapplying a settled mechanic cannot manufacture a change, so a fixpoint is a real stopping condition"
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "separated commutation, write locality, frame determinacy and fixpoint conservativity hold for any number of coordinates over any value domain and for every transformer obeying its declared frame; and P6's committed mechanic obeys its declared frame, so the bounded enumeration in check_finite_models is an instance of the general result rather than a separate finding"
+}

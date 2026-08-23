@@ -1,13 +1,33 @@
 {
   "schema": "P8.X4.AuthorityLiftingResult.v1",
-  "donor_families": ["FAVA_PERMISSION", "PCAA_ACTION_CERT", "HDP_DELEGATION", "SENTINEL_DCC", "APC_BOUNDED_AGENTS", "ECA_TYPED_EVIDENCE", "COGEEG_SCIENTIFIC_HARNESS", "SCIENTISTONE_CHAIN_OF_EVIDENCE", "XCIENTIST_RESEARCH_HARNESS", "STATEFUL_DISCOVERY_ADJUDICATION", "EP_AEC_HETEROGENEOUS_RECEIPTS", "EVIDENCE_LEDGER_ADJUDICATION", "ARF_CROSS_DOMAIN_AUTHORITY"],
-  "scientific_type_coordinates": ["domain", "kind", "scope", "content", "epoch"],
+  "donor_families": [
+    "FAVA_PERMISSION",
+    "PCAA_ACTION_CERT",
+    "HDP_DELEGATION",
+    "SENTINEL_DCC",
+    "APC_BOUNDED_AGENTS",
+    "ECA_TYPED_EVIDENCE",
+    "COGEEG_SCIENTIFIC_HARNESS",
+    "SCIENTISTONE_CHAIN_OF_EVIDENCE",
+    "XCIENTIST_RESEARCH_HARNESS",
+    "STATEFUL_DISCOVERY_ADJUDICATION",
+    "EP_AEC_HETEROGENEOUS_RECEIPTS",
+    "EVIDENCE_LEDGER_ADJUDICATION",
+    "ARF_CROSS_DOMAIN_AUTHORITY"
+  ],
+  "scientific_type_coordinates": [
+    "domain",
+    "kind",
+    "scope",
+    "content",
+    "epoch"
+  ],
   "state_evaluations": 39936,
   "terminal_counts": {
-    "NO_DONOR_AUTHORITY": 19968,
     "BLOCK": 15353,
     "CANNOT_CHECK": 3328,
-    "DISCHARGE": 1287
+    "DISCHARGE": 1287,
+    "NO_DONOR_AUTHORITY": 19968
   },
   "donor_conservativity_violations": 0,
   "type_separation_witnesses": 65,
@@ -23,6 +43,17 @@
   "action_or_release_denied_independent_support_examples": 13,
   "ideal_product_mismatches": 0,
   "canonical_rows_sha256": "ed186b824692fd5b3ab31be718c75b84e2126b577ce921ca5cc01b2d08ae19e6",
+  "assertion_coverage_status": "COMPLETE",
+  "assertion_covered_states": 3072,
+  "assertion_covered_states_native_invalid": 1536,
+  "assertion_state_space": 3072,
+  "assertion_uncovered_states": 0,
+  "cannot_check_reasons": [],
+  "donor_conservativity_distinct_states": 2,
+  "donor_conservativity_states": 26,
+  "donor_conservativity_status": "CHECKED",
+  "ideal_product_status": "CHECKED",
+  "terminal": "PASS",
   "interpretation": "The final P8 donor product combines action/delegation security, heterogeneous receipt composition, generic cross-domain authority, typed evidence, domain scientific release, claim-evidence chains, research-harness validation and evidence-ledger adjudication. All donor-native verdicts remain intact. Scientific obligation discharge is a separate compositional relation requiring a compatible or protectedly coerced complete scientific type, non-widening authority propagation, fail-closed blocker state and at least one surviving complete support family. An equally typed decentralized product ties exactly.",
   "claim_ceiling": "BOUNDED_FORMAL_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION; no deployed-agent or inherent-centralization claim"
 }

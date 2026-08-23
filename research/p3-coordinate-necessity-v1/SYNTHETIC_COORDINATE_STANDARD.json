@@ -1,0 +1,71 @@
+{
+  "derivation_rule": "identity:frozen-coordinate-standard-distinctness",
+  "derivation_rule_statement": "Two projections that agree on every exposed coordinate are COMPATIBLE. Two that agree on referent and construct and name distinct measurement-dimension classes of this table are DISTINCT_MEASUREMENT. Two that agree on referent, construct and measurement and name distinct, disjoint observation epochs of this table are CONTEXTUAL_DIFFERENCE.",
+  "disciplines": [
+    "biology",
+    "chemistry",
+    "materials",
+    "physics"
+  ],
+  "external_validity": "The added cases are synthetic: gold follows from the emitted standard table by the rule identity:frozen-coordinate-standard-distinctness, not from an upstream expert corpus. This atlas can establish that a coordinate is load-bearing in the comparison rule; it cannot establish that such pairs are frequent in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "measurement_dimensions": [
+    {
+      "dimension": "angle",
+      "representative_unit": "deg"
+    },
+    {
+      "dimension": "concentration",
+      "representative_unit": "M"
+    },
+    {
+      "dimension": "energy",
+      "representative_unit": "GeV"
+    },
+    {
+      "dimension": "frequency",
+      "representative_unit": "GHz"
+    },
+    {
+      "dimension": "length",
+      "representative_unit": "cm"
+    },
+    {
+      "dimension": "mass",
+      "representative_unit": "g"
+    },
+    {
+      "dimension": "photoelectron_count",
+      "representative_unit": "PE"
+    },
+    {
+      "dimension": "pressure",
+      "representative_unit": "MPa"
+    },
+    {
+      "dimension": "temperature",
+      "representative_unit": "K"
+    },
+    {
+      "dimension": "time",
+      "representative_unit": "ms"
+    },
+    {
+      "dimension": "volume",
+      "representative_unit": "L"
+    }
+  ],
+  "not_an_accuracy_benchmark": "The added cases are an ablation denominator, not an accuracy benchmark. Their gold is derived by a rule that coincides with what compare_meaning does with these two coordinates, so the full system answers all of them by construction. That is what an ablation arm needs --- its question is whether removing the coordinate moves the decision, a property of the system rather than of the gold --- and it is what an accuracy claim must not be built on. No accuracy, false-merge or superiority number over this atlas is evidence about ORION's competence on the added cases.",
+  "observation_epochs": [
+    "1996-01-01/1999-12-31",
+    "2000-01-01/2003-12-31",
+    "2004-01-01/2007-12-31",
+    "2008-01-01/2011-12-31",
+    "2012-01-01/2015-12-31",
+    "2016-01-01/2019-12-31",
+    "2020-01-01/2023-12-31",
+    "2024-01-01/2027-12-31"
+  ],
+  "protocol_id": "P3.coordinate-necessity-extension.v1",
+  "schema_version": "orion.p3.synthetic-coordinate-standard.v1",
+  "unit_table_source": "orion.study.p3_public_reference_build_v11.UNIT_DIMENSIONS"
+}

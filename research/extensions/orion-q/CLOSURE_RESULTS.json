@@ -1,0 +1,106 @@
+{
+  "schema": "ORIONQ.ProgrammeClosureExperiment.v1",
+  "seed": 20260820,
+  "qc0": {
+    "complex_phase": {
+      "train_carriers": ["amplitude", "density"],
+      "heldout_carrier": "bloch",
+      "n_train": 4000,
+      "n_test": 2000,
+      "raw_accuracy": 0.348,
+      "typed_accuracy": 1.0
+    },
+    "stabilizer": {
+      "train_carriers": ["amplitude", "density"],
+      "heldout_carrier": "bloch",
+      "n_train": 4000,
+      "n_test": 2000,
+      "raw_accuracy": 0.494,
+      "typed_accuracy": 1.0
+    },
+    "entanglement": {
+      "train_carriers": ["amplitude", "coeff_matrix"],
+      "heldout_carrier": "reduced_density",
+      "n_train": 4000,
+      "n_test": 2000,
+      "raw_accuracy": 0.5,
+      "typed_accuracy": 1.0
+    }
+  },
+  "qc1": {
+    "trials": 3000,
+    "valid_counts": {
+      "entanglement": {
+        "candidate_count": 7,
+        "valid_count": 1,
+        "valid_mask": [false, false, false, false, true, false, false]
+      },
+      "complex_phase": {
+        "candidate_count": 8,
+        "valid_count": 4,
+        "valid_mask": [false, false, false, false, true, true, true, true]
+      },
+      "clifford_magic": {
+        "candidate_count": 8,
+        "valid_count": 2,
+        "valid_mask": [false, false, false, false, false, false, true, true]
+      }
+    },
+    "random_one_shot_success": 0.29333333333333333,
+    "cheapest_identity_heuristic_success": 0.0,
+    "exact_semantic_verifier_recovery": 1.0
+  },
+  "qc2": {
+    "entanglement": {
+      "grammar_size": 15,
+      "valid_candidates": 1,
+      "exhaustive_success": true,
+      "obstruction_guided_success": true
+    },
+    "complex_phase": {
+      "grammar_size": 10,
+      "valid_candidates": 7,
+      "exhaustive_success": true,
+      "obstruction_guided_success": true
+    },
+    "clifford_magic": {
+      "grammar_size": 10,
+      "valid_candidates": 4,
+      "exhaustive_success": true,
+      "obstruction_guided_success": true
+    },
+    "terminal": "QC2_NO_INCREMENTAL_VALUE"
+  },
+  "qc2d": {
+    "n": 10000,
+    "mean_cost_raw_failure": 13.999313081331367,
+    "mean_cost_no_history": 9.494943127110874,
+    "mean_cost_scoped_history": 8.997461584115934,
+    "mean_cost_clairvoyant": 8.492716108390148,
+    "scoped_saving_vs_raw": 5.0018514972154335,
+    "scoped_saving_vs_no_history": 0.4974815429949402,
+    "raw_reopen_accuracy": 0.499,
+    "scoped_reopen_accuracy": 1.0
+  },
+  "nml_i0": {
+    "world_count": 7,
+    "algorithm_only_accuracy": 0.42857142857142855,
+    "cheapest_interface_accuracy": 0.42857142857142855,
+    "exhaustive_end_to_end_accuracy": 1.0,
+    "worlds": [
+      {"id": "free_block_encoding", "uses": 1, "optimum": "RANDOMIZED", "optimum_total_cost": 33, "algorithm_only": "QSVT_UNCOSTED", "cheapest_interface": "RANDOMIZED"},
+      {"id": "qram_laundering", "uses": 1, "optimum": "EXPLICIT_PREP", "optimum_total_cost": 40, "algorithm_only": "QRAM_ALGO", "cheapest_interface": "CLASSICAL"},
+      {"id": "controlled_evolution", "uses": 1, "optimum": "RANDOM_SIM", "optimum_total_cost": 28, "algorithm_only": "PHASE_EST", "cheapest_interface": "DIRECT"},
+      {"id": "representation_unlock", "uses": 1, "optimum": "GROUPED_REP", "optimum_total_cost": 34, "algorithm_only": "GROUPED_REP", "cheapest_interface": "CLASSICAL"},
+      {"id": "amortize_2", "uses": 2, "optimum": "CHEAP_BUILD", "optimum_total_cost": 22, "algorithm_only": "EXPENSIVE_BUILD", "cheapest_interface": "CHEAP_BUILD"},
+      {"id": "amortize_50", "uses": 50, "optimum": "EXPENSIVE_BUILD", "optimum_total_cost": 80, "algorithm_only": "EXPENSIVE_BUILD", "cheapest_interface": "CHEAP_BUILD"},
+      {"id": "false_representation_edit", "uses": 1, "optimum": "BASE", "optimum_total_cost": 25, "algorithm_only": "BASE", "cheapest_interface": "BASE"}
+    ]
+  },
+  "qc4": {
+    "grid_points": 140,
+    "crossover_mismatches": 0,
+    "closed_form": "randomized depth proxy < standard depth proxy iff L > lambda*d",
+    "scope": "stripped asymptotic proxy only; constants/polylogs/access conversion unresolved"
+  }
+}

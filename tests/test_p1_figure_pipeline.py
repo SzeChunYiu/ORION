@@ -139,3 +139,47 @@ def test_figure_generation_produces_valid_pdfs():
     )
     assert result.returncode == 0, f"Figure generation failed: {result.stderr}"
     assert "Generated" in result.stdout or "Generated" in result.stderr
+
+
+def _regenerate() -> dict[str, str]:
+    result = subprocess.run([sys.executable, str(SCRIPT)], capture_output=True, text=True)
+    assert result.returncode == 0, f"Figure generation failed: {result.stderr}"
+    return {
+        key: hashlib.sha256((FIGURES_DIR / name).read_bytes()).hexdigest()
+        for key, name in REQUIRED_FIGURES.items()
+    }
+
+
+def test_regenerating_the_figures_twice_produces_identical_bytes():
+    """The figures must be a function of their records and nothing else.
+
+    Matplotlib stamps a wall-clock ``CreationDate`` into every PDF it writes, so
+    each run of this very test used to rewrite all five figures and their
+    manifest with fresh hashes. ``manifest.json`` recorded when the pipeline was
+    last run, not what the figures contain, and no reader could distinguish a
+    real change from a re-run because every re-run changed the hash.
+    """
+
+    first = _regenerate()
+    second = _regenerate()
+
+    assert first == second
+
+
+def test_the_committed_manifest_is_the_hash_of_the_regenerated_figures():
+    """A binding is only a binding if regenerating reproduces it."""
+
+    import json
+
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    regenerated = _regenerate()
+
+    for key, digest in regenerated.items():
+        assert manifest["figures"][key]["sha256"] == digest, key
+
+
+def test_no_figure_carries_a_wall_clock_creation_date():
+    """The specific field that made the manifest track the clock."""
+
+    for name in REQUIRED_FIGURES.values():
+        assert b"/CreationDate" not in (FIGURES_DIR / name).read_bytes(), name
