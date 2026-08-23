@@ -115,5 +115,16 @@
       "successor": "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN (#998)",
       "status": "GREEN"
     }
-  ]
+  ],
+  "workaround_protocol": {
+    "directive": "operator 2026-08-23: independent research, no humans; external data worked around by us",
+    "rule": "substitute strongest internally-executable mechanism; disclose substitution boundary; re-scope claim; never fake externality",
+    "substitutes": {
+      "blinded_human_adjudication": "blinded machine adjudication (independent frozen checker + label-blind cross-model adjudicator, pre-registered rubric) -> MACHINE_BLINDED",
+      "external_comparators": "public reference implementations re-hosted frozen as donor baselines -> PUBLIC_REFERENCE",
+      "real_world_data": "public-domain/self-acquired; else generative synthetic grounded in published statistics -> SYNTHETIC_GROUND",
+      "frontier_checkpoints": "maximal in-custody scale slice; scaling-trajectory bound with custody boundary",
+      "protected_executions": "run frozen protocols in CI with protected seeds (execution lanes, not blockers)"
+    }
+  }
 }

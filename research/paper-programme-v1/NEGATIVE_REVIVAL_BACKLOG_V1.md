@@ -39,14 +39,24 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | P13 empirical safety-cost authority withheld | P13B authenticated-certificate corruption safety-cost, 4 corruption worlds | `ACTIVE_POSITIVE_AUTHORITY` (ledger) |
 | P9 causal-diagnostic accounting (V1 gaps) | Unified I/A/C/M ledger V2, second checker green | `P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN` (#998) |
 
-## External-execution negatives (not research-blocked, execution-blocked)
+## External-execution negatives — workaround protocol (operator directive 2026-08-23)
 
-P1.R7A protected execution, P2/P3/P4/P5 powered successors (frozen, await protected runs),
-P6/P7/P8 LOCAL_REPLAY receipts → external reproduction, P9 T3 frontier (0/1,344 cells,
-needs checkpoint custody), P10 wide multi-domain corpus, P11 real-systems, P14D blinded
-governance, P15A harness admission. These become positive by RUNNING the frozen protocols,
-not by further mechanism work; tracked by the ledger's `PROSPECTIVE_SUCCESSOR_REQUIRED` /
-`EXTERNAL_EVIDENCE_BLOCKER` items.
+Operator context: independent research, no human panel or external collaborators available.
+**External dependencies are worked around, not waited on.** Substitute the strongest
+internally-executable mechanism, disclose the substitution boundary in the claim, and keep
+the claim bounded to the substitute's scope. Never fake externality; never drop the boundary.
+
+| External dependency | Internally-executable substitute |
+|---|---|
+| Blinded human adjudication (P4 panel, P14D governance) | blinded **machine** adjudication: independent frozen checker + label-blind cross-model adjudicator under a pre-registered rubric; disclosed as machine-blinded |
+| External comparators / deployed systems (P8, P10 corpus, P11 real systems) | third-party **public reference implementations** re-hosted frozen in our harness as donor baselines — external = not authored by us, executed by us; boundary disclosed |
+| Real-world data (P2 providers, P3 atlas coordinates, P6–P8 reproduction) | public-domain datasets + self-acquired data where accessible; else generative synthetic grounded in published statistics, disclosed as synthetic |
+| Frontier checkpoints/compute (P9 T3, 0/1,344 cells) | execute the maximal in-custody scale slice; re-scope the claim as a scaling-trajectory bound with explicit custody boundary |
+| Protected executions (P1 R7A, P2/P3/P5 successors, P15A admission) | already ours: run the frozen protocols in CI with protected seeds — these are execution lanes, not blockers |
+
+Every workaround lands as: substitute protocol frozen pre-outcome → executed → receipt with
+independent checker → claim re-scoped to the substitute (e.g. `MACHINE_BLINDED`, `PUBLIC_REFERENCE`,
+`SYNTHETIC_GROUND`) instead of the unverifiable external wording.
 
 ## Stopping criterion
 
