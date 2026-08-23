@@ -24,6 +24,14 @@ Only the last has no free route, and it is the residual on **2** of the 16.
 Reclassifying the sixteen: **2 locally unexecuted, 1 locally broken, 2 procurable free,
 11 partially procurable, 0 with no free route at all.**
 
+Read that last zero carefully. It means *no item has zero free routes*. It does **not** mean no
+item is blocked — P4 and P14D each keep a class-F residual after every free route is taken.
+
+And read the whole document as what it is: **classification plus verified reachability.** No cell
+is executed here, no replay bundle is packaged, no protocol is registered, no new claim identity
+exists. The wall is made of work you can do, not of access you cannot buy — which is a different
+claim from the wall being gone.
+
 ## Start here — ranked by what it costs you
 
 ### 1. P9-U-T4 D1v1.3: fully procurable, and the runner already exists
