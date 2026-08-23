@@ -44,12 +44,9 @@ def _copy_subject(tmp_path: Path, candidate_id: str) -> Path:
 @pytest.mark.parametrize(
     ("candidate_id", "expected_counts"),
     [
-        ("P6", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P7", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P8", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P6", {"PARTIAL": 6, "CANNOT_CHECK": 3, "DEFERRED": 1}),
-        ("P7", {"PARTIAL": 5, "CANNOT_CHECK": 4, "DEFERRED": 1}),
-        ("P8", {"PARTIAL": 5, "CANNOT_CHECK": 4, "DEFERRED": 1}),
+        ("P6", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P7", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P8", {"BOUND": 6, "PARTIAL": 2, "CANNOT_CHECK": 1, "DEFERRED": 1}),
     ],
 )
 def test_current_tree_is_classified_target_by_target(
@@ -66,13 +63,22 @@ def test_current_tree_is_classified_target_by_target(
 
 def test_subject_identity_uses_the_content_bound_v2_successor() -> None:
     target = checker.assess_targets(ROOT, "P6")["exact_subject_commit_identities"]
-    assert target.status == "BOUND"
-    assert any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
-def test_subject_identity_is_partial_not_bound_when_commit_status_is_unresolved() -> None:
-    target = checker.assess_targets(ROOT, "P6")["exact_subject_commit_identities"]
+    # The V2 manifests' subject_commit is not reachable from any ref (the
+    # generating session's local commit was never pushed), so the tree cannot
+    # be resolved and the honest status is PARTIAL, not BOUND. Re-binding the
+    # V2 manifests to a main-reachable commit is tracked by the manifest
+    # regeneration pass.
     assert target.status == "PARTIAL"
-    assert "subject_commit_status is CANNOT_CHECK" in str(target.blocker)
-    assert "manuscript/main.tex" in str(target.blocker)
+    assert "V2 subject tree is unavailable" in str(target.blocker)
+    assert any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
+
+
+def test_subject_identity_falls_back_to_v1_only_when_v2_is_absent(tmp_path: Path) -> None:
+    root = _copy_subject(tmp_path, "P6")
+    (root / checker.PAPERS["P6"] / "CONTENT_MANIFEST_V2.json").unlink()
+    target = checker.assess_targets(root, "P6")["exact_subject_commit_identities"]
+    assert any(path.endswith("CONTENT_MANIFEST_V1.json") for path in target.evidence)
+    assert not any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
 
 
 def test_schema_without_generator_cannot_promote_the_combined_target(tmp_path: Path) -> None:
@@ -80,9 +86,6 @@ def test_schema_without_generator_cannot_promote_the_combined_target(tmp_path: P
     benchmark = root / checker.PAPERS["P7"] / "benchmark"
     (benchmark / "instances_v2.schema.json").unlink()
     (benchmark / "generate_instances_v2.py").unlink()
-    target = checker.assess_targets(root, "P7")["versioned_protocol_generator_schemas"]
-    assert target.status == "CANNOT_CHECK"
-
     target = checker.assess_targets(root, "P7")["versioned_protocol_generator_schemas"]
     assert target.status == "CANNOT_CHECK"
 
@@ -142,7 +145,6 @@ def test_deleting_machine_results_downgrades_only_evidence_they_support(tmp_path
         targets["proof_and_checker_reproducibility"].blocker
     )
     assert targets["negative_null_history_retained"].status == "BOUND"
-    assert targets["negative_null_history_retained"].status == "PARTIAL"
 
 
 def test_root_lock_does_not_claim_clean_reproduction_until_paper_selects_it(
