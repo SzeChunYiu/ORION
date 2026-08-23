@@ -1,0 +1,44 @@
+name: q-qg-reference-check
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
+      - 'papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_REFERENCE_VERIFICATION_REPORT_V1.md'
+      - 'papers/check_q_qg_references.py'
+      - 'papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md'
+      - 'papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md'
+      - 'papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md'
+      - 'papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md'
+      - 'papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md'
+      - 'papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md'
+      - '.github/workflows/q-qg-reference-check.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
+      - 'papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_REFERENCE_VERIFICATION_REPORT_V1.md'
+      - 'papers/check_q_qg_references.py'
+      - 'papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md'
+      - '.github/workflows/q-qg-reference-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check-references:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate shared BibTeX identity and citation map
+        run: python papers/check_q_qg_references.py

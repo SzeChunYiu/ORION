@@ -1,0 +1,47 @@
+{
+  "does_not_license": "this measurement does not license substituting anything for the ladder. A classical-learner capacity ladder is not a model-scale ladder and naming one S* would answer a different question.",
+  "finding": "every host that distributes open-weight checkpoints is unreachable, and the python package index is reachable. A runtime could therefore be installed; the weights it would load cannot be obtained. The blocker is acquisition of the ladder, not tooling.",
+  "hosts": [
+    {
+      "host": "huggingface.co",
+      "http_status": "000",
+      "reachable": false,
+      "serves": "model weights (hub API)"
+    },
+    {
+      "host": "cdn-lfs.huggingface.co",
+      "http_status": "000",
+      "reachable": false,
+      "serves": "model weights (LFS CDN)"
+    },
+    {
+      "host": "cdn-lfs-us-1.hf.co",
+      "http_status": "000",
+      "reachable": false,
+      "serves": "model weights (LFS CDN, US mirror)"
+    },
+    {
+      "host": "codeload.github.com",
+      "http_status": "400",
+      "reachable": true,
+      "serves": "source archives at a pinned commit"
+    },
+    {
+      "host": "pypi.org",
+      "http_status": "200",
+      "reachable": true,
+      "serves": "python package index"
+    },
+    {
+      "host": "files.pythonhosted.org",
+      "http_status": "200",
+      "reachable": true,
+      "serves": "python package payloads"
+    }
+  ],
+  "measured_utc": "2026-08-22T12:10:08Z",
+  "method": "HTTPS HEAD through this environment's configured agent proxy, 25s timeout, no TLS verification disabled",
+  "question": "P9-U-T3's grid needs a model-scale ladder. Its freeze records that this environment cannot execute it. That was a sentence; this is the measurement behind it.",
+  "schema_version": "orion.p9.ut3-acquisition-reachability.v1",
+  "what_would_unblock": "any of: a checkpoint set placed on disk, an allowlisted mirror for one, or execution in an environment that already holds them. orion.study.p9.frontier_grid probes for the first two on every run and reports the declared boundary as stale if it finds them."
+}

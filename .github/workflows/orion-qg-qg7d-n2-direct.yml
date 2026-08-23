@@ -1,0 +1,60 @@
+name: orion-qg-qg7d-n2-direct
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG7D_*'
+      - 'development/orion-qg-regime-geometry/qg7d_*'
+      - 'development/orion-qg-regime-geometry/run_qg7d_n2_dual_harness.py'
+      - 'research/extensions/orion-qg/qg7d_*'
+      - '.github/workflows/orion-qg-qg7d-n2-direct.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg7d-n2-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg7d-n2-direct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG7D_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Check lineage
+        run: |
+          test "$(git merge-base HEAD "${QG7D_BASE}")" = "${QG7D_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: |
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax
+        run: |
+          python -m py_compile research/extensions/orion-qg/qg7d_n2_direct.py development/orion-qg-regime-geometry/qg7d_n2_generic_verify.py development/orion-qg-regime-geometry/qg7d_n2_native_verify.py development/orion-qg-regime-geometry/run_qg7d_n2_dual_harness.py
+      - name: Run dual harness
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg7d_n2_dual_harness.py | tee artifacts/orion-qg-qg7d-n2-dual-summary.json
+      - name: Replay analyzer
+        run: |
+          python research/extensions/orion-qg/qg7d_n2_direct.py --output artifacts/orion-qg-qg7d-n2-direct-replay.json > artifacts/orion-qg-qg7d-n2-replay.log
+          cmp artifacts/orion-qg-qg7d-n2-direct.json artifacts/orion-qg-qg7d-n2-direct-replay.json
+      - name: Upload receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg7d-n2-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg7d-n2-*.json
+            artifacts/orion-qg-qg7d-n2-*.log
+            .orion-qg-qg7d-n2-generic/.orion-harness/**
+            .orion-qg-qg7d-n2-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

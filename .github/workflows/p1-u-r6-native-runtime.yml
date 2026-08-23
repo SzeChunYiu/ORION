@@ -10,6 +10,7 @@ on:
       - 'tests/unit/p1/test_p1_u_r6_native_runtime.py'
       - 'tests/unit/p1/test_p1_u_r6_native_evaluator.py'
       - 'tests/unit/p1/test_p1_u_r6_primary_authority.py'
+      - 'tests/unit/p1/test_p1_r6_2019_mechanism_authority_contract.py'
       - '.github/workflows/p1-u-r6-native-runtime.yml'
       - 'src/orion/**'
   workflow_dispatch:
@@ -39,6 +40,7 @@ jobs:
           tests/unit/p1/test_p1_u_r6_native_runtime.py
           tests/unit/p1/test_p1_u_r6_native_evaluator.py
           tests/unit/p1/test_p1_u_r6_primary_authority.py
+          tests/unit/p1/test_p1_r6_2019_mechanism_authority_contract.py
 
   native-primary-2020:
     needs: native-runtime-architecture

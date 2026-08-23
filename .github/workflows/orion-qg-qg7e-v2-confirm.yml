@@ -1,0 +1,69 @@
+name: orion-qg-qg7e-v2-confirm
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG7E_V2_*'
+      - 'development/orion-qg-regime-geometry/qg7e_v2_*'
+      - 'development/orion-qg-regime-geometry/run_qg7e_v2_dual_harness.py'
+      - 'research/extensions/orion-qg/qg7e_v2_*'
+      - '.github/workflows/orion-qg-qg7e-v2-confirm.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg7e-v2-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg7e_v2_dual_harness.py | tee artifacts/orion-qg-qg7e-v2-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg7e_v2_pp_single_pinner.py --output artifacts/orion-qg-qg7e-v2-replay.json > artifacts/orion-qg-qg7e-v2-replay.log
+          cmp artifacts/orion-qg-qg7e-v2-pp-single-pinner.json artifacts/orion-qg-qg7e-v2-replay.json
+      - name: Enforce frozen V2 terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg7e-v2-pp-single-pinner.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg7e-v2-generic-verification.json').read_text());n=json.loads(Path('artifacts/orion-qg-qg7e-v2-native-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg7e-v2-dual-harness.json').read_text())
+          pos='QG7E_V2_PP_SINGLE_PINNER_CLOSED_ALL_HIDDEN_ENVIRONMENTS__CHAIN_OPEN'
+          assert a['terminal']==pos and a['all_gates'] is True
+          assert a['visible']['failures']==32556 and a['product_domain']==133349376
+          assert a['relocation']['residual']==5684 and a['relocation']['hist']=={'1':5684}
+          assert a['dplus']['templates']==61056 and a['dplus']['hist']=={'-2':132,'-1':2456,'0':2716,'1':380} and a['dplus']['residual']==380 and a['dplus']['control_failures']==[]
+          assert a['bprime']['hist']=={'-1':380} and a['bprime']['witness_failures']==[] and a['bprime']['reference_failures']==[] and a['bprime']['final_residual']==0
+          assert g['decision']=='ACCEPT_PP_SINGLE_PINNER_ALL_N' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_PP_SINGLE_PINNER_ALL_N' and n['all_checks'] is True
+          assert d['terminal']==pos and d['both_accept'] is True
+          for x in (a,g,n,d):
+            assert x['PP_SINGLE_PINNER_ALL_N'] is True and x['CHAIN_ALL_N'] is False and x['GLOBAL_BDOUBLEPRIME_COMPLETENESS'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg7e-v2-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg7e-v2-*.json
+            artifacts/orion-qg-qg7e-v2-*.log
+            .orion-qg-qg7e-v2-generic/.orion-harness/**
+            .orion-qg-qg7e-v2-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

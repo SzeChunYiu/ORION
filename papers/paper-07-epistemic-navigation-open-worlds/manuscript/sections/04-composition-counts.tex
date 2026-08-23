@@ -1,0 +1,40 @@
+\section{20. What the published composition counts do and do not carry}
+
+This section exists because the numbers in V3's support table are larger than
+the facts behind them, and the difference is measurable.
+
+\textbf{25 bridge-mismatch countermodels is exactly one frame condition.} Once the
+hand-off is computed rather than typed, a refused composite is one whose
+hand-off does not match, so 25 refusals under an empty registry \emph{is} the
+statement that no family's target contract is any family's source contract. Read
+as a check on the interpretation this is good news: the condition is P7's own
+assertion and not a modelling convenience. Read as a count it is one fact.
+Assignments that violate it return 0, 20 and 21 instead of 25.
+
+\textbf{25 composition successes discriminates nothing about the interpretation.}
+Every contract assignment tried --- including ones that collapse the whole stack to
+a single contract pair --- returns 25 under a registry that bridges every hand-off,
+because a full registry satisfies the match test whatever the contracts are.
+
+\textbf{The counts cannot see the second frame condition at all.} Reading every family
+as consuming one shared input contract and emitting one shared output contract
+reproduces both published numbers exactly, and so does reading them as emitting
+one shared output contract. Those are the readings in which the \texttt{5 x 5} loop
+visits \textbf{1} and \textbf{5} distinct hand-offs rather than 25 --- precisely the
+multiplier the interpretation is supposed to remove --- and the published pair is
+blind to both. What separates them is Theorem V4.6 and the directly measured
+hand-off count, not the counts. A registry that bridged some hand-offs and not
+others would have separated them empirically; P7 shipped no such registry.
+
+\textbf{The published counts still reach two argument triples, and this is now a fact
+about the registries.} Reproducing 25 successes requires every hand-off bridged
+and reproducing 25 countermodels requires none bridged, both over an all-carrying
+stack. The 25 rows are 25 distinct hand-offs rather than 25 copies of one
+argument; they remain 25 agreeing verdicts. The other six triples are exercised
+separately, over 204,800 evaluations of the committed functions against the
+proved rule. Both verdicts occur, but the corpus is heavily skewed --- only 25 of
+those rows compose successfully, one per ordered donor pair, because a leg
+carries at exactly one of the 64 (native verdict, closure vector) rows it is
+given --- and the per-triple counts are published beside the total rather than
+summarised. That enumeration is not part
+of P7's published result and does not become part of it by being run.

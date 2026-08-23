@@ -1,0 +1,100 @@
+name: q-qg-render-preflight
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/QG-paper-01-compilation-regime-geometry/**'
+      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/Q_QG_**'
+      - 'papers/build_q_qg_cited_masters.py'
+      - '.github/workflows/q-qg-render-preflight.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/QG-paper-01-compilation-regime-geometry/**'
+      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/Q_QG_**'
+      - 'papers/build_q_qg_cited_masters.py'
+      - '.github/workflows/q-qg-render-preflight.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  render-preflight:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended poppler-utils
+      - name: Generate cited masters
+        run: python papers/build_q_qg_cited_masters.py --clean
+      - name: Generate debuggable generic LaTeX
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/q_qg_pdf
+          for p in Q1 Q2 Q4 QG1 QG2; do
+            pandoc "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" \
+              --from=markdown+citations \
+              --standalone \
+              --citeproc \
+              --bibliography="build/q_qg_cited/${p}/references.bib" \
+              --to=latex \
+              -V geometry:margin=1in \
+              -V fontsize=10pt \
+              -V colorlinks=true \
+              -V mainfont='Latin Modern Roman' \
+              -V mathfont='Latin Modern Math' \
+              -o "build/q_qg_pdf/${p}.tex"
+            grep -q '\\usepackage{unicode-math}' "build/q_qg_pdf/${p}.tex"
+          done
+      - name: Build generic audit PDFs with XeLaTeX
+        shell: bash
+        working-directory: build/q_qg_pdf
+        run: |
+          set -euo pipefail
+          for p in Q1 Q2 Q4 QG1 QG2; do
+            xelatex -interaction=nonstopmode -halt-on-error "${p}.tex"
+            xelatex -interaction=nonstopmode -halt-on-error "${p}.tex"
+            test -s "${p}.pdf"
+          done
+      - name: Validate PDFs and render every page
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > build/q_qg_pdf/pdfinfo.txt
+          : > build/q_qg_pdf/pdffonts.txt
+          for p in Q1 Q2 Q4 QG1 QG2; do
+            test -s "build/q_qg_pdf/${p}.pdf"
+            echo "===== ${p} =====" >> build/q_qg_pdf/pdfinfo.txt
+            pdfinfo "build/q_qg_pdf/${p}.pdf" >> build/q_qg_pdf/pdfinfo.txt
+            echo "===== ${p} =====" >> build/q_qg_pdf/pdffonts.txt
+            pdffonts "build/q_qg_pdf/${p}.pdf" >> build/q_qg_pdf/pdffonts.txt
+            mkdir -p "build/q_qg_pdf/rendered/${p}"
+            pdftoppm -png -r 120 "build/q_qg_pdf/${p}.pdf" \
+              "build/q_qg_pdf/rendered/${p}/page"
+            test "$(find "build/q_qg_pdf/rendered/${p}" -name 'page-*.png' | wc -l)" -gt 0
+          done
+      - name: Archive generic PDF preflight bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: q-qg-generic-pdf-preflight
+          path: build/q_qg_pdf
+          if-no-files-found: error
+          retention-days: 30

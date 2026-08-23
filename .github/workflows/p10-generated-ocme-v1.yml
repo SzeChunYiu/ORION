@@ -1,0 +1,56 @@
+name: p10-generated-ocme-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-10-structured-problem-solving/top_tier/P10_GENERATED_OCME_PROTOCOL_V1.md'
+      - 'papers/paper-10-structured-problem-solving/top_tier/generated_ocme_cases_v1.json'
+      - 'papers/paper-10-structured-problem-solving/top_tier/run_generated_ocme_v1.py'
+      - 'papers/paper-10-structured-problem-solving/top_tier/check_generated_ocme_independent_v1.py'
+      - '.github/workflows/p10-generated-ocme-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generated-ocme-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute post-freeze generated OCME study
+        run: python papers/paper-10-structured-problem-solving/top_tier/run_generated_ocme_v1.py | tee p10_generated_ocme_v1.json
+      - name: Verify deterministic primary replay
+        run: |
+          python papers/paper-10-structured-problem-solving/top_tier/run_generated_ocme_v1.py > p10_generated_ocme_v1_rerun.json
+          cmp p10_generated_ocme_v1.json p10_generated_ocme_v1_rerun.json
+          echo P10_GENERATED_OCME_V1_BYTE_REPLAY_GREEN
+      - name: Execute structurally independent verifier
+        run: python papers/paper-10-structured-problem-solving/top_tier/check_generated_ocme_independent_v1.py | tee p10_generated_ocme_independent_v1.json
+      - name: Verify independent replay and two-implementation agreement
+        run: |
+          python papers/paper-10-structured-problem-solving/top_tier/check_generated_ocme_independent_v1.py > p10_generated_ocme_independent_v1_rerun.json
+          cmp p10_generated_ocme_independent_v1.json p10_generated_ocme_independent_v1_rerun.json
+          python - <<'PY'
+          import json
+          p=json.load(open('p10_generated_ocme_v1.json'))
+          q=json.load(open('p10_generated_ocme_independent_v1.json'))
+          assert p['terminal']=='P10_GENERATED_OCME_V1_SUPPORTED', p
+          assert q['terminal']=='P10_GENERATED_OCME_SECOND_INDEPENDENT_CHECKER_GREEN', q
+          assert p['boolean']['selected_code']==q['boolean_selected_code'], (p,q)
+          assert p['integer']['selected']['candidate_id']==q['integer_selected']['candidate_id'], (p,q)
+          assert p['integer']['selected']['semantic']==q['integer_selected']['semantic'], (p,q)
+          assert p['held_out_transfer_count']==q['held_out_transfer_count']==6, (p,q)
+          assert p['boolean']['false_expansion_count']==0 and p['integer']['false_expansion_count']==0
+          assert q['false_expansion_count']==0
+          print('P10_GENERATED_OCME_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-generated-ocme-v1
+          path: |
+            p10_generated_ocme_v1.json
+            p10_generated_ocme_independent_v1.json

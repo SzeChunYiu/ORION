@@ -1,0 +1,55 @@
+name: p9-p10-predictive-state-compression-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/PREDICTIVE_STATE_COMPRESSION_PROTOCOL_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_predictive_state_compression_v1.py'
+      - '.github/workflows/p9-p10-predictive-state-compression-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen state-compression experiment
+        run: python research/extensions/p9-p10-structural-scaling/run_predictive_state_compression_v1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/PREDICTIVE_STATE_COMPRESSION_V1.json /tmp/compression-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_predictive_state_compression_v1.py
+      - name: Require byte identity
+        run: cmp /tmp/compression-first.json research/extensions/p9-p10-structural-scaling/results/PREDICTIVE_STATE_COMPRESSION_V1.json
+      - name: Print compression summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/PREDICTIVE_STATE_COMPRESSION_V1.json').read_text())
+          print(json.dumps({'terminal':d['terminal'],'aggregate':d['aggregate'],'cells':[{'k':c['k'],'dims':c['feature_dimensions'],'thresholds':c['sample_threshold_0_90'],'ratios':c['threshold_ratios'],'at4096':c['mean_curve'][-1]} for c in d['cells']]},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: predictive-state-compression-v1-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/PREDICTIVE_STATE_COMPRESSION_V1.json
+          if-no-files-found: error
+      - name: Enforce frozen terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/PREDICTIVE_STATE_COMPRESSION_V1.json').read_text())
+          if d['terminal'] != 'PREDICTIVE_STATE_COMPRESSION_ADVANTAGE_SUPPORTED':
+              raise SystemExit('frozen predictive-state compression gate not met; preserve artifact without retuning')
+          PY

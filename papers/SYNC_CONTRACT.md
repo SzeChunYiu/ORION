@@ -1,8 +1,10 @@
-# Framework ↔ paper synchronization contract
+# Paper ↔ framework ↔ harness synchronization contract
 
-The executable framework is canonical for current mechanics; papers are scientific projections of that framework.
+ORION's papers, executable framework, and research harness are three projections of one research semantics. None of the three is allowed to drift silently from the others.
 
-A framework change requires a paper audit when it changes any of:
+The framework remains canonical for typed runtime objects and operator semantics; papers remain canonical for the scientific/epistemic claims and limitations those objects are intended to express; the harness is canonical for how those semantics are actually exercised against replayable capabilities and receipts. A material mismatch between any pair is a conformance defect rather than a reason to privilege one layer automatically.
+
+A material change in **any** layer requires an audit of the other two when it changes any of:
 
 - `K/W/M` state semantics;
 - core operator identity or order;
@@ -10,13 +12,72 @@ A framework change requires a paper audit when it changes any of:
 - scientific meaning/source-projection/representation-mapping semantics;
 - authority/non-escalation rules;
 - saturation/stopping semantics;
+- `CANNOT_CHECK` / unresolved-state lifecycle;
+- negative-result / obstruction / falsification assimilation;
 - failure/experience/issue learning, reframe or reopen behavior;
 - evaluation chronology;
 - Self-ORION promotion rules;
 - nearest-work absorption/novelty boundaries;
-- flagship falsifier or external-promotion gate semantics.
+- flagship falsifier or external-promotion gate semantics;
+- host capability/receipt semantics that can change the observable research-control path.
 
-`papers/FRAMEWORK_SNAPSHOT.json` is machine-checked against `src/orion/registry.py`. Matching the snapshot proves only terminology/mechanic synchronization, not scientific validity or empirical support.
+`papers/FRAMEWORK_SNAPSHOT.json` is machine-checked against `src/orion/registry.py`. Matching the snapshot proves only terminology/mechanic synchronization, not scientific validity or empirical support. Harness semantic terminals and hostile tests provide an additional execution-level synchronization check; they likewise do not grant scientific authority.
+
+## Three-layer covariance rule
+
+For every research-control mechanic:
+
+1. the **paper layer** must state the epistemic contract, admissible conclusions, and explicit limitations;
+2. the **framework layer** must expose typed objects/decisions implementing that contract without silently strengthening it;
+3. the **harness layer** must exercise the same contract on replayable inputs and fail closed when the required evidence/capability/authority object is absent.
+
+A paper concept with no executable owner is not operational. A framework object with no paper/claim boundary is not scientifically interpretable. A harness shortcut that bypasses the typed framework or paper boundary is not conformant.
+
+## Outcome lifecycle: positive, negative, unresolved
+
+ORION distinguishes three top-level research outcomes.
+
+### Positive
+
+A positive outcome satisfies the relevant bounded evidence/decision contract. It does not automatically imply novelty, publication, adoption, promotion, merge, or global task-stop authority.
+
+### Negative
+
+A verified negative result is scientific/research evidence, not an implementation failure and not missing information. Examples include a verified obstruction, falsified hypothesis, non-identifiability theorem/countermodel, donor subsumption, failed transfer under a frozen access/resource model, or impossibility boundary.
+
+A verified negative result must remain negative and be assimilated. It may close a hypothesis branch, register an obstruction/donor result, reopen dependencies, trigger reframe/search, or force a paper/framework claim revision. It must never be softened to `CANNOT_CHECK` merely because a positive result was preferred.
+
+Canonical typed representation: `ResearchNegativeResult.v1`.
+
+### Unresolved / CANNOT_CHECK
+
+`CANNOT_CHECK` means the current typed evidence/control state is insufficient to decide the requested judgment. It is not equivalent to a negative result.
+
+By default, every `CANNOT_CHECK` is an **active research obligation** and must carry `ResearchResolutionObligation.v1`, including:
+
+- stable subject/obligation identity;
+- unresolved class and reason codes;
+- required evidence/capability/authority objects;
+- admissible next research actions;
+- prior attempts and blockers;
+- an explicit bounded/external stop condition when one applies;
+- non-authorizing authority ceilings.
+
+A bare `CANNOT_CHECK` emitted by the shared research harness is a covariance/conformance failure.
+
+The harness must attempt an admissible resolution path when one exists: retry/restore capability, acquire/verify evidence, widen an authorized search route, orient/reframe, diagnose responsibility, repair representation/interface, assess OCME, check typed authority, or request a protocol-permitted resource/protected-evidence widening.
+
+## Legitimate unresolved boundaries
+
+The resolution-first rule does **not** mean ORION may fabricate decidability. An unresolved obligation may remain open when a typed boundary is established, including:
+
+- protected/external evidence intentionally not yet released;
+- extension ambiguity or formal non-identifiability under the declared world class;
+- a frozen resource bound with no authorized widening;
+- an authority/coercion boundary the harness is not permitted to mint;
+- a currently unavailable host capability preserved as orchestration state rather than scientific evidence.
+
+Such states explain why the obligation remains unresolved. They are not task-completion certificates.
 
 ## ORION-Q publication synchronization — recursive V3 epoch
 
@@ -62,6 +123,7 @@ The final spec intentionally does not give all four papers the same terminal.
 Changing one of those blockers requires the corresponding new evidence and a new sync epoch/spec, not an editorial rewrite.
 
 ### Q-series content-binding rule
+Absorbing a nearest mechanism may shrink or eliminate the ORION claim; that is a successful research outcome. When nearest work subsumes the claim, the result should be represented as a verified negative/donor-subsumption outcome and assimilated rather than ignored.
 
 P6-P8 use per-directory `SHA256SUMS`/manifest bindings; Q1-Q4 use a cross-paper binding over the canonical publication package. Historical drafts remain provenance and may stay outside the canonical binding. Canonical V3 manuscripts, V3 ledgers, nearest-work/figure contracts, review verdicts and secondary publication analyses may not drift silently.
 
@@ -70,6 +132,7 @@ P6-P8 use per-directory `SHA256SUMS`/manifest bindings; Q1-Q4 use a cross-paper 
 The owner elected not to require a separate external quantum-expert pre-review for Q1. The final spec records this as `SKIPPED_BY_OWNER`. The sync checker rejects any attempt to encode that skip as a scientific pass. Journal peer review remains external scrutiny if the paper is submitted.
 
 ### Successor-study rule
+A green repository/CI run may support the first level only. A paper cannot be marked externally validated or publication-ready while its external gate is unresolved or negative relative to the required promotion conjunction. `FlagshipEvidenceState.publication_ready` requires both levels to pass for all registered flagship papers.
 
 Q2's cross-domain comparison, Q3's multi-frontier series and Q4's real-domain matched-information study remain registered successor research. They are required only for claims that exceed the current scoped terminals. They must never be described as executed until prospective evidence actually exists.
 
@@ -80,7 +143,9 @@ Every flagship/candidate claim maintains a nearest-work case. A novelty case is 
 ## Two-level evidence rule
 
 Software/tests may establish local implementation/provenance/falsifier state. They do not establish external scientific authority. Paper-specific empirical and theorem claims remain governed by their own evidence ledgers. Green CI cannot promote a manuscript beyond its frozen claim ledger or evidence terminal.
+Missing, duplicate, self-verified, post-hoc, non-fresh or binding-mismatched external records yield `CANNOT_CHECK` plus a resolution obligation describing the missing external/protected object. A verified FAIL remains FAIL/negative evidence rather than being softened into missing evidence. In a repository-only environment, the default manifest may therefore contain unresolved external obligations without implying scientific failure.
 
 ## External evidence may not be declared by booleans
 
 The broader flagship system still consumes typed external evidence manifests rather than caller-declared success booleans. Missing, duplicate, self-verified, post-hoc, stale or binding-mismatched evidence remains `CANNOT_CHECK`; a verified failure remains a failure rather than being softened into missing evidence.
+Paper-specific empirical claims maintain their own evidence ledgers and cannot inherit truth from passing software tests, nearest-work prose, caller declarations, framework synchronization, or harness conformance terminals.

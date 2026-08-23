@@ -1,0 +1,100 @@
+name: orion-qg-qg33-sixlcu-label-value
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG33_*'
+      - 'development/orion-qg-regime-geometry/qg33_*'
+      - 'development/orion-qg-regime-geometry/run_qg33_dual_harness.py'
+      - 'research/extensions/orion-qg/qg33_*'
+      - '.github/workflows/orion-qg-qg33-sixlcu-label-value.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg33-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  label-value:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg33_dual_harness.py | tee artifacts/orion-qg-qg33-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg33_sixlcu_label_value.py --output artifacts/orion-qg-qg33-replay.json > artifacts/orion-qg-qg33-replay.log
+          cmp artifacts/orion-qg-qg33-sixlcu-label-value.json artifacts/orion-qg-qg33-replay.json
+      - name: Self-consistent semantic tamper must be rejected
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg33-sixlcu-label-value.json').read_text())
+          d['LABEL_QUOTIENT_VALUE_SUFFICIENT']=not d['LABEL_QUOTIENT_VALUE_SUFFICIENT']
+          if d['LABEL_QUOTIENT_VALUE_SUFFICIENT']:
+            d['label_value_separation_witness']=None
+          u={k:v for k,v in d.items() if k!='result_digest'}
+          d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+          Path('artifacts/orion-qg-qg33-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg33_generic_verify.py --input artifacts/orion-qg-qg33-tampered.json --output artifacts/orion-qg-qg33-tampered-verify.json > artifacts/orion-qg-qg33-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg33-tampered-verify.json').read_text())
+          assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce label-vs-value authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg33-sixlcu-label-value.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg33-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg33-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg33-dual-harness.json').read_text())
+          sep='QG33_SIXLCU_EXACT_LABEL_QUOTIENT_IS_NOT_EXACT_VALUE_QUOTIENT__N2_COMPLETE'
+          suff='QG33_SIXLCU_ONE_LITERAL_LABEL_QUOTIENT_ALSO_VALUE_SUFFICIENT__N2_COMPLETE'
+          assert d['terminal'] in {sep,suff} and d['both_accept'] is True
+          assert a['COMPLETE_N2_DOMAIN'] is True and a['instance_count']==38760
+          assert a['label_confusion']['errors']==0 and a['p0_confusion']['errors']==0
+          assert a['NO_POST_OUTCOME_FEATURE_INVENTION'] is True
+          if d['terminal']==sep:
+            assert a['LABEL_QUOTIENT_VALUE_SUFFICIENT'] is False
+            assert a['label_value_separation_witness'] is not None
+            assert g['decision']=='ACCEPT_LABEL_VALUE_SEPARATION'
+          else:
+            assert a['LABEL_QUOTIENT_VALUE_SUFFICIENT'] is True
+            assert g['decision']=='ACCEPT_LABEL_VALUE_SUFFICIENCY'
+          assert g['all_checks'] is True and n['all_checks'] is True
+          for x in (a,g,n,d):
+            assert x['ALL_N_VALUE_THEOREM'] is False
+            assert x['GLOBAL_PREDICATE_MINIMALITY'] is False
+            assert x['NEW_FEATURE_VOCABULARY_AUTHORITY'] is False
+            assert x['novelty_authority'] is False
+            assert x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg33-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg33-*.json
+            artifacts/orion-qg-qg33-*.log
+            .orion-qg-qg33-generic/.orion-harness/**
+            .orion-qg-qg33-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

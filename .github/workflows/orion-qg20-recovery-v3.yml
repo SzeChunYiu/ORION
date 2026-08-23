@@ -1,0 +1,72 @@
+name: orion-qg20-recovery-v3
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg20_recovery_v3_signed_weight.py'
+      - 'development/orion-qg-regime-geometry/qg20_recovery_v3_signed_weight_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg20_recovery_v3_signed_weight_dual.py'
+      - 'development/orion-qg-regime-geometry/QG20_RECOVERY_V3_SIGNED_WEIGHT_PROTOCOL_V1.md'
+      - '.github/workflows/orion-qg20-recovery-v3.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg20-recovery-v3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  signed-weight-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run signed-weight dual recovery
+        run: |
+          python development/orion-qg-regime-geometry/run_qg20_recovery_v3_signed_weight_dual.py | tee /tmp/qg20-v3.txt
+          grep '^ORIONQG_QG20_RECOVERY_V3_SIGNED_WEIGHT_DUAL=' /tmp/qg20-v3.txt
+      - name: Enforce V3 fixed-representation integrity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('artifacts/orion-qg-qg20-recovery-v3-signed-weight-dual.json').read_text())
+          if p.get('instances') != 36720:
+              raise SystemExit('V3 domain count mismatch')
+          if p.get('representation') != 'SIGNED_WEIGHT_V1=(S_1,S_2,S_3,S_4)':
+              raise SystemExit('V3 representation drift')
+          if p.get('feature_search_performed') is not False:
+              raise SystemExit('V3 performed forbidden feature selection')
+          if p.get('analyzer_replay_identical') is not True:
+              raise SystemExit('V3 analyzer replay mismatch')
+          if p.get('verifier_decision') not in {'ACCEPT', 'REJECT'}:
+              raise SystemExit('V3 verifier lacks inspectable decision')
+          checks = p.get('verifier_checks')
+          if not isinstance(checks, dict) or not checks:
+              raise SystemExit('V3 verifier checks missing')
+          if p.get('verifier_decision') == 'ACCEPT' and not all(checks.values()):
+              raise SystemExit('V3 ACCEPT contains failed check')
+          if p.get('verifier_decision') == 'REJECT' and all(checks.values()):
+              raise SystemExit('V3 REJECT lacks failed check')
+          allowed = {
+              'QG20_RECOVERY_V3_SIGNED_WEIGHT_ENUMERATOR_DETERMINES_DONOR_EXACTNESS_COMPLETE_N4',
+              'QG20_RECOVERY_V3_SIMPLE_SIGNED_WEIGHT_NONIDENTIFYING__COMPLETE_ENUMERATOR_OR_QUOTIENT_REQUIRED',
+              'QG20_RECOVERY_V3_DUAL_DISAGREEMENT',
+          }
+          if p.get('terminal') not in allowed:
+              raise SystemExit(f"unexpected V3 terminal: {p.get('terminal')!r}")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg20-recovery-v3
+          path: |
+            artifacts/orion-qg-qg20-recovery-v3-signed-weight.json
+            artifacts/orion-qg-qg20-recovery-v3-signed-weight-verification.json
+            artifacts/orion-qg-qg20-recovery-v3-signed-weight-dual.json
+            /tmp/qg20-v3.txt
+          if-no-files-found: warn
+          retention-days: 30

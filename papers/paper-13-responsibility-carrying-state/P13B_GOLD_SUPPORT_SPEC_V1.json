@@ -1,0 +1,22 @@
+{
+  "authority_boundary": "locally_authored_certificate_independent_finite_world_gold",
+  "current_epoch": 2,
+  "paper_id": "P13",
+  "schema": "ORION.P13B.GoldSupportSpec.v1",
+  "state_forms": {
+    "Z1": ["x", "m"],
+    "Z2": ["x", "m", "r"],
+    "Z3": ["x", "m", "r", "a"],
+    "Z4": ["x", "a"],
+    "Z5": ["x"],
+    "Z6": ["x", "r"]
+  },
+  "task_requirements": {
+    "DECIDE": ["x", "m"],
+    "INTERVENE": ["x", "m", "r"],
+    "PREDICT": ["x"],
+    "REPAIR": ["x", "m", "r", "a"],
+    "VERIFY": ["x", "a"]
+  }
+}
+

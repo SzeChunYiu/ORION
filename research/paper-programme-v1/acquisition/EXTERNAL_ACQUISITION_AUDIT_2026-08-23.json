@@ -1,0 +1,515 @@
+{
+  "schema": "orion.acquisition.blocker-reclassification.v1",
+  "date": "2026-08-23",
+  "ledger": "research/paper-programme-v1/P1_P15_RECURSIVE_RESOLUTION_LEDGER_2026-08-23.json",
+  "premise": "No blocker in the ledger names an institution or a budget. Each names a property of the evidence: not authored by the candidate, frozen before outcomes, labels withheld, an independent scorer, checkpoints and compute, or a bespoke human panel. Only the last has no free route.",
+  "authority": "AUDIT_OF_CLASSIFICATION_ONLY",
+  "promotion": "FORBIDDEN. This file reclassifies what kind of blocker each item is. It does not relabel, weaken or discharge any registered claim. Every route below requires a NEW claim identity, prospectively frozen beside the untouched original, per the ledger's post_hoc_relabeling_prohibited and successor_requires_new_claim_id rules.",
+  "requirement_classes": {
+    "A": "artifact not authored by the candidate -- free and abundant",
+    "B": "frozen before outcomes, third-party timestamped -- free registries",
+    "C": "labels withheld from the candidate -- free held-out benchmarks",
+    "D": "independent scorer or adjudicator -- free venues and challenges",
+    "E": "checkpoints and compute -- open weights are free; compute is the researcher's own",
+    "F": "a bespoke human panel adjudicating the candidate's own cases -- NO FREE ROUTE"
+  },
+  "reclassification_key": {
+    "LOCALLY_UNEXECUTED": "nothing external is missing; the work has simply not been run",
+    "LOCALLY_BROKEN": "a local defect is sitting inside an item filed as externally blocked",
+    "PROCURABLE_FREE": "every requirement class has a verified free route",
+    "PARTIALLY_PROCURABLE": "most classes have a free route; a residual class does not",
+    "EXTERNALLY_BLOCKED": "a class-F requirement with no free substitute"
+  },
+  "items": [
+    {
+      "item_id": "P9.T3.FRONTIER.EXECUTION",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "LOCALLY_UNEXECUTED",
+      "requirement_classes": [
+        "E"
+      ],
+      "why": "The freeze document already declares the 1,344-cell grid before any outcome and pins it by sha256. Its environment_boundary records open_weight_checkpoint_present=false and an outbound proxy returning 403 -- properties of the box it was written on, not of the world. The declared scale ladders are LLAMA3_2 (1B, 3B) and QWEN2_5 (0.5B, 1.5B, 3B, 7B): six openly published checkpoints, all six resolving live.",
+      "free_routes": [
+        "huggingface open-weight checkpoints",
+        "the researcher's own cluster compute"
+      ],
+      "friction": "Two of six ladder points (Llama-3.2 1B and 3B) are gated=manual: free, but requiring an accepted licence on an account. The four Qwen points are ungated; Qwen2.5-3B carries a non-commercial research licence rather than Apache-2.0.",
+      "residual_requirement": null,
+      "new_claim_id_required": false,
+      "note": "No new claim identity is needed: the grid was frozen before outcomes and its crossing rule already forbids extrapolation, interpolation and off-grid frontiers. The repository's own acquisition-reachability record says what would unblock it -- 'a checkpoint set placed on disk, an allowlisted mirror for one, or execution in an environment that already holds them' -- and all six checkpoints resolve from an ordinary network. What that record does not say, and what this audit adds, is that the executing code is also absent.",
+      "rank": 3,
+      "blocking_precondition": "No cell-execution harness exists. The freeze names orion.study.p9.frontier_grid as its runner, but that module declares the grid and scores an outcome file: its CLI takes --outcomes as an INPUT, documented as 'an outcome file for the declared cells; omit while none exists'. Nothing in the repository produces P9.UT3FrontierGridOutcomes.v1. Fetching the six checkpoints is necessary and not sufficient -- the harness that walks a cell and emits a verified count has to be written first. That is local work with no external component."
+    },
+    {
+      "item_id": "P6.REPRODUCIBILITY.EXTERNAL",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PROCURABLE_FREE",
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
+      "why": "Wants a clean-room byte-for-byte replay of a bounded FORMAL artifact by someone who is not the candidate. No data, no hidden labels, no human panel, no compute at scale. The only requirement is that the runner is not the author.",
+      "free_routes": [
+        "ML Reproducibility Challenge",
+        "Zenodo DOI-bound container",
+        "Software Heritage archival",
+        "artifact-evaluation tracks at open venues"
+      ],
+      "residual_requirement": null,
+      "new_claim_id_required": true,
+      "blocking_precondition": "The replay bundle has to exist and run from a cold start before any custodian can be asked. That packaging is local work and is not done.",
+      "rank": 2
+    },
+    {
+      "item_id": "P2.TASK_WORLD.IDENTITY",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "LOCALLY_BROKEN",
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
+      "why": "The disposition's first clause is 'the archived task-world baseline has not been reproduced'. That is a local reproduction failure filed inside an external-blocker item. P2's own acquisition-ceiling diagnosis shows the binding stage was CANDIDATE_GENERATION: the arm's routes returned 7 of 229 gold identifiers, capping avg_iou at 0.011 against a 0.03 threshold. That is a retrieval problem, and free keyless bibliographic APIs address retrieval.",
+      "free_routes": [
+        "OpenAlex (321.9M works, no key)",
+        "Crossref (185.7M works, no key)",
+        "arXiv API",
+        "Semantic Scholar (free key needed; unauthenticated requests are rate-limited)"
+      ],
+      "residual_requirement": "D -- an independent scorer for the successor arm",
+      "new_claim_id_required": true,
+      "see_also": "A second, distinct P2 reproducibility failure is live in CI: tests/unit/study/p2_open_world/test_p2_lexical_echo_successor.py, where the frozen parameter digest matches while the per-arm numbers do not.",
+      "rank": 4
+    },
+    {
+      "item_id": "P5.H1_H4.EXTERNAL_IDENTITIES",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "LOCALLY_UNEXECUTED",
+      "requirement_classes": [
+        "B"
+      ],
+      "why": "Its own next_executable_step is a PREFLIGHT running a local script, and its success condition is that nine identity and custody blockers clear without reading protected outcomes. Identity bindings are authored, not bought. What cannot be authored is the third-party timestamp proving they were fixed before outcomes -- and that is free.",
+      "free_routes": [
+        "OSF Registries",
+        "AsPredicted",
+        "Zenodo DOI"
+      ],
+      "residual_requirement": null,
+      "new_claim_id_required": false,
+      "note": "Run the preflight and count which of the nine actually require an outside party. The item currently asserts all nine are external without that count.",
+      "rank": 5
+    },
+    {
+      "item_id": "P11.REAL_SYSTEMS.EXTERNAL",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
+      "why": "Wants 'independently implemented real-system strata'. Open-source systems are independently implemented by definition and their authorship predates any ORION protocol, which is exactly the independence the item asks for.",
+      "free_routes": [
+        "public open-source system corpora selected by a preregistered rule",
+        "GitHub API for revision and issue history"
+      ],
+      "residual_requirement": "D -- an independent scorer for the width-conditioned gate",
+      "new_claim_id_required": true,
+      "rank": 6
+    },
+    {
+      "item_id": "P5.WIDE.SUCCESSOR",
+      "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "why": "The frozen design needs a protected project panel over eight domains and eight revision classes with same-visible-symptom blocking. Real projects with real revision histories are public, and their revisions were authored before any ORION protocol existed.",
+      "free_routes": [
+        "GitHub API revision histories under a preregistered domain and revision-class sampling rule",
+        "OSF Registries for the pre-outcome freeze"
+      ],
+      "residual_requirement": "D -- independent evaluators",
+      "new_claim_id_required": true,
+      "rank": 7
+    },
+    {
+      "item_id": "P3.C6_C8.EXTERNAL",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "why": "Four atlas coordinates -- referent, construct, measurement, temporal context -- are inert in the current artifact. Making them vary is a corpus-selection problem, and multi-domain corpora that vary all four are public.",
+      "free_routes": [
+        "OpenAlex and Crossref for source-disjoint multi-domain selection",
+        "public annotated corpora with existing third-party gold"
+      ],
+      "residual_requirement": "D -- a downstream evaluator",
+      "new_claim_id_required": true,
+      "rank": 8
+    },
+    {
+      "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
+      "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "why": "Same corpus argument as P3.C6_C8, plus a raw-text attack corpus. Attacks authored by other people and published before the protocol satisfy the independence requirement without a panel.",
+      "free_routes": [
+        "public multi-domain corpora with third-party gold",
+        "publicly published attack and perturbation corpora",
+        "OSF Registries for the pre-outcome freeze"
+      ],
+      "residual_requirement": "D -- independent scoring of the powered panel",
+      "new_claim_id_required": true,
+      "rank": 9
+    },
+    {
+      "item_id": "P9.T4.D1V1_3.SUCCESSOR",
+      "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+      "reclassified_as": "PROCURABLE_FREE",
+      "requirement_classes": [
+        "B",
+        "E"
+      ],
+      "why": "Needs a fresh protected split, frozen checkpoints and provider custody. Checkpoints are the same open weights as P9.T3. A split is protected in the sense that matters when it is fixed before outcomes and timestamped by a third party.",
+      "free_routes": [
+        "the same six open-weight checkpoints",
+        "OSF Registries or AsPredicted for the split freeze",
+        "the researcher's own compute"
+      ],
+      "residual_requirement": null,
+      "new_claim_id_required": true,
+      "rank": 1,
+      "note": "Ranked first because it is the only fully procurable item that also has a runner: orion.study.p9.d1_experiment.run_d1 exists, where the T3 frontier's executing code does not."
+    },
+    {
+      "item_id": "P1.R7A.WIDE.SUCCESSOR",
+      "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "why": "384 source clusters and nine comparators. Sources are public; comparators that the candidate did not write are open-source; hosts are compute. Conditional power is already computed at 0.920216 and the local preflight passes.",
+      "free_routes": [
+        "OpenAlex and Crossref source snapshots",
+        "open-source comparator implementations",
+        "OSF Registries for the pre-outcome freeze"
+      ],
+      "residual_requirement": "D -- independent scorer custody, which the design names explicitly",
+      "new_claim_id_required": true,
+      "rank": 10
+    },
+    {
+      "item_id": "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "D"
+      ],
+      "why": "Needs a naturalistic multi-domain corpus, donor-complete baselines and an independent replay custodian. Corpus and baselines are public; the custodian is the same free-route question as P6.",
+      "free_routes": [
+        "public multi-domain corpora",
+        "open-source donor baselines",
+        "ML Reproducibility Challenge for the replay custodian"
+      ],
+      "residual_requirement": "D -- a protected evaluator",
+      "new_claim_id_required": true,
+      "rank": 11
+    },
+    {
+      "item_id": "P8.DEPLOYED.AGENT.EXTERNAL",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "why": "Needs independently authored attacks, separately implemented comparators and hidden authority labels. Published attack corpora are authored by others; open-source agent frameworks are separately implemented; a benchmark whose test labels the candidate never sees supplies hidden labels without a panel.",
+      "free_routes": [
+        "published attack corpora predating the protocol",
+        "open-source agent frameworks as comparators",
+        "held-out public benchmarks for label hiding"
+      ],
+      "residual_requirement": "D -- an independent replay custodian for the deployed campaign",
+      "new_claim_id_required": true,
+      "caution": "The ledger records that the original homogeneous 169-entry panel does not establish breadth. A free corpus that is also homogeneous does not fix that; the sampling rule must be preregistered to force domain spread.",
+      "rank": 12
+    },
+    {
+      "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "why": "A wide multi-domain execution corpus is public; the lifecycle freeze is local; raw trace and environment custody is the researcher's own archival discipline.",
+      "free_routes": [
+        "public multi-domain task corpora",
+        "Zenodo and Software Heritage for trace and environment custody"
+      ],
+      "residual_requirement": "D -- an independent evaluator with scorer custody",
+      "new_claim_id_required": true,
+      "rank": 13
+    },
+    {
+      "item_id": "P15.A.HARNESS.SUCCESSOR",
+      "ledger_category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "why": "Needs a donor matrix, a protected corpus and custody bindings for one exact harness revision with live host and capability failures. Donor harnesses are open-source; live failures can be induced locally; the corpus can be drawn from public sources under a preregistered rule.",
+      "free_routes": [
+        "open-source harness donors",
+        "public task corpora",
+        "OSF Registries for the pre-outcome freeze"
+      ],
+      "residual_requirement": "D -- independent custody bindings",
+      "new_claim_id_required": true,
+      "rank": 14
+    },
+    {
+      "item_id": "P4.NATURALISTIC.GENERALITY",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "C",
+        "D",
+        "F"
+      ],
+      "why": "Needs a blinded panel, external comparators, an independent evaluator and a source-disjoint replication panel. The cases can be public and authored by others; the blinding of a panel that adjudicates the candidate's own cases cannot be self-supplied.",
+      "free_routes": [
+        "public naturalistic case corpora with existing third-party outcomes",
+        "open-source CANNOT_CHECK-capable comparators"
+      ],
+      "residual_requirement": "F -- a blinded adjudicating panel",
+      "new_claim_id_required": true,
+      "honest_alternative": "State the claim as bounded to publicly adjudicated cases. That is correct scoping, not narrowing: it changes what the result is evidence about, not how strong it is.",
+      "rank": 15
+    },
+    {
+      "item_id": "P14.D.EXTERNAL_VALIDITY",
+      "ledger_category": "EXTERNAL_EVIDENCE_BLOCKER",
+      "reclassified_as": "PARTIALLY_PROCURABLE",
+      "requirement_classes": [
+        "A",
+        "C",
+        "D",
+        "F"
+      ],
+      "why": "The item asks for blinded independent case packets and adjudicator custody, with case authorship and implementation hidden from candidate construction. The adjudicator panel is class F. The case authorship is not: the scientific record already contains a very large corpus of promotion, retention and reopen decisions adjudicated by editors and publishers, authored by people who are not the candidate, and timestamped long before any ORION protocol -- 134,509 works flagged retracted in OpenAlex and 74,828 retraction-notice works in Crossref, with the Retraction Watch database itself free via Crossref Labs.",
+      "free_routes": [
+        "OpenAlex is_retracted",
+        "Crossref update-type:retraction",
+        "Retraction Watch data via Crossref Labs",
+        "PCI Registered Reports for protocol review before results exist"
+      ],
+      "residual_requirement": "F -- a bespoke panel adjudicating the candidate's own packets",
+      "new_claim_id_required": true,
+      "caution": "A retraction record is an adjudicated outcome, not a governance-contract case packet. Whether the ORION promotion or reopen decision is even defined on such a record has to be established before this is called a substitute -- and if it is not, this route fails and should be recorded as having failed.",
+      "honest_alternative": "If the mapping does not hold, P14D stays externally blocked and P14C's specification-conformance result stands as the bounded claim, as it already does.",
+      "rank": 16
+    }
+  ],
+  "summary": {
+    "items_audited": 16,
+    "locally_unexecuted": 2,
+    "locally_broken": 1,
+    "procurable_free": 2,
+    "partially_procurable": 11,
+    "externally_blocked_with_no_free_route": 0,
+    "items_with_a_class_F_residual": 2,
+    "most_common_residual": "D -- an independent scorer or adjudicator, which free venues address but only on a publication timescale",
+    "headline": "Not one of the sixteen is blocked by lack of an institution or a budget. Two are simply unexecuted, one is locally broken, and eleven reduce to a single residual class -- an independent scorer. Two carry a class-F residual that no free route reaches, and for those the correct move is a bounded claim, not an item left open forever.",
+    "how_to_read_the_zero": "externally_blocked_with_no_free_route = 0 means no item has zero free routes. It does NOT mean no item is blocked. P4 and P14D each carry a class-F residual -- a bespoke human panel adjudicating the candidate's own cases -- and remain blocked on it after every free route is taken. Read this field beside items_with_a_class_F_residual, never instead of it.",
+    "nothing_executed": "This audit is classification plus verified reachability. No cell is executed, no replay bundle is packaged, no protocol is registered and no new claim identity exists yet."
+  },
+  "correction": "An earlier revision of this audit ranked P9.T3 first on the ground that nothing was missing but a download. That was wrong: the cell-execution harness does not exist either. The reclassification is unchanged -- P9.T3 is still not externally blocked -- but the work is larger than fetching weights, and the ranking has been corrected.",
+  "execution_pass_2026_08_23": {
+    "what_this_is": "Outcomes of actually attempting the ranked items, appended rather than folded into the entries above. Reclassification is one thing; execution is another, and they must stay separately readable.",
+    "outcomes": [
+      {
+        "item_id": "P5.H1_H4.EXTERNAL_IDENTITIES",
+        "outcome": "PARTIALLY_SOLVED",
+        "did": "Ran the local preflight and partitioned all nine blockers. Source-grounded the MDA donor from arXiv:2608.09696v3 primary full text, moving m_open_only from CANNOT_CHECK to MECHANISM_COMPARATOR_BOUND. Blocker count 9 -> 8.",
+        "residual": "Eight UNBOUND protocol fields -- digests, an epoch and a subject revision -- all authorable by the researcher. Status stays CANNOT_CHECK until they are bound.",
+        "residual_class": "B, plus a third-party timestamp to make the freeze pre-outcome",
+        "finding": "Zero of the nine required an outside party. The owner-independence check the preflight does enforce already passes and was never among the blockers.",
+        "artifacts": [
+          "research/self-orion-v3/MDA_SOURCE_GROUNDING_RECEIPT_2026-08-23.json",
+          "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V2.json",
+          "research/self-orion-v3/P5_H1_H4_BLOCKER_PARTITION_2026-08-23.json"
+        ]
+      },
+      {
+        "item_id": "P6.REPRODUCIBILITY.EXTERNAL",
+        "outcome": "PRECONDITION_SOLVED",
+        "did": "Replayed the frozen V3 bundle in a third environment: 7 of 7 steps exit 0 and all 8 pinned input and output digests match, under a different interpreter and a different z3 than the locked receipt records. Packaged what a custodian receives and wrote the verifier that checks what one returns.",
+        "residual": "A custodian who is not the candidate. That is the blocker itself and it is untouched.",
+        "residual_class": "D",
+        "finding": "The bundle is runnable by a stranger; what is missing is the stranger. The verifier rejects a receipt from the candidate, one that reused the candidate's execution unit, one missing a step, and one with a wrong digest.",
+        "artifacts": [
+          "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_THIRD_ENVIRONMENT_REPLAY_2026-08-23.json",
+          "papers/paper-06-formal-epistemic-structures-and-mechanics/P6_CLEAN_ROOM_REPLAY_PACKET_V1.json",
+          "papers/paper-06-formal-epistemic-structures-and-mechanics/verify_clean_room_receipt_v1.py"
+        ]
+      },
+      {
+        "item_id": "P9.T3.FRONTIER.EXECUTION",
+        "outcome": "CORRECTED_AND_SPECIFIED",
+        "did": "Established that the seven representations, the per-cell task items and the cell runner do not exist anywhere in the repository. Recorded the gap, the build order, and a prohibition on writing any stub to the freeze's expected_result_artifact path.",
+        "residual": "Build the item generator, the seven representations and the runner, then acquire checkpoints and execute. Zero of 1,344 cells are executed.",
+        "residual_class": "none external; construction work plus the researcher's own compute",
+        "finding": "Still not externally blocked, and not one download from execution either.",
+        "artifacts": [
+          "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_EXECUTION_GAP_2026-08-23.json"
+        ]
+      },
+      {
+        "item_id": "P2.TASK_WORLD.IDENTITY",
+        "outcome": "ADJACENT_DEFECT_SOLVED",
+        "did": "Diagnosed the live CI reproduction failure on the lexical-echo successor. Two fresh runs are bit-identical to each other; four mrr_at_50 values differ from the committed artifact by at most three units in the last place of a float64, and no gate reads mrr_at_50. Replaced the exact-equality comparison with one that is exact on every gate-read field and on all non-float values, and permits a declared four-ulp difference elsewhere.",
+        "residual": "The archived task-world baseline reproduction named in the blocker is a different object and is untouched.",
+        "residual_class": "A and D for the blocker proper",
+        "finding": "The CI failure was a comparison defect, not a result defect: bit-equality of a floating-point mean across library versions is an unattainable gate.",
+        "artifacts": [
+          "papers/paper-02-open-world-scientific-discovery/diagnose_lexical_echo_reproduction.py",
+          "papers/paper-02-open-world-scientific-discovery/P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS_2026-08-23.json",
+          "tests/unit/study/p2_open_world/test_p2_lexical_echo_successor.py"
+        ]
+      },
+      {
+        "item_id": "P9.T4.D1V1_3.SUCCESSOR",
+        "outcome": "HISTORICAL_NEGATIVE_EXPLAINED",
+        "did": "Reproduced D1 v1.2 in a third environment and matched the ARCHIVED numbers exactly, including TYPED_SERIALIZED_BAG at 0.5 with one distinct prediction. Attributed the 0.50 -> 0.75 locked-replay divergence: the arm is a constant predictor whose accuracy is a class prior, 32 of 128 protected cases lie within 0.05 of the decision boundary, the runner-up is correct on all 32, and 0.5 + 32/128 = 0.75 exactly.",
+        "residual": "The five required inputs of the D1 v1.3 freeze remain absent. The strongest single next step is the prospective power and attainability receipt, which is outcome-blind and local.",
+        "residual_class": "B and D",
+        "finding": "The archived and replayed values are two sides of one boundary on an unresponsive comparator, not two measurements that disagree. Neither is evidence about representation quality.",
+        "artifacts": [
+          "papers/paper-09-structured-epistemic-learning/diagnose_d1v1_2_divergence.py",
+          "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json",
+          "tests/unit/study/p9/test_p9_d1v1_2_divergence_root_cause.py"
+        ]
+      }
+    ],
+    "not_attempted": [
+      "P11.REAL_SYSTEMS.EXTERNAL",
+      "P5.WIDE.SUCCESSOR",
+      "P3.C6_C8.EXTERNAL",
+      "P3.PARTIAL_OBSERVATION.SUCCESSOR",
+      "P1.R7A.WIDE.SUCCESSOR",
+      "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
+      "P8.DEPLOYED.AGENT.EXTERNAL",
+      "P10.PROTECTED.EXECUTION.EXTERNAL",
+      "P15.A.HARNESS.SUCCESSOR",
+      "P4.NATURALISTIC.GENERALITY",
+      "P14.D.EXTERNAL_VALIDITY"
+    ],
+    "nothing_promoted": "No claim identity was created, no gate was evaluated, no protected outcome was read, and no registered claim changed authority. Every entry above is a diagnosis, a partition, a precondition or a correction.",
+    "second_wave_measurements": {
+      "what_this_is": "Four more items measured rather than classified from their dispositions, plus P1 and P3. Appended, not folded in.",
+      "outcomes": [
+        {
+          "item_id": "P1.R7A.WIDE.SUCCESSOR",
+          "measured": "LOCALLY_UNEXECUTED",
+          "detail": "The preflight reports ZERO local blockers, status READY_FOR_EXTERNAL_BINDING, 384 of 384 units at joint power 0.920216. Of the five declared external bindings, 3 are authorable and 2 are retrieval; 0 are enforced by any line of code. The enforcement search was positive-controlled -- the same pattern finds P5's real gate -- so the zero is trustworthy.",
+          "artifact": "research/paper-programme-v1/acquisition/P1_R7A_BLOCKER_PARTITION_2026-08-23.json"
+        },
+        {
+          "item_id": "P3.C6_C8.EXTERNAL",
+          "measured": "REAL_BUT_THE_REMEDY_IS_WRONG",
+          "detail": "measurement_ids and temporal_context_ids carry ONE distinct value across 64 projections, and it is the empty list. But referent_ids has 24 distinct values and construct_ids 12, and neither ever differs between the two sides of a case: 0 of 32. The ledger's remedy asks that these coordinates VARY, which an atlas can satisfy while reproducing every zero. The condition has to be non-zero WITHIN-CASE contrast. Two coordinates the ledger does not name, modality and predicate, behave the same way. polarity is the only semantic coordinate that contrasts, at 6 of 32.",
+          "artifact": "papers/paper-03-global-knowledge-portrait/evidence/P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json"
+        },
+        {
+          "item_id": "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
+          "measured": "LOCALLY_UNEXECUTED",
+          "detail": "Its own prospective evaluation says 'protocol draft, not frozen / not result-bearing' and no P7 freeze exists on any ref. All five replay steps pass, so there is no local defect either -- the next step is simply to freeze a protocol."
+        },
+        {
+          "item_id": "P8.DEPLOYED.AGENT.EXTERNAL",
+          "measured": "LOCALLY_UNEXECUTED",
+          "detail": "Same shape as P7. All five replay steps pass across 17 cases, 5 domains and 5 blocked attacks."
+        },
+        {
+          "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
+          "measured": "LOCALLY_UNEXECUTED",
+          "detail": "8 of 8 required inputs at present:false. The freeze code enforces externality by NAME -- only identifiers containing 'independent', 'custod' or 'gold' -- so exactly 3 are external and 5 are the researcher's to produce. One of the five, the power and attainability receipt, has local machinery already.",
+          "artifact": "research/paper-programme-v1/acquisition/P7_P8_P10_P11_MISFILING_AUDIT_2026-08-23.json"
+        },
+        {
+          "item_id": "P11.REAL_SYSTEMS.EXTERNAL",
+          "measured": "LOCALLY_UNEXECUTED",
+          "detail": "Five unchecked readiness boxes, none needing an outside party, and one of them is contradicted by the paper's own code. A P11G fidelity digest could not be separated from environment drift and is recorded CANNOT_CHECK rather than as a defect."
+        },
+        {
+          "item_id": "P4.NATURALISTIC.GENERALITY",
+          "measured": "BLOCKED_BY_CONSTANT_AND_PERMISSIVE",
+          "detail": "The preflight reports READY_FOR_EXTERNAL_BINDING with zero blockers while opening three files and no case artifact, against a declared 768 clusters over 4 domains and 8 mechanisms. Replacing external_bindings_required with a single nonsense string still reports READY -- its only consumer tests non-emptiness. unidentifiability_mechanism does not occur anywhere in the readiness module. Zero blockers carry a citable enforcing line.",
+          "artifact": "research/paper-programme-v1/acquisition/P4_P14D_BLOCKED_BY_CONSTANT_2026-08-23.json"
+        },
+        {
+          "item_id": "P14.D.EXTERNAL_VALIDITY",
+          "measured": "BLOCKED_BY_CONSTANT_AND_REFUSING",
+          "detail": "Creating all eight required artifacts leaves terminal, execution_authorized and external_custody_verified unchanged: they are hardcoded literals and only present/missing are computed. The refusal is deliberate and test-pinned and the stance is right, but with no attestation format, signature check or custodian allowlist no input from any party could be accepted. Five of eight artifacts are authorable locally; three need another party; none is code-enforced as external.",
+          "artifact": "research/paper-programme-v1/acquisition/P4_P14D_BLOCKED_BY_CONSTANT_2026-08-23.json"
+        },
+        {
+          "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
+          "measured": "GENUINELY_EXTERNAL_BUT_MISSTATED",
+          "detail": "The protocol is well specified -- opportunity rule OBSERVATIONALLY_SEPARABLE_PROTECTED_DISTINCTION, zero-opportunity strata barred, Sidak exact max-T over 768 clusters at a conservative 0.4 planning discordance. But its acquisition binding is named ...WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES, and variation is not separability: referent_ids already carries 24 distinct values with zero within-case contrast. An atlas bought to the letter of that binding reproduces every zero.",
+          "artifact": "papers/paper-03-global-knowledge-portrait/evidence/P3_SUCCESSOR_ACQUISITION_WORDING_2026-08-23.json"
+        },
+        {
+          "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
+          "measured": "ONE_REQUIRED_INPUT_PRODUCED",
+          "detail": "The prospective power and attainability receipt is now derived. H5 is a zero-tolerance gate: the exact Clopper-Pearson upper bound over 80 controls is 0.0368 at zero false expansions and 0.0579 at one, so a single slip fails it. H1 reaches only 0.46 power at 20 percent discordance under its own Holm correction, against 0.72 if the correction were ignored.",
+          "artifact": "papers/paper-10-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json"
+        }
+      ],
+      "counterweights_recorded": [
+        "P7 and P8 manifests carry ZERO placeholders with real bound hashes -- not the P5 pattern.",
+        "A real external residue does exist for P7 and P8: superiority.py applies an EXTERNAL evaluator-custody precondition to the harm guard as well. It is simply not the next step.",
+        "P3's blocker is real. Only its remedy is misdirected."
+      ],
+      "tally": {
+        "items_measured_across_both_waves": 13,
+        "measured_and_found_locally_unexecuted_or_locally_broken": 10,
+        "measured_and_found_blocked_by_a_constant": 2,
+        "measured_real_but_with_a_misdirected_remedy": 2,
+        "measured_and_found_externally_blocked_as_the_next_step": 0,
+        "still_unmeasured": 3,
+        "note": "P3.C6_C8 and P3.PARTIAL_OBSERVATION both count as misdirected-remedy; P4 and P14D as blocked-by-constant. The categories overlap where an item is both.",
+        "reading": "Thirteen of sixteen measured, and not one is waiting on an outside party as its NEXT step. Two are waiting on an acceptance path that does not exist yet, which is a stricter thing to be blocked on than a missing custodian."
+      },
+      "blocking_patterns_found": {
+        "1_PLACEHOLDER": "a literal UNBOUND, present:false or artifact:null in a protocol JSON -- P5, P10",
+        "2_NAME_GATED": "externality enforced only when the input identifier contains 'independent', 'custod' or 'gold' -- P10",
+        "3_BLOCKED_BY_CONSTANT": "the status is a hardcoded literal in the code that reports it, which no input can move in either direction -- P4 permissively, P14D restrictively"
+      },
+      "route_tested_and_rejected": {
+        "route": "publicly adjudicated retraction records as independently authored P14D cases",
+        "verdict": "FAILS",
+        "why": "An ORION governance decision is a pure function of eight booleans emitting a six-value vocabulary; a retraction record is binary and cannot yield SUBSUMED versus INTERACTION_ONLY versus RETAIN_NEGATIVE. Authoring that mapping reintroduces the self-authorship P14D exists to exclude."
+      }
+    }
+  }
+}

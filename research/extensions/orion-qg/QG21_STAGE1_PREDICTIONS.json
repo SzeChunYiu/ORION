@@ -1,0 +1,9582 @@
+{
+  "objectives": {
+    "O1_control": {
+      "t_c": 1,
+      "t_nc": 7,
+      "t_r": 3,
+      "t_tag": 4
+    },
+    "S1": {
+      "t_c": 2,
+      "t_nc": 4,
+      "t_r": 2,
+      "t_tag": 4
+    },
+    "S2": {
+      "t_c": 4,
+      "t_nc": 8,
+      "t_r": 1,
+      "t_tag": 2
+    },
+    "S3": {
+      "t_c": 2,
+      "t_nc": 2,
+      "t_r": 1,
+      "t_tag": 2
+    },
+    "theta_FT": {
+      "t_c": 2,
+      "t_nc": 4,
+      "t_r": 1,
+      "t_tag": 2
+    }
+  },
+  "protocol": "development/orion-qg-regime-geometry/QG21_FT_OBJECTIVE_PROTOCOL_V1.md",
+  "protocol_sha256": "88c2e5fa9e22330b6f2de108a3fc35c01298deb34dc331ca7e72f7e307ca7fc9",
+  "referee_calls_during_stage1": 0,
+  "referee_stub_installed": true,
+  "row_count": 90,
+  "rows": [
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          18
+        ],
+        [
+          22,
+          25
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            80
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            144
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          18
+        ],
+        [
+          22,
+          27
+        ],
+        [
+          25,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            80
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            136
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          18
+        ],
+        [
+          22,
+          31
+        ],
+        [
+          25,
+          27
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            80
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            136
+          ],
+          [
+            0,
+            144
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            64
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            144
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          27
+        ],
+        [
+          25,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 24,
+          "predicted_delta_vs_donor": 7,
+          "predicted_optimal_cost": 24,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          7
+        ],
+        "u_p": [
+          7,
+          6,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            64
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            136
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          22
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          25,
+          27
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            64
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            136
+          ],
+          [
+            0,
+            144
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          25
+        ],
+        [
+          18,
+          22
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            64
+          ]
+        ],
+        [
+          [
+            0,
+            144
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          25
+        ],
+        [
+          18,
+          27
+        ],
+        [
+          22,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 21,
+          "predicted_delta_vs_donor": 1,
+          "predicted_optimal_cost": 21,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          5,
+          5
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          25
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          7,
+          8
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            144
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          27
+        ],
+        [
+          18,
+          22
+        ],
+        [
+          25,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            64
+          ]
+        ],
+        [
+          [
+            0,
+            136
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          27
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          22,
+          31
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          7,
+          8
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            128
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          27
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          22,
+          25
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 21,
+          "predicted_delta_vs_donor": 1,
+          "predicted_optimal_cost": 21,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          7,
+          6
+        ],
+        "u_p": [
+          6,
+          5,
+          5
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            136
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          31
+        ],
+        [
+          18,
+          22
+        ],
+        [
+          25,
+          27
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 31,
+          "C_R6L": 31,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 11,
+          "C_R6L": 11,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 11,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 9,
+        "u_d": [
+          9,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            64
+          ]
+        ],
+        [
+          [
+            0,
+            136
+          ],
+          [
+            0,
+            144
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          31
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 21,
+          "predicted_delta_vs_donor": 1,
+          "predicted_optimal_cost": 21,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          7,
+          6
+        ],
+        "u_p": [
+          6,
+          5,
+          5
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            136
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            144
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          12,
+          31
+        ],
+        [
+          18,
+          27
+        ],
+        [
+          22,
+          25
+        ]
+      ],
+      "n_qubits": 8,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 19,
+          "predicted_delta_vs_donor": 3,
+          "predicted_optimal_cost": 19,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          7,
+          5
+        ],
+        "u_p": [
+          6,
+          5,
+          4
+        ]
+      },
+      "subject": "H4",
+      "target_pairs": [
+        [
+          [
+            0,
+            68
+          ],
+          [
+            0,
+            128
+          ]
+        ],
+        [
+          [
+            0,
+            80
+          ],
+          [
+            0,
+            144
+          ]
+        ],
+        [
+          [
+            0,
+            64
+          ],
+          [
+            0,
+            136
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          7
+        ],
+        [
+          11,
+          24
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          7
+        ],
+        [
+          11,
+          31
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          7
+        ],
+        [
+          11,
+          32
+        ],
+        [
+          24,
+          31
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          11
+        ],
+        [
+          7,
+          24
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 24,
+          "predicted_delta_vs_donor": 4,
+          "predicted_optimal_cost": 24,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          7
+        ],
+        "u_p": [
+          7,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            132
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          11
+        ],
+        [
+          7,
+          31
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            132
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          11
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          24,
+          31
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            132
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          24
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            132
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          24
+        ],
+        [
+          7,
+          31
+        ],
+        [
+          11,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          24
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          11,
+          31
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          31
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          24,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            132
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          31
+        ],
+        [
+          7,
+          24
+        ],
+        [
+          11,
+          32
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 3,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          31
+        ],
+        [
+          7,
+          32
+        ],
+        [
+          11,
+          24
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            272
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          32
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          24,
+          31
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            132
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          32
+        ],
+        [
+          7,
+          24
+        ],
+        [
+          11,
+          31
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 3,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D1",
+      "matching": [
+        [
+          0,
+          32
+        ],
+        [
+          7,
+          31
+        ],
+        [
+          11,
+          24
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "N2",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            132
+          ],
+          [
+            0,
+            272
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          11,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            2048
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          11,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          11,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            2048
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            2048
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            2048
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            2048
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            2048
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            2048
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            2048
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            2048
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            1024
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            260
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            264
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            1024
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            264
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            264
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          72
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            264
+          ]
+        ],
+        [
+          [
+            0,
+            1024
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          72
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          72
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          73
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            264
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          73
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          74
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          73
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          74
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            264
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          74
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          11,
+          73
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            1024
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          5,
+          74
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          11,
+          72
+        ]
+      ],
+      "n_qubits": 12,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 22,
+          "C_R6L": 22,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S1": {
+          "C_Dplus": 16,
+          "C_R6L": 16,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 16,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 8,
+          "C_R6L": 8,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 8,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 6,
+        "u_d": [
+          6,
+          8,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            256
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        [
+          [
+            0,
+            260
+          ],
+          [
+            0,
+            1024
+          ]
+        ],
+        [
+          [
+            0,
+            264
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          16,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          16,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          21
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          16,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          11,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          7,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          21
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          7,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          16
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          16
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          11,
+          21
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          7,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            2064
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          16
+        ],
+        [
+          6,
+          21
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          7,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            272
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          21
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            272
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          21
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          7,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            272
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            16
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          21
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          7,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            2064
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            272
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          19,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 24,
+          "predicted_delta_vs_donor": 4,
+          "predicted_optimal_cost": 24,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          7
+        ],
+        "u_p": [
+          7,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          10,
+          19
+        ],
+        [
+          12,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            520
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          6
+        ],
+        [
+          10,
+          22
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            520
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          19,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          12,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            520
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 26,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 26,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 20,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 20,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 13,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 11,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          8,
+          8
+        ],
+        "u_p": [
+          7,
+          7,
+          7
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            520
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          19,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          10,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          10,
+          19
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          19
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          12,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            520
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          19
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          10,
+          22
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            1032
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          19
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 3,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            520
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          22
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 28,
+          "C_R6L": 28,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 5,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 20,
+          "C_R6L": 20,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "BORROW"
+        },
+        "S2": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 10,
+          "C_R6L": 10,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 10,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 8,
+        "u_d": [
+          8,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            516
+          ]
+        ],
+        [
+          [
+            0,
+            520
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          22
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          10,
+          19
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 23,
+          "predicted_delta_vs_donor": 2,
+          "predicted_optimal_cost": 23,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          7
+        ],
+        "u_p": [
+          6,
+          6,
+          6
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            520
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      ]
+    },
+    {
+      "domain": "D2",
+      "matching": [
+        [
+          1,
+          22
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "n_qubits": 14,
+      "predictions": {
+        "O1_control": {
+          "C_Dplus": 25,
+          "C_R6L": 25,
+          "f_Bprime": 22,
+          "predicted_delta_vs_donor": 3,
+          "predicted_optimal_cost": 22,
+          "predicted_regime": "BORROW"
+        },
+        "S1": {
+          "C_Dplus": 18,
+          "C_R6L": 18,
+          "f_Bprime": 18,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 18,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S2": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 12,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "S3": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        },
+        "theta_FT": {
+          "C_Dplus": 9,
+          "C_R6L": 9,
+          "f_Bprime": 10,
+          "predicted_delta_vs_donor": 0,
+          "predicted_optimal_cost": 9,
+          "predicted_regime": "DONOR_EXACT"
+        }
+      },
+      "primitives": {
+        "s_star": 7,
+        "u_d": [
+          7,
+          7,
+          6
+        ],
+        "u_p": [
+          6,
+          6,
+          5
+        ]
+      },
+      "subject": "Benzene:Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "target_pairs": [
+        [
+          [
+            0,
+            128
+          ],
+          [
+            0,
+            1032
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        [
+          [
+            0,
+            516
+          ],
+          [
+            0,
+            520
+          ]
+        ]
+      ]
+    }
+  ],
+  "schema": "ORIONQG.QG21.Stage1Predictions.v1"
+}

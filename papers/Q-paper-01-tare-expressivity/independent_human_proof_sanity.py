@@ -118,13 +118,19 @@ def check_class_lemma() -> dict:
 def main() -> None:
     result = {
         "schema": "ORION.Q1.IndependentHumanProofSanity.v1",
+        "date": "2026-08-22",
+        "implementation": (
+            "standalone phase-ignored one-qubit Pauli implementation in "
+            "papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py"
+        ),
         "orion_quantum_imports": False,
         "restore_lemma": check_restore_lemma(),
         "class_lemma": check_class_lemma(),
         "status": "PASS",
         "authority": (
-            "independent small-domain implementation sanity only; not external "
-            "peer review, novelty authority, or physical quantum authority"
+            "standalone no-ORION-import finite-core sanity only; a matching CI "
+            "result is not external peer review, novelty authority, or physical "
+            "quantum authority"
         ),
     }
     print(json.dumps(result, sort_keys=True, separators=(",", ":")))

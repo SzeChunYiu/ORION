@@ -1,0 +1,80 @@
+{
+  "ALL_N_VALUE_THEOREM": false,
+  "COMPLETE_N2_DOMAIN": true,
+  "FULL_FEATURE_VECTOR_VALUE_SUFFICIENT": false,
+  "GLOBAL_PREDICATE_MINIMALITY": false,
+  "LABEL_QUOTIENT_VALUE_SUFFICIENT": false,
+  "NEW_FEATURE_VOCABULARY_AUTHORITY": false,
+  "NO_POST_OUTCOME_FEATURE_INVENTION": true,
+  "both_accept": true,
+  "delta_histogram": {
+    "0": 1,
+    "1": 189,
+    "10": 1287,
+    "11": 1053,
+    "12": 1338,
+    "13": 270,
+    "14": 138,
+    "16": 108,
+    "2": 1002,
+    "23": 9,
+    "3": 3711,
+    "4": 5511,
+    "5": 4914,
+    "6": 6348,
+    "7": 5436,
+    "8": 3125,
+    "9": 4320
+  },
+  "full_feature_vector": {
+    "cell_count": 310,
+    "feature_names": ["maxg2","best2","best3","maxg3","maxg4","maxg5","g6","W","wF6","maxwt","maxpair"],
+    "first_mixed_delta_cell": {
+      "delta_histogram": {"4": 252, "5": 72},
+      "example_1": {
+        "A_label": false,
+        "C_F": 27,
+        "C_U": 31,
+        "Delta": 4,
+        "P0": false,
+        "codes": [1,1,1,2,5,7],
+        "feature_vector": [2,4,2,3,3,-21,-15,8,0,2,1]
+      },
+      "example_2": {
+        "A_label": false,
+        "C_F": 26,
+        "C_U": 31,
+        "Delta": 5,
+        "P0": false,
+        "codes": [1,1,1,4,5,10],
+        "feature_vector": [2,4,2,3,3,-21,-15,8,0,2,1]
+      },
+      "feature_vector": [2,4,2,3,3,-21,-15,8,0,2,1]
+    },
+    "irreducible_exact_value_error_floor": 411,
+    "mixed_delta_cell_count": 8
+  },
+  "generic_summary": {
+    "all_checks": true,
+    "decision": "ACCEPT_LABEL_VALUE_SEPARATION",
+    "delta_values": 17,
+    "feature_cells": 310,
+    "feature_value_sufficient": false,
+    "floor": 411,
+    "instances": 38760,
+    "label_value_sufficient": false,
+    "mixed_feature_cells": 8
+  },
+  "issue": "SzeChunYiu/ORION#920",
+  "native_summary": {
+    "decision": "ACCEPT_LABEL_VALUE_SEPARATION",
+    "feature_value_sufficient": false,
+    "label_value_sufficient": false,
+    "responsibility": "N2_LABEL_VALUE_SEPARATION_AND_FROZEN_FEATURE_FLOOR_ONLY"
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORIONQG.QG33.DualHarness.v1",
+  "source_result_digest": "64b8c8f85bd07086fc92671b2ec8e353bd927983db2173a801096f1d597350d3",
+  "terminal": "QG33_SIXLCU_EXACT_LABEL_QUOTIENT_IS_NOT_EXACT_VALUE_QUOTIENT__N2_COMPLETE"
+}

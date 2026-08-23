@@ -1,0 +1,40 @@
+\section{Limitations and authority boundary}
+
+The formal properties in this paper are consequences of an explicit contract.
+They do not show that an implementation is free from bypasses, that a trust root is
+secure, or that the declared environment captures every causal dependency. The
+adversarial protocol can increase confidence only within its attack model and
+sampling frame.
+
+The independence ordering is deliberately conservative but not universally total.
+Different applications may value model, executor and evidence independence
+differently. For example, two independently implemented deterministic checkers over
+the same evidence may provide a stronger software-bug diagnostic than two models
+from different providers that share copied evidence and scoring code. The framework
+therefore requires the component predicates to be reported alongside the level.
+
+Cryptographic attribution introduces operational dependencies: issuer governance,
+credential security, revocation, transparency infrastructure and privacy. Some
+research settings cannot reveal executor or evidence identities publicly. A future
+extension should support privacy-preserving attestations while retaining enough
+verifiability to prevent self-declared identity from satisfying an independence
+claim.
+
+Complete environment capture is also difficult. A container digest does not bind
+an external service's mutable behavior, a model alias may not identify an immutable
+checkpoint, and hardware or nondeterministic libraries can change outputs. Receipt
+schemas must allow \cannotcheck{} rather than encode unavailable metadata as empty
+but acceptable fields.
+
+Most importantly, provenance is not epistemic warrant. FAIR principles concern the
+findability, accessibility, interoperability and reuse of digital objects
+\citep{wilkinson2016fair}; provenance standards describe how objects were produced
+\citep{moreau2013prov}. Neither determines whether a premise is true, a measurement
+is valid, a comparator is fair or a conclusion follows. Scientific authority
+remains with the study design, evidence and adjudication, not the execution layer.
+
+The next step is a preregistered hostile conformance study conducted under
+independent custody. A later multi-campaign study would be needed for any general
+reliability estimate. Until those gates close, the contribution is the framework,
+formal separation and falsifiable protocol.
+

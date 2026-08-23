@@ -9,6 +9,9 @@ DEVELOPMENT QUESTION
 -> atomize into independently checkable fibers
 -> recover incumbent RAKL/ORION mechanics and negative history
 -> search relevant same-domain and parent-domain knowledge
+-> reconstruct serious nearest-work donors as reusable structures
+-> prove conservative embeddings before claiming an envelope
+-> seek boundary/equivalence theorems or strict-separation witnesses against the strongest ideal donor product
 -> deliberately challenge the current search vocabulary and discipline list
 -> absorb and reconstruct a global picture
 -> ask what saturation means for this exact development atom
@@ -21,6 +24,14 @@ DEVELOPMENT QUESTION
 -> preserve failures
 -> reopen research if the implementation exposes a new residual
 ```
+
+Nearest work is not a citation perimeter. A strong donor must be absorbed into
+the working theory: freeze its assumptions, reproduce its native result, prove
+which judgments a conservative embedding preserves, and only then study the
+added coordinates. An ideal information-matched donor product is the required
+ceiling. Equality is a useful composition theorem; a strict residual requires a
+registered separation witness and fresh falsification. Donor priority and every
+historical negative remain explicit.
 
 ## High-impact implementation gate
 

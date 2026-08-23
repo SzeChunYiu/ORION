@@ -1,0 +1,103 @@
+{
+  "schema": "ORIONQG.QG34.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#924",
+  "terminal": "QG34_EXACT_MINIMAX_ADAPTIVE_PROBE_DEPTH_MACHINE_CHECKED",
+  "source_result_digest": "7c48f505582a36401632489562c7181f4e763e2e1fd1e36549b9a24c794f8a55",
+  "protocol_sha256": "b73a6d117af3a38a8d581d0fce00bf34747f1eb994b0c209b6d35069c433fafd",
+  "parent_qg32_sha256": "4a4a0429f2e0d9d3a65573549e31e28f7ac8ca473e905d86c0f8f497111be64d",
+  "class_depths": [0,2,1,0,3,2,2,1,1,1,1,2,0,1,1,1,2,3,2,2,3,2,3,1,1,2,2,2,1,1,2,1,2,2,2,2,2,3,2,3,3,2,2,3,3,2,1,1,1,1,1,1,1,2,2,1,2,2,1,2,2,2,2,3,2,3,3,2,3,2,3,3,0,1,1,1,1,2,0,1,1,2,0,2,1,0,1,2,2,3,2,2],
+  "depth_histogram": {"0":7,"1":30,"2":39,"3":16},
+  "orbit_mass_depth_histogram": {"0":7,"1":72,"2":282,"3":354},
+  "worst_case_depth": 3,
+  "worst_class_indices": [4,17,20,22,37,39,40,43,44,63,65,66,68,70,71,89],
+  "worst_class_sizes": [12,24,24,12,24,24,48,12,12,24,24,24,48,12,6,24],
+  "first_worst_policy": {"class_index":4,"tree_depth":3,"leaf_count":12},
+  "aggregate_dp_stats": {"calls":1065,"child_capacity_prunes":3754,"restricted_duplicate_prunes":20328},
+  "QG32_CERTIFIED_FIXED_BASIS_LENGTH": 5,
+  "ADAPTIVE_DEPTH_BELOW_QG32_CERTIFIED_FIXED_BASIS_LENGTH": true,
+  "EXACT_ADAPTIVE_MINIMAX_AUTHORITY": true,
+  "both_accept": true,
+  "EXACT_FIXED_PROBE_MINIMUM_BOUND": false,
+  "ADAPTIVITY_ADVANTAGE_OVER_EXACT_FIXED_MINIMUM": false,
+  "MINIMUM_FULL_FINITE_OPTIMUM_PROBES": false,
+  "HARDWARE_MEASUREMENT_MINIMUM": false,
+  "QG28_GLOBAL_STATE_MINIMALITY": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+  "authority": {
+    "NOT_R6": true,
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false
+  },
+  "fixed_vs_adaptive": {
+    "adaptive_worst_case_probes": 3,
+    "cited_fixed_upper_bound_from_qg32": 5,
+    "not_claimed": "whether 3 beats the true fixed MINIMUM: that minimum is QG-32 #911 / QG-32b #918 territory and this atom does not adjudicate it, per the freeze",
+    "statement": "adaptivity never needs more than 3 probes, against QG-32's certified fixed set of 5"
+  },
+  "freeze": "development/orion-qg-regime-geometry/QG34_ADAPTIVE_PROBE_TREE_FREEZE_V1.md (committed before execution)",
+  "freeze_requirements": {
+    "arity_lower_bound_reported_per_state": true,
+    "arity_lower_bound_tight_on": 80,
+    "arity_lower_bound_total_classes": 92,
+    "bellman_over_reachable_states": true,
+    "independent_rederivation": {
+      "differs_by": "integer bitmask states + exact value recursion with arity branch-and-bound, vs tuple states + iterative-deepening feasibility",
+      "implementation": "research/extensions/orion-qg/qg34_independent_verify.py",
+      "per_class_agreement": true
+    },
+    "infeasibility_certificate_at_d_minus_1": {
+      "depth_tested": 2,
+      "holds_on_all_worst_classes": true,
+      "meaning": "no depth-2 adaptive tree resolves any of the 16 worst classes, so 3 is minimal not merely achieved"
+    }
+  },
+  "issue": "SzeChunYiu/ORION#924",
+  "primitives_recomputed_from_main": {
+    "bulk_classes": 45,
+    "indexed_probes": 384,
+    "joint_classes": 92,
+    "joint_size_histogram": {
+      "1": 7,
+      "12": 14,
+      "2": 22,
+      "24": 8,
+      "3": 6,
+      "4": 6,
+      "48": 2,
+      "6": 25,
+      "8": 2
+    },
+    "largest_joint_class": 48,
+    "orbit_types": 715,
+    "spectrum_classes": 54
+  },
+  "result": {
+    "D_star": 3,
+    "classes_attaining_D_star": 16,
+    "definition": "D(S) = 1 + min_p max_v D({o in S : K_p(o) = v}), D(singleton) = 0; D_* = max over the 92 joint classes",
+    "depth_histogram_over_92_classes": {
+      "0": 7,
+      "1": 30,
+      "2": 39,
+      "3": 16
+    },
+    "distinct_states_valued": 4441
+  },
+  "schema": "ORION.QG.QG34.CommittedResult.v1",
+  "secondary_Q4_expected_depth": {
+    "computed_after_minimax_sealed": true,
+    "uniform_prior_over_715_types": 2.374825,
+    "used_to_select_minimax_tree": false
+  },
+  "source_result_digest": "d13a0d25ec20a08a28dae59d8f420be3b19b48a1be278ffe3adf1aa99afed75e",
+  "terminal": "QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_ESTABLISHED",
+  "witness_tree": {
+    "all_leaves_singleton": true,
+    "class_size": 48,
+    "depth": 3
+  }
+}

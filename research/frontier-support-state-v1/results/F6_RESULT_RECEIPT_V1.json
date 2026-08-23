@@ -1,0 +1,46 @@
+{
+  "schema": "ORION.FrontierF6.ResultReceipt.v1",
+  "protocol": "F6_PERSISTENCE_REPLAY_TAX_PROTOCOL_V1.md",
+  "runner": "run_f6_persistence_replay_tax_v1.py",
+  "execution_mode": "independent deterministic local replay; CI exact-head replay pending",
+  "history_lengths": [8, 16, 32, 64],
+  "branch_counts": [2, 4, 8, 16],
+  "continuation_depth": 3,
+  "protected_histories_per_cell": 4096,
+  "cells": [
+    {"L":8,"b":2,"ReplayTax_ops":1.5714285714285714,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":520},"ops":{"REPLAY":22,"PERSIST_FULL":14,"PERSIST_CERTIFIED":14},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":8,"b":4,"ReplayTax_ops":2.2,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":581},"ops":{"REPLAY":44,"PERSIST_FULL":20,"PERSIST_CERTIFIED":20},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":8,"b":8,"ReplayTax_ops":2.75,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":1241},"ops":{"REPLAY":88,"PERSIST_FULL":32,"PERSIST_CERTIFIED":32},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":8,"b":16,"ReplayTax_ops":3.142857142857143,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":3612},"ops":{"REPLAY":176,"PERSIST_FULL":56,"PERSIST_CERTIFIED":56},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":16,"b":2,"ReplayTax_ops":1.7272727272727273,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":985},"ops":{"REPLAY":38,"PERSIST_FULL":22,"PERSIST_CERTIFIED":22},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":16,"b":4,"ReplayTax_ops":2.7142857142857144,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":3251},"ops":{"REPLAY":76,"PERSIST_FULL":28,"PERSIST_CERTIFIED":28},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":16,"b":8,"ReplayTax_ops":3.8,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":4716},"ops":{"REPLAY":152,"PERSIST_FULL":40,"PERSIST_CERTIFIED":40},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":16,"b":16,"ReplayTax_ops":4.75,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":10397},"ops":{"REPLAY":304,"PERSIST_FULL":64,"PERSIST_CERTIFIED":64},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":32,"b":2,"ReplayTax_ops":1.8421052631578947,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":2226},"ops":{"REPLAY":70,"PERSIST_FULL":38,"PERSIST_CERTIFIED":38},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":32,"b":4,"ReplayTax_ops":3.1818181818181817,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":4773},"ops":{"REPLAY":140,"PERSIST_FULL":44,"PERSIST_CERTIFIED":44},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":32,"b":8,"ReplayTax_ops":5.0,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":8492},"ops":{"REPLAY":280,"PERSIST_FULL":56,"PERSIST_CERTIFIED":56},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":32,"b":16,"ReplayTax_ops":7.0,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":19579},"ops":{"REPLAY":560,"PERSIST_FULL":80,"PERSIST_CERTIFIED":80},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":64,"b":2,"ReplayTax_ops":1.9142857142857144,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":3469},"ops":{"REPLAY":134,"PERSIST_FULL":70,"PERSIST_CERTIFIED":70},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":64,"b":4,"ReplayTax_ops":3.526315789473684,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":6928},"ops":{"REPLAY":268,"PERSIST_FULL":76,"PERSIST_CERTIFIED":76},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":64,"b":8,"ReplayTax_ops":6.090909090909091,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":13568},"ops":{"REPLAY":536,"PERSIST_FULL":88,"PERSIST_CERTIFIED":88},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}},
+    {"L":64,"b":16,"ReplayTax_ops":9.571428571428571,"correctness_mismatches":{"PERSIST_FULL":0,"PERSIST_CERTIFIED":0,"HEURISTIC_LAST4":26318},"ops":{"REPLAY":1072,"PERSIST_FULL":112,"PERSIST_CERTIFIED":112},"persisted_state_bits":{"PERSIST_FULL":10,"PERSIST_CERTIFIED":5}}
+  ],
+  "aggregate": {
+    "PF_mismatches": 0,
+    "PC_mismatches": 0,
+    "heuristic_mismatches": 110656,
+    "min_ReplayTax_ops": 1.5714285714285714,
+    "max_ReplayTax_ops": 9.571428571428571,
+    "L64_b16_ReplayTax_ops": 9.571428571428571
+  },
+  "checks": {
+    "zero_PF_PC_correctness_mismatches": true,
+    "ReplayTax_nondecreasing_with_branch_count": true,
+    "ReplayTax_nondecreasing_with_history_length_for_b_ge_4": true,
+    "ReplayTax_ops_L64_b16_ge_4": true,
+    "certified_state_strictly_smaller": true,
+    "heuristic_negative_control_has_mismatch": true
+  },
+  "terminal": "PERSISTENT_SUFFICIENT_STATE_REDUCES_REPLAY_SCALING",
+  "claim_boundary": "Controlled deterministic finite-environment result only; no LLM, Lean, universal replay-tax, or first-snapshot claim."
+}

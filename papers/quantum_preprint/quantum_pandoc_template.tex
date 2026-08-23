@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array,calc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{url}
+\title{$title$}
+\author{AUTHOR METADATA REQUIRED BEFORE SUBMISSION}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+$abstract$
+\end{abstract}
+
+$body$
+
+$if(dataavailability)$
+\section*{Data and Code Availability}
+$dataavailability$
+$endif$
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

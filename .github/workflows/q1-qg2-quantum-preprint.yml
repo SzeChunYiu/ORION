@@ -1,0 +1,116 @@
+name: q1-qg2-quantum-preprint
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/quantum_preprint/**'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - '.github/workflows/q1-qg2-quantum-preprint.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/**'
+      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/quantum_preprint/**'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - '.github/workflows/q1-qg2-quantum-preprint.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-quantum-preprints:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install LaTeX and Pandoc
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
+            poppler-utils zip
+      - name: Re-run publication integrity gates
+        run: |
+          python papers/check_q_qg_publication.py
+          python papers/check_q_qg_science_manifests.py
+      - name: Generate cited scientific masters
+        run: python papers/build_q_qg_cited_masters.py --clean
+      - name: Prepare journal-neutral Quantum/arXiv sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          for p in Q1 QG2; do
+            mkdir -p "build/quantum_preprint/${p}/source" "build/quantum_preprint/${p}/rendered"
+            python papers/quantum_preprint/build_quantum_source.py \
+              --paper "${p}" \
+              --cited-master "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" \
+              --out "build/quantum_preprint/${p}/prepared.md"
+            cp "build/q_qg_cited/${p}/references.bib" "build/quantum_preprint/${p}/source/references.bib"
+            cp papers/quantum_preprint/quantum_pandoc_template.tex \
+              "build/quantum_preprint/${p}/source/pandoc_template.tex"
+            pandoc "build/quantum_preprint/${p}/prepared.md" \
+              --from=markdown+citations \
+              --to=latex \
+              --natbib \
+              --template="build/quantum_preprint/${p}/source/pandoc_template.tex" \
+              -o "build/quantum_preprint/${p}/source/main.tex"
+            grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' \
+              "build/quantum_preprint/${p}/source/main.tex"
+            grep -Eq '\\cite[pt]?\{' "build/quantum_preprint/${p}/source/main.tex"
+          done
+      - name: Build PDFs and audit references
+        shell: bash
+        run: |
+          set -euo pipefail
+          for p in Q1 QG2; do
+            pushd "build/quantum_preprint/${p}/source"
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            bibtex main
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            popd
+            pdf="build/quantum_preprint/${p}/source/main.pdf"
+            test -s "${pdf}"
+            pdfinfo "${pdf}" > "build/quantum_preprint/${p}/pdfinfo.txt"
+            pdftotext "${pdf}" "build/quantum_preprint/${p}/pdf.txt"
+            grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' \
+              "build/quantum_preprint/${p}/pdf.txt"
+            grep -Fq 'References' "build/quantum_preprint/${p}/pdf.txt"
+            if grep -Eq '\[@[A-Za-z0-9_:-]+' "build/quantum_preprint/${p}/pdf.txt"; then
+              echo "${p}_UNRESOLVED_CITATION_TOKEN=FAIL"
+              exit 1
+            fi
+            pdftoppm -png -r 144 "${pdf}" "build/quantum_preprint/${p}/rendered/page"
+            sha256sum "${pdf}" > "build/quantum_preprint/${p}/pdf_sha256.txt"
+          done
+      - name: Build source archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          for p in Q1 QG2; do
+            cp "build/quantum_preprint/${p}/prepared.md" \
+              "build/quantum_preprint/${p}/source/SCIENTIFIC_MASTER_CITED.md"
+            pushd "build/quantum_preprint/${p}"
+            zip -qr "${p}-quantum-preprint-source.zip" source
+            sha256sum "${p}-quantum-preprint-source.zip" > source_zip_sha256.txt
+            popd
+          done
+      - name: Archive Q1/QG2 Quantum preflight packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1-qg2-quantum-preprint-packages
+          path: build/quantum_preprint
+          if-no-files-found: error
+          retention-days: 30

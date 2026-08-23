@@ -1,0 +1,34 @@
+{
+  "boolean_affine": {
+    "originating": [
+      {"id": "B-AND-01", "kind": "and", "i": 0, "j": 1}
+    ],
+    "held_out": [
+      {"id": "B-AND-02", "kind": "and", "i": 0, "j": 2},
+      {"id": "B-AND-13", "kind": "and", "i": 1, "j": 3},
+      {"id": "B-AND-23", "kind": "and", "i": 2, "j": 3}
+    ],
+    "known_method_controls": [
+      {"id": "B-XOR-01", "kind": "xor", "i": 0, "j": 1},
+      {"id": "B-PROJ-3", "kind": "projection", "i": 3},
+      {"id": "B-CONST-1", "kind": "constant", "value": 1}
+    ],
+    "candidate_edit": "AND2"
+  },
+  "integer_affine": {
+    "domain": [-3, -2, -1, 0, 1, 2, 3],
+    "originating": [
+      {"id": "I-SQUARE-0", "kind": "shifted_square", "shift": 0}
+    ],
+    "held_out": [
+      {"id": "I-SQUARE-M1", "kind": "shifted_square", "shift": -1},
+      {"id": "I-SQUARE-1", "kind": "shifted_square", "shift": 1},
+      {"id": "I-SQUARE-2", "kind": "shifted_square", "shift": 2}
+    ],
+    "known_method_controls": [
+      {"id": "I-AFFINE-2X3", "kind": "affine", "a": 2, "b": 3},
+      {"id": "I-AFFINE-MX1", "kind": "affine", "a": -1, "b": 1}
+    ],
+    "candidate_edit": "SQUARE"
+  }
+}

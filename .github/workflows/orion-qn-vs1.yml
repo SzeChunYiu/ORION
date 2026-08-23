@@ -1,0 +1,135 @@
+name: orion-qn-vs1
+
+on:
+  pull_request:
+    paths:
+      - 'src/orion/quantum/**'
+      - 'tests/quantum/**'
+      - 'research/extensions/orion-qn/**'
+      - 'development/orion-qn-q2/**'
+      - '.github/workflows/orion-qn-vs1.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qn-vs1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  s1a-local-simulation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION, research harness, and frozen simulator
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+          python -m pip install 'qiskit==2.5.1' 'qiskit-aer==0.17.2'
+      - name: Run Q1 and S1A hostile/conformance tests
+        run: |
+          pytest -q \
+            tests/quantum/test_contracts.py \
+            tests/quantum/test_access_models.py \
+            tests/quantum/test_query_model_adjudication.py \
+            tests/quantum/test_vs1_verification.py \
+            tests/quantum/test_vs1_malformed_receipts.py \
+            tests/quantum/test_vs1_s1a_qiskit.py
+      - name: Execute frozen S1A campaign through ORION research harness
+        run: |
+          mkdir -p artifacts
+          python development/orion-qn-q2/run_s1a_harness.py | tee artifacts/orion-qn-vs1-s1a-summary.json
+      - name: Independently reconstruct harness artifact
+        run: |
+          python development/orion-qn-q2/verify_s1a_harness_artifact.py \
+            artifacts/orion-qn-vs1-s1a-harness.json \
+            artifacts/orion-qn-vs1-s1a-verification.json
+      - name: Enforce bounded campaign, access, benchmark, classical ceiling, and file binding
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          envelope_path = Path('artifacts/orion-qn-vs1-s1a-harness.json')
+          campaign_path = Path('artifacts/orion-qn-vs1-s1a-campaign.json')
+          verification_path = Path('artifacts/orion-qn-vs1-s1a-verification.json')
+          envelope = json.loads(envelope_path.read_text())
+          campaign = json.loads(campaign_path.read_text())
+          verification = json.loads(verification_path.read_text())
+
+          assert envelope['schema'] == 'ORION.QN.VS1.S1A.HarnessEnvelope.v2'
+          assert verification['schema'] == 'ORION.QN.VS1.S1A.HarnessVerification.v2'
+          assert verification['valid'] is True
+          assert envelope['campaign'] == campaign
+          campaign_bytes = campaign_path.read_bytes()
+          assert envelope['campaign_artifact'] == {
+              'path': str(campaign_path),
+              'sha256': hashlib.sha256(campaign_bytes).hexdigest(),
+              'bytes': len(campaign_bytes),
+          }
+
+          assert campaign['schema'] == 'ORION.QN.VS1.S1A.Campaign.v4'
+          assert campaign['physical_quantum_speedup_claim_permitted'] is False
+          assert campaign['evidence_mode'] == 'LOCAL_SIMULATION'
+          assert campaign['fixture_cases_used_for_advantage'] is False
+          assert campaign['advantage_adjudication_source'] == 'HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL'
+          assert len(campaign['cases']) == 64
+          assert len(campaign['size_summaries']) == 8
+          assert campaign['p4_reconstruction']['schema'] == 'ORION.QN.S1ACampaignReconstruction.v4'
+          assert campaign['p4_reconstruction']['valid'] is True
+          assert verification['campaign_reconstruction']['schema'] == 'ORION.QN.S1ACampaignReconstruction.v4'
+          assert verification['campaign_reconstruction']['valid'] is True
+
+          query_access = campaign['access_interpretations']['query_model']
+          ordinary_access = campaign['access_interpretations']['ordinary_classical_input']
+          assert query_access['quantum_access_mode'] == 'NATIVE_COHERENT_ORACLE'
+          assert query_access['oracle_construction_status'] == 'QUERY_MODEL_ASSUMPTION'
+          assert query_access['maximum_terminal'] == 'QUANTUM_QUERY_ADVANTAGE_ONLY'
+          assert ordinary_access == {
+              'quantum_access_mode': 'CLASSICAL_PREDICATE_ONLY',
+              'coherent_oracle_derivation_resolved': False,
+              'terminal': 'CANNOT_CHECK_ACCESS_MODEL',
+          }
+
+          terminals = {item['query_model_terminal'] for item in campaign['size_summaries']}
+          assert terminals <= {
+              'QUANTUM_QUERY_ADVANTAGE_ONLY',
+              'QUANTUM_FEASIBLE_NO_ADVANTAGE',
+              'INVALID_COMPARISON',
+          }
+          for item in campaign['size_summaries']:
+              assert item['terminal'] == item['query_model_terminal']
+              assert item['quantum_access_mode'] == 'NATIVE_COHERENT_ORACLE'
+              assert item['oracle_construction_status'] == 'QUERY_MODEL_ASSUMPTION'
+              assert item['advantage_adjudication_source'] == 'HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL'
+              assert item['model'] == 'HIDDEN_UNIFORM_SINGLE_MARK_QUERY_MODEL'
+              assert item['fixture_cases_used_for_advantage'] is False
+              assert item['fixture_classical_diagnostic_only'] is True
+              assert item['success_probability_source'] == 'ANALYTIC_GROVER_AMPLITUDE'
+              assert item['benchmark_correlated_side_information_admitted'] is False
+              assert item['classical_free_final_guess_allowed'] is True
+              assert item['external_output_verification_is_separate_resource'] is True
+              assert item['classical_matching_query_budget'] == item['search_size'] - 1
+              assert item['quantum_query_budget'] < item['classical_matching_query_budget']
+              assert item['quantum_query_budget'] < item['classical_matching_expected_queries']
+              if item['query_model_terminal'] != 'INVALID_COMPARISON':
+                  assert item['ordinary_input_terminal'] == 'CANNOT_CHECK_ACCESS_MODEL'
+              assert item['ordinary_input_quantum_access_mode'] == 'CLASSICAL_PREDICATE_ONLY'
+              assert item['ordinary_input_coherent_oracle_derivation_resolved'] is False
+              assert 'coherent_oracle_construction' in item['unresolved_end_to_end_coordinates']
+          PY
+      - name: Upload result-bearing harness receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qn-vs1-s1a-${{ github.sha }}
+          path: |
+            artifacts/orion-qn-vs1-s1a-campaign.json
+            artifacts/orion-qn-vs1-s1a-harness.json
+            artifacts/orion-qn-vs1-s1a-verification.json
+            artifacts/orion-qn-vs1-s1a-summary.json
+            .orion-qn-vs1-s1a/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

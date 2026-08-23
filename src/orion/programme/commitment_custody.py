@@ -22,8 +22,18 @@ eight possible values and can be enumerated. The manifest therefore commits to
 ``root_cause_nonce`` values that are the case ordinal in hex, ``0…01`` through
 ``0…018``. Running the attack the document names recovers 24 of 24 protected
 root causes from the manifest that document calls safe to publish, in 108
-SHA-256 evaluations. ``validate_protected_suite`` accepts those nonces: it
-rejects exactly one value, the all-zero nonce, out of 2^256.
+SHA-256 evaluations. ``validate_protected_suite`` accepted those nonces: it
+rejected exactly one value, the all-zero nonce, out of 2^256.
+
+It now refuses them, along with every other shape a registered probe generates
+--- counters up from zero and down from 2^256, constant padding, short
+alphabets, repeated blocks, fixed placeholders, derivations of a published
+field, and one salt shared across a suite. ``orion.study.p5.freeze`` owns those
+generators and ``orion.study.p5.hidden_cause_custody`` builds its probes from
+the same ones, so a nonce the freeze accepts is by construction one the declared
+adversary cannot enumerate. That closes the scheme; it does not reopen the
+shipped artifact, whose labels are published in plaintext beside the nonces and
+whose sealing no re-issue can restore.
 
 The failure class is recorded under
 ``research/failures/2026-08-invertible-commitment-vacuous-custody/``.
@@ -540,13 +550,19 @@ def audit_commitment_custody(
             attempts=attempts,
         )
 
+    # The work is part of the verdict. A pass that does not say what it cost is
+    # indistinguishable from a probe set that stopped looking, which is the
+    # failure the whole module exists to make unreportable --- so the digests
+    # spent are stated here, in the same sentence as the zero.
+    spent = sum(item.digests_computed for item in attempts)
     return CustodyAudit(
         custody_id=custody_id,
         outcome=Outcome.PASS,
         reason=CustodyReason.WITHHELD_UNDER_ENUMERATION,
         detail=(
             f"{custody_id}: {len(attempts)} probes opened 0 of {len(materialised)} published "
-            "commitments within budget"
+            f"commitments in {spent} digest evaluations, none exhausting the "
+            f"{budget_digests}-digest budget"
         ),
         attempts=attempts,
     )

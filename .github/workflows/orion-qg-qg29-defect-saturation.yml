@@ -1,0 +1,86 @@
+name: orion-qg-qg29-defect-saturation
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG29_*'
+      - 'development/orion-qg-regime-geometry/qg29_*'
+      - 'development/orion-qg-regime-geometry/run_qg29_dual_harness.py'
+      - 'research/extensions/orion-qg/qg29_*'
+      - '.github/workflows/orion-qg-qg29-defect-saturation.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg29-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  defect-saturation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg29_dual_harness.py | tee artifacts/orion-qg-qg29-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg29_defect_saturation.py --output artifacts/orion-qg-qg29-replay.json > artifacts/orion-qg-qg29-replay.log
+          cmp artifacts/orion-qg-qg29-defect-saturation.json artifacts/orion-qg-qg29-replay.json
+      - name: Enforce finite-size authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg29-defect-saturation.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg29-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg29-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg29-dual-harness.json').read_text())
+          pos='QG29_TARE_DEFECTS_CLIP_AT_6_AND_ALL_SCALING_RAYS_AFFINE_BY_K43_MACHINE_CHECKED'
+          assert a['terminal']==pos
+          assert a['defect_potential']['individual_guard_threshold_max']==6
+          assert a['defect_potential']['kappa_level_count']==43
+          assert a['defect_potential']['strict_defect_level_drops_max']==42
+          assert a['scaling_rays']['kappa_r_constant_for_all_k_ge']==6
+          assert a['scaling_rays']['universal_affine_onset_k']==43
+          assert a['abstract_crossover_control']['pairwise_obstruction_cases']==11094
+          assert a['abstract_crossover_control']['all_positive_gap_lines_strictly_dominated_by_k43'] is True
+          assert a['abstract_crossover_control']['minimum_margin_at_43']==1
+          assert a['abstract_crossover_control']['frozen_tight_witness_verified'] is True
+          assert g['decision']=='ACCEPT_DEFECT_CLIP6_K43_AFFINITY' and g['all_checks'] is True
+          assert g['independent_derived']['universal_affine_onset']==43
+          assert n['decision']=='ACCEPT_DEFECT_CLIP6_K43_AFFINITY' and n['all_checks'] is True
+          assert n['responsibility']=='DEFECT_CLIP6__K6_GUARD_SATURATION__K43_AFFINE_ONSET'
+          assert d['terminal']==pos and d['both_accept'] is True
+          for x in (a,g,n,d):
+            assert x['DEFECT_POTENTIAL_CLIP6_SUFFICIENT'] is True
+            assert x['DEFECT_LEVEL_CHANGES_AT_MOST_42_PER_BULK_CLASS'] is True
+            assert x['PURE_SCALING_RAY_DEFECTS_STABLE_BY_K6'] is True
+            assert x['PURE_SCALING_RAY_AFFINE_BY_K43'] is True
+            assert x['K43_SHARP_FOR_REAL_TARE'] is False
+            assert x['EXPLICIT_Q_H_FORECASTER'] is False
+            assert x['FINITE_N_GLOBAL_PHASE_BOUNDARY'] is False
+            assert x['CHAIN_ALL_N'] is False and x['CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg29-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg29-*.json
+            artifacts/orion-qg-qg29-*.log
+            .orion-qg-qg29-generic/.orion-harness/**
+            .orion-qg-qg29-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

@@ -1,0 +1,75 @@
+name: orion-q-max-r4e-qg-replay-calibration
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R4E_QG_SKILL_REPLAY_CALIBRATION_PROTOCOL_V1.md'
+      - 'development/orion-q-max-r0/max_r4e_qg_skill_replay_*'
+      - 'research/extensions/orion-q/max_r4e_qg_skill_replay_calibration.py'
+      - '.github/workflows/orion-q-max-r4e-qg-replay-calibration.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-q-max-r4e-replay-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  replay-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+      - name: Re-run exact R6I support-1 parent
+        run: |
+          mkdir -p artifacts
+          python research/extensions/orion-qg/qg9_v6_support1_normalization.py --output artifacts/max-r4e-qg9-v6.json | tee artifacts/max-r4e-qg9-v6.log
+      - name: Run replay calibration
+        run: |
+          set -o pipefail
+          python research/extensions/orion-q/max_r4e_qg_skill_replay_calibration.py | tee artifacts/orion-q-max-r4e-qg-skill-replay-summary.json
+          python development/orion-q-max-r0/max_r4e_qg_skill_replay_generic_verify.py | tee artifacts/orion-q-max-r4e-qg-skill-replay-generic.log
+          python development/orion-q-max-r0/max_r4e_qg_skill_replay_native_verify.py | tee artifacts/orion-q-max-r4e-qg-skill-replay-native.log
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-q/max_r4e_qg_skill_replay_calibration.py --output artifacts/orion-q-max-r4e-qg-skill-replay-replay.json > artifacts/orion-q-max-r4e-qg-skill-replay-replay.log
+          cmp artifacts/orion-q-max-r4e-qg-skill-replay.json artifacts/orion-q-max-r4e-qg-skill-replay-replay.json
+      - name: Enforce replay-only authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-q-max-r4e-qg-skill-replay.json').read_text())
+          g=json.loads(Path('artifacts/orion-q-max-r4e-qg-skill-replay-generic.json').read_text())
+          n=json.loads(Path('artifacts/orion-q-max-r4e-qg-skill-replay-native.json').read_text())
+          pos='MAX_R4E_QG_SKILLS_HAVE_REAL_COMPILER_OPERATIONAL_VALUE__REPLAY_CALIBRATED'
+          assert a['terminal']==pos and a['MAX_R4E_QG_SKILLS_REAL_COMPILER_OPERATIONAL_VALUE_REPLAY'] is True
+          assert a['required_actions']=={'R6I':'RESTRICT_TO_PROVED_SUPPORT1','SixLCU':'USE_MINIMAL_EXACT_K1D1_PREDICATE','StabPrep':'REJECT_ZERO_ERROR_IN_FROZEN_VOCAB__ESCALATE_REPRESENTATION'}
+          assert a['r6i_support_localization']['minimum_pair_reduction_ratio']>1
+          assert a['sixlcu_minimal_predicate']['higher_order_raw_conjunctions_avoidable_for_minimal_exact_classifier_task']>0
+          assert a['stabprep_information_barrier']['mixed_cells']==12
+          assert g['decision']=='ACCEPT_REAL_COMPILER_REPLAY_VALUE' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_REAL_COMPILER_REPLAY_VALUE' and n['all_checks'] is True
+          assert n['responsibility']=='REAL_COMPILER_REPLAY_OPERATIONAL_VALUE_ONLY__NO_TRANSFER_SUPERIORITY'
+          for x in (a,g,n):
+            assert x['MAX_R4E_QG_SKILLS_COMPILER_GENERAL'] is False
+            assert x['MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE'] is False
+            assert x['MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER'] is False
+            assert x['REAL_QUANTUM_SUPERIORITY_AUTHORIZED'] is False
+            assert x['NOVELTY_AUTHORIZED'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r4e-qg-replay-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/max-r4e-qg9-v6.*
+            artifacts/orion-q-max-r4e-qg-skill-replay*.json
+            artifacts/orion-q-max-r4e-qg-skill-replay*.log
+          if-no-files-found: warn

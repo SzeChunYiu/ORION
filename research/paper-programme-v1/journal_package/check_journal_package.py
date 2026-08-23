@@ -37,6 +37,11 @@ ALLOWED_CLAIM_STATUS = {
     "CANNOT_CHECK",
     "OPEN",
 }
+ALLOWED_CLAIM_LIFECYCLE = {
+    "ACTIVE_CENTRAL",
+    "ACTIVE_SUPPORTING",
+    "HISTORICAL_IMMUTABLE",
+}
 VERIFICATION_SCHEMA_MARKERS = (
     "ScientificResultVerification.v1",
     "orion.scientific-result-verification.v1",
@@ -75,6 +80,37 @@ def load_manifest(package_dir: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError(f"{path} must contain one JSON object")
     return payload
+
+
+def current_claims(manifest: dict[str, Any]) -> tuple[dict[str, Any], ...]:
+    """Return typed current claims; reject ambiguous lifecycle metadata.
+
+    Raw string counting cannot distinguish a standing negative from immutable
+    history. P1 therefore opts into an explicit lifecycle, and every P1 claim
+    must declare both its lifecycle and whether it is current.
+    """
+
+    claims = manifest.get("claims")
+    if not isinstance(claims, list):
+        raise ValueError("claims must be an array")
+    selected: list[dict[str, Any]] = []
+    for claim in claims:
+        if not isinstance(claim, dict):
+            raise ValueError("every claim must be an object")
+        claim_id = claim.get("id")
+        lifecycle = claim.get("lifecycle")
+        current = claim.get("current_claim")
+        if lifecycle not in ALLOWED_CLAIM_LIFECYCLE:
+            raise ValueError(f"claim {claim_id!r} has missing or invalid lifecycle {lifecycle!r}")
+        if not isinstance(current, bool):
+            raise ValueError(f"claim {claim_id!r} must declare boolean current_claim")
+        if lifecycle == "HISTORICAL_IMMUTABLE" and current:
+            raise ValueError(f"historical claim {claim_id!r} cannot be current")
+        if lifecycle.startswith("ACTIVE_") and not current:
+            raise ValueError(f"active claim {claim_id!r} must be current")
+        if current:
+            selected.append(claim)
+    return tuple(selected)
 
 
 def parse_sha256sums(path: Path) -> dict[str, str]:
@@ -328,14 +364,55 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
         report.errors.append("SHA256SUMS has unexpected paths: " + ", ".join(extra))
 
     if paper_id == "P1":
+        try:
+            active_p1_claims = current_claims(manifest)
+        except ValueError as exc:
+            report.errors.append(str(exc))
+            active_p1_claims = ()
         verdict = _p1_h1_verdict(paper_root)
         h1_claims = [claim for claim in claims if isinstance(claim, dict) and claim.get("id") == "P1.H1"]
         if not h1_claims:
             report.errors.append("P1 package must include claim P1.H1")
         else:
-            status = h1_claims[0].get("status")
+            h1 = h1_claims[0]
+            status = h1.get("status")
             if status != "NOT_SUPPORTED":
                 report.errors.append(f"P1.H1 must remain NOT_SUPPORTED, not {status!r}")
+            if h1.get("lifecycle") != "HISTORICAL_IMMUTABLE" or h1.get("current_claim") is not False:
+                report.errors.append("P1.H1 must remain HISTORICAL_IMMUTABLE and non-current")
+            if h1.get("narrower_successor") != "P1.NECESSITY.V2.2.4":
+                report.errors.append("P1.H1 must identify the distinct narrower successor")
+            if h1.get("design_adequacy") != "BLOCKED_METHODS_INCONSISTENCY":
+                report.errors.append("P1.H1 must retain its unresolved power-methods inconsistency")
+        successors = [
+            claim for claim in claims
+            if isinstance(claim, dict) and claim.get("id") == "P1.NECESSITY.V2.2.4"
+        ]
+        if len(successors) != 1:
+            report.errors.append("P1 must carry exactly one P1.NECESSITY.V2.2.4 claim")
+        else:
+            successor = successors[0]
+            relationship = successor.get("relationship_to_previous", {})
+            authority = successor.get("authority", {})
+            if successor.get("lifecycle") != "ACTIVE_CENTRAL" or successor.get("current_claim") is not True:
+                report.errors.append("P1.NECESSITY.V2.2.4 must be the active central claim")
+            if relationship != {
+                "type": "NARROWER_SUCCESSOR_OF",
+                "claim_id": "P1.H1",
+                "scientific_supersession": False,
+            }:
+                report.errors.append("P1 successor must be narrower, not a scientific supersession of H1")
+            if successor.get("scope_ceiling") != "generator_relative_exact_contract":
+                report.errors.append("P1 successor must retain its generator-relative exact-contract ceiling")
+            if authority != {
+                "external_superiority_authorized": False,
+                "naturalistic_evidence": False,
+                "publication_novelty_authorized": False,
+            }:
+                report.errors.append("P1 successor authority ceiling drifted")
+        active_ids = {claim.get("id") for claim in active_p1_claims}
+        if "P1.H1" in active_ids or "P1.NECESSITY.V2.2.4" not in active_ids:
+            report.errors.append("typed P1 current-claim query misclassifies H1 or its successor")
         if verdict is not None and verdict != "NOT_SUPPORTED":
             report.errors.append(f"P1-T2 H1 verdict drifted from NOT_SUPPORTED to {verdict!r}")
         if verdict is None:

@@ -1,0 +1,48 @@
+{
+  "schema": "ORION.FrontierAtomRegistryDelta.v1",
+  "base_registry": "FRONTIER_ATOM_REGISTRY_V1.json",
+  "add_nodes": [
+    {
+      "id": "F0.P16.REVERSAL.A",
+      "parent_id": "F0.P16.REVERSAL",
+      "question": "Does the exact two-bit XNOR construction witness an order reversal between classical informativeness and a costed restricted compile-decide pipeline?",
+      "status": "CONTROLLED_POSITIVE",
+      "candidate_disposition": "SUBSUMED",
+      "priority": 70,
+      "donor_or_owner_ids": ["Blackwell", "predictive-v-information", "rational-inattention", "rational-metareasoning"],
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P16A_COMPILE_DECIDE_ORDER_REVERSAL_PROTOCOL_V1.md",
+      "evidence_receipt_paths": ["research/extensions/orion-frontier-v2/P16A_RESULT_RECEIPT_V1.md", "research/extensions/orion-frontier-v2/P16A_DONOR_SUBTRACTION_V1.md"],
+      "protected_discriminator": "Exact four-world decision problem with raw Blackwell dominance, affine decoder restriction, and explicit compiler cost.",
+      "resource_axes": ["compile", "decoder", "decision_loss", "budget"],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "runtime_blocker": null,
+      "stop_reason": null,
+      "cross_domain_targets": ["controlled-decision"],
+      "children_expected": false,
+      "grants_scientific_authority": false,
+      "grants_novelty_authority": false
+    },
+    {
+      "id": "F0.P17",
+      "parent_id": "F0",
+      "question": "Can dynamically compiled state carry responsibility-scoped sufficiency/reopen contracts that reduce unsafe reuse without the cost of always reopening raw state?",
+      "status": "PROTOCOL_FROZEN",
+      "candidate_disposition": "CANNOT_CHECK",
+      "priority": 96,
+      "donor_or_owner_ids": ["statistical-sufficiency", "RL-state-abstraction", "proof-carrying-code", "proof-carrying-plans", "P7", "P14", "P15"],
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P17_RESPONSIBILITY_CARRYING_STATE_PROTOCOL_V1.md",
+      "evidence_receipt_paths": ["research/extensions/orion-frontier-v2/P17_SUBSTRATE_CHECK_RECEIPT_V1.md"],
+      "protected_discriminator": "Compare unqualified compression, confidence-only, responsibility-carrying state, and always-raw controls on unsupported-use errors and resource cost.",
+      "resource_axes": ["compile", "state_memory", "reopen", "verification", "latency", "task_success"],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "runtime_blocker": null,
+      "stop_reason": null,
+      "cross_domain_targets": ["LLM", "formal-math", "scientific-discovery"],
+      "children_expected": true,
+      "grants_scientific_authority": false,
+      "grants_novelty_authority": false
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+name: p9-p10-runtime-gated-analysis-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/RUNTIME_GATED_ANALYSIS_CONTRACT_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/inputs/**'
+      - '.github/workflows/p9-p10-runtime-gated-analysis-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute pre-frozen runtime-gated analyzers
+        run: python research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py
+      - name: Require explicit non-positive missing-input states
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_NOVELTY_ANALYSIS_V1.json')
+          d=json.loads(p.read_text())
+          allowed_prefixes=('CANNOT_CHECK_','INVALID_')
+          for name,lane in d['lanes'].items():
+              terminal=lane['terminal']
+              # In the current repository no runtime inputs are committed. If a
+              # future PR adds inputs, positive or null scientific terminals are
+              # allowed only through the already-frozen analyzer.
+              input_path=lane.get('input')
+              if input_path is not None and not terminal.startswith(allowed_prefixes):
+                  raise SystemExit(f'{name}: missing-input lane unexpectedly promoted: {terminal}')
+          print(json.dumps({k:v['terminal'] for k,v in d['lanes'].items()},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runtime-gated-novelty-analysis-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_NOVELTY_ANALYSIS_V1.json
+          if-no-files-found: error

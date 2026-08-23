@@ -1,0 +1,45 @@
+name: p9-p10-structural-accessibility-theory-v2
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/STRUCTURAL_ACCESSIBILITY_THEORY_V2.md'
+      - 'research/extensions/p9-p10-structural-scaling/verify_structural_accessibility_theory_v2.py'
+      - '.github/workflows/p9-p10-structural-accessibility-theory-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact finite identities
+        run: python research/extensions/p9-p10-structural-scaling/verify_structural_accessibility_theory_v2.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/STRUCTURAL_ACCESSIBILITY_THEORY_V2_VERIFICATION.json /tmp/theory-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/verify_structural_accessibility_theory_v2.py
+      - name: Require byte identity
+        run: cmp /tmp/theory-first.json research/extensions/p9-p10-structural-scaling/results/STRUCTURAL_ACCESSIBILITY_THEORY_V2_VERIFICATION.json
+      - name: Require verified terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/STRUCTURAL_ACCESSIBILITY_THEORY_V2_VERIFICATION.json').read_text())
+          assert d['terminal']=='STRUCTURAL_ACCESSIBILITY_THEORY_V2_ENUMERATION_VERIFIED'
+          assert all(row['balanced_label'] for row in d['rows'])
+          assert all(block['bijective'] and block['decode_failures']==0 for row in d['rows'] for block in row['blocks'])
+          print('P9_P10_STRUCTURAL_ACCESSIBILITY_THEORY_V2=true')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: structural-accessibility-theory-v2-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/STRUCTURAL_ACCESSIBILITY_THEORY_V2_VERIFICATION.json
+          if-no-files-found: error
