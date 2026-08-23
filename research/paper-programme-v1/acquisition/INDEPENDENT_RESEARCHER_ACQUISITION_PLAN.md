@@ -118,6 +118,28 @@ authored by people who are not you, timestamped long before any ORION protocol e
 **134,509** works flagged retracted in OpenAlex, **74,828** retraction-notice works in Crossref, and
 the Retraction Watch database itself free via Crossref Labs.
 
+> **UPDATE 2026-08-23 — this route was tested and it FAILS.** Recorded here rather than quietly
+> dropped, because the paragraph below promised exactly that.
+>
+> An ORION governance decision is a pure function of eight booleans emitting a six-value vocabulary:
+> CANNOT_CHECK, NEGATIVE, SUBSUMED, INTERACTION_ONLY, RETAIN_NEGATIVE, SUPPORTED_RESIDUAL. A
+> retraction record is binary. It cannot yield SUBSUMED versus INTERACTION_ONLY versus
+> RETAIN_NEGATIVE, so somebody has to author that mapping — which reintroduces exactly the
+> self-authorship P14D exists to exclude. Independence would sit in the *source record*, not in the
+> *label the candidate is scored against*. Four of the eight inputs have no counterpart in retraction
+> metadata at all, and retraction data supplies none of the other six required artifacts.
+>
+> **Retractions adjudicate publications; ORION adjudicates an evaluation's protocol state. Different
+> objects.** Retraction data could ground a different, narrower external claim — a new protocol with
+> a new claim identity, not P14D. See `P4_P14D_BLOCKED_BY_CONSTANT_2026-08-23.json`.
+>
+> A second finding from the same pass changes the sequencing: P14D is **blocked by a constant**.
+> Creating all eight required artifacts leaves `terminal`, `execution_authorized` and
+> `external_custody_verified` unchanged, because those are hardcoded literals with no configuration
+> surface. The refusal is deliberate and test-pinned, and the stance is right — but there is no
+> attestation format, signature check or custodian allowlist, so **no input from any party could ever
+> be accepted**. The acceptance path has to be built before an adjudicator is worth recruiting.
+
 **This is a candidate, not a substitute.** A retraction record is an adjudicated outcome; a
 governance-contract case packet is a different object. Whether the ORION promotion or reopen
 decision is even *defined* on such a record has to be established first — and **if it is not, this
