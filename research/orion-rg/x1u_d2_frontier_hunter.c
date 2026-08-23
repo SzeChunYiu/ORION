@@ -10,7 +10,7 @@
 #include <stdlib.h>
 static int R,K,N,MINZS,np;
 static int pool[256], cur[8];
-static long long leaves=0, found=0;
+static long long leaves=0, found=0, nodes=0;
 static FILE*wf=NULL;
 static int wt(int x){ return __builtin_popcount(x); }
 static int fullcheck(void){
@@ -41,6 +41,7 @@ static void rec(int start,int k){
     }
     for(int pi=start; pi<np; pi++){
         int a=pool[pi], ok=1;
+        if(++nodes%500000000LL==0){ fprintf(stderr,"progress nodes=%lldM leaves=%lld found=%lld\n",nodes/1000000,leaves,found); }
         for(int i=0;i<k&&ok;i++){
             if(wt(cur[i]^a)<MINZS-2){ ok=0; break; }
             for(int j=i+1;j<k&&ok;j++){
@@ -62,7 +63,7 @@ int main(int argc,char**argv){
     N=1<<R; MINZS=MZOV?MZOV:K;
     for(int v=1;v<N;v++) if(wt(v)>=MINZS-1) pool[np++]=v;
     rec(0,0);
-    printf("r=%d k=%d minzs=%d pool=%d leaves=%lld disjointfree=%lld\n",R,K,MINZS,np,leaves,found);
+    printf("r=%d k=%d minzs=%d pool=%d nodes=%lld leaves=%lld disjointfree=%lld\n",R,K,MINZS,np,nodes,leaves,found);
     if(found) printf("WITNESS EXISTS: length %d over C_2^%d => D_2(C_2^%d) >= %d\n",R+K,R,R,R+K+1);
     else printf("NO WITNESS of length %d over C_2^%d\n",R+K,R);
     return 0;

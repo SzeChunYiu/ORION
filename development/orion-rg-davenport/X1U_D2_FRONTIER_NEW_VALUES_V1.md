@@ -79,6 +79,13 @@ The min-ZS-5 stratum is **nonempty** — explicit verified member
 
 ## A closed-form conjecture, registered with its prediction before the test
 
+> **FALSIFIED by X1-V (2026-08-23), at its first test.** `D_2(C_2^9) = 16`, not 15 — the
+> length-15 witness is the parity-check view of the (reported unique) extremal binary
+> minimal code of dimension 6, constructed and certified in X1-V before the search ran.
+> The registered prediction below is retained as written; the formula and the rate-`1/4`
+> reading are dead. The true growth is governed by the irregular minimum-redundancy
+> function `ρ(k)` of intersecting codes — see X1-V.
+
 All six known values fit one formula:
 
 > **Conjecture.** `D_2(C_2^r) = r + 3 + ⌊(r+1)/3⌋` for all `r ≥ 3`.
