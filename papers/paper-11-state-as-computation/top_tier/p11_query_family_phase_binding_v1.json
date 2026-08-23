@@ -1,0 +1,38 @@
+{
+  "byte_replay_identical": true,
+  "event": "pull_request",
+  "frozen_gate": {
+    "frozen_positive_terminal": false,
+    "gate_future_query_cost": true,
+    "gate_linear_ge_8_of_10": false,
+    "gate_memory_crossover": true,
+    "gate_stronger_ge_8_of_10": false,
+    "knn_supported_queries": 5,
+    "linear_supported_queries": 3,
+    "rbf_supported_queries": 5
+  },
+  "head_sha": "932e9a71c45dd541f6bf438c5397abf423fbf12e",
+  "independent": {
+    "exit_code": 1,
+    "file": "p11_query_family_phase_independent_v1.json",
+    "sha256": "b1e92a6be419a26d442fd0e0e6a8026279a70686e3f6b7b09ea64700b8742760",
+    "terminal": "P11_QUERY_FAMILY_PHASE_SECOND_CHECKER_GATE_NOT_MET"
+  },
+  "negative_retained": true,
+  "no_retuning_performed": true,
+  "primary": {
+    "exit_code": 1,
+    "file": "p11_query_family_phase_primary_v1.json",
+    "receipt_sha256": "e8313c7a4615a8a395c785fabd1f0be85552488b287e35a28de2c419bf499797",
+    "sha256": "9a1f1f9b62955296bcff891f1f93f97af03448d311ae63b62a95d407e3de138f",
+    "terminal": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET"
+  },
+  "protocol_sha256": "16147dd984776994279623cde3847bbeb48ec198e8b491d5644c68dc40e1f995",
+  "recorded_terminal": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET",
+  "run_attempt": "1",
+  "run_id": "32663348906",
+  "run_url": "https://github.com/SzeChunYiu/ORION/actions/runs/32663348906",
+  "schema": "P11.QueryFamilyPhaseBinding.v1",
+  "two_implementations_agree": true,
+  "workflow_file": ".github/workflows/p11-query-family-phase-binding-v1.yml"
+}

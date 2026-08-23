@@ -7,6 +7,9 @@ on:
       - 'papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py'
       - 'papers/paper-11-state-as-computation/top_tier/check_query_family_phase_independent_v1.py'
       - '.github/workflows/p11-query-family-phase-binding-v1.yml'
+      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_primary_v1.json'
+      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_independent_v1.json'
+      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_binding_v1.json'
   workflow_dispatch:
 permissions:
   contents: read
