@@ -1,16 +1,18 @@
-"""Exact quantum obstruction witnesses for the ORION-Q QC-2A benchmark.
+"""Exact quantum obstruction witnesses for the ORION-Q QC-2 benchmark.
 
-This module is deliberately small and model-independent.  It freezes algebraic
+This module is deliberately small and model-independent. It freezes algebraic
 invariants before P9/P10 learning or search is allowed to use the benchmark.
 Evaluator gold is derived from the invariant witness and is never part of the
 model-visible payload or fingerprint.
 
-The first tranche covers only two declared language capabilities:
+The exact substrate currently covers three declared language capabilities:
 
 * arbitrary local one-qubit unitaries on a two-qubit product input;
-* arbitrary real-valued unitaries on an input that is real up to global phase.
+* arbitrary real-valued unitaries on an input that is real up to global phase;
+* arbitrary Clifford operations on a one-qubit stabilizer input.
 
-No object here grants scientific, novelty, adoption, or execution authority.
+These are benchmark facts, not ORION novelty claims. No object here grants
+scientific, novelty, adoption, or execution authority.
 """
 
 from __future__ import annotations
@@ -29,6 +31,7 @@ DEFAULT_ATOL = 1e-10
 class QuantumLanguageCapability(str, Enum):
     LOCAL_PRODUCT_ONLY = "LOCAL_PRODUCT_ONLY"
     REAL_UNITARY_ONLY = "REAL_UNITARY_ONLY"
+    CLIFFORD_ONLY = "CLIFFORD_ONLY"
 
 
 class QuantumObstructionVerdict(str, Enum):
@@ -97,7 +100,7 @@ def two_qubit_schmidt_determinant(
     """Return the 2x2 coefficient determinant for a two-qubit pure state.
 
     For amplitudes ``(a00, a01, a10, a11)``, a pure two-qubit state is separable
-    exactly when ``a00*a11 - a01*a10 == 0``.  The determinant is therefore a
+    exactly when ``a00*a11 - a01*a10 == 0``. The determinant is therefore a
     direct Schmidt-rank obstruction witness and does not depend on search.
     """
 
@@ -124,7 +127,7 @@ def is_real_up_to_global_phase(
     """Return whether all amplitudes can be made real by one global phase.
 
     A nonzero vector has this property iff every pairwise product
-    ``a_i * conj(a_j)`` is real.  This avoids choosing a privileged reference
+    ``a_i * conj(a_j)`` is real. This avoids choosing a privileged reference
     amplitude and is invariant under global rephasing.
     """
 
@@ -137,6 +140,48 @@ def is_real_up_to_global_phase(
     return True
 
 
+def one_qubit_bloch_vector(
+    state: PureState,
+    *,
+    atol: float = DEFAULT_ATOL,
+) -> tuple[float, float, float]:
+    """Return the Bloch vector of one normalized pure qubit state.
+
+    For ``|psi> = a|0> + b|1>``, the coordinates are expectation values of
+    Pauli X/Y/Z. They are invariant under global phase.
+    """
+
+    state.verify(atol=atol)
+    if len(state.amplitudes) != 2:
+        raise ValueError("Bloch vector requires exactly one qubit")
+    a, b = state.amplitudes
+    overlap = a.conjugate() * b
+    return (
+        float(2.0 * overlap.real),
+        float(2.0 * overlap.imag),
+        float(abs(a) ** 2 - abs(b) ** 2),
+    )
+
+
+def is_one_qubit_stabilizer_state(
+    state: PureState,
+    *,
+    atol: float = DEFAULT_ATOL,
+) -> bool:
+    """Return whether a pure qubit is one of the six Pauli-axis stabilizer states.
+
+    A pure one-qubit stabilizer state has Bloch vector equal to one of
+    ``(+/-1,0,0)``, ``(0,+/-1,0)``, or ``(0,0,+/-1)``. The test is independent
+    of the state's human-readable identity and global phase.
+    """
+
+    x, y, z = one_qubit_bloch_vector(state, atol=atol)
+    coordinates = (x, y, z)
+    axis_like = [math.isclose(abs(value), 1.0, rel_tol=0.0, abs_tol=atol) for value in coordinates]
+    zero_like = [math.isclose(value, 0.0, rel_tol=0.0, abs_tol=atol) for value in coordinates]
+    return sum(axis_like) == 1 and sum(zero_like) == 2
+
+
 def classify_quantum_obstruction(
     capability: QuantumLanguageCapability,
     initial: PureState,
@@ -147,7 +192,7 @@ def classify_quantum_obstruction(
     """Classify an invariant obstruction for one frozen capability contract.
 
     ``INVARIANT_COMPATIBLE`` means only that this tranche's declared invariant
-    does not rule the target out.  It is intentionally weaker than a universal
+    does not rule the target out. It is intentionally weaker than a universal
     claim that an arbitrary concrete gate library or bounded search will reach it.
     """
 
@@ -171,6 +216,15 @@ def classify_quantum_obstruction(
         if not is_real_up_to_global_phase(initial, atol=atol):
             raise ValueError("real-unitary capability requires a real-up-to-phase initial state")
         if is_real_up_to_global_phase(target, atol=atol):
+            return QuantumObstructionVerdict.INVARIANT_COMPATIBLE
+        return QuantumObstructionVerdict.EXPRESSIVITY_OBSTRUCTION
+
+    if capability is QuantumLanguageCapability.CLIFFORD_ONLY:
+        if len(initial.amplitudes) != 2:
+            raise ValueError("Clifford capability currently requires exactly one qubit")
+        if not is_one_qubit_stabilizer_state(initial, atol=atol):
+            raise ValueError("Clifford capability requires a stabilizer initial state")
+        if is_one_qubit_stabilizer_state(target, atol=atol):
             return QuantumObstructionVerdict.INVARIANT_COMPATIBLE
         return QuantumObstructionVerdict.EXPRESSIVITY_OBSTRUCTION
 
@@ -232,7 +286,9 @@ __all__ = [
     "QuantumObstructionCase",
     "QuantumObstructionVerdict",
     "classify_quantum_obstruction",
+    "is_one_qubit_stabilizer_state",
     "is_real_up_to_global_phase",
     "is_two_qubit_product_state",
+    "one_qubit_bloch_vector",
     "two_qubit_schmidt_determinant",
 ]
