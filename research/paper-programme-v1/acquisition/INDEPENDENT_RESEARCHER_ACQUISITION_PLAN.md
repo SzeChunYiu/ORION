@@ -26,16 +26,28 @@ Reclassifying the sixteen: **2 locally unexecuted, 1 locally broken, 2 procurabl
 
 ## Start here — ranked by what it costs you
 
-### 1. P9-U-T3 frontier: 0 of 1,344 cells, and nothing is missing but a download
+### 1. P9-U-T4 D1v1.3: fully procurable, and the runner already exists
 
-This is filed as an external blocker. It is not one.
+Needs a fresh protected split, frozen checkpoints and provider custody. The checkpoints are open
+weights. A split is protected in the sense that matters once it is fixed before outcomes and
+timestamped by a third party, which is free. And unlike the T3 frontier below,
+`orion.study.p9.d1_experiment.run_d1` exists — there is code that runs.
 
-The grid is **already frozen before outcomes** and pinned by sha256, with `extrapolation_permitted:
-false`, `interpolation_permitted: false`, an on-grid rule and Holm–Bonferroni multiplicity. Its
-`environment_boundary` records `open_weight_checkpoint_present: false` and an outbound proxy
-returning 403 — facts about the box it was written on, not about the world.
+Ranked first because it is the only item where every requirement has a free route *and* nothing has
+to be built first.
 
-Its declared ladders are six openly published checkpoints. All six resolve live:
+### 2. P9-U-T3 frontier: 0 of 1,344, and not externally blocked — but larger than it looks
+
+Filed as an external blocker. It is not one. But an earlier draft of this plan said "nothing is
+missing but a download," and **that was wrong** — the correction matters more than the headline.
+
+What is genuinely true: the grid is **already frozen before outcomes** and pinned by sha256, with
+`extrapolation_permitted: false`, `interpolation_permitted: false`, an on-grid rule and
+Holm–Bonferroni multiplicity. Its `environment_boundary` records `open_weight_checkpoint_present:
+false` and an outbound proxy returning 403 — facts about the box it was written on. The repository's
+own reachability record is careful about this and says what would unblock it: *"a checkpoint set
+placed on disk, an allowlisted mirror for one, or execution in an environment that already holds
+them."* All six declared ladder points resolve from an ordinary network:
 
 | Checkpoint | Gated | Licence |
 |---|---|---|
@@ -47,20 +59,30 @@ Its declared ladders are six openly published checkpoints. All six resolve live:
 | `meta-llama/Llama-3.2-3B` | **manual** | llama3.2 |
 
 `gated: manual` is free but needs an accepted licence on an account — real friction, stated rather
-than glossed. 1,344 cells = 4 relational complexities × 7 representations × 6 scale points ×
-4 inference budgets × 2 domain blocks, at a fixed sample budget of 4.
+than glossed.
 
-**No new claim identity is needed**, and that is the point: the freeze was written for exactly this.
-Every cell executed is a cell the grid already declared.
+**What the reachability record does not say, and this audit adds: the executing code is also
+absent.** The freeze names `orion.study.p9.frontier_grid` as its runner, but that module *declares
+and scores*: its CLI takes `--outcomes` as an **input**, documented as *"an outcome file for the
+declared cells; omit while none exists."* Nothing in the repository emits
+`P9.UT3FrontierGridOutcomes.v1`. Fetching weights is necessary and not sufficient — a harness that
+walks a cell and emits a verified count has to be written.
 
-### 2. P6 clean-room replay: no data, no labels, no panel
+That is still local work with no external component, which is why the reclassification stands. It is
+simply a build task, not a download task. 1,344 cells = 4 relational complexities × 7
+representations × 6 scale points × 4 inference budgets × 2 domain blocks, at a fixed sample budget
+of 4.
+
+**No new claim identity is needed** for this one: the freeze was written for exactly these cells.
+
+### 3. P6 clean-room replay: no data, no labels, no panel
 
 Wants a byte-for-byte replay of a bounded **formal** artifact by someone who is not you. The
 blocking precondition is local and undone: **the replay bundle has to run from a cold start before
 any custodian can be asked.** Package it, put it on Zenodo with a DOI, submit it where third parties
 reproduce work for free.
 
-### 3. P2 task-world identity: a local failure filed as an external one
+### 4. P2 task-world identity: a local failure filed as an external one
 
 Its disposition opens with *"the archived task-world baseline has not been reproduced."* That is
 local. P2's own ceiling diagnosis says the binding stage was `CANDIDATE_GENERATION`: the arm's
@@ -71,7 +93,7 @@ A second, distinct P2 reproducibility failure is live in CI right now
 (`test_p2_lexical_echo_successor`, frozen digest matching while per-arm numbers diverge). Check
 whether they share a root cause before treating them separately.
 
-### 4. P5 H1–H4: its own next step is a local script
+### 5. P5 H1–H4: its own next step is a local script
 
 `next_executable_step` is a `PREFLIGHT` running locally, and success is nine identity and custody
 blockers clearing. Identity bindings are authored, not bought. Run it and **count how many of the
