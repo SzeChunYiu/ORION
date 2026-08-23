@@ -9,6 +9,12 @@ __pycache__/
 # dependency lock sufficient for clean reproduction of every paper. An
 # ignored lock makes that gate permanently unclosable.
 
+# Ephemeral harness run state. The QG dual-harness runners create and rmtree
+# these workspaces themselves, and the QG workflows upload artifacts/ as CI
+# build artifacts rather than committing it. Lane receipts that carry authority
+# are written to research/extensions/orion-qg/ and committed explicitly.
+/artifacts/
+/.orion-qg-*/
 # LaTeX build intermediates. `latexmk` writes these beside `main.tex` on every
 # build; only the `.pdf` is an artifact anyone reads. Leaving them untracked but
 # unignored made a rebuild look like an uncommitted change to the manuscript.

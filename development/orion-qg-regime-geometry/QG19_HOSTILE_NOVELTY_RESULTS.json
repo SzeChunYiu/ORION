@@ -1,0 +1,469 @@
+{
+  "schema": "orion.qg19.hostile-novelty-results.v1",
+  "programme": "ORION-QG / regime geometry, wave 3",
+  "lane": "QG-19 — hostile external-novelty lane",
+  "date": "2026-08-22",
+  "branch": "claude/orion-harness-verification-b17qdj",
+  "protocol": "development/orion-qg-regime-geometry/QG19_HOSTILE_NOVELTY_PROTOCOL_V1.md",
+  "protocol_frozen_at": "aaf0987a",
+  "protocol_modified_by_this_lane": false,
+  "authority": "NOT_R6",
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "chemistry_sources_read": false,
+  "protected_subject_read": false,
+  "reserved_stretched_n2_accessed": false,
+  "network_access": "PARTIAL — search available, direct document retrieval blocked by egress policy",
+  "repository_files_created": [
+    "development/orion-qg-regime-geometry/QG19_HOSTILE_NOVELTY_RESULTS.json",
+    "development/orion-qg-regime-geometry/QG19_QUERY_LOG.md",
+    "development/orion-qg-regime-geometry/QG_EXTERNAL_DONOR_REGISTER_V2.md"
+  ],
+  "repository_files_modified": [],
+
+  "terminal": "QG19_SUBSUMPTION_FOUND__NOVELTY_REDUCED",
+  "terminal_reading": "Two claims (C-A, C-F) are SUBSUMED by prior sources that state them, or strictly more general statements, in forms covering our stated domain. Three further claims (C-B, C-D, C-E) are INSTANCE_OF_KNOWN_GENERAL. One claim (C-C) is NEAREST_MISS. No claim's standing was raised by this lane, and none could have been.",
+
+  "bottom_line": "The headline structural criterion C-A is a textbook result under another name. It is the trellis/Viterbi formulation of maximum-likelihood decoding of a linear block code — Wolf 1978 — in which the dynamic-programming state IS the partial syndrome, the objective IS a sum of per-position local terms, and the cost IS linear in the block length with a factor equal to the syndrome-space size. Our O(C_ext*2^{2D}*n + n*A^L) is that bound with 2^D = q^{n-k} held fixed. The same statement is available at three further levels of generality that all predate us: the generalized distributive law over a commutative semiring (Aji and McEliece 2000), bounded-treewidth metatheorems (Courcelle; Dechter's bucket elimination at O(n*exp(w*))), and Gomory's group relaxation of an integer program solved as a shortest path over a finite abelian group. The custody claim C-F is likewise subsumed: the artifact-is-not-evidence failure is a named, taxonomized failure mode in the 2026 AI-governance literature ('governance laundering', with a 'custody gaps' family and 'replay-insufficient records'), and 'reproducible research can still be wrong' is a 2015 PNAS title.",
+
+  "retrieval_limitations": {
+    "search_channel": "WebSearch (server-side); returned links plus tool-rendered passage text",
+    "document_channel": "BLOCKED — 9 WebFetch attempts and 2 curl attempts, all refused by the organization egress proxy (arxiv.org, en.wikipedia.org, handwiki.org, semanticscholar.org, mimuw.edu.pl, dl.acm.org, link.springer.com, scispace.com)",
+    "consequence": "Every passage bound below is the text returned by the retrieval tool, not text read off the primary document. No source in this run was verified at document level. Each source therefore carries document_level_verification: false, and the identifiers below are as reported by the search backend rather than as read from the paper.",
+    "not_routed_around": "Per /root/.ccr/README.md the policy denial was reported, not circumvented. TLS verification was never disabled and HTTPS_PROXY was never unset."
+  },
+
+  "caps_disclosed": {
+    "search_call_cap": 90,
+    "search_calls_spent": 52,
+    "direct_fetch_attempts": 11,
+    "direct_fetch_successes": 0,
+    "sources_retrieved_with_a_bindable_passage": 21,
+    "sources_unreachable_at_document_level": "all of them; see retrieval_limitations",
+    "claims_left_at_CANNOT_ASSESS": 0,
+    "candidate_sources_recorded_CANNOT_ASSESS": 2,
+    "runtime_cap_minutes": 60,
+    "runtime_within_cap": true
+  },
+
+  "claims": {
+    "C-A": {
+      "claim": "Let F have a configuration space that factorizes over n positions with fixed local alphabet size A, a feasibility predicate that is a fixed-dimension conserved syndrome (homomorphism into a fixed finite abelian group of order 2^D, D independent of n), and an objective that is a sum of per-position local terms. Then the exact optimum is computable in time O(C_ext*2^{2D}*n + n*A^L) — linear in n — by min-plus DP over the syndrome, deciding optimality costs the same order, and naive enumeration costs Theta(A^{Ln}).",
+      "receipt": "research/extensions/orion-qg/QG22_COMPLEXITY_SEPARATION_RESULTS.json key q3",
+      "prior_expectation_frozen_in_protocol": "HIGH subsumption risk",
+      "prior_expectation_borne_out": true,
+      "claim_verdict": "SUBSUMED",
+      "verdict_basis": "A prior source states a strictly more general result in a form that covers our stated domain, using the same word for the same object: syndrome.",
+      "candidates": [
+        {
+          "identifier": "J. K. Wolf, IEEE Transactions on Information Theory, vol. 24, no. 1, pp. 76-80, 1978",
+          "title": "Efficient Maximum Likelihood Decoding of Linear Block Codes Using a Trellis",
+          "verdict": "SUBSUMED",
+          "passage": "It is shown that soft decision maximum likelihood decoding of any (n,k) linear block code over GF(q) can be accomplished using the Viterbi algorithm applied to a trellis with no more than q^{(n-k)} states.",
+          "passage_provenance": "websearch_result_text (Q16), returned inside quotation marks by the retrieval tool",
+          "document_level_verification": false,
+          "why_it_covers_us": "The trellis state at position i is exactly the partial syndrome H*x_{1..i}, i.e. the image of the prefix under a homomorphism into a fixed finite abelian group of order q^{n-k}. The Viterbi recursion over it is min-plus composition of per-position local costs. Running the Viterbi algorithm on an n-section trellis with S states and alphabet q costs O(n*S*q) — our O(C_ext*2^{2D}*n + n*A^L) with 2^D = S, A = q. Deciding optimality of a given configuration is the same forward-backward pass, at the same order. Naive enumeration of the q^n words is our Theta(A^{Ln}). Every structural hypothesis in C-A is a hypothesis of this 1978 theorem, and the theorem is stated for an arbitrary linear code rather than for one hand-built family."
+        },
+        {
+          "identifier": "S. M. Aji and R. J. McEliece, IEEE Transactions on Information Theory, vol. 46, no. 2, 2000",
+          "title": "The generalized distributive law",
+          "verdict": "SUBSUMED",
+          "passage": "It includes as special cases the Baum-Welch algorithm, the fast Fourier transform (FFT) on any finite Abelian group, the Gallager-Tanner-Wiberg decoding algorithm, Viterbi's algorithm, the BCJR algorithm, Pearl's \"belief propagation\" algorithm, the Shafer-Shenoy probability propagation algorithm, and the turbo decoding algorithm. ... This algorithm is guaranteed to give exact answers only in certain cases (the \"junction tree\" condition), and the power of the GDL lies in the fact that it applies to situations in which additions and multiplications are generalized. A commutative semiring is a good framework for explaining this behavior.",
+          "passage_provenance": "websearch_result_text (Q5)",
+          "document_level_verification": false,
+          "why_it_covers_us": "C-A is the (min,+) instance of the GDL on a chain — the simplest junction tree there is. The GDL statement quantifies over all commutative semirings and all junction-tree-structured factorizations; ours quantifies over one semiring and one topology. The FFT-on-any-finite-abelian-group entry is the same abelian-group structure C-A calls a conserved syndrome."
+        },
+        {
+          "identifier": "R. Dechter, Artificial Intelligence 113(1-2):41-85, 1999",
+          "title": "Bucket elimination: A unifying framework for reasoning",
+          "verdict": "SUBSUMED",
+          "passage": "The time and space complexity of Adaptive-consistency is O(n·exp(w*(d))), where w*(d) represents the induced-width. ... problems having bounded induced-width for some constant can be solved in polynomial time.",
+          "passage_provenance": "websearch_result_text (Q10)",
+          "document_level_verification": false,
+          "why_it_covers_us": "O(n*exp(w*)) with w* a frozen constant IS 'linear in n with a constant factor exponential in a structural dimension'. Our D plays the role of w*. The framework is stated for arbitrary constraint/optimization networks, not for a compilation family."
+        },
+        {
+          "identifier": "B. Courcelle (1990) with the optimization extension attributed in the retrieved material to hyperedge-replacement/LinEMSO work",
+          "title": "Courcelle's theorem (as reported in the retrieved encyclopedic and survey material)",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "Courcelle showed that every problem definable in Monadic Second-Order Logic (MSO) can be solved in linear time on graphs with bounded treewidth. ... The result has been extended to cover optimization problems and more graph classes that can be built using hyperedge replacement grammar.",
+          "passage_provenance": "websearch_result_text (Q6)",
+          "document_level_verification": false,
+          "why_it_covers_us": "A metatheorem giving linear time for optimization over bounded-treewidth structures. A position-factorized configuration space with a fixed-dimension syndrome has treewidth bounded by a constant; C-A is the algorithmic content of the metatheorem specialized to a path decomposition."
+        },
+        {
+          "identifier": "Gomory group relaxation line: R. E. Gomory (1965) and J. F. Shapiro, Operations Research 16 (1968) 103-131 / 928-947, as reported in the retrieved material (arXiv 2602.13494 and the Springer Gomory group minimization entry)",
+          "title": "Group relaxation of the integer program / Gomory group minimization problem",
+          "verdict": "SUBSUMED_IN_SPECIAL_CASE",
+          "passage": "By relaxing the nonnegativity constraints on a set of basic variables, an integer programming problem can be reduced to a shortest route problem over a finite Abelian group. ... The classical approach for solving group relaxations leverages the nonnegativity of cost vectors to reduce the group relaxation to finding the shortest path in a Cayley directed graph.",
+          "passage_provenance": "websearch_result_text (Q4, Q7)",
+          "document_level_verification": false,
+          "why_it_covers_us": "Minimizing a sum of per-item costs subject to a residue constraint in a fixed finite abelian group, solved as a shortest path whose node set is the group. That is C-A's optimization problem verbatim, with the group order playing the role of 2^D. Sub-domain covered: objectives with nonnegative per-position costs. Outside that sub-domain C-A is covered instead by the Wolf/GDL entries above, which carry no sign restriction.",
+          "named_sub_domain": "nonnegative cost vectors"
+        },
+        {
+          "identifier": "R. Giegerich and C. Meyer, and the Bellman's GAP line (retrieved via Q11)",
+          "title": "Algebraic Dynamic Programming / yield grammars and evaluation algebras",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "Algebraic dynamic programming is a method for developing and reasoning about dynamic programming algorithms, in which yield grammars and evaluation algebras constitute abstract specifications of dynamic programming algorithms. ... An ADP problem can be solved in polynomial time and space by the yield parser only under the condition known as Bellman's Principle of Optimality.",
+          "passage_provenance": "websearch_result_text (Q11)",
+          "document_level_verification": false,
+          "why_it_covers_us": "C-A's three structural hypotheses are a restatement of the ADP admissibility condition: a grammar that factorizes the search space, an evaluation algebra that is a per-position local scoring plus a choice function, and Bellman's principle. ADP formalizes exactly the question 'when does this DP argument apply', which C-A answers for one grammar."
+        },
+        {
+          "identifier": "S. Bravyi, R. Shaydulin, S. Hu, D. Maslov — Quantum 5, 580 (2021), arXiv:2105.02291",
+          "title": "Clifford Circuit Optimization with Templates and Symbolic Pauli Gates",
+          "verdict": "SUBSUMED_IN_SPECIAL_CASE",
+          "passage": "A symbolic peephole optimization method works by projecting the full circuit onto a small subset of qubits and optimally recompiling the projected subcircuit via dynamic programming.",
+          "passage_provenance": "websearch_result_text (Q44)",
+          "document_level_verification": false,
+          "why_it_covers_us": "Exact DP for the optimum of a quantum-circuit compilation subproblem over a symplectic/Pauli state, in the same application domain as ours, published five years earlier. Sub-domain covered: Clifford circuits under a projected-window objective.",
+          "named_sub_domain": "Clifford circuit peephole windows"
+        },
+        {
+          "identifier": "Transfer-matrix method (Kramers and Wannier 1941), as reported in the retrieved encyclopedic material",
+          "title": "Transfer-matrix method (statistical mechanics)",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "the partition function for a lattice with n sites is readily seen to be the (x, y) entry of the matrix R^n, assuming fixed boundary conditions. ... For one-dimensional Ising models, the basic transfer matrix turns out to be 2x2, whose eigenvalues can then be employed for all lattice sizes.",
+          "passage_provenance": "websearch_result_text (Q9)",
+          "document_level_verification": false,
+          "why_it_covers_us": "Same object in the (+,*) semiring rather than (min,+): a fixed-size state carried along a chain of n positions gives an exact answer in time linear in n while the naive configuration sum is exponential. The 1941 date is the relevant fact."
+        },
+        {
+          "identifier": "J. F. Shapiro, Operations Research 16 (1968) 103-131",
+          "title": "Dynamic programming algorithms for the integer programming problem I",
+          "verdict": "CANNOT_ASSESS",
+          "passage": null,
+          "passage_provenance": null,
+          "document_level_verification": false,
+          "note": "Bibliographic reference recovered at Q8; no abstract or body text could be retrieved. Recorded, never inferred."
+        }
+      ],
+      "what_this_removes": "All of it. C-A's algorithmic content, its complexity bound, its optimality-decision claim and its naive-enumeration comparison are the standard content of trellis decoding, the GDL, bucket elimination and the group relaxation. QG-22's own receipt already labelled the general statement CONJECTURE and 'standard donor mathematics'; this lane confirms it is not merely standard donor mathematics but a specific, named, cited 1978 theorem plus three more-general frameworks. The QG-22 receipt stands as issued, with this subsumption scored against it.",
+      "what_remains_unresolved_after_this_lane": "Whether the particular TARE/R6M grammar satisfies the hypotheses, and the machine-instrumented constant factors measured on it, were not addressed by any retrieved source. That is a statement about what was searched, not a grant."
+    },
+
+    "C-B": {
+      "claim": "A two-sided family invariant: a support budget B such that the family's optimum is realized at support <= B and provably not at B-1. Measured kappa_R6I = 1, kappa_TARE = 2, both exactly and all-n.",
+      "receipt": "QG-9 V6 ladder; QG-18",
+      "prior_expectation_frozen_in_protocol": "attack vector only, no risk level frozen",
+      "claim_verdict": "INSTANCE_OF_KNOWN_GENERAL",
+      "verdict_basis": "The quantity 'smallest support size at which an optimum is attained, together with a matching lower bound' is an established named object of study in integer optimization, with a decade of upper bounds and matching lower-bound constructions.",
+      "candidates": [
+        {
+          "identifier": "I. Aliev, J. De Loera, F. Eisenbrand, T. Oertel, R. Weismantel, SIAM J. Optim. 28(3):2152-2157 (2018)",
+          "title": "The Support of Integer Optimal Solutions",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "Sparsity-type results study the size of support of solutions to integer programs. The support of a vector is the number of nonzero-components. ... given an integral m x n matrix A, the integer linear optimization problem has an optimal solution whose support is bounded by 2m log(2 sqrt(m) ||A||_inf) ... They furthermore provide a nearly matching asymptotic lower bound on the support of optimal solutions.",
+          "passage_provenance": "websearch_result_text (Q18)",
+          "document_level_verification": false,
+          "why_it_covers_us": "'An optimal solution whose support is bounded by B' plus 'a nearly matching lower bound' is precisely the two-sided support budget C-B calls an intrinsic support number. The general theory quantifies over all integer programs; C-B computes the exact value for two families and calls the value an invariant."
+        },
+        {
+          "identifier": "Y. Dubey and S. Liu, arXiv:2307.08826",
+          "title": "On the Smallest Support Size of Integer Solutions to Linear Equations",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "They give an upper bound on the smallest support size as a function of A, taken as a worst case over all b such that the system has a solution. ... The bound is asymptotically tight and matches the bound given in Aliev, Averkov, De Loera and Oertel, while the proof is simpler, relying only on linear algebra.",
+          "passage_provenance": "websearch_result_text (Q20)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The phrase 'smallest support size' is the named term for our kappa, and 'asymptotically tight' is the two-sidedness."
+        },
+        {
+          "identifier": "Integer Caratheodory line: Cook et al., Sebo, Eisenbrand and Shmonin, as reported at Q19/Q41",
+          "title": "Integer Caratheodory rank and sparse approximation in lattices and semigroups",
+          "verdict": "NEAREST_MISS",
+          "passage": "This area of research takes its origin from the integer Caratheodory theorems of Cook et al. and Sebo and later major contributions by Eisenbrand and Shmonin. ... Research addresses approximations of elements in sets of the form AX := {b in R^m : b = Ax for x in X} by elements of X whose support is small. In specific cases, these bounds are tight.",
+          "passage_provenance": "websearch_result_text (Q19, Q41)",
+          "document_level_verification": false,
+          "distinguishing_property": "Caratheodory rank bounds representations of a point by generators, not the support of a cost-optimal solution. The V1 register already flagged this distinction for D1's normal forms; it recurs here."
+        }
+      ],
+      "what_this_removes": "The framing of kappa as a newly identified kind of invariant. 'The minimum support at which the optimum is attained, with a matching lower bound' is a studied quantity with an established name and a literature of tight bounds. Any QG prose describing kappa as a new species of two-sided family invariant must be corrected to describe it as the exact value of the smallest-support-of-an-optimal-solution quantity for two specific families.",
+      "what_remains_unresolved_after_this_lane": "No retrieved source computes this quantity exactly and for all n for a compilation grammar, nor names it per-family. Nothing in the retrieved corpus bears on the R6I=1 / TARE=2 values themselves. Unresolved, not granted."
+    },
+
+    "C-C": {
+      "claim": "Regime geometry as a five-component template: donor-optimal region + elementary trades with minimal witnesses + sufficiency bounds + decidable membership predicates + prospective forecasts, as a reusable specification for characterizing where a compilation family's optimum lives.",
+      "receipt": "PROGRAMME_CHARTER_V1.md; QG_WAVE2_RECORD.md",
+      "prior_expectation_frozen_in_protocol": "attack vector only, no risk level frozen",
+      "claim_verdict": "NEAREST_MISS",
+      "verdict_basis": "Every individual component of the template was found already owned by an existing line of work, and one contemporaneous paper produces regime maps for quantum-circuit compilation; no retrieved source assembles the five components as one specification. The claim is narrowed to the assembly, and the four sources below become required citations.",
+      "candidates": [
+        {
+          "identifier": "M. Willsey et al., 'egg: Fast and Extensible Equality Saturation', POPL/CACM 2021; R. Tate et al., LMCS 2011",
+          "title": "Equality saturation and e-graph extraction",
+          "verdict": "NEAREST_MISS",
+          "passage": "A cost function is local when the cost of a term can be computed from the function symbol and the costs of the children. With such cost functions, extracting an optimal term can be efficiently done with a fixed-point traversal over the e-graph that selects the minimum cost e-node from each e-class. ... The extracted term is a global optimum if saturation was reached in the exploration phase.",
+          "passage_provenance": "websearch_result_text (Q23)",
+          "document_level_verification": false,
+          "distinguishing_property": "Equality saturation delivers three of our five components at once — a complete rule set, a local cost model, and a decidable certificate that the extracted term is the global optimum — for arbitrary term languages. What it does not deliver is a *structural predicate over inputs* saying, without running the extractor, which region of the family the optimum lives in, nor a prospective forecast. That gap, and only that gap, is what remains undetermined for C-C after this lane."
+        },
+        {
+          "identifier": "A. De Girolamo, D. Rattacaso, S. Notarnicola, I. Siloi, S. Montangero, arXiv:2608.00189 (2026-07-31)",
+          "title": "Phase transitions in quantum-circuit compilation",
+          "verdict": "NEAREST_MISS",
+          "passage": "Quantum-circuit compilation aims at finding an optimized realization of a target circuit under given constraints ... The compilation process is connected with the thermodynamics of a many-body spin system: circuit infidelity plays the role of the energy function and low-temperature states correspond to compiled circuits. ... The ensemble probes not only the optimum, but also the organization of near-optimal configurations, distinguishing disordered, clustered, and ordered regimes.",
+          "passage_provenance": "websearch_result_text (Q24, Q26)",
+          "document_level_verification": false,
+          "distinguishing_property": "This is a regime map of a compilation family's optimum, produced three weeks before this lane ran, using statistical-mechanics order parameters rather than exact structural predicates. It contradicts nothing of ours, but it means 'regimes of where a compilation optimum lives' is an occupied phrase in the same month. QG prose using 'regime' near 'compilation' must now cite it."
+        },
+        {
+          "identifier": "Dominance-rule literature in combinatorial optimization, as reported at Q47 (incl. the certified symmetry-and-dominance-breaking line)",
+          "title": "Dominance rules in combinatorial optimization problems",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "A dominance rule consists of identifying, based on a certain property, a subset of solutions that contains at least one optimal solution. One can then solve the original problem by exploring only the reduced set of solutions.",
+          "passage_provenance": "websearch_result_text (Q47)",
+          "document_level_verification": false,
+          "why_it_covers_us": "'A structural property identifying a subset guaranteed to contain an optimum' is exactly what QG calls a donor-optimal region with a sufficiency bound. The general notion is standard and named; QG-7e's per-block target-permutation domination argument is a dominance rule."
+        },
+        {
+          "identifier": "Theodoridis et al., ASPLOS 2022 (carried forward from register V1 as D4; not re-retrieved in this run)",
+          "title": "Understanding and exploiting optimal function inlining",
+          "verdict": "CANNOT_ASSESS",
+          "passage": null,
+          "passage_provenance": null,
+          "document_level_verification": false,
+          "note": "G6 forbids retrieval laundering. D4 was found by the V1 pass, not by this run, and was not re-retrieved here; it therefore carries CANNOT_ASSESS in this lane's ledger even though V1 recorded it as the closest methodological parent. V1's record of it is unaffected."
+        }
+      ],
+      "what_this_removes": "The template's components, one by one. Donor-optimal region with sufficiency = dominance rules. Elementary trades with a completeness argument + local cost model + optimality certificate = equality saturation. Regime maps of compilation optima = arXiv 2608.00189. What was not found is a source assembling all five, including a decidable structure-only membership predicate and a prospective forecast, into one reusable specification.",
+      "what_remains_unresolved_after_this_lane": "The five-component assembly itself. This lane makes no finding about it in either direction; the searches that bear on it are Q22-Q26, Q39, Q47 and are logged in full."
+    },
+
+    "C-D": {
+      "claim": "QG-20's finding that a certified syndrome rank and a measured margin agree only under a rewrite mismatch, and that rank - kappa = mu fails on the rewrite the margins are actually measured under.",
+      "receipt": "research/extensions/orion-qg/QG20_RANK_KAPPA_SLACK_RESULTS.json, key q2_relation.rewrite_dependence and rewrite_alignment_diagnostic",
+      "prior_expectation_frozen_in_protocol": "attack vector only, no risk level frozen",
+      "claim_verdict": "INSTANCE_OF_KNOWN_GENERAL",
+      "verdict_basis": "The general fact that the strength of a rank- or relaxation-derived bound depends on the chosen formulation, and that such a bound need not equal the true optimum, is established across at least three fields. C-D is that fact instantiated on our two families.",
+      "candidates": [
+        {
+          "identifier": "Extended-formulation and reformulation literature in integer programming, as reported at Q45 (Vanderbeck and Wolsey, 'Reformulation and Decomposition of Integer Programs')",
+          "title": "Reformulation and decomposition of integer programs",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "Typically, one reformulates integer and mixed integer programs so as to obtain stronger linear programming relaxations, and hence better bounds for use in a branch-and-bound based algorithm. ... Polyhedral outer approximations in a higher dimensional space can often be much stronger than approximations in the original space.",
+          "passage_provenance": "websearch_result_text (Q45)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The bound is a function of the formulation, not of the underlying object. QG-20 found its rank bound moving from 2 to 3 when the rewrite changed, and read that as a first-order weakening of H1. The general lesson — that a certified bound is presentation-relative and that an identity tying it to a true optimum will not survive a change of presentation — is the standard content of this literature."
+        },
+        {
+          "identifier": "Log-rank literature in communication complexity, as reported at Q29 (Lovett, 'Recent advances on the log-rank conjecture', arXiv:1403.8106)",
+          "title": "Recent advances on the log-rank conjecture in communication complexity",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "A simple upper bound is that communication complexity is at most the rank, which is exponentially worse than what is conjectured by the log-rank conjecture. ... for super-polynomial parties, there is a super-polynomial separation between the deterministic communication complexity and the logarithm of the rank of the communication tensor.",
+          "passage_provenance": "websearch_result_text (Q29)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The canonical worked example of a rank invariant that bounds a true complexity measure soundly but not tightly, with the gap itself an open research object. QG-6's 'sound but loose' rank-5 versus kappa-1 for R6I is the same shape, and the identity rank - kappa = mu is the same kind of conjectured tight relation."
+        },
+        {
+          "identifier": "Stabilizer-code generator literature, as reported at Q42",
+          "title": "Minimum-weight generating sets for stabilizer codes",
+          "verdict": "NEAREST_MISS",
+          "passage": "Finding minimum weight generators for stabilizer codes is a variant of minimum weight codeword search for linear codes and is, in general, NP-hard. ... The choice of stabilizer generators for a given stabilizer state is not unique, and there are minimal stabilizer generators with the minimal weight vector.",
+          "passage_provenance": "websearch_result_text (Q42)",
+          "document_level_verification": false,
+          "distinguishing_property": "Establishes in our own donor domain that a group's rank does not determine the minimum support of a generating set and that the presentation is not unique. It does not state a rank-minus-support identity or its failure under a specified rewrite, which is C-D's specific content."
+        },
+        {
+          "identifier": "String-rewriting confluence literature, as reported at Q28",
+          "title": "Confluence of string- and algebraic rewriting systems",
+          "verdict": "NEAREST_MISS",
+          "passage": "The rewriting properties of a system depend on the interaction between the rules of the rewriting system and the inherent axioms of the algebraic structure.",
+          "passage_provenance": "websearch_result_text (Q28)",
+          "document_level_verification": false,
+          "distinguishing_property": "Presentation-dependence is acknowledged in rewriting theory in general terms. Q27 ran the ZX-calculus / stabilizer-simplification translation across four sub-searches and returned nothing naming this phenomenon for circuit invariants; that emptiness is logged rather than converted into a finding."
+        }
+      ],
+      "what_this_removes": "The status of C-D as a surprising cross-lane discovery. That an invariant-derived lower bound is formulation-relative and generally not tight is a known general fact, and QG-20's H1 was already self-declared CANDIDATE_RELATION_FROM_TWO_POINTS__NOT_A_LAW__NOT_A_THEOREM. The finding should be presented as an instance of formulation-dependence, citing the reformulation and log-rank literatures, rather than as a phenomenon the programme uncovered.",
+      "what_remains_unresolved_after_this_lane": "Whether the specific quantity rank - kappa - mu has been studied for syndrome ranks of compilation grammars. Q27, Q28, Q42 and Q45 bear on this and none answered it."
+    },
+
+    "C-E": {
+      "claim": "orion.kernel.negative's eight categories — FAILED_DEFINITION, FAILED_DECOMPOSITION, NULL_ABLATION, HARMFUL_OVERUSE, DONOR_SUBSUMPTION, FALSE_POSITIVE, INACTIVE_NO_ATOM_CONDITION, UNRESOLVED_OR_NON_IDENTIFIABLE — as a first-class typed record of what failed and why.",
+      "receipt": "src/orion/discovery/recursive_atom_calculus_closure.py, class NegativeHistoryCategory; src/orion/study/p5/negative_history_chain.py",
+      "prior_expectation_frozen_in_protocol": "attack vector only, no risk level frozen",
+      "claim_verdict": "INSTANCE_OF_KNOWN_GENERAL",
+      "verdict_basis": "'A taxonomy of negative and null results, recorded in machine-readable form as a first-class part of the scientific record' is an explicitly stated, previously pursued research goal with a workshop, a proposed schema, and an ontology literature behind it.",
+      "candidates": [
+        {
+          "identifier": "K. Maheshwari, D. Katz, S. D. Olabarriaga, J. Wozniak, D. Thain, Concurrency and Computation: Practice and Experience, 2017, doi 10.1002/cpe.3908",
+          "title": "Report on the first workshop on negative and null results in eScience",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "One of the outcomes of the panel discussion was a call for a taxonomy of negative and null results in eScience ... The workshop also addressed broader issues, such as whether negative results or methods to obtain them can be patented, whether incremental competitive results should be considered negative, and what happens to positive results obtained before further investigation leads to their negation.",
+          "passage_provenance": "websearch_result_text (Q51)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The object C-E claims — a taxonomy of negative results for computational science, held as a record rather than discarded — was explicitly called for in 2017 in exactly this field. Our eight categories are one answer to that call, not the identification of the need."
+        },
+        {
+          "identifier": "K. Chauhan, arXiv:2606.04220 (2026-06)",
+          "title": "Dead Science Walking: Publication Bias and the AI Scientist Pipeline",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "The paper identifies four governance failure modes: confident rediscovery, ghost evidence accumulation, replication laundering, and confidence miscalibration. ... A structured schema for null results has been proposed, including hypothesis, protocol, outcome, effect size, confidence interval, preregistration link, and provenance. ... For an AI scientist, a well-specified null result is not negative information—it is a map of where not to spend the next unit of experimental effort.",
+          "passage_provenance": "websearch_result_text (Q48, Q50)",
+          "document_level_verification": false,
+          "why_it_covers_us": "A typed, machine-readable null-result schema proposed specifically so that an automated research pipeline can retrieve what failed — the same design rationale as orion.kernel.negative — two months before this lane. Its 'confident rediscovery' names the failure that DONOR_SUBSUMPTION is meant to catch."
+        },
+        {
+          "identifier": "Position paper, arXiv:2406.03980",
+          "title": "Position: Embracing Negative Results in Machine Learning",
+          "verdict": "NEAREST_MISS",
+          "passage": "Two important subtypes of negative results are distinguished: Novel method negative results (NMNR), which mostly refer to submissions proposing a novel method that does not beat existing state-of-the-art methods, and existing method negative results (EMNR), which occur when existing methods that are considered state-of-the-art are demonstrated to have inferior performance.",
+          "passage_provenance": "websearch_result_text (Q30)",
+          "document_level_verification": false,
+          "distinguishing_property": "A two-category typology of negative results where ours has eight, and about publication rather than about a run record. NMNR maps onto NULL_ABLATION/HARMFUL_OVERUSE; nothing there corresponds to INACTIVE_NO_ATOM_CONDITION."
+        },
+        {
+          "identifier": "Survey of provenance, assertion and evidence ontologies, PMC12376154",
+          "title": "Bridging the Scientific Knowledge Gap and Reproducibility: A Survey of Provenance, Assertion and Evidence Ontologies",
+          "verdict": "INSTANCE_OF_KNOWN_GENERAL",
+          "passage": "Ontologies and knowledge graphs offer structured solutions by capturing assertions, evidence, and provenance to support reproducibility, with recent reviews covering 23 ontologies - 13 focused on assertions and evidence and 10 on provenance. ... Evidence ontologies focus specifically on modeling evidence that supports assertions, categorizing various types such as experimental findings, curator inferences, and statements from authors in publications.",
+          "passage_provenance": "websearch_result_text (Q40)",
+          "document_level_verification": false,
+          "why_it_covers_us": "Twenty-three existing ontologies already type evidence and provenance for scientific assertions. A typed enumeration of outcome categories bound into a provenance chain is the established practice of that field, not a departure from it."
+        }
+      ],
+      "what_this_removes": "The framing of a typed negative-history record as an unclaimed idea. The need was named in 2017, a concrete null-result schema was published in 2026-06, and 23 assertion/evidence/provenance ontologies already exist. QG prose must present orion.kernel.negative as an implementation of a called-for taxonomy, citing Maheshwari et al. 2017 and arXiv:2606.04220.",
+      "what_remains_unresolved_after_this_lane": "The specific eight-way partition, and in particular INACTIVE_NO_ATOM_CONDITION and DONOR_SUBSUMPTION as categories of a run record, matched nothing retrieved. Q30, Q31, Q32, Q40, Q43, Q48, Q50 and Q51 are the searches that bear; their result is logged, and nothing is inferred from it."
+    },
+
+    "C-F": {
+      "claim": "Matching a declared result digest and replaying deterministically establishes integrity, never correctness, because a deterministic bug replays exactly and a buggy analyzer emits a digest-valid receipt; so corroboration strength must be a typed property that fails closed on overclaim.",
+      "receipt": "development/orion-qg-regime-geometry/RECEIPT_CHURN_HAZARD_2026-08-21.md; packages/orion-research-harness/src/orion_research_harness/corroboration.py",
+      "prior_expectation_frozen_in_protocol": "attack vector only, no risk level frozen",
+      "claim_verdict": "SUBSUMED",
+      "verdict_basis": "Both halves are stated in prior sources in strictly more general form: the artifact-is-not-evidence failure is a named, taxonomized failure family with a custody-gap subcategory, and the typed-strength-of-corroboration mechanism is the operating design of ACM artifact badging and of the SLSA scope statements.",
+      "candidates": [
+        {
+          "identifier": "E. Meyman, SSRN abstract 6293818, February 2026 (Zenodo doi 10.5281/zenodo.18328587)",
+          "title": "Governance Laundering: A Taxonomy of Failure Modes in AI Compliance Architectures",
+          "verdict": "SUBSUMED",
+          "passage": "Governance laundering is a structural failure in which governance artifacts, such as logs, dashboards, attestations, certificates, or policy records, are treated as governance evidence even though they cannot support independent verification of a specific AI decision. ... The paper distinguishes governance artifacts from governance evidence, defines seven evidence-grade governance requirements, and maps those requirements to seven failure-mode families: policy theater, vendor-dependent verification, trace-artifact mimicry, delegated authorization, post-hoc signature injection, custody gaps, and semantic drift. ... a reproducible method for distinguishing evidence-grade governance from monitoring-grade systems and artifact-only compliance records, and for identifying where the authorization artifact gap is being obscured by replay-insufficient records.",
+          "passage_provenance": "websearch_result_text (Q52, corroborated at Q49)",
+          "document_level_verification": false,
+          "why_it_covers_us": "This is C-F, generalized and published six months earlier. 'Artifacts treated as evidence even though they cannot support independent verification' is our AGREE-on-a-defective-receipt. 'Custody gaps' and 'trace-artifact mimicry' are our failure. 'Replay-insufficient records' is our deterministic-replay-proves-nothing. 'Distinguishing evidence-grade from artifact-only records' via typed requirements is our corroboration.py fail-closed type check, with seven requirement grades where we have three kinds."
+        },
+        {
+          "identifier": "K. Chauhan, arXiv:2606.04220 (2026-06)",
+          "title": "Dead Science Walking: Publication Bias and the AI Scientist Pipeline — the 'replication laundering' failure mode",
+          "verdict": "SUBSUMED",
+          "passage": "Replication laundering is one of four governance failure modes identified in AI science systems, alongside confident rediscovery, ghost evidence accumulation, and confidence miscalibration.",
+          "passage_provenance": "websearch_result_text (Q49)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The phenomenon C-F describes already carries a name in the AI-research-governance literature: replication laundering. Any QG prose presenting 'digest custody is not corroboration' as a finding must instead cite the name."
+        },
+        {
+          "identifier": "J. T. Leek and R. D. Peng, PNAS 112(6):1645-1646, 10 February 2015",
+          "title": "Reproducible research can still be wrong: Adopting a prevention approach",
+          "verdict": "SUBSUMED",
+          "passage": "Reproducibility, the ability to recompute results, and replicability, the chances other experimenters will achieve a consistent result, are two foundational characteristics of successful scientific research.",
+          "passage_provenance": "websearch_result_text (Q35)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The title is the claim. The separation of recomputation from independent agreement, and the explicit statement that the former can be achieved by wrong work, is the 2015 position of the reproducibility literature. C-F restates it for digest-addressed receipts."
+        },
+        {
+          "identifier": "SLSA specification, slsa.dev, 'About SLSA' (v1.2) and the levels pages",
+          "title": "Supply-chain Levels for Software Artifacts — scope statements",
+          "verdict": "SUBSUMED",
+          "passage": "SLSA does not tell you whether the developers writing the source code followed secure coding practices. Additionally, SLSA doesn't tell you if the source code has vulnerabilities. ... SLSA measures specific aspects of supply chain security, particularly those that can be fully automated; other aspects, such as developer trust and code quality, are out of scope.",
+          "passage_provenance": "websearch_result_text (Q33, Q36)",
+          "document_level_verification": false,
+          "why_it_covers_us": "The governing standard of the field states in its own scope section that provenance attestation establishes build integrity and explicitly not correctness or quality of the artifact. That is C-F's first half, as normative documentation rather than as a finding."
+        },
+        {
+          "identifier": "ACM Policy on Artifact Review and Badging (current), acm.org",
+          "title": "Artifact Review and Badging",
+          "verdict": "SUBSUMED",
+          "passage": "ACM recommends three separate badges related to artifact review: Artifacts Available, Artifacts Evaluated (Functional or Reusable), and Results Validated (Reproduced or Replicated). ... In ACM's vocabulary, reproduced means \"using the authors' own artifact,\" and replicated means \"independently, without it\". ... Badges included in PDFs and in ACM Digital Library metadata should be linked to a brief explanation of the particular review process which led to the awarding of the badge.",
+          "passage_provenance": "websearch_result_text (Q38)",
+          "document_level_verification": false,
+          "why_it_covers_us": "A typed, graded corroboration-strength property in production since 2016, whose whole purpose is that a weaker grade cannot be presented as a stronger one. Our PROVENANCE_ONLY / FROM_PRIMITIVES_VERIFIED / CROSS_LEMMA_BOUND triple is the same construction with three grades instead of five; FROM_PRIMITIVES_VERIFIED is ACM's 'Results Reproduced' (independently, without the author artifact)."
+        },
+        {
+          "identifier": "Reproducible Builds project documentation and the Debian ReproducibleBuilds/About page",
+          "title": "Reproducible builds — scope",
+          "verdict": "SUBSUMED_IN_SPECIAL_CASE",
+          "passage": "The idea of \"deterministic\" or \"reproducible\" builds is to empower anyone to verify that no flaws have been introduced during the build process by reproducing byte-for-byte identical binary packages from a given source.",
+          "passage_provenance": "websearch_result_text (Q34)",
+          "document_level_verification": false,
+          "why_it_covers_us": "Scoped to 'no flaws introduced during the build process' — integrity of transformation, silent about the correctness of the input. Sub-domain covered: build artifacts. C-F's application to scientific receipts is covered instead by Leek and Peng and by the governance-laundering entry.",
+          "named_sub_domain": "software build artifacts"
+        }
+      ],
+      "what_this_removes": "All of it, including the part corroboration.py was written to enforce. The insight is the documented normative position of software supply-chain security, the 2015 position of the reproducibility literature, the operating design of ACM badging, and — for the exact case of an automated research pipeline mistaking a custody artifact for evidence — a named failure mode with a published taxonomy that predates our 2026-08-21 record by six months. RECEIPT_CHURN_HAZARD_2026-08-21.md stands as issued; the subsumption is scored against it.",
+      "what_remains_unresolved_after_this_lane": "Nothing at the level of the claim. The implementation — a fail-closed validator refusing scientific_corroboration on PROVENANCE_ONLY — matched no retrieved source, but a validator is an implementation of the cited position, and this lane records no finding about it."
+    }
+  },
+
+  "contradicting_sources": [
+    {
+      "identifier": "arXiv:2310.05958",
+      "title": "Optimising quantum circuits is generally hard",
+      "passage": "Many gate optimization problems for approximately universal quantum circuits are NP-hard, including optimizing the T-count or T-depth in Clifford+T circuits by reducing the problem to Boolean satisfiability. Optimizing the number of CNOT gates or Hadamard gates in a Clifford+T circuit is also NP-hard.",
+      "passage_provenance": "websearch_result_text (Q46)",
+      "document_level_verification": false,
+      "why_recorded": "Does not contradict C-A as stated, which is explicitly conditioned on three structural hypotheses, but it does contradict any reading of C-A as a statement about compilation. Recorded under G5 rather than discarded because QG-22's bottom_line already leans on the absence of a hardness result and this is the hardness result for the neighbouring problems."
+    },
+    {
+      "identifier": "arXiv:2510.16420",
+      "title": "Exact Quantum Circuit Optimization is co-NQP-hard",
+      "passage": "The upper bound for T-count and Toffoli-count problems is NP^NQP, which is more complex than standard NP problems.",
+      "passage_provenance": "websearch_result_text (Q46)",
+      "document_level_verification": false,
+      "why_recorded": "Same reason. Together with the lattice-surgery and braiding NP-hardness results also surfaced at Q46, it sharpens how narrow C-A's hypotheses are."
+    },
+    {
+      "identifier": "arXiv:2105.02291 / Quantum 5, 580 (2021)",
+      "title": "Clifford Circuit Optimization with Templates and Symbolic Pauli Gates",
+      "passage": "software implementation of these methods finds circuits that are only 0.2% away from optimal for 6 qubits and reduces the two-qubit gate count in circuits with up to 64 qubits by 64.7% on average, compared to the Aaronson-Gottesman canonical form.",
+      "passage_provenance": "websearch_result_text (Q44)",
+      "document_level_verification": false,
+      "why_recorded": "A 64.7% average reduction against the canonical construction is evidence that, in the Clifford setting, the donor-exact picture the QG families exhibit does not hold on real workloads. This bears directly on the wave-2 record's own admission that no real-world instance has yet been found where the machinery beats the simple construction, and it is recorded as a hostile datum rather than as context."
+    }
+  ],
+
+  "gates": {
+    "G1_all_three_query_families_present_for_every_claim": true,
+    "G1_note": "Family mapping per claim is tabulated in QG19_QUERY_LOG.md section 2; no claim was assigned NO_PRIOR_ART_FOUND, but the three families were run for all six regardless.",
+    "G2_every_non_empty_verdict_binds_a_verbatim_passage": true,
+    "G2_caveat": "Passages are verbatim as returned by the retrieval tool, not as read from the primary document, because direct document retrieval was blocked on every domain attempted. Two candidates with no obtainable passage are recorded CANNOT_ASSESS and bind no verdict. A reader should treat every passage here as pending document-level confirmation.",
+    "G3_no_novelty_granted": true,
+    "G3_note": "No claim's verdict is better than NEAREST_MISS. The file contains no statement that any claim is novel; where nothing was found the wording is 'unresolved after this lane' and is explicitly a statement about the searches run.",
+    "G4_prior_expectation_recorded_before_the_search": true,
+    "G4_assessment": "Only C-A carried a frozen risk level (HIGH) and it was borne out. But the lane did not merely confirm its priors: the decisive C-A source came from coding theory, a donor field the frozen attack vector did not name — the protocol named algebraic DP, treewidth and FPT, and the killing blow came from trellis decoding instead. C-F was expected to be attacked via SLSA/in-toto/proof-carrying code and was instead subsumed outright by an AI-governance taxonomy published in February 2026 that the protocol did not anticipate. C-C, for which the protocol named superoptimization and equality saturation, came back weaker than C-A and C-F rather than stronger. So the lane is not reporting its priors uniformly; it under-predicted C-F and over-predicted the relevance of its own named donor fields for C-A.",
+    "G5_hostile_sources_admitted": true,
+    "G5_count": 3,
+    "G6_no_retrieval_laundering": true,
+    "G6_note": "Nothing is cited that was not retrieved in this run. Register V1's D4 (ASPLOS 2022 inlining) is known to the team but was not re-retrieved here and is therefore carried as CANNOT_ASSESS in this lane's ledger, not as a citation.",
+    "G7_cap_disclosure": true,
+    "G8_authority_ceiling_respected": true
+  },
+
+  "protocol_objections": [
+    {
+      "objection": "The terminal set in section 5 is not exhaustive over the network states that actually occur. It provides QG19_BLOCKED__NO_NETWORK for total unavailability but no terminal for the partial state encountered here — search permitted, document retrieval refused — under which G2's 'verbatim passage' requirement can only be met by tool-rendered text rather than by the source document. The lane executed the protocol as written and disclosed the degradation rather than downgrading the terminal, but a successor protocol should either define a PARTIAL_NETWORK terminal or state explicitly that search-snippet text satisfies G2.",
+      "executed_anyway": true
+    },
+    {
+      "objection": "Section 3's instruction that the claim-level verdict is 'the strongest candidate verdict found' has no stated ordering between SUBSUMED_IN_SPECIAL_CASE and INSTANCE_OF_KNOWN_GENERAL. This lane resolved the ambiguity in the direction that removes the most novelty, consistent with section 0, and records the ordering it used: SUBSUMED > INSTANCE_OF_KNOWN_GENERAL > SUBSUMED_IN_SPECIAL_CASE > NEAREST_MISS > NO_PRIOR_ART_FOUND > CANNOT_ASSESS.",
+      "executed_anyway": true
+    }
+  ],
+
+  "required_actions": [
+    "C-A: QG-22's Q3 statement must be presented as the trellis/syndrome instance of maximum-likelihood decoding, citing Wolf 1978 as the covering theorem and Aji-McEliece 2000, Dechter 1999 and the Gomory group relaxation as the general frameworks. The word 'criterion' must not imply the criterion was identified here.",
+    "C-B: kappa must be described as the exact value, for two specific families, of the studied quantity 'smallest support size of an optimal solution', citing Aliev et al. 2018 and Dubey-Liu, and must not be described as a new kind of two-sided family invariant.",
+    "C-C: cite egg/equality saturation wherever a complete trade set plus a local cost model plus an optimality certificate is described, cite the dominance-rule literature wherever a donor-optimal region with a sufficiency bound is described, and cite arXiv:2608.00189 wherever 'regime' appears next to 'compilation'.",
+    "C-D: present the rank/kappa mismatch as an instance of formulation-dependent bound strength, citing the reformulation and log-rank literatures, and drop any framing in which the programme discovered the phenomenon.",
+    "C-F: cite Meyman 2026 ('governance laundering', custody gaps, replay-insufficient records), arXiv:2606.04220 ('replication laundering'), Leek and Peng 2015, the SLSA scope statements and ACM artifact badging wherever the corroboration-strength type is motivated. corroboration.py's docstring currently narrates the finding as though it were discovered on 2026-08-21; it should name the prior art. This lane does not modify that file.",
+    "C-E: cite Maheshwari et al. 2017 and arXiv:2606.04220 wherever the negative-history typology is introduced.",
+    "All: register V2 supersedes V1 as the citation source; V1 is retained unmodified."
+  ],
+
+  "what_this_lane_cannot_and_does_not_do": [
+    "It does not establish that anything is novel, and no reading of this file may be used to that effect.",
+    "It raises no authority. NOT_R6 and novelty_authority false stand.",
+    "It changes no prior receipt. Every subsumption above is recorded here and is to be recorded in the wave record; the original receipts stand as issued with the subsumption scored against them.",
+    "It read no chemistry data and did not access the protected stretched-N2 subject.",
+    "It confirmed nothing at document level, because document retrieval was refused."
+  ]
+}

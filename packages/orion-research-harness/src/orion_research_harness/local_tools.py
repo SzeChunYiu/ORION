@@ -20,7 +20,46 @@ _LOCAL_CAPABILITIES = {
 _MAX_TEXT_CHARS = 1_000_000
 _MAX_LIST_ENTRIES = 10_000
 _MAX_PROCESS_OUTPUT_BYTES = 100_000
+_MAX_PROCESS_TIMEOUT_SECONDS = 7_200
 _DRAIN_JOIN_SECONDS = 1.0
+
+#: The complete payload vocabulary of each local capability. The request digest
+#: covers the whole payload, so a key the executor does not read still changes
+#: the request identity while changing nothing about what runs: a host can ask
+#: for `{"path": p, "limit": 3}`, receive the unbounded listing, and hold a
+#: receipt that looks valid and reproduces exactly. Fail closed on keys we do
+#: not honor so a request can never mean less than it says.
+_CAPABILITY_PAYLOAD_KEYS = {
+    "FILE_READ": frozenset({"path", "max_chars"}),
+    "FILE_WRITE": frozenset({"path", "content", "append"}),
+    "FILE_LIST": frozenset({"path"}),
+    "SHELL": frozenset({"argv", "cwd", "timeout"}),
+    "PYTHON": frozenset({"code", "cwd", "timeout"}),
+}
+
+
+#: Keys the campaign runner injects on every capability request so the request
+#: digest is bound to the cycle that issued it (see campaign_runner). These are
+#: provenance, deliberately not read by the executor, and are legal everywhere.
+_RESERVED_PROVENANCE_KEYS = frozenset(
+    {"campaign_id", "phase_id", "selected_id", "selected_kind"}
+)
+
+
+def _reject_unknown_payload_keys(capability: str, payload: Any) -> None:
+    allowed = _CAPABILITY_PAYLOAD_KEYS.get(capability)
+    if allowed is None or not isinstance(payload, dict):
+        return
+    permitted = allowed | _RESERVED_PROVENANCE_KEYS
+    unknown = sorted(str(key) for key in payload if str(key) not in permitted)
+    if unknown:
+        raise ValueError(
+            f"{capability} payload has unsupported key(s) {unknown}; "
+            f"supported keys are {sorted(allowed)} plus reserved campaign "
+            f"provenance {sorted(_RESERVED_PROVENANCE_KEYS)}. The executor "
+            "would ignore them, so the receipt would attest to a request that "
+            "never ran as written."
+        )
 
 
 def _confined(project_root: Path, raw: str | Path) -> Path:
@@ -152,6 +191,7 @@ def execute_local(
     capability = str(capability)
     if capability not in _LOCAL_CAPABILITIES:
         raise KeyError(f"not a local capability: {capability}")
+    _reject_unknown_payload_keys(capability, payload)
     root = workspace.project_root
 
     if capability == "FILE_READ":
@@ -194,6 +234,7 @@ def execute_local(
                 "SHELL/PYTHON local execution is disabled for this workspace; "
                 "reinitialize with --allow-process-tools to opt in"
             )
+        timeout = min(max(int(payload.get("timeout", 60)), 1), _MAX_PROCESS_TIMEOUT_SECONDS)
         timeout = min(max(int(payload.get("timeout", 60)), 1), _process_timeout_ceiling())
         cwd = _confined(root, str(payload.get("cwd", ".")))
         if not cwd.is_dir():

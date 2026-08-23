@@ -1,0 +1,6954 @@
+{
+  "attack_set": {
+    "A1_sharper_exchange": "joint pair/triple re-lettering of the comm-s2 block, the pinning block and the third block plus free tag re-choice at both comm-s2 qubits",
+    "A2_domination": "the alternative is the EXACT local optimum of the comm-s2-free family, plus the MG mirror branch (PRIMARY)",
+    "A3_subcase_composition": "double pinners and comm-s2 chains enumerated as geometries; induction on the comm-s2 count"
+  },
+  "authority": "ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6",
+  "base_revision": "509f962c",
+  "chemistry_data_read": false,
+  "claim_boundary": {
+    "covers": "The comm-s2 sector of the unit-cost TARE support-<=2 classification: a complete-local-domain domination lemma (P1) which, for every geometry an M1-irreducible configuration can present around a comm-s2 block, compares the configuration against the EXACT local optimum of the comm-s2-free family on the two comm-s2 qubits and against the same optimum taken after the MG mirror of the whole configuration. The inventory of geometries includes the unpinned sector, the pinned single-pinner sector, the double-pinner sub-case and the comm-s2 chain sub-case.",
+    "does_not_cover": "Other objectives, other grammars, rotation-count trade-offs, chemistry subjects (no chemistry data is read in this lane), the protected stretched-N2 subject, or any donor/R6 novelty credit.",
+    "machine_evidenced_only": "The hostile realization panels (P3) are finite evidence, not proof; they exist to refute, not to support. The theorem rests on the complete domains, not on the panels.",
+    "proven_components": "P1 is exact and all-n: every alternative it scores changes letters only at the two comm-s2 qubits (so the cost difference it computes is the exact global difference), the mirror branch is the receipt-proven cost-preserving MG involution of the whole configuration, and the state domain per geometry is the complete product of raw target letters of all three blocks in both branches at those two qubits. Composed with the receipt-bound R6S / L1 / L2 / Lemma-E / L4a / M1 / T1 / T2 / T3 / T5 links and induction on the comm-s2 count, this yields C_DP == min(C_D+, f_B', f_B'') for all n under the unit support-count objective."
+  },
+  "donor_novelty_credit": false,
+  "g2_mirror_identity": {
+    "domain_size": 16777216,
+    "expected_domain_size": 16777216,
+    "f3_exchange_failures": 0,
+    "holds": true,
+    "label_orientation_closed": true,
+    "qg7c_mg_gauge": {
+      "configs": 48,
+      "formula_binding_failures": 0,
+      "formula_binding_rows": 24576,
+      "holds": true,
+      "mirror_comparisons": 1572864,
+      "mirror_failures": 0
+    },
+    "uanti_symmetry_failures": 0
+  },
+  "g3_gauge_permutations": {
+    "domain_size": 100663296,
+    "expected_domain_size": 100663296,
+    "failures": 0,
+    "holds": true,
+    "permutations": 6
+  },
+  "gates": {
+    "G10_caps_disclosed": true,
+    "G1_tables_bound": true,
+    "G2_mirror_identity": true,
+    "G3_gauge_permutations": true,
+    "G4_m1_reproduced": true,
+    "G5_inherited_lemmas_reproduced": true,
+    "G6_p1_complete_domains": true,
+    "G7_census_dispatch": true,
+    "G8_hostile_refereed": true,
+    "G9_receipt_bindings": true
+  },
+  "inherited_lemmas": {
+    "m1_inventory": {
+      "feasible": 10656,
+      "holds": true,
+      "irreducible_shape_counts": {
+        "anchored": 288,
+        "comm_s2": 864,
+        "phantom": 864
+      },
+      "l1_phantom_at_home_irreducible": 0,
+      "phantom_borrow_untagged_irreducible": 0,
+      "raw_domain": 262144,
+      "reducible_2_2_blocks_L1": 6912,
+      "reducible_lemma_e_class00": 1728,
+      "structure_assertion_failures": 0,
+      "structure_assertion_failures_verbatim": [],
+      "t2_occupancy_failures": 0,
+      "tag_supported_phantom_irreducible": 0,
+      "unclassified_irreducible": 0
+    },
+    "t1_prune": {
+      "domain_size": 12288,
+      "exact_refund": 2,
+      "failures": 0,
+      "holds": true
+    },
+    "t3_consolidation": {
+      "domain_size": 14680064,
+      "expected_domain_size": 14680064,
+      "failure_examples": [],
+      "failures": 0,
+      "holds": true,
+      "worst_delta_by_shapes": {
+        "AAP": 0,
+        "APA": 0,
+        "APP": 0,
+        "PAA": 0,
+        "PAP": 0,
+        "PPA": 0,
+        "PPP": -1
+      }
+    },
+    "t4a_unpinned": {
+      "domain_size": 134217728,
+      "expected_domain_size": 134217728,
+      "failures": 0,
+      "holds": true,
+      "worst_delta": 0
+    },
+    "t4b_pinned_summary": {
+      "declared_open_subcases": [
+        "two pinning blocks at b (both other blocks anchored at or borrowing at b)",
+        "pinning block itself a comm-s2 (mutually pinned multi-comm-s2 chains)"
+      ],
+      "domain_size": 536870912,
+      "failing_census": {
+        "PA_ja0_delta1": 97072,
+        "PA_ja0_delta2": 2376,
+        "PA_ja1_delta1": 3600,
+        "PP_ja0_delta1": 30500,
+        "PP_ja0_delta2": 440,
+        "PP_ja1_delta1": 1616
+      },
+      "failures_total": 135604,
+      "worst_delta": 2
+    },
+    "t5_home_merge": {
+      "cases": 1158,
+      "failures": 0,
+      "holds": true
+    }
+  },
+  "lane": "QG-7d the last link (wave-2 keystone closure)",
+  "novelty_credit": false,
+  "p1_domination_lemma": {
+    "geometries_closed": 373,
+    "geometry_count": 378,
+    "holds": false,
+    "per_geometry": [
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "OUT_ANCH"
+        ],
+        "menu_configurations": 237360,
+        "menu_distinct_frame_pairs": 182568,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "OUT_PHANTOM"
+        ],
+        "menu_configurations": 48144,
+        "menu_distinct_frame_pairs": 32520,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "OUT_COMMS2"
+        ],
+        "menu_configurations": 48144,
+        "menu_distinct_frame_pairs": 32520,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "ANCH_B_1"
+        ],
+        "menu_configurations": 475776,
+        "menu_distinct_frame_pairs": 423360,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "ANCH_A_1"
+        ],
+        "menu_configurations": 475776,
+        "menu_distinct_frame_pairs": 423360,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "BORROW_B_1"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 171264,
+        "menu_distinct_frame_pairs": 153480,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 171264,
+        "menu_distinct_frame_pairs": 153480,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 475776,
+        "menu_distinct_frame_pairs": 423360,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 475776,
+        "menu_distinct_frame_pairs": 423360,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 171264,
+        "menu_distinct_frame_pairs": 153480,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 137088,
+        "menu_distinct_frame_pairs": 111888,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 171264,
+        "menu_distinct_frame_pairs": 153480,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_ANCH",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 548352,
+        "menu_distinct_frame_pairs": 487440,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "OUT_PHANTOM"
+        ],
+        "menu_configurations": 13488,
+        "menu_distinct_frame_pairs": 7944,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "OUT_COMMS2"
+        ],
+        "menu_configurations": 13488,
+        "menu_distinct_frame_pairs": 7944,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "ANCH_B_1"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "ANCH_A_1"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "BORROW_B_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_PHANTOM",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "OUT_COMMS2"
+        ],
+        "menu_configurations": 13488,
+        "menu_distinct_frame_pairs": 7944,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "ANCH_B_1"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "ANCH_A_1"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "BORROW_B_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 92544,
+        "menu_distinct_frame_pairs": 77784,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 25728,
+        "menu_distinct_frame_pairs": 19032,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 36096,
+        "menu_distinct_frame_pairs": 30264,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "OUT_COMMS2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 102912,
+        "menu_distinct_frame_pairs": 86064,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 409,
+        "geometry": [
+          "ANCH_B_1",
+          "ANCH_B_1"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": false,
+        "frame_patterns_processed": 16384,
+        "geometry": [
+          "ANCH_B_1",
+          "ANCH_A_1"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 1,
+        "residue_rows_verbatim": [
+          {
+            "state_a": 2275,
+            "state_b": 1235
+          }
+        ],
+        "residue_verbatim_cap": 200,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 169,
+        "geometry": [
+          "ANCH_B_1",
+          "BORROW_B_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 181,
+        "geometry": [
+          "ANCH_B_1",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 157,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 263,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 181,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 903,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 493,
+        "geometry": [
+          "ANCH_B_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 386,
+        "geometry": [
+          "ANCH_B_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 201,
+        "geometry": [
+          "ANCH_B_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 153,
+        "geometry": [
+          "ANCH_B_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 165,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 219,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 153,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 903,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 385,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 387,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 385,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 416,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 385,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 409,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 397,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 409,
+        "geometry": [
+          "ANCH_B_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "ANCH_A_1"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 2446,
+        "geometry": [
+          "ANCH_A_1",
+          "BORROW_B_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": false,
+        "frame_patterns_processed": 16384,
+        "geometry": [
+          "ANCH_A_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 4,
+        "residue_rows_verbatim": [
+          {
+            "state_a": 1744,
+            "state_b": 2242
+          },
+          {
+            "state_a": 1985,
+            "state_b": 2242
+          },
+          {
+            "state_a": 1744,
+            "state_b": 2784
+          },
+          {
+            "state_a": 1985,
+            "state_b": 3010
+          }
+        ],
+        "residue_verbatim_cap": 200,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 2688,
+        "geometry": [
+          "ANCH_A_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "BORROW_B_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 468,
+        "geometry": [
+          "BORROW_B_1",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1077,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1421,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 2426,
+        "geometry": [
+          "BORROW_B_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 620,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "BORROW_A_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1274,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 220,
+        "geometry": [
+          "BORROW_A_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 468,
+        "geometry": [
+          "BORROW_A_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1212,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_B_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_B_ANTIB_1"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1141,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": false,
+        "frame_patterns_processed": 4610,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 3,
+        "residue_rows_verbatim": [
+          {
+            "state_a": 578,
+            "state_b": 1120
+          },
+          {
+            "state_a": 2762,
+            "state_b": 1393
+          },
+          {
+            "state_a": 2762,
+            "state_b": 1875
+          }
+        ],
+        "residue_verbatim_cap": 200,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 207,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 154,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1618,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 159,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 159,
+        "geometry": [
+          "CS2_B_ANTIB_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_A_ANTIOUT_1"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 219,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": false,
+        "frame_patterns_processed": 2308,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 2,
+        "residue_rows_verbatim": [
+          {
+            "state_a": 2700,
+            "state_b": 2254
+          },
+          {
+            "state_a": 2973,
+            "state_b": 3483
+          }
+        ],
+        "residue_verbatim_cap": 200,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_A_ANTIA_1"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 595,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": false,
+        "frame_patterns_processed": 3182,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 2,
+        "residue_rows_verbatim": [
+          {
+            "state_a": 2732,
+            "state_b": 1299
+          },
+          {
+            "state_a": 2732,
+            "state_b": 1841
+          }
+        ],
+        "residue_verbatim_cap": 200,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 1915,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_1",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 443,
+        "geometry": [
+          "ANCH_B_2",
+          "ANCH_B_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 387,
+        "geometry": [
+          "ANCH_B_2",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 164,
+        "geometry": [
+          "ANCH_B_2",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 156,
+        "geometry": [
+          "ANCH_B_2",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 176,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 399,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 156,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 837,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 385,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 409,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 705,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 411,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 387,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 414,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 705,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 414,
+        "geometry": [
+          "ANCH_B_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "ANCH_A_2"
+        ],
+        "menu_configurations": 1284096,
+        "menu_distinct_frame_pairs": 1207920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 2688,
+        "geometry": [
+          "ANCH_A_2",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 362496,
+        "menu_distinct_frame_pairs": 330096,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 494592,
+        "menu_distinct_frame_pairs": 472920,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "ANCH_A_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1449984,
+        "menu_distinct_frame_pairs": 1362720,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "BORROW_B_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 620,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 130,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_B_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "BORROW_A_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "BORROW_A_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_B_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIOUT_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_B_ANTIB_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 243,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 157,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 157,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 157,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 157,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 158,
+        "geometry": [
+          "CS2_B_ANTIB_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_A_ANTIOUT_2"
+        ],
+        "menu_configurations": 104448,
+        "menu_distinct_frame_pairs": 85872,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 144384,
+        "menu_distinct_frame_pairs": 131640,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIOUT_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 417792,
+        "menu_distinct_frame_pairs": 378912,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_A_ANTIA_2"
+        ],
+        "menu_configurations": 218112,
+        "menu_distinct_frame_pairs": 203928,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_A_ANTIA_2",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 577536,
+        "menu_distinct_frame_pairs": 549744,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIA_11"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_11",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIB_11"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_11",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_12",
+          "CS2_BA_ANTIA_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_12",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_12",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_12",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_12",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_12",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_12",
+          "CS2_BA_ANTIB_12"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_12",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_12",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_12",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_12",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_21",
+          "CS2_BA_ANTIA_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_21",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_21",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_21",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_21",
+          "CS2_BA_ANTIB_21"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_21",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_21",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_22",
+          "CS2_BA_ANTIA_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIA_22",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      },
+      {
+        "closed": true,
+        "frame_patterns_processed": 128,
+        "geometry": [
+          "CS2_BA_ANTIB_22",
+          "CS2_BA_ANTIB_22"
+        ],
+        "menu_configurations": 1671168,
+        "menu_distinct_frame_pairs": 1565184,
+        "residue": 0,
+        "state_domain": 16777216
+      }
+    ],
+    "residue_total": 12,
+    "role_count": 27,
+    "roles": [
+      "OUT_ANCH",
+      "OUT_PHANTOM",
+      "OUT_COMMS2",
+      "ANCH_B_1",
+      "ANCH_A_1",
+      "BORROW_B_1",
+      "BORROW_A_1",
+      "CS2_B_ANTIOUT_1",
+      "CS2_B_ANTIB_1",
+      "CS2_A_ANTIOUT_1",
+      "CS2_A_ANTIA_1",
+      "ANCH_B_2",
+      "ANCH_A_2",
+      "BORROW_B_2",
+      "BORROW_A_2",
+      "CS2_B_ANTIOUT_2",
+      "CS2_B_ANTIB_2",
+      "CS2_A_ANTIOUT_2",
+      "CS2_A_ANTIA_2",
+      "CS2_BA_ANTIA_11",
+      "CS2_BA_ANTIB_11",
+      "CS2_BA_ANTIA_12",
+      "CS2_BA_ANTIB_12",
+      "CS2_BA_ANTIA_21",
+      "CS2_BA_ANTIB_21",
+      "CS2_BA_ANTIA_22",
+      "CS2_BA_ANTIB_22"
+    ],
+    "sector_coverage": {
+      "comm_s2_chain": 323,
+      "double_pinner": 136,
+      "single_pinner": 176,
+      "unpinned": 66
+    },
+    "state_domain_per_geometry": 16777216,
+    "total_states": 6341787648
+  },
+  "p2_census_dispatch": {
+    "census_reproduced_verbatim": true,
+    "committed_census": {
+      "PA_ja0_delta1": 97072,
+      "PA_ja0_delta2": 2376,
+      "PA_ja1_delta1": 3600,
+      "PP_ja0_delta1": 30500,
+      "PP_ja0_delta2": 440,
+      "PP_ja1_delta1": 1616
+    },
+    "dispatch_sums_to_census": true,
+    "domain_size": 536870912,
+    "failures_total": 135604,
+    "holds": false,
+    "observed_census": {
+      "PA_ja0_delta1": 97072,
+      "PA_ja0_delta2": 2376,
+      "PA_ja1_delta1": 3600,
+      "PP_ja0_delta1": 30500,
+      "PP_ja0_delta2": 440,
+      "PP_ja1_delta1": 1616
+    },
+    "patterns_dispatched_closed": 5216,
+    "patterns_open": 130388,
+    "per_key_dispatch": {
+      "PA_ja0_delta1": {
+        "closed_by_attack": null,
+        "geometry_classes_open": [
+          "ANCH_A_1+ANCH_B_1",
+          "ANCH_A_1+ANCH_B_2"
+        ],
+        "p1_geometry_classes": [
+          "ANCH_A_1+ANCH_B_1",
+          "ANCH_A_1+ANCH_B_2",
+          "ANCH_A_2+ANCH_B_1",
+          "ANCH_A_2+ANCH_B_2",
+          "ANCH_B_1+BORROW_A_1",
+          "ANCH_B_1+BORROW_A_2",
+          "ANCH_B_1+CS2_A_ANTIA_1",
+          "ANCH_B_1+CS2_A_ANTIA_2",
+          "ANCH_B_1+CS2_A_ANTIOUT_1",
+          "ANCH_B_1+CS2_A_ANTIOUT_2",
+          "ANCH_B_2+BORROW_A_1",
+          "ANCH_B_2+BORROW_A_2",
+          "ANCH_B_2+CS2_A_ANTIA_1",
+          "ANCH_B_2+CS2_A_ANTIA_2",
+          "ANCH_B_2+CS2_A_ANTIOUT_1",
+          "ANCH_B_2+CS2_A_ANTIOUT_2"
+        ],
+        "patterns": 97072,
+        "status": "OPEN"
+      },
+      "PA_ja0_delta2": {
+        "closed_by_attack": null,
+        "geometry_classes_open": [
+          "ANCH_A_1+ANCH_B_1",
+          "ANCH_A_1+ANCH_B_2"
+        ],
+        "p1_geometry_classes": [
+          "ANCH_A_1+ANCH_B_1",
+          "ANCH_A_1+ANCH_B_2",
+          "ANCH_A_2+ANCH_B_1",
+          "ANCH_A_2+ANCH_B_2",
+          "ANCH_B_1+BORROW_A_1",
+          "ANCH_B_1+BORROW_A_2",
+          "ANCH_B_1+CS2_A_ANTIA_1",
+          "ANCH_B_1+CS2_A_ANTIA_2",
+          "ANCH_B_1+CS2_A_ANTIOUT_1",
+          "ANCH_B_1+CS2_A_ANTIOUT_2",
+          "ANCH_B_2+BORROW_A_1",
+          "ANCH_B_2+BORROW_A_2",
+          "ANCH_B_2+CS2_A_ANTIA_1",
+          "ANCH_B_2+CS2_A_ANTIA_2",
+          "ANCH_B_2+CS2_A_ANTIOUT_1",
+          "ANCH_B_2+CS2_A_ANTIOUT_2"
+        ],
+        "patterns": 2376,
+        "status": "OPEN"
+      },
+      "PA_ja1_delta1": {
+        "closed_by_attack": "A2_domination_with_A1_joint_exchange_and_MG_mirror",
+        "geometry_classes_open": [],
+        "p1_geometry_classes": [
+          "ANCH_B_1+OUT_ANCH",
+          "ANCH_B_1+OUT_COMMS2",
+          "ANCH_B_1+OUT_PHANTOM",
+          "ANCH_B_2+OUT_ANCH",
+          "ANCH_B_2+OUT_COMMS2",
+          "ANCH_B_2+OUT_PHANTOM"
+        ],
+        "patterns": 3600,
+        "status": "CLOSED_BY_P1"
+      },
+      "PP_ja0_delta1": {
+        "closed_by_attack": null,
+        "geometry_classes_open": [
+          "BORROW_B_2+CS2_A_ANTIA_1",
+          "BORROW_B_2+CS2_A_ANTIOUT_1"
+        ],
+        "p1_geometry_classes": [
+          "ANCH_A_1+BORROW_B_1",
+          "ANCH_A_1+BORROW_B_2",
+          "ANCH_A_2+BORROW_B_1",
+          "ANCH_A_2+BORROW_B_2",
+          "BORROW_A_1+BORROW_B_1",
+          "BORROW_A_1+BORROW_B_2",
+          "BORROW_A_2+BORROW_B_1",
+          "BORROW_A_2+BORROW_B_2",
+          "BORROW_B_1+CS2_A_ANTIA_1",
+          "BORROW_B_1+CS2_A_ANTIA_2",
+          "BORROW_B_1+CS2_A_ANTIOUT_1",
+          "BORROW_B_1+CS2_A_ANTIOUT_2",
+          "BORROW_B_2+CS2_A_ANTIA_1",
+          "BORROW_B_2+CS2_A_ANTIA_2",
+          "BORROW_B_2+CS2_A_ANTIOUT_1",
+          "BORROW_B_2+CS2_A_ANTIOUT_2"
+        ],
+        "patterns": 30500,
+        "status": "OPEN"
+      },
+      "PP_ja0_delta2": {
+        "closed_by_attack": null,
+        "geometry_classes_open": [
+          "BORROW_B_2+CS2_A_ANTIA_1",
+          "BORROW_B_2+CS2_A_ANTIOUT_1"
+        ],
+        "p1_geometry_classes": [
+          "ANCH_A_1+BORROW_B_1",
+          "ANCH_A_1+BORROW_B_2",
+          "ANCH_A_2+BORROW_B_1",
+          "ANCH_A_2+BORROW_B_2",
+          "BORROW_A_1+BORROW_B_1",
+          "BORROW_A_1+BORROW_B_2",
+          "BORROW_A_2+BORROW_B_1",
+          "BORROW_A_2+BORROW_B_2",
+          "BORROW_B_1+CS2_A_ANTIA_1",
+          "BORROW_B_1+CS2_A_ANTIA_2",
+          "BORROW_B_1+CS2_A_ANTIOUT_1",
+          "BORROW_B_1+CS2_A_ANTIOUT_2",
+          "BORROW_B_2+CS2_A_ANTIA_1",
+          "BORROW_B_2+CS2_A_ANTIA_2",
+          "BORROW_B_2+CS2_A_ANTIOUT_1",
+          "BORROW_B_2+CS2_A_ANTIOUT_2"
+        ],
+        "patterns": 440,
+        "status": "OPEN"
+      },
+      "PP_ja1_delta1": {
+        "closed_by_attack": "A2_domination_with_A1_joint_exchange_and_MG_mirror",
+        "geometry_classes_open": [],
+        "p1_geometry_classes": [
+          "BORROW_B_1+OUT_ANCH",
+          "BORROW_B_1+OUT_COMMS2",
+          "BORROW_B_1+OUT_PHANTOM",
+          "BORROW_B_2+OUT_ANCH",
+          "BORROW_B_2+OUT_COMMS2",
+          "BORROW_B_2+OUT_PHANTOM"
+        ],
+        "patterns": 1616,
+        "status": "CLOSED_BY_P1"
+      }
+    },
+    "verbatim_cap": 40,
+    "verbatim_rows": 40,
+    "worst_delta": 2
+  },
+  "p2_state_level_dispatch": {
+    "census_matches_committed": true,
+    "closed_by_attack": "A2_domination_with_A1_joint_exchange_and_MG_mirror",
+    "derived_census": {
+      "PA_ja0_delta1": 97072,
+      "PA_ja0_delta2": 2376,
+      "PA_ja1_delta1": 3600,
+      "PP_ja0_delta1": 30500,
+      "PP_ja0_delta2": 440,
+      "PP_ja1_delta1": 1616
+    },
+    "derived_failures_total": 135604,
+    "dispatch_sums_to_census": true,
+    "holds": true,
+    "open_rows_verbatim": [],
+    "patterns_dispatched_closed": 135604,
+    "patterns_open": 0,
+    "per_key_dispatch": {
+      "PA_ja0_delta1": {
+        "closed": 97072,
+        "open": 0
+      },
+      "PA_ja0_delta2": {
+        "closed": 2376,
+        "open": 0
+      },
+      "PA_ja1_delta1": {
+        "closed": 3600,
+        "open": 0
+      },
+      "PP_ja0_delta1": {
+        "closed": 30500,
+        "open": 0
+      },
+      "PP_ja0_delta2": {
+        "closed": 440,
+        "open": 0
+      },
+      "PP_ja1_delta1": {
+        "closed": 1616,
+        "open": 0
+      }
+    },
+    "residue_serialization_complete": true,
+    "third_block_roles_scanned": 27
+  },
+  "p2_verbatim_dispatch": {
+    "all_dispatched": true,
+    "rows": [
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 0,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 20,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 0,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 0,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 21,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 1,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 0,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 22,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 2,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 0,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 23,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 3,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 1,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 20,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 4,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 1,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 22,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 5,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 1,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 23,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 6,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 2,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 20,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 7,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 2,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 21,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 8,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 2,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 22,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 9,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 2,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 23,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 10,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 3,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 20,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 11,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 3,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 23,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 12,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 7,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 23,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 13,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 39,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 63,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 14,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 60,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 15,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 16,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 62,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 17,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 63,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 18,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 60,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 19,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 20,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 62,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 21,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 63,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 22,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 42,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 60,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 23,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 42,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 24,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 42,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 62,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 25,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 42,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 63,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 26,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 43,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 60,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 27,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 43,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 28,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 43,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 62,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 29,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 45,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 20,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 30,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 2,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 22,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 31,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 39,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 63,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 32,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 60,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 33,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 34,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 62,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 35,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 40,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 63,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 36,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 60,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 37,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 61,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 38,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      },
+      {
+        "census_row": {
+          "R_a": 1,
+          "R_b": 1,
+          "case": "PA",
+          "coreA": 41,
+          "coreB": 0,
+          "delta": 1,
+          "envA": 62,
+          "envB": 21,
+          "ja": 0,
+          "p": 1
+        },
+        "closed_by_p1": true,
+        "index": 39,
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
+      }
+    ],
+    "rows_checked": 40,
+    "t4b_worst_delta_in_verbatim": 1
+  },
+  "p3_hostile_arm": {
+    "c1_census_realizations": {
+      "instances": 50,
+      "n3_cap": 40,
+      "n4_cap": 10,
+      "rows": [
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 0,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 7,
+          "C_Dxx": 7,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 1,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 2,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 3,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 4,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 5,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "index": 6,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 7,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 8,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 9,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 10,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 11,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 12,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 13,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 14,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 11,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 15,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 16,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 17,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 18,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 19,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 20,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 21,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 22,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 23,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 24,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 25,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 26,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 27,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "index": 28,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 29,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 30,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "index": 31,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 32,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 10,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 33,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 34,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 35,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 36,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 37,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 38,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 39,
+          "n": 3,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 0,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 7,
+          "C_Dxx": 7,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 1,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 2,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 3,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 4,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 5,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "index": 6,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 13,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 7,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 14,
+          "config_feasible": true,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "index": 8,
+          "n": 4,
+          "reference_dominated": true
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "comm_s2_reference_cost": 12,
+          "config_feasible": true,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "index": 9,
+          "n": 4,
+          "reference_dominated": true
+        }
+      ]
+    },
+    "c2_dense_random_control": {
+      "n3": {
+        "gap_rows": 0,
+        "instances": 120,
+        "seed": 20260901
+      },
+      "n4": {
+        "gap_rows": 0,
+        "instances": 30,
+        "seed": 20260902
+      }
+    },
+    "c3_p1_extremal_panel": {
+      "candidate_states": 12,
+      "cap": 60,
+      "identity_target_states_skipped": 7,
+      "rows": [
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "ANCH_B_1",
+            "ANCH_A_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2275,
+          "state_b": 1235
+        },
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "ANCH_B_1",
+            "ANCH_A_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2275,
+          "state_b": 1235
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 1744,
+          "state_b": 2242
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 1744,
+          "state_b": 2242
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "f_Bprime": 8,
+          "f_Bsecond": 10,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 1985,
+          "state_b": 2242
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 8,
+          "f_Bprime": 8,
+          "f_Bsecond": 10,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 1985,
+          "state_b": 2242
+        },
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 10,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 1744,
+          "state_b": 2784
+        },
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 10,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 1744,
+          "state_b": 2784
+        },
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 1985,
+          "state_b": 3010
+        },
+        {
+          "C_Dplus": 10,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "ANCH_A_1",
+            "ANCH_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 1985,
+          "state_b": 3010
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 578,
+          "state_b": 1120
+        },
+        {
+          "C_Dplus": 8,
+          "C_Dxx": 8,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 578,
+          "state_b": 1120
+        },
+        {
+          "C_Dplus": 7,
+          "C_Dxx": 7,
+          "f_Bprime": 8,
+          "f_Bsecond": null,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 2,
+          "state_a": 2762,
+          "state_b": 1393
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2762,
+          "state_b": 1393
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2762,
+          "state_b": 1393
+        },
+        {
+          "C_Dplus": 7,
+          "C_Dxx": 7,
+          "f_Bprime": 8,
+          "f_Bsecond": null,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 2,
+          "state_a": 2762,
+          "state_b": 1875
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2762,
+          "state_b": 1875
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_B_ANTIB_1",
+            "CS2_A_ANTIA_1"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2762,
+          "state_b": 1875
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIOUT_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2700,
+          "state_b": 2254
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIOUT_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2700,
+          "state_b": 2254
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": null,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIOUT_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 2,
+          "state_a": 2973,
+          "state_b": 3483
+        },
+        {
+          "C_Dplus": 11,
+          "C_Dxx": 11,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIOUT_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2973,
+          "state_b": 3483
+        },
+        {
+          "C_Dplus": 11,
+          "C_Dxx": 11,
+          "f_Bprime": 11,
+          "f_Bsecond": 13,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIOUT_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2973,
+          "state_b": 3483
+        },
+        {
+          "C_Dplus": 7,
+          "C_Dxx": 7,
+          "f_Bprime": 8,
+          "f_Bsecond": null,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIA_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 2,
+          "state_a": 2732,
+          "state_b": 1299
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIA_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2732,
+          "state_b": 1299
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 10,
+          "f_Bsecond": 12,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIA_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2732,
+          "state_b": 1299
+        },
+        {
+          "C_Dplus": 7,
+          "C_Dxx": 7,
+          "f_Bprime": 7,
+          "f_Bsecond": null,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIA_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 2,
+          "state_a": 2732,
+          "state_b": 1841
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIA_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 3,
+          "state_a": 2732,
+          "state_b": 1841
+        },
+        {
+          "C_Dplus": 9,
+          "C_Dxx": 9,
+          "f_Bprime": 9,
+          "f_Bsecond": 11,
+          "gap": 0,
+          "geometry": [
+            "CS2_A_ANTIA_1",
+            "BORROW_B_2"
+          ],
+          "kind": "P1_RESIDUE",
+          "n": 4,
+          "state_a": 2732,
+          "state_b": 1841
+        }
+      ],
+      "selection": "P1_RESIDUE_FIRST"
+    },
+    "gap_rows_total": 0,
+    "gap_rows_verbatim": [],
+    "gap_verbatim_cap": 50,
+    "hostile_referee": {
+      "dxx_witness_failures": [],
+      "dxx_witness_rows": 229,
+      "replay_failures": [],
+      "replay_rows": 0,
+      "rows": 229,
+      "sandwich_failures": []
+    },
+    "instances_total": 229
+  },
+  "physical_quantum_advantage_claim": false,
+  "programme": "ORION-QG (charter PROGRAMME_CHARTER_V1.md, issue #740)",
+  "proof_audit": {
+    "chain": [
+      {
+        "carried_by": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json (receipt_bindings.r6s_authority)",
+        "claim": "C_DP == C_D++ for all n",
+        "step": 1
+      },
+      {
+        "carried_by": "QG-7c mg_gauge (re-run here) + G2 mirror_identity complete 16,777,216-case domain (this receipt)",
+        "claim": "labels (0,1) WLOG; the mirror is an exact cost-preserving involution of the whole configuration",
+        "step": 2
+      },
+      {
+        "carried_by": "G3 gauge_permutations complete domain (this receipt)",
+        "claim": "per-qubit letter permutations are cost gauge; sigma_b = sigma_a = Z and R_b = R_a = X WLOG",
+        "step": 3
+      },
+      {
+        "carried_by": "R6S lemmas E/B + QG-7 N1 768 / N5 27,216 / N3 8 / N0_e 18,432 / N0_b 43,688 / N7 1,440 (receipt_bindings.qg7_receipt_bound)",
+        "claim": "support->=3 frames, (2,2) blocks, class-(0,0) qubits and out-of-support tag letters all reduce at Delta <= 0",
+        "step": 4
+      },
+      {
+        "carried_by": "QG-7c M1, 262,144-case complete domain, re-run here (inherited_lemmas.m1_inventory)",
+        "claim": "irreducible blocks are exactly anchored / phantom / comm-s2",
+        "step": 5
+      },
+      {
+        "carried_by": "QG-7c T1 (12,288) + T2 occupancy over M1, re-run here",
+        "claim": "commuting frame-supported tag letters prune (exact refund 2); wt(s) <= 3 + #comm-s2",
+        "step": 6
+      },
+      {
+        "carried_by": "P1 (this receipt): complete 16,777,216-state domain per geometry, exact comm-s2-free local optimum plus the MG mirror branch",
+        "claim": "EVERY configuration containing a comm-s2 block is dominated at Delta <= 0 by a configuration with strictly fewer comm-s2 blocks -- for every geometry an M1-irreducible configuration can present, including double pinners and comm-s2 chains",
+        "step": 7
+      },
+      {
+        "carried_by": "P1 removes exactly one comm-s2 block per application and never creates one (menu constraint (v)); the measure decreases lexicographically",
+        "claim": "induction on #comm-s2 terminates at a comm-s2-free irreducible configuration",
+        "step": 8
+      },
+      {
+        "carried_by": "QG-7c T3, 14,680,064-case complete domain, re-run here",
+        "claim": "wt-3-tag comm-s2-free configs consolidate into B'/B''-shape at Delta <= 0",
+        "step": 9
+      },
+      {
+        "carried_by": "QG-7c T5 (1,158) + M1 structure, re-run here; grammar enumerators qg5b/qg7b bound by G1 and by the QG-7b receipt",
+        "claim": "terminal shapes map into the committed grammars D+ / B' / B''",
+        "step": 10
+      },
+      {
+        "carried_by": "P3 asserts the sandwich on 100% of realized rows; the inclusion itself is definitional in the committed enumerators",
+        "claim": "sandwich: C_D++ <= min(C_D+, f_B', f_B'') because each family is a sub-family of D++; with steps 7-10 the reverse inequality holds, hence equality",
+        "step": 11
+      }
+    ],
+    "statement": "C_DP == min(C_D+, f_B', f_B'') for all n, unit-cost TARE",
+    "superseded_by_this_lane": [
+      "QG-7c T4a (unpinned comm-s2 elimination) -- subsumed by P1's unpinned geometries",
+      "QG-7c T4b (pinned comm-s2 elimination) -- replaced by P1; its 135,604-pattern census is re-derived verbatim and dispatched"
+    ],
+    "theorem_terminal_reached": false
+  },
+  "protocol": "QG7D_LAST_LINK_PROTOCOL_V1",
+  "protocol_sha256": "e9ebe4e69144e092ff7852691b74dfcb3e29b3f5f0133b4bad74e3be3c65bd0e",
+  "question": "Does every configuration containing a pinned comm-s2 block reduce at Delta <= 0 into D+ u B' u B'' shape or get strictly dominated by the family min -- closing C_DP == min(C_D+, f_B', f_B'') for all n?",
+  "r6_authority": false,
+  "receipt_bindings": {
+    "all_bound": true,
+    "qg7_receipt_bound": true,
+    "qg7b_receipt_bound": true,
+    "qg7b_result_digest": "abc66e2626007c5eb6c048d4d32c17bb9d0633ff6be8a8222c2c6be86d95cc41",
+    "qg7c_declared_open_subcases_verbatim": [
+      "two pinning blocks at b (both other blocks anchored at or borrowing at b)",
+      "pinning block itself a comm-s2 (mutually pinned multi-comm-s2 chains)"
+    ],
+    "qg7c_protocol_sha256": "14129aea3894bff276d3b4ef625640b1563e3b7b2299ac12ca82d578d1592646",
+    "qg7c_receipt_bound": true,
+    "qg7c_result_digest": "0b127438dac9dc844a52176873eb5769a99ff52b34851d9c82c4b1feded656b6",
+    "r6s_authority": "MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_ALL_N__NOT_R6",
+    "r6s_receipt_bound": true
+  },
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:P1_RESIDUE_SERIALIZED_VERBATIM__CENSUS_DISPATCH_PARTIAL",
+  "result_digest": "cdca51a19c2f764f5e71c408abe0f08e3929eb878c90c17e02bd0f1b0ff9650c",
+  "schema": "ORIONQG.QG7D.LastLink.v1",
+  "scope": "COMM_S2_PINNED_SECTOR_CLOSURE__COMPLETE_LOCAL_DOMAIN_DOMINATION__UNIT_SUPPORT_COUNT_OBJECTIVE_ONLY__NOT_R6",
+  "tables": {
+    "gp_table_spotbind_ok": true,
+    "ok": true,
+    "qg7c_tables": {
+      "ok": true,
+      "pair_counts": {
+        "1": 6,
+        "2": 120,
+        "3": 666,
+        "4": 1968
+      }
+    }
+  },
+  "terminal": "QG7D_PARTIAL__P1_RESIDUE_OPEN",
+  "timing": {
+    "convention": "R6P: timing fields excluded from the canonical stdout line and the result digest; present only in this file section and on stderr",
+    "runtime_cap_seconds": 1500,
+    "runtime_seconds": 327.897,
+    "runtime_under_cap": true,
+    "section_seconds": {
+      "g2_mirror": 0.379,
+      "g3_gauge": 0.262,
+      "m1": 0.048,
+      "p1": 76.026,
+      "p2": 0.0,
+      "p2_state_dispatch": 4.601,
+      "p2_verbatim": 0.003,
+      "p3": 241.14,
+      "receipts": 0.004,
+      "t1": 0.006,
+      "t3": 0.992,
+      "t4a": 1.096,
+      "t4b": 3.288,
+      "t5": 0.003,
+      "tables": 0.046
+    }
+  }
+}

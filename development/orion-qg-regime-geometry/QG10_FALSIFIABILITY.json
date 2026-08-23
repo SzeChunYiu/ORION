@@ -1,0 +1,109 @@
+{
+ "clean_receipt": {
+  "decision": "ACCEPT",
+  "failed_checks": []
+ },
+ "falsifiability_demonstration": {
+  "all_tampered_copies_internally_self_consistent": true,
+  "all_tampered_copies_rejected": true,
+  "cases": [
+   {
+    "case": "T1_L_inflated",
+    "failed_checks": [
+     "gap_field_inconsistent",
+     "lower_bound_mismatch"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a row's L is inflated above U",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T2_C_DP_corrupted",
+    "failed_checks": [
+     "C_DP_mismatch"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a row's C_DP is altered",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T3_witness_value_altered",
+    "failed_checks": [
+     "witness_replay"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the witness's recorded value is altered",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T4_witness_targets_foreign",
+    "failed_checks": [
+     "witness_replay",
+     "witness_targets_not_instance"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a witness target is replaced by another block's",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T5_withheld_row_given_a_referee_value",
+    "failed_checks": [
+     "withheld_row_carries_C_DP"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a certification-only row is given a C_DP it must not have",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T6_gap_field_inconsistent",
+    "failed_checks": [
+     "gap_field_inconsistent"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the gap field no longer equals U - L",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T7_U_lowered_below_C_DP",
+    "failed_checks": [
+     "gap_field_inconsistent",
+     "sandwich_violated",
+     "witness_replay"
+    ],
+    "note": "this receipt carries no self-digest field, so there is no hash for a tamper to invalidate and every rejection is necessarily a re-derivation",
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "U is lowered below the recomputed C_DP, which is what actually reaches the sandwich check",
+    "verdict": "REJECT"
+   }
+  ],
+  "expected_check_per_case": {
+   "T1_L_inflated": "lower_bound_mismatch",
+   "T2_C_DP_corrupted": "C_DP_mismatch",
+   "T3_witness_value_altered": "witness_replay",
+   "T4_witness_targets_foreign": "witness_targets_not_instance",
+   "T5_withheld_row_given_a_referee_value": "withheld_row_carries_C_DP",
+   "T6_gap_field_inconsistent": "gap_field_inconsistent",
+   "T7_U_lowered_below_C_DP": "sandwich_violated"
+  },
+  "method": "the verifier is run against each tampered copy from its own input path; the receipt carries no self-digest, so no rejection can come from a hash mismatch"
+ },
+ "gate": "CLEARS",
+ "gate_reason": null,
+ "prose_claim_corrected": {
+  "actually_caught_by": [
+   "gap_field_inconsistent",
+   "lower_bound_mismatch"
+  ],
+  "wave_record_said": "inflating a row's L to break the sandwich",
+  "why": "L is recomputed from primitives before the sandwich is evaluated, so the lie is caught at recomputation and the sandwich check never fires. T7 was added to exercise the sandwich for real."
+ },
+ "schema": "ORIONQG.QG10.Falsifiability.v1",
+ "verifier_output_path_defect": "running the verifier against a tampered copy overwrote the COMMITTED verification artifact, because its output path was fixed. Testing the verifier destroyed the record of it passing. The destination now follows the input.",
+ "why_this_exists": "QG-10's gate-G7 demonstration existed only as prose in the wave record, with no record of which check caught which tamper"
+}

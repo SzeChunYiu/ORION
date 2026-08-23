@@ -34,9 +34,9 @@ def _token(stdout: str, prefix: str) -> dict[str, Any]:
     return value
 
 
-def _run_local(workspace: ResearchWorkspace, code: str):
+def _run_local(workspace: ResearchWorkspace, code: str, timeout: int = 120):
     request = workspace.get_or_create_request(
-        capability="PYTHON", payload={"code": code, "cwd": ".", "timeout": 120}
+        capability="PYTHON", payload={"code": code, "cwd": ".", "timeout": timeout}
     )
     result = service_local_request(workspace, request.request_id)
     if not result.success:
@@ -65,7 +65,7 @@ def main() -> int:
         "import runpy; runpy.run_path('research/extensions/orion-qg/qg3_stage1_select.py', "
         "run_name='__main__')"
     )
-    stage1_request, stage1_result = _run_local(generic_ws, stage1_code)
+    stage1_request, stage1_result = _run_local(generic_ws, stage1_code, timeout=7200)
     stage1_stdout = str(stage1_result.output.get("stdout", ""))
     stage1_summary = _token(stage1_stdout, STAGE1_PREFIX)
     if not STAGE1_PATH.is_file():
