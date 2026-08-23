@@ -1,6 +1,10 @@
 # P13 Peer-Review Readiness Report
 
-**Decision:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_RESPONSIBILITY-SAFE-REUSE_RESULT`
+**Decision:** `READY_FOR_CONTROLLED_P13B_CLAIM__EXTERNAL_VALIDATION_OPEN`
+
+Active terminal: `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`,
+from `P13_ACTIVE_CLAIM_AUTHORITY_V2.json`. P13A's self-scored result remains
+historical and withheld under `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
 
 ## Five-lens hostile review
 
@@ -10,19 +14,25 @@
 
 ### Experimental design
 
-**Pass.** The historical negative is retained. The successor has a new protocol/seed, strong confidence/provenance/always-raw controls and a prospective recoverability decision.
+**Pass for the bounded P13B finite panel.** Gold support is computed outside the
+certificate, and all four corruption worlds have nonzero opportunities before
+scoring. This is not externally adjudicated evidence.
 
 ### Statistics / reproducibility
 
-**Pass after explicit correction.** Exact support is deterministic. Hostile PR review found that the V1 efficacy runner omitted the protocol's byte-replay gate from the runner terminal. The V1 terminal is now non-authoritative alone. `verify_p13a_protocol_adjudication_v2.py` re-executes the exact frozen runner twice in fresh subprocess directories and requires all original scientific gates plus byte identity. Both payload SHA-256 values are `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f`. No post-hoc repair of the historical P14A finite-sanity threshold occurs.
+**Pass for exact finite-panel reporting.** P13B enumerates all 30 state-task cases
+and reports exact denominators rather than a population interval. Two fresh
+subprocess payloads are byte-identical.
 
 ### Novelty / donor
 
-**Pass after subtraction.** Confidence gating, provenance, state abstraction, stale-memory detection and proof-carrying actions are donor-owned. The residual is responsibility-scoped support plus reopen/recovery semantics and an interior safety–cost efficacy result.
+**Bounded.** The exact core and controlled authenticated-certificate corruption
+result are supported; external safety novelty and generalization remain open.
 
 ### Referee / reporting
 
-**Pass for controlled scope.** The abstract reports the old negative and the new positive together. `CANNOT_CHECK` is treated as a valid outcome. Authority separation prevents the state container from self-certifying scientific novelty/safety. The replay adjudication correction is visible in the evidence chain.
+**Pass with scope boundary.** The manuscript distinguishes P13A's self-scored
+failure, P13B's locally authored finite-world gold, and external validation.
 
 ## Checklist
 
@@ -33,13 +43,16 @@
 - [x] confidence-only baseline
 - [x] provenance-only baseline
 - [x] always-raw safety ceiling
-- [x] unsafe-reuse primary endpoint
+- [x] certificate-independent gold-scored unsafe-reuse primary endpoint
 - [x] utility/correctness constraint
 - [x] resource cost and unnecessary reopen
 - [x] exact CANNOT_CHECK accounting
 - [x] V1 replay-gate omission disclosed
 - [x] exact runner replayed in two fresh subprocesses
-- [x] authoritative V2 replay adjudication
+- [x] V2 historical replay adjudication
+- [x] active outcome-entailment authority correction
+- [x] four corruption worlds with live opportunity denominators
+- [x] authenticated-certificate hostile terminal tests
 - [x] claim/evidence ledger
 - [x] donor subtraction
 - [ ] verifier-backed real-system responsibility shift
@@ -48,4 +61,7 @@
 
 ## Referee-facing headline
 
-> **Sufficiency is responsibility-scoped authority.** A compact state can be current, provenanced and high-confidence while still lacking distinctions needed for a new responsibility. An explicit support/recovery contract eliminates such unsafe reuse in the protected benchmark without paying the cost of always reopening raw state, and the result survives the protocol's replay requirement under an explicit independent adjudicator.
+> **Sufficiency is responsibility-scoped authority in the exact registered
+> construction.** In P13B's controlled finite panel, authenticated RCS rejects
+> omitted, overbroad, forged and stale certificates with zero gold-scored unsafe
+> reuse; external witness correctness and real-agent safety remain open.

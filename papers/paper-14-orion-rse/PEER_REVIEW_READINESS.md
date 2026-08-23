@@ -71,6 +71,8 @@ Adjudication: `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.md` / `.json`, `verify_p14
 - [x] exact P14C runner/spec replayed in two fresh subprocesses
 - [x] authoritative V2 replay adjudication
 - [x] claim/evidence ledger updated
+- [x] P14D blinded external-validation acquisition contract frozen
+- [x] P14D preflight rejects local self-certification of external custody
 - [ ] blinded realistic multi-domain research packets
 - [ ] matched frontier research-agent workflows
 - [ ] independent human/model adjudication study

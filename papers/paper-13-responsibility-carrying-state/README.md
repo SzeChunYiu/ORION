@@ -11,7 +11,7 @@
 
 ## Status
 
-`PEER_REVIEW_PACKAGE_READY / RCS_SAFETY_COST_SUPERIORITY_SUPPORTED / HISTORICAL_NEGATIVE_RETAINED`
+`P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED / EXTERNAL_VALIDATION_OPEN`
 
 ### Historical negative
 
@@ -21,7 +21,7 @@ The old frozen P14A combined terminal remains permanently negative:
 
 See `HISTORICAL_P14A_NEGATIVE_ROOT_CAUSE.md`. No threshold or terminal is retuned.
 
-### Independent successor
+### Historical P13A execution
 
 P13A uses exact responsibility equivalence classes plus a new held-out safety–cost benchmark. Across 12,288 protected episodes:
 
@@ -35,11 +35,33 @@ P13A uses exact responsibility equivalence classes plus a new held-out safety–
 - unsupported/nonrecoverable `CANNOT_CHECK`: **237/237 correct**;
 - two-run SHA-256: `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f`.
 
-Terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
+Historical terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
+
+Active authority terminal:
+`P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`, from
+`P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`. The RCS rule reuses exactly when
+its certificate says `supported`; the primary harm counter calls a reuse unsafe
+exactly when that same certificate says `not supported`. The zero is therefore
+self-entailed and has no reachable harm denominator.
+
+### P13B controlled authenticated successor
+
+P13B freezes certificate-independent gold before execution and enumerates 30
+state-task cases under omitted, overbroad, forged and stale-certificate worlds.
+Every world has 30 live mutation opportunities. Authenticated RCS rejects every
+mutated certificate and makes zero gold-scored unsafe reuses in every world; on
+the valid-certificate panel its cost is 0.6111 times always raw. This is a
+locally authored finite-world result, not external validation.
+
+Current terminal:
+`P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`, from
+`P13_ACTIVE_CLAIM_AUTHORITY_V2.json`.
 
 ## Strongest paper claim
 
-> A compact state's authority must be scoped to the downstream responsibility it can actually support. In the registered held-out worlds, an explicit responsibility/recovery contract eliminates structurally unsafe compact-state reuse without degenerating to always reopen, while confidence and provenance alone fail to mark the same boundary.
+> In the registered finite state-task panel, authenticated RCS rejects all four
+> frozen certificate corruptions, makes zero certificate-independent gold-scored
+> unsafe reuses, and retains lower valid-panel cost than always reopening.
 
 ## Artifacts
 
@@ -48,8 +70,14 @@ Terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
 - `PEER_REVIEW_READINESS.md`
 - `HISTORICAL_P14A_NEGATIVE_ROOT_CAUSE.md`
 - `P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json`
+- `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`
+- `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` (historical P13A boundary)
+- `P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json`
+- `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` (current)
 - protected successor protocol and executable harness
 
 ## Boundary
 
-No safety-critical deployment or real-agent superiority is claimed. External promotion beyond the controlled result requires a verifier-backed responsibility-shift domain and transport/revocation evidence under real semantic change.
+P13B authorizes only controlled finite-world authenticated-certificate safety and
+valid-panel cost. Safety-critical deployment, real-agent superiority and
+external validation remain unauthorized.

@@ -1,1 +1,17 @@
-A compact state is not simply “sufficient” or “insufficient.” Sufficiency is relative to what the downstream system is responsible for doing. A representation adequate for prediction can omit distinctions required for intervention, verification, diagnosis or repair; confidence and provenance alone do not specify that boundary. We formalize **responsibility-relative sufficiency** and introduce a non-self-authorizing `ResponsibilityCarryingState` (RCS) contract that binds compact state to the responsibilities it supports, its independent witness, explicit omissions, context assumptions, raw-state recoverability, resource envelope and reopen conditions. The paper preserves a historical negative: an earlier frozen sufficiency-debt experiment missed its finite-sample sentinel at `0.0556640625 > 0.05`; the result is retained rather than retuned. An independently frozen successor uses exact responsibility equivalence classes and a held-out reuse benchmark. Across **12,288 protected episodes**, RCS produces **0 unsafe reuses**, **0 unnecessary reopens** and **0.9807 verified correctness**. Confidence-only makes **21.56% structurally unsafe reuses**; provenance-only and unqualified compact state make **39.62%**. RCS costs **2.875** units on average versus **5.732** for always reopening raw state and emits `CANNOT_CHECK` for every unsupported/nonrecoverable case. Two runs are byte-identical. The controlled claim is that **an explicit responsibility/recovery contract can eliminate structurally unsafe state reuse without degenerating to always-reopen behavior, whereas scalar confidence and provenance do not encode the same sufficiency boundary**.
+A compact state is not simply “sufficient” or “insufficient”; sufficiency is
+relative to the downstream responsibility. We formalize this exact conditional
+notion and an RCS interface whose declared support controls reuse and reopening.
+The paper retains an earlier frozen negative and an exactly reproducible P13A
+benchmark. That benchmark reports zero RCS unsafe reuse, but a later hostile
+audit changes its authority: RCS reuses exactly when the certificate says
+`supported`, while the harm counter calls reuse unsafe exactly when the same
+certificate says `not supported`. Across 3,840 enumerated points, certificate
+corruption moves the RCS action on 2,304 and the published harm on zero, leaving
+zero reachable harm opportunities. The outcome-entailment adjudication therefore
+withholds P13A empirical safety-cost authority. A prospectively frozen P13B then
+grades against locally authored certificate-independent gold.
+Across a 30-case state-task panel, each of four corruption worlds has 30 live
+mutation opportunities; authenticated RCS makes zero unsafe reuses in every
+world and costs 0.6111 times always raw on valid certificates. Current authority
+is the authenticated-certificate controlled finite-world result, not external
+validation.

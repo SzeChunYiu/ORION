@@ -76,3 +76,27 @@ The pool reaches the target by `n=128` at every `r=3` rung and at no `r=7` rung,
 And the decomposition sharpens in the opposite direction: at the drawn regimes the decoder-family half of the `n=64` gap is exactly `+0.0000`, so **100%** of it is the change of state — against 86.7% and 55.4% above — and the gap is still only `+0.0506`. Attribution and magnitude are different questions.
 
 Three of the fifteen admissible draws would have printed the positive terminal and the seed did not draw one, so the `r=7` rungs carry no terminal and no claim authority. The `r=5` boundary was excluded before execution for verdict instability across three preflight seeds, in both directions, and remains open.
+
+## P11I wide high-width replication
+
+P11I prospectively freezes the narrower regime P11H located rather than
+relabeling P11H. It evaluates the complete cross of three fresh execution seeds
+and three fixed bank-geometry strata at `r=7`, with a matched `r=3` control in
+every cell. The independent random unit is the execution seed (`n=3`); geometry
+is a fixed within-seed stratum and five query repeats are technical repeats
+within each cell. One failed cell still defeats the conjunction.
+
+All nine high-width units pass. Compiled accuracy at `n=64` ranges
+0.9690–0.9981; the pooled attack's best accuracy below `n=256` ranges
+0.8489–0.9421 against the strict `<0.95` gate; and `delta64` ranges
++0.2463–+0.3543 against `>=+0.20`. The same pooled attack reaches 1.0000 in all
+nine matched `r=3` controls. Two fresh subprocess payloads are byte-identical at
+SHA-256 `b50ace30…e0ce`.
+
+The P11I terminal is
+`P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL`. It licenses a
+width-conditioned result only: the pooled attack wins in the narrow regime and
+the compiled-state advantage replicates in the registered high-width regime.
+A fresh two-subprocess revalidation under
+`P11I_REPLICATION_UNIT_AMENDMENT_V1_1.md` reproduces every cell byte-identically
+while recording `n=3`, not nine. P11D and P11H remain adverse historical results.
