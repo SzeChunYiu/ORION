@@ -1,0 +1,34 @@
+name: temp-regenerate-p6-p8-binding
+
+on:
+  push:
+    branches:
+      - research/top-tier-p6-p15-2026-08-23
+    paths:
+      - .github/workflows/temp-regenerate-p6-p8-binding.yml
+
+permissions:
+  contents: read
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate exact candidate bindings
+        run: python papers/candidates/checkers/check_content_binding_v1.py --write
+      - name: Verify regenerated bindings
+        run: python papers/candidates/checkers/check_content_binding_v1.py --check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p6-p8-regenerated-binding
+          path: |
+            papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json
+            papers/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS
+            papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json
+            papers/paper-07-epistemic-navigation-open-worlds/SHA256SUMS
+            papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json
+            papers/paper-08-epistemic-authority-autonomous-science/SHA256SUMS
