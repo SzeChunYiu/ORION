@@ -2,13 +2,31 @@
 
 **Programme:** #977  
 **Existing controlled authority:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT` remains valid.  
-**Top-tier state:** `EXTERNAL_PROMOTION_PENDING`
+**Top-tier state:** `EXTERNAL_EVALUATION_INTERFACE_READY__INDEPENDENT_PROMOTION_CANNOT_CHECK`
 
 ## Maximum claim to earn
 
 > **Scientific governance can improve research decisions, not merely documentation.** Under matched model, information, tool and budget access, a fail-closed recursive governance process that subtracts donor ownership, freezes discriminators, preserves negative/null/subsumed evidence, separates evaluator from authority, and reopens under regime change reduces false novelty and unsupported claim widening without materially suppressing independently judged useful discovery.
 
 Reflection, debate, multi-agent review, preregistration/checklists, literature-RAG, provenance, autonomous research agents and generic truth maintenance are donors.
+
+## Post-outcome status — 2026-08-23
+
+The external-evaluation substrate is now frozen and machine-checkable:
+
+- candidate-visible packet schema and hidden decision schema are separate;
+- candidate packets carry only a digest binding the hidden gold, not the disposition itself;
+- the scientific disposition vocabulary is fixed;
+- same-evidence paired judgment is required across compared workflows;
+- the protected external study requires at least `60` packets over at least `3` domains;
+- independent authority is required rather than candidate self-scoring;
+- the contract includes a useful-discovery anti-abstention requirement so a workflow cannot win merely by refusing to promote anything.
+
+The current CI terminal is `P14_EXTERNAL_GOVERNANCE_CONTRACT_V1_GREEN`.
+
+**What this earns:** the external benchmark/adjudication interface is executable and fail-closed rather than a prose request for “human review.” **What it does not earn:** any empirical P14 superiority result. The required independent candidate outputs and adjudications do not yet exist, so the top-tier external scientific result remains `CANNOT_CHECK`.
+
+The 2026 frontier refresh also narrows the novelty boundary: PaperBench/ReplicatorBench own replication engineering/replicability evaluation, AutoResearchBench and AstaBench own research-agent benchmark families, and shadow evaluations own unpublished-question expert grading. P14 therefore cannot claim “a benchmark for research agents”; its residual target is the causal value of the governance layer under matched research capability.
 
 ## Benchmark object
 
@@ -23,6 +41,8 @@ Build blinded research packets requiring systems to:
 7. produce a final allowed claim + evidence ledger.
 
 Packets must not reveal ORION disposition vocabulary as gold labels to candidate systems.
+
+The schema/contract for this object is now frozen under `top_tier/`; the substantial packet corpus and external outputs remain to be populated by independent execution.
 
 ## Comparator stack
 
@@ -65,6 +85,8 @@ The final allowed claim and novelty/support judgments must be established indepe
 
 Candidate ORION terminology must not influence scoring.
 
+The machine-checkable contract now enforces these design requirements, but it cannot manufacture the independent adjudicators or their outputs.
+
 ## Longitudinal value test
 
 Run at least two research rounds on linked cases. Round 2 changes evidence, donor field or regime. Test whether preserved negative/subsumed history improves later decisions versus memoryless or summary-only baselines.
@@ -106,17 +128,19 @@ No single scalar may hide a collapse in useful discovery. A Pareto analysis betw
 
 `P14_TOP_TIER_SUBMISSION_READY` requires:
 
-- [ ] realistic blinded multi-domain research packet benchmark;
-- [ ] matched frontier research-agent/donor-product workflows;
+- [x] machine-readable blinded packet/decision schemas and fail-closed external evaluation contract;
+- [ ] substantial realistic blinded multi-domain research packet corpus (`>=60`, `>=3` domains);
+- [ ] matched frontier research-agent/donor-product workflows executed;
 - [ ] independent human/domain adjudication for a substantial protected subset;
 - [ ] significant reduction in false novelty/unsupported widening;
 - [ ] no unacceptable useful-discovery loss;
 - [ ] longitudinal negative-history/reopen benefit under genuine evidence/regime change;
 - [ ] component ablations establishing load-bearing governance mechanisms;
-- [ ] no evaluator-vocabulary leakage;
+- [ ] executed evidence of no evaluator-vocabulary leakage beyond the schema-level protection;
 - [ ] cross-domain uncertainty and cost accounting;
-- [ ] independent replay of controlled benchmark generation/scoring;
-- [ ] current autonomous-research/evaluation literature saturation;
-- [ ] exact manuscript/result binding.
+- [ ] independent replay of completed benchmark generation/scoring;
+- [x] current 2026 research-agent benchmark/frontier ownership delta recorded;
+- [ ] immediate pre-submission literature saturation;
+- [ ] exact manuscript/result binding to the completed external outputs.
 
 If ORION-RSE becomes purely more conservative with no productivity advantage, the broad superiority claim fails; retain the conformance result and publish the measured trade-off rather than redefining scientific quality.
