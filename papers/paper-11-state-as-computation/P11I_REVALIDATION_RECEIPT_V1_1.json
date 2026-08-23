@@ -1,0 +1,31 @@
+{
+  "active_terminal_unchanged": true,
+  "adjudication": {
+    "cells_by_seed": {
+      "2026082241": 3,
+      "2026082242": 3,
+      "2026082243": 3
+    },
+    "fixed_geometry_strata_per_replicate": 3,
+    "gates": {
+      "all_nine_high_width_cells_pass": true,
+      "byte_identical_replay": true,
+      "complete_three_seed_x_three_geometry_panel": true,
+      "matched_low_width_attack_live_in_all_nine_cells": true,
+      "no_answer_laundering": true
+    },
+    "independent_unit": "execution_seed",
+    "n_independent_rng_replicates": 3,
+    "n_prespecified_seed_x_geometry_cells": 9,
+    "schema": "ORION.P11I.WidePanelRevalidation.v1.1",
+    "terminal": "P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL"
+  },
+  "authority_boundary": "three_independent_rng_replicates_nine_prespecified_cells",
+  "fresh_scientific_payload_sha256": "b50ace30aec14a2885444989a1f33c02a1be7fdc2f798697728bd46e2b8ee0ce",
+  "original_result": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json",
+  "original_result_sha256": "adb473201618c6ab9bf15d9f8ee134fade1e49bb2ff3acfbbd56f2fb37f03aff",
+  "paper_id": "P11",
+  "replication_unit_amendment": "papers/paper-11-state-as-computation/P11I_REPLICATION_UNIT_AMENDMENT_V1_1.md",
+  "replication_unit_amendment_sha256": "d4e63d7e66bbb7ec59c0f4ed5ff0d2a108d01725e6dc9ee08a0f48eceb4eb674",
+  "schema": "ORION.P11I.RevalidationReceipt.v1.1"
+}

@@ -1,9 +1,9 @@
 {
-  "blocker_sites": 596,
+  "blocker_sites": 597,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 16,
     "MISSING_ACCESS": 6,
-    "MISSING_CUSTODY": 43,
+    "MISSING_CUSTODY": 44,
     "MISSING_DECLARATION": 93,
     "MISSING_IDENTITY": 32,
     "UNAVAILABLE_PROVIDER": 12,
@@ -6633,6 +6633,43 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_CUSTODY",
+      "context": "build_active_claim_authority",
+      "file": "study/p15/active_claim_authority.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 52,
+      "missing_obligation": null,
+      "reasons": [
+        "schema",
+        "paper_id",
+        "active_terminal",
+        "lifecycle_state",
+        "scientific_result_state",
+        "active_hypothesis",
+        "active_empirical_claim",
+        "promotion_allowed",
+        "diagnostic_inputs",
+        "authorized_claim",
+        "forbidden_states",
+        "promotion_requirements",
+        "P15",
+        "METHODS_SCOPE_ONLY",
+        "NO_SCIENTIFIC_RESULT",
+        "The repository contains two harness surfaces whose receipt and failure-separation guarantees are candidates for a future methods paper.",
+        "research_harness_package",
+        "dual_harness_protocol",
+        "SUPPORTED_EMPIRICAL",
+        "SUPERIORITY_SUPPORTED",
+        "paper_issue",
+        "donor_matrix",
+        "prospectively_frozen_p15_protocol",
+        "protected_p15_result"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
       "category": "UNAVAILABLE_PROVIDER",
       "context": "live_campaign_status",
       "file": "study/p1_causal/campaign.py",
@@ -9545,7 +9582,9 @@
   "source_root": "src/orion",
   "subject_commit": "437cfa63f1e4c2af5a1b0e51ead1c3d638fe3b69",
   "total_sites": 655,
+  "subject_commit": "4187f2c52d8b82b62b3cfe77d8f69ceb23604d00",
+  "total_sites": 654,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 111,
-  "with_reason": 281
+  "with_reason": 282
 }

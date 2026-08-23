@@ -1,0 +1,85 @@
+{
+  "schema_version": "orion.p10.h1-h6-protocol-freeze.v1",
+  "protocol_id": "P10.H1_H6.WIDE_MULTI_DOMAIN.V1",
+  "frozen_date": "2026-08-23",
+  "lifecycle_state": "PROSPECTIVE_FROZEN_NOT_EXECUTED",
+  "positive_authority_granted": false,
+  "execution_authorized": false,
+  "outcome_artifact": null,
+  "subject": {
+    "base_commit": "fd9892fdafd7734b07c8b24a4384c9e9561b1349",
+    "environment_lock": "uv.lock",
+    "environment_lock_sha256": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+  },
+  "independent_unit": "one protected verifier-backed theorem or task",
+  "technical_repeats": "search seeds and model samples are nested technical repeats and do not increase n",
+  "design": {
+    "minimum_domains": 4,
+    "minimum_independent_tasks_per_domain": 100,
+    "minimum_total_independent_tasks": 400,
+    "minimum_known_method_controls": 80,
+    "target_specific_refitting_allowed": false,
+    "matched_information_required": true,
+    "matched_total_compute_required": true,
+    "strongest_runnable_donor_complete_comparator_required": true,
+    "protected_cross_domain_replication_required": true
+  },
+  "hypotheses": {
+    "H1": {
+      "state": "PROSPECTIVE_NOT_EXECUTED",
+      "endpoint": "verified solve/success utility",
+      "gate": "paired ORION-minus-comparator margin >= 0.10 and simultaneous 95% lower bound > 0"
+    },
+    "H2": {
+      "state": "PROSPECTIVE_NOT_EXECUTED",
+      "endpoint": "verifier calls and time-to-first-correct at matched verified quality",
+      "gate": "resource reduction >= 0.15 and every domain difference >= -0.05"
+    },
+    "H3": {
+      "state": "PROSPECTIVE_NOT_EXECUTED",
+      "endpoint": "false method-language escalation against blinded obstruction gold",
+      "gate": "absolute false escalation <= 0.05 and reduction versus comparator >= 0.10"
+    },
+    "H4": {
+      "state": "PROSPECTIVE_NOT_EXECUTED",
+      "endpoint": "independently certified outside-closure method-language expansion",
+      "gate": "two independently witnessed OCME cases in two domains, each with positive held-out transfer, minimal edit, old-closure exclusion, and zero hidden access widening"
+    },
+    "H5": {
+      "state": "PROSPECTIVE_NOT_EXECUTED",
+      "endpoint": "false expansion on known-method controls",
+      "gate": "one-sided 95% Clopper-Pearson upper bound <= 0.05 over at least 80 controls"
+    },
+    "H6": {
+      "state": "PROSPECTIVE_NOT_EXECUTED",
+      "endpoint": "cross-domain transfer without target-specific refitting",
+      "gate": "at least four domains and every domain noninferior at margin -0.05"
+    }
+  },
+  "multiplicity": {
+    "familywise_alpha": 0.05,
+    "method": "HOLM_BONFERRONI",
+    "family": ["H1", "H2", "H3", "H5", "H6"],
+    "H4_is_a_nonstatistical_certificate_conjunction": true,
+    "worst_domain_gates_are_noncompensatory": true
+  },
+  "missing_run_policy": "MISSING_OR_UNVERIFIED_TASK_COUNTS_AS_NOT_SOLVED_AND_CANNOT_GRANT_PASS",
+  "catastrophic_guards": {
+    "semantic_failures_allowed": 0,
+    "hidden_access_model_widening_allowed": 0,
+    "false_resolution_of_unknown_obstruction_allowed": 0
+  },
+  "required_inputs": [
+    {"id": "protected_task_manifest", "required": true, "present": false, "artifact": null},
+    {"id": "native_verifier_backed_runner", "required": true, "present": false, "artifact": null},
+    {"id": "strongest_donor_complete_comparator_executables", "required": true, "present": false, "artifact": null},
+    {"id": "blinded_obstruction_gold_and_custodian", "required": true, "present": false, "artifact": null},
+    {"id": "independent_ocme_witness_protocol", "required": true, "present": false, "artifact": null},
+    {"id": "protected_cross_domain_replication_split", "required": true, "present": false, "artifact": null},
+    {"id": "independent_scorer_and_review_custody", "required": true, "present": false, "artifact": null},
+    {"id": "prospective_power_and_attainability_receipt", "required": true, "present": false, "artifact": null}
+  ],
+  "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
+  "success_terminal": "P10_H1_H6_WIDE_MULTI_DOMAIN_SUPPORTED",
+  "failure_terminal": "P10_H1_H6_WIDE_MULTI_DOMAIN_NOT_SUPPORTED"
+}
