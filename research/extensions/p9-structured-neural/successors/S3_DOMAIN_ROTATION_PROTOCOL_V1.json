@@ -1,0 +1,63 @@
+{
+  "schema": "P9.S3DomainRotationProtocol.v1",
+  "date": "2026-08-19",
+  "issue": 606,
+  "parent_s3_subject_sha": "599267548314ff2a74db54a2aa39f3d8ba62b322",
+  "parent_s3_outcome_accessed": true,
+  "new_rotation_outcomes_accessed": false,
+  "purpose": "Find the maximal bounded empirical generality of the frozen S3 generic paired-coordinate relation operator by rotating the whole held-out D1 domain.",
+  "frozen_operator": {
+    "module": "orion.study.p9.s3_access",
+    "functions": ["serialized_generic_binding_features", "serialized_exact_generic_comparator"],
+    "source_subject": "599267548314ff2a74db54a2aa39f3d8ba62b322",
+    "modification_after_freeze": "FORBIDDEN"
+  },
+  "rotations": [
+    {"holdout": "numerical_methods", "train_dev": ["graph_algorithms", "transactional_workflows"]},
+    {"holdout": "graph_algorithms", "train_dev": ["numerical_methods", "transactional_workflows"]},
+    {"holdout": "transactional_workflows", "train_dev": ["numerical_methods", "graph_algorithms"]}
+  ],
+  "data": {
+    "seed": "p9-d1-method-transfer-v1",
+    "train_instances_per_base_pair": 48,
+    "dev_instances_per_base_pair": 16,
+    "test_instances_per_base_pair": 32,
+    "train_dev_include_double": false,
+    "test_include_double": true,
+    "workflow_reference_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c"
+  },
+  "arms": {
+    "F0": "TYPED_SERIALIZED_BAG; dense same-run sensitivity control only",
+    "F1": "frozen serialized generic binding + exact existing D1 model grid/dev selection",
+    "F2": "frozen exact generic comparator",
+    "F3": "historical typed relational feature family"
+  },
+  "runtime": {
+    "primary_execution_transport": "dense DictVectorizer compatibility transport used by protected S3",
+    "historical_workflow_sparse_F0": 0.5,
+    "historical_workflow_sparse_F0_authority": "immutable original D1 only; never overwritten by dense replay"
+  },
+  "primary_terminal": {
+    "EXPLICIT_RELATION_BINDING_ALL_DOMAIN_ROTATIONS_SUPPORTED": "for all three rotations F2=1.0; F1>=0.99; F1 double-corruption>=0.99; F1 unresolved=1.0; abs(F1-F3)<=0.01; all hostile checks green",
+    "EXPLICIT_RELATION_BINDING_DOMAIN_LIMITED": "at least one valid rotation fails an F1 registered threshold while F2/evaluator checks remain green",
+    "SERIALIZED_ACCESS_EVALUATOR_FAILURE": "any F2/equivalence/workflow-reference failure",
+    "CANNOT_CHECK": "runtime or custody failure"
+  },
+  "hostile_requirements": [
+    "workflow rotation manifest exactly matches immutable D1 manifest digest",
+    "frozen S3 operator source is unchanged from parent subject",
+    "train/dev/test identities are disjoint for every rotation",
+    "holdout domain is evaluator-side and absent from F1 input",
+    "all rotations share the same per-base-pair label design",
+    "F2 equals historical exact typed comparator on train+dev for every rotation before protected test access",
+    "no change to D1 model grid, dev selection or thresholds"
+  ],
+  "novelty_nonclaims": [
+    "relations-as-abstractions are not novel",
+    "relational bottlenecks are not novel",
+    "domain-invariant relations are not novel",
+    "graph message passing is not claimed necessary",
+    "no natural-language or broad scientific-domain transfer claim"
+  ],
+  "outcome_accessed": false
+}

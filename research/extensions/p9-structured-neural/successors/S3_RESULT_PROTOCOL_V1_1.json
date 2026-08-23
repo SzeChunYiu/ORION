@@ -1,0 +1,28 @@
+{
+  "schema": "P9.S3ProtectedResultProtocol.v1.1",
+  "date": "2026-08-19",
+  "parent_protocol": "S3_RESULT_PROTOCOL_V1.json",
+  "failed_workflow_run": 32287656312,
+  "failure_stage": "parent dataset digest guard before model selection or protected prediction",
+  "protected_predictions_accessed": false,
+  "artifact_written": false,
+  "failure": "S3 imported the preserved pre-v1.2 D1 generator/estimator path. The official parent D1 result is bound to D1 runtime protocol v1.2, whose data adapter reverses dependency mutations and whose compatibility adapter uses the frozen three-class logistic grid with current sklearn plumbing.",
+  "amendment": [
+    "import D1 v1.2 data-runtime adapter before regenerating the frozen dataset",
+    "use D1 v1.2 estimator compatibility adapter for the otherwise unchanged model grid"
+  ],
+  "unchanged": [
+    "parent D1 result digest",
+    "parent D1 dataset digest",
+    "D1 seed/counts/train-dev-test split",
+    "S3 F1 serialized generic binding features",
+    "S3 F2 exact generic comparator",
+    "D1 model specs and complexity ranks",
+    "dev-only selection rule",
+    "protected test",
+    "S3 thresholds and terminal rules",
+    "pre-artifact expectations"
+  ],
+  "outcome_policy": "The next run is the first valid S3 protected-prediction run. No result-driven scientific change is permitted.",
+  "authority": "EXECUTION_COMPATIBILITY_AMENDMENT_ONLY_NO_RESULT_AUTHORITY"
+}

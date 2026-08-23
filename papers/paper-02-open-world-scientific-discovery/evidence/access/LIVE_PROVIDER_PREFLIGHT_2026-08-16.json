@@ -1,0 +1,32 @@
+{
+  "schema_version": "orion.p2.live-provider-preflight-archive.v1",
+  "authority": "CANNOT_CHECK",
+  "checked_at_utc_date": "2026-08-16",
+  "protocol": "LIVE_CAMPAIGN_PROTOCOL_V1.md",
+  "arxiv_credential_required": false,
+  "openalex_api_key_present": false,
+  "execution_frozen_possible": false,
+  "blocking_precondition": "Funded OPENALEX_API_KEY is absent from this same-repository Actions context.",
+  "impact": [
+    "openalex-keyword route cannot execute",
+    "openalex-citation route cannot execute",
+    "the frozen three-route live-provider campaign cannot enter EXECUTION_FROZEN",
+    "final live-provider raw request/response archive cannot be produced",
+    "final live-provider empirical cost/wall-clock ledger cannot be produced"
+  ],
+  "github_actions": {
+    "workflow_run_id": 31975956516,
+    "head_sha": "a696ce66c35ab229c253d2ab21b789d4565f03b1",
+    "artifact_id": 9271045745,
+    "artifact_sha256": "0f15ee3aed4f3864984856880c51c6cde838137076306b19f405d84b989bdb3b"
+  },
+  "interpretation": {
+    "completed": "non-leaking same-repository credential preflight for the frozen P2 live-provider campaign",
+    "not_claimed": [
+      "live-provider campaign execution",
+      "external cost comparison",
+      "live recall or completeness",
+      "ORION live-provider superiority"
+    ]
+  }
+}

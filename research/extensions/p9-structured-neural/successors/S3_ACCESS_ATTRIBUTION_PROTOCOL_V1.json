@@ -1,0 +1,91 @@
+{
+  "schema": "P9.S3AccessAttributionProtocol.v1",
+  "date": "2026-08-19",
+  "parent_issue": 589,
+  "freeze_issue": 593,
+  "parent_d1_subject_sha": "af218de0416c90cdf6e0221098c97e181e29a6e0",
+  "parent_d1_outcome_accessed": true,
+  "s3_outcome_accessed": false,
+  "purpose": "Post-result corrective attribution of the historical D1 typed-relational versus same-information serialized gap without changing D1 examples, splits, labels, or model selection.",
+  "frozen_data": {
+    "generator": "orion.study.p9.d1.generate_d1_dataset",
+    "seed": "p9-d1-method-transfer-v1",
+    "train_instances_per_base_pair": 48,
+    "dev_instances_per_base_pair": 16,
+    "test_instances_per_base_pair": 32,
+    "train_domains": ["numerical_methods", "graph_algorithms"],
+    "test_domain": "transactional_workflows",
+    "no_new_examples": true
+  },
+  "historical_arms": [
+    "TYPED_SERIALIZED_BAG",
+    "TYPED_RELATIONAL"
+  ],
+  "new_arms": {
+    "F1_SERIALIZED_GENERIC_BINDING": {
+      "input": "only P9.D1TypedSerialized.v1 sequence",
+      "allowed": [
+        "group tokens by side and comparison-coordinate path",
+        "strip only root.left/root.right side prefix before comparison",
+        "compare canonical per-coordinate token multisets",
+        "recover unknown membership only from serialized unknown_coordinates tokens",
+        "emit coordinate:unknown and coordinate:equal booleans"
+      ],
+      "forbidden": [
+        "D1Instance.left/right semantic objects",
+        "label",
+        "mutation_coordinates",
+        "domain",
+        "split",
+        "method ids/source digests/lineage",
+        "calling _typed_relational_features",
+        "calling classify_methods",
+        "domain-specific semantic value rules"
+      ],
+      "learner": "exact existing D1 model_specs grid and dev-only selection"
+    },
+    "F2_SERIALIZED_EXACT_GENERIC_COMPARATOR": {
+      "input": "F1 generic binding features",
+      "rule": [
+        "if any comparison coordinate unknown -> UNRESOLVED",
+        "else if any comparison coordinate unequal -> OBSTRUCTION",
+        "else -> ALIGNED"
+      ],
+      "authority": "diagnostic ceiling for serialization plus generic comparison access; not a novelty claim"
+    }
+  },
+  "primary_endpoints": [
+    "F1 protected accuracy",
+    "F1 macro F1",
+    "F1 double-corruption accuracy",
+    "F1 unresolved accuracy",
+    "F2 exact protected accuracy",
+    "F1 minus historical serialized-bag accuracy",
+    "historical typed-relational minus F1 accuracy"
+  ],
+  "primary_terminal": {
+    "EXPLICIT_RELATION_BINDING_SUFFICIENT": {
+      "F2_accuracy_min": 1.0,
+      "F1_accuracy_min": 0.99,
+      "F1_unresolved_accuracy_min": 1.0,
+      "F1_double_corruption_accuracy_min": 0.99,
+      "hostile_checks": "all true"
+    },
+    "LOSSLESS_SERIALIZATION_PLUS_GENERIC_COMPARISON_SUFFICIENT": "F2=1.0 but F1<0.99 with hostile checks green",
+    "D1_SERIALIZATION_NOT_RECOVERABLE_BY_GENERIC_BINDING": "F2<1.0 after equivalence/round-trip checks green",
+    "CANNOT_CHECK": "evaluator/protocol/runtime integrity failure"
+  },
+  "hostile_requirements": [
+    "adapter core accepts only serialized sequence",
+    "side-normalization preserves coordinate token content",
+    "token order permutation invariance",
+    "consistent semantic-value reminting leaves equality unchanged",
+    "one-side reminting flips relevant equality",
+    "unknown membership recovered from serialized unknown_coordinates only",
+    "F2 equals historical exact typed comparator on train+dev before protected S3 execution",
+    "every gold comparison coordinate has recoverable serialized path/value tokens",
+    "dropping side binding breaks at least one dev decision"
+  ],
+  "escalation": "No graph/set/Transformer model may be added in this issue. Escalate only if generic binding does not close the registered gap.",
+  "paper_correction_if_positive": "Interpret D1 as an access/inductive-bias result: bagged domain-specific serialization fails under whole-domain holdout, while the same serialization is sufficient once generic paired-coordinate binding/comparison is restored. Do not claim graph necessity."
+}

@@ -1,0 +1,81 @@
+name: orion-qg-qg13-v2-r6i-support4
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG13_V2_*'
+      - 'development/orion-qg-regime-geometry/qg13_v2_*'
+      - 'development/orion-qg-regime-geometry/run_qg13_v2_dual_harness.py'
+      - 'research/extensions/orion-qg/qg13_v2_r6i_support4.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - '.github/workflows/orion-qg-qg13-v2.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg13-v2-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg13-v2-support4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native campaign
+        run: |
+          python - <<'PY'
+          from orion_research_harness.campaign_control import validate_manifest
+          from orion_research_harness.domains.orion_qg import QG13_V2_SUPPORT4_CAMPAIGN_MANIFEST
+          validate_manifest(QG13_V2_SUPPORT4_CAMPAIGN_MANIFEST)
+          PY
+      - name: Execute candidate through generic and native harnesses
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg13_v2_dual_harness.py \
+            | tee artifacts/orion-qg-qg13-v2-summary.json
+      - name: Deterministic candidate replay
+        run: |
+          python research/extensions/orion-qg/qg13_v2_r6i_support4.py \
+            --output artifacts/orion-qg-qg13-v2-replay.json \
+            > artifacts/orion-qg-qg13-v2-replay.log
+          cmp artifacts/orion-qg-qg13-v2-support4.json artifacts/orion-qg-qg13-v2-replay.json
+      - name: Enforce theorem or honest refutation terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg13-v2-support4.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg13-v2-dual-harness.json').read_text())
+          allowed={
+            'QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED',
+            'QG13_V2_NATIVE_GENERIC_DISAGREEMENT',
+          }
+          assert d['terminal'] in allowed
+          assert a['support3_authority'] is False
+          assert a['tightness4_authority'] is False
+          assert a['novelty_authority'] is False
+          if d['terminal']=='QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED':
+              assert d['both_accept'] is True
+              assert a['terminal']=='QG13_V2_R6I_SUPPORT4_CANDIDATE_COMPLETE'
+              assert all(a['gates'].values())
+              assert a['support5']['irreducible_count']==324
+              assert a['support5']['unresolved_count']==0
+              assert a['support4_boundary']['unresolved_count']==36
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg13-v2-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg13-v2-*.json
+            artifacts/orion-qg-qg13-v2-*.log
+            .orion-qg-qg13v2-generic/.orion-harness/**
+            .orion-qg-qg13v2-native/.orion-harness/**
+          include-hidden-files: true

@@ -1,0 +1,91 @@
+name: orion-qg-qg37b-independent-replication
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/orion-qg-qg37b-independent-replication.yml'
+      - 'development/orion-qg-regime-geometry/QG37B_*'
+      - 'development/orion-qg-regime-geometry/QG37C_*'
+      - 'development/orion-qg-regime-geometry/qg37_*'
+      - 'research/extensions/orion-qg/qg37b_*'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg37b-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  independent-replication:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact numerical dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+      - name: Compile independent lane
+        run: |
+          python -m py_compile research/extensions/orion-qg/qg37_one_corruption_robust.py
+          python -m py_compile research/extensions/orion-qg/qg37b_pbsat_replication.py
+          python -m py_compile development/orion-qg-regime-geometry/qg37_generic_verify.py
+          python -m py_compile development/orion-qg-regime-geometry/qg37_native_verify.py
+          python -m py_compile development/orion-qg-regime-geometry/run_qg37_dual_harness.py
+      - name: Reproduce QG-37 production upper/exact parent
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python research/extensions/orion-qg/qg37_one_corruption_robust.py --class-seconds 60 --ablation-seconds 2 | tee artifacts/orion-qg-qg37-production-replay.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg37-robust.json').read_text())
+          assert d['result_digest']=='12bf825a29710e5939642afe52f8645a70c120ca7461d6f61102853bc6eba566'
+          assert d['terminal']=='QG37_ROBUST_CLASS_CONDITIONED_UPPER_BOUND_ONLY'
+          assert sum(r['D3_status']=='EXACT' for r in d['classes'])==89
+          assert [r['class_index'] for r in d['classes'] if r['D3_status']!='EXACT']==[39,40,63]
+          assert d['ONE_CORRUPTION_CLASS_CONDITIONED_IDENTITY_AUTHORITY'] is False
+          PY
+      - name: Execute frozen independent PB-DPLL replication
+        run: |
+          set -o pipefail
+          python research/extensions/orion-qg/qg37b_pbsat_replication.py --production artifacts/orion-qg-qg37-robust.json --decision-seconds 120 | tee artifacts/orion-qg-qg37b-summary.log
+      - name: Enforce independent authority ceiling
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg37b-pbsat.json').read_text())
+          assert d['universe']['orbits']==715 and d['universe']['physical_probes']==384 and d['universe']['joint_classes']==92
+          assert all(d['parent_checks'].values())
+          for k in ('HARDWARE_MEASUREMENT_NOISE_MODEL','STOCHASTIC_PHYSICAL_ERROR_RATE','FAULT_TOLERANCE_THRESHOLD','MINIMUM_FULL_FINITE_OPTIMUM_PROBES','GENERIC_CODING_SAT_NOVELTY','COMPILER_RUNTIME_ADVANTAGE','physical_quantum_advantage_claim','novelty_authority'):
+            assert d[k] is False
+          if d['terminal']=='QG37B_INDEPENDENT_EXACT_ROBUST_MINIMA_MACHINE_CHECKED':
+            assert d['all_92_exact'] is True
+            assert d['INDEPENDENT_ROBUST_MINIMA_AUTHORITY'] is True
+            assert isinstance(d['R1_star'],int)
+            assert all(r['status']=='EXACT' for r in d['classes'])
+            assert all(r['distance_certificate'] is None or r['distance_certificate']['radius1_unique'] is True for r in d['classes'])
+          else:
+            assert d['INDEPENDENT_ROBUST_MINIMA_AUTHORITY'] is False
+          PY
+      - name: Deterministic independent replay
+        run: |
+          cp artifacts/orion-qg-qg37b-pbsat.json artifacts/qg37b-first.json
+          python research/extensions/orion-qg/qg37b_pbsat_replication.py --production artifacts/orion-qg-qg37-robust.json --decision-seconds 120 --output artifacts/qg37b-second.json >/dev/null
+          cmp artifacts/qg37b-first.json artifacts/qg37b-second.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg-qg37b-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg37-robust.json
+            artifacts/orion-qg-qg37-production-replay.log
+            artifacts/orion-qg-qg37b-*
+            artifacts/qg37b-*.json
+          if-no-files-found: warn

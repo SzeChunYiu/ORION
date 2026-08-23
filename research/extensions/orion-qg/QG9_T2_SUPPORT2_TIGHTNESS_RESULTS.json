@@ -1,0 +1,55 @@
+{
+  "schema": "ORION.QG.QG9.T2.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#803",
+  "pr": "SzeChunYiu/ORION#805",
+  "execution_head": "247b22e8462a725650253ef44c2f58978faced6d",
+  "parent_support2_receipt_commit": "a80dbd57d9124f058de7465a13de8c69416c368b",
+  "terminal": "QG9_T2_NO_TIGHT_WITNESS_IN_FROZEN_INVERSE_DESIGN_DOMAIN",
+  "stage1_result_digest": "528f3ce3f4b57fd6af0f9e3a60fce044bbf3fb11c50e37e3625729ccdac2ec2b",
+  "candidate_digest": "d0b53fd7d3d5b025f6a4ea133bb51920abde9dd111d8c4152252350f6067960a",
+  "referee_result_digest": "0d3d61f8b8923aa5ade693ca2ea7f3b72678b78fcfe9e7233a5d7a6e4ab2f451",
+  "candidate_domain": {
+    "parent_full_accepted_unsafe_type_cases": 36,
+    "profile_pair_safety_cache_entries": 360,
+    "raw_concrete_accepted_unsafe_ordered_pairs": 6048,
+    "canonical_candidates": 3024,
+    "unique_target_pair_classes": 54,
+    "candidates_evaluated": 3024
+  },
+  "exact_cap1_referee": {
+    "support1_ordered_anticommuting_frame_pairs_per_block": 12,
+    "shared_tag_strings_exhaustive": true,
+    "central_choices_exhaustive": true,
+    "block_B_permutations_exhaustive": true,
+    "C_cap1_histogram": {"8": 3024}
+  },
+  "sealed_support2_witness_cost_histogram": {
+    "16": 540,
+    "18": 1800,
+    "20": 684
+  },
+  "C_cap1_minus_U2_histogram": {
+    "-12": 684,
+    "-10": 1800,
+    "-8": 540
+  },
+  "strict_cap1_gap_witnesses": 0,
+  "unrestricted_dp_opened": false,
+  "generic_orion": {
+    "decision": "ACCEPT",
+    "independent_cap1_pair_count": 12,
+    "unique_target_pair_classes_checked": 54,
+    "all_checks": true
+  },
+  "native_orion_q": {
+    "decision": "ACCEPT_BOUNDED_NEGATIVE",
+    "responsibility": "BOUNDED_NEGATIVE_ONLY",
+    "all_checks": true
+  },
+  "both_accept": true,
+  "interpretation": "This frozen inverse-design domain gives no support-2 tightness witness. All 3024 exact cap1 optima cost 8 while the sealed support-2 constructions cost 16-20. This is evidence motivating a support<=1 theorem search, but finite no-witness evidence does not authorize support<=1.",
+  "support1_authority": false,
+  "support2_tightness_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

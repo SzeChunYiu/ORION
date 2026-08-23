@@ -1,0 +1,50 @@
+{
+  "schema": "P9.D1IndependentVerification.v1.2",
+  "status": "BOUNDED_VERIFIED",
+  "scientific_code_subject": "b82451da53bebd095b5a5b225781cef209c8339b",
+  "original_official_subject_sha": "e69606d5ee7e5e035ab6374202f9e62c154579ae",
+  "integrated_result_commit": "a42909d2d00abaee7005442aa1bc543832e0ec9d",
+  "original_official_workflow_run": 32235110762,
+  "original_official_artifact_id": 9363345932,
+  "original_official_artifact_zip_sha256": "bcf9d73c56c481e63c7acbaba00a0ca16c255db11b9e9d393b17f32d39f939ed",
+  "archive_replay_workflow_run": 32266764235,
+  "official_result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a",
+  "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+  "official_terminal": "D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED",
+  "pre_official_expectation_source": {
+    "pr": 525,
+    "path": "research/extensions/p9-structured-neural/verification/INDEPENDENT_REPLAY_EXPECTATIONS_V1.json"
+  },
+  "comparison": {
+    "terminal_matches": true,
+    "dataset_manifest_digest_matches": true,
+    "selected_models_match": true,
+    "transcript_test_accuracy": 0.25,
+    "untyped_pair_test_accuracy": 0.90625,
+    "typed_relational_test_accuracy": 1.0,
+    "typed_serialized_test_accuracy": 0.5,
+    "typed_minus_transcript": 0.75,
+    "typed_minus_same_information_serialized": 0.5,
+    "typed_relational_double_corruption_accuracy": 1.0,
+    "typed_relational_unresolved_accuracy": 1.0,
+    "exact_typed_relational_comparator_accuracy": 1.0,
+    "discrepancy_count": 0
+  },
+  "archive_replay": {
+    "result_path": "research/extensions/p9-structured-neural/results/D1_RESULT_V1_2.json",
+    "execution_receipt_path": "research/extensions/p9-structured-neural/results/D1_EXECUTION_RECEIPT_V1_2.json",
+    "exact_original_result_digest_reproduced": true,
+    "exact_original_dataset_digest_reproduced": true,
+    "first_archive_attempt_status": "FAILED_PROVENANCE_IDENTITY_ASSERTION_ONLY",
+    "first_archive_attempt_observed_digest": "sha256:c38d92722827f9fa0288836aed8e2217cd1010fbc301347e94dd9029919b0fd5",
+    "first_archive_attempt_reason": "run_d1 defaults subject_sha to GITHUB_SHA; the isolated execution branch therefore rebound the otherwise deterministic result to a different provenance subject. The corrected archive replay explicitly passed the original official merge-ref subject_sha e69606d5ee7e5e035ab6374202f9e62c154579ae and reproduced the exact original digest.",
+    "scientific_prediction_or_metric_drift_detected": false
+  },
+  "discrepancy_counts": {
+    "total": 0,
+    "material": 0,
+    "non_material": 0
+  },
+  "scientific_interpretation": "On the prospectively frozen exact authored/procedural study, typed relational method coordinates transfer across the held-out transactional-workflows domain and protected multi-coordinate corruptions beyond reminted transcript, untyped-pair, and same-information typed-serialization controls. This does not claim the general serialization-friction or relational-inductive-bias principles as novel.",
+  "authority": "BOUNDED_P9_DIAGNOSTIC_ONLY_NO_SCIENTIFIC_OR_EXECUTION_AUTHORITY"
+}

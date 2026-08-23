@@ -1,0 +1,31 @@
+{
+  "schema":"ORION.QG.QG9T1.ProtectedScientificSummary.v1",
+  "issue":"SzeChunYiu/ORION#793",
+  "pr":"SzeChunYiu/ORION#797",
+  "execution_head":"904f0422b2c90fd17c6ec2f5c525cd015ec703df",
+  "terminal":"QG9T1_NO_SUPPORT4_TIGHT_WITNESS_IN_FROZEN_PANEL",
+  "source_result_digest":"fbc0163f9c7df8392afc7cb18bf3e42dbd8c905a09db6d195725bb9bd1c467d8",
+  "candidate_generation":{
+    "frozen_obstruction_slots":72,
+    "retained_valid_candidates":36,
+    "orientation_counts":{"0":18,"1":18},
+    "discarded_invalid":36,
+    "discard_reason":"complete n=4 ordered Tag labels invalid",
+    "candidate_digest":"b795747258f89b3b084851787105da54c0915f83151fa17a86be4920f8edef15"
+  },
+  "exact_cap3_result":{
+    "retained_candidates_rejected":36,
+    "generic_independent_rejection_milps_replayed":36,
+    "generic_errors":0,
+    "all_rejected_on_first_fixed_config":true,
+    "cap3_minus_U4_margin_histogram":{"-18":19,"-19":5,"-20":8,"-21":4},
+    "interpretation":"For the frozen identity-Restore inverse-design template, every retained support-four feasible witness has an exact support<=3 competitor at least 18 cost units cheaper; no tightness witness occurs in this panel."
+  },
+  "generic_orion":{"decision":"ACCEPT","all_checks":true},
+  "native_orion_q":{"decision":"ACCEPT_BOUNDED_NO_WITNESS","final_phase":"NEGATIVE_RECORDED"},
+  "engineering_amendment":"QG9T1_ENGINEERING_AMENDMENT_1.md",
+  "support3_theorem_authority":false,
+  "novelty_authority":false,
+  "physical_quantum_advantage_claim":false,
+  "next_boundary":"T1 rules out identity-Restore inverse design only. A successor tightness search must prospectively change the target/Restore inverse-design grammar or derive a stronger support<=3 exchange theorem; this finite negative cannot authorize support<=3."
+}

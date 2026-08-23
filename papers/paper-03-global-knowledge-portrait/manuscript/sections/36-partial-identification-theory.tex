@@ -1,0 +1,299 @@
+% General theory: partially identified global portraits and downstream decisions.
+
+The mapping calculus above can be stated more generally. Scientific sources
+rarely reveal a unique global state. They reveal projections of that state,
+with different coordinates observed, suppressed, coarsened, or measured under
+different operationalizations. The appropriate integration object is
+therefore not always one completed graph. It is an envelope of the global
+portraits still compatible with the observations and their source-bound
+constraints. This section develops that object and separates three questions:
+what the sources identify, what additional information could identify, and
+what a downstream decision may safely do before identification is complete.
+
+The construction imports the logic of partial identification
+\cite{manski2003partial,tamer2010partial}, comparison of information
+\cite{blackwell1953equivalent}, and robust decision theory
+\cite{berger1985decision,walley1991imprecise}. The contribution is not a new
+claim to those donor theories. It is their claim-relative composition with
+provenance-bound scientific projections, typed mapping constraints, and
+global-portrait construction.
+
+\subsection{Worlds, observation fibres, and portrait envelopes}
+
+Let $\Omega$ be a set of scientifically admissible worlds. A world
+$\omega\in\Omega$ fixes the source records, the source-to-projection
+relations, and a global portrait $G(\omega)\in\mathcal G$. The observation
+operator
+\begin{equation}
+  O:\Omega\longrightarrow\mathcal Y
+\end{equation}
+returns exactly the evidence available to the integration procedure: the
+observed projection coordinates, explicit missingness, whatever source
+identity/version information the interface exposes, and the mapping
+constraints licensed by those sources. It does not fill an unobserved
+coordinate from the world that generated it.
+
+The operator is interface-relative. If a procedure receives source text and
+semantic provenance, those are part of $O$; if it receives only projections,
+they are not. Opaque record identifiers that carry no licensed scientific
+meaning are quotiented by bijective relabelling rather than treated as a
+lookup key for memorising gold. Every impossibility statement must name this
+observation boundary.
+
+\begin{definition}[Observation fibre and epistemic portrait envelope]
+For observed evidence $y\in\mathcal Y$, define
+\begin{equation}
+  \Omega_y=\{\omega\in\Omega:O(\omega)=y\},\qquad
+  \mathfrak E(y)=\{G(\omega):\omega\in\Omega_y\}.
+\end{equation}
+$\Omega_y$ is the observation fibre and $\mathfrak E(y)$ is the epistemic
+portrait envelope. A query $q:\mathcal G\to\Theta$ has identified set
+\begin{equation}
+  \Theta_q(y)=\{q(g):g\in\mathfrak E(y)\}.
+\end{equation}
+The query is point identified at $y$ exactly when $\Theta_q(y)$ is a
+singleton.
+\end{definition}
+
+The query can ask whether two projections may be glued, which typed
+obstruction holds, what numerical estimand a merged record implies, or which
+downstream action is warranted. Identification is therefore claim-relative:
+an envelope can identify one query while leaving another unresolved. A
+portrait need not be completed in every coordinate before it licenses a
+specific conclusion.
+
+The envelope also separates scientific plurality from epistemic uncertainty.
+Plurality is a feature represented \emph{inside} a feasible portrait: several
+incompatible but source-valid views coexist. Epistemic uncertainty is
+variation \emph{across} feasible portraits because the available observation
+does not decide which completion obtains. A plural-view terminal can therefore
+be point identified; an unresolved terminal cannot.
+
+\subsection{The fibre criterion and an impossibility result}
+
+\begin{theorem}[Fibre criterion for scientific identification]
+\label{thm:fibre}
+For any observation $y$ with $\Omega_y\neq\varnothing$ and query $q$, the
+following are equivalent:
+\begin{enumerate}
+  \item $q$ is point identified at $y$;
+  \item $q\circ G$ is constant on $\Omega_y$;
+  \item there exists an observation-measurable answer $d(y)$ that equals
+        $q(G(\omega))$ for every $\omega\in\Omega_y$.
+\end{enumerate}
+If two worlds in the same observation fibre have different query values, no
+deterministic procedure reading only $y$ can be correct in both worlds.
+\end{theorem}
+
+\begin{proof}
+The image of $\Omega_y$ under $q\circ G$ is exactly $\Theta_q(y)$. It is a
+singleton if and only if the map is constant on the fibre. In that case its
+unique value defines $d(y)$. Conversely, if $d(y)$ is correct for every world
+in the fibre, all those worlds must have query value $d(y)$. The final claim
+follows immediately: the procedure receives the same input in both worlds and
+therefore emits the same answer, which cannot equal two different values.
+\end{proof}
+
+This theorem turns a partial-observation failure into a scientific result
+rather than an invitation to invent a fifth rule over the same information.
+When a coordinate erased by extraction is the only fact distinguishing two
+source relations, model capacity, prompt changes, and a more elaborate
+comparison rule cannot restore it. The remedy must either acquire information,
+declare an assumption that removes worlds from the fibre, or return a
+set-valued/unresolved answer.
+
+\subsection{A canonical sufficient interface}
+
+The envelope is not a demand that every integration system share one internal
+architecture. It defines the least claim-relative interface a downstream
+consumer must be able to recover.
+
+\begin{definition}[Envelope sufficiency]
+A summary $S:\mathcal Y\to\mathcal Z$ is sufficient for query $q$ when there
+exists a decoder $h$ such that
+\begin{equation}
+  \Theta_q(y)=h(S(y))\qquad\text{for every }y\in\mathcal Y.
+\end{equation}
+Thus equal summaries may never hide different identified sets.
+\end{definition}
+
+\begin{theorem}[Universal factorisation of sufficient interfaces]
+\label{thm:factorisation}
+The map $T_q:y\mapsto\Theta_q(y)$ is sufficient for $q$. Every other sufficient
+summary $S$ refines it: there is a map $h$ with $T_q=h\circ S$. Consequently,
+all sufficient implementations presented with the same downstream loss have
+the same robust loss table and the same set of minimax actions, up to ties.
+\end{theorem}
+
+\begin{proof}
+$T_q$ is decoded by the identity map. The factorisation for another sufficient
+$S$ is its defining decoder. Robust upper loss for action $a$ is a function
+only of the recovered set,
+$\sup_{\theta\in T_q(y)}L(a,\theta)$. Equal recovered sets therefore give the
+same value for every action, and minimisation gives the same optimal-action
+set.
+\end{proof}
+
+This theorem explains both the ambition and the limit of the architecture. A
+semantic product that exposes exactly the same identified set is not an
+inferior baseline; it is an information-equivalent implementation and must
+tie at this interface. A product that collapses two observations with
+different identified sets is insufficient for that query, no matter how rich
+its remaining representation is. Any empirical advantage must therefore come
+from a genuinely finer observation, justified constraints, a more faithful
+approximation to the envelope, or a different declared downstream loss---not
+from the name or central location of the layer.
+
+\subsection{Information refinement and the observation floor}
+
+Say that $O_2$ refines $O_1$ when there is a map $r$ such that
+$O_1=r\circ O_2$. Thus $O_2$ retains at least as much information as $O_1$;
+the relation is deterministic and makes no probabilistic sufficiency claim.
+Let $\mathcal A$ be a finite downstream action set and
+$L:\mathcal A\times\Theta\to[0,\infty)$ a declared loss. Define the robust
+decision floor
+\begin{equation}
+  B_q(y)=\min_{a\in\mathcal A}\ \sup_{\theta\in\Theta_q(y)}L(a,\theta).
+  \label{eq:decision-floor}
+\end{equation}
+
+\begin{theorem}[Information-refinement monotonicity]
+\label{thm:refinement}
+If $O_2$ refines $O_1$, then for every realised world $\omega$,
+\begin{equation}
+ \Theta^{(2)}_q(O_2(\omega))
+ \subseteq
+ \Theta^{(1)}_q(O_1(\omega))
+ \quad\text{and}\quad
+ B^{(2)}_q(O_2(\omega))\leq B^{(1)}_q(O_1(\omega)).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Every world having the refined observation $O_2(\omega)$ also has coarse
+observation $r(O_2(\omega))=O_1(\omega)$, so the refined fibre is a subset of
+the coarse fibre. Taking images under $q\circ G$ preserves inclusion. For any
+fixed action, the supremum of its loss over a subset cannot increase; taking
+the minimum over actions preserves the inequality.
+\end{proof}
+
+The quantity $B_q(y)$ is an observation floor, not a defect score for a
+particular algorithm. It can fall when truthful extraction, measurement,
+provenance, or source acquisition refines the observation. It cannot be made
+to disappear merely by changing the decision rule over the same fibre. For a
+candidate rule $\delta$, its floor-adjusted avoidable harm is
+\begin{equation}
+ X_\delta(y)=
+ \sup_{\theta\in\Theta_q(y)}L(\delta(y),\theta)-B_q(y)\geq 0.
+ \label{eq:excess-harm}
+\end{equation}
+This is the quantity a successor experiment should compare. Counting total
+error without subtracting or stratifying by the observation floor confounds
+avoidable decision failure with information that no compared rule received.
+
+\subsection{Closed-form merge, split, and unresolved bounds}
+
+For a binary mapping query, let $\theta=1$ mean that glue is licensed and
+$\theta=0$ mean that it is not. The downstream actions are merge $M$, keep
+separate $S$, and unresolved $U$. A false merge costs $c_{\mathrm{FM}}>0$, a
+false split costs $c_{\mathrm{FS}}>0$, and deferral costs $c_U\geq0$.
+Suppose an independently justified credal description gives only
+\begin{equation}
+  \Pr(\theta=1\mid y)\in[\underline p(y),\overline p(y)].
+\end{equation}
+No point probability is manufactured when this interval is wide.
+
+\begin{proposition}[Robust downstream decision bound]
+\label{prop:binary-bound}
+The worst-case expected losses of the three actions are
+\begin{equation}
+ \overline R(M\mid y)=c_{\mathrm{FM}}(1-\underline p),\quad
+ \overline R(S\mid y)=c_{\mathrm{FS}}\overline p,\quad
+ \overline R(U\mid y)=c_U.
+ \label{eq:binary-risk}
+\end{equation}
+Consequently, unresolved is minimax-optimal whenever
+\begin{equation}
+ c_U\leq
+ \min\{c_{\mathrm{FM}}(1-\underline p),
+       c_{\mathrm{FS}}\overline p\}.
+ \label{eq:defer-bound}
+\end{equation}
+With no probabilistic authority beyond the vacuous interval $[0,1]$, this
+reduces to
+\[
+ c_U\leq\min\{c_{\mathrm{FM}},c_{\mathrm{FS}}\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Merging incurs loss only when $\theta=0$, so its expected loss is
+$c_{\mathrm{FM}}(1-p)$ and is maximised at $p=\underline p$. Keeping separate
+incurs loss only when $\theta=1$, so its expected loss is
+$c_{\mathrm{FS}}p$ and is maximised at $p=\overline p$. Deferral has constant
+loss. Comparing the three upper risks gives the criterion.
+\end{proof}
+
+The costs are downstream and use-specific. A clinical synthesis may assign a
+larger cost to a false merge than a discovery interface; a screening system
+may assign a larger cost to a false split. The portrait mechanism should
+expose the identified set and provenance needed to evaluate those choices,
+not silently encode one universal utility function.
+
+\subsection{Global composition is a joint-completion problem}
+
+Let each accepted source or mapping record impose a set
+$C_j\subseteq\Omega$ of worlds consistent with its licensed conditions. The
+jointly feasible set is
+\begin{equation}
+  F(y)=O^{-1}(y)\cap\bigcap_{j=1}^{m}C_j.
+  \label{eq:joint-completion}
+\end{equation}
+A global glue requires $F(y)\neq\varnothing$; a claim additionally requires
+its query to be constant on $F(y)$. Pairwise mapping success does not imply
+either condition.
+
+\begin{proposition}[Pairwise compatibility is insufficient]
+\label{prop:pairwise}
+There exist three mapping constraints that are pairwise jointly satisfiable
+but have no common global completion. Hence a system that accepts every
+pairwise-compatible edge can license an inconsistent global portrait.
+\end{proposition}
+
+\begin{proof}
+Take $\Omega=\{1,2,3\}$ and
+$C_1=\{1,2\}$, $C_2=\{2,3\}$, $C_3=\{1,3\}$. Every pairwise intersection is
+nonempty, but $C_1\cap C_2\cap C_3=\varnothing$.
+\end{proof}
+
+Constraint processing and acyclic join theory provide stronger algorithms for
+deciding global consistency than this elementary counterexample
+\cite{dechter2003constraint}. The point here is architectural: pairwise
+ontology or schema correspondences are proposals for $C_j$, not self-executing
+authority for a global merge. Empty joint completion is an identified global
+obstruction. Multiple completions with different query values are partial
+identification. Multiple source-valid views inside every completion are an
+identified plural portrait.
+
+\subsection{Evaluation implied by the theory}
+
+The envelope theory changes the scientific target from forced-label accuracy
+to four jointly reported quantities:
+\begin{enumerate}
+  \item \emph{validity}: whether protected source-grounded truth is excluded
+        from the returned envelope;
+  \item \emph{sharpness}: the size or decision diameter of the envelope,
+        reported only together with validity;
+  \item \emph{floor-adjusted decision harm}: Equation~\eqref{eq:excess-harm}
+        under a declared downstream loss; and
+  \item \emph{information value}: the reduction in the identified set or
+        decision floor from a specified observation refinement.
+\end{enumerate}
+These targets envelop the original glue-or-obstruction calculus. A singleton
+envelope recovers an ordinary determinate mapping; a non-singleton envelope
+explains why unresolved is required; an empty joint-completion set certifies a
+global obstruction. The current experiments cover only special cases of this
+theory. They do not by themselves establish calibrated naturalistic envelopes
+or downstream utility.
+
+\endinput

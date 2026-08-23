@@ -1,0 +1,32 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#777",
+  "pr": "SzeChunYiu/ORION#779",
+  "workflow": {
+    "name": "orion-qg-qg13v2-combined-edit",
+    "run_id": 32490216858
+  },
+  "artifact": {
+    "id": 9449455831,
+    "name": "orion-qg-qg13v2-14708fb3d8902ee2cfd039f062b772e1f8b89d18",
+    "digest": "sha256:5693dfa5990eeed540e2fc8b33d862e0815c540cfb9a001a6409a61820a27dcb"
+  },
+  "head_sha": "14708fb3d8902ee2cfd039f062b772e1f8b89d18",
+  "source_result_digest": "e0c15ad1fe623228f436c0a10a017d419b589a30b8b04cf41f1bf139af000fb3",
+  "terminal": "QG13V2_MINIMAL_COMBINED_EDIT_OBSTRUCTION",
+  "generic_lane": {
+    "decision": "ACCEPT",
+    "checks_all": true
+  },
+  "native_lane": {
+    "decision": "ACCEPT_MINIMAL_OBSTRUCTION",
+    "responsibility": "RESP:OBS",
+    "final_phase": "OBSTRUCTION_RECORDED",
+    "terminal": "QG13V2_NATIVE_OBSTRUCTION_RECORDED"
+  },
+  "both_accept": true,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "successor_permission": "A successor may enlarge the edit grammar only in a new prospectively frozen packet; this V2 obstruction remains immutable."
+}

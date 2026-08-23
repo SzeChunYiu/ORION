@@ -1,0 +1,89 @@
+name: orion-qg-qg9-t1-tightness
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG9T1_*'
+      - 'development/orion-qg-regime-geometry/qg9_t1_*'
+      - 'research/extensions/orion-qg/qg9_t1_support4_tightness*.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg9_t1_tightness*.py'
+      - '.github/workflows/orion-qg-qg9t1.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg9t1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg9t1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      QG9T1_BASE: afe7994bd5e362b2e8d40482f2dde9689e6ef708
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG9T1_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG9T1_BASE}")" = "${QG9T1_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact solver stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native control and amendment
+        run: pytest -q packages/orion-research-harness/tests/test_qg9_t1_tightness.py packages/orion-research-harness/tests/test_qg9_t1_tightness_amended.py
+      - name: Run tightness hunt through both ORION instruments
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg9_t1_dual_harness_amended.py | tee artifacts/orion-qg-qg9t1-summary.json
+      - name: Deterministic analyzer replay
+        shell: bash
+        run: |
+          set -o pipefail
+          python research/extensions/orion-qg/qg9_t1_support4_tightness_amended.py --output artifacts/orion-qg-qg9t1-support4-tightness-replay.json | tee artifacts/orion-qg-qg9t1-replay.log
+          cmp artifacts/orion-qg-qg9t1-support4-tightness.json artifacts/orion-qg-qg9t1-support4-tightness-replay.json
+      - name: Enforce tightness / bounded negative / cannot-check
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg9t1-support4-tightness.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg9t1-generic-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg9t1-dual-harness.json').read_text())
+          allowed={'QG9T1_R6I_SUPPORT4_TIGHT_WITNESS_EXACT','QG9T1_NO_SUPPORT4_TIGHT_WITNESS_IN_FROZEN_PANEL','QG9T1_CAP3_SOLVER_CANNOT_CHECK','QG9T1_CANDIDATE_BINDING_FAILURE'}
+          assert d['terminal'] in allowed and d['both_accept'] is True
+          assert g['decision']=='ACCEPT' and all(g['checks'].values())
+          cg=a['candidate_generation']; n=cg['candidate_count']; oc=cg['orientation_counts']
+          assert 0<n<=72 and oc['0']<=36 and oc['1']<=36 and n==oc['0']+oc['1']
+          assert a['engineering_amendment']=='QG9T1_ENGINEERING_AMENDMENT_1.md'
+          assert a['support3_theorem_authority'] is False and a['novelty_authority'] is False and a['physical_quantum_advantage_claim'] is False
+          assert a['network_access'] is False and a['chemistry_sources_read'] is False and a['protected_subject_read'] is False
+          if d['terminal']=='QG9T1_R6I_SUPPORT4_TIGHT_WITNESS_EXACT':
+              p=a['positive_witness'];assert p is not None and p['C_cap3']>p['candidate']['U4'];assert p['configs_solved']==54;assert p['production_C_DP']<=p['candidate']['U4'];assert all(p['production_witness_checks'].values())
+          elif d['terminal']=='QG9T1_NO_SUPPORT4_TIGHT_WITNESS_IN_FROZEN_PANEL':
+              assert len(a['scan_rows'])==n and all(r['rejection'] is not None for r in a['scan_rows'])
+          elif d['terminal']=='QG9T1_CAP3_SOLVER_CANNOT_CHECK':
+              assert any(r['solver_failure'] is not None for r in a['scan_rows'])
+          else:
+              assert not (0<n<=72 and oc['0']<=36 and oc['1']<=36)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg9t1-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg9t1-support4-tightness.json
+            artifacts/orion-qg-qg9t1-support4-tightness-replay.json
+            artifacts/orion-qg-qg9t1-generic-verification.json
+            artifacts/orion-qg-qg9t1-dual-harness.json
+            artifacts/orion-qg-qg9t1-summary.json
+            artifacts/orion-qg-qg9t1-replay.log
+            .orion-qg-qg9t1-generic/.orion-harness/**
+            .orion-qg-qg9t1-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

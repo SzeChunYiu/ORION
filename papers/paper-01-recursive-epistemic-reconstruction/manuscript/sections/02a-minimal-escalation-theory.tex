@@ -1,0 +1,272 @@
+\section{Epistemic transition envelopes}
+\label{sec:escalation-theory}
+
+The general object studied in this paper is not a particular diagnosis,
+repair, rollback, or belief-revision component. It is an
+\emph{epistemic transition envelope}: the admissible frontier of scientific
+changes after those components have supplied their outputs. The envelope
+separates three questions that are often collapsed: which transitions could
+restore performance, which transitions the evidence authorizes, and which
+authorized transition is minimal in the scientific change order. The
+$K/W/M$ architecture used in the experiments is one realization of this
+object, not part of its mathematical definition.
+
+\subsection{Contexts, transition orders, and admissible fronts}
+
+Let $\mathcal E$ be an arbitrary set of evidence contexts. A context $e$ has
+a candidate transition space $\mathcal R_e$ and a strict partial order
+$\prec_e$. The interpretation of $r'\prec_e r$ is that $r'$ makes strictly
+less scientific change than $r$ in context $e$. The order need not be a
+chain: revisions of a measurement model and a problem boundary, for example,
+can be incomparable. We require only that the order restricted to any
+admissible set encountered below be well founded. This includes every finite
+revision space but also permits infinite spaces without infinite descending
+chains.
+
+Let $C_{1,e},\ldots,C_{k,e}$ be hard admissibility predicates. Their
+conjunction, admissible set, and minimal front are
+\[
+ C_e(r)=\bigwedge_{i=1}^{k}C_{i,e}(r),\qquad
+ \mathcal A(e)=\{r\in\mathcal R_e:C_e(r)\},\qquad
+ \mathcal F(e)=\min_{\prec_e}\mathcal A(e).
+\]
+For the scientific-escalation instance evaluated here, $k=5$ and
+\begin{align*}
+J_e(r)&:\ \text{the evidence licenses revision at the layer changed by $r$},\\
+T_e(r)&:\ \text{$r$ restores the same registered task under intervention},\\
+P_e(r)&:\ \text{$r$ preserves every registered sibling or invariant},\\
+D_e(r)&:\ \text{observed dependency impact equals the declared reopen scope},\\
+B_e(r)&:\ \text{$r$ respects the registered action and resource budget}.
+\end{align*}
+Other scientific domains may replace or add hard predicates without changing
+the results below.
+
+Let $Q(e)$ say that the registered task has a material residual. The
+transition decision $\Gamma$ is
+\[
+\Gamma(e)=
+\begin{cases}
+\mathsf{NO\_CHANGE}, & \neg Q(e),\\
+\mathsf{UNRESOLVED}, & Q(e)\ \text{and}\ \mathcal A(e)=\varnothing,\\
+r, & Q(e)\ \text{and}\ \mathcal F(e)=\{r\},\\
+\mathsf{MEASURE}(\mathcal F(e)), & Q(e)\ \text{and}\
+|\mathcal F(e)|>1.
+\end{cases}
+\]
+The last output carries the unresolved front rather than hiding an arbitrary
+tie-break. A later discriminating observation may refine the context and
+order. Thus abstention and further measurement are identified scientific
+actions, not missing values silently converted to failure or success.
+
+\paragraph{Proposition 1 (sound, non-compensatory minimality).}
+If $\Gamma(e)=r\in\mathcal R_e$, then every $C_{i,e}(r)$ holds and there is no
+$r'\in\mathcal A(e)$ with $r'\prec_e r$. Moreover, optimizing any utility,
+accuracy, or cost score over $\mathcal F(e)$ cannot select a transition that
+fails a hard predicate, regardless of its score.
+
+\paragraph{Proof.}
+The first two statements are the definition of membership in
+$\mathcal F(e)$. The last follows from
+$\mathcal F(e)\subseteq\mathcal A(e)$: candidates outside the conjunction are
+not in the optimization domain and cannot compensate for a failed gate.
+\hfill$\square$
+
+This is the minimal-escalation safety property tested by the mechanical
+studies. The broader envelope formalism, however, is not tied to five gates,
+three epistemic layers, or a finite generator.
+
+\subsection{Exact substitution is a factorization property}
+
+Suppose an arbitrary product of donor mechanisms exposes an interface
+$\phi:\mathcal E\to\mathcal Z$. The interface can combine outputs from
+diagnosis, repair, belief revision, dependency maintenance, model discovery,
+planning, or human review. A downstream policy sees $\phi(e)$ but not $e$.
+Write $\mathcal Y$ for the output space of $\Gamma$.
+
+\paragraph{Theorem 1 (exact donor-substitution theorem).}
+The following are equivalent:
+\begin{enumerate}
+  \item there exists a policy $g:\phi(\mathcal E)\to\mathcal Y$ such that
+  $\Gamma=g\circ\phi$;
+  \item $\Gamma$ is constant on every fibre of $\phi$, that is,
+  \[
+  \phi(e)=\phi(e')\quad\Longrightarrow\quad\Gamma(e)=\Gamma(e');
+  \]
+  \item the partition of contexts induced by $\phi$ refines the partition
+  induced by the required transition decision.
+\end{enumerate}
+
+\paragraph{Proof.}
+If $\Gamma=g\circ\phi$, equal interface values give equal decisions, so (1)
+implies (2). If (2) holds, define $g(z)=\Gamma(e)$ for any $e$ with
+$\phi(e)=z$. Fibre constancy makes this definition independent of the chosen
+representative, proving (1). Statement (3) is the partition form of (2).
+\hfill$\square$
+
+The theorem gives a necessary and sufficient condition, not merely the
+sufficient condition that a donor product reconstruct the full tuple
+$(\mathcal R_e,\prec_e,C_{1,e},\ldots,C_{k,e},Q(e))$. Full reconstruction
+guarantees equivalence, but a smaller statistic is enough whenever it separates
+all contexts requiring different decisions. Conversely, component count,
+mechanism sophistication, and successful repair rates cannot compensate for a
+mixed decision fibre. This is the precise sense in which an envelope can
+absorb the strongest available donor mechanisms while still identifying a missing
+interface relation.
+
+\paragraph{Corollary 1 (information-equivalent products must tie).}
+Any donor product that reconstructs the transition tuple above and applies the
+same decision rule is extensionally identical to $\Gamma$ on every context.
+
+The ideal-product tie in Section~\ref{sec:revision} is therefore a required
+negative boundary. It is evidence against an inherent centralization or
+expressivity advantage, not an inconvenient null result.
+
+\subsection{The optimal error of a lossy scientific interface}
+
+Exact equivalence is a worst-case property. A distributional version
+quantifies how much error remains when a donor interface merges contexts that
+usually, but not always, require the same transition. Let $E\sim\mu$ on a
+standard Borel context space, let $\phi$ be measurable into a standard Borel
+interface space, let the output alphabet $\mathcal Y$ be finite,
+and define the regular conditional probabilities
+\[
+p_y(z)=\Pr\{\Gamma(E)=y\mid\phi(E)=z\}.
+\]
+
+\paragraph{Theorem 2 (mixed-fibre Bayes lower bound).}
+For every deterministic or randomized policy that uses only $\phi(E)$, its
+zero--one transition error satisfies
+\[
+\Pr\{\widehat\Gamma\ne\Gamma(E)\}
+\ \ge\
+1-\mathbb E_{\phi(E)}\!\left[\max_{y\in\mathcal Y}p_y(\phi(E))\right].
+\]
+A fibrewise maximum-probability decoder attains equality. Consequently, zero
+error is possible exactly when the conditional decision distribution is a
+point mass almost surely.
+
+\paragraph{Proof.}
+Condition on $\phi(E)=z$. If a randomized decoder selects $y$ with probability
+$q_y(z)$, its conditional success probability is
+$\sum_y q_y(z)p_y(z)\leq\max_y p_y(z)$. Averaging and complementing gives the
+bound. Concentrating $q$ on a maximizing label attains it. The final claim
+follows because the expectation of the maximum is one exactly when the
+conditional distribution is almost surely degenerate. \hfill$\square$
+
+The right-hand side is the irreducible \emph{decision-fibre impurity} of the
+interface. It supplies a population estimand for naturalistic evaluation:
+the scientific question is not merely whether a composed system contains the
+right named modules, but whether its visible interface collapses contexts with
+different licensed transitions. This decision-theoretic reading is related
+to Blackwell's comparison of experiments \cite{blackwell1953}; the contribution
+here is its specialization to the typed, hard-gated transition object and the
+empirical isolation of a particular omitted coupling, not the general idea of
+comparing information structures.
+
+\paragraph{Corollary 2 (component-essentiality criterion).}
+Let the complete interface be $S=(S_1,\ldots,S_m)$ and let $S_{-j}$ omit one
+component. Exact decisions are possible from $S_{-j}$ if and only if no two
+contexts agree on $S_{-j}$ while requiring different $\Gamma$ decisions. If a
+fibre contains two equiprobable decision classes, every policy omitting $S_j$
+has conditional error at least $1/2$ on that fibre.
+
+This turns every negative ablation into a new scientific question: characterize
+the mixed fibres it creates, identify which missing relation splits them, and
+test whether those fibres occur under a naturalistic acquisition distribution.
+It does not turn a failed outcome into a positive result by relabeling it.
+
+\paragraph{Corollary 3 (licence-coupling impossibility).}
+Consider an interface that exposes candidate revisions, recovery results,
+invariant checks, dependency impacts, and budgets, but omits $J_e$, the relation
+coupling evidence to the layer authorized to change. No policy using only that
+interface can agree with $\Gamma$ on every context. Under an equal mixture of
+the two contexts below, every policy has error at least $1/2$.
+
+\paragraph{Proof.}
+Take $r_{\mathrm L}\prec r_{\mathrm H}$. Construct two contexts with identical
+candidate, recovery, preservation, impact, and budget outputs. In $e_0$, the
+evidence licenses only $r_{\mathrm L}$. In $e_1$, a registered exclusion
+witness licenses only $r_{\mathrm H}$. Hence
+$\Gamma(e_0)=r_{\mathrm L}$ and $\Gamma(e_1)=r_{\mathrm H}$, although the
+reduced interface is identical. Theorem~2 gives the equal-mixture bound.
+\hfill$\square$
+
+The licence example is one instance of Theorems~1--2. The same analysis
+applies to any omitted preservation, scope, measurement, authority, or resource
+relation that changes the decision within an otherwise identical interface
+fibre.
+
+\subsection{Absorbing stronger theories without erasing old results}
+
+A broad framework must be able to incorporate a stronger donor theory without
+silently changing old conclusions. Let an old transition system on
+$\mathcal R$ have admissible set $\mathcal A$ and front $\mathcal F$. Let an
+extended system on $\mathcal R^+$ have admissible set $\mathcal A^+$ and front
+$\mathcal F^+$, with an order embedding $i:\mathcal R\hookrightarrow
+\mathcal R^+$ that preserves and reflects the old order and satisfies
+$\mathcal A^+\cap i(\mathcal R)=i(\mathcal A)$. Write
+$\mathcal N=\mathcal A^+\setminus i(\mathcal A)$ for the genuinely new
+admissible transitions and assume the extended admissible order is well
+founded.
+
+\paragraph{Theorem 3 (conservative-envelope criterion).}
+The extension preserves the old scientific front exactly,
+$\mathcal F^+=i(\mathcal F)$, if and only if both conditions hold:
+\begin{enumerate}
+  \item no $n\in\mathcal N$ lies below an old minimum $i(f)$; and
+  \item every $n\in\mathcal N$ lies above at least one old minimum $i(f)$,
+  for some $f\in\mathcal F$.
+\end{enumerate}
+
+\paragraph{Proof.}
+If the conditions hold, no old minimum gains a predecessor, while every new
+admissible transition has an old admissible predecessor. The minimal elements
+are therefore exactly the embedded old minima. Conversely, if the fronts are
+equal, a new transition below an old minimum would destroy that minimum. And
+because the extended order is well founded, every nonminimal new transition
+has a minimal predecessor; equality of the fronts makes that predecessor an
+embedded member of $\mathcal F$. \hfill$\square$
+
+The criterion distinguishes assimilation from evasion. A donor mechanism that
+only adds scientifically broader alternatives above an existing admissible
+front can be absorbed conservatively. A donor that supplies a genuinely
+narrower authorized transition must change the front; preserving the old claim
+in that case would be scientifically wrong. Historical adverse results remain
+attached to their original transition system, while a materially enlarged
+system receives a new identity and a new test.
+
+\paragraph{Proposition 2 (universal front representation).}
+Fix any partial order $(\mathcal R,\preceq)$. Every antichain-valued map
+$H:\mathcal E\to 2^{\mathcal R}$ is the minimal-front map of an epistemic
+transition envelope.
+
+\paragraph{Proof.}
+For each context define the admissible set as the upward closure
+$\mathcal A_H(e)=\{r:\exists h\in H(e),\ h\preceq r\}$. Every $h\in H(e)$ is
+minimal because $H(e)$ is an antichain, and every other admissible element has
+some $h$ strictly below it. Hence $\min\mathcal A_H(e)=H(e)$. \hfill$\square$
+
+The proposition removes any dependence on the particular $K/W/M$ chain. The
+same theory can represent incomparable transitions among questions,
+representations, measurements, model classes, experimental designs, search
+policies, and methods, provided their scientific change relation is made
+explicit.
+
+\subsection{What the present experiments establish}
+
+The mutation-necessity experiment in Section~\ref{sec:necessity} tests one
+five-predicate envelope and direct removals of its gates. The
+revision-responsibility battery in Section~\ref{sec:revision} tests a finite set
+of mixed fibres created by omitting the licence coupling and verifies exact
+factorization with the information-equivalent product. The historical study
+in Section~\ref{sec:hidden-formulation} remains the falsifier that exposed the
+unsafe shortcut from diagnosis to high-level rewrite.
+
+These studies do not estimate decision-fibre impurity in open science. The
+wide successor therefore targets source-clustered naturalistic episodes across
+eight causal families and four scientific domains, two source-disjoint waves,
+and nine frozen comparator families. Until source snapshots, a strongest
+runnable external comparator, changed semantic hosts, and independent scorer
+custody are bound and the study is executed, that successor is a design rather
+than evidence. The analytic theory is general; the present empirical authority
+is not.

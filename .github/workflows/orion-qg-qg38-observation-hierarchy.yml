@@ -1,0 +1,78 @@
+name: orion-qg-qg38-observation-hierarchy
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/orion-qg-qg38-observation-hierarchy.yml'
+      - 'development/orion-qg-regime-geometry/QG38_*'
+      - 'development/orion-qg-regime-geometry/qg38_*'
+      - 'development/orion-qg-regime-geometry/run_qg38_dual_harness.py'
+      - 'research/extensions/orion-qg/QG38_*'
+      - 'research/extensions/orion-qg/qg38_*'
+permissions:
+  contents: read
+jobs:
+  exact-hierarchy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile frozen lane
+        run: python -m py_compile research/extensions/orion-qg/qg38_observation_hierarchy.py development/orion-qg-regime-geometry/qg38_generic_verify.py development/orion-qg-regime-geometry/qg38_native_verify.py development/orion-qg-regime-geometry/run_qg38_dual_harness.py
+      - name: Execute dual receipt composition
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg38_dual_harness.py | tee artifacts/orion-qg-qg38-summary.log
+      - name: Deterministic replay
+        run: |
+          python research/extensions/orion-qg/qg38_observation_hierarchy.py --output artifacts/orion-qg-qg38-replay.json > artifacts/orion-qg-qg38-replay.log
+          cmp artifacts/orion-qg-qg38-observation-hierarchy.json artifacts/orion-qg-qg38-replay.json
+      - name: QG-32c value tamper must reject
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('research/extensions/orion-qg/QG38_PARENT_QG32C_PROJECTION.json');d=json.loads(p.read_text());d['MINIMUM_FIXED_PROBE_CARDINALITY']=4;u={k:v for k,v in d.items() if k!='result_digest'};d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest();Path('artifacts/qg38-qg32c-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg38_generic_verify.py --qg32c artifacts/qg38-qg32c-tampered.json --output artifacts/qg38-qg32c-tamper-verify.json > artifacts/qg38-qg32c-tamper.log
+          python - <<'PY'
+          import json;from pathlib import Path
+          d=json.loads(Path('artifacts/qg38-qg32c-tamper-verify.json').read_text());assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: QG-36 semantic-parent tamper must reject
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('research/extensions/orion-qg/QG38_PARENT_QG36_PROJECTION.json');d=json.loads(p.read_text());d['qg32_parent_sha256']='0'*64;u={k:v for k,v in d.items() if k!='result_digest'};d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest();Path('artifacts/qg38-qg36-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg38_generic_verify.py --qg36 artifacts/qg38-qg36-tampered.json --output artifacts/qg38-qg36-tamper-verify.json > artifacts/qg38-qg36-tamper.log
+          python - <<'PY'
+          import json;from pathlib import Path
+          d=json.loads(Path('artifacts/qg38-qg36-tamper-verify.json').read_text());assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce exact authority ceiling
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('artifacts/orion-qg-qg38-observation-hierarchy.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg38-dual-harness.json').read_text())
+          assert d['both_accept'] is True and d['terminal']=='QG38_EXACT_STRICT_OBSERVATION_COST_HIERARCHY_MACHINE_CHECKED'
+          assert (d['D_star'],d['F_star'],d['U_star'])==(3,4,5)
+          assert s['gaps']=={'F_minus_D':1,'U_minus_D':2,'U_minus_F':1}
+          assert s['ratios']=={'F_over_D':'4/3','U_over_D':'5/3','U_over_F':'5/4'}
+          for x in (s,d):
+            for k in ('HARDWARE_MEASUREMENT_MINIMUM','MINIMUM_FULL_FINITE_OPTIMUM_PROBES','COMPILER_OPTIMIZATION_COST_ADVANTAGE','COMPILER_RUNTIME_ADVANTAGE','GENERIC_ACTIVE_LEARNING_NOVELTY','AUTONOMOUS_SKILL_SELECTION_AUTHORITY','physical_quantum_advantage_claim','novelty_authority'): assert x[k] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg-qg38-${{ github.event.pull_request.head.sha }}
+          path: artifacts/orion-qg-qg38-* artifacts/qg38-*
+          if-no-files-found: warn

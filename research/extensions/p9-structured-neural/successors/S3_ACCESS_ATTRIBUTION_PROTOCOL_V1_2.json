@@ -1,0 +1,25 @@
+{
+  "schema": "P9.S3AccessAttributionProtocol.v1.2",
+  "date": "2026-08-19",
+  "parent_protocol": "S3_ACCESS_ATTRIBUTION_PROTOCOL_V1_1.json",
+  "parent_issue": 589,
+  "freeze_issue": 593,
+  "parent_d1_subject_sha": "af218de0416c90cdf6e0221098c97e181e29a6e0",
+  "parent_d1_outcome_accessed": true,
+  "s3_outcome_accessed": false,
+  "amendment_reason": "Pre-protected source audit found that D1 _serialize_typed does not encode list indices in paths. Ordered list semantics, including directed dependency pairs [0,1] versus [1,0], are therefore carried partly by token sequence order. The V1/V1.1 requirement of arbitrary token-order permutation invariance would destroy semantic information and the initial multiset comparator could falsely merge reversed dependencies.",
+  "scientific_change": "F1 must preserve the ordered token subsequence within each side/coordinate block. It may be invariant to global reordering of whole coordinate blocks because coordinate paths identify those blocks. All D1 data, labels, splits, historical arms, model grid, F1/F2 thresholds, and protected test remain unchanged.",
+  "removed_hostile_requirement": "arbitrary token order permutation does not change F1 features",
+  "replacement_hostile_requirements": [
+    "reordering whole side/coordinate blocks while preserving within-block token order leaves F1 features unchanged",
+    "reversing the ordered children of a directed dependency tuple changes the dependencies equality feature",
+    "F2 equals the historical exact typed comparator on train+dev before protected S3 execution"
+  ],
+  "interpretation": [
+    "The canonical serialization is lossless only when its order semantics are respected.",
+    "S3 tests generic paired-coordinate access over the existing serialization; it does not claim that sequence order is irrelevant.",
+    "Any future order-invariant representation must first make ordered child positions explicit, e.g. indexed paths, tuples, pointers, or another reversible encoding."
+  ],
+  "outcome_policy": "No S3 protected test access before V1.2 hostile tests and implementation are committed and the train+dev-only exact-equivalence gate is green.",
+  "authority": "PROTOCOL_AMENDMENT_ONLY_NO_RESULT_AUTHORITY"
+}

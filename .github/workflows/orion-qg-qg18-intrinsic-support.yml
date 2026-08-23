@@ -1,0 +1,117 @@
+name: orion-qg-qg18-intrinsic-support
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG18_*'
+      - 'development/orion-qg-regime-geometry/qg18_*'
+      - 'development/orion-qg-regime-geometry/run_qg18_dual_harness.py'
+      - 'research/extensions/orion-qg/qg18_*'
+      - '.github/workflows/orion-qg-qg18-intrinsic-support.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg18-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg18-intrinsic-support:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QG18_QG7_DIGEST: 159d174fbb17a66aeb39a3efb53cf4c505f0a86ce8ef1dff76337d00837d152f
+    steps:
+      - name: Checkout exact QG-18 head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert main lineage and frozen parents
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "c5ba39fef4f25c46de5fb69bf07f50530f4693ca^{commit}"
+          test "$(git merge-base HEAD c5ba39fef4f25c46de5fb69bf07f50530f4693ca)" = "c5ba39fef4f25c46de5fb69bf07f50530f4693ca"
+          test -f research/extensions/orion-qg/QG7_BPRIME_COMPLETENESS_RESULTS.json
+          test -f research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg18_tare_intrinsic_support.py \
+            development/orion-qg-regime-geometry/qg18_generic_verify.py \
+            development/orion-qg-regime-geometry/qg18_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg18_dual_harness.py
+      - name: Execute QG-18 through generic and native ORION
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg18_dual_harness.py \
+            | tee artifacts/orion-qg-qg18-dual-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg18_tare_intrinsic_support.py \
+            --output artifacts/orion-qg-qg18-intrinsic-support-replay.json \
+            > artifacts/orion-qg-qg18-replay.log
+          cmp \
+            artifacts/orion-qg-qg18-intrinsic-support.json \
+            artifacts/orion-qg-qg18-intrinsic-support-replay.json
+      - name: Enforce kappa-2 or fail closed
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg18-intrinsic-support.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg18-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg18-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg18-dual-harness.json').read_text())
+          pos='QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS'
+          assert a['terminal']==pos
+          assert all(a['gates'].values())
+          assert a['qg7_parent']['result_digest']=='159d174fbb17a66aeb39a3efb53cf4c505f0a86ce8ef1dff76337d00837d152f'
+          assert a['qg7_parent']['selected_index']==0
+          assert a['support2_feasible_cost']==7
+          assert a['production_cap1_cost']==8
+          assert a['strict_gap_cap1_minus_support2']==1
+          assert a['support2_max_frame_support']==2
+          assert a['r6s_parent']['universal_support_upper_bound']==2
+          assert a['derivation_kind']=='RECEIPT_DERIVED_COROLLARY_NOT_BLIND_DISCOVERY'
+          assert g['decision']=='ACCEPT_KAPPA2' and g['all_checks'] is True
+          assert g['independent_support2']['cost']==7
+          assert g['independent_cap1']['cost']==8
+          assert g['independent_cap1']['support1_pair_count']==18
+          assert n['decision']=='ACCEPT_KAPPA2' and n['all_checks'] is True
+          assert n['responsibility']=='KAPPA2_COROLLARY'
+          assert d['terminal']==pos and d['both_accept'] is True
+          assert d['intrinsic_support_conclusion']==2
+          assert d['strict_gap']==1
+          assert a['novelty_authority'] is False and a['r6_authority'] is False
+          assert a['physical_quantum_advantage_claim'] is False
+          assert d['novelty_authority'] is False and d['r6_authority'] is False
+          assert d['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload QG-18 receipts and dual-harness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg18-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg18-intrinsic-support.json
+            artifacts/orion-qg-qg18-intrinsic-support-replay.json
+            artifacts/orion-qg-qg18-generic-verification.json
+            artifacts/orion-qg-qg18-native-verification.json
+            artifacts/orion-qg-qg18-dual-harness.json
+            artifacts/orion-qg-qg18-dual-summary.json
+            artifacts/orion-qg-qg18-replay.log
+            .orion-qg-qg18-generic/.orion-harness/**
+            .orion-qg-qg18-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

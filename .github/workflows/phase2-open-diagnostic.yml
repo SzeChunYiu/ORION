@@ -1,0 +1,57 @@
+name: phase2-open-diagnostic
+
+on:
+  push:
+    branches:
+      - agent/phase2-open-diagnostic
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wide-deep-diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION
+        run: python -m pip install -e '.[dev]'
+      - name: Run repository tests
+        run: pytest -q
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+      - name: Start local Ollama
+        run: |
+          nohup ollama serve > ollama.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:11434/api/tags >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat ollama.log
+          exit 1
+      - name: Pull frozen diagnostic model tag
+        run: ollama pull qwen3:0.6b
+      - name: Run real-network wide/deep diagnostic
+        run: |
+          mkdir -p phase2-open-diagnostic
+          ollama --version > phase2-open-diagnostic/ollama-version.txt
+          python research/phase2/run_open_diagnostic.py \
+            --model qwen3:0.6b \
+            --output-dir phase2-open-diagnostic
+      - name: Preserve Ollama service log
+        if: always()
+        run: cp ollama.log phase2-open-diagnostic/ollama.log || true
+      - name: Upload open diagnostic artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-open-diagnostic-${{ github.sha }}
+          path: phase2-open-diagnostic
+          if-no-files-found: warn
+          retention-days: 30

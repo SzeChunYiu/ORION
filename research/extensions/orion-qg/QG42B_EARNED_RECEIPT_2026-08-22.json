@@ -1,0 +1,188 @@
+{
+  "artifact_file_sha256": {
+    "orion-qg-qg42b-generic-verification.json": "6067b69c6a2788c57c71a60cddfe2e6c964b9f59b993dfeffe421b623d3209ed",
+    "orion-qg-qg42b-native-verification.json": "ac302b80592fa7342e497a9d3614dd3d972aefc25284d12efc1054369690b283",
+    "orion-qg-qg42b-panel.json": "ab18a2f7d1d5dc5b7f0008b2473e75e264482839c9aa9e03a7da4992c07cda4b",
+    "orion-qg-qg42b-pytket.json": "7ebc76ada2c5f0b86e5541052a787bf6432cf10da2cc8e9ed932f7581aa7bc70",
+    "qg42b-first.json": "7ebc76ada2c5f0b86e5541052a787bf6432cf10da2cc8e9ed932f7581aa7bc70",
+    "qg42b-second.json": "7ebc76ada2c5f0b86e5541052a787bf6432cf10da2cc8e9ed932f7581aa7bc70"
+  },
+  "authority": {
+    "ALL_CIRCUIT_THEOREM": false,
+    "BOUNDED_PYTKET_ALL_COLLISIONS_AUTHORITY": true,
+    "COMPARATIVE_COMPILER_PERFORMANCE": false,
+    "HARDWARE_NOISE_OR_FT_CLAIM": false,
+    "novelty_authority": false,
+    "physical_quantum_advantage_claim": false
+  },
+  "date": "2026-08-22",
+  "deterministic_replay": {
+    "production_byte_identical": true
+  },
+  "generic": {
+    "all_checks": true,
+    "checks": {
+      "all_layout_geometry_replayed": true,
+      "builder_blind": true,
+      "dead_instrument_control": true,
+      "hard_false": true,
+      "instrument_varies": true,
+      "layout_collapse_control": true,
+      "panel_complete": true,
+      "panel_digest": true,
+      "record_count": true,
+      "router_exercised": true,
+      "selection_flags": true,
+      "source_digest": true,
+      "terminal": true,
+      "version": true
+    },
+    "decision": "ACCEPT_BOUNDED_ALL_COLLISIONS_TRANSFER",
+    "independent_selection": {
+      "disjoint_line6": true,
+      "disjoint_ring6": true,
+      "line6": true,
+      "ring6": true,
+      "topology_stable_disjoint_pair_indices": [12]
+    },
+    "replayed_unique_graph_architecture_pairs": 32
+  },
+  "head_sha": "9bec3087f4947b4df1e2a8407b8f0bc8dfbce447",
+  "instrument_controls": {
+    "any_layout_dependent_cost": true,
+    "input_cx_count_dead_instrument_detected": true,
+    "router_exercised": true
+  },
+  "native": {
+    "all_checks": true,
+    "checks": {
+      "generic": true,
+      "scope": true,
+      "selection_agreement": true,
+      "source_terminal": true,
+      "version": true
+    },
+    "decision": "ACCEPT_BOUNDED_COMPLETE_COLLISION_INFORMATION_RESULT",
+    "terminal": "QG42B_PYTKET_ALL_COLLISIONS_SELECTION_SEPARATION_BOTH_TOPOLOGIES_MACHINE_CHECKED"
+  },
+  "panel": {
+    "collision_fiber_count": 5,
+    "collision_fiber_sizes": {
+      "[1,1,2,3,3,4]": 2,
+      "[1,1,3,3,3,3]": 2,
+      "[1,2,2,2,3,4]": 4,
+      "[1,2,2,3,3,3]": 4,
+      "[2,2,2,2,3,3]": 4
+    },
+    "complete_collision_pair_count": 20,
+    "isomorphism_classes_total": 24,
+    "labelled_graphs_enumerated": 6435,
+    "unique_graphs_in_collision_universe": 16
+  },
+  "panel_digest": "58233054eac4d1b8050e90c28841592e1904c0020d179168679633a67c6848f1",
+  "pr": 952,
+  "production_result_digest": "456ebcfc34f8ebae53e1617d8363d444334620ca0b7969bb8cf93c090385763e",
+  "schema": "ORIONQG.QG42B.EarnedReceipt.v1",
+  "selection_separation": {
+    "disjoint_line6": true,
+    "disjoint_ring6": true,
+    "line6": true,
+    "ring6": true,
+    "topology_stable_disjoint_pair_indices": [12]
+  },
+  "terminal": "QG42B_PYTKET_ALL_COLLISIONS_SELECTION_SEPARATION_BOTH_TOPOLOGIES_MACHINE_CHECKED",
+  "topology_stable_witness_pair_12": {
+    "architectures": {
+      "line6": {
+        "A": {
+          "argmin_count": 5,
+          "argmin_layout_indices": [245, 299, 302, 417, 420],
+          "cost_histogram": {"10": 60, "11": 88, "12": 111, "13": 120, "14": 116, "15": 84, "16": 42, "17": 14, "18": 2, "6": 5, "7": 15, "8": 24, "9": 39},
+          "cost_range": [6, 18],
+          "cost_vector_sha256": "4bbc0be8f125dea158263299329d3bc1e6d622a21280fc481924313b1ea04f0b",
+          "depth2q_vector_sha256": "8b4aad61c964ff828fd33f9d869556e8709c6102c697b64caa52eb3d321bcee5",
+          "implicit_wireswap_layout_count": 0,
+          "instrument_varies": true,
+          "minimum_two_qubit_gates": 6,
+          "route_return_true_layout_count": 720,
+          "router_exercised": true,
+          "total_gate_vector_sha256": "f1c95fea1bbef08a0b003f0f128bf74cb8c6615e4f20a904f0b224a0282d220d"
+        },
+        "B": {
+          "argmin_count": 2,
+          "argmin_layout_indices": [327, 562],
+          "cost_histogram": {"10": 71, "11": 99, "12": 116, "13": 113, "14": 99, "15": 71, "16": 43, "17": 18, "18": 7, "19": 2, "6": 2, "7": 10, "8": 24, "9": 45},
+          "cost_range": [6, 19],
+          "cost_vector_sha256": "86a6bda82e191f45db7f4cf2d9d0b1bec3cf424f99cea3d509b290be3a5054c3",
+          "depth2q_vector_sha256": "861c50dc9dd939a3d6f130d7413d53a2fe59856ec1ad4c81c3488fc0e0150d64",
+          "implicit_wireswap_layout_count": 0,
+          "instrument_varies": true,
+          "minimum_two_qubit_gates": 6,
+          "route_return_true_layout_count": 720,
+          "router_exercised": true,
+          "total_gate_vector_sha256": "2de0bc40a0c80e20524ce9f2691815d76922a166faf8876f7a957c43158c6f18"
+        },
+        "argmin_intersection_count": 0,
+        "argmin_intersection_indices": [],
+        "argmin_sets_differ": true,
+        "disjoint_selection_separation": true,
+        "jaccard": 0.0,
+        "same_optimum_value": true,
+        "selection_separation": true
+      },
+      "ring6": {
+        "A": {
+          "argmin_count": 3,
+          "argmin_layout_indices": [178, 242, 692],
+          "cost_histogram": {"10": 157, "11": 92, "12": 42, "13": 16, "4": 3, "5": 11, "6": 45, "7": 78, "8": 138, "9": 138},
+          "cost_range": [4, 13],
+          "cost_vector_sha256": "648dd8743ccd160b5c817f19eacbf09af9b6b1b96264e1ab326ce8b593237278",
+          "depth2q_vector_sha256": "93f792b1e0f19ce9b4aa68a5038999995f8a67af3b7835c433625f5d85e41453",
+          "implicit_wireswap_layout_count": 0,
+          "instrument_varies": true,
+          "minimum_two_qubit_gates": 4,
+          "route_return_true_layout_count": 720,
+          "router_exercised": true,
+          "total_gate_vector_sha256": "e44e3f4c7bc505da374f8308167a1997e874b1a949c288eb7db82fd4662549ac"
+        },
+        "B": {
+          "argmin_count": 9,
+          "argmin_layout_indices": [45, 74, 75, 169, 279, 397, 399, 468, 469],
+          "cost_histogram": {"10": 107, "11": 106, "12": 85, "13": 22, "4": 9, "5": 15, "6": 41, "7": 72, "8": 92, "9": 171},
+          "cost_range": [4, 13],
+          "cost_vector_sha256": "5d400cf8b4f00bfa2abfe6158905ade3a07eb974566b513ff92afb472965de3f",
+          "depth2q_vector_sha256": "d5b163cdad91947b590d47236a5e57cd153895e61dfebf30457b96ca52e7d615",
+          "implicit_wireswap_layout_count": 0,
+          "instrument_varies": true,
+          "minimum_two_qubit_gates": 4,
+          "route_return_true_layout_count": 720,
+          "router_exercised": true,
+          "total_gate_vector_sha256": "2193570d6f358d6ba7b05b638a740dc9c4e81a00c58f8455dada3242380d3006"
+        },
+        "argmin_intersection_count": 0,
+        "argmin_intersection_indices": [],
+        "argmin_sets_differ": true,
+        "disjoint_selection_separation": true,
+        "jaccard": 0.0,
+        "same_optimum_value": true,
+        "selection_separation": true
+      }
+    },
+    "degree_summary": [1, 2, 2, 3, 3, 3],
+    "graph_A_edges": [[0, 1], [0, 2], [0, 3], [1, 2], [1, 4], [2, 5], [3, 4]],
+    "graph_B_edges": [[0, 1], [0, 2], [0, 3], [1, 4], [1, 5], [2, 4], [2, 5]],
+    "pair_index": 12
+  },
+  "universe": {
+    "architectures": ["line6", "ring6"],
+    "collision_pairs": 20,
+    "evaluated_graph_architecture_pairs": 32,
+    "layouts_per_graph_per_architecture": 720,
+    "primary_cost": "post-routing n_2qb_gates",
+    "routing_method": "LexiRouteRoutingMethod(10)",
+    "unique_graphs": 16
+  },
+  "workflow_artifact_id": 9483252433,
+  "workflow_artifact_zip_sha256": "35b933d92cfbc0f9d82ea6c3cbc5a49e9bf30382399ccd4d413f286978c13539",
+  "workflow_run_id": 32602377812
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "orion.p5.residual-discriminator-successors.v1",
+  "paper_id": "P5",
+  "frozen_date": "2026-08-23",
+  "protocol_status": "PROSPECTIVE_DESIGN_ONLY__NO_OUTCOMES_ACCESSED",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "modifies_original_diagnostic": false,
+  "historical_errors_immutable": true,
+  "theory_target": {
+    "object": "minimal_revision_front_under_observational_equivalence",
+    "necessary_structural_gate": "registered_interventions_cover_every_cross_decision_pair_in_the_development_fibre",
+    "structural_gate_is_not": [
+      "empirical_power",
+      "fresh_transfer",
+      "promotion_authority"
+    ]
+  },
+  "successors": [
+    {
+      "study_id": "P5-RD-01",
+      "source_error": {
+        "case_id": "P5-HC-002",
+        "gold": "RETRIEVAL_MISS",
+        "attributed": "REPRESENTATION_GAP"
+      },
+      "research_problem": "retrieval_versus_representation_observability",
+      "design": "protected_two_factor_intervention",
+      "factors": {
+        "retrieval": ["frozen_original_access", "protected_adequate_access"],
+        "representation": ["frozen_original_representation", "registered_expanded_representation"]
+      },
+      "held_fixed": ["task", "method_class", "evaluator", "success_criterion"],
+      "terminals": [
+        "RETRIEVAL_MAIN_EFFECT",
+        "REPRESENTATION_MAIN_EFFECT",
+        "COUPLED_INTERACTION",
+        "JOINT_NULL_UNRESOLVED",
+        "CANNOT_CHECK"
+      ]
+    },
+    {
+      "study_id": "P5-RD-02",
+      "source_error": {
+        "case_id": "P5-HC-012",
+        "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+        "attributed": "IMPLEMENTATION_BUG"
+      },
+      "research_problem": "environment_versus_implementation_intervention_equivalence",
+      "design": "protected_two_factor_intervention",
+      "factors": {
+        "candidate_bytes": ["content_addressed_original", "content_addressed_local_code_challenger"],
+        "environment": ["content_addressed_observed_environment", "independently_reconstructed_environment"]
+      },
+      "held_fixed": ["task", "input", "evaluator", "success_criterion"],
+      "terminals": [
+        "ENVIRONMENT_MAIN_EFFECT",
+        "IMPLEMENTATION_MAIN_EFFECT",
+        "COUPLED_INTERACTION",
+        "JOINT_NULL_UNRESOLVED",
+        "CANNOT_CHECK"
+      ]
+    },
+    {
+      "study_id": "P5-RD-03",
+      "source_error": {
+        "case_id": "P5-HC-018",
+        "gold": "REPRESENTATION_GAP",
+        "attributed": "METHOD_BASIS_GAP"
+      },
+      "research_problem": "representation_versus_method_basis_identifiability",
+      "design": "protected_two_factor_intervention",
+      "factors": {
+        "representation": ["frozen_original_representation", "registered_expanded_representation"],
+        "method_class": ["frozen_original_method_class", "registered_expanded_method_class"]
+      },
+      "held_fixed": ["task", "evaluator", "budget", "success_criterion"],
+      "terminals": [
+        "REPRESENTATION_MAIN_EFFECT",
+        "METHOD_CLASS_MAIN_EFFECT",
+        "COUPLED_INTERACTION",
+        "JOINT_NULL_UNRESOLVED",
+        "CANNOT_CHECK"
+      ]
+    }
+  ],
+  "shared_requirements": [
+    "source_disjoint_development_and_protected_instances",
+    "content_addressed_factor_levels",
+    "independent_protected_outcome_scorer",
+    "interaction_reported_separately",
+    "null_and_harmful_cells_retained",
+    "no_use_of_protected_wide_panel_as_development_feedback"
+  ],
+  "external_bindings_required": [
+    "FACTOR_LEVEL_ARTIFACT_HASHES",
+    "SOURCE_DISJOINT_INSTANCE_HASHES",
+    "PROTECTED_EVALUATOR_IDENTITY",
+    "SUBJECT_AND_EPOCH_IDENTITIES",
+    "INDEPENDENT_RESULT_VERIFIER"
+  ],
+  "current_terminal": "P5_RESIDUAL_DISCRIMINATORS_DESIGNED_NOT_EXECUTED"
+}
