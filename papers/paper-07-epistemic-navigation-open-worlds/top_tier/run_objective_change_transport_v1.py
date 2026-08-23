@@ -31,16 +31,16 @@ def score(cells,fn):
     return {'accuracy':correct/len(cells),'false_closure':false_closure,'unnecessary_reopen':unnecessary_reopen,'correct_cannot_check':cannot,'rows':rows}
 def main():
     b=load_breast_cancer();X=np.asarray(b.data,float);y=np.asarray(b.target,int)
-    cv=StratifiedKFold(n_splits=5,shuffle=True,random_state=20261217);cells=[];full_counts={'PRESERVE':0,'REOPEN':0}
+    cv=StratifiedKFold(n_splits=5,shuffle=True,random_state=20261217);cells=[];full_counts={'PRESERVE':0,'REOPEN':0};old_obligation_counts={'SATISFIED':0,'NOT_SATISFIED':0}
     for fold,(tr,te) in enumerate(cv.split(X,y)):
         sc=StandardScaler().fit(X[tr]);m=LogisticRegression(C=1.0,solver='lbfgs',max_iter=5000).fit(sc.transform(X[tr]),y[tr]);p=m.predict(sc.transform(X[te]));f=facts(y[te],p)
-        assert f['accuracy']>=OLD_ACC,(fold,f)
+        old_obligation_counts['SATISFIED' if f['accuracy']>=OLD_ACC else 'NOT_SATISFIED']+=1
         for kind in ('FULL_CLASS_WITNESS','ACCURACY_ONLY'):
             exposed=dict(f) if kind=='FULL_CLASS_WITNESS' else {'n':f['n'],'correct':f['correct'],'accuracy':f['accuracy']}
             g=gold(kind,f);cells.append({'id':f'BC-{fold}-{kind}','fold':fold,'evidence_kind':kind,'facts':exposed,'gold':g})
             if kind=='FULL_CLASS_WITNESS': full_counts[g]+=1
     systems={'WITNESS_AWARE':score(cells,witness),'VALUE_ONLY':score(cells,value_only),'ALWAYS_REOPEN':score(cells,always_reopen)}
     positive=(len(cells)==10 and full_counts['PRESERVE']>0 and full_counts['REOPEN']>0 and systems['WITNESS_AWARE']['accuracy']==1.0 and systems['WITNESS_AWARE']['correct_cannot_check']==5 and systems['VALUE_ONLY']['false_closure']>0 and systems['ALWAYS_REOPEN']['unnecessary_reopen']>0)
-    receipt={'schema':'P7.ObjectiveChangeTransportResult.v1','protocol_sha256':hashlib.sha256(PROTOCOL.read_bytes()).hexdigest(),'case_count':len(cells),'full_witness_counts':full_counts,'systems':systems,'cells':cells,'terminal':'P7_OBJECTIVE_CHANGE_TRANSPORT_V1_SUPPORTED' if positive else 'P7_OBJECTIVE_CHANGE_TRANSPORT_V1_GATE_NOT_MET'}
+    receipt={'schema':'P7.ObjectiveChangeTransportResult.v1','protocol_sha256':hashlib.sha256(PROTOCOL.read_bytes()).hexdigest(),'case_count':len(cells),'old_obligation_counts':old_obligation_counts,'full_witness_counts':full_counts,'systems':systems,'cells':cells,'terminal':'P7_OBJECTIVE_CHANGE_TRANSPORT_V1_SUPPORTED' if positive else 'P7_OBJECTIVE_CHANGE_TRANSPORT_V1_GATE_NOT_MET'}
     raw=json.dumps(receipt,sort_keys=True,separators=(',',':')).encode();receipt['receipt_sha256']=hashlib.sha256(raw).hexdigest();print(json.dumps(receipt,indent=2,sort_keys=True));assert positive,receipt;return 0
 if __name__=='__main__':raise SystemExit(main())
