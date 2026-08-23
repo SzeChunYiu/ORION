@@ -59,7 +59,7 @@
     "no_gate_read_field_differs": true,
     "every_float_difference_is_within_four_ulps": true
   },
-  "finding": "Four mrr_at_50 values differ by at most three units in the last place of a float64. Two fresh runs are bit-identical to each other, the frozen parameter digest still matches, and the verdict and every gate result are unchanged. No gate reads mrr_at_50.",
-  "consequence": "The failure is a comparison defect. Bit-equality of a floating-point mean is not attainable across library versions, so a reproduction check that demands it is an unattainable gate. The check should compare gate-read fields and all non-float values exactly, and permit a declared ulp-scale difference only on reported floats no gate consumes.",
+  "finding": "4 reported float values differ; fields: mrr_at_50; maximum distance is 3 ulps. Two fresh runs are bit-identical to each other, the frozen parameter digest still matches, and the verdict and every gate result are unchanged. No changed field is read by a registered gate.",
+  "consequence": "The failure is a comparison defect only when the measured checks above pass. Bit-equality of a floating-point mean is not attainable across library versions, so a reproduction check that demands it is an unattainable gate. The check should compare gate-read fields and all non-float values exactly, and permit a declared ulp-scale difference only on reported floats no gate consumes.",
   "all_checks_pass": true
 }
