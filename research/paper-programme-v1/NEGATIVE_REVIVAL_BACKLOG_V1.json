@@ -1,0 +1,130 @@
+{
+  "schema": "ORION_NEGATIVE_REVIVAL_BACKLOG_V1",
+  "created": "2026-08-23",
+  "operator_directive": "Every negative result must be researched to positive: root cause or better model. Earned by mechanic improvement, never by tuning outcomes.",
+  "protected_negatives": [
+    {
+      "claim": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
+      "paper": "P9",
+      "reason": "operator-designated protected; receipt forbids repair or re-run"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "NR-01",
+      "paper": "P5",
+      "negative": "3 residual attribution errors P5-HC-002/012/018, 21/24",
+      "hypothesis": "symptom-ambiguity error class",
+      "lever": "attribution-mechanism refinement + frozen 24-case re-run",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-02",
+      "paper": "P10",
+      "negative": "module deltas Control -0.033333, CategoryTheory -0.005 (pooled positive)",
+      "hypothesis": "per-module failure stage unattributed",
+      "lever": "per-module conditioning/selectivity + re-test",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-03",
+      "paper": "P4",
+      "negative": "H3.V2 metric saturated 1.0 on all 11 systems",
+      "hypothesis": "degenerate measurement (ceiling artifact)",
+      "lever": "non-saturating discriminative V2.1 metric + registered re-run",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-04",
+      "paper": "P9",
+      "negative": "D-A CANNOT_CHECK: quality-transport < 0.965",
+      "hypothesis": "transport loses quality between arms",
+      "lever": "transport-mechanism fix + frozen five-cell re-run",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-05",
+      "paper": "P9",
+      "negative": "T4 hostile attack defeated narrow representation claim",
+      "hypothesis": "representation blind spot exploited",
+      "lever": "representation hardening vs frozen attack class",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-06",
+      "paper": "P9",
+      "negative": "D1v1.2 locked-env replay 0.50 mismatch",
+      "hypothesis": "serialization/env-freeze divergence",
+      "lever": "root-cause serialization delta; D1v1.3 successor frozen",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-07",
+      "paper": "P11",
+      "negative": "P11D sparse-decoder gap unmet at r=3",
+      "hypothesis": "gap is width-conditioned (r>=7 passes)",
+      "lever": "r=3-regime mechanism, decoder- or attack-side",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-08",
+      "paper": "P2",
+      "negative": "external campaign 7/229 gold, delta beyond sampling ceiling",
+      "hypothesis": "acquisition mechanism vs ceiling unattributed",
+      "lever": "bounded-internal acquisition simulation",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-09",
+      "paper": "P1",
+      "negative": "1 root success in 48, below 385-case target",
+      "hypothesis": "underpowered execution",
+      "lever": "execute frozen R7A powered successor",
+      "solvability": "EXECUTION_SOLVABLE"
+    },
+    {
+      "id": "NR-10",
+      "paper": "P7",
+      "negative": "MATCH_IS_NOT_NECESSARY broader reading",
+      "hypothesis": "genuine frame failure",
+      "lever": "scope to conditional theorem or construct necessity frame",
+      "solvability": "RESEARCH_SOLVABLE"
+    },
+    {
+      "id": "NR-11",
+      "paper": "P14",
+      "negative": "P14A gate defect (bars above supremum)",
+      "hypothesis": "design defect, superseded",
+      "lever": "verify P14C closure; re-register only if superiority re-claimed",
+      "solvability": "CLOSED_BY_SUCCESSOR_VERIFY"
+    }
+  ],
+  "already_revived": [
+    {
+      "negative": "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
+      "successor": "P12B equal-action two-signal complementarity",
+      "status": "ACTIVE_POSITIVE_AUTHORITY"
+    },
+    {
+      "negative": "P13 empirical safety-cost authority withheld",
+      "successor": "P13B authenticated-certificate corruption safety-cost",
+      "status": "ACTIVE_POSITIVE_AUTHORITY"
+    },
+    {
+      "negative": "P9 causal-diagnostic V1 accounting",
+      "successor": "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN (#998)",
+      "status": "GREEN"
+    }
+  ],
+  "workaround_protocol": {
+    "directive": "operator 2026-08-23: independent research, no humans; external data worked around by us",
+    "rule": "substitute strongest internally-executable mechanism; disclose substitution boundary; re-scope claim; never fake externality",
+    "substitutes": {
+      "blinded_human_adjudication": "blinded machine adjudication (independent frozen checker + label-blind cross-model adjudicator, pre-registered rubric) -> MACHINE_BLINDED",
+      "external_comparators": "public reference implementations re-hosted frozen as donor baselines -> PUBLIC_REFERENCE",
+      "real_world_data": "public-domain/self-acquired; else generative synthetic grounded in published statistics -> SYNTHETIC_GROUND",
+      "frontier_checkpoints": "maximal in-custody scale slice; scaling-trajectory bound with custody boundary",
+      "protected_executions": "run frozen protocols in CI with protected seeds (execution lanes, not blockers)"
+    }
+  }
+}
