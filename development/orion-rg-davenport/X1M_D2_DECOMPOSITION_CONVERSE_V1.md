@@ -149,6 +149,15 @@ That prediction is recorded here as falsifiable and **not yet tested**.
 
 ## Why there is exactly *one* negative — `C_2^4` is the unique firing
 
+> **SUPERSEDED IN PART by X1-U (2026-08-23).** The claims below were scoped to the 12
+> groups with settled numbers at the time. X1-U settles `C_2^7` (`D_2 = 12`,
+> `f_4 = 11 > D_2 − 2 = 10`) and it is the **second** group where the decomposition fails
+> (21,840 basis-containing min-ZS-5 witnesses; explicit verified example) — the first with
+> the criterion violated **outside** the regime `m ≥ D − 2`, i.e. the first genuinely
+> "undecided by theory" row, and it resolves to FAIL. The theorem (the iff inside the
+> regime) is untouched; the completeness observation and the uniqueness framing below are
+> what this supersedes.
+
 The converse needs **both** `m >= D - 2` (regime) and `f_m >= D_2 - 1` (criterion violated).
 Across every group with settled numbers, only one satisfies both:
 

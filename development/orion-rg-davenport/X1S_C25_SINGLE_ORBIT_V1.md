@@ -1,5 +1,13 @@
 # ORION-RG X1-S — `C_2^5` is a *single* orbit: the three-orbit structure is an `r = 4` phenomenon
 
+> **UPDATED by X1-T/X1-U (2026-08-23).** (1) `C_2^6` is now classified — **4 orbits**,
+> total 3,387,783,168 — via the decomposition-driven method (X1-T), closing this atom's
+> first open item. (2) The tentative alignment "failure ⟷ heterogeneous witness set"
+> (hedged below as two points, not a law) is dead: `C_2^6` has 4 orbits with the criterion
+> holding. (3) The `CANNOT_CHECK_RESOURCE_BOUND` on direct `C_2^6` enumeration stands and
+> is explained: the answer is ~3.4 × 10^9 witnesses — no direct enumeration could have
+> written it out; the bound was in the method's *output*, not just its search.
+
 ## The question
 
 X1-R found the `C_2^4` extremal `D_2` witness set decomposes into **three** `GL(4,2)`-orbits
