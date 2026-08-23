@@ -180,11 +180,11 @@
           "existing_pr": {
             "number": 967,
             "url": "https://github.com/SzeChunYiu/ORION/pull/967",
-            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "head": "codex/p3-p9-p15-lifecycle",
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q"
           },
           "source_refs": [
-            {"path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
             {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
@@ -591,11 +591,11 @@
           "existing_pr": {
             "number": 967,
             "url": "https://github.com/SzeChunYiu/ORION/pull/967",
-            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "head": "codex/p3-p9-p15-lifecycle",
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q"
           },
           "source_refs": [
-            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
             {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
@@ -787,7 +787,7 @@
             "number": 966,
             "url": "https://github.com/SzeChunYiu/ORION/pull/966",
             "head": "codex/p12-p13-authority-active-base",
-            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q"
+            "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q"
           },
           "source_refs": [
             {"path": "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
@@ -796,7 +796,7 @@
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
-            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q",
             "success_condition": "The active selector withholds superiority and preserves the earlier receipt as non-authoritative history.",
             "failure_terminal": "P12_COMPARISON_VALIDITY_AUTHORITY_REPAIR_NOT_VERIFIED"
           }
@@ -817,7 +817,7 @@
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
-            "command": "PYTHONPATH=src python -m pytest tests/unit/study/p12 -q",
+            "command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q",
             "success_condition": "The V3 selector binds the locked-environment V1.1 result, treats family RNG blocks as n=32, preserves equal action sets, and forbids external promotion.",
             "failure_terminal": "P12B_EQUAL_ACTION_AUTHORITY_INVALID"
           }
@@ -991,12 +991,12 @@
           "existing_pr": {
             "number": 967,
             "url": "https://github.com/SzeChunYiu/ORION/pull/967",
-            "head": "codex/p3-p9-p11-p15-lifecycle-active-base",
+            "head": "codex/p3-p9-p15-lifecycle",
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q"
           },
           "source_refs": [
-            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
-            {"path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"}
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -1013,7 +1013,7 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p11-p15-lifecycle-active-base"},
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
             {"path": "papers/paper-15-orion-research-harness/P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
             {"path": "papers/paper-15-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
           ],
