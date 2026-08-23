@@ -1,0 +1,67 @@
+name: p9-unified-resource-ledger-v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_PROTOCOL_V2.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_RESULT_RECEIPT_V2.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_PROTOCOL_V1.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py'
+      - '.github/workflows/p9-unified-resource-ledger-v2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  resource-ledger-v2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==2.3.2' 'scikit-learn==1.7.1'
+      - name: Build unified I/A/C/M resource ledger V2 (re-executes frozen causal diagnostic)
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py | tee p9_unified_resource_ledger_v2.json
+      - name: Verify deterministic byte replay
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py > p9_unified_resource_ledger_v2_rerun.json
+          cmp p9_unified_resource_ledger_v2.json p9_unified_resource_ledger_v2_rerun.json
+      - name: Run independent ledger audit V2
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py p9_unified_resource_ledger_v2.json | tee p9_unified_resource_ledger_independent_v2.json
+      - name: Cross-check the frozen causal diagnostic still executes to its frozen terminal
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py > p9_causal_diagnostic_v1_rerun.json
+          python - <<'PY'
+          import json
+          c=json.load(open('p9_causal_diagnostic_v1_rerun.json'))
+          l=json.load(open('p9_unified_resource_ledger_v2.json'))
+          assert c['terminal']=='P9_CAUSAL_DIAGNOSTIC_V1_SUPPORTED',c
+          rows={r['task']:r for r in c['rows']}
+          for task,cell in l['cell_summaries'].items():
+              assert rows[task]['predicted']==cell['probe_prediction_rederived']==cell['frozen_prediction'],task
+              assert rows[task]['protected_gold']==cell['protected_gold_rederived']==cell['frozen_protected_gold'],task
+          print('P9_LEDGER_V2_BOUND_TO_FROZEN_CAUSAL_EXECUTION')
+          PY
+      - name: Verify accounting terminals
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p9_unified_resource_ledger_v2.json'))
+          q=json.load(open('p9_unified_resource_ledger_independent_v2.json'))
+          assert p['terminal']=='P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN',p['terminal']
+          assert q['terminal']=='P9_UNIFIED_RESOURCE_LEDGER_SECOND_CHECKER_V2_GREEN',q['terminal']
+          assert p['survival_verdict']=='SURVIVES_FULL_ACCOUNTING'
+          assert p['row_count']==q['row_count']==15
+          assert p['scalarization']=='PROHIBITED' and q['scalarization_prohibited']
+          print('P9_UNIFIED_RESOURCE_LEDGER_V2_TWO_CHECKS_GREEN')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-unified-resource-ledger-v2
+          path: |
+            p9_unified_resource_ledger_v2.json
+            p9_unified_resource_ledger_independent_v2.json
+            p9_causal_diagnostic_v1_rerun.json
