@@ -2,7 +2,13 @@
 
 **Stable ID:** ORION-P15
 **Paper issue:** none yet — this directory was opened ahead of one.
-**Status:** `DIRECTORY_OPENED / NO_PROTECTED_RESULT`
+**Status:** `METHODS_SCOPE_ONLY / NO_SCIENTIFIC_RESULT`
+
+`P15_ACTIVE_CLAIM_AUTHORITY_V1.json` is the machine-readable active lifecycle
+record and `CLAIM_EVIDENCE_LEDGER.md` is its human-readable claim boundary. P15
+has no H1 or protected experiment, so this state is neither a failed result nor
+an unchecked scientific claim and cannot be promoted as a positive empirical
+finding.
 
 A systems paper introducing the two execution harnesses ORION research runs on, and
 the guarantees each provides. It carries no scientific superiority claim and grants

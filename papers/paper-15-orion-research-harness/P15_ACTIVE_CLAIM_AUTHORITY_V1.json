@@ -1,0 +1,34 @@
+{
+  "active_empirical_claim": null,
+  "active_hypothesis": null,
+  "active_terminal": "P15_METHODS_SCOPE_ONLY",
+  "authorized_claim": "The repository contains two harness surfaces whose receipt and failure-separation guarantees are candidates for a future methods paper.",
+  "diagnostic_inputs": {
+    "dual_harness_protocol": {
+      "artifact": "development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md",
+      "sha256": "af686698c0e9acca6e9a5f9c385473d14bff058cfcf4fe55c971c702ebbaec0c"
+    },
+    "research_harness_package": {
+      "artifact": "packages/orion-research-harness/pyproject.toml",
+      "sha256": "bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7"
+    }
+  },
+  "forbidden_states": [
+    "CANNOT_CHECK",
+    "FAIL",
+    "SUPPORTED_EMPIRICAL",
+    "SUPERIORITY_SUPPORTED"
+  ],
+  "lifecycle_state": "METHODS_SCOPE_ONLY",
+  "paper_id": "P15",
+  "promotion_allowed": false,
+  "promotion_requirements": [
+    "paper_issue",
+    "claim_evidence_ledger",
+    "donor_matrix",
+    "prospectively_frozen_p15_protocol",
+    "protected_p15_result"
+  ],
+  "schema": "ORION.P15.ActiveClaimAuthority.v1",
+  "scientific_result_state": "NO_SCIENTIFIC_RESULT"
+}
