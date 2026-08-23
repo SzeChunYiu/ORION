@@ -51,6 +51,20 @@ def test_zero_denominator_requires_explicit_applicability_context() -> None:
     assert "outside its frozen applicability domain" in inapplicable["reason"]
 
 
+def test_positive_denominator_does_not_override_metric_applicability() -> None:
+    observed = BinaryRate(successes=1, n=2)
+    block = tables._rate_block(
+        observed,
+        label="control_abstention",
+        scope=tables.SCOPE_HIDDEN_SHIFT,
+    )
+    assert block["status"] == tables.STATUS_NOT_APPLICABLE
+    assert block["interval"] is None
+    assert block["n"] == 2
+    assert block["value"] == 0.5
+    assert "outside its frozen applicability domain" in block["reason"]
+
+
 def test_unknown_scope_or_metric_fails_closed() -> None:
     with pytest.raises(ValueError, match="unregistered P1 reporting scope"):
         tables._metric_applicable("UNKNOWN_SCOPE", "root_success")
