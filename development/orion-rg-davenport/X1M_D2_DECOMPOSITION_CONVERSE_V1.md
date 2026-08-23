@@ -1,5 +1,14 @@
 # ORION-RG X1-M — the extremal `D_2` decomposition criterion is an *iff*, and the sole counterexample is forced
 
+> **PARTIALLY CORRECTED by the prior-art gate (2026-08-23), hit #13.** The 120-element
+> family below — punctured affine hyperplanes of `F_2^4` — is **published**, as the `r = 4`,
+> length-7 shadow of Davydov–Tombak's 1989 classification of large sum-free sets, restated
+> as **Freeze–Schmid Theorem 7.2**. It is a known object in the *cap / coding* literature,
+> not a new construction, and a referee in this area will recognise it on sight.
+> **What is not published:** the total 3480, the `3360 / 120` split, and the identification
+> of the 120 as the minimum-zero-sum-4 stratum of the `D_2` witness set. The defensible
+> content here is the `D_2` framing and the 3360 — **not** the punctured hyperplanes.
+
 ## What X1-K left open
 
 X1-K established a **sufficient** criterion:
@@ -176,6 +185,67 @@ Together: `C_2^4` is not merely the one negative observed, it sits at the only p
 negative of this kind can occur — on the regime boundary, at a rank small enough for `m` to
 still reach `D - 2`, and with `f_3 = 2^3 = 8` inflated by the affine-hyperplane construction
 just past `D_2 - 1 = 7`.
+
+## Prior-art status of the `C_2^4` family (hit #13)
+
+**The classification is published; the `D_2` identification is not.**
+
+Freeze–Schmid, Discrete Math. 310 (2010), Lemma 7.1 gives the bridge from zero-sums to
+caps, and Theorem 7.2 (a restatement of Davydov & Tombak, *Problemy Peredachi Informatsii*
+25(4), 1989, via Grynkiewicz–Lev, SIAM J. Discrete Math. 24 (2010)) classifies the large
+sum-free sets:
+
+> "Theorem 7.2. Let `r ∈ N`. Let `S` be a squarefree sequence over `C_2^r` with `0 ∤ S` and
+> `|S| ≥ 9(2^{r−5})`. Then the following statements are equivalent
+> • `S` has no non-empty zero-sum subsequence of length 3.
+> • `supp(S)` is contained in the non-zero coset of a subgroup of index 2 or `supp(S)` is
+> contained in `{e_1, e_2, e_3, e_4, (e_1+e_2+e_3+e_4)} + G'` where `G'` is a subgroup of
+> index 16 and `C_2^r = ⟨e_1,…,e_4⟩ ⊕ G'`."
+
+At `r = 4`: the threshold is `9·2^{-1} = 4.5 ≤ 7`, so it applies; the second alternative
+needs an index-16 subgroup of a group of order 16, i.e. the trivial one, giving a 5-element
+set — excluded since `|supp(S)| = 7`. So `supp(S)` lies in the non-zero coset of an
+index-2 subgroup, an 8-element affine hyperplane, and `|supp(S)| = 7` forces exactly one
+deletion: `15 × 8 = 120`.
+
+**Terminology, easy to get wrong:** the 8-element affine hyperplane is the *complete*
+(maximal, non-extendable) cap of `PG(3,2)`. The 120 objects are that **minus one point**, so
+they are *not* complete caps — they extend by replacing the deleted point. Correct
+description: **a maximum cap of `PG(3,2)` with one point deleted.**
+
+### What the `D_2` framing adds
+
+The step connecting the cap classification to `D_2` is not in that literature: minimum
+zero-sum length 4 means two disjoint zero-sums would need `≥ 8` terms against `|S| = 7`, so
+every min-zs-4 sequence is *automatically* a `D_2`-extremal witness. Hence the 120 are
+simultaneously the `s_{≤3}`-extremal objects and the anomalous stratum of the `D_2` witness
+set. That bridge — and the 3360 — is what is unclassified.
+
+## A gap this exposed: squarefreeness was assumed, not argued
+
+The enumeration above ranged over `combinations(V, 7)`, i.e. **distinct** elements only. That
+restriction was never justified in this document. It is in fact forced, and the argument is
+one line: a repeat `g·g` is a zero-sum of length 2, so the remaining 5 terms must be
+zero-sum-free; but `d(C_2^4) = D − 1 = 4`, so any 5 terms contain a zero-sum, giving two
+disjoint zero-sums. Hence no witness has a repeat.
+
+Independently confirmed by an enumeration that *did* allow repeats: 3480 witnesses, of which
+**0** contain a repeated element.
+
+This is also published in general form — Freeze–Schmid Proposition 7.5.2:
+
+> "2. If `B` is a sequence over `C_2^r` with `max L(B) ≤ k_D(C_2^r)` and
+> `|B| = D_{k_D(C_2^r)}(C_2^r)`, then `B` is squarefree and `0 ∤ B`."
+
+The result was right; the write-up had a hole where a justification should have been.
+
+## Why Property B / Property C say nothing here
+
+Worth recording so this is not re-attempted: for `C_2^r`, `exp(G) = 2`, so a "short zero-sum"
+has length `≤ 2` and a short-zero-sum-free sequence is just a squarefree sequence missing 0 —
+whence `η(C_2^r) = 2^r`, with the product of all non-zero elements the unique extremal. Property
+C's conclusion `S = T^{exp−1} = T` is then vacuous. The machinery is **degenerate** on
+elementary 2-groups, not merely unapplied.
 
 ## Instrument validation, before use
 
