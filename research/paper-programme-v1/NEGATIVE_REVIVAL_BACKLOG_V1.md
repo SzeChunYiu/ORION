@@ -30,7 +30,6 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | ID | Paper | Negative | Root-cause hypothesis | Lever | Lane |
 |---|---|---|---|---|---|
 | NR-01 | P5 | **[CODEX LANE]**  3 residual attribution errors (P5-HC-002/012/018), 21/24 | Error-class analysis not yet done; likely symptom-ambiguity class | attribution-mechanism refinement (structured symptom decomposition), re-run frozen 24-case set | P5 residual-error autopsy |
-| NR-02 | P10 | Module deltas negative: Control −0.033333, CategoryTheory −0.005 | Pooled gain positive; per-module failure stage unattributed | per-module conditioning/selectivity; module-specific donor matching, re-test | P10 module revival |
 | NR-03 | P4 | H3.V2 metric saturated at 1.0 for all 11 systems — comparison impossible | Degenerate measurement, not a finding: ceiling artifact of the metric design | non-saturating V2.1 metric (discriminative range), re-run registered comparison | P4 metric de-degeneration |
 | NR-04 | P9 | D-A cell CANNOT_CHECK: quality-transport below 0.965 target | Transport mechanism loses quality between arms | transport-mechanism fix (encoding/fidelity), re-run frozen five-cell diagnostic | P9 transport revival |
 | NR-05 | P9 | T4 hostile attack defeated narrow representation claim | Attack exploits representation's blind spot (identified in T4 receipt) | representation hardening against the frozen attack class; successor claim re-test | P9 representation hardening |
@@ -50,6 +49,7 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | P12A `SUPERIORITY_AUTHORITY_WITHHELD` (one-axis ceilings) | P12B equal-action two-signal complementarity, 32 RNG blocks | `ACTIVE_POSITIVE_AUTHORITY` (ledger) |
 | P13 empirical safety-cost authority withheld | P13B authenticated-certificate corruption safety-cost, 4 corruption worlds | `ACTIVE_POSITIVE_AUTHORITY` (ledger) |
 | P9 causal-diagnostic accounting (V1 gaps) | Unified I/A/C/M ledger V2, second checker green | `P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN` (#998) |
+| P10 module deltas: Control −0.033333 (7W/9L, MDA=10, p=0.804), CategoryTheory −0.005 (21W/22L, p=1.0) | NR-02 module revival V2 (#1021): one-stage attribution (Control negative net concentrates in `calculation` context 5W/17L vs donor-pooled `rewrite` 46% plurality; CT strongest-structure LOO +0.3815, smallest shift JS 0.0265); both donor-side levers data-rejected (confidence-gate 0.0968, majority-gate 0.0003); V2 exact-paired claim rule α=0.05: 20/20 claimable-sign modules POSITIVE, 0 claimable negative, 6 sign-withheld; family sign test 1.049e-5 → 1.907e-6 | `CORRECTED_UNRESOLVED_PER_MODULE` + landed V2 claim rule (receipt `P10_MODULE_NEGATIVE_REVIVAL_RECEIPT_V1`) |
 
 ## External-execution negatives — workaround protocol (operator directive 2026-08-23)
 

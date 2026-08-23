@@ -19,14 +19,6 @@
       "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
-      "id": "NR-02",
-      "paper": "P10",
-      "negative": "module deltas Control -0.033333, CategoryTheory -0.005 (pooled positive)",
-      "hypothesis": "per-module failure stage unattributed",
-      "lever": "per-module conditioning/selectivity + re-test",
-      "solvability": "RESEARCH_SOLVABLE"
-    },
-    {
       "id": "NR-03",
       "paper": "P4",
       "negative": "H3.V2 metric saturated 1.0 on all 11 systems",
@@ -122,6 +114,11 @@
       "negative": "P9 causal-diagnostic V1 accounting",
       "successor": "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN (#998)",
       "status": "GREEN"
+    },
+    {
+      "negative": "P10 module deltas: Control -0.033333 (7W/9L, MDA=10, p=0.804), CategoryTheory -0.005 (21W/22L, p=1.0)",
+      "successor": "P10 module-negative revival V2 (#1021): one-stage attribution (Control: negative net concentrates in calculation context 5W/17L vs donor-pooled rewrite 46% plurality; CT: strongest structure LOO +0.3815, smallest shift JS 0.0265), donor-side levers data-rejected (confidence-gate 0.0968, majority-gate 0.0003), V2 exact paired claim rule alpha=0.05: 20/20 claimable-sign modules POSITIVE, 0 claimable negative, 6 sign-withheld; family sign test 1.049e-5 -> 1.907e-6",
+      "status": "CORRECTED_UNRESOLVED_PER_MODULE_WITH_LANDED_V2_CLAIM_RULE (receipt P10_MODULE_NEGATIVE_REVIVAL_RECEIPT_V1, PR #1021)"
     }
   ],
   "workaround_protocol": {
