@@ -36,7 +36,10 @@
     {"support":13,"a1":3,"b2":6,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
     {"support":13,"a1":5,"b2":3,"c4":5,"nodes":414477,"forced_final_leaves":0,"solutions":0},
     {"support":13,"a1":7,"b2":0,"c4":6,"nodes":904555,"forced_final_leaves":0,"solutions":0},
-    {"support":13,"a1":1,"b2":9,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0}
+    {"support":13,"a1":1,"b2":9,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
+    {"support":14,"a1":3,"b2":8,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
+    {"support":14,"a1":5,"b2":5,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
+    {"support":14,"a1":7,"b2":2,"c4":5,"nodes":2151495,"forced_final_leaves":0,"solutions":0}
   ],
   "support_13_c4_rank2_branch": {
     "pattern": "1^1 2^9 4^3",
@@ -46,18 +49,24 @@
     "forced_final_leaves": 0,
     "solutions": 0
   },
+  "support_14_lowrank_branches": [
+    {"pattern":"1^1 2^11 4^2","normalization":"two multiplicity-4 points -> e1,e2","u128_nodes":1967110,"byte_replay_nodes":1967110,"forced_final_leaves":0,"solutions":0},
+    {"pattern":"1^3 2^8 4^3","high4_rank":2,"normalization":"two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*","u128_nodes":1005159,"byte_replay_nodes":1005159,"forced_final_leaves":0,"solutions":0}
+  ],
   "independent_replay": {
     "rank3_u128": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
     "rank3_bytes": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
-    "rank2_u128": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
-    "rank2_bytes": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+    "rank2_support13_u128": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
+    "rank2_support13_bytes": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+    "support14_lowrank_u128": "research/orion-rg/x1k_c0_support14_lowrank_u128.c",
+    "support14_lowrank_bytes": "research/orion-rg/x1k_c0_support14_lowrank_bytes.c",
     "agreement": "exact on every row, including node/leaf counts"
   },
-  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 14.",
+  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 15.",
   "what_this_does_not_prove": [
     "31 in C_0(C_5^3)",
     "D_4(C_5^3)=30",
     "novelty of the support bound"
   ],
-  "next_hard_stratum": "support >=14; preserve saturation and no-multiplicity-3 constraints before any search widening"
+  "next_hard_stratum": "support >=15; preserve saturation and no-multiplicity-3 constraints before any search widening"
 }
