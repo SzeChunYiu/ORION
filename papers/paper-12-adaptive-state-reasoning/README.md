@@ -53,7 +53,9 @@ This is a cross-domain transfer result for the registered allocator and case fam
 
 ## Current top-tier blocker
 
-The remaining scientific blocker is robustness, not another basic benchmark. The frozen `P12_ROBUSTNESS_PROTOCOL_V2.md` tests:
+The remaining scientific blocker is robustness, not another basic benchmark. Open gap-wave PR #1006 freezes an additive stress study over the already-bound allocator; until its receipt is bound, none of those stress results are scientific authority for this paper.
+
+The frozen study tests:
 
 - altered state-build / serve prices;
 - nominal-budget versus priced-budget semantics;
@@ -70,7 +72,7 @@ The final manuscript should use P12A/P12B as the **comparison-design history**, 
 
 Manuscript-facing integration notes are in `top_tier/P12_TOP_TIER_MANUSCRIPT_INTEGRATION_2026-08-23.md`.
 
-## Core artifacts
+## Core artifacts currently on main
 
 - `MANUSCRIPT.md`
 - `CLAIM_EVIDENCE_LEDGER.md`
@@ -79,9 +81,9 @@ Manuscript-facing integration notes are in `top_tier/P12_TOP_TIER_MANUSCRIPT_INT
 - `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json`
 - `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`
 - `top_tier/P12_TRANSFER_ALLOCATION_RESULT_RECEIPT_V1.md`
-- `top_tier/P12_ROBUSTNESS_PROTOCOL_V2.md`
-- `top_tier/run_p12_robustness_v1.py`
-- `top_tier/check_p12_robustness_independent_v1.py`
+- `top_tier/P12_TOP_TIER_MANUSCRIPT_INTEGRATION_2026-08-23.md`
+
+The robustness protocol/runner/checker remain in open PR #1006 until that lane is reconciled and landed.
 
 ## Explicit nonclaims
 
