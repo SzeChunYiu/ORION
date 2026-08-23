@@ -30,14 +30,8 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-01-recursive-epistemic-reconstruction/journal_package/MANIFEST.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "research/verification/records/P1.H1.root-success-not-supported.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-01-recursive-epistemic-reconstruction/journal_package/MANIFEST.json", "availability": "BASE_REVISION"},
+            {"path": "research/verification/records/P1.H1.root-success-not-supported.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -59,16 +53,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p1/test_table_applicability.py -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_STATUS_ONTOLOGY_CORRECTION_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-diagnostic-ontology-active-base"
-            },
-            {
-              "path": "tests/unit/study/p1/test_table_applicability.py",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-diagnostic-ontology-active-base"
-            }
+            {"path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_STATUS_ONTOLOGY_CORRECTION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-diagnostic-ontology-active-base"},
+            {"path": "tests/unit/study/p1/test_table_applicability.py", "availability": "EXISTING_PR", "ref": "codex/p1-diagnostic-ontology-active-base"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -85,21 +71,9 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            },
-            {
-              "path": "research/claim_expansion/p1/gpt_r7a/R7A_MAXT_POWER_RECEIPT_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            },
-            {
-              "path": "research/claim_expansion/p1/gpt_r7/source_frame.py",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            }
+            {"path": "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"},
+            {"path": "research/claim_expansion/p1/gpt_r7a/R7A_MAXT_POWER_RECEIPT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"},
+            {"path": "research/claim_expansion/p1/gpt_r7/source_frame.py", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_BINDING",
@@ -107,14 +81,6 @@
             "success_condition": "Two source-disjoint waves bind 384 analysis clusters plus unresolved safety clusters per wave, the strongest comparator and two semantic hosts execute, and independent scorer custody is established before outcomes.",
             "failure_terminal": "P1_R7A_CANNOT_CHECK_EXTERNAL_BINDINGS"
           }
-        },
-        {
-          "item_id": "P1.R7.WIDE.SUCCESSOR",
-          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
-          "claim_id": "P1.H1.R7",
-          "disposition": "A wide successor protocol exists in PR 954, but no result is authorized until the outcome-blind source frame, max-T power, comparator, host, and scorer custody are frozen.",
-          "positive_authority_granted": false,
-          "post_hoc_relabeling_prohibited": true
         }
       ]
     },
@@ -129,14 +95,8 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -158,16 +118,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p2/test_p2_comparison_resolution_gate.py -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-02-open-world-scientific-discovery/scripts/comparison_resolution_gate.py",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p2-resolution-gate"
-            },
-            {
-              "path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_COMPARISON_RESOLUTION_GATE_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p2-resolution-gate"
-            }
+            {"path": "papers/paper-02-open-world-scientific-discovery/scripts/comparison_resolution_gate.py", "availability": "EXISTING_PR", "ref": "codex/p2-resolution-gate"},
+            {"path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_COMPARISON_RESOLUTION_GATE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p2-resolution-gate"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -180,19 +132,12 @@
           "item_id": "P2.TASK_WORLD.IDENTITY",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P2.OPEN_WORLD.SUCCESSOR.V2",
-          "disposition": "The reconstructed baseline does not reproduce the archived baseline, so task, query, provider candidate, and scorer identity are not yet bound.",
+          "disposition": "PR 973 freezes a powered 768-cluster, four-arena, equal-route successor, but the archived task-world baseline has not been reproduced and live provider, comparator, and evaluator identities remain unbound.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            }
+            {"path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -216,14 +161,8 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -245,15 +184,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p3 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p3-p9-p15-lifecycle"
-            },
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -266,19 +198,12 @@
           "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
           "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
           "claim_id": "P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1",
-          "disposition": "A new claim must estimate excess harm above the proven observation floor; relaxing the old G9 gate after A004 outcomes would be post-hoc.",
+          "disposition": "PR 973 freezes a new floor-adjusted partial-identification estimand over 768 source-family clusters; synthetic attainability passes, while the independent atlas, gold labels, raw-text attacks, and downstream evaluator remain externally unbound.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            }
+            {"path": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -295,14 +220,8 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/JOURNAL_READINESS.md",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-03-global-knowledge-portrait/JOURNAL_READINESS.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -324,10 +243,7 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_METHOD_AUTHORITY_PANEL_RESOLUTION_2026-08-22.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_METHOD_AUTHORITY_PANEL_RESOLUTION_2026-08-22.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -346,15 +262,8 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-04-verified-scientific-discovery/evidence/protected_v3/RESULT.md",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p4-identifiability-worst-seed"
-            }
+            {"path": "papers/paper-04-verified-scientific-discovery/evidence/protected_v3/RESULT.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p4-identifiability-worst-seed"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -376,16 +285,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p4/test_p4_v3_claim_axis_authority.py -q"
           },
           "source_refs": [
-            {
-              "path": "src/orion/study/p4/claim_axis.py",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p4-identifiability-worst-seed"
-            },
-            {
-              "path": "tests/unit/p4/test_p4_v3_claim_axis_authority.py",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p4-identifiability-worst-seed"
-            }
+            {"path": "src/orion/study/p4/claim_axis.py", "availability": "EXISTING_PR", "ref": "codex/p4-identifiability-worst-seed"},
+            {"path": "tests/unit/p4/test_p4_v3_claim_axis_authority.py", "availability": "EXISTING_PR", "ref": "codex/p4-identifiability-worst-seed"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -398,19 +299,12 @@
           "item_id": "P4.NATURALISTIC.GENERALITY",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P4.H3.NATURALISTIC.V1",
-          "disposition": "The constructed V3 panel does not establish naturalistic multi-domain generality.",
+          "disposition": "PR 973 freezes a powered paired naturalistic design over 768 source-case clusters; the blinded panel, external comparators, evaluator, and source-disjoint replication panel remain absent.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            }
+            {"path": "papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -432,14 +326,8 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-05-self-orion/evidence/DISCREPANCY_P5_D1_MACRO_F1_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-05-self-orion/evidence/DISCREPANCY_P5_D1_MACRO_F1_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -456,18 +344,9 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "src/orion/study/p5/revision_level_v3_preflight.py",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json", "availability": "BASE_REVISION"},
+            {"path": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json", "availability": "BASE_REVISION"},
+            {"path": "src/orion/study/p5/revision_level_v3_preflight.py", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "PREFLIGHT",
@@ -484,15 +363,8 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p1-p5-successor-execution"
-            }
+            {"path": "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json", "availability": "EXISTING_PR", "ref": "codex/p1-p5-successor-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_BINDING",
@@ -516,10 +388,7 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -533,28 +402,13 @@
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P6.EMPIRICAL.LIFTING.V1",
           "disposition": "PR 972 closes the local schema, generator, subject/environment binding, proof-object, regeneration, and hostile-replay mechanics. The resulting receipt is LOCAL_REPLAY_ONLY; independent clean-room reproduction and any separately frozen empirical extension remain external.",
-          "blocked_gates": [
-            "P6-U-T3_CORPUS",
-            "P6-U-T4_INDEPENDENT_REVIEW",
-            "P6-U-T5_EVIDENCE_ONTOLOGY"
-          ],
+          "blocked_gates": ["P6-U-T3_CORPUS", "P6-U-T4_INDEPENDENT_REVIEW", "P6-U-T5_EVIDENCE_ONTOLOGY"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "research/claim_expansion/p6/P6_X_INDEPENDENT_VERIFICATION_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "research/claim_expansion/p6/P6_X_INDEPENDENT_VERIFICATION_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_REPRODUCTION",
@@ -578,10 +432,7 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V4.md",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V4.md", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -598,10 +449,7 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -615,24 +463,12 @@
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P7.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1",
           "disposition": "PR 972 closes the local schema, generator, subject/environment binding, and eight-of-eight trace-opportunity replay mechanics. That receipt is LOCAL_REPLAY_ONLY; a naturalistic corpus, protected evaluator, and independent reproduction are still absent.",
-          "blocked_gates": [
-            "P7-U-T3_NATURALISTIC_ARENA",
-            "P7-U-T4_NATURALISTIC_COMPARISON",
-            "P7-U-T5_DUAL_INDEPENDENT_REVIEW"
-          ],
+          "blocked_gates": ["P7-U-T3_NATURALISTIC_ARENA", "P7-U-T4_NATURALISTIC_COMPARISON", "P7-U-T5_DUAL_INDEPENDENT_REVIEW"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            }
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -656,14 +492,8 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V3.md",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V3.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -677,32 +507,14 @@
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P8.DEPLOYED.AUTHORITY_COMPOSITION.V1",
           "disposition": "PR 972 closes the local schema, generator, current subject/environment binding, and five-of-five attack-opportunity replay mechanics. The receipt is LOCAL_REPLAY_ONLY and protected-label custody plus independent deployed-agent reproduction remain absent; the original homogeneous 169-entry panel does not establish breadth.",
-          "blocked_gates": [
-            "P8-U-T3_WORKFLOW",
-            "P8-U-T4_UTILITY",
-            "P8-U-T5_DUAL_INDEPENDENT_REVIEW"
-          ],
+          "blocked_gates": ["P8-U-T3_WORKFLOW", "P8-U-T4_UTILITY", "P8-U-T5_DUAL_INDEPENDENT_REVIEW"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -724,10 +536,7 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -744,11 +553,7 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            }
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -765,24 +570,10 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/protocol/P9_D1V1_3_ORDERED_MULTIPLICITY_FREEZE_2026-08-23.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_3_ACTIVE_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-09-structured-epistemic-learning/protocol/P9_D1V1_3_ORDERED_MULTIPLICITY_FREEZE_2026-08-23.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_3_ACTIVE_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -804,15 +595,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p9 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p3-p9-p15-lifecycle"
-            },
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -829,10 +613,7 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_EXECUTION",
@@ -851,12 +632,7 @@
           "category": "FIXED_BY_EXISTING_PR",
           "claim_id": "P10.STRUCTURED_PROBLEM_SOLVING.V1",
           "disposition": "PR 972 installs machine-readable active authority and a frozen H1--H6 protocol. All six hypotheses remain PROSPECTIVE_NOT_EXECUTED and no scientific-result authority is granted until the donor, evaluator, verifier, and protected inputs are externally bound.",
-          "blocked_gates": [
-            "P10-U-T1_NATIVE_STATE_SEARCH",
-            "P10-U-T2_STRONG_PROVER_COMPARISON",
-            "P10-U-T3_INDEPENDENT_OBSTRUCTION",
-            "P10-U-T4_REAL_DOMAIN_EXTERNAL_REVIEW"
-          ],
+          "blocked_gates": ["P10-U-T1_NATIVE_STATE_SEARCH", "P10-U-T2_STRONG_PROVER_COMPARISON", "P10-U-T3_INDEPENDENT_OBSTRUCTION", "P10-U-T4_REAL_DOMAIN_EXTERNAL_REVIEW"],
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "existing_pr": {
@@ -866,16 +642,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p10 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-10-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            },
-            {
-              "path": "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p6-p10-evidence-closure-20260823"
-            }
+            {"path": "papers/paper-10-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"},
+            {"path": "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json", "availability": "EXISTING_PR", "ref": "codex/p6-p10-evidence-closure-20260823"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -892,14 +660,8 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -916,10 +678,7 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-10-structured-problem-solving/manuscript/sections/09-cross-domain-programme.tex",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-10-structured-problem-solving/manuscript/sections/09-cross-domain-programme.tex", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -927,14 +686,6 @@
             "success_condition": "Prespecified aggregate and worst-domain gates are evaluated over the complete frozen panel.",
             "failure_terminal": "P10_PROTECTED_MULTI_DOMAIN_EVIDENCE_ABSENT"
           }
-        },
-        {
-          "item_id": "P10.CLAIM_AUTHORITY.MISSING",
-          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
-          "claim_id": "P10.STRUCTURED_PROBLEM_SOLVING.V1",
-          "disposition": "P10 contains a manuscript and successor manuscript but no machine-readable active authority, frozen protocol, result receipt, or executable claim-evidence ledger.",
-          "positive_authority_granted": false,
-          "post_hoc_relabeling_prohibited": true
         }
       ]
     },
@@ -949,14 +700,8 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-11-state-as-computation/P11D_SPARSE_DECODER_RESULT_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-11-state-as-computation/P11D_SPARSE_DECODER_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -978,26 +723,10 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p11/test_p11_active_claim_authority.py tests/unit/study/p11/test_p11i_wide_high_width_replication.py -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-wide-successor"
-            },
-            {
-              "path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-wide-successor"
-            },
-            {
-              "path": "papers/paper-11-state-as-computation/P11I_REVALIDATION_RECEIPT_V1_1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-11-state-as-computation/manuscript/main.pdf",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            }
+            {"path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_REVALIDATION_RECEIPT_V1_1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-11-state-as-computation/manuscript/main.pdf", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -1016,16 +745,8 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-wide-successor"
-            },
-            {
-              "path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-wide-successor"
-            }
+            {"path": "papers/paper-11-state-as-computation/P11_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"},
+            {"path": "papers/paper-11-state-as-computation/P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-wide-successor"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -1042,10 +763,7 @@
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-11-state-as-computation/PEER_REVIEW_READINESS.md",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-11-state-as-computation/PEER_REVIEW_READINESS.md", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -1072,20 +790,9 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/p12 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p12-p13-authority-active-base"
-            },
-            {
-              "path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p12-p13-authority-active-base"
-            },
-            {
-              "path": "papers/paper-12-adaptive-state-reasoning/P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -1104,21 +811,9 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V3.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-12-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-12-adaptive-state-reasoning/P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            }
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V3.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -1126,14 +821,6 @@
             "success_condition": "The V3 selector binds the locked-environment V1.1 result, treats family RNG blocks as n=32, preserves equal action sets, and forbids external promotion.",
             "failure_terminal": "P12B_EQUAL_ACTION_AUTHORITY_INVALID"
           }
-        },
-        {
-          "item_id": "P12.B.CAPABILITY_MATCHED.SUCCESSOR",
-          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
-          "claim_id": "P12B.CAPABILITY_MATCHED_SIGNAL_VALUE",
-          "disposition": "The next claim must compare fixed policies with identical four-action sets and use family/domain-block inference; current matched-action gain is below the old gate.",
-          "positive_authority_granted": false,
-          "post_hoc_relabeling_prohibited": true
         }
       ]
     },
@@ -1153,20 +840,9 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p13 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p12-p13-authority-active-base"
-            },
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p12-p13-authority-active-base"
-            },
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -1185,15 +861,8 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p12-p13-authority-active-base"
-            },
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13A_PROTOCOL_ADJUDICATION_V2.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p12-p13-authority-active-base"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13A_PROTOCOL_ADJUDICATION_V2.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -1212,21 +881,9 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V2.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-13-responsibility-carrying-state/P13B_GOLD_SUPPORT_SPEC_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            }
+            {"path": "papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V2.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13B_GOLD_SUPPORT_SPEC_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -1234,14 +891,6 @@
             "success_condition": "The V2 selector binds all 120 live corruption opportunities, zero gold-scored unsafe reuses, and the finite-world external boundary.",
             "failure_terminal": "P13B_AUTHENTICATED_CORRUPTION_AUTHORITY_INVALID"
           }
-        },
-        {
-          "item_id": "P13.B.INDEPENDENT_GOLD.SUCCESSOR",
-          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
-          "claim_id": "P13B.INDEPENDENTLY_GRADED_CERTIFICATE_SAFETY",
-          "disposition": "A new empirical claim requires independent gold support, live wrong/stale/forged/overbroad certificate opportunities, matched costs, and domain-block inference.",
-          "positive_authority_granted": false,
-          "post_hoc_relabeling_prohibited": true
         }
       ]
     },
@@ -1256,14 +905,8 @@
           "immutable": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "REPLAY_AND_RETAIN",
@@ -1285,15 +928,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p14 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p14-positive-adjudication"
-            },
-            {
-              "path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p14-positive-adjudication"},
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -1312,15 +948,8 @@
           "positive_authority_granted": true,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p14-positive-adjudication"
-            },
-            {
-              "path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json",
-              "availability": "BASE_REVISION"
-            }
+            {"path": "papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p14-positive-adjudication"},
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json", "availability": "BASE_REVISION"}
           ],
           "next_executable_step": {
             "kind": "AUTHORITY_REPLAY",
@@ -1333,24 +962,13 @@
           "item_id": "P14.D.EXTERNAL_VALIDITY",
           "category": "EXTERNAL_EVIDENCE_BLOCKER",
           "claim_id": "P14D.BLINDED_MULTI_DOMAIN_GOVERNANCE",
-          "disposition": "P14C uses internally authored specifications and does not establish external governance validity.",
+          "disposition": "P14C uses internally authored specifications and does not establish external governance validity. PR 971 freezes a fail-closed P14D acquisition protocol and preflight, but blinded independent case packets and adjudicator custody are not available locally.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md",
-              "availability": "BASE_REVISION"
-            },
-            {
-              "path": "papers/paper-14-orion-rse/P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-14-orion-rse/P14D_EXTERNAL_ACQUISITION_PREFLIGHT_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            }
+            {"path": "papers/paper-14-orion-rse/P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md", "availability": "BASE_REVISION"},
+            {"path": "papers/paper-14-orion-rse/P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-14-orion-rse/P14D_EXTERNAL_ACQUISITION_PREFLIGHT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
@@ -1377,16 +995,8 @@
             "verification_command": "PYTHONPATH=src python -m pytest tests/unit/study/p15 -q"
           },
           "source_refs": [
-            {
-              "path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p3-p9-p15-lifecycle"
-            },
-            {
-              "path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p3-p9-p15-lifecycle"
-            }
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER.md", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"}
           ],
           "next_executable_step": {
             "kind": "MERGE_VERIFICATION",
@@ -1399,25 +1009,13 @@
           "item_id": "P15.A.HARNESS.SUCCESSOR",
           "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
           "claim_id": "P15A.HARNESS.ADMISSION.SAFETY",
-          "disposition": "No empirical P15 claim exists; P15A must test a frozen harness revision over live host/capability failures and nonzero scientific-admission opportunities.",
+          "disposition": "PR 971 freezes a fail-closed P15A acquisition protocol and preflight for one exact harness revision, live host/capability failures, clean controls, and nonzero admission opportunities. Execution remains blocked on the external donor matrix, protected corpus, and custody bindings.",
           "positive_authority_granted": false,
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
-            {
-              "path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p3-p9-p15-lifecycle"
-            },
-            {
-              "path": "papers/paper-15-orion-research-harness/P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            },
-            {
-              "path": "papers/paper-15-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json",
-              "availability": "EXISTING_PR",
-              "ref": "codex/p11-p15-confirmatory-execution"
-            }
+            {"path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "codex/p3-p9-p15-lifecycle"},
+            {"path": "papers/paper-15-orion-research-harness/P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"},
+            {"path": "papers/paper-15-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json", "availability": "EXISTING_PR", "ref": "codex/p11-p15-confirmatory-execution"}
           ],
           "next_executable_step": {
             "kind": "EXTERNAL_ACQUISITION",
