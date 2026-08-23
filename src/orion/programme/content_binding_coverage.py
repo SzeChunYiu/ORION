@@ -28,6 +28,20 @@ paper is a true statement about that corner and says nothing about the rest.
 The defect this module exists to prevent is not that the unbound papers are
 wrong. It is that they are *silent*. Ask "how many files drifted?" and an
 unbound paper answers ``0``, exactly as a bound and clean one does. That is the
+2. *Paper content binding* --- a committed digest per watched file, so that
+   changing canonical paper bytes without regenerating the binding fails a check.
+
+Two binding forms currently exist:
+
+- P6, P7 and P8 carry per-directory ``CONTENT_MANIFEST_V1.json`` / ``SHA256SUMS``;
+- the closed ORION-Q publication wave carries one deliberate cross-paper binding,
+  ``papers/Q_SERIES_CONTENT_BINDING_V1.json``, over the canonical Q1-Q4
+  submission surfaces while leaving historical snapshots visibly outside that
+  publication subset.
+
+The defect this module exists to prevent is not that an unbound paper is wrong.
+It is that it is *silent*. Ask "how many files drifted?" and an unbound paper
+answers ``0``, exactly as a bound and clean one does. That is the
 ``VACUOUS_GUARD_ZERO_DENOMINATOR`` shape
 (``research/failures/2026-08-vacuous-guard-zero-denominator/``) applied to
 content binding: the numerator is carried and the denominator is dropped, so
@@ -39,14 +53,11 @@ its guard :data:`~orion.programme.records.Outcome.CANNOT_CHECK` rather than a
 pass --- and by ``Outcome.blocks`` that stops a promotion exactly as a ``FAIL``
 would.
 
-The verification is deliberately independent of
-``papers/candidates/checkers/check_content_binding_v1.py``. That checker is the
-generator for the P6-P8 packages and derives the manifest it then compares
-against; this one only reads what is committed and hashes what is on disk, so
-the two disagree if either is wrong. It also discovers bindings by convention
-rather than from a hardcoded candidate table, so a paper that adopts binding
-tomorrow is covered without editing this file --- an enumerated list of who is
-watched is the same failure one level up.
+The per-directory verification is deliberately independent of
+``papers/candidates/checkers/check_content_binding_v1.py``. The Q-series
+cross-binding is independently recomputed through
+``orion.programme.q_series_content_binding``. Neither path derives the bytes it
+expects while comparing them, so a stale committed digest remains observable.
 """
 
 from __future__ import annotations
@@ -63,6 +74,11 @@ from orion.programme.guard_exercise import (
     GuardExercise,
     assess_guard,
     worst_outcome,
+)
+from orion.programme.q_series_content_binding import (
+    BINDING_PATH as Q_SERIES_BINDING_PATH,
+    git_blob_sha1,
+    q_series_bound_rows_for_directory,
 )
 from orion.programme.records import Outcome
 
@@ -100,7 +116,7 @@ _NOT_A_PAPER = frozenset({"candidates"})
 
 
 class PaperBindingState(str, Enum):
-    """Total taxonomy of what a repository can say about one paper's bytes.
+    """Total taxonomy of what a repository can say about one paper's watched bytes.
 
     ``UNBOUND`` is the state the previous accounting could not express: it looks
     identical to ``BOUND_CURRENT`` in any report that counts only drifted files.
@@ -179,8 +195,10 @@ class PaperBinding:
     def unbound_files(self) -> int:
         """Files present in the directory that no digest covers.
 
-        Non-zero on a ``BOUND_*`` paper means the binding is partial: content can
-        change inside a bound paper without the guard seeing it.
+        Non-zero on a ``BOUND_*`` paper means the binding is partial. For the
+        Q-series this is intentional: historical manuscript snapshots remain
+        provenance while the canonical submission subset is what the cross-paper
+        manifest watches.
         """
 
         return max(0, self.files_on_disk - self.files_bound)
@@ -305,6 +323,79 @@ def _resolve_recorded(recorded_path: str, *bases: Path) -> Path | None:
     return None
 
 
+def _inspect_q_series_cross_binding(
+    repo_root: Path, directory: Path, *, files_on_disk: int
+) -> PaperBinding | None:
+    """Inspect the canonical Q-series subset when this directory participates.
+
+    The binding itself sits at ``papers/Q_SERIES_CONTENT_BINDING_V1.json``, so a
+    per-directory convention scan cannot discover it. This adapter keeps the
+    repository-wide survey truthful while preserving the deliberate distinction
+    between canonical submission files and historical snapshots.
+    """
+
+    relative = directory.relative_to(repo_root).as_posix()
+    declared = (repo_root / Q_SERIES_BINDING_PATH).is_file()
+    if not declared:
+        return None
+    try:
+        rows = q_series_bound_rows_for_directory(repo_root, directory)
+    except (OSError, TypeError, ValueError, json.JSONDecodeError) as error:
+        if directory.name.startswith("Q-paper-"):
+            return PaperBinding(
+                paper_id=directory.name,
+                directory=relative,
+                state=PaperBindingState.BOUND_UNREADABLE,
+                files_on_disk=files_on_disk,
+                files_bound=0,
+                drifted_paths=(),
+                missing_paths=(),
+                detail=f"{Q_SERIES_BINDING_PATH.as_posix()} could not be read: {error}",
+            )
+        return None
+    if not rows:
+        return None
+
+    drifted: list[str] = []
+    missing: list[str] = []
+    for row in rows:
+        path_value = str(row["path"])
+        expected = str(row["git_blob_sha1"])
+        target = repo_root / path_value
+        if not target.is_file():
+            missing.append(path_value)
+        elif git_blob_sha1(target.read_bytes()) != expected:
+            drifted.append(path_value)
+
+    state = (
+        PaperBindingState.BOUND_DRIFTED
+        if drifted or missing
+        else PaperBindingState.BOUND_CURRENT
+    )
+    if state is PaperBindingState.BOUND_DRIFTED:
+        detail = (
+            f"{relative}: Q-series canonical binding has {len(drifted)} changed and "
+            f"{len(missing)} missing path(s) among {len(rows)} watched publication files"
+        )
+    else:
+        detail = (
+            f"{relative}: {len(rows)} canonical publication files match the shared "
+            "Q-series Git-blob binding; other files in this directory are historical or "
+            "non-canonical unless separately bound"
+        )
+
+    return PaperBinding(
+        paper_id=directory.name,
+        directory=relative,
+        state=state,
+        files_on_disk=files_on_disk,
+        files_bound=len(rows),
+        drifted_paths=tuple(sorted(drifted)),
+        missing_paths=tuple(sorted(missing)),
+        detail=detail,
+    )
+
+
 def inspect_paper(repo_root: Path, directory: Path) -> PaperBinding:
     """Judge one paper directory by hashing what is on disk.
 
@@ -316,12 +407,19 @@ def inspect_paper(repo_root: Path, directory: Path) -> PaperBinding:
     outside the paper (P6-P8's bind their shared checkers and tests); those are
     watched by the checker that owns them and are not counted here, so a paper
     cannot look well covered because its manifest reaches elsewhere.
+    Reads only committed binding artifacts and never derives what the binding
+    ought to say. Direct SHA256SUMS packages and the Q-series cross-binding use
+    different content identities but the same guard semantics.
     """
 
     paper_id = directory.name
     relative = directory.relative_to(repo_root).as_posix()
     on_disk = _files_on_disk(directory)
     sums_files = _sums_files(directory)
+
+    q_series = _inspect_q_series_cross_binding(repo_root, directory, files_on_disk=on_disk)
+    if q_series is not None:
+        return q_series
 
     if not sums_files:
         return PaperBinding(
@@ -445,9 +543,8 @@ def inspect_paper(repo_root: Path, directory: Path) -> PaperBinding:
 def survey_paper_bindings(repo_root: Path) -> tuple[PaperBinding, ...]:
     """Every directory under ``papers/``, whether or not it declares a binding.
 
-    Discovery is by convention rather than from a registry, so a paper that
-    adopts binding is covered without editing this module --- and, more to the
-    point, a paper that never adopts it cannot drop off the report.
+    Discovery is by convention for local bindings plus the canonical cross-series
+    Q binding. A paper that never adopts either form cannot drop off the report.
     """
 
     # Resolved, not taken as given. Every path this module compares against the
@@ -493,13 +590,11 @@ def assess_paper(binding: PaperBinding) -> GuardAssessment:
 
 
 def assess_binding_coverage(bindings: tuple[PaperBinding, ...]) -> GuardAssessment:
-    """Roll the per-paper verdicts up without letting a bound paper cover for an unbound one.
+    """Roll per-paper verdicts up without letting one bound paper cover for another.
 
-    Assessing the pooled exercise alone would report ``PASS`` for this tree:
-    115 bound files, 0 drifted. That pooled pass is exactly the compensatory
-    move the programme forbids --- P6's clean binding is not evidence about
-    P1's bytes. So the roll-up is over the *per-paper* verdicts, and one
-    ``UNBOUND`` paper makes the whole survey ``CANNOT_CHECK``.
+    Assessing only the pooled exercise can report a clean pass while another paper
+    is entirely unobserved. The roll-up is therefore over per-paper verdicts, and
+    one ``UNBOUND`` paper keeps the overall survey at ``CANNOT_CHECK``.
     """
 
     if not bindings:

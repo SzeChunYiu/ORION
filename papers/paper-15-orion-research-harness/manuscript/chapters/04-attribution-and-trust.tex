@@ -1,0 +1,46 @@
+\section{Attribution and certificate trust}
+
+Content addressing and attribution answer different questions. A digest can show
+that two observers refer to the same bytes, but it does not show who generated
+those bytes, under which authority, or whether the declared execution occurred.
+Conversely, an authenticated principal can sign a misleading or incomplete
+statement. The receipt must bind both content and a scoped attestation.
+
+\begin{definition}[Attribution-complete receipt]
+A receipt is attribution-complete for an execution claim only if its attested
+payload binds the executor principal, issuer and subject namespace, host/runtime,
+provider/model/checkpoint when used, inference or execution configuration,
+protocol/prompt digest, tool versions, code revision, environment digest,
+evidence-manifest digest, seed, session, campaign, request and result digests.
+\end{definition}
+
+This definition is deliberately stronger than requiring a non-empty executor,
+model or certificate string. Attestation systems such as in-toto bind supply-chain
+steps to authorized actors \citep{torresarias2019intoto}; SLSA provenance records
+the build definition and producing platform \citep{slsa2026provenance}; and
+identity-based signing can connect a short-lived certificate, an identity and a
+transparency log entry \citep{sigstore2026signing}. These are relevant design
+donors, not evidence that a research receipt inherits their guarantees.
+
+\begin{definition}[Certificate trust predicate]
+For certificate $c$ and policy $T$, $\operatorname{Trust}(c,T)$ holds only when
+the signature verifies to a configured root, the issuer and subject namespaces are
+allowed, the subject is authorized for the requested role, the validity epoch
+covers the execution, revocation and transparency requirements pass, and the
+signed payload binds the receipt's canonical bytes.
+\end{definition}
+
+An arbitrary identifier fails this predicate even if it is unique. A certificate
+for code signing also cannot automatically authorize scientific adjudication; role
+and scope are part of the policy. When no appropriate trust root is configured,
+the system may preserve the self-declared metadata for audit but must return
+\cannotcheck{} for authenticated attribution.
+
+Environment attribution is similarly substantive. Tools such as ReproZip capture
+files, libraries and configuration needed to rerun a computational experiment
+\citep{chirigati2016reprozip}, while workflow packages can bundle plans, runs,
+inputs and outputs \citep{khan2019cwlprov,leo2024workflowrun}. A receipt contract
+should interoperate with these representations rather than replace them. Its added
+requirement is that the environment record be content-bound to the specific request
+and result and assessed against the claim being made.
+

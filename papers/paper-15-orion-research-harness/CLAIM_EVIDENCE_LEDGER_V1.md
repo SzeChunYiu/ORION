@@ -1,0 +1,77 @@
+# P15 Scientific Execution Integrity — claim/evidence ledger V1
+
+**Paper:** ORION-P15  
+**Programme:** #977  
+**Paper issue:** #979  
+**Current strongest terminal:** `P15_SEI_BOUNDED_FAULT_V1_GREEN`  
+**Top-tier external terminal:** `CANNOT_CHECK`
+
+## C15.1 — execution integrity is not scientific validity
+
+**Statement.** Under the frozen SEI V1 interface, complete/attributable/replayable execution does not imply scientific validity.
+
+**Authority:** `BOUNDED_EXECUTABLE_VERIFIED`.
+
+**Evidence:** `top_tier/P15_SEI_RESULT_RECEIPT_V1.md`, H15.4 pair `SEI-CLEAN-AUTH` vs `SEI-COMPLETE-INVALID-SCIENCE`.
+
+**Scope:** exact frozen 18-case fault model. General philosophical principle is not claimed as novel.
+
+## C15.2 — lane agreement is neither correctness nor required scientific authority
+
+**Statement.** In the frozen interface, two lanes may agree on invalid science, and lane disagreement may coexist with an independently verified/authorized scientific result.
+
+**Authority:** `BOUNDED_EXECUTABLE_VERIFIED`.
+
+**Evidence:** H15.5: `SEI-DUAL-AGREE-WRONG`, `SEI-DUAL-DISAGREE-VERIFIED`.
+
+**Nonclaim:** dual-lane systems are not generally bad; agreement remains useful reproducibility/consistency evidence.
+
+## C15.3 — fail-closed SEI contract separates execution/science/authority on V1
+
+**Statement.** On the frozen V1 cases, the SEI reference contract obtains 18/18 exact dispositions with zero false authorized-science admissions and zero false rejection of clean authorized cases.
+
+**Authority:** `BOUNDED_EMPIRICAL_EXACT`.
+
+**Evidence:** run `32645458435`, artifact `9494739942`, receipt SHA-256 `436ae0ed39fc9c0c58bcb8d50249222d979340669265aacd4c7dea605fccde51`.
+
+**Comparator result:** plain log success, structured execution receipt and replay/agreement products all admit at least one invalid/unauthorized scientific result under their intentionally narrower semantics.
+
+**Boundary:** this is a semantics/fault benchmark, not a matched implementation-performance comparison with W3C PROV/RO-Crate or production workflow systems.
+
+## C15.4 — host/execution failures must not enter scientific evidence
+
+**Statement.** The SEI contract rejects host/execution-integrity failures before scientific promotion, including spawn/timeout, nonzero completion, truncation, pre-reap finalization, cleanup omission, invalid retry accounting, stale/duplicate occurrence, digest mismatch and coverage omission in the V1 corpus.
+
+**Authority:** `BOUNDED_EXECUTABLE_VERIFIED`.
+
+**Evidence:** H15.1–H15.3 and 11 `EXECUTION_INVALID` cases in the V1 receipt.
+
+**Framework synchronization:** current ORION harness has related implementation tests, but this paper ledger does not infer unexecuted production guarantees from the reference model.
+
+## C15.5 — real-harness superiority over provenance/replay systems
+
+**Statement sought.** An implemented SEI layer materially reduces false scientific-success admission versus strong actual provenance/replay/attestation comparators at acceptable false-rejection and overhead cost.
+
+**Authority:** `CANNOT_CHECK`.
+
+**Required evidence:** real interoperable adapters, prospectively frozen broad fault injection, matched execution access, external validity oracle, overhead/resource accounting, independent reproduction.
+
+**No manuscript may state this as a result yet.**
+
+## C15.6 — interoperability with RO-Crate/PROV and claim-aware observability
+
+**Statement sought.** P15 semantics compose with standard research-object/provenance and claim-aware artifact-lineage representations without requiring a competing metadata layer.
+
+**Authority:** `PROPOSED / CANNOT_CHECK`.
+
+**Donor ownership:** RO-Crate 1.3, Workflow Run RO-Crate, execution-provenance work and artifact-centered claim-aware observability are explicitly donor-owned in `top_tier/P15_NEAREST_WORK_DELTA_2026-08-23.md`.
+
+## C15.7 — top-tier scientific systems claim
+
+**Maximum statement sought.** Scientific execution needs a fail-closed admission layer that treats attribution, replay and agreement as evidence about execution rather than substitutes for independent scientific validity and claim authority, and this separation improves real research-execution reliability under broad faults at acceptable cost.
+
+**Authority:** `CANNOT_CHECK` pending C15.5/C15.6 and external independent validation.
+
+## Publication rule
+
+The bounded V1 result may be submitted as a controlled systems/semantics contribution if venue strategy requires, but `P15_TOP_TIER_SUBMISSION_READY` cannot be emitted until the real comparator/interoperability/independent-authority gates close.
