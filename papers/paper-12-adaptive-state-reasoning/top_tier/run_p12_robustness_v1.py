@@ -213,9 +213,7 @@ def evaluate_set(cases, tag):
                     "priced_regret"] != 0:
                 v1_flat_zero_regret = False
         ok, msg = flat_direct_accounting_check(domain, [
-            {"case_id": r["case_id"],
-             "structures": c["structures"],
-             "selections": r["selections"]}
+            dict(r, structures=c["structures"])
             for r, c in zip(case_reports, dom["cases"])])
         domains.append({
             "domain": domain,
