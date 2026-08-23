@@ -1,0 +1,69 @@
+{
+  "schema": "orion.p9.d1v1_2-divergence-root-cause.v1",
+  "record": "P9_D1V1_2_DIVERGENCE_ROOT_CAUSE",
+  "authority_scope": "DIAGNOSIS_ONLY",
+  "relabels_nothing": "The locked replay's terminal remains P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED. This records what it failed of.",
+  "environment": {
+    "python": "3.13.12",
+    "numpy": "2.4.4",
+    "scikit_learn": "1.8.0"
+  },
+  "archived_accuracy": 0.5,
+  "locked_replay_accuracy": 0.75,
+  "boundary_margin": 0.05,
+  "arms": {
+    "TRANSCRIPT_BAG": {
+      "selected_config": "logistic-C0.1",
+      "distinct_predictions": 1,
+      "accuracy": 0.25,
+      "protected_cases": 128,
+      "boundary_cases": 128,
+      "boundary_fraction": 1.0,
+      "boundary_cases_whose_runner_up_is_correct": 64,
+      "accuracy_if_boundary_set_flips": 0.5,
+      "unresponsive": true
+    },
+    "UNTYPED_PAIR": {
+      "selected_config": "logistic-C0.1",
+      "distinct_predictions": 3,
+      "accuracy": 0.90625,
+      "protected_cases": 128,
+      "boundary_cases": 0,
+      "boundary_fraction": 0.0,
+      "boundary_cases_whose_runner_up_is_correct": 0,
+      "accuracy_if_boundary_set_flips": 0.90625,
+      "unresponsive": false
+    },
+    "TYPED_RELATIONAL": {
+      "selected_config": "logistic-C0.1",
+      "distinct_predictions": 3,
+      "accuracy": 1.0,
+      "protected_cases": 128,
+      "boundary_cases": 0,
+      "boundary_fraction": 0.0,
+      "boundary_cases_whose_runner_up_is_correct": 0,
+      "accuracy_if_boundary_set_flips": 1.0,
+      "unresponsive": false
+    },
+    "TYPED_SERIALIZED_BAG": {
+      "selected_config": "logistic-C1",
+      "distinct_predictions": 1,
+      "accuracy": 0.5,
+      "protected_cases": 128,
+      "boundary_cases": 32,
+      "boundary_fraction": 0.25,
+      "boundary_cases_whose_runner_up_is_correct": 32,
+      "accuracy_if_boundary_set_flips": 0.75,
+      "unresponsive": true
+    }
+  },
+  "checks": {
+    "reproduces_the_archived_accuracy": true,
+    "arm_is_a_constant_predictor": true,
+    "flipping_the_boundary_set_reaches_the_locked_replay_value": true,
+    "every_boundary_case_runner_up_is_correct": true
+  },
+  "finding": "TYPED_SERIALIZED_BAG predicts one class on all 128 protected cases, and that class is exactly half the split, so 0.5 is a prior and not a measurement. 32 of 128 cases lie within 0.05 of the boundary and the runner-up is correct on all 32, so tipping that set gives 0.5 + 32/128 = 0.75 exactly. The archived and replayed values are two sides of one boundary on an unresponsive comparator, not two measurements that disagree.",
+  "consequence": "The divergence is not evidence about representation quality in either direction, because neither number measures it. TRANSCRIPT_BAG is degenerate the same way at the ALIGNED prior. This is the case D1 v1.3's STRONGEST_DONOR_COMPLETE_SERIALIZATION arm exists to replace.",
+  "all_checks_pass": true
+}
