@@ -5,7 +5,7 @@ import math
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[2]
 RESEARCH = ROOT / "research" / "extensions" / "p9-structured-neural"
 EXPECTATION_PATH = RESEARCH / "verification" / "INDEPENDENT_REPLAY_EXPECTATIONS_V1.json"
 OFFICIAL_PATHS = {
@@ -43,7 +43,7 @@ def selected_dev(arm: dict[str, Any]) -> dict[str, Any]:
     """Return the dev metrics for the frozen selected D1 config.
 
     The durable D1 archive stores selected model identity separately from the
-    full dev-configuration rows.  Binding them by config_id is part of the
+    full dev-configuration rows. Binding them by config_id is part of the
     verifier adapter; it does not re-select a model or inspect test outcomes.
     """
 
@@ -65,7 +65,6 @@ def verify_a5(actual: dict[str, Any], expected: dict[str, Any], mismatches: list
         got = views.get(mode, {})
         exp = expected[mode]
         compare(f"A5.{mode}.sample_count", got.get("sample_count"), exp["sample_count"], mismatches)
-        # The independently replayed A5 archive uses the exact key `accuracy`.
         compare(f"A5.{mode}.accuracy", got.get("accuracy"), exp["accuracy"], mismatches)
         compare(f"A5.{mode}.unknown_rate", got.get("unknown_rate"), exp["unknown_rate"], mismatches)
 
