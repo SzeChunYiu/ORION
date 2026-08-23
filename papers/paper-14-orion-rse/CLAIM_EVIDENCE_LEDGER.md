@@ -6,6 +6,7 @@
 
 | Claim | Status | Evidence | Maximum authorized wording |
 |---|---|---|---|
+| active P14 controlled scientific result | **SUPPORTED / P14C / REPLAY-AUTHORITATIVE** | `P14_ACTIVE_CLAIM_AUTHORITY_V1.json` content-binds P14C result, replay and threshold adjudication | controlled specification-separated conformance over the frozen register; P14A is history, not active authority |
 | ORION-RSE separates research generation from scientific promotion | SUPPORTED / METHOD | architecture + manuscript | method description |
 | P14A mixed benchmark met its aggregate superiority gate | **NEGATIVE / FALSE** | P14A receipt | never relabel positive |
 | P14A's NOT_MET is evidence against the governance contract | **FALSE** | `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json` | never cite P14A as a negative result about ORION-RSE |
