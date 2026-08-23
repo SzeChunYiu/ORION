@@ -36,11 +36,32 @@ distinguish itself from 2102.10030 / quant-ph/0406180. The status
 `COMPLETE_FOR_SCOPED_THEOREM_PAPER__SUBMISSION_FORMATTING_REMAINS` is **superseded**: the
 scoped theorem's novelty premise did not survive the gate.
 
-## A flagged potential defect — audit required before ANY further use
+## The flagged monotonicity concern — AUDITED, resolved: sound, no defect
 
-Under a naive sum-of-supports objective, the ladder rewrite **increases** cost
-(`n → 4(n−1)+1`). The theorem's claimed monotonicity therefore leans entirely on the
-Tag-sharing accounting. Whether that accounting (i) is internally consistent, (ii) is the
-same objective under which the H2O number 8078 → 4972 was computed, and (iii) does not
-smuggle the reduction in via the cost definition itself, is **unaudited**. Until that audit
-lands, the monotonicity claim is treated as unverified.
+A full audit (2026-08-23, same day) traced the objective, the exchange rule, and the H2O
+number. Findings:
+
+- **Per-exchange monotonicity is genuinely established and order-free**: each zeroed
+  coordinate refunds multiplier `m ∈ {2,4}` while Lemma E bounds the associated `F3`
+  increase by ≤ 2, so `ΔC ≤ Σ(2−m) ≤ 0`; termination is well-founded on total frame
+  support. Verified by hand on a minimal example: worst case `ΔC = −2` (noncentral),
+  `ΔC = 0` (central, exactly the proof's tight case).
+- **No smuggling** — the sharing discounts make monotonicity *harder*, not tautological:
+  under a naive undiscounted objective the same exchange is strictly easier (`ΔC = −1`).
+  The gate's `n → 4(n−1)+1` ladder scenario is a category mismatch: the exchange never
+  splits a term into more terms (rotation count fixed at 9); it zeroes coordinates of
+  auxiliary generators.
+- **The H2O 8078 → 4972 uses a different objective and a greedy heuristic** (R4D pair
+  objective + 1%-slack matching), not the R6M theorem's normal form — and the body and the
+  results JSON already say so (`authority: ...confirmation_only__not_novelty_authority`).
+  The abstract's juxtaposition is a **disclosure item**, not an objective switch.
+
+Two disclosure obligations for any future write-up: (1) state loudly at the abstract that
+the H2O point is R4D pair-objective + greedy, not the theorem; (2) gloss "support-count
+objective" early as auxiliary-rotation support in a fixed 9-rotation template, to preempt
+exactly the CX-ladder misreading this gate itself made.
+
+**Final standing of Q-paper-01:** internally sound (proof, DP referee, and independent
+checker consistent; no defect found) — and not novel as mathematics (this gate). A
+formalization/monotonicity note for the TARE cost model at specialist venue tier, with the
+prior-art citations above mandatory.
