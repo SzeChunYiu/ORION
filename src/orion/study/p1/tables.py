@@ -43,6 +43,7 @@ from .metrics import (
     SystemAggregate,
     SystemRole,
     aggregate,
+    blinded_case_id,
     case_score_from_record,
     matched_units,
 )
@@ -58,6 +59,9 @@ DEFAULT_ARCHIVE = Path("papers/paper-01-recursive-epistemic-reconstruction/resul
 DEFAULT_OUTPUT = Path("papers/paper-01-recursive-epistemic-reconstruction/results")
 DEFAULT_BOOTSTRAP_SEED = 20260815
 DEFAULT_REPRESENTATIVES = 3
+DEFAULT_DESIGN_MANIFEST = Path(
+    "papers/paper-01-recursive-epistemic-reconstruction/protocol/P1_TEST_ARCHIVE_DESIGN_V1.json"
+)
 
 SCOPE_ALL = "ALL"
 SCOPE_HIDDEN_SHIFT = "HIDDEN_SHIFT_SUBSET"
@@ -177,7 +181,34 @@ class ArchiveIntegrity:
         }
 
 
-def check_archive(scores: Sequence[CaseScore], *, expected_repeats: int) -> ArchiveIntegrity:
+def load_archive_design(path: Path | None) -> dict | None:
+    if path is None:
+        return None
+    if not path.is_file():
+        raise ValueError(f"archive design manifest is absent: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or payload.get("schema_version") != "orion.p1.archive-design.v1":
+        raise ValueError(f"{path} is not an orion.p1.archive-design.v1 object")
+    required = {"suite_fingerprint", "subject_revision", "system_ids", "case_ids", "seeds", "expected_record_count"}
+    missing = sorted(required - set(payload))
+    if missing:
+        raise ValueError(f"archive design manifest missing {missing}")
+    for key in ("system_ids", "case_ids", "seeds"):
+        values = payload[key]
+        if not isinstance(values, list) or not values or len(set(values)) != len(values):
+            raise ValueError(f"archive design {key} must be a non-empty unique list")
+    expected = len(payload["system_ids"]) * len(payload["case_ids"]) * len(payload["seeds"])
+    if int(payload["expected_record_count"]) != expected:
+        raise ValueError("archive design expected_record_count does not match its Cartesian grid")
+    return payload
+
+
+def check_archive(
+    scores: Sequence[CaseScore],
+    *,
+    expected_repeats: int,
+    expected_design: dict | None = None,
+) -> ArchiveIntegrity:
     """Refuse to publish from an archive that cannot bind its own numbers.
 
     Blocking conditions, all of which make a published table unverifiable rather
@@ -219,6 +250,73 @@ def check_archive(scores: Sequence[CaseScore], *, expected_repeats: int) -> Arch
                 f"{len(offenders)} (system, case) group(s) do not carry the frozen {expected_repeats} stochastic repeats: {shown}"
                 + (" ..." if len(offenders) > 5 else "")
             )
+
+        if expected_design is not None:
+            expected_systems = set(map(str, expected_design["system_ids"]))
+            expected_cases = set(map(str, expected_design["case_ids"]))
+            expected_seeds = {int(seed) for seed in expected_design["seeds"]}
+            if len(expected_seeds) != expected_repeats:
+                blockers.append(
+                    "archive design seed count does not equal the frozen stochastic repeats"
+                )
+            expected_fingerprint = str(expected_design["suite_fingerprint"])
+            expected_revision = str(expected_design["subject_revision"])
+            if set(fingerprints) != {expected_fingerprint}:
+                blockers.append("archive suite_fingerprint does not match the expected design")
+            if set(revisions) != {expected_revision}:
+                blockers.append("archive subject_revision does not match the expected design")
+
+            observed_systems = {score.system_id for score in scores}
+            observed_cases = {score.case_id for score in scores}
+            observed_seeds = {score.seed for score in scores}
+            for label, missing, unexpected in (
+                ("systems", expected_systems - observed_systems, observed_systems - expected_systems),
+                ("cases", expected_cases - observed_cases, observed_cases - expected_cases),
+                ("seeds", expected_seeds - observed_seeds, observed_seeds - expected_seeds),
+            ):
+                if missing:
+                    shown = sorted(missing)
+                    if label == "cases":
+                        shown = [
+                            blinded_case_id(case_id, suite_fingerprint=expected_fingerprint)
+                            for case_id in shown
+                        ]
+                    blockers.append(f"archive missing expected {label}: {shown[:5]}")
+                if unexpected:
+                    blockers.append(f"archive contains unexpected {label}: {sorted(unexpected)[:5]}")
+
+            tuple_counts: dict[tuple[str, str, int], int] = {}
+            for score in scores:
+                key = (score.system_id, score.case_id, score.seed)
+                tuple_counts[key] = tuple_counts.get(key, 0) + 1
+            expected_tuples = {
+                (system_id, case_id, seed)
+                for system_id in expected_systems
+                for case_id in expected_cases
+                for seed in expected_seeds
+            }
+            missing_tuples = sorted(expected_tuples - set(tuple_counts))
+            duplicate_tuples = sorted(key for key, count in tuple_counts.items() if count != 1)
+            if missing_tuples:
+                shown = [
+                    f"{system}/{blinded_case_id(case, suite_fingerprint=expected_fingerprint)}/seed={seed}"
+                    for system, case, seed in missing_tuples[:5]
+                ]
+                blockers.append(
+                    f"archive missing {len(missing_tuples)} expected (system, blinded-case, seed) row(s): {shown}"
+                )
+            if duplicate_tuples:
+                shown = [
+                    f"{system}/{blinded_case_id(case, suite_fingerprint=expected_fingerprint)}/seed={seed}={tuple_counts[(system, case, seed)]}"
+                    for system, case, seed in duplicate_tuples[:5]
+                ]
+                blockers.append(
+                    f"archive has {len(duplicate_tuples)} non-unique (system, blinded-case, seed) row(s): {shown}"
+                )
+            if len(scores) != int(expected_design["expected_record_count"]):
+                blockers.append(
+                    f"archive has {len(scores)} records; expected {expected_design['expected_record_count']}"
+                )
 
     return ArchiveIntegrity(
         record_count=len(scores),
@@ -836,12 +934,17 @@ def generate(
     resamples: int = stats.PROTOCOL_RESAMPLES,
     min_units: int = 0,
     representatives: int = DEFAULT_REPRESENTATIVES,
+    design_manifest: Path | None = None,
 ) -> tuple[dict, dict]:
     """Regenerate both tables from an archive and write JSON + markdown."""
 
     records = load_records(archive)
     scores = [case_score_from_record(record) for record in records]
-    integrity = check_archive(scores, expected_repeats=expected_repeats)
+    integrity = check_archive(
+        scores,
+        expected_repeats=expected_repeats,
+        expected_design=load_archive_design(design_manifest),
+    )
 
     t2 = build_t2(
         scores,
@@ -983,6 +1086,7 @@ def _check(args: argparse.Namespace) -> int:
                 resamples=args.resamples,
                 min_units=args.min_units,
                 representatives=args.representatives,
+                design_manifest=args.design_manifest,
             )
         except ValueError as error:
             print(f"P1 tables: archive is malformed and was not used: {error}", file=sys.stderr)
@@ -1059,6 +1163,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--min-units", type=int, default=0, help="declared prospective N; below it an inconclusive result reads UNDERPOWERED. No frozen default exists.")
     parser.add_argument("--representatives", type=int, default=DEFAULT_REPRESENTATIVES)
     parser.add_argument(
+        "--design-manifest",
+        type=Path,
+        default=DEFAULT_DESIGN_MANIFEST,
+        help="immutable expected system x case x seed design; pass an explicit path for another frozen split",
+    )
+    parser.add_argument(
         "--check",
         action="store_true",
         help=(
@@ -1080,6 +1190,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             resamples=args.resamples,
             min_units=args.min_units,
             representatives=args.representatives,
+            design_manifest=args.design_manifest,
         )
     except ValueError as error:
         print(f"P1 tables: archive is malformed and was not used: {error}", file=sys.stderr)
