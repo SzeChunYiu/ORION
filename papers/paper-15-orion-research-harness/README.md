@@ -75,6 +75,7 @@ type error. Receipts were complete and the result was still unusable. See
 ## Before this becomes a paper
 
 Per #670's rule — research decomposition is fine-grained, publication synthesis is
-coarse-grained — a directory is not an identity. This needs a paper issue, a claim
-ledger, a donor matrix against existing research-execution and workflow-provenance
-systems, and a protocol freeze, none of which exists yet.
+coarse-grained — a directory is not an identity. The claim ledger now exists and
+records no empirical authority. Promotion still needs a paper issue, a donor
+matrix against existing research-execution and workflow-provenance systems, and
+a prospectively frozen protocol; none of those exists yet.
