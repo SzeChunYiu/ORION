@@ -1,0 +1,67 @@
+\section{Prospective adversarial protocol}
+\label{sec:attacks}
+
+The framework is falsifiable only if every claimed guarantee has an attack that
+can make it fail. The protocol below is therefore part of the scientific object,
+not an optional engineering appendix. Exact fixtures, acceptance predicates,
+normalization and stopping rules must be frozen before protected execution.
+
+\subsection{Registered attacks}
+
+\begin{enumerate}[label=\textbf{A\arabic*.}]
+  \item \textbf{Executor substitution.} Replace the authenticated principal while
+        retaining the declared executor string. Attribution must fail.
+  \item \textbf{Model substitution.} Change provider or checkpoint under the same
+        lane label. Model-independence classification must fail or downgrade.
+  \item \textbf{Evidence replay.} Reuse a receipt under a different evidence
+        manifest or epoch. Request binding must fail.
+  \item \textbf{Cross-lane leakage.} Expose one lane's intermediate output before
+        the other seals. The no-cross-read gate must fail.
+  \item \textbf{Shared-decision helper.} Route nominally separate implementations
+        through one gold function. The implementation gate must fail.
+  \item \textbf{Certificate forgery.} Supply a non-empty identifier, wrong issuer,
+        wrong subject or correctly signed but out-of-scope certificate. Trust must
+        fail closed.
+  \item \textbf{Stale result.} Replay a valid receipt after protocol, code, tool,
+        environment or campaign epoch changes. Digest or epoch verification must fail.
+  \item \textbf{Partial write.} Interrupt publication between payload and terminal
+        writes. No completed receipt may become visible.
+  \item \textbf{Invalid success.} Return malformed or incomplete content with a
+        success transport status. Schema or terminal validation must fail.
+  \item \textbf{Capability failure.} Inject network, quota, process and tool errors.
+        They must enter the execution ledger and remain outside scientific evidence.
+  \item \textbf{Race.} Concurrent attempts target the same receipt identifier.
+        Publication must be atomic or explicitly detect conflict.
+  \item \textbf{Selective omission.} Remove a failed attempt before summarization.
+        Coverage verification must fail.
+\end{enumerate}
+
+\subsection{Units and endpoints}
+
+The unit of a conformance test is a frozen attack fixture. Passing all fixtures
+supports only the statement that the evaluated implementation met those cases. A
+reliability study requires independently sampled campaigns or tasks, a declared
+failure taxonomy, repeated but non-pseudoreplicated units, uncertainty at the
+campaign/task level and a sampling frame that includes realistic infrastructure
+and semantic failures.
+
+Primary conformance endpoints are exact: false admission count, missed failure
+count, incorrect independence label count, stale/replayed receipt acceptance count,
+and atomic-publication violations. Runtime and storage cost are secondary. Every
+attack family must contain a positive fixture and a negative fixture so that a
+checker returning constant failure or constant success cannot pass.
+
+\subsection{Custody and analysis}
+
+Attack generation, implementation under test and adjudication should be separated.
+The frozen scorer consumes only sealed receipts and attack truth unavailable to the
+implementation. Development fixtures and protected fixtures must have disjoint
+identifiers and manifests. Any post-outcome repair starts a new conformance version
+and preserves the failed version in the evidence history.
+
+Computational-reproducibility guidance emphasizes accessible data, code and
+workflows \citep{stodden2016enhancing}, while artifact review distinguishes
+availability, functional quality and reproduced or replicated results
+\citep{acm2020badging}. The proposed protocol similarly refuses to infer a stronger
+claim merely because an artifact runs.
+
