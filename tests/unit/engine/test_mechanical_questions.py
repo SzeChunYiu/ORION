@@ -79,6 +79,36 @@ def test_repeated_failure_variations_create_diagnosis_transfer_question_not_auto
     assert not transfer[0].route_kind
 
 
+def test_uncovered_nearest_work_creates_donor_envelope_question() -> None:
+    problem = Problem("task:donor-envelope", "Generalize a strong prior mechanism.")
+    context = MechanicalProblemContext(
+        nearest_work_donor_ids=("SAGE:2606.31478", "donor:already-enveloped"),
+        enveloped_donor_ids=("donor:already-enveloped",),
+    )
+
+    questions = generate_problem_questions(problem, context)
+    envelope = [item for item in questions if item.kind is ProblemQuestionKind.DONOR_ENVELOPE]
+
+    assert len(envelope) == 1
+    assert "SAGE:2606.31478" in envelope[0].question
+    assert "donor:already-enveloped" not in envelope[0].question
+    assert "conservative embedding" in envelope[0].question
+    assert "ideal donor product" in envelope[0].question
+    assert envelope[0].route_kind is SearchRouteKind.LITERATURE_BRIDGE
+
+
+def test_enveloped_nearest_work_does_not_repeat_donor_envelope_question() -> None:
+    problem = Problem("task:donor-envelope-closed", "Use an absorbed donor.")
+    context = MechanicalProblemContext(
+        nearest_work_donor_ids=("donor:closed",),
+        enveloped_donor_ids=("donor:closed",),
+    )
+
+    questions = generate_problem_questions(problem, context)
+
+    assert all(item.kind is not ProblemQuestionKind.DONOR_ENVELOPE for item in questions)
+
+
 def test_failure_pattern_question_id_is_stable_across_process_hash_seeds():
     code = (
         "from orion.engine.mechanical_questions import failure_pattern_question_id;"

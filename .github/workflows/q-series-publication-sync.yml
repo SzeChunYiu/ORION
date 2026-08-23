@@ -20,6 +20,7 @@ on:
       - 'tests/unit/publication/test_framework_snapshot.py'
       - 'tests/unit/publication/test_q_series_final_spec.py'
       - 'tests/unit/publication/test_q_series_content_binding.py'
+      - 'tests/unit/publication/test_q1_proof_sanity_binding.py'
       - 'tests/unit/programme/test_content_binding_coverage.py'
       - 'packages/orion-research-harness/src/orion_research_harness/publication_contract.py'
       - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
@@ -49,6 +50,7 @@ on:
       - 'tests/unit/publication/test_framework_snapshot.py'
       - 'tests/unit/publication/test_q_series_final_spec.py'
       - 'tests/unit/publication/test_q_series_content_binding.py'
+      - 'tests/unit/publication/test_q1_proof_sanity_binding.py'
       - 'tests/unit/programme/test_content_binding_coverage.py'
       - 'packages/orion-research-harness/src/orion_research_harness/publication_contract.py'
       - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
@@ -89,6 +91,7 @@ jobs:
             tests/unit/publication/test_framework_snapshot.py \
             tests/unit/publication/test_q_series_final_spec.py \
             tests/unit/publication/test_q_series_content_binding.py \
+            tests/unit/publication/test_q1_proof_sanity_binding.py \
             tests/unit/programme/test_content_binding_coverage.py
       - name: Check Q3 harness publication contract and invalid-content recovery
         run: |
