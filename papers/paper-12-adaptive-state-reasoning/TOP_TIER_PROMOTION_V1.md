@@ -2,7 +2,7 @@
 
 **Programme:** #977  
 **Existing controlled authority:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_MATCHED-BUDGET_SUPERIORITY_RESULT` remains valid.  
-**Top-tier state:** `EXTERNAL_PROMOTION_PENDING`
+**Top-tier state:** `TWO_EXECUTABLE_DOMAINS_EARNED__FINAL_PROMOTION_PENDING`
 
 ## Maximum claim to earn
 
@@ -12,9 +12,11 @@ Adaptive test-time compute, best-of-N/search, context selection, uncertainty all
 
 ## Post-outcome status — 2026-08-23
 
-The independent bounded theory checker now closes the current marginal resource-location construction, a weight-free substitution/complementarity criterion, and a `2ε` oracle-regret bound under the frozen finite assumptions. These results support T12.1/T12.2 only at the stated theoretical scope.
+The independent bounded theory checker closes the current marginal resource-location construction, a weight-free substitution/complementarity criterion, and a `2ε` oracle-regret bound under the frozen finite assumptions.
 
-The prospectively frozen verifier-backed SAT study now returns `P12_VERIFIER_RESOURCE_LOCATION_V1_SUPPORTED` with byte-identical replay. Every arm receives the same 2,000-literal-evaluation work budget and every returned SAT/UNSAT disposition is independently verified.
+### Verifier-backed SAT domain
+
+The prospectively frozen SAT study returns `P12_VERIFIER_RESOURCE_LOCATION_V1_SUPPORTED` with byte-identical replay. Every arm receives the same 2,000-literal-evaluation work budget and every returned SAT/UNSAT disposition is independently verified.
 
 Protected outcomes over 16 cases:
 
@@ -25,13 +27,25 @@ Protected outcomes over 16 cases:
 
 The low-unit easy family is an anti-preprocessing control: adaptive mean work is `11.75`, exactly matching reason-only and improving on always-propagate `20.25`. Unit-heavy and contradiction families require state construction to avoid budget exhaustion.
 
-**Earned claim:** on this frozen verifier-backed SAT family, resource *location* is causally consequential, and the preregistered structural signal selects the per-case optimal state-vs-search allocation with zero observed oracle regret. This does not establish a transferable multi-domain allocator or a full vector-valued end-to-end resource law.
+### Procedural repeated-path domain
 
-Exact execution hashes and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
+A second prospectively frozen executable domain now returns `P12_PROCEDURAL_PATH_ALLOCATION_V1_SUPPORTED` with deterministic byte replay. It contains eight repeated shortest-path task families with exact shortest-path verification and a pre-outcome query-count allocation signal.
+
+All three arms return the same `46` verified paths, but their charged expansion work differs:
+
+- `ADAPTIVE_LOCATION`: `858` total expansions, `0` budget exhaustions;
+- `REASON_ONLY`: `7,024` total expansions, `4` budget exhaustions;
+- `STATE_FIRST`: `1,688` total expansions, `0` budget exhaustions.
+
+The frozen allocator agrees with the post-outcome oracle in all `8/8` cases with zero observed regret. It selects `REASON_ONLY` in every low-query case, where direct search costs only `2–5` expansions while reusable state costs roughly `197–225`, and selects `STATE_FIRST` in every high-query case, where repeated search costs `1,190–2,273` expansions while reusable state costs roughly `197–225`.
+
+**Earned claim:** resource *location* is causally consequential in two qualitatively distinct executable settings, and non-beneficial regimes are part of the result rather than removed. A pre-outcome structural signal can select the lower-work locus while preserving exact task correctness. **Not earned:** a universal multi-locus allocator, open-weight LLM transfer, or complete vector-valued resource law across every programme coordinate.
+
+Exact procedural authority is bound in `top_tier/P12_PROCEDURAL_PATH_ALLOCATION_RESULT_RECEIPT_V1.md`; SAT authority remains bound in the programme execution ledger.
 
 ## Generalized action space
 
-Move beyond the current two-locus scalar controlled world. Freeze a resource-location action set including at least:
+Move beyond the current two-locus demonstrations. Freeze a resource-location action set including at least:
 
 - improve/compile/retrieve state;
 - reason/search more over current state;
@@ -47,7 +61,7 @@ Use the programme-wide vector:
 
 `R = (preprocessing/compiler work, state/memory, model compute, inference/search, tool/verifier calls, latency, cache/reuse, recovery/reconstruction)`.
 
-A scalar utility may be reported only when weights are supplied prospectively by a real downstream decision contract. Otherwise compare Pareto fronts and constrained slices.
+The SAT and procedural studies now charge more than one resource coordinate explicitly (state-construction/search work and verifier/path-check work), but they do not yet instantiate the entire programme-wide vector. A scalar utility may be reported only when weights are supplied prospectively by a real downstream decision contract. Otherwise compare Pareto fronts and constrained slices.
 
 ## Theory/decision programme
 
@@ -61,29 +75,21 @@ Define measurable criteria for when better state substitutes for more reasoning,
 
 ### T12.3 — Regret to oracle allocator
 
-Define an oracle ceiling only for analysis. Bound or empirically estimate regret of the frozen allocator relative to the oracle under distribution shift and hidden task-family variation.
+Define an oracle ceiling only for analysis. Bound or empirically estimate regret of the frozen allocator relative to the oracle under distribution shift and hidden task-family variation. Both current executable studies have zero observed regret under their respective frozen signals, but that is not a universal bound.
 
 ## Protected experiments
 
 ### E12.1 — open-weight/procedural system
 
-Freeze pre-outcome signals and compare:
-
-1. fixed state + fixed compute;
-2. fixed state + adaptive reasoning;
-3. adaptive state + fixed reasoning;
-4. joint adaptive state/reasoning;
-5. generalized multi-locus allocator;
-6. uncertainty-only/difficulty-only/context-only donors;
-7. oracle diagnostic ceiling.
+The procedural half of this requirement is now executed through the repeated shortest-path domain. A true open-weight model/agent replication remains strengthening for any headline that explicitly mentions LLM inference scaling.
 
 ### E12.2 — verifier-backed search
 
-Repeat with verifier-call/search budgets and independently checkable task correctness. State construction may use native proof/dependency information only if every comparator receives matched semantic access.
+The SAT replication is executed with matched literal-evaluation budgets and independently checkable task correctness.
 
 ### E12.3 — cross-domain transfer
 
-Freeze one allocator or a small registered family before target-domain outcomes. Test whether its allocation policy transfers without target-specific endpoint tuning.
+The current two studies establish the same resource-location phenomenon across domains, but they do not use one frozen allocator unchanged across SAT and path planning. A true policy-transfer claim therefore remains open.
 
 ## Primary endpoints
 
@@ -113,15 +119,15 @@ Freeze one allocator or a small registered family before target-domain outcomes.
 
 - [x] T12.1 bounded resource-location decision rule;
 - [x] T12.2 bounded substitution/complementarity criteria;
-- [ ] real vector-valued resource accounting across the programme-wide resource vector;
-- [ ] open-weight/procedural replication;
-- [x] verifier-backed search replication with matched literal-evaluation budget and independent correctness verification;
-- [ ] frozen cross-domain transfer test;
-- [ ] strict intended-scope comparisons to adaptive-compute-only and adaptive-state-only donors;
-- [x] no hidden total-work advantage in the protected SAT study;
-- [ ] family/domain-block uncertainty plus independent replay/authority beyond same-workflow deterministic byte replay;
+- [ ] full programme-vector accounting across preprocessing/state/model/inference/tool/latency/cache/recovery coordinates;
+- [x] procedural replication with exact path verification and matched charged work;
+- [x] verifier-backed SAT replication with matched literal-evaluation budget and independent correctness verification;
+- [ ] one frozen allocator/policy transferred unchanged across domains if the final headline claims policy transfer;
+- [x] strict comparison to both reason-only and state-first one-locus controls in the procedural domain;
+- [x] no hidden total-work advantage in the protected SAT or path studies;
+- [ ] family/domain-block uncertainty plus independent implementation/authority beyond same-workflow deterministic replay for the procedural study;
 - [ ] donor refresh and exact submission binding.
 
-The unchecked items are not clerical. The current SAT result is a strong verifier-backed resource-location demonstration, but it does not by itself justify cross-domain or multi-locus generality.
+If the final manuscript headline is the demonstrated **resource-location phenomenon and phase change**, the current SAT + procedural pair is substantially closer to peer-review readiness than a universal transfer claim. If the manuscript claims one transferable allocator across domains, the frozen cross-domain policy-transfer gate remains mandatory.
 
 If no transferable allocator wins, retain the domain-specific crossover laws and characterize the information required for a general allocator rather than weakening the matched-budget requirement.
