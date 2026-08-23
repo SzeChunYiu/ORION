@@ -105,7 +105,15 @@ jobs:
           ''')
           if text.count(marker) != 1:
               raise SystemExit(f'expected one inventory insertion marker, found {text.count(marker)}')
-          inventory_test.write_text(text.replace(marker, addition + marker), encoding='utf-8')
+          text = text.replace(marker, addition + marker)
+          old_ratchet = '    assert sum(classified.values()) == 202, classified\n'
+          new_ratchet = (
+              '    # Current source derives 204 classified emitters; keep this exact, not a lower bound.\n'
+              '    assert sum(classified.values()) == 204, classified\n'
+          )
+          if text.count(old_ratchet) != 1:
+              raise SystemExit(f'expected one classified-site ratchet, found {text.count(old_ratchet)}')
+          inventory_test.write_text(text.replace(old_ratchet, new_ratchet), encoding='utf-8')
           PY
       - name: Commit source and hostile tests before deriving inventory
         run: |
