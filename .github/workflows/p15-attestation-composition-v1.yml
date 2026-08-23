@@ -1,0 +1,48 @@
+name: p15-attestation-composition-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-15-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V1.md'
+      - 'papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v1.py'
+      - 'papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v1.py'
+      - '.github/workflows/p15-attestation-composition-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  attestation-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen cryptographic dependency
+        run: python -m pip install 'cryptography==46.0.3'
+      - name: Execute signed-execution composition study
+        run: python papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v1.py | tee p15_attestation_composition_v1.json
+      - name: Verify deterministic primary replay
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v1.py > p15_attestation_composition_v1_rerun.json
+          cmp p15_attestation_composition_v1.json p15_attestation_composition_v1_rerun.json
+      - name: Execute independent audit
+        run: python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v1.py p15_attestation_composition_v1.json | tee p15_attestation_composition_independent_v1.json
+      - name: Verify terminals
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p15_attestation_composition_v1.json'));q=json.load(open('p15_attestation_composition_independent_v1.json'))
+          assert p['terminal']=='P15_ATTESTATION_COMPOSITION_V1_SUPPORTED',p
+          assert q['terminal']=='P15_ATTESTATION_COMPOSITION_SECOND_CHECKER_GREEN',q
+          assert p['case_count']==q['case_count']==22
+          assert p['valid_signature_rate']==p['tamper_detection_rate']==1.0
+          assert p['attestation_only_false_scientific_success_count']==0
+          assert p['hostile_attestation_as_science_false_success_count']>0
+          print('P15_ATTESTATION_COMPOSITION_TWO_CHECKS_GREEN')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p15-attestation-composition-v1
+          path: |
+            p15_attestation_composition_v1.json
+            p15_attestation_composition_independent_v1.json
