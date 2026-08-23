@@ -45,10 +45,11 @@ empty-evidence case is gone. A panel of eleven systems in which ten are
 two-valued cannot separate "better at knowing when it cannot check" from "the
 only one that can say so", and this battery does not.
 
-The score is quotable only because the identifiability register clears: fourteen
-probes at informedness 0.0 on the `CANNOT_CHECK` axis, on all thirteen seeds,
-against a declared ceiling of 0.0. On the V1 and V2 constructions the same
-register reports 1.0.
+The score is quotable only because the exact V3/`CANNOT_CHECK` claim axis clears:
+fourteen probes at informedness 0.0 on all thirteen seeds, against a declared
+ceiling of 0.0. On the V1 and V2 constructions the same register reports 1.0.
+This is not a whole-register pass: four digest-prefix noise-control cells on the
+off-claim `BLOCK`/`PROMOTE` axes remain disclosed in the register.
 
 ## What this does not do to the V2 record
 

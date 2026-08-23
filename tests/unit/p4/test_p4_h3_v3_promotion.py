@@ -43,6 +43,9 @@ SUMS = P4 / "journal_package" / "SHA256SUMS"
 V3 = P4 / "evidence" / "protected_v3"
 V2_METRICS = P4 / "evidence" / "protected_v2" / "PUBLICATION_METRICS_V2.json"
 PANEL_AUDIT = P4 / "evidence" / "audit" / "P4_PANEL_RESOLUTION_2026-08-22.json"
+CLAIM_AXIS_AUDIT = (
+    "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json"
+)
 MANUSCRIPT = P4 / "manuscript" / "main.tex"
 
 PROMOTED = ("FREEZE.md", "RESULT.md", "PANEL_V3.json", "IDENTIFIABILITY_V3.json")
@@ -96,7 +99,7 @@ def test_the_h3_claim_reads_on_the_v3_artifacts_inside_the_paper() -> None:
     artifacts = claim["artifacts"]
     assert artifacts, "a SUPPORTED claim with no artifacts is an assertion"
     for relative in artifacts:
-        assert relative.startswith("evidence/protected_v3/"), (
+        assert relative.startswith("evidence/protected_v3/") or relative == CLAIM_AXIS_AUDIT, (
             f"P4.H3 cites {relative!r}, which is not the V3 measurement"
         )
         assert (P4 / relative).is_file(), f"P4.H3 cites a missing artifact: {relative}"
@@ -106,6 +109,9 @@ def test_the_h3_claim_reads_on_the_v3_artifacts_inside_the_paper() -> None:
     )
     assert "evidence/protected_v3/FREEZE.md" in artifacts, (
         "a prospectively frozen result that does not cite its freeze is a retrospective one"
+    )
+    assert CLAIM_AXIS_AUDIT in artifacts, (
+        "the exact-axis authority decision is missing from the supported claim"
     )
 
 
