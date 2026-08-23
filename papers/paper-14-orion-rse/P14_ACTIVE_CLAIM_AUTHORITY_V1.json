@@ -1,0 +1,29 @@
+{
+  "schema": "ORION.P14.ActiveClaimAuthority.v1",
+  "paper_id": "P14",
+  "active_claim": {
+    "claim_id": "P14.CURRENT.CONTROLLED_CONFORMANCE",
+    "status": "SUPPORTED",
+    "scientific_terminal": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED",
+    "scope": "controlled specification-separated governance conformance over the frozen 28-case, seven-implementation register",
+    "result_artifact": "P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json",
+    "result_sha256": "ce62ff5b16b55888862c2cb42615ee5e4c474ff5dcf957220b65c2b5f7ade733",
+    "replay_artifact": "P14C_PROTOCOL_ADJUDICATION_V2.json",
+    "replay_sha256": "525427105c0403fcde139a5384993b16f9411c977ec874744b35cc41d24afca1"
+  },
+  "threshold_resolution": {
+    "artifact": "P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json",
+    "sha256": "bcbc1441ef54ec1ffff7eb08f4c35d5b0ba5809d500516a49596a54825c2a9f0",
+    "p14a_thresholds_unchanged": [0.05, 0.08],
+    "p14c_realized_statistics": [0.14285714285714285, 0.14285714285714285],
+    "question_answered": true
+  },
+  "historical_adjudicated_record": {
+    "artifact": "P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
+    "sha256": "5c91f882e76d4cdaad37e7ffc0e310a51253f8b2b253e34afa38df11442dc62e",
+    "authority": "NONE",
+    "disposition": "RETAINED_GATE_ATTAINABILITY_DEFECT",
+    "reason": "Both aggregate bars exceeded the statistic's supremum under P14A's frozen sampling support."
+  },
+  "external_validity": "OPEN"
+}
