@@ -1,0 +1,6087 @@
+{
+  "dataset": "digits",
+  "environment": {
+    "numpy": "2.3.2",
+    "scikit_learn": "1.7.1"
+  },
+  "mean_train_size": 1437.6,
+  "phase_rows": [
+    {
+      "H": 100,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 93606.4,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 100006.4,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 108006.4,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 132006.4,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 172006.4,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 252006.4,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 1,
+      "break_even_horizon": 1917,
+      "compile_cache_state_floats": 16,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 92006.4,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 492006.4,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 185612.8,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 192012.8,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 200012.8,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 224012.8,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 264012.8,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 344012.8,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 2,
+      "break_even_horizon": 3834,
+      "compile_cache_state_floats": 32,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 184012.8,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 584012.8,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 277619.19999999995,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 284019.19999999995,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 292019.19999999995,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 316019.19999999995,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 356019.19999999995,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 436019.19999999995,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 3,
+      "break_even_horizon": 5751,
+      "compile_cache_state_floats": 48,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 276019.19999999995,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 676019.2,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 369625.6,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 376025.6,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 384025.6,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 408025.6,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 448025.6,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 528025.6,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 4,
+      "break_even_horizon": 7668,
+      "compile_cache_state_floats": 64,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 368025.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 768025.6,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 461632.0,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 468032.0,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 476032.0,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 500032.0,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 540032.0,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 620032.0,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 5,
+      "break_even_horizon": 9585,
+      "compile_cache_state_floats": 80,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 460032.0,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 860032.0,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 553638.3999999999,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 560038.3999999999,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 568038.3999999999,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 592038.3999999999,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 632038.3999999999,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 712038.3999999999,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 6,
+      "break_even_horizon": 11501,
+      "compile_cache_state_floats": 96,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 552038.3999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 952038.3999999999,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 645644.7999999999,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 652044.7999999999,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 660044.7999999999,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 684044.7999999999,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 724044.7999999999,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 804044.7999999999,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 7,
+      "break_even_horizon": 13418,
+      "compile_cache_state_floats": 112,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 644044.7999999999,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 1044044.7999999999,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 737651.2,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 744051.2,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 752051.2,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 776051.2,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 816051.2,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 896051.2,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 8,
+      "break_even_horizon": 15335,
+      "compile_cache_state_floats": 128,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 736051.2,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 1136051.2,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 829657.6,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 836057.6,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 844057.6,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 868057.6,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 908057.6,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 988057.6,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 9,
+      "break_even_horizon": 17252,
+      "compile_cache_state_floats": 144,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 828057.6,
+      "future_query_recovery_fit_inspections": 92006.4,
+      "linear_compiled_total_touches": 1228057.6,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 100,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 921664.0,
+      "linear_universal_service_touches": 6400,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 500,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 928064.0,
+      "linear_universal_service_touches": 32000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 1000,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 936064.0,
+      "linear_universal_service_touches": 64000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 2500,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 960064.0,
+      "linear_universal_service_touches": 160000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 5000,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 1000064.0,
+      "linear_universal_service_touches": 320000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 10000,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": false,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 1080064.0,
+      "linear_universal_service_touches": 640000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    },
+    {
+      "H": 25000,
+      "U": 10,
+      "break_even_horizon": 19169,
+      "compile_cache_state_floats": 160,
+      "compiled_less_total_touches": true,
+      "compiler_fit_inspections": 920064.0,
+      "future_query_recovery_fit_inspections": 0,
+      "linear_compiled_total_touches": 1320064.0,
+      "linear_universal_service_touches": 1600000,
+      "memory_prediction_correct": true,
+      "universal_state_floats": 64,
+      "universal_state_reconstruction_cost": 0
+    }
+  ],
+  "protocol_sha256": "16147dd984776994279623cde3847bbeb48ec198e8b491d5644c68dc40e1f995",
+  "query_count": 10,
+  "query_results": {
+    "KNN:0": {
+      "compiled_mean": 0.9943650793650793,
+      "delta": -0.005634920634920659,
+      "quality_supported": true,
+      "universal_mean": 1.0
+    },
+    "KNN:1": {
+      "compiled_mean": 0.9661662757245384,
+      "delta": -0.024639960871845057,
+      "quality_supported": false,
+      "universal_mean": 0.9908062365963834
+    },
+    "KNN:2": {
+      "compiled_mean": 0.9675749559082893,
+      "delta": -0.015211640211640232,
+      "quality_supported": true,
+      "universal_mean": 0.9827865961199296
+    },
+    "KNN:3": {
+      "compiled_mean": 0.9283681196724676,
+      "delta": -0.05070137425209886,
+      "quality_supported": false,
+      "universal_mean": 0.9790694939245664
+    },
+    "KNN:4": {
+      "compiled_mean": 0.9790104345831899,
+      "delta": -0.0015451209723655879,
+      "quality_supported": true,
+      "universal_mean": 0.9805555555555555
+    },
+    "KNN:5": {
+      "compiled_mean": 0.9597800070452289,
+      "delta": -0.025552461646372926,
+      "quality_supported": false,
+      "universal_mean": 0.9853324686916018
+    },
+    "KNN:6": {
+      "compiled_mean": 0.9799382716049383,
+      "delta": -0.016665711118755366,
+      "quality_supported": true,
+      "universal_mean": 0.9966039827236937
+    },
+    "KNN:7": {
+      "compiled_mean": 0.9768451630164737,
+      "delta": -0.010189962924740947,
+      "quality_supported": true,
+      "universal_mean": 0.9870351259412147
+    },
+    "KNN:8": {
+      "compiled_mean": 0.8747889423575698,
+      "delta": -0.08148547966195019,
+      "quality_supported": false,
+      "universal_mean": 0.95627442201952
+    },
+    "KNN:9": {
+      "compiled_mean": 0.9354861827772044,
+      "delta": -0.035498604900049635,
+      "quality_supported": false,
+      "universal_mean": 0.970984787677254
+    },
+    "LINEAR:0": {
+      "compiled_mean": 0.9888095238095238,
+      "delta": -0.002777777777777768,
+      "quality_supported": true,
+      "universal_mean": 0.9915873015873016
+    },
+    "LINEAR:1": {
+      "compiled_mean": 0.9197705647497006,
+      "delta": -0.04547937020342441,
+      "quality_supported": false,
+      "universal_mean": 0.965249934953125
+    },
+    "LINEAR:2": {
+      "compiled_mean": 0.929373897707231,
+      "delta": -0.06746031746031766,
+      "quality_supported": false,
+      "universal_mean": 0.9968342151675487
+    },
+    "LINEAR:3": {
+      "compiled_mean": 0.8944624748972576,
+      "delta": -0.04771179046541363,
+      "quality_supported": false,
+      "universal_mean": 0.9421742653626712
+    },
+    "LINEAR:4": {
+      "compiled_mean": 0.965506218292596,
+      "delta": -0.019985697772075595,
+      "quality_supported": true,
+      "universal_mean": 0.9854919160646716
+    },
+    "LINEAR:5": {
+      "compiled_mean": 0.9527524944965606,
+      "delta": -0.023937998886399248,
+      "quality_supported": false,
+      "universal_mean": 0.9766904933829599
+    },
+    "LINEAR:6": {
+      "compiled_mean": 0.9651205842113096,
+      "delta": -0.018212749122023753,
+      "quality_supported": true,
+      "universal_mean": 0.9833333333333334
+    },
+    "LINEAR:7": {
+      "compiled_mean": 0.9584746452187112,
+      "delta": -0.020844431339787528,
+      "quality_supported": false,
+      "universal_mean": 0.9793190765584987
+    },
+    "LINEAR:8": {
+      "compiled_mean": 0.7958251015505916,
+      "delta": -0.06173876958190705,
+      "quality_supported": false,
+      "universal_mean": 0.8575638711324987
+    },
+    "LINEAR:9": {
+      "compiled_mean": 0.9157340519053626,
+      "delta": -0.029632496273363174,
+      "quality_supported": false,
+      "universal_mean": 0.9453665481787258
+    },
+    "RBF:0": {
+      "compiled_mean": 0.9915873015873016,
+      "delta": -0.002777777777777768,
+      "quality_supported": true,
+      "universal_mean": 0.9943650793650793
+    },
+    "RBF:1": {
+      "compiled_mean": 0.9570638791911282,
+      "delta": -0.036837400829862865,
+      "quality_supported": false,
+      "universal_mean": 0.9939012800209911
+    },
+    "RBF:2": {
+      "compiled_mean": 0.9825573192239858,
+      "delta": 0.0023985890652555852,
+      "quality_supported": true,
+      "universal_mean": 0.9801587301587302
+    },
+    "RBF:3": {
+      "compiled_mean": 0.9196408105828395,
+      "delta": -0.04484867890665001,
+      "quality_supported": false,
+      "universal_mean": 0.9644894894894895
+    },
+    "RBF:4": {
+      "compiled_mean": 0.9743817605014715,
+      "delta": 0.010267646387357443,
+      "quality_supported": true,
+      "universal_mean": 0.9641141141141141
+    },
+    "RBF:5": {
+      "compiled_mean": 0.9546100796358793,
+      "delta": -0.02617070114490161,
+      "quality_supported": false,
+      "universal_mean": 0.9807807807807809
+    },
+    "RBF:6": {
+      "compiled_mean": 0.9691358024691358,
+      "delta": -0.019443488896533245,
+      "quality_supported": true,
+      "universal_mean": 0.988579291365669
+    },
+    "RBF:7": {
+      "compiled_mean": 0.9787008370599702,
+      "delta": -0.010188051828918687,
+      "quality_supported": true,
+      "universal_mean": 0.9888888888888889
+    },
+    "RBF:8": {
+      "compiled_mean": 0.8475066436831142,
+      "delta": -0.08946814623285215,
+      "quality_supported": false,
+      "universal_mean": 0.9369747899159664
+    },
+    "RBF:9": {
+      "compiled_mean": 0.9296267629858962,
+      "delta": -0.036730306157550685,
+      "quality_supported": false,
+      "universal_mean": 0.9663570691434469
+    }
+  },
+  "receipt_sha256": "e8313c7a4615a8a395c785fabd1f0be85552488b287e35a28de2c419bf499797",
+  "row_count": 300,
+  "rows": [
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 5056,
+        "support_vector_coordinate_count": 5056,
+        "support_vector_count": 79
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 976,
+        "support_vector_coordinate_count": 976,
+        "support_vector_count": 61
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9675925925925926,
+      "fold": 0,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.962962962962963,
+      "fold": 0,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 12608,
+        "support_vector_coordinate_count": 12608,
+        "support_vector_count": 197
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9830246913580247,
+      "fold": 0,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 2496,
+        "support_vector_coordinate_count": 2496,
+        "support_vector_count": 156
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9969135802469136,
+      "fold": 0,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9799382716049383,
+      "fold": 0,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9552469135802468,
+      "fold": 0,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 0,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 11904,
+        "support_vector_coordinate_count": 11904,
+        "support_vector_count": 186
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 2176,
+        "support_vector_coordinate_count": 2176,
+        "support_vector_count": 136
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.970679012345679,
+      "fold": 0,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9845679012345678,
+      "fold": 0,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9012345679012346,
+      "fold": 0,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8287037037037037,
+      "fold": 0,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9444444444444444,
+      "fold": 0,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 12608,
+        "support_vector_coordinate_count": 12608,
+        "support_vector_count": 197
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8595679012345678,
+      "fold": 0,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 2368,
+        "support_vector_coordinate_count": 2368,
+        "support_vector_count": 148
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.8472222222222222,
+      "fold": 0,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9984520123839009,
+      "fold": 0,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9849384988703874,
+      "fold": 0,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9594594594594594,
+      "fold": 0,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 10496,
+        "support_vector_coordinate_count": 10496,
+        "support_vector_count": 164
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 1776,
+        "support_vector_coordinate_count": 1776,
+        "support_vector_count": 111
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.970679012345679,
+      "fold": 0,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.941358024691358,
+      "fold": 0,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 11328,
+        "support_vector_coordinate_count": 11328,
+        "support_vector_count": 177
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9552469135802468,
+      "fold": 0,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 2320,
+        "support_vector_coordinate_count": 2320,
+        "support_vector_count": 145
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9845679012345678,
+      "fold": 0,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9398148148148148,
+      "fold": 0,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 0,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 8640,
+        "support_vector_coordinate_count": 8640,
+        "support_vector_count": 135
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9429012345679012,
+      "fold": 0,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 1488,
+        "support_vector_coordinate_count": 1488,
+        "support_vector_count": 93
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9984567901234568,
+      "fold": 0,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9691358024691358,
+      "fold": 0,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.970679012345679,
+      "fold": 0,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9506172839506173,
+      "fold": 0,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 10752,
+        "support_vector_coordinate_count": 10752,
+        "support_vector_count": 168
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9552469135802468,
+      "fold": 0,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 1888,
+        "support_vector_coordinate_count": 1888,
+        "support_vector_count": 118
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9830246913580247,
+      "fold": 0,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9675925925925926,
+      "fold": 0,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8494505494505495,
+      "fold": 0,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.7795604395604395,
+      "fold": 0,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9285714285714286,
+      "fold": 0,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 14528,
+        "support_vector_coordinate_count": 14528,
+        "support_vector_count": 227
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8525274725274725,
+      "fold": 0,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 3488,
+        "support_vector_coordinate_count": 3488,
+        "support_vector_count": 218
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9571428571428571,
+      "fold": 0,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9367032967032967,
+      "fold": 0,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.970679012345679,
+      "fold": 0,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9567901234567902,
+      "fold": 0,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 0,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 13568,
+        "support_vector_coordinate_count": 13568,
+        "support_vector_count": 212
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 0,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 2640,
+        "support_vector_coordinate_count": 2640,
+        "support_vector_count": 165
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.970679012345679,
+      "fold": 0,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9845679012345678,
+      "fold": 0,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 1,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 1,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 4992,
+        "support_vector_coordinate_count": 4992,
+        "support_vector_count": 78
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 1,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 880,
+        "support_vector_coordinate_count": 880,
+        "support_vector_count": 55
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 1,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9814814814814814,
+      "fold": 1,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8842592592592593,
+      "fold": 1,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9845679012345678,
+      "fold": 1,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 11968,
+        "support_vector_coordinate_count": 11968,
+        "support_vector_count": 187
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.941358024691358,
+      "fold": 1,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 2544,
+        "support_vector_coordinate_count": 2544,
+        "support_vector_count": 159
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9799382716049383,
+      "fold": 1,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9537037037037037,
+      "fold": 1,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9984567901234568,
+      "fold": 1,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8533950617283951,
+      "fold": 1,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 1,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 12480,
+        "support_vector_coordinate_count": 12480,
+        "support_vector_count": 195
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9552469135802468,
+      "fold": 1,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 2160,
+        "support_vector_coordinate_count": 2160,
+        "support_vector_count": 135
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9675925925925926,
+      "fold": 1,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9660493827160493,
+      "fold": 1,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9398148148148148,
+      "fold": 1,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 13696,
+        "support_vector_coordinate_count": 13696,
+        "support_vector_count": 214
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9444444444444444,
+      "fold": 1,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 2320,
+        "support_vector_coordinate_count": 2320,
+        "support_vector_count": 145
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9845679012345678,
+      "fold": 1,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 1,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9675925925925926,
+      "fold": 1,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9444444444444444,
+      "fold": 1,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 10112,
+        "support_vector_coordinate_count": 10112,
+        "support_vector_count": 158
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9567901234567902,
+      "fold": 1,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 1632,
+        "support_vector_coordinate_count": 1632,
+        "support_vector_count": 102
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 1,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9675925925925926,
+      "fold": 1,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9849384988703874,
+      "fold": 1,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9397539954815497,
+      "fold": 1,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9864864864864865,
+      "fold": 1,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 10752,
+        "support_vector_coordinate_count": 10752,
+        "support_vector_count": 168
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9579114718433603,
+      "fold": 1,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 2288,
+        "support_vector_coordinate_count": 2288,
+        "support_vector_count": 143
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9833905112542884,
+      "fold": 1,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9563634842272614,
+      "fold": 1,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 1,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 1,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 8256,
+        "support_vector_coordinate_count": 8256,
+        "support_vector_count": 129
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9444444444444444,
+      "fold": 1,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 1344,
+        "support_vector_coordinate_count": 1344,
+        "support_vector_count": 84
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 1,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.970679012345679,
+      "fold": 1,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9691358024691358,
+      "fold": 1,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 1,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 9920,
+        "support_vector_coordinate_count": 9920,
+        "support_vector_count": 155
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9845679012345678,
+      "fold": 1,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 1936,
+        "support_vector_coordinate_count": 1936,
+        "support_vector_count": 121
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9691358024691358,
+      "fold": 1,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9830246913580247,
+      "fold": 1,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9096703296703297,
+      "fold": 1,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8795604395604395,
+      "fold": 1,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9428571428571428,
+      "fold": 1,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 14080,
+        "support_vector_coordinate_count": 14080,
+        "support_vector_count": 220
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9239560439560439,
+      "fold": 1,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 3616,
+        "support_vector_coordinate_count": 3616,
+        "support_vector_count": 226
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9571428571428571,
+      "fold": 1,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9081318681318682,
+      "fold": 1,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9429012345679012,
+      "fold": 1,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9243827160493827,
+      "fold": 1,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 1,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 14144,
+        "support_vector_coordinate_count": 14144,
+        "support_vector_count": 221
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8888888888888888,
+      "fold": 1,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 2224,
+        "support_vector_coordinate_count": 2224,
+        "support_vector_count": 139
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 1,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 91968
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.8858024691358024,
+      "fold": 1,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 22992
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 4992,
+        "support_vector_coordinate_count": 4992,
+        "support_vector_count": 78
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 1072,
+        "support_vector_coordinate_count": 1072,
+        "support_vector_count": 67
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9691262469900241,
+      "fold": 2,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.949045407636739,
+      "fold": 2,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9984520123839009,
+      "fold": 2,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 11904,
+        "support_vector_coordinate_count": 11904,
+        "support_vector_count": 186
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9814671482628139,
+      "fold": 2,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 2416,
+        "support_vector_coordinate_count": 2416,
+        "support_vector_count": 151
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9969040247678018,
+      "fold": 2,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9969040247678018,
+      "fold": 2,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 2,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 2,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 11648,
+        "support_vector_coordinate_count": 11648,
+        "support_vector_count": 182
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 1920,
+        "support_vector_coordinate_count": 1920,
+        "support_vector_count": 120
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 2,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9262212523082088,
+      "fold": 2,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8721671982541548,
+      "fold": 2,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9594594594594594,
+      "fold": 2,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 13568,
+        "support_vector_coordinate_count": 13568,
+        "support_vector_count": 212
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9038526103743496,
+      "fold": 2,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 2272,
+        "support_vector_coordinate_count": 2272,
+        "support_vector_count": 142
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9683145878798053,
+      "fold": 2,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9324324324324325,
+      "fold": 2,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 2,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9444444444444444,
+      "fold": 2,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 2,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 9984,
+        "support_vector_coordinate_count": 9984,
+        "support_vector_count": 156
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 2,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 1712,
+        "support_vector_coordinate_count": 1712,
+        "support_vector_count": 107
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 2,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 2,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9864864864864865,
+      "fold": 2,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9459459459459459,
+      "fold": 2,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.972972972972973,
+      "fold": 2,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 10944,
+        "support_vector_coordinate_count": 10944,
+        "support_vector_count": 171
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9324324324324325,
+      "fold": 2,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 2144,
+        "support_vector_coordinate_count": 2144,
+        "support_vector_count": 134
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9864864864864865,
+      "fold": 2,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9459459459459459,
+      "fold": 2,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 2,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9444444444444444,
+      "fold": 2,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 2,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 8192,
+        "support_vector_coordinate_count": 8192,
+        "support_vector_count": 128
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 2,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 1408,
+        "support_vector_coordinate_count": 1408,
+        "support_vector_count": 88
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 2,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.983015135878913,
+      "fold": 2,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9938080495356036,
+      "fold": 2,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 2,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 10304,
+        "support_vector_coordinate_count": 10304,
+        "support_vector_count": 161
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9969040247678018,
+      "fold": 2,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 1984,
+        "support_vector_coordinate_count": 1984,
+        "support_vector_count": 124
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9969040247678018,
+      "fold": 2,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9953560371517027,
+      "fold": 2,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8584162895927603,
+      "fold": 2,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.7701809954751131,
+      "fold": 2,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9705882352941176,
+      "fold": 2,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 14592,
+        "support_vector_coordinate_count": 14592,
+        "support_vector_count": 228
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8320814479638009,
+      "fold": 2,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 3232,
+        "support_vector_coordinate_count": 3232,
+        "support_vector_count": 202
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9543438914027149,
+      "fold": 2,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.8538009049773756,
+      "fold": 2,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8996818025455797,
+      "fold": 2,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8595631234950121,
+      "fold": 2,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9290075679394565,
+      "fold": 2,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 14080,
+        "support_vector_coordinate_count": 14080,
+        "support_vector_count": 220
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8873409012727898,
+      "fold": 2,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 2544,
+        "support_vector_coordinate_count": 2544,
+        "support_vector_count": 159
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9428964568283453,
+      "fold": 2,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9120227038183695,
+      "fold": 2,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 5440,
+        "support_vector_coordinate_count": 5440,
+        "support_vector_count": 85
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 1040,
+        "support_vector_coordinate_count": 1040,
+        "support_vector_count": 65
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9698673829108612,
+      "fold": 3,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9215628672150411,
+      "fold": 3,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 12032,
+        "support_vector_coordinate_count": 12032,
+        "support_vector_count": 188
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9667617928487493,
+      "fold": 3,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 2464,
+        "support_vector_coordinate_count": 2464,
+        "support_vector_count": 154
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9937888198757764,
+      "fold": 3,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9621034077555817,
+      "fold": 3,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9270282186948853,
+      "fold": 3,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9714285714285714,
+      "fold": 3,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 11072,
+        "support_vector_coordinate_count": 11072,
+        "support_vector_count": 173
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9714285714285714,
+      "fold": 3,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 2496,
+        "support_vector_coordinate_count": 2496,
+        "support_vector_count": 156
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9714285714285714,
+      "fold": 3,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9142857142857144,
+      "fold": 3,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9459459459459459,
+      "fold": 3,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9158133288568071,
+      "fold": 3,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9459459459459459,
+      "fold": 3,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 13248,
+        "support_vector_coordinate_count": 13248,
+        "support_vector_count": 207
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9459459459459459,
+      "fold": 3,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 2288,
+        "support_vector_coordinate_count": 2288,
+        "support_vector_count": 143
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9849336914554306,
+      "fold": 3,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9594594594594594,
+      "fold": 3,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 3,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 3,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 3,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 10368,
+        "support_vector_coordinate_count": 10368,
+        "support_vector_count": 162
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 3,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 1728,
+        "support_vector_coordinate_count": 1728,
+        "support_vector_count": 108
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 3,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.983015135878913,
+      "fold": 3,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 3,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9799191606467148,
+      "fold": 3,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 3,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 10880,
+        "support_vector_coordinate_count": 10880,
+        "support_vector_count": 170
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9706742346061231,
+      "fold": 3,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 2240,
+        "support_vector_coordinate_count": 2240,
+        "support_vector_count": 140
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 3,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9706742346061231,
+      "fold": 3,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9984472049689441,
+      "fold": 3,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 8512,
+        "support_vector_coordinate_count": 8512,
+        "support_vector_count": 133
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 1360,
+        "support_vector_coordinate_count": 1360,
+        "support_vector_count": 85
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9698853615520282,
+      "fold": 3,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 10752,
+        "support_vector_coordinate_count": 10752,
+        "support_vector_count": 168
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 2016,
+        "support_vector_coordinate_count": 2016,
+        "support_vector_count": 126
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.868342151675485,
+      "fold": 3,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.7907407407407407,
+      "fold": 3,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8857142857142857,
+      "fold": 3,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 13184,
+        "support_vector_coordinate_count": 13184,
+        "support_vector_count": 206
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.8413139329805996,
+      "fold": 3,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 2928,
+        "support_vector_coordinate_count": 2928,
+        "support_vector_count": 183
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9142857142857144,
+      "fold": 3,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.8494268077601411,
+      "fold": 3,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9166666666666667,
+      "fold": 3,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9552373581011352,
+      "fold": 3,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 3,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 13760,
+        "support_vector_coordinate_count": 13760,
+        "support_vector_count": 215
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9706742346061231,
+      "fold": 3,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 2624,
+        "support_vector_coordinate_count": 2624,
+        "support_vector_count": 164
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 3,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.967578259373925,
+      "fold": 3,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 0,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 5248,
+        "support_vector_coordinate_count": 5248,
+        "support_vector_count": 82
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 944,
+        "support_vector_coordinate_count": 944,
+        "support_vector_count": 59
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 4,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 0,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9381819707906665,
+      "fold": 4,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8810223266745005,
+      "fold": 4,
+      "query": 1,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9864864864864865,
+      "fold": 4,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 12096,
+        "support_vector_coordinate_count": 12096,
+        "support_vector_count": 189
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9127077387946954,
+      "fold": 4,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 2416,
+        "support_vector_coordinate_count": 2416,
+        "support_vector_count": 151
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9864864864864865,
+      "fold": 4,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9381819707906665,
+      "fold": 4,
+      "query": 1,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9254850088183422,
+      "fold": 4,
+      "query": 2,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9714285714285714,
+      "fold": 4,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 12032,
+        "support_vector_coordinate_count": 12032,
+        "support_vector_count": 188
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 1.0,
+      "fold": 4,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 1760,
+        "support_vector_coordinate_count": 1760,
+        "support_vector_count": 110
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9857142857142858,
+      "fold": 4,
+      "query": 2,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9714201779419172,
+      "fold": 4,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9158133288568071,
+      "fold": 4,
+      "query": 3,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9864864864864865,
+      "fold": 4,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 13376,
+        "support_vector_coordinate_count": 13376,
+        "support_vector_count": 209
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9443931509148901,
+      "fold": 4,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 2128,
+        "support_vector_coordinate_count": 2128,
+        "support_vector_count": 133
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9714201779419172,
+      "fold": 4,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9443931509148901,
+      "fold": 4,
+      "query": 3,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 4,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 4,
+      "query": 4,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 4,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 10688,
+        "support_vector_coordinate_count": 10688,
+        "support_vector_count": 167
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 4,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 1840,
+        "support_vector_coordinate_count": 1840,
+        "support_vector_count": 115
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 1.0,
+      "fold": 4,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 4,
+      "query": 4,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9567853457172342,
+      "fold": 4,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9567853457172342,
+      "fold": 4,
+      "query": 5,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 4,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 11776,
+        "support_vector_coordinate_count": 11776,
+        "support_vector_count": 184
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9567853457172342,
+      "fold": 4,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 2224,
+        "support_vector_coordinate_count": 2224,
+        "support_vector_count": 139
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 4,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9413484692122462,
+      "fold": 4,
+      "query": 5,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 4,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 4,
+      "query": 6,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9845631234950121,
+      "fold": 4,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 9152,
+        "support_vector_coordinate_count": 9152,
+        "support_vector_count": 143
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 4,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 1328,
+        "support_vector_coordinate_count": 1328,
+        "support_vector_count": 83
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9984520123839009,
+      "fold": 4,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 4,
+      "query": 6,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9722222222222222,
+      "fold": 4,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9089267285861713,
+      "fold": 4,
+      "query": 7,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 4,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 10048,
+        "support_vector_coordinate_count": 10048,
+        "support_vector_count": 157
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9567853457172342,
+      "fold": 4,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 1776,
+        "support_vector_coordinate_count": 1776,
+        "support_vector_count": 111
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9861111111111112,
+      "fold": 4,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9382524939800481,
+      "fold": 4,
+      "query": 7,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8019400352733685,
+      "fold": 4,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.7590828924162257,
+      "fold": 4,
+      "query": 8,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9571428571428571,
+      "fold": 4,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 14400,
+        "support_vector_coordinate_count": 14400,
+        "support_vector_count": 225
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.7876543209876543,
+      "fold": 4,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 3184,
+        "support_vector_coordinate_count": 3184,
+        "support_vector_count": 199
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9984567901234568,
+      "fold": 4,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.8258818342151675,
+      "fold": 4,
+      "query": 8,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.9969040247678018,
+      "fold": 4,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 65,
+        "prediction_feature_touches": 64
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "LINEAR",
+      "balanced_accuracy": 0.8826969384244926,
+      "fold": 4,
+      "query": 9,
+      "resource": {
+        "coefficient_count": 17,
+        "prediction_feature_touches": 16
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9583333333333333,
+      "fold": 4,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 12992,
+        "support_vector_coordinate_count": 12992,
+        "support_vector_count": 203
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "RBF",
+      "balanced_accuracy": 0.9151186790505677,
+      "fold": 4,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 2640,
+        "support_vector_coordinate_count": 2640,
+        "support_vector_count": 165
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9706742346061231,
+      "fold": 4,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 64,
+        "stored_training_vector_coordinate_count": 92032
+      },
+      "state": "UNIVERSAL",
+      "state_dimension": 64
+    },
+    {
+      "access": "KNN",
+      "balanced_accuracy": 0.9274595803233574,
+      "fold": 4,
+      "query": 9,
+      "resource": {
+        "prediction_feature_touches": 16,
+        "stored_training_vector_coordinate_count": 23008
+      },
+      "state": "COMPILED",
+      "state_dimension": 16
+    }
+  ],
+  "schema": "P11.QueryFamilyPhaseResult.v1",
+  "selections": [
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 0,
+      "selected_features": [
+        18,
+        20,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        50,
+        53
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 1,
+      "selected_features": [
+        2,
+        3,
+        9,
+        10,
+        12,
+        19,
+        20,
+        27,
+        28,
+        38,
+        44,
+        46,
+        52,
+        58,
+        59,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 2,
+      "selected_features": [
+        2,
+        9,
+        20,
+        26,
+        34,
+        37,
+        38,
+        43,
+        45,
+        51,
+        54,
+        57,
+        58,
+        61,
+        62,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 3,
+      "selected_features": [
+        2,
+        9,
+        11,
+        18,
+        20,
+        25,
+        26,
+        28,
+        34,
+        42,
+        43,
+        45,
+        46,
+        51,
+        53,
+        58
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 4,
+      "selected_features": [
+        2,
+        3,
+        10,
+        13,
+        26,
+        30,
+        33,
+        34,
+        37,
+        41,
+        43,
+        44,
+        50,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 5,
+      "selected_features": [
+        1,
+        2,
+        5,
+        6,
+        10,
+        17,
+        18,
+        20,
+        21,
+        25,
+        26,
+        42,
+        57,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 6,
+      "selected_features": [
+        2,
+        5,
+        12,
+        13,
+        20,
+        21,
+        28,
+        29,
+        34,
+        42,
+        46,
+        47,
+        52,
+        54,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 7,
+      "selected_features": [
+        5,
+        6,
+        7,
+        14,
+        18,
+        19,
+        26,
+        29,
+        30,
+        36,
+        45,
+        50,
+        53,
+        54,
+        60,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 8,
+      "selected_features": [
+        10,
+        13,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        37,
+        38,
+        42,
+        46,
+        50,
+        54
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 0,
+      "query": 9,
+      "selected_features": [
+        11,
+        13,
+        21,
+        27,
+        28,
+        29,
+        33,
+        34,
+        35,
+        36,
+        42,
+        43,
+        44,
+        46,
+        51,
+        52
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 0,
+      "selected_features": [
+        18,
+        20,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        50,
+        53
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 1,
+      "selected_features": [
+        2,
+        3,
+        9,
+        10,
+        12,
+        19,
+        20,
+        27,
+        28,
+        38,
+        44,
+        46,
+        52,
+        58,
+        59,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 2,
+      "selected_features": [
+        1,
+        2,
+        9,
+        20,
+        26,
+        34,
+        37,
+        38,
+        43,
+        45,
+        50,
+        51,
+        57,
+        58,
+        61,
+        62
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 3,
+      "selected_features": [
+        2,
+        11,
+        18,
+        19,
+        20,
+        25,
+        26,
+        28,
+        33,
+        34,
+        42,
+        43,
+        45,
+        46,
+        53,
+        58
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 4,
+      "selected_features": [
+        2,
+        3,
+        10,
+        13,
+        19,
+        26,
+        30,
+        33,
+        34,
+        37,
+        41,
+        43,
+        44,
+        50,
+        58,
+        59
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 5,
+      "selected_features": [
+        1,
+        2,
+        5,
+        6,
+        9,
+        10,
+        17,
+        18,
+        20,
+        21,
+        25,
+        26,
+        42,
+        57,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 6,
+      "selected_features": [
+        2,
+        5,
+        12,
+        13,
+        20,
+        21,
+        26,
+        28,
+        29,
+        34,
+        42,
+        46,
+        52,
+        54,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 7,
+      "selected_features": [
+        5,
+        6,
+        7,
+        13,
+        14,
+        18,
+        19,
+        26,
+        29,
+        36,
+        45,
+        50,
+        53,
+        54,
+        60,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 8,
+      "selected_features": [
+        10,
+        13,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        37,
+        38,
+        42,
+        46,
+        50,
+        54
+      ]
+    },
+    {
+      "compiler_fit_inspections": 91968,
+      "compiler_transform_inspections_test": 23040,
+      "fold": 1,
+      "query": 9,
+      "selected_features": [
+        11,
+        13,
+        21,
+        27,
+        28,
+        29,
+        33,
+        34,
+        35,
+        36,
+        42,
+        43,
+        44,
+        46,
+        51,
+        52
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 0,
+      "selected_features": [
+        18,
+        20,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        50,
+        53
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 1,
+      "selected_features": [
+        3,
+        9,
+        10,
+        12,
+        19,
+        20,
+        27,
+        28,
+        36,
+        38,
+        44,
+        46,
+        52,
+        58,
+        59,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 2,
+      "selected_features": [
+        2,
+        9,
+        20,
+        26,
+        27,
+        34,
+        37,
+        38,
+        43,
+        45,
+        51,
+        54,
+        58,
+        61,
+        62,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 3,
+      "selected_features": [
+        2,
+        9,
+        11,
+        13,
+        18,
+        19,
+        20,
+        25,
+        26,
+        28,
+        34,
+        42,
+        43,
+        45,
+        53,
+        58
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 4,
+      "selected_features": [
+        2,
+        3,
+        10,
+        13,
+        26,
+        30,
+        33,
+        34,
+        37,
+        41,
+        43,
+        44,
+        50,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 5,
+      "selected_features": [
+        1,
+        2,
+        5,
+        6,
+        10,
+        17,
+        18,
+        20,
+        21,
+        25,
+        26,
+        42,
+        57,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 6,
+      "selected_features": [
+        2,
+        5,
+        12,
+        13,
+        20,
+        21,
+        26,
+        28,
+        29,
+        34,
+        42,
+        46,
+        52,
+        54,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 7,
+      "selected_features": [
+        5,
+        6,
+        7,
+        14,
+        18,
+        19,
+        26,
+        29,
+        30,
+        36,
+        45,
+        50,
+        53,
+        54,
+        60,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 8,
+      "selected_features": [
+        10,
+        13,
+        18,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        37,
+        38,
+        42,
+        46,
+        50
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 2,
+      "query": 9,
+      "selected_features": [
+        11,
+        21,
+        27,
+        28,
+        29,
+        33,
+        34,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        46,
+        51,
+        52
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 0,
+      "selected_features": [
+        18,
+        20,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        50,
+        53
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 1,
+      "selected_features": [
+        2,
+        3,
+        9,
+        10,
+        12,
+        19,
+        20,
+        27,
+        28,
+        38,
+        44,
+        46,
+        52,
+        58,
+        59,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 2,
+      "selected_features": [
+        1,
+        2,
+        9,
+        20,
+        26,
+        34,
+        37,
+        38,
+        43,
+        45,
+        51,
+        57,
+        58,
+        61,
+        62,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 3,
+      "selected_features": [
+        2,
+        9,
+        11,
+        18,
+        19,
+        20,
+        25,
+        26,
+        28,
+        34,
+        42,
+        43,
+        45,
+        46,
+        53,
+        58
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 4,
+      "selected_features": [
+        2,
+        3,
+        10,
+        13,
+        26,
+        30,
+        33,
+        34,
+        37,
+        41,
+        44,
+        50,
+        53,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 5,
+      "selected_features": [
+        1,
+        2,
+        5,
+        6,
+        10,
+        17,
+        18,
+        20,
+        21,
+        25,
+        26,
+        42,
+        57,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 6,
+      "selected_features": [
+        2,
+        5,
+        12,
+        13,
+        20,
+        21,
+        26,
+        28,
+        29,
+        34,
+        42,
+        46,
+        52,
+        54,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 7,
+      "selected_features": [
+        5,
+        6,
+        7,
+        14,
+        18,
+        19,
+        26,
+        29,
+        30,
+        36,
+        43,
+        50,
+        53,
+        54,
+        60,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 8,
+      "selected_features": [
+        10,
+        13,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        37,
+        38,
+        42,
+        46,
+        50,
+        51
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 3,
+      "query": 9,
+      "selected_features": [
+        11,
+        13,
+        21,
+        27,
+        28,
+        29,
+        33,
+        34,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        51,
+        52
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 0,
+      "selected_features": [
+        18,
+        20,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        50,
+        53
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 1,
+      "selected_features": [
+        2,
+        3,
+        9,
+        10,
+        12,
+        19,
+        20,
+        27,
+        28,
+        38,
+        44,
+        46,
+        52,
+        58,
+        59,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 2,
+      "selected_features": [
+        2,
+        9,
+        20,
+        26,
+        27,
+        34,
+        37,
+        38,
+        43,
+        45,
+        51,
+        54,
+        58,
+        61,
+        62,
+        63
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 3,
+      "selected_features": [
+        2,
+        9,
+        11,
+        18,
+        19,
+        20,
+        25,
+        26,
+        28,
+        33,
+        34,
+        42,
+        43,
+        45,
+        53,
+        58
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 4,
+      "selected_features": [
+        2,
+        3,
+        10,
+        13,
+        19,
+        26,
+        30,
+        33,
+        34,
+        37,
+        41,
+        44,
+        50,
+        58,
+        59,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 5,
+      "selected_features": [
+        1,
+        2,
+        5,
+        6,
+        9,
+        10,
+        17,
+        18,
+        20,
+        21,
+        25,
+        26,
+        42,
+        57,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 6,
+      "selected_features": [
+        2,
+        5,
+        12,
+        13,
+        20,
+        21,
+        26,
+        28,
+        29,
+        34,
+        42,
+        46,
+        52,
+        54,
+        58,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 7,
+      "selected_features": [
+        5,
+        6,
+        7,
+        14,
+        18,
+        19,
+        26,
+        29,
+        30,
+        35,
+        36,
+        50,
+        53,
+        54,
+        60,
+        61
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 8,
+      "selected_features": [
+        10,
+        13,
+        18,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        35,
+        36,
+        37,
+        38,
+        42,
+        46,
+        50
+      ]
+    },
+    {
+      "compiler_fit_inspections": 92032,
+      "compiler_transform_inspections_test": 22976,
+      "fold": 4,
+      "query": 9,
+      "selected_features": [
+        11,
+        21,
+        27,
+        28,
+        29,
+        33,
+        34,
+        35,
+        36,
+        38,
+        42,
+        43,
+        44,
+        46,
+        51,
+        52
+      ]
+    }
+  ],
+  "support_counts": {
+    "KNN": 5,
+    "LINEAR": 3,
+    "RBF": 5
+  },
+  "terminal": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET"
+}

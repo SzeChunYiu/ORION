@@ -11,29 +11,31 @@
 
 ## Current evidence status
 
-`PEER_REVIEW_PACKAGE_READY / CONTROLLED_THEORY_SYSTEMS_SUPERIORITY_SUPPORTED`
+`PEER_REVIEW_PACKAGE_READY / CONTROLLED_THEORY_SYSTEMS_BOUNDARY_CHARACTERIZED`
 
 Earned evidence includes:
 
 - exact query-family rank lower bound for fixed linear-accessible state;
 - 91×–1820× registered universal/compiled representation ratios;
-- 4× to >32× dense-decoder sample-threshold gains;
+- 4× to >32× dense-decoder sample-threshold gains in the original controlled cells;
 - no-answer-laundering P11B result;
 - exact compile/cache/recover/materialize optionality laws;
 - P11D hostile sparse-decoder result: **permanently negative** against the preregistered ≥4×-in-both-cells gate, but retaining 2×/4× threshold gaps;
 - P11E fresh deterministic replication of the sparse residual: sparse/compiled thresholds `128/64` and `256/64`, with +0.2912/+0.3307 accuracy gaps at `n=64` and byte-identical two-run payload SHA `1097d94b…a4536`;
 - P11F historical nonlinear output, now **non-authoritative** because hostile PR review found a protocol mismatch (`n_jobs=-1` despite an otherwise-default frozen contract);
-- P11G fresh deterministic nonlinear successor: `n_jobs=1`, explicit random states, replay enforced inside the terminal path; universal ExtraTrees remains `NOT_REACHED` at 0.95 through `n=1024` in both cells while compiled state reaches `n=64`, with +0.4624/+0.3942 gaps at `n=64`; two fresh subprocess scientific payloads share SHA `a2b0c33c…79a7cc`. `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` scopes that terminal to the arm it names — on P11G's own data the sparse arm reaches the target at `n=128` in the first cell, which P11G's own gate reads as `NOT_MET` — and decomposes the two gaps into 86.7%/55.4% state and 13.3%/44.6% decoder family.
-- P11I prospective wide replication of the high-width regime: across three independent RNG replicates and three fixed geometry strata, all nine prespecified `r=7` seed×geometry cells pass the pooled-attack gates, while the same pool scores 1.0000 in all nine matched `r=3` controls; high-width pooled accuracy stays 0.8489–0.9421 below `n=256`, `delta64` is +0.2463–+0.3543, and two fresh subprocess payloads share SHA `b50ace30…e0ce`.
+- P11G fresh deterministic nonlinear successor, retained only at its arm-scoped authority; the later attainability audit showed its hostile survival gate was unreachable in the losing direction, so P11G cannot license a general hostile-nonlinear claim;
+- P11H/P11I width boundary: a pooled hostile attack wins at `r=3`, while the prospectively frozen `r=7` replication passes all nine prespecified seed×geometry cells with matched live narrow controls;
+- donor-complete compiler comparison (`P11_DONOR_COMPARATOR_RESULT_RECEIPT_V1.md`): the D5 mutual-information selection principle, raced at matched charged compiler work and matched `k`, does not beat the registered `f_classif` compiler on breast-cancer, wine or digits and is at accuracy parity on all three; the independent checker and byte replay are green;
+- exact decoder frontier (`P11_DECODER_ATTACK_RESULT_RECEIPT_V1.md`): on the frozen parity family, constants/signed singles/odd-majority/axis decision lists do not realize the target, while the realizing character has degree `k` and decision trees require exactly `2^k` leaves; a structurally independent exact checker agrees;
+- ten-responsibility real-data phase study (`P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md`): **authoritative negative retained without retuning**. The preregistered family-scale quality gate is not met — LINEAR `3/10`, RBF `5/10`, KNN `5/10` versus the frozen `>=8/10` requirement — while every registered resource identity is confirmed (memory crossover `U<=4`, break-even horizon `1917..19169`, nonzero future-query specialization cost).
 
-`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary, binds the corrected execution-seed replication unit and fresh `P11I_REVALIDATION_RECEIPT_V1_1.json`, and forbids an unconditional promotion.
-`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary and forbids an unconditional promotion.
+`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary, binds the corrected execution-seed replication unit and fresh `P11I_REVALIDATION_RECEIPT_V1_1.json`, and forbids an unconditional promotion. The gap-wave query-family result adds a stricter real-data boundary: family-scale compilation is not supported on digits unless the responsibility set is small and each member is individually compile-tolerant.
 
-Historical failures remain first-class artifacts. P11D and P11H are never relabelled positive, P11F is not used as claim authority, and P11C — which after its vectorization amendment did run to completion at `P11C_STRONGER_DECODER_GAP_SUPPORTED`, at exactly its gate boundary — carries no claim authority either. P11E, P11G and P11I are independent successor protocols, not edits to those outcomes.
+Historical failures remain first-class artifacts. P11D, P11H and the ten-responsibility `P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET` result are never relabelled positive; P11F is not used as claim authority; P11G stays arm-scoped; and P11C carries no broad claim authority. Successor protocols do not rewrite those outcomes.
 
 ## Strongest paper-level claim
 
-> **State is a computational placement decision.** In controlled query families, query-conditioned state construction externalizes structural search from a bounded downstream access mechanism. A pooled hostile attack wins at narrow compiled-state width `r=3`; in a prospectively frozen wider replication, it loses in all nine prespecified `r=7` seed×geometry cells across three independent RNG replicates and three fixed geometry strata while remaining live in every matched narrow control. The same specialization incurs calculable future-query option debt unless raw, cached or universal state is retained.
+> **State is a computational placement decision, not a universal compression win.** Query-conditioned state construction can externalize structural search from bounded downstream access, but the benefit is jointly conditioned on state width, responsibility and access class. A pooled hostile attack wins at narrow `r=3` and loses across the prespecified wider `r=7` replication; separately, on non-synthetic digits a fixed 16/64 learned compilation is quality-supported for only `3/10` responsibilities under linear access and `5/10` under stronger access, below the preregistered family-scale bar. The resource phase algebra still holds exactly, locating a defensible compiled-state region at small responsibility sets (`U<=4`) whose members are individually compile-tolerant and whose service horizon exceeds the charged compiler break-even.
 
 ## Peer-review artifacts
 
@@ -42,9 +44,13 @@ Historical failures remain first-class artifacts. P11D and P11H are never relabe
 - `PEER_REVIEW_READINESS.md` — five-lens hostile review/checklist
 - `REVIEWER_SUMMARY.md` and `PR_SCOPE.md`
 - P11/P11B/P11C/P11D/P11E/P11F/P11G/P11H/P11I protocols and harnesses — full evidence history
+- `top_tier/P11_DONOR_COMPARATOR_RESULT_RECEIPT_V1.md` — donor-complete selection-principle comparison
+- `top_tier/P11_DECODER_ATTACK_RESULT_RECEIPT_V1.md` — exact decoder-family frontier
+- `top_tier/P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md` — bound ten-responsibility negative and phase boundary
+- `top_tier/P11_QUERY_FAMILY_PHASE_LEDGER_ADDENDUM_V1.md` — additive authority update for the negative
 - P11D/P11H adverse results, P11E replicated sparse, P11G arm-scoped nonlinear and P11I wide high-width receipts
 - `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` — arm-axis adjudication and decoder/state decomposition
 
 ## Not authorized
 
-No universal nonlinear lower bound, transformer/agent superiority, free preprocessing claim, or broad statement that compiled state always dominates universal state. A future real-system claim must charge compiler work and beat strong state/search/decoder baselines under a common resource boundary.
+No universal nonlinear lower bound, transformer/agent superiority, free preprocessing claim, family-scale claim that a 16/64 learned compilation works for arbitrary responsibilities, or broad statement that compiled state always dominates universal state. A future real-system claim must charge compiler work, respect the responsibility-conditioned negative, and beat strong state/search/decoder baselines under a common resource boundary.
