@@ -1,0 +1,208 @@
+name: chatgpt-p6-p8-replay-boundary-once
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-bind:
+    if: github.head_ref == 'chatgpt/p6-p8-replay-contract-boundary-20260823' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install targeted dependencies
+        run: python -m pip install -e . pytest
+      - name: Fix checker, contracts, and current-state expectations
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          from textwrap import dedent
+
+          root = Path.cwd()
+          checker = Path('papers/candidates/checkers/check_reproducibility_targets_v2.py')
+          text = checker.read_text(encoding='utf-8')
+          marker = 'def _immutable_results(root: Path, candidate_id: str) -> Assessment:\n'
+          helper = dedent('''\
+          def _load_machine_output(path: Path):
+              """Parse a machine result in either JSON or line-delimited JSON form."""
+              if path.suffix == ".json":
+                  return _load_json(path)
+              if path.suffix != ".jsonl" or not path.is_file():
+                  return None
+              try:
+                  rows = [
+                      json.loads(line)
+                      for line in path.read_text(encoding="utf-8").splitlines()
+                      if line.strip()
+                  ]
+              except (OSError, json.JSONDecodeError):
+                  return None
+              if not rows or not all(isinstance(row, dict) for row in rows):
+                  return None
+              return rows
+
+
+          ''')
+          if text.count(marker) != 1 or '_load_machine_output' in text:
+              raise SystemExit('unexpected immutable-output helper insertion shape')
+          text = text.replace(marker, helper + marker)
+          old = '                    if output_path.suffix != ".json" or _load_json(output_path) is None:\n                        valid_contract = False\n'
+          new = '                    if _load_machine_output(output_path) is None:\n                        valid_contract = False\n'
+          if text.count(old) != 1:
+              raise SystemExit(f'unexpected output parser shape: {text.count(old)}')
+          checker.write_text(text.replace(old, new), encoding='utf-8')
+
+          papers = {
+              'P6': Path('papers/paper-06-formal-epistemic-structures-and-mechanics'),
+              'P7': Path('papers/paper-07-epistemic-navigation-open-worlds'),
+              'P8': Path('papers/paper-08-epistemic-authority-autonomous-science'),
+          }
+          inputs = {
+              'P6': [
+                  'formal/assumption_countermodels_v2.source.json',
+                  'formal/assumption_countermodels_v2.schema.json',
+              ],
+              'P7': ['benchmark/instances_v2.schema.json'],
+              'P8': ['benchmark/authority_cases_v2.schema.json'],
+          }
+          datasets = {
+              'P6': 'formal/assumption_countermodels_v2.jsonl',
+              'P7': 'benchmark/instances_v2.jsonl',
+              'P8': 'benchmark/authority_cases_v2.jsonl',
+          }
+
+          def entry(path: Path):
+              assert path.is_file(), path
+              return {
+                  'path': path.as_posix(),
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+              }
+
+          for cid, paper in papers.items():
+              contract_path = paper / 'evidence/local' / f'{cid}_LOCAL_REPLAY_CONTRACT_V3.json'
+              contract = json.loads(contract_path.read_text(encoding='utf-8'))
+              old_input_paths = [item['path'] for item in contract['raw_inputs']]
+              dataset = (paper / datasets[cid]).as_posix()
+              if dataset not in old_input_paths:
+                  raise SystemExit(f'{cid}: generated dataset is not the expected stale raw input')
+              existing_outputs = [item['path'] for item in contract['raw_outputs']]
+              if dataset in existing_outputs:
+                  raise SystemExit(f'{cid}: generated dataset already appears in outputs')
+              contract['raw_inputs'] = [entry(paper / relative) for relative in inputs[cid]]
+              contract['raw_outputs'] = [entry(Path(dataset))] + [entry(Path(path)) for path in existing_outputs]
+              contract_path.write_text(
+                  json.dumps(contract, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+              )
+
+          tests = Path('tests/unit/candidates/test_candidate_reproducibility_targets_v2.py')
+          text = tests.read_text(encoding='utf-8')
+          replacements = {
+              '        ("P6", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),\n':
+                  '        ("P6", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),\n',
+              '        ("P7", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),\n':
+                  '        ("P7", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),\n',
+              '        ("P8", {"BOUND": 6, "PARTIAL": 2, "CANNOT_CHECK": 1, "DEFERRED": 1}),\n':
+                  '        ("P8", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),\n',
+          }
+          for old_row, new_row in replacements.items():
+              if text.count(old_row) != 1:
+                  raise SystemExit(f'unexpected current-state count row: {old_row.strip()}')
+              text = text.replace(old_row, new_row)
+          start_marker = 'def test_subject_identity_uses_the_content_bound_v2_successor() -> None:\n'
+          end_marker = '\n\ndef test_subject_identity_falls_back_to_v1_only_when_v2_is_absent(tmp_path: Path) -> None:\n'
+          if text.count(start_marker) != 1 or text.count(end_marker) != 1:
+              raise SystemExit('unexpected V2 subject-state test markers')
+          start = text.index(start_marker)
+          end = text.index(end_marker, start)
+          bound_test = dedent('''\
+          def test_subject_identity_uses_the_content_bound_v2_successor() -> None:
+              target = checker.assess_targets(ROOT, "P6")["exact_subject_commit_identities"]
+              assert target.status == "BOUND"
+              assert target.blocker is None
+              assert any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
+          ''')
+          text = text[:start] + bound_test + text[end:]
+          tests.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit corrected contracts/checker before binding them
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/candidates/checkers/check_reproducibility_targets_v2.py \
+            papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json \
+            papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json \
+            papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json \
+            tests/unit/candidates/test_candidate_reproducibility_targets_v2.py \
+            tests/unit/candidates/test_p6_p8_replay_contract_boundaries.py
+          git diff --cached --check
+          git commit -m 'fix(candidates): distinguish raw replay inputs from generated outputs'
+      - name: Regenerate V2 manifests to bind the reachable correction commit
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import subprocess
+          from pathlib import Path
+
+          root = Path.cwd()
+          subject_commit = subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip()
+          subject_tree = subprocess.check_output(['git','rev-parse','HEAD^{tree}'], text=True).strip()
+          manifests = [
+              Path('papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json'),
+              Path('papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json'),
+              Path('papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json'),
+          ]
+          def sha(path: Path) -> str:
+              assert path.is_file(), path
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+          for path in manifests:
+              data = json.loads(path.read_text(encoding='utf-8'))
+              assert data['schema_version'] == 'orion.candidate-content-binding.v2'
+              data['subject_commit'] = subject_commit
+              data['subject_tree'] = subject_tree
+              data['subject_commit_status'] = 'BOUND'
+              data['subject_commit_blocker'] = None
+              data['subject_commit_unbound_paths'] = []
+              environment = data['environment_lock']
+              environment['sha256'] = sha(root / environment['path'])
+              for item in data['bound_files']:
+                  item['sha256'] = sha(root / item['path'])
+              path.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          Path('/tmp/p6p8_subject_commit').write_text(subject_commit)
+          Path('/tmp/p6p8_subject_tree').write_text(subject_tree)
+          PY
+          python -m json.tool papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json >/dev/null
+          python -m json.tool papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json >/dev/null
+          python -m json.tool papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json >/dev/null
+      - name: Run targeted reproducibility boundary tests
+        run: |
+          set -euo pipefail
+          pytest -q \
+            tests/unit/candidates/test_candidate_reproducibility_targets_v2.py \
+            tests/unit/candidates/test_p6_p8_replay_contract_boundaries.py
+      - name: Commit V2 bindings and remove one-shot workflow
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/chatgpt-p6-p8-replay-boundary-once.yml
+          git add \
+            papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json \
+            papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json \
+            papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json
+          git diff --cached --check
+          git commit -m 'chore(candidates): bind P6-P8 V2 manifests to replay correction'
+          git push origin HEAD:${GITHUB_HEAD_REF}
