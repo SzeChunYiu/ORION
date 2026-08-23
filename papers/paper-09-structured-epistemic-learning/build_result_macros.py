@@ -27,7 +27,7 @@ def main() -> None:
     if not SUMMARY.is_file():
         raise SystemExit("missing OFFICIAL_EVIDENCE_SUMMARY_V1.json")
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    if data.get("schema") != "P9.OfficialEvidenceSummary.v1.1":
+    if data.get("schema") not in {"P9.OfficialEvidenceSummary.v1.1", "P9.OfficialEvidenceSummary.v1.2"}:
         raise SystemExit(f"unexpected summary schema: {data.get('schema')!r}")
 
     m1 = data["m1"]
