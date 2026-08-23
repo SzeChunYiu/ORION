@@ -12,6 +12,7 @@
 ## Status
 
 `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED / EXTERNAL_VALIDATION_OPEN`
+`P13_EXACT_RESPONSIBILITY_CORE_SUPPORTED / P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`
 
 ### Historical negative
 
@@ -63,6 +64,14 @@ Current terminal:
 > frozen certificate corruptions, makes zero certificate-independent gold-scored
 > unsafe reuses, and retains lower valid-panel cost than always reopening.
 
+## Strongest paper claim
+
+> In the exact registered finite world, sufficiency is relative to a named
+> downstream responsibility and the RCS interface refuses reuse when its
+> declared support omits that responsibility. Empirical safety–cost superiority
+> remains unestablished until P13B grades reuse against support defined
+> independently of the certificate.
+
 ## Artifacts
 
 - `MANUSCRIPT.md`
@@ -74,6 +83,7 @@ Current terminal:
 - `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` (historical P13A boundary)
 - `P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json`
 - `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` (current)
+- `P13_ACTIVE_CLAIM_AUTHORITY_V1.json`
 - protected successor protocol and executable harness
 
 ## Boundary
@@ -81,3 +91,6 @@ Current terminal:
 P13B authorizes only controlled finite-world authenticated-certificate safety and
 valid-panel cost. Safety-critical deployment, real-agent superiority and
 external validation remain unauthorized.
+No empirical safety superiority, safety-critical deployment or real-agent
+superiority is currently authorized. P13B must make unsafe reuse reachable with
+independent gold support before external promotion is considered.

@@ -5,6 +5,10 @@
 Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`, from
 `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`. P12A's comparator-confounded result remains
 historical and withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
+**Decision:** `NOT_READY__P12A_COMPARATOR_CAPABILITY_CONFOUND`
+
+Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`, from
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 ## Five-lens hostile review
 
@@ -39,6 +43,31 @@ naturalistic and external-system novelty/generalization remain open.
 
 **Pass with scope boundary.** The manuscript separates P12A's historical failure
 from P12B's active equal-action result.
+**Fail for superiority.** Total budget is identical, but the winner may emit four
+allocations while each one-axis comparator may emit only two. Both comparator
+ceilings are below the winner's achieved score.
+
+### Statistics
+
+**Blocked at the estimand.** Family-blocked uncertainty is correctly computed for
+the historical contrast, but cannot remove its capability confound. With
+matched action sets, the original mean and worst-family gates fail.
+
+### Reproducibility / protocol authority
+
+**Pass for historical reproducibility only.** The V2 replay correction establishes
+deterministic execution, not comparator validity. Current claim authority comes
+from the later comparison-validity adjudication.
+
+### Novelty
+
+**Open.** The intended discriminator needs a prospectively frozen,
+capability-matched P12B result.
+
+### Referee / reporting
+
+**Fail until correction is incorporated.** The historical numbers may be reported,
+but not as evidence that the second signal caused superiority.
 
 ## Checklist
 
@@ -46,6 +75,8 @@ from P12B's active equal-action result.
 - [x] matched total budget
 - [x] capability-matched adaptive state-signal baseline
 - [x] capability-matched adaptive reasoning-signal baseline
+- [ ] capability-matched adaptive state-signal baseline
+- [ ] capability-matched adaptive reasoning-signal baseline
 - [x] fixed policy and oracle diagnostic
 - [x] held-out family generalization
 - [x] family-block uncertainty
@@ -71,3 +102,6 @@ from P12B's active equal-action result.
 > same four actions and budget across arms and supports two-signal exact-allocation
 > complementarity over 32 independent family RNG blocks; real-system superiority
 > remains open.
+> P12A is exactly reproducible but not a valid signal-count superiority test:
+> the losing arms could not express the winner's allocations. P12B must hold the
+> action set fixed before the resource-location hypothesis can be promoted.

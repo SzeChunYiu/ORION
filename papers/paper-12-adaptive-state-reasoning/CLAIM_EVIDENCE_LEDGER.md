@@ -31,6 +31,9 @@ The V1 P12B receipt is preserved unchanged. Its scientific counts and estimates
 reconstruct under the repository lock, but strict whole-core replay rejects its
 NumPy 2.3.5 environment field. The append-only V1.1 result binds `uv.lock`,
 CPython 3.12.13 and NumPy 2.5.2 and passes two fresh byte-identical subprocesses.
+Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`. The authority record is
+`P12_ACTIVE_CLAIM_AUTHORITY_V1.json`, content-bound to
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 The original P12A executable evaluated seven frozen scientific gates but did not put the protocol's byte-identical replay requirement into its own terminal decision. That is an evidence-adjudication defect, not a change in the scientific comparison. The V1 runner terminal is therefore **non-authoritative alone**.
 
@@ -56,3 +59,13 @@ real-system resource-locus claim remains open.
 > capability. In prospectively frozen P12B, all arms share four exact actions and
 > the two-signal policy gains 0.253906 over the stronger one-signal policy across
 > 32 independent family RNG blocks.
+P12A motivates that problem but does not resolve it because signal count and
+allocation capability varied together. P12B must make the actions symmetric
+before measuring the value of an additional signal.
+
+## Strongest authorized headline
+
+> The exact P12A payload is reproducible, but 96.9% of its state-only contrast is
+> beyond the shipped baseline's ceiling. Under the capability-matched reading,
+> the gain is +0.0408 and the frozen superiority gate is not met. No active
+> superiority claim is authorized before P12B.

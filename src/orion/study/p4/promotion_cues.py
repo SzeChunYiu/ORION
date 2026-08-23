@@ -26,8 +26,10 @@ which now carries every construction it has emitted behind ``--construction``:
   cue, and frozen in
   ``research/campaigns/2026-08-21-p4-battery-v3-identifiable/FREEZE.md``. Every
   case is shape-identical and families differ only in the values of fields a hard
-  gate is defined over. All fourteen probes below report informedness 0.0 on all
-  three terminals, on every seed tried.
+  gate is defined over. All fourteen probes below report informedness 0.0 on the
+  H3 `CANNOT_CHECK` axis on every seed tried. The registered digest-prefix noise
+  control has four off-axis residuals on `BLOCK`/`PROMOTE`; those are disclosed,
+  not described as whole-register clearance.
 
 That is what this module registers as probes, so that P4-U-T2 --- "identifiability
 audit shows the benchmark measures the intended competence" --- is a computation

@@ -27,6 +27,10 @@
 Current `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` retains the exact core, preserves the
 P13A self-scored failure, and activates the bounded P13B result. Active terminal:
 `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`.
+Active authority is split. `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` keeps
+`P13.EXACT.RESPONSIBILITY_RELATIVE_SUPPORT` as `SUPPORTED_EXACT` and sets
+`P13A.EMPIRICAL.SAFETY_COST_SUPERIORITY` to `CANNOT_CHECK`. Active terminal:
+`P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`.
 
 The original P13A runner evaluated the frozen scientific efficacy/safety/cost gates but did not include the protocol's byte-identical replay requirement in its terminal decision. The V1 runner terminal is therefore **non-authoritative alone**. This does not alter the benchmark or any result.
 
@@ -46,6 +50,9 @@ The supported residual is the exact, conditional **responsibility-scoped state
 authority** interface plus P13B's controlled authenticated-certificate corruption
 result. The gold is separate from the certificate but locally authored, so
 external safety authority remains open. `PROVENANCE_ONLY` and `UNQUALIFIED` are
+authority** interface. The efficacy claim is prospective: it requires a P13B
+certificate whose declared support can disagree with independently graded gold,
+plus a matched cost/correctness frontier. `PROVENANCE_ONLY` and `UNQUALIFIED` are
 identical policies in P13A and cannot count as two comparisons.
 
 ## Strongest authorized headline
@@ -54,3 +61,8 @@ identical policies in P13A and cannot count as two comparisons.
 > P13B finite panel, all four certificate corruptions have live denominators,
 > authenticated RCS makes zero gold-scored unsafe reuses, and valid-panel cost is
 > 0.6111 times always raw.
+> The registered finite construction proves that sufficiency is
+> responsibility-relative and the RCS interface conditionally refuses reuse
+> outside declared support. P13A's empirical zero-harm claim is withheld because
+> its harm predicate is entailed by the action rule; P13B must grade against
+> independently defined gold support.

@@ -13,3 +13,6 @@ signals, but neither specifies what distinctions state supports.
 **A responsibility/recovery contract can state the exact conditions under which
 compact-state reuse is authorized; external witness correctness and real-system
 safety remain separate validation questions.**
+Sufficiency is a contract over future responsibility, not an intrinsic property of compact representation. P13 makes that boundary explicit, preserves a preregistered historical failure and replaces its indirect sentinel with exact equivalence-class semantics. P13A supplies descriptive action, correctness, cost and replay measurements, but it does not establish empirical elimination of unsafe compact reuse or a safety–cost frontier: its self-scored harm endpoint had no reachable opportunities. Confidence and provenance remain useful signals, but neither specifies what distinctions state supports.
+
+**A responsibility/recovery contract can state the exact conditions under which compact-state reuse is authorized; independently graded outcomes are still required to establish empirical safety.**

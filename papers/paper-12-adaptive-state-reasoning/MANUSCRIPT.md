@@ -7,6 +7,12 @@
 **Current authority:** `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`. It retains P12A's
 comparison failure and activates only the prospectively frozen P12B equal-action
 signal-complementarity result after locked-environment V1.1 revalidation.
+**Submission status:** `P12A_SUPERIORITY_AUTHORITY_WITHHELD`; capability-matched P12B required
+
+**Current authority:** `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. The
+historical P12A result and replay remain unchanged execution records. They do not
+authorize signal-count superiority because the losing arms were also denied
+allocations the winner could emit.
 
 ## Abstract
 
@@ -26,6 +32,9 @@ the two-signal arm gains 0.253906 over the stronger one-signal arm (stratified
 family-block 95% bootstrap interval 0.251221 to 0.256653); every family and every
 fixed noise stratum passes. The result is controlled and does not authorize
 naturalistic or external-system superiority.
+withheld. P12A therefore motivates the resource-location hypothesis and defines
+the corrected comparator contract, while a prospectively frozen P12B must test
+it.
 
 ## 1. Introduction
 
@@ -53,6 +62,10 @@ The paper makes four contributions.
 P12A's causal superiority interpretation is withheld. P12B supplies the stronger
 controlled contract: equal budget, equal actions, then a change in visible
 signals.
+
+The result is intentionally controlled and exactly reproducible, but its causal
+superiority interpretation is withheld. Its current purpose is to define the
+stronger P12B contract: equal budget, equal actions, then a change in signals.
 
 ## 2. Donor boundary and novelty
 
@@ -145,6 +158,10 @@ The historical P12A protected terminal is
 `P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`; its historical superiority authority is
 withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. Current authority
 comes from `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`.
+The historical protected terminal is
+`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current authority is
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD` under
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 | policy | mean verified success |
 |---|---:|
@@ -226,6 +243,7 @@ novel discriminator must be where the resource can be spent.** P12A does not
 establish strict superiority because its action sets differ. P12B establishes a
 bounded signal-complementarity result after matching the actions; it does not
 establish real-system resource-locus superiority.
+These results strengthen, rather than weaken, P12's motivation: **adaptive inference is crowded; the novel discriminator must be where the resource can be spent.** P12 supplies a budget portfolio containing state construction and reasoning as distinct actions, but P12A does not establish strict superiority over the named one-axis policies: their shipped action sets cap their attainable scores below the joint arm's achieved score. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore withholds superiority authority pending a capability-matched P12B.
 
 ## 10. Limitations and real-system promotion gate
 
@@ -244,6 +262,9 @@ P12 reframes test-time scaling as a **portfolio of computations**. “Think long
 P12A demonstrates the construction but not the key discriminator because equal
 budget did not imply equal action capability. P12B repairs that controlled
 estimand and finds a positive two-signal effect across the registered panel.
+The protected benchmark demonstrates the construction but does not establish the
+key causal discriminator. Equal total budget was real; equal action capability
+was not. Family-level uncertainty cannot repair that estimand defect.
 
 This leaves a concrete systems hypothesis: **test-time scaling curves may be
 two-dimensional, but action capability must be held fixed across signal
@@ -256,6 +277,9 @@ but **where** to spend it. P12 supplies the formulation and an exact correction
 to its first empirical discriminator, and a positive prospectively frozen
 equal-action successor. The next scientific step is matched real end-to-end
 validation; P12B's constructed world does not substitute for it.
+to its first empirical discriminator. The next scientific step is a
+prospectively frozen, capability-matched P12B; real end-to-end validation follows
+only after that controlled contrast is sound.
 
 ## References
 

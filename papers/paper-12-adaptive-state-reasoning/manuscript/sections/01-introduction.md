@@ -27,3 +27,11 @@ adjudication. P12B supplies the stronger controlled contract: equal total
 budget, equal action capability, and only then a variation in available
 signals. The current bounded authority is the equal-action
 signal-complementarity result.
+   varied together; a capability-matched P12B is therefore required.
+
+The historical result is intentionally controlled and exactly reproducible, but
+its superiority interpretation is withheld by
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. Active terminal:
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. Its current value is to expose the stronger
+contract a successor must satisfy: equal total budget, equal action capability,
+and only then a variation in available signals.

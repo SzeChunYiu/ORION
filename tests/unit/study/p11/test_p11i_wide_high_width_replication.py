@@ -16,6 +16,9 @@ from orion.study.p11.wide_panel_revalidation import (
     adjudicate_scientific_payload,
 )
 
+
+import pytest
+
 ROOT = Path(__file__).resolve().parents[4]
 PAPER = ROOT / "papers" / "paper-11-state-as-computation"
 RUNNER = PAPER / "run_p11i_wide_high_width_replication_v1.py"

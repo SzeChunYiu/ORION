@@ -47,6 +47,8 @@
 - [x] P11I prospectively replicates the positive high-width regime across three independent execution seeds and three fixed geometry strata
 - [x] P11I includes nine matched low-width controls where the pooled attack remains live
 - [x] P11I fresh two-subprocess revalidation records `n=3`, reproduces every cell byte-identically and has terminal-responsiveness tests
+- [x] P11I prospectively replicates the positive high-width regime across nine fresh units
+- [x] P11I includes nine matched low-width controls where the pooled attack remains live
 - [x] P11F protocol mismatch disclosed and removed from claim authority
 - [x] P11G frozen after review finding
 - [x] P11G single-thread deterministic trees

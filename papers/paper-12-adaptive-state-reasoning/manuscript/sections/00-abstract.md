@@ -17,3 +17,8 @@ stronger one-signal arm (stratified family-block 95% bootstrap interval 0.251221
 to 0.256653); every family and every fixed noise stratum passes. Current bounded
 authority is the controlled equal-action signal-complementarity result;
 naturalistic and external-system superiority remain open.
+the worst-family gain is +0.0020, and the original gate is not met. Consequently
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` sets the active terminal to
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. P12A motivates the resource-location
+hypothesis but does not establish signal-count superiority; that claim requires
+a prospectively frozen, capability-matched P12B.

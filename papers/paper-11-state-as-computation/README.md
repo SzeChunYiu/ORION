@@ -27,6 +27,7 @@ Earned evidence includes:
 - P11I prospective wide replication of the high-width regime: across three independent RNG replicates and three fixed geometry strata, all nine prespecified `r=7` seed×geometry cells pass the pooled-attack gates, while the same pool scores 1.0000 in all nine matched `r=3` controls; high-width pooled accuracy stays 0.8489–0.9421 below `n=256`, `delta64` is +0.2463–+0.3543, and two fresh subprocess payloads share SHA `b50ace30…e0ce`.
 
 `P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary, binds the corrected execution-seed replication unit and fresh `P11I_REVALIDATION_RECEIPT_V1_1.json`, and forbids an unconditional promotion.
+`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the content-bound active authority. It keeps P11I's supported `r=7` leaf separate from P11H's historical `r=3` boundary and forbids an unconditional promotion.
 
 Historical failures remain first-class artifacts. P11D and P11H are never relabelled positive, P11F is not used as claim authority, and P11C — which after its vectorization amendment did run to completion at `P11C_STRONGER_DECODER_GAP_SUPPORTED`, at exactly its gate boundary — carries no claim authority either. P11E, P11G and P11I are independent successor protocols, not edits to those outcomes.
 

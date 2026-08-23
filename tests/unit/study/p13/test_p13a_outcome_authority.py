@@ -65,6 +65,8 @@ def test_active_authority_keeps_exact_core_and_withholds_superiority() -> None:
 
 def test_current_publication_surfaces_bind_successor_and_historical_adjudication() -> None:
     authority_surfaces = (
+def test_current_publication_surfaces_use_the_active_adjudication() -> None:
+    surfaces = (
         "README.md",
         "CLAIM_EVIDENCE_LEDGER.md",
         "PEER_REVIEW_READINESS.md",
@@ -89,6 +91,14 @@ def test_current_publication_surfaces_bind_successor_and_historical_adjudication
     assert authority["promotion_allowed"] is True
     assert authority["active_terminal"] == SUCCESSOR_TERMINAL
     assert authority["historical_boundary_leaf"]["terminal"] == AUTHORITY_TERMINAL
+        "manuscript/sections/00-abstract.md",
+        "manuscript/sections/06-results.md",
+    )
+    for relative in surfaces:
+        text = (PAPER / relative).read_text(encoding="utf-8")
+        assert "P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json" in text, relative
+        assert AUTHORITY_TERMINAL in text, relative
+        assert "SUPPORTED / PRIMARY" not in text, relative
 
 
 def test_current_submission_sources_do_not_retain_withdrawn_empirical_claims() -> None:

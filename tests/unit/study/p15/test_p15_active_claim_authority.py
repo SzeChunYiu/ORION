@@ -10,6 +10,7 @@ from orion.study.p15.active_claim_authority import (
     SUCCESSOR_TERMINAL,
     build_active_claim_authority,
     build_successor_claim_authority,
+    build_active_claim_authority,
 )
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -54,3 +55,6 @@ def test_successor_authority_binds_frozen_fail_closed_acquisition_path() -> None
     assert committed["promotion_allowed"] is False
     assert committed["acquisition_authority"]["execution_authorized"] is False
     assert committed["acquisition_authority"]["protected_inputs_verified"] is False
+    assert "P15_ACTIVE_CLAIM_AUTHORITY_V1.json" in text
+    assert "CLAIM_EVIDENCE_LEDGER.md" in text
+    assert "METHODS_SCOPE_ONLY / NO_SCIENTIFIC_RESULT" in text

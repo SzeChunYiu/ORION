@@ -16,6 +16,12 @@
 `P12_ACTIVE_CLAIM_AUTHORITY_V3.json` is the current authority. It retains the
 P12A comparison failure and activates only P12B's equal-action, exact-allocation
 signal-complementarity claim after locked-environment V1.1 revalidation.
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD / P12B_CAPABILITY_MATCHED_SUCCESSOR_REQUIRED`
+
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` is the current authority. The
+historical protected run and replay remain valid execution records, but they do
+not authorize a signal-count superiority claim because the one-axis policies
+were also denied half of the winner's allocation set.
 
 ### Protected result
 
@@ -58,6 +64,12 @@ Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`.
 > pre-outcome signals selects the exact required allocation more often than the
 > stronger policy reading either signal alone.
 
+## Strongest paper claim
+
+> P12A demonstrates a deterministic controlled resource-allocation construction,
+> but its observed advantage cannot be attributed to the second signal until a
+> prospectively frozen P12B holds the action set fixed across arms.
+
 ## Artifacts
 
 - `MANUSCRIPT.md`
@@ -70,6 +82,7 @@ Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`.
 - `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json` (locked revalidation)
 - `P12_ACTIVE_CLAIM_AUTHORITY_V2.json` (superseded P12B authority)
 - `P12_ACTIVE_CLAIM_AUTHORITY_V3.json` (current)
+- `P12_ACTIVE_CLAIM_AUTHORITY_V1.json`
 - protected protocol and executable harness
 
 ## Boundary
@@ -77,3 +90,7 @@ Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`.
 P12B authorizes only controlled equal-action signal complementarity. Real-system
 authority still requires matched end-to-end state, model/search, verifier/tool
 and latency receipts.
+This is historical controlled evidence with current superiority authority
+withheld. P12B must first match action capability; real-system authority then
+requires matched end-to-end state, model/search, verifier/tool and latency
+receipts.

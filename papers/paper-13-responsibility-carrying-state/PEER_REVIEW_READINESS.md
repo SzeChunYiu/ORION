@@ -5,6 +5,10 @@
 Active terminal: `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`,
 from `P13_ACTIVE_CLAIM_AUTHORITY_V2.json`. P13A's self-scored result remains
 historical and withheld under `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
+**Decision:** `NOT_READY__P13A_SELF_SCORED_SAFETY_ENDPOINT`
+
+Active terminal: `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`, from
+`P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
 
 ## Five-lens hostile review
 
@@ -33,6 +37,28 @@ result are supported; external safety novelty and generalization remain open.
 
 **Pass with scope boundary.** The manuscript distinguishes P13A's self-scored
 failure, P13B's locally authored finite-world gold, and external validation.
+**Fail for empirical safety.** The historical negative is retained, but the RCS
+unsafe-reuse counter is the logical negation of the same declared-support
+predicate that selects reuse. Certificate correctness is not independently
+graded, and provenance-only duplicates unqualified reuse.
+
+### Statistics / reproducibility
+
+**Pass for exact semantics and historical replay; blocked for the safety
+endpoint.** The exact support matrix and byte replay remain valid. The later
+outcome-entailment adjudication enumerates 3,840 points: the action changes on
+2,304 while the self-scored harm moves on zero and has zero opportunities.
+
+### Novelty / donor
+
+**Pass only for the exact conditional core.** The interior safety–cost result is
+not authorized until independently graded P13B.
+
+### Referee / reporting
+
+**Fail for an efficacy paper.** The exact/conditional result is reportable, but
+the manuscript must not say the protected benchmark empirically eliminates
+unsafe reuse.
 
 ## Checklist
 
@@ -44,6 +70,7 @@ failure, P13B's locally authored finite-world gold, and external validation.
 - [x] provenance-only baseline
 - [x] always-raw safety ceiling
 - [x] certificate-independent gold-scored unsafe-reuse primary endpoint
+- [ ] independently gold-scored unsafe-reuse primary endpoint
 - [x] utility/correctness constraint
 - [x] resource cost and unnecessary reopen
 - [x] exact CANNOT_CHECK accounting
@@ -65,3 +92,6 @@ failure, P13B's locally authored finite-world gold, and external validation.
 > construction.** In P13B's controlled finite panel, authenticated RCS rejects
 > omitted, overbroad, forged and stale certificates with zero gold-scored unsafe
 > reuse; external witness correctness and real-agent safety remain open.
+> construction.** The current RCS interface conditionally refuses reuse outside
+> declared support. Whether it prevents unsafe reuse under wrong or stale
+> certificates is an open P13B question.

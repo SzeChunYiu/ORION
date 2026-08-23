@@ -60,6 +60,8 @@ def test_active_record_binds_the_adjudication_and_forbids_promotion() -> None:
 
 def test_current_publication_surfaces_bind_positive_successor_and_historical_boundary() -> None:
     authority_surfaces = (
+def test_current_publication_surfaces_point_to_the_withholding_adjudication() -> None:
+    surfaces = (
         "README.md",
         "CLAIM_EVIDENCE_LEDGER.md",
         "PEER_REVIEW_READINESS.md",
@@ -93,6 +95,12 @@ def test_current_publication_surfaces_bind_positive_successor_and_historical_bou
     assert authority["promotion_allowed"] is True
     assert authority["active_terminal"] == SUCCESSOR_TERMINAL
     assert authority["historical_boundary_leaf"]["terminal"] == AUTHORITY_TERMINAL
+    )
+    for relative in surfaces:
+        text = (PAPER / relative).read_text(encoding="utf-8")
+        assert "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json" in text, relative
+        assert "SUPPORTED / PRIMARY" not in text, relative
+        assert AUTHORITY_TERMINAL in text, relative
 
 
 def test_current_submission_sources_do_not_retain_the_withdrawn_dominance_claim() -> None:

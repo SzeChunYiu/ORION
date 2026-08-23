@@ -15,3 +15,8 @@ mutation opportunities; authenticated RCS makes zero unsafe reuses in every
 world and costs 0.6111 times always raw on valid certificates. Current authority
 is the authenticated-certificate controlled finite-world result, not external
 validation.
+zero reachable harm opportunities. `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`
+therefore sets `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`. The exact
+responsibility-relative support matrix and conditional interface invariant
+remain supported; empirical safety–cost superiority requires a P13B endpoint
+graded against support independently of the certificate.

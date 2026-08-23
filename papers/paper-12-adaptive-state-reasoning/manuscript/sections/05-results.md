@@ -3,6 +3,10 @@
 The historical runner printed its preregistered superiority terminal. The later
 comparison-validity adjudication withholds that claim authority. The current
 bounded authority comes from the prospectively frozen P12B equal-action result.
+The historical protected terminal is
+`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current claim authority is
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD` under
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 | policy | mean verified success |
 |---|---:|
@@ -47,3 +51,6 @@ payloads are byte-identical, supporting the controlled equal-action
 signal-complementarity claim. An append-only V1.1 revalidation reproduces the
 same values under the repository lock's CPython 3.12.13 and NumPy 2.5.2
 environment; the original environment receipt remains unchanged.
+original positive gate then returns
+`P12A_JOINT_ALLOCATION_SUPERIORITY_GATE_NOT_MET`. A new frozen P12B, not a
+post-hoc threshold change, is required for positive authority.

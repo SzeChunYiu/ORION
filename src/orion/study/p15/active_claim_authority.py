@@ -119,3 +119,4 @@ __all__ = [
     "build_active_claim_authority",
     "build_successor_claim_authority",
 ]
+__all__ = ["ACTIVE_TERMINAL", "SCHEMA", "build_active_claim_authority"]

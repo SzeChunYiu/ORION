@@ -7,6 +7,11 @@
 **Current authority:** `P13_ACTIVE_CLAIM_AUTHORITY_V2.json`. Historical P13A
 execution and its self-scored outcome failure remain unchanged; current authority
 is limited to P13B's controlled finite-world certificate-corruption panel.
+**Submission status:** exact conditional core supported; `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`
+
+**Current authority:** `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`. Historical
+P13A execution and replay bytes remain unchanged; empirical safety–cost
+superiority is not authorized.
 
 ## Abstract
 
@@ -26,6 +31,8 @@ authored certificate-independent gold. Across a 30-case state-task panel, all
 four registered corruptions have 30 live mutation opportunities; authenticated
 RCS makes zero unsafe reuses in every world and costs 0.6111 times always raw on
 valid certificates. This is not external validation.
+remain supported; P13B must grade reuse against independently defined gold
+support.
 
 ## 1. Introduction
 
@@ -200,6 +207,7 @@ exist here.
 ## 7. Results
 
 Historical P13A protected terminal:
+Historical protected terminal:
 
 `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
 
@@ -246,6 +254,7 @@ and stale worlds, respectively. On valid certificates, authenticated RCS is exac
 correct and costs 0.6111 times always raw. Two fresh subprocess payloads are
 byte-identical. Terminal:
 `P13B_AUTHENTICATED_CERTIFICATE_SAFETY_COST_SUPPORTED_FINITE_WORLD`.
+Always reopening has zero historical unsafe compact reuse, roughly twice the mean RCS cost and unnecessary reopen on 57.44% of all episodes. Those are descriptive P13A rates. Whether RCS occupies a valid interior safety–cost frontier remains a P13B question because P13A's self-scored harm coordinate had no reachable opportunities.
 
 ## 8. Certificate transport, invalidation and authority
 
@@ -290,6 +299,10 @@ without unsafe reuse in its locally authored finite panel. It does not establish
 external witness correctness, real-agent safety or population generalization.
 **A compact state's declared authority must be scoped to a named responsibility;
 whether that declaration remains correct outside the registered world must be
+It does not yet show that RCS prevents unsafe reuse under wrong, stale, forged or
+overbroad certificates. That requires P13B with independently defined gold
+support and a live harm denominator. **A compact state's declared authority must
+be scoped to a named responsibility; whether the declaration is correct must be
 tested independently.**
 
 ## References
