@@ -1,0 +1,31 @@
+name: p10-ocme-formal-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-10-structured-problem-solving/top_tier/**'
+      - '.github/workflows/p10-ocme-formal-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ocme-formal-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute exact OCME non-vacuity checker
+        run: python papers/paper-10-structured-problem-solving/top_tier/check_ocme_formal_nonvacuity_v1.py | tee p10_ocme_formal_v1.json
+      - name: Verify deterministic replay
+        run: |
+          python papers/paper-10-structured-problem-solving/top_tier/check_ocme_formal_nonvacuity_v1.py > p10_ocme_formal_v1_rerun.json
+          cmp p10_ocme_formal_v1.json p10_ocme_formal_v1_rerun.json
+          echo P10_OCME_FORMAL_V1_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-ocme-formal-v1
+          path: p10_ocme_formal_v1.json
