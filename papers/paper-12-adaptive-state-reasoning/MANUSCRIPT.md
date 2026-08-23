@@ -197,7 +197,7 @@ The analysis does not pool items as if 8,192 individual trials were independent 
 
 Strategic test-time-compute allocation treats inference budget as a learnable or bandit decision across examples. Constrained policy approaches optimize accuracy under average compute. Adaptive in-context demonstration and generation methods jointly alter conditioning and generation effort. Recent “when to think” work likewise emphasizes selective reasoning to reduce unnecessary inference.
 
-These results strengthen, rather than weaken, P12's motivation: **adaptive inference is crowded; the novel discriminator must be where the resource can be spent.** P12's result is specifically about a budget portfolio containing state construction and reasoning as distinct actions and about strict dominance over both corresponding one-axis adaptive policies.
+These results strengthen, rather than weaken, P12's motivation: **adaptive inference is crowded; the novel discriminator must be where the resource can be spent.** P12 supplies a budget portfolio containing state construction and reasoning as distinct actions, but P12A does not establish strict superiority over the named one-axis policies: their shipped action sets cap their attainable scores below the joint arm's achieved score. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore withholds superiority authority pending a capability-matched P12B.
 
 ## 10. Limitations and real-system promotion gate
 

@@ -8,4 +8,4 @@ P13 asks:
 
 > **Can a compact state carry a machine-checkable responsibility contract that says what it supports, what it omits, what changes invalidate reuse, and whether richer state can be reopened—without forcing every decision to reload raw evidence?**
 
-The paper contributes responsibility-relative sufficiency; a responsibility-carrying state interface; permanent negative-result analysis; and independent controlled safety–cost superiority evidence.
+The paper contributes responsibility-relative sufficiency; a responsibility-carrying state interface; permanent negative-result analysis; and an outcome-contingency adjudication that separates the exact supported core from descriptive P13A measurements whose empirical safety–cost authority is withheld.

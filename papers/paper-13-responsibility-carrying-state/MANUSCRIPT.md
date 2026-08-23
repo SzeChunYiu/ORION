@@ -63,7 +63,7 @@ P13 combines a different set of requirements into one operational object:
 - evaluator/witness identity is distinct from the object's scientific authority;
 - efficacy is measured on a safety–cost frontier against confidence, provenance and always-reopen controls.
 
-The novelty is therefore not “certified reuse” in the abstract. It is **responsibility-scoped certified reuse with explicit reopen semantics and a measured interior safety–cost advantage**.
+The novelty is therefore not “certified reuse” in the abstract. It is **responsibility-scoped certified reuse with explicit reopen semantics and exact support conditions**. The historical benchmark's action and cost profile is descriptive; `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json` withholds empirical safety–cost superiority because the published harm endpoint had no reachable opportunities.
 
 ## 3. Responsibility-relative sufficiency
 
@@ -226,7 +226,7 @@ Every compact state has valid source lineage. Provenance therefore verifies orig
 
 ### 7.3 Why always raw is not the answer
 
-Always reopening prevents unsafe compact reuse but pays roughly twice the mean RCS cost and unnecessarily reopens supported cases on 57.44% of all episodes. RCS occupies the desired interior of the safety–cost frontier.
+Always reopening has zero historical unsafe compact reuse, roughly twice the mean RCS cost and unnecessary reopen on 57.44% of all episodes. Those are descriptive P13A rates. Whether RCS occupies a valid interior safety–cost frontier remains a P13B question because P13A's self-scored harm coordinate had no reachable opportunities.
 
 ## 8. Certificate transport, invalidation and authority
 

@@ -76,3 +76,23 @@ def test_current_publication_surfaces_use_the_active_adjudication() -> None:
         assert "P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json" in text, relative
         assert AUTHORITY_TERMINAL in text, relative
         assert "SUPPORTED / PRIMARY" not in text, relative
+
+
+def test_current_submission_sources_do_not_retain_withdrawn_empirical_claims() -> None:
+    surfaces = [
+        PAPER / "MANUSCRIPT.md",
+        PAPER / "manuscript/sections/02-donor-boundary-and-theory.md",
+        PAPER / "manuscript/sections/08-limitations-and-conclusion.md",
+        *sorted((PAPER / "manuscript/_markdown_main").glob("*.md.tex")),
+    ]
+    forbidden = (
+        "measured interior safety",
+        "occupies the desired interior",
+        "can eliminate unsafe compact reuse",
+        "eliminate structurally unsafe state reuse",
+        "safety–cost superiority evidence",
+    )
+    for path in surfaces:
+        text = path.read_text(encoding="utf-8")
+        for phrase in forbidden:
+            assert phrase not in text, (path, phrase)
