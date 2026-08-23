@@ -73,3 +73,10 @@ def test_current_publication_surfaces_point_to_the_withholding_adjudication() ->
         assert "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json" in text, relative
         assert "SUPPORTED / PRIMARY" not in text, relative
         assert AUTHORITY_TERMINAL in text, relative
+
+
+def test_current_submission_sources_do_not_retain_the_withdrawn_dominance_claim() -> None:
+    surfaces = [PAPER / "MANUSCRIPT.md", *sorted((PAPER / "manuscript/_markdown_main").glob("*.md.tex"))]
+    for path in surfaces:
+        text = path.read_text(encoding="utf-8")
+        assert "strict dominance over both corresponding one-axis" not in text, path
