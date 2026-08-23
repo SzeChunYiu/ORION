@@ -1,0 +1,40 @@
+{
+  "analysis_unit": "unique_source_study_artifact_family_cluster",
+  "authority": "OUTCOME_BLIND_PLANNING_ONLY",
+  "claim_id": "P1.H1.R7A.MAXT_POWERED",
+  "claim_logic": "intersection_all_nine_simultaneous_lower_bounds_must_exceed_0.05",
+  "grants_scientific_authority": false,
+  "multiplicity_family": "all_nine_registered_primary_comparator_contrasts",
+  "protected_outcomes_accessed": false,
+  "registered_planning_point": {
+    "minimum_balanced_source_clusters": 384,
+    "minimum_is_conditional_on_stated_planning_assumptions": true,
+    "planned_source_clusters": 384,
+    "planning_delta": 0.2,
+    "planning_discordance": 0.4,
+    "projected_joint_power": 0.920216,
+    "superiority_margin": 0.05,
+    "target_joint_power": 0.9
+  },
+  "schema_version": "orion.p1.r7a.max-t-power-receipt.v1",
+  "sensitivity": [
+    {"minimum_balanced_source_clusters": 672, "planning_delta": 0.15, "planning_discordance": 0.3, "power_at_n_384": 0.318803},
+    {"minimum_balanced_source_clusters": 896, "planning_delta": 0.15, "planning_discordance": 0.4, "power_at_n_384": 0.06778},
+    {"minimum_balanced_source_clusters": 1120, "planning_delta": 0.15, "planning_discordance": 0.5, "power_at_n_384": 0.012734},
+    {"minimum_balanced_source_clusters": 288, "planning_delta": 0.2, "planning_discordance": 0.3, "power_at_n_384": 0.994311},
+    {"minimum_balanced_source_clusters": 384, "planning_delta": 0.2, "planning_discordance": 0.4, "power_at_n_384": 0.920216},
+    {"minimum_balanced_source_clusters": 480, "planning_delta": 0.2, "planning_discordance": 0.5, "power_at_n_384": 0.715436},
+    {"minimum_balanced_source_clusters": 160, "planning_delta": 0.25, "planning_discordance": 0.3, "power_at_n_384": 1.0},
+    {"minimum_balanced_source_clusters": 224, "planning_delta": 0.25, "planning_discordance": 0.4, "power_at_n_384": 0.999882},
+    {"minimum_balanced_source_clusters": 256, "planning_delta": 0.25, "planning_discordance": 0.5, "power_at_n_384": 0.996789}
+  ],
+  "simulation": {
+    "comparator_count": 9,
+    "draws": 50000,
+    "familywise_alpha": 0.05,
+    "null_model": "nine independent standard-normal paired-contrast T statistics",
+    "seed": 2026082301,
+    "simulated_one_sided_max_t_critical_value": 2.541351299
+  },
+  "technical_cells_are_not_independent_units": true
+}

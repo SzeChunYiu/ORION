@@ -58,8 +58,17 @@ def _duplicates(rows: Iterable[Mapping[str, Any]]) -> list[str]:
 
 
 def validate_source_frame(
-    frame: Mapping[str, Any], *, excluded_identity_tokens: Iterable[str] = ()
+    frame: Mapping[str, Any],
+    *,
+    excluded_identity_tokens: Iterable[str] = (),
+    pair_quota: int = PAIR_QUOTA,
+    unresolved_quota: int = UNRESOLVED_QUOTA,
+    study_id: str = "R7",
 ) -> dict[str, Any]:
+    if pair_quota <= 0 or unresolved_quota <= 0:
+        raise ValueError("source-frame quotas must be positive")
+    if study_id not in {"R7", "R7A"}:
+        raise ValueError("source-frame study_id must be R7 or R7A")
     errors: list[str] = []
     pairs = frame.get("pairs")
     unresolved = frame.get("unresolved")
@@ -112,8 +121,8 @@ def validate_source_frame(
             errors.append(f"cluster {row.get('cluster_id')} lacks acquisition query lineage")
 
     for cell in sorted((family, domain) for family in FAMILIES for domain in DOMAINS):
-        if pair_cells[cell] != PAIR_QUOTA:
-            errors.append(f"pair cell {cell} has {pair_cells[cell]} sources; expected {PAIR_QUOTA}")
+        if pair_cells[cell] != pair_quota:
+            errors.append(f"pair cell {cell} has {pair_cells[cell]} sources; expected {pair_quota}")
 
     unresolved_domains: Counter[str] = Counter()
     for row in unresolved:
@@ -129,22 +138,22 @@ def validate_source_frame(
             errors.append(f"cluster {row.get('cluster_id')} lacks acquisition query lineage")
 
     for domain in sorted(DOMAINS):
-        if unresolved_domains[domain] != UNRESOLVED_QUOTA:
+        if unresolved_domains[domain] != unresolved_quota:
             errors.append(
                 f"unresolved domain {domain} has {unresolved_domains[domain]} sources; "
-                f"expected {UNRESOLVED_QUOTA}"
+                f"expected {unresolved_quota}"
             )
 
     checks = {
-        "exact_pair_count": len(pairs) == len(FAMILIES) * len(DOMAINS) * PAIR_QUOTA,
-        "exact_unresolved_count": len(unresolved) == len(DOMAINS) * UNRESOLVED_QUOTA,
+        "exact_pair_count": len(pairs) == len(FAMILIES) * len(DOMAINS) * pair_quota,
+        "exact_unresolved_count": len(unresolved) == len(DOMAINS) * unresolved_quota,
         "exact_pair_cell_quotas": all(
-            pair_cells[(family, domain)] == PAIR_QUOTA
+            pair_cells[(family, domain)] == pair_quota
             for family in FAMILIES
             for domain in DOMAINS
         ),
         "exact_unresolved_domain_quotas": all(
-            unresolved_domains[domain] == UNRESOLVED_QUOTA for domain in DOMAINS
+            unresolved_domains[domain] == unresolved_quota for domain in DOMAINS
         ),
         "unique_source_clusters": len(set(clusters)) == len(clusters),
         "source_family_disjointness": not _duplicates(all_rows),
@@ -153,9 +162,9 @@ def validate_source_frame(
     return {
         "complete": all(checks.values()),
         "terminal": (
-            "P1_R7_SOURCE_FRAME_COMPLETE"
+            f"P1_{study_id}_SOURCE_FRAME_COMPLETE"
             if all(checks.values())
-            else "P1_R7_CANNOT_CHECK_SOURCE_UNIVERSE"
+            else f"P1_{study_id}_CANNOT_CHECK_SOURCE_UNIVERSE"
         ),
         "checks": checks,
         "errors": errors,
@@ -166,4 +175,3 @@ def validate_source_frame(
         },
         "unresolved_domain_counts": dict(sorted(unresolved_domains.items())),
     }
-
