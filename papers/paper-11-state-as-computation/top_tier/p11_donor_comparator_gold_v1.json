@@ -1,0 +1,21 @@
+{
+  "protocol": "P11_DONOR_COMPILER_COMPARATOR_PROTOCOL_V1",
+  "frozen_before_execution": true,
+  "ep1_reproduction": {
+    "expected_positive_datasets": ["wine", "digits"],
+    "expected_terminal": "P11_REAL_LEARNED_COMPILER_V1_SUPPORTED"
+  },
+  "disposition_vocabulary": ["CHALLENGER_BELOW", "CHALLENGER_ABOVE", "BOTH_PASS", "BOTH_FAIL"],
+  "prediction_outcomes_vocabulary": ["CONFIRMED", "CORRECTED", "WITHHELD"],
+  "ep2_donor_predictions": {
+    "breast_cancer": "BOTH_FAIL",
+    "wine": "BOTH_PASS",
+    "digits": "CANNOT_CHECK_PREDICTION"
+  },
+  "ep3_random_k_predictions": {
+    "breast_cancer": "BOTH_FAIL",
+    "wine": "CHALLENGER_BELOW",
+    "digits": "CANNOT_CHECK_PREDICTION"
+  },
+  "accuracy_parity_threshold": 0.01
+}

@@ -1,0 +1,24 @@
+{
+  "protocol": "P11_DECODER_ATTACK_PROTOCOL_V1",
+  "frozen_before_execution": true,
+  "k_values": [2, 3, 4],
+  "expected": {
+    "C1_constants": "NO_LAUNDER",
+    "C2_signed_singles": "NO_LAUNDER",
+    "C3_characters": {
+      "realizing_function_count": 1,
+      "minimal_degree_equals_k": true
+    },
+    "C4_odd_majority": "NO_LAUNDER",
+    "C5_axis_decision_lists": {
+      "exhaustive_max_length": 3,
+      "exhaustive_disposition": "NO_LAUNDER",
+      "all_lengths_claim": "NO_LAUNDER"
+    },
+    "C6_decision_trees": {
+      "construction_leaves": "2**k",
+      "construction_realizes_target": true,
+      "minimality_argument": "KRAFT_FRACTION"
+    }
+  }
+}
