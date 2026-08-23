@@ -1,0 +1,46 @@
+\section{18. The composition calculus (replaces the informal V3.5)}
+
+Let \texttt{Trans}, \texttt{Contract}, \texttt{Coord} and \texttt{Obl} be sorts,
+\texttt{Native : Trans -> Bool} the
+donor's own preservation/refinement/round-trip verdict,
+\texttt{Holds : Trans x Coord -> Bool} the per-coordinate closure status,
+\texttt{Src}, \texttt{Tgt : Trans -> Contract} the
+obligation contracts a transformation consumes and emits, and
+\texttt{Bridge : Contract x Contract -> Bool} the registered bridge relation.
+
+\textbf{The closure lift.} \texttt{Carries(t) <-> Native(t) AND forall c. Holds(t, c)}. This
+is V3's \texttt{ClosureCarries(T, o)} with the five-tuple replaced by a quantifier, so
+nothing below depends on there being five coordinates.
+
+\textbf{The intermediate-contract test.} \texttt{Match(a, b) := a = b OR Bridge(a, b)},
+verbatim from V3.5's ``exactly the same contract, or a registered bridge''.
+
+\textbf{Coordinate transport (the one substantive axiom).} A composite holds a closure
+coordinate exactly when both legs hold it, and the distinguished coordinate
+\texttt{obligations_total} additionally requires \texttt{Match(Tgt t, Src u)}.
+
+\subsection{Theorem V4.1 --- intermediate-contract composition}
+
+\texttt{Carries(Comp(t,u)) <-> Carries(t) AND Carries(u) AND Match(Tgt t, Src u)}, for
+every pair of transformations. This is V3.5, and it is \emph{derived} from coordinate
+transport rather than assumed; a calculus that took it as an axiom would be
+assuming its own conclusion.
+
+\subsection{Theorem V4.2 --- unit and associativity}
+
+\texttt{Ident(a)} carries closure, is a two-sided unit, and the two bracketings of a
+three-transformation chain are observationally equal --- with nothing assumed of
+the bridge relation: no reflexivity, no symmetry, no transitivity. Under
+extensionality both laws hold as equations. The unit law needs the \emph{test} to be
+reflexive, which it is because \texttt{Match} has an equality disjunct; with the raw
+registered relation in its place there is a countermodel.
+
+\subsection{Theorem V4.3 --- the rule is sound and incomplete}
+
+Under an obligation semantics defined without reference to any composition rule,
+\texttt{Total(t) <-> forall o. Demands(Tgt t, o) -> Demands(Src t, o) OR Discharged(t,o)
+OR Fresh(t,o)}, matching intermediate contracts \textbf{suffice} for totality to
+compose but are \textbf{not necessary}. The exact condition is weaker: containment of
+the second leg's source demands in the first leg's target demands. P7's rule
+therefore refuses composites that are in fact obligation-total. This is a real
+gap in the paper's own rule and is reported as one.

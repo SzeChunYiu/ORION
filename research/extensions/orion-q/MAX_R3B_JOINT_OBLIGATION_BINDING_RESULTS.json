@@ -1,0 +1,24 @@
+{
+  "schema": "ORIONQ.MAXR3BJointObligationBindingResult.v1",
+  "domains": ["SYNTHESIS", "ALGO_INTERFACE", "QEC_CODESIGN", "FORMAL_REASONING"],
+  "families": ["SEMANTIC_BINDING", "ACCESS_BINDING", "ERROR_NORM_BINDING", "RESOURCE_BINDING", "STALE_FAILURE_SCOPE", "AMBIGUOUS_TRANSPORT"],
+  "remints_per_domain": 100,
+  "sample_count": 4800,
+  "local_donor_composition_ceiling": {
+    "accuracy": 0.5,
+    "distinct_views": 2400,
+    "ambiguous_view_buckets": 2400
+  },
+  "joint_bound_obligation_ceiling": {
+    "accuracy": 1.0,
+    "distinct_views": 4800,
+    "ambiguous_view_buckets": 0
+  },
+  "orion_joint_rule_accuracy": 1.0,
+  "theorem_boundary": "For any balanced hostile pair with identical local verifier view and opposite gold decisions, every deterministic controller measurable with respect to the local view has pair accuracy at most 1/2.",
+  "terminal": "MAX_R3_EXTERNAL_DONOR_COMPOSITION_BINDING_BOUNDARY__EXACT_SYNTHETIC",
+  "p10_incremental_value": false,
+  "p7_p4_absorbed_into_incumbent": true,
+  "novelty_authorized": false,
+  "interpretation": "External donor mechanisms that validate semantics/access/error/resources locally but do not bind those receipts to the same transformed object/assumptions have an exact 1/2 ceiling on the balanced hostile construction. ORION's existing P7/P4-style joint obligation binding separates all cases. This supports system-level quantum admissibility structure, not a new P10 method language; P7/P4 binding is absorbed into the MAX incumbent before further P10 tests."
+}

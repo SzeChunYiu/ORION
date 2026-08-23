@@ -1,0 +1,101 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+HERE = Path(__file__).resolve().parent
+SUMMARY = HERE / "evidence" / "OFFICIAL_EVIDENCE_SUMMARY_V1.json"
+OUT = HERE / "manuscript" / "generated_result_macros.tex"
+
+
+def _fmt(value: Any) -> str:
+    if isinstance(value, float):
+        return f"{value:.6f}"
+    return str(value)
+
+
+def _fmt_p(value: float) -> str:
+    if value == 0:
+        return "0"
+    exponent = int(f"{value:e}".split("e")[1])
+    mantissa = value / (10**exponent)
+    return f"{mantissa:.3f}\\times 10^{{{exponent}}}"
+
+
+def main() -> None:
+    if not SUMMARY.is_file():
+        raise SystemExit("missing OFFICIAL_EVIDENCE_SUMMARY_V1.json")
+    data = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    if data.get("schema") != "P9.OfficialEvidenceSummary.v1.1":
+        raise SystemExit(f"unexpected summary schema: {data.get('schema')!r}")
+
+    m1 = data["m1"]
+    d1 = data["d1"]
+    paired = data["d1_paired"]["comparisons"]
+    a2 = data["a2_a4"]
+    a5 = data["a5"]
+
+    transcript = paired["TRANSCRIPT_BAG"]
+    untyped = paired["UNTYPED_PAIR"]
+    serialized = paired["TYPED_SERIALIZED_BAG"]
+
+    macros: dict[str, Any] = {
+        "MOneSurfaceAccuracy": m1["views"]["SURFACE"]["accuracy"],
+        "MOneSurfaceCeiling": m1["views"]["SURFACE"]["exact_view_deterministic_accuracy_ceiling"],
+        "MOneTopologyAccuracy": m1["views"]["TOPOLOGY"]["accuracy"],
+        "MOneTopologyCeiling": m1["views"]["TOPOLOGY"]["exact_view_deterministic_accuracy_ceiling"],
+        "MOneTypedAccuracy": m1["views"]["TYPED"]["accuracy"],
+        "MOneTypedCeiling": m1["views"]["TYPED"]["exact_view_deterministic_accuracy_ceiling"],
+        "MOneCurrentAccuracy": m1["views"]["CURRENT"]["accuracy"],
+        "MOneCurrentCeiling": m1["views"]["CURRENT"]["exact_view_deterministic_accuracy_ceiling"],
+        "MOneSemanticAccuracy": m1["views"]["SEMANTIC"]["accuracy"],
+        "MOneSemanticCeiling": m1["views"]["SEMANTIC"]["exact_view_deterministic_accuracy_ceiling"],
+        "MOneSemanticMechanicAccuracy": m1["views"]["SEMANTIC"]["mechanic_ranking_test_accuracy"],
+        "MOneSemanticGluingAccuracy": m1["views"]["SEMANTIC"]["gluing"]["test_accuracy"],
+        "MOneSemanticGluingCeiling": m1["views"]["SEMANTIC"]["gluing"]["task_information_ceiling"],
+        "MOneCurrentGluingAccuracy": m1["views"]["CURRENT"]["gluing"]["test_accuracy"],
+        "ATwoTypedAccuracy": a2["relation"]["TYPED"]["full_task_accuracy"],
+        "ATwoTopologyAccuracy": a2["relation"]["TOPOLOGY"]["full_task_accuracy"],
+        "AFourCurrentAccuracy": a2["history"]["CURRENT"]["full_task_accuracy"],
+        "AFourSemanticAccuracy": a2["history"]["SEMANTIC"]["full_task_accuracy"],
+        "AFiveTypedAccuracy": a5["typed_accuracy"],
+        "AFiveCurrentAccuracy": a5["current_accuracy"],
+        "DOneTranscriptAccuracy": d1["results"]["TRANSCRIPT_BAG"]["test_accuracy"],
+        "DOneUntypedAccuracy": d1["results"]["UNTYPED_PAIR"]["test_accuracy"],
+        "DOneTypedAccuracy": d1["results"]["TYPED_RELATIONAL"]["test_accuracy"],
+        "DOneSerializedAccuracy": d1["results"]["TYPED_SERIALIZED_BAG"]["test_accuracy"],
+        "DOneTypedMinusTranscript": d1["typed_minus_transcript"],
+        "DOneTypedMinusSerialized": d1["typed_minus_same_information_serialized"],
+        "DOneTypedDoubleAccuracy": d1["results"]["TYPED_RELATIONAL"]["double_corruption_accuracy"],
+        "DOneTypedUnresolvedAccuracy": d1["results"]["TYPED_RELATIONAL"]["unresolved_accuracy"],
+        "DOneTranscriptPairedCILow": transcript["paired_bootstrap_95pct_interval"][0],
+        "DOneTranscriptPairedCIHigh": transcript["paired_bootstrap_95pct_interval"][1],
+        "DOneTranscriptDiscordantWins": transcript["discordant"]["typed_correct_comparator_wrong"],
+        "DOneTranscriptDiscordantLosses": transcript["discordant"]["typed_wrong_comparator_correct"],
+        "DOneUntypedPairedCILow": untyped["paired_bootstrap_95pct_interval"][0],
+        "DOneUntypedPairedCIHigh": untyped["paired_bootstrap_95pct_interval"][1],
+        "DOneUntypedDiscordantWins": untyped["discordant"]["typed_correct_comparator_wrong"],
+        "DOneUntypedDiscordantLosses": untyped["discordant"]["typed_wrong_comparator_correct"],
+        "DOneSerializedPairedCILow": serialized["paired_bootstrap_95pct_interval"][0],
+        "DOneSerializedPairedCIHigh": serialized["paired_bootstrap_95pct_interval"][1],
+        "DOneSerializedDiscordantWins": serialized["discordant"]["typed_correct_comparator_wrong"],
+        "DOneSerializedDiscordantLosses": serialized["discordant"]["typed_wrong_comparator_correct"],
+    }
+    p_macros = {
+        "DOneTranscriptMcNemarP": _fmt_p(float(transcript["exact_mcnemar_two_sided_p"])),
+        "DOneUntypedMcNemarP": _fmt_p(float(untyped["exact_mcnemar_two_sided_p"])),
+        "DOneSerializedMcNemarP": _fmt_p(float(serialized["exact_mcnemar_two_sided_p"])),
+    }
+
+    lines = ["% Generated by build_result_macros.py; do not edit by hand."]
+    for name, value in macros.items():
+        lines.append(f"\\newcommand{{\\{name}}}{{{_fmt(value)}}}")
+    for name, value in p_macros.items():
+        lines.append(f"\\newcommand{{\\{name}}}{{{value}}}")
+    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(OUT.relative_to(HERE))
+
+
+if __name__ == "__main__":
+    main()

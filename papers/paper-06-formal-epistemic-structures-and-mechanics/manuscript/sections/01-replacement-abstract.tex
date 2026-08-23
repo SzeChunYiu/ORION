@@ -1,0 +1,37 @@
+\section{Replacement abstract for V5}
+
+Systems that carry out scientific work inside mature governance machinery
+accumulate certificates: runtime proof-of-execution, certified
+proposal--execution traces, portable action and approval receipts, workflow
+provenance signatures, dependency and effect systems, attested execution
+boundaries. This paper treats those mechanisms as reusable donor certificates
+rather than competitors, and asks what it takes to lift one of them into
+continued \emph{scientific} standing after the scientific state changes.
+
+The answer is a conservative lifting semantics with two halves, and both are
+now proved rather than enumerated. The \textbf{local half} governs what a change
+touches: separated mechanics commute, separation is necessary for commutation
+rather than merely sufficient, writes are local to a declared frame, the frame
+determines the result, and fixpoints are conservative. The \textbf{propagation half}
+governs what a change invalidates: reopening is sound, complete and minimal,
+conservative and monotone, and a node reopens itself exactly when it lies on a
+cycle. Both halves are discharged over uninterpreted sorts --- the state
+transformer of the local half is an uninterpreted function under a frame
+condition, and the propagation half quantifies over dependency graphs of any
+size, cyclic or not --- so neither is a statement about a particular width.
+
+The bounded model of V4 is then recovered as an instance rather than repeated
+as separate support. A certificate over $n$ coordinates is interpreted as the
+star graph on $n+1$ nodes: one node per coordinate, one for the certificate, an
+edge from each coordinate to it. Damage is a changed set on the coordinate
+nodes and repair removes coordinates from it. Under that interpretation, six
+further theorems are discharged at arbitrary width --- any damage withdraws the
+certificate, a full repair restores it, a partial repair does not, undamaged
+coordinates are never collateral damage, the dependency runs one way, and the
+certificate supports nothing --- and the two revalidation counts V4 published are
+recomputed by running the implementation the propagation theorems were checked
+against. The finite result is therefore output of a verified instance of the
+theorems, not a second enumeration that agrees with them.
+
+Three of V4's reported quantities do not survive this scrutiny and are
+withdrawn below.

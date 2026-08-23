@@ -1,0 +1,22 @@
+{
+  "schema": "P9.M1Protocol.v1.1",
+  "supersedes_for_execution": "P9.M1Protocol.v1",
+  "outcome_accessed": false,
+  "reason": "Pre-outcome implementation audit found that a preregistered kNN configuration can have k larger than the sample count at the smallest diagnostic train-size points. The scientific configuration must not be mutated to fit. Such points are recorded as CONFIG_NOT_FIT_AT_SIZE; full train->dev model selection and the single protected test pass are unchanged.",
+  "unchanged": [
+    "corpus and split identities",
+    "candidate order seeds",
+    "feature families",
+    "model families and hyperparameter grid",
+    "train->dev selection rule",
+    "protected test rule",
+    "metrics and sentinels",
+    "terminal semantics",
+    "authority"
+  ],
+  "diagnostic_curve_rule": {
+    "if_selected_configuration_cannot_fit_at_train_size": "record CONFIG_NOT_FIT_AT_SIZE with error class; do not alter k/model/hyperparameters",
+    "protected_test_effect": "NONE"
+  },
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_AMENDMENT_ONLY"
+}

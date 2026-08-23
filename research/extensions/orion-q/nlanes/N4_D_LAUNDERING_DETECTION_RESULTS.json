@@ -1,0 +1,69 @@
+{
+  "checkers": {
+    "LABEL_MATCH": {
+      "accuracy": 0.5,
+      "false_positive_rate_on_honest": 0.0,
+      "per_class_recall": {
+        "DEEP_SPLICE": 0.0,
+        "MISSING_RECEIPT": 0.0,
+        "SPOOFED_SUMMARY": 0.0
+      },
+      "recall_on_laundering": 0.0
+    },
+    "LAST_HOP_CHECK": {
+      "accuracy": 0.5425,
+      "false_positive_rate_on_honest": 0.0,
+      "per_class_recall": {
+        "DEEP_SPLICE": 0.0,
+        "MISSING_RECEIPT": 0.0,
+        "SPOOFED_SUMMARY": 0.25757575757575757
+      },
+      "recall_on_laundering": 0.085
+    },
+    "ORION_CHAIN_TRANSPORT": {
+      "accuracy": 1.0,
+      "false_positive_rate_on_honest": 0.0,
+      "per_class_recall": {
+        "DEEP_SPLICE": 1.0,
+        "MISSING_RECEIPT": 1.0,
+        "SPOOFED_SUMMARY": 1.0
+      },
+      "recall_on_laundering": 1.0
+    },
+    "SUMMARY_TIER": {
+      "accuracy": 0.5,
+      "false_positive_rate_on_honest": 0.0,
+      "per_class_recall": {
+        "DEEP_SPLICE": 0.0,
+        "MISSING_RECEIPT": 0.0,
+        "SPOOFED_SUMMARY": 0.0
+      },
+      "recall_on_laundering": 0.0
+    }
+  },
+  "class_counts": {
+    "DEEP_SPLICE": 68,
+    "HONEST": 200,
+    "MISSING_RECEIPT": 66,
+    "SPOOFED_SUMMARY": 66
+  },
+  "family": "5_stronger_oracle_laundering (family 3 remint transport as vector)",
+  "gates": {
+    "G1_orion_full_detection_and_zero_fpr": true,
+    "G2_label_match_blind": true,
+    "G3_summary_spoof_effective": true,
+    "G4_deep_splice_evades_last_hop": true
+  },
+  "instances": 400,
+  "interpretation": {
+    "authority": "exact-synthetic-bounded; no cryptographic security claim; no real-adversary claim; no P10/novelty; hashes are seeded integers, not digests",
+    "claim_boundary": "Completeness of full-chain checking holds only in this world where per-hop receipts cannot be forged consistently end-to-end; family 3 remint transport is exercised only as the laundering vector, not independently closed.",
+    "novelty_authorized": false,
+    "p10_authorized": false
+  },
+  "issue": 677,
+  "protocol": "development/orion-q-nlane-closure/N4_D_LAUNDERING_DETECTION_PROTOCOL.md",
+  "schema": "ORIONQ.N4D.StrongerOracleLaunderingDetection.v1",
+  "seed": 20260821,
+  "terminal": "N4_D_CHAIN_TRANSPORT_LAUNDERING_DETECTION_SUPPORTED__EXACT_SYNTHETIC"
+}

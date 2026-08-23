@@ -1,31 +1,29 @@
-% Dataset: scoped public-reference mapping sets used by P3.C5.
+% Dataset: the two public-reference mapping sets the reported result uses.
 The empirical result in this paper uses two content-addressed
 \emph{public-reference mapping datasets}. They contain already-structured
-scientific projections assembled from pinned external human/expert resources
-and deterministic standards. They are not newly commissioned expert gold and
-do not evaluate raw-text extraction.
+scientific projections assembled from pinned external human and expert
+resources and from deterministic standards. They are not newly commissioned
+expert gold, and they do not evaluate raw-text extraction.
 
 \subsection{Initial public-reference set}
 
 The initial mapping study contains 32 cases generated from pinned revisions of
-MUSE, SciFact, and SciSchema. The portable gold archive has SHA-256
-\texttt{35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8}.
-The evidence package binds the external-source revisions and evaluator
-identity in \texttt{evidence/public-reference-v1/PROVENANCE.env} and retains a
-checksum manifest rather than redistributing restricted third-party text.
-This first result is treated as development/initial evidence; it is not pooled
-into the confirmatory verdict.
+MUSE, SciFact, and SciSchema. The portable gold archive is bound by content
+digest, and the evidence package binds the external-source revisions and
+evaluator identity while retaining a checksum manifest rather than
+redistributing restricted third-party text. This first result is treated as
+development evidence; it is not pooled into the confirmatory verdict.
 
 \subsection{Disjoint confirmatory set}
 
 A second 32-case holdout was selected by an outcome-blind deterministic
 round-robin window over the sorted source pools, starting after the initial
 window and excluding all initial case identifiers. Its overlap with the first
-set is zero. Before confirmatory system outputs were evaluated, the execution
-manifest froze the portable gold hash
-\texttt{13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b},
-the MUSE/SciFact/SciSchema revisions, evaluator component identities,
-bootstrap seed, margins, and terminal rule.
+set is zero. Before any confirmatory system output was evaluated, the
+execution manifest froze the portable gold digest, the MUSE, SciFact and
+SciSchema revisions, evaluator component identities, bootstrap seed, margins,
+and terminal rule. Every digest named in that freeze is listed in
+Section~\ref{sec:availability}.
 
 \begin{table}[t]
 \centering
@@ -46,8 +44,9 @@ public-reference holdout.}
 \label{tab:public-reference-families}
 \end{table}
 
-The 13 different-name/same-referent cases come from the MUSE cross-domain
-stratum. The 13 polarity/modality/attribution/context cases come from a
+Table~\ref{tab:public-reference-families} gives the composition. The 13
+different-name/same-referent cases come from the MUSE cross-domain stratum.
+The 13 polarity/modality/attribution/context cases come from a
 scientific-claim-verification stratum. The six representation-mapping cases
 span materials, physics, and psychology and use deterministic standards where
 appropriate. Each record retains its source authority class and exact frozen
@@ -56,39 +55,39 @@ input identity.
 \subsection{What the public-reference labels mean}
 
 The evaluated decision is a mapping-level terminal over already-structured
-projections. Depending on the source relation and tested rule, the correct
+projections. Depending on the source relation and the tested rule, the correct
 outcome can permit integration, forbid integration, or preserve an unresolved
-relation. The scoped study evaluates false merges and false splits under these
-frozen cases. It does not claim that a model recovered the semantic coordinates
-from raw papers.
+relation. The study evaluates false merges and false splits under these frozen
+cases. It does not claim that a model recovered the semantic coordinates from
+raw papers.
 
-The confirmatory set is particularly discriminating for the
-polarity/modality/attribution/context family: flat predicate canonicalization
-false-merges 6 of 13 cases (rate 0.4615), while ORION has zero false merges.
-The different-name/same-referent and representation-mapping strata are clean
-controls on this holdout: all evaluated rules are correct there. This
-localization is reported rather than hidden, because the observed pooled effect
-is not evidence that every coordinate is necessary.
+The confirmatory set is particularly discriminating for the family of
+polarity, modality, attribution and context cases: flat predicate
+canonicalization false-merges 6 of 13 cases (rate 0.4615), where
+coordinate-governed mapping makes no false merges. The different-name/same-referent and
+representation-mapping strata are clean controls on this holdout: all
+evaluated rules are correct there. That localization is reported rather than
+hidden, because the observed pooled effect is not evidence that every
+coordinate is necessary.
 
-\subsection{Broader expert-atlas protocol is follow-up}
+\subsection{The broader expert-atlas design is not the dataset used here}
 
-The repository also preserves the prospective \texttt{P3.cross-domain-atlas.v1}
+A prospective expert-atlas design is preserved alongside this study: a
 protocol, annotation schema, handbook, adjudication policy, and 32
-\texttt{seed-to-gold-v1} templates spanning a broader eight-family design.
-Those templates are not expert gold: no independent dual annotation,
-per-coordinate inter-annotator agreement, specialist adjudication, or
-prospectively bound raw-text model run exists for that broader object. It is
-therefore excluded from the scoped P3.C5 submission claim and remains
-\conststatus{} follow-up science rather than being retrospectively presented
-as the dataset used here.
+seed-to-gold templates spanning a broader eight-family design. Those templates
+are not expert gold. No independent dual annotation, per-coordinate
+inter-annotator agreement, specialist adjudication, or prospectively bound
+raw-text model run exists for that broader object, so its outcome remains
+undetermined and it is excluded from the claim made here rather than being
+presented retrospectively as the dataset used.
 
 \subsection{Data and licensing boundary}
 
 The public-reference package stores source identities, pinned revisions,
 locators, provenance and content commitments needed for replay. Third-party
-text is not vendored where redistribution is not permitted. The final
-submission archive will freeze the exact repository subject and stable public
-release URL for the legally shareable package; absence of a permanent archive
-at the current drafting stage does not change the scientific result.
+text is not vendored where redistribution is not permitted. A final submission
+archive will freeze the exact repository subject and stable public release URL
+for the legally shareable package; the absence of a permanent archive at the
+current drafting stage does not change the scientific result.
 
 \endinput

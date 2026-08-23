@@ -1,0 +1,19 @@
+# Certificate transport, related work and reproducibility
+
+Responsibility support is conditional on evidence identity, transform version,
+required context, witness identity and resource envelope. A semantic change can
+require preserve, reopen, revoke or an explicit indeterminate disposition. The
+RCS object does not certify its own scientific authority. An evaluator can
+establish operational support; that role grants no novelty, publication or
+deployment authority.
+
+Recent proof-carrying agent-action work attaches model-agnostic certificates to actions and runtime governance. Provenance traces evidence and execution. Memory-staleness systems detect that stored state is no longer valid. These donors make it insufficient to claim simply that “state should carry a certificate.” P13's discriminator is the **responsibility key plus reopen semantics**: a state may be current, well-provenanced and high-confidence yet insufficient for another downstream responsibility.
+
+The support matrix is deterministic and exact. The historical negative is
+reported exactly as frozen and is not reanalysed into a positive result. P13B is
+a complete registered 30-case finite panel, not a population sample, and reports
+exact counts rather than a post-hoc inferential interval. Each corruption world
+must have a nonzero opportunity denominator before zero violations can be
+interpreted. A real-system extension should define task/domain as the unit of
+generalization and use paired matched comparisons with family/domain-block
+uncertainty.

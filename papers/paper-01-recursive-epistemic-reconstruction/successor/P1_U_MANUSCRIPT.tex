@@ -1,0 +1,249 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlength{\emergencystretch}{2em}
+
+\title{General Scientific Problem Reformulation Superiority:\\
+Knowing When to Change the Objective, Representation, or Problem Itself}
+\author{ORION Paper I Ultimate-Successor Working Manuscript}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Scientific agents increasingly revise plans, hypotheses, objectives, representations, tools, and even the research problem itself. ORION Paper I targets the strongest general claim suggested by this landscape: across heterogeneous scientific domains and failure regimes, can a governed agent outperform strong fixed-goal, reflection, meta-agent, goal-evolution, state-compilation, and failure-localization systems at deciding \emph{which level of the scientific problem must change}, executing the needed reformulation, and improving protected fresh scientific outcomes without unnecessary higher-level revision? Existing ORION evidence supplies two boundary conditions rather than reasons to narrow the ambition. Protected high-level escalation succeeds on registered hidden shifts, while an information-complete objective basis makes objective invention unnecessary. P1-U generalizes over both regimes by treating donor mechanisms as components inside the comparator class and asking whether ORION can learn the regime boundary itself. Candidate systems choose among additional search, state/representation compilation, implementation repair, measurement revision, objective reformulation, problem-boundary reformulation, or unresolved. The benchmark contains heterogeneous naturalistic and exact tasks with paired surface-confusable cases, including objectives that are correct but inaccessible in the current representation and problems that remain unsolvable under every admissible lower-level repair. A protected evaluator separately scores final scientific success, correct revision level, unnecessary reformulation, harmful regression, calibration, transfer, and total resource cost. The intended terminal is cross-domain replicated superiority over the strongest donor-complete system under matched resources. Historical failed, tied, or saturated results remain immutable; every negative outcome launches a successor search for a more general discriminator, representation, or reformulation mechanism rather than shrinking the target by default.
+\end{abstract}
+
+\section{Largest scientific question}
+The target is deliberately broader than a local residual:
+\begin{quote}
+Across heterogeneous scientific tasks, can ORION become strictly better than donor-complete scientific agents at detecting when the current problem formulation is inadequate, selecting the correct level of reformulation, and converting that diagnosis into superior fresh scientific outcomes under matched resources?
+\end{quote}
+
+Scientific Autonomous Goal-evolving Agent (SAGA) already demonstrates automated objective formulation in a bi-level scientific-design architecture \cite{saga2026}. Model Discovery Agent couples predictive model criticism with M-open hypothesis-class expansion and Bayesian experiment design \cite{mda2026}. Self-Revising Discovery Systems for Science makes verified representational-regime transition and provenance-preserving transport explicit \cite{selfrevising2026}. Recent agent-failure work further shows that the same visible failure can originate in the model, harness, environment, tool interface, or benchmark \cite{modelorharness2026}, while intervention-supported attribution and causal tool diagnosis use controlled interventions to refine responsibility and repair \cite{reflect2026,architect2026}. These findings raise the comparison standard. ORION does not retreat to a smaller claim. Instead, P1-U treats objective evolution, active diagnosis, value-of-information experiment selection, representation reformulation, model-class expansion, failure localization, and state compilation as donor mechanics that the strongest comparator is allowed to possess. The superiority question moves upward: can ORION \emph{generalize over those mechanisms by choosing among them correctly across regimes}, including knowing when a deeper scientific reformulation is necessary and when it is not?
+
+\section{Upward-generalization principle}
+Nearest-work pressure is absorbed into a stronger hypothesis class rather than used as a reason to optimize a tiny residual. For any donor mechanism $m$ that solves a subclass of P1-U tasks, the comparator class is expanded to include $m$. ORION earns a contribution only by showing one or more of the following at the broader level:
+\begin{enumerate}[leftmargin=*]
+    \item superior regime selection among donor mechanisms;
+    \item successful reformulation on cases outside every donor's registered applicability region;
+    \item better cross-domain transfer of the reformulation decision rule;
+    \item lower harmful or unnecessary high-level revision at equal or better scientific utility;
+    \item a newly discovered reformulation operator or discriminator that expands the solved regime and survives protected transfer.
+\end{enumerate}
+The intended paper terminal is therefore \textbf{GENERALIZED_REFORMULATION_SUPERIORITY}, not merely a narrow ``residual supported'' statement. Narrower terminals remain scientifically valid fallback outcomes only if the strongest claim is not earned.
+
+\section{Prior evidence that must remain immutable}
+The predecessor paper contains two results that constrain, but do not cap, this successor.
+\begin{enumerate}[leftmargin=*]
+    \item The historical broad formulation that effectively treated failure as evidence for high-level reformulation failed and remains a falsifier of indiscriminate escalation.
+    \item A later bounded objective-basis sufficiency result ties ORION when the protected objective portfolio is already decision-complete. This establishes one regime in which dynamic reformulation is unnecessary.
+\end{enumerate}
+
+P1-U treats both as training-free scientific structure for a broader regime-selection problem: the agent must infer when the task lies inside a sufficient basis and when the basis itself must change. New evidence may add new regimes and mechanics, but may not rewrite old outcomes, margins, denominators, or interpretations.
+
+\section{Decision space}
+For each episode, the candidate must return exactly one terminal decision from
+\[
+\mathcal{D}=\{\textsc{Keep+Search},\textsc{Keep+Compile},\textsc{Keep+Repair},\textsc{ReviseMeasurement},\textsc{ReformulateObjective},\textsc{ReformulateBoundary},\textsc{Unresolved}\}.
+\]
+The evaluator records a separate evidence-bound justification and does not infer correctness from the decision label alone.
+
+\paragraph{Keep+Search.}
+The scientific problem and representation are adequate, but additional evidence or reasoning is needed.
+
+\paragraph{Keep+Compile.}
+The scientific problem is adequate, but a better state, representation, coordinate system, or interface is required. This arm is the mandatory falsifier against false P1 escalation.
+
+\paragraph{Keep+Repair.}
+The visible failure is attributable to implementation, harness, tool, or environment rather than to the scientific problem.
+
+\paragraph{ReviseMeasurement.}
+The scientific target is meaningful, but its operational measurement is invalid or insufficient.
+
+\paragraph{ReformulateObjective.}
+The current objective portfolio is not decision-sufficient, contradictory, proxy-misaligned, or missing a load-bearing objective.
+
+\paragraph{ReformulateBoundary.}
+The scientific problem itself has the wrong system boundary, entities, variables, or admissible intervention space.
+
+\paragraph{Unresolved.}
+Available evidence cannot distinguish the competing responsibility hypotheses under the frozen budget.
+
+\section{Causal responsibility ladder}
+A high-level reformulation is admissible only after a lower-level causal ladder has been evaluated under the frozen resource policy:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Execution test:} does a known-good implementation or environment remove the failure while the scientific formulation is unchanged?
+    \item \textbf{Access test:} does a semantics-preserving state or representation compiler make the current objective solvable without changing the objective?
+    \item \textbf{Evidence test:} does additional admissible search or experiment resolve the failure without changing the problem?
+    \item \textbf{Measurement test:} does replacing an invalid measurement while preserving the scientific target restore valid decision-making?
+    \item \textbf{Objective sufficiency test:} can any admissible combination of the registered objectives determine the protected decision?
+    \item \textbf{Problem-boundary test:} if the registered objective space is inadequate, is the obstruction caused by the wrong scientific boundary rather than by missing information?
+\end{enumerate}
+
+A timeout, low score, or failed tool call is never sufficient evidence for method-basis or problem-basis inadequacy. Active diagnosis and optimal test design are established parent mechanisms \cite{activefault2019}; P1-U must therefore demonstrate value in the cross-level scientific responsibility and downstream revision consequences, not merely in taking diagnostic measurements.
+
+\section{Prospective benchmark}
+The protected benchmark is generated before candidate outcomes and contains matched, surface-confusable pairs. At minimum it contains the following families.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+\toprule
+Family & Correct causal responsibility & Required hostile pair \\
+\midrule
+Latent objective & Reformulate objective & Same surface with sufficient objective hidden by representation \\
+Contradictory objectives & Reformulate objective or unresolved & Apparent contradiction caused only by stale evidence \\
+Wrong measurement & Revise measurement & Same target with merely noisy but still valid measurement \\
+Wrong representation & Keep+Compile & Similar failure with a genuinely inadequate objective basis \\
+Wrong problem boundary & Reformulate boundary & Same surface where extra evidence inside the old boundary is sufficient \\
+Implementation/harness failure & Keep+Repair & Same symptom produced by a true scientific-model failure \\
+Evidence scarcity & Keep+Search or unresolved & Same missing evidence where no allowed route can identify the answer \\
+No-reformulation control & Keep current formulation & Attractive alternative objective that improves a proxy but harms protected utility \\
+\bottomrule
+\end{tabularx}
+\caption{Mandatory causal families. Each family includes a paired case that defeats a shallow surface heuristic.}
+\end{table}
+
+The benchmark must scale beyond authored exact contracts into heterogeneous naturalistic scientific tasks, with domain, model, representation, environment, and objective-regime holdouts. Naturalistic tasks are admitted only when the protected evaluator can independently establish the responsibility label or a valid \textsc{Unresolved} state.
+
+\section{Systems and donor-complete baselines}
+All systems receive the same model class, retrieval/tool access, candidate information, total token/time/tool budget, and evaluator-visible output contract. The comparator set must include:
+\begin{enumerate}[leftmargin=*]
+    \item fixed-goal agent with search and tool use;
+    \item reflection/self-critique agent;
+    \item meta-agent or evolutionary search over strategies;
+    \item SAGA-style objective-evolution comparator \cite{saga2026};
+    \item M-open model-criticism/hypothesis-expansion and experiment-design comparator \cite{mda2026};
+    \item failure-localization comparator that can assign faults below the objective layer \cite{modelorharness2026};
+    \item intervention-supported attribution/causal repair comparator \cite{reflect2026,architect2026};
+    \item active fault/model-discrimination and value-of-information comparator \cite{activefault2019};
+    \item representation/state-compilation and problem-reformulation comparator \cite{planningreform2023};
+    \item verified regime-revision comparator with explicit correspondence/preservation \cite{selfrevising2026};
+    \item donor-complete product containing all preceding mechanics and allowed to route among them;
+    \item strongest current goal-evolving or self-revising scientific agent available at freeze time;
+    \item an ideal-product ceiling supplied with the correct responsibility coordinate, reported only as an analysis ceiling and never as a realistic baseline.
+\end{enumerate}
+
+A baseline is not called inferior because its public implementation is unavailable. Unavailable official implementations are labelled unavailable; any reimplementation is explicitly identified as a mechanism-matched proxy.
+
+\section{Pre-registered hypotheses}
+\paragraph{H1, generalized scientific success.}
+Across the full heterogeneous benchmark, ORION achieves higher protected final scientific success than the strongest runnable donor-complete comparator by a prospectively frozen margin.
+
+\paragraph{H2, revision-level superiority.}
+ORION selects the scientifically warranted revision level more accurately, including both avoiding unnecessary reformulation and detecting necessary high-level change.
+
+\paragraph{H3, cross-regime generalization.}
+The advantage survives holdouts over domains, representations, objective regimes, and at least one model/environment axis rather than depending on a single authored failure family.
+
+\paragraph{H4, non-compensatory safety.}
+Any gain in final utility is invalid for promotion if harmful regression, false reformulation, protected-sibling invalidation, or evaluator/authority compromise exceeds a frozen guard.
+
+\paragraph{H5, mechanism expansion.}
+At least one failure/tie family yields a new discriminator or reformulation mechanic that expands protected reach beyond the pre-freeze donor-complete basis and transfers to fresh tasks.
+
+\section{Primary outcomes and statistics}
+Primary outcomes are reported separately rather than collapsed into one score:
+\begin{enumerate}[leftmargin=*]
+    \item protected final scientific success;
+    \item correct responsibility/reformulation decision;
+    \item false reformulation rate;
+    \item missed necessary reformulation rate;
+    \item harmful regression rate and worst-family regression;
+    \item correct \textsc{Unresolved} rate and false-resolution rate;
+    \item transfer across domain/representation/model/environment blocks;
+    \item total tokens, tool calls, wall-clock budget, and evaluator calls.
+\end{enumerate}
+
+Before protected outcome access, the protocol freezes the primary superiority margin, all non-inferiority margins, family weighting, multiplicity handling, confidence-interval method, missing-run handling, and catastrophic-harm rule. Repeats are not counted as independent tasks. A protected result with unavailable mandatory evidence is \textsc{CannotCheck}, not a win or a loss.
+
+\section{Protected evaluation and authority}
+Candidate generation and scientific authority remain separate. The candidate may propose a new objective, representation, or problem boundary, but cannot make that proposal valid by declaration. A host/protected evaluator must establish:
+\begin{enumerate}[leftmargin=*]
+    \item the old and new formulation identities;
+    \item which lower-level alternatives were tested;
+    \item the counterfactual consequence of the proposed reformulation;
+    \item preservation or reopening of affected prior evidence and claims;
+    \item evaluator and hidden-split custody;
+    \item no post-outcome change to margins, labels, or benchmark construction.
+\end{enumerate}
+
+\section{Adversarial falsifiers}
+The following attacks are mandatory.
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Representation masquerading as wrong problem:} the objective is correct but inaccessible in the supplied coordinates; a matched compiler solves it.
+    \item \textbf{More-compute masquerading as reformulation:} additional reasoning/search under the same formulation closes the case.
+    \item \textbf{Harness masquerading as science:} a tool/environment repair removes the failure.
+    \item \textbf{Proxy improvement:} reformulation improves an exposed proxy while worsening protected scientific utility.
+    \item \textbf{Attractive unnecessary reformulation:} a novel-sounding objective is available on a clean control but should not be adopted.
+    \item \textbf{False impossibility:} candidate claims the method/objective basis is inadequate after timeout even though a registered basis solution exists under the bound.
+    \item \textbf{Evaluator leakage:} hidden responsibility or target labels are indirectly encoded in templates, path names, source counts, or metadata.
+    \item \textbf{Authority laundering:} a proposed reformulation is treated as adopted without the protected discharge chain.
+\end{enumerate}
+
+\section{Negative-result recursion as upward search}
+Negative results are research inputs, not terminal excuses for a smaller ambition. Every material loss, tie, or harmful outcome is preserved and classified into one primary responsibility hypothesis:
+\[
+\{\text{evidence},\text{search},\text{representation},\text{measurement},\text{implementation},\text{objective},\text{problem boundary},\text{authority},\text{benchmark},\text{non-identifiable}\}.
+\]
+For each negative, the programme searches materially different successor mechanisms and parent disciplines, then freezes a discriminator that changes one suspected causal ingredient while holding the others fixed. The goal is to discover the more general regime rule or mechanism that converts the failure into expanded transfer, not merely to rescue the originating case. A successor is promoted only if it improves protected fresh outcomes without violating the non-compensatory guards. Margin relaxation, baseline weakening, outcome deletion, and post-hoc family exclusion are forbidden recovery mechanisms.
+
+The existing P1-U programme in ORION issue \#649 and its ChatGPT-led negative-to-positive child \#696 are the authority-bearing research lanes for these successors. A new child lane is opened only when a newly observed negative has a distinct causal responsibility or materially new mechanism family not already represented there.
+
+\section{Claim ladder}
+The manuscript uses the following claim states.
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Protocol frozen:} benchmark, margins, custody, and baselines are fixed; no superiority claim.
+    \item \textbf{Mechanism supported:} revision responsibility improves on registered worlds, but broad superiority is not yet earned.
+    \item \textbf{Protected superiority supported:} generalized H1 plus all non-compensatory guards pass on the protected split.
+    \item \textbf{Cross-domain reformulation superiority:} H1--H4 replicate across heterogeneous held-out regimes and an independent implementation.
+    \item \textbf{Generalized reformulation superiority:} cross-domain superiority plus H5 demonstrates that ORION can expand its reformulation mechanism basis from failures while retaining transfer and safety.
+\end{enumerate}
+A narrower terminal is permitted only as an honest fallback if the largest claim fails. It is not the default research objective.
+
+\section{Reviewer-facing decision test}
+The decisive paper must show all three phenomena in one prospectively frozen programme:
+\begin{enumerate}[leftmargin=*]
+    \item donor mechanisms solve their natural regimes;
+    \item ORION routes among those regimes better than the donor-complete product; and
+    \item at least one held-out regime requires a reformulation discriminator or operator not reducible to selecting a known donor mechanism.
+\end{enumerate}
+A positive mean score on a single family is insufficient for the intended claim.
+
+\section{Current status}
+This file is a prospective successor manuscript and protocol. It does not alter the predecessor Paper I result and does not assert that generalized P1-U superiority has already been observed. The active ChatGPT-led programme \#696 has frozen a donor-saturated exact mechanism pilot; its authored finite result is not broad scientific evidence unless repository reproduction passes, and naturalistic/protected transfer remains required before superiority language can be promoted.
+
+\begin{thebibliography}{12}
+\bibitem{saga2026}
+Y. Du et al., ``Accelerating Scientific Discovery with Autonomous Goal-evolving Agents,'' arXiv:2512.21782, 2025.
+
+\bibitem{mda2026}
+K. Murphy, ``Model Discovery Agent: LLM-assisted Bayesian experiment design for data-efficient discovery of mechanistic world models,'' arXiv:2608.09696, 2026.
+
+\bibitem{selfrevising2026}
+F. Y. Wang and M. J. Buehler, ``Self-Revising Discovery Systems for Science: A Categorical Framework for Agentic Artificial Intelligence,'' arXiv:2606.01444, 2026.
+
+\bibitem{modelorharness2026}
+H. Raj, V. Gupta, A. Mahmoud, R.-G. Dumitru, D. Yi, A. Sabharwal, and Y. He, ``Model or Harness? An Interaction-Centric Taxonomy for Localizing Agent Failures,'' arXiv:2607.28802, 2026.
+
+\bibitem{reflect2026}
+X. Lin et al., ``REFLECT: Intervention-Supported Error Attribution for Silent Failures in LLM Agent Traces,'' arXiv:2606.09071, 2026.
+
+\bibitem{architect2026}
+Z. Wang, J. Xu, B. Yu, and Z. Li, ``ARCHITECT: Uncertainty-Aware Dynamic Tool Learning via Causal Intervention for Open-World Agents,'' in \emph{Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics}, 2026, doi:10.18653/v1/2026.acl-long.1707.
+
+\bibitem{activefault2019}
+K. A. Palmer and G. M. Bollas, ``Active fault diagnosis for uncertain systems using optimal test designs and detection through classification,'' \emph{ISA Transactions}, vol. 93, pp. 354--369, 2019.
+
+\bibitem{planningreform2023}
+Y. Alarnaouti, G. Baryannis, and M. Vallati, ``Reformulation techniques for automated planning: a systematic review,'' \emph{The Knowledge Engineering Review}, vol. 38, e9, 2023, doi:10.1017/S0269888923000097.
+\end{thebibliography}
+
+\end{document}

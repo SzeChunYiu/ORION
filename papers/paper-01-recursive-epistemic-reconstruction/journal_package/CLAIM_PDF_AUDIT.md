@@ -1,42 +1,40 @@
-# ORION-P1 claim and PDF audit
+# P1 claim/PDF audit — exact binary rebound; final CI pending
 
-**Audit date:** 2026-08-18
-**Subject:** `journal_package/manuscript.pdf`, content-bound by `SHA256SUMS`
+Date: 2026-08-21  
+Package rebind base: `ca7df1055a43f97eaf8d142a62011c4c261af368`  
+Exact-render subject: `060ed7e6528a592cd3bef3db149b93e94652b2ec`  
+Exact-render run: `32510318915`  
+Exact-render artifact: `9456829355` (`sha256:f4d213ab9d84bb4e5bf60099e63e765221d0f25f45449933436276526f69bd51`)  
+Package status: `SUBMISSION_READY`  
+Operational submission authority: `PENDING_FINAL_CI_AND_SUCCESSOR_EXACT_MAIN_CONFIRMATION`
 
-| Claim | Evidence | Verdict |
-|---|---|---|
-| Historical V1 broad H1 | `results/P1-T2_baseline_ablation_results.json` | `NOT_SUPPORTED` / `UNDERPOWERED`; preserved as negative history |
-| Powered mechanical necessity | primary and replication result JSON plus concordance | `SUPPORTED` in both pre-bound runs |
-| Independent result reconstruction | two `INDEPENDENT_VERIFICATION.json` records | `PASS`; 40,348 rows/run, zero score/analysis mismatches, exact terminal match |
-| Safety and selectivity | result gate vectors | zero unnecessary control reframes, sibling regressions, and forbidden mutations in both runs |
-| Claim boundary | abstract, results, limitations, conclusion, claim ledger | bounded to the credential-free mechanical world family; no model-general/open-ended claim |
-| Nearest-work absorption | 36-row matrix plus rounds A--H ledgers | donor structures credited and incorporated into parents/ablations |
-| Compiled PDF | rendered 27-page manuscript | `PASS` |
+The V3 exact-render artifact independently reproduced P1 PDF SHA-256
+`06a60f0f6ec69bc142952b4fc9dc1030fcd0f80de41f941958debe375e6ea99e`
+twice from clean TeX state under render-toolchain SHA-256
+`4139104188327db25c3b85dad72fad0bf4d036ac675f1fe2a38c31946dff2b32`
+and source-date epoch `1787318056`. Its complete tracked TeX input closure is
+`3bb45ad8961a53d555a7e6592c359e9b0cf080fe00cf7a5e8c2fbff2915cebf2`
+over 31 committed inputs.
 
-## PDF review
+All 33 pages of those exact PDF bytes were independently inspected. Pages 11, 20,
+and 21 also received full-resolution follow-up because the TeX log reported
+overfull boxes. No clipping, overlap, black-square/glyph corruption, unreadable
+figure/table placement, or page-edge contact was observed.
 
-The final PDF was compiled after BibTeX and two convergence passes, then every
-page was rendered with Poppler. The review explicitly checked:
+`journal_package/manuscript.pdf` now contains those exact inspected bytes.
+`journal_package/RENDER_INPUT_CLOSURE.json` preserves the V3 repository-input
+closure from the protected artifact. The render subject is **not** relabelled as
+the rebind base: the authority bridge is the complete tracked TeX input closure.
+The repository compare from the render subject to `ca7df1055a43f97eaf8d142a62011c4c261af368`
+changes only durable P1/P2 audit/package text and no manuscript input, so the
+closure and PDF hash remain applicable. Any later change to the closure or PDF
+hash requires renewed render/inspection before package authority can be reused.
 
-- no unresolved citations or cross-references;
-- no blank or multi-page figure payloads;
-- Figure 1's host/candidate authority boundary and Figure 2's paired primary/
-  replication labels are legible;
-- historical Table 1, failure Table 2, powered Table 3, and the three-page
-  36-row nearest-work Table 4 fit within the page and remain readable;
-- no figure was stranded after the bibliography;
-- section order distinguishes historical V1 evidence from the powered
-  successor; and
-- page numbering, margins, captions, and bibliography render consistently.
+The static journal-package inventory is now rebound and PDF-inclusive, but this
+PR does not by itself grant final merge/submission authority. Final ordinary
+repository/package CI and the successor exact-main render check are still
+required before issue #489 may be completed.
 
-The original Figure 1 artifact failed this audit because it was a malformed
-three-page PDF whose included first page was blank. It was rebuilt from a
-tracked single-page SVG before this audit passed. Figure 2's float placement
-was also corrected before the final render.
-
-## Remaining external operations
-
-A permanent DOI and a venue-specific cover letter cannot be produced until an
-archive and venue are selected. They are recorded as submission operations,
-not as scientific-evidence gaps. Repository redistribution remains restricted
-until the owner selects a license.
+`P1.H1` remains `NOT_SUPPORTED`. The bounded credential-free mechanical
+mutation-necessity result is unchanged; no model-general or open-ended
+superiority is added.

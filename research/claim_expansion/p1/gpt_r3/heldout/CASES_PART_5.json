@@ -1,0 +1,72 @@
+[
+  {
+    "id": "R3-CTRL-5",
+    "query_id": "CTRL-5",
+    "query_class": "NO_HIGH_LEVEL_REFORMULATION",
+    "actual_domain": "empirical_software_engineering",
+    "source_id": "doi:10.1016/j.infsof.2022.106870",
+    "source_url": "https://doi.org/10.1016/j.infsof.2022.106870",
+    "source_year": 2022,
+    "source_rank": 3,
+    "dossier": "Seven external groups attempt close replications of a software-engineering experiment. Most quantitative results remain consistent with the baseline, but replicators encounter unclear instructions and defects in the supplied artifacts.",
+    "probes": {"P_SEARCH_COVERAGE":"INCONCLUSIVE","P_REPRESENTATION_ROUNDTRIP":"INCONCLUSIVE","P_ENVIRONMENT_REPLAY":"SUPPORT","P_MEASUREMENT_CROSSCHECK":"INCONCLUSIVE","P_OBJECTIVE_PREDICTIVE_CHECK":"INCONCLUSIVE","P_BOUNDARY_COUNTERFACTUAL":"INCONCLUSIVE"},
+    "gold_class": "IMPLEMENTATION_OR_ENVIRONMENT",
+    "admission_evidence": {"summary": "Most scientific results held, while the study's corrective recommendations target replication instructions and artifact quality."}
+  },
+  {
+    "id": "R3-UNRES-2",
+    "query_id": "UNRES-2",
+    "query_class": "UNRESOLVED",
+    "actual_domain": "kinetic_model_identifiability",
+    "source_id": "doi:10.1093/pnasnexus/pgac154",
+    "source_url": "https://doi.org/10.1093/pnasnexus/pgac154",
+    "source_year": 2022,
+    "source_rank": 9,
+    "dossier": "A kinetic model fits observed dynamic or steady-state behavior, but multiple parameter combinations can produce indistinguishable outputs. The available observations do not uniquely determine which parameterization is responsible.",
+    "probes": {"P_SEARCH_COVERAGE":"INCONCLUSIVE","P_REPRESENTATION_ROUNDTRIP":"INCONCLUSIVE","P_ENVIRONMENT_REPLAY":"INCONCLUSIVE","P_MEASUREMENT_CROSSCHECK":"INCONCLUSIVE","P_OBJECTIVE_PREDICTIVE_CHECK":"INCONCLUSIVE","P_BOUNDARY_COUNTERFACTUAL":"INCONCLUSIVE"},
+    "gold_class": "UNRESOLVED",
+    "admission_evidence": {"summary": "Data-driven studies explicitly characterize parameter nonidentifiability in dynamic and steady kinetic models."}
+  },
+  {
+    "id": "R3-UNRES-3",
+    "query_id": "UNRES-3",
+    "query_class": "UNRESOLVED",
+    "actual_domain": "ecological_model_calibration",
+    "source_id": "doi:10.1111/2041-210X.14002",
+    "source_url": "https://doi.org/10.1111/2041-210X.14002",
+    "source_year": 2022,
+    "source_rank": 6,
+    "dossier": "A complex process-based ecological model is calibrated against one type of observation. Multiple parameter combinations or competing models can match that observation, allowing a right answer for different underlying reasons.",
+    "probes": {"P_SEARCH_COVERAGE":"INCONCLUSIVE","P_REPRESENTATION_ROUNDTRIP":"INCONCLUSIVE","P_ENVIRONMENT_REPLAY":"INCONCLUSIVE","P_MEASUREMENT_CROSSCHECK":"INCONCLUSIVE","P_OBJECTIVE_PREDICTIVE_CHECK":"INCONCLUSIVE","P_BOUNDARY_COUNTERFACTUAL":"INCONCLUSIVE"},
+    "gold_class": "UNRESOLVED",
+    "admission_evidence": {"summary": "The study explains equifinality and nonidentifiability under single constraints; additional independent constraints are needed to discriminate."}
+  },
+  {
+    "id": "R3-UNRES-4",
+    "query_id": "UNRES-4",
+    "query_class": "UNRESOLVED",
+    "actual_domain": "developmental_scientific_reasoning",
+    "source_id": "doi:10.3389/fpsyg.2022.800226",
+    "source_url": "https://doi.org/10.3389/fpsyg.2022.800226",
+    "source_year": 2022,
+    "source_rank": 7,
+    "dossier": "Evidence about a causal system is confounded: more than one factor changes, so the observed outcome is compatible with multiple causal explanations. A decision about which factor is responsible cannot be made from the existing observation alone.",
+    "probes": {"P_SEARCH_COVERAGE":"INCONCLUSIVE","P_REPRESENTATION_ROUNDTRIP":"INCONCLUSIVE","P_ENVIRONMENT_REPLAY":"INCONCLUSIVE","P_MEASUREMENT_CROSSCHECK":"INCONCLUSIVE","P_OBJECTIVE_PREDICTIVE_CHECK":"INCONCLUSIVE","P_BOUNDARY_COUNTERFACTUAL":"INCONCLUSIVE"},
+    "gold_class": "UNRESOLVED",
+    "admission_evidence": {"summary": "Original experiments explicitly distinguish recognizing confounded evidence from selecting an informative intervention needed to resolve it."}
+  },
+  {
+    "id": "R3-UNRES-5",
+    "query_id": "UNRES-5",
+    "query_class": "UNRESOLVED",
+    "actual_domain": "multi_analyst_social_science",
+    "source_id": "doi:10.1073/pnas.2203150119",
+    "source_url": "https://doi.org/10.1073/pnas.2203150119",
+    "source_year": 2022,
+    "source_rank": 3,
+    "dossier": "Many independent research teams receive the same data and the same substantive hypothesis, yet their defensible analysis choices can produce a wide distribution of numerical results and conclusions.",
+    "probes": {"P_SEARCH_COVERAGE":"INCONCLUSIVE","P_REPRESENTATION_ROUNDTRIP":"INCONCLUSIVE","P_ENVIRONMENT_REPLAY":"INCONCLUSIVE","P_MEASUREMENT_CROSSCHECK":"INCONCLUSIVE","P_OBJECTIVE_PREDICTIVE_CHECK":"INCONCLUSIVE","P_BOUNDARY_COUNTERFACTUAL":"INCONCLUSIVE"},
+    "gold_class": "UNRESOLVED",
+    "admission_evidence": {"summary": "Large multi-analyst study reveals substantial hidden uncertainty from analysis choices even with identical data and hypothesis."}
+  }
+]

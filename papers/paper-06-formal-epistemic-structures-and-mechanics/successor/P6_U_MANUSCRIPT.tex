@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\title{A General Theory of Minimal Scientific Revalidation after Change}
+\author{ORION Paper VI Ultimate-Successor Working Manuscript}
+\date{August 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+Change-impact analysis, incremental build systems and regression proof selection already compute affected dependency regions efficiently, including formally verified variants. ORION Paper VI therefore targets a stronger theorem: for typed scientific workflows whose nodes carry semantic support and responsibility contracts, can one compute the minimal equivalence class of revalidation actions necessary and sufficient to restore post-change scientific standing while preserving every genuinely unaffected certificate? Existing 155 complete restorations and 1,055 strict-subset failures remain finite witnesses. P6-U seeks machine-checked restoration soundness, minimality, unaffected conservativity, revocation and compiled-state results that explicitly handle alternative support, cycles, responsibility changes and incomplete support knowledge. Every countermodel is retained and drives \textbf{Minimal Revalidation Closure (MRC)}: either the missing primitive yields a stronger theorem or the counterexample yields a sharp impossibility/lower-bound result. The intended terminal is \textbf{GENERAL\_MINIMAL\_SCIENTIFIC\_REVALIDATION\_THEOREM} plus multi-domain cost savings with no false-validity increase.
+\end{abstract}
+
+\section{Donor boundary}
+Verified change-impact analysis already formalizes dependency-graph impact in Coq and integrates it into regression proof selection and build systems \cite{chip2020}; iCoq/piCoq demonstrate fine-grained dependency-aware regression proof checking \cite{icoq2018}. P6 therefore does not claim novelty for dependency reachability or selective reruns. The residual is a scientific semantics in which graph edges are only candidates for support: exact revalidation depends on the responsibility-specific semantic property transmitted by an edge, alternative supports, representation state, recovery and revocation.
+
+\section{Semantic model}
+Let $G=(V,E)$ be a typed scientific workflow. Each node may be raw evidence, data, code, model, representation, analysis, claim, compiled state, evaluator or certificate. A responsibility $r$ has a validity predicate $V_r$ and a set of support obligations.
+
+\begin{definition}[Semantic support]
+$u\leadsto_r v$ iff validity of $v$ for responsibility $r$ depends on a declared semantic property of $u$. Mere graph reachability is neither necessary nor sufficient.
+\end{definition}
+
+\begin{definition}[Affected obligation]
+For change $\Delta$, support obligation $o$ is affected iff at least one admissible post-change world consistent with observed information changes the property of $o$ relevant to $V_r$.
+\end{definition}
+
+\begin{definition}[Revalidation action]
+An action may reopen evidence, recompute state, rerun analysis, recheck proof/certificate, regenerate a bridge, re-evaluate an evaluator or reassess a claim. Actions are equivalent when they discharge the same affected obligations with the same postconditions.
+\end{definition}
+
+\section{Target theorem family}
+\begin{theorem}[Restoration soundness]
+Under sound support semantics, if a selected action set discharges every affected load-bearing obligation for target responsibility $r$, successful actions restore $V_r$.
+\end{theorem}
+
+\begin{theorem}[Equivalence-class minimality]
+Under support completeness, action completeness and affected-realizability, MRC returns a minimal equivalence class of action sets: removing any obligation-discharge capability leaves an admissible post-change world with false validity.
+\end{theorem}
+
+\begin{theorem}[Unaffected conservativity]
+A certificate whose complete responsibility support remains invariant under $\Delta$ remains valid without revalidation.
+\end{theorem}
+
+\begin{theorem}[Exact revocation]
+If all admissible supports for an obligation fail and no alternative support discharges it, revocation propagates exactly to dependent responsibility certificates, not to unrelated graph descendants.
+\end{theorem}
+
+\begin{theorem}[Compiled-state separation]
+A compiler/representation change that affects only interface semantics reopens the affected compiled interfaces/certificates; it need not invalidate native evidence whose scientific validity and recoverability remain unchanged.
+\end{theorem}
+
+\begin{proposition}[Incomplete-support limit]
+Without an observable complete support relation, exact minimality cannot in general be guaranteed: two post-change worlds may be observationally identical while differing in a hidden load-bearing support. Any sound method must over-approximate or acquire additional support information.
+\end{proposition}
+
+This proposition is a positive boundary result: exactness is recovered only after stating the minimum information assumption instead of hiding the counterexample.
+
+\section{Finite predecessor as corollary}
+The registered 155 complete restorations become soundness instances and the 1,055 strict-subset failures necessity witnesses for their finite universe. The general primitives are defined independently of those counts; a proof that merely encodes the old table is invalid for P6-U.
+
+\section{Minimal Revalidation Closure}
+MRC is the ChatGPT-led negative-to-positive formal programme. Countermodels are partitioned into hidden support, spurious support, alternative support, action-equivalence ambiguity, cycles/fixed points, representation-only invalidation, responsibility change, evaluator-semantic change and non-realizability. Each countermodel is frozen before theorem repair.
+
+For each class MRC either (i) identifies a necessary semantic primitive/assumption and re-proves the theorem, or (ii) proves a sharp impossibility/lower bound and the minimal additional information required for exactness. Ad hoc exception lists and deletion of hostile countermodels are prohibited.
+
+\section{Naturalistic evaluation}
+Prospective workflows span code patches, dataset corrections, model/checkpoint changes, statistical-analysis or multiplicity changes, calibration/instrument changes, manuscript-scope revisions, schema/compiler changes, evaluator revisions and responsibility/objective changes.
+
+Baselines include revalidate-everything, graph reachability, verified change-impact analysis, regression proof selection, provenance-only invalidation, certificate dependency maintenance and a donor-complete union. Evaluation reports false-validity rate, unaffected-certificate preservation, revalidation actions, wall time/evaluator calls and hidden-dependency misses.
+
+\section{Empirical hypotheses}
+H1: no false-validity increase versus revalidate-everything. H2: lower revalidation work at restored standing. H3: fewer hidden semantic-dependency misses than graph/provenance baselines. H4: more unaffected-certificate preservation without false validity. H5: the same formal rule transfers across multiple workflow types and independent implementations.
+
+\section{Framework correspondence}
+Current ORION provides dependency, reopen, responsibility and protected-step-verification substrate, plus the finite P6 evidence. Core \texttt{REOPEN.v1} and higher-order mechanic footprints are compatible with the theorem's direction. No canonical registry object currently certifies universal exact-minimal revalidation; MRC and the general theorem therefore remain prospective rather than being described as existing runtime capability.
+
+\section{Claim ladder}
+Primitive semantics $\rightarrow$ machine-checked soundness $\rightarrow$ minimality/conservativity/revocation $\rightarrow$ finite predecessor corollary $\rightarrow$ naturalistic multi-domain savings $\rightarrow$ \textbf{GENERAL\_MINIMAL\_SCIENTIFIC\_REVALIDATION\_THEOREM}. Countermodels and impossibility results remain first-class evidence throughout.
+
+\begin{thebibliography}{4}
+\bibitem{chip2020} K. Palmskog, A. Celik, and M. Gligoric, ``Practical Machine-Checked Formalization of Change Impact Analysis,'' TACAS 2020, pp. 137--157, doi:10.1007/978-3-030-45237-7\_9.
+\bibitem{icoq2018} A. Celik, K. Palmskog, and M. Gligoric, ``A Regression Proof Selection Tool for Coq,'' ICSE Companion 2018, doi:10.1145/3183440.3183493.
+\end{thebibliography}
+\end{document}

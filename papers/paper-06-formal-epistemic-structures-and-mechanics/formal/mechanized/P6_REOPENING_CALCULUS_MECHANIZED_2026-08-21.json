@@ -1,0 +1,84 @@
+{
+  "all_discharged": true,
+  "committed_check_vacuity": {
+    "always_empty": {
+      "error": "",
+      "passed": false
+    },
+    "always_every_node": {
+      "error": "",
+      "passed": false
+    },
+    "baseline": [
+      25,
+      1400
+    ],
+    "explanation": "check_reopening compares its retained set against a specification built from an independently computed transitive closure, so a wrong descendants is caught. Until 2026-08-22 its two assertions were set-algebra tautologies -- intersecting a set with something already removed from it, then comparing a variable to the expression it was just assigned -- and descendants was called with its output never compared to anything, so the check passed for any implementation.",
+    "is_vacuous": false,
+    "mutations_survived": []
+  },
+  "differential_against_committed_descendants": {
+    "agreed": true,
+    "agreements": 61440,
+    "disagreements": [],
+    "exercised_both_verdicts": true,
+    "informative": true,
+    "positive_trials": 51712,
+    "trials": 61440
+  },
+  "differential_node_count": 4,
+  "not_licensed": [
+    "any claim that P6's 320-state model, its 155 full-revalidation successes or its 1,055 strict-subset failures are hereby re-derived; those come from a different artifact and are not lifted here",
+    "any claim of independent formal review; a solver checked these, not a person outside this lane",
+    "any empirical claim whatsoever"
+  ],
+  "record": "P6_REOPENING_CALCULUS_MECHANIZED",
+  "schema_version": "orion.p6.reopening-calculus-smt.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "REOPENING_SOUNDNESS",
+      "outcome": "PROVED",
+      "statement": "every reopened node is reachable from some changed node along dependency edges, over any graph of any size",
+      "why_it_matters": "reopening a node that nothing changed depends on is unjustified work, and at scale it is the difference between selective revalidation and redoing everything"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "REOPENING_COMPLETENESS",
+      "outcome": "PROVED",
+      "statement": "every node reachable from a changed node, and not itself changed, is reopened",
+      "why_it_matters": "the safety half: a certificate that survives a change it actually depends on is a false validity, which is the one error this whole mechanism exists to prevent"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "REOPENING_MINIMALITY",
+      "outcome": "PROVED",
+      "statement": "the reopened set is exactly the reachable-and-not-changed set, so no smaller set is sound and no larger set is necessary",
+      "why_it_matters": "soundness and completeness together pin the set exactly; stating it as one theorem is what makes 'minimal' a claim rather than an adjective"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "REOPENING_CONSERVATIVITY",
+      "outcome": "PROVED",
+      "statement": "if nothing changed, nothing is reopened",
+      "why_it_matters": "a revalidation mechanism that reopens work in the absence of change would make every certificate permanently provisional"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "REOPENING_MONOTONICITY",
+      "outcome": "PROVED",
+      "statement": "changing more can only reopen more: if one changed set contains another, its reopened set contains the other's, up to the changed nodes themselves",
+      "why_it_matters": "without it, adding a change could *rescue* a certificate, which would make the mechanism exploitable by changing more things"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CYCLE_REOPENS_ITSELF",
+      "outcome": "PROVED",
+      "statement": "on a cyclic dependency graph, a changed node inside a cycle is reachable from itself, so every other node of that cycle is reopened",
+      "why_it_matters": "the requested characterisation of cycles: acyclicity is not needed for soundness or completeness, and what a cycle does is make its whole strongly connected component reopen together"
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation of reopening hold over dependency graphs of any size, cyclic or not; and P6's committed descendants agrees with that specification on every directed graph over four nodes and every changed subset. The implementation is correct. That had not previously been checked, because the check that appeared to check it asserts tautologies."
+}

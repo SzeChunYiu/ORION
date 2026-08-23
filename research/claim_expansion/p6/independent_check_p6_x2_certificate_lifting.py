@@ -87,8 +87,41 @@ def main() -> None:
     assert full_revalidation == 155
     assert partial_failures == 1055
 
+    # Independence is claimed by `imports_primary_checker: false`, which copying
+    # satisfies. `independent_lift` is an early-return spelling of the primary's
+    # `native_valid and all(science)`, and the row payload's `ideal_product` is
+    # that same expression inline -- so `ideal_product_mismatches` is 0 for every
+    # theory of lifting, and the two implementations agree on all 320 points
+    # because they are the same rule. Not importing a checker is not the same as
+    # not being it, and agreement is not evidence of independence.
+    #
+    # The only thing here that would notice a wrong theory is the stored-digest
+    # assertion above, which is agreement with a constant. Both facts are now
+    # reported rather than left for a reader to infer. See
+    # research/failures/2026-08-unfalsifiable-check-zero-refutation-capacity/.
+    ideal_product_divergence = sum(
+        1 for row in rows if row["liftable"] != row["ideal_product"]
+    )
+    independence_demonstrated = ideal_product_divergence > 0
+
     print(json.dumps({
-        "status": "P6_X2_INDEPENDENT_AUDIT_PASS",
+        "status": (
+            "P6_X2_INDEPENDENT_AUDIT_PASS" if independence_demonstrated
+            else "P6_X2_INDEPENDENT_AUDIT_CANNOT_CHECK"
+        ),
+        "independence_status": (
+            "DEMONSTRATED" if independence_demonstrated else "CANNOT_CHECK"
+        ),
+        "independence_cannot_check_reason": None if independence_demonstrated else (
+            "independent_lift and the row payload's ideal_product agree on all "
+            f"{len(rows)} points because both spell the primary's rule; "
+            "imports_primary_checker=false records an import that did not happen, "
+            "not a rule that was written twice"
+        ),
+        "ideal_product_mismatches": (
+            ideal_product_divergence if independence_demonstrated else None
+        ),
+        "sole_wrong_theory_detector": "assert digest == <stored constant>",
         "states": 320,
         "separation_witnesses": 25,
         "product_countermodels": 31,

@@ -1,0 +1,47 @@
+name: p10-robustness-analysis
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-xx-content-bound-math-evaluation/**'
+      - 'research/extensions/p10-structured-reasoning/**'
+      - '.github/workflows/p10-robustness-analysis.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  robustness:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check existing technical-note package
+        run: python papers/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
+      - name: Derive held-out-module robustness
+        run: python papers/paper-xx-content-bound-math-evaluation/analyze_module_robustness_v1.py
+      - name: Print headline robustness numbers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS.json')
+          d = json.loads(p.read_text())
+          print(json.dumps({
+              'pooled_delta': d['pooled_markov_minus_unigram'],
+              'module_delta_distribution': d['module_delta_distribution'],
+              'leave_one_module_out_sensitivity': {
+                  k: v for k, v in d['leave_one_module_out_sensitivity'].items() if k != 'rows'
+              },
+              'improvement_concentration': d['improvement_concentration'],
+              'worst_five_modules': d['worst_five_modules'],
+          }, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-module-robustness-${{ github.sha }}
+          path: papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS.json
+          if-no-files-found: error

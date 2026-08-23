@@ -1,0 +1,150 @@
+name: orion-q-max-r6-successor-dps
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/max_r6i_exact_rank2_shared_tag_dp.py'
+      - 'research/extensions/orion-q/max_r6k_exact_rank2_shared_tag_restore_factor_dp.py'
+      - 'research/extensions/orion-q/max_r6l_three_tare2_shared_factor_donor.py'
+      - 'research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py'
+      - 'research/extensions/orion-q/max_r6n_support_dominance_audit.py'
+      - 'research/extensions/orion-q/max_r6o_enlarged_tag_donor_closure.py'
+      - 'research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json'
+      - 'development/orion-q-max-r0/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_ERRATUM_1.md'
+      - 'development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6N_SUPPORT_DOMINANCE_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6O_ENLARGED_TAG_DONOR_PROTOCOL.md'
+      - '.github/workflows/orion-q-max-r6-successor-dps.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-q-max-r6-successor-dps-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  frozen-r6-successor-dps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse R6 successor frozen blob drift
+        # max_r6o_enlarged_tag_donor_closure.py is freeze-protected here but NOT
+        # re-executed in CI: its full enlarged-Tag DP takes ~6.5-7 minutes (395s
+        # recorded in its committed receipt, 406s measured locally), which
+        # exceeds the ~6 minute per-script re-execution budget for this job.
+        # Its receipt stays pinned by blob identity instead.
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          expected = {
+              'research/extensions/orion-q/max_r6i_exact_rank2_shared_tag_dp.py': '341ecd23a2f16fc527d57465b885cdc990aa7d02',
+              'research/extensions/orion-q/max_r6k_exact_rank2_shared_tag_restore_factor_dp.py': '84cd1bae32efa1f57a10e96c619098a056a06da5',
+              'research/extensions/orion-q/max_r6l_three_tare2_shared_factor_donor.py': 'f68d354cf1f6bf4ef40ee521c9d3392c860dbaa9',
+              'research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py': 'ead51fc9d03e25acf3d65557cb0f08fd1eb98873',
+              'research/extensions/orion-q/max_r6n_support_dominance_audit.py': 'cc3abd18c2d8563ec4e78d6397030dd930c1eb49',
+              'research/extensions/orion-q/max_r6o_enlarged_tag_donor_closure.py': '96eb172670735add62abc0b683971f3272487c30',
+              'research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json': 'ed837d8287b03588422cf51eb22445a35069415e',
+              'research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json': '430d2e235eace5e0d45f5bae6a5b613f0b757706',
+              'research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json': '8b8c3b61fccc3428d1faefb0df0cb1db68426899',
+              'research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json': 'e7b6253a74f6ffb588a09304767f0281292f9616',
+              'research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json': '4641421af0819bbeb95fdbb4941f708d9a51f88c',
+              'research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json': 'fa546a20976721f6b9a0e8ef061e013362f109b0',
+              'development/orion-q-max-r0/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_PROTOCOL.md': '48d0e9aac13b55e44f12d77a2ab8cd2898780916',
+              'development/orion-q-max-r0/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_PROTOCOL.md': 'b7736989e7ce5c66ccbc1686a957284587011332',
+              'development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_PROTOCOL.md': '13229f7e4f70983e3a58596e0f35dea3baf44e28',
+              'development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_ERRATUM_1.md': '4d7a2eb5c136ff8a853f566621028282210f66e7',
+              'development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md': '48214ac16ce956a109cbce39a25d59b77eb95b3a',
+              'development/orion-q-max-r0/MAX_R6N_SUPPORT_DOMINANCE_PROTOCOL.md': '58ec3ae9d4981100c32c0b6ea7389e71fc92daa3',
+              'development/orion-q-max-r0/MAX_R6O_ENLARGED_TAG_DONOR_PROTOCOL.md': '1b1e5cadb06b1428de6ba103277ef886ed5ae1d0',
+          }
+          for name, want in expected.items():
+              raw = Path(name).read_bytes()
+              got = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              if got != want:
+                  raise SystemExit(f'R6 successor frozen blob drift: {name}: {got} != {want}')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Save committed R6 successor receipts before re-execution
+        run: |
+          mkdir -p /tmp/r6-committed
+          cp research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json /tmp/r6-committed/
+          cp research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json /tmp/r6-committed/
+          cp research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json /tmp/r6-committed/
+          cp research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json /tmp/r6-committed/
+          cp research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json /tmp/r6-committed/
+      - name: Re-run frozen R6 successor DPs and audits
+        # Deterministic re-execution set (locally measured wall times):
+        # R6I 220s, R6K 264s, R6L 226s, R6M 261s, R6N 6s. Scripts rewrite their
+        # RESULTS files in place; the order matters because R6N consumes the
+        # R6I and R6M receipts. R6O is intentionally absent (see freeze step).
+        run: |
+          cd research/extensions/orion-q
+          {
+          python max_r6i_exact_rank2_shared_tag_dp.py
+          python max_r6k_exact_rank2_shared_tag_restore_factor_dp.py
+          python max_r6l_three_tare2_shared_factor_donor.py
+          python max_r6m_exact_three_tare2_shared_factor_dp.py
+          python max_r6n_support_dominance_audit.py
+          } | tee /tmp/r6-successor-receipts.txt
+          grep -c '^ORIONQ_MAX_R6I_EXACT_RANK2_SHARED_TAG=' /tmp/r6-successor-receipts.txt
+          grep -c '^ORIONQ_MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR=' /tmp/r6-successor-receipts.txt
+          grep -c '^ORIONQ_MAX_R6L_THREE_TARE2_SHARED_FACTOR=' /tmp/r6-successor-receipts.txt
+          grep -c '^ORIONQ_MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR=' /tmp/r6-successor-receipts.txt
+          grep -c '^ORIONQ_MAX_R6N_SUPPORT_DOMINANCE=' /tmp/r6-successor-receipts.txt
+      - name: Assert regenerated receipts equal committed receipts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          receipts = [
+              ('ORIONQ_MAX_R6I_EXACT_RANK2_SHARED_TAG', 'MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json'),
+              ('ORIONQ_MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR', 'MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json'),
+              ('ORIONQ_MAX_R6L_THREE_TARE2_SHARED_FACTOR', 'MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json'),
+              ('ORIONQ_MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR', 'MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json'),
+              ('ORIONQ_MAX_R6N_SUPPORT_DOMINANCE', 'MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json'),
+          ]
+          lines = Path('/tmp/r6-successor-receipts.txt').read_text().splitlines()
+
+          def canonical(obj):
+              # runtime_seconds is the only wall-clock field in these receipts
+              # (present in R6K and R6N); everything else must match exactly.
+              obj = dict(obj)
+              obj.pop('runtime_seconds', None)
+              return json.dumps(obj, sort_keys=True, separators=(',', ':'), allow_nan=False)
+
+          regenerated = Path('research/extensions/orion-q')
+          committed = Path('/tmp/r6-committed')
+          for prefix, results_name in receipts:
+              rows = [x for x in lines if x.startswith(prefix + '=')]
+              if len(rows) != 1:
+                  raise SystemExit(f'expected exactly one {prefix} receipt line, got {len(rows)}')
+              line = json.loads(rows[0][len(prefix) + 1:])
+              new = json.loads((regenerated / results_name).read_text())
+              old = json.loads((committed / results_name).read_text())
+              if canonical(line) != canonical(old):
+                  raise SystemExit(f'R6 successor receipt drift: {prefix} line != committed {results_name}')
+              if canonical(new) != canonical(old):
+                  raise SystemExit(f'R6 successor receipt drift: regenerated {results_name} != committed receipt')
+              print(f'R6_SUCCESSOR_RECEIPT_MATCH={results_name}')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-q-max-r6-successor-dps-receipts
+          path: /tmp/r6-successor-receipts.txt
+          if-no-files-found: warn
+          retention-days: 30

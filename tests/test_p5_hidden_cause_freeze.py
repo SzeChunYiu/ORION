@@ -1,15 +1,63 @@
 from __future__ import annotations
 
+import hashlib
+
 import copy
 import json
 from pathlib import Path
 
 import pytest
 
-from orion.study.p5.freeze import ROOT_CAUSES, freeze_protected_suite, main, sha256_json
+from orion.study.p5.freeze import (
+    ROOT_CAUSES,
+    freeze_protected_suite,
+    main,
+    ordinal_independence_report,
+    ordinal_reading_rules,
+    sha256_json,
+    validate_protected_suite,
+)
 
 
-CAUSES = sorted(ROOT_CAUSES)
+
+def _test_nonce(index: int) -> str:
+    """A deterministic nonce with real width, for fixtures only.
+
+    These fixtures used to be `f"{index:064x}"` -- the case ordinal -- which is
+    what the shipped PROTECTED_SUITE_V1 did, and why its 24 commitments opened in
+    108 SHA-256 evaluations. `validate_protected_suite` now rejects anything below
+    2**64, so the fixture has to carry a realistic value.
+
+    A digest of the index is fine *here* because a fixture protects nothing. A
+    real suite must use `secrets.token_hex(32)`: a nonce derived from a value the
+    candidate can see is guessable by anyone who knows the derivation, which is
+    the same failure one step removed.
+    """
+
+    return hashlib.sha256(f"p5-fixture-nonce-{index}".encode()).hexdigest()
+
+
+#: The eight families in an order no declared ordinal rule reads.
+#:
+#: This fixture used to be `sorted(ROOT_CAUSES)`, which `validate_protected_suite`
+#: now rejects and should: with one case per family, "family = alphabetical slot
+#: of the ordinal" is free to compute and right eight times out of eight, so every
+#: commitment in the frozen packet would open itself. The order below is a fixed
+#: shuffle chosen to defeat all twenty-four rules the family declares at this
+#: length; `test_the_fixture_order_defeats_every_declared_ordinal_rule` holds it
+#: to that, so a future rule that reads this order fails here rather than silently
+#: making the fixture the thing under test.
+CAUSES = [
+    "METHOD_BASIS_GAP",
+    "MEASUREMENT_SPECIFICATION_GAP",
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+    "REPRESENTATION_GAP",
+    "EVALUATOR_METRIC_BUG",
+    "RETRIEVAL_MISS",
+    "ROUTING_PLANNING_MISS",
+    "IMPLEMENTATION_BUG",
+]
+assert set(CAUSES) == set(ROOT_CAUSES)
 
 
 def _suite() -> dict:
@@ -35,7 +83,7 @@ def _suite() -> dict:
                 "visible_symptom": "same visible symptom family",
                 "candidate_visible_context": {"public_marker": f"PUBLIC_{index}"},
                 "protected_root_cause": cause,
-                "root_cause_nonce": f"{index:064x}",
+                "root_cause_nonce": _test_nonce(index),
                 "competing_cause_set": [cause, CAUSES[index % len(CAUSES)]],
                 "motivating_tasks": [f"mot-{index}"],
                 "replay_tasks": [f"replay-{index}"],
@@ -252,3 +300,159 @@ def test_cli_writes_only_candidate_and_commitment_outputs(tmp_path: Path) -> Non
     assert commitment_path.exists()
     assert "FRESH_SECRET_" not in candidate_path.read_text(encoding="utf-8")
     assert "protected_root_cause" not in candidate_path.read_text(encoding="utf-8")
+
+
+# --- The ordinal is a published field, and the family must not be a function of it.
+
+
+def _shipped_suite_families() -> list[str]:
+    shipped = Path("papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json")
+    cases = json.loads(shipped.read_text(encoding="utf-8"))["cases"]
+    return [str(case["protected_root_cause"]) for case in cases]
+
+
+def _independent_assignment() -> list[str]:
+    """Twenty-four cases, three per family, in an order no declared rule reads.
+
+    Found by deterministic search rather than written down, so the search itself
+    is the evidence that such orders exist and are not rare -- the guard rejects
+    a readable order, not every order.
+    """
+
+    multiset = [cause for cause in CAUSES for _ in range(3)]
+    for salt in range(2048):
+        keyed = sorted(
+            enumerate(multiset),
+            key=lambda pair: hashlib.sha256(f"{salt}:{pair[0]}".encode()).hexdigest(),
+        )
+        candidate = [cause for _, cause in keyed]
+        if ordinal_independence_report(candidate)["independent"]:
+            return candidate
+    raise AssertionError("no independent assignment found in 2048 deterministic draws")
+
+
+
+def test_the_shipped_suite_ordering_is_refuted_by_a_named_rule() -> None:
+    """Refutation capacity: the guard must reject the suite that motivated it.
+
+    PROTECTED_SUITE_V1 is eight families in eight consecutive blocks of three.
+    Eight openings buy the block ordering; the remaining sixteen cases follow
+    without opening anything. A guard that could not say so would be decoration.
+    """
+
+    report = ordinal_independence_report(_shipped_suite_families())
+
+    assert report["rules_recovering_every_predicted_case"] == ["first-appearance/blocks-of-3"]
+    assert (report["strongest_rule_correct"], report["strongest_rule_predicted"]) == (16, 16)
+    assert report["independent"] is False
+
+
+def test_a_rule_is_scored_only_on_the_cases_it_was_not_shown() -> None:
+    """The openings that instantiate an ordering are not evidence that it works.
+
+    Reading families off their own first appearances reproduces any assignment.
+    Charging those positions to the rule is what stops the guard from rejecting
+    every suite, including sound ones.
+    """
+
+    one_per_family = list(CAUSES)
+    by_name = {rule.name: rule for rule in ordinal_reading_rules(one_per_family)}
+    first_appearance = by_name["first-appearance/stride-1"]
+
+    assert first_appearance.predicted == tuple(one_per_family)
+    assert first_appearance.scored_positions(len(one_per_family)) == ()
+    assert first_appearance.recovers(one_per_family) is False
+
+
+def test_the_fixture_order_defeats_every_declared_ordinal_rule() -> None:
+    report = ordinal_independence_report(list(CAUSES))
+
+    assert report["rules_recovering_every_predicted_case"] == []
+    assert report["independent"] is True
+
+
+def test_alphabetical_order_with_one_case_per_family_fails_closed() -> None:
+    """The order this fixture used to be in is a free answer key, and is rejected."""
+
+    suite = _suite()
+    for case, cause in zip(suite["cases"], sorted(ROOT_CAUSES)):
+        case["protected_root_cause"] = cause
+        case["competing_cause_set"] = [cause, "METHOD_BASIS_GAP" if cause != "METHOD_BASIS_GAP" else "RETRIEVAL_MISS"]
+
+    with pytest.raises(ValueError, match="hands over every family it was not shown"):
+        validate_protected_suite(suite)
+
+
+def test_emitting_a_sound_suite_in_family_blocks_fails_closed() -> None:
+    """Same cases, same nonces, same payloads -- only the emission order changes."""
+
+    suite = _suite()
+    validate_protected_suite(suite)
+
+    blocked = copy.deepcopy(suite)
+    blocked["cases"] = sorted(
+        blocked["cases"], key=lambda case: (case["protected_root_cause"], case["case_id"])
+    )
+
+    with pytest.raises(ValueError, match="hands over every family it was not shown"):
+        validate_protected_suite(blocked)
+
+
+def test_a_leak_in_published_order_alone_fails_closed() -> None:
+    """The ordinal a candidate reads is the position in the *published* packet.
+
+    ``freeze_protected_suite`` emits cases in sorted ``case_id`` order, so a suite
+    whose ``cases`` array is shuffled can still hand the packet an answer key.
+    """
+
+    suite = _suite()
+    rank = {
+        case["case_id"]: index
+        for index, case in enumerate(
+            sorted(suite["cases"], key=lambda case: case["protected_root_cause"])
+        )
+    }
+    for case in suite["cases"]:
+        case["case_id"] = f"p5-c{rank[case['case_id']] + 1:02d}"
+
+    emitted = [case["protected_root_cause"] for case in suite["cases"]]
+    published = [
+        case["protected_root_cause"]
+        for case in sorted(suite["cases"], key=lambda case: case["case_id"])
+    ]
+    assert ordinal_independence_report(emitted)["independent"] is True
+    assert ordinal_independence_report(published)["independent"] is False
+
+    with pytest.raises(ValueError, match="the published case order"):
+        validate_protected_suite(suite)
+
+
+def test_a_family_repeated_inside_a_block_fails_closed() -> None:
+    """A realised correlation is a realised leak, whatever drew it."""
+
+    # `CAUSES * 3` is periodic, so a stride rule reads it; start from an order no
+    # declared rule reads, then make one swap that puts two cases of one family
+    # inside block one. Counts stay even, so the block size stays three.
+    assignment = _independent_assignment()
+    assert ordinal_independence_report(assignment)["independent"] is True
+    duplicate = assignment[0]
+    elsewhere = next(
+        index for index in range(3, len(assignment)) if assignment[index] == duplicate
+    )
+    assignment[1], assignment[elsewhere] = assignment[elsewhere], assignment[1]
+
+    report = ordinal_independence_report(assignment)
+    assert report["rules_recovering_every_predicted_case"] == []
+    assert report["even_block_size"] is not None
+    assert report["first_block_repeating_a_family"] == 1
+    assert report["independent"] is False
+
+
+def test_the_rule_family_is_declared_and_every_rule_is_named() -> None:
+    rules = ordinal_reading_rules([cause for cause in CAUSES for _ in range(3)])
+
+    assert len(rules) == 40
+    assert len({rule.name for rule in rules}) == len(rules)
+    assert all(len(rule.predicted) == 24 for rule in rules)
+    assert any(rule.name.endswith("/blocks-of-3") for rule in rules)
+    assert any(rule.name.startswith("alphabetical/") for rule in rules)

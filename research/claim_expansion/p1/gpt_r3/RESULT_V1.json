@@ -1,0 +1,30 @@
+{
+  "acquisition": {
+    "checks": {
+      "all_query_dispositions": true,
+      "disposition_case_linkage": true,
+      "minimum_actual_domains": true,
+      "minimum_admitted_cases": true,
+      "minimum_per_gold_class": false
+    },
+    "class_counts": {
+      "IMPLEMENTATION_OR_ENVIRONMENT": 6,
+      "MEASUREMENT_OR_EVALUATOR": 6,
+      "NO_HIGH_LEVEL_REFORMULATION": 3,
+      "OBJECTIVE_OR_MODEL_CLASS": 5,
+      "PROBLEM_BOUNDARY": 5,
+      "REPRESENTATION_OR_INTERFACE": 4,
+      "SEARCH_OR_EVIDENCE": 4,
+      "UNRESOLVED": 4
+    },
+    "complete": false,
+    "linkage_errors": [],
+    "missing_dispositions": [],
+    "n_cases": 37,
+    "n_domains": 37,
+    "unexpected_dispositions": []
+  },
+  "policy_outcomes_generated": false,
+  "schema": "P1U.SourceUniverse.Result.v1",
+  "terminal": "P1_R3_CANNOT_CHECK_SOURCE_UNIVERSE"
+}

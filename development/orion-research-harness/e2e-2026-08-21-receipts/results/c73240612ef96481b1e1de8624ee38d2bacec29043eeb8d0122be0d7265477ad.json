@@ -1,0 +1,22 @@
+{
+  "completed_at": "2026-08-21T06:17:32.161294+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "items": [
+      {
+        "content": "Adversarial omission check: the CLI handoff text (packages/orion-research-harness/src/orion_research_harness/cli.py line 52) mentions GITHUB or other custom capabilities as host-serviced kinds, but no GITHUB capability is requested by any provider in broker.py, serviced by local_tools.py, or exercised by any test under packages/orion-research-harness/tests/. GITHUB is documentation-only surface, not an implemented capability kind. All eight implemented kinds (LLM_COMPLETE, WEB_SEARCH, VERIFY_EVIDENCE, FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON) have at least one test.",
+        "domain_ids": [
+          "software-verification"
+        ],
+        "item_id": "cap-omission-github",
+        "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/cli.py"
+      }
+    ]
+  },
+  "request_digest": "28a954fc0c34d927e0862a2f3a32eb36a9da6935eea3ec7af1206a33a268bc20",
+  "request_id": "hostreq:8cf25c5907ce89567f4d7ecb3ee264c50de6bf8224cefef6e256b96775382341",
+  "result_digest": "ff9fd61e503eb34ecc753cc4d636de23824077cebf5b73cebdef5eb336342d40",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

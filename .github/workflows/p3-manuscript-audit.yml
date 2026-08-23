@@ -62,6 +62,7 @@ jobs:
           python - <<'PY'
           import json
           import re
+          import sys
           from pathlib import Path
 
           paper = Path('papers/paper-03-global-knowledge-portrait')
@@ -110,8 +111,26 @@ jobs:
                   claim_errors.append(f'{name}_missing_confirmatory_effect')
               if '0.125 for flat predicate' in fragment or '$-0.125$' in fragment:
                   claim_errors.append(f'{name}_still_uses_exploratory_headline')
-          if '\\conststatus{}' not in abstract or '\\conststatus{}' not in conclusion:
-              claim_errors.append('headline_missing_cannot_check_boundary')
+          # The headline sections must still carry the evidence boundary. This
+          # used to require the literal `\conststatus{}` macro, which prints the
+          # machine token CANNOT_CHECK -- so satisfying the check meant keeping an
+          # internal identifier in the abstract and the conclusion, which is
+          # exactly backwards. What has to survive is the distinction, not the
+          # token: an outcome that could not be determined is reported separately
+          # from one determined to be false. tests/test_paper_manuscript_integrity
+          # already made that move for the manuscript-wide check; this imports its
+          # predicate rather than copying it, so the two cannot drift apart, and
+          # applies it per headline section, which is stricter than the
+          # manuscript-wide form. Either accepted form passes; a section that
+          # quietly drops the boundary passes neither.
+          sys.path.insert(0, 'tests')
+          from test_paper_manuscript_integrity import _states_the_three_valued_boundary
+
+          for name, fragment in [('abstract', abstract), ('conclusion', conclusion)]:
+              token = 'CANNOT\\_CHECK' in fragment or '\\conststatus{}' in fragment
+              if token or _states_the_three_valued_boundary(fragment):
+                  continue
+              claim_errors.append(f'{name}_missing_evidence_boundary')
           if 'has not been executed' not in limitations:
               claim_errors.append('limitations_do_not_mark_broad_study_unexecuted')
           if 'P3.C7' not in scoped or 'P3.C8' not in scoped:

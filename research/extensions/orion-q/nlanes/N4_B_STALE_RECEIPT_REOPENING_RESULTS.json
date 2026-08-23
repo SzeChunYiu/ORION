@@ -1,0 +1,132 @@
+{
+  "episodes_per_regime": 200,
+  "family": "2_stale_receipt_reopening",
+  "gates": {
+    "G1_oracle_upper_bound": true,
+    "G2_pooled_scoped_advantage": true,
+    "G3_wasteful_regime_punishes_always_reopen": true,
+    "G4_per_regime_no_giveback": true
+  },
+  "interpretation": {
+    "authority": "exact-synthetic-bounded; no real-quantum, no P10, no novelty claims; initial receipts only is a recorded scope limit",
+    "claim_boundary": "Applies only to the frozen two-regime receipt world; the scoped-reopening advantage is over the registered never/always/unscoped controls on this construction, not a general interface-graph theorem.",
+    "novelty_authorized": false,
+    "p10_authorized": false
+  },
+  "issue": 677,
+  "per_regime": {
+    "REOPEN_WASTEFUL": {
+      "ALWAYS_REOPEN": {
+        "abstain_rate": 0.0,
+        "failure_attempt_rate": 0.9016666666666666,
+        "mean_round_utility": -13.40591619308622
+      },
+      "NEVER_REOPEN": {
+        "abstain_rate": 0.25,
+        "failure_attempt_rate": 0.17333333333333334,
+        "mean_round_utility": 3.4681864758055134
+      },
+      "ORACLE_AVAILABILITY": {
+        "abstain_rate": 0.26416666666666666,
+        "failure_attempt_rate": 0.0,
+        "mean_round_utility": 7.014009956885287
+      },
+      "ORION_SCOPED_REOPEN": {
+        "abstain_rate": 0.2125,
+        "failure_attempt_rate": 0.18835978835978837,
+        "mean_round_utility": 3.527879031474934
+      },
+      "UNSCOPED_CHANGE_REOPEN": {
+        "abstain_rate": 0.023333333333333334,
+        "failure_attempt_rate": 0.8378839590443686,
+        "mean_round_utility": -11.52194977365361
+      }
+    },
+    "STALE_MATTERS": {
+      "ALWAYS_REOPEN": {
+        "abstain_rate": 0.0,
+        "failure_attempt_rate": 0.6041666666666666,
+        "mean_round_utility": -5.043752271461931
+      },
+      "NEVER_REOPEN": {
+        "abstain_rate": 0.305,
+        "failure_attempt_rate": 0.23741007194244604,
+        "mean_round_utility": 2.0958669479955496
+      },
+      "ORACLE_AVAILABILITY": {
+        "abstain_rate": 0.11,
+        "failure_attempt_rate": 0.0,
+        "mean_round_utility": 9.580706024989722
+      },
+      "ORION_SCOPED_REOPEN": {
+        "abstain_rate": 0.08166666666666667,
+        "failure_attempt_rate": 0.2849364791288566,
+        "mean_round_utility": 2.869665257379324
+      },
+      "UNSCOPED_CHANGE_REOPEN": {
+        "abstain_rate": 0.023333333333333334,
+        "failure_attempt_rate": 0.5708191126279863,
+        "mean_round_utility": -4.103293609709297
+      }
+    }
+  },
+  "pooled": {
+    "ALWAYS_REOPEN": {
+      "abstain_rate": 0.0,
+      "failure_attempt_rate": 0.7529166666666667,
+      "mean_regret_vs_oracle": 17.52219222321158,
+      "mean_round_utility": -9.224834232274075
+    },
+    "NEVER_REOPEN": {
+      "abstain_rate": 0.2775,
+      "failure_attempt_rate": 0.2041522491349481,
+      "mean_regret_vs_oracle": 5.515331279036973,
+      "mean_round_utility": 2.7820267119005315
+    },
+    "ORACLE_AVAILABILITY": {
+      "abstain_rate": 0.18708333333333332,
+      "failure_attempt_rate": 0.0,
+      "mean_regret_vs_oracle": 0.0,
+      "mean_round_utility": 8.297357990937504
+    },
+    "ORION_SCOPED_REOPEN": {
+      "abstain_rate": 0.14708333333333334,
+      "failure_attempt_rate": 0.24035173424523693,
+      "mean_regret_vs_oracle": 5.0985858465103755,
+      "mean_round_utility": 3.198772144427129
+    },
+    "UNSCOPED_CHANGE_REOPEN": {
+      "abstain_rate": 0.023333333333333334,
+      "failure_attempt_rate": 0.7043515358361775,
+      "mean_regret_vs_oracle": 16.109979682618956,
+      "mean_round_utility": -7.8126216916814535
+    }
+  },
+  "protocol": "development/orion-q-nlane-closure/N4_B_STALE_RECEIPT_REOPENING_PROTOCOL.md",
+  "rounds_per_episode": 6,
+  "schema": "ORIONQ.N4B.StaleReceiptReopening.v1",
+  "seed": 20260821,
+  "terminal": "N4_B_SCOPED_REOPENING_SUPPORTED__EXACT_SYNTHETIC",
+  "world": {
+    "fail_penalty": 8.0,
+    "layers": 3,
+    "p_base_feasible": 0.95,
+    "p_receipt": 0.45,
+    "p_recover": 0.85,
+    "regimes": {
+      "REOPEN_WASTEFUL": {
+        "ACCESS": 0.02,
+        "NOISE": 0.6,
+        "REP": 0.02
+      },
+      "STALE_MATTERS": {
+        "ACCESS": 0.2,
+        "NOISE": 0.5,
+        "REP": 0.3
+      }
+    },
+    "reward": 20.0,
+    "scope_limit": "initial receipts only; no intra-episode receipt accrual",
+    "width": 3
+  }
+}

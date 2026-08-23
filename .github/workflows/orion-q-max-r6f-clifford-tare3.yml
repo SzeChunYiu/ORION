@@ -1,0 +1,102 @@
+name: orion-q-max-r6f-clifford-tare3
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R6F_DONOR_CLIFFORD_PRECONDITIONED_TARE3_PROTOCOL.md'
+      - 'research/extensions/orion-q/max_r6f_donor_clifford_preconditioned_tare3.py'
+      - 'research/extensions/orion-q/max_r6b_tare_transformation_reuse_donor.py'
+      - 'research/extensions/orion-q/max_r6d_sixterm_partition_representation_coopt.py'
+      - 'research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation.py'
+      - 'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py'
+      - 'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py'
+      - '.github/workflows/orion-q-max-r6f-clifford-tare3.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-q-max-r6f-clifford-tare3-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  frozen-r6f-open-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse R6F protocol or implementation drift
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          expected = {
+              'development/orion-q-max-r0/MAX_R6F_DONOR_CLIFFORD_PRECONDITIONED_TARE3_PROTOCOL.md': 'd8afa619bca494cf0dfb755985daa824980dbc5a',
+              'research/extensions/orion-q/max_r6f_donor_clifford_preconditioned_tare3.py': '26070b9ae93ece5c265f183385ae0d336b1024af',
+              'research/extensions/orion-q/max_r6b_tare_transformation_reuse_donor.py': '10d5f94743ca3ea6a73822f716acfe7b79b39798',
+              'research/extensions/orion-q/max_r6d_sixterm_partition_representation_coopt.py': '134cc587ffa218512deb4b37407e2ed8dfe570ef',
+              'research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation.py': 'e6d1a6abb1ba2cc7ca661011d92e850a7f749ecb',
+              'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py': '9831c55686bd26344c30a43775ca48f0ee63a3da',
+              'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py': '145b73cab49423cdd0f353c1619695a7fb0d1bfc',
+          }
+          for name, want in expected.items():
+              raw = Path(name).read_bytes()
+              got = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              if got != want:
+                  raise SystemExit(f'R6F frozen blob drift: {name}: {got} != {want}')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run frozen donor-Clifford / exact-TARE3 development
+        run: |
+          cd research/extensions/orion-q
+          python max_r6f_donor_clifford_preconditioned_tare3.py \
+            --detail-json /tmp/r6f-detail.json | tee /tmp/r6f.txt
+          grep '^ORIONQ_MAX_R6F_CLIFFORD_TARE3=' /tmp/r6f.txt
+      - name: Verify R6F receipt and persisted detail
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          prefix='ORIONQ_MAX_R6F_CLIFFORD_TARE3='
+          rows=[line for line in Path('/tmp/r6f.txt').read_text().splitlines() if line.startswith(prefix)]
+          if len(rows) != 1:
+              raise SystemExit(f'expected exactly one R6F receipt, got {len(rows)}')
+          p=json.loads(rows[0][len(prefix):])
+          if p.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('R6F accessed protected stretched N2')
+          if p.get('novelty_credit') is not False or p.get('donor_novelty_credit') is not False:
+              raise SystemExit('R6F assigned forbidden novelty credit')
+          if p.get('r6_authority') is not False:
+              raise SystemExit('R6F self-promoted to R6')
+          gates=p.get('gates')
+          if not isinstance(gates, dict) or not gates or not all(v is True for v in gates.values()):
+              raise SystemExit(f'R6F integrity gates failed: {gates}')
+          detail=json.loads(Path('/tmp/r6f-detail.json').read_text())
+          canonical=json.dumps(detail,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+          got=hashlib.sha256(canonical).hexdigest()
+          if got != p.get('detail_bundle_sha256') or p.get('detail_persisted_digest_match') is not True:
+              raise SystemExit('R6F persisted detail digest mismatch')
+          allowed={
+              'MAX_R6F_CLIFFORD_PRECONDITIONED_TARE3_SUPPORTED__NOT_R6',
+              'MAX_R6F_PARTIAL_CLIFFORD_REOPEN__NOT_R6',
+              'MAX_R6F_CLIFFORD_PRECONDITIONING_NEGATIVE__NOT_R6',
+          }
+          if p.get('authority') not in allowed:
+              raise SystemExit(f'unrecognized R6F authority: {p.get("authority")}')
+          if p.get('development_supported') is True:
+              if p.get('authority') != 'MAX_R6F_CLIFFORD_PRECONDITIONED_TARE3_SUPPORTED__NOT_R6':
+                  raise SystemExit('R6F support/authority disagreement')
+              if not all(p['subjects'][name].get('strict_budget_matched_improvement_exists') is True for name in ('H4','N2')):
+                  raise SystemExit('R6F support without strict points on both open subjects')
+          print('R6F_SCIENTIFIC_SIGN=' + ('POSITIVE' if p.get('development_supported') is True else 'NONPOSITIVE'))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-q-max-r6f-clifford-tare3-receipt
+          path: |
+            /tmp/r6f.txt
+            /tmp/r6f-detail.json
+          if-no-files-found: warn
+          retention-days: 30

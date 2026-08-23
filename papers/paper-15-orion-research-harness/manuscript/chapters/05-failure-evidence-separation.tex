@@ -1,0 +1,53 @@
+\section{Separating execution failure from scientific evidence}
+
+Let $R_q$ be all structurally valid receipts for request $q$. Partition them into
+completed outcomes $R_q^+$, valid scientific negatives $R_q^-$, uncheckable
+attempts $R_q^?$ and execution failures $R_q^f$. Every attempt should be retained
+in an execution ledger, because omission can hide reliability failures. Only the
+first two sets are candidates for a scientific evidence ledger, and both remain
+subject to the frozen adjudication $F$.
+
+\begin{proposition}[Failure non-contamination]
+If $Z(r)$ accepts only terminals in $R_q^+\cup R_q^-$, then no receipt in
+$R_q^f$ can enter the admitted scientific-evidence set through
+$\operatorname{Admit}$.
+\end{proposition}
+
+\begin{proof}
+For $r\in R_q^f$, the closed terminal type assigns $z=\failure$. By definition,
+$Z(r)$ is false for this terminal. Therefore the conjunction defining
+$\operatorname{Admit}$ is false independently of all other predicates.
+\end{proof}
+
+This is a contract theorem, not empirical evidence that an implementation always
+enforces the contract. A hostile implementation can misclassify a network failure
+as a completed empty result, bypass the typed constructor or mutate stored bytes.
+The adversarial protocol in Section~\ref{sec:attacks} must therefore test the
+implementation boundary.
+
+\begin{proposition}[No silent row deletion]
+If every accepted request identifier must terminate in exactly one sealed receipt
+or one explicit missing-receipt alarm, then a campaign summary cannot convert an
+execution failure into an absent observation without violating the coverage
+predicate.
+\end{proposition}
+
+\begin{proof}
+The coverage predicate compares the frozen request set with the disjoint union of
+sealed receipts and explicit alarms. Removing a failed attempt from both sets makes
+the union smaller than the request set, so coverage fails.
+\end{proof}
+
+Valid negative results require the opposite treatment: they must remain in the
+scientific ledger. Preregistration and Registered Reports address outcome-dependent
+analysis and publication incentives \citep{nosek2018preregistration,chambers2015registered}.
+The execution contract supports that separation by binding the protocol and
+terminal schema before outcome access, but cannot determine whether the registered
+scientific design is meaningful.
+
+Repair verification is also distinct from scientific replication. Rerunning a
+fixed case after correcting a digest, parser or environment defect can establish
+that the repaired implementation meets the same contract. Unless the scientific
+protocol prospectively defines the repair run as a new independent unit, it cannot
+be counted as additional corroboration.
+

@@ -1,0 +1,62 @@
+{
+  "schema": "ORION.P14B.BalancedGovernanceDiscriminatorReceipt.v1",
+  "protocol": "P14B_BALANCED_GOVERNANCE_PROTOCOL_V1.md",
+  "terminal": "P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED",
+  "seed": 2026082115,
+  "held_out_families": 12,
+  "strata": 7,
+  "cases_per_stratum_per_family": 80,
+  "total_cases": 6720,
+  "decision_budget_checks_per_arm": 7,
+  "replay_sha256": "784d57e694b9a96828e72bc5e80dfc9e533cf738b568e45a71ce9fd08d679e66",
+  "byte_identical_two_run_replay": true,
+  "historical_p14a_negative_retained": true,
+  "summary": {
+    "ORION_RSE_FULL": {
+      "false_promotion_rate": 0.0,
+      "disposition_accuracy": 1.0,
+      "useful_discovery_recall": 1.0,
+      "retain_negative_accuracy": 1.0,
+      "supported_reopen_accuracy": 1.0
+    },
+    "MULTI_REVIEW": {
+      "false_promotion_rate": 0.14285714285714285,
+      "disposition_accuracy": 0.8571428571428571,
+      "useful_discovery_recall": 1.0,
+      "retain_negative_accuracy": 0.0,
+      "supported_reopen_accuracy": 1.0
+    },
+    "DONOR_AWARE_REVIEW": {
+      "false_promotion_rate": 0.2857142857142857,
+      "disposition_accuracy": 0.7142857142857143,
+      "useful_discovery_recall": 1.0
+    },
+    "REFLECTION_CHECKLIST": {
+      "false_promotion_rate": 0.42857142857142855,
+      "disposition_accuracy": 0.5714285714285714,
+      "useful_discovery_recall": 1.0
+    },
+    "RAW_POSITIVE": {
+      "false_promotion_rate": 0.5714285714285714,
+      "disposition_accuracy": 0.42857142857142855,
+      "useful_discovery_recall": 1.0
+    }
+  },
+  "ablations": {
+    "ABLATE_DONOR": {"false_promotion_rate": 0.14285714285714285, "disposition_accuracy": 0.8571428571428571},
+    "ABLATE_FREEZE": {"false_promotion_rate": 0.04702380952380952, "disposition_accuracy": 0.9529761904761904},
+    "ABLATE_INTERACTION": {"false_promotion_rate": 0.14285714285714285, "disposition_accuracy": 0.8571428571428571},
+    "ABLATE_NEGATIVE_HISTORY": {"false_promotion_rate": 0.14285714285714285, "disposition_accuracy": 0.8571428571428571}
+  },
+  "gates": {
+    "full_zero_false_promotion": true,
+    "full_discovery_recall_one": true,
+    "strongest_baseline_false_promotion_ge_0_05": true,
+    "accuracy_advantage_ge_0_08": true,
+    "retain_and_reopen_exact": true,
+    "each_ablation_worse": true,
+    "matched_budget": true,
+    "byte_identical_replay": true
+  },
+  "authorized_claim": "Full ORION-RSE strictly outperforms the registered partial-governance rule baselines on scientific disposition accuracy and false promotion without reducing valid residual promotion in the balanced hidden-gold benchmark."
+}

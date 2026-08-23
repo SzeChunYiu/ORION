@@ -1,0 +1,165 @@
+{
+  "schema_version": "orion.p2.wide-openaire-matched-freeze.v2",
+  "paper_id": "P2",
+  "date": "2026-08-21",
+  "authority": "PROSPECTIVE_EXTERNAL_CONFIRMATION_PROTOCOL",
+  "frozen_before_official_score": true,
+  "supersedes_invalid_transport_campaign": {
+    "freeze": "P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json",
+    "receipt": "P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
+    "retained_terminal": "P2_WIDE_EXTERNAL_CANNOT_CHECK",
+    "reopen_condition": "new campaign version frozen before outcomes after independent structured DOI-to-OpenAIRE transport validation",
+    "scientific_outcomes_from_v1_reused": false
+  },
+  "transport_repair_evidence": {
+    "documentation": "OpenAIRE Graph API V3 research-product filters: repeated values for one filter combine with OR semantics; pid is the persistent-identifier filter.",
+    "change_class": "TRANSPORT_ENCODING_ONLY",
+    "legacy_encoding": "one pid parameter containing a 20-value quoted OR expression",
+    "v2_encoding": "one repeated pid query parameter per normalized DOI",
+    "pre_benchmark_probe_required": true,
+    "probe_dois": [
+      "10.5281/zenodo.8217359",
+      "10.1038/s41586-023-06221-2"
+    ],
+    "probe_must_return_http_200": true,
+    "probe_min_result_count": 1,
+    "probe_min_matched_doi_count": 1,
+    "probe_gold_access": "NONE"
+  },
+  "parent_identity_receipt": {
+    "path": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json",
+    "terminal_required": "SCORER_NATIVE_IDENTITY_BRIDGE_OBSERVED",
+    "workflow_run_id": 32122381210,
+    "artifact_id": 9319046483,
+    "artifact_sha256": "0ac8c7f6d75c7c0c0ecae2fab35b6366c0575eba9086cd87fd2d8271c7e4f190"
+  },
+  "benchmark": {
+    "repository": "CherYou/AutoResearchBench",
+    "revision": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "dataset": "Lk123/AutoResearchBench",
+    "decrypted_bundle_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "candidate_split_command": "run_autoresearchbench_wide_compat.py prepare",
+    "released_wide_rows": 400,
+    "expected_distinct_nonempty_question_units": 399,
+    "candidate_schema": ["task_id", "question"],
+    "candidate_gold_access": "FORBIDDEN",
+    "official_scorer": "evaluate/evaluate_wide_search.py --no-jina"
+  },
+  "acquisition": {
+    "logical_requests_per_nonempty_task": 3,
+    "max_candidates_per_system": 20,
+    "openaire": {
+      "endpoint": "https://api.openaire.eu/graph/v3/research-products",
+      "direct": {
+        "parameters": {"type": "publication", "page": 1, "pageSize": 20},
+        "query_derivation": "top_4_gold_blind_salient_tokens_joined"
+      },
+      "crosswalk": {
+        "parameters": {"type": "publication", "page": 1, "pageSize": 100},
+        "pid_rule": "top_20_distinct_crossref_dois_as_repeated_pid_query_parameters",
+        "transport_encoding": "repeated_pid_parameters"
+      },
+      "fallback": {
+        "condition": "crossref_returns_zero_doi",
+        "parameters": {"type": "publication", "page": 1, "pageSize": 20},
+        "query_derivation": "top_2_gold_blind_salient_tokens_joined"
+      },
+      "identity_admission": "direct_pid_object_scheme_arxiv_only",
+      "minimum_interval_seconds": 1.25
+    },
+    "crossref": {
+      "endpoint": "https://api.crossref.org/works",
+      "parameters": {"rows": 20, "select": "DOI,title"},
+      "query_field": "query.bibliographic",
+      "query_derivation": "same_top_4_gold_blind_salient_tokens_as_openaire_direct",
+      "identity_admission": "item.DOI_only",
+      "minimum_interval_seconds": 1.0
+    },
+    "transport": {
+      "timeout_seconds": 30,
+      "retryable_statuses": [0, 429, 503],
+      "maximum_retries_per_logical_request": 1,
+      "retry_sleep_seconds": 5,
+      "physical_attempts_recorded": true,
+      "raw_response_bytes_retained": true
+    }
+  },
+  "systems": {
+    "wide_dual_backend_balanced": {
+      "role": "PRIMARY_STRONG_BASELINE",
+      "evidence": "same_shared_acquisition_capture",
+      "selection": "deduplicated_round_robin_across_direct_openaire_and_crossref_discovery_groups; if crossref has no DOI use direct_openaire_and_openaire_fallback_groups",
+      "cross_backend_confirmation_priority": false,
+      "max_candidates": 20
+    },
+    "wide_dual_backend_governed": {
+      "role": "ORION",
+      "evidence": "same_shared_acquisition_capture",
+      "selection": "cross_backend_confirmed_ids_first_then_same_deduplicated_round_robin_remainder",
+      "cross_backend_confirmation_definition": "identity occurs in both direct OpenAIRE discovery group and Crossref-discovered/OpenAIRE-crosswalk group",
+      "same_backend_fallback_confirmation": false,
+      "max_candidates": 20
+    },
+    "wide_dual_backend_direct_first": {
+      "role": "SECONDARY_DIAGNOSTIC",
+      "evidence": "same_shared_acquisition_capture",
+      "selection": "direct_openaire_order_then_crossref_or_fallback_order_deduplicated",
+      "max_candidates": 20
+    }
+  },
+  "evaluation": {
+    "primary_endpoint": "official_avg_iou",
+    "secondary_endpoints": [
+      "official_avg_recall",
+      "official_avg_precision",
+      "distinct_question_nonzero_iou_rate",
+      "logical_provider_ok_fraction",
+      "physical_http_attempts",
+      "tasks_with_open_obligations",
+      "mean_candidate_count"
+    ],
+    "paired_inference": {
+      "unit": "distinct_nonempty_question_string_under_official_last_write_gt_semantics",
+      "duplicate_released_rows_do_not_inflate_n": true,
+      "expected_n": 399,
+      "difference": "orion_task_iou_minus_primary_baseline_task_iou",
+      "bootstrap_resamples": 10000,
+      "seed": 20260821,
+      "ci": "two_sided_percentile_95",
+      "report": ["mean", "median", "ci95_low", "ci95_high", "wins", "ties", "losses"]
+    }
+  },
+  "validity": {
+    "minimum_logical_provider_ok_fraction": 0.9,
+    "all_candidate_inputs_gold_blind": true,
+    "candidate_artifact_frozen_before_evaluator_gold_materialization": true,
+    "same_acquisition_capture_for_all_systems": true,
+    "same_candidate_cap_for_all_systems": true,
+    "raw_regex_arxiv_identity_extraction": false,
+    "transport_probe_required": true
+  },
+  "terminal_rule": {
+    "supported": {
+      "official_avg_iou_delta_orion_minus_baseline_at_least": 0.03,
+      "paired_iou_ci95_low_strictly_greater_than": 0.0,
+      "official_avg_recall_orion_minus_baseline_at_least": 0.0,
+      "all_validity_conditions": true
+    },
+    "positive_terminal": "P2_WIDE_EXTERNAL_V2_SUPPORTED",
+    "negative_valid_terminal": "P2_WIDE_EXTERNAL_V2_NOT_SUPPORTED",
+    "invalid_or_transport_terminal": "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK"
+  },
+  "outcome_tuning_forbidden": [
+    "queries",
+    "budgets",
+    "provider_order",
+    "candidate_cap",
+    "selection_rules",
+    "inferential_unit",
+    "bootstrap_seed",
+    "effect_thresholds",
+    "validity_thresholds",
+    "crosswalk_transport_encoding"
+  ],
+  "claim_boundary": "A positive V2 terminal supports external acquisition/governance on the pinned AutoResearchBench Wide benchmark under one shared provider capture. It does not independently establish #650 universal open-world superiority, stopping-safety superiority, or cross-domain replication. A valid negative result is retained unchanged. An invalid transport result is CANNOT_CHECK, never scientific zero."
+}

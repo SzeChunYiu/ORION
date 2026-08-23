@@ -1,0 +1,78 @@
+name: p9-qwen-618-recovery-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_QWEN_618_RECOVERY_PROTOCOL_V1.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py'
+      - '.github/workflows/p9-qwen-618-recovery-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  recover-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download exact completed Qwen artifacts from protected run 32346652275
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: SzeChunYiu/ORION
+          run-id: 32346652275
+          pattern: p9-llm-*-80029536b6fc8227ceb21f2160ed2c17fb10c160
+          path: source-artifacts
+          merge-multiple: true
+      - name: Recover only the archived JSON paths
+        run: |
+          set -euo pipefail
+          mkdir -p recovered-inputs
+          for scale in 0.5B 1.5B 3B; do
+            mapfile -t matches < <(find source-artifacts -type f -name "p9-llm-${scale}.json" -print | sort)
+            test "${#matches[@]}" -eq 1
+            cp -- "${matches[0]}" "recovered-inputs/p9-llm-${scale}.json"
+            sha256sum "recovered-inputs/p9-llm-${scale}.json"
+          done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          runs=[]
+          for scale in ('0.5B','1.5B','3B'):
+              p=Path(f'recovered-inputs/p9-llm-{scale}.json')
+              v=json.loads(p.read_text())
+              assert v['schema']=='P9.LLMGGUFServerRuns.v1'
+              assert v['terminal']=='RUN_COMPLETE_PENDING_CROSS_SIZE_ANALYSIS'
+              assert v['model_scale']==scale
+              assert v['equivalence_failures']==0
+              assert not v['leakage_failures']
+              runs.append(v)
+          assert len({v['item_manifest_sha256'] for v in runs})==1
+          assert len({v['prompt_sha256'] for v in runs})==1
+          print('P9_QWEN_618_SOURCE_PREFLIGHT_GREEN')
+          PY
+      - name: Run exact frozen cross-size analyzer
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py \
+            --inputs recovered-inputs/p9-llm-0.5B.json recovered-inputs/p9-llm-1.5B.json recovered-inputs/p9-llm-3B.json \
+            --output P9_QWEN_618_RECOVERED_ANALYSIS_V1.json
+      - name: Verify deterministic replay
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py \
+            --inputs recovered-inputs/p9-llm-0.5B.json recovered-inputs/p9-llm-1.5B.json recovered-inputs/p9-llm-3B.json \
+            --output P9_QWEN_618_RECOVERED_ANALYSIS_V1_RERUN.json >/dev/null
+          cmp P9_QWEN_618_RECOVERED_ANALYSIS_V1.json P9_QWEN_618_RECOVERED_ANALYSIS_V1_RERUN.json
+          echo P9_QWEN_618_RECOVERY_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-qwen-618-recovered-analysis-v1
+          path: |
+            P9_QWEN_618_RECOVERED_ANALYSIS_V1.json
+            recovered-inputs/p9-llm-0.5B.json
+            recovered-inputs/p9-llm-1.5B.json
+            recovered-inputs/p9-llm-3B.json

@@ -1,0 +1,37 @@
+name: orion-harness-recursive-budget
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/src/orion_research_harness/recursive_runner.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/recursive_budget_hardening.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
+      - 'packages/orion-research-harness/tests/test_recursive_residual_solver.py'
+      - 'packages/orion-research-harness/tests/test_recursive_root_resource_snapshot.py'
+      - 'packages/orion-research-harness/tests/test_recursive_budget_hardening.py'
+      - '.github/workflows/orion-harness-recursive-budget.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-harness-recursive-budget-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  hostile-recursive-budget:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and shared harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run recursive identity and resource-bound hostile regressions
+        run: |
+          python -m pytest -q \
+            packages/orion-research-harness/tests/test_recursive_residual_solver.py \
+            packages/orion-research-harness/tests/test_recursive_root_resource_snapshot.py \
+            packages/orion-research-harness/tests/test_recursive_budget_hardening.py

@@ -77,6 +77,7 @@ def render_p2_3_tex(data: dict[str, Any]) -> str:
         for point in baseline
     )
     scope = _scope(data, detail="repeats collapsed")
+    scope_tex = scope.replace("_", r"\_")
     return "\n".join(
         [
             "% GENERATED from evidence/offline_results/OFFLINE_MECHANISMS_V1.json",
@@ -89,7 +90,7 @@ def render_p2_3_tex(data: dict[str, Any]) -> str:
             rf"\draw[thick,dashed] plot coordinates {{{coords_b}}};",
             r"\node[anchor=west] at (8.3,0.94) {ORION full};",
             r"\node[anchor=west] at (8.3,0.69) {Protocol SLR};",
-            rf"\node[anchor=west,font=\small] at (0,1.16) {{{scope.replace('_', r'\_')}}};",
+            rf"\node[anchor=west,font=\small] at (0,1.16) {{{scope_tex}}};",
             r"\end{tikzpicture}",
         ]
     ) + "\n"
@@ -181,9 +182,10 @@ def render_p2_4_tex(data: dict[str, Any]) -> str:
             ]
         )
     scope = _scope(data, detail="contribution counted by content identity")
+    scope_tex = scope.replace("_", r"\_")
     lines.extend(
         [
-            rf"\node[anchor=west,font=\small] at (0,3.70) {{{scope.replace('_', r'\_')}}};",
+            rf"\node[anchor=west,font=\small] at (0,3.70) {{{scope_tex}}};",
             r"\end{tikzpicture}",
         ]
     )
@@ -296,10 +298,11 @@ def render_p2_5_tex(data: dict[str, Any]) -> str:
         f"{data['n_tasks']} frozen tasks; content identity; repeats collapsed; "
         f"authority {data['analysis_authority']}"
     )
+    compact_scope_tex = compact_scope.replace("_", r"\_")
     lines.extend(
         [
             r"\node[anchor=west,font=\small] at (0.7,-0.55) {cell = mean task-level content Jaccard; ind. = structurally independent};",
-            rf"\node[anchor=west,font=\scriptsize,text width=6.8cm,align=left] at (0.7,-0.95) {{{compact_scope.replace('_', r'\_')}}};",
+            rf"\node[anchor=west,font=\scriptsize,text width=6.8cm,align=left] at (0.7,-0.95) {{{compact_scope_tex}}};",
             r"\end{tikzpicture}",
         ]
     )

@@ -1,0 +1,227 @@
+name: orion-research-harness
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/**'
+      - 'development/orion-research-harness/**'
+      - 'development/orion-q-max-r0/**'
+      - 'research/extensions/orion-q/**'
+      - 'research/extensions/orion-jump-recursive-atoms/**'
+      - 'research/extensions/p6-method-fibres/**'
+      - 'provenance/rakl/**'
+      - '.github/workflows/orion-research-harness.yml'
+      - 'src/orion/**'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-research-harness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shared-harness-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and shared harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install numpy
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run shared harness hostile tests
+        run: python -m pytest packages/orion-research-harness/tests -q
+      - name: Gate canonical paper-to-harness mechanics coverage
+        run: |
+          orion-harness mechanics-coverage | tee /tmp/orion-mechanics-coverage.json
+          orion-harness navigate 'fibre problem solver' | tee /tmp/orion-fibre-nav.json
+          orion-harness navigate 'atomization of a problem' | tee /tmp/orion-atom-nav.json
+          orion-harness navigate 'saturation of knowledge' | tee /tmp/orion-saturation-nav.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          coverage = json.loads(Path('/tmp/orion-mechanics-coverage.json').read_text())
+          if coverage.get('mechanic_cell_count') != 59:
+              raise SystemExit(f"canonical mechanic count drifted: {coverage.get('mechanic_cell_count')!r}")
+          if coverage.get('structurally_discoverable') is not True:
+              raise SystemExit(f"mechanic surface is incomplete: {coverage}")
+          if coverage.get('missing_anchor_ids') != []:
+              raise SystemExit(f"paper mechanics missing from harness: {coverage.get('missing_anchor_ids')}")
+          if coverage.get('missing_runtime_cells') != []:
+              raise SystemExit(f"runtime mechanics missing from catalog: {coverage.get('missing_runtime_cells')}")
+
+          def ids(path):
+              payload = json.loads(Path(path).read_text())
+              return {row['surface_id'] for row in payload.get('matches', [])}
+
+          fibre = ids('/tmp/orion-fibre-nav.json')
+          if not {'SELF_ORION.DEVELOPMENT_FIBRE.v1', 'REOPEN.FIBRE.v0', 'FRAME.DECOMPOSE.v0'} <= fibre:
+              raise SystemExit(f'fibre navigation incomplete: {sorted(fibre)}')
+          atom = ids('/tmp/orion-atom-nav.json')
+          if not {'FRAME.DECOMPOSE.v0', 'DISCOVERY.RECURSIVE_ATOM_CALCULUS.v1'} <= atom:
+              raise SystemExit(f'atomization navigation incomplete: {sorted(atom)}')
+          saturation = ids('/tmp/orion-saturation-nav.json')
+          if not {'SATURATE.KNOWLEDGE_FLATNESS.v0', 'SELF_ORION.DEVELOPMENT_SATURATION.v1', 'SATURATE.STOP.v0'} <= saturation:
+              raise SystemExit(f'saturation navigation incomplete: {sorted(saturation)}')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-research-harness-mechanics-coverage
+          path: |
+            /tmp/orion-mechanics-coverage.json
+            /tmp/orion-fibre-nav.json
+            /tmp/orion-atom-nav.json
+            /tmp/orion-saturation-nav.json
+          if-no-files-found: error
+
+  orion-q-live-campaign-smoke:
+    needs: shared-harness-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION, numpy and shared harness
+        run: |
+          python -m pip install -e .
+          python -m pip install numpy
+          python -m pip install -e packages/orion-research-harness
+      - name: Initialize shared ORION-Q MAX-R6 campaign with explicit process-tool opt-in
+        run: |
+          orion-harness init /tmp/orion-q-r6 --project-root . --allow-process-tools
+          orion-harness campaign-start /tmp/orion-q-r6 orion-q:max-r6-live
+      - name: Drive live campaign through current P10 boundary
+        run: |
+          orion-harness campaign-run /tmp/orion-q-r6 orion-q:max-r6-live --max-cycles 4 | tee /tmp/orion-q-r6-run.json
+          grep 'P10_FRAME_RESULT_READY__R6_STILL_CLOSED' /tmp/orion-q-r6-run.json
+          orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
+          grep 'P10_FRAME_GENERATION_TERMINAL' /tmp/orion-q-r6-state.json
+      - name: Fail closed if protected R6 discriminator was released
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          state = json.loads(Path('/tmp/orion-q-r6-state.json').read_text())
+          if state.get('phase_id') != 'P10_RESULT':
+              raise SystemExit(f"unexpected campaign phase: {state.get('phase_id')!r}")
+          if state.get('authority_ceiling') != 'BELOW_R6_UNTIL_PROTECTED_PROMOTION':
+              raise SystemExit('campaign authority ceiling changed')
+          protected = state.get('protected_refs')
+          if not isinstance(protected, list) or len(protected) != 1:
+              raise SystemExit('expected exactly one protected R6 reference')
+          ref = protected[0]
+          if ref.get('ref_id') != 'FRESH:R6:STRETCHED_N2_DUCC2':
+              raise SystemExit(f"unexpected protected reference: {ref.get('ref_id')!r}")
+          if ref.get('released') is not False:
+              raise SystemExit('protected stretched-N2 discriminator was released before promotion freeze')
+          if ref.get('blob') != '6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd':
+              raise SystemExit('protected stretched-N2 blob identity drifted')
+          PY
+      - name: Upload immutable campaign receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r6-live-campaign-receipts
+          path: |
+            /tmp/orion-q-r6-run.json
+            /tmp/orion-q-r6-state.json
+          if-no-files-found: error
+          retention-days: 14
+
+  orion-q-frozen-prospective-r6:
+    needs: orion-q-live-campaign-smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse any pre-outcome implementation or protocol drift
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          expected = {
+              'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py': '9831c55686bd26344c30a43775ca48f0ee63a3da',
+              'research/extensions/orion-q/max_r6_exact_tare3_end_to_end_verify.py': '1fc224de2a8cae62e26fbb1e71ce08c39a39bdd8',
+              'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py': '145b73cab49423cdd0f353c1619695a7fb0d1bfc',
+              'research/extensions/orion-q/max_r6_exact_tare3_prospective_primary.py': 'dd4ace05baa92ac365592bef3d18433b772914c1',
+              'research/extensions/orion-q/max_r6_exact_tare3_prospective_replay.py': 'a9c854d6c3960c2e5a789c72c02cac9a24926348',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_JOINT_FRAME_DP_PROTOCOL.md': '2d88f912c493d471fd24c45de891e1499f586a86',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_1.md': 'c334ec3c94b8c57c4a8df2ddbdb66f818e17f943',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_2.md': '2561b1c0b97daaba0c201d615edb934c67df3665',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_3.md': 'b63247be59241dc729f60aae5fc26aea0c220b63',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_PROSPECTIVE_PROTOCOL.md': 'b9c11f683ccf5246b1e9a601ca717dd88cd4821f',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_PROSPECTIVE_ERRATUM_1.md': '58947a7aa61f4fc25b82746ee23a4c1a9cc8c0a7',
+              'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_FINAL_HOSTILE_NOVELTY_FREEZE.md': '93e6daa21083890e8474eab4ef737c5805a9b8b8',
+          }
+          for name, want in expected.items():
+              raw = Path(name).read_bytes()
+              got = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              if got != want:
+                  raise SystemExit(f'frozen blob drift before protected access: {name}: {got} != {want}')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen numerical dependency
+        run: python -m pip install numpy
+      - name: Run protected primary and structurally independent replay
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_exact_tare3_prospective_replay.py | tee /tmp/max-r6-exact-tare3-prospective.txt
+          grep '^ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_PRIMARY=' /tmp/max-r6-exact-tare3-prospective.txt
+          grep '^ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_REPLAY=' /tmp/max-r6-exact-tare3-prospective.txt
+      - name: Enforce frozen R6 promotion conjunction
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          lines = Path('/tmp/max-r6-exact-tare3-prospective.txt').read_text().splitlines()
+          primary_prefix = 'ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_PRIMARY='
+          replay_prefix = 'ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_REPLAY='
+          primary_lines = [line for line in lines if line.startswith(primary_prefix)]
+          replay_lines = [line for line in lines if line.startswith(replay_prefix)]
+          if len(primary_lines) != 1:
+              raise SystemExit(f'expected exactly one prospective primary receipt, got {len(primary_lines)}')
+          if len(replay_lines) != 1:
+              raise SystemExit(f'expected exactly one prospective replay receipt, got {len(replay_lines)}')
+
+          primary = json.loads(primary_lines[0][len(primary_prefix):])
+          replay = json.loads(replay_lines[0][len(replay_prefix):])
+          if primary.get('pre_access_ready') is not True:
+              if primary.get('protected_stretched_n2_accessed') is not False:
+                  raise SystemExit('pre-access gate failed but protected subject was nevertheless accessed')
+              raise SystemExit(f"R6 blocked before protected access: {primary.get('pre_access_gates')}")
+          if primary.get('protected_stretched_n2_accessed') is not True:
+              raise SystemExit('pre-access gate passed but protected subject access receipt is missing')
+          if replay.get('protected_stretched_n2_accessed') is not True:
+              raise SystemExit('replay lost protected-subject access provenance')
+
+          final_gates = replay.get('final_gates')
+          if not isinstance(final_gates, dict) or not final_gates:
+              raise SystemExit('missing final R6 gate map')
+          conjunction = all(value is True for value in final_gates.values())
+          if (replay.get('r6_earned') is True) != conjunction:
+              raise SystemExit('r6_earned does not equal the final frozen gate conjunction')
+          if replay.get('r6_earned') is not True:
+              failed = [key for key, value in final_gates.items() if value is not True]
+              raise SystemExit('R6 not earned under frozen prospective/replay gates: ' + ','.join(failed))
+          if replay.get('authority') != 'MAX_R6_EARNED__EXACT_TARE3_FIXED_BLOCK_PROSPECTIVE_REPLAYED':
+              raise SystemExit('R6 gate passed without the bounded frozen authority token')
+          PY
+      - name: Upload immutable R6 prospective/replay receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r6-exact-tare3-prospective-replay
+          path: /tmp/max-r6-exact-tare3-prospective.txt
+          if-no-files-found: warn
+          retention-days: 30

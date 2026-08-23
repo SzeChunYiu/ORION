@@ -1,0 +1,112 @@
+name: orion-qg-qg16-support1-phase
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG16_*'
+      - 'development/orion-qg-regime-geometry/qg16_*'
+      - 'development/orion-qg-regime-geometry/run_qg16_dual_harness.py'
+      - 'research/extensions/orion-qg/qg16_*'
+      - '.github/workflows/orion-qg-qg16-support1-phase.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg16-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg16-support1-phase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG16_PARENT: 9397a6b671b3f568e635355e2dc01ed263ae1e13
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG16_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG16_PARENT}")" = "${QG16_PARENT}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg16_r6i_support1_phase.py \
+            development/orion-qg-regime-geometry/qg16_generic_verify.py \
+            development/orion-qg-regime-geometry/qg16_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg16_dual_harness.py
+      - name: Execute phase theorem through generic ORION and native ORION-Q
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg16_dual_harness.py \
+            | tee artifacts/orion-qg-qg16-dual-summary.json
+      - name: Deterministic resource-cone replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg16_r6i_support1_phase.py \
+            --output artifacts/orion-qg-qg16-r6i-support1-phase-replay.json \
+            > artifacts/orion-qg-qg16-replay.log
+          cmp \
+            artifacts/orion-qg-qg16-r6i-support1-phase.json \
+            artifacts/orion-qg-qg16-r6i-support1-phase-replay.json
+      - name: Enforce theorem, controls, and anti-overclaim gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg16-r6i-support1-phase.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg16-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg16-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg16-dual-harness.json').read_text())
+          positive='QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED'
+          assert a['terminal']==positive
+          assert all(a['gates'].values())
+          assert a['commuting_deletion_resources']['domain_size']==1728
+          assert a['commuting_deletion_resources']['worst_vectors']==[[0,2,2],[1,1,2]]
+          assert a['core_alignment_resources']['domain_size']==6912
+          assert a['core_alignment_resources']['max_delta_restore']==3
+          assert len(a['full_cone_coefficients_ge_zero'])==4
+          assert a['support2_core_audit']['every_pair_exactly_one_anti_core'] is True
+          assert a['controls']['O0']['inside'] is True and a['controls']['O0']['on_boundary'] is True
+          assert a['controls']['O_in']['strict_interior'] is True
+          assert all(a['controls'][k]['inside'] is False for k in ('O_tag_out','O_restore_out','O_nc_out'))
+          assert a['global_phase_boundary_sharpness']=='OPEN'
+          assert a['outside_cone_semantics']=='THIS_PROOF_CERTIFICATE_DOES_NOT_APPLY__NOT_SUPPORT2_REQUIRED'
+          assert a['support_bound_inside_cone']==1 and a['intrinsic_support_number_inside_cone']==1
+          assert g['decision']=='ACCEPT_SUPPORT1_PHASE' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_SUPPORT1_PHASE' and n['all_checks'] is True
+          assert d['terminal']==positive and d['both_accept'] is True and d['support1_phase_authority'] is True
+          assert d['outside_cone_semantics']=='NOT_EQUAL_SUPPORT2_REQUIRED'
+          assert d['global_phase_boundary_sharpness']=='OPEN'
+          assert a['novelty_authority'] is False
+          assert a['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload QG-16 proof receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg16-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg16-r6i-support1-phase.json
+            artifacts/orion-qg-qg16-r6i-support1-phase-replay.json
+            artifacts/orion-qg-qg16-generic-verification.json
+            artifacts/orion-qg-qg16-native-verification.json
+            artifacts/orion-qg-qg16-dual-harness.json
+            artifacts/orion-qg-qg16-dual-summary.json
+            artifacts/orion-qg-qg16-replay.log
+            .orion-qg-qg16-generic/.orion-harness/**
+            .orion-qg-qg16-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

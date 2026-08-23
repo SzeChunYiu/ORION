@@ -1,0 +1,58 @@
+{
+  "schema": "ORIONQ.MAXR3EPersistentSkillStreamResult.v1",
+  "protocol": "development/orion-q-max-r0/MAX_R3E_PERSISTENT_SKILL_STREAM_PROTOCOL.md",
+  "seed": 20260820,
+  "folds": 4,
+  "held_out_tasks_per_fold": 10000,
+  "candidate_skills_per_training_domain_per_fold": 500,
+  "total_held_out_tasks": 40000,
+  "per_fold": {
+    "SYNTHESIS": {
+      "B0": {"verified_valid_success_rate": 0.5962, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 0.0, "rollback_count": 0},
+      "B2": {"verified_valid_success_rate": 0.9031, "protected_invalid_result_rate": 0.0010, "useful_skill_use_rate": 0.9988, "rollback_count": 10},
+      "B3": {"verified_valid_success_rate": 0.9033, "protected_invalid_result_rate": 0.0008, "useful_skill_use_rate": 0.9990, "rollback_count": 8},
+      "B4": {"verified_valid_success_rate": 0.9033, "protected_invalid_result_rate": 0.0008, "useful_skill_use_rate": 0.9990, "rollback_count": 8},
+      "B5": {"verified_valid_success_rate": 0.9040, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 1.0, "rollback_count": 0}
+    },
+    "ALGO_INTERFACE": {
+      "B0": {"verified_valid_success_rate": 0.6071, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 0.0, "rollback_count": 0},
+      "B2": {"verified_valid_success_rate": 0.8982, "protected_invalid_result_rate": 0.0022, "useful_skill_use_rate": 0.9938, "rollback_count": 22},
+      "B3": {"verified_valid_success_rate": 0.8984, "protected_invalid_result_rate": 0.0020, "useful_skill_use_rate": 0.9940, "rollback_count": 20},
+      "B4": {"verified_valid_success_rate": 0.8984, "protected_invalid_result_rate": 0.0020, "useful_skill_use_rate": 0.9940, "rollback_count": 20},
+      "B5": {"verified_valid_success_rate": 0.9002, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 1.0, "rollback_count": 0}
+    },
+    "QEC_CODESIGN": {
+      "B0": {"verified_valid_success_rate": 0.5995, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 0.0, "rollback_count": 0},
+      "B2": {"verified_valid_success_rate": 0.8976, "protected_invalid_result_rate": 0.0022, "useful_skill_use_rate": 0.9964, "rollback_count": 22},
+      "B3": {"verified_valid_success_rate": 0.8980, "protected_invalid_result_rate": 0.0018, "useful_skill_use_rate": 0.9967, "rollback_count": 18},
+      "B4": {"verified_valid_success_rate": 0.8980, "protected_invalid_result_rate": 0.0018, "useful_skill_use_rate": 0.9967, "rollback_count": 18},
+      "B5": {"verified_valid_success_rate": 0.8994, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 1.0, "rollback_count": 0}
+    },
+    "FORMAL_REASONING": {
+      "B0": {"verified_valid_success_rate": 0.6059, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 0.0, "rollback_count": 0},
+      "B2": {"verified_valid_success_rate": 0.8991, "protected_invalid_result_rate": 0.0009, "useful_skill_use_rate": 0.9985, "rollback_count": 9},
+      "B3": {"verified_valid_success_rate": 0.8993, "protected_invalid_result_rate": 0.0007, "useful_skill_use_rate": 0.9985, "rollback_count": 7},
+      "B4": {"verified_valid_success_rate": 0.8993, "protected_invalid_result_rate": 0.0007, "useful_skill_use_rate": 0.9985, "rollback_count": 7},
+      "B5": {"verified_valid_success_rate": 0.8999, "protected_invalid_result_rate": 0.0, "useful_skill_use_rate": 1.0, "rollback_count": 0}
+    }
+  },
+  "paired_macro_effects": {
+    "B5_minus_B2_verified_valid_success": {"effect": 0.001375, "normal_95": [0.0010118516538753998, 0.0017381483461246], "paired_wins": 55, "paired_losses": 0},
+    "B5_minus_B3_verified_valid_success": {"effect": 0.001125, "normal_95": [0.0007964788476693042, 0.0014535211523306955], "paired_wins": 45, "paired_losses": 0},
+    "B5_minus_B4_verified_valid_success": {"effect": 0.001125, "normal_95": [0.0007964788476693042, 0.0014535211523306955], "paired_wins": 45, "paired_losses": 0}
+  },
+  "hard_gates": {
+    "B5_protected_invalid_result_rate": 0.0,
+    "B5_useful_skill_use_nonzero_every_fold": true,
+    "B5_base_only_or_total_refusal": false,
+    "B3_or_B4_harmful_deployment_present": true,
+    "post_rollback_repeat_harm_rate_B3_B4_B5": 0.0,
+    "same_candidate_and_task_streams_across_baselines": true
+  },
+  "terminal": "R3E_SELF_EVOLVING_QUANTUM_SCIENTIST_SUPERIORITY__EXACT_SYNTHETIC",
+  "authority": "prospectively_frozen_exact_synthetic_only",
+  "real_quantum_superiority_authorized": false,
+  "p10_method_language_authorized": false,
+  "novelty_authorized": false,
+  "interpretation": "With identical skill generation, visible validation, task streams and rollback, protected admission prevents scientifically invalid persistent quantum-research skills and produces a small but strictly positive paired verified-success gain over strong self-evolving baselines. This is absorbed into the MAX incumbent; the next stage must attack real quantum research targets."
+}

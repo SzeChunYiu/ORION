@@ -1,0 +1,53 @@
+{
+  "adjudication_spec": "P14C_ADJUDICATION_CASES_V1.json",
+  "authoritative_terminal": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED",
+  "correction": "The V1 P14C runner evaluated the frozen conformance gates but omitted the protocol's two-run byte-identity requirement from its terminal decision path. V2 changes no case, gold label, policy, gate, threshold, or comparator; it executes the exact frozen V1 runner and adjudication table twice, accepts both positive and negative runner exits when a valid result artifact exists, separates replay identity from committed-hash identity, and makes protocol authority contingent on every registered gate.",
+  "gates": {
+    "all_frozen_scientific_gates_pass": true,
+    "canonical_hash_matches_committed_receipt": true,
+    "runner_exit_codes_match_reported_terminals": true,
+    "runner_scientific_terminal_passes_both_runs": true,
+    "two_fresh_subprocess_payloads_byte_identical": true
+  },
+  "protocol": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md",
+  "runner": "run_p14c_specification_separated_governance_v1.py",
+  "runner_returncodes": [0, 0],
+  "schema": "ORION.P14C.ProtocolAdjudication.v2",
+  "scientific_gates_run_a": {
+    "accuracy_advantage_ge_0_10": true,
+    "every_ablation_worse": true,
+    "full_accuracy_one": true,
+    "full_discovery_recall_one": true,
+    "full_zero_false_promotion": true,
+    "gold_stripped_from_policy_input": true,
+    "retain_and_reopen_exact": true,
+    "strongest_baseline_false_promotion_ge_0_10": true
+  },
+  "scientific_gates_run_b": {
+    "accuracy_advantage_ge_0_10": true,
+    "every_ablation_worse": true,
+    "full_accuracy_one": true,
+    "full_discovery_recall_one": true,
+    "full_zero_false_promotion": true,
+    "gold_stripped_from_policy_input": true,
+    "retain_and_reopen_exact": true,
+    "strongest_baseline_false_promotion_ge_0_10": true
+  },
+  "scientific_payload_sha256_run_a": "74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63",
+  "scientific_payload_sha256_run_b": "74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63",
+  "scientific_summary": {
+    "ABLATE_DONOR": {"disposition_accuracy": 0.8571428571428571, "false_promotion_rate": 0.03571428571428571, "n": 28, "retain_negative_accuracy": 1.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "ABLATE_EVIDENCE_INTEGRITY": {"disposition_accuracy": 0.9642857142857143, "false_promotion_rate": 0.03571428571428571, "n": 28, "retain_negative_accuracy": 1.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "ABLATE_FREEZE": {"disposition_accuracy": 0.9642857142857143, "false_promotion_rate": 0.03571428571428571, "n": 28, "retain_negative_accuracy": 1.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "ABLATE_IDENTIFIABILITY": {"disposition_accuracy": 0.9642857142857143, "false_promotion_rate": 0.03571428571428571, "n": 28, "retain_negative_accuracy": 1.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "ABLATE_INTERACTION": {"disposition_accuracy": 0.8571428571428571, "false_promotion_rate": 0.10714285714285714, "n": 28, "retain_negative_accuracy": 1.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "ABLATE_NEGATIVE_HISTORY": {"disposition_accuracy": 0.8571428571428571, "false_promotion_rate": 0.14285714285714285, "n": 28, "retain_negative_accuracy": 0.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "DONOR_AWARE_REVIEW": {"disposition_accuracy": 0.7142857142857143, "false_promotion_rate": 0.2857142857142857, "n": 28, "retain_negative_accuracy": 0.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "MULTI_REVIEW": {"disposition_accuracy": 0.8571428571428571, "false_promotion_rate": 0.14285714285714285, "n": 28, "retain_negative_accuracy": 0.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "ORION_RSE_FULL": {"disposition_accuracy": 1.0, "false_promotion_rate": 0.0, "n": 28, "retain_negative_accuracy": 1.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "RAW_POSITIVE": {"disposition_accuracy": 0.42857142857142855, "false_promotion_rate": 0.5357142857142857, "n": 28, "retain_negative_accuracy": 0.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0},
+    "REFLECTION_CHECKLIST": {"disposition_accuracy": 0.5714285714285714, "false_promotion_rate": 0.42857142857142855, "n": 28, "retain_negative_accuracy": 0.0, "supported_reopen_accuracy": 1.0, "useful_discovery_recall": 1.0}
+  },
+  "strongest_non_orion_baseline": "MULTI_REVIEW",
+  "v1_runner_terminal_authority": "NON_AUTHORITATIVE_ALONE__REPLAY_GATE_OMITTED"
+}

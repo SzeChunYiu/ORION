@@ -1,0 +1,28 @@
+\section{Scientific-discharge type and lifted terminal}
+
+The complete scientific-discharge type is
+
+\texttt{tau = (domain, kind, scope, content, epoch)}.
+
+Let \texttt{D(a)} denote the native authority, verification, adjudication, or release verdict of donor object \texttt{a}. P8 does not rewrite \texttt{D}.
+
+The bounded lifted state additionally contains:
+
+\begin{itemize}
+  \item \texttt{narrowing_ok}: every relevant authority/delegation/claim-processing hop preserves or narrows \texttt{tau};
+  \item blocker state \texttt{b in \{REFUTED, UNDETERMINED, ESTABLISHED\}};
+  \item two alternative complete support families \texttt{S_A}, \texttt{S_B};
+  \item optional explicit \texttt{protected_coercion} binding a source type to the target type and epoch.
+\end{itemize}
+
+A donor-derived judgment reaches \texttt{DISCHARGE} only when:
+
+\begin{enumerate}
+  \item \texttt{D(a)} is valid;
+  \item the scientific type matches directly or a complete protected coercion is registered;
+  \item authority is non-widening across the relevant chain;
+  \item blocker state is \texttt{REFUTED};
+  \item at least one complete support family survives.
+\end{enumerate}
+
+\texttt{UNDETERMINED} maps to \texttt{CANNOT_CHECK}; \texttt{ESTABLISHED} maps to \texttt{BLOCK}.

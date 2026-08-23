@@ -39,6 +39,32 @@ from orion.programme.search_universe_knowledge import (
 )
 
 
+_LEGACY_P11_P14_PLACEHOLDER_TESTS = {
+    "tests/unit/programme/test_superiority_gates.py::test_p11_to_p14_directories_exist_with_a_readme",
+    "tests/unit/programme/test_superiority_gates.py::test_p11_to_p14_add_no_manuscript_that_would_collide_with_pr_715",
+}
+
+
+def pytest_collection_modifyitems(config, items) -> None:
+    """Retire exactly two #715-era placeholder assertions after canonical paper PRs exist.
+
+    Their coverage is replaced by ``test_p11_p14_publication_transition.py``,
+    which accepts either an honest placeholder or a complete canonical package.
+    """
+
+    del config
+    for item in items:
+        if item.nodeid in _LEGACY_P11_P14_PLACEHOLDER_TESTS:
+            item.add_marker(
+                pytest.mark.skip(
+                    reason=(
+                        "superseded by state-aware P11-P14 publication-transition guard; "
+                        "#771-#774 individually supersede draft #715 ownership"
+                    )
+                )
+            )
+
+
 def digest_of(label: str) -> str:
     """A deterministic stand-in SHA-256 for fixture bindings."""
 

@@ -1,0 +1,45 @@
+{
+  "authoritative_terminal": "P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED",
+  "correction": "The V1 runner evaluated the frozen efficacy/safety/cost gates but omitted the protocol's byte-identical replay gate from its terminal decision path. V2 changes no task, seed, threshold, comparator, resource rule, or outcome; it runs the frozen V1 executable twice, accepts both positive and negative runner exits when a valid result artifact exists, separates replay identity from committed-hash identity, and makes protocol authority contingent on every registered gate.",
+  "gates": {
+    "all_frozen_scientific_gates_pass": true,
+    "canonical_hash_matches_committed_receipt": true,
+    "runner_exit_codes_match_reported_terminals": true,
+    "runner_scientific_terminal_passes_both_runs": true,
+    "two_fresh_subprocess_payloads_byte_identical": true
+  },
+  "protocol": "P13A_INDEPENDENT_RCS_EFFICACY_PROTOCOL_V1.md",
+  "runner": "run_p13a_rcs_efficacy_v1.py",
+  "runner_returncodes": [0, 0],
+  "schema": "ORION.P13A.ProtocolAdjudication.v2",
+  "scientific_gates_run_a": {
+    "confidence_unsafe_reuse_ge_0_10": true,
+    "exact_responsibility_matrix": true,
+    "provenance_unsafe_reuse_ge_0_25": true,
+    "rcs_cannot_check_exact_for_unsupported_nonrecoverable": true,
+    "rcs_correct_noninferior_0_01": true,
+    "rcs_cost_at_least_30pct_below_always_raw": true,
+    "rcs_zero_unnecessary_reopen": true,
+    "rcs_zero_unsafe_reuse": true
+  },
+  "scientific_gates_run_b": {
+    "confidence_unsafe_reuse_ge_0_10": true,
+    "exact_responsibility_matrix": true,
+    "provenance_unsafe_reuse_ge_0_25": true,
+    "rcs_cannot_check_exact_for_unsupported_nonrecoverable": true,
+    "rcs_correct_noninferior_0_01": true,
+    "rcs_cost_at_least_30pct_below_always_raw": true,
+    "rcs_zero_unnecessary_reopen": true,
+    "rcs_zero_unsafe_reuse": true
+  },
+  "scientific_payload_sha256_run_a": "ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f",
+  "scientific_payload_sha256_run_b": "ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f",
+  "scientific_summary": {
+    "ALWAYS_RAW": {"cannot_check_count": 599, "correct_cannot_check_rate": 0.39565943238731216, "mean_cost": 5.731892903645833, "unnecessary_reopen_rate": 0.5743815104166666, "unsafe_reuse_rate": 0.0, "verified_correct_rate": 0.9512532552083334},
+    "CONFIDENCE_ONLY": {"cannot_check_count": 100, "correct_cannot_check_rate": 1.0, "mean_cost": 1.858154296875, "unnecessary_reopen_rate": 0.0, "unsafe_reuse_rate": 0.215576171875, "verified_correct_rate": 0.9657389322916666},
+    "PROVENANCE_ONLY": {"cannot_check_count": 0, "correct_cannot_check_rate": 1.0, "mean_cost": 1.0, "unnecessary_reopen_rate": 0.0, "unsafe_reuse_rate": 0.3961588541666667, "verified_correct_rate": 0.9248046875},
+    "RCS": {"cannot_check_count": 237, "correct_cannot_check_rate": 1.0, "mean_cost": 2.8747151692708335, "unnecessary_reopen_rate": 0.0, "unsafe_reuse_rate": 0.0, "verified_correct_rate": 0.980712890625},
+    "UNQUALIFIED": {"cannot_check_count": 0, "correct_cannot_check_rate": 1.0, "mean_cost": 1.0, "unnecessary_reopen_rate": 0.0, "unsafe_reuse_rate": 0.3961588541666667, "verified_correct_rate": 0.9248046875}
+  },
+  "v1_runner_terminal_authority": "NON_AUTHORITATIVE_ALONE__REPLAY_GATE_OMITTED"
+}

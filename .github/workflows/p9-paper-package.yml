@@ -1,0 +1,49 @@
+name: p9-paper-package
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-09-structured-epistemic-learning/**'
+      - 'research/extensions/p9-structured-neural/**'
+      - 'src/orion/study/p9/**'
+      - 'tests/test_p9_*.py'
+      - '.github/workflows/p9-paper-package.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install exact package dependencies
+        run: python -m pip install -e '.[dev,candidates]'
+      - name: Focused P9 science tests
+        run: pytest -q tests/test_p9_m1.py tests/test_p9_m1_v12.py tests/test_p9_d1.py tests/test_p9_a2_a4_explicit.py
+      - name: Derive paired D1 held-out effects
+        run: python papers/paper-09-structured-epistemic-learning/analyze_d1_paired_effects.py
+      - name: Fail-closed final evidence regeneration
+        run: python papers/paper-09-structured-epistemic-learning/reproduce_final.py
+      - name: Show exact derived results
+        run: |
+          cat papers/paper-09-structured-epistemic-learning/evidence/D1_PAIRED_EFFECTS_V1.json
+          cat research/extensions/p9-structured-neural/verification/FINAL_P9_OFFICIAL_VS_INDEPENDENT_V1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-paper-evidence-${{ github.sha }}
+          path: |
+            papers/paper-09-structured-epistemic-learning/evidence/D1_PAIRED_EFFECTS_V1.json
+            papers/paper-09-structured-epistemic-learning/evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json
+            papers/paper-09-structured-epistemic-learning/manuscript/generated_result_macros.tex
+            papers/paper-09-structured-epistemic-learning/manuscript/generated_headline_tables.tex
+            research/extensions/p9-structured-neural/verification/FINAL_P9_OFFICIAL_VS_INDEPENDENT_V1.json
+          if-no-files-found: error

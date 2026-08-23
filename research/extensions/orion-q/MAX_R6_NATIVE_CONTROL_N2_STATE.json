@@ -1,0 +1,39 @@
+{
+  "version": "ORIONQ.MAXR6.NativeControlState.v1",
+  "stage": "N2",
+  "frozen_after_interface_closure": true,
+  "operator_proposed_quantum_candidate_hidden": true,
+  "visible_evidence": {
+    "R5H_CURRENT_ALPHABET_EXACT": "YES",
+    "GENERAL_M_DONOR_OUTCOME": "NONDOMINATING_OR_CLOSED",
+    "FOQCS_INTERFACE_ENVELOPE": "OPTIMISTIC_BOUND_REGISTERED",
+    "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR": "NO",
+    "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4": "NONE_OVER_DIRECT_CLIQUE_DONOR"
+  },
+  "interface_evidence": {
+    "optimistic_zero_prep_foqcs": {
+      "Lambda": 5.158046205600001,
+      "clifford_two_qubit_equiv": 16,
+      "projected_T": 0,
+      "blocks": 1,
+      "ancilla": 16
+    },
+    "bound_h4_direct_clique": {
+      "Lambda": 4.862157873932594,
+      "clifford_two_qubit_equiv": 1428,
+      "projected_T": 5568,
+      "blocks": 246,
+      "ancilla": 0
+    },
+    "foqcs_dominates_bound_point": false,
+    "bound_point_dominates_foqcs": false
+  },
+  "active_hard_obligations": [],
+  "current_method_language": [
+    "PAULI_SINGLETON",
+    "DIRECT_ANTICOMMUTING_CLIQUE",
+    "EXACT_CONTROLLED_TARE_M2"
+  ],
+  "authority": "BELOW_R6",
+  "fresh_r6_subject_coefficients_accessed": false
+}

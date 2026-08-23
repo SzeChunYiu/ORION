@@ -1,0 +1,157 @@
+name: orion-q-max-r6c-dual-lane
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R6B_TARE_TRANSFORMATION_REUSE_DONOR_ABSORPTION_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6C_DUAL_LANE_RESIDUAL_DIAGNOSIS_PROTOCOL.md'
+      - 'research/extensions/orion-q/max_r6b_tare_transformation_reuse_donor.py'
+      - 'research/extensions/orion-q/max_r6c_dual_lane_residual_diagnosis.py'
+      - 'packages/orion-research-harness/**'
+      - 'src/orion/**'
+      - '.github/workflows/orion-q-max-r6c-dual-lane.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-q-max-r6c-dual-lane-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  matched-dual-lane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install canonical ORION and shared harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install numpy
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+
+      - name: Execute frozen donor-first R6B lane on open subjects only
+        run: |
+          cd research/extensions/orion-q
+          python max_r6b_tare_transformation_reuse_donor.py | tee /tmp/r6b.txt
+          grep '^ORIONQ_MAX_R6B_TARE_REUSE=' /tmp/r6b.txt
+
+      - name: Execute frozen matched residual diagnosis
+        run: |
+          python research/extensions/orion-q/max_r6c_dual_lane_residual_diagnosis.py /tmp/r6b.txt | tee /tmp/r6c.txt
+          grep '^ORIONQ_MAX_R6C_DUAL_LANE=' /tmp/r6c.txt
+
+      - name: Prepare canonical ORION research problem
+        run: |
+          SIGN=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          prefix='ORIONQ_MAX_R6B_TARE_REUSE='
+          line=next(x for x in Path('/tmp/r6b.txt').read_text().splitlines() if x.startswith(prefix))
+          p=json.loads(line[len(prefix):])
+          print('POSITIVE' if p['development_supported'] is True else 'NEGATIVE')
+          PY
+          )
+          orion-harness init /tmp/orion-r6c-canonical --project-root .
+          orion-harness problem-add /tmp/orion-r6c-canonical r6c \
+            "Diagnose the post-exact-TARE3 residual after frozen R6B donor-reuse outcome ${SIGN}; preserve the frame-only negative, donor-first-refusal, and protected stretched-N2 closure." \
+            --criterion "Do not weaken scientific gates or open the protected stretched-N2 subject."
+
+      - name: Invoke canonical OrionRuntime host-handoff path
+        continue-on-error: true
+        run: orion-harness solve /tmp/orion-r6c-canonical r6c | tee /tmp/canonical-solve.json
+
+      - name: Record canonical handoff and mechanics/fibre surfaces
+        run: |
+          orion-harness pending /tmp/orion-r6c-canonical | tee /tmp/canonical-pending.json
+          orion-harness handoff /tmp/orion-r6c-canonical > /tmp/canonical-handoff.md
+          orion-harness mechanics-coverage | tee /tmp/canonical-mechanics.json
+          orion-harness navigate 'method fibre' | tee /tmp/canonical-method-nav.json
+          orion-harness navigate 'fibre problem solver' | tee /tmp/canonical-fibre-nav.json
+          orion-harness fibre /tmp/orion-r6c-canonical REFRAME.METHOD.v0 | tee /tmp/canonical-method-fibre.json
+
+      - name: Run specialized ORION-Q live campaign on same repository head
+        run: |
+          orion-harness init /tmp/orion-r6c-q --project-root . --allow-process-tools
+          orion-harness campaign-start /tmp/orion-r6c-q orion-q:max-r6-live
+          orion-harness campaign-run /tmp/orion-r6c-q orion-q:max-r6-live --max-cycles 4 | tee /tmp/q-campaign.json
+          orion-harness campaign-state /tmp/orion-r6c-q orion-q:max-r6-live | tee /tmp/q-state.json
+
+      - name: Enforce matched dual-lane integrity and protected custody
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def token(path, prefix):
+              rows=[x for x in Path(path).read_text().splitlines() if x.startswith(prefix)]
+              if len(rows)!=1:
+                  raise SystemExit(f'{path}: expected one {prefix} receipt, got {len(rows)}')
+              return json.loads(rows[0][len(prefix):])
+
+          r6b=token('/tmp/r6b.txt','ORIONQ_MAX_R6B_TARE_REUSE=')
+          r6c=token('/tmp/r6c.txt','ORIONQ_MAX_R6C_DUAL_LANE=')
+          if r6b.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('R6B accessed protected stretched N2')
+          if r6b.get('novelty_credit') is not False:
+              raise SystemExit('R6B donor reuse received novelty credit')
+          if r6c.get('canonical_runtime_and_mechanics_executed') is not True:
+              raise SystemExit(f'embedded canonical runtime/mechanics were not executed: {r6c}')
+          if r6c.get('normalized_residual_agreement') is not True:
+              raise SystemExit(f'dual lanes disagree without preserved match: {r6c}')
+          if r6c.get('new_method_protocol_eligible') is not True:
+              raise SystemExit(f'new method protocol not eligible: {r6c}')
+          if r6c.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('R6C reports protected access')
+          if r6c.get('r6_earned') is not False:
+              raise SystemExit('R6C diagnosis self-promoted to R6')
+          canonical=r6c.get('canonical_orion',{})
+          q=r6c.get('orion_q',{})
+          expected='RESP:METHOD_LANGUAGE_INADEQUATE_AFTER_DONOR_CLOSURE'
+          if canonical.get('normalized_next_residual') != expected:
+              raise SystemExit(f'canonical residual drift: {canonical}')
+          if q.get('normalized_next_residual') != expected:
+              raise SystemExit(f'ORION-Q residual drift: {q}')
+          runtime_probe=canonical.get('runtime_probe',{})
+          if runtime_probe.get('executed') is not True:
+              raise SystemExit(f'canonical production runtime was not executed: {runtime_probe}')
+          if runtime_probe.get('scientific_authority_from_probe') is not False:
+              raise SystemExit('canonical runtime probe attempted scientific authority')
+          embedded=canonical.get('mechanics_probe',{})
+          if embedded.get('passed') is not True:
+              raise SystemExit(f'embedded canonical mechanics probe failed: {embedded}')
+
+          solve=json.loads(Path('/tmp/canonical-solve.json').read_text())
+          if solve.get('status') not in {'COMPLETE','PENDING_CAPABILITY','BLOCKED'}:
+              raise SystemExit(f'unexpected canonical solve status: {solve.get("status")}')
+          mechanics=json.loads(Path('/tmp/canonical-mechanics.json').read_text())
+          if mechanics.get('mechanic_cell_count') != 59 or mechanics.get('structurally_discoverable') is not True:
+              raise SystemExit(f'canonical mechanics incomplete: {mechanics}')
+          qstate=json.loads(Path('/tmp/q-state.json').read_text())
+          if qstate.get('phase_id') != 'P10_RESULT':
+              raise SystemExit(f'ORION-Q campaign did not reach P10_RESULT: {qstate.get("phase_id")}')
+          refs=qstate.get('protected_refs',[])
+          if len(refs)!=1 or refs[0].get('released') is not False:
+              raise SystemExit('ORION-Q campaign released protected stretched N2')
+          print('R6C_DUAL_LANE_VERIFIED=' + r6c['r6b_scientific_sign'])
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-q-max-r6c-dual-lane-receipts
+          path: |
+            /tmp/r6b.txt
+            /tmp/r6c.txt
+            /tmp/canonical-solve.json
+            /tmp/canonical-pending.json
+            /tmp/canonical-handoff.md
+            /tmp/canonical-mechanics.json
+            /tmp/canonical-method-nav.json
+            /tmp/canonical-fibre-nav.json
+            /tmp/canonical-method-fibre.json
+            /tmp/q-campaign.json
+            /tmp/q-state.json
+          if-no-files-found: warn
+          retention-days: 30

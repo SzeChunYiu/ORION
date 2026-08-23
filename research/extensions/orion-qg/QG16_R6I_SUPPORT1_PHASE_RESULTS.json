@@ -1,0 +1,46 @@
+{
+  "schema": "ORION.QG.QG16.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#811",
+  "pr": "SzeChunYiu/ORION#813",
+  "execution_head": "d56892f1ce2cc807da53bd3be824d98957a27246",
+  "terminal": "QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED",
+  "source_result_digest": "415e5e45cfc85c5b2073bfe8220b7e4f832703b7d9072daa5e80c79ad5771f31",
+  "support_bound_inside_cone": 1,
+  "intrinsic_support_number_inside_cone": 1,
+  "commuting_deletion_resource_domain": 1728,
+  "all_resource_vectors": [[0,2,-2],[0,2,-1],[0,2,0],[0,2,1],[0,2,2],[1,1,-2],[1,1,-1],[1,1,0],[1,1,1],[1,1,2]],
+  "worst_resource_vectors": [[0,2,2],[1,1,2]],
+  "worst_vector_witnesses": {
+    "[0,2,2]": {"a":0,"b":1,"frame":[0,1,1],"targets":[0,1,1],"central":0},
+    "[1,1,2]": {"a":0,"b":1,"frame":[0,1,1],"targets":[0,1,1],"central":1}
+  },
+  "core_alignment": {"domain":6912,"frame_delta_zero":true,"max_restore_increase":3},
+  "support2_core_census": {
+    "ordered_pair_counts": {"1":6,"2":120,"3":666,"4":1968},
+    "every_pair_exactly_one_local_anti_core": true
+  },
+  "full_cone_halfspaces": [
+    "2*t_nc >= 5*t_r",
+    "t_c+t_nc >= 5*t_r",
+    "2*t_nc >= 2*t_r+2*t_tag",
+    "t_c+t_nc >= 2*t_r+2*t_tag"
+  ],
+  "simplified_under_t_c_le_t_nc": [
+    "t_c+t_nc >= 5*t_r",
+    "t_c+t_nc >= 2*t_r+2*t_tag"
+  ],
+  "controls": {
+    "O0": {"theta":[4,2,2,1],"inside":true,"on_boundary":true,"minimum_margin":"0"},
+    "O_in": {"theta":[5,3,2,1],"inside":true,"strict_interior":true,"minimum_margin":"2"},
+    "O_tag_out": {"theta":[4,2,"5/2",1],"inside":false,"minimum_margin":"-1"},
+    "O_restore_out": {"theta":[4,2,2,"5/4"],"inside":false,"minimum_margin":"-1/2"},
+    "O_nc_out": {"theta":["3/2","3/2",1,1],"inside":false,"minimum_margin":"-2"}
+  },
+  "generic_orion": {"decision":"ACCEPT_SUPPORT1_PHASE","all_checks":true},
+  "native_orion_q": {"decision":"ACCEPT_SUPPORT1_PHASE","all_checks":true,"support1_phase_authority":true},
+  "both_accept": true,
+  "global_phase_boundary_sharpness": "OPEN",
+  "outside_cone_semantics": "THIS_PROOF_CERTIFICATE_DOES_NOT_APPLY__NOT_SUPPORT2_REQUIRED",
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

@@ -1,0 +1,28 @@
+name: p10-publication-overlay-v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-learning-machine/P10_PUBLICATION_OVERLAY_V2.json'
+      - 'papers/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh'
+      - 'papers/paper-xx-content-bound-math-evaluation/**'
+      - '.github/workflows/p10-publication-overlay-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  overlay-closure:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install bounded closure dependencies
+        run: python -m pip install pytest==9.1.1 numpy==2.4.4 scipy==1.18.0 scikit-learn==1.8.0 sympy==1.14.0
+      - name: Verify legacy closure and exact P10 overlay
+        run: bash papers/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh

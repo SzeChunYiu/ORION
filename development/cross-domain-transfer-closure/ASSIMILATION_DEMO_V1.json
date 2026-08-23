@@ -1,0 +1,29 @@
+{
+  "schema_version": "AssimilationProcessDemo.v1",
+  "frozen_before_runner": true,
+  "paths": [
+    {
+      "id": "ADOPT-1",
+      "disposition": "ADOPT",
+      "donor_mechanism": "signature-gated applicability",
+      "orion_delta": "",
+      "expected_process_result": "donor mechanism retained under donor ownership; ORION novelty removed"
+    },
+    {
+      "id": "ADAPT-1",
+      "disposition": "ADAPT",
+      "donor_mechanism": "abstract transferable insight",
+      "orion_delta": "bind explicit assumptions, falsifiers, and authority boundary to the transferable record",
+      "expected_process_result": "delta remains bookkeeping/governance unless a transfer discriminator proves incremental scientific value"
+    },
+    {
+      "id": "COMPOSE-1",
+      "disposition": "COMPOSE",
+      "donor_mechanism": "abstract insight plus signature compatibility",
+      "orion_delta": "compose only with explicit evidence that the parts interoperate on the same target case",
+      "expected_process_result": "composition is evidence-bound and cannot self-authorize"
+    }
+  ],
+  "novelty_update_rule": "every ADOPT or donor-owned COMPOSE component removes the corresponding generic mechanism claim from ORION novelty; only the tested residual may remain",
+  "expected_shared_process_terminal": "PROCESS_USEFUL_NOT_NOVEL"
+}

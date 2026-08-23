@@ -1,0 +1,63 @@
+{
+  "authority": "N1_LOWER_BOUND__BENCHMARK_CLASS_CLOSURE_ONLY__EXACT_SYNTHETIC_ONLY",
+  "checks": {
+    "battery": {
+      "p_valid": 0.08,
+      "policies": {
+        "EXHAUSTIVE": {
+          "pointwise_dominated_by_exhaustive": true,
+          "solve_rate": 0.6396
+        },
+        "FIXED_SINGLE_GUESS_C0": {
+          "pointwise_dominated_by_exhaustive": true,
+          "solve_rate": 0.0806
+        },
+        "GREEDY_LEARNED_ORDER": {
+          "pointwise_dominated_by_exhaustive": true,
+          "solve_rate": 0.6396
+        },
+        "RANDOM_ORDER_FIRST_VALID": {
+          "pointwise_dominated_by_exhaustive": true,
+          "solve_rate": 0.6396
+        }
+      },
+      "tasks": 5000
+    },
+    "complete_enumeration": {
+      "candidate_set_size": 12,
+      "comparisons": 53248,
+      "policy_outputs_per_world": 13,
+      "violations": 0,
+      "worlds_checked": 4096
+    },
+    "order_invariance": {
+      "checks": 53248,
+      "orders_per_world": 13,
+      "violations": 0
+    }
+  },
+  "claim_boundary": "Exact-synthetic machine-checked closure of one finite benchmark class only; grants no statement about method-space editing outside the closed class and no real-quantum authority.",
+  "closed_class": "FINITE_COMPLETE_EDIT_SET + EXACT_VERIFIER + FULL_ENUMERATION_BUDGET",
+  "consequence": "The old QC2_NO_INCREMENTAL_VALUE solve-rate result is explained by a structural ceiling of its benchmark class, not evidence about P10 globally.",
+  "date": "2026-08-21",
+  "gates": {
+    "G1_COMPLETE_ENUMERATION_CHECK": true,
+    "G2_ORDER_INVARIANCE": true,
+    "G3_BATTERY_POINTWISE": true
+  },
+  "issue": 674,
+  "not_closed": [
+    "parameterized/infinite schemas",
+    "generated representations",
+    "incomplete applicability (VERIFIED/REFUTED/UNKNOWN)",
+    "costly verification / bounded verifier budget",
+    "resource-bounded search",
+    "edits that change the candidate language itself"
+  ],
+  "proposition": "For finite C, exact V, and full-enumeration budget: Success(pi) <= Success(exhaustive) pointwise for every policy restricted to C; policies can improve only secondary quantities (number/cost/order of verifier calls), never solve rate.",
+  "protocol": "development/orion-q-nlane-closure/N1_LOWER_BOUND_PROTOCOL.md",
+  "registered_in": "issue-674 comment 5355100391 (proposition never committed before)",
+  "schema": "ORIONQ.N1_FiniteCandidateLowerBound.v1",
+  "seed": 20260821,
+  "terminal": "LOWER_BOUND_CLOSED_FOR_FINITE_COMPLETE_CLASS"
+}

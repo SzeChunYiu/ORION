@@ -1,0 +1,77 @@
+{
+  "schema": "ORIONQ.MAXR5B.N2ProofOuterReplayReceipt.v1",
+  "authority": "R5_PROOF_REPLAY_GREEN__OUTER_PROJECTION_MIXED__FULL_R5_NOT_SUPPORTED",
+  "protocol": "development/orion-q-max-r0/MAX_R5B_PROOF_CARRYING_REPLAY_AND_OUTER_ACCOUNTING_PROTOCOL.md",
+  "workflow": {
+    "name": "orion-q-max-r5b",
+    "run_id": 32378842536,
+    "job_id": 96456739739,
+    "conclusion": "success",
+    "branch_head": "c520be6ed85a39208a4a80e67ec7f05e50fdde78"
+  },
+  "source": {
+    "repo": "npbauman/DUCC-Hamiltonian-Library",
+    "commit": "be306f5830549304176365750d712093950bbdde",
+    "blob": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+    "path": "N2/cc-pVTZ/6Elec_6Orbs/1.0_Eq-2.0680au/DUCC2/N2.cc-pvtz.ducc.results.txt"
+  },
+  "proof_replay": {
+    "pass": true,
+    "sorted_terms_sha256": "56e3b79b43407f2dbe7360e98b1d74bfbd1ae4bee4cd52af47455746a2447443",
+    "incumbent_pair_list_sha256": "5bc7120abe130d2cf9f570406a75cf7d73c9e8f90d72f95e5352985de804c7c4",
+    "successor_pair_list_sha256": "211290d7dead4de5b94ae5990ead659b2223e532a7223f53bb7efcf4028fcc94",
+    "incumbent_canonical_witness_sha256": "83f1952d25b6cb774ef62172b9dc015263f616acbc31e0909919c8b625fba01d",
+    "successor_canonical_witness_sha256": "fcc4b665d89c9377fb818f6257685fc9dd20ea09e516370a63cd4281a613091c",
+    "all_witness_checks_pass": true
+  },
+  "incumbent": {
+    "Lambda_joint": 11.154919014188893,
+    "G_internal_2q": 5467,
+    "pair_count": 307,
+    "direct_unitary_blocks": 104,
+    "tare_blocks": 203,
+    "controlled_outer_primitive_vector": {
+      "parity_CNOT": 3222,
+      "controlled_Rz": 921,
+      "controlled_H": 609,
+      "controlled_Pauli_support": 1687,
+      "AND2_compute_uncompute_pairs": 406
+    },
+    "CliffordT_projection": {"CNOT": 12232, "T": 95318},
+    "native_projection": {"native_two_qubit_primitives_excluding_AND": 6439, "coherent_AND_compute_uncompute_pairs": 406}
+  },
+  "frozen_successor": {
+    "Lambda_joint": 11.264669617948641,
+    "G_internal_2q": 3646,
+    "pair_count": 307,
+    "direct_unitary_blocks": 3,
+    "tare_blocks": 304,
+    "controlled_outer_primitive_vector": {
+      "parity_CNOT": 86,
+      "controlled_Rz": 921,
+      "controlled_H": 912,
+      "controlled_Pauli_support": 2553,
+      "AND2_compute_uncompute_pairs": 608
+    },
+    "CliffordT_projection": {"CNOT": 12689, "T": 98752},
+    "native_projection": {"native_two_qubit_primitives_excluding_AND": 4472, "coherent_AND_compute_uncompute_pairs": 608}
+  },
+  "comparisons": {
+    "normalization_ratio": 1.0098387629367946,
+    "internal_G_reduction": 0.33308944576550215,
+    "CliffordT_CNOT_raw_ratio": 1.0373610202746892,
+    "CliffordT_CNOT_normalization_weighted_ratio": 1.0475673694330434,
+    "CliffordT_T_raw_ratio": 1.0360267735370026,
+    "CliffordT_T_normalization_weighted_ratio": 1.0462199953580054,
+    "native_two_qubit_raw_ratio": 0.6945177822643268,
+    "native_two_qubit_normalization_weighted_ratio": 0.7013509780794138
+  },
+  "interpretation": {
+    "internal_result_survives_proof_replay": true,
+    "outer_advantage_changes_sign_across_declared_reasonable_projections": true,
+    "full_outer_superiority_supported": false,
+    "full_R5_closure": false,
+    "R6": false,
+    "next_attack": "controlled_SELECT_aware_exact_symplectic_representation_and_structure_aware_rematching_on_new_frozen_public_subject"
+  }
+}

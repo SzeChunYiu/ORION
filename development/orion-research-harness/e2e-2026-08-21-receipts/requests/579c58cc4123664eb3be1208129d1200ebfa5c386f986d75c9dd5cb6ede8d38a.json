@@ -1,0 +1,19 @@
+{
+  "capability": "WEB_SEARCH",
+  "created_at": "2026-08-21T06:16:58.725034+00:00",
+  "payload": {
+    "instruction": "Use current web search. Open/inspect relevant primary or authoritative sources when useful. Return `items`, each with content, source_uri, optional item_id, and optional domain_ids. Do not fabricate sources.",
+    "limit": 8,
+    "query": {
+      "domain_hint": "software-verification",
+      "query_id": "q2",
+      "route_id": "route:parent-discipline:test-coverage",
+      "route_kind": "PARENT_DISCIPLINE",
+      "text": "tests exercising each capability kind under packages/orion-research-harness/tests/ including local tools SHELL PYTHON FILE_READ FILE_WRITE FILE_LIST and broker LLM_COMPLETE WEB_SEARCH VERIFY_EVIDENCE"
+    }
+  },
+  "request_digest": "fb25feea27671b4075cd223ffbca2f79158502e2cb36286153ce940d8d224570",
+  "request_id": "hostreq:22ee02ba8bc4a7e2c86c425a8ec91faaa32f5a2cd3d08fd2ec1c8107f1359c96",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

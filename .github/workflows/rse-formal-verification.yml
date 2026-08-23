@@ -1,0 +1,60 @@
+name: rse-formal-verification
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/rse-formal-verification.yml'
+      - 'research/extensions/meta-orion-recursive-scientific-evolution/**'
+      - 'tests/unit/research/**'
+      - 'research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md'
+      - 'papers/RSE_VERIFIED_SUCCESSOR_HANDOFF_V1.md'
+      - 'papers/**/RSE_SUCCESSOR_BOUNDARY_V1.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Exact RSE research tests
+        run: pytest -q tests/unit/research
+      - name: Emit formal verification closure
+        run: >-
+          python research/extensions/meta-orion-recursive-scientific-evolution/run_formal_verification.py
+          --output "$RUNNER_TEMP/rse-formal-verification.json"
+      - name: Assert bounded closure terminal and donor subtraction
+        env:
+          RESULT: ${{ runner.temp }}/rse-formal-verification.json
+        run: |
+          python - <<'PY'
+          import json, os
+          payload=json.load(open(os.environ['RESULT'], encoding='utf-8'))
+          result=payload['result']
+          assert result['terminal']=='RSE_FORMAL_MECHANICS_VERIFIED_WITH_DONOR_SUBSUMPTION'
+          rows={row['id']:row for row in result['matrix']}
+          assert rows['RSE.T1']['status']=='EXECUTABLE_COUNTERMODEL_VERIFIED'
+          assert rows['RSE.T2']['status']=='FINITE_INFORMATION_CEILING_VERIFIED'
+          assert rows['RSE.T3']['status']=='CAUSAL_DELAYED_DEBT_COUNTERMODEL_VERIFIED'
+          assert rows['RSE.T4']['status']=='CEGAR_APPLICATION_VERIFIED'
+          assert rows['RSE.T5']['status']=='DONOR_SUBSUMPTION_VERIFIED'
+          assert rows['RSE.D1']['status']=='DEFINITION_ONLY'
+          assert rows['RSE.D5']['status']=='STRUCK_UNPROVED_UNIVERSAL'
+          assert rows['RSE.T5']['terminal']=='GENERIC_JUSTIFICATION_DONOR_SUFFICIENT'
+          print('RSE_FORMAL_VERIFICATION_BOUNDARY=true')
+          print('result_sha256='+payload['result_sha256'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rse-formal-verification-${{ github.sha }}
+          path: ${{ runner.temp }}/rse-formal-verification.json
+          if-no-files-found: error

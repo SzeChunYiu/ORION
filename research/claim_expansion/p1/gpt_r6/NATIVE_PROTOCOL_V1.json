@@ -1,0 +1,94 @@
+{
+  "schema": "P1U.NativeOrionRuntime.v1",
+  "campaign_issue": 723,
+  "base_commit": "1e462d16b006130c5ba93e3fe91635c5d47a55a5",
+  "source_set_origin": "R4 #719 / merged #720; R5 outcome-free corpus encoding absorbed before any policy result",
+  "root_runtime": {
+    "max_iterations": 1,
+    "require_verified_answer": true,
+    "evaluation_epoch_id": "p1-r6:primary-2020:native-frozen",
+    "split_id": "p1-r6:primary-2020",
+    "required_operator_ids": ["FRAME.v1", "SEARCH.v1", "ABSORB.v1", "RECONSTRUCT.v1", "DETECT.v1", "DIAGNOSE.v1"]
+  },
+  "probe_runtime": {
+    "max_iterations": 1,
+    "require_verified_answer": true,
+    "evaluation_epoch_id": "p1-r6:primary-2020:probe-frozen",
+    "split_id": "p1-r6:primary-2020",
+    "required_operator_ids": ["FRAME.v1", "SEARCH.v1", "ABSORB.v1", "RECONSTRUCT.v1", "DETECT.v1", "SATURATE_BOUNDED.v3"]
+  },
+  "budget": 2,
+  "control_class": "NO_HIGH_LEVEL_REFORMULATION",
+  "unresolved_class": "UNRESOLVED",
+  "probes": {
+    "P_SEARCH_COVERAGE": "SEARCH_OR_EVIDENCE",
+    "P_REPRESENTATION_ROUNDTRIP": "REPRESENTATION_OR_INTERFACE",
+    "P_ENVIRONMENT_REPLAY": "IMPLEMENTATION_OR_ENVIRONMENT",
+    "P_MEASUREMENT_CROSSCHECK": "MEASUREMENT_OR_EVALUATOR",
+    "P_OBJECTIVE_PREDICTIVE_CHECK": "OBJECTIVE_OR_MODEL_CLASS",
+    "P_BOUNDARY_COUNTERFACTUAL": "PROBLEM_BOUNDARY"
+  },
+  "probe_observations": ["SUPPORT", "REFUTE", "INCONCLUSIVE"],
+  "active_probe_priority": [
+    "SEARCH_OR_EVIDENCE",
+    "REPRESENTATION_OR_INTERFACE",
+    "IMPLEMENTATION_OR_ENVIRONMENT",
+    "MEASUREMENT_OR_EVALUATOR",
+    "OBJECTIVE_OR_MODEL_CLASS",
+    "PROBLEM_BOUNDARY"
+  ],
+  "native_responsibility_to_p1": {
+    "EVIDENCE": "SEARCH_OR_EVIDENCE",
+    "SEARCH": "SEARCH_OR_EVIDENCE",
+    "REPRESENTATION": "REPRESENTATION_OR_INTERFACE",
+    "INTERFACE": "REPRESENTATION_OR_INTERFACE",
+    "EXECUTION": "IMPLEMENTATION_OR_ENVIRONMENT",
+    "MEASUREMENT": "MEASUREMENT_OR_EVALUATOR",
+    "EVALUATOR": "MEASUREMENT_OR_EVALUATOR",
+    "METHOD": "OBJECTIVE_OR_MODEL_CLASS",
+    "QUESTION": "PROBLEM_BOUNDARY"
+  },
+  "provider": {
+    "model_id": "p1-r6-frozen-native-provider-v1",
+    "always_consider_native_responsibility": "EVIDENCE",
+    "max_native_responsibilities": 2,
+    "cue_order": ["SEARCH", "REPRESENTATION", "EXECUTION", "MEASUREMENT", "METHOD", "QUESTION"],
+    "keywords": {
+      "SEARCH": ["sample size", "participant counts", "sparse detections", "low detection", "limited training", "missing values", "complete-case", "additional observations", "observation processes", "missing records"],
+      "REPRESENTATION": ["transformation", "coordinate", "schema", "embedding", "representation", "naming", "mapping", "data geometry"],
+      "EXECUTION": ["implementation", "software", "artifact", "machine", "precision", "rounding", "sequencing", "barcode", "umi", "error-correction", "error correction"],
+      "MEASUREMENT": ["calibration", "optical", "physiological", "metric", "measurement", "signal", "age bias", "instrument"],
+      "METHOD": ["misspecified", "model adequacy", "different model", "structural explanations", "loss", "label corruption", "mechanistic interaction", "causal-effect", "causal effect"],
+      "QUESTION": ["trial population", "real-world population", "population boundary", "open system", "closed system", "life-cycle", "life cycle", "system boundary", "downstream", "transport beyond"]
+    },
+    "fallback_alternative": "QUESTION",
+    "never_emit_p1_class_labels": true,
+    "never_receive_gold_or_pair_role": true
+  },
+  "mechanics": {
+    "SEARCH_OR_EVIDENCE": {"mechanic_id": "P1_NATIVE_SEARCH_REPAIR.v1", "kind": "EVIDENCE_OR_SEARCH_REPAIR", "write_coordinates": ["W.ACTIVE_DOMAINS"]},
+    "REPRESENTATION_OR_INTERFACE": {"mechanic_id": "P1_NATIVE_INTERFACE_REPAIR.v1", "kind": "REPRESENTATION_OR_INTERFACE_REPAIR", "write_coordinates": ["W.REPRESENTATIONS"]},
+    "IMPLEMENTATION_OR_ENVIRONMENT": {"mechanic_id": "P1_NATIVE_EXECUTION_REPAIR.v1", "kind": "EXECUTION_REPAIR", "write_coordinates": ["M.EXECUTION"]},
+    "MEASUREMENT_OR_EVALUATOR": {"mechanic_id": "P1_NATIVE_MEASUREMENT_REPAIR.v1", "kind": "MEASUREMENT_OR_EVALUATOR_REPAIR", "write_coordinates": ["W.MEASUREMENT"]},
+    "OBJECTIVE_OR_MODEL_CLASS": {"mechanic_id": "P1_NATIVE_METHOD_ESCALATION.v1", "kind": "METHOD_OR_MODEL_CLASS_NOMINATION", "write_coordinates": ["M.METHOD"]},
+    "PROBLEM_BOUNDARY": {"mechanic_id": "P1_NATIVE_BOUNDARY_REFRAME.v1", "kind": "PROBLEM_BOUNDARY_REFRAME", "write_coordinates": ["W.PROBLEM_BOUNDARY"]},
+    "NO_HIGH_LEVEL_REFORMULATION": {"mechanic_id": "P1_NATIVE_KEEP_CURRENT.v1", "kind": "KEEP_CURRENT", "write_coordinates": []}
+  },
+  "decision_rule": {
+    "episode_grs_margin": 0.10,
+    "pair_selective_margin": 0.10,
+    "class_macro_pair_margin": 0.10,
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20260820,
+    "stability_interval": 0.95,
+    "domain_or_class_noninferiority_floor": -0.10,
+    "max_false_high_level_rate": 0.05,
+    "harmful_lower_level_skip_tolerance": 0,
+    "false_resolution_of_unresolved_tolerance": 0,
+    "native_trace_or_gate_failure_tolerance": 0
+  },
+  "native_base_ablation_required": true,
+  "native_ard_must_materially_differ_from_base": true,
+  "registry_mutation_before_primary_and_replication_pass": false,
+  "self_authorization": false
+}

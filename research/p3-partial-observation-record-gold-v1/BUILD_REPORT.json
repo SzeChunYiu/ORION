@@ -1,0 +1,1092 @@
+{
+  "absence_reading_census": {
+    "by_coordinate": {
+      "assumption_ids": {
+        "case_id": "porec-2304876826442239",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "attribution_id": {
+        "case_id": "porec-8205308755908732",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "construct_ids": {
+        "case_id": "porec-1365688073589844",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "discourse_relation": {
+        "case_id": "porec-4051232386844254",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "measurement_ids": {
+        "case_id": "porec-8786056017922213",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "modality": {
+        "case_id": "porec-3558181599211322",
+        "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+        "freeze_declared_reading": "DISTINCT_VALUE",
+        "matches_freeze": true,
+        "observed_reading": "SEPARATION_WARD"
+      },
+      "polarity": {
+        "case_id": "porec-1496507659990785",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "referent_ids": {
+        "case_id": "porec-0479701076481575",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      },
+      "temporal_context_ids": {
+        "case_id": "porec-3738517772539608",
+        "compare_meaning": "COMPATIBLE",
+        "freeze_declared_reading": "AGREEMENT",
+        "matches_freeze": true,
+        "observed_reading": "MERGE_WARD"
+      }
+    },
+    "counts": {
+      "MERGE_WARD": 8,
+      "SEPARATION_WARD": 1
+    },
+    "every_cell_matches_the_freeze": true
+  },
+  "absent_value_agreement": {
+    "agrees": true,
+    "coordinates_compared": [
+      "assumption_ids",
+      "attribution_id",
+      "construct_ids",
+      "discourse_relation",
+      "measurement_ids",
+      "modality",
+      "polarity",
+      "referent_ids",
+      "temporal_context_ids"
+    ],
+    "mismatched": []
+  },
+  "atlas_id": "partial-observation-record-gold-v1",
+  "builder": "src/orion/study/p3/partial_observation_record_gold_build.py",
+  "built_n": 36,
+  "cases_hash": "345f0060561930e5bc1036fb984e25cb4fa779fb3a90546d3373607b27688d72",
+  "construction_document": "research/p3-partial-observation-record-gold-v1/CONSTRUCTION_2026-08-22.md",
+  "construction_receipts": [
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-0477957170664846",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "construct_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "construct_ids"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-0479701076481575",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "referent_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "referent_ids"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "CONTRADICTORY",
+      "a3_decisive_absence_only": "CONTRADICTORY",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-1195044643331876",
+      "compare_meaning": "CONTRADICTORY",
+      "gold": "CONTRADICTORY",
+      "gold_from_records": "CONTRADICTORY",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "polarity",
+      "relations_over_admissible_completions": [
+        "CONTRADICTORY"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-1365688073589844",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "construct_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "construct_ids"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-1377241667227488",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "modality",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "modality"
+      ],
+      "records_differ_on": "modality",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-1496507659990785",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "polarity",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "polarity"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTRADICTORY"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-2115008918498399",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "measurement_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-2149303266020833",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "discourse_relation",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "records_differ_on": "discourse_relation",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-2206199220680016",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "attribution_id",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "records_differ_on": "attribution_id",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-2304876826442239",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "assumption_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "assumption_ids"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-3034732778989223",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "discourse_relation",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "CONTEXTUAL_DIFFERENCE",
+      "a3_decisive_absence_only": "CONTEXTUAL_DIFFERENCE",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-3341153615200774",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "discourse_relation",
+      "relations_over_admissible_completions": [
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-3490877607209113",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "assumption_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "assumption_ids"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "COMPATIBLE",
+      "a3_decisive_absence_only": "COMPATIBLE",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-3504011442739986",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-3558181599211322",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "modality",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "modality"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-3738517772539608",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "temporal_context_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "temporal_context_ids"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "DISTINCT_MEASUREMENT",
+      "a3_decisive_absence_only": "DISTINCT_MEASUREMENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-3989465878214305",
+      "compare_meaning": "DISTINCT_MEASUREMENT",
+      "gold": "DISTINCT_MEASUREMENT",
+      "gold_from_records": "DISTINCT_MEASUREMENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "measurement_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_MEASUREMENT"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-4051232386844254",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "discourse_relation",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "discourse_relation"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-4912051950619242",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "attribution_id",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-4952327168405729",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "polarity",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "polarity"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-5144308143066668",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "DISTINCT_MEASUREMENT",
+      "gold_from_records": "DISTINCT_MEASUREMENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "measurement_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "records_differ_on": "measurement_ids",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_MEASUREMENT"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-5723117596764289",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "assumption_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "assumption_ids"
+      ],
+      "records_differ_on": "assumption_ids",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "CONTEXTUAL_DIFFERENCE",
+      "a3_decisive_absence_only": "CONTEXTUAL_DIFFERENCE",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-6095829192646763",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "modality",
+      "relations_over_admissible_completions": [
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "CONTEXTUAL_DIFFERENCE",
+      "a3_decisive_absence_only": "CONTEXTUAL_DIFFERENCE",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-6921304396658236",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "temporal_context_ids",
+      "relations_over_admissible_completions": [
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-7205376823032908",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_from_records": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "construct_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "construct_ids"
+      ],
+      "records_differ_on": "construct_ids",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-7386227247253357",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "modality",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "modality"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "CONTEXTUAL_DIFFERENCE",
+      "a3_decisive_absence_only": "CONTEXTUAL_DIFFERENCE",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-7587100352210981",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "assumption_ids",
+      "relations_over_admissible_completions": [
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-8205308755908732",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "attribution_id",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "attribution_id"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-8224804125770194",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "referent_ids",
+      "lost_side": "right",
+      "one_sided_absences": [
+        "referent_ids"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-8566112648894944",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": "temporal_context_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "temporal_context_ids"
+      ],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "LU_LOSS_A_HIGHER_COORDINATE_DECIDES"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "CONTEXTUAL_DIFFERENCE",
+      "a3_decisive_absence_only": "CONTEXTUAL_DIFFERENCE",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-8696765963020675",
+      "compare_meaning": "CONTEXTUAL_DIFFERENCE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "attribution_id",
+      "relations_over_admissible_completions": [
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": true,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": true,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-8786056017922213",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "COMPATIBLE",
+      "gold_from_records": "COMPATIBLE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "measurement_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "measurement_ids"
+      ],
+      "records_differ_on": null,
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "DISTINCT_MEASUREMENT"
+      ],
+      "stratum": "LA_LOSS_ON_AGREEING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-8894916757098261",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "CONTRADICTORY",
+      "gold_from_records": "CONTRADICTORY",
+      "gold_is_determinate": true,
+      "lost_coordinate": "polarity",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "polarity"
+      ],
+      "records_differ_on": "polarity",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTRADICTORY"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "DISTINCT_REFERENT",
+      "a3_decisive_absence_only": "DISTINCT_REFERENT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-9062182438259083",
+      "compare_meaning": "DISTINCT_REFERENT",
+      "gold": "DISTINCT_REFERENT",
+      "gold_from_records": "DISTINCT_REFERENT",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "referent_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_REFERENT"
+      ],
+      "stratum": "NL_NO_LOSS"
+    },
+    {
+      "a0_reproduces_gold": false,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "UNRESOLVED",
+      "a3_decisive_absence_only": "UNRESOLVED",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": false,
+      "absence_is_decisive": true,
+      "case_id": "porec-9494985444361469",
+      "compare_meaning": "COMPATIBLE",
+      "gold": "CONTEXTUAL_DIFFERENCE",
+      "gold_from_records": "CONTEXTUAL_DIFFERENCE",
+      "gold_is_determinate": true,
+      "lost_coordinate": "temporal_context_ids",
+      "lost_side": "left",
+      "one_sided_absences": [
+        "temporal_context_ids"
+      ],
+      "records_differ_on": "temporal_context_ids",
+      "relations_over_admissible_completions": [
+        "COMPATIBLE",
+        "CONTEXTUAL_DIFFERENCE"
+      ],
+      "stratum": "LD_LOSS_ON_DIFFERING_RECORDS"
+    },
+    {
+      "a0_reproduces_gold": true,
+      "a1_destroys_a_correct_answer": false,
+      "a1_observedness_asymmetric": "DISTINCT_CONSTRUCT",
+      "a3_decisive_absence_only": "DISTINCT_CONSTRUCT",
+      "a3_destroys_a_correct_answer": false,
+      "a3_reproduces_gold": true,
+      "absence_is_decisive": false,
+      "case_id": "porec-9546961020985474",
+      "compare_meaning": "DISTINCT_CONSTRUCT",
+      "gold": "DISTINCT_CONSTRUCT",
+      "gold_from_records": "DISTINCT_CONSTRUCT",
+      "gold_is_determinate": true,
+      "lost_coordinate": null,
+      "lost_side": null,
+      "one_sided_absences": [],
+      "records_differ_on": "construct_ids",
+      "relations_over_admissible_completions": [
+        "DISTINCT_CONSTRUCT"
+      ],
+      "stratum": "NL_NO_LOSS"
+    }
+  ],
+  "coordinate_balance": {
+    "balanced": true,
+    "coordinates": [
+      "referent_ids",
+      "construct_ids",
+      "measurement_ids",
+      "temporal_context_ids",
+      "attribution_id",
+      "discourse_relation",
+      "assumption_ids",
+      "polarity",
+      "modality"
+    ],
+    "missing_cells": []
+  },
+  "date": "2026-08-22",
+  "decisiveness_census": {
+    "gold_coincides_with_completion_invariance": false,
+    "n_determinate_gold_with_a_decisive_loss": 18,
+    "n_determinate_gold_with_an_undecisive_loss": 8,
+    "n_partially_observed_pairs": 26,
+    "n_unresolved_gold": 0,
+    "off_diagonal_case_ids": [
+      "porec-0479701076481575",
+      "porec-1365688073589844",
+      "porec-1377241667227488",
+      "porec-1496507659990785",
+      "porec-2149303266020833",
+      "porec-2206199220680016",
+      "porec-2304876826442239",
+      "porec-3558181599211322"
+    ]
+  },
+  "derivation_rule": "identity:frozen-source-record-relation",
+  "expected_relations": {
+    "COMPATIBLE": 10,
+    "CONTEXTUAL_DIFFERENCE": 10,
+    "CONTRADICTORY": 2,
+    "DISTINCT_CONSTRUCT": 2,
+    "DISTINCT_MEASUREMENT": 2,
+    "DISTINCT_REFERENT": 10
+  },
+  "external_validity": "The cases are synthetic: the source records are a frozen table this module emits, not an upstream expert corpus, because the upstream corpora the public-reference builder draws on are not reachable from this environment. This corpus can establish what a decisiveness-aware abstention costs when gold is anchored to the source record rather than to the projections. It cannot establish that extraction drops a coordinate on one side only at any particular rate in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "extraction_loss_is_the_only_difference": {
+    "holds_everywhere": true,
+    "n_cases": 36,
+    "offenders": []
+  },
+  "gate_note": "G9_HARM_A3 reads 'A3_decisive_absence_only destroys 0 correct answers on every intact corpus, and at least one intact corpus supplies independent evidence for that zero'. Adding a corpus to that gate can only leave it where it is or make it fail; no construction of this corpus can turn a destroyed answer into an undestroyed one. The gate's threshold is not amended, only its denominator.",
+  "gate_served": "G9_HARM_A3",
+  "harm_preview": {
+    "a1_correct_answers_destroyed": 17,
+    "a3_correct_answers_destroyed": 9,
+    "a3_destroyed_case_ids": [
+      "porec-0479701076481575",
+      "porec-1365688073589844",
+      "porec-1377241667227488",
+      "porec-1496507659990785",
+      "porec-2304876826442239",
+      "porec-3738517772539608",
+      "porec-4051232386844254",
+      "porec-8205308755908732",
+      "porec-8786056017922213"
+    ],
+    "a3_reproduces_gold_on_every_pair_it_can_fire_on": false,
+    "harm_denominator": 17,
+    "n_cases": 36,
+    "pairs_a1_destroys_and_a3_spares": 8,
+    "pairs_with_a_one_sided_absence": 26
+  },
+  "not_an_accuracy_benchmark": "This corpus is a harm-gate denominator, not an accuracy benchmark. Its gold is the relation between two fully stated source records, and on record pairs with nothing missing that relation is what compare_meaning already answers, by construction. That is what a harm measurement needs --- its question is whether a candidate rule moves a decision the current rule already gets right --- and it is what an accuracy claim must not be built on. No accuracy, false-merge, false-split or superiority number over this corpus is evidence about ORION's competence.",
+  "one_sided_absence_census": {
+    "by_coordinate": {
+      "assumption_ids": 3,
+      "attribution_id": 3,
+      "construct_ids": 3,
+      "discourse_relation": 3,
+      "measurement_ids": 3,
+      "modality": 3,
+      "polarity": 3,
+      "referent_ids": 2,
+      "temporal_context_ids": 3
+    },
+    "coordinates_never_one_sided": [],
+    "n_pairs": 36,
+    "n_pairs_with_a_one_sided_absence": 26
+  },
+  "protocol_id": "P3.partial-observation-record-gold-corpus.v1",
+  "record": "P3_PARTIAL_OBSERVATION_RECORD_GOLD_CORPUS_BUILD",
+  "rule_agreement_on_records": {
+    "agrees_everywhere": true,
+    "disagreements": 0,
+    "offenders": [],
+    "record_pairs_compared": 36
+  },
+  "schema_version": "orion.p3.partial-observation-record-gold-build-report.v1",
+  "shape_invariants": {
+    "authority_kind": [
+      "DERIVED_FROM_ALLOWED"
+    ],
+    "case_id_alpha_prefix": [
+      "porec"
+    ],
+    "case_id_hyphen_count": [
+      1
+    ],
+    "case_id_length": [
+      22
+    ],
+    "derivation_rule": [
+      "identity:frozen-source-record-relation"
+    ],
+    "predicate": [
+      "reports_quantity"
+    ],
+    "projection_id_length": [
+      28
+    ],
+    "source_record_count": [
+      1
+    ],
+    "source_span_length": [
+      78
+    ]
+  },
+  "standard_sha256": "fe56aede1c49da7346d1ec14be0d8e92b5c4029c4cf3ac5deb62b4457232e0d5",
+  "strata": {
+    "LA_LOSS_ON_AGREEING_RECORDS": 9,
+    "LD_LOSS_ON_DIFFERING_RECORDS": 9,
+    "LU_LOSS_A_HIGHER_COORDINATE_DECIDES": 8,
+    "NL_NO_LOSS": 10
+  },
+  "synthetic_case_count": 36,
+  "why_this_is_not_the_criterion_a3_decides_by": "A3_decisive_absence_only abstains where the admissible completions of a one-sided absence disagree about the relation. This corpus's gold never asks that question: relation_from_records is defined only on records that state every coordinate and raises on anything else, so there is no completion for it to quantify over. The two therefore disagree wherever the records determine a relation that the projections do not, which is the LA and LD strata, and that disagreement is what makes the harm number a measurement rather than a restatement. If a later edit removed the strata on which they disagree, the corpus's gold would coincide with A3's rule wherever A3 can fire and the corpus would be circular again; verify() refuses to emit such a corpus and the probe withholds the evidence of one."
+}

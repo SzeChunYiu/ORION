@@ -1,0 +1,32 @@
+{
+  "schema_version": "CrossDomainTransferPanel.v1",
+  "frozen_before_runner": true,
+  "candidate_visible_gold": false,
+  "generator": {
+    "families": ["scoped_repair", "coverage_stop", "semantic_transport", "noncomp_authority", "measurement_redesign"],
+    "domains": ["software", "retrieval", "semantics", "authority", "measurement"],
+    "per_family_case_types": ["positive", "positive", "positive", "near_miss", "near_miss", "negative", "negative", "partial"],
+    "target_rotation": "target_domain = domains[(family_index + case_index + 1) mod 5]",
+    "surface_similarity": "true for positive and near_miss; additionally true for the first negative case in each family",
+    "gold_action": {
+      "positive": "APPLY_FULL",
+      "near_miss": "REJECT",
+      "negative": "NO_TRANSFER",
+      "partial": "APPLY_PARTIAL"
+    }
+  },
+  "public_fields": [
+    "case_id",
+    "family_token",
+    "source_domain",
+    "target_domain",
+    "surface_similarity",
+    "source_signature",
+    "target_signature",
+    "available_submechanic",
+    "abstract_insight",
+    "mechanic_contract"
+  ],
+  "protected_fields": ["case_type", "gold_action"],
+  "authority": "EVALUATION_ONLY"
+}

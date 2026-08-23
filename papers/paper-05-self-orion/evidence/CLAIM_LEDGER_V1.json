@@ -3,6 +3,7 @@
   "paper_id": "P5",
   "issue": 102,
   "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. Merged successor failure/atom/Jump results are bounded negative/subsumption evidence only. H1–H4 stay CANNOT_CHECK.",
+  "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. H1–H4 stay CANNOT_CHECK. Claim sentences were rebound on 2026-08-22 to the wording of the house-style manuscript rewrite: no number, support type, status or supporting artifact moved, only the prose each claim quotes.",
   "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
   "empirical_authority": "CANNOT_CHECK",
   "peer_review_ready": false,
@@ -45,7 +46,7 @@
     {
       "claim_id": "P5-C02",
       "region": "abstract",
-      "sentence": "Governed self-improvement on fresh development tasks remains externally CANNOT_CHECK.",
+      "sentence": "Whether governed method evolution improves fresh development outcomes remains undetermined: the prospective campaign that would decide it has not been executed, and an outcome that remains undetermined is reported separately from an outcome determined to be false.",
       "support_type": "EXTERNAL_NOT_EXECUTED",
       "status": "SUPPORTED",
       "artifact": "protocol/PROTOCOL_V1.json execution_bindings UNBOUND"
@@ -69,7 +70,7 @@
     {
       "claim_id": "P5-R01",
       "region": "results",
-      "sentence": "Raw-record accuracy is 21/24 (Wilson 95% interval reported in Table P5-3).",
+      "sentence": "Accuracy is 21/24 = 0.875, with the Wilson 95% interval given in Table P5-3.",
       "support_type": "DESCRIPTIVE_ONLY",
       "status": "SUPPORTED",
       "artifact": "evidence/tables/P5-3_cause_confusion.json"
@@ -77,7 +78,7 @@
     {
       "claim_id": "P5-R02",
       "region": "results",
-      "sentence": "P5-HC-002, P5-HC-012 and P5-HC-018 remain incorrect attributions.",
+      "sentence": "Three residual errors are retained and are not relabeled as successes: P5-HC-002 (retrieval miss, attributed to a representation gap), P5-HC-012 (environment, dependency or tool failure, attributed to an implementation bug) and P5-HC-018 (representation gap, attributed to a method-basis gap).",
       "support_type": "DESCRIPTIVE_ONLY",
       "status": "SUPPORTED",
       "artifact": "evidence/tables/P5-ATTRIBUTION_RESIDUAL_ERRORS.json"
@@ -85,7 +86,7 @@
     {
       "claim_id": "P5-R03",
       "region": "results",
-      "sentence": "P5-2, P5-4, P5-5, P5-6, P5-7 and Tables P5-T2/P5-T3 are CANNOT_CHECK.",
+      "sentence": "Each of the seven tables awaiting a campaign names the measurement it would carry and leaves its result undetermined; no number in them is imputed from the diagnostic accuracy.",
       "support_type": "EXTERNAL_NOT_EXECUTED",
       "status": "SUPPORTED",
       "artifact": "evidence/tables/INDEX.json"
@@ -93,7 +94,7 @@
     {
       "claim_id": "P5-H01",
       "region": "conclusion",
-      "sentence": "H1 transferable protected fresh-task improvement versus matched self-edit/self-evolution baselines remains CANNOT_CHECK.",
+      "sentence": "Until a campaign executes under complete protected identities and independent verification, transferable protected fresh-task improvement over matched self-edit and self-evolution baselines remains undetermined.",
       "support_type": "EXTERNAL_NOT_EXECUTED",
       "status": "SUPPORTED",
       "artifact": "protocol/PROTOCOL_V1.json"
@@ -101,7 +102,7 @@
     {
       "claim_id": "P5-X01",
       "region": "limitations",
-      "sentence": "The 21/24 archive is single-model, single-run, n=24, and is not a matched baseline/ablation campaign.",
+      "sentence": "The archive scores 21/24 on hidden-cause labels; that quantity is a single-model, single-run descriptive accuracy with a wide Wilson interval, and n=24 with one seed cannot support the predeclared five-percentage-point fresh-improvement target or the two-percentage-point harm guard.",
       "support_type": "HONEST_BOUNDARY",
       "status": "SUPPORTED",
       "artifact": "manuscript/sections/10-limitations.tex"

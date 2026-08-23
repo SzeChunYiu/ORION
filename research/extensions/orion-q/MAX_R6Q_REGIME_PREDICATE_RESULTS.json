@@ -1,0 +1,1138 @@
+{
+  "authority": "MAX_R6Q_REGIME_PREDICATE_EXACT__TWO_TRADE_CHARACTERIZATION_ON_VERIFIED_DOMAINS__NOT_R6",
+  "chemistry_sources_read_via_frozen_batch_only": true,
+  "claim_boundary": {
+    "covers": "Classification of frozen-grammar instances (three ordered blocks of target Pauli pairs) into donor-exact (C_DP == C_R6L) versus the R6N anchor-splitting and R6O Tag-borrow trade regimes, by a structural predicate over the targets with no DP call: profitability tests for the two known elementary trades (the D+ split family and the frozen weight-one-Tag borrow family B(t)).",
+    "does_not_cover": "Other objectives, other grammars (including the R6I rank-2 grammar), rotation-count trade-offs, Tag ranks above the enumerated families, fresh subject data, or any claim of donor or R6 novelty credit.",
+    "machine_evidenced_only": "Any exactness claim is machine-evidenced only on the stated finite domains (the 9261-instance structured-n2 training panel, the two 240-instance seeded random panels at n=2..3, and the 30 recorded chemistry matchings). It is NOT a theorem for all n or all targets; the borrow family is a frozen restricted enlargement (weight-1 Tag, one weight-2 central branch, home qubits inside the block's own target support), not a proof of DP-mechanism completeness."
+  },
+  "coverage_recall_on_donor_exact": {
+    "chemistry": 1.0,
+    "heldout_20260821": 1.0,
+    "heldout_20260822": 1.0,
+    "training": 1.0
+  },
+  "donor_novelty_credit": false,
+  "gates": {
+    "chemistry_all_predicted_donor_exact": true,
+    "chemistry_all_truth_donor_exact": true,
+    "chemistry_receipt_bound": true,
+    "f3_table_binding_exact": true,
+    "h1_receipt_binding_exact": true,
+    "known_regime_instances_all_excluded_by_predicate": true,
+    "no_new_subject_data": true,
+    "sandwich_and_borrow_soundness_asserted": true,
+    "selected_predicate_zero_error_everywhere": true,
+    "training_receipt_binding": true
+  },
+  "heavy_subject_dp_rerun": false,
+  "novelty_credit": false,
+  "outcome": "EXACT_PREDICATE_FOUND",
+  "panels": {
+    "chemistry": {
+      "confusion": {
+        "P0": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0,
+          "tp": 30
+        },
+        "P1": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0,
+          "tp": 30
+        },
+        "P2": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0,
+          "tp": 30
+        }
+      },
+      "donor_exact_count": 30,
+      "identity_two_trade_count": 30,
+      "instances": 30,
+      "regime_borrow_count": 0,
+      "regime_split_count": 0,
+      "rows": {
+        "H4": [
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                18
+              ],
+              [
+                22,
+                25
+              ],
+              [
+                27,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                18
+              ],
+              [
+                22,
+                27
+              ],
+              [
+                25,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                18
+              ],
+              [
+                22,
+                31
+              ],
+              [
+                25,
+                27
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                22
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                27,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                22
+              ],
+              [
+                18,
+                27
+              ],
+              [
+                25,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                22
+              ],
+              [
+                18,
+                31
+              ],
+              [
+                25,
+                27
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                25
+              ],
+              [
+                18,
+                22
+              ],
+              [
+                27,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 2,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                25
+              ],
+              [
+                18,
+                27
+              ],
+              [
+                22,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "Gsplit": 0,
+            "a2max": 3,
+            "a3": 2,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                25
+              ],
+              [
+                18,
+                31
+              ],
+              [
+                22,
+                27
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                27
+              ],
+              [
+                18,
+                22
+              ],
+              [
+                25,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "Gsplit": 0,
+            "a2max": 3,
+            "a3": 2,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                27
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                22,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "Gsplit": 0,
+            "a2max": 3,
+            "a3": 2,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                27
+              ],
+              [
+                18,
+                31
+              ],
+              [
+                22,
+                25
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 11,
+            "C_Dplus": 11,
+            "C_R6L": 11,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                31
+              ],
+              [
+                18,
+                22
+              ],
+              [
+                25,
+                27
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "Gsplit": 0,
+            "a2max": 3,
+            "a3": 2,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                31
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                22,
+                27
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 8,
+            "C_Dplus": 8,
+            "C_R6L": 8,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 2,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                12,
+                31
+              ],
+              [
+                18,
+                27
+              ],
+              [
+                22,
+                25
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          }
+        ],
+        "N2": [
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                7
+              ],
+              [
+                11,
+                24
+              ],
+              [
+                31,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                7
+              ],
+              [
+                11,
+                31
+              ],
+              [
+                24,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                7
+              ],
+              [
+                11,
+                32
+              ],
+              [
+                24,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                11
+              ],
+              [
+                7,
+                24
+              ],
+              [
+                31,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                11
+              ],
+              [
+                7,
+                31
+              ],
+              [
+                24,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                11
+              ],
+              [
+                7,
+                32
+              ],
+              [
+                24,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                24
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                31,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "Gsplit": 0,
+            "a2max": 3,
+            "a3": 1,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                24
+              ],
+              [
+                7,
+                31
+              ],
+              [
+                11,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 1,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                24
+              ],
+              [
+                7,
+                32
+              ],
+              [
+                11,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 11,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                31
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                24,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 1,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                31
+              ],
+              [
+                7,
+                24
+              ],
+              [
+                11,
+                32
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 1,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                31
+              ],
+              [
+                7,
+                32
+              ],
+              [
+                11,
+                24
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 10,
+            "C_Dplus": 10,
+            "C_R6L": 10,
+            "Gsplit": 0,
+            "a2max": 1,
+            "a3": 0,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                32
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                24,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "Gsplit": 0,
+            "a2max": 2,
+            "a3": 1,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                32
+              ],
+              [
+                7,
+                24
+              ],
+              [
+                11,
+                31
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          },
+          {
+            "C_DP": 9,
+            "C_Dplus": 9,
+            "C_R6L": 9,
+            "Gsplit": 0,
+            "a2max": 3,
+            "a3": 1,
+            "donor_exact": true,
+            "f_B": 10,
+            "identity_two_trade": true,
+            "matching": [
+              [
+                0,
+                32
+              ],
+              [
+                7,
+                31
+              ],
+              [
+                11,
+                24
+              ]
+            ],
+            "regime_borrow": false,
+            "regime_split": false,
+            "s1": 1,
+            "s2": 0,
+            "s3": 0
+          }
+        ]
+      },
+      "subjects": {
+        "H4": {
+          "matchings": 15,
+          "n_qubits": 8,
+          "source_blob_verified": true
+        },
+        "N2": {
+          "matchings": 15,
+          "n_qubits": 12,
+          "source_blob_verified": true
+        }
+      }
+    },
+    "heldout_random_20260821": {
+      "confusion": {
+        "P0": {
+          "errors": 66,
+          "fn": 0,
+          "fp": 66,
+          "tn": 34,
+          "tp": 140
+        },
+        "P1": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 100,
+          "tp": 140
+        },
+        "P2": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 100,
+          "tp": 140
+        }
+      },
+      "donor_exact_count": 140,
+      "identity_two_trade_count": 240,
+      "instances": 240,
+      "misclassified_selected_verbatim": [],
+      "receipt_binding": {
+        "bound_exact": true,
+        "mismatches": [],
+        "receipt_equal_count": 167,
+        "rows_bound": 240
+      },
+      "regime_borrow_count": 73,
+      "regime_split_count": 27
+    },
+    "heldout_random_20260822": {
+      "confusion": {
+        "P0": {
+          "errors": 49,
+          "fn": 0,
+          "fp": 49,
+          "tn": 38,
+          "tp": 153
+        },
+        "P1": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 87,
+          "tp": 153
+        },
+        "P2": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 87,
+          "tp": 153
+        }
+      },
+      "donor_exact_count": 153,
+      "identity_two_trade_count": 240,
+      "instances": 240,
+      "misclassified_selected_verbatim": [],
+      "regime_borrow_count": 61,
+      "regime_split_count": 26
+    },
+    "training_structured_n2": {
+      "confusion": {
+        "P0": {
+          "errors": 486,
+          "fn": 0,
+          "fp": 486,
+          "tn": 2322,
+          "tp": 6453
+        },
+        "P1": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 2808,
+          "tp": 6453
+        },
+        "P2": {
+          "errors": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 2808,
+          "tp": 6453
+        }
+      },
+      "donor_exact_count": 6453,
+      "identity_two_trade_count": 9261,
+      "instances": 9261,
+      "misclassified_selected_verbatim": [],
+      "receipt_binding": {
+        "equal_count_bound": true,
+        "receipt_equal_count": 8775,
+        "recomputed_equal_count": 8775,
+        "verbatim_rows_bound": true
+      },
+      "regime_borrow_count": 486,
+      "regime_split_count": 2322
+    }
+  },
+  "predicate": {
+    "p2_fallback_fit": {
+      "literals": [
+        "Gsplit_eq_0",
+        "fB_ge_CR6L"
+      ],
+      "training_errors": 0
+    },
+    "selected": "P1",
+    "statement_formal": "P(t) := [C_R6L(t) == C_Dplus(t)] AND [f_B(t) >= C_R6L(t)], with C_R6L, C_Dplus the frozen closed-form family minima and f_B the frozen borrow-family minimum defined in the protocol; all three are bounded explicit minimizations over target-derived letter choices; no DP is invoked.",
+    "statement_prose": "P(targets) holds iff neither known trade is profitable: (i) Gsplit = C_R6L - C_D+ = 0, i.e. allowing the three weight-one frames to anchor at different qubits with the unique minimum-weight spread Tag does not beat the common weight-one-Tag donor family; and (ii) f_B >= C_R6L, i.e. no member of the frozen borrow family -- Tag fixed at weight one (v at q_t), some block un-anchored with a weight-two central branch frame l@q_t * m1@q_h (q_h in its own target support, l anticommuting with v) purchasing the label constraint at the Tag qubit for +2 support while re-aligning the factored Restore triple -- costs less than the donor family."
+  },
+  "protocol": "MAX_R6Q_REGIME_PREDICATE_PROTOCOL",
+  "r6_authority": false,
+  "random_seeds": {
+    "heldout_1": 20260821,
+    "heldout_2": 20260822
+  },
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:DONOR_EXACTNESS_DECIDED_BY_STRUCTURAL_NONPROFITABILITY_OF_SPLIT_AND_BORROW_TRADES_ON_ALL_VERIFIED_FINITE_DOMAINS",
+  "schema": "ORIONQ.MAXR6Q.RegimePredicate.v1",
+  "scope": "STRUCTURAL_PREDICATE_INDUCTION_OVER_FROZEN_R6M_GRAMMAR_REGIMES__EXPLANATORY_CLASSIFICATION__NOT_R6",
+  "selected_confusion": {
+    "chemistry": {
+      "errors": 0,
+      "fn": 0,
+      "fp": 0,
+      "tn": 0,
+      "tp": 30
+    },
+    "heldout_20260821": {
+      "errors": 0,
+      "fn": 0,
+      "fp": 0,
+      "tn": 100,
+      "tp": 140
+    },
+    "heldout_20260822": {
+      "errors": 0,
+      "fn": 0,
+      "fp": 0,
+      "tn": 87,
+      "tp": 153
+    },
+    "training": {
+      "errors": 0,
+      "fn": 0,
+      "fp": 0,
+      "tn": 2808,
+      "tp": 6453
+    }
+  }
+}

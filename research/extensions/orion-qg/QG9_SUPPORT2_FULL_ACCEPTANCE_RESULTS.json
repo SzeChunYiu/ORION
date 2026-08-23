@@ -1,0 +1,52 @@
+{
+  "schema": "ORION.QG.QG9.Support2CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#762",
+  "base_revision": "4d70700ba23a8276d4610203124fc178f3929a58",
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED",
+  "source_result_digest": "7b74b8e687f2d07cc9b92bb89a8827d61dc2b0aa317c55d5e92117724c73e452",
+  "support_bound": 2,
+  "parent_v3": {
+    "terminal": "QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED",
+    "support_bound": 3,
+    "both_accept": true,
+    "support3_broad_type_cases": 612,
+    "support3_broad_unsafe": 21
+  },
+  "support3_full_acceptance": {
+    "qg1_irreducible_descriptor_count": 252,
+    "v2_survivor_descriptor_count": 180,
+    "v3_action_profile_type_cases": 612,
+    "v3_broad_unsafe_type_cases": 21,
+    "full_accepted_type_cases": 300,
+    "full_accepted_safe_type_cases": 300,
+    "full_accepted_unsafe_type_cases": 0
+  },
+  "support2_boundary_control": {
+    "qg1_irreducible_descriptor_count": 72,
+    "v2_survivor_descriptor_count": 72,
+    "v3_action_profile_type_cases": 144,
+    "v3_broad_unsafe_type_cases": 93,
+    "full_accepted_type_cases": 72,
+    "full_accepted_safe_type_cases": 36,
+    "full_accepted_unsafe_type_cases": 36,
+    "interpretation": "Nonempty accepted method obstruction under the current relabel grammar. This blocks support<=1 from this proof stack but is not support-2 tightness evidence."
+  },
+  "generic_verification": {
+    "decision": "ACCEPT",
+    "support3_accepted_type_cases": 300,
+    "support3_accepted_unsafe": 0,
+    "support2_accepted_type_cases": 72,
+    "support2_accepted_unsafe": 36
+  },
+  "native_verification": {
+    "decision": "ACCEPT_SUPPORT2",
+    "scope": "R6I_UNIT_OBJECTIVE_ONLY",
+    "support1_authority": false,
+    "tightness_authority": false
+  },
+  "support1_claim": false,
+  "tightness_claim": false,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

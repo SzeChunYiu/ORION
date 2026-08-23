@@ -1,0 +1,292 @@
+{
+  "instances": [
+    {
+      "D_k": {
+        "1": 3,
+        "2": 5,
+        "3": 7
+      },
+      "eta_T": {
+        "2": 4,
+        "3": 3,
+        "4": 3,
+        "5": 3,
+        "6": 3
+      },
+      "group": "C_2^2",
+      "steps": [
+        {
+          "actual_D_kplus1": 5,
+          "best_T": 2,
+          "classical_bound": 6,
+          "improves_classical": true,
+          "k": 1,
+          "lemmaB_bound": 5,
+          "tight": true
+        },
+        {
+          "actual_D_kplus1": 7,
+          "best_T": 2,
+          "classical_bound": 8,
+          "improves_classical": true,
+          "k": 2,
+          "lemmaB_bound": 7,
+          "tight": true
+        }
+      ]
+    },
+    {
+      "D_k": {
+        "1": 4,
+        "2": 7,
+        "3": 9
+      },
+      "eta_T": {
+        "2": 8,
+        "3": 5,
+        "4": 4,
+        "5": 4,
+        "6": 4,
+        "7": 4
+      },
+      "group": "C_2^3",
+      "steps": [
+        {
+          "actual_D_kplus1": 7,
+          "best_T": 3,
+          "classical_bound": 8,
+          "improves_classical": true,
+          "k": 1,
+          "lemmaB_bound": 7,
+          "tight": true
+        },
+        {
+          "actual_D_kplus1": 9,
+          "best_T": 2,
+          "classical_bound": 11,
+          "improves_classical": true,
+          "k": 2,
+          "lemmaB_bound": 9,
+          "tight": true
+        }
+      ]
+    },
+    {
+      "D_k": {
+        "1": 5,
+        "2": 8,
+        "3": 11
+      },
+      "eta_T": {
+        "2": 16,
+        "3": 9,
+        "4": 6,
+        "5": 5,
+        "6": 5,
+        "7": 5,
+        "8": 5
+      },
+      "group": "C_2^4",
+      "steps": [
+        {
+          "actual_D_kplus1": 8,
+          "best_T": 3,
+          "classical_bound": 10,
+          "improves_classical": true,
+          "k": 1,
+          "lemmaB_bound": 9,
+          "tight": false
+        },
+        {
+          "actual_D_kplus1": 11,
+          "best_T": 3,
+          "classical_bound": 13,
+          "improves_classical": true,
+          "k": 2,
+          "lemmaB_bound": 11,
+          "tight": true
+        }
+      ]
+    },
+    {
+      "D_k": {
+        "1": 5,
+        "2": 8,
+        "3": 11
+      },
+      "eta_T": {
+        "3": 7,
+        "4": 6,
+        "5": 5,
+        "6": 5,
+        "7": 5,
+        "8": 5
+      },
+      "group": "C_3^2",
+      "steps": [
+        {
+          "actual_D_kplus1": 8,
+          "best_T": 3,
+          "classical_bound": 10,
+          "improves_classical": true,
+          "k": 1,
+          "lemmaB_bound": 8,
+          "tight": true
+        },
+        {
+          "actual_D_kplus1": 11,
+          "best_T": 3,
+          "classical_bound": 13,
+          "improves_classical": true,
+          "k": 2,
+          "lemmaB_bound": 11,
+          "tight": true
+        }
+      ]
+    },
+    {
+      "D_k": {
+        "1": 9,
+        "2": 14
+      },
+      "eta_T": {
+        "10": 9,
+        "11": 9,
+        "12": 9,
+        "5": 13,
+        "6": 12,
+        "7": 11,
+        "8": 10,
+        "9": 9
+      },
+      "group": "C_5^2",
+      "steps": [
+        {
+          "actual_D_kplus1": 14,
+          "best_T": 5,
+          "classical_bound": 18,
+          "improves_classical": true,
+          "k": 1,
+          "lemmaB_bound": 14,
+          "tight": true
+        }
+      ]
+    },
+    {
+      "D_k": {
+        "1": 13,
+        "2": 20
+      },
+      "eta_T": {
+        "10": 15,
+        "11": 15,
+        "12": 15,
+        "6": 24,
+        "7": 19,
+        "8": 18,
+        "9": 15
+      },
+      "eta_T_source": "research/orion-rg/x1f0_short_zero_sum_spectrum.c (complete searches)",
+      "group": "C_5^3",
+      "steps": [
+        {
+          "actual_D_kplus1": 20,
+          "best_T": 7,
+          "classical_bound": 26,
+          "improves_classical": true,
+          "k": 1,
+          "lemmaB_bound": 20,
+          "tight": true
+        },
+        {
+          "actual_D_kplus1": null,
+          "best_T": 6,
+          "classical_bound": 33,
+          "improves_classical": true,
+          "k": 2,
+          "lemmaB_bound": 26,
+          "note": "D_3(C_5^3) open in [25,26]",
+          "tight": null
+        }
+      ]
+    }
+  ],
+  "instrument": "research/orion-rg/x1f0_general_dk_and_fT.c",
+  "not_checked": {
+    "explicitly_not": "checked and fine",
+    "groups": [
+      "C_2^2",
+      "C_2^3",
+      "C_3^2"
+    ],
+    "reason": "the D_k enumerator carries no search bound; all three runs were killed without returning",
+    "status": "CANNOT_CHECK_RESOURCE_BOUND",
+    "step": "k=3 -> k=4"
+  },
+  "prior_art_audit": {
+    "bound_is_published": "Freeze-Schmid 2010 Prop 3.1(3), stronger form (eta_l - 1)",
+    "document": "development/orion-rg-davenport/X1_PRIOR_ART_AUDIT_V1.md",
+    "elementary_2_group_rows": "replication of known values, instrument validation only"
+  },
+  "rank_le_2_control_recomputed": {
+    "agreement": true,
+    "f_5_C5sq": 12,
+    "f_6_C5sq": 11,
+    "f_7_C5sq": 10,
+    "first_producer": "throwaway Python helper with a witness-record bug (size unaffected)",
+    "recomputed_with": "research/orion-rg/x1f0_general_dk_and_fT.c"
+  },
+  "schema": "ORION.RG.X1F0.LemmaBGenerality.v1",
+  "source_result_digest": "53ee304715664402ddb86d8b8b0225fde6b8a7782418c2caee1fe35dffbe268a",
+  "summary": {
+    "decided_steps": 10,
+    "gaps": [
+      {
+        "actual": 8,
+        "group": "C_2^4",
+        "k": 1,
+        "lemmaB_bound": 9
+      }
+    ],
+    "improves_classical": 10,
+    "tight": 9
+  },
+  "validation_against_published_values": {
+    "C_2^2": [
+      3,
+      5,
+      7
+    ],
+    "C_2^3": [
+      4,
+      7,
+      9
+    ],
+    "C_2^4_D2": 8,
+    "C_3^3_D1_published_7": 7,
+    "C_3^3_D2_published_11": 11,
+    "no_known_value_contradicted": true,
+    "rank2_formula_D_k(C_m+C_n)=m+kn-1": "reproduced on every computed entry",
+    "why_C_3^3_matters": "elementary p-group, p odd, rank 3 -- the same structural case as C_5^3, and the regime where D_k = D_0 + k*exp is known to fail"
+  },
+  "validation_control": {
+    "known_rank2_formula": "D_k(C_n^2) = (k+1)n - 1",
+    "reproduced": {
+      "C_2^2": [
+        3,
+        5,
+        7
+      ],
+      "C_3^2": [
+        5,
+        8,
+        11
+      ],
+      "C_5^2": [
+        9,
+        14
+      ]
+    },
+    "verdict": "instrument reproduces the known rank-2 values on every computed entry"
+  }
+}

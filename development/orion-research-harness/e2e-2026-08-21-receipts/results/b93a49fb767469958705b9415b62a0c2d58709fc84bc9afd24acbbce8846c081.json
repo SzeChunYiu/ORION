@@ -1,0 +1,14 @@
+{
+  "completed_at": "2026-08-21T06:17:52.719804+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "content": "{\"contribution_id\": \"contrib:cap-kinds-source\", \"text\": \"The orion-research-harness exposes eight implemented capability kinds. Three are broker-mediated host capabilities validated in broker.py: LLM_COMPLETE (string content, optional model_id/response_id), WEB_SEARCH (items with non-empty content and source_uri), VERIFY_EVIDENCE (boolean passed; a pass requires at least one certificate id). Five are local kinds in local_tools.py: FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. There is no CapabilityKind enum; kinds are strings.\", \"assimilation\": \"COMPLEMENTARY_FACET\", \"discovered_domain_ids\": [], \"representation_ids\": [], \"contradicts_claim_ids\": [], \"related_claim_ids\": [], \"context_ids\": [], \"referent_bindings\": [], \"representation_mappings\": [], \"assumption_ids\": []}",
+    "model_id": "claude-code-host"
+  },
+  "request_digest": "74d6ed14f4419d25eb716d9bbe4fa4255786214df0b9352ec01bcb68243ccdeb",
+  "request_id": "hostreq:b8ba9b9501f0cae1d87492360dc8eb0eb9d22282f4a15c382cfcd627a768dea7",
+  "result_digest": "20252b071168c8f1bb894bc6af876bb4cc40d26efa5dd8c2e4b257678da566e2",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

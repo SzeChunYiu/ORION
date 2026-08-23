@@ -1,0 +1,36 @@
+{
+  "schema_version": "CrossDomainTransferClosureResult.v1",
+  "date": "2026-08-19",
+  "freeze_subject": "7b59c2ef5e12e5940c6542e69b85dcbc22f40334",
+  "case_count": 40,
+  "domain_count": 5,
+  "metrics": {
+    "NO_TRANSFER": {"correct": 10, "negative_transfer": 0, "positive_full_correct": 0, "partial_correct": 0, "worst_domain_correct": 2},
+    "RAW_TRAJECTORY": {"correct": 20, "negative_transfer": 15, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 4},
+    "SUMMARY_MEMORY": {"correct": 25, "negative_transfer": 10, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 5},
+    "ABSTRACT_INSIGHT": {"correct": 25, "negative_transfer": 10, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 5},
+    "SKILL_INSTRUCTION": {"correct": 25, "negative_transfer": 10, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 5},
+    "SURFACE_SIMILARITY": {"correct": 20, "negative_transfer": 15, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 4},
+    "ABSTRACT_INSIGHT_SIGNATURE": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8},
+    "MECHANIC_CONTRACT_RECEIPT": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8},
+    "ORACLE": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8}
+  },
+  "load_bearing_comparison": {
+    "strong_parent": "ABSTRACT_INSIGHT_SIGNATURE",
+    "orion_arm": "MECHANIC_CONTRACT_RECEIPT",
+    "relation": "EXACT_TIE",
+    "incremental_contract_value": 0,
+    "negative_transfer_difference": 0
+  },
+  "independent_reconstruction": {
+    "implementation": "src/orion/transfer/scientific/closure_independent.py",
+    "does_not_import_main_policy_or_scorer": true,
+    "expected_metrics": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8},
+    "state_if_tests_green": "PASS"
+  },
+  "issue_286_candidate_terminal": "ABSTRACTION_ONLY",
+  "scientific_interpretation": "High-level transferable abstraction plus explicit source/target signature compatibility is sufficient on the frozen held-out panel. The richer mechanic-contract representation is useful for engineering provenance/authority bookkeeping but adds no scientific transfer accuracy or negative-transfer benefit over the matched abstract parent.",
+  "positive_transfer_novelty_claim": false,
+  "grants_scientific_authority": false,
+  "grants_issue_closure_authority": false
+}

@@ -3,19 +3,19 @@ name: p9-p10-publication-closure
 on:
   pull_request:
     paths:
-      - 'papers/candidates/orion-learning-machine/**'
-      - 'papers/candidates/paper-09-executable-research-core/**'
-      - 'papers/candidates/paper-10-content-bound-math-evaluation/**'
-      - 'papers/candidates/paper-08-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
+      - 'papers/orion-learning-machine/**'
+      - 'papers/paper-xx-executable-research-core/**'
+      - 'papers/paper-xx-content-bound-math-evaluation/**'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
       - 'papers/candidates/P6_P10_ISSUE_RECONCILIATION_2026-08-18.md'
       - '.github/workflows/p9-p10-publication-closure.yml'
   push:
     branches: [main]
     paths:
-      - 'papers/candidates/orion-learning-machine/**'
-      - 'papers/candidates/paper-09-executable-research-core/**'
-      - 'papers/candidates/paper-10-content-bound-math-evaluation/**'
-      - 'papers/candidates/paper-08-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
+      - 'papers/orion-learning-machine/**'
+      - 'papers/paper-xx-executable-research-core/**'
+      - 'papers/paper-xx-content-bound-math-evaluation/**'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
       - 'papers/candidates/P6_P10_ISSUE_RECONCILIATION_2026-08-18.md'
       - '.github/workflows/p9-p10-publication-closure.yml'
 
@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -42,18 +44,18 @@ jobs:
           sympy==1.14.0
       - name: Shared framework hostile tests
         env:
-          PYTHONPATH: papers/candidates/orion-learning-machine/framework
+          PYTHONPATH: papers/orion-learning-machine/framework
         run: >-
           pytest -q
-          papers/candidates/orion-learning-machine/framework/tests
+          papers/orion-learning-machine/framework/tests
       - name: P9 public-source and merged-evidence gates
         run: |
-          pytest -q papers/candidates/paper-09-executable-research-core/benchmark/test_aslib_v1.py
-          python papers/candidates/paper-09-executable-research-core/check_merged_ready.py
+          pytest -q papers/paper-xx-executable-research-core/benchmark/test_aslib_v1.py
+          python papers/paper-xx-executable-research-core/check_merged_ready.py
       - name: P10 corpus, corrected-result and technical-note gates
         run: |
-          python papers/candidates/paper-10-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
-          pytest -q papers/candidates/paper-10-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
-          python papers/candidates/paper-10-content-bound-math-evaluation/check_technical_note_ready.py
-      - name: Current bounded publication manifest
-        run: papers/candidates/orion-learning-machine/VERIFY_LOCAL_CLOSURE.sh
+          python papers/paper-xx-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
+          pytest -q papers/paper-xx-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
+          python papers/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
+      - name: Current bounded publication manifest plus P10 review overlay
+        run: bash papers/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh

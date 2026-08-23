@@ -1,0 +1,115 @@
+{
+  "schema_version": "orion.p2_u.baseline-census.v1",
+  "date": "2026-08-21",
+  "parent_issue": 650,
+  "base_commit": "afe7994bd5e362b2e8d40482f2dde9689e6ef708",
+  "purpose": "Freeze the current deep-research donor, benchmark, and strongest-runnable-system census before any P2-U naturalistic protected outcome. This removes post-outcome baseline-shopping freedom but does not itself complete the P2-U protocol.",
+  "protected_outcome_state": {
+    "p2_u_naturalistic_protected_outcome_seen": false,
+    "historical_p2_external_cannot_check_evidence_exists": true,
+    "narrow_p2_wide_v3_is_a_separate_campaign": true,
+    "narrow_p2_wide_v3_result_must_not_change_this_census": true
+  },
+  "comparison_policy": {
+    "primary_causal_comparator": "A same-host, same-retrieval, same-source-access, same-total-budget donor-complete controller. It must receive all frozen donor mechanics that can be instantiated without privileged gold, including evidence-aware completion, retrieval novelty/coverage control, dependency-guided context sharing, coverage estimation, contradiction handling, route/task accounting, and charged state compilation/cache costs.",
+    "system_level_contemporaneous_comparators": "Strong current end-to-end deep-research systems are required as external sanity baselines where runnable, but because model training/backbones may differ they cannot replace the matched-host donor-complete comparator for causal attribution.",
+    "budget_rule": "Search calls, retrieved bytes/tokens, model tokens, wall time, external API cost, verifier/evaluator calls used at decision time, state compilation, indexing, caching, and recovery are all charged to the same predeclared task budget. Gold-only evaluator work is outside candidate/comparator budgets and unavailable until capture freezes.",
+    "unavailable_donor_rule": "A donor mechanic may not be silently dropped because its original implementation is unavailable. Before protected outcomes either instantiate an outcome-blind functional analogue under the matched host and freeze it, or record the missing implementation as a protocol limitation/CANNOT_CHECK condition for the affected claim.",
+    "post_outcome_change_rule": "No baseline, donor, benchmark version, budget, metric, threshold, source universe, or availability exception may be changed after a protected P2-U outcome. A scientifically necessary change requires a separately versioned successor frozen before its outcome."
+  },
+  "donor_mechanics": [
+    {
+      "name": "HALT",
+      "primary_source": "arXiv:2608.02009v2",
+      "role": "claim-evidence coverage and verification-aware stopping",
+      "official_repository": "Noverse0/HALT",
+      "repository_revision": "2f905b57aaaac3e489ef0554ce6ce978ed72178d",
+      "availability_at_freeze": "PUBLIC_CODE",
+      "integrity_note": "The frozen repository revision is after the 2026-08-04 pre-camera-ready result-integrity repair that corrected valid-row denominators and removed skipped/no-claim rows from stop-loop statistics. Earlier result-bearing revisions are not interchangeable without an explicit equivalence audit.",
+      "ownership": "DONOR_OWNED_NOT_ORION_NOVELTY"
+    },
+    {
+      "name": "RAAC",
+      "primary_source": "arXiv:2608.15191v1",
+      "role": "trajectory-level retrieval novelty and information-coverage signals controlling continue/intervene/stop",
+      "repository_revision": null,
+      "availability_at_freeze": "NO_CODE_REVISION_BOUND_BY_THIS_CENSUS",
+      "integrity_note": "The arXiv record inspected at freeze did not expose a repository binding. The mechanism remains mandatory donor territory; lack of a bound implementation is not permission to omit its functionality from the matched donor-complete comparator.",
+      "ownership": "DONOR_OWNED_NOT_ORION_NOVELTY"
+    },
+    {
+      "name": "Enterprise Deep Research / Don't Stop Early",
+      "primary_source": "ACL Anthology 2026.acl-industry.116; DOI 10.18653/v1/2026.acl-industry.116; arXiv:2604.24978",
+      "role": "coverage-driven objective decomposition, dependency-guided localized context sharing, and evidence-aware completion",
+      "repository_revision": null,
+      "availability_at_freeze": "NO_PUBLIC_CODE_REVISION_BOUND_BY_THIS_CENSUS",
+      "ownership": "DONOR_OWNED_NOT_ORION_NOVELTY"
+    },
+    {
+      "name": "SAGE",
+      "primary_source": "arXiv:2602.05975",
+      "role": "scientific retrieval benchmark and corpus-level retrieval improvement; prevents treating generic scientific retrieval quality as P2-U novelty",
+      "repository_revision": null,
+      "availability_at_freeze": "SOURCE_IDENTITY_ONLY",
+      "ownership": "DONOR_OWNED_NOT_ORION_NOVELTY"
+    }
+  ],
+  "public_benchmark_surfaces": [
+    {
+      "name": "LiveDRBench",
+      "official_repository": "microsoft/LiveDRBench",
+      "repository_revision": "6ff85b67b35fa303907f6f275417622338acd1f6",
+      "scope": "100 high-fan-out deep-research tasks with claim/reference evaluation across scientific and public-interest categories",
+      "allowed_role": [
+        "PUBLIC_PREFLIGHT",
+        "TRANSFER_SANITY_CHECK",
+        "ROUTE_GENERATION_AND_DISCOVERY_DIAGNOSTICS"
+      ],
+      "forbidden_role": "SOLE_PROTECTED_P2_U_SUPERIORITY_AUTHORITY",
+      "reason": "The public test/evaluation surface is useful and demanding but cannot substitute for P2-U hidden naturalistic routes, false-closure custody, or independent held-out transfer."
+    },
+    {
+      "name": "DeepResearch Bench",
+      "official_repository": "Ayanami0730/deep_research_bench",
+      "repository_revision": "469cce54ea7f6a63c163d3d9fec879cf289ec484",
+      "scope": "100 PhD-level research tasks across 22 fields with current GPT-5.5 RACE and GPT-5.4-mini FACT evaluator configuration",
+      "allowed_role": [
+        "PUBLIC_PREFLIGHT",
+        "REPORT_QUALITY_AND_FACTUALITY_SANITY_CHECK",
+        "SYSTEM_LEVEL_EXTERNAL_CONTEXT"
+      ],
+      "forbidden_role": "SOLE_PROTECTED_P2_U_SUPERIORITY_AUTHORITY",
+      "reason": "Public benchmark performance does not independently identify route completeness, hidden missed evidence, provider validity, or false task-global closure."
+    }
+  ],
+  "contemporaneous_system_census": [
+    {
+      "name": "Tongyi DeepResearch",
+      "official_repository": "Alibaba-NLP/DeepResearch",
+      "repository_revision": "f72f75d8c3eb842f2bbbab096a12206ff66e270f",
+      "repo_declared_model": "Tongyi-DeepResearch-30B-A3B",
+      "role": "STRONG_OPEN_SYSTEM_BASELINE_WHEN_RUNNABLE",
+      "causal_status": "SYSTEM_LEVEL_ONLY_UNLESS_BACKBONE_TOOLS_AND_BUDGETS_CAN_BE_MATCHED"
+    },
+    {
+      "name": "AgentFounder-30B",
+      "official_repository": "Alibaba-NLP/DeepResearch",
+      "repository_revision": "f72f75d8c3eb842f2bbbab096a12206ff66e270f",
+      "role": "CURRENT_STRONG_OPEN_SYSTEM_BASELINE_WHEN_RUNNABLE",
+      "causal_status": "SYSTEM_LEVEL_ONLY_UNLESS_BACKBONE_TOOLS_AND_BUDGETS_CAN_BE_MATCHED",
+      "integrity_note": "Repository-reported benchmark scores motivate inclusion as a contemporaneous stress baseline but are not imported as ORION evidence; P2-U must execute and score its own frozen tasks under matched accounting."
+    }
+  ],
+  "protected_trial_requirements_created_by_this_census": [
+    "Before any naturalistic protected outcome, freeze an execution manifest binding the exact host model/checkpoint or API snapshot, retriever/search APIs, source access, task budget, and every runnable comparator implementation.",
+    "The same-host donor-complete controller is mandatory even if a stronger end-to-end system is also tested.",
+    "HALT must use revision 2f905b57aaaac3e489ef0554ce6ce978ed72178d or a later revision separately re-frozen before protected outcomes; do not use an older denominator-bug revision as the nominal donor baseline.",
+    "RAAC and EDR functionality must be represented in the donor-complete controller or their implementation unavailability must become an explicit claim-limiting/CANNOT_CHECK condition before outcome.",
+    "Public LiveDRBench/DeepResearch Bench results are preflight/context only. P2-U authority still requires hidden naturalistic evidence routes, false-closure evaluation, cross-domain/systematic-review-like replication, and independent route/evaluator custody.",
+    "Every research task or prospectively frozen task cluster is the inferential unit; repeated samples, search traces, remints, or provider retries are technical repeats and cannot inflate n."
+  ],
+  "scientific_effect": "NONE_BASELINE_CENSUS_ONLY",
+  "promotion_authorized": false,
+  "issue_650_closure_authorized": false,
+  "authority": "PRE_OUTCOME_BASELINE_AND_BENCHMARK_CENSUS_ONLY_NO_PROTOCOL_COMPLETION_NO_SUPERIORITY_NO_PROMOTION"
+}
