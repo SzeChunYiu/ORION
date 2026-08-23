@@ -7,7 +7,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 RESULT = ROOT / "research" / "extensions" / "p9-structured-neural" / "execution" / "D1_EXECUTION_RESULT_V1_2.json"
 OUT = HERE / "evidence" / "D1_PAIRED_EFFECTS_V1.json"

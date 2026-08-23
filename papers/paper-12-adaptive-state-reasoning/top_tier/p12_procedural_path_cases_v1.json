@@ -1,0 +1,14 @@
+{
+  "schema": "P12.ProceduralPathCases.v1",
+  "grid_size": 15,
+  "cases": [
+    {"id":"PP-OPEN-Q1","pattern":"OPEN","goal":[14,14],"starts":[[13,14]]},
+    {"id":"PP-OPEN-Q8","pattern":"OPEN","goal":[14,14],"starts":[[0,0],[0,7],[7,0],[14,0],[0,14],[7,7],[5,12],[12,5]]},
+    {"id":"PP-CENTER-Q2","pattern":"CENTER_GATE","goal":[14,14],"starts":[[13,14],[14,13]]},
+    {"id":"PP-CENTER-Q12","pattern":"CENTER_GATE","goal":[14,14],"starts":[[0,0],[0,7],[0,14],[3,3],[3,11],[6,1],[6,13],[8,0],[9,5],[11,2],[14,0],[7,7]]},
+    {"id":"PP-DOUBLE-Q1","pattern":"DOUBLE_GATE","goal":[14,14],"starts":[[13,14]]},
+    {"id":"PP-DOUBLE-Q8","pattern":"DOUBLE_GATE","goal":[14,14],"starts":[[0,0],[2,14],[4,7],[6,0],[9,4],[11,0],[0,14],[7,7]]},
+    {"id":"PP-HORIZ-Q2","pattern":"HORIZONTAL_GATE","goal":[14,14],"starts":[[13,14],[14,13]]},
+    {"id":"PP-HORIZ-Q12","pattern":"HORIZONTAL_GATE","goal":[14,14],"starts":[[0,0],[0,7],[0,14],[3,3],[3,12],[4,8],[6,0],[8,3],[10,1],[12,4],[14,0],[7,14]]}
+  ]
+}
