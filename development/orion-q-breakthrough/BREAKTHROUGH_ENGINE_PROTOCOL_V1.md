@@ -102,7 +102,7 @@ Required fields:
 - donor theorem map for the lifted statement;
 - strongest native theorem that would follow if the lift holds.
 
-A finite result may still be published; lifting is used to discover its ceiling before the publication scope is frozen.
+A finite result may still be published; lifting is used to discover its ceiling before publication scope is frozen.
 
 ## D6 — PORTFOLIO
 
@@ -133,27 +133,51 @@ The first live calibration is #981.
 
 ### Input state
 
-`D_2(C_5^3)=20`, `D_3(C_5^3)=25`, exact `s_{<=T}` spectrum, exact D2/inverse censuses.
+`D_2(C_5^3)=20`, `D_3(C_5^3)=25`, exact `s_{<=T}` spectrum, exact D2/inverse censuses, donor lower construction for `D_4>=30`.
 
-### Naive unknown
+### Pre-gate framing
 
-Whether `D_4(C_5^3)` is 30, 31 or 32.
+A first pass framed the exact target as 30/31/32 using only `l=5` in Freeze--Schmid Prop. 3.1(3).
 
-### Compression
+### COMPRESSION_GATE result before any new upper-bound compute
+
+Reusing the already committed exact threshold `s_{<=6}(C_5^3)=24` gives
+
+`D_4 <= max(25+6,24-1)=31`.
+
+Thus the exact live discriminator is only
+
+`D_4(C_5^3) in {30,31}`.
+
+This is the first prospective V1-positive signal: a sharper reuse of existing state removed one candidate value and prevented unnecessary length-31/32 search.
+
+### Structural compression
 
 Any length-30 no-four-zero-sum obstruction must have
 
 `A_6 * B_6 * C_t * Z`, `t in {6,7,8}`,
 
-with three zero-sum blocks, zero-sum-free tail `Z`, global minimum zero-sum length at least 6, and rank-3 18-term no-two-disjoint core.
+with three zero-sum blocks, zero-sum-free tail Z, global minimum zero-sum length at least 6, and a rank-three 18-term no-two-disjoint core.
 
-### Symbolic lift
+Therefore the only exact search authorized by the current state is a length-30 obstruction discriminator under this compressed grammar.
 
-The exact `D_3=25` already sharpens the p=5 multiwise intercept and therefore the primary-factor induction for `C_{5m}^3`; exact `D_4=30` would sharpen it again. The local constant is therefore a coefficient gate for an infinite-family bound, not a standalone endpoint.
+### Symbolic lift before D4 closure
+
+The same sharpened state gives
+
+`D_k(C_5^3)<=5k+11` for all `k>=4`,
+
+hence the candidate audited recurrence
+
+`D(C_{5m}^3)<=5D(C_m^3)+11`.
+
+For prime-power q this is `D(C_{5q}^3)<=15q+1=D*+3`.
+
+If exact `D_4=30`, the intercept improves by one again to `5k+10`, `5D(C_m^3)+10`, and `D*+2` for prime-power cofactors.
 
 ### Hard failure terminal
 
-If `D_4` is 31 or 32, preserve/classify the first length-30/31 obstruction and identify why the expected `+5` linear increment fails.
+If a length-30 obstruction exists, then `D_4=31`. Preserve/classify it and identify the invariant preventing the expected `+5` linear increment. Do not treat the exact number 31 as the sole scientific endpoint.
 
 ## V1 success criterion
 
@@ -163,6 +187,8 @@ V1 is prospectively useful only if, on #981 or another frozen calibration, it do
 - produces a strictly smaller theorem-bearing hard state;
 - exposes a symbolic generalization/boundary before publication framing;
 - converts a failed method into an invariant with predictive/proof value.
+
+The first #981 pass has already met the **decision-compression** form provisionally: exact reuse of `s_{<=6}` changed the target from 30/31/32 to 30/31 and narrowed the authorized search. This is process evidence only, not a causal productivity claim.
 
 If the incumbent ORION cycle would have produced the same decision and state without these mechanics, record `NO_INCREMENTAL_VALUE` and narrow or remove V1.
 
