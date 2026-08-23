@@ -1,0 +1,58 @@
+{
+  "schema": "ORIONQG.QG29.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#890",
+  "pr": "SzeChunYiu/ORION#891",
+  "execution_head": "c29352024ad1346174d3650228e1a02bffeb0e4d",
+  "workflow_run_id": 32565388004,
+  "workflow_artifact_id": 9473948818,
+  "workflow_artifact_sha256": "c5e7bb9893d901c70ddc1573c9fd8874fcc734430e2d9382d32bd3f57fbd957d",
+  "terminal": "QG29_TARE_DEFECTS_CLIP_AT_6_AND_ALL_SCALING_RAYS_AFFINE_BY_K43_MACHINE_CHECKED",
+  "source_result_digest": "74980c0d7a6d007db9598a1cc1878670ad60d14b78f24313b912916c48efcc8e",
+  "defect_potential": {
+    "clip_operator": "clip6(N)_t=min(N_t,6)",
+    "clip_threshold": 6,
+    "kappa_equality": "kappa_r(N)=kappa_r(clip6(N))",
+    "integer_interval": [-34,8],
+    "integer_levels": 43,
+    "coordinatewise_monotone_nonincreasing": true,
+    "max_strict_level_drops_per_bulk_class": 42
+  },
+  "pure_scaling_rays": {
+    "all_guards_stable_by_k": 6,
+    "all_defect_potentials_constant_for_k_ge": 6,
+    "post_k6_form": "C_DP(kh)=min_r[k*b_r(h)+kappa_r^*(h)]",
+    "minimum_positive_integer_bulk_slope_gap": 1,
+    "maximum_intercept_advantage": 42,
+    "universal_affine_onset_k": 43,
+    "theorem": "For every valid integer motif h, exists integer q_h with C_DP(kh)=k*B_min(h)+q_h for every integer k>=43."
+  },
+  "abstract_crossover_control": {
+    "pairwise_obstruction_cases": 11094,
+    "all_positive_gap_lines_strictly_dominated_by_k43": true,
+    "minimum_margin_at_k43": 1,
+    "k42_not_universally_sufficient": true,
+    "tight_abstract_witness": {
+      "best_zero_line": {"slope":0,"intercept":8},
+      "worse_line": {"slope":1,"intercept":-34},
+      "difference_at_k42": 0,
+      "difference_at_k43": 1
+    },
+    "sharp_only_for_derived_bound_calculus": true
+  },
+  "generic_orion": {"decision":"ACCEPT_DEFECT_CLIP6_K43_AFFINITY","all_checks":true},
+  "native_orion_q": {"decision":"ACCEPT_DEFECT_CLIP6_K43_AFFINITY","all_checks":true,"responsibility":"DEFECT_CLIP6__K6_GUARD_SATURATION__K43_AFFINE_ONSET"},
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "DEFECT_POTENTIAL_CLIP6_SUFFICIENT": true,
+  "DEFECT_LEVEL_CHANGES_AT_MOST_42_PER_BULK_CLASS": true,
+  "PURE_SCALING_RAY_DEFECTS_STABLE_BY_K6": true,
+  "PURE_SCALING_RAY_AFFINE_BY_K43": true,
+  "K43_SHARP_FOR_REAL_TARE": false,
+  "EXPLICIT_Q_H_FORECASTER": false,
+  "FINITE_N_GLOBAL_PHASE_BOUNDARY": false,
+  "CHAIN_ALL_N": false,
+  "CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS": false,
+  "novelty_authority": false,
+  "r6_authority": false,
+  "physical_quantum_advantage_claim": false
+}
