@@ -1,0 +1,134 @@
+name: p11-query-family-phase-binding-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-11-state-as-computation/top_tier/P11_QUERY_FAMILY_PHASE_PROTOCOL_V1.md'
+      - 'papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py'
+      - 'papers/paper-11-state-as-computation/top_tier/check_query_family_phase_independent_v1.py'
+      - '.github/workflows/p11-query-family-phase-binding-v1.yml'
+      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_primary_v1.json'
+      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_independent_v1.json'
+      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_binding_v1.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  query-family-phase-binding-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==2.3.2' 'scikit-learn==1.7.1'
+      - name: Execute frozen query-family study (verdict-agnostic capture)
+        run: |
+          set +e
+          python papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py \
+            > p11_query_family_phase_primary_v1.json 2> p11_query_family_phase_primary_v1.stderr
+          echo $? > p11_query_family_phase_primary_v1.exit
+          set -e
+          test -s p11_query_family_phase_primary_v1.json
+          python - <<'PY'
+          import json
+          p=json.load(open('p11_query_family_phase_primary_v1.json'))
+          assert p['schema']=='P11.QueryFamilyPhaseResult.v1',p['schema']
+          assert p['query_count']==10
+          assert p['row_count']==len(p['rows'])==300
+          assert len(p['selections'])==50
+          assert sorted(p['query_results'])==sorted(f'{a}:{q}' for a in ('LINEAR','RBF','KNN') for q in range(10))
+          print('P11_QUERY_FAMILY_PHASE_PRIMARY_CAPTURE_WELL_FORMED')
+          PY
+      - name: Byte-replay determinism (verdict-agnostic)
+        run: |
+          set +e
+          python papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py \
+            > p11_query_family_phase_primary_v1_rerun.json 2>/dev/null
+          echo $? > p11_query_family_phase_primary_v1_rerun.exit
+          set -e
+          cmp p11_query_family_phase_primary_v1.json p11_query_family_phase_primary_v1_rerun.json
+          cmp p11_query_family_phase_primary_v1.exit p11_query_family_phase_primary_v1_rerun.exit
+          echo P11_QUERY_FAMILY_PHASE_BINDING_BYTE_REPLAY_GREEN
+      - name: Execute structurally independent verifier (verdict-agnostic capture)
+        run: |
+          set +e
+          python papers/paper-11-state-as-computation/top_tier/check_query_family_phase_independent_v1.py \
+            > p11_query_family_phase_independent_v1.json 2> p11_query_family_phase_independent_v1.stderr
+          echo $? > p11_query_family_phase_independent_v1.exit
+          set -e
+          test -s p11_query_family_phase_independent_v1.json
+          python - <<'PY'
+          import json
+          q=json.load(open('p11_query_family_phase_independent_v1.json'))
+          assert q['schema']=='P11.QueryFamilyPhaseIndependent.v1',q['schema']
+          print('P11_QUERY_FAMILY_PHASE_INDEPENDENT_CAPTURE_WELL_FORMED')
+          PY
+      - name: Cross-implementation agreement (required)
+        run: |
+          python - <<'PY'
+          import json,math
+          p=json.load(open('p11_query_family_phase_primary_v1.json'))
+          q=json.load(open('p11_query_family_phase_independent_v1.json'))
+          assert p['support_counts']==q['support_counts'],(p['support_counts'],q['support_counts'])
+          for key,a in p['query_results'].items():
+              b=q['query_results'][key]
+              assert a['quality_supported']==b['quality_supported'],(key,a,b)
+              assert math.isclose(a['universal_mean'],b['universal_mean'],abs_tol=1e-12),(key,a,b)
+              assert math.isclose(a['compiled_mean'],b['compiled_mean'],abs_tol=1e-12),(key,a,b)
+          assert all(r['memory_prediction_correct'] for r in p['phase_rows'])
+          assert all(r['memory_prediction_correct'] for r in q['phase'])
+          for u in range(1,11):
+              a={r['break_even_horizon'] for r in p['phase_rows'] if r['U']==u}
+              b={r['break_even_horizon'] for r in q['phase'] if r['U']==u}
+              assert a==b and len(a)==1,(u,a,b)
+          print('P11_QUERY_FAMILY_PHASE_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - name: Frozen-gate conformance check and binding manifest
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          p=json.load(open('p11_query_family_phase_primary_v1.json'))
+          q=json.load(open('p11_query_family_phase_independent_v1.json'))
+          sc=p['support_counts']
+          gate_linear=sc['LINEAR']>=8
+          gate_stronger=max(sc['RBF'],sc['KNN'])>=8
+          gate_memory=all(r['memory_prediction_correct'] for r in p['phase_rows'])
+          gate_future=all(r['future_query_recovery_fit_inspections']>0 for r in p['phase_rows'] if r['U']<10)
+          frozen_positive=bool(gate_linear and gate_stronger and gate_memory and gate_future)
+          recorded=p['terminal']
+          expected=('P11_QUERY_FAMILY_PHASE_V1_SUPPORTED' if frozen_positive
+                    else 'P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET')
+          assert recorded==expected,(recorded,expected)
+          def sha(name): return hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()
+          manifest={
+            'schema':'P11.QueryFamilyPhaseBinding.v1',
+            'run_id':os.environ.get('GITHUB_RUN_ID'),
+            'run_url':os.environ.get('GITHUB_SERVER_URL','')+'/'+os.environ.get('GITHUB_REPOSITORY','')+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID',''),
+            'run_attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),
+            'head_sha':os.environ.get('GITHUB_SHA'),
+            'event':os.environ.get('GITHUB_EVENT_NAME'),
+            'workflow_file':'.github/workflows/p11-query-family-phase-binding-v1.yml',
+            'protocol_sha256':p['protocol_sha256'],
+            'primary':{'file':'p11_query_family_phase_primary_v1.json','sha256':sha('p11_query_family_phase_primary_v1.json'),'exit_code':int(open('p11_query_family_phase_primary_v1.exit').read().strip()),'terminal':recorded,'receipt_sha256':p['receipt_sha256']},
+            'independent':{'file':'p11_query_family_phase_independent_v1.json','sha256':sha('p11_query_family_phase_independent_v1.json'),'exit_code':int(open('p11_query_family_phase_independent_v1.exit').read().strip()),'terminal':q['terminal']},
+            'byte_replay_identical':True,
+            'two_implementations_agree':True,
+            'frozen_gate':{'linear_supported_queries':sc['LINEAR'],'rbf_supported_queries':sc['RBF'],'knn_supported_queries':sc['KNN'],'gate_linear_ge_8_of_10':gate_linear,'gate_stronger_ge_8_of_10':gate_stronger,'gate_memory_crossover':gate_memory,'gate_future_query_cost':gate_future,'frozen_positive_terminal':frozen_positive},
+            'recorded_terminal':recorded,
+            'negative_retained':not frozen_positive,
+            'no_retuning_performed':True,
+          }
+          pathlib.Path('p11_query_family_phase_binding_v1.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(manifest,indent=2,sort_keys=True))
+          print('P11_QUERY_FAMILY_PHASE_BINDING_MANIFEST_WRITTEN')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-query-family-phase-binding-v1
+          path: |
+            p11_query_family_phase_primary_v1.json
+            p11_query_family_phase_primary_v1.exit
+            p11_query_family_phase_independent_v1.json
+            p11_query_family_phase_independent_v1.exit
+            p11_query_family_phase_binding_v1.json
