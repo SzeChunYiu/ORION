@@ -35,11 +35,25 @@ SEI_RECEIPT = PAPER / "top_tier/P15_SEI_RESULT_RECEIPT_V1.md"
 PROVENANCE_RECEIPT = PAPER / "top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md"
 ATTESTATION_RECEIPT = PAPER / "top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md"
 
+V2_AUTHORITY_BLOB_SHA = "8b42646fee13b3cb1455f05bdd1066f327e48d72"
+SEI_RECEIPT_BLOB_SHA = "2bfd3b1975394f9b45df2576ff27887df46b6693"
+PROVENANCE_RECEIPT_BLOB_SHA = "fdbde57959d5952d2230fe7a0d048c4d891f2977"
+ATTESTATION_RECEIPT_BLOB_SHA = "61ca00bba4fefdc9213a7830d3eeaf16b6577f69"
+
 
 def _binding(path: Path) -> dict[str, str]:
     return {
         "artifact": str(path.relative_to(REPO_ROOT)),
         "sha256": sha256(path.read_bytes()).hexdigest(),
+    }
+
+
+def _git_binding(path: Path, blob_sha: str) -> dict[str, str]:
+    """Bind an immutable repository object; execution SHA-256 lives in its receipt."""
+
+    return {
+        "artifact": str(path.relative_to(REPO_ROOT)),
+        "git_blob_sha": blob_sha,
     }
 
 
@@ -135,19 +149,19 @@ def build_current_claim_authority() -> dict[str, Any]:
             "registered bounded fault/interoperability/attestation studies."
         ),
         "promotion_allowed": False,
-        "historical_authority": _binding(V2_AUTHORITY),
+        "historical_authority": _git_binding(V2_AUTHORITY, V2_AUTHORITY_BLOB_SHA),
         "result_authority": {
             "sei_fault_v1": {
-                **_binding(SEI_RECEIPT),
+                **_git_binding(SEI_RECEIPT, SEI_RECEIPT_BLOB_SHA),
                 "terminal": "P15_SEI_BOUNDED_FAULT_V1_GREEN",
             },
             "provenance_interop_v1": {
-                **_binding(PROVENANCE_RECEIPT),
+                **_git_binding(PROVENANCE_RECEIPT, PROVENANCE_RECEIPT_BLOB_SHA),
                 "terminal": "P15_PROVENANCE_INTEROP_V1_SUPPORTED",
                 "independent_terminal": "P15_PROVENANCE_INTEROP_SECOND_INDEPENDENT_CHECKER_GREEN",
             },
             "attestation_composition_v2": {
-                **_binding(ATTESTATION_RECEIPT),
+                **_git_binding(ATTESTATION_RECEIPT, ATTESTATION_RECEIPT_BLOB_SHA),
                 "terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED",
                 "independent_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
             },
