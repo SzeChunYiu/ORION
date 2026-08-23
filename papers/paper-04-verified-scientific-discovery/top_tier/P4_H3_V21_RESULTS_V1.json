@@ -1,0 +1,216 @@
+{
+  "bootstrap": {
+    "B": 10000,
+    "method": "paired case-level percentile",
+    "seed": 20260823
+  },
+  "comparisons_orion_minus_each": {
+    "ORION-minus-attributionbench-multisource-attribution": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-citation-presence-format": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-claim-level-auditability-provenance": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-claimbench-sciclaimhunt-scientific-evidence": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-deepsciverify-abstract-to-full-escalation": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-fire-iterative-retrieve-or-verify": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-pooled-evidence-nli-support": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-provenai-citation-fidelity-influence": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-provenanceguard-style-source-routing": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    },
+    "ORION-minus-rewardhackingagents-search-contamination": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "delta_j": 0.0,
+      "draws": 10000
+    }
+  },
+  "cue_check": {
+    "cue_equals_gold_cc": true,
+    "gold_counts": {
+      "BLOCK": 330,
+      "CANNOT_CHECK": 30,
+      "PROMOTE": 60
+    },
+    "non_cc_all_have_evidence_and_pool": true
+  },
+  "gate_failures": [],
+  "gold_counts": {
+    "BLOCK": 330,
+    "CANNOT_CHECK": 30,
+    "PROMOTE": 60
+  },
+  "prereg_commit": "7f7f91931323cb891c323c898888fa81b86a2ac1",
+  "preregistered_outcome": "(b)_INSTRUMENT_NULL",
+  "protocol": "P4.H3.metric-degeneration.v21",
+  "registered_comparison": "ORION-minus-provenai-citation-fidelity-influence",
+  "schema": "orion.p4.h3.v21.results.v1",
+  "scores": {
+    "ORION": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 0,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "attributionbench-multisource-attribution": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 240,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "citation-presence-format": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 330,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "claim-level-auditability-provenance": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 240,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "claimbench-sciclaimhunt-scientific-evidence": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 330,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "deepsciverify-abstract-to-full-escalation": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 210,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "fire-iterative-retrieve-or-verify": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 300,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "pooled-evidence-nli-support": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 330,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "provenai-citation-fidelity-influence": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 180,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "provenanceguard-style-source-routing": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 210,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    },
+    "rewardhackingagents-search-contamination": {
+      "abstention_set_size": 30,
+      "fa": 0,
+      "fa_on_block_gold": 0,
+      "fa_on_promote_gold": 0,
+      "fp": 210,
+      "j_cc": 1.0,
+      "tnr": 1.0,
+      "tp": 30,
+      "tpr": 1.0
+    }
+  },
+  "seeds": {
+    "primary": "nr03-v21-20260823",
+    "seedcheck": "nr03-v21-seedcheck-90f1"
+  }
+}
