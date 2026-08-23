@@ -4,6 +4,12 @@ The checker discharging its own laws is not enough: a later edit could weaken a
 law and still report seven greens. These assertions pin the counts that the V2
 theory document quotes, so the document and the artifact cannot drift apart
 silently.
+
+They are regression pins, not findings. As V2 section 3.1 records, six of the
+seven laws are consequences of the model's own definition of standing and could
+not come out otherwise -- 31 is 2**5 - 1, and every required coordinate is
+load-bearing by the determination theorem alone. Only
+``test_verdict_exposing_donors_are_strictly_weaker`` pins a computed result.
 """
 
 from __future__ import annotations
@@ -40,6 +46,7 @@ def test_determination_holds_over_the_whole_ladder(receipt: dict) -> None:
 
 
 def test_every_ladder_level_is_load_bearing(receipt: dict) -> None:
+    """Forced by the determination theorem; pinned so a broken core is caught, not as evidence."""
     law = receipt["laws"]["ladder_irredundancy"]
     assert law["load_bearing_levels"] == list(receipt["ladder"])
     # The engine must also be able to say "redundant" -- one that never can is
@@ -48,6 +55,7 @@ def test_every_ladder_level_is_load_bearing(receipt: dict) -> None:
 
 
 def test_partial_repair_never_restores_standing(receipt: dict) -> None:
+    """31 = 2**5 - 1 and 211 = sum C(5,k)(2**k - 1): subset combinatorics of the conjunction."""
     law = receipt["laws"]["selective_revalidation"]
     assert law["total_revalidations_restoring_standing"] == 31
     assert law["proper_subset_revalidations_denied"] == 211
