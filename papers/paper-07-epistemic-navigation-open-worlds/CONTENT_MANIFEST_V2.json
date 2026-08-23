@@ -1,0 +1,23 @@
+{
+  "schema_version": "orion.candidate-content-binding.v2",
+  "candidate_id": "P7",
+  "subject_commit": "65753682485eb8bcd7607e944e5106af17974840",
+  "subject_tree": "ff3b1936678a2a50cf8c65ec0a0df87137afff82",
+  "subject_commit_status": "BOUND",
+  "claim_scope": "Local reference-policy reproducibility closure only; no live-agent or independent authority.",
+  "grants_authority": "NONE",
+  "environment_lock": {"path":"uv.lock","sha256":"4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"},
+  "bound_files": [
+    {"path":"papers/candidates/reproducibility_generators_v3.py","sha256":"1609a4bcdd4b39a3f2c1ae99ed3f77b98cb2ceb11ccd67637f5b755d4b93f3a6"},
+    {"path":"papers/candidates/checkers/check_negative_null_history_v1.py","sha256":"cd801b458eb92aa03f2025e91d26b64837d43ccb425199ff2ff51d52113486fb"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/Makefile","sha256":"fc067cbd65571b99cd9c731fb04679cbf2824c720f4f244fc6b8255e1ec0cf49"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/REPRODUCE_V3.md","sha256":"fe4053a1aaf9c2a44268421cbddf7ce88109be17d530faf4199b926263ddf5dc"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py","sha256":"5306e5e2ee667b9c88739161d69883ad6a757b9a1bf5f42d8555d154ad53ed35"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl","sha256":"af0da57558026e17c24742ca2a38c3d2cf5a4e854a534928ac79f944b09347a0"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json","sha256":"c1b03d29ec59fac64704d7bbe347af9825465027223d6ebb13960a0225d582a6"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl","sha256":"af0da57558026e17c24742ca2a38c3d2cf5a4e854a534928ac79f944b09347a0"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json","sha256":"c175f712201ef32c592f9182b8d932a99628e70234195462fa2e3bf2daab2209"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl","sha256":"43124335c1be3bddba4357a5a1dcfd5d12223c36e3a3abe2237035c28a354105"},
+    {"path":"papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json","sha256":"72ad8424951760ef1c230c7e997a95dc733d65de77cc6deb65587cb7ee69c8d2"}
+  ]
+}
