@@ -47,5 +47,10 @@
   },
   "finding": "Zero of P1 R7A's five external bindings require an outside party. Three are receipts and digests the researcher writes; two are retrieval campaigns. The preflight reports no local blockers at all and the design already carries 0.920216 joint power over its full 384 units.",
   "consequence": "P1.R7A.WIDE.SUCCESSOR is misdescribed as blocked on external custody. It is locally unexecuted work plus a retrieval campaign.",
-  "incidental": "The same preflight reports LOCAL_PREOUTCOME_CHECK_FAILED for two sibling assessments, blocked on local_binding_missing:COMPARISON_RESOLUTION_CHECKER / _PROTOCOL and local_binding_missing:A004_HISTORICAL_PROTOCOL / _RECEIPT -- local bindings, named as such by the preflight's own vocabulary."
+  "incidental": "The same preflight reports LOCAL_PREOUTCOME_CHECK_FAILED for two sibling assessments, blocked on local_binding_missing:COMPARISON_RESOLUTION_CHECKER / _PROTOCOL and local_binding_missing:A004_HISTORICAL_PROTOCOL / _RECEIPT -- local bindings, named as such by the preflight's own vocabulary. -- SEE incidental_corrected: the A004 half of this note is withdrawn.",
+  "incidental_corrected": {
+    "withdrawn": "The incidental note below reported that the same preflight shows local_binding_missing for A004_HISTORICAL_PROTOCOL and A004_HISTORICAL_RECEIPT. That was an artefact of the sandbox the preflight ran in, not a defect.",
+    "checked": "Both paths exist on codex/p1-p5-successor-execution and their content digests match the successor protocol's declared sha256 exactly: A004_HISTORICAL_RECEIPT 5b9108d5c86f..., A004_HISTORICAL_PROTOCOL 89525e0b40e8....",
+    "still_true": "The COMPARISON_RESOLUTION_CHECKER and COMPARISON_RESOLUTION_PROTOCOL bindings reported for the sibling assessment were not re-checked and remain unverified either way."
+  }
 }
