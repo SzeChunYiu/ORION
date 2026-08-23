@@ -49,14 +49,6 @@
       "hypothesis": "underpowered execution",
       "lever": "execute frozen R7A powered successor",
       "solvability": "TRANSFERRED_TO_CODEX_LANE"
-    },
-    {
-      "id": "NR-12",
-      "paper": "P11",
-      "negative": "query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET)",
-      "hypothesis": "compile-tolerance is per-(responsibility x access-class), not family-wide",
-      "lever": "pre-registered compile-tolerance selector applied per responsibility; re-run frozen family",
-      "solvability": "RESEARCH_SOLVABLE"
     }
   ],
   "already_revived": [
@@ -103,7 +95,12 @@
     {
       "negative": "P14A gate defect (NR-11): both bars exceeded statistic supremum",
       "successor": "closure-by-successor VERIFIED: supremum 0.042326 independently recomputed below both registered bars; P14C same-scope successor byte-reproduces",
-      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 — closed under stopping criterion (c)"
+      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 \u2014 closed under stopping criterion (c)"
+    },
+    {
+      "negative": "P11 query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET)",
+      "successor": "NR-12 selective placement V1: train-only inner-CV tolerance selector (rs=2026112207, -0.02 bar) places compilation per responsibility; frozen battery re-executed unmodified (max deviation 0.0), |S_f|=3,2,3,4,4",
+      "status": "P11_SELECTIVE_PLACEMENT_V1_SUPPORTED \u2014 9/10 LINEAR, 10/10 RBF/KNN; independent checker GREEN, byte-identical replay; secondary seeds 20261122/23/24 all SUPPORTED (receipt P11_SELECTIVE_PLACEMENT_RESULT_RECEIPT_V1)"
     }
   ],
   "workaround_protocol": {
