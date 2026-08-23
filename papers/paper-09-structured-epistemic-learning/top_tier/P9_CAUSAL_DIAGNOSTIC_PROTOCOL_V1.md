@@ -52,7 +52,7 @@ Quality target: accuracy `>= 0.95`.
 
 These costs are abstract registered intervention units used only to choose among interventions that meet quality; raw model/state resource measurements are also reported separately.
 
-## Domain B — exact executable affine-state tasks
+## Domain B — exact executable state tasks
 
 Generate disjoint development and protected instances from frozen integer seeds. Exact verifier accuracy is the endpoint.
 
@@ -68,13 +68,13 @@ Quality target: exact accuracy `1.0` across the protected truth-table family. Mi
 
 ### B-A — accessibility
 
-Base exposes a bijective two-bit encoding `(a, a XOR b)` while responsibility is recover `b` through a frozen **linear/affine Boolean readout**.
+Base exposes a bijective two-bit encoding `(a, a XOR b)` while responsibility is recover `b` through a frozen **constant/signed-single-coordinate Boolean readout**. This restricted access class is deliberate: an affine GF(2) readout would compute XOR exactly and would therefore not instantiate an accessibility deficit.
 
 - INFORMATION: no extra information/no-op; cost 4;
-- ACCESSIBILITY: exact inverse transform `(a,z)->(a,a XOR z)` then affine projection to `b`; cost 2;
+- ACCESSIBILITY: exact inverse transform `(a,z)->(a,a XOR z)` then project the recovered `b` coordinate; cost 2;
 - COMPUTATION: a registered nonlinear XOR computation over the encoded coordinates; cost 8.
 
-Both access repair and computation can close quality; the frozen cost rule should prefer accessibility.
+Both access repair and computation close quality; the frozen cost rule prefers accessibility.
 
 ### B-C — computation
 
