@@ -1,21 +1,67 @@
 \section{Introduction}
 
-\subsection{The failure mode}
+\subsection{The scientific transition problem}
 
-A research process can make progress while its own framing becomes the dominant source of error. More search does not repair a missing representation. A larger tree does not by itself reveal that the wrong parent discipline has been treated as irrelevant. More evidence does not justify rewriting a question when the actual defect is merely an execution failure. The problem studied here is therefore not generic iteration, autonomous science, or long-horizon reasoning. It is the narrower problem of preserving an inspectable epistemic state while the research process discovers that part of its own formulation must change.
+A research process can improve its local performance while changing the wrong
+scientific object. More search does not repair a missing representation. A
+better optimizer does not decide whether the measurement model or the question
+is wrong. A successful intervention does not by itself authorize rewriting the
+task, and more evidence does not justify a formulation change when the defect is
+merely execution. The general problem is to determine the admissible frontier
+among changes to questions, representations, measurements, model classes,
+experimental designs, search policies, and methods when different changes
+require different evidence and authority.
 
-For a scoped problem, the architecture studied here represents the evolving research state as
+Section~\ref{sec:escalation-theory} formulates this problem independently of a
+particular agent architecture. For the empirical instance in this paper, the
+evolving research state is represented as
 \[
 X_t=(K_t,W_t,M_t),
 \]
 where $K_t$ is the provenance-preserving state of knowledge about the target object, $W_t$ is the current model of which domains, representations, mechanisms, and search routes may be relevant, and $M_t$ is the governed research method. The three coordinates are separated because they require different evidence and different authority to change. This engineering separation is in the spirit of Parnas's information-hiding principle: change-prone design decisions should be isolated behind explicit interfaces rather than entangled implicitly \cite{parnas1972}. The revision policy for $K_t$ likewise borrows the minimal-change distinction between expansion, contraction, and revision from the AGM belief-revision tradition \cite{agm1985}; no claim is made here that the operational update rules satisfy the full AGM postulates, which would have to be established separately.
 
-A new source may update $K_t$ without changing $W_t$. A previously unrecognized parent discipline or representation may require a change to $W_t$ while leaving the method intact. A persistent, well-attributed failure can become evidence for a challenger to $M_t$, but method revision is governed separately and is not an operation this paper authorizes.
+A new source may update $K_t$ without changing $W_t$. A previously unrecognized
+parent discipline or representation may require a change to $W_t$ while
+leaving the method intact. A persistent, well-attributed failure can become
+evidence for a challenger to $M_t$, but method revision is governed separately
+in the evaluated instance. The theory is not restricted to these three
+coordinates: any partial order of scientific transitions can supply its
+revision space.
 
 \subsection{Contributions}
 
-Four properties of the mechanism are put forward and tested.
+The paper makes four contributions at different authority levels.
 
-First, $K/W/M$ are explicit co-evolving state rather than hidden conversational context. Second, discoveries and failures may target distinct formulation coordinates instead of triggering an undifferentiated ``reflect and retry'' loop. Third, a material reframe stales dependent closure rather than allowing prior success certificates to survive silently. Fourth, the research workflow itself is recursively decomposed into inspectable mechanics whose missing coordinates can generate further research work.
+First, Section~\ref{sec:escalation-theory} defines epistemic transition
+envelopes over well-founded partial orders. The object applies to transitions
+among scientific questions, representations, measurements, model classes,
+experiments, search policies, and methods; $K/W/M$ is only the evaluated
+realization.
 
-What is defended empirically is narrower than any of the four taken alone: it is the composition of protected necessity conditions under which a high-level formulation or search-universe change is admissible at all. Section~\ref{sec:relatedwork} places each ingredient with its nearest neighbour in the literature, and Section~\ref{sec:limitations} states what the composition is and is not evidence for.
+Second, it proves an exact donor-substitution theorem: any product of prior
+mechanisms reproduces a required transition decision if and only if its exposed
+interface separates all contexts requiring different decisions. A companion
+Bayes result gives the irreducible error of mixed interface fibres. The earlier
+licence-coupling impossibility is recovered as one corollary rather than the
+whole theory.
+
+Third, it proves a conservative-envelope criterion for absorbing a stronger
+donor theory without erasing old results, and a universal representation result
+for antichain-valued transition policies. These results replace the claim that
+the architecture owns its components with a theory of when arbitrary donor
+components are sufficient, insufficient, or conservatively extensible.
+
+Fourth, Sections~\ref{sec:necessity} and~\ref{sec:revision} evaluate one
+five-gate minimal-escalation instance in powered mechanical worlds and exact
+heterogeneous contracts. The information-equivalent product is required to
+tie; the donor-complete product without the licence coupling is the tested
+lossy interface. The earlier 66-case study remains negative design history:
+it exposed an unsafe diagnosis-to-reframe shortcut but was underpowered and
+contained template shortcuts, so it is not promoted into evidence for the
+active claim.
+
+$K/W/M$ state, failure attribution, counterfactual repair, scoped reopening,
+recursive audit, and generic mutation authorization are architectural substrate
+with identified parents.  Section~\ref{sec:relatedwork} assigns those
+ingredients, while Section~\ref{sec:limitations} keeps the empirical authority
+at the registered mechanical and exact-contract families.
