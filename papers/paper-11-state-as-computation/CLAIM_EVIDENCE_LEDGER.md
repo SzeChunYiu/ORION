@@ -2,7 +2,9 @@
 
 **Stable ID:** ORION-P11  
 **Issues:** #471, #664, #667  
-**Evidence cut:** 2026-08-21
+**Evidence cut:** 2026-08-22
+
+`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the sole active lifecycle record. It binds the P11I positive `r=7` leaf and retains P11H only as the disjoint historical `r=3` boundary.
 
 | Claim | Status | Evidence | Maximum authorized wording |
 |---|---|---|---|
@@ -34,10 +36,13 @@
 | the compiled-state advantage is a function of the compiled state's width `r`, not of the universal bank width | SUPPORTED / LADDERED | P11H six-rung ladder, one execution seed and three preflight seeds | the pool reaches 0.95 by `n=128` at every `r=3` rung and at no `r=7` rung, while the complete universal bank moves 91 → 969 columns inside each half without changing a verdict |
 | at the drawn `r=3` regimes the whole `n=64` gap is the change of state | SUPPORTED / DECOMPOSED | `COMPILED_EXTRA_TREES` control inside P11H's own receipt | decoder half +0.0000 in both cells, state share 100%; attribution and magnitude are separate questions — the gap is wholly a state effect and still below the 0.20 bar |
 | P11H two fresh subprocess scientific payloads are byte-identical | **SUPPORTED / REPRODUCIBLE** | P11H terminal path | both SHA `61ecf79f…f92dd6dd` |
+| the compiled-state low-sample advantage replicates at `r=7` against the pooled universal decoder | **SUPPORTED / WIDE REPLICATION** | P11I: nine fresh seed×geometry units, prospectively frozen | every unit passes non-compensatorily; pooled best below `n=256` 0.8489–0.9421, `delta64` +0.2463–+0.3543, compiled@64 0.9690–0.9981 |
+| the P11I positive comes from an inert pooled attack | **FALSE / MATCHED CONTROL** | nine matched `r=3` controls | the same pool reaches 1.0000 below `n=256` in every control |
+| P11I two fresh subprocess scientific payloads are byte-identical | **SUPPORTED / REPRODUCIBLE** | P11I terminal path | both SHA `b50ace30…e0ce` |
 | future-query option coverage follows `r/N`, `1-(1-r/N)^K` and coupon-style distinct-demand law in frozen model | SUPPORTED / EXACT | optionality theorem/receipt | exact specified workload model |
 | state compilation universally dominates universal state | NOT AUTHORIZED | sparse hostile result + optionality regimes | forbidden |
 | a smaller real reasoner with compiled state beats a larger universal-state reasoner | OPEN | real-system gate | not inferred from controlled learner |
-| state construction externalizes structural search from a bounded downstream access mechanism | **SUPPORTED SYNTHESIS / PRIMARY** | theorem + dense + P11D/P11E + P11G's arm-scoped result and its decoder-held-fixed decomposition + P11H's pooled ladder + optionality | strongest current paper-level mechanism claim, now bounded: P11H is the first pooled hostile verdict and it is a **negative** at `r=3`, so the synthesis is authorized only where the compiled state is wide enough that support discovery is expensive |
+| state construction externalizes structural search from a bounded downstream access mechanism | **SUPPORTED SYNTHESIS / PRIMARY** | theorem + dense + P11D/P11E + P11G's arm-scoped result and decomposition + P11H's pooled ladder + P11I wide replication + optionality | strongest current paper-level mechanism claim, bounded by state width: the pooled attack wins at `r=3`, while the high-width `r=7` advantage replicates in all nine fresh P11I units with matched live-attack controls |
 
 ## Evidence corrections
 
@@ -69,6 +74,16 @@ Before execution, `assess_threshold_panel` / `require_supported_thresholds` repo
 
 Two things follow. The survival claim does not generalise across state width — at `r=3` it is false under P11G's own bars against a pool that includes the paper's own best known attack. And the decomposition goes P11's way harder than P11G's did: at the drawn regimes the decoder-family half of the `n=64` gap is exactly `+0.0000`, so the whole gap is the change of state, and the gap is still only `+0.0506`. Attribution and magnitude are different questions.
 
+### P11H → P11I
+
+P11I was frozen after P11H, before any P11I seed ran. It tests the narrower
+high-width mechanism on the complete cross of three fresh seeds and three bank
+geometries, with a matched `r=3` control in every unit. All nine `r=7` units pass
+all three gates without averaging; all nine `r=3` controls keep the attack live.
+The positive terminal therefore authorizes the width-conditioned claim that
+P11H located, while P11H's adverse terminal remains the result for its drawn
+`r=3` regimes.
+
 
 ## Donor subtraction
 
@@ -81,10 +96,10 @@ Two things follow. The survival claim does not generalise across state width —
 
 ## Residual novelty
 
-P11's residual is the **placement law between state construction and downstream access**. A universal state can contain every task-relevant coordinate yet force a bounded decoder to discover which coordinates matter. Query-conditioned construction moves that discovery work upstream. Stronger sparse decoding buys part of the work back—as it should—while the fresh deterministic P11E replication still leaves 2× and 4× sample-threshold gaps. A separately frozen, protocol-conforming single-thread nonlinear P11G attack fails to reach 0.95 through `n=1024` while compiled state reaches the target by `n=64` in both cells — a result about that one 96-tree arm, since the sparse arm reaches the target at `n=128` in the first cell on P11G's own data, and one whose `n=64` gap is 86.7% and 55.4% the change of state once the decoder is held fixed. P11H then bounds the residual from the other side: with all three universal arms pooled inside its own gate and the width of the compiled state laddered, the pooled attack wins outright at `r=3` and loses at `r=7`, so the placement law is a claim about how much query-conditioned state the compiler resolves and not about how large the universal representation is. The same upstream specialization has an exact future-query cost when raw/recoverable state is discarded.
+P11's residual is the **placement law between state construction and downstream access**. A universal state can contain every task-relevant coordinate yet force a bounded decoder to discover which coordinates matter. Query-conditioned construction moves that discovery work upstream. Stronger sparse decoding buys part of the work back—as it should. P11H bounds the residual: with all three universal arms pooled, the attack wins at `r=3` and loses at `r=7`. P11I then prospectively replicates the high-width side across nine fresh seed×geometry units, with the attack live in every matched narrow control. The placement law is therefore about how much query-conditioned state the compiler resolves, not the size of the universal representation. The same upstream specialization has an exact future-query cost when raw/recoverable state is discarded.
 
 ## Strongest authorized headline
 
-> **State is a computational placement decision.** In controlled query families, query-conditioned construction yields exact combinatorial accessible-rank savings and large dense-decoder sample gains; a hostile sparse decoder recovers part of the advantage but leaves a fresh deterministic 2×/4× residual, and a replay-gated deterministic 96-tree ExtraTrees decoder remains `NOT_REACHED` through `n=1024` where compiled state reaches the target at `n=64` — a per-arm result, not a pooled one. The one pooled hostile test the programme has run, P11H, is a **negative** at `r=3` on a protocol whose attack was shown able to lose before its seed was drawn, so the advantage is authorized only where the compiled state is wide enough for support discovery to be expensive. Exact workload laws quantify the future-query option debt created by specialization.
+> **State is a computational placement decision.** In controlled query families, query-conditioned construction yields exact accessible-rank savings and moves structural search upstream. A pooled hostile decoder attack wins at narrow compiled width `r=3`; in the prospectively frozen P11I replication, the same attack remains below target in all nine prespecified `r=7` seed×geometry cells across three independent RNG replicates and three fixed geometry strata while reaching 1.0000 in every matched `r=3` control. Exact workload laws quantify the future-query option debt created by specialization.
 
 This is a controlled theory/systems superiority claim, not a universal nonlinear lower bound or real-agent superiority claim.

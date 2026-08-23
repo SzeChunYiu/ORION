@@ -216,6 +216,14 @@ Like §5.4.2 this cuts both ways, and more sharply. It **bounds the claim**: at 
 
 Three of the fifteen admissible draws would have printed the positive terminal and the seed did not draw one. The `r=7` rungs carry no terminal and no claim authority; reading them as a positive would be choosing a rung after seeing it, which is what the draw exists to prevent. The `r=5` boundary was excluded before execution for verdict instability across three preflight seeds — in both directions — and remains open.
 
+### 5.6 P11I — wide high-width replication
+
+P11I prospectively freezes the narrower regime P11H located rather than relabeling P11H. It evaluates the complete cross of three fresh seeds and three bank geometries at `r=7`, with a matched `r=3` control for every unit. The independent unit is seed×geometry; five query repeats are averaged only within that unit, and one failed unit defeats the conjunction.
+
+All nine high-width units pass. Compiled accuracy at `n=64` ranges 0.9690–0.9981; the pooled attack's best accuracy below `n=256` ranges 0.8489–0.9421 against the strict `<0.95` gate; and `delta64` ranges +0.2463–+0.3543 against `>=+0.20`. The same pooled attack reaches 1.0000 in all nine matched `r=3` controls. Two fresh subprocess payloads are byte-identical at SHA-256 `b50ace30…e0ce`.
+
+The terminal `P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL` licenses a width-conditioned result only: across three independent RNG replicates and three fixed geometry strata, all nine prespecified high-width seed×geometry cells pass. The pooled attack wins in the narrow regime and the compiled-state advantage replicates in the registered high-width regime. `P11_ACTIVE_CLAIM_AUTHORITY_V1.json` binds these disjoint scopes; P11D and P11H remain adverse historical results.
+
 ## 6. What the decoder attacks identify
 
 The decoder sequence reveals a pattern that a dense-only comparison could not establish.
@@ -224,7 +232,7 @@ The decoder sequence reveals a pattern that a dense-only comparison could not es
 - Sparse universal access recovers part of that cost and falsifies an intentionally stronger residual claim.
 - Fresh deterministic sparse replication retains a smaller 2×/4× threshold separation.
 - A deterministic nonlinear tree ensemble does not close the high-dimensional low-sample gap under its frozen envelope. This is a statement about that arm: on P11G's own data the sparse arm reaches the target at `n=128` in the first cell, which P11G's own gate would read as `NOT_MET` (§5.4.1), and the pattern is arm-by-arm rather than a claim about universal-state decoding as such.
-- Pooling every registered universal arm and laddering the width of the compiled state locates where the substitution completes: P11H's pooled attack wins outright at `r=3` and loses at `r=7`, on a protocol whose gates were shown reachable in both directions before its seed was drawn (§5.5).
+- Pooling every registered universal arm and laddering the width of the compiled state locates where the substitution completes: P11H's pooled attack wins outright at `r=3` and loses at `r=7`; P11I prospectively replicates the high-width side in all nine fresh seed×geometry units with matched live-attack controls (§§5.5–5.6).
 - Protocol mismatches are not treated as scientific victories: P11F is demoted and P11G is independently frozen, and a survived attack is not read as evidence until it is shown it could have lost.
 
 This supports the interpretation that **compilation and decoder inductive bias are alternative locations for structural search**. If the downstream mechanism already identifies relevant coordinates cheaply, upstream compilation should matter less. If it does not, state construction can externalize that work.
