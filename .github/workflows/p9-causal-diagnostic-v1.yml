@@ -1,0 +1,52 @@
+name: p9-causal-diagnostic-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_PROTOCOL_V1.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/check_causal_diagnostic_independent_v1.py'
+      - '.github/workflows/p9-causal-diagnostic-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  causal-diagnostic-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==2.3.2' 'scikit-learn==1.7.1'
+      - name: Execute causal intervention diagnostic
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py | tee p9_causal_diagnostic_v1.json
+      - name: Verify primary deterministic replay
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py > p9_causal_diagnostic_v1_rerun.json
+          cmp p9_causal_diagnostic_v1.json p9_causal_diagnostic_v1_rerun.json
+      - name: Execute independent diagnostic verifier
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/check_causal_diagnostic_independent_v1.py | tee p9_causal_diagnostic_independent_v1.json
+      - name: Verify independent decision agreement
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p9_causal_diagnostic_v1.json'));q=json.load(open('p9_causal_diagnostic_independent_v1.json'))
+          assert p['terminal']=='P9_CAUSAL_DIAGNOSTIC_V1_SUPPORTED',p
+          assert q['terminal']=='P9_CAUSAL_DIAGNOSTIC_SECOND_INDEPENDENT_CHECKER_GREEN',q
+          rows={r['task']:r for r in p['rows']}
+          assert set(rows)==set(q['decisions'])=={'D-A','D-I','B-I','B-A','B-C'}
+          for task,d in q['decisions'].items():
+              assert rows[task]['predicted']==d['predicted'],(task,rows[task],d)
+              assert rows[task]['protected_gold']==d['protected_gold'],(task,rows[task],d)
+          assert p['diagnosis_accuracy']>p['generic_accuracy']
+          assert p['executable_accuracy']==1.0
+          assert p['protected_target_reached_by_prediction']
+          print('P9_CAUSAL_DIAGNOSTIC_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-causal-diagnostic-v1
+          path: |
+            p9_causal_diagnostic_v1.json
+            p9_causal_diagnostic_independent_v1.json
