@@ -5,7 +5,6 @@ No imports from QG-7/QG-5b production analyzers. Rebuilds phase-free Pauli
 letters, PP G1-G4, the full hidden domain, the globally consistent relocation
 library, exact support-one D+, and exact B' for the 24 residuals.
 """
-from __future__ import annotations
 
 import argparse
 import hashlib
@@ -230,7 +229,6 @@ Checks (all read-only; this verifier never writes a receipt):
 
 Prints ACCEPT or REJECT.
 """
-from __future__ import annotations
 
 import hashlib
 import itertools

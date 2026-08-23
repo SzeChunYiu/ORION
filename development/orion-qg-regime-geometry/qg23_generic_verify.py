@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Independent generic ORION verifier for QG-23 auxiliary-support compactness."""
-from __future__ import annotations
 
 import argparse
 import hashlib
@@ -155,7 +154,6 @@ Usage:  qg23_generic_verify.py [RESULTS_JSON]
 Prints exactly one token line:
 ORIONQG_QG23_GENERIC_VERIFY={"decision":"ACCEPT"|"REJECT",...}
 """
-from __future__ import annotations
 
 import copy
 import hashlib
