@@ -44,9 +44,9 @@ def _copy_subject(tmp_path: Path, candidate_id: str) -> Path:
 @pytest.mark.parametrize(
     ("candidate_id", "expected_counts"),
     [
-        ("P6", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P7", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P8", {"BOUND": 6, "PARTIAL": 2, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P6", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P7", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P8", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
     ],
 )
 def test_current_tree_is_classified_target_by_target(
@@ -63,13 +63,8 @@ def test_current_tree_is_classified_target_by_target(
 
 def test_subject_identity_uses_the_content_bound_v2_successor() -> None:
     target = checker.assess_targets(ROOT, "P6")["exact_subject_commit_identities"]
-    # The V2 manifests' subject_commit is not reachable from any ref (the
-    # generating session's local commit was never pushed), so the tree cannot
-    # be resolved and the honest status is PARTIAL, not BOUND. Re-binding the
-    # V2 manifests to a main-reachable commit is tracked by the manifest
-    # regeneration pass.
-    assert target.status == "PARTIAL"
-    assert "V2 subject tree is unavailable" in str(target.blocker)
+    assert target.status == "BOUND"
+    assert target.blocker is None
     assert any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
 
 

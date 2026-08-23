@@ -1,22 +1,49 @@
 {
-  "schema_version": "orion.local-replay-contract.v3",
-  "paper_id": "P6",
-  "terminal": "LOCAL_REPLAY_ONLY",
-  "self_authorizing": true,
-  "independent_replay": false,
+  "environment_lock": {
+    "path": "uv.lock",
+    "sha256": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+  },
   "grants_scientific_authority": "NONE",
-  "environment_lock": {"path":"uv.lock","sha256":"4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"},
+  "independent_replay": false,
   "one_command": "make -C papers/paper-06-formal-epistemic-structures-and-mechanics reproduce-v3",
+  "paper_id": "P6",
   "raw_inputs": [
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json","sha256":"218b62baa2a878fc8ccc92d9a7a0af69cd90829091571be7ffdabfee4133563e"},
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json","sha256":"48e1ab4ff63db0cbf1c22c2345b38b5d1f3ad23474f8a6c87ca9890c99253503"},
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl","sha256":"9d62d23d767d1a3ec6aa8f58489d86eca7782e8c1df2a5fb155bbdf28b0de284"},
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2","sha256":"7d128420493cf589abf7282d28c409adf1594da40299834ab28304db1dfd27e8"}
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",
+      "sha256": "218b62baa2a878fc8ccc92d9a7a0af69cd90829091571be7ffdabfee4133563e"
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json",
+      "sha256": "48e1ab4ff63db0cbf1c22c2345b38b5d1f3ad23474f8a6c87ca9890c99253503"
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2",
+      "sha256": "7d128420493cf589abf7282d28c409adf1594da40299834ab28304db1dfd27e8"
+    }
   ],
   "raw_outputs": [
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json","sha256":"186c2cd04031216aeb2c2d358b70196aad55b3477fa0c5fc285f88c13ad86a24"},
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json","sha256":"8f0bdffc5737885392c95c38d08e89c39ba7a30a05c21729172ec5572b7ecb3b"},
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json","sha256":"e57e548cbe3ad18e873f0704d6bfd74a415bb5a87297836d4764831e36a3594c"},
-    {"path":"papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json","sha256":"92e6c970b8cfc5e13a7f2334485d3398f4d16fe6ecb7928162d52a07aa22d3dc"}
-  ]
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
+      "sha256": "9d62d23d767d1a3ec6aa8f58489d86eca7782e8c1df2a5fb155bbdf28b0de284"
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json",
+      "sha256": "186c2cd04031216aeb2c2d358b70196aad55b3477fa0c5fc285f88c13ad86a24"
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json",
+      "sha256": "8f0bdffc5737885392c95c38d08e89c39ba7a30a05c21729172ec5572b7ecb3b"
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json",
+      "sha256": "e57e548cbe3ad18e873f0704d6bfd74a415bb5a87297836d4764831e36a3594c"
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
+      "sha256": "92e6c970b8cfc5e13a7f2334485d3398f4d16fe6ecb7928162d52a07aa22d3dc"
+    }
+  ],
+  "schema_version": "orion.local-replay-contract.v3",
+  "self_authorizing": true,
+  "terminal": "LOCAL_REPLAY_ONLY"
 }

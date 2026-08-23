@@ -309,6 +309,25 @@ def _schema_and_generator(root: Path, candidate_id: str) -> Assessment:
     return Assessment(state, _relative(root, evidence), "missing " + " and ".join(missing))
 
 
+def _load_machine_output(path: Path):
+    """Parse a machine result in either JSON or line-delimited JSON form."""
+    if path.suffix == ".json":
+        return _load_json(path)
+    if path.suffix != ".jsonl" or not path.is_file():
+        return None
+    try:
+        rows = [
+            json.loads(line)
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not rows or not all(isinstance(row, dict) for row in rows):
+        return None
+    return rows
+
+
 def _immutable_results(root: Path, candidate_id: str) -> Assessment:
     outputs = _mechanized_json(root, candidate_id)
     checkers = _formal_checkers(root, candidate_id)
@@ -380,7 +399,7 @@ def _immutable_results(root: Path, candidate_id: str) -> Assessment:
                         valid_contract = False
                         continue
                     output_path = root / str(artifact["path"])
-                    if output_path.suffix != ".json" or _load_json(output_path) is None:
+                    if _load_machine_output(output_path) is None:
                         valid_contract = False
         if valid_contract and set(outputs).issubset(bound_paths):
             return Assessment(
