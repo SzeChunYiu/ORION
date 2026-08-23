@@ -12,7 +12,7 @@ This is deliberately above dependency repair, truth maintenance, effect systems,
 
 ## Post-outcome status — 2026-08-23
 
-The protocol, 18 transition facts and independent gold dispositions were frozen before the checker. The protected execution now returns `P6_ETS_BOUNDED_EXECUTABLE_POSITIVE`, with two fresh executions byte-identical.
+The protocol, 18 transition facts and independent gold dispositions were frozen before the checker. The protected execution returns `P6_ETS_BOUNDED_EXECUTABLE_POSITIVE` with byte-identical primary replay. A second structurally independent verifier now also returns `P6_ETS_SECOND_INDEPENDENT_CHECKER_GREEN`; it does not import or execute the primary checker, evaluates the frozen semantics through a prioritized defect-set formulation, replays byte-identically, and agrees on all 18 protected classifications and the T6.3 erasure witness count.
 
 Across three six-case families—formal/software, agent-memory/tool-state and scientific-evidence-state—the bounded ETS checker is `1.00` exact versus `0.50` for the strongest declared donor-product decision rule over the same visible facts. The donor product makes `9` unsafe false-admissible decisions, including `3` authority-laundering cases; ETS makes `0`. Neither arm needlessly reopens the independent-support controls.
 
@@ -22,7 +22,7 @@ The executable formal checks establish within the frozen finite interface:
 - **T6.2:** composition succeeds under matching epoch/scope transport and fails on explicit epoch mismatch, scope mismatch and open-obligation counterexamples;
 - **T6.3:** `47` state/transition pairs share the declared donor decision signature but require different scientific dispositions; the first frozen witness is `FS-CLEAN` (`ADMISSIBLE`) vs `FS-EVIDENCE` (`REOPEN`).
 
-**Earned claim:** a bounded executable ETS separation exists on the frozen interface, including three transition-family instantiations and a fair same-facts donor comparator. **Not earned:** universal superiority over arbitrary real dependency/provenance/policy systems or broad external transition populations.
+**Earned claim:** a bounded executable ETS separation exists on the frozen interface, including three transition-family instantiations, a fair same-facts donor comparator, and independent two-implementation agreement on the protected semantics. **Not earned:** universal superiority over arbitrary real dependency/provenance/policy systems or a theorem beyond the frozen finite semantics.
 
 Exact result identities are bound in `top_tier/P6_ETS_RESULT_RECEIPT_V1.md` and `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
 
@@ -49,17 +49,17 @@ Define a state transition as a product of at least:
 
 `(computational support, evidence meaning, scientific obligation, authority/commit)`.
 
-The finite four-factor factorization/non-implication object is now executable and protected. A broader theorem beyond the frozen finite semantics remains open.
+The finite four-factor factorization/non-implication object is executable and independently reproduced. A broader theorem beyond the frozen finite semantics remains open.
 
 ### T6.2 — Composition under transport
 
 For transitions `A -> B -> C`, characterize when admissibility certificates compose and when intermediate evidence/obligation transport forces reopening.
 
-The bounded checker now covers positive composition plus epoch/scope/open-obligation counterexamples. A proof-assistant or independent second implementation at the intended generality remains open.
+The bounded primary checker covers positive composition plus epoch/scope/open-obligation counterexamples, and the independent verifier reconstructs the same protected semantic boundary through different implementation structure. A proof-assistant generalization beyond this finite scope remains optional future strengthening, not authority already claimed here.
 
 ### T6.3 — Erasure non-full-abstraction generalization
 
-The current frozen donor interface has 47 decision-signature collisions with distinct scientific dispositions, establishing bounded non-full-abstraction. Generalization to the strongest actual donor-complete real-system interface remains open.
+The current frozen donor interface has 47 decision-signature collisions with distinct scientific dispositions, independently recounted by the second verifier, establishing bounded non-full-abstraction. Generalization to the strongest actual donor-complete real-system interface remains open.
 
 ## Protected external study
 
@@ -92,7 +92,7 @@ These are executable transition records, not broad samples of production systems
 
 ## Independent authority
 
-The current corpus has independently frozen gold facts/dispositions and deterministic replay. That protects the bounded result from candidate self-labeling, but is not yet the stronger authority target of a proof-assistant theorem or a second independently implemented checker.
+The bounded corpus now has two independent authority layers: prospectively frozen gold facts/dispositions, plus a second executable verifier that is structurally independent from the primary checker and reproduces every protected classification. CI additionally requires byte-identical replay of both implementations and exact cross-implementation agreement. This closes independent checker authority **for ETS V1's frozen finite scope only**; it is not a machine-checked theorem about arbitrary real transition systems.
 
 ## Top-tier promotion gate
 
@@ -104,8 +104,9 @@ The current corpus has independently frozen gold facts/dispositions and determin
 - [x] three protected finite transition families executed;
 - [x] fair same-facts bounded donor-product comparator implemented;
 - [x] bounded ETS reduces unsafe scientific-admissibility decisions without always-reopen collapse;
+- [x] second structurally independent checker reproduces all protected ETS V1 classifications and theorem-summary invariants;
 - [ ] broad real-system replication against actual donor-complete transition products;
-- [ ] proof-assistant or second independent checker authority at the intended theorem scope;
+- [ ] theorem generalization beyond the frozen finite ETS V1 scope if the final headline requires it;
 - [ ] cross-paper non-overlap review against P1/P4/P7/P8 at final manuscript scope;
 - [ ] fresh nearest-work saturation immediately before submission;
 - [x] current P6 package content binding and candidate PDF audit; final top-tier submission-byte binding remains part of the last submission pass.
