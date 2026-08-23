@@ -32,6 +32,53 @@ jobs:
           python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py p15_attestation_composition_v2.json | tee p15_attestation_composition_independent_v2.json
           python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py p15_attestation_composition_v2.json > p15_attestation_composition_independent_v2_rerun.json
           cmp p15_attestation_composition_independent_v2.json p15_attestation_composition_independent_v2_rerun.json
+      - name: Exercise independent replay and consumed-occurrence rules directly
+        run: |
+          python - <<'PY'
+          import importlib.util, json, pathlib
+          path=pathlib.Path('papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py')
+          spec=importlib.util.spec_from_file_location('p15_independent_v2', path)
+          assert spec and spec.loader
+          module=importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          primary=json.load(open('p15_attestation_composition_v2.json'))
+          rows=primary['rows']
+          claimant_occurrence=module.frozen_case(rows[0])[0]['occurrence_id']
+          other=rows[1]
+          ok,reason=module.vchain_detail(
+              other['chain'], other['id'], claimed_occurrence=claimant_occurrence
+          )
+          assert not ok and reason=='replay-binding',(ok,reason)
+          occurrence=module.frozen_case(rows[0])[0]['occurrence_id']
+          ok,reason=module.vchain_detail(
+              rows[0]['chain'], rows[0]['id'], consumed={occurrence}
+          )
+          assert not ok and reason=='consumed-occurrence',(ok,reason)
+          print('P15_INDEPENDENT_REPLAY_AND_STALE_RULES_EXERCISED')
+          PY
+      - name: Prove compromise boundary is reconstructed rather than trusted from primary rows
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p15_attestation_composition_v2.json'))
+          assert p['compromise_case_rows']
+          for row in p['compromise_case_rows']:
+              row['signature_layer_detected']=True
+              row['chain_as_science']='EXECUTION_INVALID'
+              row['chain_plus_sei']='EXECUTION_INVALID'
+          with open('p15_attestation_composition_v2_fabricated_compromise_rows.json','w') as f:
+              json.dump(p,f,sort_keys=True)
+          PY
+          python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py \
+            p15_attestation_composition_v2_fabricated_compromise_rows.json \
+            > p15_attestation_composition_independent_v2_fabricated_rows.json
+          python - <<'PY'
+          import json
+          q=json.load(open('p15_attestation_composition_independent_v2_fabricated_rows.json'))
+          assert q['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN',q
+          assert q['full_compromise_boundary_confirmed'] is True
+          print('P15_COMPROMISE_BOUNDARY_RECONSTRUCTED_FROM_FROZEN_FIXTURES')
+          PY
       - name: Authoritatively execute frozen V1 single-attestation study in the same binding
         run: |
           python papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v1.py | tee p15_attestation_composition_v1.json
