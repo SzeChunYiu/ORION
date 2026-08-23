@@ -18,10 +18,15 @@
 | V1 runner alone satisfied every protocol gate | **FALSE / CORRECTED** | hostile PR review | replay gate was omitted from terminal path |
 | exact frozen P13A runner is byte-identical across two fresh executions | **SUPPORTED / REPLAY-ADJUDICATED** | V2 adjudicator | both SHA-256 = `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f` |
 | responsibility-carrying state eliminates unsafe reuse while avoiding always-reopen cost in the controlled benchmark | **NOT AUTHORIZED** | `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json` | P13B requires independently graded support and matched frontier |
+| authenticated RCS rejects omitted, overbroad, forged and stale certificates without gold-scored unsafe reuse in the registered finite panel | **SUPPORTED / CONTROLLED P13B** | `P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json` | 30 live mutation opportunities per world; zero authenticated unsafe reuse; valid-panel cost ratio 0.6111 vs always raw |
 | real-agent / safety-critical superiority | OPEN | no external domain result | not authorized |
 
 ## Evidence correction
 
+`P13_ACTIVE_CLAIM_AUTHORITY_V1.json` remains the historical P13A boundary.
+Current `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` retains the exact core, preserves the
+P13A self-scored failure, and activates the bounded P13B result. Active terminal:
+`P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`.
 Active authority is split. `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` keeps
 `P13.EXACT.RESPONSIBILITY_RELATIVE_SUPPORT` as `SUPPORTED_EXACT` and sets
 `P13A.EMPIRICAL.SAFETY_COST_SUPERIORITY` to `CANNOT_CHECK`. Active terminal:
@@ -42,6 +47,9 @@ The original P13A runner evaluated the frozen scientific efficacy/safety/cost ga
 ## Residual novelty
 
 The supported residual is the exact, conditional **responsibility-scoped state
+authority** interface plus P13B's controlled authenticated-certificate corruption
+result. The gold is separate from the certificate but locally authored, so
+external safety authority remains open. `PROVENANCE_ONLY` and `UNQUALIFIED` are
 authority** interface. The efficacy claim is prospective: it requires a P13B
 certificate whose declared support can disagree with independently graded gold,
 plus a matched cost/correctness frontier. `PROVENANCE_ONLY` and `UNQUALIFIED` are
@@ -49,6 +57,10 @@ identical policies in P13A and cannot count as two comparisons.
 
 ## Strongest authorized headline
 
+> P13A's self-scored zero-harm claim remains withheld. In the prospectively frozen
+> P13B finite panel, all four certificate corruptions have live denominators,
+> authenticated RCS makes zero gold-scored unsafe reuses, and valid-panel cost is
+> 0.6111 times always raw.
 > The registered finite construction proves that sufficiency is
 > responsibility-relative and the RCS interface conditionally refuses reuse
 > outside declared support. P13A's empirical zero-harm claim is withheld because

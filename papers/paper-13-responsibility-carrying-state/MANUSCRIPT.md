@@ -2,6 +2,11 @@
 
 **ORION-P13 · issue #666 · interface track #668**  
 **Evidence freeze:** 2026-08-21  
+**Submission status:** `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`; external validation open
+
+**Current authority:** `P13_ACTIVE_CLAIM_AUTHORITY_V2.json`. Historical P13A
+execution and its self-scored outcome failure remain unchanged; current authority
+is limited to P13B's controlled finite-world certificate-corruption panel.
 **Submission status:** exact conditional core supported; `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`
 
 **Current authority:** `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`. Historical
@@ -21,6 +26,11 @@ Across 3,840 enumerated points, certificate corruption moves the RCS action on
 2,304 and the published harm on zero, leaving zero harm opportunities. Active
 empirical superiority authority is therefore withheld. The exact
 responsibility-relative support matrix and conditional interface invariant
+remain supported. A prospectively frozen P13B then grades against locally
+authored certificate-independent gold. Across a 30-case state-task panel, all
+four registered corruptions have 30 live mutation opportunities; authenticated
+RCS makes zero unsafe reuses in every world and costs 0.6111 times always raw on
+valid certificates. This is not external validation.
 remain supported; P13B must grade reuse against independently defined gold
 support.
 
@@ -34,7 +44,7 @@ P13 asks:
 
 > **Can a compact state carry a machine-checkable responsibility contract that says what it supports, what it omits, what changes invalidate reuse, and whether richer state can be reopened—without forcing every decision to reload raw evidence?**
 
-The paper makes four contributions.
+The paper makes five contributions.
 
 1. **Responsibility-relative sufficiency.** We define exact support as homogeneity of representation equivalence classes under a named downstream responsibility.
 2. **A responsibility-carrying state interface.** RCS binds state identity to supported responsibilities, witnesses, omissions, recovery and reopen semantics without granting scientific self-authority.
@@ -42,6 +52,9 @@ The paper makes four contributions.
 4. **Outcome-contingency adjudication.** The protected benchmark is retained with
    a machine-readable audit showing its zero-harm endpoint cannot vary for RCS;
    provenance-only is also identified as a duplicate of unqualified reuse.
+5. **Authenticated corruption successor.** P13B separates gold from the
+   certificate, requires a live denominator in every corruption world, and
+   tests fail-closed validation plus valid-panel cost.
 
 ## 2. Donor boundary and novelty
 
@@ -193,6 +206,7 @@ exist here.
 
 ## 7. Results
 
+Historical P13A protected terminal:
 Historical protected terminal:
 
 `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
@@ -226,6 +240,20 @@ Every compact state has valid source lineage. Provenance therefore verifies orig
 
 ### 7.3 Why always raw is not the answer
 
+Always reopening has zero historical unsafe compact reuse, roughly twice the mean RCS cost and unnecessary reopen on 57.44% of all episodes. Those are descriptive P13A rates. P13A cannot establish the safety coordinate because its scorer had no reachable opportunities; P13B below uses a different certificate-independent gold estimand.
+
+### 7.4 Prospectively frozen P13B
+
+P13B defines gold support from task requirements and state variables without
+reading the certificate. The complete panel contains six state forms and five
+tasks. Omitted, overbroad, forged and stale-epoch corruption worlds each have 30
+live mutation opportunities before scoring. Authenticated RCS rejects every
+mutated certificate and makes zero gold-scored unsafe reuses in every world;
+unverified RCS has 0, 5, 5 and 16 unsafe reuses in the omitted, overbroad, forged
+and stale worlds, respectively. On valid certificates, authenticated RCS is exactly
+correct and costs 0.6111 times always raw. Two fresh subprocess payloads are
+byte-identical. Terminal:
+`P13B_AUTHENTICATED_CERTIFICATE_SAFETY_COST_SUPPORTED_FINITE_WORLD`.
 Always reopening has zero historical unsafe compact reuse, roughly twice the mean RCS cost and unnecessary reopen on 57.44% of all episodes. Those are descriptive P13A rates. Whether RCS occupies a valid interior safety–cost frontier remains a P13B question because P13A's self-scored harm coordinate had no reachable opportunities.
 
 ## 8. Certificate transport, invalidation and authority
@@ -244,7 +272,12 @@ P13's discriminating contribution is the **responsibility key** plus **reopen se
 
 The responsibility-support matrix is deterministic and exact. The historical P14A terminal is reported exactly as frozen and is not reanalysed into a positive result. The independent P13A benchmark uses fresh seed/families and a different primary estimand.
 
-Because the current P13A endpoint is a controlled finite benchmark with exact known support, the paper reports protected rates and deterministic replay rather than inventing post-hoc inferential tests. A real-system extension should define task/domain as the unit of generalization, use paired comparisons on matched episodes and report family/domain-block uncertainty.
+P13B is a complete registered 30-case finite panel, not a population sample, so
+it reports exact counts rather than a post-hoc inferential interval. Every
+corruption world must have a nonzero opportunity denominator before zero
+violations can be interpreted. A real-system extension should define task/domain
+as the unit of generalization, use paired comparisons on matched episodes and
+report family/domain-block uncertainty.
 
 ## 11. Limitations and strongest remaining attacks
 
@@ -261,6 +294,11 @@ Because the current P13A endpoint is a controlled finite benchmark with exact kn
 Sufficiency is a contract over future responsibility, not an intrinsic property
 of a compact representation. P13 makes that exact conditional boundary explicit
 and preserves both historical failures and reproducible descriptive evidence.
+P13B shows that the authenticated policy rejects the four registered corruptions
+without unsafe reuse in its locally authored finite panel. It does not establish
+external witness correctness, real-agent safety or population generalization.
+**A compact state's declared authority must be scoped to a named responsibility;
+whether that declaration remains correct outside the registered world must be
 It does not yet show that RCS prevents unsafe reuse under wrong, stale, forged or
 overbroad certificates. That requires P13B with independently defined gold
 support and a live harm denominator. **A compact state's declared authority must

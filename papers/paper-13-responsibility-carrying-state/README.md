@@ -11,6 +11,7 @@
 
 ## Status
 
+`P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED / EXTERNAL_VALIDATION_OPEN`
 `P13_EXACT_RESPONSIBILITY_CORE_SUPPORTED / P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`
 
 ### Historical negative
@@ -44,6 +45,25 @@ its certificate says `supported`; the primary harm counter calls a reuse unsafe
 exactly when that same certificate says `not supported`. The zero is therefore
 self-entailed and has no reachable harm denominator.
 
+### P13B controlled authenticated successor
+
+P13B freezes certificate-independent gold before execution and enumerates 30
+state-task cases under omitted, overbroad, forged and stale-certificate worlds.
+Every world has 30 live mutation opportunities. Authenticated RCS rejects every
+mutated certificate and makes zero gold-scored unsafe reuses in every world; on
+the valid-certificate panel its cost is 0.6111 times always raw. This is a
+locally authored finite-world result, not external validation.
+
+Current terminal:
+`P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`, from
+`P13_ACTIVE_CLAIM_AUTHORITY_V2.json`.
+
+## Strongest paper claim
+
+> In the registered finite state-task panel, authenticated RCS rejects all four
+> frozen certificate corruptions, makes zero certificate-independent gold-scored
+> unsafe reuses, and retains lower valid-panel cost than always reopening.
+
 ## Strongest paper claim
 
 > In the exact registered finite world, sufficiency is relative to a named
@@ -60,11 +80,17 @@ self-entailed and has no reachable harm denominator.
 - `HISTORICAL_P14A_NEGATIVE_ROOT_CAUSE.md`
 - `P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json`
 - `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`
+- `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` (historical P13A boundary)
+- `P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json`
+- `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` (current)
 - `P13_ACTIVE_CLAIM_AUTHORITY_V1.json`
 - protected successor protocol and executable harness
 
 ## Boundary
 
+P13B authorizes only controlled finite-world authenticated-certificate safety and
+valid-panel cost. Safety-critical deployment, real-agent superiority and
+external validation remain unauthorized.
 No empirical safety superiority, safety-critical deployment or real-agent
 superiority is currently authorized. P13B must make unsafe reuse reachable with
 independent gold support before external promotion is considered.

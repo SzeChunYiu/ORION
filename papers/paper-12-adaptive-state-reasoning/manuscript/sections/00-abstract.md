@@ -8,6 +8,15 @@ byte-reproducible. A later comparator-capability audit changes the interpretatio
 not the historical bytes: the joint arm can emit four allocations while each
 one-axis arm can emit only two, and both losing-arm ceilings are below the
 winner's achieved score. With identical four-action sets, the gain is +0.0408,
+the worst-family gain is +0.0020, and the original gate is not met. The
+comparison-validity adjudication therefore withholds P12A superiority authority.
+A prospectively frozen P12B then gives all arms the identical four actions and
+scores exact allocation. Across 32
+independent family RNG blocks, the two-signal arm gains 0.253906 over the
+stronger one-signal arm (stratified family-block 95% bootstrap interval 0.251221
+to 0.256653); every family and every fixed noise stratum passes. Current bounded
+authority is the controlled equal-action signal-complementarity result;
+naturalistic and external-system superiority remain open.
 the worst-family gain is +0.0020, and the original gate is not met. Consequently
 `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` sets the active terminal to
 `P12A_SUPERIORITY_AUTHORITY_WITHHELD`. P12A motivates the resource-location

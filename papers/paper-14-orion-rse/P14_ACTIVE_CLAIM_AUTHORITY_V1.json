@@ -25,5 +25,20 @@
     "disposition": "RETAINED_GATE_ATTAINABILITY_DEFECT",
     "reason": "Both aggregate bars exceeded the statistic's supremum under P14A's frozen sampling support."
   },
+  "external_validity": "OPEN",
+  "prospective_external_validation": {
+    "campaign_id": "P14D",
+    "lifecycle_state": "ACQUISITION_PROTOCOL_FROZEN",
+    "terminal": "P14D_EXTERNAL_ACQUISITION_BLOCKED",
+    "execution_authorized": false,
+    "protocol_artifact": "P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md",
+    "protocol_sha256": "a428ec46e258260e505e6d1185ee930ad276f4d84b4dbf7837caecf85d814bc8",
+    "preflight_artifact": "P14D_EXTERNAL_ACQUISITION_PREFLIGHT_V1.json",
+    "preflight_sha256": "73da8b6e6042d9a8e2e9ecb9c30cf5e7738b1a10fd86822430e9b1974c989f0b",
+    "validator_artifact": "../../src/orion/study/p14/external_acquisition.py",
+    "validator_sha256": "e23e70ca9c34f6cea7cae4847d7df400167b79ba111c26ed7f595160787efd77",
+    "external_custody_verified": false,
+    "interpretation": "The acquisition path is frozen and fail-closed; it confers no external-validation authority."
+  }
   "external_validity": "OPEN"
 }

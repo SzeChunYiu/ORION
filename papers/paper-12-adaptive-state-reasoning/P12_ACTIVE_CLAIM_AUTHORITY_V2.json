@@ -1,0 +1,77 @@
+{
+  "active_claim_leaf": {
+    "claim_id": "P12B.EQUAL_ACTION.TWO_SIGNAL_COMPLEMENTARITY",
+    "effect": {
+      "mean_gain_vs_stronger_one_signal": 0.25390625,
+      "minimum_family_gain": 0.1962890625,
+      "stratified_family_bootstrap_95ci": [
+        0.251220703125,
+        0.25665283203125
+      ]
+    },
+    "maximum_authorized_wording": "Across 32 independent simulated family RNG blocks in the registered equal-action four-regime world, the two-signal policy improved exact allocation accuracy over the stronger one-signal policy by 0.253906 on average (stratified family-block 95% bootstrap interval 0.251221 to 0.256653).",
+    "scope": {
+      "budget": 2,
+      "fixed_sigma_strata": [
+        0.2,
+        0.4,
+        0.6,
+        0.8
+      ],
+      "identical_action_count_per_arm": 4,
+      "independent_family_rng_blocks": 32,
+      "scoring": "exact_required_allocation",
+      "technical_episodes_per_family": 1024
+    },
+    "status": "SUPPORTED_REPLICATED_FAMILY_PANEL",
+    "terminal": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED"
+  },
+  "active_terminal": "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED",
+  "evidence_bindings": {
+    "historical_p12a_authority": {
+      "artifact": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json",
+      "sha256": "95577c3297e86b5123ec696905592b061fdae58613ff1b43d6be5dcaa87593a2"
+    },
+    "p12b_preflight": {
+      "artifact": "papers/paper-12-adaptive-state-reasoning/P12B_PREFLIGHT_ATTAINABILITY_V1_1.json",
+      "sha256": "6046ec0134fe153c0a596de59650ef95831ec6c549ce68d9d211880547dd8b9d"
+    },
+    "p12b_protocol": {
+      "artifact": "papers/paper-12-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_PROTOCOL_V1.md",
+      "sha256": "a44870bea56ea0c94c1b0dec15f3f11961e9371c1f3fedbda3048c654210cb09"
+    },
+    "p12b_protocol_amendment": {
+      "artifact": "papers/paper-12-adaptive-state-reasoning/P12B_PROTOCOL_AMENDMENT_V1_1.md",
+      "sha256": "4c3422390190d5124289419b75c4c9eadc141fe524fdbebce50ffac1636536fa"
+    },
+    "p12b_result": {
+      "artifact": "papers/paper-12-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json",
+      "sha256": "76fed7d0b539e561036401a988cf2cfeaf6f12c2c5ddc7c42548513df96eb78e"
+    },
+    "p12b_runner": {
+      "artifact": "papers/paper-12-adaptive-state-reasoning/run_p12b_equal_action_signal_complementarity_v1.py",
+      "sha256": "6f23f0cadc2d24ec80e47ff6eb6d68717f6b763ddacac662587ae82d0994eb29"
+    },
+    "p12b_subject_module": {
+      "artifact": "src/orion/study/p12/equal_action_successor.py",
+      "sha256": "e853f95b048b6a0672e7bffe95c25c18d9d935c1277cb7d655856edb84b14071"
+    }
+  },
+  "forbidden_promotions": [
+    "P12A_ACTION_SET_HANDICAP_AS_SIGNAL_EFFECT",
+    "TECHNICAL_EPISODES_AS_INDEPENDENT_N",
+    "NATURALISTIC_AGENT_SUPERIORITY",
+    "EXTERNAL_SYSTEM_GENERALIZATION",
+    "UNREGISTERED_NOISE_MIXTURE_GENERALIZATION"
+  ],
+  "historical_boundary_leaf": {
+    "authority": "HISTORICAL_COMPARISON_FAILURE_NOT_ACTIVE",
+    "claim_id": "P12A.TWO_SIGNAL_SUPERIORITY_OVER_ONE_AXIS_POLICIES",
+    "reason": "BASELINE_CEILING_BELOW_WINNER",
+    "terminal": "P12A_SUPERIORITY_AUTHORITY_WITHHELD"
+  },
+  "paper_id": "P12",
+  "paper_level_outcome": "SUPPORTED_IN_REGISTERED_EQUAL_ACTION_WORLD",
+  "promotion_allowed": true,
+  "schema": "ORION.P12.ActiveClaimAuthority.v2"
+}

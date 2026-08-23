@@ -36,6 +36,8 @@
 | the compiled-state advantage is a function of the compiled state's width `r`, not of the universal bank width | SUPPORTED / LADDERED | P11H six-rung ladder, one execution seed and three preflight seeds | the pool reaches 0.95 by `n=128` at every `r=3` rung and at no `r=7` rung, while the complete universal bank moves 91 → 969 columns inside each half without changing a verdict |
 | at the drawn `r=3` regimes the whole `n=64` gap is the change of state | SUPPORTED / DECOMPOSED | `COMPILED_EXTRA_TREES` control inside P11H's own receipt | decoder half +0.0000 in both cells, state share 100%; attribution and magnitude are separate questions — the gap is wholly a state effect and still below the 0.20 bar |
 | P11H two fresh subprocess scientific payloads are byte-identical | **SUPPORTED / REPRODUCIBLE** | P11H terminal path | both SHA `61ecf79f…f92dd6dd` |
+| the compiled-state low-sample advantage replicates at `r=7` against the pooled universal decoder | **SUPPORTED / WIDE REPLICATION** | P11I: 3 independent execution-seed replicates × 3 fixed geometry strata, prospectively frozen | all nine cells pass non-compensatorily; pooled best below `n=256` 0.8489–0.9421, `delta64` +0.2463–+0.3543, compiled@64 0.9690–0.9981 |
+| P11I has nine independent random replicates | **FALSE / CORRECTED UNIT** | `P11I_REPLICATION_UNIT_AMENDMENT_V1_1.md`; `P11I_REVALIDATION_RECEIPT_V1_1.json` | report `n=3` independent execution seeds and three fixed within-seed geometry strata |
 | the compiled-state low-sample advantage replicates at `r=7` against the pooled universal decoder | **SUPPORTED / WIDE REPLICATION** | P11I: nine fresh seed×geometry units, prospectively frozen | every unit passes non-compensatorily; pooled best below `n=256` 0.8489–0.9421, `delta64` +0.2463–+0.3543, compiled@64 0.9690–0.9981 |
 | the P11I positive comes from an inert pooled attack | **FALSE / MATCHED CONTROL** | nine matched `r=3` controls | the same pool reaches 1.0000 below `n=256` in every control |
 | P11I two fresh subprocess scientific payloads are byte-identical | **SUPPORTED / REPRODUCIBLE** | P11I terminal path | both SHA `b50ace30…e0ce` |
@@ -83,6 +85,10 @@ all three gates without averaging; all nine `r=3` controls keep the attack live.
 The positive terminal therefore authorizes the width-conditioned claim that
 P11H located, while P11H's adverse terminal remains the result for its drawn
 `r=3` regimes.
+
+The three execution seeds are the independent random units; geometry is a fixed
+within-seed stratum. `P11I_REVALIDATION_RECEIPT_V1_1.json` reproduces the result
+in two fresh subprocesses, byte-identically, while recording `n=3`.
 
 
 ## Donor subtraction

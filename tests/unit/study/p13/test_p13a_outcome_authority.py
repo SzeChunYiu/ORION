@@ -16,6 +16,8 @@ ROOT = Path(__file__).resolve().parents[4]
 PAPER = ROOT / "papers/paper-13-responsibility-carrying-state"
 ADJUDICATION = PAPER / "P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json"
 ACTIVE = PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V1.json"
+SUCCESSOR_ACTIVE = PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V2.json"
+SUCCESSOR_TERMINAL = "P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED"
 
 
 def test_committed_adjudication_is_recomputed() -> None:
@@ -61,6 +63,8 @@ def test_active_authority_keeps_exact_core_and_withholds_superiority() -> None:
     assert actual["superiority_promotion_allowed"] is False
 
 
+def test_current_publication_surfaces_bind_successor_and_historical_adjudication() -> None:
+    authority_surfaces = (
 def test_current_publication_surfaces_use_the_active_adjudication() -> None:
     surfaces = (
         "README.md",
@@ -68,6 +72,25 @@ def test_current_publication_surfaces_use_the_active_adjudication() -> None:
         "PEER_REVIEW_READINESS.md",
         "PR_SCOPE.md",
         "MANUSCRIPT.md",
+    )
+    for relative in authority_surfaces:
+        text = (PAPER / relative).read_text(encoding="utf-8")
+        assert "P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json" in text, relative
+        assert "P13_ACTIVE_CLAIM_AUTHORITY_V2.json" in text, relative
+        assert SUCCESSOR_TERMINAL in text, relative
+
+    for relative in (
+        "manuscript/sections/00-abstract.md",
+        "manuscript/sections/06-results.md",
+    ):
+        text = (PAPER / relative).read_text(encoding="utf-8")
+        assert "controlled finite-world" in text, relative
+        assert "external" in text or "outcome-entailment" in text, relative
+
+    authority = json.loads(SUCCESSOR_ACTIVE.read_text(encoding="utf-8"))
+    assert authority["promotion_allowed"] is True
+    assert authority["active_terminal"] == SUCCESSOR_TERMINAL
+    assert authority["historical_boundary_leaf"]["terminal"] == AUTHORITY_TERMINAL
         "manuscript/sections/00-abstract.md",
         "manuscript/sections/06-results.md",
     )

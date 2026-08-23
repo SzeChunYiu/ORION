@@ -17,10 +17,20 @@
 | adaptive test-time compute is novel to P12 | FALSE / DONOR-OWNED | current literature | do not claim |
 | dynamic state/context selection is novel to P12 | FALSE / DONOR-OWNED | retrieval/memory/state literature | do not claim |
 | two-axis state–reasoning allocation has controlled superiority under matched total compute | **NOT AUTHORIZED** | `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` | identical budget did not mean identical action capability |
+| two signals improve exact allocation when all arms share the same four actions | **SUPPORTED / CONTROLLED P12B** | `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json` | mean gain 0.253906 across 32 family RNG blocks; stratified 95% CI [0.251221, 0.256653]; locked CPython 3.12.13 / NumPy 2.5.2 replay |
 | real LLM/prover superiority | OPEN | no real-system result | not authorized |
 
 ## Evidence correction
 
+The historical P12A terminal remains `P12A_SUPERIORITY_AUTHORITY_WITHHELD` in
+`P12_ACTIVE_CLAIM_AUTHORITY_V1.json`. Current bounded authority is
+`P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED` in
+`P12_ACTIVE_CLAIM_AUTHORITY_V3.json`.
+
+The V1 P12B receipt is preserved unchanged. Its scientific counts and estimates
+reconstruct under the repository lock, but strict whole-core replay rejects its
+NumPy 2.3.5 environment field. The append-only V1.1 result binds `uv.lock`,
+CPython 3.12.13 and NumPy 2.5.2 and passes two fresh byte-identical subprocesses.
 Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`. The authority record is
 `P12_ACTIVE_CLAIM_AUTHORITY_V1.json`, content-bound to
 `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
@@ -39,6 +49,16 @@ The original P12A executable evaluated seven frozen scientific gates but did not
 ## Residual novelty
 
 P12's residual is not “adaptive inference.” It is the **resource-locus problem**.
+P12A motivates that problem but confounds signal count with action capability.
+P12B resolves that controlled comparison by holding the four actions fixed; the
+real-system resource-locus claim remains open.
+
+## Strongest authorized headline
+
+> P12A's apparent superiority is historically retained but confounded by action
+> capability. In prospectively frozen P12B, all arms share four exact actions and
+> the two-signal policy gains 0.253906 over the stronger one-signal policy across
+> 32 independent family RNG blocks.
 P12A motivates that problem but does not resolve it because signal count and
 allocation capability varied together. P12B must make the actions symmetric
 before measuring the value of an additional signal.

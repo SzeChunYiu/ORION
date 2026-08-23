@@ -12,12 +12,21 @@ The system is modeled as
 
 `raw/current state -> optional state construction -> downstream reasoning/search -> verified outcome`.
 
-The paper makes three contributions.
+The paper makes four contributions.
 
 1. **Two-axis inference formulation.** State construction and downstream reasoning are symmetric budgeted actions rather than free preprocessing plus paid reasoning.
 2. **A strict comparator contract.** The joint policy must beat both adaptive-state-only and adaptive-reasoning-only policies at identical total resources, not merely a fixed baseline.
 3. **A comparator-capability correction.** The protected run is reported with a
    later hostile adjudication showing that signal count and permitted allocations
+   varied together.
+4. **An equal-action successor.** P12B holds the four actions and budget fixed,
+   varies only visible signals, and reports family-block uncertainty.
+
+P12A's superiority interpretation is withheld by its comparison-validity
+adjudication. P12B supplies the stronger controlled contract: equal total
+budget, equal action capability, and only then a variation in available
+signals. The current bounded authority is the equal-action
+signal-complementarity result.
    varied together; a capability-matched P12B is therefore required.
 
 The historical result is intentionally controlled and exactly reproducible, but

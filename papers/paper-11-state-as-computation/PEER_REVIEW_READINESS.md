@@ -44,6 +44,9 @@
 - [x] P11G `n=64` gap decomposed into decoder-family and state halves
 - [x] P11H successor freezes the universal-arm pool and gates through it
 - [x] P11H hostile gate has both terminals reachable before execution
+- [x] P11I prospectively replicates the positive high-width regime across three independent execution seeds and three fixed geometry strata
+- [x] P11I includes nine matched low-width controls where the pooled attack remains live
+- [x] P11I fresh two-subprocess revalidation records `n=3`, reproduces every cell byte-identically and has terminal-responsiveness tests
 - [x] P11I prospectively replicates the positive high-width regime across nine fresh units
 - [x] P11I includes nine matched low-width controls where the pooled attack remains live
 - [x] P11F protocol mismatch disclosed and removed from claim authority

@@ -26,6 +26,9 @@ P11I_PREFLIGHT = PAPER / "P11I_PREFLIGHT_ATTAINABILITY_V1.json"
 P11I_RUNNER = PAPER / "run_p11i_wide_high_width_replication_v1.py"
 P11I_RESULT = PAPER / "P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json"
 P11I_RECEIPT = PAPER / "P11I_EXECUTION_RECEIPT_V1.md"
+P11I_UNIT_AMENDMENT = PAPER / "P11I_REPLICATION_UNIT_AMENDMENT_V1_1.md"
+P11I_REVALIDATION_RUNNER = PAPER / "run_p11i_revalidation_v1_1.py"
+P11I_REVALIDATION_RECEIPT = PAPER / "P11I_REVALIDATION_RECEIPT_V1_1.json"
 P11H_RESULT = PAPER / "P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json"
 
 
@@ -83,6 +86,9 @@ def build_active_claim_authority() -> dict[str, Any]:
             "p11i_runner": _binding(P11I_RUNNER),
             "p11i_result": _binding(P11I_RESULT),
             "p11i_receipt": _binding(P11I_RECEIPT),
+            "p11i_unit_amendment": _binding(P11I_UNIT_AMENDMENT),
+            "p11i_revalidation_runner": _binding(P11I_REVALIDATION_RUNNER),
+            "p11i_revalidation_receipt": _binding(P11I_REVALIDATION_RECEIPT),
             "p11h_result": _binding(P11H_RESULT),
         },
         "forbidden_promotions": [

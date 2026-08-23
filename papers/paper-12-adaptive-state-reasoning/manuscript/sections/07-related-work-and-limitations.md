@@ -3,6 +3,14 @@
 Strategic test-time-compute allocation treats inference budget as a learnable or bandit decision across examples. Constrained policy approaches optimize accuracy under average compute. Adaptive in-context demonstration and generation methods jointly alter conditioning and generation effort. Recent “when to think” work likewise emphasizes selective reasoning to reduce unnecessary inference.
 
 These results sharpen P12's motivation: **adaptive inference is crowded; the
+novel discriminator must be where the resource can be spent.** P12A does not
+measure that discriminator because the action portfolio changes with signal
+count. P12B repairs the controlled equal-action contrast and supports bounded
+signal complementarity; it does not establish real-system resource-locus
+superiority.
+
+The current bounded authority is the P12B equal-action result; the historical
+P12A comparator boundary remains separately content-bound.
 novel discriminator must be where the resource can be spent.** P12A does not yet
 measure that discriminator because the action portfolio changes with signal
 count. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore records
@@ -14,6 +22,8 @@ count. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore records
 2. The pre-outcome signals are constructed measurements of resource need. Real signal quality may be substantially worse.
 3. Scalar units are commensurate by construction. Real compiler work, tokens, verifier calls and latency are heterogeneous.
 4. The joint policy is a simple frozen nearest-allocation rule; the paper does not claim it is optimal.
+5. P12B gives one- and two-signal policies an identical allocation set, but a
+   real-system result must additionally include strong compute-only and
 5. P12B must first give one- and two-signal policies an identical allocation set;
    a real-system result must additionally include strong compute-only and
    state-only adaptive baselines.

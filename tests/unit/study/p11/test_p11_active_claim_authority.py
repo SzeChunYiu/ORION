@@ -50,6 +50,9 @@ def test_frozen_protocol_and_results_are_content_bound() -> None:
         "p11i_receipt",
         "p11i_result",
         "p11i_runner",
+        "p11i_unit_amendment",
+        "p11i_revalidation_runner",
+        "p11i_revalidation_receipt",
     }
     assert all(len(item["sha256"]) == 64 for item in authority["evidence_bindings"].values())
 
