@@ -1,0 +1,163 @@
+{
+  "alphabet_size": 4096,
+  "qg31_reported_cardinalities": {
+    "45_bulk_signature": 45,
+    "54_unlabeled_defect_spectrum": 54,
+    "715_indexed_response": 715
+  },
+  "rows": [
+    {
+      "group_order": 1,
+      "letter_group": "trivial",
+      "orbit_count": 4096,
+      "orbit_size_histogram": {
+        "1": 4096
+      },
+      "position_group": "trivial"
+    },
+    {
+      "group_order": 8,
+      "letter_group": "trivial",
+      "orbit_count": 1000,
+      "orbit_size_histogram": {
+        "1": 64,
+        "2": 288,
+        "4": 432,
+        "8": 216
+      },
+      "position_group": "swaps"
+    },
+    {
+      "group_order": 6,
+      "letter_group": "trivial",
+      "orbit_count": 816,
+      "orbit_size_histogram": {
+        "1": 16,
+        "3": 240,
+        "6": 560
+      },
+      "position_group": "blocks"
+    },
+    {
+      "group_order": 48,
+      "letter_group": "trivial",
+      "orbit_count": 220,
+      "orbit_size_histogram": {
+        "1": 4,
+        "12": 60,
+        "24": 90,
+        "3": 12,
+        "48": 20,
+        "6": 28,
+        "8": 6
+      },
+      "position_group": "wreath"
+    },
+    {
+      "group_order": 720,
+      "letter_group": "trivial",
+      "orbit_count": 84,
+      "orbit_size_histogram": {
+        "1": 4,
+        "120": 4,
+        "15": 12,
+        "180": 6,
+        "20": 6,
+        "30": 12,
+        "6": 12,
+        "60": 24,
+        "90": 4
+      },
+      "position_group": "full_S6"
+    },
+    {
+      "group_order": 6,
+      "letter_group": "S_3_letters",
+      "orbit_count": 715,
+      "orbit_size_histogram": {
+        "1": 1,
+        "3": 63,
+        "6": 651
+      },
+      "position_group": "trivial"
+    },
+    {
+      "group_order": 48,
+      "letter_group": "S_3_letters",
+      "orbit_count": 199,
+      "orbit_size_histogram": {
+        "1": 1,
+        "12": 60,
+        "24": 68,
+        "3": 7,
+        "48": 32,
+        "6": 31
+      },
+      "position_group": "swaps"
+    },
+    {
+      "group_order": 36,
+      "letter_group": "S_3_letters",
+      "orbit_count": 160,
+      "orbit_size_histogram": {
+        "1": 1,
+        "12": 1,
+        "18": 59,
+        "3": 3,
+        "36": 80,
+        "6": 4,
+        "9": 12
+      },
+      "position_group": "blocks"
+    },
+    {
+      "group_order": 288,
+      "letter_group": "S_3_letters",
+      "orbit_count": 54,
+      "orbit_size_histogram": {
+        "1": 1,
+        "144": 13,
+        "18": 6,
+        "24": 2,
+        "288": 2,
+        "3": 1,
+        "36": 10,
+        "48": 2,
+        "6": 1,
+        "72": 14,
+        "9": 2
+      },
+      "position_group": "wreath"
+    },
+    {
+      "group_order": 4320,
+      "letter_group": "S_3_letters",
+      "orbit_count": 23,
+      "orbit_size_histogram": {
+        "1": 1,
+        "120": 1,
+        "18": 2,
+        "180": 1,
+        "270": 1,
+        "3": 1,
+        "36": 1,
+        "360": 5,
+        "45": 2,
+        "540": 2,
+        "60": 2,
+        "90": 4
+      },
+      "position_group": "full_S6"
+    }
+  ],
+  "schema": "ORION.QG.SymmetryQuotientLattice.v1",
+  "symmetry_quotients_matching_those_cardinalities": {
+    "45_bulk_signature": [],
+    "54_unlabeled_defect_spectrum": [
+      "S_3_letters x wreath"
+    ],
+    "715_indexed_response": [
+      "S_3_letters x trivial"
+    ]
+  }
+}
