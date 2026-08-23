@@ -59,6 +59,12 @@ B2_MIXES = [
 ]
 DOMAIN_ORDER = ["SAT_PROPAGATION", "PATH_PLANNING", "KNAPSACK"]
 
+# Case-record keys are (tag, domain, case_id): the expanded set carries the
+# nine V1 case_ids verbatim, so a (domain, case_id) key would silently
+# overwrite the V1 pass and collapse cases_checked from 36 records to 27.
+V1_TAG = "V1_9"
+EXPANDED_TAG = "EXPANDED_27"
+
 
 # ---------------------------------------------------- independent SAT engine
 
@@ -299,7 +305,7 @@ def priced_oracle(sids, declared, reason, state, p_b, p_s):
 
 
 def check_case(rep_case, domain, case, discrepancies, tag, my_alloc_regret):
-    """Cross-check one case; fill my_alloc_regret[(domain, case_id)][regime]."""
+    """Cross-check one case; fill my_alloc_regret[(tag, domain, case_id)]."""
     structures = case["structures"]
     sids = [st["sid"] for st in structures]
     declared, reason, state, truth = {}, {}, {}, {}
@@ -336,7 +342,7 @@ def check_case(rep_case, domain, case, discrepancies, tag, my_alloc_regret):
             "STATE_ALWAYS"]:
         discrepancies.append(f"{key}: state_always selection differs")
 
-    my_alloc_regret[(domain, cid)] = {}
+    my_alloc_regret[(tag, domain, cid)] = {}
     for regime, p_b, p_s in REGIMES:
         cell = rep_case["regimes"][regime]
         oset, oval = priced_oracle(sids, declared, reason, state, p_b, p_s)
@@ -360,7 +366,7 @@ def check_case(rep_case, domain, case, discrepancies, tag, my_alloc_regret):
                     discrepancies.append(
                         f"{key}:{regime}:{arm}:{k} mine={v} theirs={theirs[k]}")
             if arm == ALLOC:
-                my_alloc_regret[(domain, cid)][regime] = \
+                my_alloc_regret[(tag, domain, cid)][regime] = \
                     mine["priced_regret"]
 
 
@@ -412,8 +418,8 @@ def main():
 
     my_alloc_regret = {}
 
-    for cases, key, tag in ((v1_cases, "v1_set", "V1_9"),
-                            (exp_cases, "expanded_set", "EXPANDED_27")):
+    for cases, key, tag in ((v1_cases, "v1_set", V1_TAG),
+                            (exp_cases, "expanded_set", EXPANDED_TAG)):
         rep = runner[key]
         if rep["case_count"] != sum(len(d["cases"])
                                     for d in cases["domains"]):
@@ -425,7 +431,7 @@ def main():
 
     # ---- FLAT replication of the V1 zero-regret claim (own numbers)
     v1_flat = all(
-        my_alloc_regret[(d["domain"], c["case_id"])]["FLAT"] == 0
+        my_alloc_regret[(V1_TAG, d["domain"], c["case_id"])]["FLAT"] == 0
         for d in v1_cases["domains"] for c in d["cases"])
     if runner["v1_set"]["v1_flat_zero_regret_replicated"] != v1_flat:
         discrepancies.append("v1_flat_zero_regret_replicated differs")
@@ -439,7 +445,7 @@ def main():
         b1_mine[mix] = {}
         for regime, _, _ in REGIMES:
             total = sum(
-                my_alloc_regret[(domain, cid)][regime]
+                my_alloc_regret[(EXPANDED_TAG, domain, cid)][regime]
                 for domain in DOMAIN_ORDER
                 for cid in ordered[domain][:counts[domain]])
             b1_mine[mix][regime] = total
