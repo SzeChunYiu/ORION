@@ -34,7 +34,6 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | NR-05 | P9 | T4 hostile attack defeated narrow representation claim | Attack exploits representation's blind spot (identified in T4 receipt) | representation hardening against the frozen attack class; successor claim re-test | P9 representation hardening |
 | NR-08 | P2 | External campaign: 7/229 gold acquired; delta beyond sampling ceiling | Acquisition mechanism, not information absence (unproven) | bounded-internal acquisition simulation to attribute: search-mechanism vs ceiling | P2 acquisition autopsy |
 | NR-09 | P1 | **[CODEX LANE]**  1 root success in 48; run below 385-case registered target | Underpowered execution (not a mechanism refutation) | R7A powered successor already frozen (384 clusters, max-T, power 0.920216) — execute it | P1 R7A execution |
-| NR-11 | P14 | P14A gate defect: both bars exceeded statistic supremum | Gate registered above achievable range — design defect, superseded by P14C | document + close: P14C conformance successor is active; remaining work only if a superiority claim is re-registered | closed-by-successor (verify) |
 
 | NR-12 | P11 | Query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, `P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET`) | Compile-tolerance is a per-(responsibility x access-class) property (<=5/10 members), not family-wide | selective compilation placement: pre-registered compile-tolerance selector applied per responsibility, re-run frozen family | P11 selective placement |
 
@@ -50,6 +49,7 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | P9 D1v1.2 replay divergence (NR-06) | Replay lock pinned to archive-matching solver stack (lock had drifted to sklearn 1.9.0 vs archive 1.8.0; data channel digest-identical) | exact per-case reproduction of all four arms (TSB 0.5, constant predictor); locked-replay FAILED terminal stays append-only; scientific repair stays with frozen D1v1.3 |
 | P11 `r=3` gap unmet / pooled attack prevailed (NR-07) | decoder-CAPACITY attribution: proven width law `n* = 2 ln p / ρ(r)²` with `ρ(r) = C(r-1,(r-1)/2)/2^(r-1)`; both gap gates unattainable at `r=3` against the capacity-augmented pool; `r=7` window survives the stronger attack | `P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1` (width-conditioned claim made precise; byte-identical replay) |
 | P7 `MATCH_IS_NOT_NECESSARY` (NR-10) | V2 evidence-bounded licensing frame: registry-connectivity is the unique maximal sound opaque rule; ledger P7.V4.10 | `P7_NECESSITY_SCOPING_REVIVED__OPAQUE_FRAME_CHARACTERIZED__WITNESS_PRESERVED` |
+| P14A gate defect (NR-11) | closure-by-successor VERIFIED: supremum 0.042326 independently recomputed below both registered bars (design defect confirmed, not a scientific negative); P14C same-scope successor byte-reproduces | receipt `P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1` — closed under stopping criterion (c) superseded-by-landed-successor |
 
 ## External-execution negatives — workaround protocol (operator directive 2026-08-23)
 
