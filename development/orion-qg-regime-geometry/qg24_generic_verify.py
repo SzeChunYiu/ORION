@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Independent generic ORION verifier for QG-24 tropical weighted-automaton theorem."""
-from __future__ import annotations
 
 import argparse
 import hashlib
@@ -250,7 +249,6 @@ as such, not silently absorbed.
 Usage: qg24_generic_verify.py [results.json]
 Exit 0 on ACCEPT, 1 on REJECT.
 """
-from __future__ import annotations
 
 import hashlib
 import itertools

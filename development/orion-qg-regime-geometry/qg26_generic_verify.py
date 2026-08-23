@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Independent generic ORION verifier for QG-26 Parikh-histogram regime theorem."""
-from __future__ import annotations
 import argparse,hashlib,itertools,json
 from collections import Counter
 from pathlib import Path
@@ -133,7 +132,6 @@ Usage: qg26_generic_verify.py [results.json]
 Exit 0 on ACCEPT, 1 on REJECT.
 """
 
-from __future__ import annotations
 
 import hashlib
 import itertools

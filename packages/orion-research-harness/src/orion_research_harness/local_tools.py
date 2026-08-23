@@ -153,7 +153,6 @@ def _finish_drainers(process: subprocess.Popen[bytes], threads: tuple[threading.
             thread.join(timeout=0.1)
 
 
-def execute_local(workspace: ResearchWorkspace, capability: str, payload: Mapping[str, Any]) -> Any:
 #: Ceiling on a SHELL/PYTHON capability's wall clock, in seconds.
 #:
 #: This was hardcoded at 120. The ORION-Q prospective replay
