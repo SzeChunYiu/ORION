@@ -1,0 +1,48 @@
+name: p9-unified-resource-ledger-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_PROTOCOL_V1.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v1.py'
+      - 'papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v1.py'
+      - '.github/workflows/p9-unified-resource-ledger-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  resource-ledger-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen scientific dependencies
+        run: python -m pip install 'numpy==2.3.2' 'scikit-learn==1.7.1'
+      - name: Build unified I/A/C/M resource ledger
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v1.py | tee p9_unified_resource_ledger_v1.json
+      - name: Verify deterministic replay
+        run: |
+          python papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v1.py > p9_unified_resource_ledger_v1_rerun.json
+          cmp p9_unified_resource_ledger_v1.json p9_unified_resource_ledger_v1_rerun.json
+      - name: Run independent ledger audit
+        run: python papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v1.py p9_unified_resource_ledger_v1.json | tee p9_unified_resource_ledger_independent_v1.json
+      - name: Verify accounting terminals
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p9_unified_resource_ledger_v1.json'))
+          q=json.load(open('p9_unified_resource_ledger_independent_v1.json'))
+          assert p['terminal']=='P9_UNIFIED_RESOURCE_LEDGER_V1_GREEN',p
+          assert q['terminal']=='P9_UNIFIED_RESOURCE_LEDGER_SECOND_CHECKER_GREEN',q
+          assert p['row_count']==q['row_count']==15
+          assert p['scalarization']=='PROHIBITED' and q['scalarization_prohibited']
+          print('P9_UNIFIED_RESOURCE_LEDGER_TWO_CHECKS_GREEN')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-unified-resource-ledger-v1
+          path: |
+            p9_unified_resource_ledger_v1.json
+            p9_unified_resource_ledger_independent_v1.json

@@ -1,0 +1,2046 @@
+{
+  "core": {
+    "authority_boundary": "controlled_finite_world_not_external_validation",
+    "claim_id": "P13B_AUTHENTICATED_CERTIFICATE_SAFETY_COST",
+    "corruption_worlds": {
+      "FORGED_SUPPORT": {
+        "certificate_count": 6,
+        "mutation_opportunities": 30,
+        "panel": {
+          "arms": {
+            "ALWAYS_RAW": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "AUTHENTICATED_RCS": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "UNVERIFIED_RCS": {
+              "correct": 25,
+              "cost": 85,
+              "mean_cost": 2.8333333333333335,
+              "unsafe_reuse": 5,
+              "unsafe_reuse_rate": 0.16666666666666666,
+              "verified_correct_rate": 0.8333333333333334
+            }
+          },
+          "denominator": 30,
+          "rows": [
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z5",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z6",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "VERIFY"
+            }
+          ]
+        },
+        "rejected_certificates": 6
+      },
+      "OMITTED_SUPPORT": {
+        "certificate_count": 6,
+        "mutation_opportunities": 30,
+        "panel": {
+          "arms": {
+            "ALWAYS_RAW": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "AUTHENTICATED_RCS": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "UNVERIFIED_RCS": {
+              "correct": 30,
+              "cost": 140,
+              "mean_cost": 4.666666666666667,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            }
+          },
+          "denominator": 30,
+          "rows": [
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": true,
+              "state_id": "Z5",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": true,
+              "state_id": "Z6",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "VERIFY"
+            }
+          ]
+        },
+        "rejected_certificates": 6
+      },
+      "OVERBROAD_SUPPORT": {
+        "certificate_count": 6,
+        "mutation_opportunities": 30,
+        "panel": {
+          "arms": {
+            "ALWAYS_RAW": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "AUTHENTICATED_RCS": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "UNVERIFIED_RCS": {
+              "correct": 25,
+              "cost": 85,
+              "mean_cost": 2.8333333333333335,
+              "unsafe_reuse": 5,
+              "unsafe_reuse_rate": 0.16666666666666666,
+              "verified_correct_rate": 0.8333333333333334
+            }
+          },
+          "denominator": 30,
+          "rows": [
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z5",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z6",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REOPEN"
+              },
+              "certificate_valid": false,
+              "declared_supported": false,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "VERIFY"
+            }
+          ]
+        },
+        "rejected_certificates": 6
+      },
+      "STALE_EPOCH": {
+        "certificate_count": 6,
+        "mutation_opportunities": 30,
+        "panel": {
+          "arms": {
+            "ALWAYS_RAW": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "AUTHENTICATED_RCS": {
+              "correct": 30,
+              "cost": 180,
+              "mean_cost": 6.0,
+              "unsafe_reuse": 0,
+              "unsafe_reuse_rate": 0.0,
+              "verified_correct_rate": 1.0
+            },
+            "UNVERIFIED_RCS": {
+              "correct": 14,
+              "cost": 30,
+              "mean_cost": 1.0,
+              "unsafe_reuse": 16,
+              "unsafe_reuse_rate": 0.5333333333333333,
+              "verified_correct_rate": 0.4666666666666667
+            }
+          },
+          "denominator": 30,
+          "rows": [
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z1",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z1",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z2",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z2",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z3",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z4",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z4",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z5",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z5",
+              "task_id": "VERIFY"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "DECIDE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "INTERVENE"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": true,
+              "state_id": "Z6",
+              "task_id": "PREDICT"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "REPAIR"
+            },
+            {
+              "actions": {
+                "ALWAYS_RAW": "REOPEN",
+                "AUTHENTICATED_RCS": "REOPEN",
+                "UNVERIFIED_RCS": "REUSE"
+              },
+              "certificate_valid": false,
+              "declared_supported": true,
+              "gold_supported": false,
+              "state_id": "Z6",
+              "task_id": "VERIFY"
+            }
+          ]
+        },
+        "rejected_certificates": 6
+      }
+    },
+    "environment": {
+      "python_implementation": "CPython",
+      "python_version": "3.12.13"
+    },
+    "gold_definition": "task_requirements_subset_of_state_variables",
+    "gold_reads_certificate": false,
+    "gold_spec": "papers/paper-13-responsibility-carrying-state/P13B_GOLD_SUPPORT_SPEC_V1.json",
+    "gold_spec_sha256": "a969460629379c78c2c654ef6437f9c271da751caca20f793887591235614d4c",
+    "independent_unit": "complete_registered_state_task_panel",
+    "n_state_forms": 6,
+    "n_tasks": 5,
+    "panel_denominator": 30,
+    "paper_id": "P13",
+    "protocol": "papers/paper-13-responsibility-carrying-state/P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_PROTOCOL_V1.md",
+    "protocol_sha256": "4a4edeb5fee29b0049380cf22822c3ddecdbe23a7d577ad2d73db2337292bc6b",
+    "schema": "ORION.P13B.AuthenticatedCertificateCorruption.Core.v1",
+    "subject_identity": {
+      "certificate_digest": "canonical_json_sha256_v1",
+      "current_epoch": 2,
+      "trusted_issuer": "ORION_P13B_TRUST_ROOT_V1",
+      "validator": "issuer_subject_epoch_mapping_witness_digest_v1"
+    },
+    "valid_panel": {
+      "arms": {
+        "ALWAYS_RAW": {
+          "correct": 30,
+          "cost": 180,
+          "mean_cost": 6.0,
+          "unsafe_reuse": 0,
+          "unsafe_reuse_rate": 0.0,
+          "verified_correct_rate": 1.0
+        },
+        "AUTHENTICATED_RCS": {
+          "correct": 30,
+          "cost": 110,
+          "mean_cost": 3.6666666666666665,
+          "unsafe_reuse": 0,
+          "unsafe_reuse_rate": 0.0,
+          "verified_correct_rate": 1.0
+        },
+        "UNVERIFIED_RCS": {
+          "correct": 30,
+          "cost": 110,
+          "mean_cost": 3.6666666666666665,
+          "unsafe_reuse": 0,
+          "unsafe_reuse_rate": 0.0,
+          "verified_correct_rate": 1.0
+        }
+      },
+      "denominator": 30,
+      "rows": [
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z1",
+          "task_id": "DECIDE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z1",
+          "task_id": "INTERVENE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z1",
+          "task_id": "PREDICT"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z1",
+          "task_id": "REPAIR"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z1",
+          "task_id": "VERIFY"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z2",
+          "task_id": "DECIDE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z2",
+          "task_id": "INTERVENE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z2",
+          "task_id": "PREDICT"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z2",
+          "task_id": "REPAIR"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z2",
+          "task_id": "VERIFY"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z3",
+          "task_id": "DECIDE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z3",
+          "task_id": "INTERVENE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z3",
+          "task_id": "PREDICT"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z3",
+          "task_id": "REPAIR"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z3",
+          "task_id": "VERIFY"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z4",
+          "task_id": "DECIDE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z4",
+          "task_id": "INTERVENE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z4",
+          "task_id": "PREDICT"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z4",
+          "task_id": "REPAIR"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z4",
+          "task_id": "VERIFY"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z5",
+          "task_id": "DECIDE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z5",
+          "task_id": "INTERVENE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z5",
+          "task_id": "PREDICT"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z5",
+          "task_id": "REPAIR"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z5",
+          "task_id": "VERIFY"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z6",
+          "task_id": "DECIDE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z6",
+          "task_id": "INTERVENE"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REUSE",
+            "UNVERIFIED_RCS": "REUSE"
+          },
+          "certificate_valid": true,
+          "declared_supported": true,
+          "gold_supported": true,
+          "state_id": "Z6",
+          "task_id": "PREDICT"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z6",
+          "task_id": "REPAIR"
+        },
+        {
+          "actions": {
+            "ALWAYS_RAW": "REOPEN",
+            "AUTHENTICATED_RCS": "REOPEN",
+            "UNVERIFIED_RCS": "REOPEN"
+          },
+          "certificate_valid": true,
+          "declared_supported": false,
+          "gold_supported": false,
+          "state_id": "Z6",
+          "task_id": "VERIFY"
+        }
+      ]
+    }
+  },
+  "gates": {
+    "authenticated_zero_unsafe_reuse_each_world": true,
+    "byte_identical_replay": true,
+    "every_corruption_world_has_nonzero_opportunities": true,
+    "every_mutated_certificate_rejected": true,
+    "gold_scorer_does_not_read_certificate": true,
+    "unverified_corruptions_have_live_violations": true,
+    "valid_certificates_match_gold_supported_reuse": true,
+    "valid_panel_authenticated_cost_le_0_70_always_raw": true,
+    "valid_panel_verified_correct_rate_eq_1": true
+  },
+  "replay": {
+    "byte_identical": true,
+    "first_core_sha256": "2e5f80c220e78971dac2d01641dda4b5af6f5e54b6201c4846da1c261f09d85a",
+    "fresh_python_subprocesses": 2,
+    "second_core_sha256": "2e5f80c220e78971dac2d01641dda4b5af6f5e54b6201c4846da1c261f09d85a"
+  },
+  "schema": "ORION.P13B.AuthenticatedCertificateCorruption.Result.v1",
+  "summary": {
+    "authenticated_unsafe_reuse_by_world": {
+      "FORGED_SUPPORT": 0,
+      "OMITTED_SUPPORT": 0,
+      "OVERBROAD_SUPPORT": 0,
+      "STALE_EPOCH": 0
+    },
+    "mutation_opportunities_by_world": {
+      "FORGED_SUPPORT": 30,
+      "OMITTED_SUPPORT": 30,
+      "OVERBROAD_SUPPORT": 30,
+      "STALE_EPOCH": 30
+    },
+    "panel_denominator": 30,
+    "unverified_unsafe_reuse_by_world": {
+      "FORGED_SUPPORT": 5,
+      "OMITTED_SUPPORT": 0,
+      "OVERBROAD_SUPPORT": 5,
+      "STALE_EPOCH": 16
+    },
+    "valid_panel_authenticated_cost_ratio_vs_always_raw": 0.611111111111111
+  },
+  "terminal": "P13B_AUTHENTICATED_CERTIFICATE_SAFETY_COST_SUPPORTED_FINITE_WORLD"
+}

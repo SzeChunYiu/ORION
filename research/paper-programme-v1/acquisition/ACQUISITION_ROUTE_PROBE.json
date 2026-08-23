@@ -1,0 +1,195 @@
+{
+  "schema": "orion.acquisition.route-probe.v1",
+  "routes": [
+    {
+      "route": "openalex",
+      "requirement_class": "A",
+      "discharges": "multi-domain source corpus and retraction ground truth",
+      "url": "https://api.openalex.org/works?per-page=1",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "openalex_retracted",
+      "requirement_class": "A",
+      "discharges": "independently authored adjudication outcomes",
+      "url": "https://api.openalex.org/works?filter=is_retracted:true&per-page=1",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "crossref",
+      "requirement_class": "A",
+      "discharges": "multi-domain bibliographic source snapshots",
+      "url": "https://api.crossref.org/works?rows=1",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "crossref_retractions",
+      "requirement_class": "A",
+      "discharges": "editor-authored retraction notices",
+      "url": "https://api.crossref.org/works?filter=update-type:retraction&rows=1",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "retraction_watch_data",
+      "requirement_class": "A",
+      "discharges": "the Retraction Watch database, free via Crossref Labs",
+      "url": "https://gitlab.com/crossref/retraction-watch-data",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "arxiv",
+      "requirement_class": "A",
+      "discharges": "full-text source snapshots",
+      "url": "http://export.arxiv.org/api/query?search_query=all:test&max_results=1",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "github",
+      "requirement_class": "A",
+      "discharges": "real project revision histories for a revision-class panel",
+      "url": "https://api.github.com/rate_limit",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "osf_registries",
+      "requirement_class": "B",
+      "discharges": "third-party timestamped preregistration of a frozen protocol",
+      "url": "https://api.osf.io/v2/registrations/?page%5Bsize%5D=1",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "aspredicted",
+      "requirement_class": "B",
+      "discharges": "third-party timestamped preregistration, lightweight",
+      "url": "https://aspredicted.org/",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "zenodo",
+      "requirement_class": "B",
+      "discharges": "immutable DOI-bound artifact custody",
+      "url": "https://zenodo.org/api/records/?size=1",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "software_heritage",
+      "requirement_class": "B",
+      "discharges": "independent source-code archival with content hashes",
+      "url": "https://archive.softwareheritage.org/api/1/",
+      "http_status": 200,
+      "answered": true,
+      "note": "answered but body is not JSON at the sampled prefix"
+    },
+    {
+      "route": "pci_registered_reports",
+      "requirement_class": "D",
+      "discharges": "free peer review of a protocol before results exist",
+      "url": "https://rr.peercommunityin.org/",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "ml_reproducibility_challenge",
+      "requirement_class": "D",
+      "discharges": "third parties reproducing the work at no cost",
+      "url": "https://reproml.org/",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "openreview",
+      "requirement_class": "D",
+      "discharges": "open independent review",
+      "url": "https://openreview.net/",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    },
+    {
+      "route": "tmlr",
+      "requirement_class": "D",
+      "discharges": "a venue whose scope admits bounded and negative results",
+      "url": "https://jmlr.org/tmlr/",
+      "http_status": 200,
+      "answered": true,
+      "note": ""
+    }
+  ],
+  "p9_t3_scale_ladder_checkpoints": [
+    {
+      "repo": "meta-llama/Llama-3.2-1B",
+      "resolved": true,
+      "gated": "manual",
+      "license": "llama3.2",
+      "friction": "licence acceptance required"
+    },
+    {
+      "repo": "meta-llama/Llama-3.2-3B",
+      "resolved": true,
+      "gated": "manual",
+      "license": "llama3.2",
+      "friction": "licence acceptance required"
+    },
+    {
+      "repo": "Qwen/Qwen2.5-0.5B",
+      "resolved": true,
+      "gated": false,
+      "license": "apache-2.0",
+      "friction": "none"
+    },
+    {
+      "repo": "Qwen/Qwen2.5-1.5B",
+      "resolved": true,
+      "gated": false,
+      "license": "apache-2.0",
+      "friction": "none"
+    },
+    {
+      "repo": "Qwen/Qwen2.5-3B",
+      "resolved": true,
+      "gated": false,
+      "license": "other",
+      "friction": "none"
+    },
+    {
+      "repo": "Qwen/Qwen2.5-7B",
+      "resolved": true,
+      "gated": false,
+      "license": "apache-2.0",
+      "friction": "none"
+    }
+  ],
+  "routes_answered": 15,
+  "routes_total": 15,
+  "checkpoints_resolved": 6,
+  "checkpoints_total": 6,
+  "gated_checkpoints": [
+    "meta-llama/Llama-3.2-1B",
+    "meta-llama/Llama-3.2-3B"
+  ],
+  "failed_routes": [],
+  "unresolved_checkpoints": [],
+  "note": "Reachability and licence only. This says a route exists and answers; it does not say the route's content satisfies any particular blocker."
+}

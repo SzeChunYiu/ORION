@@ -1,0 +1,34 @@
+name: q-qg-target-package-check
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q_QG_TARGET_PACKAGE_MANIFESTS_V1.json'
+      - 'papers/check_q_qg_target_packages.py'
+      - 'papers/Q-paper-01-tare-expressivity/submission_master/**'
+      - 'papers/Q-paper-02-recursive-recovery/submission_aij/**'
+      - 'papers/Q-paper-04-typed-state/submission_tmlr/**'
+      - 'papers/QG-paper-01-compilation-regime-geometry/submission_prx/**'
+      - 'papers/quantum_preprint/**'
+      - '.github/workflows/q-qg-target-package-check.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q_QG_TARGET_PACKAGE_MANIFESTS_V1.json'
+      - 'papers/check_q_qg_target_packages.py'
+      - '.github/workflows/q-qg-target-package-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  target-package-routing:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate target-package manifests and Q3 block
+        run: python papers/check_q_qg_target_packages.py

@@ -1,0 +1,128 @@
+name: q2-aij-package
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - '.github/workflows/q2-aij-package.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - '.github/workflows/q2-aij-package.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-q2-aij:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc texlive-latex-recommended texlive-latex-extra texlive-publishers \
+            texlive-fonts-recommended poppler-utils zip
+      - name: Re-run publication integrity and Q2 denominator gates
+        run: |
+          python papers/check_q_qg_publication.py
+          python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
+      - name: Generate cited scientific masters
+        run: python papers/build_q_qg_cited_masters.py --clean
+      - name: Prepare AIJ source and submission auxiliaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/q2_aij/source build/q2_aij/rendered
+          python papers/Q-paper-02-recursive-recovery/submission_aij/build_aij_source.py \
+            --cited-master build/q_qg_cited/Q2/MANUSCRIPT_CITED.md \
+            --highlights papers/Q-paper-02-recursive-recovery/submission_aij/HIGHLIGHTS.txt \
+            --out build/q2_aij/prepared.md
+          cp build/q_qg_cited/Q2/references.bib build/q2_aij/source/references.bib
+          cp papers/Q-paper-02-recursive-recovery/submission_aij/aij_pandoc_template.tex \
+            build/q2_aij/source/pandoc_template.tex
+          cp papers/Q-paper-02-recursive-recovery/submission_aij/HIGHLIGHTS.txt build/q2_aij/source/HIGHLIGHTS.txt
+          cp papers/Q-paper-02-recursive-recovery/submission_aij/COVER_LETTER_DRAFT.md build/q2_aij/source/COVER_LETTER_DRAFT.md
+          cp papers/Q-paper-02-recursive-recovery/submission_aij/STATEMENTS_DRAFT.md build/q2_aij/source/STATEMENTS_DRAFT.md
+      - name: Generate elsarticle source
+        shell: bash
+        run: |
+          set -euo pipefail
+          pandoc build/q2_aij/prepared.md \
+            --from=markdown+citations \
+            --to=latex \
+            --natbib \
+            --template=build/q2_aij/source/pandoc_template.tex \
+            -o build/q2_aij/source/main.tex
+          grep -Fq '\documentclass[preprint,12pt]{elsarticle}' build/q2_aij/source/main.tex
+          grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' build/q2_aij/source/main.tex
+          grep -Eq '\\cite[pt]?\{' build/q2_aij/source/main.tex
+      - name: Build AIJ preflight PDF
+        shell: bash
+        working-directory: build/q2_aij/source
+        run: |
+          set -euo pipefail
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          bibtex main
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+      - name: Audit PDF, references, and placeholder authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdfinfo build/q2_aij/source/main.pdf > build/q2_aij/pdfinfo.txt
+          pdftotext build/q2_aij/source/main.pdf build/q2_aij/pdf.txt
+          grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' build/q2_aij/pdf.txt
+          grep -Fq 'References' build/q2_aij/pdf.txt
+          if grep -Eq '\[@[A-Za-z0-9_:-]+' build/q2_aij/pdf.txt; then
+            echo 'Q2_AIJ_UNRESOLVED_CITATION_TOKEN=FAIL'
+            exit 1
+          fi
+          if grep -Eiq 'improves scientific productivity|autonomous superiority|better science' \
+              build/q2_aij/source/COVER_LETTER_DRAFT.md; then
+            echo 'Q2_AIJ_COVER_LETTER_OVERCLAIM=FAIL'
+            exit 1
+          fi
+          pdftoppm -png -r 144 build/q2_aij/source/main.pdf build/q2_aij/rendered/page
+          sha256sum build/q2_aij/source/main.pdf > build/q2_aij/pdf_sha256.txt
+      - name: Build source archive
+        shell: bash
+        working-directory: build/q2_aij
+        run: |
+          set -euo pipefail
+          cp prepared.md source/SCIENTIFIC_MASTER_CITED.md
+          zip -qr q2-aij-preflight-source.zip source
+          sha256sum q2-aij-preflight-source.zip > source_zip_sha256.txt
+      - name: Archive Q2 AIJ preflight package
+        uses: actions/upload-artifact@v4
+        with:
+          name: q2-aij-preflight-package
+          path: |
+            build/q2_aij/source/main.pdf
+            build/q2_aij/q2-aij-preflight-source.zip
+            build/q2_aij/source/HIGHLIGHTS.txt
+            build/q2_aij/source/COVER_LETTER_DRAFT.md
+            build/q2_aij/source/STATEMENTS_DRAFT.md
+            build/q2_aij/pdfinfo.txt
+            build/q2_aij/pdf_sha256.txt
+            build/q2_aij/source_zip_sha256.txt
+            build/q2_aij/rendered
+          if-no-files-found: error
+          retention-days: 30

@@ -15,6 +15,7 @@ orion-q = ["numpy>=1.26"]
 
 [project.scripts]
 orion-harness = "orion_research_harness.cli:main"
+orion-harness-paper = "orion_research_harness.paper_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,20 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Donor boundary and novelty}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Adaptive test-time compute is prior-owned}\markdownRendererInterblockSeparator
+{}Recent systems allocate inference compute dynamically based on predicted difficulty, value or resource constraints. Bandit formulations, constrained policy optimization, adaptive demonstration/generation strategies and “when to think” policies already own the primitive that different examples deserve different reasoning budgets. P12 therefore does not claim adaptive inference allocation itself.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Dynamic state construction is also prior-owned}\markdownRendererInterblockSeparator
+{}Retrieval, compression, context selection, query-conditioned memory and structured-state construction already adapt what a model sees. P11 additionally supplies controlled evidence that construction can change accessibility. P12 does not claim dynamic state selection as a new primitive.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Residual after subtraction}\markdownRendererInterblockSeparator
+{}The live residual is the \markdownRendererStrongEmphasis{competition between those actions under one resource boundary}:\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+State construction and downstream reasoning are two places to spend test-time computation. A valid joint-allocation result must hold total resource fixed and strictly improve over policies allowed to adapt either axis alone.
+\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}In the current donor set, adaptive-compute methods optimize downstream reasoning/sampling/search or generation control; they do not make costed state construction and downstream reasoning symmetric decision variables under the same matched envelope and then require superiority over both one-axis adaptive controls.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

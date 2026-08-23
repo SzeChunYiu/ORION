@@ -1,0 +1,92 @@
+{
+  "affine_separable_pattern_count": 14,
+  "best_affine_patterns": [
+    [
+      -1,
+      -1,
+      -1,
+      1
+    ],
+    [
+      -1,
+      -1,
+      1,
+      1
+    ],
+    [
+      -1,
+      1,
+      -1,
+      1
+    ],
+    [
+      1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      1,
+      -1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      -1,
+      1
+    ]
+  ],
+  "blackwell": {
+    "E_rel_is_deterministic_garbling_of_E_raw": true,
+    "unrestricted_raw_optimum": 1.0
+  },
+  "gates": {
+    "blackwell_parent_raw_unrestricted_exact": true,
+    "budget1_order_reversal": true,
+    "budget2_raw_recovers_and_ties": true,
+    "independent_affine_pattern_enumeration_nonempty": true,
+    "raw_affine_exact_0_75": true,
+    "rel_affine_exact_1": true
+  },
+  "points": [
+    [
+      -1,
+      -1
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "protocol": "P16A_COMPILE_DECIDE_ORDER_REVERSAL_PROTOCOL_V1.md",
+  "raw_best_affine_accuracy": 0.75,
+  "relation_affine_accuracy": 1.0,
+  "resource_budget_accuracy": {
+    "1": {
+      "E_raw": 0.75,
+      "E_rel": 1.0
+    },
+    "2": {
+      "E_raw": 1.0,
+      "E_rel": 1.0
+    }
+  },
+  "schema": "ORION.P16A.CompileDecideOrderReversal.v1",
+  "target": [
+    1,
+    -1,
+    -1,
+    1
+  ],
+  "terminal": "P16_RESOURCE_BOUNDED_COMPILE_DECIDE_REVERSAL_CONSTRUCTED"
+}

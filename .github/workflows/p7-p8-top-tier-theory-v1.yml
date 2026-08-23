@@ -1,0 +1,34 @@
+name: p7-p8-top-tier-theory-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-07-epistemic-navigation-open-worlds/TOP_TIER_THEORY_V1.md'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/TOP_TIER_THEORY_V1.md'
+      - 'papers/candidates/check_p7_p8_top_tier_theory_v1.py'
+      - 'papers/candidates/P7_P9_TOP_TIER_LITERATURE_DELTA_2026-08-23.md'
+      - '.github/workflows/p7-p8-top-tier-theory-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  theory-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run independent P7-P8 checker
+        run: python papers/candidates/check_p7_p8_top_tier_theory_v1.py | tee p7_p8_top_tier_theory_v1.json
+      - name: Verify deterministic replay
+        run: |
+          python papers/candidates/check_p7_p8_top_tier_theory_v1.py > p7_p8_top_tier_theory_v1_rerun.json
+          cmp p7_p8_top_tier_theory_v1.json p7_p8_top_tier_theory_v1_rerun.json
+          echo P7_P8_TOP_TIER_THEORY_V1_BYTE_REPLAY_GREEN
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p7-p8-top-tier-theory-v1
+          path: p7_p8_top_tier_theory_v1.json

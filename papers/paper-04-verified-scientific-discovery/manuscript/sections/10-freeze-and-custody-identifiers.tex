@@ -1,0 +1,5 @@
+\section{Freeze and custody identifiers}
+The final hidden set was created only after the public preflight and harness merge were signed and green. The independent host run is \idt{31975937488}; the protected attack-set SHA-256 is
+\idt{6b8b6243040163dfa582dbeb8896e2c68d6b263e3227b64e7bab199d8599897c}; and the candidate-manifest SHA-256 is
+\idt{c5df341a6bf63f83d2af17492c498d4d36a944ad6616097a630d8390b7bda331}. Execution-freeze merge \idt{99bcacc82224089c34019ad82287754388dadbc5} was GitHub-verified before launch. The launch workflow independently re-queried that signature and exact-main CI and byte-compared frozen workflow, binding, and harness files against the signed freeze commit before handoff.
+

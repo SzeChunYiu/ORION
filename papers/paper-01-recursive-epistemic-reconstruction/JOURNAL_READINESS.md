@@ -1,5 +1,15 @@
 # ORION-P1 journal-readiness plan — Recursive Epistemic Reconstruction
 
+> **Annotated 2026-08-22 after the manuscript house-style rewrite.** This
+> checklist records a readiness audit of the manuscript as it stood when the
+> audit was run, and is annotated rather than restated. Two of its rows now
+> point at a file that no longer exists: the nearest-work mechanism matrix
+> (Table P1-1 / P1-T1) was removed from the manuscript and its content is now
+> discussed in prose in the Related work section, which retains every citation
+> the table carried. The matrix itself is unchanged and still archived as
+> `evidence/NEAREST_WORK_MATRIX_V2.md`. No gate verdict, artifact digest or
+> claim status in this checklist changed in the rewrite.
+
 **Current terminal:** `PEER_REVIEW_READY` for the bounded credential-free mechanical claim; model-general/open-ended superiority is not claimed.
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
 

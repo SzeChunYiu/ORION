@@ -473,8 +473,45 @@ def _serialize_typed(value: object, *, path: str = "root") -> list[str]:
     return tokens
 
 
+class SurfaceRemintScope(str, Enum):
+    """How widely one reminted surface token is shared.
+
+    ``D1_PROTOCOL_V1.json`` declares ``surface_remint`` with
+    ``mechanic_action_names: true`` and ``surface_role_names: true``. It does not
+    say at what *scope* a reminted name is reused, and the two readings are not
+    equivalent:
+
+    ``PER_INSTANCE`` seeds every token on the instance that emitted it, so no
+    token occurs twice anywhere in the corpus. This is what the frozen run used
+    and what every committed D1 result was produced under; it is the default and
+    nothing here changes it.
+
+    ``PER_SPLIT`` seeds a token on the mechanic it stands for and the split it
+    appears in, so the same action carries the same opaque name throughout a
+    split and a different one in every other split. That is still a remint --- no
+    authored name reaches the model, and nothing transfers across the holdout ---
+    but the vocabulary is shared inside a split rather than minted per row.
+
+    The reading matters because ``TRANSCRIPT_BAG``'s protected denominator is one
+    under ``PER_INSTANCE``, and :func:`orion.study.p9.transfer_margins.d1_view_collapse_report`
+    reports "no corpus could have contained these keys" as the cause. This enum
+    exists so that sentence can be *checked* rather than believed: the report
+    rebuilds the corpus under ``PER_SPLIT`` and measures whether the denominator
+    moves. It carries no scientific authority and promotes no D1 result.
+    """
+
+    PER_INSTANCE = "PER_INSTANCE"
+    PER_SPLIT = "PER_SPLIT"
+
+
 def _surface_tokens(seed: str, side: str, count: int) -> tuple[str, ...]:
     return tuple(_opaque("s", f"{seed}|surface|{side}|{index}") for index in range(count))
+
+
+def _split_scoped_surface_tokens(
+    split: D1Split, side: str, mechanics: Sequence[str]
+) -> tuple[str, ...]:
+    return tuple(_opaque("s", f"alphabet|{split.value}|{side}|{name}") for name in mechanics)
 
 
 def _instance(
@@ -485,6 +522,7 @@ def _instance(
     variant: str,
     mutation_coordinates: Sequence[str] = (),
     unresolved: bool = False,
+    surface_remint_scope: SurfaceRemintScope = SurfaceRemintScope.PER_INSTANCE,
 ) -> D1Instance:
     left_name, right_name = DOMAIN_ANALOGUES[domain]
     left = _base_method(left_name)
@@ -502,10 +540,26 @@ def _instance(
         right=right,
         label=label,
         mutation_coordinates=tuple(sorted(mutation_coordinates)),
-        surface_left=_surface_tokens(f"{seed}|{variant}", "left", len(left.mechanics)),
-        surface_right=_surface_tokens(f"{seed}|{variant}", "right", len(right.mechanics)),
-        surface_role_left=_opaque("s", f"{seed}|{variant}|left-role"),
-        surface_role_right=_opaque("s", f"{seed}|{variant}|right-role"),
+        surface_left=(
+            _surface_tokens(f"{seed}|{variant}", "left", len(left.mechanics))
+            if surface_remint_scope is SurfaceRemintScope.PER_INSTANCE
+            else _split_scoped_surface_tokens(split, "left", left.mechanics)
+        ),
+        surface_right=(
+            _surface_tokens(f"{seed}|{variant}", "right", len(right.mechanics))
+            if surface_remint_scope is SurfaceRemintScope.PER_INSTANCE
+            else _split_scoped_surface_tokens(split, "right", right.mechanics)
+        ),
+        surface_role_left=(
+            _opaque("s", f"{seed}|{variant}|left-role")
+            if surface_remint_scope is SurfaceRemintScope.PER_INSTANCE
+            else _opaque("s", f"role|{split.value}|left|{left.target_role}")
+        ),
+        surface_role_right=(
+            _opaque("s", f"{seed}|{variant}|right-role")
+            if surface_remint_scope is SurfaceRemintScope.PER_INSTANCE
+            else _opaque("s", f"role|{split.value}|right|{right.target_role}")
+        ),
     )
     instance.verify()
     return instance
@@ -555,12 +609,19 @@ def _split_instances(
     domains: Sequence[D1Domain],
     instances_per_base_pair: int,
     include_double: bool,
+    surface_remint_scope: SurfaceRemintScope = SurfaceRemintScope.PER_INSTANCE,
 ) -> tuple[D1Instance, ...]:
     rows: list[D1Instance] = []
     for domain in domains:
         for index in range(instances_per_base_pair):
             local = f"{seed}|{split.value}|{domain.value}|{index}"
-            rows.append(_instance(domain=domain, split=split, seed=local, variant="aligned"))
+            rows.append(_instance(
+                    domain=domain,
+                    split=split,
+                    seed=local,
+                    variant="aligned",
+                    surface_remint_scope=surface_remint_scope,
+                ))
             coordinate = SINGLE_MUTATIONS[index % len(SINGLE_MUTATIONS)]
             rows.append(
                 _instance(
@@ -569,6 +630,7 @@ def _split_instances(
                     seed=local,
                     variant=f"single-{coordinate}",
                     mutation_coordinates=(coordinate,),
+                    surface_remint_scope=surface_remint_scope,
                 )
             )
             rows.append(
@@ -578,6 +640,7 @@ def _split_instances(
                     seed=local,
                     variant="unresolved",
                     unresolved=True,
+                    surface_remint_scope=surface_remint_scope,
                 )
             )
             if include_double:
@@ -589,6 +652,7 @@ def _split_instances(
                         seed=local,
                         variant=f"double-{double[0]}-{double[1]}",
                         mutation_coordinates=double,
+                        surface_remint_scope=surface_remint_scope,
                     )
                 )
     return tuple(rows)
@@ -600,6 +664,7 @@ def generate_d1_dataset(
     train_instances_per_base_pair: int = 48,
     dev_instances_per_base_pair: int = 16,
     test_instances_per_base_pair: int = 32,
+    surface_remint_scope: SurfaceRemintScope = SurfaceRemintScope.PER_INSTANCE,
 ) -> D1Dataset:
     train = _split_instances(
         seed=seed,
@@ -607,6 +672,7 @@ def generate_d1_dataset(
         domains=(D1Domain.NUMERICAL, D1Domain.GRAPH),
         instances_per_base_pair=train_instances_per_base_pair,
         include_double=False,
+        surface_remint_scope=surface_remint_scope,
     )
     dev = _split_instances(
         seed=seed,
@@ -614,6 +680,7 @@ def generate_d1_dataset(
         domains=(D1Domain.NUMERICAL, D1Domain.GRAPH),
         instances_per_base_pair=dev_instances_per_base_pair,
         include_double=False,
+        surface_remint_scope=surface_remint_scope,
     )
     test = _split_instances(
         seed=seed,
@@ -621,6 +688,7 @@ def generate_d1_dataset(
         domains=(D1Domain.WORKFLOW,),
         instances_per_base_pair=test_instances_per_base_pair,
         include_double=True,
+        surface_remint_scope=surface_remint_scope,
     )
     provisional = {
         "schema": "P9.D1Dataset.v1",
@@ -638,6 +706,7 @@ def generate_d1_dataset(
 __all__ = [
     "COMPARISON_COORDINATES",
     "D1Dataset",
+    "SurfaceRemintScope",
     "D1Domain",
     "D1Instance",
     "D1Label",

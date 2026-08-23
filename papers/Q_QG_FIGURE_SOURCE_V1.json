@@ -1,0 +1,99 @@
+{
+  "schema": "ORIONQ.PublicationFigureSource.v1",
+  "date": "2026-08-21",
+  "authority": "FIGURE_SOURCE_BINDING_ONLY__NO_SCIENTIFIC_PROMOTION",
+  "figures": {
+    "Q1_counterexamples": {
+      "paper": "Q1",
+      "sources": [
+        "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+        "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+        "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+      ],
+      "expected_values": [8, 9, 5, 6, 2, 43688, 18432],
+      "data": {
+        "split": {"exact": 8, "restricted": 9},
+        "borrow": {"exact": 5, "restricted": 6},
+        "all_n_support_ceiling": 2,
+        "r6s_class_tuples_checked": 43688,
+        "r6s_local_inequality_cases": 18432
+      }
+    },
+    "Q2_denominator": {
+      "paper": "Q2",
+      "sources": [
+        "papers/Q-paper-02-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
+        "papers/Q-paper-02-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json"
+      ],
+      "expected_values": [51, 23, 28, 13, 7],
+      "data": {
+        "declared_receipt_universe": 51,
+        "included_graph_nodes": 23,
+        "explicit_exclusions": 28,
+        "asserted_successor_edges": 13,
+        "standalone_negative_or_absorbed_nodes": 7
+      }
+    },
+    "Q4_primary_effects": {
+      "paper": "Q4",
+      "sources": [
+        "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json",
+        "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json"
+      ],
+      "expected_values": [4.612, 3.291, 2.18, 0.358, 3.199, 2.782, -7.813, -9.225, 0.1096, 0.2518, 1.0, 0.0, 0.085, 9.266, 7.121, 0.366, 9.421, 7.157, -7.821, 11.809659685355605],
+      "data": {
+        "N4_A": {"metric": "mean utility", "candidate": 3.291, "control": 2.18, "oracle": 4.612, "other": 0.358},
+        "N4_B": {"metric": "mean utility", "candidate": 3.199, "control": 2.782, "other": -7.813, "hostile": -9.225},
+        "N4_C": {"metric": "mean scalarized regret", "candidate": 0.1096, "control": 0.2518},
+        "N4_D": {"metric": "laundering recall / FPR", "candidate_recall": 1.0, "candidate_fpr": 0.0, "last_hop_recall": 0.085},
+        "N4_E": {"metric": "mean utility", "candidate": 9.266, "control": 7.121, "control_decoy_fraction": 0.366, "candidate_decoy_fraction": 0.0},
+        "N4_F3": {"metric": "mixed-transport mean utility", "candidate": 9.421, "control": 7.157, "naive": -7.821, "unnecessary_exact_tie": 11.809659685355605}
+      }
+    },
+    "QG1_support_hierarchy": {
+      "paper": "QG1",
+      "sources": [
+        "research/extensions/orion-qg/QG6_SYNDROME_DIMENSION_RESULTS.json",
+        "research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json",
+        "research/extensions/orion-qg/QG16_R6I_SUPPORT1_PHASE_RESULTS.json",
+        "research/extensions/orion-qg/QG15B_PREDICATE_LANGUAGE_RESULTS.json"
+      ],
+      "expected_values": [5, 1, 12, 43, 1146],
+      "data": {
+        "r6i_safe_syndrome_rank_ceiling": 5,
+        "r6i_intrinsic_support_number": 1,
+        "stabprep_mixed_feature_cells": 12,
+        "stabprep_irreducible_errors": 43,
+        "stabprep_registered_instances": 1146,
+        "qg16_full_cone": [
+          "2*t_nc >= 5*t_r",
+          "t_c+t_nc >= 5*t_r",
+          "2*t_nc >= 2*t_r+2*t_tag",
+          "t_c+t_nc >= 2*t_r+2*t_tag"
+        ]
+      }
+    },
+    "QG2_refutation": {
+      "paper": "QG2",
+      "sources": [
+        "research/extensions/orion-qg/QG5_CERTIFIED_FORECAST_RESULTS.json",
+        "research/extensions/orion-qg/QG5B_EXACT_FORECASTER_RESULTS.json",
+        "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+      ],
+      "expected_values": [9545, 9546, 1, 10, 11, 2],
+      "data": {
+        "dp_compared": 9546,
+        "exact_forecasts": 9545,
+        "counterexamples": 1,
+        "counterexample_exact": 10,
+        "counterexample_old_forecast": 11,
+        "counterexample_repaired_f2": 10,
+        "theorem_support_ceiling": 2
+      }
+    }
+  }
+}

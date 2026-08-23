@@ -1,30 +1,164 @@
 {
-  "claim_ceiling": "The suite tests bounded coercion/revocation semantics for P6/P7/P9/P10 capability outputs. It does not itself establish real method validity, novelty, usefulness or adoption.",
+  "claim_ceiling": "On this frozen panel of 15 cases, coercion was blocked and revocation propagated as the declared contracts specify. Bounded to those cases and that protocol: not evidence of method validity, novelty, utility or adoption, and no claim about any run outside the panel.",
+  "claim_ceiling_note": "Derived from the terminal, which is derived from the graded assessments. The input panel own claim_ceiling is recorded only as a digest: reproducing its text would let any caller write this suite bound for it.",
   "clean_legal_coverage": 1.0,
   "contract_accuracy": 1.0,
   "illicit_coercion_block_rate": 1.0,
+  "input_claim_ceiling_digest": "sha256:c99cc65c056b5b7a247c295374c7c3eb78f95f52ad0d75b292061c50e0968541",
   "n_cases": 15,
   "panel_digest": "sha256:69a069fb02c1b3b8ac465845951128c901ad1e7a80b2afc3ffe592f455cdf62f",
   "protocol_id": "P8.P9P10AntiLaundering.v1",
-  "result_digest": "sha256:45f359f5eba694da844485e95691913a19ee08b402057cc8c9f86a2e5e65eeae",
+  "result_digest": "sha256:f7544712668544528b4d6dfd69d070273fde9405d901b3f908df35a083ca0617",
   "result_version": "P8_P9_P10_ANTI_LAUNDERING_SUMMARY_V1",
   "revocation_accuracy": 1.0,
   "rows": [
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p9_confidence_to_validity","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p9_applicability_to_adoption","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p10_generation_to_novelty","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p7_library_stop_to_global_stop","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p6_fibre_to_applicability","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p4_validity_to_novelty","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"novelty_to_correctness","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_p4_validity","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_novelty_review","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_host_adoption","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_external_task_stop","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"prior_art_revokes_novelty","kind":"revocation","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"counterexample_revokes_validity","kind":"revocation","pass":true},
-    {"actual":"CANNOT_CHECK","expected":"CANNOT_CHECK","id":"representation_reopens_applicability","kind":"revocation","pass":true},
-    {"actual":"CANNOT_CHECK","expected":"CANNOT_CHECK","id":"evaluator_change_reopens_validity","kind":"revocation","pass":true}
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p9_confidence_to_validity",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p9_applicability_to_adoption",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p10_generation_to_novelty",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p7_library_stop_to_global_stop",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p6_fibre_to_applicability",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p4_validity_to_novelty",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "novelty_to_correctness",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_p4_validity",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_novelty_review",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_host_adoption",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_external_task_stop",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "prior_art_revokes_novelty",
+      "kind": "revocation",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "counterexample_revokes_validity",
+      "kind": "revocation",
+      "pass": true
+    },
+    {
+      "actual": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "id": "representation_reopens_applicability",
+      "kind": "revocation",
+      "pass": true
+    },
+    {
+      "actual": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "id": "evaluator_change_reopens_validity",
+      "kind": "revocation",
+      "pass": true
+    }
   ],
-  "terminal": "P8_P9_P10_ANTI_LAUNDERING_CLEAR"
+  "terminal": "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
+  "terminal_basis": [
+    {
+      "guard_id": "p8_anti_laundering_contract",
+      "opportunities": 15,
+      "opportunity_definition": "every frozen case in the panel, coercion and revocation alike",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "contract_accuracy",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    },
+    {
+      "guard_id": "p8_illicit_coercion_block",
+      "opportunities": 7,
+      "opportunity_definition": "frozen coercion cases whose declared outcome is BLOCKED: the laundering attacks",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "illicit_coercion_block_rate",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    },
+    {
+      "guard_id": "p8_clean_legal_coverage",
+      "opportunities": 4,
+      "opportunity_definition": "frozen coercion cases whose declared outcome is SUPPORTED: the legal lanes that must not be broken shut",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "clean_legal_coverage",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    },
+    {
+      "guard_id": "p8_revocation",
+      "opportunities": 4,
+      "opportunity_definition": "frozen revocation cases: defeater propagation and reopening",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "revocation_accuracy",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    }
+  ]
 }

@@ -1,0 +1,65 @@
+name: orion-qg-qg11c-ft-lift-closure
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG11C_*'
+      - 'development/orion-qg-regime-geometry/qg11c_*'
+      - 'development/orion-qg-regime-geometry/run_qg11c_dual_harness.py'
+      - 'research/extensions/orion-qg/qg11c_*'
+      - '.github/workflows/orion-qg-qg11c-ft-lift-closure.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg11c-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg11c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      QG11C_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${QG11C_BASE}")" = "${QG11C_BASE}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax
+        run: python -m py_compile research/extensions/orion-qg/qg11c_ft_lift_closure.py development/orion-qg-regime-geometry/qg11c_generic_verify.py development/orion-qg-regime-geometry/qg11c_native_verify.py development/orion-qg-regime-geometry/run_qg11c_dual_harness.py
+      - name: Execute
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg11c_dual_harness.py | tee artifacts/orion-qg-qg11c-summary.json
+      - name: Replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg11c_ft_lift_closure.py --output artifacts/orion-qg-qg11c-ft-lift-replay.json > artifacts/orion-qg-qg11c-replay.log
+          cmp artifacts/orion-qg-qg11c-ft-lift.json artifacts/orion-qg-qg11c-ft-lift-replay.json
+      - name: Gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg11c-ft-lift.json').read_text()); g=json.loads(Path('artifacts/orion-qg-qg11c-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-qg11c-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-qg11c-dual.json').read_text()); t='QG11_AFFINE_FT_PHASE_PULLBACK_PROVED__NONLINEAR_FACTORY_COUNTEREXAMPLE__REAL_ESTIMATOR_CANNOT_CHECK'; assert a['terminal']==t and a['all_gates'] is True; assert g['decision']=='ACCEPT_MIXED_CLOSURE' and g['all_checks'] is True; assert n['decision']=='ACCEPT_MIXED_CLOSURE' and n['all_checks'] is True; assert d['terminal']==t and d['both_accept'] is True; assert a['real_ft_estimator_status']=='CANNOT_CHECK_REAL_ESTIMATOR'
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg11c-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg11c-*.json
+            artifacts/orion-qg-qg11c-*.log
+            .orion-qg-qg11c-generic/.orion-harness/**
+            .orion-qg-qg11c-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

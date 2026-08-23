@@ -1,0 +1,61 @@
+name: p12-procedural-path-allocation-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_PROCEDURAL_PATH_ALLOCATION_PROTOCOL_V1.md'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_procedural_path_cases_v1.json'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py'
+      - '.github/workflows/p12-procedural-path-allocation-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  procedural-allocation-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Execute procedural resource-location study
+        run: python papers/paper-12-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py | tee p12_procedural_path_allocation_v1.json
+      - name: Verify deterministic primary replay and exact gates
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py > p12_procedural_path_allocation_v1_rerun.json
+          cmp p12_procedural_path_allocation_v1.json p12_procedural_path_allocation_v1_rerun.json
+          python - <<'PY'
+          import json
+          p=json.load(open('p12_procedural_path_allocation_v1.json'))
+          assert p['terminal']=='P12_PROCEDURAL_PATH_ALLOCATION_V1_SUPPORTED',p
+          assert p['case_count']==8
+          assert p['adaptive_oracle_agreement']>=0.875
+          assert p['aggregate']['ADAPTIVE_LOCATION']['total_expansions']<p['aggregate']['REASON_ONLY']['total_expansions']
+          assert p['aggregate']['ADAPTIVE_LOCATION']['total_expansions']<p['aggregate']['STATE_FIRST']['total_expansions']
+          assert all(r['valid_paths']==r['query_count'] for r in p['rows'])
+          print('P12_PROCEDURAL_PATH_ALLOCATION_V1_BYTE_REPLAY_GREEN')
+          PY
+      - name: Execute independent Dijkstra verifier
+        run: python papers/paper-12-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py | tee p12_procedural_path_allocation_independent_v1.json
+      - name: Verify independent replay and scientific-locus agreement
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py > p12_procedural_path_allocation_independent_v1_rerun.json
+          cmp p12_procedural_path_allocation_independent_v1.json p12_procedural_path_allocation_independent_v1_rerun.json
+          python - <<'PY'
+          import json
+          p=json.load(open('p12_procedural_path_allocation_v1.json'))
+          q=json.load(open('p12_procedural_path_allocation_independent_v1.json'))
+          assert q['terminal']=='P12_PROCEDURAL_PATH_ALLOCATION_SECOND_INDEPENDENT_CHECKER_GREEN',q
+          assert q['case_count']==p['case_count']==8
+          assert q['adaptive_oracle_agreement']==1.0
+          a={r['id']:(r['adaptive'],r['oracle']) for r in p['selections']}
+          b={r['id']:(r['adaptive'],r['oracle']) for r in q['rows']}
+          assert a==b,(a,b)
+          print('P12_PROCEDURAL_PATH_ALLOCATION_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p12-procedural-path-allocation-v1
+          path: |
+            p12_procedural_path_allocation_v1.json
+            p12_procedural_path_allocation_independent_v1.json

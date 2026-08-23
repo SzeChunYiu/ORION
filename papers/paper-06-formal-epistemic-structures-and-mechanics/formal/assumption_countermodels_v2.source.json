@@ -1,0 +1,17 @@
+{
+  "schema_version": "orion.p6.assumption-countermodel-source.v2",
+  "cases": [
+    {"id":"P6-REOPEN-STALE-001","kind":"stale_certification","path_realizable":true,"retained_descendant":true,"expected_verdict":"DETECTED","claim":"q2"},
+    {"id":"P6-REOPEN-SPURIOUS-EDGE-001","kind":"stale_certification","path_realizable":false,"retained_descendant":true,"expected_verdict":"NOT_DETECTED","claim":"q_spurious","note":"A sound over-approximation can contain a spurious edge; graph soundness alone does not prove graph-only minimality for the fixed semantics class."},
+    {"id":"P6-FOOTPRINT-WRITE-001","kind":"undeclared_write","declared_write":["b"],"proposed_write":["c"],"expected_verdict":"DETECTED"},
+    {"id":"P6-FOOTPRINT-WRITE-NEG-001","kind":"undeclared_write","declared_write":["b","c"],"proposed_write":["c"],"expected_verdict":"NOT_DETECTED"},
+    {"id":"P6-SEPARATION-ALIAS-001","kind":"nonseparated_composition","left_write":["x"],"right_read":["x"],"expected_verdict":"DETECTED"},
+    {"id":"P6-SEPARATION-NEG-001","kind":"nonseparated_composition","left_write":["x"],"right_read":["y"],"expected_verdict":"NOT_DETECTED"},
+    {"id":"P6-AUTH-ESCALATE-001","kind":"authority_escalation","trusted_root":"host","candidate_root":"agent","scope_narrowing":false,"expected_verdict":"DETECTED"},
+    {"id":"P6-AUTH-NARROW-NEG-001","kind":"authority_escalation","trusted_root":"host","candidate_root":"host","scope_narrowing":true,"expected_verdict":"NOT_DETECTED"},
+    {"id":"P6-RECURSIVE-CYCLE-001","kind":"recursive_cycle","call_edges":[["audit","audit"]],"expected_verdict":"DETECTED"},
+    {"id":"P6-RECURSIVE-ACYCLIC-NEG-001","kind":"recursive_cycle","call_edges":[["root","child"],["child","leaf"]],"expected_verdict":"NOT_DETECTED"},
+    {"id":"P6-SELF-AUTH-001","kind":"self_authorization","candidate_controls_policy":true,"candidate_controls_evidence":true,"expected_verdict":"DETECTED"},
+    {"id":"P6-SELF-AUTH-NEG-001","kind":"self_authorization","candidate_controls_policy":true,"candidate_controls_evidence":false,"expected_verdict":"NOT_DETECTED"}
+  ]
+}

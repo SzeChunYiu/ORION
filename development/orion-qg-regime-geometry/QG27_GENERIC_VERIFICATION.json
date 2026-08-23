@@ -1,0 +1,275 @@
+{
+ "analyzer_sha256": "1561ed2a8cdbb53010c15f74e172e36374ecd4d94083817673d65c3e86b11e94",
+ "check_count": 17,
+ "checks": {
+  "accepting_set_stabiliser_recomputed": {
+   "detail": {
+    "recomputed": [
+     0
+    ]
+   },
+   "ok": true
+  },
+  "accepting_states_recomputed": {
+   "detail": null,
+   "ok": true
+  },
+  "authority_ceiling_not_r6": {
+   "detail": null,
+   "ok": true
+  },
+  "cost_table_rebuilt_from_the_committed_dp": {
+   "detail": {
+    "finite": 358
+   },
+   "ok": true
+  },
+  "costs_are_state_independent": {
+   "detail": null,
+   "ok": true
+  },
+  "criterion_binding_gate_reimplemented": {
+   "detail": {
+    "bad": []
+   },
+   "ok": true
+  },
+  "every_state_separated_recomputed": {
+   "detail": null,
+   "ok": true
+  },
+  "exhibited_rejection_really_rejects": {
+   "detail": {
+    "recomputed_order": 8,
+    "recomputed_rank": 3,
+    "recomputed_separated": false
+   },
+   "ok": true
+  },
+  "frozen_criterion_refutation_holds": {
+   "detail": {
+    "recomputed_a": 0,
+    "recomputed_b": 30
+   },
+   "ok": true
+  },
+  "letters_span_rank_recomputed": {
+   "detail": {
+    "recomputed": 10
+   },
+   "ok": true
+  },
+  "no_efficiency_claim_g4": {
+   "detail": null,
+   "ok": true
+  },
+  "protocol_sha256_recomputes": {
+   "detail": null,
+   "ok": true
+  },
+  "result_digest_recomputes": {
+   "detail": null,
+   "ok": true
+  },
+  "scope_limit_declares_the_single_key": {
+   "detail": null,
+   "ok": true
+  },
+  "subgroup_order_is_2_to_the_rank": {
+   "detail": null,
+   "ok": true
+  },
+  "terminal_follows_from_the_recomputed_numbers": {
+   "detail": {
+    "expected": "QG27_COST_DP_IS_ALREADY_MINIMAL"
+   },
+   "ok": true
+  },
+  "timing_appears_in_no_argument_g3": {
+   "detail": null,
+   "ok": true
+  }
+ },
+ "determinism": {
+  "double_run": true,
+  "run1_sha256": "e78fe3b923979b4f94bdda70927ddf44e09638d2fff5b27ea28700336e62751b",
+  "run2_sha256": "e78fe3b923979b4f94bdda70927ddf44e09638d2fff5b27ea28700336e62751b",
+  "stdout_identical": true
+ },
+ "failed_checks": [],
+ "falsifiability_demonstration": {
+  "all_tampered_copies_internally_self_consistent": true,
+  "all_tampered_copies_rejected": true,
+  "cases": [
+   {
+    "case": "T1_terminal_flipped",
+    "failed_checks": [
+     "terminal_follows_from_the_recomputed_numbers"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the headline terminal is flipped to the opposite branch",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T2_span_rank_understated_coherently",
+    "failed_checks": [
+     "letters_span_rank_recomputed",
+     "subgroup_order_is_2_to_the_rank"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the letter span rank is lowered to 9 with the subgroup order adjusted to match",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T3_refutation_names_an_equal_cost_pair",
+    "failed_checks": [
+     "frozen_criterion_refutation_holds"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the counterexample that refutes the lane's own frozen criterion is edited so the two states have equal cost, refuting nothing",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T4_exhibited_rejection_did_not_reject",
+    "failed_checks": [
+     "exhibited_rejection_really_rejects"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the exhibited rejection claims it separated every state, i.e. that the changed criterion did not fail on the construction built to make it fail",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T5_exhibited_rejection_ref_removed",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the criterion record drops its exhibited_rejection_ref while keeping the PASS",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T6_criterion_change_concealed",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the applied criterion digest is set equal to the frozen one, hiding the change",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T7_g4_replaced_by_a_speed_claim",
+    "failed_checks": [
+     "no_efficiency_claim_g4"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the gate-G4 statement is replaced with the efficiency claim G4 forbids",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T8_novelty_authority_granted",
+    "failed_checks": [
+     "authority_ceiling_not_r6"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "novelty_authority is flipped to true",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T9_letter_count_altered",
+    "failed_checks": [
+     "cost_table_rebuilt_from_the_committed_dp"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the count of finite-cost letters is altered",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T10_scope_limit_widened_to_all_keys",
+    "failed_checks": [
+     "scope_limit_declares_the_single_key"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the scope limit is rewritten to claim the full key-varying DP",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T11_stabiliser_misreported",
+    "failed_checks": [
+     "accepting_set_stabiliser_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the accepting set's translation stabiliser is misreported, which is the quantity separation actually depends on",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T12_accepting_states_altered",
+    "failed_checks": [
+     "accepting_states_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "one accepting state is altered",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T13_cost_table_shape_misreported",
+    "failed_checks": [
+     "costs_are_state_independent"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the cost table is claimed to be half its length, which would mean it had a state axis and the whole argument would fail",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T14_separation_flag_flipped",
+    "failed_checks": [
+     "every_state_separated_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the separation flag is flipped while the stabiliser stays trivial, so the flag contradicts the quantity it is derived from",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T15_g3_timing_note_turned_into_an_argument",
+    "failed_checks": [
+     "timing_appears_in_no_argument_g3"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the gate-G3 note is replaced with a complexity inference from runtime",
+    "verdict": "REJECT"
+   }
+  ],
+  "each_case_names_the_field_it_mutates": true,
+  "expected_check_per_case": {
+   "T10_scope_limit_widened_to_all_keys": "scope_limit_declares_the_single_key",
+   "T11_stabiliser_misreported": "accepting_set_stabiliser_recomputed",
+   "T12_accepting_states_altered": "accepting_states_recomputed",
+   "T13_cost_table_shape_misreported": "costs_are_state_independent",
+   "T14_separation_flag_flipped": "every_state_separated_recomputed",
+   "T15_g3_timing_note_turned_into_an_argument": "timing_appears_in_no_argument_g3",
+   "T1_terminal_flipped": "terminal_follows_from_the_recomputed_numbers",
+   "T2_span_rank_understated_coherently": "letters_span_rank_recomputed",
+   "T3_refutation_names_an_equal_cost_pair": "frozen_criterion_refutation_holds",
+   "T4_exhibited_rejection_did_not_reject": "exhibited_rejection_really_rejects",
+   "T5_exhibited_rejection_ref_removed": "criterion_binding_gate_reimplemented",
+   "T6_criterion_change_concealed": "criterion_binding_gate_reimplemented",
+   "T7_g4_replaced_by_a_speed_claim": "no_efficiency_claim_g4",
+   "T8_novelty_authority_granted": "authority_ceiling_not_r6",
+   "T9_letter_count_altered": "cost_table_rebuilt_from_the_committed_dp"
+  },
+  "method": "each tampered copy has its result_digest RECOMPUTED, so no hash mismatch is available; every rejection comes from re-derivation against the committed DP",
+  "tamper_files_kept_outside_the_repository": true,
+  "validated_through": "orion_research_harness.falsifiability"
+ },
+ "independent_of": [
+  "qg27_cost_minimality",
+  "orion_research_harness"
+ ],
+ "results_file": "/home/user/ORION/research/extensions/orion-qg/QG27_COST_MINIMALITY_RESULTS.json",
+ "results_sha256": "03a6ed38f542674ff783ea63e7ba5a58248eec2a4a4f2ec15fe72771b1365365",
+ "schema": "ORIONQG.QG27.GenericVerification.v1",
+ "scope_note": "establishes cost-minimality for the time-invariant automaton obtained by freezing ONE cost-table key. Says nothing about the key-varying DP the programme runs, and nothing about any algorithm's speed.",
+ "terminal_under_review": "QG27_COST_DP_IS_ALREADY_MINIMAL",
+ "verdict": "ACCEPT",
+ "verifier": "qg27_generic_verify",
+ "verifier_sha256": "6089b291023ad7ab0c432385abf767c149897853793e58d9df615482bba6389a"
+}

@@ -2,14 +2,14 @@
 
 \subsection{Why reframing is dangerous}
 
-The ability to rewrite a problem is useful precisely because it is high impact. An unconstrained system can explain every failure by changing the question, the representation, or the method until the failure disappears. Paper I therefore treats reframing as a licensed state transition rather than a generic recovery heuristic.
+The ability to rewrite a problem is useful precisely because it is high impact. An unconstrained system can explain every failure by changing the question, the representation, or the method until the failure disappears. Reframing is therefore treated here as a licensed state transition rather than as a generic recovery heuristic.
 
 Let $r_t$ be a typed residual and $d_t$ the current diagnosis. A reframe is admissible only when the evidence carried by $d_t$ supports a formulation/search responsibility coordinate. Conceptually,
 \[
 \mathrm{REFRAME}(X_t,r_t,d_t)
 \rightarrow X_{t+1}
 \]
-is partial: unsupported diagnoses must return no formulation change. The local implementation now rejects the shortcut
+is partial: unsupported diagnoses must return no formulation change. The implementation rejects the shortcut
 \[
 \text{singular responsibility}\Rightarrow\text{reframe}.
 \]
@@ -17,16 +17,16 @@ Singularity is not enough. A singular missing-evidence or execution diagnosis ca
 
 \subsection{Scoped reopening}
 
-Suppose a conclusion $c$ was closed under dependencies $D(c)$. When a reframe changes coordinate $z$, ORION reopens $c$ only if $z$ is in the transitive dependency basis of the closure:
+Suppose a conclusion $c$ was closed under dependencies $D(c)$. When a reframe changes coordinate $z$, the reopening rule stales $c$ only if $z$ is in the transitive dependency basis of the closure:
 \[
-z\in D^{*}(c)\Rightarrow \mathrm{status}(c)\leftarrow \mathrm{STALE}.
+z\in D^{*}(c)\Rightarrow \mathrm{status}(c)\leftarrow \text{stale}.
 \]
 This rule avoids two opposite errors. Failing to reopen produces stale certainty: old conclusions remain ``solved'' after their assumptions changed. Reopening the entire project after every change destroys locality and makes recursive research unnecessarily expensive. The underlying mechanism is an instance of Doyle's justification-based truth maintenance \cite{doyle1979}, with the de Kleer assumption-based extension \cite{dekleer1986} providing the multi-context form needed when a reframe is provisional rather than settled.
 
-The key evaluation object is therefore not only final task success. Reopening has its own precision/recall question: did the system stale exactly the closure that materially depended on the changed coordinate?
+The key evaluation object is therefore not only final task success. Reopening has its own precision/recall question: was exactly the closure that materially depended on the changed coordinate the closure that went stale?
 
 \subsection{Bounded recursion, not completeness}
 
-Paper I does not claim that recursion reaches an open-world complete state. The stopping condition is operational and scoped: continue reconstruction while material residuals or affected reopen obligations remain, subject to the stopping and coverage rules delegated to Paper II. A bounded stop means only that the registered attacks and obligations are flat at the declared cutoff. A new representation, domain, residual, or formulation change can reopen the process.
+Recursion is not claimed to reach an open-world complete state. The stopping condition is operational and scoped: continue reconstruction while material residuals or affected reopen obligations remain. A bounded stop means only that the registered attacks and obligations are flat at the declared cutoff. A new representation, domain, residual, or formulation change can reopen the process.
 
-This distinction prevents ``nothing new was found'' from being promoted into ``nothing relevant exists.'' It also keeps Paper I focused: the scientific question here is whether explicit reconstruction and scoped reopening help under hidden formulation shifts, not whether the search procedure achieves exhaustive recall.
+This distinction prevents ``nothing new was found'' from being promoted into ``nothing relevant exists.'' It also keeps the scientific question here in view: whether explicit reconstruction and scoped reopening help under hidden formulation shifts, not whether the search procedure achieves exhaustive recall. Route coverage, recall and stopping rules for open-world search are a separate problem and are neither solved nor evaluated here.

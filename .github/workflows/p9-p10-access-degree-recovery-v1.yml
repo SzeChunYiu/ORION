@@ -1,0 +1,55 @@
+name: p9-p10-access-degree-recovery-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/ACCESS_DEGREE_RECOVERY_PROTOCOL_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_access_degree_recovery_v1.py'
+      - '.github/workflows/p9-p10-access-degree-recovery-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen degree recovery
+        run: python research/extensions/p9-p10-structural-scaling/run_access_degree_recovery_v1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/ACCESS_DEGREE_RECOVERY_V1.json /tmp/degree-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_access_degree_recovery_v1.py
+      - name: Require byte identity
+        run: cmp /tmp/degree-first.json research/extensions/p9-p10-structural-scaling/results/ACCESS_DEGREE_RECOVERY_V1.json
+      - name: Print degree summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/ACCESS_DEGREE_RECOVERY_V1.json').read_text())
+          print(json.dumps({'terminal':d['terminal'],'feature_dimensions':d['feature_dimensions_by_degree'],'aggregate':d['aggregate']},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: access-degree-recovery-v1-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/ACCESS_DEGREE_RECOVERY_V1.json
+          if-no-files-found: error
+      - name: Enforce frozen terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/ACCESS_DEGREE_RECOVERY_V1.json').read_text())
+          if d['terminal'] != 'ACCESS_DEGREE_RECOVERY_SUPPORTED_CONTROLLED_CLASS':
+              raise SystemExit('frozen access-degree recovery gate not met; preserve artifact without retuning')
+          PY

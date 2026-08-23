@@ -1,0 +1,23 @@
+{
+  "frontier_question_id": "QG-19",
+  "instance_id": "Q3-R1",
+  "outcome_paths_excluded": [
+    "research/extensions/orion-qg/QG19*",
+    "artifacts/*qg19*"
+  ],
+  "rule_set": "q3_replacement_controller.py::decide",
+  "schema": "ORIONQ.Q3LaneBManifest.v2",
+  "shared_packet_sha256": "b09f5afde88e87f09f3875a3ebd2c3223c020aeb31ed681aff73c8734854da91",
+  "typed_observations": {
+    "known_far_outside_support3_control": true,
+    "o19_central_margin": -1,
+    "o19_noncentral_margin": 0,
+    "outside_sufficient_cone": true,
+    "qg8_outside_semantics": "CERTIFICATE_SILENT_NOT_SUPPORT3_REQUIRED",
+    "qg8_support2_sufficient_cone": [
+      "t_c>=2*t_r",
+      "t_nc>=2*t_r"
+    ],
+    "weighted_referee_bound": true
+  }
+}

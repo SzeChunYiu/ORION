@@ -18,22 +18,36 @@ reviewer would want rejected. The fidelity anchor is
 row list byte for byte, so the instrument is pointed at the published artifact
 rather than at a fixture of its own.
 
-Two of the five claims are counters rather than assertions, and both compare an
-expression against a copy of itself:
+Two of the five claims were counters rather than assertions, and both compared an
+expression against a copy of itself --- ``ideal_product_mismatches`` compared
+``liftable(...)`` to ``native_valid and all(science)``, the body of ``liftable``
+written again, and ``donor_conservativity_violations`` compared
+``projected_native = native_valid`` to ``native_valid``. Each was 0 for every
+theory of lifting, right or wrong. Separately, one wrong theory walked through
+all five: every assertion in the checker evaluated the rule at
+``native_valid=True``, so the 32 points where the donor certificate is invalid
+were enumerated into the digest and never asserted about, and
+:data:`SCIENCE_LIFTS_WITHOUT_DONOR` is the rule that exploited it.
 
-* ``ideal_product_mismatches`` compares ``liftable(...)`` to ``native_valid and
-  all(science)``, which is the body of ``liftable`` written again. P6.V4.5 is a
-  "NEGATIVE EQUIVALENCE THEOREM" about an ideal donor product with *identical*
-  scientific rules, so co-mutating both sides is the faithful reading --- and
-  under it no theory of lifting, however wrong, moves the count off zero.
-* ``donor_conservativity_violations`` compares ``projected_native = native_valid``
-  to ``native_valid``.
+Both defects had one cause, and P6-U-T5's unblock ("treat each counterexample as
+a candidate missing primitive and extend the semantics") names it: the model had
+states and a verdict and **no projection**. With no map from a lifted state to
+the donor certificate under it, conservativity cannot be stated about the lift at
+all, only about the donor atom --- which is how T1 came to be ``x != x``, and why
+the half of the space with an invalid donor certificate had nothing to say about
+it. The shipped checker now carries ``project_to_donor`` and the image of
+``liftable`` along it, and states T1 as the conservativity of the extension:
+a donor certificate is certified by the lifted semantics exactly when it is
+certified by the donor theory. That one extension gives the counter a falsifier,
+covers the previously unasserted 32 states, and rejects
+:data:`SCIENCE_LIFTS_WITHOUT_DONOR` --- with no rule about that theory anywhere
+in the file. The ad hoc alternative is :data:`DONOR_REQUIREMENT_CHECK`, kept
+below to show what was not done.
 
-The remaining three do have falsifiers, and one wrong theory still walks through
-all of them: every assertion in the shipped checker evaluates the rule at
-``native_valid=True``, so the 32 points of the space where the donor certificate
-is invalid are enumerated into the digest and never asserted about.
-:data:`SCIENCE_LIFTS_WITHOUT_DONOR` is the rule that exploits it.
+The ideal product is now the donor theory's own validator run over a requirement
+set enriched by the five scientific coordinates, rather than ``liftable``
+written twice. See :func:`_accepts_ideal_product_tie` for what that check does
+and does not establish.
 
 :data:`INDEPENDENT_LIFT` is the shipped "independent" verifier's rule, kept here
 because it is the register's own control: it is a syntactic paraphrase, it
@@ -46,6 +60,8 @@ from __future__ import annotations
 import hashlib
 import itertools
 import json
+from pathlib import Path
+from typing import Any
 
 from orion.programme.refutation_capacity import (
     FalseTheory,
@@ -122,8 +138,11 @@ def independent_lift(point: ModelPoint) -> bool:
 def canonical_rows_digest(rule: Rule = reference_lift) -> str:
     """Rebuild the shipped row list under a supplied rule and hash it as shipped.
 
-    The shipped ``ideal_product`` column is the body of ``liftable`` written
-    again, so it tracks the rule here for the same reason.
+    The ``ideal_product`` column is :func:`ideal_enriched_product`, which is a
+    fixed function of the point rather than a second spelling of the rule, so a
+    wrong theory of lifting moves the ``liftable`` column and leaves the ideal
+    column where it is. Under :func:`reference_lift` the two agree everywhere and
+    the digest is :data:`SHIPPED_ROWS_SHA256` byte for byte.
     """
 
     rows = [
@@ -132,7 +151,7 @@ def canonical_rows_digest(rule: Rule = reference_lift) -> str:
             "native_valid": point["native_valid"],
             "science": {name: point[name] for name in LIFT_COORDINATES},
             "liftable": rule(point),
-            "ideal_product": rule(point),
+            "ideal_product": ideal_enriched_product(point),
         }
         for point in lifting_model_space()
     ]
@@ -207,33 +226,86 @@ def _accepts_selective_revalidation(rule: Rule) -> bool:
     return True
 
 
+def project_to_donor(point: ModelPoint) -> tuple[str, bool]:
+    """``project_to_donor`` as shipped: the donor-visible part of a lifted state.
+
+    The scientific extension is forgotten. This is the primitive the checker did
+    not have, and its absence is why T1 could only be written as an identity on
+    the donor atom.
+    """
+
+    return (str(point["donor"]), bool(point["native_valid"]))
+
+
+def donor_fibre(certificate: tuple[str, bool]) -> tuple[ModelPoint, ...]:
+    """Every lifted state that projects onto one donor certificate."""
+
+    donor, native_valid = certificate
+    return tuple(
+        {"donor": donor, "native_valid": native_valid, **dict(zip(LIFT_COORDINATES, science))}
+        for science in itertools.product((False, True), repeat=len(LIFT_COORDINATES))
+    )
+
+
 def _accepts_donor_conservativity(rule: Rule) -> bool:
     """The shipped ``donor_conservativity_violations == 0`` counter, replayed.
 
-    ``projected_native`` is assigned from ``native_valid`` on the line above the
-    comparison, so the condition is ``x != x`` and the rule is never consulted.
-    The unused parameter is kept so the check has the same shape as the others
-    and the measurement reads the same way.
+    The image of the rule along :func:`project_to_donor` --- a donor certificate
+    is certified by the lifted semantics when *some* scientific extension over it
+    lifts --- must coincide with the donor's own verdict. Both directions carry
+    content, and both are about the rule:
+
+    * left to right, the lift never manufactures donor validity it was not given,
+      which is what ``science_lifts_without_donor`` does;
+    * right to left, the lift never withdraws a verdict the donor theory issues,
+      which is what ``nothing_lifts`` does.
+
+    Before the projection was a primitive this counter read ``projected_native =
+    native_valid`` and then ``projected_native != native_valid`` --- ``x != x``,
+    counted 320 times, with the rule never consulted.
     """
 
-    del rule
-    violations = 0
-    for point in lifting_model_space():
-        projected_native = point["native_valid"]
-        if projected_native != point["native_valid"]:
-            violations += 1
-    return violations == 0
+    for certificate in sorted({project_to_donor(point) for point in lifting_model_space()}):
+        image = any(rule(point) for point in donor_fibre(certificate))
+        if image != certificate[1]:
+            return False
+    return True
+
+
+#: The donor theory's required-field set, enriched by the five lift coordinates.
+ENRICHED_REQUIREMENTS: tuple[str, ...] = ("native_valid",) + LIFT_COORDINATES
+
+
+def ideal_enriched_product(point: ModelPoint) -> bool:
+    """``ideal_product`` as shipped: the donor validator over an enriched signature.
+
+    P6.V4.5's ideal enriched donor product is the donor theory whose required
+    fields have been enlarged by the five scientific coordinates, validated by
+    the donor's own native validator. It is a fixed function of the point, so
+    substituting a wrong theory of lifting does not co-mutate it --- which is the
+    whole difference from the shipped ``ideal = native_valid and all(science)``,
+    the body of ``liftable`` written a second time.
+    """
+
+    return all(bool(point[name]) for name in ENRICHED_REQUIREMENTS)
 
 
 def _accepts_ideal_product_tie(rule: Rule) -> bool:
     """The shipped ``ideal_product_mismatches == 0`` counter, replayed.
 
-    P6.V4.5 claims an ideal donor product with *identical* scientific fields and
-    rules ties P6 extensionally, so the ideal is the rule.
+    An extensional-equivalence claim is an identity test, so this check refutes
+    every theory that differs from :func:`ideal_enriched_product` anywhere ---
+    which, the register being live by construction, is all of them. That is
+    maximal capacity earned cheaply, and it is worth saying so: what this check
+    actually turns on is that the two sides have *separate constructions*, and
+    the capacity measure cannot see that. The shipped script keeps a structural
+    gate (``_independently_defined``) for exactly that reason, and reports
+    ``CANNOT_CHECK`` rather than a clean zero if they ever collapse again.
     """
 
-    ideal = rule
-    return not any(ideal(point) != rule(point) for point in lifting_model_space())
+    return not any(
+        rule(point) != ideal_enriched_product(point) for point in lifting_model_space()
+    )
 
 
 SHIPPED_CHECKS: tuple[MechanizedCheck, ...] = (
@@ -263,35 +335,50 @@ SHIPPED_CHECKS: tuple[MechanizedCheck, ...] = (
     ),
     MechanizedCheck(
         check_id="donor_conservativity_violations",
-        asserts="projection preserves the donor-native verdict on all 320 states",
+        asserts=(
+            "the image of the lift along the donor projection is the donor-native "
+            "verdict, on all 10 donor certificates and their 64-state fibres"
+        ),
         accepts=_accepts_donor_conservativity,
     ),
     MechanizedCheck(
         check_id="ideal_product_mismatches",
-        asserts="an ideal enriched donor product agrees with P6 on all 320 states",
+        asserts=(
+            "the donor validator over a requirement set enriched by the five scientific "
+            "coordinates agrees with P6 on all 320 states"
+        ),
         accepts=_accepts_ideal_product_tie,
     ),
 )
 
 
 def _accepts_donor_requirement(rule: Rule) -> bool:
-    """The assertion the shipped checker omits: nothing lifts without a valid donor.
+    """The ad hoc repair, kept unshipped so the difference is legible.
 
-    Every assertion in ``check_p6_x2_certificate_lifting.py`` evaluates the rule
-    at ``native_valid=True``. The other 160 rows are enumerated into the digest
-    and never asserted about, which is why a theory that drops the donor
-    certificate entirely walks through all three of the shipped assertion blocks.
-    This is one line, and it closes that half of the space.
+    One line --- nothing lifts where ``native_valid`` is false --- and it does
+    close the coverage hole ``science_lifts_without_donor`` walked through. It is
+    an exception rather than an extension: it adds a rule *about the theory that
+    got through*, and the next counterexample needs the next line. Nothing in it
+    is a new primitive, and it says nothing about what the model was missing.
+
+    The shipped repair is the other one. Stating T1 as the conservativity of the
+    lift along :func:`project_to_donor` rejects this theory as a consequence of
+    an equality the semantics could not previously express, covers the same 160
+    rows, and additionally rejects ``nothing_lifts`` and ``everything_lifts``
+    from the other direction of the same equality. Kept here as the comparison,
+    not as a fallback: adding it to the panel would double-count the coverage the
+    conservativity check already earns.
     """
 
     return not any(rule(point) for point in lifting_model_space() if not point["native_valid"])
 
 
-#: The check that would make the shipped panel refutation-complete against the
-#: register. Not shipped: registered here so the repair is code rather than prose.
+#: The ad hoc alternative to the projection primitive, not shipped and not in the
+#: panel. Registered so "extend the semantics rather than add an exception" is a
+#: comparison a reader can run rather than a claim they have to take.
 DONOR_REQUIREMENT_CHECK = MechanizedCheck(
     check_id="donor_certificate_required",
-    asserts="no state with an invalid donor certificate lifts (the 160 unasserted rows)",
+    asserts="no state with an invalid donor certificate lifts (the 160 once-unasserted rows)",
     accepts=_accepts_donor_requirement,
 )
 
@@ -368,6 +455,21 @@ DONOR_FAMILY_DECIDES = FalseTheory(
     rule=lambda point: point["donor"] == "POE",
 )
 
+UNBRIDGED_DONOR_DISCHARGES_COORDINATE = FalseTheory(
+    theory_id="unbridged_donor_discharges_coordinate",
+    breaks=(
+        "the theorem family's own third falsifier and P6.V4.3 non-laundering: one donor "
+        "family would discharge evidence_semantics with no bridge rule binding it, so a "
+        "coordinate the checker must treat as unresolved would count as true"
+    ),
+    rule=lambda point: bool(point["native_valid"])
+    and all(
+        point[name]
+        for name in LIFT_COORDINATES
+        if not (point["donor"] == "CERTIFIED_PURITY" and name == "evidence_semantics")
+    ),
+)
+
 #: The wrong theories of certificate lifting a reviewer would want rejected.
 #:
 #: Every entry names the P6 claim it breaks, because a register whose entries
@@ -381,6 +483,7 @@ FALSE_LIFT_THEORIES: tuple[FalseTheory, ...] = (
     EVERYTHING_LIFTS,
     NOTHING_LIFTS,
     DONOR_FAMILY_DECIDES,
+    UNBRIDGED_DONOR_DISCHARGES_COORDINATE,
 )
 
 #: The shipped independent verifier's rule, registered so its divergence is measured.
@@ -402,12 +505,53 @@ INDEPENDENT_LIFT = FalseTheory(
 #: omitted because the separation witnesses already assert on each of them.
 ENUMERATED_AXES: tuple[str, ...] = ("donor", "native_valid")
 
+#: The shipped checker's published result, whose ``donor_axis`` block the checker
+#: computes and :func:`published_count_multiplicity` reads back.
+X2_RESULT_PATH = (
+    Path(__file__).resolve().parents[4]
+    / "research/claim_expansion/p6/P6_X2_CERTIFICATE_LIFTING_RESULT_V1.json"
+)
+
+
+def published_count_multiplicity() -> tuple[dict[str, Any], ...]:
+    """Every published count beside the number of distinct facts behind it.
+
+    ``axis_sensitivity`` says the donor axis is inert and every count under it is
+    repeated five times; this says which counts and to what. ``320`` reads as 320
+    observations and is 64 observed once per donor family; ``25`` minimal
+    separations is 5 observed five times; only the 31 product countermodels are 31
+    distinct facts, because their loop does not range over donors.
+
+    Read off the shipped artifact's own ``donor_axis`` block rather than recomputed
+    here, so a reader is looking at the number the paper published.
+    """
+
+    published = json.loads(X2_RESULT_PATH.read_text(encoding="utf-8"))
+    axis = published["donor_axis"]
+    pairs = (
+        ("state_evaluations", "distinct_state_evaluations"),
+        ("single_coordinate_separation_witnesses", "distinct_separation_witnesses"),
+        ("certificate_product_countermodels", "distinct_product_countermodels"),
+        ("full_revalidation_successes", "distinct_full_revalidation_successes"),
+        ("partial_revalidation_failures", "distinct_partial_revalidation_failures"),
+    )
+    return tuple(
+        {
+            "count": name,
+            "published": published[name],
+            "distinct": axis[distinct_name],
+            "factor": published[name] // axis[distinct_name],
+        }
+        for name, distinct_name in pairs
+    )
+
 
 __all__ = [
     "ANY_COORDINATE_SUFFICES",
     "DONOR_FAMILIES",
     "DONOR_FAMILY_DECIDES",
     "DONOR_REQUIREMENT_CHECK",
+    "ENRICHED_REQUIREMENTS",
     "DONOR_VALIDITY_LIFTS_ALONE",
     "ENUMERATED_AXES",
     "EPOCH_COORDINATE_INERT",
@@ -421,8 +565,14 @@ __all__ = [
     "SCIENCE_LIFTS_WITHOUT_DONOR",
     "SHIPPED_CHECKS",
     "SHIPPED_ROWS_SHA256",
+    "UNBRIDGED_DONOR_DISCHARGES_COORDINATE",
+    "X2_RESULT_PATH",
     "canonical_rows_digest",
+    "donor_fibre",
+    "ideal_enriched_product",
     "independent_lift",
     "lifting_model_space",
+    "project_to_donor",
+    "published_count_multiplicity",
     "reference_lift",
 ]

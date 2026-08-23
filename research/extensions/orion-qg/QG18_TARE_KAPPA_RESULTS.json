@@ -1,0 +1,1863 @@
+{
+  "authority": "ORIONQG_QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS_REFEREE_CONFIRMED__CAP1_BRUTE_FORCE_CROSSCHECKED__NOT_R6",
+  "base_revision": "3a3e820e",
+  "cap1_referee": {
+    "bruteforce_n1": {
+      "cap1_reference_rows_per_instance": 1728,
+      "config_enumeration": {
+        "acceptance_evaluations": 864,
+        "block_feasible_pairs": 6,
+        "feasible_configs": 48,
+        "frame_cost_central_invariant_18": true,
+        "frame_costs_over_all_centrals": [
+          18
+        ],
+        "frame_tuples_enumerated": 4096,
+        "frame_tuples_feasible": 216,
+        "frame_weights_seen": [
+          1
+        ],
+        "n": 1,
+        "tag_keys_enumerated": 4,
+        "weight_le1_key_count": 4
+      },
+      "expected_instances_729": true,
+      "holds": true,
+      "instances": 729,
+      "mismatches_total": 0,
+      "mismatches_verbatim": []
+    },
+    "bruteforce_n2": {
+      "alphabet": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "cap1_reference_rows_per_instance": 13824,
+      "config_enumeration": {
+        "acceptance_evaluations": 27648,
+        "block_feasible_pairs": 12,
+        "feasible_configs": 1248,
+        "frame_cost_central_invariant_18": true,
+        "frame_costs_over_all_centrals": [
+          18
+        ],
+        "frame_tuples_enumerated": 117649,
+        "frame_tuples_feasible": 1728,
+        "frame_weights_seen": [
+          1
+        ],
+        "n": 2,
+        "tag_keys_enumerated": 16,
+        "weight_le1_key_count": 7
+      },
+      "expected_instances_64": true,
+      "holds": true,
+      "instances": 64,
+      "mismatches_total": 0,
+      "mismatches_verbatim": []
+    },
+    "committed_referee_panel": {
+      "holds": true,
+      "mismatches": [],
+      "rows": 25,
+      "seed": 20260821
+    },
+    "definition": "Exact minimum of O0 over every configuration whose six frame Paulis have global support <= 1: anchors in [n]^3, ordered distinct non-identity letter pairs per block, ANY shared Tag in the full 4^n key space, all 8 centrals, all 4 relative target permutations.",
+    "r1a_frame_invariance": {
+      "domain_size": 12,
+      "expected_domain_12": true,
+      "holds": true,
+      "values": [
+        6
+      ]
+    },
+    "r1b_forced_tag": {
+      "domain_size": 48,
+      "expected_domain_48": true,
+      "forced_letter_table": {
+        "XY|01": [
+          "X"
+        ],
+        "XY|10": [
+          "Y"
+        ],
+        "XZ|01": [
+          "X"
+        ],
+        "XZ|10": [
+          "Z"
+        ],
+        "YX|01": [
+          "Y"
+        ],
+        "YX|10": [
+          "X"
+        ],
+        "YZ|01": [
+          "Y"
+        ],
+        "YZ|10": [
+          "Z"
+        ],
+        "ZX|01": [
+          "Z"
+        ],
+        "ZX|10": [
+          "X"
+        ],
+        "ZY|01": [
+          "Z"
+        ],
+        "ZY|10": [
+          "Y"
+        ]
+      },
+      "holds": true,
+      "never_identity": true,
+      "unique_solution_everywhere": true
+    },
+    "reference_domain_size_formula": "1728 * n^3",
+    "reference_domain_sizes": {
+      "1": 1728,
+      "2": 13824,
+      "3": 46656,
+      "4": 110592
+    }
+  },
+  "chemistry_sources_read": false,
+  "claim_boundary": {
+    "covers": "The intrinsic support number kappa of the frozen R6L/R6M three-block TARE-M2 shared-one-bit-Tag grammar under the frozen unit-cost support objective O0 (multipliers 4 non-central / 2 central, Tag 2, donor-owned all-three Restore common-factor rule), two-sidedly: the upper bound kappa <= 2 is the bound R6S all-n theorem; the lower bound kappa >= 2 is an exact instance whose optimum is strictly below the exact optimum of the complete support-<=1 family.",
+    "does_not_cover": "Other objectives (QG-2's O1 already forces kappa >= 3 for this family), other grammars, coefficient-weighted costs, rotation-count trade-offs, larger Tag ranks, or any physical or chemistry claim. The QG-18 structured n=2 slice is a complete slice of its declared alphabet, not of all n=2 instances. No novelty credit, no donor credit, not R6.",
+    "lower_bound_logic": "C_cap1 is the exact minimum of O0 over EVERY configuration whose six frame Paulis have global support <= 1 (support-0 frames are infeasible since symp(I,.) = 0). An instance with C_DP < C_cap1 therefore has no support-<=1 optimum, so 1 is not a valid support bound and kappa >= 2."
+  },
+  "donor_novelty_credit": false,
+  "expected_pair_count_injection": {
+    "independent_pair_counts": {
+      "1": 6,
+      "2": 120,
+      "3": 666,
+      "4": 1968
+    },
+    "key": 4,
+    "module": "max_r6p_weight2_frame_donor_closure",
+    "repository_files_modified": false,
+    "runtime_only": true,
+    "value": 1968
+  },
+  "gates": {
+    "authority_ceiling_not_r6": true,
+    "bf_frame_cost_invariant_18": true,
+    "cap1_equals_bruteforce_n1": true,
+    "cap1_equals_bruteforce_n2": true,
+    "cap1_equals_dplus_panel": true,
+    "cap1_equals_dxx_weight1_panel": true,
+    "cap1_reference_equals_grouped": true,
+    "domains_complete_no_truncation": true,
+    "n1_cap1_equals_dp_complete": true,
+    "no_chemistry_read": true,
+    "objective_binds_r6s": true,
+    "production_algebra_exact": true,
+    "protected_subject_not_read": true,
+    "protocol_present": true,
+    "r1a_frame_invariance": true,
+    "r1b_forced_tag_unique": true,
+    "r6m_tables_exact": true,
+    "receipt_semantics_exact": true,
+    "receipts_sha256_exact": true,
+    "runtime_within_cap": true,
+    "sandwich_holds_everywhere": true,
+    "witness_fully_recomputed": true,
+    "witness_support2_config_verified": true
+  },
+  "intrinsic_support_number": 2,
+  "kappa_interval": [
+    2,
+    2
+  ],
+  "lane": "QG-18",
+  "lower_bound_source": "QG-18 canonical support-2 necessity witness",
+  "network_access": false,
+  "novelty_credit": false,
+  "objective_binding": {
+    "exact": true,
+    "mismatches": [],
+    "rows": 60
+  },
+  "physical_quantum_advantage_claim": false,
+  "production_binding": {
+    "F3_binds_r6m": true,
+    "F3_binds_r6s": true,
+    "LM_binds_r6m": true,
+    "LW_binds_r6m": true,
+    "SY_binds_r6m": true,
+    "all_exact": true,
+    "matching_binds_r6m": true
+  },
+  "programme": "ORION-QG regime geometry, wave 3",
+  "protected_subject_read": false,
+  "protocol": "development/orion-qg-regime-geometry/QG18_TARE_KAPPA_PROTOCOL_V1.md",
+  "protocol_sha256": "c320c8fbcf4101e1ad7aa0cb865c5f583f942b5b014641b42376b609ce4857c8",
+  "q1_necessity_hunt": {
+    "canonical_witness": {
+      "C_DP": 5,
+      "C_DP_recomputations": {
+        "all_agree": true,
+        "committed_independent_brute_n2": 5,
+        "explicit_support2_config_cost_from_primitives": 5,
+        "frozen_n_reader": 5,
+        "frozen_r6m_dp_all_configs": 5
+      },
+      "C_Dxx": 5,
+      "C_cap1": 6,
+      "C_cap1_recomputations": {
+        "all_agree": true,
+        "cap1_bruteforce_from_primitives": 6,
+        "cap1_grouped": 6,
+        "cap1_reference": 6,
+        "explicit_cap1_config_cost_from_primitives": 6,
+        "r6o_dplus": 6,
+        "r6p_dxx_weight1": 6,
+        "reference_domain_rows": 13824
+      },
+      "cap1_optimal_configuration": {
+        "acceptance_labels_independent": [
+          0,
+          1
+        ],
+        "cost_independent": 6,
+        "descriptor": {
+          "anchors": [
+            0,
+            0,
+            0
+          ],
+          "bases": [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "cost": 6,
+          "labels": [
+            0,
+            1
+          ],
+          "perm_b": 0,
+          "perm_c": 0,
+          "tag_letters": {
+            "0": "Z"
+          },
+          "tag_weight": 1
+        },
+        "frames": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "max_frame_support": 1,
+        "per_frame_support": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "tag": [
+          0,
+          1
+        ]
+      },
+      "n": 2,
+      "sandwich": {
+        "C_DP_le_C_Dxx": true,
+        "C_Dxx_lt_C_cap1": true,
+        "support2_attains_optimum": true
+      },
+      "source_domain": "D5_structured_n2",
+      "strict_gap": 1,
+      "support2_configuration": {
+        "acceptance_labels_independent": [
+          0,
+          1
+        ],
+        "centrals": [
+          0,
+          0,
+          1
+        ],
+        "cost_independent": 5,
+        "frames": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "labels": [
+          0,
+          1
+        ],
+        "max_frame_support": 2,
+        "per_frame_support": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "r6p_witness_verified": true,
+        "tag": [
+          0,
+          1
+        ],
+        "tag_weight": 1,
+        "target_permutations": [
+          0,
+          0,
+          0
+        ],
+        "witness_verbatim": {
+          "C_Dxx": 5,
+          "S": [
+            0,
+            1
+          ],
+          "blocks": [
+            {
+              "R0": [
+                0,
+                1
+              ],
+              "R1": [
+                1,
+                1
+              ],
+              "block": "A",
+              "central": 0,
+              "support": [
+                1,
+                1
+              ],
+              "target_permutation": 0,
+              "uanti": 0
+            },
+            {
+              "R0": [
+                0,
+                1
+              ],
+              "R1": [
+                1,
+                1
+              ],
+              "block": "B",
+              "central": 0,
+              "support": [
+                1,
+                1
+              ],
+              "target_permutation": 0,
+              "uanti": 0
+            },
+            {
+              "R0": [
+                0,
+                2
+              ],
+              "R1": [
+                3,
+                0
+              ],
+              "block": "C",
+              "central": 1,
+              "support": [
+                1,
+                2
+              ],
+              "target_permutation": 0,
+              "uanti": 2
+            }
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "max_frame_support": 2,
+          "tag_weight": 1
+        }
+      },
+      "targets": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      ]
+    },
+    "deduplicated_committed_instances": 113,
+    "domains": {
+      "D1_qg7": {
+        "instances": 59,
+        "source": "QG7_BPRIME_COMPLETENESS_RESULTS.json arm1_hostile_search.fourth_regime_candidates_verbatim"
+      },
+      "D2_qg7b": {
+        "instances": 93,
+        "source": "QG7B_HYBRID_FAMILY_RESULTS.json q2.panel_w_witnesses.rows + verification_sample"
+      },
+      "D3_r6o": {
+        "instances": 20,
+        "source": "MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json discovery.instances_with_dp_strictly_below_dplus"
+      },
+      "D4_exhaustive_n1": {
+        "complete": true,
+        "instances": 729,
+        "source": "all 3^6 non-identity single-qubit target six-tuples"
+      },
+      "D5_structured_n2": {
+        "alphabet": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "complete": true,
+        "instances": 46656,
+        "source": "all 6^6 six-tuples over the six weight-one n=2 keys"
+      }
+    },
+    "gap_instances_total": 1991,
+    "gap_rows_verbatim": [
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      {
+        "C_DP": 5,
+        "C_Dxx": 5,
+        "C_cap1": 6,
+        "domain": "D5_structured_n2",
+        "gap": 1,
+        "n": 2,
+        "targets": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      }
+    ],
+    "gap_rows_verbatim_cap": 20,
+    "sandwich_violations": [],
+    "sandwich_violations_total": 0,
+    "scans": [
+      {
+        "domain": "D1_qg7",
+        "dxx_computed_rows": 59,
+        "gap_instances": 59,
+        "gap_size_histogram": {
+          "1": 59
+        },
+        "instances": 59
+      },
+      {
+        "domain": "D2_qg7b",
+        "dxx_computed_rows": 93,
+        "gap_instances": 76,
+        "gap_size_histogram": {
+          "1": 75,
+          "2": 1
+        },
+        "instances": 93
+      },
+      {
+        "domain": "D3_r6o",
+        "dxx_computed_rows": 20,
+        "gap_instances": 20,
+        "gap_size_histogram": {
+          "1": 20
+        },
+        "instances": 20
+      },
+      {
+        "domain": "D4_exhaustive_n1",
+        "dxx_computed_rows": 0,
+        "gap_instances": 0,
+        "gap_size_histogram": {},
+        "instances": 729
+      },
+      {
+        "domain": "D5_structured_n2",
+        "dxx_computed_rows": 1836,
+        "gap_instances": 1836,
+        "gap_size_histogram": {
+          "1": 1836
+        },
+        "instances": 46656
+      }
+    ],
+    "selection_rule": "min by (n, C_DP, C_cap1, canonical target tuple)"
+  },
+  "q2_role": "diagnostic (Q1 produced a witness)",
+  "q2_tag_relocation_transfer": {
+    "chain_closes": false,
+    "composition": {
+      "C1_credit_exceeds_alignment": false,
+      "C2_same_core": false,
+      "C3_distinct_core": false,
+      "C4_support0_infeasible": true,
+      "tare_alignment_ceiling": 4,
+      "tare_credit_floor": 0,
+      "tare_distinct_core_new_tag": 6,
+      "tare_old_tag_floor": 2,
+      "tare_same_core_new_tag": 2
+    },
+    "first_failing_obligation": "L1_DELETION_CREDIT",
+    "l1_deletion_credit": {
+      "anticommuting": {
+        "credit_floor": 2,
+        "domain_size": 147456,
+        "letter_pairs": 6,
+        "max_delta": -2,
+        "max_witness": {
+          "central_bit": 0,
+          "delta": -2,
+          "frame_letters": [
+            "X",
+            "Y"
+          ],
+          "multipliers": [
+            2,
+            4
+          ],
+          "other_slots_branch0": [
+            "Z",
+            "Z"
+          ],
+          "other_slots_branch1": [
+            "Z",
+            "Z"
+          ],
+          "refund": 6,
+          "slot": "A",
+          "target_letters": [
+            "Y",
+            "X"
+          ]
+        },
+        "min_delta": -10,
+        "per_slot_max_delta": {
+          "A": -2,
+          "B": -2,
+          "C": -2
+        },
+        "slot_symmetric": true,
+        "tie_multiplier_pairs": [],
+        "zero_credit_rows": 0
+      },
+      "commuting": {
+        "credit_floor": 0,
+        "domain_size": 221184,
+        "letter_pairs": 9,
+        "max_delta": 0,
+        "max_witness": {
+          "central_bit": 0,
+          "delta": 0,
+          "frame_letters": [
+            "X",
+            "I"
+          ],
+          "multipliers": [
+            2,
+            4
+          ],
+          "other_slots_branch0": [
+            "Z",
+            "Z"
+          ],
+          "other_slots_branch1": [
+            "I",
+            "I"
+          ],
+          "refund": 2,
+          "slot": "A",
+          "target_letters": [
+            "Y",
+            "I"
+          ]
+        },
+        "min_delta": -10,
+        "per_slot_max_delta": {
+          "A": 0,
+          "B": 0,
+          "C": 0
+        },
+        "slot_symmetric": true,
+        "tie_multiplier_pairs": [
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "zero_credit_rows": 2304
+      },
+      "credit_floor": 0,
+      "expected_domain_anticommuting_147456": true,
+      "expected_domain_commuting_221184": true,
+      "holds": false,
+      "r6i_reference_credit_floor": 4
+    },
+    "l2_core_alignment": {
+      "alignment_ceiling": 4,
+      "domain_size": 884736,
+      "expected_domain_884736": true,
+      "frame_contribution_always_6": true,
+      "frame_contribution_values": [
+        6
+      ],
+      "max_witness": {
+        "central_bit": 0,
+        "delta": 4,
+        "new_basis": [
+          "Y",
+          "X"
+        ],
+        "old_basis": [
+          "X",
+          "Y"
+        ],
+        "other_slots_branch0": [
+          "X",
+          "X"
+        ],
+        "other_slots_branch1": [
+          "Y",
+          "Y"
+        ],
+        "slot": "A",
+        "target_letters": [
+          "I",
+          "I"
+        ]
+      },
+      "r6i_reference_alignment_ceiling": 3,
+      "r6i_reference_frame_contribution": 10
+    },
+    "l3_same_core_rigidity": {
+      "different_basis_feasible_rows": 12,
+      "domain_size": 288,
+      "expected_domain_288": true,
+      "feasible_rows": 24,
+      "holds": false,
+      "note": "R6M's one-bit shared Tag pins only the label-selected letter of the ordered anticommuting basis, not the whole ordered pair; R6I's two-bit Tag pins both.",
+      "r6i_reference_holds": true,
+      "violations_total": 12,
+      "violations_verbatim": [
+        {
+          "A": [
+            "X",
+            "Y"
+          ],
+          "B": [
+            "X",
+            "Z"
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "tag_letter": "X"
+        },
+        {
+          "A": [
+            "X",
+            "Y"
+          ],
+          "B": [
+            "Z",
+            "Y"
+          ],
+          "labels": [
+            1,
+            0
+          ],
+          "tag_letter": "Y"
+        },
+        {
+          "A": [
+            "X",
+            "Z"
+          ],
+          "B": [
+            "X",
+            "Y"
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "tag_letter": "X"
+        },
+        {
+          "A": [
+            "X",
+            "Z"
+          ],
+          "B": [
+            "Y",
+            "Z"
+          ],
+          "labels": [
+            1,
+            0
+          ],
+          "tag_letter": "Z"
+        },
+        {
+          "A": [
+            "Y",
+            "X"
+          ],
+          "B": [
+            "Y",
+            "Z"
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "tag_letter": "Y"
+        },
+        {
+          "A": [
+            "Y",
+            "X"
+          ],
+          "B": [
+            "Z",
+            "X"
+          ],
+          "labels": [
+            1,
+            0
+          ],
+          "tag_letter": "X"
+        },
+        {
+          "A": [
+            "Y",
+            "Z"
+          ],
+          "B": [
+            "X",
+            "Z"
+          ],
+          "labels": [
+            1,
+            0
+          ],
+          "tag_letter": "Z"
+        },
+        {
+          "A": [
+            "Y",
+            "Z"
+          ],
+          "B": [
+            "Y",
+            "X"
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "tag_letter": "Y"
+        },
+        {
+          "A": [
+            "Z",
+            "X"
+          ],
+          "B": [
+            "Y",
+            "X"
+          ],
+          "labels": [
+            1,
+            0
+          ],
+          "tag_letter": "X"
+        },
+        {
+          "A": [
+            "Z",
+            "X"
+          ],
+          "B": [
+            "Z",
+            "Y"
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "tag_letter": "Z"
+        },
+        {
+          "A": [
+            "Z",
+            "Y"
+          ],
+          "B": [
+            "X",
+            "Y"
+          ],
+          "labels": [
+            1,
+            0
+          ],
+          "tag_letter": "Y"
+        },
+        {
+          "A": [
+            "Z",
+            "Y"
+          ],
+          "B": [
+            "Z",
+            "X"
+          ],
+          "labels": [
+            0,
+            1
+          ],
+          "tag_letter": "Z"
+        }
+      ]
+    },
+    "l4_distinct_core_tag": {
+      "distinct_core_new_tag": 6,
+      "domain_size": 746496,
+      "expected_domain_746496": true,
+      "feasible_rows_by_distinct_anchors": {
+        "1": 2304,
+        "2": 10368,
+        "3": 2592
+      },
+      "min_tag_cost_by_distinct_anchors": {
+        "1": 2,
+        "2": 4,
+        "3": 6
+      },
+      "old_tag_floor": 2,
+      "r6i_reference_distinct_core_new_tag": 8,
+      "r6i_reference_old_tag_floor": 4,
+      "r6i_reference_same_core_new_tag": 4,
+      "same_core_new_tag": 2
+    },
+    "obligations": {
+      "c1": false,
+      "c2": false,
+      "c3": false,
+      "l1": false,
+      "l2": true,
+      "l3": false,
+      "l4": true
+    }
+  },
+  "q3_structural_diagnosis": {
+    "criterion": "Tag relocation is available for a family F under objective C iff the per-column frame refund of F STRICTLY exceeds the maximum Restore penalty of deleting that column -- i.e. iff F's local exchange inequality holds with a strictly positive margin (a deletion credit), which is the budget the relocation spends on core alignment and on rebuilding the shared Tag.",
+    "measured_comparison": {
+      "core_alignment_ceiling": {
+        "R6I": 3,
+        "R6M_TARE": 4
+      },
+      "deletion_credit_floor": {
+        "R6I": 4,
+        "R6M_TARE": 0
+      },
+      "distinct_core_tag_cost": {
+        "R6I": 8,
+        "R6M_TARE": 6
+      },
+      "frame_contribution_per_localized_block": {
+        "R6I": 10,
+        "R6M_TARE": 6
+      },
+      "old_tag_floor": {
+        "R6I": 4,
+        "R6M_TARE": 2
+      },
+      "same_core_basis_rigidity_holds": {
+        "R6I": true,
+        "R6M_TARE": false
+      },
+      "same_core_tag_cost": {
+        "R6I": 4,
+        "R6M_TARE": 2
+      }
+    },
+    "question": "What property of a compilation family makes whole-system Tag relocation (the QG-9 V6 move) available?",
+    "secondary_difference": "R6M's shared Tag is one bit, so it pins only the label-selected letter of a block's ordered anticommuting basis, not the ordered pair: the V6 same-core rigidity lemma is FALSE for TARE. The extra freedom does not help, because what must be paid on relocation is the Tag's WEIGHT (2 per distinct anchor, so 2 -> 6 when three blocks are pushed onto distinct anchors) and the credit that would pay it is zero.",
+    "transferable_content": "kappa = 1 by Tag relocation requires a STRICT per-column exchange inequality. A support bound proved from an exchange inequality that holds only with equality (a tie set) cannot be pushed below the support at which the tie set is realizable -- and for TARE the tie set is exactly where the support-2 optimum lives. Reading the margin of the exchange inequality is therefore a cheap a-priori test of whether a family's support bound is its intrinsic support number.",
+    "why_r6i_qualifies": "R6I's rank-2 dependent triple (R2 = R0 R1) makes a local frame column carry three multiplied slots, so deleting it refunds 10 (anticommuting) or >= 6 (commuting) while at most three (resp. two) Restore letters can worsen by one each. The margin is >= 4 at every non-core column, strictly above the alignment ceiling 3, and 4 + the old-Tag floor 4 pays the distinct-core rebuild 8.",
+    "why_tare_does_not": "R6M's objective carries the donor-owned all-three-blocks common-factor rule F3, which discounts a branch qubit by exactly 2 when the three Restore letters coincide and are non-identity. A frame letter can be earning exactly that discount, so deleting it refunds m in {2,4} and simultaneously destroys up to m of F3 discount: R6S's Lemma E (max delta_F3 = 2, ties at the central multiplier 2) is TIGHT. The measured TARE deletion credit floor is therefore 0 -- there is no budget at all, and the first V6 obligation fails before the Tag is ever touched. This is the same fact QG-8 records geometrically: the unit objective O0 sits exactly on the central hyperplane t_c = 2 t_r at margin 0."
+  },
+  "question": "Is kappa_TARE = 1 or 2 for the frozen R6M/TARE grammar under the frozen unit-cost support objective O0?",
+  "r6_authority": false,
+  "receipt_bindings": {
+    "all_semantics_exact": true,
+    "all_sha256_exact": true,
+    "qg7_sha256": "7341f9630c2ca32b8a6cc601e9c1201db68f21212e04eb3b2e36bca63f214159",
+    "qg7_sha256_matches": true,
+    "qg7b_sha256": "70cee5a5f80482d84e89a92365286e1043cf3e5cf9f847a204fa84d3abcab530",
+    "qg7b_sha256_matches": true,
+    "qg7c_sha256": "398d9592023ccf0edeb3e1ea260f9e4cdf1df8132a94110f0e6eda722b914ea9",
+    "qg7c_sha256_matches": true,
+    "qg8_sha256": "f9b505d908bcafec97e7114c04e29fc1f4b8d650d29ecb9ac69842a971ebaf77",
+    "qg8_sha256_matches": true,
+    "qg9v6_sha256": "f8df10d5604267e43701adb032f33baf1dfaa5a6572e5bdeaeda7707c4100b66",
+    "qg9v6_sha256_matches": true,
+    "r6i_reference_numbers_from_qg9v6": {
+      "alignment_ceiling": 3,
+      "anticommuting_credit_floor": 7,
+      "composition_alignment_ceiling": 3,
+      "composition_credit_floor": 4,
+      "core_alignment_domain_rows": 6912,
+      "credit_floor": 4,
+      "deletion_domain_rows": 2880,
+      "distinct_core_new_tag": 8,
+      "distinct_qubit_domain_rows": 9216,
+      "frame_contribution": 10,
+      "old_tag_floor": 4,
+      "same_core_new_tag": 4,
+      "same_core_rigidity_holds": true,
+      "same_qubit_domain_rows": 576
+    },
+    "r6o_sha256": "e40e7a948061b9e4b647ba091c04a73b39cffa619ca829bbf4cef4beacdad352",
+    "r6o_sha256_matches": true,
+    "r6p_sha256": "3eef07d16353b606a133d7fb977d5039ad1c639c7a531a47ae82be4be9051190",
+    "r6p_sha256_matches": true,
+    "r6s_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+    "r6s_sha256_matches": true,
+    "semantics": {
+      "qg7_terminal": true,
+      "qg7b_terminal": true,
+      "qg7c_terminal": true,
+      "qg8_binds_same_r6s": true,
+      "qg8_central_hyperplane_exact": true,
+      "qg8_terminal": true,
+      "qg9v6_kappa_1": true,
+      "qg9v6_terminal": true,
+      "r6s_authority_support3_never_pays": true,
+      "r6s_lemma_e_holds": true,
+      "r6s_max_delta_f3_2": true,
+      "r6s_theorem_machine_checked": true,
+      "r6s_ties_only_at_central_multiplier": true
+    }
+  },
+  "result_digest": "a03b7eb56d667878ec841eddf890816a4edd6193de847764fd619529954c2fc9",
+  "runtime_cap_seconds": 1500,
+  "schema": "ORION.QG.QG18.TareKappa.v1",
+  "terminal": "QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS",
+  "timing": {
+    "bf1_complete_n1": 110.362,
+    "bf2_complete_n2": 1.966,
+    "bindings_and_micro_domains": 0.022,
+    "bruteforce_config_enumeration": 0.044,
+    "committed_referee_panel": 0.549,
+    "q1_committed_witness_domains": 62.474,
+    "q1_d4_exhaustive_n1": 0.598,
+    "q1_d5_structured_n2": 316.693,
+    "q2_lemma_chain": 0.196,
+    "total": 493.549,
+    "witness_full_recomputation": 0.635
+  },
+  "upper_bound_source": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json (support <= 2 for all n)"
+}

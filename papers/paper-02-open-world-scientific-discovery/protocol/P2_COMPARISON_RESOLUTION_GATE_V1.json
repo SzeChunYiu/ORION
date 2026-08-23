@@ -1,0 +1,28 @@
+{
+  "schema_version": "orion.p2.comparison-resolution-gate.v1",
+  "paper_id": "P2",
+  "date_frozen": "2026-08-22",
+  "status": "PROSPECTIVE_PRECONDITION_FROZEN_NO_NEW_OUTCOME",
+  "historical_results_changed": false,
+  "required_checks": [
+    "AT_LEAST_TWO_ARMS",
+    "DISTINCT_CANDIDATE_ARTIFACTS",
+    "DISTINCT_EVALUATOR_OUTPUTS",
+    "ABSOLUTE_SCORE_SCALE_REACHES_EFFECT_MARGIN",
+    "PAIRED_SPLIT_HAS_DISCORDANCE",
+    "NO_ALL_TIES_ZERO_WIDTH_EQUIVALENCE",
+    "MONOTONE_SAMPLED_MAX_FAMILY_IF_PRESENT",
+    "UNSEEDED_SAMPLED_FAMILY_CANNOT_AUTHORIZE_TERMINAL",
+    "RUNTIME_TOTALS_MEASURED"
+  ],
+  "failure_terminal": "P2_COMPARISON_CANNOT_CHECK_ZERO_OR_INVALID_RESOLUTION",
+  "pass_terminal": "P2_COMPARISON_RESOLUTION_PRECONDITION_PASS",
+  "authority": "INSTRUMENT_PRECONDITION_ONLY",
+  "positive_does_not_authorize_scientific_terminal": true,
+  "integrity": [
+    "The committed V1 and V3 results remain byte-immutable.",
+    "A larger N cannot repair an all-identical paired-difference vector.",
+    "No scientific non-inferiority or equivalence statement is admissible when this precondition fails.",
+    "A passing resolution gate says the instrument can distinguish arms; it does not say which arm wins."
+  ]
+}

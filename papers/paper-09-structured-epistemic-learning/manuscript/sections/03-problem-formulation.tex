@@ -1,0 +1,33 @@
+\section{Problem formulation}
+
+\subsection{Structured worlds and restricted views}
+
+A benchmark world contains typed atoms, typed relations, optional local affine representation maps, candidate mechanics, admitted failure history, and an evaluator-only target. The learner never receives the protected target or protected generation metadata. Five progressively richer views are exposed:
+\[
+V_{\mathrm{surface}} \subset V_{\mathrm{topology}} \subset V_{\mathrm{typed}}
+\subset V_{\mathrm{current}} \subset V_{\mathrm{semantic}}.
+\]
+Surface contains reminted surface structure; topology retains connectivity without semantic relation labels; typed adds semantic atom/relation/mechanic coordinates; current additionally exposes local transport values; semantic also admits scoped negative history.
+
+For a finite protected sample $\mathcal{D}$ and view $V$, let $f_V(x)$ be the exact model-visible fingerprint. Partition $\mathcal{D}$ into groups $g$ of equal fingerprints. The empirical deterministic ceiling is
+\[
+C_V = \frac{1}{|\mathcal{D}|}\sum_g \max_y |\{x\in g : y(x)=y\}|.
+\]
+This is elementary accounting over the frozen equivalence classes. It is not a new theorem about Bayes error, sufficient statistics, state aliasing, or asymptotic learnability. Its role is operational: a model above this ceiling indicates leakage or an evaluator defect; a model at the ceiling of a non-identifying view cannot be improved deterministically without changing the information supplied or the task.
+
+\subsection{Candidate-relative mechanic selection}
+
+Mechanic identities are reminted across worlds and splits. The learned task therefore scores a current candidate $m_i$ relative to context $E$,
+\[
+s(E,m_i) \in \mathbb{R},
+\]
+rather than classifying against a global mechanic vocabulary. Candidate presentation order is derived from declared model-visible information and an independent seed. This rule was frozen after a pre-outcome hostile review found that ordering candidates using a richer hidden fingerprint could leak semantics through presentation position.
+
+\subsection{Local affine gluing}
+
+The D0 transport family uses exact one-dimensional affine maps between local charts. A complete directed cycle composes to
+\[
+x \mapsto ax+b.
+\]
+The protected target is \textsc{glue} when the composition is identity under the frozen exact/tolerance rule, \textsc{obstruction} when a complete unique cycle is non-identity, and \textsc{unknown} when visible information does not determine a unique complete composition. The family is intentionally small. Its purpose is to create a transparent global-composition discriminator, not to claim general sheaf-theoretic reasoning.
+
