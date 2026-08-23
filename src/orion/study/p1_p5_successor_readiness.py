@@ -158,6 +158,80 @@ def _check_local_bindings(
             blockers.append(f"local_binding_digest_mismatch:{binding_id}")
 
 
+def _check_p1_registered_power_receipt(
+    root: Path,
+    protocol: Mapping[str, Any],
+    bindings: Sequence[Mapping[str, Any]],
+    blockers: list[str],
+) -> None:
+    receipt_binding = next(
+        (
+            binding
+            for binding in bindings
+            if str(binding.get("binding_id", "")) == "MAX_T_POWER_RECEIPT"
+        ),
+        None,
+    )
+    if receipt_binding is None:
+        blockers.append("p1_max_t_power_receipt_binding_missing")
+        return
+
+    receipt_path = root / str(receipt_binding.get("path", ""))
+    if not receipt_path.is_file():
+        return
+    try:
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        blockers.append("p1_max_t_power_receipt_invalid")
+        return
+    if not isinstance(receipt, Mapping):
+        blockers.append("p1_max_t_power_receipt_invalid")
+        return
+
+    simulation = receipt.get("simulation")
+    planning = receipt.get("registered_planning_point")
+    if not isinstance(simulation, Mapping) or not isinstance(planning, Mapping):
+        blockers.append("p1_max_t_power_receipt_invalid")
+        return
+
+    power = protocol["power"]
+    receipt_values = {
+        "simulation_seed": simulation.get("seed"),
+        "simulation_draws": simulation.get("draws"),
+        "comparator_count": simulation.get("comparator_count"),
+        "familywise_alpha": simulation.get("familywise_alpha"),
+        "planning_delta": planning.get("planning_delta"),
+        "superiority_margin": planning.get("superiority_margin"),
+        "planning_discordance": planning.get("planning_discordance"),
+        "target_joint_power": planning.get("target_joint_power"),
+        "registered_simulated_minimum_independent_units": planning.get(
+            "minimum_balanced_source_clusters"
+        ),
+        "registered_simulated_projected_joint_power": planning.get(
+            "projected_joint_power"
+        ),
+        "registered_simulated_critical_value": simulation.get(
+            "simulated_one_sided_max_t_critical_value"
+        ),
+    }
+    for field, receipt_value in receipt_values.items():
+        if power.get(field) != receipt_value:
+            blockers.append(f"p1_registered_power_receipt_mismatch:{field}")
+
+    if power.get("planned_independent_units") != planning.get("planned_source_clusters"):
+        blockers.append(
+            "p1_registered_power_receipt_mismatch:planned_independent_units"
+        )
+    if protocol.get("claim_id") != receipt.get("claim_id"):
+        blockers.append("p1_registered_power_receipt_claim_mismatch")
+    if receipt.get("authority") != "OUTCOME_BLIND_PLANNING_ONLY":
+        blockers.append("p1_registered_power_receipt_authority_invalid")
+    if receipt.get("protected_outcomes_accessed") is not False:
+        blockers.append("p1_registered_power_receipt_accessed_protected_outcomes")
+    if receipt.get("grants_scientific_authority") is not False:
+        blockers.append("p1_registered_power_receipt_claims_scientific_authority")
+
+
 def _paper_specific_checks(protocol: Mapping[str, Any], blockers: list[str]) -> None:
     paper_id = protocol["paper_id"]
     design = protocol["design"]
@@ -242,6 +316,8 @@ def assess_protocol(protocol: Mapping[str, Any], *, root: Path) -> ProtocolAsses
         blockers.append("local_bindings_missing")
     else:
         _check_local_bindings(root, bindings, blockers)
+        if paper_id == "P1":
+            _check_p1_registered_power_receipt(root, protocol, bindings, blockers)
     external = tuple(sorted({str(value) for value in protocol.get("external_bindings_required", ()) if value}))
     if not external:
         blockers.append("external_binding_boundary_missing")
