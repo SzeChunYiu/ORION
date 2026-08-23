@@ -20,12 +20,33 @@ jobs:
           python-version: '3.11'
       - name: Run frozen P6 ETS checker
         run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py | tee p6_ets_receipt_v1.json
-      - name: Verify deterministic second execution
+      - name: Verify deterministic primary replay
         run: |
           python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py > p6_ets_receipt_v1_rerun.json
           cmp p6_ets_receipt_v1.json p6_ets_receipt_v1_rerun.json
           echo P6_ETS_V1_BYTE_REPLAY_GREEN
+      - name: Run structurally independent P6 ETS verifier
+        run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py | tee p6_ets_independent_receipt_v1.json
+      - name: Verify independent replay and two-implementation agreement
+        run: |
+          python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py > p6_ets_independent_receipt_v1_rerun.json
+          cmp p6_ets_independent_receipt_v1.json p6_ets_independent_receipt_v1_rerun.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          primary = json.loads(Path('p6_ets_receipt_v1.json').read_text())
+          independent = json.loads(Path('p6_ets_independent_receipt_v1.json').read_text())
+          primary_rows = {row['id']: row['predicted'] for row in primary['ets']['rows']}
+          assert primary_rows == independent['classifications']
+          assert primary['theorems']['T6.3']['witness_count'] == independent['theorems']['T6.3']['witness_count']
+          assert independent['terminal'] == 'P6_ETS_SECOND_INDEPENDENT_CHECKER_GREEN'
+          print('P6_ETS_INDEPENDENT_V1_BYTE_REPLAY_GREEN')
+          print('P6_ETS_TWO_IMPLEMENTATIONS_AGREE')
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: p6-ets-v1-receipt
-          path: p6_ets_receipt_v1.json
+          path: |
+            p6_ets_receipt_v1.json
+            p6_ets_independent_receipt_v1.json
