@@ -1,0 +1,72 @@
+name: p15-attestation-composition-v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-15-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V2.md'
+      - 'papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v2.py'
+      - 'papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py'
+      - '.github/workflows/p15-attestation-composition-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  attestation-v2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen cryptographic dependency
+        run: python -m pip install 'cryptography==46.0.3'
+      - name: Execute frozen chain-composition study V2
+        run: python papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v2.py | tee p15_attestation_composition_v2.json
+      - name: Verify deterministic primary replay
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v2.py > p15_attestation_composition_v2_rerun.json
+          cmp p15_attestation_composition_v2.json p15_attestation_composition_v2_rerun.json
+      - name: Execute independent chain audit
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py p15_attestation_composition_v2.json | tee p15_attestation_composition_independent_v2.json
+          python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py p15_attestation_composition_v2.json > p15_attestation_composition_independent_v2_rerun.json
+          cmp p15_attestation_composition_independent_v2.json p15_attestation_composition_independent_v2_rerun.json
+      - name: Authoritatively execute frozen V1 single-attestation study in the same binding
+        run: |
+          python papers/paper-15-orion-research-harness/top_tier/run_attestation_composition_v1.py | tee p15_attestation_composition_v1.json
+          python papers/paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v1.py p15_attestation_composition_v1.json | tee p15_attestation_composition_independent_v1.json
+      - name: Verify terminals and endpoint agreement
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('p15_attestation_composition_v2.json'))
+          q=json.load(open('p15_attestation_composition_independent_v2.json'))
+          v1=json.load(open('p15_attestation_composition_v1.json'))
+          v1q=json.load(open('p15_attestation_composition_independent_v1.json'))
+          assert p['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SUPPORTED',p['terminal']
+          assert q['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN',q['terminal']
+          assert v1['terminal']=='P15_ATTESTATION_COMPOSITION_V1_SUPPORTED',v1['terminal']
+          assert v1q['terminal']=='P15_ATTESTATION_COMPOSITION_SECOND_CHECKER_GREEN',v1q['terminal']
+          assert p['case_count']==q['case_count']==v1['case_count']==22
+          assert p['base_chain_verification_rate']==1.0 and p['chain_plus_sei_gold_agreement_count']==22
+          for a in ('A-TRUNCATE','A-SUBSTITUTE','A-SPLICE','A-REORDER','A-REPLAY','A-STALE'):
+              assert p['arms'][a]['detections']==p['arms'][a]['attempts'],a
+          c=p['arms']['A-COMPROMISE-FULL']
+          assert c['signature_layer_detections']==0 and c['chain_as_science_false_promotions']>0
+          assert c['chain_plus_sei_false_promotions']>0
+          assert p['scientific_field_leakage_count']==0
+          assert p['chain_crypto_only_false_scientific_success_count']==0
+          assert p['chain_layer_false_rejection_count']==0 and p['disposition_false_rejection_count']==0
+          assert p['real_false_promotion_count']==0 and p['valid_workload_case_count']==11
+          assert all(a==b for a,b in q['endpoint_agreement_table'].values())
+          print('P15_ATTESTATION_COMPOSITION_V2_TWO_IMPLEMENTATIONS_AGREE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p15-attestation-composition-v2
+          path: |
+            p15_attestation_composition_v2.json
+            p15_attestation_composition_independent_v2.json
+            p15_attestation_composition_v1.json
+            p15_attestation_composition_independent_v1.json
