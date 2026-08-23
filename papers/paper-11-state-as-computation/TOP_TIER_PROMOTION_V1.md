@@ -10,6 +10,22 @@
 
 Task-conditioned retrieval/memory, feature selection, partial evaluation, knowledge compilation, compression, usable information, sparse access and nonlinear decoders are donor-owned components.
 
+## Post-outcome status — 2026-08-23
+
+The independent finite theory checker now closes the bounded exact/approximate query-family accessibility extension and the exact optionality/caching crossover construction. This earns T11.1 and T11.3 only within the stated finite/approximate model; it does not create an unrestricted nonlinear or time lower bound.
+
+A prospectively frozen real-data learned-compiler study now returns `P11_REAL_LEARNED_COMPILER_V1_SUPPORTED` with byte-identical replay. The non-oracle compiler learns from development data and reduces state dimension from `13 -> 7` on wine and `64 -> 32` on digits while meeting the frozen near-performance criterion on both datasets. Breast cancer is a retained negative cell: dimension falls `30 -> 15`, but the frozen performance gate is not met.
+
+Selected protected means:
+
+- wine: compiled linear `0.9776190476` vs universal linear `0.9833333333`; compiled forest `0.9774603175` vs universal forest `0.9830158730`;
+- digits: compiled linear `0.9577050449` vs universal linear `0.9682776230`; compiled forest `0.9666155989` vs universal forest `0.9732869081`;
+- breast cancer: compiled linear `0.9489675516` vs universal linear `0.9753609688`, so this dataset does not satisfy the frozen positive gate.
+
+**Earned claim:** non-oracle task-state compilation can substantially reduce state dimension while retaining near-universal performance on two protected real datasets. This does not yet establish full end-to-end Pareto superiority, a universal compiler law, or the headline smaller-reasoner-vs-larger-universal substitution claim.
+
+Exact execution hashes and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
+
 ## Theory expansion
 
 ### T11.1 — General query-family rank/access law
@@ -102,15 +118,15 @@ Prospectively freeze query horizon, overlap/diversity, drift and memory/compute 
 
 `P11_TOP_TIER_SUBMISSION_READY` requires:
 
-- [ ] T11.1 general/approximate query-family extension;
+- [x] T11.1 bounded general/approximate query-family extension;
 - [ ] T11.2 no-answer-laundering theorem/contract;
-- [ ] T11.3 optionality law/phase predictions;
-- [ ] learned non-oracle compiler;
-- [ ] stronger sparse/nonlinear decoder attacks survived or causally adjudicated;
+- [x] T11.3 bounded optionality law/crossover predictions;
+- [x] learned non-oracle compiler with two protected positive real-data cells and one retained negative cell;
+- [ ] stronger sparse/nonlinear decoder attacks survived or causally adjudicated at the intended headline scope;
 - [ ] full end-to-end resource accounting;
-- [ ] at least one real-system replication, with two required for cross-domain headline;
+- [ ] at least one qualifying real-system replication, with two required for cross-domain headline;
 - [ ] prospective phase-diagram prediction on protected workloads;
-- [ ] independent replay;
+- [ ] independent replay/authority beyond same-workflow deterministic byte replay;
 - [ ] fresh donor saturation and exact submission binding.
 
-Negative decoder attacks remain part of the paper and should be used to locate where computation moved, not to delete inconvenient evidence.
+Negative decoder or dataset attacks remain part of the paper and should be used to locate where computation moved, not to delete inconvenient evidence. The breast-cancer miss is therefore retained as a boundary on the current learned compiler result.
