@@ -120,6 +120,34 @@ result does not answer it — it says which question decides the matter.
 deployed-agent performance. The enumeration is a finite existence-and-prevalence result over the
 registered model.
 
+## 4.1 The theorem's first empirical instance, found by measurement
+
+§3.1 says the coordinate claim is unvalidated and that only instance reproduction can validate it.
+That remains true. But the determination theorem has since been met in the wild, and the encounter
+is worth recording because it was not looked for.
+
+Across the source tree, sequence-valued coordinates are canonicalized by
+`tuple(sorted({str(value) for value in values}))` before anything downstream sees them:
+**37 call sites in 30 modules, spanning study lanes P1, P2, P3, P5, P7 and P9 and the discovery,
+engine, knowledge, study and transfer layers.** It is applied consistently — this is a design, not
+an accident. It buys canonical form, content-addressable digests that do not depend on authoring
+order, and equality insensitive to an irrelevant permutation.
+
+What it costs is exactly what the theorem predicts. **Order and multiplicity are coordinates this
+interface projects away**, so by the necessity direction no rule over this representation can decide
+a question whose answer depends on them.
+
+The measured consequence: P9's `ORDER_PERMUTATION` attack reverses each sequence coordinate and the
+constructor sorts it straight back. The attacked dataset carries the **same manifest digest** as the
+base one and **128 of 128** protected cases are identical, with 256 left-side coordinates long
+enough to reorder. An order- and multiplicity-preserving feature family, built to a freeze's own
+contract and round-trip verified, **still** measures zero opportunity — which locates the loss
+upstream of every arm rather than in any one of them.
+
+This does not validate the five-level ladder. It does show the theorem doing the only work a
+determination theorem can do: naming the question that settles the matter — *which coordinates does
+the interface retain?* — and making the answer a measurement rather than an argument.
+
 ## 5. The no-alarm case
 
 Cases 1–4 of V1 §10 are separations. Case 5 is the productive one: when every required coordinate
