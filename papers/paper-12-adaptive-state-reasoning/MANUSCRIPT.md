@@ -2,12 +2,11 @@
 
 **ORION-P12 · issue #665 · resource-accounting owner #664**  
 **Evidence freeze:** 2026-08-21  
-**Submission status:** `P12A_SUPERIORITY_AUTHORITY_WITHHELD`; capability-matched P12B required
+**Submission status:** `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`; controlled equal-action world
 
-**Current authority:** `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. The
-historical P12A result and replay remain unchanged execution records. They do not
-authorize signal-count superiority because the losing arms were also denied
-allocations the winner could emit.
+**Current authority:** `P12_ACTIVE_CLAIM_AUTHORITY_V2.json`. It retains P12A's
+comparison failure and activates only the prospectively frozen P12B equal-action
+signal-complementarity result.
 
 ## Abstract
 
@@ -21,9 +20,12 @@ allocations while each losing arm can emit only two, and both baseline ceilings
 are below the winner's achieved score. When action capability is matched, the
 gain is +0.0408, the worst-family gain is +0.0020, and the frozen positive gate
 is not met. The historical bytes remain; active superiority authority is
-withheld. P12A therefore motivates the resource-location hypothesis and defines
-the corrected comparator contract, while a prospectively frozen P12B must test
-it.
+withheld. A prospectively frozen P12B then gives all three arms the same four
+actions and scores exact allocation. Across 32 independent family RNG blocks,
+the two-signal arm gains 0.253906 over the stronger one-signal arm (stratified
+family-block 95% bootstrap interval 0.251221 to 0.256653); every family and every
+fixed noise stratum passes. The result is controlled and does not authorize
+naturalistic or external-system superiority.
 
 ## 1. Introduction
 
@@ -39,16 +41,18 @@ The system is modeled as
 
 `raw/current state -> optional state construction -> downstream reasoning/search -> verified outcome`.
 
-The paper makes three contributions.
+The paper makes four contributions.
 
 1. **Two-axis inference formulation.** State construction and downstream reasoning are symmetric budgeted actions rather than free preprocessing plus paid reasoning.
 2. **A strict comparator contract.** The joint policy must beat both adaptive-state-only and adaptive-reasoning-only policies at identical total resources, not merely a fixed baseline.
 3. **Comparator-capability adjudication.** The protected run is retained beside
    the later finding that signal count and permitted allocations varied together.
+4. **Equal-action successor.** P12B holds the four actions and budget fixed,
+   varies only visible signals, and reports family-block uncertainty.
 
-The result is intentionally controlled and exactly reproducible, but its causal
-superiority interpretation is withheld. Its current purpose is to define the
-stronger P12B contract: equal budget, equal actions, then a change in signals.
+P12A's causal superiority interpretation is withheld. P12B supplies the stronger
+controlled contract: equal budget, equal actions, then a change in visible
+signals.
 
 ## 2. Donor boundary and novelty
 
@@ -137,10 +141,10 @@ No policy is tuned on protected family outcomes.
 
 ## 6. Results
 
-The historical protected terminal is
-`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current authority is
-`P12A_SUPERIORITY_AUTHORITY_WITHHELD` under
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
+The historical P12A protected terminal is
+`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`; its historical superiority authority is
+withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. Current authority
+comes from `P12_ACTIVE_CLAIM_AUTHORITY_V2.json`.
 
 | policy | mean verified success |
 |---|---:|
@@ -172,6 +176,19 @@ four-action sets, mean gain is 0.040771, the family-block interval is
 [0.031006, 0.050659], and worst-family gain is 0.001953. The original gate then
 returns `P12A_JOINT_ALLOCATION_SUPERIORITY_GATE_NOT_MET`.
 
+### 6.3 Prospectively frozen P12B
+
+P12B changes the estimand rather than a P12A threshold. Every arm may emit
+exactly `(0,0)`, `(2,0)`, `(0,2)` or `(1,1)` under budget two. The endpoint is
+exact required-allocation accuracy. The independent unit is one family RNG
+block (`n=32`); 1,024 episodes within a family are technical observations.
+
+Mean two-signal gain over the stronger one-signal arm is **0.253906**. The
+stratified family-block 95% bootstrap interval is **[0.251221, 0.256653]**,
+minimum family gain is **0.196289**, and fixed-stratum mean gains range from
+0.213379 to 0.291138. All frozen gates and the byte-identical replay gate pass.
+Terminal: `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED`.
+
 ## 7. Resource-accounting contract for real systems
 
 The scalar controlled budget is intentionally clean. Real systems require vector receipts including:
@@ -189,7 +206,11 @@ A joint policy cannot “win” by shortening the downstream trace while hiding 
 
 ## 8. Statistical analysis
 
-The protected unit of generalization is the held-out family. Policies see paired items inside each family, while headline uncertainty is computed by a deterministic **20,000-resample family-block bootstrap** over the 16 family-level joint gains. The registered lower bound is positive.
+The protected unit is the held-out family RNG block. P12A uses 16 family blocks.
+P12B uses 32 independent family blocks, eight in each fixed noise stratum.
+P12B's primary deterministic 20,000-resample bootstrap samples families within
+each stratum, preserving the registered mixture; an unstratified family-block
+interval is reported only as sensitivity.
 
 The analysis does not pool items as if 8,192 individual trials were independent domains. Hyperparameters are frozen before protected evaluation. The worst-family gain is reported to prevent a favorable mean from hiding a family-level failure.
 
@@ -197,7 +218,11 @@ The analysis does not pool items as if 8,192 individual trials were independent 
 
 Strategic test-time-compute allocation treats inference budget as a learnable or bandit decision across examples. Constrained policy approaches optimize accuracy under average compute. Adaptive in-context demonstration and generation methods jointly alter conditioning and generation effort. Recent “when to think” work likewise emphasizes selective reasoning to reduce unnecessary inference.
 
-These results strengthen, rather than weaken, P12's motivation: **adaptive inference is crowded; the novel discriminator must be where the resource can be spent.** P12 supplies a budget portfolio containing state construction and reasoning as distinct actions, but P12A does not establish strict superiority over the named one-axis policies: their shipped action sets cap their attainable scores below the joint arm's achieved score. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore withholds superiority authority pending a capability-matched P12B.
+These results sharpen P12's motivation: **adaptive inference is crowded; the
+novel discriminator must be where the resource can be spent.** P12A does not
+establish strict superiority because its action sets differ. P12B establishes a
+bounded signal-complementarity result after matching the actions; it does not
+establish real-system resource-locus superiority.
 
 ## 10. Limitations and real-system promotion gate
 
@@ -205,7 +230,7 @@ These results strengthen, rather than weaken, P12's motivation: **adaptive infer
 2. The pre-outcome signals are constructed measurements of resource need. Real signal quality may be substantially worse.
 3. Scalar units are commensurate by construction. Real compiler work, tokens, verifier calls and latency are heterogeneous.
 4. The joint policy is a simple frozen nearest-allocation rule; the paper does not claim it is optimal.
-5. A real-system result must include strong compute-only and state-only adaptive baselines, not merely fixed context and fixed reasoning.
+5. A real-system result must include strong compute-only and state-only adaptive baselines, not merely fixed context and fixed reasoning; P12B remains a constructed allocation world.
 6. A broad superiority claim requires at least one held-out real LLM/procedural domain or verifier-backed search domain under matched end-to-end resource receipts.
 7. If real tasks overwhelmingly favor one resource locus, a simpler one-axis policy may be preferable; P12 predicts this as a regime condition rather than denying it.
 
@@ -213,9 +238,9 @@ These results strengthen, rather than weaken, P12's motivation: **adaptive infer
 
 P12 reframes test-time scaling as a **portfolio of computations**. “Think longer” is not the only adaptive action available to an intelligent system. It may be cheaper to parse, retrieve, compile, restructure or recover state so that less downstream search is required. Conversely, when state already exposes the relevant structure, additional preprocessing is wasteful and reasoning should receive the marginal budget.
 
-The protected benchmark demonstrates the construction but does not establish the
-key causal discriminator. Equal total budget was real; equal action capability
-was not. Family-level uncertainty cannot repair that estimand defect.
+P12A demonstrates the construction but not the key discriminator because equal
+budget did not imply equal action capability. P12B repairs that controlled
+estimand and finds a positive two-signal effect across the registered panel.
 
 This leaves a concrete systems hypothesis: **test-time scaling curves may be
 two-dimensional, but action capability must be held fixed across signal
@@ -225,9 +250,9 @@ ablations and all work must share one receipt.**
 
 Adaptive inference may need to decide not only **how much** computation to spend
 but **where** to spend it. P12 supplies the formulation and an exact correction
-to its first empirical discriminator. The next scientific step is a
-prospectively frozen, capability-matched P12B; real end-to-end validation follows
-only after that controlled contrast is sound.
+to its first empirical discriminator, and a positive prospectively frozen
+equal-action successor. The next scientific step is matched real end-to-end
+validation; P12B's constructed world does not substitute for it.
 
 ## References
 

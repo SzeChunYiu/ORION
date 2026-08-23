@@ -5,8 +5,16 @@ import importlib.util
 import json
 from pathlib import Path
 import sys
+from copy import deepcopy
 
 import pytest
+
+from orion.study.p11.wide_panel_revalidation import (
+    NOT_REPLICATED,
+    PRECONDITION_FAILED,
+    SUPPORTED,
+    adjudicate_scientific_payload,
+)
 
 ROOT = Path(__file__).resolve().parents[4]
 PAPER = ROOT / "papers" / "paper-11-state-as-computation"
@@ -14,6 +22,7 @@ RUNNER = PAPER / "run_p11i_wide_high_width_replication_v1.py"
 PROTOCOL = PAPER / "P11I_WIDE_HIGH_WIDTH_REPLICATION_PROTOCOL_V1.md"
 PREFLIGHT = PAPER / "P11I_PREFLIGHT_ATTAINABILITY_V1.json"
 RESULT = PAPER / "P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json"
+REVALIDATION = PAPER / "P11I_REVALIDATION_RECEIPT_V1_1.json"
 
 
 def _runner():
@@ -81,3 +90,36 @@ def test_historical_adverse_results_remain_immutable() -> None:
     assert hashlib.sha256(p11h_path.read_bytes()).hexdigest() == (
         "8436ff99ddec0ab11a16e1ac49a924f0d7c9019998cfc42e8275f71a2db39305"
     )
+
+
+def test_revalidation_counts_three_rng_replicates_not_nine_cells() -> None:
+    receipt = json.loads(REVALIDATION.read_text(encoding="utf-8"))
+    adjudication = receipt["adjudication"]
+    assert adjudication["independent_unit"] == "execution_seed"
+    assert adjudication["n_independent_rng_replicates"] == 3
+    assert adjudication["fixed_geometry_strata_per_replicate"] == 3
+    assert adjudication["n_prespecified_seed_x_geometry_cells"] == 9
+    assert adjudication["terminal"] == SUPPORTED
+
+
+def test_each_terminal_is_responsive_to_a_raw_measurement_or_replay_failure() -> None:
+    scientific = json.loads(RESULT.read_text(encoding="utf-8"))["scientific_payload"]
+    assert adjudicate_scientific_payload(
+        scientific, byte_identical_replay=True
+    )["terminal"] == SUPPORTED
+
+    failed_cell = deepcopy(scientific)
+    failed_cell["high_width_units"][0]["compiled_at_64"] = 0.0
+    assert adjudicate_scientific_payload(
+        failed_cell, byte_identical_replay=True
+    )["terminal"] == NOT_REPLICATED
+
+    dead_attack = deepcopy(scientific)
+    dead_attack["low_width_controls"][0]["pooled_best_below_256"] = 0.0
+    assert adjudicate_scientific_payload(
+        dead_attack, byte_identical_replay=True
+    )["terminal"] == PRECONDITION_FAILED
+
+    assert adjudicate_scientific_payload(
+        scientific, byte_identical_replay=False
+    )["terminal"] == PRECONDITION_FAILED

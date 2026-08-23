@@ -80,10 +80,11 @@ Three of the fifteen admissible draws would have printed the positive terminal a
 ## P11I wide high-width replication
 
 P11I prospectively freezes the narrower regime P11H located rather than
-relabeling P11H. It evaluates the complete cross of three fresh seeds and three
-bank geometries at `r=7`, with a matched `r=3` control for every unit. The
-independent unit is seed×geometry; five query repeats are averaged only within
-that unit, and one failed unit defeats the conjunction.
+relabeling P11H. It evaluates the complete cross of three fresh execution seeds
+and three fixed bank-geometry strata at `r=7`, with a matched `r=3` control in
+every cell. The independent random unit is the execution seed (`n=3`); geometry
+is a fixed within-seed stratum and five query repeats are technical repeats
+within each cell. One failed cell still defeats the conjunction.
 
 All nine high-width units pass. Compiled accuracy at `n=64` ranges
 0.9690–0.9981; the pooled attack's best accuracy below `n=256` ranges
@@ -96,4 +97,6 @@ The P11I terminal is
 `P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL`. It licenses a
 width-conditioned result only: the pooled attack wins in the narrow regime and
 the compiled-state advantage replicates in the registered high-width regime.
-P11D and P11H remain adverse historical results.
+A fresh two-subprocess revalidation under
+`P11I_REPLICATION_UNIT_AMENDMENT_V1_1.md` reproduces every cell byte-identically
+while recording `n=3`, not nine. P11D and P11H remain adverse historical results.

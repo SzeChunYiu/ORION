@@ -1,9 +1,8 @@
 # Results
 
-The historical protected terminal is
-`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current claim authority is
-`P12A_SUPERIORITY_AUTHORITY_WITHHELD` under
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
+The historical runner printed its preregistered superiority terminal. The later
+comparison-validity adjudication withholds that claim authority. The current
+bounded authority comes from the prospectively frozen P12B equal-action result.
 
 | policy | mean verified success |
 |---|---:|
@@ -33,6 +32,16 @@ cannot serve the opposite-axis and jointly limited regimes at any signal value.
 
 Giving one-signal policies the same four allocations yields mean gain 0.040771,
 family-block interval [0.031006, 0.050659], and worst-family gain 0.001953. The
-original positive gate then returns
-`P12A_JOINT_ALLOCATION_SUPERIORITY_GATE_NOT_MET`. A new frozen P12B, not a
-post-hoc threshold change, is required for positive authority.
+original positive gate is not met. This failure motivated a new frozen P12B
+rather than a post-hoc threshold change.
+
+## Prospectively frozen P12B
+
+P12B gives all three arms the same four actions and budget two, and scores the
+exact required allocation. The independent unit is one family RNG block
+(`n=32`); 1,024 episodes within each block are technical observations. Mean
+two-signal gain over the stronger one-signal arm is 0.253906. The stratified
+family-block 95% bootstrap interval is [0.251221, 0.256653], minimum family gain
+is 0.196289, and every fixed sigma stratum exceeds 0.21. Two fresh subprocess
+payloads are byte-identical, supporting the controlled equal-action
+signal-complementarity claim.

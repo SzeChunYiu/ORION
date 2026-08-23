@@ -15,6 +15,10 @@
 `P14_ACTIVE_CLAIM_AUTHORITY_V1.json` is the machine-readable authority entry
 point. It binds the active positive P14C result and replay adjudication by
 content hash, while retaining P14A as non-authoritative historical evidence.
+The next external-validation step is prospectively frozen in
+`P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md`; the corresponding
+preflight remains fail-closed because no independently held packets or custody
+verifier are present. This does not change P14C's active bounded authority.
 
 ### P14A — preserved terminal, reclassified as an unmeasurable gate
 
@@ -74,6 +78,7 @@ One P14C hypothesis gate, `full_discovery_recall_one`, is satisfied by every reg
 - `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.md` / `.json` and `verify_p14_gate_attainability_v1.py`
 - P14B balanced semantic protocol/harness/receipt
 - P14C specification-separated protocol, case table, harness and result receipt
+- P14D external-input acquisition protocol, fail-closed validator and preflight receipt
 
 ## Boundary
 

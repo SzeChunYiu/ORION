@@ -1,9 +1,10 @@
 # P12 Peer-Review Readiness Report
 
-**Decision:** `NOT_READY__P12A_COMPARATOR_CAPABILITY_CONFOUND`
+**Decision:** `READY_FOR_CONTROLLED_P12B_CLAIM__EXTERNAL_GENERALIZATION_OPEN`
 
-Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`, from
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
+Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`, from
+`P12_ACTIVE_CLAIM_AUTHORITY_V2.json`. P12A's comparator-confounded result remains
+historical and withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 ## Five-lens hostile review
 
@@ -13,38 +14,37 @@ Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`, from
 
 ### Experimental design
 
-**Fail for superiority.** Total budget is identical, but the winner may emit four
-allocations while each one-axis comparator may emit only two. Both comparator
-ceilings are below the winner's achieved score.
+**Pass for the bounded P12B estimand.** All arms expose the identical four actions
+and budget two. P12A's smaller comparator action sets remain disqualifying for
+its historical superiority interpretation.
 
 ### Statistics
 
-**Blocked at the estimand.** Family-blocked uncertainty is correctly computed for
-the historical contrast, but cannot remove its capability confound. With
-matched action sets, the original mean and worst-family gates fail.
+**Pass for P12B.** The independent unit is one family RNG block (`n=32`), and the
+primary stratified family-block bootstrap preserves eight families per fixed
+noise stratum. Technical episodes are not counted as independent units.
 
 ### Reproducibility / protocol authority
 
-**Pass for historical reproducibility only.** The V2 replay correction establishes
-deterministic execution, not comparator validity. Current claim authority comes
-from the later comparison-validity adjudication.
+**Pass.** P12B binds its protocol, pre-outcome bootstrap amendment, runner and two
+byte-identical protected subprocess payloads.
 
 ### Novelty
 
-**Open.** The intended discriminator needs a prospectively frozen,
-capability-matched P12B result.
+**Bounded.** P12B supplies a controlled signal-complementarity discriminator;
+naturalistic and external-system novelty/generalization remain open.
 
 ### Referee / reporting
 
-**Fail until correction is incorporated.** The historical numbers may be reported,
-but not as evidence that the second signal caused superiority.
+**Pass with scope boundary.** The manuscript separates P12A's historical failure
+from P12B's active equal-action result.
 
 ## Checklist
 
 - [x] protected protocol committed before result
 - [x] matched total budget
-- [ ] capability-matched adaptive state-signal baseline
-- [ ] capability-matched adaptive reasoning-signal baseline
+- [x] capability-matched adaptive state-signal baseline
+- [x] capability-matched adaptive reasoning-signal baseline
 - [x] fixed policy and oracle diagnostic
 - [x] held-out family generalization
 - [x] family-block uncertainty
@@ -53,6 +53,9 @@ but not as evidence that the second signal caused superiority.
 - [x] exact frozen runner independently executed twice
 - [x] replay-gated V2 historical adjudication
 - [x] comparison-validity authority withholding
+- [x] prospectively frozen P12B equal-action protocol
+- [x] stratified family-block bootstrap frozen before execution
+- [x] all P12B gates and byte replay pass
 - [x] claim/evidence ledger
 - [x] current donor subtraction
 - [x] explicit real-system promotion gate
@@ -62,6 +65,7 @@ but not as evidence that the second signal caused superiority.
 
 ## Referee-facing headline
 
-> P12A is exactly reproducible but not a valid signal-count superiority test:
-> the losing arms could not express the winner's allocations. P12B must hold the
-> action set fixed before the resource-location hypothesis can be promoted.
+> P12A is retained as a comparator-confounded historical result. P12B holds the
+> same four actions and budget across arms and supports two-signal exact-allocation
+> complementarity over 32 independent family RNG blocks; real-system superiority
+> remains open.

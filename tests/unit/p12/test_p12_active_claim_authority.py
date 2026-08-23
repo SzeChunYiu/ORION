@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
 ADJUDICATION = PAPER / "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json"
 ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V1.json"
+SUCCESSOR_ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V2.json"
+SUCCESSOR_TERMINAL = "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED"
 
 
 @pytest.fixture(scope="module")
@@ -56,23 +58,41 @@ def test_active_record_binds_the_adjudication_and_forbids_promotion() -> None:
     assert actual["active_claim"] == "NO_ACTIVE_SUPERIORITY_LEAF"
 
 
-def test_current_publication_surfaces_point_to_the_withholding_adjudication() -> None:
-    surfaces = (
+def test_current_publication_surfaces_bind_positive_successor_and_historical_boundary() -> None:
+    authority_surfaces = (
         "README.md",
         "CLAIM_EVIDENCE_LEDGER.md",
         "PEER_REVIEW_READINESS.md",
         "MANUSCRIPT.md",
+    )
+    for relative in authority_surfaces:
+        text = (PAPER / relative).read_text(encoding="utf-8")
+        assert "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json" in text, relative
+        assert "P12_ACTIVE_CLAIM_AUTHORITY_V2.json" in text, relative
+        assert SUCCESSOR_TERMINAL in text, relative
+
+    for relative in (
         "manuscript/sections/00-abstract.md",
         "manuscript/sections/01-introduction.md",
         "manuscript/sections/05-results.md",
         "manuscript/sections/07-related-work-and-limitations.md",
         "manuscript/sections/08-discussion-and-conclusion.md",
-    )
-    for relative in surfaces:
+    ):
         text = (PAPER / relative).read_text(encoding="utf-8")
-        assert "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json" in text, relative
-        assert "SUPPORTED / PRIMARY" not in text, relative
-        assert AUTHORITY_TERMINAL in text, relative
+        assert "equal-action" in text, relative
+
+    for relative in (
+        "manuscript/sections/00-abstract.md",
+        "manuscript/sections/07-related-work-and-limitations.md",
+        "manuscript/sections/08-discussion-and-conclusion.md",
+    ):
+        text = (PAPER / relative).read_text(encoding="utf-8")
+        assert "external" in text or "real" in text, relative
+
+    authority = json.loads(SUCCESSOR_ACTIVE.read_text(encoding="utf-8"))
+    assert authority["promotion_allowed"] is True
+    assert authority["active_terminal"] == SUCCESSOR_TERMINAL
+    assert authority["historical_boundary_leaf"]["terminal"] == AUTHORITY_TERMINAL
 
 
 def test_current_submission_sources_do_not_retain_the_withdrawn_dominance_claim() -> None:

@@ -11,12 +11,11 @@
 
 ## Status
 
-`P12A_SUPERIORITY_AUTHORITY_WITHHELD / P12B_CAPABILITY_MATCHED_SUCCESSOR_REQUIRED`
+`P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED / CONTROLLED_EQUAL_ACTION_WORLD`
 
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` is the current authority. The
-historical protected run and replay remain valid execution records, but they do
-not authorize a signal-count superiority claim because the one-axis policies
-were also denied half of the winner's allocation set.
+`P12_ACTIVE_CLAIM_AUTHORITY_V2.json` is the current authority. It retains the
+P12A comparison failure and activates only P12B's equal-action, exact-allocation
+signal-complementarity claim.
 
 ### Protected result
 
@@ -40,11 +39,22 @@ allocations. The mean gain is `+0.040771`, its family-block interval is
 `[0.031006, 0.050659]`, the worst-family gain is `+0.001953`, and the original
 positive gate is not met.
 
+### P12B equal-action successor
+
+P12B gives the two-signal and both one-signal policies the identical four-action
+set and two-unit budget, then scores the exact required allocation. Across 32
+independent family RNG blocks (1,024 technical episodes each), mean gain over
+the stronger one-signal policy is **0.253906**. The prospectively corrected
+stratified family-block 95% bootstrap interval is **[0.251221, 0.256653]**;
+minimum family gain is **0.196289**, and every fixed noise stratum passes.
+
+Active terminal: `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`.
+
 ## Strongest paper claim
 
-> P12A demonstrates a deterministic controlled resource-allocation construction,
-> but its observed advantage cannot be attributed to the second signal until a
-> prospectively frozen P12B holds the action set fixed across arms.
+> In the registered equal-action four-regime world, a policy reading both noisy
+> pre-outcome signals selects the exact required allocation more often than the
+> stronger policy reading either signal alone.
 
 ## Artifacts
 
@@ -53,12 +63,13 @@ positive gate is not met.
 - `PEER_REVIEW_READINESS.md`
 - `P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json`
 - `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`
-- `P12_ACTIVE_CLAIM_AUTHORITY_V1.json`
+- `P12_ACTIVE_CLAIM_AUTHORITY_V1.json` (historical P12A boundary)
+- `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json`
+- `P12_ACTIVE_CLAIM_AUTHORITY_V2.json` (current)
 - protected protocol and executable harness
 
 ## Boundary
 
-This is historical controlled evidence with current superiority authority
-withheld. P12B must first match action capability; real-system authority then
-requires matched end-to-end state, model/search, verifier/tool and latency
-receipts.
+P12B authorizes only controlled equal-action signal complementarity. Real-system
+authority still requires matched end-to-end state, model/search, verifier/tool
+and latency receipts.

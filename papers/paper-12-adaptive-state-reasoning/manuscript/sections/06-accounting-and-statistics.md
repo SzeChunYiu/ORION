@@ -15,6 +15,13 @@ A joint policy cannot “win” by shortening the downstream trace while hiding 
 
 ## Statistical analysis
 
-The protected unit of generalization is the held-out family. Policies see paired items inside each family, while headline uncertainty is computed by a deterministic **20,000-resample family-block bootstrap** over the 16 family-level joint gains. The registered lower bound is positive.
+The protected unit is the held-out family RNG block. P12A has 16 family blocks.
+P12B has 32 independent family blocks, eight in each fixed noise stratum. Its
+primary deterministic 20,000-resample bootstrap samples families within each
+stratum, preserving the registered mixture. An unstratified 32-family bootstrap
+is reported only as sensitivity.
 
-The analysis does not pool items as if 8,192 individual trials were independent domains. Hyperparameters are frozen before protected evaluation. The worst-family gain is reported to prevent a favorable mean from hiding a family-level failure.
+The analysis does not pool P12A's 8,192 or P12B's 32,768 technical episodes as
+independent domains. Hyperparameters are frozen before protected evaluation. The
+worst-family and minimum-stratum gains prevent a favorable mean from hiding a
+family- or stratum-level failure.
