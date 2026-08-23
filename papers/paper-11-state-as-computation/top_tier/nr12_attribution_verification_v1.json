@@ -1,0 +1,92 @@
+{
+  "cells_qs_of_30": 13,
+  "delta_two_way_partition": {
+    "access_share": 0.023773499214020468,
+    "interaction_share": 0.2017689921415738,
+    "responsibility_share": 0.7744575086444062,
+    "total_ss": 0.017138212105607616
+  },
+  "difficulty_correlation": {
+    "KNN": {
+      "pearson": 0.794429061800762,
+      "spearman": 0.6
+    },
+    "LINEAR": {
+      "pearson": 0.49969274688954285,
+      "spearman": 0.43030303030303024
+    },
+    "RBF": {
+      "pearson": 0.6398080669603257,
+      "spearman": 0.24848484848484845
+    },
+    "pooled": {
+      "pearson": 0.5115466554573048,
+      "spearman": 0.47541713014460507
+    }
+  },
+  "qs_matrix": {
+    "KNN": [
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      true,
+      false,
+      false
+    ],
+    "LINEAR": [
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "RBF": [
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "responsibilities_with_all_three_tolerant": [
+    0,
+    4,
+    6
+  ],
+  "responsibilities_with_zero_tolerant_class": [
+    1,
+    3,
+    5,
+    8,
+    9
+  ],
+  "schema": "P11.NR12.AttributionVerification.v1",
+  "source_sha256": "9a1f1f9b62955296bcff891f1f93f97af03448d311ae63b62a95d407e3de138f",
+  "source_terminal": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET",
+  "tolerant_class_count_per_responsibility": {
+    "0": 3,
+    "1": 0,
+    "2": 2,
+    "3": 0,
+    "4": 3,
+    "5": 0,
+    "6": 3,
+    "7": 2,
+    "8": 0,
+    "9": 0
+  }
+}
