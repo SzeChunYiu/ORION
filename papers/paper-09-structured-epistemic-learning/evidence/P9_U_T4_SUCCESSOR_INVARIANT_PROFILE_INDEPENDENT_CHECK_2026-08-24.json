@@ -1,0 +1,91 @@
+{
+  "all_green": true,
+  "arm": "TYPED_INVARIANT_PROFILE_BAG",
+  "checks": {
+    "C1_frozen_module_twin": {
+      "green": true
+    },
+    "C2_dataset_manifest": {
+      "green": true,
+      "manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c"
+    },
+    "C3_orbit_is_image_on_raw_payloads": {
+      "green": true,
+      "image_failures": 0,
+      "instances_compared": 512
+    },
+    "C4_features_bitwise_identical_base_orbit": {
+      "corpus_tokens": 177,
+      "distinct_colours": 71,
+      "green": true
+    },
+    "C5_terminal_follows_from_recorded_numbers": {
+      "E-INV": true,
+      "E-PERF": true,
+      "E-STAB": true,
+      "green": true,
+      "parameters_digest_matches": true,
+      "terminal_derived": "P9_T4_SUCCESSOR_REVIVED_STABLE",
+      "terminal_recorded": "P9_T4_SUCCESSOR_REVIVED_STABLE"
+    },
+    "C6_guard_arithmetic_recomputed": {
+      "green": true,
+      "recomputed": {
+        "EQUAL_LENGTH": {
+          "opportunities": 48,
+          "violations": 0
+        },
+        "ORDER_PERMUTATION": {
+          "opportunities": 0,
+          "violations": 0
+        },
+        "SEMANTIC_ORBIT": {
+          "opportunities": 128,
+          "violations": 0
+        }
+      },
+      "recorded": {
+        "EQUAL_LENGTH": {
+          "opportunities": 48,
+          "violations": 0
+        },
+        "ORDER_PERMUTATION": {
+          "opportunities": 0,
+          "violations": 0
+        },
+        "SEMANTIC_ORBIT": {
+          "opportunities": 128,
+          "violations": 0
+        }
+      }
+    },
+    "C7_stability_reprobed_dense_matrix": {
+      "changed_answers_vs_recorded": {
+        "dense_lbfgs": 0,
+        "dense_newton-cg": 0,
+        "dense_reversed_order": 0
+      },
+      "green": true,
+      "selected_config": "logistic-C0.1",
+      "train_matrix_columns": 72,
+      "train_matrix_rank": 18
+    },
+    "C8_frozen_components_as_preregistered": {
+      "green": true,
+      "verdicts": {
+        "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_INVARIANT_PROFILE_BAG": "CANNOT_CHECK",
+        "FP-3_ORDER_REMINT_INVARIANCE::TYPED_INVARIANT_PROFILE_BAG": "CANNOT_CHECK"
+      }
+    }
+  },
+  "environment": {
+    "numpy": "2.4.4",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "python": "3.13.12",
+    "scipy": "1.17.1",
+    "sklearn": "1.8.0"
+  },
+  "parameters_digest_checked": "sha256:15cf1ce362df99f9bbcc13a275cdd899a35ea6cd0b07df3d0031348141e440aa",
+  "schema": "P9.T4SIndependentCheck.v1",
+  "terminal": "P9_T4_SUCCESSOR_SECOND_CHECKER_GREEN"
+}
