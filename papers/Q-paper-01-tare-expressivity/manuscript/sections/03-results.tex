@@ -1,0 +1,27 @@
+\section{Results}
+
+\subsection{Local dominance is strong but not jointly complete}
+The R6N audit checks three local inequalities over 688,041,472 configurations with zero violations. The R6M primary component alone covers 536,870,912 configurations; the letterwise Restore-factor exchange covers 175,616; the rank-2 companion grammar contributes 150,994,944. These checks explain why frame support is expensive, but the protocol explicitly excluded the cost of repairing a shared Tag after changing frame anchors. That declared gap becomes the first discovery surface.
+
+\subsection{Two initial exact refutations}
+The common-anchor weight-one family is refuted on the frozen $n=2$ panel instance conventionally named \texttt{n2_b}: an exact split-anchor realization uses a weight-two shared Tag and costs 8 rather than the donor family's 9. Enlarging to $D^+$ repairs that witness but is itself refuted. On the minimal structured-$n=2$ borrow example, a support-two frame on the cheap central branch preserves a weight-one Tag and improves Restore alignment, giving exact cost 5 rather than 6. Across the original R6O panels, $D^+$ is strictly above the exact referee on 486 of 9,261 structured instances and 73 of 240 seeded random instances.
+
+\subsection{Support two is exact for all $n$}
+The central structural result is the R6S composition theorem. It proves that support at least three never strictly pays under the frozen R6M unit objective, yielding
+\[
+C_{\mathrm{DP}}(t)=C_{D^{++}}(t)\qquad\text{for every admitted instance }t\text{ and every }n.
+\]
+The proof couples a finite local inequality to a zero-sum/pigeonhole exchange argument. The local inequality is exhaustively checked over 18,432 cases; the associated combinatorial census covers 43,688 class tuples. The exceptional patterns occur exactly at support two, which is why the theorem removes support three and above without erasing the observed support-two borrow configurations.
+
+QG-5b then implements a static evaluator $F_2(t)=C_{D^{++}}(t)$ with no unrestricted-DP call in its forecast path. It has zero error on 9,547 compared instances. Its exactness is theorem-backed; the benchmark is a consistency check of the implementation rather than the source of the theorem.
+
+\subsection{Closed-form regime formulas remain refutable}
+The earlier formula $\min(C_{R6L},C_{D^+},f_B)$ matched its original 9,771-classification corpus but fails on a later fresh $n=3$ instance with exact cost 10 versus forecast 11. Enlarging the borrow home domain to $B'$ repairs that witness and closes all QG-5b verified rows. QG-7 then freezes an adversarial search specifically against $B'$ and finds 64 exact fourth-configuration witnesses among 740 instances. Their characteristic form combines a multi-anchor weight-two Tag with a phantom support-two borrow; a representative has $C_{\mathrm{DP}}=C_{D^{++}}=7<8=\min(C_{D^+},f_{B'})$.
+
+The subsequently frozen hybrid family $B''$ covers all 64 witnesses and closes 10,481 QG-7b compared instances, including a new anti-$B''$ panel, with no fifth configuration found on those panels. This is not promoted to an all-$n$ finite-basis theorem. QG-7c closes the weight-$\ge3$ Tag rung and three of four remaining shape classes, but leaves the pinned \texttt{comm-s2} sector lemma-open. Hostile realized examples of that sector show no new cost gap, so the current uncertainty is a proof obligation rather than a demonstrated fifth regime.
+
+\subsection{Chemistry lies in the donor-exact region}
+On all recorded H4 and equilibrium-N2 matchings, the exact optimum equals the natural weight-one donor family under the unit objective. The prospective Benzene study adds 15 matchings whose donor-exact regime and exact costs were staged before exact computation and then confirmed 15/15. These observations do not prove that chemistry generally lies in the donor region; they establish the statement only for the named frozen batches.
+
+\subsection{Applied grounding}
+The R4B split-TARE coefficient result reports zero hostile failures over 8,700 partition evaluations and isolates a coefficient-coordinate theorem. The R4D blob-locked H2O run reduces its frozen structural TARE coordinate from 8,078 to 4,972 at the stated normalization overhead. Both results motivate the relevance of structural-cost optimization while explicitly stopping short of full-circuit or hardware optimality.

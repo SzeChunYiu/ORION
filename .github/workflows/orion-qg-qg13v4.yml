@@ -1,0 +1,88 @@
+name: orion-qg-qg13v4-support4
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG13V4_*'
+      - 'development/orion-qg-regime-geometry/qg13_v4_*'
+      - 'development/orion-qg-regime-geometry/run_qg13_v4_dual_harness.py'
+      - 'research/extensions/orion-qg/qg13_v4_support4.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg13_v4_support4.py'
+      - '.github/workflows/orion-qg-qg13v4.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg13v4-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg13v4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      QG13V4_BASE: afe7994bd5e362b2e8d40482f2dde9689e6ef708
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG13V4_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG13V4_BASE}")" = "${QG13V4_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native theorem obligations
+        run: pytest -q packages/orion-research-harness/tests/test_qg13_v4_support4.py
+      - name: Run theorem through both ORION instruments
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg13_v4_dual_harness.py | tee artifacts/orion-qg-qg13v4-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg13_v4_support4.py --output artifacts/orion-qg-qg13v4-support4-replay.json | tee artifacts/orion-qg-qg13v4-replay.log
+          cmp artifacts/orion-qg-qg13v4-support4.json artifacts/orion-qg-qg13v4-support4-replay.json
+      - name: Enforce all-n theorem or honest refutation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg13v4-support4.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg13v4-generic-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg13v4-dual-harness.json').read_text())
+          allowed={'QG13V4_R6I_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED','QG13V4_ANCHORED_SLICE_COUNTEREXAMPLE','QG13V4_SPECTATOR_EXTENSION_GAP','QG13V4_PARENT_BINDING_FAILED'}
+          assert d['terminal'] in allowed and d['both_accept'] is True
+          assert g['decision']=='ACCEPT' and all(g['checks'].values())
+          assert a['v2_v3_result_files_read'] is False
+          assert a['novelty_authority'] is False and a['physical_quantum_advantage_claim'] is False
+          assert a['network_access'] is False and a['chemistry_sources_read'] is False and a['protected_subject_read'] is False
+          if d['terminal']=='QG13V4_R6I_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED':
+              assert a['anchored_slices']['g0']['eligible_slices']==324 and a['anchored_slices']['g0']['uncovered']==0
+              assert a['anchored_slices']['g1']['eligible_slices']==324 and a['anchored_slices']['g1']['uncovered']==0
+              assert a['qg1_parent']['all_bound'] is True and a['qg1_parent']['opened_after_local_lemma_seal'] is True
+              assert a['theorem']['generator_support_bound']==4 and a['theorem']['all_n'] is True
+              assert all(v for v in a['proof_audit'].values() if isinstance(v,bool))
+          elif d['terminal']=='QG13V4_ANCHORED_SLICE_COUNTEREXAMPLE':
+              assert a['anchored_slices']['g0']['uncovered']>0 or a['anchored_slices']['g1']['uncovered']>0
+          elif d['terminal']=='QG13V4_SPECTATOR_EXTENSION_GAP':
+              assert not all(a['spectator_extension']['outside_selected_identity_contributes_zero_selected_syndrome'].values()) or not a['spectator_extension']['production_dp_adds_per_qubit_local_costs']
+          else:
+              assert a['qg1_parent']['all_bound'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg13v4-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg13v4-support4.json
+            artifacts/orion-qg-qg13v4-support4-replay.json
+            artifacts/orion-qg-qg13v4-generic-verification.json
+            artifacts/orion-qg-qg13v4-dual-harness.json
+            artifacts/orion-qg-qg13v4-summary.json
+            artifacts/orion-qg-qg13v4-replay.log
+            .orion-qg-qg13v4-generic/.orion-harness/**
+            .orion-qg-qg13v4-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

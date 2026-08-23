@@ -1,0 +1,19 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Results}\markdownRendererInterblockSeparator
+{}Protected terminal: \markdownRendererCodeSpan{P13A\markdownRendererUnderscore{}RCS\markdownRendererUnderscore{}SAFETY\markdownRendererUnderscore{}COST\markdownRendererUnderscore{}SUPERIORITY\markdownRendererUnderscore{}SUPPORTED}.\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{6}{5}{drrrr}{{arm}{unsafe reuse}{verified correctness}{unnecessary reopen}{mean cost}}{{\markdownRendererStrongEmphasis{RCS}}{\markdownRendererStrongEmphasis{0.0000}}{\markdownRendererStrongEmphasis{0.9807}}{\markdownRendererStrongEmphasis{0.0000}}{\markdownRendererStrongEmphasis{2.8747}}}{{confidence only}{0.2156}{0.9657}{lower than RCS}{1.8582}}{{provenance only}{0.3962}{0.9248}{0}{1.0000}}{{unqualified compact}{0.3962}{0.9248}{0}{1.0000}}{{always raw}{0.0000}{0.9513}{0.5744}{5.7319}}\markdownRendererInterblockSeparator
+{}RCS emits \markdownRendererCodeSpan{CANNOT\markdownRendererUnderscore{}CHECK} for all \markdownRendererStrongEmphasis{237} unsupported/nonrecoverable cases and no other protected case. It eliminates structural unsafe reuse without adopting always-reopen behavior. Mean resource cost is approximately \markdownRendererStrongEmphasis{49.8\markdownRendererPercentSign{} lower} than always raw. Two fresh executions are byte-identical with SHA-256 \markdownRendererCodeSpan{ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f}.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Why confidence fails}\markdownRendererInterblockSeparator
+{}The omitted coordinate is biased within a family, so a MAP decoder can be highly accurate and exceed the 0.80 confidence threshold. But high expected accuracy does not make an unsupported equivalence class sufficient. Confidence asks how often an output is right under a distribution; RCS asks whether state retains distinctions required by a responsibility.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Why provenance fails}\markdownRendererInterblockSeparator
+{}Every compact state has valid lineage. Provenance verifies origin but says nothing about whether \markdownRendererCodeSpan{m} or \markdownRendererCodeSpan{r} was retained. Provenance-only reuse is structurally unsafe on 39.62\markdownRendererPercentSign{} of protected episodes.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Why always raw is not the answer}\markdownRendererInterblockSeparator
+{}Always reopening prevents unsafe compact reuse but pays roughly twice the mean RCS cost and unnecessarily reopens supported cases on 57.44\markdownRendererPercentSign{} of episodes. RCS occupies the desired interior safety–cost point.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

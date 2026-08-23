@@ -1,0 +1,210 @@
+\section{Minimal method revision under observational equivalence}
+\label{sec:minimal-revision-theory}
+
+The general object of this paper is not a particular self-editing agent. It is
+the decision problem created when several latent failures look the same to a
+method reviser but license different scientific changes. The relevant boundary
+is therefore informational before it is algorithmic: no more capable proposer,
+search procedure or acceptor can recover a distinction that its interface has
+erased.
+
+\subsection{Revision fronts and evidence interfaces}
+
+Let $\Theta$ be a set of latent development situations and let
+$(\mathcal R,\prec)$ be a well-founded strict partial order of candidate
+revisions. The interpretation of $r'\prec r$ is that $r'$ changes strictly less
+of the method than $r$; representation repair and evaluator repair may be
+incomparable, so a total ladder is neither required nor generally appropriate.
+For $\theta\in\Theta$, let $\mathcal A(\theta)\subseteq\mathcal R$ be the
+revisions admissible after causal-responsibility, task-recovery, preservation,
+fresh-transfer, harm and authority constraints are applied, and let
+\[
+  \mathcal M(\theta)=\min_{\prec}\mathcal A(\theta)
+\]
+be its minimal revision front. Well-foundedness guarantees a nonempty minimal
+front whenever $\mathcal A(\theta)$ is nonempty.
+
+Let $Q(\theta)$ indicate a material residual. The required decision is the
+front-valued map
+\[
+G(\theta)=
+\begin{cases}
+\mathsf{NO\_REVISION}, & \neg Q(\theta),\\
+\mathsf{UNRESOLVED}, & Q(\theta)\ \text{and}\ \mathcal A(\theta)=\varnothing,\\
+\mathcal M(\theta), & Q(\theta)\ \text{and}\ \mathcal A(\theta)\ne\varnothing.
+\end{cases}
+\]
+Returning an antichain rather than silently choosing one incomparable element
+is deliberate. Further measurement is required when the evidence does not
+select a unique member.
+
+A reviser observes an interface $\phi:\Theta\to\mathcal Z$, not $\theta$
+itself. The interface can include a failure transcript, retrieved records,
+diagnostic labels, intervention results, issue history, and outputs of any
+number of donor systems.
+
+\paragraph{Theorem 1 (revision-factorization theorem).}
+There exists an exact revision rule $g:\phi(\Theta)\to\operatorname{im}(G)$
+with $G=g\circ\phi$ if and only if
+\[
+  \phi(\theta)=\phi(\theta')\quad\Longrightarrow\quad
+  G(\theta)=G(\theta')
+  \qquad\text{for all }\theta,\theta'\in\Theta.
+\]
+
+\paragraph{Proof.}
+If $G=g\circ\phi$, equal interface values necessarily give equal decisions.
+Conversely, if $G$ is constant on each fibre of $\phi$, define $g(z)$ to be
+$G(\theta)$ for any $\theta$ satisfying $\phi(\theta)=z$. Fibre constancy
+makes the definition independent of the representative. \hfill$\square$
+
+Thus exact selection requires decision sufficiency, not recovery of every
+latent cause. A compressed interface is enough if it separates all situations
+that require different revision fronts. An arbitrarily rich interface is
+insufficient if even one such pair remains observationally equivalent. This is
+a decision-specific application of statistical experiment comparison
+\cite{blackwell1953}; neither the factorization argument nor Bayes decision
+theory below is claimed as a new general statistical principle.
+
+\subsection{Irreducible revision risk}
+
+Let $\Theta\sim\mu$, $Z=\phi(\Theta)$, and $Y=G(\Theta)$, with finite decision
+alphabet $\mathcal Y$. Let $\mathcal D$ be a finite action set that may include
+revision fronts and abstention, and let
+$L:\mathcal D\times\mathcal Y\to[0,\infty)$ encode the cost of under-revision,
+false broad revision, harmful transfer, or abstention. Write
+$p_y(z)=\Pr\{Y=y\mid Z=z\}$.
+
+\paragraph{Theorem 2 (mixed-fibre Bayes bound).}
+Every deterministic or randomized rule using only $Z$ has risk at least
+\[
+  R^*(\phi,L)=
+  \mathbb E_Z\!\left[
+    \min_{a\in\mathcal D}\sum_{y\in\mathcal Y}L(a,y)p_y(Z)
+  \right],
+\]
+and a fibrewise Bayes action attains equality. For zero--one loss this becomes
+\[
+  R^*(\phi)=1-\mathbb E_Z\!\left[\max_y p_y(Z)\right].
+\]
+
+\paragraph{Proof.}
+Condition on $Z=z$. A randomized rule with probabilities $q(a\mid z)$ has
+conditional risk
+$\sum_a q(a\mid z)\sum_y L(a,y)p_y(z)$, a convex combination bounded below by
+the smallest constituent. Concentrating on a minimizing action attains the
+bound. Averaging over $Z$ proves the first claim; zero--one loss yields the
+second expression. \hfill$\square$
+
+The bound makes asymmetry explicit. A policy that always chooses the broadest
+revision may have low under-revision loss but high false-broad-revision and harm
+loss; abstaining may be optimal on an impure fibre without making the fibre
+identifiable. No aggregate score can turn missing information into revision
+authority.
+
+\paragraph{Corollary 1 (no sound-and-complete self-promotion under authority
+equivalence).}
+Suppose two situations have the same complete internally visible transcript,
+but protected evidence authorizes promotion in one and forbids it in the
+other. No promotion rule using only that internal transcript can be both sound
+(never promote the forbidden case) and complete (promote the authorized case).
+
+\paragraph{Proof.}
+The two situations lie in one interface fibre but require different binary
+decisions, contradicting Theorem~1. \hfill$\square$
+
+External custody is therefore not a claim that an external evaluator is
+infallible. It is an information-and-authority requirement: the protected
+distinction must enter some decision interface not writable by the candidate.
+An always-abstain rule can remain sound, but it is not complete.
+
+\subsection{Discriminator design as a covering problem}
+
+Theorems~1--2 say when an interface is insufficient; the next result identifies
+exactly what a finite intervention programme must separate. Fix an observed
+value $z$ and a finite ambiguous fibre
+$F_z=\{\theta:\phi(\theta)=z\}$. Let $\mathcal T$ be candidate tests or
+controlled interventions, with deterministic protected outcomes
+$o_t(\theta)$ for $t\in\mathcal T$. Define the cross-decision pair universe
+\[
+ U_z=\bigl\{\{\theta,\theta'\}\subseteq F_z:
+ G(\theta)\ne G(\theta')\bigr\}
+\]
+and the subset distinguished by test $t$,
+\[
+ D_t=\bigl\{\{\theta,\theta'\}\in U_z:
+ o_t(\theta)\ne o_t(\theta')\bigr\}.
+\]
+
+\paragraph{Theorem 3 (discriminator-cover theorem).}
+A non-adaptive test panel $S\subseteq\mathcal T$ permits exact revision
+selection on $F_z$ if and only if
+\[
+  \bigcup_{t\in S}D_t=U_z.
+\]
+Consequently, for test costs $c_t\ge0$, a minimum-cost exact panel is exactly
+the weighted set-cover optimum of the induced instance
+$(U_z,\{D_t:t\in\mathcal T\},c)$. If some pair in $U_z$ belongs to no $D_t$,
+no panel drawn from $\mathcal T$ can resolve the revision decision.
+
+\paragraph{Proof.}
+The joint signature of $\theta$ under $S$ is
+$(o_t(\theta))_{t\in S}$. It supports exact revision selection precisely when
+no two situations with different $G$ values share a joint signature. A
+cross-decision pair has different joint signatures precisely when at least one
+selected test distinguishes it, which is precisely the stated cover condition.
+Minimizing the additive test cost over all such panels is the induced weighted
+set-cover problem. The last claim follows when a required pair is uncovered by
+the full candidate family. \hfill$\square$
+
+\paragraph{Proposition 1 (adaptive leaf-purity criterion).}
+For deterministic test outcomes, a terminating adaptive test policy permits an
+exact decision on $F_z$ if and only if every reachable terminal leaf contains
+only situations with one common $G$ value.
+
+\paragraph{Proof.}
+All situations reaching a terminal leaf generate the same observed test path.
+An exact terminal decision exists there if and only if their required decisions
+agree. Applying this condition to every reachable leaf proves both directions.
+\hfill$\square$
+
+These are structural equivalences in the classical minimum-test-set
+neighbourhood \cite{moret1985}, not claims that every real experiment is
+deterministic or that a generic set-cover heuristic is statistically optimal.
+With stochastic outcomes, tests must instead separate protected outcome
+distributions to a declared error tolerance. Adaptivity can reduce expected
+cost but cannot separate a pair whose outcome distributions are identical under
+every available intervention. This connects method
+revision to active diagnosis and sequential experimental design
+\cite{reiter1987,dekleer1987,chernoff1959,golovin2011} while making the target
+the minimal authorized revision, rather than latent-cause recovery alone.
+
+\subsection{The three retained errors as new experiments}
+
+The diagnostic archive contains three observed collisions between neighbouring
+revision levels. They are not evidence for Theorems~1--3 and are not repaired
+by renaming their labels. Each instead defines a successor pair universe and a
+factorial discriminator.
+
+\begin{enumerate}
+  \item \textbf{Retrieval versus representation.} Hold the representation
+  fixed while varying source access and retrieval policy, then hold retrieved
+  information fixed while varying the representation. A retrieval-only rescue,
+  a representation-only rescue, an interaction, and a joint null remain four
+  distinct outcomes.
+  \item \textbf{Environment versus implementation.} Cross a content-addressed
+  candidate with independently reconstructed environments. A code defect must
+  follow candidate identity across environments; an environmental defect must
+  follow environment identity across unchanged code. An interaction remains
+  unresolved rather than being forced into either class.
+  \item \textbf{Representation versus method basis.} Cross a richer
+  representation under a frozen method class with a method-class expansion
+  under a frozen representation. Improvement only under the joint treatment
+  identifies an interaction, not a license to credit either component alone.
+\end{enumerate}
+
+These interventions refine the visible-symptom fibres that produced
+P5-HC-002, P5-HC-012 and P5-HC-018. The separate wide successor then asks
+whether the resulting decision interface transfers across source-disjoint
+project/issue families. A positive local discriminator is therefore a
+prerequisite for, not a substitute for, protected fresh-transfer evidence.

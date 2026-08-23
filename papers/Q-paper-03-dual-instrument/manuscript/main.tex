@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs,tabularx}
+\usepackage[strings]{underscore}
+\setlength{\emergencystretch}{2em}
+
+\title{Controller--Host Agreement on Live Research Decisions: A Receipted Benchmark and First Measurement}
+\author{Working framework draft}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Research-agent benchmarks usually score decisions against known answers or environment rewards. Live research questions are different: the correct next move may not yet have a gold label. We define a controller--host agreement benchmark for this setting. Two architecturally distinct instruments receive the same frozen evidence packet and frontier question. One is an LLM-host-driven research lane whose external interactions are bound to immutable capability receipts; the other is a typed campaign controller whose decision path contains no LLM and whose revision/computation choices are constrained by explicit obligations. The benchmark scores whether the lanes diagnose the same responsible layer, select compatible next moves, and use overlapping admissible evidence, with a later research outcome available as deferred rather than contemporaneous scoring. Benchmark V0 was frozen before either lane outcome. Both instruments diagnosed the representation-regime-characterization layer and selected regime characterization as the primary move. The typed controller additionally withheld an unlicensed representation split because its membership-predicate obligation remained unresolved. Later characterization and closure results make the deferred coordinate `ALIGNED'. This is a benchmark definition with one measurement, not an evaluation of reliability or predictive validity. The broader systems-harness guarantee surface is outside this paper and is routed to ORION-P15. Two malformed-receipt defects reported in the historical V1 draft have since been repaired and regression-tested. The frozen publication plan requires at least two to three additional frontier-question instances before standalone submission; that evidence gate remains open.
+\end{abstract}
+
+\noindent\textbf{Keywords:} research agents; benchmark; agreement; epistemic control; provenance; scientific workflows.
+
+\input{sections/01-introduction}
+\input{sections/02-methods}
+\input{sections/03-results}
+\input{sections/04-discussion}
+\input{sections/05-related-work-boundary}
+\input{sections/06-limitations}
+\input{sections/07-conclusion}
+\input{sections/08-reproducibility}
+\input{sections/09-ethics-safety-resources}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+\end{document}

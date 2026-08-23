@@ -1,0 +1,170 @@
+{
+  "schema_version": "orion.p2.claim-ledger.p2x-addendum.v1",
+  "base_ledger": "CLAIM_LEDGER_V1.json",
+  "purpose": "Additive human-reviewed binding for P2-X claims promoted after the frozen V1 ledger. The base ledger remains immutable audit history. Operative bindings resolve only inside the paper tree; the bound artifact records source-result blob identities.",
+  "artifacts": {
+    "p2x_claim_bindings": "evidence/P2_X_CLAIM_BINDINGS_V1.json"
+  },
+  "claims": [
+    {
+      "claim_id": "P2-XA01",
+      "region": "abstract",
+      "manuscript_status": "ASSERTED",
+      "sentence": "A separate post-saturation exact successor isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, P2-X attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "p2x_claim_bindings", "key": "case_count"},
+        {"artifact": "p2x_claim_bindings", "key": "p2x_correct"},
+        {"artifact": "p2x_claim_bindings", "key": "case_count"},
+        {"artifact": "p2x_claim_bindings", "key": "b1_correct"},
+        {"artifact": "p2x_claim_bindings", "key": "case_count"},
+        {"artifact": "p2x_claim_bindings", "key": "paired_difference"},
+        {"artifact": "p2x_claim_bindings", "key": "confidence_level_percent"},
+        {"artifact": "p2x_claim_bindings", "key": "ci_lower"},
+        {"artifact": "p2x_claim_bindings", "key": "ci_upper"},
+        {"artifact": "p2x_claim_bindings", "key": "b3_correct"},
+        {"artifact": "p2x_claim_bindings", "key": "case_count"}
+      ],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "p2x_false_task_closures"},
+        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"},
+        {"artifact": "p2x_claim_bindings", "key": "b3_decision_mismatches"}
+      ],
+      "note": "Promoted P2-X abstract result; exact-contract authority only; offline mechanism evidence remains DESCRIPTIVE under the existing ledger policy."
+    },
+    {
+      "claim_id": "P2-XL01",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Its 400-case exact battery spans five acquisition settings and includes seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "p2x_claim_bindings", "key": "case_count"}
+      ],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "nonmaterial_decoy_cases"},
+        {"artifact": "p2x_claim_bindings", "key": "independent_verification_case_count"}
+      ],
+      "note": "Battery scope and explicit-state limitation."
+    },
+    {
+      "claim_id": "P2-XL02",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The 1.000 P2-X ESCD ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "p2x_claim_bindings", "key": "p2x_rate"}
+      ],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "scientific_terminal"},
+        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+      ],
+      "note": "Bounded exact-contract interpretation of the P2-X ceiling."
+    },
+    {
+      "claim_id": "P2-XL03",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and B3 shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "b3_equivalence_pass"},
+        {"artifact": "p2x_claim_bindings", "key": "b3_decision_mismatches"}
+      ],
+      "note": "Ideal-product equivalence and explicit non-generality boundary."
+    },
+    {
+      "claim_id": "P2-XC01",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, P2-X obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "p2x_claim_bindings", "key": "p2x_correct"},
+        {"artifact": "p2x_claim_bindings", "key": "case_count"},
+        {"artifact": "p2x_claim_bindings", "key": "b1_correct"},
+        {"artifact": "p2x_claim_bindings", "key": "case_count"},
+        {"artifact": "p2x_claim_bindings", "key": "paired_difference"},
+        {"artifact": "p2x_claim_bindings", "key": "confidence_level_percent"},
+        {"artifact": "p2x_claim_bindings", "key": "ci_lower"},
+        {"artifact": "p2x_claim_bindings", "key": "ci_upper"}
+      ],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "p2x_false_task_closures"},
+        {"artifact": "p2x_claim_bindings", "key": "clean_task_stop_pass"},
+        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+      ],
+      "note": "P2-X conclusion headline with non-regression gates; offline mechanism evidence remains DESCRIPTIVE."
+    },
+    {
+      "claim_id": "P2-XC02",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The effect is the unresolved-route authority rule: all 150 B1 errors are material unavailable/censored/provider-invalid routes that B1 excludes from the closure denominator.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "p2x_claim_bindings", "key": "b1_errors"}
+      ],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "primary_pass"},
+        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+      ],
+      "note": "Registered failure family behind the B1 difference."
+    },
+    {
+      "claim_id": "P2-XC03",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "An ideal typed product supplied the same semantics ties 400/400.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "p2x_claim_bindings", "key": "b3_correct"},
+        {"artifact": "p2x_claim_bindings", "key": "case_count"}
+      ],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "b3_equivalence_pass"},
+        {"artifact": "p2x_claim_bindings", "key": "b3_decision_mismatches"}
+      ],
+      "note": "Ideal typed product is extensionally tied under identical semantics."
+    },
+    {
+      "claim_id": "P2-XC04",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes remain unresolved.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "scientific_terminal"},
+        {"artifact": "p2x_claim_bindings", "key": "b3_equivalence_pass"},
+        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+      ],
+      "note": "Bounded interpretation only; donor-owned generic mechanisms remain non-novel."
+    },
+    {
+      "claim_id": "P2-XC05",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Deployed multi-provider/retrieval-engine generality remains CANNOT_CHECK.",
+      "support_type": "NONE_YET",
+      "strength": "CANNOT_CHECK",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {"artifact": "p2x_claim_bindings", "key": "external_retrieval_generality"}
+      ],
+      "note": "Explicit non-promotion boundary; P2-X exact contracts do not establish deployment generality."
+    }
+  ],
+  "non_claim_sentences": [],
+  "known_defects": []
+}

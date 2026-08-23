@@ -1,0 +1,23 @@
+{
+  "schema": "P9.S3DomainRotationPreResultExpectation.v1",
+  "date": "2026-08-19",
+  "preprotected_run": 32304827088,
+  "preprotected_status": "GREEN",
+  "parent_s3_outcome_known": true,
+  "numerical_holdout_outcome_accessed": false,
+  "graph_holdout_outcome_accessed": false,
+  "expectations": {
+    "F2_all_rotations": {
+      "expected_accuracy": 1.0,
+      "basis": "train/dev exact equivalence is green for all rotations and workflow manifest reproduces immutable D1; F2 protected failure is an evaluator/serialization discrepancy"
+    },
+    "F1_numerical_holdout": "UNPREDICTED",
+    "F1_graph_holdout": "UNPREDICTED",
+    "F1_workflow_holdout": {
+      "expected_accuracy": 1.0,
+      "basis": "already-known protected S3 result; this rotation is a reproduction anchor, not a new discovery"
+    }
+  },
+  "terminal_rules": "S3_DOMAIN_ROTATION_PROTOCOL_V1.json remains authoritative",
+  "outcome_accessed": false
+}

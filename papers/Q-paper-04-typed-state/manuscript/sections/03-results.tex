@@ -1,0 +1,22 @@
+\section{Results}
+
+\subsection{Typed priors for unknown feasibility}
+In N4-A, type-conditioned priors are the only difference between `ORION_TYPED_VOI` and the uniform-prior VOI ablation. Over 300 paired episodes, the typed arm has mean utility 3.291 versus 2.180 for uniform VOI and 4.612 for the full oracle, recovering about 71\% of oracle utility. Blind optimistic commitment is driven to $-13.619$ mean utility and succeeds in only 19\% of episodes, satisfying the hostile-world validity gate.
+
+\subsection{Scope-bound failure-receipt reopening}
+N4-B separates changes that invalidate a failure receipt from irrelevant context churn. Pooled mean utility is 3.199 for scoped reopening, 2.782 for never reopening, $-7.813$ for unscoped-change reopening, and $-9.225$ for always reopening. In the deliberately wasteful regime, always reopening collapses to about $-13.406$ while never reopening remains positive; the scoped mechanism retains the no-giveback property required by the protocol.
+
+\subsection{Targeted verification under interval costs}
+N4-C gives every active arm the same budget of four edge verifications. Interval-dominance targeting yields mean scalarized regret 0.1096, compared with 0.2518 for random verification, 0.2621 for midpoint optimization without targeted verification, 0.7755 for worst-case optimization, and 1.2679 for best-case optimization. The benefit is therefore attributed to where verification is spent, not verification volume.
+
+\subsection{Full-chain certificate transport}
+N4-D contains 200 honest and 200 laundering chains. The full-chain checker has recall 1.000 and false-positive rate 0.000. It detects all missing-receipt, spoofed-summary, and 68 deep-splice attacks. Last-hop inspection has zero recall on the deep-splice class. This is a construction-level provenance result; the identifiers are seeded values rather than cryptographic digests.
+
+\subsection{Decision-coupled active experiments}
+In N4-E, pure information gain is attracted by high-entropy facts that are irrelevant to the downstream choice. It spends 36.6\% of its probes on decoys and obtains mean utility 7.121, while the decision-coupled selector spends none on decoys and reaches 9.266 under the shared stopping rule. The decoy-attraction gate is part of world validity.
+
+\subsection{Remint and transport across edits}
+N4-F3 compares typed remint/transport with naive carry-forward and matched-budget re-derivation. In the stale-hostile regime, naive carry-forward fails on 99.5\% of episodes and has mean utility about $-15.916$; typed transport reaches 9.421 versus 7.157 for re-derivation. In the prespecified remint-unnecessary regime, all relevant arms tie exactly at 11.809659685355605 and the typed arm spends zero remints. A positive advantage there would have invalidated the study.
+
+\subsection{Negative first-refusal cases}
+N1-C finds a typed/scoped failure-state benefit over a scoping ablation, but an ideal VOI allocator given the same typed facts matches the candidate policy exactly at solve rate 0.9866. The allocation-policy residual is therefore closed. N2-F5B similarly gives a model-selection donor first refusal: candidate and donor both score 0.9948 on the original world, leaving only the narrower misspecified-world edge (0.9844 versus 0.9531) as a surviving bounded result.

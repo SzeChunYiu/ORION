@@ -1,0 +1,85 @@
+name: p1-p2-final-render-current
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/p1-p2-final-render-current.yml'
+      - 'research/saturation/P1_P2_FINAL_RENDER_2026_08_21.md'
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install LaTeX and PDF tools
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-pictures texlive-fonts-recommended lmodern poppler-utils
+      - name: Render and audit P1 exact head
+        run: |
+          set -euo pipefail
+          cd papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log
+          pdftotext main.pdf /tmp/p1.txt
+          grep -q '400/400' /tmp/p1.txt
+          grep -q '275/400' /tmp/p1.txt
+          grep -q '0.3125' /tmp/p1.txt
+          grep -q '0.2675' /tmp/p1.txt
+          grep -q '0.3575' /tmp/p1.txt
+          grep -qi 'ideal' /tmp/p1.txt
+          grep -qi 'open-ended' /tmp/p1.txt
+          out="$GITHUB_WORKSPACE/research/saturation/_p1_final_render_current"
+          mkdir -p "$out/pages"
+          pdfinfo main.pdf > "$out/pdfinfo.txt"
+          sha256sum main.pdf > "$out/sha256.txt"
+          git rev-parse HEAD > "$out/subject_commit.txt"
+          cp main.pdf main.log "$out/"
+          pdftoppm -png -r 110 main.pdf "$out/pages/page" >/dev/null 2>&1
+      - name: Render and audit P2 exact head
+        run: |
+          set -euo pipefail
+          cd papers/paper-02-open-world-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log
+          pdftotext main.pdf /tmp/p2.txt
+          grep -q '400/400' /tmp/p2.txt
+          grep -q '250/400' /tmp/p2.txt
+          grep -q '0.375' /tmp/p2.txt
+          grep -q '0.3275' /tmp/p2.txt
+          grep -q '0.4225' /tmp/p2.txt
+          grep -q 'CANNOT_CHECK' /tmp/p2.txt
+          grep -qi 'ideal' /tmp/p2.txt
+          out="$GITHUB_WORKSPACE/research/saturation/_p2_final_render_current"
+          mkdir -p "$out/pages"
+          pdfinfo main.pdf > "$out/pdfinfo.txt"
+          sha256sum main.pdf > "$out/sha256.txt"
+          git rev-parse HEAD > "$out/subject_commit.txt"
+          cp main.pdf main.log "$out/"
+          pdftoppm -png -r 110 main.pdf "$out/pages/page" >/dev/null 2>&1
+      - name: Run committed package checks
+        run: |
+          set -euo pipefail
+          python research/paper-programme-v1/journal_package/check_journal_package.py
+      - name: Archive exact-head P1/P2 render evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-p2-final-render-${{ github.sha }}
+          path: |
+            research/saturation/_p1_final_render_current/
+            research/saturation/_p2_final_render_current/
+          if-no-files-found: error
+          retention-days: 90
