@@ -90,9 +90,9 @@ def analyze(source, entry=ENTRY):
             if isinstance(node, ast.Call):
                 f = node.func
                 if isinstance(f, ast.Name):
-                    called.add(f.name)
-                    if f.name in funcs:
-                        stack.append(f.name)
+                    called.add(f.id)
+                    if f.id in funcs:
+                        stack.append(f.id)
             elif isinstance(node, ast.Attribute):
                 seen_strings.add(node.attr)
             elif isinstance(node, ast.Subscript):
@@ -101,7 +101,7 @@ def analyze(source, entry=ENTRY):
                     seen_keys.add(sl.value)
             elif isinstance(node, ast.Name):
                 if isinstance(node.ctx, ast.Load):
-                    seen_globals.add(node.name)
+                    seen_globals.add(node.id)
             elif isinstance(node, ast.Constant):
                 if isinstance(node.value, str):
                     seen_strings.add(node.value)
@@ -114,7 +114,7 @@ def analyze(source, entry=ENTRY):
     for f in reachable_funcs:
         for node in ast.walk(funcs[f]):
             if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
-                local_vars.add(node.name)
+                local_vars.add(node.id)
             elif isinstance(node, ast.arg):
                 args.add(node.arg)
 
