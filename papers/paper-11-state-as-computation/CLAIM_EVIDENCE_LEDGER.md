@@ -4,6 +4,8 @@
 **Issues:** #471, #664, #667  
 **Evidence cut:** 2026-08-22
 
+`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the sole active lifecycle record. It binds the P11I positive `r=7` leaf and retains P11H only as the disjoint historical `r=3` boundary.
+
 | Claim | Status | Evidence | Maximum authorized wording |
 |---|---|---|---|
 | fixed exact linear-accessible state needs dimension at least query-family rank | SUPPORTED / EXACT | Theorem 1 | exact theorem for the registered access class |
@@ -98,6 +100,6 @@ P11's residual is the **placement law between state construction and downstream 
 
 ## Strongest authorized headline
 
-> **State is a computational placement decision.** In controlled query families, query-conditioned construction yields exact accessible-rank savings and moves structural search upstream. A pooled hostile decoder attack wins at narrow compiled width `r=3`; in the prospectively frozen P11I replication, the same attack remains below target in all nine independent `r=7` seed×geometry units while reaching 1.0000 in every matched `r=3` control. Exact workload laws quantify the future-query option debt created by specialization.
+> **State is a computational placement decision.** In controlled query families, query-conditioned construction yields exact accessible-rank savings and moves structural search upstream. A pooled hostile decoder attack wins at narrow compiled width `r=3`; in the prospectively frozen P11I replication, the same attack remains below target in all nine prespecified `r=7` seed×geometry cells across three independent RNG replicates and three fixed geometry strata while reaching 1.0000 in every matched `r=3` control. Exact workload laws quantify the future-query option debt created by specialization.
 
 This is a controlled theory/systems superiority claim, not a universal nonlinear lower bound or real-agent superiority claim.

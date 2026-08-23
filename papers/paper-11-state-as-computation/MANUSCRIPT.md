@@ -222,7 +222,7 @@ P11I prospectively freezes the narrower regime P11H located rather than relabeli
 
 All nine high-width units pass. Compiled accuracy at `n=64` ranges 0.9690–0.9981; the pooled attack's best accuracy below `n=256` ranges 0.8489–0.9421 against the strict `<0.95` gate; and `delta64` ranges +0.2463–+0.3543 against `>=+0.20`. The same pooled attack reaches 1.0000 in all nine matched `r=3` controls. Two fresh subprocess payloads are byte-identical at SHA-256 `b50ace30…e0ce`.
 
-The terminal `P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL` licenses a width-conditioned result only: the pooled attack wins in the narrow regime and the compiled-state advantage replicates in the registered high-width regime. P11D and P11H remain adverse historical results.
+The terminal `P11I_HIGH_WIDTH_ADVANTAGE_REPLICATED_WIDE_PANEL` licenses a width-conditioned result only: across three independent RNG replicates and three fixed geometry strata, all nine prespecified high-width seed×geometry cells pass. The pooled attack wins in the narrow regime and the compiled-state advantage replicates in the registered high-width regime. `P11_ACTIVE_CLAIM_AUTHORITY_V1.json` binds these disjoint scopes; P11D and P11H remain adverse historical results.
 
 ## 6. What the decoder attacks identify
 
