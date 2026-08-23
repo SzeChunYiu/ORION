@@ -56,7 +56,6 @@ def build_active_claim_authority() -> dict[str, Any]:
         ],
         "promotion_requirements": [
             "paper_issue",
-            "claim_evidence_ledger",
             "donor_matrix",
             "prospectively_frozen_p15_protocol",
             "protected_p15_result",

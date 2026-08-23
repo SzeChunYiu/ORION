@@ -32,6 +32,7 @@ def test_methods_state_cannot_be_promoted_to_a_positive_empirical_claim() -> Non
     authority = build_active_claim_authority()
     assert authority["promotion_allowed"] is False
     assert "SUPPORTED_EMPIRICAL" in authority["forbidden_states"]
+    assert "claim_evidence_ledger" not in authority["promotion_requirements"]
     assert "prospectively_frozen_p15_protocol" in authority["promotion_requirements"]
     assert "protected_p15_result" in authority["promotion_requirements"]
 
