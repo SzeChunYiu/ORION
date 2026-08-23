@@ -1,61 +1,106 @@
-# Paper 9 — Structured Epistemic Learning
+# P9 — Structured Epistemic Learning
 
-Working title: **When Structure Is the Model: Exact Epistemic Coordinates, Cross-Domain Transfer, and the Limits of Neural Escalation**
+Working title: **When Structure Is the Model: Causal Information/Accessibility/Computation Diagnosis Under Explicit Resource Accounting**
 
-Target venue: **Transactions on Machine Learning Research (TMLR)**, subject to the final novelty/verification gate.
+Target venue: **Transactions on Machine Learning Research (TMLR)**, subject to the final current-donor and package gate.
 
-## Identity boundary
+## Current scientific identity
 
-This directory is additive. It does **not** replace or rewrite the historical P9 V1 / ORION Learning Machine package under `papers/orion-learning-machine/` or any earlier P9 candidate directory. Historical routing/competence evidence remains historical and is not evidence for this paper.
+P9 is no longer a pre-result architecture proposal. Its current top-tier object is a **causal diagnostic of failure location**: when a task fails, distinguish missing semantic information, inaccessible information/representation, insufficient computation, and missing method/coverage rather than escalating model size or compute generically.
 
-## Frozen paper thesis
+The strongest current claim is supported by three deliberately mixed outcome classes:
 
-The manuscript is deliberately narrower than the original neural-architecture aspiration:
+1. **real same-information accessibility intervention:** breast-cancer and digits are positive; Wine is retained as a null cell;
+2. **protected Qwen scaling hypothesis:** the registered monotone-scaling hypothesis is an authoritative negative, not repaired after the fact;
+3. **cross-domain causal diagnostic:** registered diagnosis succeeds on 4/5 task families versus 1/5 for generic compute escalation, with zero false compute escalations versus four for the generic policy; the held-out digits accessibility cell remains `CANNOT_CHECK` because the registered threshold does not transport.
 
-1. on exact hostile pairs, prediction limits change only when load-bearing relation, transport, or admitted-failure coordinates become model-visible;
-2. exact typed method coordinates are tested for transfer under a whole-domain holdout with reminted surface vocabulary and protected multi-coordinate corruptions;
-3. complexity escalation is empirical: simple learned models are tried before richer architectures, and exact explicit inference closes atoms when the decisive coordinates already admit a complete algorithm.
+The conclusion survives the corrected full resource ledger.
 
-The paper does **not** claim a new Graph Transformer, sheaf network, neural algorithmic reasoner, reusable-module learner, latent-reasoning architecture, variable-binding mechanism, causal world model, generic abstention method, or universal scientific-reasoning system.
+## Authoritative top-tier evidence
 
-## Result authority
+### Causal diagnosis
 
-No numerical result may enter the manuscript from `INDEPENDENT_REPLAY_EXPECTATIONS_V1.json`. That file is a pre-artifact verification expectation only.
+`top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md` binds the frozen cross-domain study.
 
-Numbers may be populated only from official exact-head artifacts that are:
+- diagnostic accuracy: **4/5 = 0.8**;
+- generic compute-escalation accuracy: **1/5 = 0.2**;
+- exact executable domains: **3/3** correct diagnosis;
+- real digits cells: **1/2**, with the adverse cell retained as `CANNOT_CHECK`;
+- false compute escalation: **0** diagnostic vs **4** generic;
+- registered-cost regret: **0**;
+- independent implementation: GREEN.
 
-- merged to `main`;
-- reproduced/archived in the repository;
-- compared against the pre-official independent verifier;
-- covered by the final P9 verification receipt under #283.
+### Corrected full I/A/C/M/R accounting
 
-Until then manuscript result macros remain `PENDING_OFFICIAL_RECEIPT`.
+`top_tier/P9_UNIFIED_RESOURCE_LEDGER_RESULT_RECEIPT_V2.md` repairs audited under-counts in the earlier ledger:
 
-## Required final evidence
+- scaler fitted state is charged to `M_state`;
+- exact-domain base readout touches are charged to `C_infer`;
+- the B-C accessibility serialization is charged to `A_transform`;
+- decisions are re-derived rather than hard-coded.
 
-- merged M1 terminal (#486);
-- merged A5 explicit-inference result (#478, already bounded-verified/closed);
-- merged A2/A4 explicit-inference result (#475/#477);
-- merged D1 whole-domain method-transfer result (#479/#425);
-- final A1/A3/A7/A8/A9/A10 scope dispositions;
-- final bounded protocol #426;
-- execution/model terminal #428;
-- independent verification receipt under #283;
-- current novelty disposition under #287;
-- donor-saturation terminal #469;
-- reproduction package + audited TMLR PDF.
+The eight-coordinate vector is
 
-## Nonclaims
+`R9 = (I_sem, A_dim, A_transform, M_state, C_fit, C_infer, C_explicit, R_registered)`.
 
-The final manuscript is prohibited from implying experimental support for:
+Authoritative verdict: **`SURVIVES_FULL_ACCOUNTING`**.
 
-- natural-science paper understanding;
-- causal-mechanism discovery;
-- variable-role binding;
-- LLM reasoning improvement;
-- formal-mathematics improvement;
-- method invention;
-- general neural superiority;
-- universal optimality of typed epistemic structure.
+The original causal result remains 4/5 vs 1/5, the protected `CANNOT_CHECK` remains, false compute escalation remains 0 vs 4, there are zero vector-dominance contradictions, the causal executor reruns identically, and a second checker is GREEN.
 
-If the standalone-paper gate fails, this directory becomes a technical benchmark note rather than being inflated into a manuscript.
+## Hostile representation result — required negative
+
+The earlier D1 same-information serialization margin is **not** a robust headline.
+
+`evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md` prospectively attacks the representation result.
+
+- a representation-length attack does **not** explain the typed-relational result;
+- a semantics-preserving global symbol reminting **does** break the same-information serialized comparator, changing its protected accuracy from `0.75` to `0.50` and changing 32/128 answers;
+- therefore the historical `typed relational minus same-information serialized = +0.50` margin is format-prior sensitive and must not be used as a top-tier headline;
+- the smaller typed-relational vs untyped-pair separation remains structurally invariant under that orbit;
+- an order-reminting attack has an empty denominator under the frozen construction and is `CANNOT_CHECK`, not a pass.
+
+This adverse result strengthens the current P9 identity: the paper should diagnose **which resource/representation coordinate matters**, not claim that one serialization is intrinsically superior.
+
+## Strongest paper-level claim
+
+> On the registered cross-domain tasks, failure location is not reducible to generic compute shortage. A frozen causal diagnostic that distinguishes semantic information, accessibility/representation and computation identifies the registered intervention class on 4/5 task families versus 1/5 for generic compute escalation, produces zero false compute escalations versus four, and retains one threshold-transport failure as `CANNOT_CHECK`. These dispositions survive a corrected eight-coordinate resource ledger with no scalarization across resource types. Historical representation margins that fail a semantics-preserving format-prior attack are explicitly retired rather than used as evidence for the causal claim.
+
+## Historical bounded structural-learning paper
+
+The earlier D0/M0/A*/D1 package remains a valid bounded benchmark/methodology record and retains its historical `JOURNAL_READINESS.md`. It is not deleted or rewritten after the later hostile audit.
+
+The current top-tier paper should use that package as the **mechanism-development history**, not as authority for the fragile same-information serialized margin.
+
+## Current manuscript integration
+
+The canonical TMLR source is `manuscript/main.tex`; `build_tmlr_pdf.sh` runs the fail-closed reproduction/audit chain before rendering.
+
+Manuscript-facing integration requirements are in:
+
+`top_tier/P9_TOP_TIER_MANUSCRIPT_INTEGRATION_2026-08-23.md`.
+
+The final manuscript must jointly report:
+
+- real accessibility positive cells;
+- Wine null;
+- protected Qwen scaling negative;
+- causal diagnostic 4/5 vs 1/5;
+- protected `CANNOT_CHECK` threshold-transport cell;
+- corrected full-accounting survival;
+- hostile format-prior negative that retires the old serialized-margin headline.
+
+## Explicit nonclaims
+
+No universal causal diagnosis, no universal neural-model failure, no claim that larger models/compute are generally useless, no scalar exchange rate across the resource vector, no robust `+0.50` same-information serialized superiority claim, no natural-science/LLM/agent generality unless separately executed, and no `TOP_TIER_SUBMISSION_READY` self-promotion from repository prose alone.
+
+Direct open-weight LLM T3/T4 structure×compute claims remain separate: where the required outcome grid was never acquired, the correct state is `CANNOT_CHECK`, not an inferred positive or negative.
+
+## Remaining top-tier work
+
+- rewrite the TMLR abstract/results around causal diagnosis + full accounting;
+- remove or explicitly retire format-fragile serialized-margin language from manuscript tables/prose;
+- refresh nearest 2026 work on test-time compute, representation/accessibility diagnosis and resource-rational inference immediately before submission;
+- add procedural/open-weight breadth only if the headline explicitly claims it;
+- regenerate the full evidence summary/tables/PDF from the current receipts;
+- rerun clean-environment reproduction, anonymity and clipping/content-binding gates;
+- bind exact final manuscript, evidence, environment and PDF bytes.
