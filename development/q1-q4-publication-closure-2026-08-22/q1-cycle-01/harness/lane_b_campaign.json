@@ -16,11 +16,16 @@
     "portable_resource_closure_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
     "github_resource_closure_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
     "dedicated_environment_lock_commit": "d805be5a5045908d283e0e722fc2857861e04465",
+    "network_trace_failure_record_commit": "89b755eec5a25d23b50d3bb792676983c34d910d",
     "require_clean_worktree_at_start": true,
     "require_contract_ancestor_of_runner": true,
     "require_result_descendant_of_runner": true
   },
   "contracts": {
+    "network_trace_failure_record_protocol": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/Q1_C1_NETWORK_TRACE_FAILURE_RECORD_PROTOCOL.md",
+      "sha256": "33d5a74cc700e6a44828e3a22dacf0816db8a96bd967d85c340678c5b34c3242"
+    },
     "mutation_registry": {
       "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_mutations.json",
       "sha256": "4bc04c589ff2bf5f2f8395e97e35763e365c427b3d7bb41bd6eb9d909a4ed618"
@@ -39,7 +44,7 @@
     },
     "result_schema": {
       "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_result.schema.json",
-      "sha256": "7bc8b986f7056e7329d72e171099cea4c7c6b4fd38c4c86e17b5a49acacad59e"
+      "sha256": "794046242d8f4009b2fdf6bceeb85e6c0765ceff8cbb5e3367d671c63f7f126d"
     },
     "small_domains": {
       "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/q1_c1_small_domains.json",
@@ -72,7 +77,7 @@
   "protocol_version": "1.0",
   "runner": {
     "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/lane_b_independent_challenge.py",
-    "sha256": "6bf98b0f68c95864bdc1d0521fa1b0a9452ef0a5f5b5b685cfdfa6de0b05eb68"
+    "sha256": "ec35b1d41a9b3d21ee2ec9fe7cad46625ac3bc4f13638fd4aa327a96ad7df719"
   },
   "separation": {
     "author_code_imports": [],

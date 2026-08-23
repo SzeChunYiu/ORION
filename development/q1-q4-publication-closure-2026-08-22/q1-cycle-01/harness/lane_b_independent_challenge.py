@@ -29,6 +29,7 @@ from typing import Any, Iterable
 
 
 CANDIDATE_REF = "158fcb08b612ffc82f5a5d2bed4917409084ded8"
+NETWORK_TRACE_FAILURE_RECORD_COMMIT = "89b755eec5a25d23b50d3bb792676983c34d910d"
 ACCEPTING_STATES = (135, 263)
 INF = 10**12
 LETTERS = range(4)  # I, X, Y, Z encoded as 0,1,2,3.
@@ -1056,6 +1057,14 @@ def parent_main(args: argparse.Namespace) -> int:
         cwd=repo_root, check=False,
     ).returncode != 0:
         raise RuntimeError("protocol is not an ancestor of runner parent")
+    if subprocess.run(
+        [
+            "git", "merge-base", "--is-ancestor",
+            NETWORK_TRACE_FAILURE_RECORD_COMMIT, args.artifact_parent,
+        ],
+        cwd=repo_root, check=False,
+    ).returncode != 0:
+        raise RuntimeError("network-trace failure-record protocol is not an ancestor of runner parent")
     if subprocess.run(
         ["git", "rev-parse", f"{args.artifact_commit}^"], cwd=repo_root, text=True,
         stdout=subprocess.PIPE, check=True,

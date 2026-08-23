@@ -149,16 +149,22 @@ jobs:
           test "$(jq '.semantic_diff | length' "$RESULT_ROOT/coordinator/coordinator_result.json")" = 0
 
       - name: Freeze coordinator terminal
+        if: always()
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add "$RESULT_ROOT/coordinator"
-          git diff --cached --check
-          git commit -m "evidence(q1): close portable dual-lane resources"
-          git push origin "HEAD:${{ needs.prepare-and-freeze-lanes.outputs.evidence_branch }}"
+          if test -d "$RESULT_ROOT/coordinator"; then
+            git add "$RESULT_ROOT/coordinator"
+            git diff --cached --check
+            if ! git diff --cached --quiet; then
+              git commit -m "evidence(q1): freeze portable coordinator terminal"
+              git push origin "HEAD:${{ needs.prepare-and-freeze-lanes.outputs.evidence_branch }}"
+            fi
+          fi
 
       - name: Upload complete Cycle 02 evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: q1-c1-cycle-02-${{ github.run_id }}-${{ github.run_attempt }}
@@ -167,16 +173,21 @@ jobs:
           retention-days: 90
 
       - name: Publish non-authoritative run summary
+        if: always()
         run: |
           {
             echo '## Q1-C1 Cycle 02 resource closure'
             echo
             echo "Evidence branch: \`${{ needs.prepare-and-freeze-lanes.outputs.evidence_branch }}\`"
             echo
-            echo '```json'
-            jq '{terminal, obligations: [.obligations[] | {id,status}], payload: {finite_adapter_comparison, r6s_replay_match, dependency_gate, syscall_trace_gates, resource_closure}}' \
-              "$RESULT_ROOT/coordinator/coordinator_result.json"
-            echo '```'
+            if test -f "$RESULT_ROOT/coordinator/coordinator_result.json"; then
+              echo '```json'
+              jq '{terminal, obligations: [.obligations[] | {id,status}], payload: {finite_adapter_comparison, r6s_replay_match, dependency_gate, syscall_trace_gates, resource_closure}}' \
+                "$RESULT_ROOT/coordinator/coordinator_result.json"
+              echo '```'
+            else
+              echo 'Coordinator terminal was not produced; inspect the preserved lane tree and job logs.'
+            fi
             echo
             echo 'This workflow grants no novelty, manuscript-quality, submission, or publication authority.'
           } >> "$GITHUB_STEP_SUMMARY"

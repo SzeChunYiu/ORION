@@ -820,7 +820,8 @@
           ]
         },
         "network_syscall_count": {
-          "const": 0
+          "minimum": 0,
+          "type": "integer"
         },
         "sandboxed": {
           "type": "boolean"
