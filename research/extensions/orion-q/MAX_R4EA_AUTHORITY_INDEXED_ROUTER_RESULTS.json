@@ -1,0 +1,65 @@
+{
+  "schema": "ORIONQ.MAXR4EA.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#908",
+  "pr": "SzeChunYiu/ORION#910",
+  "execution_head": "1b7f75816881ca8fa5ff26be2742532bcab969d7",
+  "workflow_run_id": 32576807499,
+  "workflow_artifact_id": 9476773268,
+  "workflow_artifact_sha256": "33471b3a07ab3909c0fb56ed456c4124ea7160f7c7015272a791670d0ea78509",
+  "terminal": "MAX_R4EA_AUTHORITY_INDEXED_ROUTER_PARETO_DOMINATES_STATIC_ABSTRACTION_POLICIES_ON_REAL_RECEIPTS",
+  "source_result_digest": "2a6e2250ed9e1e0a04947fd8d23cde2493b7e08b558935d2a08a1935ebbff56e",
+  "protocol_sha256": "5760a781464bcda06baa8baa90f73cb9711e7b374262883104770fd2013da5e3",
+  "receipt_bindings_all_green": true,
+  "baseline_summaries": {
+    "B0_conservative_richest": {
+      "correct_route_count": 3,
+      "false_authority_count": 0,
+      "overcompression_count": 0,
+      "avoidable_rich_state_count": 7,
+      "compact_authorized_opportunities": 7,
+      "compact_authorized_captured": 0,
+      "correct_escalation_abstention_count": 3,
+      "tare_selected_representation_sizes": [null, null, null, null]
+    },
+    "B1_aggressive_smallest": {
+      "correct_route_count": 4,
+      "false_authority_count": 5,
+      "overcompression_count": 6,
+      "avoidable_rich_state_count": 0,
+      "compact_authorized_opportunities": 7,
+      "compact_authorized_captured": 4,
+      "correct_escalation_abstention_count": 0,
+      "tare_selected_representation_sizes": [45, 45, 45, 45]
+    },
+    "B2_authority_indexed": {
+      "correct_route_count": 10,
+      "false_authority_count": 0,
+      "overcompression_count": 0,
+      "avoidable_rich_state_count": 0,
+      "compact_authorized_opportunities": 7,
+      "compact_authorized_captured": 7,
+      "correct_escalation_abstention_count": 3,
+      "tare_selected_representation_sizes": [45, 54, 715, 715]
+    }
+  },
+  "hostile_controls": {
+    "stabprep_mixed_cell_escalation": "EXACT_RICH_STATE",
+    "total_resource_escalation": "IMPLEMENTATION_AWARE_RESOURCE",
+    "full_circuit_or_novelty": "CANNOT_AUTHORIZE",
+    "self_consistent_semantic_tamper_rejected": true
+  },
+  "source_equivalence_bindings": {
+    "sixlcu_one_literal_matches_exact_on_frozen_domain": true,
+    "r6i_support1_preserves_unit_objective_all_n": true,
+    "tare_orbit_histogram_contains_bulk_query_information": true
+  },
+  "generic_orion": {"decision": "ACCEPT_AUTHORITY_INDEXED_ROUTER_CALIBRATION", "all_checks": true},
+  "native_orion_q": {"decision": "ACCEPT_AUTHORITY_INDEXED_ROUTER_CALIBRATION", "all_checks": true, "responsibility": "QUERY_SCOPED_REPRESENTATION_AND_RESOURCE_ROUTING_ONLY"},
+  "both_accept": true,
+  "deterministic_replay_byte_identical": true,
+  "AUTHORITY_INDEXED_ROUTER_REAL_RECEIPT_CALIBRATION": true,
+  "HELD_OUT_TRANSFER_AUTHORITY": false,
+  "AUTONOMOUS_SKILL_SELECTION_AUTHORITY": false,
+  "GENERAL_QUANTUM_SCIENCE_IMPROVEMENT": false,
+  "NOVELTY_AUTHORITY": false
+}

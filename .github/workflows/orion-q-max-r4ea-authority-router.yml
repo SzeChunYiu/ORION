@@ -1,0 +1,107 @@
+name: orion-q-max-r4ea-authority-router
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R4EA_*'
+      - 'development/orion-q-max-r0/max_r4ea_*'
+      - 'development/orion-q-max-r0/run_max_r4ea_dual_harness.py'
+      - 'research/extensions/orion-q/max_r4ea_*'
+      - '.github/workflows/orion-q-max-r4ea-authority-router.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-q-max-r4ea-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  authority-router:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-q-max-r0/run_max_r4ea_dual_harness.py | tee artifacts/orion-q-max-r4ea-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-q/max_r4ea_authority_indexed_router.py --output artifacts/orion-q-max-r4ea-replay.json > artifacts/orion-q-max-r4ea-replay.log
+          cmp artifacts/orion-q-max-r4ea-authority-router.json artifacts/orion-q-max-r4ea-replay.json
+      - name: Semantic tamper must be rejected
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('artifacts/orion-q-max-r4ea-authority-router.json')
+          d=json.loads(p.read_text())
+          row=next(x for x in d['baselines']['B2']['rows'] if x['case_id']=='C1')
+          row['selected']='ORBIT715'
+          row['correct']=False
+          row['avoidable_rich_state']=True
+          # Recompute a self-consistent digest so rejection cannot rely on custody alone.
+          u={k:v for k,v in d.items() if k!='result_digest'}
+          raw=json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False)
+          d['result_digest']=hashlib.sha256(raw.encode()).hexdigest()
+          Path('artifacts/orion-q-max-r4ea-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-q-max-r0/max_r4ea_generic_verify.py --input artifacts/orion-q-max-r4ea-tampered.json --output artifacts/orion-q-max-r4ea-tampered-verify.json > artifacts/orion-q-max-r4ea-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-q-max-r4ea-tampered-verify.json').read_text())
+          assert d['decision']=='REJECT'
+          assert d['all_checks'] is False
+          PY
+      - name: Enforce calibration authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-q-max-r4ea-authority-router.json').read_text())
+          g=json.loads(Path('artifacts/orion-q-max-r4ea-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-q-max-r4ea-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-q-max-r4ea-dual-harness.json').read_text())
+          pos='MAX_R4EA_AUTHORITY_INDEXED_ROUTER_PARETO_DOMINATES_STATIC_ABSTRACTION_POLICIES_ON_REAL_RECEIPTS'
+          assert a['terminal']==pos and d['terminal']==pos and d['both_accept'] is True
+          assert all(a['binding_checks'].values()) and all(a['gates'].values())
+          b0,b1,b2=(a['baselines'][x] for x in ('B0','B1','B2'))
+          assert b0['false_authority_count']==0 and b0['overcompression_count']==0 and b0['avoidable_rich_state_count']>0
+          assert b1['false_authority_count']>0 or b1['overcompression_count']>0
+          assert b2['correct_route_count']==10
+          assert b2['false_authority_count']==0 and b2['overcompression_count']==0 and b2['avoidable_rich_state_count']==0
+          assert b2['compact_authorized_captured']==b2['compact_authorized_opportunities'] and b2['compact_authorized_opportunities']>0
+          assert b2['tare_selected_representation_sizes']==[45,54,715,715]
+          rows={x['case_id']:x for x in b2['rows']}
+          assert rows['C6']['selected']=='EXACT_RICH_STATE' and rows['C6']['correct'] is True
+          assert rows['C9']['selected']=='IMPLEMENTATION_AWARE_RESOURCE' and rows['C9']['correct'] is True
+          assert rows['C10']['selected']=='CANNOT_AUTHORIZE' and rows['C10']['correct'] is True
+          assert g['decision']=='ACCEPT_AUTHORITY_INDEXED_ROUTER_CALIBRATION' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_AUTHORITY_INDEXED_ROUTER_CALIBRATION' and n['all_checks'] is True
+          assert n['responsibility']=='QUERY_SCOPED_REPRESENTATION_AND_RESOURCE_ROUTING_ONLY'
+          for x in (a,g,n,d):
+            assert x['HELD_OUT_TRANSFER_AUTHORITY'] is False
+            assert x['AUTONOMOUS_SKILL_SELECTION_AUTHORITY'] is False
+            assert x['GENERAL_QUANTUM_SCIENCE_IMPROVEMENT'] is False
+            assert x['NOVELTY_AUTHORITY'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r4ea-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-q-max-r4ea-*.json
+            artifacts/orion-q-max-r4ea-*.log
+            .orion-q-max-r4ea-generic/.orion-harness/**
+            .orion-q-max-r4ea-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn
