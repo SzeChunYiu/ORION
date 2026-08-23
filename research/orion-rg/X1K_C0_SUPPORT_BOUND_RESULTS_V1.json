@@ -17,7 +17,8 @@
     "support_ge_9_saturated": "otherwise a one-point extension gives a length-32 short-free sequence, which Property C forces to have support 8",
     "no_multiplicity_3_in_saturated_case": "a <=4 representation of -x for a multiplicity-3 point must use all three copies of x, leaving at most one term y with y=x, impossible",
     "multiplicity_4_projective_isolation": "a multiplicity-4 point cannot share its projective line with any other support point",
-    "four_mult4_span_rank3": "four multiplicity-4 support points cannot lie in rank <=2 because their 16 terms exceed eta(C_5^2)=13"
+    "four_mult4_span_rank3": "four multiplicity-4 support points cannot lie in rank <=2 because their 16 terms exceed eta(C_5^2)=13",
+    "support15_mixed_basis": "for pattern 1 2^13 4, the multiplicity-4 point plus the 13 multiplicity-2 points must span rank 3; otherwise their 30 terms lie in rank <=2 and force a <=5 zero sum. Hence normalize multiplicities (4,2,2) on e1,e2,e3."
   },
   "support_9": {
     "patterns": ["1^1 2^1 4^7"],
@@ -39,7 +40,10 @@
     {"support":13,"a1":1,"b2":9,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
     {"support":14,"a1":3,"b2":8,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
     {"support":14,"a1":5,"b2":5,"c4":4,"nodes":294085,"forced_final_leaves":0,"solutions":0},
-    {"support":14,"a1":7,"b2":2,"c4":5,"nodes":2151495,"forced_final_leaves":0,"solutions":0}
+    {"support":14,"a1":7,"b2":2,"c4":5,"nodes":2151495,"forced_final_leaves":0,"solutions":0},
+    {"support":15,"a1":5,"b2":7,"c4":3,"high4_rank":3,"nodes":80203,"forced_final_leaves":0,"solutions":0},
+    {"support":15,"a1":7,"b2":4,"c4":4,"nodes":299329,"forced_final_leaves":0,"solutions":0},
+    {"support":15,"a1":9,"b2":1,"c4":5,"nodes":5356287,"forced_final_leaves":0,"solutions":0}
   ],
   "support_13_c4_rank2_branch": {
     "pattern": "1^1 2^9 4^3",
@@ -53,6 +57,11 @@
     {"pattern":"1^1 2^11 4^2","normalization":"two multiplicity-4 points -> e1,e2","u128_nodes":1967110,"byte_replay_nodes":1967110,"forced_final_leaves":0,"solutions":0},
     {"pattern":"1^3 2^8 4^3","high4_rank":2,"normalization":"two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*","u128_nodes":1005159,"byte_replay_nodes":1005159,"forced_final_leaves":0,"solutions":0}
   ],
+  "support_15_lowrank_and_mixed_branches": [
+    {"pattern":"1^3 2^10 4^2","normalization":"two multiplicity-4 points -> e1,e2","u128_nodes":1967110,"byte_replay_nodes":1967110,"forced_final_leaves":0,"solutions":0},
+    {"pattern":"1^5 2^7 4^3","high4_rank":2,"normalization":"two multiplicity-4 points -> e1,e2; third runs over all nonzero a e1+b e2 with a,b in F_5^*","u128_nodes":1005159,"byte_replay_nodes":1005159,"forced_final_leaves":0,"solutions":0},
+    {"pattern":"1^1 2^13 4^1","normalization":"mixed-multiplicity basis e1^4 e2^2 e3^2","u128_nodes":80202,"byte_replay_nodes":80202,"forced_final_leaves":0,"solutions":0}
+  ],
   "independent_replay": {
     "rank3_u128": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
     "rank3_bytes": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
@@ -60,13 +69,15 @@
     "rank2_support13_bytes": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
     "support14_lowrank_u128": "research/orion-rg/x1k_c0_support14_lowrank_u128.c",
     "support14_lowrank_bytes": "research/orion-rg/x1k_c0_support14_lowrank_bytes.c",
+    "support15_mixedbasis_u128": "research/orion-rg/x1k_c0_support15_mixedbasis_u128.c",
+    "support15_mixedbasis_bytes": "research/orion-rg/x1k_c0_support15_mixedbasis_bytes.c",
     "agreement": "exact on every row, including node/leaf counts"
   },
-  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 15.",
+  "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 16.",
   "what_this_does_not_prove": [
     "31 in C_0(C_5^3)",
     "D_4(C_5^3)=30",
     "novelty of the support bound"
   ],
-  "next_hard_stratum": "support >=15; preserve saturation and no-multiplicity-3 constraints before any search widening"
+  "next_hard_stratum": "support >=16; preserve saturation and no-multiplicity-3 constraints before any search widening"
 }
