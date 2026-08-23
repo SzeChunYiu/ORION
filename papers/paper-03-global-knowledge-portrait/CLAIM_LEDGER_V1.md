@@ -31,6 +31,7 @@
 | P3.C7 | ORION improves raw-text end-to-end scientific integration relative to model/RAG/schema baselines. | original `P3.cross-domain-atlas.v1` expert-gold model run | **NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK** |
 | P3.C8 | ORION improves downstream scientific answer quality. | frozen downstream task and external result artifact | **NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK** |
 | P3.C9 | The public-reference mapping result is independently reproducible and prospectively replicable. | immutable source registry, portable gold manifests, execution-frozen confirmatory manifest, deterministic evaluator, independent replay | **SATISFIED FOR PUBLIC-REFERENCE ROUTE** — primary gold SHA `35f9e39b...54ed8`; disjoint confirmatory gold SHA `13a76c68...2782b`; execution identities frozen before confirmatory outputs |
+| P3.C10 | In the separate protected zero-error representation-transition programme, ORION-JUMP adds no incremental value over the verified representation-regime revision parent on either disjoint frozen split; Paper III therefore retains correspondence/preservation/obstruction/reopening semantics while making no distinct representation-invention claim. | `research/extensions/orion-jump-recursive-atoms/zero_error_jump/ZERO_ERROR_JUMP_EXPECTED_V2.json`; merged #598 science tree | **MERGED STRONGEST-PARENT EQUIVALENCE / NEGATIVE OWNERSHIP BOUNDARY** — not pooled with P3/P3-X; no general representation-invention authority |
 
 ## Promotion rule
 
@@ -45,7 +46,8 @@ In particular:
 - zero ablation effect on an unsupported/weakly supported coordinate is not evidence that the coordinate is unnecessary;
 - an LLM/proxy/simulated label cannot be cited as gold;
 - P3.C7/P3.C8 remain visible as `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`; their absence from the scoped submission claim does not turn missing evidence into PASS;
-- any future manuscript edit that promotes C7/C8 or universal coordinate necessity reopens the corresponding expert/raw-text/targeted-atlas evidence gate.
+- the zero-error Jump strongest-parent tie cannot be relabelled as a P3 positive, a universal impossibility of representation invention, or authority to adopt a new representation;
+- any future manuscript edit that promotes C7/C8, universal coordinate necessity, or a distinct representation-invention mechanism reopens the corresponding evidence gate.
 
 ## Frozen public-reference evidence
 

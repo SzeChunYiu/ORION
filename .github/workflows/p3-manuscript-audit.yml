@@ -67,17 +67,27 @@ jobs:
 
           paper = Path('papers/paper-03-global-knowledge-portrait')
           root = paper / 'manuscript'
+          main_text = (root / 'main.tex').read_text(encoding='utf-8')
           tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
           text = '\n'.join(path.read_text(encoding='utf-8') for path in tex_files)
-          bib = (root / 'bibliography.bib').read_text(encoding='utf-8')
-          bib_keys = set(re.findall(r'@\w+\s*\{\s*([^,\s]+)', bib))
+
+          bib_files = []
+          for group in re.findall(r'\\bibliography\{([^}]+)\}', main_text):
+              for stem in group.split(','):
+                  stem = stem.strip()
+                  if stem:
+                      bib_files.append(root / f'{stem}.bib')
+          missing_bib_files = [str(path.relative_to(root)) for path in bib_files if not path.is_file()]
+          bib_text = '\n'.join(path.read_text(encoding='utf-8') for path in bib_files if path.is_file())
+          bib_keys = set(re.findall(r'@\w+\s*\{\s*([^,\s]+)', bib_text))
+
           cite_keys = set()
           for group in re.findall(r'\\cite\w*\{([^}]+)\}', text):
               cite_keys.update(key.strip() for key in group.split(',') if key.strip())
           missing_cites = sorted(cite_keys - bib_keys)
 
           missing_inputs = []
-          for target in re.findall(r'\\input\{([^}]+)\}', (root / 'main.tex').read_text(encoding='utf-8')):
+          for target in re.findall(r'\\input\{([^}]+)\}', main_text):
               path = root / target
               if not path.suffix:
                   path = path.with_suffix('.tex')
@@ -165,10 +175,12 @@ jobs:
               claim_errors.append('stale_or_invalid_reference_keys:' + ','.join(stale_keys))
 
           report = {
-              'schema_version': 'orion.p3.manuscript-static-audit.v2',
+              'schema_version': 'orion.p3.manuscript-static-audit.v3',
               'tex_files_scanned': len(tex_files),
+              'bibliography_files': [str(path.relative_to(root)) for path in bib_files],
               'bibliography_entries': len(bib_keys),
               'citation_keys_used': len(cite_keys),
+              'missing_bibliography_files': missing_bib_files,
               'missing_citation_keys': missing_cites,
               'missing_input_files': missing_inputs,
               'duplicate_labels': duplicate_labels,
@@ -178,7 +190,7 @@ jobs:
               json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8'
           )
           print('P3_MANUSCRIPT_STATIC_AUDIT=' + json.dumps(report, sort_keys=True))
-          if missing_cites or missing_inputs or duplicate_labels or claim_errors:
+          if missing_bib_files or missing_cites or missing_inputs or duplicate_labels or claim_errors:
               raise SystemExit(1)
           PY
 

@@ -2,6 +2,7 @@
   "schema_version": "orion.p5.claim-ledger.v1",
   "paper_id": "P5",
   "issue": 102,
+  "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. Merged successor failure/atom/Jump results are bounded negative/subsumption evidence only. H1–H4 stay CANNOT_CHECK.",
   "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. H1–H4 stay CANNOT_CHECK. Claim sentences were rebound on 2026-08-22 to the wording of the house-style manuscript rewrite: no number, support type, status or supporting artifact moved, only the prose each claim quotes.",
   "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
   "empirical_authority": "CANNOT_CHECK",
@@ -59,6 +60,14 @@
       "artifact": "evidence/glm-5.2-attribution/results.jsonl"
     },
     {
+      "claim_id": "P5-C04",
+      "region": "abstract",
+      "sentence": "Merged successor studies narrow failure-memory, broad atom and Jump hypotheses through standard-parent sufficiency, decomposition and strongest-parent equivalence; they do not establish governed self-improvement.",
+      "support_type": "BOUNDED_NEGATIVE_AND_SUBSUMPTION",
+      "status": "SUPPORTED",
+      "artifact": "papers/ADDON_INTEGRATION_MATRIX_2026-08-19.md"
+    },
+    {
       "claim_id": "P5-R01",
       "region": "results",
       "sentence": "Accuracy is 21/24 = 0.875, with the Wilson 95% interval given in Table P5-3.",
@@ -97,6 +106,22 @@
       "support_type": "HONEST_BOUNDARY",
       "status": "SUPPORTED",
       "artifact": "manuscript/sections/10-limitations.tex"
+    },
+    {
+      "claim_id": "P5-X02",
+      "region": "claim_boundary",
+      "sentence": "Scoped failure knowledge is useful but standard parents are sufficient for the tested incremental effect; broad tension/imagination/concept labels decompose; ORION-JUMP ties the verified representation-regime parent on both frozen splits, so Self-ORION records parent subsumption rather than a new generic operator.",
+      "support_type": "MERGED_BOUNDED_NEGATIVE_SUBSUMPTION",
+      "status": "SUPPORTED",
+      "artifact": "development/jump-programme-closure-v1/README.md"
+    },
+    {
+      "claim_id": "P5-X03",
+      "region": "claim_boundary",
+      "sentence": "The #454 receipt programme is frozen but MDA remains CANNOT_CHECK; WorldEvolver and Self-Revising are mechanism-comparator-bound and are not official reproductions.",
+      "support_type": "STRUCTURAL_BINDING_BOUNDARY",
+      "status": "SUPPORTED",
+      "artifact": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json"
     }
   ]
 }
