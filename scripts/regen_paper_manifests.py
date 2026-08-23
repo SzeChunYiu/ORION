@@ -50,22 +50,37 @@ def run_git(repo: Path, *args: str) -> str:
     ).stdout
 
 
-def parse_tolerant(raw: str) -> tuple[dict, dict] | None:
-    """Return (first_object, latest_quartet) from a possibly seam-corrupted manifest.
+def parse_tolerant(raw: str) -> tuple[dict, dict, list[str]] | None:
+    """Return (first_object, latest_quartet, recovered_paths) from a seam-corrupted manifest.
 
     The corruption pattern is one complete-minus-closing-brace object followed
     by a fragment repeating the subject_commit* keys with newer values. We keep
     the first object as the curated metadata source and read the quartet state
-    from the LAST occurrence of each key.
+    from the LAST occurrence of each key. A second corruption mode is a
+    duplicated ``"path"`` key inside one bound_files entry (the seam rewrite
+    emitted the replacement path without deleting the original): json.loads
+    silently keeps only the last value, so we record every collided path, in
+    order of appearance, as ``recovered_paths`` for the caller to re-bind.
     """
+    recovered: list[str] = []
+
+    def _pair_hook(pairs: list[tuple[str, object]]) -> dict:
+        paths = [v for k, v in pairs if k == "path"]
+        if len(paths) > 1:
+            recovered.extend(str(p) for p in paths)
+        obj: dict = {}
+        for k, v in pairs:
+            obj[k] = v
+        return obj
+
     lines = raw.splitlines()
     seams = [i for i, ln in enumerate(lines) if SUBJECT_RE.match(ln)]
     try:
         if len(seams) <= 1:
-            first = json.loads(raw)
+            first = json.loads(raw, object_pairs_hook=_pair_hook)
         else:
             head = "\n".join(lines[: seams[1]]).rstrip().rstrip(",")
-            first = json.loads(head + "\n}")
+            first = json.loads(head + "\n}", object_pairs_hook=_pair_hook)
     except json.JSONDecodeError:
         return None
     latest: dict = {}
@@ -78,7 +93,7 @@ def parse_tolerant(raw: str) -> tuple[dict, dict] | None:
                     latest[key] = json.loads(m.group(1))
                 except json.JSONDecodeError:
                     pass
-    return first, latest
+    return first, latest, recovered
 
 
 def paper_dirs(repo: Path, only: set[str] | None) -> list[Path]:
@@ -196,13 +211,17 @@ def main() -> int:
                 print(f"{name}: FAILED to parse existing manifest; skipped")
                 rc = 1
                 continue
-            first, latest = parsed
+            first, latest, recovered = parsed
             meta = {
                 k: v
                 for k, v in first.items()
                 if k != "bound_files" and k not in QUARTET
             }
             bound_paths = [b["path"] for b in first["bound_files"]]
+            for p in recovered:
+                if p not in bound_paths:
+                    bound_paths.append(p)
+                    print(f"  recovered collided bound path: {p}")
             roles = {b["path"]: b.get("role") for b in first["bound_files"]}
             prev_status = latest.get("subject_commit_status")
             prev_blocker = latest.get("subject_commit_blocker")
