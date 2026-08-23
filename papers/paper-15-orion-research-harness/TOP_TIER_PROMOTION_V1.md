@@ -1,8 +1,8 @@
 # P15 top-tier promotion V1 — Scientific Execution Integrity
 
 **Programme:** #977  
-**Existing state:** protected bounded SEI fault result + claim/evidence ledger + manuscript now exist; no broad real-system superiority authority.  
-**Top-tier state:** `BOUNDED_SEI_OBJECT_EARNED__REAL_SYSTEM_PROMOTION_PENDING`
+**Existing state:** bounded SEI fault result + real provenance interoperability + claim/evidence ledger + manuscript exist; no universal production-system superiority authority.  
+**Top-tier state:** `SEI_PLUS_REAL_PROVENANCE_INTEROP_EARNED__PRODUCTION_PROMOTION_PENDING`
 
 ## Maximum claim to earn
 
@@ -12,7 +12,9 @@ P15 must not compete by claiming provenance, workflow packaging, reproducibility
 
 ## Post-outcome status — 2026-08-23
 
-The publication-specific protocol, 18 hostile cases and independent gold dispositions were frozen before the reference checker. The protected run now returns `P15_SEI_BOUNDED_FAULT_V1_GREEN` with byte-identical replay. Exact evidence is bound in `top_tier/P15_SEI_RESULT_RECEIPT_V1.md` and `CLAIM_EVIDENCE_LEDGER_V1.md`.
+### Bounded hostile SEI result
+
+The publication-specific protocol, 18 hostile cases and independent gold dispositions were frozen before the reference checker. The protected run returns `P15_SEI_BOUNDED_FAULT_V1_GREEN` with byte-identical replay. Exact evidence is bound in `top_tier/P15_SEI_RESULT_RECEIPT_V1.md` and `CLAIM_EVIDENCE_LEDGER_V1.md`.
 
 Protected disposition performance:
 
@@ -23,23 +25,34 @@ Protected disposition performance:
 | replay + lane-agreement product | 0.7222 | 4 | 0 | 2 |
 | SEI reference contract | 1.0000 | 0 | 0 | 0 |
 
-The replay/agreement product also false-rejects one independently verified valid case because the two lanes disagree; the SEI contract keeps independent scientific verification distinct from agreement.
+Executable witnesses cover H15.1–H15.5: host/science separation, exact binding, publication atomicity, coverage/receipt non-implication, and agreement/validity non-implication.
 
-Executable witnesses now cover all five bounded invariants:
+### Real provenance interoperability result
 
-- **H15.1:** every frozen execution-invalid gold case fails the execution-integrity prerequisite;
-- **H15.2:** stale replay, duplicate occurrence, digest forgery and truncation block authoritative execution success;
-- **H15.3:** pre-reap finalization, cleanup omission and retry-accounting corruption block authoritative execution success;
-- **H15.4:** complete attributable/replayable execution can still carry invalid science;
-- **H15.5:** two lanes can agree on invalid science, while lane disagreement can coexist with independently verified valid science.
+The donor-first interoperability protocol was frozen before adapter/scorer implementation. One pre-outcome correction expanded the execution-only round-trip vector because the first draft could not represent already-frozen cleanup/stale/pre-reap/coverage distinctions; that correction is recorded explicitly in the protocol chronology.
 
-**Earned claim:** the strict non-implication between execution integrity/replay/agreement and scientific validity/authorization is executable and non-vacuous over the frozen fault model, and the bounded SEI admission semantics exactly recover the independent gold dispositions. **Not earned:** superiority over real W3C PROV, RO-Crate, workflow engines, attested execution, or production research systems.
+The executed study now returns `P15_PROVENANCE_INTEROP_V1_SUPPORTED` over `22` cases: all 18 hostile SEI cases plus four real ORION workflow receipts. The study uses the production `prov==3.1.0` W3C PROV implementation for PROV-JSON serialization/deserialization and a current RO-Crate 1.3 / Workflow-Run `CreateAction` projection.
 
-The exact result identities are also summarized in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
+Exact outcomes:
+
+- W3C PROV-JSON normalized execution-fact round-trip: `1.0`;
+- RO-Crate 1.3 / Workflow-Run projection round-trip: `1.0`;
+- scientific-field leakage into provenance-only records: `0`;
+- native-vs-imported SEI disagreements: `0`;
+- provenance-only false scientific successes: `0`;
+- real-receipt false rejection: `0`;
+- real-receipt false promotion: `0`;
+- mean serialized size: PROV-JSON `1619.636...` bytes/case, RO-Crate JSON-LD `2014.636...` bytes/case;
+- independent second implementation: GREEN;
+- deterministic replay: GREEN.
+
+The real receipt set includes a bounded positive, an authoritative negative, a two-checker formal result, and a native-Lean execution whose stronger scientific claim is `CANNOT_CHECK`. That last case remains `CANNOT_CHECK` after both provenance round trips, demonstrating on a real execution record that provenance completeness is not scientific admission.
+
+Bound receipt: `top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`. Current donor refresh: `top_tier/P15_INTEROP_LITERATURE_DELTA_2026-08-23.md`.
+
+**Earned claim:** the execution-integrity/scientific-validity separation is executable and remains representation-independent when execution evidence is imported from real provenance standards. P15 can sit above, rather than compete with, W3C PROV and RO-Crate: provenance supplies execution evidence; an independent scientific/authority record supplies scientific admission. **Not earned:** universal superiority over cryptographic attestation/proof-of-execution products, large production workflows, or all host/runtime fault distributions.
 
 ## Core separation ladder
-
-Formalize and test the strict non-implications:
 
 `ATTRIBUTABLE_EXECUTION`
 `!= REPLAYABLE_EXECUTION`
@@ -47,75 +60,60 @@ Formalize and test the strict non-implications:
 `!= SCIENTIFICALLY_VALID_RESULT`
 `!= AUTHORIZED_SCIENTIFIC_CLAIM`
 
-Some implications may hold under additional premises; P15 must state those premises explicitly rather than collapse the levels.
-
-The current protected fault corpus provides explicit witnesses for each non-implication needed by the bounded result. Wider real-system premises remain open.
+The protected fault corpus supplies explicit witnesses for each required bounded non-implication, and the provenance-interoperability study demonstrates that the ladder is not an artifact of a proprietary execution representation.
 
 ## Formal harness invariants
 
 ### H15.1 — Host/science separation
-
-A host, capability, transport, timeout, cleanup, resource-limit or protocol failure cannot produce a success/scientific-result receipt unless the scientific execution success conditions were independently satisfied.
+A host, capability, transport, timeout, cleanup, resource-limit or protocol failure cannot produce a success/scientific-result receipt unless scientific execution success conditions were independently satisfied.
 
 ### H15.2 — Exact invocation/result binding
-
-Every scientific result receipt binds the exact invocation identity, relevant input/content digests, execution occurrence, output completeness/sentinel semantics, exit/reap state and declared environment/capability envelope.
+Every scientific result receipt binds exact invocation identity, relevant input/content digests, execution occurrence, output completeness/sentinel semantics, exit/reap state and declared environment/capability envelope.
 
 ### H15.3 — Publication atomicity
-
-No partial/stale/duplicate/replayed invocation may race into a final authoritative receipt. Finalization must occur only after required execution/reap/cleanup phases, with fail-closed behavior under interruption and retry.
+No partial/stale/duplicate/replayed invocation may race into a final authoritative receipt. Finalization occurs only after required execution/reap/cleanup phases, with fail-closed interruption/retry behavior.
 
 ### H15.4 — Coverage is not validity
-
-Complete execution coverage proves only that the declared execution obligations were attempted/recorded. The protected corpus now contains explicit complete-receipt/invalid-science counterexamples.
+The protected corpus contains complete-receipt/invalid-science counterexamples; the provenance round-trip preserves them exactly.
 
 ### H15.5 — Dual-lane agreement semantics
-
-For the ORION-Q dual harness, define what agreement establishes and does not establish. The protected corpus now includes both agreement-on-wrong-science and disagreement-with-independent-validity witnesses.
+The protected corpus contains agreement-on-wrong-science and disagreement-with-independent-validity witnesses; both survive provenance import unchanged.
 
 ## Donor/interoperability matrix
 
-P15 must explicitly compare/interoperate with applicable classes such as:
+P15 explicitly donor-owns rather than reclaims:
 
 - generic structured logs/event sourcing;
-- W3C PROV / RO-Crate-style workflow provenance;
+- W3C PROV entity/activity/agent provenance and exchange;
+- RO-Crate research-object packaging;
+- Workflow/Process Run Crate execution provenance;
 - workflow engines and reproducible pipeline systems;
 - content-addressed build/execution systems;
 - sandbox/container execution receipts;
-- cryptographic or signed proof-of-execution systems where applicable;
+- cryptographic/signed proof-of-execution systems;
 - deterministic replay systems;
 - multi-run/ensemble agreement systems.
 
-The nearest-work refresh now explicitly donor-owns claim-aware artifact lineage, RO-Crate/Workflow Run RO-Crate and execution-provenance layers. P15's residual is the scientific-evidence admission boundary. Actual import/export interoperability with real donor systems remains unexecuted.
+Actual interoperability is now executed for W3C PROV-JSON and an RO-Crate 1.3/Workflow-Run projection. The residual is the scientific-evidence admission boundary, not provenance interchange.
 
 ## Protected fault-injection benchmark
 
-The bounded 18-case corpus is now executed and content-bound. It covers representative instances of:
+The bounded 18-case corpus is executed and content-bound. It covers process/execution validity failure, stale replay, duplicate occurrence, digest forgery, output truncation, pre-reap publication, cleanup omission, retry-accounting corruption, invalid scientific content with complete receipts, agreement on invalid science, disagreement with independent scientific verification, valid-but-not-authorized and `CANNOT_CHECK` dispositions.
 
-- process/setup/execution validity failure;
-- stale replay and duplicate occurrence;
-- digest forgery;
-- output truncation/incompleteness;
-- pre-reap publication;
-- cleanup omission;
-- retry-accounting corruption;
-- invalid scientific content with complete execution receipts;
-- lane agreement on invalid science;
-- lane disagreement with independent scientific verification;
-- valid-but-not-authorized and `CANNOT_CHECK` dispositions.
-
-The **broad** benchmark target remains larger: real host timing/signal/nonblocking/cap-sentinel faults, real workflow/provenance systems and non-toy scientific workloads.
+The broad production target remains larger: real timing/signal/nonblocking/cap-sentinel faults, cryptographically attested systems, and non-toy workflow scale.
 
 ## Comparator systems
 
-The bounded benchmark contains semantic proxies for:
+Current executed layers now include:
 
 1. plain logs + exit/output;
-2. structured receipt/provenance;
+2. structured receipt/provenance proxy;
 3. replay + lane agreement;
-4. SEI reference admission semantics.
+4. SEI reference admission semantics;
+5. production W3C PROV-JSON import/export;
+6. current RO-Crate 1.3/Workflow-Run structural import/export.
 
-Top-tier broad authority still requires actual real-system comparator integrations where feasible, including signed/attested execution if an accessible donor exists.
+A top-tier production-systems superiority headline would still require an accessible signed/attested execution comparator and broader host/runtime fault campaign. The higher **scientific-admission-above-provenance** claim no longer depends on proprietary provenance.
 
 ## Primary endpoints
 
@@ -134,7 +132,7 @@ Top-tier broad authority still requires actual real-system comparator integratio
 
 ## Independent authority
 
-The current 18-case benchmark has independent frozen gold dispositions committed before the checker. That is enough for the bounded corpus result. It is **not** a substitute for an independently implemented production harness/adjudicator over real donor systems and workloads.
+The fault corpus has independent frozen gold committed before its checker. The provenance-interoperability study has a second implementation that uses a different PROV extraction path and a separate execution-failure formulation; it agrees across all 22 cases. External human scientific adjudication remains necessary only for payload validity that cannot be supplied by deterministic scientific contracts.
 
 ## Strongest hostile attacks
 
@@ -143,10 +141,12 @@ The current 18-case benchmark has independent frozen gold dispositions committed
 - harness rejects too many valid executions and wins by fail-closed conservatism;
 - receipt completeness is confused with evidence quality;
 - dual-lane agreement is sold as correctness;
-- cleanup/resource failures are hidden after a nominal success;
+- cleanup/resource failures are hidden after nominal success;
 - retry/finalization semantics allow stale success replay;
 - publication protocol differs from tested protocol;
 - benchmark is tailored only to known ORION implementation bugs.
+
+The real PROV/RO-Crate result directly addresses the first attack at representation/interoperability level: donor provenance is accepted and round-tripped, yet it does not itself supply scientific validity/authority.
 
 ## Top-tier promotion gate
 
@@ -155,16 +155,20 @@ The current 18-case benchmark has independent frozen gold dispositions committed
 - [x] formal separation ladder and bounded non-implication witnesses;
 - [x] H15.1–H15.5 executable semantics on the protected corpus;
 - [x] independent publication-specific fault-injection protocol/cases/gold freeze before checker execution;
-- [ ] broad adversarial benchmark executed against real donor comparator systems and non-toy workloads;
-- [x] donor/nearest-work matrix that explicitly cedes provenance/replay/claim-lineage ownership;
+- [x] real W3C PROV interoperability with exact execution-fact round-trip;
+- [x] current RO-Crate 1.3 / Workflow-Run structural interoperability;
+- [x] donor/nearest-work matrix explicitly ceding provenance/replay/claim-lineage ownership;
 - [x] zero false scientific-success admission under the 18 protected hostile cases;
-- [ ] acceptable false rejection and measured runtime/storage overhead on real workloads;
+- [x] zero false rejection/promotion on the four protected real workflow receipts;
 - [x] explicit counterexamples showing receipt/coverage/agreement `!=` validity;
-- [x] independent frozen gold adjudication for the bounded corpus;
-- [ ] independent implementation/adjudicator for the intended real-system claim;
-- [x] claim/evidence ledger + submission-facing manuscript object;
-- [ ] paper-identity/issue administrative closure if required by the programme registry;
+- [x] independent frozen gold for the fault corpus and independent second implementation for provenance interoperability;
+- [x] claim/evidence ledger + submission-facing manuscript object + P15 issue (#979);
+- [ ] broader production host/runtime fault campaign beyond the bounded corpus;
+- [ ] cryptographic/signed proof-of-execution or attestation comparator if feasible under a frozen contract;
+- [ ] production-scale false-rejection/runtime/storage characterization beyond the current small-corpus serialization measurements;
 - [ ] immediate pre-submission systems/provenance literature refresh;
-- [ ] exact reproduction and artifact binding for the final real-system submission package.
+- [ ] exact final reproduction/artifact/manuscript binding.
 
-If generic provenance/replay systems already implement the same fail-closed scientific-admission semantics, P15 should become an interoperability/formal-equivalence systems paper rather than overclaim a new execution model.
+P15 is therefore much closer to a top-tier systems review package: the provenance-interoperability objection is no longer hypothetical. The remaining scientific work is production-scale hostile breadth/attestation/cost characterization, not proving that the admission layer can coexist with real provenance standards.
+
+If a signed/attested donor product already implements the same independent scientific-admission semantics, P15 should report the equivalence and interoperability result rather than manufacture a proprietary execution-model novelty claim.
