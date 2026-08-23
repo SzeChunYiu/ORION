@@ -19,6 +19,7 @@ permissions:
 env:
   RESULT_ROOT: development/q1-q4-publication-closure-2026-08-22/q1-cycle-02/results
   COORDINATOR: development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/run_q1_c1_dual_harness.py
+  Q1_LOCK: development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_ci_requirements.lock
 
 jobs:
   prepare-and-freeze-lanes:
@@ -51,7 +52,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq strace
           uv python install 3.12.13
-          uv sync --frozen --all-extras --python 3.12.13
+          uv venv --clear --python 3.12.13
+          uv pip install --require-hashes -r "$Q1_LOCK"
           uv run python - <<'PY'
           import importlib.metadata as metadata
           import platform
@@ -61,11 +63,15 @@ jobs:
               'python': '3.12.13',
               'numpy': '2.3.5',
               'cryptography': '50.0.0',
+              'cffi': '2.1.1',
+              'pycparser': '3.0',
           }
           actual = {
               'python': platform.python_version(),
               'numpy': metadata.version('numpy'),
               'cryptography': metadata.version('cryptography'),
+              'cffi': metadata.version('cffi'),
+              'pycparser': metadata.version('pycparser'),
           }
           if actual != expected:
               raise SystemExit(f'lock-exact environment mismatch: {actual!r}')
@@ -125,7 +131,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq strace
           uv python install 3.12.13
-          uv sync --frozen --all-extras --python 3.12.13
+          uv venv --clear --python 3.12.13
+          uv pip install --require-hashes -r "$Q1_LOCK"
           test "$(git rev-parse HEAD)" = "${{ needs.prepare-and-freeze-lanes.outputs.lane_result_commit }}"
           test -z "$(git status --porcelain)"
 

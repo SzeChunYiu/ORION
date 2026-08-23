@@ -32,6 +32,7 @@ CONTRACT_COMMIT = "44f649debe79642a6d951961bda65fa1e875fa1a"
 RESOURCE_AMENDMENT_COMMIT = "342d7dfa66e691b9cd4d01a2a72985afe7c2526d"
 PORTABLE_RESOURCE_COMMIT = "342d7dfa66e691b9cd4d01a2a72985afe7c2526d"
 GITHUB_RESOURCE_COMMIT = "342d7dfa66e691b9cd4d01a2a72985afe7c2526d"
+DEDICATED_LOCK_COMMIT = "d805be5a5045908d283e0e722fc2857861e04465"
 PYTHON = Path(sys.executable).resolve()
 ENVIRONMENT = {
     "PATH": "/usr/bin:/bin",
@@ -81,7 +82,7 @@ def require_runner_ancestry(repo: Path, artifact_commit: str, artifact_parent: s
         raise RuntimeError("runner artifact parent mismatch")
     for ancestor in (
         PROTOCOL_COMMIT, CONTRACT_COMMIT, RESOURCE_AMENDMENT_COMMIT,
-        PORTABLE_RESOURCE_COMMIT, GITHUB_RESOURCE_COMMIT,
+        PORTABLE_RESOURCE_COMMIT, GITHUB_RESOURCE_COMMIT, DEDICATED_LOCK_COMMIT,
     ):
         if subprocess.run(
             ["git", "merge-base", "--is-ancestor", ancestor, artifact_parent],
