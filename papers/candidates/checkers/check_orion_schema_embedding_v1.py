@@ -6,8 +6,8 @@ Run from repository root with:
     PYTHONPATH=src python papers/candidates/checkers/check_orion_schema_embedding_v1.py
 
 This is a *schema correspondence* check. It does not prove exact P1–P5 decision
-embedding or novelty. A failure means ORION_EXECUTABLE_EMBEDDING_V1.md is stale
-and candidate formal mappings must reopen.
+embedding or novelty. A failure means ORION_EXECUTABLE_EMBEDDING_V1.md plus its
+V4 covariance erratum are stale and candidate formal mappings must reopen.
 """
 
 from __future__ import annotations
@@ -15,6 +15,12 @@ from __future__ import annotations
 from dataclasses import fields
 
 from orion import registry
+from orion.core.research_resolution import (
+    ResearchNegativeResult,
+    ResearchOutcomeKind,
+    ResearchResolutionObligation,
+    ResolutionAction,
+)
 from orion.mechanics.actions import ActionClass, MechanicAction, candidate_action_plan
 from orion.mechanics.audit import MechanicAuditVerdict, audit_recursive
 from orion.mechanics.dependencies import DependencyKind, DependencyRequirement
@@ -33,9 +39,10 @@ def require_fields(cls: type, expected: set[str]) -> None:
 
 
 def check_registry() -> None:
-    assert registry.FRAMEWORK_VERSION == "0.3.9-shadow", (
-        "framework version changed; refresh ORION_EXECUTABLE_EMBEDDING_V1.md"
+    assert registry.FRAMEWORK_VERSION == "0.3.10-shadow", (
+        "framework version changed; refresh ORION_EXECUTABLE_EMBEDDING_V1.md and its covariance erratum"
     )
+    assert registry.PAPER_SYNC_EPOCH == "2026-08-22-paper-framework-harness-covariance-v4"
     assert registry.CORE_STATE_COORDINATES == ("K", "W", "M")
     required_ops = {
         "FRAME.v1",
@@ -56,6 +63,8 @@ def check_registry() -> None:
         "MechanicTraceReceipt.v2",
         "MechanicGuard.v1",
         "AnswerRecord.v1",
+        "ResearchResolutionObligation.v1",
+        "ResearchNegativeResult.v1",
         "ScientificMeaningProjection.v1",
         "IgnoranceProjection.v1",
         "SelfOrionReadinessGate.v2",
@@ -63,6 +72,51 @@ def check_registry() -> None:
         "EvolutionArchive.v1",
     }
     assert required_substrate <= set(registry.MECHANICS_SUBSTRATE_IDS)
+
+
+def check_outcome_lifecycle() -> None:
+    require_fields(
+        ResearchResolutionObligation,
+        {
+            "obligation_id",
+            "subject_id",
+            "unresolved_class",
+            "reason_codes",
+            "required_object_ids",
+            "next_actions",
+            "attempt_ids",
+            "blocker_ids",
+            "bounded_stop_condition",
+            "state",
+            "outcome_kind",
+            "grants_scientific_authority",
+            "grants_novelty_authority",
+            "grants_promotion_authority",
+            "grants_global_task_stop_authority",
+        },
+    )
+    require_fields(
+        ResearchNegativeResult,
+        {
+            "result_id",
+            "subject_id",
+            "negative_kind",
+            "evidence_ids",
+            "reason_codes",
+            "dispositions",
+            "outcome_kind",
+            "grants_scientific_authority",
+            "grants_novelty_authority",
+            "grants_promotion_authority",
+            "grants_global_task_stop_authority",
+        },
+    )
+    assert {item.value for item in ResearchOutcomeKind} == {
+        "POSITIVE",
+        "NEGATIVE",
+        "UNRESOLVED",
+    }
+    assert ResolutionAction.TASK_STOP.value == "TASK_STOP"
 
 
 def check_mechanic_cell() -> None:
@@ -231,9 +285,6 @@ def check_invariants() -> None:
 
 
 def check_recursive_audit() -> None:
-    # Live schema forbids direct self-child/self-dependency in MechanicCell, so
-    # use a two-node mixed graph to ensure the recursive auditor still exposes
-    # cycle diagnostics rather than silently treating graph closure as ready.
     a = MechanicCell(
         "A.v1",
         "A",
@@ -258,14 +309,20 @@ def check_recursive_audit() -> None:
 
 def main() -> int:
     check_registry()
+    check_outcome_lifecycle()
     check_mechanic_cell()
     check_actions()
     check_dependencies()
     check_invariants()
     check_recursive_audit()
+    # Preserve the stable V1 terminal consumed by existing CI/automation.
     print("ORION P6-P8 schema embedding V1: PASS")
+    # Report the stronger covariance status as an additive, machine-readable-enough line.
+    print("ORION P6-P8 V4 covariance extension: PASS")
     print(f"  framework: {registry.FRAMEWORK_VERSION}")
+    print(f"  paper sync epoch: {registry.PAPER_SYNC_EPOCH}")
     print("  core K/W/M + operator/substrate anchors: confirmed")
+    print("  unresolved/negative outcome lifecycle anchors: confirmed")
     print("  MechanicCell formal-field anchors: confirmed")
     print("  action/effect/authority boundary anchors: confirmed")
     print("  dependency/provenance anchors: confirmed")
