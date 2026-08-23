@@ -8,16 +8,16 @@ This status record distinguishes implemented promotion contracts, newly earned b
 
 | Paper | Earned state after protected execution | Higher target | Current top-tier state |
 |---|---|---|---|
-| P6 | bounded ETS separation; three finite transition families; same-facts donor comparator; two structurally independent checkers + byte replay | Epistemic Transition Systems across real transition systems | `BOUNDED_ETS_SEPARATION_EARNED__REAL_SYSTEM_PROMOTION_PENDING` |
-| P7 | bounded T7.1–T7.3 regime-transport counterexample layer; independent checker/replay | Scientific Regime Transport across non-synthetic regime changes | `BOUNDED_REGIME_TRANSPORT_THEORY_EARNED__EXTERNAL_PROMOTION_PENDING` |
-| P8 | bounded T8.1–T8.3 scientific-authorization/coercion/revocation layer; independent checker/replay | scientific authorization beyond action authorization in real decision domains | `BOUNDED_SCIENTIFIC_AUTHORIZATION_THEORY_EARNED__EXTERNAL_PROMOTION_PENDING` |
-| P9 | real-data same-information accessibility positive on breast-cancer/digits; wine null; protected Qwen scaling hypothesis negative; publication package/PDF green | transferable access-class/resource crossover and causal diagnostic law | `EXTERNAL_PROMOTION_PENDING` |
-| P10 | exact formal OCME non-vacuity: 2 obstruction families, 2 hand-declared outside-closure edit types, 6 held-out transfers, 0 false expansions; independent ANF/collinearity verifier agrees | generated/non-hand-coded OCME under donor-complete native verified solving | `BOUNDED_OCME_OBJECT_EARNED__BROAD_EXTERNAL_PROMOTION_PENDING` |
-| P11 | bounded query-rank, relative no-answer-laundering and optionality theory + learned non-oracle compiler positive on wine/digits, breast-cancer negative | computational placement + optionality law with full end-to-end accounting and cross-domain replication | `EXTERNAL_PROMOTION_PENDING` |
-| P12 | bounded resource-location theory + verifier-backed SAT positive (16/16 adaptive vs 4/16 reason-only; zero observed oracle regret) | Resource-Location Metareasoning across open-weight + verifier-backed domains | `EXTERNAL_PROMOTION_PENDING` |
-| P13 | bounded responsibility theory + 17,970-episode real responsibility-shift positive; 48.4375% fewer raw reads at always-raw accuracy | responsibility-scoped sufficiency/certified reuse across verifier-backed + second domain | `EXTERNAL_PROMOTION_PENDING` |
-| P14 | controlled governance conformance + executable blinded external packet/decision/adjudication contract | research-decision superiority under >=60-packet, >=3-domain independent evaluation | `EXTERNAL_EVALUATION_INTERFACE_READY__INDEPENDENT_PROMOTION_CANNOT_CHECK` |
-| P15 | bounded 18-case SEI result; H15.1–H15.5 witnesses; independent frozen gold; manuscript/ledger | real provenance/workflow/attestation interoperability and production fault science | `BOUNDED_SEI_OBJECT_EARNED__REAL_SYSTEM_PROMOTION_PENDING` |
+| P6 | bounded ETS separation plus authoritative heterogeneous real-transition audit: 16 cases / 4 real-domain families, ETS accuracy 1.0 with 0 unsafe / 0 unnecessary / 0 laundering vs donor-only 0.4375 and 9 unsafe decisions; independent checker/replay green | Epistemic Transition Systems across real donor-complete transition systems with repaired general reopening/restoration semantics | `BOUNDED_ETS_SEPARATION_EARNED__REAL_SYSTEM_PROMOTION_PENDING` |
+| P7 | bounded T7.1–T7.3 theory plus three executed non-synthetic change classes (representation RO-Crate, responsibility Wine, objective/obligation breast-cancer), each at witness-aware 1.0 and separating value-only / always-reopen baselines; independent checker/replay | Scientific Regime Transport as a law across arbitrary regime changes | `THREE_CLASS_REAL_REGIME_TRANSPORT_EARNED__EXTERNAL_PROMOTION_PENDING` |
+| P8 | bounded scientific-authorization theory plus authoritative 20-case / 4-domain real evidence-discharge study: accuracy 1.0, 0 false promotions, independent checker/replay green | scientific authorization beyond action authorization in real decision domains with a sound mapping from donor composition into the general authority calculus | `BOUNDED_SCIENTIFIC_AUTHORIZATION_THEORY_EARNED__EXTERNAL_PROMOTION_PENDING` |
+| P9 | real-data same-information accessibility positive on breast-cancer/digits; wine null; protected Qwen scaling negative; cross-domain causal diagnostic 4/5 vs 1/5 generic compute with 0 false compute escalations; full-accounting V2 currently pending | transferable access-class/resource crossover and causal diagnostic law under complete vector accounting | `EXTERNAL_PROMOTION_PENDING` |
+| P10 | exact formal OCME plus generated finite OCME: outside-closure selections, 6/6 held-out transfers, 0 false expansions, two implementations | native verifier-backed obstruction-certified method expansion after matched donor first refusal | `BOUNDED_OCME_OBJECT_EARNED__BROAD_EXTERNAL_PROMOTION_PENDING` |
+| P11 | bounded query-rank / no-answer-laundering / optionality theory; learned compiler positive on wine/digits and negative on breast-cancer; donor MI comparator at parity; exact decoder frontier; authoritative ten-responsibility negative (LINEAR 3/10, RBF/KNN 5/10 vs frozen >=8/10) while resource phase identities hold exactly | responsibility-conditioned computational placement law with real-system validation and complete end-to-end accounting | `EXTERNAL_PROMOTION_PENDING` |
+| P12 | verifier-backed SAT + procedural path evidence plus authoritative unchanged-allocator transfer across SAT/path/knapsack: 9/9 zero-regret, one identical rule, independent checker, complete resource vectors | robust Resource-Location Metareasoning under price changes, task shift and hidden-parameter audits | `EXTERNAL_PROMOTION_PENDING` |
+| P13 | real digits responsibility shift + verifier-backed CNF shift + donor-complete D2 baseline + drift-bounded certificate transport; RCS/COMPOSED exact where donor arms commit unsupported reuse; transport 60/60 with 0 unsound / 0 needless | responsibility-scoped sufficiency and certified reuse across real workflows and richer semantic drift | `EXTERNAL_PROMOTION_PENDING` |
+| P14 | controlled governance conformance + protected 67-packet / 3-domain / 8-family external suite, leakage guard and executable R1/R2/R3 protocol; wiring pilot explicitly NOT_AUTHORITY | research-decision superiority under independent frontier-agent, blinded expert and longitudinal evaluation | `EXTERNAL_EVALUATION_INTERFACE_READY__INDEPENDENT_PROMOTION_CANNOT_CHECK` |
+| P15 | bounded 18-case SEI result plus real PROV/RO-Crate interoperability across 22 cases with 1.0 round-trip and 0 scientific-field leakage; chained attestation V2 currently pending | production-scale Scientific Execution Integrity composed with real provenance/attestation under broad host faults and measured overhead | `BOUNDED_SEI_OBJECT_EARNED__REAL_SYSTEM_PROMOTION_PENDING` |
 
 ## What is complete in this wave
 
@@ -28,31 +28,33 @@ This status record distinguishes implemented promotion contracts, newly earned b
 - hostile falsifiers and non-beneficial regimes;
 - structural checker/tests preventing text-only self-promotion;
 - external-promotion terminal layer above existing controlled results;
-- bounded executable/theory objects for P6, P7, P8, P10 and P15;
-- P6 two-implementation ETS verification with exact protected-classification agreement;
-- P10 two-implementation formal OCME verification using independent membership mathematics;
-- bounded P11 relative no-answer-laundering witness in addition to query-rank/optionality theory;
-- real-data/protected empirical upgrades for P9, P11, P12 and P13;
-- authoritative P9 Qwen negative retained rather than converted into an infrastructure failure;
-- machine-checkable P14 blinded external-evaluation interface;
+- P6 authoritative heterogeneous real-transition audit and P8 authoritative real evidence-discharge audit;
+- P7 non-synthetic three-class regime-transport evidence, including objective/obligation change;
+- P9 causal diagnostic with positive, null, negative and CANNOT_CHECK outcomes retained;
+- P10 generated finite OCME with independent verification;
+- P11 donor-complete compiler comparator, exact decoder frontier, and the ten-responsibility preregistered negative retained without retuning;
+- P12 unchanged-allocator three-domain transfer with 9/9 zero regret, independent verification and vector resource accounting;
+- P13 donor-complete responsibility baseline and drift-bounded certificate transport;
+- P14 protected external evaluation suite and frozen external protocol;
+- P15 real provenance interoperability;
 - programme-wide post-outcome execution ledger with exact result/artifact identities;
 - P9 evidence regeneration and audited TMLR PDF restored after path-only conformance repair;
-- P6–P8 content binding regenerated through the repository-native checker after evidence-surface changes.
+- cross-paper claim-collision review completed as an input to final manuscript reconciliation.
 
 ## What remains scientific work
 
 No remaining item below can be closed by prose alone:
 
-- **P6:** real donor-complete transition-system replications, any theorem generalization needed for the final headline, and final cross-paper boundary review;
-- **P7:** at least two non-synthetic regime-change domains and an actual donor-complete transport baseline;
-- **P8:** real formal/empirical/evidence-based scientific-decision domains with independent scientific adjudication;
-- **P9:** causal failure diagnosis above generic uncertainty heuristics, a second qualitatively distinct diagnostic domain, matched full resource accounting, independent replay/authority, and a claim that respects the protected Qwen negative;
-- **P10:** at least one generated/non-hand-coded outside-closure edit, donor-complete native search/repair/synthesis/evolutionary comparators and qualifying verifier-backed settings;
-- **P11:** stronger decoder attacks, full end-to-end compiler accounting, qualifying real-system/cross-domain replication, prospective phase prediction and independent replay/authority beyond same-workflow byte replay;
-- **P12:** vector-valued accounting, open-weight/procedural replication, cross-domain transfer and independent replay/authority;
-- **P13:** verifier-backed responsibility shift, a second domain, live semantic-change certificate transport and independent scientific authority;
-- **P14:** actual >=60-packet / >=3-domain matched frontier-agent executions plus independent expert adjudication, longitudinal and ablation evidence;
-- **P15:** real provenance/workflow/attestation interoperability, broader production host fault injection, overhead/false-rejection characterization and independent implementation/adjudication;
-- all papers: immediate pre-submission nearest-work refresh, final cross-paper claim collision review, clean-environment reproduction where still missing, and exact final submission-byte binding.
+- **P6:** real donor-complete transition-system first refusal; repair/generalize reopening/restoration and donor-preservation claims that hostile audit downgraded from structural-zero checks; final cross-paper boundary review;
+- **P7:** land the bound third-class receipt on current main; resolve the formal target-ambiguity premise without assuming it; stronger external donor/lens comparator and final cross-paper boundary review;
+- **P8:** prove a sound interpretation from the 13-donor composition model into the general authority calculus; real integrated authorization/evidence donor and independent scientific adjudication;
+- **P9:** bind corrected full I/A/C/M accounting without changing the causal decisions, execute the named representation-length / format-prior hostile attacks, then rebuild the manuscript/package;
+- **P10:** donor-complete native theorem-proving/search/repair/retrieval/synthesis/evolutionary first refusal, native obstruction certificate, protected post-expansion transfer, and complete publication-manifest membership coverage;
+- **P11:** fold the ten-responsibility negative into the live ledger/manuscript, retire the older positive-assuming CI interpretation, complete end-to-end compiler/resource accounting, and validate the responsibility-conditioned phase boundary in a real procedural/system setting;
+- **P12:** execute and bind the frozen robustness suite across altered resource prices, task-distribution shifts and hidden-parameterization audit; then move to submission hardening rather than adding unrelated benchmarks;
+- **P13:** real workflow deployment / external responsibility authority if the headline requires it, plus richer non-CNF/adversarial semantic drift only where claimed; otherwise submission hardening;
+- **P14:** actual R1 frontier-agent executions, R2 blinded expert adjudication and R3 longitudinal negative-history ablation with useful-discovery recall and resource costs;
+- **P15:** bind chained Ed25519 attestation V2 with false-rejection endpoints, then broaden production host/process fault injection and characterize overhead;
+- all papers: immediate pre-submission nearest-work refresh, final cross-paper claim ownership edits, clean-environment reproduction where still missing, PDF clipping/content-binding cleanup, and exact final submission-byte binding.
 
-The correct programme state is therefore **many bounded scientific objects now earned; broad top-tier authority still paper-specifically pending**.
+The correct programme state is therefore **several near-submission bounded/cross-domain papers, with maximum top-tier authority still paper-specifically pending**.
