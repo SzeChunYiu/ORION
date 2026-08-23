@@ -34,6 +34,7 @@ jobs:
           EOF
       - name: Execute hidden-parameterization audit
         run: |
+          set -o pipefail
           python papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py | tee p12_hidden_parameterization_audit_v1.json
       - name: Verify audit replay, self-validation and terminal
         run: |
@@ -50,6 +51,7 @@ jobs:
           EOF
       - name: Execute robustness stress runner (5 price regimes, mixes, expansion)
         run: |
+          set -o pipefail
           python papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py | tee p12_robustness_stress_v1.json
       - name: Verify runner replay, integrity gates and coverage
         run: |
@@ -84,6 +86,7 @@ jobs:
           EOF
       - name: Execute independent second checker
         run: |
+          set -o pipefail
           python papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py | tee p12_robustness_independent_v1.json
       - name: Verify checker replay and two-implementation agreement
         run: |

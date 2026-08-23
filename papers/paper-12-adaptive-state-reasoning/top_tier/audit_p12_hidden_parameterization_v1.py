@@ -72,7 +72,7 @@ def analyze(source, entry=ENTRY):
         if isinstance(n, ast.Assign):
             for t in n.targets:
                 if isinstance(t, ast.Name) and isinstance(n.value, ast.Constant):
-                    const_values[t.name] = n.value.value
+                    const_values[t.id] = n.value.value
 
     reachable_funcs = set()
     seen_keys = set()
