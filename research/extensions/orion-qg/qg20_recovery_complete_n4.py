@@ -37,7 +37,7 @@ def stats(rows, augmented: bool):
         counts[0 if label else 1] += 1
     return {
         "cells": len(groups),
-        "mixed_cells": sum(pos and neg for pos, neg in groups.values()),
+        "mixed_cells": sum(bool(pos) and bool(neg) for pos, neg in groups.values()),
         "floor": sum(min(pos, neg) for pos, neg in groups.values()),
     }
 
