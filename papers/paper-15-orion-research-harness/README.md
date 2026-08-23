@@ -22,6 +22,23 @@ finding.
 **Promotion programme:** #977 / `TOP_TIER_PROMOTION_V1.md`  
 **Status:** `PAPER_ISSUE_OPEN / NO_PROTECTED_SEI_RESULT`
 
+**Status (2026-08-24):** `SEI_FAULT_V1 + PROVENANCE_INTEROP_V1 + ATTESTATION_COMPOSITION_V2 EXECUTED / PRODUCTION_COMPARATORS_PENDING`
+
+Three bounded studies are now executed and receipt-bound on the frozen 22-case
+corpus (18 hostile SEI cases + 4 real workflow receipts): the SEI fault benchmark
+(run `32645458435`), the W3C PROV / RO-Crate 1.3 interoperability study
+(run `32655587115`), and the Ed25519 attestation-composition study V2
+(run `32664075763`), each with an independent second implementation and
+deterministic replay. The attestation study's load-bearing negative is frozen:
+composed-signature validity is evidence about the key set, not about key custody
+or fact truth — full key-set compromise is detected `0/6` at the signature layer,
+hostile chain-as-science collapse false-promotes `12` cases, and the properly
+scoped cryptographic-only reading stays `CANNOT_CHECK`. False rejection over the
+full valid workload is `0/11` chain-layer and `0/5` disposition-level. Evidence:
+`top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md` (claim C15.8).
+Production Sigstore/in-toto-class comparator work, hardware-backed custody and
+production-scale characterization remain open; C15.5 superiority stays `CANNOT_CHECK`.
+
 P15 is the systems paper for the two execution harnesses ORION research runs on and
 the guarantees each provides. Its higher scientific object is **Scientific Execution
 Integrity (SEI)**: separating what execution receipts can establish about

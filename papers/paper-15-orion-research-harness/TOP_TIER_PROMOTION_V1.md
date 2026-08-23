@@ -52,6 +52,22 @@ Bound receipt: `top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`. Current d
 
 **Earned claim:** the execution-integrity/scientific-validity separation is executable and remains representation-independent when execution evidence is imported from real provenance standards. P15 can sit above, rather than compete with, W3C PROV and RO-Crate: provenance supplies execution evidence; an independent scientific/authority record supplies scientific admission. **Not earned:** universal superiority over cryptographic attestation/proof-of-execution products, large production workflows, or all host/runtime fault distributions.
 
+### Cryptographic attestation composition result (Ed25519, V2)
+
+The composition protocol was frozen and committed before the runner/checker/workflow. Each of the `22` corpus cases is composed into a three-link Ed25519 chain (execution → environment → publication), each link signing `previous_digest || role || facts` with per-role keys; no scientific-contract or claim-authority field enters any signed payload. Executed run `32664075763` returns `P15_ATTESTATION_COMPOSITION_V2_SUPPORTED` with an independent second checker GREEN and byte-identical deterministic replay.
+
+Exact outcomes (bound in `top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md`):
+
+- genuine chains verify fully: `22/22`; chain+SEI agrees with frozen gold on `22/22`;
+- structural attacks detected: truncation `66/66`, substitution `22/22`, splice-with-partial-re-signing `22/22`, reorder `22/22`, replay `22/22`, stale/consumed re-presentation `22/22`;
+- scientific-field leakage into signed payloads: `0`;
+- properly scoped chain-crypto-only reading: `CANNOT_CHECK` everywhere — `0` false scientific successes;
+- hostile chain-as-science collapse: `12` false promotions (6 base + 6 compromise);
+- full key-set compromise: `0/6` detected at the signature layer (frozen honest-negative expectation) — and `CHAIN_PLUS_SEI` also false-promotes `6/6`, so key custody is an explicitly registered unregistered premise;
+- false rejection over the full valid workload (11 execution-valid cases incl. all 4 real receipts): `0` chain-layer, `0` disposition-level; real false promotion `0`.
+
+**Earned claim:** multi-attestation cryptographic composition composes and fails closed against truncation/substitution/splice/reorder/replay/stale arms, and its honest boundary is measured, not assumed — composed-signature validity is evidence about the key set, not about key custody or fact truth. The second "signed receipts provide the same boundary at lower complexity" hostile attack is now answered at execution level: collapsing signed attestations into scientific admission false-promotes `12` cases, while the properly scoped cryptographic reading correctly stays `CANNOT_CHECK`. **Not earned:** hardware-backed key custody, external timestamping/KMS authority, or resistance to signing-infrastructure compromise.
+
 ## Core separation ladder
 
 `ATTRIBUTABLE_EXECUTION`
@@ -111,9 +127,10 @@ Current executed layers now include:
 3. replay + lane agreement;
 4. SEI reference admission semantics;
 5. production W3C PROV-JSON import/export;
-6. current RO-Crate 1.3/Workflow-Run structural import/export.
+6. current RO-Crate 1.3/Workflow-Run structural import/export;
+7. composed Ed25519 attestation chains under three readings (properly scoped crypto-only, hostile chain-as-science, chain+SEI).
 
-A top-tier production-systems superiority headline would still require an accessible signed/attested execution comparator and broader host/runtime fault campaign. The higher **scientific-admission-above-provenance** claim no longer depends on proprietary provenance.
+A top-tier production-systems superiority headline would still require an accessible production signed/attested execution comparator (Sigstore/in-toto class, beyond the executed Ed25519 composition arm) and broader host/runtime fault campaign. The higher **scientific-admission-above-provenance** claim no longer depends on proprietary provenance.
 
 ## Primary endpoints
 
@@ -146,7 +163,7 @@ The fault corpus has independent frozen gold committed before its checker. The p
 - publication protocol differs from tested protocol;
 - benchmark is tailored only to known ORION implementation bugs.
 
-The real PROV/RO-Crate result directly addresses the first attack at representation/interoperability level: donor provenance is accepted and round-tripped, yet it does not itself supply scientific validity/authority.
+The real PROV/RO-Crate result directly addresses the first attack at representation/interoperability level: donor provenance is accepted and round-tripped, yet it does not itself supply scientific validity/authority. The attestation-composition result directly addresses the second attack: composed Ed25519 receipts are accepted and verified, yet the hostile collapse of the chain into scientific admission false-promotes `12` cases while the properly scoped cryptographic reading stays `CANNOT_CHECK` — signed receipts do not provide the admission boundary at any complexity. The false-rejection endpoints (`0/11` chain-layer, `0/5` disposition-level over the valid workload) address the fail-closed-conservatism attack.
 
 ## Top-tier promotion gate
 
@@ -164,11 +181,11 @@ The real PROV/RO-Crate result directly addresses the first attack at representat
 - [x] independent frozen gold for the fault corpus and independent second implementation for provenance interoperability;
 - [x] claim/evidence ledger + submission-facing manuscript object + P15 issue (#979);
 - [ ] broader production host/runtime fault campaign beyond the bounded corpus;
-- [ ] cryptographic/signed proof-of-execution or attestation comparator if feasible under a frozen contract;
+- [x] cryptographic/signed proof-of-execution or attestation comparator if feasible under a frozen contract — executed as the Ed25519 chain-composition arm (run `32664075763`); a production Sigstore/in-toto-class product comparison remains open;
 - [ ] production-scale false-rejection/runtime/storage characterization beyond the current small-corpus serialization measurements;
 - [ ] immediate pre-submission systems/provenance literature refresh;
 - [ ] exact final reproduction/artifact/manuscript binding.
 
-P15 is therefore much closer to a top-tier systems review package: the provenance-interoperability objection is no longer hypothetical. The remaining scientific work is production-scale hostile breadth/attestation/cost characterization, not proving that the admission layer can coexist with real provenance standards.
+P15 is therefore much closer to a top-tier systems review package: the provenance-interoperability objection is no longer hypothetical, and the signed-attestation objection is answered at bounded scope with its compromise boundary measured rather than assumed. The remaining scientific work is production-scale hostile breadth/cost characterization and a production attestation-product comparison, not proving that the admission layer can coexist with real provenance standards or signed attestations.
 
 If a signed/attested donor product already implements the same independent scientific-admission semantics, P15 should report the equivalence and interoperability result rather than manufacture a proprietary execution-model novelty claim.
