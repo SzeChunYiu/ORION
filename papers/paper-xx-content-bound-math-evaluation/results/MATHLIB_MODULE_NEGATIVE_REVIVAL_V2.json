@@ -1,0 +1,1742 @@
+{
+  "analysis_status": "POST_HOC_DERIVED_FROM_FROZEN_V2_1_ARTIFACTS",
+  "attribution": {
+    "categorytheory": {
+      "discordant": "21 wins / 22 losses (43 pairs)",
+      "loss_context": "calculation: donor rewrite(514)/apply(413) 46% plurality vs module apply(17)/simplify(8) \u2014 5W/17L; this one context carries the entire negative net",
+      "marginal_shift_js_bits": 0.0265,
+      "min_detectable_net": 15,
+      "observed_net": -1,
+      "sign_p": 1.0,
+      "within_module_structure": "+0.3815 (largest of all 26 modules)"
+    },
+    "control": {
+      "discordant": "7 wins / 9 losses (16 pairs)",
+      "loss_context": "extensionality: donor simplify(200)/rewrite(100) plurality vs module apply(8)/rewrite(4) \u2014 4W/8L",
+      "min_detectable_net": 10,
+      "observed_net": -2,
+      "sign_p": 0.8036,
+      "within_module_structure": "+0.0833 (present, itself sub-resolution)"
+    },
+    "donor_evidence_refuted_as_cause": "median donor context counts 903/1684 with min 147/148 \u2014 donor evidence is strong for both modules; weak-evidence transfer is not the failure stage",
+    "failure_stage": "measurement resolution (sign over-reading at sub-resolution discordant counts), with a real secondary mechanism boundary: plurality conditional inversion \u2014 donor-pooled conditional argmaxes that are weak pluralities (<50%) invert on module-signature contexts",
+    "structure_presence_uncorrelated_with_transfer": "pearson r = 0.037 across 26 modules (within-module LOO delta vs transfer delta)"
+  },
+  "claim_boundary": "Post-hoc revival analysis of the frozen source-projection module deltas. Lever arms and the claim rule were selected after inspecting the V1 failures; they are revival outputs requiring prospective re-freezing, not preregistered endpoints. Not proof-state, tactic-library or prover-utility evidence. Modules whose signs are withheld stay unclaimed, never relabelled positive.",
+  "claim_rule_v2": {
+    "claimable_negative": [],
+    "claimable_positive": [
+      "Algebra",
+      "AlgebraicGeometry",
+      "AlgebraicTopology",
+      "Analysis",
+      "Combinatorics",
+      "Computability",
+      "Data",
+      "Dynamics",
+      "FieldTheory",
+      "Geometry",
+      "GroupTheory",
+      "InformationTheory",
+      "LinearAlgebra",
+      "Logic",
+      "MeasureTheory",
+      "ModelTheory",
+      "NumberTheory",
+      "Probability",
+      "RingTheory",
+      "SetTheory"
+    ],
+    "multiple_comparison_note": "20 claims at alpha 0.05 across 26 modules implies ~1.3 expected false claims under a global null; all observed claims are same-signed positive and the family-level sign test covers the multiplicity concern",
+    "rule": "a module-level sign is claimable only when its exact paired sign test reaches two-sided alpha=0.05; sub-resolution modules of either sign are reported UNRESOLVED with withheld sign",
+    "sign_test_over_claimable_p": 1.9073486328125e-06,
+    "unresolved": [
+      "CategoryTheory",
+      "Condensed",
+      "Control",
+      "Order",
+      "RepresentationTheory",
+      "Topology"
+    ]
+  },
+  "conventions": {
+    "alpha_two_sided": 0.05,
+    "gate_z": 1.959963984540054,
+    "leakage_barrier": "preserved: no held-out-module statistic enters any predictor",
+    "majority_bar": 0.5,
+    "power_target_for_floor": 0.8
+  },
+  "disposition": {
+    "categorytheory": "CORRECTED: UNRESOLVED by measurement resolution (21W/22L, minimum detectable |net| 15, observed -1, p=1.00) OVER a genuine documented mechanism boundary: plurality conditional inversion on the module-signature context (calculation: donor 46% plurality rewrite vs module apply, 5W/17L, carrying the entire negative net). The module has the strongest internal structure of all 26 modules (+0.3815 within-module LOO) and near-zero marginal shift (JS 0.0265 bits); the missing ingredient is conditional information absent from the donor pool. Stays OUT of the positive claim.",
+    "control": "CORRECTED: UNRESOLVED by measurement resolution \u2014 7W/9L (16 discordant pairs, minimum detectable |net| 10, observed -2, p=0.80). The V1 negative label over-read a coin flip; the sign is withheld, not relabelled.",
+    "pooled_claim_after_rule": "20/20 modules with claimable signs are positive (family exact sign test p=1.907e-6); 6 modules sign-withheld (both V1 negatives plus 4 V1 positives); pooled V1 estimator retained unchanged (0.1046) because both donor-side repair arms were data-rejected."
+  },
+  "faithfulness": "per-block replay of all 28 frozen block receipts matched exactly (transitions, markov_correct, unigram_correct, held_out_trajectories)",
+  "generator": "analyze_module_negative_revival_v2.py",
+  "lane": "NR-02 of research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "lever_arms": {
+    "arm_a_confidence_gate": {
+      "reason": "large donor context counts make almost every conditional 'confident'; the gate leaves plurality inversions untouched",
+      "result": {
+        "negative_module_names": [
+          "CategoryTheory",
+          "Control"
+        ],
+        "negative_modules": 2,
+        "pooled_delta": 0.0967741935483871,
+        "positive_modules": 24,
+        "sign_test_two_sided_p": 1.049041748046875e-05
+      },
+      "rule": "accept donor conditional iff donor-side 95% normal lower bound of its argmax share exceeds the donor marginal share of the global argmax",
+      "verdict": "REJECTED"
+    },
+    "arm_b_majority_gate": {
+      "reason": "across a 16-family action space, donor continuations almost never exceed a 50% majority, so the rule replaces nearly every conditional with the unigram fallback and collapses the pooled effect; it deletes the mechanism instead of repairing it",
+      "result": {
+        "negative_module_names": [
+          "Control",
+          "LinearAlgebra"
+        ],
+        "negative_modules": 2,
+        "pooled_delta": 0.00025333558520520183,
+        "positive_modules": 2,
+        "sign_test_two_sided_p": 1.0
+      },
+      "rule": "accept donor conditional only when it is a strict majority (>50%) of that context's donor continuations; else fall back to the donor-global argmax (V1's fallback)",
+      "verdict": "REJECTED"
+    },
+    "per_module_donor_matching_assessment": {
+      "conditional_similarity_variant": "requires the held-out module's own conditional statistics; breaches the frozen V2.1 leakage barrier and is therefore a prospective successor protocol (target-conditional transductive adaptation), not a retrospective repair",
+      "marginal_similarity_variant": "cannot repair CategoryTheory by construction: its marginal is the closest of all 26 modules to the donor pool (JS 0.0265 bits), so marginal-similarity donor selection returns approximately the full donor pool and reproduces the same conditionals"
+    }
+  },
+  "per_module": [
+    {
+      "arm_confidence_gate": {
+        "correct": 50,
+        "delta": 0.1044776119402985,
+        "losses": 6,
+        "net_effect": 14,
+        "sign_p_two_sided": 0.009355306625366211,
+        "wins": 20
+      },
+      "arm_majority_gate": {
+        "correct": 36,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.27972326614280835,
+        "js_module_vs_donor_marginal_bits": 0.01935714767196302,
+        "median_donor_context_count": 1692.0,
+        "min_donor_context_count": 19
+      },
+      "held_out_trajectories": 72,
+      "min_detectable_net_at_alpha": 14,
+      "module": "Algebra",
+      "transitions": 134,
+      "v1": {
+        "correct": 50,
+        "delta": 0.1044776119402985,
+        "losses": 12,
+        "net_effect": 14,
+        "sign_p_two_sided": 0.03355243967962451,
+        "wins": 26
+      },
+      "within_module_loo": {
+        "transitions": 134,
+        "within_markov_minus_unigram": 0.12686567164179105
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 228,
+        "delta": 0.08116883116883117,
+        "losses": 25,
+        "net_effect": 50,
+        "sign_p_two_sided": 5.636282034205402e-07,
+        "wins": 75
+      },
+      "arm_majority_gate": {
+        "correct": 178,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.27908426866203456,
+        "js_module_vs_donor_marginal_bits": 0.019574614966098386,
+        "median_donor_context_count": 2253.0,
+        "min_donor_context_count": 66
+      },
+      "held_out_trajectories": 252,
+      "min_detectable_net_at_alpha": 23,
+      "module": "AlgebraicGeometry",
+      "transitions": 616,
+      "v1": {
+        "correct": 239,
+        "delta": 0.09902597402597403,
+        "losses": 31,
+        "net_effect": 61,
+        "sign_p_two_sided": 3.317352917439988e-08,
+        "wins": 92
+      },
+      "within_module_loo": {
+        "transitions": 616,
+        "within_markov_minus_unigram": 0.09740259740259741
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 37,
+        "delta": 0.09482758620689655,
+        "losses": 6,
+        "net_effect": 11,
+        "sign_p_two_sided": 0.03468966484069824,
+        "wins": 17
+      },
+      "arm_majority_gate": {
+        "correct": 26,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.28014668258570696,
+        "js_module_vs_donor_marginal_bits": 0.04957919545666793,
+        "median_donor_context_count": 1690.0,
+        "min_donor_context_count": 145
+      },
+      "held_out_trajectories": 57,
+      "min_detectable_net_at_alpha": 12,
+      "module": "AlgebraicTopology",
+      "transitions": 116,
+      "v1": {
+        "correct": 40,
+        "delta": 0.1206896551724138,
+        "losses": 6,
+        "net_effect": 14,
+        "sign_p_two_sided": 0.009355306625366211,
+        "wins": 20
+      },
+      "within_module_loo": {
+        "transitions": 116,
+        "within_markov_minus_unigram": -0.02586206896551724
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 112,
+        "delta": 0.07584269662921349,
+        "losses": 18,
+        "net_effect": 27,
+        "sign_p_two_sided": 0.0008980471786680215,
+        "wins": 45
+      },
+      "arm_majority_gate": {
+        "correct": 85,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2808636601079575,
+        "js_module_vs_donor_marginal_bits": 0.014161061040849632,
+        "median_donor_context_count": 1663.0,
+        "min_donor_context_count": 55
+      },
+      "held_out_trajectories": 111,
+      "min_detectable_net_at_alpha": 20,
+      "module": "Analysis",
+      "transitions": 356,
+      "v1": {
+        "correct": 115,
+        "delta": 0.08426966292134831,
+        "losses": 28,
+        "net_effect": 30,
+        "sign_p_two_sided": 0.001605564929564241,
+        "wins": 58
+      },
+      "within_module_loo": {
+        "transitions": 356,
+        "within_markov_minus_unigram": 0.11235955056179775
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 45,
+        "delta": -0.028901734104046242,
+        "losses": 22,
+        "net_effect": -5,
+        "sign_p_two_sided": 0.5223973804968409,
+        "wins": 17
+      },
+      "arm_majority_gate": {
+        "correct": 50,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2794583940354786,
+        "js_module_vs_donor_marginal_bits": 0.0265192067653212,
+        "median_donor_context_count": 1684,
+        "min_donor_context_count": 148
+      },
+      "held_out_trajectories": 101,
+      "min_detectable_net_at_alpha": 15,
+      "module": "CategoryTheory",
+      "transitions": 173,
+      "v1": {
+        "correct": 49,
+        "delta": -0.005780346820809248,
+        "losses": 22,
+        "net_effect": -1,
+        "sign_p_two_sided": 1.0,
+        "wins": 21
+      },
+      "v1_loss_context_decomposition": {
+        "apply": {
+          "donor_argmax_share": 0.3663701821262177,
+          "donor_conditional_top2": [
+            [
+              "rewrite",
+              865
+            ],
+            [
+              "simplify",
+              486
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "simplify",
+              16
+            ],
+            [
+              "rewrite",
+              6
+            ]
+          ],
+          "transitions": 35,
+          "wins": 6
+        },
+        "calculation": {
+          "donor_argmax_share": 0.3309723116548616,
+          "donor_conditional_top2": [
+            [
+              "rewrite",
+              514
+            ],
+            [
+              "apply",
+              413
+            ]
+          ],
+          "losses": 17,
+          "module_own_top2": [
+            [
+              "apply",
+              17
+            ],
+            [
+              "simplify",
+              8
+            ]
+          ],
+          "transitions": 34,
+          "wins": 5
+        },
+        "cases": {
+          "donor_argmax_share": 0.3129161118508655,
+          "donor_conditional_top2": [
+            [
+              "simplify",
+              235
+            ],
+            [
+              "apply",
+              200
+            ]
+          ],
+          "losses": 1,
+          "module_own_top2": [
+            [
+              "rewrite",
+              4
+            ],
+            [
+              "apply",
+              1
+            ]
+          ],
+          "transitions": 5,
+          "wins": 0
+        },
+        "congruence": {
+          "donor_argmax_share": 0.26229508196721313,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              48
+            ],
+            [
+              "simplify",
+              41
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "apply",
+              2
+            ],
+            [
+              "extensionality",
+              1
+            ]
+          ],
+          "transitions": 4,
+          "wins": 0
+        },
+        "constructor": {
+          "donor_argmax_share": 0.28,
+          "donor_conditional_top2": [
+            [
+              "introduce",
+              77
+            ],
+            [
+              "rewrite",
+              54
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "introduce",
+              4
+            ],
+            [
+              "simplify",
+              2
+            ]
+          ],
+          "transitions": 6,
+          "wins": 4
+        },
+        "extensionality": {
+          "donor_argmax_share": 0.48894348894348894,
+          "donor_conditional_top2": [
+            [
+              "simplify",
+              199
+            ],
+            [
+              "rewrite",
+              104
+            ]
+          ],
+          "losses": 2,
+          "module_own_top2": [
+            [
+              "simplify",
+              5
+            ],
+            [
+              "apply",
+              2
+            ]
+          ],
+          "transitions": 9,
+          "wins": 5
+        },
+        "induction": {
+          "donor_argmax_share": 0.4427860696517413,
+          "donor_conditional_top2": [
+            [
+              "simplify",
+              89
+            ],
+            [
+              "rewrite",
+              40
+            ]
+          ],
+          "losses": 1,
+          "module_own_top2": [
+            [
+              "apply",
+              1
+            ]
+          ],
+          "transitions": 1,
+          "wins": 0
+        },
+        "introduce": {
+          "donor_argmax_share": 0.30201342281879195,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              270
+            ],
+            [
+              "rewrite",
+              185
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "apply",
+              8
+            ],
+            [
+              "rewrite",
+              3
+            ]
+          ],
+          "transitions": 15,
+          "wins": 0
+        },
+        "rewrite": {
+          "donor_argmax_share": 0.5343589743589744,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              1563
+            ],
+            [
+              "simplify",
+              552
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "simplify",
+              16
+            ],
+            [
+              "apply",
+              9
+            ]
+          ],
+          "transitions": 32,
+          "wins": 0
+        },
+        "simplify": {
+          "donor_argmax_share": 0.32422802850356297,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              546
+            ],
+            [
+              "rewrite",
+              495
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "rewrite",
+              13
+            ],
+            [
+              "apply",
+              9
+            ]
+          ],
+          "transitions": 30,
+          "wins": 0
+        },
+        "unfold": {
+          "donor_argmax_share": 0.4391891891891892,
+          "donor_conditional_top2": [
+            [
+              "rewrite",
+              65
+            ],
+            [
+              "simplify",
+              29
+            ]
+          ],
+          "losses": 1,
+          "module_own_top2": [
+            [
+              "rewrite",
+              1
+            ],
+            [
+              "apply",
+              1
+            ]
+          ],
+          "transitions": 2,
+          "wins": 1
+        }
+      },
+      "within_module_loo": {
+        "transitions": 173,
+        "within_markov_minus_unigram": 0.3815028901734104
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 282,
+        "delta": 0.14563106796116504,
+        "losses": 21,
+        "net_effect": 90,
+        "sign_p_two_sided": 5.596933072265858e-16,
+        "wins": 111
+      },
+      "arm_majority_gate": {
+        "correct": 192,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2778866714183892,
+        "js_module_vs_donor_marginal_bits": 0.021338414433376376,
+        "median_donor_context_count": 1605.0,
+        "min_donor_context_count": 29
+      },
+      "held_out_trajectories": 345,
+      "min_detectable_net_at_alpha": 28,
+      "module": "Combinatorics",
+      "transitions": 618,
+      "v1": {
+        "correct": 282,
+        "delta": 0.14563106796116504,
+        "losses": 37,
+        "net_effect": 90,
+        "sign_p_two_sided": 9.485274445833628e-13,
+        "wins": 127
+      },
+      "within_module_loo": {
+        "transitions": 618,
+        "within_markov_minus_unigram": 0.1407766990291262
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 365,
+        "delta": 0.06648451730418943,
+        "losses": 50,
+        "net_effect": 73,
+        "sign_p_two_sided": 2.7652344853994508e-08,
+        "wins": 123
+      },
+      "arm_majority_gate": {
+        "correct": 292,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.280994043186895,
+        "js_module_vs_donor_marginal_bits": 0.04237091775946293,
+        "median_donor_context_count": 1541.0,
+        "min_donor_context_count": 18
+      },
+      "held_out_trajectories": 227,
+      "min_detectable_net_at_alpha": 34,
+      "module": "Computability",
+      "transitions": 1098,
+      "v1": {
+        "correct": 358,
+        "delta": 0.060109289617486336,
+        "losses": 102,
+        "net_effect": 66,
+        "sign_p_two_sided": 7.066267808593217e-05,
+        "wins": 168
+      },
+      "within_module_loo": {
+        "transitions": 1098,
+        "within_markov_minus_unigram": 0.08561020036429873
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 34,
+        "delta": 0.02608695652173913,
+        "losses": 12,
+        "net_effect": 3,
+        "sign_p_two_sided": 0.7011080384254456,
+        "wins": 15
+      },
+      "arm_majority_gate": {
+        "correct": 31,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2796964270486911,
+        "js_module_vs_donor_marginal_bits": 0.0796222483238931,
+        "median_donor_context_count": 1688,
+        "min_donor_context_count": 19
+      },
+      "held_out_trajectories": 34,
+      "min_detectable_net_at_alpha": 12,
+      "module": "Condensed",
+      "transitions": 115,
+      "v1": {
+        "correct": 33,
+        "delta": 0.017391304347826087,
+        "losses": 13,
+        "net_effect": 2,
+        "sign_p_two_sided": 0.8505540192127228,
+        "wins": 15
+      },
+      "within_module_loo": {
+        "transitions": 115,
+        "within_markov_minus_unigram": 0.034782608695652174
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 10,
+        "delta": -0.03333333333333333,
+        "losses": 9,
+        "net_effect": -2,
+        "sign_p_two_sided": 0.803619384765625,
+        "wins": 7
+      },
+      "arm_majority_gate": {
+        "correct": 8,
+        "delta": -0.06666666666666667,
+        "losses": 8,
+        "net_effect": -4,
+        "sign_p_two_sided": 0.3876953125,
+        "wins": 4
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2800033950093363,
+        "js_module_vs_donor_marginal_bits": 0.13686778775030395,
+        "median_donor_context_count": 903.0,
+        "min_donor_context_count": 147
+      },
+      "held_out_trajectories": 62,
+      "min_detectable_net_at_alpha": 10,
+      "module": "Control",
+      "transitions": 60,
+      "v1": {
+        "correct": 10,
+        "delta": -0.03333333333333333,
+        "losses": 9,
+        "net_effect": -2,
+        "sign_p_two_sided": 0.803619384765625,
+        "wins": 7
+      },
+      "v1_loss_context_decomposition": {
+        "apply": {
+          "donor_argmax_share": 0.36443514644351466,
+          "donor_conditional_top2": [
+            [
+              "rewrite",
+              871
+            ],
+            [
+              "simplify",
+              501
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "extensionality",
+              3
+            ],
+            [
+              "introduce",
+              1
+            ]
+          ],
+          "transitions": 6,
+          "wins": 0
+        },
+        "calculation": {
+          "donor_argmax_share": 0.32723833543505676,
+          "donor_conditional_top2": [
+            [
+              "rewrite",
+              519
+            ],
+            [
+              "apply",
+              429
+            ]
+          ],
+          "losses": 1,
+          "module_own_top2": [
+            [
+              "apply",
+              1
+            ]
+          ],
+          "transitions": 1,
+          "wins": 0
+        },
+        "congruence": {
+          "donor_argmax_share": 0.2702702702702703,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              50
+            ],
+            [
+              "rewrite",
+              41
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "extensionality",
+              2
+            ]
+          ],
+          "transitions": 2,
+          "wins": 0
+        },
+        "extensionality": {
+          "donor_argmax_share": 0.5025125628140703,
+          "donor_conditional_top2": [
+            [
+              "simplify",
+              200
+            ],
+            [
+              "rewrite",
+              100
+            ]
+          ],
+          "losses": 8,
+          "module_own_top2": [
+            [
+              "apply",
+              8
+            ],
+            [
+              "rewrite",
+              4
+            ]
+          ],
+          "transitions": 18,
+          "wins": 4
+        },
+        "induction": {
+          "donor_argmax_share": 0.44,
+          "donor_conditional_top2": [
+            [
+              "simplify",
+              88
+            ],
+            [
+              "rewrite",
+              39
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "rewrite",
+              1
+            ],
+            [
+              "simplify",
+              1
+            ]
+          ],
+          "transitions": 2,
+          "wins": 1
+        },
+        "introduce": {
+          "donor_argmax_share": 0.3067552602436323,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              277
+            ],
+            [
+              "rewrite",
+              188
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "simplify",
+              4
+            ],
+            [
+              "apply",
+              1
+            ]
+          ],
+          "transitions": 6,
+          "wins": 0
+        },
+        "rewrite": {
+          "donor_argmax_share": 0.533106960950764,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              1570
+            ],
+            [
+              "simplify",
+              560
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "simplify",
+              8
+            ],
+            [
+              "apply",
+              2
+            ]
+          ],
+          "transitions": 12,
+          "wins": 0
+        },
+        "simplify": {
+          "donor_argmax_share": 0.3257042253521127,
+          "donor_conditional_top2": [
+            [
+              "apply",
+              555
+            ],
+            [
+              "rewrite",
+              505
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "rewrite",
+              3
+            ],
+            [
+              "extensionality",
+              3
+            ]
+          ],
+          "transitions": 10,
+          "wins": 0
+        },
+        "unfold": {
+          "donor_argmax_share": 0.43537414965986393,
+          "donor_conditional_top2": [
+            [
+              "rewrite",
+              64
+            ],
+            [
+              "simplify",
+              28
+            ]
+          ],
+          "losses": 0,
+          "module_own_top2": [
+            [
+              "rewrite",
+              2
+            ],
+            [
+              "simplify",
+              1
+            ]
+          ],
+          "transitions": 3,
+          "wins": 2
+        }
+      },
+      "within_module_loo": {
+        "transitions": 60,
+        "within_markov_minus_unigram": 0.08333333333333333
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 182,
+        "delta": 0.13842482100238662,
+        "losses": 18,
+        "net_effect": 58,
+        "sign_p_two_sided": 1.1800002004290734e-09,
+        "wins": 76
+      },
+      "arm_majority_gate": {
+        "correct": 124,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2789985117744901,
+        "js_module_vs_donor_marginal_bits": 0.027908486696611556,
+        "median_donor_context_count": 1658,
+        "min_donor_context_count": 65
+      },
+      "held_out_trajectories": 372,
+      "min_detectable_net_at_alpha": 22,
+      "module": "Data",
+      "transitions": 419,
+      "v1": {
+        "correct": 184,
+        "delta": 0.1431980906921241,
+        "losses": 20,
+        "net_effect": 60,
+        "sign_p_two_sided": 1.1159089057251951e-09,
+        "wins": 80
+      },
+      "within_module_loo": {
+        "transitions": 419,
+        "within_markov_minus_unigram": 0.1288782816229117
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 151,
+        "delta": 0.09943181818181818,
+        "losses": 31,
+        "net_effect": 35,
+        "sign_p_two_sided": 0.0004901579489633008,
+        "wins": 66
+      },
+      "arm_majority_gate": {
+        "correct": 116,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2780678851174935,
+        "js_module_vs_donor_marginal_bits": 0.015188617237654002,
+        "median_donor_context_count": 1667.0,
+        "min_donor_context_count": 61
+      },
+      "held_out_trajectories": 158,
+      "min_detectable_net_at_alpha": 21,
+      "module": "Dynamics",
+      "transitions": 352,
+      "v1": {
+        "correct": 153,
+        "delta": 0.10511363636363637,
+        "losses": 31,
+        "net_effect": 37,
+        "sign_p_two_sided": 0.00025534608649658137,
+        "wins": 68
+      },
+      "within_module_loo": {
+        "transitions": 352,
+        "within_markov_minus_unigram": 0.13920454545454544
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 283,
+        "delta": 0.1326530612244898,
+        "losses": 47,
+        "net_effect": 91,
+        "sign_p_two_sided": 1.409906670491864e-11,
+        "wins": 138
+      },
+      "arm_majority_gate": {
+        "correct": 192,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.27958049480100394,
+        "js_module_vs_donor_marginal_bits": 0.014204243119176493,
+        "median_donor_context_count": 1638.0,
+        "min_donor_context_count": 19
+      },
+      "held_out_trajectories": 276,
+      "min_detectable_net_at_alpha": 29,
+      "module": "FieldTheory",
+      "transitions": 686,
+      "v1": {
+        "correct": 285,
+        "delta": 0.13556851311953352,
+        "losses": 49,
+        "net_effect": 93,
+        "sign_p_two_sided": 1.085567748493916e-11,
+        "wins": 142
+      },
+      "within_module_loo": {
+        "transitions": 686,
+        "within_markov_minus_unigram": 0.15014577259475217
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 217,
+        "delta": 0.08677098150782361,
+        "losses": 37,
+        "net_effect": 61,
+        "sign_p_two_sided": 1.5020945707319435e-07,
+        "wins": 98
+      },
+      "arm_majority_gate": {
+        "correct": 156,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2832390699344645,
+        "js_module_vs_donor_marginal_bits": 0.02308892466555201,
+        "median_donor_context_count": 1620,
+        "min_donor_context_count": 15
+      },
+      "held_out_trajectories": 269,
+      "min_detectable_net_at_alpha": 28,
+      "module": "Geometry",
+      "transitions": 703,
+      "v1": {
+        "correct": 220,
+        "delta": 0.09103840682788052,
+        "losses": 50,
+        "net_effect": 64,
+        "sign_p_two_sided": 6.331600153869819e-07,
+        "wins": 114
+      },
+      "within_module_loo": {
+        "transitions": 703,
+        "within_markov_minus_unigram": 0.1507823613086771
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 207,
+        "delta": 0.08680555555555555,
+        "losses": 39,
+        "net_effect": 50,
+        "sign_p_two_sided": 1.1653734361916297e-05,
+        "wins": 89
+      },
+      "arm_majority_gate": {
+        "correct": 159,
+        "delta": 0.003472222222222222,
+        "losses": 1,
+        "net_effect": 2,
+        "sign_p_two_sided": 0.625,
+        "wins": 3
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.27995739392863483,
+        "js_module_vs_donor_marginal_bits": 0.015132979799991404,
+        "median_donor_context_count": 1652.0,
+        "min_donor_context_count": 18
+      },
+      "held_out_trajectories": 190,
+      "min_detectable_net_at_alpha": 25,
+      "module": "GroupTheory",
+      "transitions": 576,
+      "v1": {
+        "correct": 206,
+        "delta": 0.08506944444444445,
+        "losses": 48,
+        "net_effect": 49,
+        "sign_p_two_sided": 5.777411800528574e-05,
+        "wins": 97
+      },
+      "within_module_loo": {
+        "transitions": 576,
+        "within_markov_minus_unigram": 0.125
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 104,
+        "delta": 0.14107883817427386,
+        "losses": 11,
+        "net_effect": 34,
+        "sign_p_two_sided": 5.37831811014966e-06,
+        "wins": 45
+      },
+      "arm_majority_gate": {
+        "correct": 70,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2793724678906991,
+        "js_module_vs_donor_marginal_bits": 0.043019606618368,
+        "median_donor_context_count": 2353,
+        "min_donor_context_count": 58
+      },
+      "held_out_trajectories": 73,
+      "min_detectable_net_at_alpha": 20,
+      "module": "InformationTheory",
+      "transitions": 241,
+      "v1": {
+        "correct": 124,
+        "delta": 0.22406639004149378,
+        "losses": 13,
+        "net_effect": 54,
+        "sign_p_two_sided": 6.415141174951122e-10,
+        "wins": 67
+      },
+      "within_module_loo": {
+        "transitions": 241,
+        "within_markov_minus_unigram": 0.27385892116182575
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 107,
+        "delta": 0.14678899082568808,
+        "losses": 11,
+        "net_effect": 48,
+        "sign_p_two_sided": 4.466174729063311e-09,
+        "wins": 59
+      },
+      "arm_majority_gate": {
+        "correct": 58,
+        "delta": -0.0030581039755351682,
+        "losses": 1,
+        "net_effect": -1,
+        "sign_p_two_sided": 1.0,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.28241424229266177,
+        "js_module_vs_donor_marginal_bits": 0.04379157602199696,
+        "median_donor_context_count": 1643,
+        "min_donor_context_count": 15
+      },
+      "held_out_trajectories": 179,
+      "min_detectable_net_at_alpha": 19,
+      "module": "LinearAlgebra",
+      "transitions": 327,
+      "v1": {
+        "correct": 110,
+        "delta": 0.1559633027522936,
+        "losses": 15,
+        "net_effect": 51,
+        "sign_p_two_sided": 8.625605549980354e-09,
+        "wins": 66
+      },
+      "within_module_loo": {
+        "transitions": 327,
+        "within_markov_minus_unigram": 0.09480122324159021
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 24,
+        "delta": 0.1111111111111111,
+        "losses": 3,
+        "net_effect": 9,
+        "sign_p_two_sided": 0.03515625,
+        "wins": 12
+      },
+      "arm_majority_gate": {
+        "correct": 15,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2802482782076354,
+        "js_module_vs_donor_marginal_bits": 0.09590330188698153,
+        "median_donor_context_count": 1700,
+        "min_donor_context_count": 149
+      },
+      "held_out_trajectories": 79,
+      "min_detectable_net_at_alpha": 11,
+      "module": "Logic",
+      "transitions": 81,
+      "v1": {
+        "correct": 28,
+        "delta": 0.16049382716049382,
+        "losses": 5,
+        "net_effect": 13,
+        "sign_p_two_sided": 0.010622024536132812,
+        "wins": 18
+      },
+      "within_module_loo": {
+        "transitions": 81,
+        "within_markov_minus_unigram": -0.06172839506172839
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 262,
+        "delta": 0.05935483870967742,
+        "losses": 54,
+        "net_effect": 46,
+        "sign_p_two_sided": 0.00026141610260312553,
+        "wins": 100
+      },
+      "arm_majority_gate": {
+        "correct": 216,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2796602511972531,
+        "js_module_vs_donor_marginal_bits": 0.020932152181806482,
+        "median_donor_context_count": 1590,
+        "min_donor_context_count": 28
+      },
+      "held_out_trajectories": 161,
+      "min_detectable_net_at_alpha": 28,
+      "module": "MeasureTheory",
+      "transitions": 775,
+      "v1": {
+        "correct": 262,
+        "delta": 0.05935483870967742,
+        "losses": 59,
+        "net_effect": 46,
+        "sign_p_two_sided": 0.0004081757480717801,
+        "wins": 105
+      },
+      "within_module_loo": {
+        "transitions": 775,
+        "within_markov_minus_unigram": 0.09419354838709677
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 269,
+        "delta": 0.12364760432766615,
+        "losses": 25,
+        "net_effect": 80,
+        "sign_p_two_sided": 7.380343677887176e-13,
+        "wins": 105
+      },
+      "arm_majority_gate": {
+        "correct": 189,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2788744975435462,
+        "js_module_vs_donor_marginal_bits": 0.04244690029624203,
+        "median_donor_context_count": 1611,
+        "min_donor_context_count": 58
+      },
+      "held_out_trajectories": 212,
+      "min_detectable_net_at_alpha": 29,
+      "module": "ModelTheory",
+      "transitions": 647,
+      "v1": {
+        "correct": 274,
+        "delta": 0.13137557959814528,
+        "losses": 47,
+        "net_effect": 85,
+        "sign_p_two_sided": 1.5452638407214834e-10,
+        "wins": 132
+      },
+      "within_module_loo": {
+        "transitions": 647,
+        "within_markov_minus_unigram": 0.13292117465224113
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 251,
+        "delta": 0.12363067292644757,
+        "losses": 25,
+        "net_effect": 79,
+        "sign_p_two_sided": 1.1955847474890748e-12,
+        "wins": 104
+      },
+      "arm_majority_gate": {
+        "correct": 172,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.28019280549852715,
+        "js_module_vs_donor_marginal_bits": 0.018212988932954782,
+        "median_donor_context_count": 1613,
+        "min_donor_context_count": 18
+      },
+      "held_out_trajectories": 220,
+      "min_detectable_net_at_alpha": 27,
+      "module": "NumberTheory",
+      "transitions": 639,
+      "v1": {
+        "correct": 257,
+        "delta": 0.13302034428794993,
+        "losses": 39,
+        "net_effect": 85,
+        "sign_p_two_sided": 1.611585935005712e-11,
+        "wins": 124
+      },
+      "within_module_loo": {
+        "transitions": 639,
+        "within_markov_minus_unigram": 0.15805946791862285
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 82,
+        "delta": 0.047872340425531915,
+        "losses": 20,
+        "net_effect": 9,
+        "sign_p_two_sided": 0.2528697301676033,
+        "wins": 29
+      },
+      "arm_majority_gate": {
+        "correct": 73,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.27784451690406725,
+        "js_module_vs_donor_marginal_bits": 0.014893216231805156,
+        "median_donor_context_count": 2021.5,
+        "min_donor_context_count": 66
+      },
+      "held_out_trajectories": 157,
+      "min_detectable_net_at_alpha": 16,
+      "module": "Order",
+      "transitions": 188,
+      "v1": {
+        "correct": 83,
+        "delta": 0.05319148936170213,
+        "losses": 21,
+        "net_effect": 10,
+        "sign_p_two_sided": 0.21160856876151612,
+        "wins": 31
+      },
+      "within_module_loo": {
+        "transitions": 188,
+        "within_markov_minus_unigram": 0.05851063829787234
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 319,
+        "delta": 0.12300683371298406,
+        "losses": 28,
+        "net_effect": 108,
+        "sign_p_two_sided": 3.1589227458309297e-18,
+        "wins": 136
+      },
+      "arm_majority_gate": {
+        "correct": 217,
+        "delta": 0.00683371298405467,
+        "losses": 3,
+        "net_effect": 6,
+        "sign_p_two_sided": 0.14599609375,
+        "wins": 9
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2827435242612185,
+        "js_module_vs_donor_marginal_bits": 0.022463418991579522,
+        "median_donor_context_count": 1568.0,
+        "min_donor_context_count": 29
+      },
+      "held_out_trajectories": 321,
+      "min_detectable_net_at_alpha": 31,
+      "module": "Probability",
+      "transitions": 878,
+      "v1": {
+        "correct": 348,
+        "delta": 0.1560364464692483,
+        "losses": 42,
+        "net_effect": 137,
+        "sign_p_two_sided": 2.4850518123921716e-21,
+        "wins": 179
+      },
+      "within_module_loo": {
+        "transitions": 878,
+        "within_markov_minus_unigram": 0.16059225512528474
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 28,
+        "delta": 0.09210526315789473,
+        "losses": 6,
+        "net_effect": 7,
+        "sign_p_two_sided": 0.1670684814453125,
+        "wins": 13
+      },
+      "arm_majority_gate": {
+        "correct": 21,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2796192418833928,
+        "js_module_vs_donor_marginal_bits": 0.1045534108757577,
+        "median_donor_context_count": 1702.0,
+        "min_donor_context_count": 186
+      },
+      "held_out_trajectories": 89,
+      "min_detectable_net_at_alpha": 12,
+      "module": "RepresentationTheory",
+      "transitions": 76,
+      "v1": {
+        "correct": 27,
+        "delta": 0.07894736842105263,
+        "losses": 8,
+        "net_effect": 6,
+        "sign_p_two_sided": 0.28627872467041016,
+        "wins": 14
+      },
+      "within_module_loo": {
+        "transitions": 76,
+        "within_markov_minus_unigram": 0.07894736842105263
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 259,
+        "delta": 0.1184407796101949,
+        "losses": 35,
+        "net_effect": 79,
+        "sign_p_two_sided": 5.7994247668513484e-11,
+        "wins": 114
+      },
+      "arm_majority_gate": {
+        "correct": 180,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.28017897091722593,
+        "js_module_vs_donor_marginal_bits": 0.011705562774904749,
+        "median_donor_context_count": 1614,
+        "min_donor_context_count": 16
+      },
+      "held_out_trajectories": 238,
+      "min_detectable_net_at_alpha": 26,
+      "module": "RingTheory",
+      "transitions": 667,
+      "v1": {
+        "correct": 260,
+        "delta": 0.1199400299850075,
+        "losses": 39,
+        "net_effect": 80,
+        "sign_p_two_sided": 1.311956781723885e-10,
+        "wins": 119
+      },
+      "within_module_loo": {
+        "transitions": 667,
+        "within_markov_minus_unigram": 0.10194902548725637
+      }
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 373,
+        "delta": 0.1088348271446863,
+        "losses": 57,
+        "net_effect": 85,
+        "sign_p_two_sided": 1.4792111579584571e-09,
+        "wins": 142
+      },
+      "arm_majority_gate": {
+        "correct": 288,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2733025947021065,
+        "js_module_vs_donor_marginal_bits": 0.03499665317187234,
+        "median_donor_context_count": 2194,
+        "min_donor_context_count": 19
+      },
+      "held_out_trajectories": 398,
+      "min_detectable_net_at_alpha": 31,
+      "module": "SetTheory",
+      "transitions": 781,
+      "v1": {
+        "correct": 373,
+        "delta": 0.1088348271446863,
+        "losses": 64,
+        "net_effect": 85,
+        "sign_p_two_sided": 5.465315160061418e-09,
+        "wins": 149
+      },
+      "within_module_loo": {
+        "transitions": 781,
+        "within_markov_minus_unigram": 0.1293213828425096
+      }
+    },
+    {
+      "module": "Tactic",
+      "status": "ZERO_TRANSITION_NOT_EVALUABLE",
+      "transitions": 0
+    },
+    {
+      "arm_confidence_gate": {
+        "correct": 176,
+        "delta": 0.011538461538461539,
+        "losses": 56,
+        "net_effect": 6,
+        "sign_p_two_sided": 0.6454967635578217,
+        "wins": 62
+      },
+      "arm_majority_gate": {
+        "correct": 170,
+        "delta": 0.0,
+        "losses": 0,
+        "net_effect": 0,
+        "sign_p_two_sided": null,
+        "wins": 0
+      },
+      "donor_regime": {
+        "donor_global_prediction": "apply",
+        "donor_global_share": 0.2774244833068362,
+        "js_module_vs_donor_marginal_bits": 0.02740523173395908,
+        "median_donor_context_count": 1658.0,
+        "min_donor_context_count": 28
+      },
+      "held_out_trajectories": 170,
+      "min_detectable_net_at_alpha": 24,
+      "module": "Topology",
+      "transitions": 520,
+      "v1": {
+        "correct": 180,
+        "delta": 0.019230769230769232,
+        "losses": 62,
+        "net_effect": 10,
+        "sign_p_two_sided": 0.4369905490859722,
+        "wins": 72
+      },
+      "within_module_loo": {
+        "transitions": 520,
+        "within_markov_minus_unigram": 0.06346153846153846
+      }
+    },
+    {
+      "module": "Util",
+      "status": "ZERO_TRANSITION_NOT_EVALUABLE",
+      "transitions": 0
+    }
+  ],
+  "pooled_v1": {
+    "delta_from_frozen": 0.10462759668974836,
+    "negative_module_names": [
+      "CategoryTheory",
+      "Control"
+    ],
+    "negative_modules": 2,
+    "pooled_delta": 0.10462759668974836,
+    "positive_modules": 24,
+    "sign_test_two_sided_p": 1.049041748046875e-05
+  },
+  "resolution_floor_guidance": {
+    "derivation": "smallest n with sign-test power >= 0.8 at alpha 0.05 against pooled-effect win probability 0.707677",
+    "minimum_discordant_pairs": 44,
+    "modules_meeting_floor": [
+      "AlgebraicGeometry",
+      "Analysis",
+      "Combinatorics",
+      "Computability",
+      "Data",
+      "Dynamics",
+      "FieldTheory",
+      "Geometry",
+      "GroupTheory",
+      "InformationTheory",
+      "LinearAlgebra",
+      "MeasureTheory",
+      "ModelTheory",
+      "NumberTheory",
+      "Order",
+      "Probability",
+      "RingTheory",
+      "SetTheory",
+      "Topology"
+    ],
+    "note": "guidance only; the claim rule is the parameter-free significance rule"
+  },
+  "schema": "P10.MathlibModuleNegativeRevival.v2",
+  "source_result": "results/MATHLIB_TRANSFER_V2_1.json"
+}

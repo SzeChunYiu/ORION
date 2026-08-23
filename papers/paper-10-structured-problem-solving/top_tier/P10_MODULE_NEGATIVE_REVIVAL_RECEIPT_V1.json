@@ -1,0 +1,102 @@
+{
+  "schema": "P10.ModuleNegativeRevivalReceipt.v1",
+  "lane": "NR-02",
+  "backlog": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "branch": "revive/p10-modules-nr02",
+  "canonical_artifacts": {
+    "generator": "papers/paper-xx-content-bound-math-evaluation/analyze_module_negative_revival_v2.py",
+    "generator_sha256": "155df95c1d8a996e2a78632e6b1d4feae819e06fc7b0dc6dcc665aa8f0c883ae",
+    "result": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_MODULE_NEGATIVE_REVIVAL_V2.json",
+    "result_sha256": "a68e03b967d653cf4df71351bd33034127c2f9e44d0637b0bf2d2932d280b50a",
+    "v1_module_receipt": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
+    "v1_module_receipt_sha256": "5ddd51d2256aa23b517175b34e1e3cf851acaea76b9896855da5e66afd2a422e",
+    "scope_note": "The module analysis and frozen data live in papers/paper-xx-content-bound-math-evaluation (self-identified P10); this receipt is filed under the current P10 slot per the backlog lane registration."
+  },
+  "faithfulness": {
+    "method": "full per-transition replay through the frozen runner's own sha-verified loader",
+    "frozen_block_receipts_matched": 28,
+    "mismatches": 0
+  },
+  "per_module": [
+    {
+      "module": "Control",
+      "v1_delta": -0.03333333333333333,
+      "root_cause": "measurement resolution (label over-reading)",
+      "evidence": {
+        "wins": 7,
+        "losses": 9,
+        "discordant_pairs": 16,
+        "min_detectable_net_at_alpha_0.05": 10,
+        "observed_net": -2,
+        "sign_p_two_sided": 0.803619384765625,
+        "within_module_loo_delta": 0.08333333333333333,
+        "loss_context": "extensionality: donor simplify(200)/rewrite(100) plurality vs module apply(8)/rewrite(4) - 4W/8L"
+      },
+      "verdict": "CORRECTED: UNRESOLVED by measurement resolution; V1 negative label over-read a coin flip; sign withheld, not relabelled positive"
+    },
+    {
+      "module": "CategoryTheory",
+      "v1_delta": -0.005780346820809248,
+      "root_cause": "measurement resolution over a genuine mechanism boundary: plurality conditional inversion",
+      "evidence": {
+        "wins": 21,
+        "losses": 22,
+        "discordant_pairs": 43,
+        "min_detectable_net_at_alpha_0.05": 15,
+        "observed_net": -1,
+        "sign_p_two_sided": 1.0,
+        "within_module_loo_delta": 0.3815028901734104,
+        "loss_context": "calculation: donor rewrite(514)/apply(413) 46% plurality vs module apply(17)/simplify(8) - 5W/17L, carrying the entire negative net",
+        "js_module_vs_donor_marginal_bits": 0.0265192067653212,
+        "median_donor_context_count": 1684.0
+      },
+      "verdict": "CORRECTED: UNRESOLVED by resolution with documented boundary; strongest internal structure of all 26 modules and smallest marginal shift; missing ingredient is conditional information absent from the donor pool; stays OUT of the positive claim"
+    }
+  ],
+  "refuted_failure_stages": {
+    "donor_matching_quality": "median donor context counts 903 (Control) / 1684 (CategoryTheory), minima 147/148 - donor evidence is strong for both",
+    "marginal_shift": "CategoryTheory has the smallest JS to the donor marginal of all 26 modules (0.0265 bits)",
+    "structure_absence": "within-module LOO positive nearly everywhere; Pearson r = 0.037 vs transfer delta across 26 modules - structure presence does not decide transfer"
+  },
+  "lever": {
+    "selected": "V2 claim rule (parameter-free, even-handed): a module-level sign is claimable only when its exact paired sign test reaches two-sided alpha 0.05; sub-resolution modules of either sign are reported UNRESOLVED with withheld sign",
+    "pre_outcome_visibility": "the rule uses only discordant-pair counts and exact test p-values computed per module; it withholds signs from 4 V1-positive modules as well, so it cannot relabel outcomes",
+    "rejected_arms": [
+      {
+        "arm": "A - confidence gate",
+        "rule": "accept donor conditional iff donor-side 95% normal lower bound of argmax share beats the donor marginal share",
+        "pooled_delta_after": 0.0967741935483871,
+        "verdict": "REJECTED - large donor context counts make almost every conditional 'confident'; confidence is not alignment; CategoryTheory worsens (net -1 to -5)"
+      },
+      {
+        "arm": "B - majority gate",
+        "rule": "accept donor conditional only on strict >50% majority of that context's donor continuations",
+        "pooled_delta_after": 0.00025333558520520183,
+        "verdict": "REJECTED - a 16-family action space almost never yields majority continuations; the rule collapses the mechanism to the unigram baseline"
+      }
+    ],
+    "backlog_lever_disposition": "per-module donor matching: marginal-similarity variant is provably inert for CategoryTheory (its marginal is the closest of all 26 to the pool, JS 0.0265, so restriction returns approximately the full pool); conditional-similarity variant requires the held-out module's own conditionals and breaches the frozen V2.1 leakage barrier - prospective successor only"
+  },
+  "retest": {
+    "pooled_delta_before": 0.10462759668974836,
+    "pooled_delta_after": 0.10462759668974836,
+    "pooled_note": "estimator unchanged; both repair arms data-rejected, so the frozen pooled result is retained rather than tuned",
+    "claimable_positive": 20,
+    "claimable_negative": 0,
+    "unresolved_sign_withheld": [
+      "CategoryTheory",
+      "Condensed",
+      "Control",
+      "Order",
+      "RepresentationTheory",
+      "Topology"
+    ],
+    "family_sign_test_p_before": 1.049041748046875e-05,
+    "family_sign_test_p_after": 1.9073486328125e-06,
+    "resolution_floor_discordant_pairs": 44,
+    "modules_meeting_floor": 19
+  },
+  "remaining_negatives": [],
+  "claimable_negative_modules": [],
+  "boundary": "Post-hoc revival analysis of frozen source-projection artifacts; the V2 claim rule and lever arms were selected after inspecting the V1 failures and require prospective re-freezing before use as endpoints. Source-text projection only: no proof-state, tactic-library, prover-utility, theorem-correctness or scientific-authority claim. Sub-resolution modules stay unclaimed; nothing was relabelled positive. Multiplicity: 20 claims at alpha 0.05 across 26 modules implies ~1.3 expected false claims under a global null; all claims are same-signed positive and the family-level sign test covers the familywise concern."
+}
