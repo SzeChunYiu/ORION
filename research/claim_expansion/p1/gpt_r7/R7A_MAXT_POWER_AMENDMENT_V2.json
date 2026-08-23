@@ -1,0 +1,86 @@
+{
+  "schema_version": "orion.p1.r7a.max-t-powered-successor.v2",
+  "paper_id": "P1",
+  "claim_id": "P1.H1.R7A.MAXT_POWERED",
+  "protocol_status": "PROSPECTIVE_LOCAL_PREFLIGHT_COMPLETE__EXTERNAL_BINDINGS_REQUIRED",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "historical_results_immutable": true,
+  "successor_of": ["P1.H1.V1", "P1.H1.R7"],
+  "material_change": "The source-pair frame is doubled from 192 to 384 because the original planning calculation did not power the nine-comparator simultaneous intersection claim.",
+  "design": {
+    "independent_unit": "unique_source_study_artifact_family_cluster",
+    "not_independent_units": ["pair_member", "episode_row", "model_sample", "probe", "bootstrap_draw", "family_domain_cell"],
+    "stratum_count": 32,
+    "units_per_stratum": 12,
+    "planned_independent_units": 384,
+    "unresolved_safety_clusters_per_wave": 64,
+    "source_clusters_per_wave": 448,
+    "wave_count": 2,
+    "total_source_clusters_both_waves": 896,
+    "source_disjoint_replication": true,
+    "technical_rows_do_not_increase_n": true
+  },
+  "power": {
+    "method": "SEEDED_MONTE_CARLO_MAX_T_UNDER_DECLARED_INDEPENDENT_CONTRAST_PLANNING_MODEL",
+    "planned_independent_units": 384,
+    "comparator_count": 9,
+    "planning_delta": 0.2,
+    "superiority_margin": 0.05,
+    "planning_discordance": 0.4,
+    "familywise_alpha": 0.05,
+    "target_joint_power": 0.9,
+    "simulation_seed": 2026082301,
+    "simulation_draws": 50000,
+    "registered_simulated_minimum_independent_units": 384,
+    "registered_simulated_projected_joint_power": 0.920216,
+    "registered_simulated_critical_value": 2.541351299,
+    "sensitivity_delta_grid": [0.15, 0.2, 0.25],
+    "sensitivity_discordance_grid": [0.3, 0.4, 0.5],
+    "protected_predecessor_outcomes_used_for_calibration": false,
+    "analysis_unit": "source_cluster",
+    "multiplicity_family": "all_nine_registered_primary_comparator_contrasts",
+    "claim_logic": "intersection_all_contrasts_must_pass"
+  },
+  "local_bindings": [
+    {
+      "binding_id": "QUERY_FRAME",
+      "path": "research/claim_expansion/p1/gpt_r7a/query_frame.py",
+      "sha256": "ad6747e6ce101a4bee7095a5827a6d4ad2478e8bbc6a65b6d089e5175088ec43"
+    },
+    {
+      "binding_id": "SOURCE_FRAME_VALIDATOR",
+      "path": "research/claim_expansion/p1/gpt_r7/source_frame.py",
+      "sha256": "b76f837bed4590c83d0065dd727c2da54d39d375bf5ce28b61d8ed5e7fac8e85"
+    },
+    {
+      "binding_id": "CANDIDATE_VISIBILITY_CONTRACT",
+      "path": "research/claim_expansion/p1/gpt_r7/candidate_view.py",
+      "sha256": "442fcfbf9f40bfe25c884b0ae4287dbc65023ed0fc3019ccac52abb0b3b1e71f"
+    },
+    {
+      "binding_id": "MAX_T_POWER_CODE",
+      "path": "research/claim_expansion/p1/gpt_r7a/max_t_power.py",
+      "sha256": "d592fb75537e13701d81653bfda3905b01910acd022654e164940a6fe0e797ac"
+    },
+    {
+      "binding_id": "MAX_T_POWER_RECEIPT",
+      "path": "research/claim_expansion/p1/gpt_r7a/R7A_MAXT_POWER_RECEIPT_V1.json",
+      "sha256": "6b45c1257746ae8a154b50713a4967c28b55900a75cb07fa103da8353cff9d05"
+    }
+  ],
+  "external_bindings_required": [
+    "PRIMARY_AND_REPLICATION_SOURCE_SNAPSHOTS",
+    "STRONGEST_RUNNABLE_EXTERNAL_COMPARATOR",
+    "PRIMARY_AND_CHANGED_REPLICATION_SEMANTIC_HOST_CUSTODY",
+    "INDEPENDENT_PRIMARY_AND_REPLICATION_SCORER_CUSTODY",
+    "PROTECTED_EXECUTION_ENVIRONMENT"
+  ],
+  "missing_external_terminal": "P1_R7A_CANNOT_CHECK_EXTERNAL_BINDINGS",
+  "possible_scientific_terminals_after_execution": [
+    "P1_R7A_WIDE_PROTECTED_SUPERIORITY_SUPPORTED_IN_REGISTERED_FRAMES",
+    "P1_R7A_NOT_SUPPORTED",
+    "P1_R7A_CANNOT_CHECK"
+  ],
+  "current_terminal": "P1_R7A_READY_FOR_EXTERNAL_BINDING_NOT_A_SCIENTIFIC_RESULT"
+}
