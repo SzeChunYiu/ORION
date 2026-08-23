@@ -1,0 +1,72 @@
+name: p12-transfer-allocation-v1
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_TRANSFER_ALLOCATION_PROTOCOL_V1.md'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_v1.json'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_transfer_allocation_independent_v1.py'
+      - '.github/workflows/p12-transfer-allocation-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transfer-allocation-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute unchanged-allocator transfer study
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py | tee p12_transfer_allocation_v1.json
+      - name: Verify deterministic primary replay and frozen gates
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py > p12_transfer_allocation_replay.json
+          cmp p12_transfer_allocation_v1.json p12_transfer_allocation_replay.json
+          python - <<'EOF'
+          import json
+          r = json.load(open('p12_transfer_allocation_v1.json'))
+          gates = r['gates']
+          assert r['terminal'] == 'P12_TRANSFER_ALLOCATION_V1_SUPPORTED', r['terminal']
+          assert gates['G1_exact_outputs_all_arms'] is True
+          assert gates['G2_allocator_zero_regret_every_case'] is True
+          assert gates['G3_restrictions_fail_somewhere'] is True
+          assert gates['G4_resource_vector_complete_and_unlearned'] is True
+          assert gates['G6_allocator_identity_across_domains'] is True
+          params = set()
+          for d in r['domains']:
+              params.add(json.dumps(d['allocator_params'], sort_keys=True))
+          assert len(params) == 1, 'allocator parameters differ across domains'
+          cells = sum(len(d['cases']) for d in r['domains'])
+          assert cells == 9, cells
+          print('P12_TRANSFER_ALLOCATION_V1_BYTE_REPLAY_GREEN')
+          EOF
+      - name: Execute independent second checker
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/check_transfer_allocation_independent_v1.py | tee p12_transfer_allocation_independent_v1.json
+      - name: Verify independent replay and two-implementation agreement
+        run: |
+          python papers/paper-12-adaptive-state-reasoning/top_tier/check_transfer_allocation_independent_v1.py > p12_transfer_independent_replay.json
+          cmp p12_transfer_allocation_independent_v1.json p12_transfer_independent_replay.json
+          python - <<'EOF'
+          import json
+          c = json.load(open('p12_transfer_allocation_independent_v1.json'))
+          assert c['terminal'] == 'P12_TRANSFER_ALLOCATION_SECOND_INDEPENDENT_CHECKER_GREEN', c['terminal']
+          assert c['independent_truth_exact'] is True
+          assert c['independent_allocator_selection_agrees'] is True
+          assert c['independent_regret_agrees'] is True
+          assert c['discrepancies'] == []
+          r = json.load(open('p12_transfer_allocation_v1.json'))
+          assert r['terminal'] == 'P12_TRANSFER_ALLOCATION_V1_SUPPORTED'
+          print('P12_TRANSFER_ALLOCATION_TWO_IMPLEMENTATIONS_AGREE')
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p12-transfer-allocation-v1
+          path: |
+            p12_transfer_allocation_v1.json
+            p12_transfer_allocation_replay.json
+            p12_transfer_allocation_independent_v1.json
+            p12_transfer_independent_replay.json
