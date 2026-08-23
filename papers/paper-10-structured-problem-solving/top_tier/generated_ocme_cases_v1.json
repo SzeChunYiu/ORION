@@ -1,0 +1,42 @@
+{
+  "schema": "P10.GeneratedOCMECases.v1",
+  "boolean_majority": {
+    "n_inputs": 4,
+    "originating": {"id": "GB-MAJ-012", "kind": "majority3", "vars": [0, 1, 2]},
+    "held_out": [
+      {"id": "GB-MAJ-013", "kind": "majority3", "vars": [0, 1, 3]},
+      {"id": "GB-MAJ-023", "kind": "majority3", "vars": [0, 2, 3]},
+      {"id": "GB-MAJ-123", "kind": "majority3", "vars": [1, 2, 3]}
+    ],
+    "known_method_controls": [
+      {"id": "GB-XOR-01", "kind": "xor", "vars": [0, 1]},
+      {"id": "GB-PROJ-2", "kind": "projection", "var": 2},
+      {"id": "GB-CONST-1", "kind": "constant", "value": 1}
+    ],
+    "candidate_binary_truth_table_codes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "composition_template": "g(a,b) XOR g(a,c) XOR g(b,c)",
+    "selection": ["exact_origin", "outside_affine", "min_truth_table_hamming_weight", "min_integer_code"]
+  },
+  "integer_cubic": {
+    "domain": [-4, -3, -2, -1, 0, 1, 2, 3, 4],
+    "originating": {"id": "GI-CUBIC-O", "kind": "cubic_affine", "linear": 2, "constant": 1},
+    "held_out": [
+      {"id": "GI-CUBIC-H1", "kind": "cubic_affine", "linear": -1, "constant": 2},
+      {"id": "GI-CUBIC-H2", "kind": "cubic_affine", "linear": 0, "constant": 3},
+      {"id": "GI-CUBIC-H3", "kind": "cubic_affine", "linear": -3, "constant": -2}
+    ],
+    "known_method_controls": [
+      {"id": "GI-AFFINE-2X3", "kind": "affine", "linear": 2, "constant": 3},
+      {"id": "GI-AFFINE-MX1", "kind": "affine", "linear": -1, "constant": 1}
+    ],
+    "candidate_catalog": [
+      {"candidate_id": "U0", "semantic": "ABS", "complexity_rank": 0},
+      {"candidate_id": "U1", "semantic": "SIGN", "complexity_rank": 1},
+      {"candidate_id": "U2", "semantic": "SQUARE", "complexity_rank": 2},
+      {"candidate_id": "U3", "semantic": "CUBE", "complexity_rank": 3},
+      {"candidate_id": "U4", "semantic": "FOURTH_POWER", "complexity_rank": 4}
+    ],
+    "wrapper": "primitive(x) + a*x + b",
+    "selection": ["exact_origin", "outside_affine", "min_complexity_rank", "candidate_id"]
+  }
+}

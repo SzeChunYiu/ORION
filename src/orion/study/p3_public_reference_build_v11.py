@@ -10,10 +10,9 @@ from typing import Iterable, Iterator, Mapping, Sequence
 
 from orion.study.p3_public_reference import canonical_json, validate_case
 from orion.study.p3_public_reference_build import (
-    MUSE_REVISION,
-    SCIFACT_REVISION,
-    SCISCHEMA_REVISION,
+    CorpusPin,
     muse_coreference_cases,
+    pin_for,
     scifact_claim_cases,
     scischema_identity_cases,
 )
@@ -66,12 +65,19 @@ def _stableize(case: dict[str, object], old_root: Path, prefix: str) -> dict[str
     return stable
 
 
-def stable_muse_cases(root: Path) -> list[dict[str, object]]:
-    return [_stableize(case, root, "dataset/human_Expert_annotations") for case in muse_coreference_cases(root)]
+def stable_muse_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
+    return [
+        _stableize(case, root, "dataset/human_Expert_annotations")
+        for case in muse_coreference_cases(root, pins)
+    ]
 
 
-def stable_scifact_cases(path: Path) -> list[dict[str, object]]:
-    cases = scifact_claim_cases(path)
+def stable_scifact_cases(
+    path: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
+    cases = scifact_claim_cases(path, pins)
     old = path.as_posix()
     stable_file = f"data/{path.name}"
     rendered: list[dict[str, object]] = []
@@ -84,8 +90,13 @@ def stable_scifact_cases(path: Path) -> list[dict[str, object]]:
     return rendered
 
 
-def stable_scischema_identity_cases(root: Path) -> list[dict[str, object]]:
-    return [_stableize(case, root, "schemas") for case in scischema_identity_cases(root)]
+def stable_scischema_identity_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
+    return [
+        _stableize(case, root, "schemas")
+        for case in scischema_identity_cases(root, pins)
+    ]
 
 
 def _schema_records(root: Path) -> list[tuple[Path, str, bytes, Mapping[str, object], str]]:
@@ -107,17 +118,22 @@ def _discipline(path: Path) -> str:
     return path.parts[-3]
 
 
-def _source(locator: str, raw: bytes) -> dict[str, str]:
+def _source(
+    locator: str, raw: bytes, pins: Sequence[CorpusPin] | None = None
+) -> dict[str, str]:
+    digest = _sha(raw)
     return {
         "dataset": "SciSchema",
-        "revision": SCISCHEMA_REVISION,
+        "revision": pin_for("SciSchema", digest, pins).identity,
         "locator": locator,
-        "content_hash": _sha(raw),
+        "content_hash": digest,
         "license": "CC-BY-SA-4.0",
     }
 
 
-def scischema_referent_cases(root: Path) -> list[dict[str, object]]:
+def scischema_referent_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
     grouped: dict[str, list[tuple[Path, str, bytes, Mapping[str, object], str]]] = defaultdict(list)
     for record in _schema_records(root):
         grouped[_discipline(record[0])].append(record)
@@ -133,7 +149,7 @@ def scischema_referent_cases(root: Path) -> list[dict[str, object]]:
                 "case_id": f"scischema-ref-{discipline}-{index}",
                 "discipline": discipline,
                 "case_family": "valid_invalid_representation_mapping",
-                "source_records": [_source(lloc, lraw), _source(rloc, rraw)],
+                "source_records": [_source(lloc, lraw, pins), _source(rloc, rraw, pins)],
                 "left_projection": {
                     "projection_id": f"ref:{lid}", "source_id": lid, "source_span": lloc,
                     "predicate": "describes_scientific_process",
@@ -148,7 +164,10 @@ def scischema_referent_cases(root: Path) -> list[dict[str, object]]:
                 },
                 "expected": {"meaning_relation": "DISTINCT_REFERENT", "authority": {
                     "kind": "DETERMINISTIC_STANDARD",
-                    "evidence": [f"SciSchema@{SCISCHEMA_REVISION}:{lloc};id={lid}", f"SciSchema@{SCISCHEMA_REVISION}:{rloc};id={rid}"],
+                    "evidence": [
+                        f"SciSchema@{_source(lloc, lraw, pins)['revision']}:{lloc};id={lid}",
+                        f"SciSchema@{_source(rloc, rraw, pins)['revision']}:{rloc};id={rid}",
+                    ],
                 }},
             }
             validate_case(case)
@@ -175,7 +194,9 @@ def _walk_units(node: object, path: tuple[str, ...] = ()) -> Iterator[tuple[str,
                 yield from _walk_units(value, path + (f"{key}[{index}]",))
 
 
-def scischema_construct_cases(root: Path) -> list[dict[str, object]]:
+def scischema_construct_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
     cases = []
     for path, locator, raw, payload, schema_id in _schema_records(root):
         by_unit: dict[str, list[str]] = defaultdict(list)
@@ -191,7 +212,7 @@ def scischema_construct_cases(root: Path) -> list[dict[str, object]]:
             "schema_version": "orion.p3.public-reference-case.v1",
             "case_id": "scischema-construct-" + _sha(f"{schema_id}|{unit}|{left_field}|{right_field}".encode())[:16],
             "discipline": _discipline(path), "case_family": "valid_invalid_representation_mapping",
-            "source_records": [_source(locator, raw)],
+            "source_records": [_source(locator, raw, pins)],
             "left_projection": {
                 "projection_id": f"{schema_id}:{left_field}", "source_id": schema_id, "source_span": f"{locator}#property={left_field}",
                 "predicate": "reports_quantity", "referent_ids": [ref], "construct_ids": [f"field:{left_field}"],
@@ -204,7 +225,10 @@ def scischema_construct_cases(root: Path) -> list[dict[str, object]]:
             },
             "expected": {"meaning_relation": "DISTINCT_CONSTRUCT", "authority": {
                 "kind": "DERIVED_FROM_ALLOWED",
-                "evidence": [f"SciSchema@{SCISCHEMA_REVISION}:{locator}#property={left_field};unit={unit}", f"SciSchema@{SCISCHEMA_REVISION}:{locator}#property={right_field};unit={unit}"],
+                "evidence": [
+                    f"SciSchema@{_source(locator, raw, pins)['revision']}:{locator}#property={left_field};unit={unit}",
+                    f"SciSchema@{_source(locator, raw, pins)['revision']}:{locator}#property={right_field};unit={unit}",
+                ],
                 "derivation": {"rule": "identity:distinct-expert-schema-property-keys-with-shared-unit", "inputs": [left_field, right_field, unit]},
             }},
         }
@@ -213,7 +237,9 @@ def scischema_construct_cases(root: Path) -> list[dict[str, object]]:
     return cases
 
 
-def scischema_measurement_cases(root: Path) -> list[dict[str, object]]:
+def scischema_measurement_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
     cases = []
     for path, locator, raw, payload, schema_id in _schema_records(root):
         fields = [(field, unit) for field, unit in _walk_units(payload) if unit in UNIT_DIMENSIONS]
@@ -228,7 +254,7 @@ def scischema_measurement_cases(root: Path) -> list[dict[str, object]]:
             "schema_version": "orion.p3.public-reference-case.v1",
             "case_id": "scischema-measurement-" + _sha(f"{schema_id}|{left_field}|{left_unit}|{right_field}|{right_unit}".encode())[:16],
             "discipline": _discipline(path), "case_family": "valid_invalid_representation_mapping",
-            "source_records": [_source(locator, raw)],
+            "source_records": [_source(locator, raw, pins)],
             "left_projection": {
                 "projection_id": f"{schema_id}:{left_field}", "source_id": schema_id, "source_span": f"{locator}#property={left_field}",
                 "predicate": "reports_quantity", "referent_ids": [ref], "construct_ids": [construct],
@@ -241,7 +267,10 @@ def scischema_measurement_cases(root: Path) -> list[dict[str, object]]:
             },
             "expected": {"meaning_relation": "DISTINCT_MEASUREMENT", "authority": {
                 "kind": "DERIVED_FROM_ALLOWED",
-                "evidence": [f"SciSchema@{SCISCHEMA_REVISION}:{locator}#property={left_field};unit={left_unit}", f"SciSchema@{SCISCHEMA_REVISION}:{locator}#property={right_field};unit={right_unit}"],
+                "evidence": [
+                    f"SciSchema@{_source(locator, raw, pins)['revision']}:{locator}#property={left_field};unit={left_unit}",
+                    f"SciSchema@{_source(locator, raw, pins)['revision']}:{locator}#property={right_field};unit={right_unit}",
+                ],
                 "derivation": {"rule": "measurement:expert-schema-units-from-distinct-frozen-dimensions", "inputs": [left_unit, left_dim, right_unit, right_dim]},
             }},
         }
@@ -267,14 +296,21 @@ def _take(pools: Mapping[str, Sequence[dict[str, object]]], total: int) -> list[
     return chosen
 
 
-def build_atlas_v11(*, muse_root: Path, scifact_claims: Path, scischema_root: Path, target_n: int = 32) -> tuple[list[dict[str, object]], dict[str, object]]:
+def build_atlas_v11(
+    *,
+    muse_root: Path,
+    scifact_claims: Path,
+    scischema_root: Path,
+    target_n: int = 32,
+    pins: Sequence[CorpusPin] | None = None,
+) -> tuple[list[dict[str, object]], dict[str, object]]:
     pools = {
-        "MUSECoreference": stable_muse_cases(muse_root),
-        "SciFactPolarity": stable_scifact_cases(scifact_claims),
-        "SciSchemaConstruct": scischema_construct_cases(scischema_root),
-        "SciSchemaIdentity": stable_scischema_identity_cases(scischema_root),
-        "SciSchemaMeasurement": scischema_measurement_cases(scischema_root),
-        "SciSchemaReferent": scischema_referent_cases(scischema_root),
+        "MUSECoreference": stable_muse_cases(muse_root, pins),
+        "SciFactPolarity": stable_scifact_cases(scifact_claims, pins),
+        "SciSchemaConstruct": scischema_construct_cases(scischema_root, pins),
+        "SciSchemaIdentity": stable_scischema_identity_cases(scischema_root, pins),
+        "SciSchemaMeasurement": scischema_measurement_cases(scischema_root, pins),
+        "SciSchemaReferent": scischema_referent_cases(scischema_root, pins),
     }
     chosen = _take(pools, target_n)
     relations = sorted({str(case["expected"]["meaning_relation"]) for case in chosen})

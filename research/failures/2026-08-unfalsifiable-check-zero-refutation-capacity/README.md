@@ -351,3 +351,47 @@ could not vary, `UNAPPLIED_TREATMENT_VACUOUS_NULL` a cause that did not vary,
 that reports "PASS over N cases" should be asked which of the N had a reachable
 false branch, and every count of violations should be asked whether its condition
 is satisfiable at all.
+
+---
+
+## Resolved 2026-08-22
+
+The five checks this record was written about now refute. Both P6 checkers moved
+`FAIL -> PASS` and `refutation_audit` exits 0.
+
+Item 10 said "Repair the model... That is the theory lane's call and is **not**
+done here." It has now been made, and the before-tables above are historical.
+
+All five had one cause, and it is sharper than "trivially satisfiable": **the
+predicate was not a function of the rule at all.** Four of the five discarded
+their `rule` argument outright. The model had states and a verdict and no map, so
+every claim that needed a map to state it got written as a claim about an atom
+instead — which makes it an identity.
+
+- `donor_conservativity_violations` and `t1_violations` — the projection was
+  applied to the donor atom, so the comparison was `x != x`.
+- `ideal_product_mismatches` and `t4_violations` — the "ideal product" was the
+  predicate's own body written a second time, so the comparison was `x == x`. It
+  moved only when one copy was edited and the other was not: a copy-drift
+  detector, not an equivalence theorem.
+- `t5_countermodels` — the block asserted the countermodel's *premise* and
+  appended its count unconditionally. 96 in every completing run, for every rule.
+
+The repair was three semantic extensions, not three exceptions: a projection from
+a lifted state to the donor certificate under it, an enriched donor product
+constructed as the donor theory's own validator over a requirement set enlarged
+by the scientific coordinates, and donor-valid transitions in which the donor
+side may change while staying valid. The one-line exception that would also have
+made the coverage number go green is kept beside the extension, unshipped, with a
+test pinning that its refuted set is a strict subset — so "extend the semantics,
+not the exception list" is a comparison a reviewer can run rather than a claim.
+
+Registers grew: 7 to 8 and 8 to 9 declared false theories, both additions taken
+from the frozen theorem documents' own falsifier lists. Every published number is
+preserved, `canonical_rows_sha256` included.
+
+Two things this did **not** buy, both tested so they keep being reported:
+`t5`'s marginal refutation capacity over `t2` on this register is zero, and the
+independent implementation still diverges from the primary on 0 of 320 points —
+a second implementation is a falsifier only where it can disagree, and what
+`P6-U-T4` needs is a reviewer, which a repository cannot produce for itself.

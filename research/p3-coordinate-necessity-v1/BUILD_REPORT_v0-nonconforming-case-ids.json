@@ -1,0 +1,147 @@
+{
+  "added_expected_relations": {
+    "COMPATIBLE": 16,
+    "CONTEXTUAL_DIFFERENCE": 4,
+    "DISTINCT_MEASUREMENT": 4
+  },
+  "atlas_id": "coordinate-necessity-v1",
+  "blockers": [],
+  "built_n": 56,
+  "case_families": {
+    "different_name_same_referent": 13,
+    "polarity_modality_attribution_context": 13,
+    "same_construct_different_measurement": 12,
+    "same_entity_different_temporal_state": 12,
+    "valid_invalid_representation_mapping": 6
+  },
+  "cases_hash": "f1949e87b76808efdc12fd0f57bc13bcf3e724c2e10cc847bdf47990322e43f2",
+  "coordinate_population_added": {
+    "construct_ids": 24,
+    "measurement_ids": 24,
+    "referent_ids": 24,
+    "temporal_context_ids": 24
+  },
+  "coordinate_population_merged": {
+    "construct_ids": 43,
+    "measurement_ids": 24,
+    "referent_ids": 56,
+    "temporal_context_ids": 24
+  },
+  "coordinate_population_parent": {
+    "construct_ids": 19,
+    "measurement_ids": 0,
+    "referent_ids": 32,
+    "temporal_context_ids": 0
+  },
+  "dependence_receipts": [
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-7ebd7c53da78687a",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-c493851100491f48",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-62a06ab46a48bf53",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-bd4f4ff7bd02002c",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-7520d97f889e5ac2",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-538047dcbd671ff3",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-c2e60b52a1bb8b54",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-7b07566869baae95",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    }
+  ],
+  "disciplines": {
+    "biology": 6,
+    "chemistry": 6,
+    "materials": 9,
+    "muse_cross_domain": 13,
+    "physics": 7,
+    "psychology": 2,
+    "scientific_claim_verification": 13
+  },
+  "expected_relations": {
+    "COMPATIBLE": 42,
+    "CONTEXTUAL_DIFFERENCE": 4,
+    "CONTRADICTORY": 6,
+    "DISTINCT_MEASUREMENT": 4
+  },
+  "external_validity": "The added cases are synthetic: gold follows from the emitted standard table by the rule identity:frozen-coordinate-standard-distinctness, not from an upstream expert corpus. This atlas can establish that a coordinate is load-bearing in the comparison rule; it cannot establish that such pairs are frequent in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "freeze_document": "research/p3-coordinate-necessity-v1/FREEZE_2026-08-21.md",
+  "parent_atlas": {
+    "case_count": 32,
+    "note": "copied through unchanged; the frozen atlas is never edited",
+    "path": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+    "sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b"
+  },
+  "protocol_id": "P3.coordinate-necessity-extension.v1",
+  "schema_version": "orion.p3.coordinate-necessity-build-report.v1",
+  "standard_document": "SYNTHETIC_COORDINATE_STANDARD.json",
+  "standard_sha256": "3a4c5674e93b5620d50b5ef907e504141d8b5232cfb7b3bc8d3e935e1f880880",
+  "status": "READY",
+  "synthetic_case_count": 24
+}

@@ -1,0 +1,129 @@
+{
+  "schema": "orion.p3.atlas-coordinate-opportunity.v1",
+  "record": "P3_ATLAS_COORDINATE_OPPORTUNITY",
+  "authority_scope": "OUTCOME_BLIND_MEASUREMENT",
+  "outcome_accessed": false,
+  "artifact": "/private/tmp/claude-501/-Users-billy-Desktop-projects-ORION-claude/ba0bb0a8-d4b4-46bd-95bd-922eee64a0b5/scratchpad/sandbox/papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+  "artifact_sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b",
+  "cases": 32,
+  "projections": 64,
+  "coordinates_present": [
+    "construct_ids",
+    "measurement_ids",
+    "modality",
+    "polarity",
+    "predicate",
+    "projection_id",
+    "referent_ids",
+    "source_id",
+    "source_span",
+    "temporal_context_ids"
+  ],
+  "coordinates": {
+    "construct_ids": {
+      "present_in_projections": 64,
+      "distinct_values": 12,
+      "cases_where_the_two_sides_differ": 0,
+      "within_case_contrast_fraction": 0.0,
+      "carries_no_content": false,
+      "cannot_contrast": true
+    },
+    "measurement_ids": {
+      "present_in_projections": 64,
+      "distinct_values": 1,
+      "cases_where_the_two_sides_differ": 0,
+      "within_case_contrast_fraction": 0.0,
+      "carries_no_content": true,
+      "cannot_contrast": true
+    },
+    "modality": {
+      "present_in_projections": 64,
+      "distinct_values": 2,
+      "cases_where_the_two_sides_differ": 0,
+      "within_case_contrast_fraction": 0.0,
+      "carries_no_content": false,
+      "cannot_contrast": true
+    },
+    "polarity": {
+      "present_in_projections": 64,
+      "distinct_values": 3,
+      "cases_where_the_two_sides_differ": 6,
+      "within_case_contrast_fraction": 0.1875,
+      "carries_no_content": false,
+      "cannot_contrast": false
+    },
+    "predicate": {
+      "present_in_projections": 64,
+      "distinct_values": 3,
+      "cases_where_the_two_sides_differ": 0,
+      "within_case_contrast_fraction": 0.0,
+      "carries_no_content": false,
+      "cannot_contrast": true
+    },
+    "projection_id": {
+      "present_in_projections": 64,
+      "distinct_values": 51,
+      "cases_where_the_two_sides_differ": 32,
+      "within_case_contrast_fraction": 1.0,
+      "carries_no_content": false,
+      "cannot_contrast": false
+    },
+    "referent_ids": {
+      "present_in_projections": 64,
+      "distinct_values": 24,
+      "cases_where_the_two_sides_differ": 0,
+      "within_case_contrast_fraction": 0.0,
+      "carries_no_content": false,
+      "cannot_contrast": true
+    },
+    "source_id": {
+      "present_in_projections": 64,
+      "distinct_values": 27,
+      "cases_where_the_two_sides_differ": 13,
+      "within_case_contrast_fraction": 0.40625,
+      "carries_no_content": false,
+      "cannot_contrast": false
+    },
+    "source_span": {
+      "present_in_projections": 64,
+      "distinct_values": 50,
+      "cases_where_the_two_sides_differ": 26,
+      "within_case_contrast_fraction": 0.8125,
+      "carries_no_content": false,
+      "cannot_contrast": false
+    },
+    "temporal_context_ids": {
+      "present_in_projections": 64,
+      "distinct_values": 1,
+      "cases_where_the_two_sides_differ": 0,
+      "within_case_contrast_fraction": 0.0,
+      "carries_no_content": true,
+      "cannot_contrast": true
+    }
+  },
+  "carry_no_content": [
+    "measurement_ids",
+    "temporal_context_ids"
+  ],
+  "cannot_contrast": [
+    "construct_ids",
+    "measurement_ids",
+    "modality",
+    "predicate",
+    "referent_ids",
+    "temporal_context_ids"
+  ],
+  "do_contrast": [
+    "polarity",
+    "projection_id",
+    "source_id",
+    "source_span"
+  ],
+  "ledger_named_but_absent_from_the_artifact": [],
+  "checks": {
+    "every_coordinate_the_ledger_calls_inert_is_unusable": true,
+    "at_least_one_coordinate_does_contrast": true
+  },
+  "why_the_distinction_matters": "The ledger's remedy is to freeze an atlas in which every formerly inert coordinate varies. Varying across cases is not the same as differing within one, and only the second produces a contrast. An atlas that populates referent_ids with a different value in every case, but the same value on both sides of each case, satisfies the stated condition and reproduces every zero measured here. The success condition should read non-zero WITHIN-CASE contrast.",
+  "all_checks_pass": true
+}

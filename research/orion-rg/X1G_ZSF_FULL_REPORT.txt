@@ -1,0 +1,228 @@
+MAXIMAL ZERO-SUM-FREE SEQUENCES AND THE INVERSE DAVENPORT PROBLEM FOR C_5^3
+============================================================================
+
+HEADLINE NUMBERS (D(C_5^3) = 13 by Olson, so d(C_5^3) = 12)
+  zero-sum-free sequences of length 12, up to GL(3,5) : 26,369 classes
+                                        total         : 39,147,296,000 sequences
+  minimal zero-sum sequences of length 13, up to GL   :  3,325 classes
+                                        total         :  4,897,256,000 sequences
+  (the second is the inverse Davenport problem proper for C_5^3)
+
+PRIOR ART CHECK (done first)
+----------------------------------------------------------------------------
+Rank 2 is classical: Property B (Gao-Geroldinger; proved for prime n by Reiher)
+plus the Bhowmik-Schlage-Puchta / Gao-Geroldinger description of maximal
+zero-sum-free sequences over C_n^2.  Rank 3 is NOT known: the searches
+surfaced complete inverse results only for special families (C_2^2 + C_2n,
+Schmid EJC 18 (2011) #P33; C_3 + C_3 + C_3d, Bhowmik-Schlage-Puchta 2007),
+and the literature explicitly motivates rank-2 structure by the fact that the
+rank-3 Davenport constant is unresolved in general.  No source gave a
+structural classification for C_p^3, and none gave a rank-3 analogue of
+Property B or a counterexample to one.  So this is new territory; nothing
+here is a rediscovery of a result I found in the literature.
+
+CORRECTION TO THE STATED ANCHOR.  The task gave the rank-2 form as
+  e^{p-1} * prod_{i=1}^{p-1}(a_i e + f)                            [shape A]
+That is INCOMPLETE.  The full statement needs a second shape
+  e^{p-2} * prod_{i=1}^{p}(a_i e + f)  with  sum a_i = 1           [shape B]
+My rank-2 computation confirms it: 4 of the 18 classes over C_5^2 have max
+multiplicity 3, so shape A (which requires multiplicity 4) cannot hold for
+them.  Shape B is exactly the case where the element of multiplicity p-1 in
+the associated minimal zero-sum sequence S*(-sigma(S)) is the completion
+-sigma(S) itself, so Property B is untouched.
+
+VALIDATION ANCHOR: C_5^2, length 8 = d(C_5^2)
+----------------------------------------------------------------------------
+Enumerated ALL 8400 zero-sum-free sequences of length 8 over C_5^2 with NO
+normalization, so the orbit-stabilizer identity is checked against ground
+truth rather than a slice:
+    18 GL(2,5)-classes;  sum of |GL(2,5)|/|Stab| = 8400 = enumerated total.
+    17 classes have |Stab|=1, one (e^4 f^4) has |Stab|=2.
+    ALL 18 fit shape A or shape B (14 fit A, 4 fit only B), tested by brute
+    force over all 480 ordered bases.  0 fit neither.
+The pipeline therefore reproduces the known rank-2 structure theorem before
+being pointed at the unknown rank-3 case.
+
+RANK 3 -- VALIDATION
+----------------------------------------------------------------------------
+  * Bit primitive: the u128 translation `shft` is OR-linear, so checking it on
+    all 125 singleton masks for all 125 translations is a COMPLETE proof, not
+    a sample.  Verified 125x125 = 15625/15625.
+  * Two independently structured enumerators (position-recursive vs
+    code-recursive, different pruning) both give 3,275,411 normalized
+    zero-sum-free sequences of length 12.
+  * COMPLETENESS on a slice: an independent Python brute force over the
+    |supp| <= 5 slice produced 7302 sequences; the C enumerator produced the
+    IDENTICAL SET (0 only-in-python, 0 only-in-C).
+  * Orbit-stabilizer: for EVERY one of the 26,369 classes, N(C)/|Stab(C)|
+    equals the observed multiplicity in the normalized enumeration exactly.
+    0 mismatches; |Stab| divides N in all 26,369 cases; total 3,275,411.
+  * Anti-collapse: inside one multiplicity profile, 129 sequences with
+    distinct subsequence-sum signatures (an independently computed
+    GL-invariant) gave 129 DISTINCT canonical forms.
+  * Canonicalizer regression: the optimized canon2 reproduces the already
+    validated canon byte-for-byte on all 98622 D_2 witnesses.
+  * Anchor: e1^4 e2^4 e3^4 appears as a class.
+  * CROSS-CLASSIFICATION IDENTITY.  Every minimal zero-sum sequence U of
+    length 13 equals S*(-sigma(S)) for S = U minus any one element, and the
+    S's producing a given U are exactly U\{u} for u in supp(U).  Hence
+        #(zero-sum-free length 12) = sum over U of |supp(U)|.
+    Computed: 39,147,296,000 = 39,147,296,000.  EXACT.
+    PROVENANCE.  The two headline counts rest on DIFFERENT evidence.  26,369 is
+    validated the strong way: predicted count N(C)/|Stab(C)| equals observed
+    count for every single class, against a normalized enumeration whose
+    completeness was separately checked on a slice.  3,325 is NOT validated that
+    way -- there is no independent normalized enumeration of length-13 minimal
+    zero-sum sequences here.  It rests on (a) the surjection proof above, (b)
+    the sum-over-supp identity, which does break loudly if two classes collapse
+    to one canonical form, and (c) an anti-collapse control at L=13: 338
+    provably-inequivalent representatives gave 338 distinct canonical forms.
+  * 120 random minimal-zero-sum reps brute-forced over all 2^13 subsets:
+    every one has exactly one zero-sum sub-multiset (itself).  0 failures.
+
+CLASS TABLES
+----------------------------------------------------------------------------
+
+--- zero-sum-free, length 12 (26,369 classes) ---
+support size |supp(S)|:
+   3                 1 classes             248000 sequences
+   4                28 classes           34596000 sequences
+   5               502 classes          728376000 sequences
+   6              3515 classes         5195724000 sequences
+   7              9346 classes        13897176000 sequences
+   8              9392 classes        13961904000 sequences
+   9              3324 classes         4944624000 sequences
+   10              261 classes          384648000 sequences
+
+max multiplicity of S:
+   2               410 classes          600780000 sequences
+   3              8806 classes        13073940000 sequences
+   4             17153 classes        25472576000 sequences
+
+max support points on one line of PG(2,5):
+   2                75 classes           97340000 sequences
+   3              9762 classes        14469684000 sequences
+   4             14137 classes        21018744000 sequences
+   5              2395 classes         3561528000 sequences
+
+max multiplicity-sum over bases inside supp(S):
+   5               346 classes          511128000 sequences
+   6              4317 classes         6415140000 sequences
+   7             10873 classes        16167864000 sequences
+   8              8212 classes        12202344000 sequences
+   9              2322 classes         3427980000 sequences
+   10              284 classes          404736000 sequences
+   11               14 classes           17856000 sequences
+   12                1 classes             248000 sequences
+
+|Stab_GL(S)|:
+   1             26250 classes        39060000000 sequences
+   2               116 classes           86304000 sequences
+   4                 2 classes             744000 sequences
+   6                 1 classes             248000 sequences
+
+--- minimal zero-sum, length 13 = D(C_5^3) (3,325 classes) ---
+support size |supp(U)|:
+   4                 2 classes             992000 sequences
+   5                22 classes           26412000 sequences
+   6               198 classes          281232000 sequences
+   7               786 classes         1154316000 sequences
+   8              1297 classes         1920264000 sequences
+   9               847 classes         1258848000 sequences
+   10              173 classes          255192000 sequences
+
+max multiplicity of U:
+   2                 4 classes            4092000 sequences
+   3               832 classes         1222020000 sequences
+   4              2489 classes         3671144000 sequences
+
+|Stab_GL(U)|:
+   1              3259 classes         4849392000 sequences
+   2                63 classes           46872000 sequences
+   4                 2 classes             744000 sequences
+   6                 1 classes             248000 sequences
+
+
+STRUCTURE
+----------------------------------------------------------------------------
+PROVED.
+  P1  sigma(S) != 0 for every zero-sum-free S, so U = S*(-sigma(S)) is defined,
+      has length 13 = D(C_5^3), and is a MINIMAL zero-sum sequence.
+  P2  INDUCTIVE REDUCTION.  If g in supp(S) has multiplicity 4, then
+      S = g^4 * T and the image of T in G/<g> = C_5^2 is zero-sum-free of
+      length 8, i.e. MAXIMAL, hence of shape A or B by the rank-2 theorem.
+      Proof: if a sub-multiset T' of T sums to 0 in G/<g>, then sigma(T') = jg
+      for some j in 0..4; j=0 makes T' a zero-sum in S, and j>0 makes
+      T' * g^{5-j} a zero-sum in S since m(g) = 4 >= 5-j.  Both contradict ZSF.
+      Verified on 300 random such classes: 0 failures, and the quotients hit
+      all 18 rank-2 classes.
+      COVERAGE: 17,153 of 26,369 classes (65.0%), 25,472,576,000 sequences.
+      The same argument fails at multiplicity 3: j = 1,2 are then unblocked.
+
+VERIFIED BY EXHAUSTION over all 26,369 classes (census, not proof):
+  T1  PROJECTIVE SQUAREFREENESS.  supp(S) injects into PG(2,5): no two support
+      elements are scalar multiples of each other.  This is NOT forced
+      elementwise -- u^2 (2u)^1 is itself zero-sum-free, and the only local
+      constraint is m(u) <= 2, m(2u) <= 1 -- yet it never occurs.  It also held
+      for all 1405 extremal D_2 witness classes.  Two independent complete
+      censuses, ~41 billion sequences, no exception.
+      >>> OPEN QUESTION.  Is every maximal zero-sum-free sequence over C_p^3
+      >>> projectively squarefree?  This is the one regularity found here that
+      >>> looks like a theorem waiting for a proof.
+  T2  max multiplicity is 2, 3 or 4 (410 / 8,806 / 17,153 classes).
+  T3  the projective support never contains a full line (meets a line in <= 5).
+  T4  |supp(S)| in {3,...,10}.
+
+IS THERE A RANK-2-STYLE PARAMETRIC DESCRIPTION?  NO, and here is the obstruction.
+  The rank-2 form works because SOME element has multiplicity p-1 or p-2 and all
+  remaining elements lie in a single coset of the cyclic group it generates.
+  In rank 3 that fails structurally:
+    * 9,216 of 26,369 classes (35.0%, 13,674,720,000 sequences) contain NO
+      element of multiplicity 4, so P2 gives no reduction at all.
+    * 410 classes have max multiplicity 2 -- as spread out as a length-12
+      sequence over C_5^3 can be.  Example, brute-force re-verified:
+        (001)^2 (010)^2 (011)^2 (014)^1 (100)^2 (101)^2 (104)^1
+    * Only ONE class of the 26,369 contains a basis with all three
+      multiplicities equal to 4, namely e1^4 e2^4 e3^4 itself.  The naive
+      "Property C" guess -- every maximal zero-sum-free sequence is
+      g1^4 g2^4 g3^4 -- is false by a factor of 26,369 to 1.
+
+THE RANK-3 ANALOGUE OF PROPERTY B IS FALSE FOR C_5^3.
+  Property B (rank 2, proved for prime n by Reiher) says every minimal zero-sum
+  sequence of maximal length over C_n^2 has an element of multiplicity n-1.
+  The naive rank-3 analogue would force multiplicity 4 in every minimal
+  zero-sum sequence of length D(C_5^3) = 13.  It fails:
+      max multiplicity 4 : 2,489 classes   (3,671,144,000 sequences)
+      max multiplicity 3 :   832 classes   (1,222,020,000 sequences)
+      max multiplicity 2 :     4 classes   (    4,092,000 sequences)
+  All FOUR max-multiplicity-2 classes, each brute-force verified over all 2^13
+  subsets to have exactly one zero-sum sub-multiset (itself):
+      (001)^2 (010)^2 (011)^2 (100)^2 (101)^1 (132)^2 (142)^1 (414)^1   |Stab|=2
+      (001)^2 (010)^2 (011)^2 (100)^2 (104)^1 (113)^2 (144)^1 (402)^1   |Stab|=1
+      (001)^2 (010)^2 (011)^2 (100)^2 (111)^2 (124)^1 (134)^1 (441)^1   |Stab|=1
+      (001)^2 (010)^2 (011)^2 (100)^2 (111)^1 (314)^2 (341)^2           |Stab|=4
+  The most symmetric maximal-length minimal zero-sum sequence is
+      e3^4 e2^4 e1^4 (e1+e2+e3),   |Stab| = 6, orbit 248,000.
+  NOTE ON SCOPE: "Property B" is a rank-2 statement; no rank-3 version is
+  standard in the literature.  This is not a counterexample to a published
+  conjecture -- it is the statement that the obvious generalization is false,
+  with explicit witnesses.
+
+CLOSING THE OPEN ITEM FROM THE D_2 CLASSIFICATION
+----------------------------------------------------------------------------
+The 1,238 zero-sum-free length-12 classes that arise as complements of a
+length-7 minimal zero-sum inside an extremal D_2 witness are
+      1,238 of 26,369 classes            =  4.69%
+      1,815,236,000 of 39,147,296,000    =  4.64% by sequence weight
+All 1,238 were confirmed to be genuine members of the independently produced
+26,369-class list -- a cross-check between the two classifications.
+
+Is there a clean separating criterion?  Not found.  Exact NECESSARY conditions
+(each missing 0 of the 1,238, but each admitting many non-complements):
+      |supp(S)| <= 8          (excludes all 3,585 classes with |supp| 9 or 10)
+      mb >= 6                 (excludes all 346 classes with mb = 5)
+      sigma-completion max multiplicity >= 3  (excludes all 24 with max 2)
+Complements are strongly biased toward small support and large mb: 100% of
+k=4 classes with mb=11 are complements (14/14), versus 37/9,392 at k=8.  The three
+conditions together still admit 21,522 non-complements, so they are far from
+sufficient, and no exact criterion emerged from the invariants computed.

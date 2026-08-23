@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.scientific-result-lifecycle.v1",
+  "title": "ORION typed scientific-result lifecycle record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "paper_id", "claim_id", "claim_scope", "study_id",
+    "record_id", "lifecycle_status", "record_kind", "claim_authority",
+    "disposition", "estimand_id", "population_id", "outcome_id",
+    "decision_rule_id", "measurement_id", "protocol_digest", "dataset_digest",
+    "comparator_set_digest", "visibility_contract_digest", "cluster_id",
+    "cluster_members", "edge_type", "parent_record_id", "is_projection",
+    "design_validity", "gate_role", "terminal", "result", "result_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "orion.scientific-result-lifecycle.v1"},
+    "paper_id": {"pattern": "^P(?:[1-9]|1[0-5])$"},
+    "claim_id": {"pattern": "^P(?:[1-9]|1[0-5])\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_.-]+$"},
+    "claim_scope": {"type": "string", "minLength": 1},
+    "study_id": {"type": "string", "minLength": 1},
+    "record_id": {"type": "string", "minLength": 1},
+    "lifecycle_status": {"enum": ["ACTIVE", "HISTORICAL"]},
+    "record_kind": {"enum": ["SCIENTIFIC_RESULT", "DIAGNOSTIC_RESULT", "MANIFEST", "SCHEMA", "TEMPLATE"]},
+    "claim_authority": {"enum": ["PRIMARY", "SECONDARY", "DIAGNOSTIC", "NEGATIVE_CONTROL", "SCHEMA"]},
+    "disposition": {"enum": ["PENDING", "SUPPORTED", "ADVERSE", "CANNOT_CHECK", "NOT_APPLICABLE", "SCOPED", "INVALID_DESIGN"]},
+    "estimand_id": {"type": "string", "minLength": 1},
+    "population_id": {"type": "string", "minLength": 1},
+    "outcome_id": {"type": "string", "minLength": 1},
+    "decision_rule_id": {"type": "string", "minLength": 1},
+    "measurement_id": {"type": "string", "minLength": 1},
+    "protocol_digest": {"pattern": "^sha256:[0-9a-f]{64}$"},
+    "dataset_digest": {"pattern": "^sha256:[0-9a-f]{64}$"},
+    "comparator_set_digest": {"pattern": "^sha256:[0-9a-f]{64}$"},
+    "visibility_contract_digest": {"pattern": "^sha256:[0-9a-f]{64}$"},
+    "cluster_id": {"type": "string", "minLength": 1},
+    "cluster_members": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "edge_type": {"type": ["string", "null"], "enum": ["SUPERSEDES", "SUCCESSOR_OF", "NARROWS", "ADJUDICATES", "PROJECTS", "AMENDS_METADATA", null]},
+    "parent_record_id": {"type": ["string", "null"]},
+    "is_projection": {"type": "boolean"},
+    "design_validity": {"enum": ["VALID", "INVALID", "UNASSESSED"]},
+    "gate_role": {"enum": ["CLAIM_DECISION", "INTEGRITY_GATE", "DIAGNOSTIC", "EXPECTED_NEGATIVE_CONTROL"]},
+    "terminal": {"type": "string", "minLength": 1},
+    "result": {"type": "object"},
+    "result_digest": {"pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}
+

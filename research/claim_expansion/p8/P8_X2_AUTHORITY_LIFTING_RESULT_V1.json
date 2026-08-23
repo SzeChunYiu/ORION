@@ -1,13 +1,26 @@
 {
   "schema": "P8.X2.AuthorityLiftingResult.v1",
-  "donor_families": ["FAVA_PERMISSION", "PCAA_ACTION_CERT", "HDP_DELEGATION", "SENTINEL_DCC", "APC_BOUNDED_AGENTS", "ECA_TYPED_EVIDENCE"],
-  "scientific_type_coordinates": ["domain", "kind", "scope", "content", "epoch"],
+  "donor_families": [
+    "FAVA_PERMISSION",
+    "PCAA_ACTION_CERT",
+    "HDP_DELEGATION",
+    "SENTINEL_DCC",
+    "APC_BOUNDED_AGENTS",
+    "ECA_TYPED_EVIDENCE"
+  ],
+  "scientific_type_coordinates": [
+    "domain",
+    "kind",
+    "scope",
+    "content",
+    "epoch"
+  ],
   "state_evaluations": 18432,
   "terminal_counts": {
-    "NO_DONOR_AUTHORITY": 9216,
     "BLOCK": 7086,
     "CANNOT_CHECK": 1536,
-    "DISCHARGE": 594
+    "DISCHARGE": 594,
+    "NO_DONOR_AUTHORITY": 9216
   },
   "donor_conservativity_violations": 0,
   "type_separation_witnesses": 30,
@@ -22,7 +35,18 @@
   "chain_widening_countermodels": 36,
   "action_denied_independent_support_examples": 6,
   "ideal_product_mismatches": 0,
-  "canonical_rows_sha256": "f69a60c890b6f9f3636864c639769bc5a145f7224dccd16390cad8d01e92f096",
+  "canonical_rows_sha256": "059687eb8a5a058f808a15da968a01cca99dcaf2731ddefebb8fae6d45aee0b3",
+  "assertion_coverage_status": "COMPLETE",
+  "assertion_covered_states": 3072,
+  "assertion_covered_states_native_invalid": 1536,
+  "assertion_state_space": 3072,
+  "assertion_uncovered_states": 0,
+  "cannot_check_reasons": [],
+  "donor_conservativity_distinct_states": 2,
+  "donor_conservativity_states": 12,
+  "donor_conservativity_status": "CHECKED",
+  "ideal_product_status": "CHECKED",
+  "terminal": "PASS",
   "interpretation": "Modern action/delegation/evidence authority systems are absorbed as native lower-level authority certificates. Scientific discharge is a separate lifted relation requiring compatible or protectedly coerced scientific type, non-widening delegation, fail-closed blocker state and at least one surviving complete support family. Action authority can survive when scientific discharge fails, and scientific support can exist independently of a denied action. An equally typed decentralized product ties exactly.",
   "claim_ceiling": "BOUNDED_FORMAL_SCIENTIFIC_AUTHORITY_LIFTING; no deployed-agent or inherent-centralization claim"
 }

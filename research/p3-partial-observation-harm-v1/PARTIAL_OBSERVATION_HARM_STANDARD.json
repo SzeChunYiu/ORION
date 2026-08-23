@@ -1,0 +1,124 @@
+{
+  "absent_values": {
+    "assumption_ids": [],
+    "attribution_id": "",
+    "construct_ids": [],
+    "discourse_relation": "",
+    "measurement_ids": [],
+    "modality": "UNKNOWN",
+    "polarity": "UNKNOWN",
+    "referent_ids": [],
+    "temporal_context_ids": []
+  },
+  "admissible_values": {
+    "assumption_ids": [
+      [
+        "poharm:assumption:00"
+      ],
+      [
+        "poharm:assumption:01"
+      ],
+      [
+        "poharm:assumption:02"
+      ]
+    ],
+    "attribution_id": [
+      "poharm:attribution:00",
+      "poharm:attribution:01",
+      "poharm:attribution:02"
+    ],
+    "construct_ids": [
+      [
+        "poharm:construct:00"
+      ],
+      [
+        "poharm:construct:01"
+      ],
+      [
+        "poharm:construct:02"
+      ]
+    ],
+    "discourse_relation": [
+      "poharm:discourse:00",
+      "poharm:discourse:01",
+      "poharm:discourse:02"
+    ],
+    "measurement_ids": [
+      [
+        "poharm:measurement:00"
+      ],
+      [
+        "poharm:measurement:01"
+      ],
+      [
+        "poharm:measurement:02"
+      ]
+    ],
+    "modality": [
+      "ASSERTED",
+      "POSSIBLE",
+      "PROBABLE"
+    ],
+    "polarity": [
+      "POSITIVE",
+      "NEGATED"
+    ],
+    "referent_ids": [
+      [
+        "poharm:referent:00"
+      ],
+      [
+        "poharm:referent:01"
+      ],
+      [
+        "poharm:referent:02"
+      ]
+    ],
+    "temporal_context_ids": [
+      [
+        "poharm:temporal:00"
+      ],
+      [
+        "poharm:temporal:01"
+      ],
+      [
+        "poharm:temporal:02"
+      ]
+    ]
+  },
+  "atlas_id": "partial-observation-harm-v1",
+  "coordinate_precedence": [
+    "referent_ids",
+    "construct_ids",
+    "measurement_ids",
+    "temporal_context_ids",
+    "attribution_id",
+    "discourse_relation",
+    "assumption_ids",
+    "polarity",
+    "modality"
+  ],
+  "derivation_rule": "identity:observed-coordinate-precedence-with-completion-invariance",
+  "derivation_rule_statement": "Two projections whose predicates are not the same entry of this table are UNRESOLVED. Otherwise, complete every coordinate this table lists that is stated on exactly one side with each admissible value of that coordinate in this table; if the relation read off the completed pair -- referent, then construct, then measurement, then the contextual coordinates (temporal, attribution, discourse, assumption, modal force), then polarity -- is not the same for every completion, the pair is UNRESOLVED. Otherwise it is that relation.",
+  "disciplines": [
+    "biology",
+    "chemistry",
+    "materials",
+    "physics"
+  ],
+  "external_validity": "The cases are synthetic: gold follows from the emitted standard table by the rule identity:observed-coordinate-precedence-with-completion-invariance, not from an upstream expert corpus. This corpus can establish that compare_meaning misreads a one-sided absence and that an abstain-on-asymmetry repair destroys correct answers on pairs of this shape. It cannot establish that such pairs are frequent in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "gate_note": "G6_HARM_A1 reads 'A1_observedness_asymmetric changes 0 decisions on all intact corpora'. Adding a corpus to that gate can only leave it where it is or make it fail; no construction of this corpus can turn it into a pass. The gate's threshold is not amended, only its denominator.",
+  "not_an_accuracy_benchmark": "This corpus is a harm-gate denominator, not an accuracy benchmark. Its gold on the fully determined strata is derived by a precedence rule that coincides with what compare_meaning does on fully observed pairs, so the current system answers those by construction. That is what a harm measurement needs --- its question is whether a candidate rule moves a decision the current rule already gets right --- and it is what an accuracy claim must not be built on. No accuracy, false-merge, false-split or superiority number over this corpus is evidence about ORION's competence.",
+  "predicates": [
+    "reports_quantity",
+    "reports_observed_state"
+  ],
+  "protocol_id": "P3.partial-observation-harm-corpus.v1",
+  "schema_version": "orion.p3.partial-observation-harm-standard.v1",
+  "strata": {
+    "C_FULLY_OBSERVED": "no coordinate absent on either side; gold determinate",
+    "D_DECISIVE_ABSENCE": "one coordinate absent on exactly one side, everything else equal; gold UNRESOLVED because the completions disagree",
+    "H_UNDECISIVE_ABSENCE": "one coordinate absent on exactly one side, decided by a strictly higher-precedence coordinate; gold determinate",
+    "S_INCOMPARABLE": "one coordinate absent on exactly one side, predicates not comparable; gold UNRESOLVED for a reason unrelated to the absence"
+  }
+}

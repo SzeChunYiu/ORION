@@ -167,7 +167,10 @@ def test_reworded_claim_is_caught(paper: Path) -> None:
     main = paper / "manuscript" / "main.tex"
     source = main.read_text(encoding="utf-8")
     main.write_text(
-        source.replace("full ORION reaches mean recall", "full ORION approaches mean recall"),
+        source.replace(
+            "the governed system reaches mean recall",
+            "the governed system approaches mean recall",
+        ),
         encoding="utf-8",
     )
     proc = run(paper)
@@ -347,11 +350,11 @@ def test_manuscript_number_diverging_from_artifact_is_caught(paper: Path) -> Non
     """A number edited in the prose but not in the archive is the core defect."""
     results = paper / "manuscript" / "sections" / "results.tex"
     source = results.read_text(encoding="utf-8")
-    assert "Full ORION attains mean complete-gold recall 0.979487" in source
+    assert "The governed system attains mean complete-gold recall 0.979487" in source
     results.write_text(
         source.replace(
-            "Full ORION attains mean complete-gold recall 0.979487",
-            "Full ORION attains mean complete-gold recall 0.999999",
+            "The governed system attains mean complete-gold recall 0.979487",
+            "The governed system attains mean complete-gold recall 0.999999",
         ),
         encoding="utf-8",
     )
@@ -430,8 +433,8 @@ def test_role_swap_is_caught_by_positional_binding(paper: Path) -> None:
     source = main.read_text(encoding="utf-8")
     main.write_text(
         source.replace(
-            "full ORION reaches mean recall 0.979487 versus 0.666667 for the strongest",
-            "full ORION reaches mean recall 0.666667 versus 0.979487 for the strongest",
+            "the governed system reaches mean recall 0.979487 versus 0.666667 for the",
+            "the governed system reaches mean recall 0.666667 versus 0.979487 for the",
         ),
         encoding="utf-8",
     )

@@ -23,11 +23,26 @@ V2.1 specifically checks:
 - 3 preservation-versus-revalidation controls;
 - compatibility with the typed-erasure discriminator.
 
+Refutation capacity of the two graph checkers:
+
+```bash
+PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py
+```
+
+Both `check_reopening` and `check_root_inclusive_safety` asserted set-algebra
+identities until 2026-08-22, and every wrong graph operator substituted for
+`descendants` was accepted while the published counts stayed at `(543, 130320)`
+and `(960, 2048)`. This audit measures what the repaired assertions reject:
+per-check refutation over a register of declared false reopening operators, the
+enumerated axes that only multiply case counts, and the substitution table with
+its before column re-derived on each run. It exits `3` if any check has no live
+falsifier. The counts the two checkers print are unchanged.
+
 Programme integration:
 
 ```bash
 PYTHONPATH=src python papers/candidates/checkers/check_donor_complete_envelope_v1.py
-pytest -q tests/unit/candidates/test_p6_p8_candidate_embedding.py tests/unit/candidates/test_p6_p8_theory_closure_v21.py
+pytest -q tests/unit/candidates/test_p6_p8_candidate_embedding.py tests/unit/candidates/test_p6_p8_theory_closure_v21.py tests/unit/candidates/test_p6_formal_refutation_capacity.py
 ```
 
 The V2.1 assumption checker is normative for the minimality/commutation premises; the older V2 checker remains supporting evidence for the other closed results.

@@ -1,0 +1,53 @@
+\begin{abstract}
+Tool-using research systems can produce an answer and a detailed execution trace
+while leaving unresolved who executed the work, which evidence was available,
+whether two agreeing runs were independent, and whether an infrastructure failure
+was accidentally admitted as scientific evidence. We define a fail-closed execution
+contract that separates request identity, result integrity, executor attribution,
+evidence admission and scientific authority. The framework contributes a typed
+receipt model, an explicit six-level independence taxonomy and an adversarial
+protocol for testing identity substitution, evidence replay, cross-lane leakage,
+partial writes and false success. Two contract properties follow from the
+definitions: capability failures cannot enter the scientific-evidence set when
+admission is type checked, and an agreement label cannot exceed the weakest
+verified independence predicate. No protected reliability result is reported.
+Unit tests and deterministic source scans, where available, establish only
+implementation conformance to their checked cases. The framework therefore makes
+execution claims more attributable and falsifiable without treating provenance as
+evidence quality or treating agreement as scientific corroboration.
+\end{abstract}
+
+\section{Scope and nonclaims}
+
+Computational research increasingly depends on workflows that combine programs,
+data services, models, tools and human decisions. Established provenance models
+describe the entities, activities and agents involved in producing an object
+\citep{moreau2013prov}; workflow profiles and research-object packages make such
+records more interoperable and reusable \citep{khan2019cwlprov,soilandreyes2022rocrate,leo2024workflowrun}.
+These developments make an execution easier to inspect, but they do not by
+themselves answer three distinct questions: whether the recorded executor identity
+is authentic, whether an output is scientifically admissible, and whether agreeing
+outputs constitute independent corroboration.
+
+This paper addresses that boundary. Its object is a contract between an execution
+request, a result receipt and an evidence-admission decision. The contract is
+designed for research systems in which a host may call local processes, remote
+services, language models or other bounded capabilities. It is not a new workflow
+language, provenance ontology, cryptographic signature scheme or research agent.
+It instead specifies the minimum predicates that must be checked before a receipt
+can support progressively stronger statements about execution and independence.
+
+The paper makes three contributions. First, it separates the identity of a request
+from the integrity, attribution and scientific status of its result. Second, it
+defines six agreement levels, from deterministic structural agreement to scientific
+corroboration, and makes unsupported upward relabeling invalid. Third, it provides
+a prospective hostile protocol whose attacks can falsify each guarantee.
+
+The claim boundary is strict. A receipt can show that named bytes were processed
+under a declared configuration; it cannot establish that the input evidence was
+true or sufficient. A passing unit suite can show implementation conformance; it
+cannot estimate reliability outside the checked cases. Two requests can agree while
+sharing a model, executor or evidence corpus; agreement alone is not independence.
+The framework grants no scientific truth, novelty, publication, deployment or
+adoption authority.
+

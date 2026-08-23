@@ -32,6 +32,8 @@ Exhaustive bounded enumeration:
 - 0 ideal enriched-product mismatches;
 - canonical rows SHA-256 `e1e3c48bcefea3750d952c6b0ff37ac660a2e21f9823fdfdeb50bb62e819ff93`.
 
+Read with their multiplicity. The donor family enters neither `liftable` nor the changed set, so the donor loop repeats every count under it: **320** is the 64-point (donor verdict, coordinate vector) space enumerated once per family, **25** is 5 separations counted five times, and **155** and **1,055** are 31 and 211 counted five times. Only the **31** product countermodels are 31 distinct facts. The `donor_axis` block of `research/claim_expansion/p6/P6_X2_CERTIFICATE_LIFTING_RESULT_V1.json` carries the same table, computed rather than asserted.
+
 A separate implementation independently reconstructs the enumeration.
 
 ## Wider allowed claim

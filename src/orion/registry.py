@@ -2,6 +2,18 @@
 
 FRAMEWORK_VERSION = "0.3.10-shadow"
 PAPER_SYNC_EPOCH = "2026-08-22-paper-framework-harness-covariance-v4"
+FRAMEWORK_VERSION = "0.3.9-shadow"
+PAPER_SYNC_EPOCH = "2026-08-22-q-series-final-v1"
+Q_SERIES_PUBLICATION_SPEC_ID = "ORION.QSeriesFinalPublicationSpec.v1"
+Q_SERIES_SYNC_EPOCH = "2026-08-22-q-series-final-v1"
+Q_SERIES_PAPER_IDS = ("Q1", "Q2", "Q3", "Q4")
+Q_SERIES_CANONICAL_MANUSCRIPTS = (
+    "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md",
+    "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md",
+    "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md",
+    "papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md",
+)
+Q3_HARNESS_PUBLICATION_CONTRACT_ID = "ORION.Q3.HarnessPublicationContract.v1"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",

@@ -1,0 +1,65 @@
+name: orion-qg20-recovery
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg20_recovery_feature_search.py'
+      - 'development/orion-qg-regime-geometry/qg20_recovery_generic_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg20_recovery_dual_harness.py'
+      - 'development/orion-qg-regime-geometry/QG20_RECOVERY_FEATURE_SEARCH_PROTOCOL_V1.md'
+      - '.github/workflows/orion-qg20-recovery.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg20-recovery-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg20-recovery-dual-harness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numerical dependency
+        run: python -m pip install numpy
+      - name: Run frozen QG-20 recovery dual harness
+        run: |
+          python development/orion-qg-regime-geometry/run_qg20_recovery_dual_harness.py | tee /tmp/orion-qg20-recovery-dual.txt
+          grep '^ORIONQG_QG20_RECOVERY_DUAL=' /tmp/orion-qg20-recovery-dual.txt
+      - name: Enforce dual-harness receipt integrity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          dual = json.loads(Path('artifacts/orion-qg-qg20-recovery-dual-harness.json').read_text())
+          if dual.get('selection_before_heldout') is not True:
+              raise SystemExit('selection/heldout ordering not evidenced')
+          if dual.get('analyzer_replay_identical') is not True:
+              raise SystemExit('analyzer deterministic replay failed')
+          if dual.get('verifier_decision') != 'ACCEPT':
+              raise SystemExit('independent QG-20 recovery verifier rejected')
+          if not all(dual.get('verifier_checks', {}).values()):
+              raise SystemExit('independent verifier has failed checks')
+          allowed = {
+              'QG20_RECOVERY_COMPACT_COORDINATE_SET_RESTORES_DETERMINATION_ON_FROZEN_TRAIN_AND_N4_PANEL',
+              'QG20_RECOVERY_TRAIN_DETERMINATION_ONLY__N4_MIXED',
+              'QG20_RECOVERY_NO_ARITY3_COORDINATE_SET__FULL_QUOTIENT_REQUIRED',
+          }
+          if dual.get('terminal') not in allowed:
+              raise SystemExit(f"unexpected recovery terminal: {dual.get('terminal')!r}")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg20-recovery
+          path: |
+            artifacts/orion-qg-qg20-recovery-selection.json
+            artifacts/orion-qg-qg20-recovery.json
+            artifacts/orion-qg-qg20-recovery-generic-verification.json
+            artifacts/orion-qg-qg20-recovery-dual-harness.json
+            /tmp/orion-qg20-recovery-dual.txt
+          if-no-files-found: error
+          retention-days: 30

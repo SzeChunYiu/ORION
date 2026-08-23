@@ -1,0 +1,20 @@
+{
+  "amends": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_PROTOCOL_V1.md",
+  "amends_sha256": "a44870bea56ea0c94c1b0dec15f3f11961e9371c1f3fedbda3048c654210cb09",
+  "changed_after_outcome_access": false,
+  "independent_unit": "family_rng_block",
+  "n_independent_units": 32,
+  "paper_id": "P12",
+  "primary_bootstrap": {
+    "draws": 20000,
+    "preserves_families_per_sigma": 8,
+    "seed": 2026083303,
+    "type": "stratified_family_block"
+  },
+  "schema": "ORION.P12B.PreflightAttainability.v1.1",
+  "sensitivity_bootstrap": {
+    "draws": 20000,
+    "seed": 2026083304,
+    "type": "unstratified_family_block"
+  }
+}

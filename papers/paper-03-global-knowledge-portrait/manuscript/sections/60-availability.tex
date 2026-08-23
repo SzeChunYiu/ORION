@@ -1,0 +1,115 @@
+\section{Data and code availability}
+\label{sec:availability}
+
+The implementation repository contains the mapping calculus, the frozen
+public-reference datasets and their builders, the deterministic evaluator, the
+successor battery, and the publication-layer regeneration commands. Every
+artifact named anywhere in this paper is listed here with its path, so that no
+repository location has to be carried in the narrative. Paths below are
+relative to the paper directory unless they begin with \idt{src/} or
+\idt{research/}.
+
+\subsection{Preregistration}
+
+The end-to-end study was preregistered and frozen before any outcome was
+accessed, under the identifier \texttt{P3.cross-domain-atlas.v1}. Its
+machine-readable freeze is \idt{protocol/PROTOCOL_V1.json}, with the
+annotation schema, handbook and adjudication standard in
+\idt{protocol/ANNOTATION_SCHEMA_V1.json},
+\idt{protocol/ANNOTATION_HANDBOOK_V1.md} and
+\idt{protocol/ADJUDICATION_POLICY_V1.md}. That expert-gold design has not been
+executed; it is preserved so that a reader can see what was planned, and it
+supplies no evidence for anything reported here.
+
+The executed mapping study has its own preregistration chain. The design
+freezes are \idt{protocol/PUBLIC_REFERENCE_PROTOCOL_V1.json} and
+\idt{protocol/PUBLIC_REFERENCE_PROTOCOL_V1_1.json}, and the execution freeze
+for the confirmatory holdout is
+\idt{protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json}, registered
+under the identifier \texttt{P3.public-reference-mapping.v1.1-confirmatory}. A
+reader checking whether a reported analysis was planned or chosen after the
+fact should compare against that freeze; it is the reason every number in
+Section~\ref{sec:results} can be traced to a decision made in advance of
+seeing it. The successor battery is frozen separately under
+\idt{research/claim_expansion/p3/}, whose protocol, protected freeze,
+outcome-access receipt and result are \idt{P3_X_PROTOCOL_V1.md},
+\idt{P3_X_PROTECTED_FREEZE_V1.json}, \idt{P3_X_OUTCOME_ACCESS_RECEIPT_V1.md}
+and \idt{P3_X_PROTECTED_RESULT_V1.json}.
+
+\subsection{Mechanism implementation}
+
+The coordinate comparison, bridge admissibility and mapping semantics defined
+in Section~\ref{sec:method} are implemented in
+\idt{src/orion/knowledge/semantics.py}; the public-reference builders,
+evaluator, analysis and publication projection are
+\idt{src/orion/study/p3_public_reference_build.py},
+\idt{src/orion/study/p3_public_reference_holdout.py},
+\idt{src/orion/study/p3_public_reference.py},
+\idt{src/orion/study/p3_public_reference_analysis.py} and
+\idt{src/orion/study/p3_public_reference_publication.py}. The independent
+evaluator used for replay is
+\idt{src/orion/study/p3_independent_evaluator.py}.
+
+\subsection{Frozen public-reference datasets}
+
+The initial gold archive is
+\idt{gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl} with
+its freeze manifest
+\idt{gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json};
+its portable SHA-256 is
+\idt{35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8}. The
+disjoint confirmatory holdout is the same pair of files under
+\idt{gold/adjudicated/public-reference-v1.1-confirmatory/}, with portable
+SHA-256
+\idt{13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b}. The
+pinned external source authorities and their revisions are recorded in
+\idt{gold/PUBLIC_REFERENCE_SOURCE_REGISTRY_V1.json}, and the sampling and
+authority rules are \idt{gold/PUBLIC_REFERENCE_AUTHORITY_POLICY_V1.md} and
+\idt{gold/GOLD_METHODOLOGY_V1.md}. Restricted third-party text is not
+redistributed; the packages retain source identity, version, locator and
+content commitment instead.
+
+\subsection{Frozen results}
+
+The initial build report, evaluated summary, analysis, provenance record and
+checksum manifest are under \idt{evidence/public-reference-v1/}; the
+external-source revisions and evaluator identity are bound in
+\idt{evidence/public-reference-v1/PROVENANCE.env}. The confirmatory
+counterparts are under \idt{evidence/public-reference-v1.1-confirmatory/}: the
+pre-outcome binding is \idt{EXECUTION_MANIFEST.json}, the reported numbers are
+\idt{CONFIRMATORY_ANALYSIS.json}, and the publication figures and tables are
+under \idt{publication/} with their own \idt{SHA256SUMS}. The bootstrap seed
+20260817 and both pass margins are recorded in the execution manifest rather
+than chosen afterwards.
+
+The independent reproduction of the confirmatory mapping result is
+\idt{research/verification/records/P3.C5.confirmatory-mapping.json}; the
+successor battery's independent verifier and its record are
+\idt{research/claim_expansion/p3/verify_p3_x_independent.py} and
+\idt{research/claim_expansion/p3/P3_X_INDEPENDENT_VERIFICATION_V1.json}. The
+bounded method-structure pilot of
+Section~\ref{sec:method-structure-eval} has its protocol, runner and results
+in \idt{research/extensions/p1-p3-structure/} and its receipt at
+\idt{evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md}.
+
+The mapping from each result-bearing claim to the archived artifact that
+supports it is \idt{CLAIM_LEDGER_V1.md}, with the manuscript map at
+\idt{CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md}.
+
+\subsection{Reproduction}
+
+Two make targets regenerate the reported analysis and the publication
+artifacts from committed inputs: \texttt{make paper03-public-reference}
+produces the headline analysis, and \texttt{make
+paper03-public-reference-publication} produces the publication figures and
+tables. Both are deterministic, and continuous integration re-runs the second
+on a clean checkout and requires the regenerated bytes to be identical to the
+committed ones. The short reproduction route is \idt{REPRODUCE.md}.
+
+Reproduction establishes only what the frozen artifacts establish. The
+unexecuted raw-text expert atlas, external retrieval and schema baselines,
+generated-portrait recoverability and downstream answer quality have no
+artifacts here, and their outcomes remain undetermined rather than absent by
+oversight.
+
+\endinput

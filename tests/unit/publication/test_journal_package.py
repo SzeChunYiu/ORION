@@ -13,6 +13,7 @@ from check_journal_package import (  # noqa: E402
     PAPER_DIRS,
     check_package,
     check_repository,
+    current_claims,
     hashed_paths,
     load_manifest,
     write_sha256sums,
@@ -34,6 +35,40 @@ def test_p1_h1_remains_not_supported() -> None:
     assert h1["status"] == "NOT_SUPPORTED"
     report = check_package("P1", ROOT / PAPER_DIRS["P1"], repo_root=ROOT)
     assert report.ok
+
+
+def test_p1_current_claim_query_excludes_immutable_negative_history() -> None:
+    manifest = load_manifest(ROOT / PAPER_DIRS["P1"] / "journal_package")
+    active = current_claims(manifest)
+    active_ids = {claim["id"] for claim in active}
+
+    assert "P1.H1" not in active_ids
+    assert "P1.NECESSITY.V2.2.4" in active_ids
+    assert not [claim for claim in active if claim["status"] in {"NOT_SUPPORTED", "CANNOT_CHECK", "OPEN"}]
+
+    h1 = next(claim for claim in manifest["claims"] if claim["id"] == "P1.H1")
+    assert h1["status"] == "NOT_SUPPORTED"
+    assert h1["lifecycle"] == "HISTORICAL_IMMUTABLE"
+
+
+def test_p1_narrow_successor_cannot_launder_historical_h1(tmp_path: Path) -> None:
+    paper = tmp_path / "paper-01-recursive-epistemic-reconstruction"
+    shutil.copytree(ROOT / PAPER_DIRS["P1"], paper, ignore=shutil.ignore_patterns("__pycache__"))
+    manifest_path = paper / "journal_package" / "MANIFEST.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    successor = next(
+        claim for claim in manifest["claims"] if claim["id"] == "P1.NECESSITY.V2.2.4"
+    )
+    successor["relationship_to_previous"] = {
+        "type": "SUPERSEDES",
+        "claim_id": "P1.H1",
+        "scientific_supersession": True,
+    }
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+    report = check_package("P1", paper)
+    assert not report.ok
+    assert any("narrower, not a scientific supersession" in error for error in report.errors)
 
 
 def test_scaffolding_packages_flag_an_open_claim() -> None:

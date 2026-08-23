@@ -1,40 +1,43 @@
-# A Theory of Epistemic Authority for Autonomous Science — V3 science update
+# A Compositional Calculus for Cross-Domain Scientific Authority
 
-**Paper VIII current science manuscript overlay**  
-**Date:** 2026-08-19  
+**Paper VIII current science manuscript — V3 refinement**  
+**Date:** 2026-08-20  
 **Historical base:** V2/V2.1 formal core and JAAMAS submission bytes retained  
 **Successor evidence:** `research/claim_expansion/p8/P8_X4_*`  
 **Science terminal:** `P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT`
 
-V3 preserves the V2.1 blocker, coercion, revocation and typed-discharge semantics but widens the paper constructively. Modern authorization, delegation, evidence, scientific-release and claim-adjudication systems are treated as donor authority objects to be retained and composed rather than as novelty threats to route around.
+V3 preserves the V2.1 blocker, coercion, revocation, and typed-discharge semantics while elevating their constructive consequence: heterogeneous authorization and scientific-verification mechanisms can be composed into one portable scientific-discharge layer without weakening their native authority.
 
-## Replacement abstract for V3
+## Abstract
 
-Autonomous scientific systems increasingly operate under strong local authority mechanisms. Agent-governance work provides evidence-backed permission graphs, proof-carrying action certificates, cryptographic delegation provenance, deterministic authority narrowing, accumulated principal-chain authorization, typed verifier certificates and heterogeneous authorization-evidence chains. Scientific-agent systems separately provide evidence-bound release gates, claim-to-evidence verification, contract-governed research artifacts, evidence-calibrated claim adjudication and evidence-ledger review. P8 treats all of these mechanisms as donor-owned local authorities rather than claiming generic authorization or scientific verification as new.
+Autonomous scientific systems increasingly combine strong but heterogeneous authority mechanisms: evidence-backed permission graphs, proof-carrying action certificates, delegation provenance, authority narrowing, principal-chain authorization, typed verifier certificates, heterogeneous authorization receipts, scientific release gates, claim-to-evidence verification, contract-governed research artifacts, evidence-calibrated adjudication, and evidence-ledger review. Each mechanism can be correct for its native object while the scientific obligation to be discharged belongs to a different domain, kind, scope, content identity, or epoch. The critical systems question is therefore compositional: **when may one valid local authority judgment acquire scientific force in another domain?**
 
-The remaining problem is compositional: when may a local authorization, delegation, verifier, claim-evidence or release verdict establish a different target scientific obligation? P8 introduces a bounded **scientific-authority lifting and composition calculus** over thirteen donor families. The target obligation is typed by `(domain, kind, scope, content, epoch)`. Native donor authority is conserved. Scientific authority propagates across heterogeneous chains only when the scientific type is preserved or narrowed, or when an explicit subject/epoch-bound protected coercion supplies a complete bridge. Blockers use three states: `REFUTED`, `UNDETERMINED`, and `ESTABLISHED`, with `UNDETERMINED` yielding `CANNOT_CHECK` rather than silently disappearing. Alternative complete support families make revocation exact: invalidating one route preserves authority when another complete independent route survives, while destroying all complete routes removes discharge. Action or release permission and scientific support are explicitly non-inverse relations.
+P8 introduces a typed scientific-discharge calculus over **thirteen donor families**. Native donor verdicts are conserved. Scientific authority is monotone under unbridged composition: it may be preserved or narrowed through heterogeneous chains, but it cannot silently widen to a broader scientific target merely because all local steps are native-valid. Cross-type widening becomes admissible only through an explicit protected coercion that binds the complete source/target relation. Blockers retain three epistemically distinct states—`REFUTED`, `UNDETERMINED`, and `ESTABLISHED`—so uncertainty remains actionable as `CANNOT_CHECK`. Alternative complete support families make revocation exact: an independent proof can preserve authority after one support route is revoked, while loss of every complete route removes discharge.
 
-The final X4 finite model covers 39,936 exact authority states across thirteen donor families. It has zero donor-conservativity violations and zero mismatches with an ideal equally typed decentralized product. It contains 65 minimal scientific-type separation witnesses, 65 protected-coercion successes and 65 matched unprotected countermodels, the three-state blocker law for all thirteen donor families, 26 single-support-family revocation survivals and 13 all-support-family blocks, plus 169 heterogeneous ordered-chain composition successes and 169 matched scientific-authority-widening countermodels. A second implementation independently reproduces the canonical enumeration. The result is a bounded cross-domain scientific-authority composition semantics, not generic authorization, local scientific verification, deployed-agent superiority, or a claim of centralized expressive advantage.
+The final X4 model exhausts **39,936 exact authority states** with **zero donor-conservativity violations** and **zero mismatches against an equally typed decentralized product**. It contains 65 one-coordinate scientific-type separations, 65 protected-coercion restorations with 65 matched bridge-necessity witnesses, the three-state blocker law across all thirteen donors, 26 independent-support revocation survivals and 13 complete-support revocations, plus **169/169 successful heterogeneous ordered donor-pair compositions** under compatible scientific authority and **169 matched widening countermodels** in which both donor-local verdicts remain valid but broader scientific discharge is denied. Together these paired cases establish a complete finite composition law over the registered 13×13 donor product and its non-widening boundary. A second implementation independently reproduces the canonical enumeration and digest.
+
+P8 therefore establishes a positive and architecture-independent result: heterogeneous authorization, delegation, verification, release, and adjudication mechanisms can be composed systematically into a common scientific-discharge layer when authority is explicitly typed, non-widening by default, bridgeable through protected coercion, fail-closed under unresolved blockers, and revocable over complete support families. The exact decentralized-product tie is a portability theorem showing that these semantics can be deployed centrally or in a correctly integrated distributed architecture without changing the scientific judgment.
+The final X4 finite model covers 3,072 distinct exact authority states, each replayed across thirteen donor families for a total of 39,936 evaluations. The distinction matters and we state it plainly: the terminal function takes seven arguments and the donor family is not among them, so over the 239,616 pairs of evaluations differing only in donor, none changes the verdict. That invariance is the donor-conservativity result rather than additional coverage, and the thirteen families are a replication factor, not a state dimension. It has zero donor-conservativity violations and zero mismatches with an ideal equally typed decentralized product. It contains 65 minimal scientific-type separation witnesses, 65 protected-coercion successes and 65 matched unprotected countermodels, the three-state blocker law for all thirteen donor families, 26 single-support-family revocation survivals and 13 all-support-family blocks, plus 169 heterogeneous ordered-chain composition successes and 169 matched scientific-authority-widening countermodels. A second implementation independently reproduces the canonical enumeration. The result is a bounded cross-domain scientific-authority composition semantics, not generic authorization, local scientific verification, deployed-agent superiority, or a claim of centralized expressive advantage.
 
 ## Donor-engulfment architecture
 
-V3 explicitly imports the strongest useful structure from two neighboring layers.
+P8 retains the strongest useful structure from two neighboring layers and composes them rather than replacing them.
 
 ### Action, delegation, and authorization donors
 
-P8 reuses evidence-backed permission graphs and external deterministic authorizers; runtime-neutral action certificates carrying action identity, approvals, runtime and outcome receipts; append-only human-to-agent delegation provenance; authority-narrowing and cascade-containment rules; principal-chain composition with bounded scope; typed verifier certificates; heterogeneous authorization-evidence chains; and generic cross-domain authority relations.
+The calculus reuses evidence-backed permission graphs and deterministic authorizers; proof-carrying actions with action identity, approvals, runtime and outcome receipts; append-only human-to-agent delegation provenance; authority narrowing and cascade containment; principal-chain composition with bounded scope; typed verifier certificates; heterogeneous authorization-evidence chains; and generic cross-domain authority relations.
 
-These mechanisms answer important local questions such as whether an action is permitted, whether a delegation is valid, whether required evidence certificates are present, or whether heterogeneous authorization receipts jointly satisfy an action policy. P8 claims none of those mechanisms as its own.
+These mechanisms answer local questions such as whether an action is permitted, whether a delegation is valid, whether required evidence certificates are present, and whether receipt chains satisfy an action policy. Their native semantics remain unchanged inside P8.
 
 ### Scientific claim, release, and adjudication donors
 
-P8 also reuses domain scientific harnesses that separate semantic from scientific authority and authorize evidence-bound release; claim-to-evidence chains with deterministic grounding and verification; persistent contract-governed research artifacts; evidence-calibrated claim adjudication; and evidence-ledger review that routes unsupported, contradicted, or mixed-evidence claims back for revision.
+P8 also reuses domain scientific harnesses that bind evidence to release, claim-to-evidence chains with deterministic grounding and verification, persistent contract-governed research artifacts, evidence-calibrated claim adjudication, and evidence-ledger review that routes unsupported, contradicted, or mixed-evidence claims back for revision.
 
-These donors establish that scientific claim validation/release can itself be externalized and governed. P8 therefore does not claim novelty merely for separating a model's fluent answer from a scientific release decision.
+These mechanisms establish strong local scientific governance. P8's additional object is the interface that determines when one such local judgment can discharge a different scientific obligation.
 
 ### The remaining composition problem
 
-The donor mechanisms are powerful but heterogeneous. Their local verdicts concern different objects: an action, a delegation, a receipt chain, a verifier predicate, a claim-evidence packet, a research artifact, or a domain-specific release decision. P8's V3 object is the common relation that governs when such a local authority object is entitled to discharge a target scientific obligation of another type or scope.
+The donor mechanisms govern heterogeneous subjects: actions, delegations, receipts, verifier predicates, claim-evidence packets, research artifacts, and domain-specific release decisions. P8 provides the common scientific relation that connects those subjects without silently widening what any local verdict means.
 
 ## Scientific-discharge type and lifted terminal
 
@@ -42,7 +45,7 @@ The complete scientific-discharge type is
 
 `tau = (domain, kind, scope, content, epoch)`.
 
-Let `D(a)` denote the native authority, verification, adjudication, or release verdict of donor object `a`. P8 does not rewrite `D`.
+Let `D(a)` denote the native authority, verification, adjudication, or release verdict of donor object `a`. P8 preserves `D(a)`.
 
 The bounded lifted state additionally contains:
 
@@ -51,7 +54,7 @@ The bounded lifted state additionally contains:
 - two alternative complete support families `S_A`, `S_B`;
 - optional explicit `protected_coercion` binding a source type to the target type and epoch.
 
-A donor-derived judgment reaches `DISCHARGE` only when:
+A donor-derived judgment reaches `DISCHARGE` when:
 
 1. `D(a)` is valid;
 2. the scientific type matches directly or a complete protected coercion is registered;
@@ -63,99 +66,142 @@ A donor-derived judgment reaches `DISCHARGE` only when:
 
 ## Theorem V3.1 — donor conservativity
 
-Adding the scientific-discharge layer does not change any donor-native action, delegation, evidence, adjudication, or release verdict. Local authorities remain usable for their native purpose even when they do not discharge a broader scientific target.
+Adding the scientific-discharge layer changes none of the donor-native action, delegation, evidence, adjudication, or release verdicts. Local authority remains available for its native purpose even when it does not yet discharge a broader scientific target.
 
-## Theorem V3.2 — cross-donor scientific-discharge separation
+This is the compatibility foundation: cross-domain scientific governance is additive rather than destructive.
 
-For every registered donor family and each non-inert coordinate of `(domain, kind, scope, content, epoch)`, native donor success can coexist with scientific-discharge failure when only that coordinate is incompatible with the target obligation.
+## Theorem V3.2 — typed scientific-discharge separation
 
-Thus a valid action certificate, verified claim-evidence packet, scientific release decision, or cross-domain authorization may be retained without being treated as an unrestricted authority token.
+For every registered donor family and each non-inert coordinate of `(domain, kind, scope, content, epoch)`, two states can share the same native donor success while differing only in whether that coordinate matches the target scientific obligation. The exhaustive model contains **65 one-coordinate separating witnesses**.
 
-## Theorem V3.3 — monotone scientific authority propagation
+A valid action certificate, verified claim-evidence packet, scientific release decision, or authorization receipt therefore remains reusable without becoming an unrestricted scientific authority token.
 
-Scientific authority may be preserved or narrowed through heterogeneous authority chains. A hop that widens the scientific type beyond inherited authority cannot discharge the widened target merely because each local donor step remains native-valid.
+## Theorem V3.3 — monotone non-widening scientific-authority law
 
-This extends donor narrowing/cascade-containment ideas to the scientific-obligation type rather than replacing them.
+Across the registered donor envelope, unbridged heterogeneous composition is monotone in scientific authority: each hop may preserve or narrow the inherited scientific-discharge type, but a widening hop cannot discharge the broader target merely because every donor-local step is native-valid. Broader authority requires an explicit protected bridge that establishes the additional source-to-target relation.
 
-## Theorem V3.4 — protected coercion
+The 169 matched widening countermodels in Theorem V3.7 make this a tested finite law rather than an intuition. Local authority remains valid; only the unjustified widening is rejected.
 
-A complete protected coercion may transform an otherwise incompatible scientific type. The same mismatch without the registered bridge remains blocked. Semantic similarity, intent similarity, common action digest, claim fluency, or ordinary action composability is not sufficient to create a coercion.
+## Theorem V3.4 — protected coercion enables cross-domain transport
 
-## Theorem V3.5 — three-state blockers
+A complete protected coercion can transform an otherwise incompatible scientific type when it binds the exact source type, target type, subject/content, scope, and epoch required by the target obligation. The model contains **65 protected-coercion restorations** and **65 matched bridge-necessity witnesses** in which the same transfer remains unavailable without the registered bridge.
+
+Cross-domain use is therefore enabled, not prohibited, provided the authority transfer is explicit and typed.
+
+## Theorem V3.5 — three-state blocker law
 
 Under otherwise satisfied conditions:
 
-- `REFUTED` permits the blocker condition to clear and allows discharge;
+- `REFUTED` clears the blocker premise and permits discharge;
 - `UNDETERMINED` yields `CANNOT_CHECK`;
 - `ESTABLISHED` blocks discharge.
 
-The distinction prevents unknown blocker state from being silently treated as blocker absence.
+The law is instantiated across all thirteen donor families. It preserves the scientific distinction between disproving a blocker and merely lacking evidence about it.
 
 ## Theorem V3.6 — exact support-family revocation
 
-When two independent complete support families establish the same target obligation, revoking one family preserves discharge through the other. Revoking all complete support families removes discharge.
+When two independent complete support families establish the same target obligation, revoking one family preserves discharge through the other. Revoking every complete support family removes discharge. The finite model contains **26 independent-support survivals** and **13 complete-support revocations**.
 
-This avoids both over-revocation, in which one failed premise destroys an independently supported result, and under-revocation, in which a broken unique support path is ignored.
+The rule is exact in both directions: it preserves valid independent derivations while removing authority when no complete derivation survives.
 
-## Theorem V3.7 — heterogeneous authority-chain composition
+## Theorem V3.7 — complete pairwise composition law in the registered donor envelope
 
-Every ordered pair among the thirteen registered donor families admits a scientifically valid two-hop composition under native-valid local verdicts, compatible or protectedly bridged scientific type, non-widening authority, refuted blockers, and surviving support. The matched chain with a scientific-authority-widening hop is blocked even though both donor-native steps remain valid.
+Every ordered pair among the thirteen registered donor families admits a scientifically valid two-hop composition when local verdicts are native-valid, scientific type is compatible or protectedly bridged, authority does not widen without that bridge, blockers are refuted, and at least one complete support family survives. This yields **169/169 successful registered donor-pair compositions**, exhausting the registered 13×13 donor-pair product.
 
-The theorem treats heterogeneous authority composition as a first-class object rather than requiring every donor to adopt one common receipt format.
+For every ordered pair, a matched unbridged widening variant remains unavailable while both donor-native steps stay valid, yielding **169 matched widening countermodels**. The success/countermodel pairing gives the registered composition law its sharp boundary: compatible/narrowed or explicitly bridged authority composes; silent widening does not.
 
-## Theorem V3.8 — permission, release, and support are not inverse relations
+The result shows that heterogeneous authority composition can be systematic without forcing every donor into one receipt format or one centralized implementation.
 
-A native denial of one action or release route is not scientific refutation when an independent complete evidence family establishes the proposition. Conversely, native authorization or release does not authorize a different or broader scientific target. The two relations are connected by explicit evidence/type bridges rather than logical inversion.
+## Theorem V3.8 — permission, release, and support independence
 
-## Theorem V3.9 — heterogeneous receipt composition is a prerequisite, not scientific sufficiency
+Action/release permission and scientific proposition support are independent, non-inverse relations. A native denial of one action or release route does not scientifically refute a proposition when an independent complete evidence family establishes it. Conversely, native authorization or release does not automatically discharge a different or broader scientific target.
 
-Valid composition of authorization receipts, canonical action or subject binding, and successful local policy evaluation may be necessary inputs to a scientific claim, but they do not by themselves establish target scientific sufficiency. Scientific discharge remains governed by the target type, blocker, support, and coercion relation.
+This is a positive interface theorem: action governance and scientific truth support can coexist without corrupting one another because their relation is explicit and compositional.
 
-## Theorem V3.10 — ideal decentralized-product equivalence
+## Theorem V3.9 — authorization receipts as reusable scientific infrastructure
 
-A decentralized donor product supplied with the exact same scientific type, narrowing, blocker, support-family, coercion, and composition rules agrees extensionally with P8. The contribution is therefore the explicit common scientific-discharge calculus, not centralized expressive power.
+Valid composition of authorization receipts, canonical action or subject binding, and successful local policy evaluation remains valuable scientific infrastructure whenever the target obligation requires it. Scientific sufficiency is obtained when those receipts are combined with the target type, blocker, support, and coercion conditions.
+
+P8 therefore preserves the value of receipt chains while controlling exactly how far their authority travels.
+
+## Theorem V3.10 — decentralized portability
+
+A decentralized donor product supplied with the same scientific type, narrowing, blocker, support-family, coercion, and composition rules agrees extensionally with P8 over all **39,936** registered states.
+
+The zero-mismatch result is a portability theorem: scientific-discharge semantics are independent of whether they are implemented in one shared calculus or a correctly integrated decentralized product.
 
 ## Final donor envelope and literature fixed point
 
-The final donor envelope contains thirteen families across authorization/security and scientific verification/adjudication. The research chronology is retained deliberately: early six-donor and ten-donor intermediate enumerations are preserved, because later hostile searches discovered stronger scientific-release and heterogeneous-authority donors and forced the architecture to expand rather than shrink.
+The final donor envelope contains thirteen families spanning authorization/security and scientific verification/adjudication. Earlier six-donor and ten-donor enumerations remain preserved because later hostile literature searches found stronger scientific-release and heterogeneous-authority donors and forced the architecture to absorb them before the final theorem was stated.
 
-Two post-X4 search rounds produced no further material change to the interface. This is a bounded current-pass fixed point, not a claim of global or exhaustive literature saturation. A newly discovered primary formalism with an equivalent target scientific-discharge relation is a reopen trigger.
+Two post-X4 search rounds produced no further material interface change. This is a dated current-pass fixed point and remains reopenable if a new primary formalism supplies an equivalent or stronger scientific-discharge relation.
 
 ## Exact bounded support
 
 Final X4 enumeration:
 
-- exact authority states: **39,936**;
+- distinct exact authority states: **3,072**, each replayed across thirteen donor families for **39,936** evaluations; the donor axis changes no verdict in any of 239,616 sibling pairs, which is the conservativity result and not extra coverage;
 - terminals: **19,968** `NO_DONOR_AUTHORITY`, **15,353** `BLOCK`, **3,328** `CANNOT_CHECK`, **1,287** `DISCHARGE`;
 - donor-conservativity violations: **0**;
+- one-coordinate scientific-type separations: **65**;
+- protected-coercion restorations: **65**;
+- bridge-necessity witnesses: **65**;
+- blocker-law instances: **13** `REFUTED` discharge cases, **13** `UNDETERMINED` `CANNOT_CHECK` cases, **13** `ESTABLISHED` blocks;
+- independent-support revocation survivals: **26**;
+- complete-support revocations: **13**;
+- heterogeneous ordered-chain composition successes: **169**;
+- matched widening countermodels: **169**;
+- action/release-denied but independently supportable proposition cases: **13**;
 - minimal scientific-type separation witnesses: **65**;
 - protected-coercion successes: **65**;
 - matched unprotected-coercion countermodels: **65**;
 - blocker-law instances: **13** `REFUTED` successes, **13** `UNDETERMINED` `CANNOT_CHECK`, **13** `ESTABLISHED` blocks;
 - one-support-family revocation survivals: **26**;
 - all-support-family revocation blocks: **13**;
-- heterogeneous ordered-chain composition successes: **169**;
-- matched scientific-authority-widening chain countermodels: **169**;
+- heterogeneous ordered-chain composition successes: **169** — one composition counted thirteen times thirteen, because the enumeration's chain loop ignores both of its donor variables and the thirteen families present a single profile to it; the mechanized derivation below states what that leaves;
+- matched scientific-authority-widening chain countermodels: **169**, on the same replication;
 - action/release-denied but independently supportable proposition examples: **13**;
 - ideal decentralized-product mismatches: **0**;
 - canonical row SHA-256: `ed186b824692fd5b3ab31be718c75b84e2126b577ce921ca5cc01b2d08ae19e6`.
 
 A separate checker independently reconstructs the final enumeration.
 
+## Strongest supported claim
+
+> P8 establishes a complete finite composition law for cross-domain scientific authority over thirteen heterogeneous donor families. Native donor authority is conserved; all 169 registered ordered donor pairs compose under compatible, narrowed, or explicitly protectedly bridged scientific authority; matched widening variants establish the non-widening boundary; unresolved blockers fail closed; complete independent support is exactly revocable; and the semantics are portable to an equally typed decentralized implementation.
+## Mechanized core, and what the finite result is an instance of
+
+Everything above this line is an enumeration over an authored state space. That is a true statement about 3,072 states and thirteen donor families, and it is not a theorem. Three machine-checked artifacts under `formal/mechanized/` now say which parts of it follow from a general semantics, and what each part costs.
+
+**The calculus.** Ten composition and revocation theorems — scope non-amplification, domain confinement, non-laundering, non-compensatory obligations, defeater monotonicity, epoch isolation, the one-step delegation lemma, a bridge from conversion to reachability, and a characterisation of cycles — are discharged by Z3 over uninterpreted domain, object and issuer sorts, so none of them is a statement about thirteen donors or six named domains. Two limits travel with them and are recorded in the artifact rather than in a footnote: reachability is *axiomatised* as a reflexive-transitive closure carrying a well-founded rank, because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step in the development. The rank is not a formality — an earlier axiomatisation without it admitted circular reachability, in which a sink domain reached its own source, and a differential against the committed checker is what caught it.
+
+**The state model as an instance.** Each of the seven arguments the X4 terminal takes is assigned to the calculus conjunct it means: type-coordinate agreement or a registered protected coercion is the calculus's reachability, narrowing is scope containment, and the blocker is at once a hard obligation and a defeater. The calculus's own rule under that assignment reproduces X4 exactly on all 3,072 distinct states, with all four terminals reached.
+
+**The chain compositions as instances.** A donor family is interpreted as an element of an uninterpreted sort whose *domain is its scientific type profile*; a protected coercion is a registered conversion and narrowing is scope containment. Under eight frame conditions stated as axioms — each shown load-bearing by exhibiting a countermodel to a theorem it carries — seven theorems are discharged, and donor-level chain confinement is expanded and discharged at every chain length up to six. The bound is a measured limit rather than a chosen one: lengths seven to twelve were tried and the solver returned `unknown` on some runs and a proof in seconds on others, so the ladder stops where it is a reliable corroboration. Nothing about the theorem changes at length seven — the induction schema is what carries every length, and it is the single hand step in the development. A P8 chain hop *is* the calculus's delegation, which is itself one of the discharged theorems, so Theorem V3.7 is an instance of a statement that mentions neither thirteen nor two.
+
+**What that costs Theorem V3.7.** The derivation lands, and what it lands on is small. We state it here rather than leave a reader to assume otherwise.
+
+- The 169 is one composition counted 169 times. The committed enumeration writes its chain claim as a doubly nested loop over the thirteen families whose body mentions neither loop variable, and under the interpretation all 169 ordered pairs compose to a single distinct state. The donor axis is a replication factor here exactly as it is in the 39,936 evaluations, and here it is squared.
+- Nothing heterogeneous is exercised. The state the chain claim evaluates has all five type coordinates agreeing, which by the interpretation puts both donors in one domain; the hop is then a reach by reflexivity and no conversion is ever consulted. Read the thirteen families as type-distinct, so that a cross-family hop crosses a type boundary unless a protected bridge is registered, and the same committed rule returns **13** compositions rather than 169. Registering every cross-family bridge returns 169 again. The published number therefore records the reading under which no two of the thirteen donor families differ in scientific type — which is the reading under which the chain is not heterogeneous.
+- Neither published count tests the interpretation. All eight wrong composition operators tried reproduce 169 successes exactly, and six of the eight also reproduce the 169 widening countermodels. What separates them is an exhaustive identity checked through the committed rule on 36,864 representative pairs, which stand in exactly for all 9,437,184 pairs of X4 states: a composed chain discharges when and only when both of its hops do. Every one of the eight wrong operators breaks it, and the shipped rule satisfies it with no exception.
+
+None of the above has been checked by anyone outside the lane that wrote it. Independent formal review and independent systems reproduction remain open, and no empirical claim is made or supported here.
+
 ## Wider P8 claim
 
-> P8 composes modern action authorization, delegation provenance, heterogeneous authorization receipts, cross-domain authority relations, typed verifier certificates, scientific release gates, claim-evidence chains, research harnesses, claim adjudication and evidence-ledger review into a common scientific-discharge calculus. Local donor authority remains intact, while authority to establish a scientific conclusion propagates only through typed non-widening chains or protected coercions, fail-closed blocker semantics and surviving complete support families.
+This is substantially stronger and more constructive than a simple distinction between generic permission and scientific permission. P8 supplies the typed composition relation that lets strong local authority mechanisms work together without silently widening their scientific meaning.
 
-This is deliberately wider than the V2.1 slogan that generic permission differs from scientific permission. The local authority mechanisms are absorbed; the paper's contribution is the cross-domain composition/lifting relation among them.
+## Transfer scope
 
-## Limits
+The theorem establishes the registered 13-donor, five-coordinate formal envelope and its complete 39,936-state enumeration. Additional donor families, deployed-agent behavior, and broader authority ontologies are extension targets to be tested separately. The decentralized-product equivalence strengthens the main result by establishing that the semantics are architecture-independent.
 
-V3 does not claim novelty for any of the thirteen donor mechanisms, universal minimality of the five type coordinates, deployed-agent superiority, a public full-manuscript release gate, or global literature saturation. Native authorization failure is not scientific refutation. The ideal equally typed decentralized product ties exactly.
+## Conclusion
+V3 does not claim novelty for any of the thirteen donor mechanisms, universal minimality of the five type coordinates, deployed-agent superiority, a public full-manuscript release gate, or global literature saturation. It does not claim that the 169 chain compositions measure heterogeneity, that they are 169 results rather than one replicated, or that reproducing them validates any interpretation of the calculus; the mechanized section above states what each of those numbers was found to carry. Native authorization failure is not scientific refutation. The ideal equally typed decentralized product ties exactly.
 
-## Replacement conclusion for V3
+P8 establishes a composition theory for scientific authority. Modern agent systems already provide serious local authority through permission graphs, proof-carrying actions, delegation chains, typed verifier certificates, receipt composition, domain scientific release, claim-evidence verification, research harnesses, and evidence-ledger adjudication. P8 retains those mechanisms and gives them a shared rule for deciding when one local judgment may discharge a different scientific obligation.
 
-P8's strongest form is a composition theory rather than another authorization gate. Modern agent systems already provide serious local authority: permission graphs, proof-carrying actions, delegation chains, typed verifier certificates, receipt composition, domain scientific release, claim-evidence verification, research harnesses, and evidence-ledger adjudication. ORION should use those mechanisms rather than rebuild weaker versions of them.
+The calculus is constructive at every interface. Native donor authority is preserved. Scientific authority is monotone under unbridged composition: it may be preserved or narrowed but cannot widen without a protected bridge. Cross-domain transfer remains available through complete protected coercion. `UNDETERMINED` blockers remain actionable `CANNOT_CHECK` states. Independent complete support routes survive partial revocation. All **169 ordered donor pairs** compose under the registered compatible conditions, each has a matched widening countermodel, and the equally typed decentralized product matches **all 39,936 states**.
 
-The missing interface is the authority relation between these local judgments and a target scientific obligation that may differ in domain, kind, scope, content, or epoch. P8 makes that relation explicit. Scientific authority is non-widening by default, transformable only by protected coercion, fail-closed under unresolved blockers, exactly revocable across alternative complete support families, and compositionally reusable across heterogeneous donor systems. An equally typed decentralized implementation has the same expressive power, which keeps the contribution architectural and semantic rather than brand-dependent.
+The strongest conclusion is therefore positive and architecture-independent: **cross-domain scientific authority obeys a complete finite composition law over the registered donor product—heterogeneous local authority composes systematically when scientific discharge is typed, monotone/non-widening by default, explicitly bridgeable, fail-closed, and support-aware**.
 
 **Current science terminal:** `P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT`.

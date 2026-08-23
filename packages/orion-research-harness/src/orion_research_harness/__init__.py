@@ -41,6 +41,13 @@ from .ocme_programme_hardening import install_ocme_programme_hardening
 from .paper_structure_consensus import run_paper_structure_consensus
 from .protocol import CapabilityRequest, CapabilityResult
 from .recursive_runner import RecursiveRunLimits
+from .publication_contract import (
+    Q3_HARNESS_PUBLICATION_CONTRACT_ID,
+    Q3_HARNESS_REQUIRED_PROPERTIES,
+    q3_publication_contract,
+    validate_q3_publication_contract,
+)
+from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .recursive_budget_hardening import install_recursive_budget_hardening
 from .recursive_cost_hardening import install_recursive_cost_hardening
 from .recursive_experience_binding import (
@@ -74,6 +81,8 @@ __all__ = [
     "HostCapabilityFailed",
     "HostCapabilityRequired",
     "ProtectedReference",
+    "Q3_HARNESS_PUBLICATION_CONTRACT_ID",
+    "Q3_HARNESS_REQUIRED_PROPERTIES",
     "RecursiveRunLimits",
     "ResearchWorkspace",
     "WorkspaceRecursiveLLMResearchReasoner",
@@ -95,6 +104,7 @@ __all__ = [
     "mechanics_coverage",
     "method_fibre_surface",
     "navigate_mechanics",
+    "q3_publication_contract",
     "rank_workspace_development_fibres",
     "request_benchmark",
     "request_independent_review",
@@ -109,4 +119,5 @@ __all__ = [
     "saturation_surface",
     "select_context",
     "validate_manifest",
+    "validate_q3_publication_contract",
 ]

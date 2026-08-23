@@ -4,30 +4,47 @@
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\linewidth]{P1-1_protocol_diagram.pdf}
-  \caption{Protocol diagram: host custody (fingerprint-bound cases and gold labels) $\rightarrow$ frozen case $\rightarrow$ system under test (PublicView only) $\rightarrow$ scoring pipeline. Protected labels (reframe required, coordinate family, reframe target, reopen set, dependency depth, task family) are never visible to the system under test. The adjudication panel is a blinded model panel (Amendment A1).}
+  \caption{Protocol diagram: host custody (fingerprint-bound cases and gold labels) $\rightarrow$ frozen case $\rightarrow$ system under test (public view only) $\rightarrow$ scoring pipeline. Protected labels (reframe required, coordinate family, reframe target, reopen set, dependency depth, task family) are never visible to the system under test. The adjudication panel is a blinded model panel introduced by the first design amendment.}
   \label{fig:P1-1}
 \end{figure}
 
 This section describes the executed design. Every quantity below is fixed by
-artifacts committed before any outcome was inspected; the protocol records
-\texttt{outcome\_accessed: false} and the dataset is bound by content hash, so
-the design cannot be reconstructed after the fact to fit a result.
+artifacts committed before any outcome was inspected; the protocol records that
+no outcome had been accessed at the freeze, and the dataset is bound by content
+hash, so the design cannot be reconstructed after the fact to fit a result.
+Machine-readable artifacts govern rather than this narrative, and
+Section~\ref{sec:availability} names where each is archived.
+
+\subsection{Three-valued outcomes}
+
+Every decision reported in this paper is three-valued rather than binary. A case
+may be determined to have recovered, determined to have failed, or left
+\emph{undetermined}; a gate may be determined to hold, determined to be
+violated, or left undetermined. ``We could not measure this'' is recorded,
+reported and counted separately from ``we measured this and it is false'', and
+the two are never merged. The distinction is load-bearing rather than cosmetic:
+an unreachable provider, an absent credential or a comparison in which every arm
+produced the same outcome vector yields an undetermined result, and an
+undetermined result is not evidence of absence. Wherever this paper describes an
+outcome as \emph{undetermined}, that is this third value, carried in the evidence
+record and in every downstream count, never silently resolved to a negative.
 
 \subsection{Frozen protocol and bound artifacts}
 
-The design is \texttt{P1.hidden-formulation.v1.1}. Amendment~A1 removed human
-adjudication as a requirement and installed a blinded model panel as the
-adjudication standard; it was admitted while \texttt{outcome\_accessed} was
-still false, so it changed the design before any outcome was visible rather
-than after. The amendment did not relax provenance: panel output carries the
-tier \texttt{MODEL\_ADJUDICATED}, which the record type mechanically refuses to
-report as human adjudication, and adjudicated labels are described as
-model-derived throughout.
+The design was frozen and versioned before execution, and
+Section~\ref{sec:availability} names the freeze and its amendments. The first
+amendment removed human adjudication as a requirement and installed a blinded
+model panel as the adjudication standard; it was admitted while no outcome had
+been accessed, so it changed the design before any outcome was visible rather
+than after. The amendment did not relax provenance: panel output is recorded as
+model-derived adjudication, which the record type mechanically refuses to report
+as human adjudication, and adjudicated labels are described as model-derived
+throughout.
 
-The evaluation suite is bound by content hash over cases and gold: pilot
-\texttt{7a50a2d5}, test \texttt{21b461d8}. A result reported against an unbound
-dataset is unverifiable, so the hashes are carried in the protocol's
-\texttt{execution\_bindings} rather than in prose.
+The evaluation suite is bound by content hash over cases and gold, separately for
+the pilot and test splits. A result reported against an unbound dataset is
+unverifiable, so the hashes are carried in the frozen execution bindings rather
+than in prose.
 
 \subsection{Task suite}
 
@@ -39,15 +56,15 @@ formulation is correct and the fault lies in missing evidence or in execution.
 estimation; \TestCaseCount{} form the frozen test split. Gold dependency depth
 ranges over one to three so that reopening can be analysed by depth.
 
-Each case exposes a \texttt{PublicView}: a prompt, a set of observable
-resources, and a budget class. Six labels are withheld in host custody---whether
-a reframe is required, the responsible coordinate family, the reframe target,
-the set of closures that must reopen, the dependency depth, and the task family
-itself. The family is withheld because four of six families are hidden-shift
-and two are controls, so naming the family restates the answer to~H2.
-Withholding is enforced by the type signature rather than by convention: a
-system under test receives a \texttt{PublicView} and never an object carrying
-gold, and a single scoring module is the only code permitted to read it.
+Each case exposes a public view: a prompt, a set of observable resources, and a
+budget class. Six labels are withheld in host custody---whether a reframe is
+required, the responsible coordinate family, the reframe target, the set of
+closures that must reopen, the dependency depth, and the task family itself. The
+family is withheld because four of six families are hidden-shift and two are
+controls, so naming the family restates the answer to the restraint hypothesis.
+Withholding is enforced by the type signature rather than by convention: a system
+under test receives the public view and never an object carrying gold, and a
+single scoring module is the only code permitted to read it.
 
 \subsection{Suite validity}
 
@@ -74,25 +91,31 @@ low-level lexical cues remains at approximately $0.10$ lift and is reported as a
 limitation rather than pursued; with forty-eight cases and an unbounded space of
 text statistics, some statistic always separates.
 
-\subsection{Compared systems and matched budget}
+\subsection{Systems under test}
+
+The implementation evaluated here is the ORION reconstruction layer; it is the
+artifact under test, and the rest of the paper calls it the \emph{governed
+policy} so that each claim reads as a claim about the mechanism rather than
+about a product.
 
 Twelve systems are compared. Five are protocol-matched reimplementations of
 published designs, constructed where original code was unavailable: a static
-tool workflow, an iterative tree-search workflow, an AREX-like recursive
-audit-and-follow-up controller, a SCION-like dependency-aware execution plan,
-and an Iris-like revisable information-state controller. Full ORION is compared
-against five ablations of itself: without explicit $W$, without explicit $M$,
-generic retry in place of typed responsibility-targeted reframing, full reset in
-place of dependency-directed reopening, and no mechanic self-audit. An
-additional baseline answers from the same live provider (glm-5.2) in a single
-shot with the ORION control architecture removed, providing a fresh-provider
-reference from the same model family.
+tool workflow, an iterative tree-search workflow, a recursive audit-and-follow-up
+controller in the style of AREX \cite{arex2026}, a dependency-aware execution
+plan in the style of SCION \cite{scion2026}, and a revisable
+information-state controller in the style of Iris \cite{iris2026}. The governed
+policy is compared against five ablations of itself: without explicit $W$,
+without explicit $M$, generic retry in place of typed responsibility-targeted
+reframing, full reset in place of dependency-directed reopening, and no mechanic
+self-audit. An additional baseline answers from the same live provider
+(glm-5.2) in a single shot with the governing control architecture removed,
+providing a fresh-provider reference from the same model family.
 
 All systems share one perception layer, so no system can win by perceiving
 better rather than deciding better, and all are resource-matched, with the
 single exception of the live-provider baseline, which receives the same prompt
-and resource listing once without tool access. Root success
-is never self-asserted: each system re-runs the shared detector against its own
+and resource listing once without tool access. Root success is never
+self-asserted: each system re-runs the shared detector against its own
 post-repair state, and a formulation fault clears only if the policy actually
 moved the coordinate responsible for it.
 
@@ -104,25 +127,25 @@ therefore the number of cases and never cases~$\times$~seeds. Standalone binary
 rates receive Wilson score intervals. Matched differences use a paired
 percentile bootstrap with ten thousand resamples over the frozen case pairing.
 Effect sizes accompany every comparison. The primary hypothesis carries a
-prospective superiority margin of $+0.05$ absolute root success; the
-non-inferiority margin for unnecessary reframing is $+0.02$. Secondary
-inferential families are Holm-corrected. An interval that includes its margin
-does not report support.
+prospective superiority margin of $+\POneHOneMargin{}$ absolute root success;
+the non-inferiority margin for unnecessary reframing is $+\POneHTwoMargin{}$.
+Secondary inferential families are Holm-corrected. An interval that includes its
+margin does not report support.
 
 No candidate-caused failure, timeout, malformed action, abstention or incorrect
 reframe is excluded. Abstention is a distinct outcome that partitions with
 reframe and restraint, so a system cannot obtain a clean unnecessary-reframe
-rate by declining to answer. A case that could not be measured propagates as
-\textsc{cannot\_check} and leaves both numerator and denominator; it is never
-aggregated as a zero.
+rate by declining to answer. A case that could not be measured is carried as
+undetermined and leaves both numerator and denominator; it is never aggregated
+as a zero.
 
 Two admissibility conditions are evaluated before any system comparison is
 reported. First, non-compensatory blocking gates: a failed or unobserved
 requirement cannot be offset by performance elsewhere. Second, arm
 discrimination: if every compared system produced an identical outcome vector,
 the comparison reports a difference of exactly zero by construction rather than
-by measurement, and the honest verdict is \textsc{cannot\_check} rather than a
-null result. This condition is checked and reported, not assumed.
+by measurement, and the honest verdict is that the comparison is undetermined
+rather than null. This condition is checked and reported, not assumed.
 
 \subsection{Reference levels}
 
@@ -134,9 +157,9 @@ full-reset ablation at $0.719$. A reopen result between those levels reflects
 graph shape rather than dependency-directed reasoning, so the ablation alone is
 not a sufficient comparison. For attribution, blind responders reading only case
 identifiers, surface counts, or structural shape are reported alongside the
-majority baseline. The frozen archive additionally records five stochastic
-repeats per case per system; intervals reported in Table P1-2 are taken on the
-reduced case unit with Wilson score intervals at the protocol confidence, and
-the archive carries no \textsc{cannot\_check} cell after the live-provider
-recovery (86 API-failed cells re-executed against the frozen subject; manifest
-\texttt{rerun\_cells\_manifest.json}).
+majority baseline. The frozen archive additionally records
+\StochasticRepeats{} stochastic repeats per case per system; intervals reported
+in Table~\ref{tab:P1-T2} are taken on the reduced case unit with Wilson score
+intervals at the protocol confidence, and after the live-provider recovery the
+archive carries no undetermined cell, the 86 cells lost to provider failures
+having been re-executed against the frozen subject.
