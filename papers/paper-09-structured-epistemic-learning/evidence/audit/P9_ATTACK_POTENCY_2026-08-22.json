@@ -1,0 +1,283 @@
+{
+  "canonicalisation": {
+    "after_rebuild": [
+      "bracketed_target",
+      "monotone_response",
+      "ordered_domain"
+    ],
+    "after_rebuild_with_duplicate": [
+      "bracketed_target",
+      "monotone_response",
+      "ordered_domain"
+    ],
+    "duplicate_survives_the_rebuild": false,
+    "duplicated_input": [
+      "bracketed_target",
+      "monotone_response",
+      "ordered_domain",
+      "bracketed_target"
+    ],
+    "manifest_digests_equal": true,
+    "normaliser": "tuple(sorted({str(x) for x in (values or ())}))",
+    "order_variant_is_identical_to_base": true,
+    "original": [
+      "bracketed_target",
+      "monotone_response",
+      "ordered_domain"
+    ],
+    "reading": "The rebuild normalises every sequence coordinate to a sorted set, so the reversal is undone on the line after it is applied and duplicates are dropped. Ordering is not representable in MethodRealization, so repairing the wiring would not produce an order attack -- the representation would have to carry an order first.",
+    "reversal_survives_the_rebuild": false,
+    "reversed_input": [
+      "ordered_domain",
+      "monotone_response",
+      "bracketed_target"
+    ]
+  },
+  "cells": [
+    {
+      "arm": "LENGTH_ONLY",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "LENGTH_RELATIONAL",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "SERIALIZED_INDEXED",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "SERIALIZED_PATHONLY",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "TRANSCRIPT_BAG",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "TYPED_RELATIONAL",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "TYPED_SERIALIZED_BAG",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "UNTYPED_PAIR",
+      "attacked": true,
+      "changed": 112,
+      "instances": 512,
+      "variant": "EQUAL_LENGTH"
+    },
+    {
+      "arm": "LENGTH_ONLY",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "LENGTH_RELATIONAL",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "SERIALIZED_INDEXED",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "SERIALIZED_PATHONLY",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "TRANSCRIPT_BAG",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "TYPED_RELATIONAL",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "TYPED_SERIALIZED_BAG",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "UNTYPED_PAIR",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "ORDER_PERMUTATION"
+    },
+    {
+      "arm": "LENGTH_ONLY",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "LENGTH_RELATIONAL",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "SERIALIZED_INDEXED",
+      "attacked": true,
+      "changed": 512,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "SERIALIZED_PATHONLY",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "TRANSCRIPT_BAG",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "TYPED_RELATIONAL",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "TYPED_SERIALIZED_BAG",
+      "attacked": true,
+      "changed": 512,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    },
+    {
+      "arm": "UNTYPED_PAIR",
+      "attacked": false,
+      "changed": 0,
+      "instances": 512,
+      "variant": "SEMANTIC_ORBIT"
+    }
+  ],
+  "cells_inert": 15,
+  "cells_total": 24,
+  "date": "2026-08-22",
+  "every_cell_attacked_something": false,
+  "fully_inert_variants": [
+    "ORDER_PERMUTATION"
+  ],
+  "inert_cells": [
+    "EQUAL_LENGTH/TRANSCRIPT_BAG",
+    "ORDER_PERMUTATION/LENGTH_ONLY",
+    "ORDER_PERMUTATION/LENGTH_RELATIONAL",
+    "ORDER_PERMUTATION/SERIALIZED_INDEXED",
+    "ORDER_PERMUTATION/SERIALIZED_PATHONLY",
+    "ORDER_PERMUTATION/TRANSCRIPT_BAG",
+    "ORDER_PERMUTATION/TYPED_RELATIONAL",
+    "ORDER_PERMUTATION/TYPED_SERIALIZED_BAG",
+    "ORDER_PERMUTATION/UNTYPED_PAIR",
+    "SEMANTIC_ORBIT/LENGTH_ONLY",
+    "SEMANTIC_ORBIT/LENGTH_RELATIONAL",
+    "SEMANTIC_ORBIT/SERIALIZED_PATHONLY",
+    "SEMANTIC_ORBIT/TRANSCRIPT_BAG",
+    "SEMANTIC_ORBIT/TYPED_RELATIONAL",
+    "SEMANTIC_ORBIT/UNTYPED_PAIR"
+  ],
+  "not_licensed": [
+    "any claim that the arms are not robust to reordering; no ordering was ever presented to them, and none can be until the representation carries one",
+    "any claim that the committed result is wrong; every number in it is what its stated procedure produces, and its one reported success stands",
+    "any change to the frozen parameter block, which this module only reads",
+    "any empirical claim about a language model, a scale or a second family; the committed study's BOUNDED_D1_ONLY scope carries over unchanged"
+  ],
+  "per_variant": {
+    "EQUAL_LENGTH": {
+      "arms": 8,
+      "arms_actually_attacked": 7,
+      "instances_changed_by_arm": {
+        "LENGTH_ONLY": 112,
+        "LENGTH_RELATIONAL": 112,
+        "SERIALIZED_INDEXED": 112,
+        "SERIALIZED_PATHONLY": 112,
+        "TRANSCRIPT_BAG": 0,
+        "TYPED_RELATIONAL": 112,
+        "TYPED_SERIALIZED_BAG": 112,
+        "UNTYPED_PAIR": 112
+      }
+    },
+    "ORDER_PERMUTATION": {
+      "arms": 8,
+      "arms_actually_attacked": 0,
+      "instances_changed_by_arm": {
+        "LENGTH_ONLY": 0,
+        "LENGTH_RELATIONAL": 0,
+        "SERIALIZED_INDEXED": 0,
+        "SERIALIZED_PATHONLY": 0,
+        "TRANSCRIPT_BAG": 0,
+        "TYPED_RELATIONAL": 0,
+        "TYPED_SERIALIZED_BAG": 0,
+        "UNTYPED_PAIR": 0
+      }
+    },
+    "SEMANTIC_ORBIT": {
+      "arms": 8,
+      "arms_actually_attacked": 2,
+      "instances_changed_by_arm": {
+        "LENGTH_ONLY": 0,
+        "LENGTH_RELATIONAL": 0,
+        "SERIALIZED_INDEXED": 512,
+        "SERIALIZED_PATHONLY": 0,
+        "TRANSCRIPT_BAG": 0,
+        "TYPED_RELATIONAL": 0,
+        "TYPED_SERIALIZED_BAG": 512,
+        "UNTYPED_PAIR": 0
+      }
+    }
+  },
+  "record": "P9_ATTACK_POTENCY",
+  "schema_version": "orion.p9.attack-potency.v1",
+  "what_this_establishes": "15 of the 24 (variant, arm) cells in P9's hostile representation battery leave the arm's feature vector unchanged on every one of the 512 instances, so the attack could not have produced a violation there whatever the arm did. ORDER_PERMUTATION is inert against all eight arms for a stronger reason than order-blind features: its dataset is identical to the base, manifest digest included. It reverses sequence coordinates and then rebuilds through a normaliser that maps each of them to tuple(sorted(set(...))), so the reversal is undone on the following line. Ordering is not representable in MethodRealization at all -- the coordinates the battery names as sequences are stored as sorted sets -- so repairing the wiring would not produce an order attack, and the order-blindness of every feature family follows from the same fact rather than being a separate coincidence. PC-2_GOLD_PRESERVATION reports zero labels changed over 512 instances for this variant, which is trivially true of an identity. EQUAL_LENGTH reaches seven of eight arms on 112 instances each and SEMANTIC_ORBIT reaches two of eight on all 512, so the battery does perturb in general and this is a statement about specific cells rather than about the battery as a whole. The battery already refuses a contrast whose comparator answered with one label, under the rule that an attack cannot fail against a margin that was never measured; the missing precondition is that same rule one level earlier."
+}

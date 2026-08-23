@@ -32,9 +32,29 @@ def audit_p8_authority_receipts() -> dict[str, Any]:
 
     # The gold's outcome is not a guard assessment: a panel that cannot disagree
     # with the mechanism it grades is the P4 failure, not a missing denominator.
-    gold_outcome = Outcome.PASS if divergence.applied else Outcome.FAIL
+    #
+    # This used to read `PASS if divergence.applied else FAIL`, which asks only
+    # whether the gold *did* disagree and treats silence as incapacity. That is
+    # right for `declared_gold`, which returns the panel's own `expected` field
+    # and is a transcription of the table it grades -- it agreed 15 of 15 and
+    # could not have done otherwise. It is wrong for a gold derived
+    # independently, where agreement is the finding.
+    #
+    # `principled_gold` adjudicates each case from the paper's stated principle
+    # -- a capability certifies only the coordinate it is competent for -- and is
+    # read off neither `LEGAL` nor the panel's expectations. Its capacity to
+    # disagree is demonstrated by perturbation rather than assumed, so the two
+    # questions are now asked separately.
+    principled = p8.principled_gold_responsiveness()
+    gold_outcome = Outcome(principled["outcome"])
     outcome = worst_outcome((responsiveness.assessment,))
-    for other in (ceiling.outcome, gold_outcome, Outcome.FAIL if donor.inert else Outcome.PASS):
+    # Inertness alone is no longer the verdict. The X4 terminal takes seven
+    # arguments and the donor is not among them, so no donor can move a verdict
+    # -- which is the donor-conservativity result the paper claims. What can be
+    # wrong is reporting 3,072 distinct states replayed thirteen times as 39,936
+    # states of coverage, so the check reads the claim rather than the axis.
+    donor_reporting = p8.donor_axis_reporting()
+    for other in (ceiling.outcome, gold_outcome, Outcome(donor_reporting["outcome"])):
         if other.blocks and not outcome.blocks:
             outcome = other
 
@@ -42,8 +62,10 @@ def audit_p8_authority_receipts() -> dict[str, Any]:
         "responsiveness": responsiveness,
         "ceiling": ceiling,
         "declared_gold": divergence,
+        "principled_gold": principled,
         "gold_outcome": gold_outcome,
         "donor_axis": donor,
+        "donor_reporting": donor_reporting,
         "outcome": outcome,
     }
 
@@ -53,8 +75,10 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         "responsiveness": report["responsiveness"].as_json(),
         "ceiling": report["ceiling"].as_json(),
         "declared_gold": report["declared_gold"].as_json(),
+        "principled_gold": report["principled_gold"],
         "gold_outcome": report["gold_outcome"].value,
         "donor_axis": report["donor_axis"].as_json(),
+        "donor_reporting": report["donor_reporting"],
         "outcome": report["outcome"].value,
     }
 
@@ -63,6 +87,7 @@ def _render(report: dict[str, Any]) -> str:
     responsiveness = report["responsiveness"]
     ceiling = report["ceiling"]
     divergence = report["declared_gold"]
+    principled = report["principled_gold"]
     donor = report["donor_axis"]
     lines = [
         "P8 authority receipts",
@@ -83,13 +108,26 @@ def _render(report: dict[str, Any]) -> str:
         "",
         f"  {divergence.theory_id}",
         f"    cases where the declared gold departs from the graded tables: "
-        f"{divergence.points_changed}/{divergence.points}",
+        f"{divergence.points_changed}/{divergence.points} "
+        f"(a transcription of them, so it cannot depart)",
+        "",
+        "  P8.P9P10AntiLaundering.v1/principled-gold",
+        f"    departs from the graded tables: "
+        f"{principled['baseline_divergence']['points_changed']}"
+        f"/{principled['baseline_divergence']['points']}",
+        f"    can depart, shown by perturbation: {principled['gold_can_disagree']}"
+        f" ({principled['perturbation']})",
         f"    outcome: {report['gold_outcome'].value}",
         "",
         "  P8.X4 donor axis",
         f"    values {donor.values}, comparable sibling pairs {donor.comparable_pairs}, "
         f"verdict-changing {donor.verdict_changing_pairs}",
         f"    inert: {donor.inert} (multiplier x{donor.multiplier})",
+        f"    distinct states: {report['donor_reporting']['distinct_states']:,} of "
+        f"{report['donor_reporting']['total_evaluations']:,} evaluations",
+        f"    reported honestly in the paper: "
+        f"{report['donor_reporting']['states_reported_distinctly'] and report['donor_reporting']['replication_named']}",
+        f"    outcome: {report['donor_reporting']['outcome']}",
         "",
         f"  audit outcome: {report['outcome'].value}",
     ]

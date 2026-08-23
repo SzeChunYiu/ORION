@@ -5,6 +5,8 @@ import math
 from pathlib import Path
 from typing import Any
 
+# parents[2]: the papers-directory refactor moved this file up one level and
+# the index was not followed, so ROOT resolved outside the repository.
 ROOT = Path(__file__).resolve().parents[2]
 RESEARCH = ROOT / "research" / "extensions" / "p9-structured-neural"
 EXPECTATION_PATH = RESEARCH / "verification" / "INDEPENDENT_REPLAY_EXPECTATIONS_V1.json"

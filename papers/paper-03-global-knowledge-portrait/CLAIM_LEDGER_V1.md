@@ -1,5 +1,22 @@
 # ORION-P3 Claim Ledger V1
 
+> **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
+> subsequently rewritten so that its claims are about the mapping rule rather
+> than about a named system, so that internal status tokens and claim
+> identifiers do not appear in its prose, and so that repository paths,
+> artifact filenames and content digests live only in Data and code
+> availability. The claim wording below is the wording that was in force when
+> this ledger was cut. **No number, authority, supporting artifact or status in
+> this table changed in that rewrite**, and none has been edited here: a ledger
+> is a record of what was allowed and on what evidence, so it is annotated
+> rather than restated. Where a row names `ORION` as the subject of a claim,
+> the rewritten manuscript states the same claim about the mechanism -- the
+> implementation is named once, in Method, as the artifact under test. Where a
+> row is marked `CANNOT_CHECK`, the manuscript now says the outcome remains
+> undetermined, in those words; the boundary between "could not be determined"
+> and "determined to be false" is stated in plain English in Method and is
+> unchanged in substance.
+
 **Status:** ACTIVE — scoped submission track selected in `SCOPED_PUBLICATION_TRACK_V1.md`. Claims are promoted only when the named artifact has the stated authority.  
 **Manuscript map (2026-08-18):** `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`. Historical checkbox audit: `evidence/JOURNAL_READINESS_CHECKBOX_AUDIT_2026-08-17.md`. Broad follow-up `CANNOT_CHECK` coordinates remain preserved rather than promoted.
 

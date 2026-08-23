@@ -1,20 +1,18 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb}
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\usepackage{xspace}
 \usepackage{booktabs}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
 \emergencystretch=1em
+% Content digests and repository paths need legal breakpoints in the rendered
+% PDF. xurl extends path breaking without changing the text, and \idt marks the
+% spans that are identifiers rather than prose.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
 
-% Custom commands for manuscript conventions
-\newcommand{\conststatus}{\texttt{CANNOT\_CHECK}\xspace}
-\newcommand{\glue}{\textsc{glue}\xspace}
-\newcommand{\obstruction}{\textsc{obstruction}\xspace}
-\newcommand{\pluralview}{\textsc{plural\_view}\xspace}
-\newcommand{\unresolved}{\textsc{unresolved}\xspace}
-
-\title{ORION Paper III: A Recoverable Global Knowledge Portrait from\\
-Source-Local Scientific Projections}
+\title{Representational Compatibility Is Not Scientific Identity:\\
+Coordinate-Governed Mapping of Source-Local Scientific Projections}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -34,7 +32,6 @@ Source-Local Scientific Projections}
 \section{Related work}
 \label{sec:related}
 \input{sections/20-related-work}
-\input{sections/25-p3x-novelty-refresh}
 
 \section{Method}
 \label{sec:method}
@@ -50,12 +47,12 @@ Source-Local Scientific Projections}
 \input{sections/50-evaluation}
 \input{sections/55-method-structure-evaluation}
 
+% These four fragments own their own \section/\label declarations.
 \input{sections/56-p3x-successor}
-
-% These three fragments own their own \section/\label declarations.
 \input{sections/06-results}
 \input{sections/07-limitations}
 \input{sections/08-conclusion}
+\input{sections/60-availability}
 
 \bibliographystyle{plain}
 \bibliography{bibliography,novelty_refresh_2026}

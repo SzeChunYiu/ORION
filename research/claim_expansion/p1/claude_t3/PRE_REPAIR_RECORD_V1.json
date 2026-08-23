@@ -1,0 +1,131 @@
+{
+  "authority": "none; this measures the instrument, not a P1-U result",
+  "defect_1_class_stratifier": {
+    "broken_stratifier_key": "str(pair[\"adverse_class\"]) for both members",
+    "control_class_label": "NO_HIGH_LEVEL_REFORMULATION",
+    "control_episodes_in_corpus": 22,
+    "control_stratum_present": false,
+    "episodes_filed_under_own_gold_class": 0,
+    "n_strata": 6,
+    "rows_per_stratum": {
+      "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+      "MEASUREMENT_OR_EVALUATOR": 3,
+      "OBJECTIVE_OR_MODEL_CLASS": 4,
+      "PROBLEM_BOUNDARY": 3,
+      "REPRESENTATION_OR_INTERFACE": 4,
+      "SEARCH_OR_EVIDENCE": 4
+    },
+    "strata_created": [
+      "IMPLEMENTATION_OR_ENVIRONMENT",
+      "MEASUREMENT_OR_EVALUATOR",
+      "OBJECTIVE_OR_MODEL_CLASS",
+      "PROBLEM_BOUNDARY",
+      "REPRESENTATION_OR_INTERFACE",
+      "SEARCH_OR_EVIDENCE"
+    ],
+    "strata_that_should_exist_per_member_gold": {
+      "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+      "MEASUREMENT_OR_EVALUATOR": 3,
+      "NO_HIGH_LEVEL_REFORMULATION": 22,
+      "OBJECTIVE_OR_MODEL_CLASS": 4,
+      "PROBLEM_BOUNDARY": 3,
+      "REPRESENTATION_OR_INTERFACE": 4,
+      "SEARCH_OR_EVIDENCE": 4
+    }
+  },
+  "defect_2_domain_stratifier": {
+    "episodes_per_stratum": {
+      "behavioral_modeling": 2,
+      "biostatistics_transformations": 2,
+      "causal_epidemiology": 2,
+      "causal_modeling": 1,
+      "climate_modeling": 2,
+      "climate_numerics": 2,
+      "clinical_generalizability": 2,
+      "cognitive_development": 1,
+      "environmental_lca": 2,
+      "epidemiology_missing_data": 2,
+      "genetic_biophysics": 1,
+      "geodesy": 2,
+      "knowledge_graphs": 2,
+      "machine_learning": 2,
+      "meta_analysis": 2,
+      "microbiology_measurement": 2,
+      "neuroimaging_measurement": 2,
+      "neuroimaging_ml": 2,
+      "pharmacometrics": 2,
+      "scientometrics": 2,
+      "single_cell_genomics": 2,
+      "software_engineering": 2,
+      "statistical_physics": 2,
+      "structural_biology_data_integration": 2,
+      "systems_biology": 1,
+      "wildlife_ecology": 2
+    },
+    "floor_is_arithmetically_the_zero_loss_rule": true,
+    "frozen_floor": -0.1,
+    "min_stratum_size_for_the_floor_to_admit_one_lost_episode": 10,
+    "n_episodes": 48,
+    "n_strata": 26,
+    "smallest_negative_mean_attainable_by_size": {
+      "1": -1.0,
+      "2": -0.5
+    },
+    "stratum_size_histogram": {
+      "1": 4,
+      "2": 22
+    },
+    "stratum_sizes_present_that_are_large_enough": []
+  },
+  "defect_3_leakage_guard": {
+    "behaviour": {
+      "payloads leaking only pair role": {
+        "returns": true
+      },
+      "payloads present and clean": {
+        "returns": true
+      },
+      "payloads present and leaking": {
+        "returns": false
+      },
+      "request_payloads is None": {
+        "returns": true
+      },
+      "request_payloads key absent": {
+        "returns": true
+      }
+    },
+    "call_site_forbidden_tuple": [
+      "str(ep['id'])",
+      "pair_id",
+      "query_id",
+      "adverse_class",
+      "str(ep['gold_class'])"
+    ],
+    "fail_open_on_absent_key": true,
+    "guard_defined_in_evaluate_native_before_repair": false,
+    "none_sentinel_trap": {
+      "int(not None)": 1,
+      "not None": true,
+      "note": "a None sentinel for CANNOT_CHECK is read by a two-valued caller as an ordinary boolean; the repaired verdict raises TypeError on bool() instead"
+    },
+    "pair_role_in_forbidden_tokens": false,
+    "predecessor_source": "research/claim_expansion/p1/gpt_r6_native_primary.py:211-213 (ref origin/shadow/p1-u-gpt-r6-native-runtime-20260820)",
+    "repaired_guard_now_present": true
+  },
+  "measured_provider_payload_leak": {
+    "episode": "R5-SEARCH-P1-A",
+    "pair_role_recoverable_from_episode_id_suffix": true,
+    "payload_bytes": 4988,
+    "provider_calls": 6,
+    "token_present_in_candidate_visible_payload": {
+      "adverse_class_label": false,
+      "episode_id": true,
+      "gold_class_label": false,
+      "pair_id": true,
+      "query_id": true,
+      "source_id": false
+    }
+  },
+  "schema": "P1U.T3PreRepairRecord.v1"
+}

@@ -1,5 +1,17 @@
 # ORION-P5 claim ledger V1
 
+> **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
+> subsequently rewritten so that its claims are about the mechanism rather than
+> about a named system, so that internal status tokens do not appear in its prose,
+> and so that repository paths sit in Data and code availability rather than in
+> the narrative. The claim wordings quoted below are the manuscript as it stood
+> when this ledger was cut. **No number, authority, supporting artifact or status
+> in this table changed in that rewrite**, and none has been edited here: a ledger
+> is a record of what was allowed and on what evidence, so it is annotated rather
+> than restated. The machine-checked binding of each claim sentence to its
+> archived artifact lives in `evidence/CLAIM_LEDGER_V1.json`, which was rebound to
+> the new wording and is what any automated check reads.
+
 Every abstract, results, limitations and conclusion claim in this revision maps to an archived artifact. A row is `SUPPORTED` only when the cited artifact exists and the stated authority matches that artifact. **H1–H4 remain `CANNOT_CHECK`.** The diagnostic attribution archive is **21/24**, not a perfect score.
 
 | Claim surface | Claim allowed in this revision | Authority | Supporting artifact | Status |

@@ -1,25 +1,21 @@
-\section{Problem, scope, and epistemic state}
+\section{Introduction}
 
 \subsection{The failure mode}
 
-A research process can make progress while its own framing becomes the dominant source of error. More search does not repair a missing representation. A larger tree does not by itself reveal that the wrong parent discipline has been treated as irrelevant. More evidence does not justify rewriting a question when the actual defect is merely an execution failure. The target of Paper I is therefore not generic iteration, autonomous science, or long-horizon reasoning. It is the narrower problem of preserving an inspectable epistemic state while the research process discovers that part of its own formulation must change.
+A research process can make progress while its own framing becomes the dominant source of error. More search does not repair a missing representation. A larger tree does not by itself reveal that the wrong parent discipline has been treated as irrelevant. More evidence does not justify rewriting a question when the actual defect is merely an execution failure. The problem studied here is therefore not generic iteration, autonomous science, or long-horizon reasoning. It is the narrower problem of preserving an inspectable epistemic state while the research process discovers that part of its own formulation must change.
 
-For a scoped problem, ORION represents the evolving research state as
+For a scoped problem, the architecture studied here represents the evolving research state as
 \[
 X_t=(K_t,W_t,M_t),
 \]
-where $K_t$ is the provenance-preserving state of knowledge about the target object, $W_t$ is the current model of which domains, representations, mechanisms, and search routes may be relevant, and $M_t$ is the governed research method. The three coordinates are separated because they require different evidence and different authority to change. This engineering separation is in the spirit of Parnas's information-hiding principle: change-prone design decisions should be isolated behind explicit interfaces rather than entangled implicitly \cite{parnas1972}. The revision policy for $K_t$ likewise borrows the minimal-change distinction between expansion, contraction, and revision from the AGM belief-revision tradition \cite{agm1985}; Paper I does not claim that its operational update rules satisfy the full AGM postulates unless that correspondence is established separately.
+where $K_t$ is the provenance-preserving state of knowledge about the target object, $W_t$ is the current model of which domains, representations, mechanisms, and search routes may be relevant, and $M_t$ is the governed research method. The three coordinates are separated because they require different evidence and different authority to change. This engineering separation is in the spirit of Parnas's information-hiding principle: change-prone design decisions should be isolated behind explicit interfaces rather than entangled implicitly \cite{parnas1972}. The revision policy for $K_t$ likewise borrows the minimal-change distinction between expansion, contraction, and revision from the AGM belief-revision tradition \cite{agm1985}; no claim is made here that the operational update rules satisfy the full AGM postulates, which would have to be established separately.
 
-A new source may update $K_t$ without changing $W_t$. A previously unrecognized parent discipline or representation may require a change to $W_t$ while leaving the method intact. A persistent, well-attributed failure can become evidence for a challenger to $M_t$, but method revision is governed separately by Self-ORION and is not a unilateral Paper-I operation.
+A new source may update $K_t$ without changing $W_t$. A previously unrecognized parent discipline or representation may require a change to $W_t$ while leaving the method intact. A persistent, well-attributed failure can become evidence for a challenger to $M_t$, but method revision is governed separately and is not an operation this paper authorizes.
 
-\subsection{Candidate contribution}
+\subsection{Contributions}
 
-The current programme freezes four candidate differences.
+Four properties of the mechanism are put forward and tested.
 
 First, $K/W/M$ are explicit co-evolving state rather than hidden conversational context. Second, discoveries and failures may target distinct formulation coordinates instead of triggering an undifferentiated ``reflect and retry'' loop. Third, a material reframe stales dependent closure rather than allowing prior success certificates to survive silently. Fourth, the research workflow itself is recursively decomposed into inspectable mechanics whose missing coordinates can generate further research work.
 
-These are \emph{candidate} deltas. They do not establish that ORION is the first iterative scientific agent, the first system to use tree search, the first structured world model, or the first recursively engineered research process.
-
-\subsection{Five-paper boundary}
-
-Paper I owns the reconstruction problem only. Open-world discovery and stopping are evaluated in Paper II; cross-domain absorption and the global knowledge portrait in Paper III; authority promotion and protected verification in Paper IV; and method evolution in Paper V. Paper I uses those components only as interfaces required to express reconstruction. This separation is important because an umbrella architecture description would otherwise allow the same mechanism or empirical result to support several nominally different papers.
+What is defended empirically is narrower than any of the four taken alone: it is the composition of protected necessity conditions under which a high-level formulation or search-universe change is admissible at all. Section~\ref{sec:relatedwork} places each ingredient with its nearest neighbour in the literature, and Section~\ref{sec:limitations} states what the composition is and is not evidence for.

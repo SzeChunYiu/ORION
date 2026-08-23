@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p8.authority-contract.v2",
+  "type": "object",
+  "required": [
+    "id",
+    "pair_id",
+    "domain",
+    "action",
+    "hard_obligations",
+    "satisfied",
+    "defeaters",
+    "source_signal_domain",
+    "expected_verdict",
+    "clean_authorized"
+  ],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "pair_id": {"type": "string", "minLength": 1},
+    "domain": {
+      "type": "string",
+      "enum": ["REFRAME", "SEARCH_STOP", "MAP_MERGE", "ASSERT", "SELF_MODIFY"]
+    },
+    "action": {"type": "string", "minLength": 1},
+    "hard_obligations": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "satisfied": {"type": "array", "items": {"type": "string"}},
+    "defeaters": {"type": "array", "items": {"type": "string"}},
+    "source_signal_domain": {
+      "type": "string",
+      "enum": ["REFRAME", "SEARCH_STOP", "MAP_MERGE", "ASSERT", "SELF_MODIFY"]
+    },
+    "expected_verdict": {
+      "type": "string",
+      "enum": ["AUTHORIZED", "REJECT", "CANNOT_CHECK", "UNAUTHORIZED"]
+    },
+    "clean_authorized": {"type": "boolean"},
+    "unknown_obligations": {"type": "array", "items": {"type": "string"}},
+    "registered_coercions": {"type": "array"}
+  }
+}

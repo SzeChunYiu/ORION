@@ -1,5 +1,16 @@
 # P2 claim ledger V1
 
+> **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
+> subsequently rewritten so that its claims are about the mechanism rather than
+> about a named system, and so that internal status tokens do not appear in its
+> prose. The claim sentences quoted below are the wording of the manuscript as it
+> stood when this ledger was cut. **No number, authority, supporting artifact or
+> status in this table changed in that rewrite**, and none has been edited here:
+> a ledger is a record of what was allowed and on what evidence, so it is
+> annotated rather than restated. The machine-checked binding of each claim
+> sentence to its archived artifact lives in `protocol/CLAIM_LEDGER_V1.json`,
+> which was rebound to the new wording and is what any automated check reads.
+
 This ledger is intentionally narrower than the original paper ambition. A row is `SUPPORTED` only when the cited artifact exists in the repository and the stated authority matches that artifact. External discovery superiority remains `CANNOT_CHECK`; completed external rows are bounded probes, not a full multi-provider ORION superiority result.
 
 | Claim surface | Claim allowed in this revision | Authority | Supporting artifact | Status |

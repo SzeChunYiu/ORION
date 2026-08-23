@@ -14,7 +14,7 @@ Autonomous scientific systems increasingly operate under strong local authority 
 
 The remaining problem is compositional: when may a local authorization, delegation, verifier, claim-evidence or release verdict establish a different target scientific obligation? P8 introduces a bounded **scientific-authority lifting and composition calculus** over thirteen donor families. The target obligation is typed by `(domain, kind, scope, content, epoch)`. Native donor authority is conserved. Scientific authority propagates across heterogeneous chains only when the scientific type is preserved or narrowed, or when an explicit subject/epoch-bound protected coercion supplies a complete bridge. Blockers use three states: `REFUTED`, `UNDETERMINED`, and `ESTABLISHED`, with `UNDETERMINED` yielding `CANNOT_CHECK` rather than silently disappearing. Alternative complete support families make revocation exact: invalidating one route preserves authority when another complete independent route survives, while destroying all complete routes removes discharge. Action or release permission and scientific support are explicitly non-inverse relations.
 
-The final X4 finite model covers 39,936 exact authority states across thirteen donor families. It has zero donor-conservativity violations and zero mismatches with an ideal equally typed decentralized product. It contains 65 minimal scientific-type separation witnesses, 65 protected-coercion successes and 65 matched unprotected countermodels, the three-state blocker law for all thirteen donor families, 26 single-support-family revocation survivals and 13 all-support-family blocks, plus 169 heterogeneous ordered-chain composition successes and 169 matched scientific-authority-widening countermodels. A second implementation independently reproduces the canonical enumeration. The result is a bounded cross-domain scientific-authority composition semantics, not generic authorization, local scientific verification, deployed-agent superiority, or a claim of centralized expressive advantage.
+The final X4 finite model covers 3,072 distinct exact authority states, each replayed across thirteen donor families for a total of 39,936 evaluations. The distinction matters and we state it plainly: the terminal function takes seven arguments and the donor family is not among them, so over the 239,616 pairs of evaluations differing only in donor, none changes the verdict. That invariance is the donor-conservativity result rather than additional coverage, and the thirteen families are a replication factor, not a state dimension. It has zero donor-conservativity violations and zero mismatches with an ideal equally typed decentralized product. It contains 65 minimal scientific-type separation witnesses, 65 protected-coercion successes and 65 matched unprotected countermodels, the three-state blocker law for all thirteen donor families, 26 single-support-family revocation survivals and 13 all-support-family blocks, plus 169 heterogeneous ordered-chain composition successes and 169 matched scientific-authority-widening countermodels. A second implementation independently reproduces the canonical enumeration. The result is a bounded cross-domain scientific-authority composition semantics, not generic authorization, local scientific verification, deployed-agent superiority, or a claim of centralized expressive advantage.
 
 ## Donor-engulfment architecture
 
@@ -125,7 +125,7 @@ Two post-X4 search rounds produced no further material change to the interface. 
 
 Final X4 enumeration:
 
-- exact authority states: **39,936**;
+- distinct exact authority states: **3,072**, each replayed across thirteen donor families for **39,936** evaluations; the donor axis changes no verdict in any of 239,616 sibling pairs, which is the conservativity result and not extra coverage;
 - terminals: **19,968** `NO_DONOR_AUTHORITY`, **15,353** `BLOCK`, **3,328** `CANNOT_CHECK`, **1,287** `DISCHARGE`;
 - donor-conservativity violations: **0**;
 - minimal scientific-type separation witnesses: **65**;
@@ -134,13 +134,31 @@ Final X4 enumeration:
 - blocker-law instances: **13** `REFUTED` successes, **13** `UNDETERMINED` `CANNOT_CHECK`, **13** `ESTABLISHED` blocks;
 - one-support-family revocation survivals: **26**;
 - all-support-family revocation blocks: **13**;
-- heterogeneous ordered-chain composition successes: **169**;
-- matched scientific-authority-widening chain countermodels: **169**;
+- heterogeneous ordered-chain composition successes: **169** — one composition counted thirteen times thirteen, because the enumeration's chain loop ignores both of its donor variables and the thirteen families present a single profile to it; the mechanized derivation below states what that leaves;
+- matched scientific-authority-widening chain countermodels: **169**, on the same replication;
 - action/release-denied but independently supportable proposition examples: **13**;
 - ideal decentralized-product mismatches: **0**;
 - canonical row SHA-256: `ed186b824692fd5b3ab31be718c75b84e2126b577ce921ca5cc01b2d08ae19e6`.
 
 A separate checker independently reconstructs the final enumeration.
+
+## Mechanized core, and what the finite result is an instance of
+
+Everything above this line is an enumeration over an authored state space. That is a true statement about 3,072 states and thirteen donor families, and it is not a theorem. Three machine-checked artifacts under `formal/mechanized/` now say which parts of it follow from a general semantics, and what each part costs.
+
+**The calculus.** Ten composition and revocation theorems — scope non-amplification, domain confinement, non-laundering, non-compensatory obligations, defeater monotonicity, epoch isolation, the one-step delegation lemma, a bridge from conversion to reachability, and a characterisation of cycles — are discharged by Z3 over uninterpreted domain, object and issuer sorts, so none of them is a statement about thirteen donors or six named domains. Two limits travel with them and are recorded in the artifact rather than in a footnote: reachability is *axiomatised* as a reflexive-transitive closure carrying a well-founded rank, because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step in the development. The rank is not a formality — an earlier axiomatisation without it admitted circular reachability, in which a sink domain reached its own source, and a differential against the committed checker is what caught it.
+
+**The state model as an instance.** Each of the seven arguments the X4 terminal takes is assigned to the calculus conjunct it means: type-coordinate agreement or a registered protected coercion is the calculus's reachability, narrowing is scope containment, and the blocker is at once a hard obligation and a defeater. The calculus's own rule under that assignment reproduces X4 exactly on all 3,072 distinct states, with all four terminals reached.
+
+**The chain compositions as instances.** A donor family is interpreted as an element of an uninterpreted sort whose *domain is its scientific type profile*; a protected coercion is a registered conversion and narrowing is scope containment. Under eight frame conditions stated as axioms — each shown load-bearing by exhibiting a countermodel to a theorem it carries — seven theorems are discharged, and donor-level chain confinement is expanded and discharged at every chain length up to six. The bound is a measured limit rather than a chosen one: lengths seven to twelve were tried and the solver returned `unknown` on some runs and a proof in seconds on others, so the ladder stops where it is a reliable corroboration. Nothing about the theorem changes at length seven — the induction schema is what carries every length, and it is the single hand step in the development. A P8 chain hop *is* the calculus's delegation, which is itself one of the discharged theorems, so Theorem V3.7 is an instance of a statement that mentions neither thirteen nor two.
+
+**What that costs Theorem V3.7.** The derivation lands, and what it lands on is small. We state it here rather than leave a reader to assume otherwise.
+
+- The 169 is one composition counted 169 times. The committed enumeration writes its chain claim as a doubly nested loop over the thirteen families whose body mentions neither loop variable, and under the interpretation all 169 ordered pairs compose to a single distinct state. The donor axis is a replication factor here exactly as it is in the 39,936 evaluations, and here it is squared.
+- Nothing heterogeneous is exercised. The state the chain claim evaluates has all five type coordinates agreeing, which by the interpretation puts both donors in one domain; the hop is then a reach by reflexivity and no conversion is ever consulted. Read the thirteen families as type-distinct, so that a cross-family hop crosses a type boundary unless a protected bridge is registered, and the same committed rule returns **13** compositions rather than 169. Registering every cross-family bridge returns 169 again. The published number therefore records the reading under which no two of the thirteen donor families differ in scientific type — which is the reading under which the chain is not heterogeneous.
+- Neither published count tests the interpretation. All eight wrong composition operators tried reproduce 169 successes exactly, and six of the eight also reproduce the 169 widening countermodels. What separates them is an exhaustive identity checked through the committed rule on 36,864 representative pairs, which stand in exactly for all 9,437,184 pairs of X4 states: a composed chain discharges when and only when both of its hops do. Every one of the eight wrong operators breaks it, and the shipped rule satisfies it with no exception.
+
+None of the above has been checked by anyone outside the lane that wrote it. Independent formal review and independent systems reproduction remain open, and no empirical claim is made or supported here.
 
 ## Wider P8 claim
 
@@ -150,7 +168,7 @@ This is deliberately wider than the V2.1 slogan that generic permission differs 
 
 ## Limits
 
-V3 does not claim novelty for any of the thirteen donor mechanisms, universal minimality of the five type coordinates, deployed-agent superiority, a public full-manuscript release gate, or global literature saturation. Native authorization failure is not scientific refutation. The ideal equally typed decentralized product ties exactly.
+V3 does not claim novelty for any of the thirteen donor mechanisms, universal minimality of the five type coordinates, deployed-agent superiority, a public full-manuscript release gate, or global literature saturation. It does not claim that the 169 chain compositions measure heterogeneity, that they are 169 results rather than one replicated, or that reproducing them validates any interpretation of the calculus; the mechanized section above states what each of those numbers was found to carry. Native authorization failure is not scientific refutation. The ideal equally typed decentralized product ties exactly.
 
 ## Replacement conclusion for V3
 

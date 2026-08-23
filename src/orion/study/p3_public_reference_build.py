@@ -4,18 +4,108 @@ import argparse
 import hashlib
 import itertools
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
 from orion.study.p3_public_reference import SCHEMA_VERSION, canonical_json, validate_case
 
-MUSE_REVISION = "f7a40317db46145d0c90b221311d8324db5da1b9"
-SCIFACT_REVISION = "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
-SCISCHEMA_REVISION = "55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
+#: The revisions this build used to stamp onto any file it was handed. They are
+#: kept as a record of what was claimed, and are deliberately not reachable from
+#: the emit path: a case now carries the identity of bytes that were verified.
+#: Promoting one of these to a pin means checking the file out of the upstream
+#: repository at that commit and comparing digests.
+UNVERIFIED_MUSE_REVISION = "f7a40317db46145d0c90b221311d8324db5da1b9"
+UNVERIFIED_SCIFACT_REVISION = "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
+UNVERIFIED_SCISCHEMA_REVISION = "55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
 
 
 def _sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+@dataclass(frozen=True)
+class CorpusPin:
+    """One upstream file this build is willing to treat as authoritative."""
+
+    dataset: str
+    identity: str
+    sha256: str
+    source: str
+
+
+class UnpinnedCorpus(ValueError):
+    """Raised when an input file is not one this build has pinned."""
+
+
+#: The upstream files whose bytes this build has actually seen.
+#:
+#: The three revision constants above used to be *stamped* rather than checked:
+#: every emitted case recorded ``"revision": UNVERIFIED_SCIFACT_REVISION`` no matter which
+#: file was passed, while ``content_hash`` was computed from that file. So an
+#: atlas built from a hand-edited, truncated or simply wrong-version corpus
+#: recorded the pinned revision anyway, and every downstream authority claim ---
+#: ``DERIVED_FROM_ALLOWED``, with the upstream annotation as its evidence ---
+#: inherited a provenance nobody had verified. That is an asserted measurement
+#: wearing the shape of a checked one, which is the failure this whole
+#: programme exists to refuse.
+#:
+#: So provenance is now verified against bytes and the build fails closed on a
+#: file it does not recognise, naming the digest it saw so a pin can be added
+#: deliberately rather than by accident.
+#:
+#: ``identity`` is what reaches the case record, and it says only what has been
+#: established. A commit hash is not recoverable from a release tarball, so the
+#: SciFact pins carry ``sha256:<digest>`` --- true by construction --- together
+#: with the published URL those bytes came from. Promoting one to a commit hash
+#: requires checking the file out of the upstream repository at that commit and
+#: comparing digests; until someone does that, claiming the commit would be the
+#: same unverified stamp in a longer form.
+PINNED_CORPORA: tuple[CorpusPin, ...] = (
+    CorpusPin(
+        dataset="SciFact",
+        identity="sha256:f4c8fa82d8bd0653a9cc8d61a6ea48c25eacea64e90af5dbf390ebb1b74372f0",
+        sha256="f4c8fa82d8bd0653a9cc8d61a6ea48c25eacea64e90af5dbf390ebb1b74372f0",
+        source=(
+            "https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz"
+            "#data/claims_train.jsonl"
+        ),
+    ),
+    CorpusPin(
+        dataset="SciFact",
+        identity="sha256:86f0435d08fdb65d1aa41d1472684f57e6e71930626497bdf4d7a9ec1a632217",
+        sha256="86f0435d08fdb65d1aa41d1472684f57e6e71930626497bdf4d7a9ec1a632217",
+        source=(
+            "https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz"
+            "#data/claims_dev.jsonl"
+        ),
+    ),
+)
+
+
+def pin_for(
+    dataset: str,
+    digest: str,
+    pins: Sequence[CorpusPin] | None = None,
+) -> CorpusPin:
+    """The pin whose bytes are `digest`, or a refusal naming what was seen.
+
+    `pins` exists so a caller can declare its own admissible bytes --- a test
+    fixture is a corpus like any other, and the honest way to admit one is to
+    declare it, not to give the adapters a mode in which they stop checking.
+    """
+
+    admissible = PINNED_CORPORA if pins is None else tuple(pins)
+    for pin in admissible:
+        if pin.dataset == dataset and pin.sha256 == digest:
+            return pin
+    known = [pin.sha256 for pin in admissible if pin.dataset == dataset]
+    raise UnpinnedCorpus(
+        f"{dataset} input has sha256 {digest}, which is not pinned. "
+        f"{len(known)} pinned {dataset} file(s): {known or 'none'}. "
+        "Add a CorpusPin naming where these bytes are published, or pass the "
+        "pinned file; the build will not stamp a revision it has not verified."
+    )
 
 
 def _normalized_text(value: str) -> str:
@@ -29,7 +119,9 @@ def _entity_from_relation_item(item: object) -> Mapping[str, object] | None:
     return nested if isinstance(nested, Mapping) else None
 
 
-def muse_coreference_cases(root: Path) -> list[dict[str, object]]:
+def muse_coreference_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
     """Build expert-grounded same-referent cases from MUSE coreference edges.
 
     The emitted case does not copy paragraph text. The upstream expert
@@ -39,6 +131,8 @@ def muse_coreference_cases(root: Path) -> list[dict[str, object]]:
     cases: list[dict[str, object]] = []
     for path in sorted(root.rglob("*.json")):
         raw = path.read_bytes()
+        digest = _sha256_bytes(raw)
+        muse_pin = pin_for("MUSE", digest, pins)
         payload = json.loads(raw)
         if not isinstance(payload, Mapping):
             continue
@@ -77,9 +171,9 @@ def muse_coreference_cases(root: Path) -> list[dict[str, object]]:
                         "source_records": [
                             {
                                 "dataset": "MUSE",
-                                "revision": MUSE_REVISION,
+                                "revision": muse_pin.identity,
                                 "locator": path.as_posix(),
-                                "content_hash": _sha256_bytes(raw),
+                                "content_hash": digest,
                                 "license": "UPSTREAM_POINTER_ONLY",
                             }
                         ],
@@ -116,7 +210,7 @@ def muse_coreference_cases(root: Path) -> list[dict[str, object]]:
                             "authority": {
                                 "kind": "DERIVED_FROM_ALLOWED",
                                 "evidence": [
-                                    f"MUSE@{MUSE_REVISION}:{path.as_posix()}#{annotator}:{rel_id}"
+                                    f"MUSE@{muse_pin.identity}:{path.as_posix()}#{annotator}:{rel_id}"
                                 ],
                                 "derivation": {
                                     "rule": "identity:upstream-coreference-edge",
@@ -130,7 +224,9 @@ def muse_coreference_cases(root: Path) -> list[dict[str, object]]:
     return cases
 
 
-def scifact_claim_cases(claims_path: Path) -> list[dict[str, object]]:
+def scifact_claim_cases(
+    claims_path: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
     """Build contradiction/support semantic controls from SciFact expert labels.
 
     This evaluates the contradiction gate, not raw-text understanding: the
@@ -139,6 +235,7 @@ def scifact_claim_cases(claims_path: Path) -> list[dict[str, object]]:
     """
     raw_file = claims_path.read_bytes()
     file_hash = _sha256_bytes(raw_file)
+    pin = pin_for("SciFact", file_hash, pins)
     cases: list[dict[str, object]] = []
     for line_number, line in enumerate(raw_file.decode("utf-8").splitlines(), start=1):
         if not line.strip():
@@ -170,7 +267,7 @@ def scifact_claim_cases(claims_path: Path) -> list[dict[str, object]]:
                     "source_records": [
                         {
                             "dataset": "SciFact",
-                            "revision": SCIFACT_REVISION,
+                            "revision": pin.identity,
                             "locator": f"{claims_path.as_posix()}#line={line_number}",
                             "content_hash": file_hash,
                             "license": "CC-BY-4.0-ANNOTATIONS",
@@ -208,7 +305,7 @@ def scifact_claim_cases(claims_path: Path) -> list[dict[str, object]]:
                         "authority": {
                             "kind": "DERIVED_FROM_ALLOWED",
                             "evidence": [
-                                f"SciFact@{SCIFACT_REVISION}:{claims_path.as_posix()}#"
+                                f"SciFact@{pin.identity}:{claims_path.as_posix()}#"
                                 f"claim={claim_id};doc={doc_id};rationale={rationale_index};"
                                 f"label={label}"
                             ],
@@ -224,11 +321,15 @@ def scifact_claim_cases(claims_path: Path) -> list[dict[str, object]]:
     return cases
 
 
-def scischema_identity_cases(root: Path) -> list[dict[str, object]]:
+def scischema_identity_cases(
+    root: Path, pins: Sequence[CorpusPin] | None = None
+) -> list[dict[str, object]]:
     """Build exact-version identity controls from SciSchema master schemas."""
     cases: list[dict[str, object]] = []
     for path in sorted(root.glob("*/*/master-schema.json")):
         raw = path.read_bytes()
+        digest = _sha256_bytes(raw)
+        schema_pin = pin_for("SciSchema", digest, pins)
         payload = json.loads(raw)
         if not isinstance(payload, Mapping):
             continue
@@ -248,9 +349,9 @@ def scischema_identity_cases(root: Path) -> list[dict[str, object]]:
             "source_records": [
                 {
                     "dataset": "SciSchema",
-                    "revision": SCISCHEMA_REVISION,
+                    "revision": schema_pin.identity,
                     "locator": relative,
-                    "content_hash": _sha256_bytes(raw),
+                    "content_hash": digest,
                     "license": "CC-BY-SA-4.0",
                 }
             ],
@@ -282,7 +383,7 @@ def scischema_identity_cases(root: Path) -> list[dict[str, object]]:
                 "meaning_relation": "COMPATIBLE",
                 "authority": {
                     "kind": "DETERMINISTIC_STANDARD",
-                    "evidence": [f"SciSchema@{SCISCHEMA_REVISION}:{relative};id={schema_id}"],
+                    "evidence": [f"SciSchema@{schema_pin.identity}:{relative};id={schema_id}"],
                 },
             },
         }
@@ -323,14 +424,15 @@ def build_atlas(
     scifact_claims: Path | None,
     scischema_root: Path | None,
     target_n: int = 32,
+    pins: Sequence[CorpusPin] | None = None,
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     pools: dict[str, list[dict[str, object]]] = {}
     if muse_root is not None:
-        pools["MUSE"] = muse_coreference_cases(muse_root)
+        pools["MUSE"] = muse_coreference_cases(muse_root, pins)
     if scifact_claims is not None:
-        pools["SciFact"] = scifact_claim_cases(scifact_claims)
+        pools["SciFact"] = scifact_claim_cases(scifact_claims, pins)
     if scischema_root is not None:
-        pools["SciSchema"] = scischema_identity_cases(scischema_root)
+        pools["SciSchema"] = scischema_identity_cases(scischema_root, pins)
 
     chosen = _balanced_take(pools, total=target_n)
     disciplines = sorted({str(case["discipline"]) for case in chosen})

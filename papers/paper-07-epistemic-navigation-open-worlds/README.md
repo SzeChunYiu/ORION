@@ -41,6 +41,8 @@ Exact bounded support:
 - 0 ideal-product mismatches;
 - canonical row SHA-256 `25f40385714adb15bca298a8cfd2b7fe2b28c96bfe462f6b60583be8f735b95f`.
 
+Read with their multiplicity. Neither `carries` nor `compose` takes the donor family as an argument, so the donor loops repeat every count under them: **320** is the 64-point (native verdict, closure vector) space enumerated once per family, **25** is 5 separations counted five times, **155** and **1,055** are 31 and 211 counted five times, and the **25** composition successes and **25** bridge countermodels are one of each counted once per ordered donor pair. Only the **31** nonclosure countermodels are 31 distinct facts. The `donor_axis` block of `research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json` carries the same table, computed rather than asserted.
+
 A separate implementation independently reconstructs the result.
 
 ## Wider allowed claim

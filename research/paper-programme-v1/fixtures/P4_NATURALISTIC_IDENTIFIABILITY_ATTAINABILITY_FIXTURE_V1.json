@@ -1,0 +1,12 @@
+{
+  "schema_version": "orion.p4.naturalistic-identifiability-attainability-fixture.v1",
+  "authority": "SYNTHETIC_KNOWN_ANSWER_ONLY",
+  "admissible_terminals": ["PASS", "FAIL"],
+  "rows": [
+    {"cluster_id": "P4-FIX-01", "same_source_pair": true, "unidentifiable_expected": "CANNOT_CHECK", "identifiable_control_expected": "RESOLVE"},
+    {"cluster_id": "P4-FIX-02", "same_source_pair": true, "unidentifiable_expected": "CANNOT_CHECK", "identifiable_control_expected": "RESOLVE"},
+    {"cluster_id": "P4-FIX-03", "same_source_pair": true, "unidentifiable_expected": "CANNOT_CHECK", "identifiable_control_expected": "RESOLVE"},
+    {"cluster_id": "P4-FIX-04", "same_source_pair": true, "unidentifiable_expected": "CANNOT_CHECK", "identifiable_control_expected": "RESOLVE"}
+  ],
+  "grants_scientific_authority": false
+}

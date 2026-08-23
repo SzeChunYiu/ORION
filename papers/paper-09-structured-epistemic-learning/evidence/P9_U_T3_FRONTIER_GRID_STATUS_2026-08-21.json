@@ -1,0 +1,55 @@
+{
+  "census": {
+    "cells_executed": 0,
+    "cells_missing_from_outcome_file": 1344,
+    "cells_with_an_outcome": 0,
+    "declared_cells": 1344,
+    "status_counts": {
+      "EXECUTED": 0,
+      "INFEASIBLE_CONTEXT": 0,
+      "INFEASIBLE_RESOURCE": 0,
+      "NOT_RUN": 0
+    },
+    "undeclared_cells_in_outcome_file": 0
+  },
+  "claim_scope": "DECLARATION_ONLY. This module defines a grid and the rules for reading S* and C* off it. It executes no cell, and no result over it licenses any statement about a crossing until cells carry outcomes.",
+  "claimed_crossing_audit": {
+    "claims_checked": 0,
+    "claims_off_grid": 0,
+    "exercised": false,
+    "note": "no crossing was claimed, so the off-grid check had no opportunity to fire; that is CANNOT_CHECK for this check, not a pass",
+    "rows": []
+  },
+  "crossing_census": {
+    "crossings_found": 0,
+    "tests_declared": 0,
+    "tests_evaluable": 0
+  },
+  "crossings_found": [],
+  "detail": "0 of 1344 declared cells have been executed, so there is no surface to read a frontier off. The grid is defined and its definition precedes every outcome, which is what P9-U-T3 asks of the definition; the gate itself needs the cells.",
+  "environment_boundary": {
+    "grid_executable_here": false,
+    "open_weight_checkpoint_present": false,
+    "outbound_provider_access": "proxy returns 403 to CONNECT for external providers",
+    "surrogate_refused": "a classical-learner capacity ladder is not a model-scale ladder; naming one S* would be a weaker proxy presented as the measurement"
+  },
+  "freeze_document": "papers/paper-09-structured-epistemic-learning/protocol/P9_U_T3_FRONTIER_GRID_FREEZE_2026-08-21.md",
+  "gate_served": "P9-U-T3",
+  "outcome": "CANNOT_CHECK",
+  "outcomes_file": null,
+  "parameters_sha256": "sha256:33138930449fda9a77c99a325f6c9ca2c13b58291218beb94704ea045334fe8c",
+  "record": "P9_U_T3_FRONTIER_GRID_STATUS",
+  "sample_of_declared_cells": [
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C1|FORMAL_RELATIONAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C1|NON_FORMAL_PROCEDURAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C4|FORMAL_RELATIONAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C4|NON_FORMAL_PROCEDURAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C16|FORMAL_RELATIONAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C16|NON_FORMAL_PROCEDURAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C64|FORMAL_RELATIONAL",
+    "k1|FLAT_TEXT_SERIALIZATION|LLAMA3_2|1B|C64|NON_FORMAL_PROCEDURAL"
+  ],
+  "schema_version": "orion.p9.ut3-frontier-grid-status.v1",
+  "terminal_disposition": "P9-U-T3 remains BLOCKED. This freeze removes only the first half of its blocker -- the grid now exists and exists before any outcome. The gate also requires a crossing that is on-grid, which requires cells with outcomes, of which there are none.",
+  "verdict": "T3_GRID_DECLARED_NO_CELL_EXECUTED"
+}

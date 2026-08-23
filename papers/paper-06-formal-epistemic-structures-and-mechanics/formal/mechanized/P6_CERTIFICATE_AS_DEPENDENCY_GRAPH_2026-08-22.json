@@ -1,0 +1,164 @@
+{
+  "all_discharged": true,
+  "date": "2026-08-22",
+  "frame_conditions": {
+    "baseline_discharged": [
+      "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
+      "CERTIFICATE_RESTORED_BY_FULL_REPAIR",
+      "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+      "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+      "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+      "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED"
+    ],
+    "criterion": "a condition is load-bearing only when dropping it yields a countermodel to some theorem on every one of the repeated runs. A theorem that merely stops being provable is not counted, because an unknown return is a fact about the search; and a theorem refuted on some runs but not others is reported separately rather than credited, because the solver's model search on this encoding is not deterministic.",
+    "every_condition_carries_a_theorem": true,
+    "inert_conditions": [],
+    "repeats": 3,
+    "theorems_refuted_on_every_run": {
+      "coordinates_do_not_support_each_other": [
+        "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED"
+      ],
+      "coordinates_support_the_certificate": [
+        "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+        "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED"
+      ],
+      "the_certificate_is_not_a_coordinate": [
+        "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+        "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+        "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+        "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED"
+      ]
+    },
+    "theorems_refuted_on_some_run": {
+      "coordinates_do_not_support_each_other": [
+        "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED"
+      ],
+      "coordinates_support_the_certificate": [],
+      "the_certificate_is_not_a_coordinate": []
+    }
+  },
+  "interpretation_sensitivity": {
+    "counts_alone_identify_the_interpretation": false,
+    "every_indistinguishable_variant_is_caught_by_a_theorem": true,
+    "of_those_caught_by_collateral_reopening": [
+      "complete_graph",
+      "coordinates_chained_into_the_certificate",
+      "star_with_coordinate_cross_edges"
+    ],
+    "the_restoration_count_does_not_discriminate": "155 is the number of (donor, non-empty damage) pairs and does not depend on the graph at all -- a full repair leaves nothing changed, so no graph reopens anything. Every variant returns 155. The 1,055 is the count that moves, and it only moves out of the reachability class.",
+    "variants": {
+      "complete_graph": {
+        "coordinates_reopened_as_collateral": 375,
+        "full_restorations": 155,
+        "proper_subset_failures": 1055
+      },
+      "coordinates_chained_into_the_certificate": {
+        "coordinates_reopened_as_collateral": 245,
+        "full_restorations": 155,
+        "proper_subset_failures": 1055
+      },
+      "coordinates_chained_without_the_certificate": {
+        "coordinates_reopened_as_collateral": 245,
+        "full_restorations": 155,
+        "proper_subset_failures": 0
+      },
+      "edges_reversed": {
+        "coordinates_reopened_as_collateral": 0,
+        "full_restorations": 155,
+        "proper_subset_failures": 0
+      },
+      "no_support_edges": {
+        "coordinates_reopened_as_collateral": 0,
+        "full_restorations": 155,
+        "proper_subset_failures": 0
+      },
+      "one_coordinate_does_not_support_the_certificate": {
+        "coordinates_reopened_as_collateral": 0,
+        "full_restorations": 155,
+        "proper_subset_failures": 975
+      },
+      "star_with_coordinate_cross_edges": {
+        "coordinates_reopened_as_collateral": 100,
+        "full_restorations": 155,
+        "proper_subset_failures": 1055
+      }
+    },
+    "variants_the_counts_cannot_distinguish_from_the_star": [
+      "complete_graph",
+      "coordinates_chained_into_the_certificate",
+      "star_with_coordinate_cross_edges"
+    ],
+    "what_pins_the_star": "The theorems, and specifically UNDAMAGED_COORDINATES_ARE_NOT_REOPENED. Every variant the counts cannot distinguish reopens coordinates as collateral damage, which that theorem forbids and which dropping the frame condition coordinates_do_not_support_each_other loses. The collateral count is reported per variant above so this is a measurement rather than an argument.",
+    "what_the_counts_actually_test": "Whether every coordinate reaches the certificate, and nothing more. Every graph in that reachability class returns 155 and 1,055, including a chain through the coordinates, the star with coordinate cross-edges and the complete graph. Dropping one coordinate's support edge stays in reach of the question and moves the count to 975; reversing or deleting the edges leaves the class and collapses it to 0. The counts therefore confirm the reachability class, not the star."
+  },
+  "load_bearing_criterion_history": "This measurement has been wrong twice. It first counted any theorem that stopped being discharged, which credits an axiom for the solver failing to settle a question. Requiring a countermodel then made it unstable, because refuting a universally quantified claim over an uninterpreted sort is an unbounded model search. It now asks for a countermodel in a bounded world -- sound in that direction only -- and takes the intersection over repeated runs. The conclusion survived both corrections; the per-condition detail did not, and the difference is recorded rather than quietly restated.",
+  "not_licensed": [
+    "any claim that 155 tests the interpretation; it is the number of (donor, damage) pairs and is unchanged by every wrong graph tried",
+    "any claim that the two counts identify the star graph; three structurally different graphs reproduce 1,055 exactly, and only the theorems separate them",
+    "any claim that the donor axis extends the result; it enters neither the graph nor the changed set and multiplies 31 and 211 by five",
+    "independent review: the interpretation, the theorems and the tests were written in the same lane as the model, which is P6-U-T4",
+    "any empirical claim whatsoever"
+  ],
+  "published_counts": {
+    "computed_by": "the committed check_finite_models.descendants, under the star interpretation",
+    "coordinates": 5,
+    "counts_reproduced": true,
+    "donors": 5,
+    "full_restorations": 155,
+    "minimality_counterexamples": [],
+    "proper_subset_failures": 1055,
+    "published_full_restorations": 155,
+    "published_proper_subset_failures": 1055,
+    "restoration_counterexamples": [],
+    "the_donor_axis_is_a_multiplier": "The donor loop enters neither the graph nor the changed set, so the five donor families replicate the same 31 restorations and 211 failures rather than extending them. 155 and 1,055 are 31 and 211 counted five times. That is P6's own loop structure, reproduced here rather than corrected, and it means the published counts carry the information of 31 and 211."
+  },
+  "record": "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH",
+  "schema_version": "orion.p6.certificate-as-dependency-graph.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+      "outcome": "PROVED",
+      "statement": "under the star interpretation, if any coordinate node is changed then the certificate node is reopened -- damaging one coordinate withdraws the whole certificate, for any number of coordinates",
+      "why_it_matters": "P6's finite check asserts this state by state over five coordinates. Stated here it is a consequence of one coordinate reaching the certificate, which holds at any width and is why the number five is incidental."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_RESTORED_BY_FULL_REPAIR",
+      "outcome": "PROVED",
+      "statement": "if no coordinate node is changed then the certificate node is not reopened -- repairing every damaged coordinate restores the certificate. This is the general form of P6's 155 full restorations",
+      "why_it_matters": "Without it the 155 would be an observation about an enumeration. With it the 155 is reopening completeness evaluated at 31 damage sets and five donors."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+      "outcome": "PROVED",
+      "statement": "if a repair leaves at least one coordinate changed then the certificate is still reopened, however many coordinates were repaired. This is the general form of P6's 1,055 proper-subset failures",
+      "why_it_matters": "This is the half that carries P6's claim. A framework in which some coordinate compensates for another would refute it, and the 1,055 is exactly the count that moves when the primitive is weakened that way."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
+      "outcome": "PROVED",
+      "statement": "an unchanged coordinate node is never reopened by damage elsewhere, so a repair has nothing to repair beyond the coordinates it damaged. Without this the restoration theorem would be about a different set of nodes than the damage was",
+      "why_it_matters": "The easy thing to miss. If damaging one coordinate reopened another, then repairing the damaged set would not be repairing the reopened set, and the restoration theorem would silently be about different nodes than the damage."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
+      "outcome": "PROVED",
+      "statement": "changing the certificate node reopens no coordinate, so the dependency runs one way. This is reopening conservativity at the certificate level",
+      "why_it_matters": "A certificate that fed back into its own coordinates would make the star cyclic, and the cycle characterisation says a node on a cycle reopens itself. The interpretation has to forbid it rather than assume it away."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+      "outcome": "PROVED",
+      "statement": "the certificate node has no outgoing edge. This was a frame condition until the load-bearing check reported it inert; it is a consequence of the other three and is discharged here rather than assumed",
+      "why_it_matters": "An axiom that no theorem needs is either decoration or a redundant presentation of an axiom that is doing the work, and the two look identical from inside. Deriving it settles which: the star interpretation rests on three independent conditions, not four, and the fourth is a theorem about them."
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "P6's certificate model is an interpretation of the reopening semantics already proved general: a certificate over n coordinates is the star graph on n+1 nodes, damage is a changed set on the coordinate nodes, and repair removes coordinates from it. Under that reading five theorems are discharged by Z3 over an uninterpreted node sort and for any number of coordinates -- any damage withdraws the certificate, a full repair restores it, a partial repair does not, undamaged coordinates are never collateral damage, the dependency runs one way, and the certificate supports nothing. That last one was a frame condition until the load-bearing check reported it inert; it and one other were a redundant presentation of the same constraint, so the interpretation now assumes three independent conditions and proves the fourth. P6's published 155 full restorations and 1,055 proper-subset failures are then recomputed by running the committed descendants over the interpreted graph, so the finite result is an instance of the theorems produced by the implementation P6-U-T1 verified against them, rather than a separate enumeration that agrees with them. Each of the four frame conditions is shown to carry at least one theorem by dropping it, and three wrong dependency graphs are tried against the interpretation, and each of the three surviving frame conditions is necessary under the strictest of three readings: dropping it yields an actual countermodel, in a bounded world, on every one of the repeated runs. Two weaker readings were rejected on the way. Counting a theorem that merely stopped being provable inflates every condition's weight, because an unknown return is a fact about the solver's search rather than evidence the axiom was carrying anything. And a single run is not a measurement here: the model search is not deterministic on this encoding, and the edge-restriction condition refutes between one and three theorems on identical repeated runs, of which exactly one falls every time. The counts do not carry the interpretation on their own and this is measured rather than assumed: a chain through the coordinates into the certificate, the star with coordinate cross-edges and the complete graph all return 1,055 exactly, because the counts test whether every coordinate reaches the certificate and nothing further. Every one of those three is refuted by a theorem instead -- each reopens coordinates as collateral damage, which UNDAMAGED_COORDINATES_ARE_NOT_REOPENED forbids -- so what pins the star is the proof, with the counts confirming the reachability class."
+}

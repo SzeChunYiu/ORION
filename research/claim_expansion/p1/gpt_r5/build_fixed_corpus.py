@@ -11,6 +11,12 @@ ALL_PROBES = tuple(PROBE_TO_CLASS)
 CONTROL = "NO_HIGH_LEVEL_REFORMULATION"
 UNRESOLVED = "UNRESOLVED"
 
+#: The year every episode is stamped with, read from the frozen source set
+#: rather than written here. It was the literal ``2020`` in two places, which is
+#: how the corpus and the evaluator that checks it came to disagree with the
+#: only file that declares what the primary year is.
+PRIMARY_YEAR = int(json.loads((ROOT / "FIXED_SOURCE_SET_V1.json").read_text())["primary_year"])
+
 
 def probe_map(*, support: tuple[str, ...] = (), refute: tuple[str, ...] = ()) -> dict[str, str]:
     out = {p: "INCONCLUSIVE" for p in ALL_PROBES}
@@ -168,7 +174,7 @@ def make_pair(i: int, s: dict) -> dict:
         "actual_domain": s["domain"],
         "source_id": s["source_id"],
         "source_url": doi_url(s["source_id"]),
-        "source_year": 2020,
+        "source_year": PRIMARY_YEAR,
         "adverse": {"id": f"R5-{s['query_id']}-A", "dossier": s["adverse"], "probes": probe_map(support=(cls,), refute=adverse_refutes), "gold_class": cls},
         "control": {"id": f"R5-{s['query_id']}-C", "dossier": s["control"], "probes": probe_map(refute=control_refutes), "gold_class": CONTROL},
         "pair_evidence": {"source_claim": s["evidence"], "coding_rule": "Only source-isolated target/alternatives are SUPPORT/REFUTE; all others INCONCLUSIVE."},
@@ -177,7 +183,7 @@ def make_pair(i: int, s: dict) -> dict:
 
 def make_unresolved(i: int, s: dict) -> dict:
     return {
-        "id": f"R5-{s['query_id']}-U", "query_id": s["query_id"], "actual_domain": s["domain"], "source_id": s["source_id"], "source_url": doi_url(s["source_id"]), "source_year": 2020,
+        "id": f"R5-{s['query_id']}-U", "query_id": s["query_id"], "actual_domain": s["domain"], "source_id": s["source_id"], "source_url": doi_url(s["source_id"]), "source_year": PRIMARY_YEAR,
         "dossier": s["dossier"], "probes": probe_map(), "gold_class": UNRESOLVED,
         "admission_evidence": {"source_claim": s["evidence"], "coding_rule": "All generic responsibilities remain INCONCLUSIVE under the source-visible evidence."},
     }

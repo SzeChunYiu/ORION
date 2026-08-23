@@ -1,0 +1,2485 @@
+{
+  "b3_false_high_level_rate": 0.0,
+  "checks": {
+    "at_least_three_nonnegative_classes": true,
+    "class_noninferiority": true,
+    "domain_zero_loss": true,
+    "episode_margin": true,
+    "episode_stability_lower_positive": true,
+    "false_high_level_guard": true,
+    "native_ard_materially_differs_from_base": true,
+    "no_candidate_metadata_leakage": false,
+    "pair_macro_margin": true,
+    "pair_macro_stability_lower_positive": true,
+    "pair_micro_margin": true,
+    "pair_micro_stability_lower_positive": true,
+    "zero_control_high_level_harm": true,
+    "zero_false_unresolved_resolution": true,
+    "zero_lower_level_skip": true
+  },
+  "class_episode_counts_by_gold_class": {
+    "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+    "MEASUREMENT_OR_EVALUATOR": 3,
+    "NO_HIGH_LEVEL_REFORMULATION": 22,
+    "OBJECTIVE_OR_MODEL_CLASS": 4,
+    "PROBLEM_BOUNDARY": 3,
+    "REPRESENTATION_OR_INTERFACE": 4,
+    "SEARCH_OR_EVIDENCE": 4,
+    "UNRESOLVED": 4
+  },
+  "class_episode_differences_by_gold_class": {
+    "IMPLEMENTATION_OR_ENVIRONMENT": 0.5,
+    "MEASUREMENT_OR_EVALUATOR": 0.3333333333333333,
+    "NO_HIGH_LEVEL_REFORMULATION": 0.36363636363636365,
+    "OBJECTIVE_OR_MODEL_CLASS": 0.75,
+    "PROBLEM_BOUNDARY": 0.6666666666666666,
+    "REPRESENTATION_OR_INTERFACE": 0.5,
+    "SEARCH_OR_EVIDENCE": 1.0,
+    "UNRESOLVED": 0.0
+  },
+  "class_pair_differences": {
+    "IMPLEMENTATION_OR_ENVIRONMENT": 0.0,
+    "MEASUREMENT_OR_EVALUATOR": 0.0,
+    "OBJECTIVE_OR_MODEL_CLASS": 0.75,
+    "PROBLEM_BOUNDARY": 0.0,
+    "REPRESENTATION_OR_INTERFACE": 0.0,
+    "SEARCH_OR_EVIDENCE": 0.75
+  },
+  "data": {
+    "checks": {
+      "episode_count": true,
+      "exact_pair_sources": true,
+      "exact_unresolved_sources": true,
+      "minimum_domains": true,
+      "minimum_pairs_per_class": true,
+      "no_errors": true,
+      "pair_count": true,
+      "unresolved_count": true
+    },
+    "class_counts": {
+      "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+      "MEASUREMENT_OR_EVALUATOR": 3,
+      "OBJECTIVE_OR_MODEL_CLASS": 4,
+      "PROBLEM_BOUNDARY": 3,
+      "REPRESENTATION_OR_INTERFACE": 4,
+      "SEARCH_OR_EVIDENCE": 4
+    },
+    "complete": true,
+    "errors": [],
+    "n_domains": 26
+  },
+  "domain_episode_counts": {
+    "behavioral_modeling": 2,
+    "biostatistics_transformations": 2,
+    "causal_epidemiology": 2,
+    "causal_modeling": 1,
+    "climate_modeling": 2,
+    "climate_numerics": 2,
+    "clinical_generalizability": 2,
+    "cognitive_development": 1,
+    "environmental_lca": 2,
+    "epidemiology_missing_data": 2,
+    "genetic_biophysics": 1,
+    "geodesy": 2,
+    "knowledge_graphs": 2,
+    "machine_learning": 2,
+    "meta_analysis": 2,
+    "microbiology_measurement": 2,
+    "neuroimaging_measurement": 2,
+    "neuroimaging_ml": 2,
+    "pharmacometrics": 2,
+    "scientometrics": 2,
+    "single_cell_genomics": 2,
+    "software_engineering": 2,
+    "statistical_physics": 2,
+    "structural_biology_data_integration": 2,
+    "systems_biology": 1,
+    "wildlife_ecology": 2
+  },
+  "domain_episode_differences": {
+    "behavioral_modeling": 1.0,
+    "biostatistics_transformations": 0.5,
+    "causal_epidemiology": 1.0,
+    "causal_modeling": 0.0,
+    "climate_modeling": 0.0,
+    "climate_numerics": 0.5,
+    "clinical_generalizability": 0.5,
+    "cognitive_development": 0.0,
+    "environmental_lca": 0.5,
+    "epidemiology_missing_data": 1.0,
+    "genetic_biophysics": 0.0,
+    "geodesy": 0.0,
+    "knowledge_graphs": 0.5,
+    "machine_learning": 1.0,
+    "meta_analysis": 1.0,
+    "microbiology_measurement": 0.0,
+    "neuroimaging_measurement": 0.5,
+    "neuroimaging_ml": 0.5,
+    "pharmacometrics": 0.5,
+    "scientometrics": 0.0,
+    "single_cell_genomics": 0.5,
+    "software_engineering": 0.0,
+    "statistical_physics": 0.5,
+    "structural_biology_data_integration": 0.0,
+    "systems_biology": 0.0,
+    "wildlife_ecology": 1.0
+  },
+  "episode_bootstrap_95_stability": [
+    0.3125,
+    0.6041666666666666
+  ],
+  "episode_orion_native_ard_minus_b3_grs": 0.4583333333333333,
+  "guard_verdicts": {
+    "candidate_metadata_leakage": {
+      "hit_categories": {
+        "episode_id_and_pair_role": 96,
+        "pair_id": 88,
+        "query_id": 96
+      },
+      "n_audited_episode_arms": 96,
+      "rows": [
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P1-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P1-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P1"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 4988,
+          "payload_digest": "24ba74f4686edd17d4829ce6a26ff6cc62fac956cdcc8e55ba8906e8962e0ac7",
+          "provider_call_records": 6,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P1-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P1-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P1"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2320,
+          "payload_digest": "d4410c118b2a93d6980f6f7bee15621ca2065e14bc8f73b2c5fad2a835a744d1",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P1-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P1-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P1"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7676,
+          "payload_digest": "ab74853843a5e3d2d453443916fb3e68813d31be73c81247fb15d9117eb2e28d",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P1-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P1-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P1"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2248,
+          "payload_digest": "a3e90edb40276d870e22ec3e73ab0d608cf64bd9cb5085f036190295d6a0351f",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P2-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P2-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P2"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 4952,
+          "payload_digest": "1830ae51789f70d99c14d5b7eb99fe01278242a8609c20b3e0d6c053b97d6131",
+          "provider_call_records": 6,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P2-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P2-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P2"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2308,
+          "payload_digest": "3af240570548b2e7dc4c3ccedeaed5f6260d61f5a214a1cedaf0a9a41be442eb",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P2-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P2-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P2"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 4965,
+          "payload_digest": "03f188a764518c4cd677e231a834ab827bf31b8336ce0a4f11679468bbddeb26",
+          "provider_call_records": 6,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P2-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P2-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P2"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2323,
+          "payload_digest": "85dd1dd4917da738503fb17fd45d4beb62715d87049b3bf477259d47cf06fdb1",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P3-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P3-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P3"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 4936,
+          "payload_digest": "fc289a86e60ccde75de3481fd22d45d14d8dc51e7171f4ae5cca1269a2ceaeab",
+          "provider_call_records": 6,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P3-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P3-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P3"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2290,
+          "payload_digest": "c91e7d330c59b51f3753659281a8cc3cffbbefe460d58e89abc4186034cce805",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P3-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P3-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P3"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7668,
+          "payload_digest": "2f3fbb10cba67f72fd735b1b0879695f72ae80b70ddd1de9b4125d0465bc58b2",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P3-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P3-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P3"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2260,
+          "payload_digest": "09843ba9b585167d2b5ac36ab5e1fc6258cd705596ebd3f9bff94bcee7597915",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P4-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P4-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P4"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 4910,
+          "payload_digest": "6cd490841ebe9264e6a359b2f14fc7483df7c7583b79649df85bcb4fbc7ee1da",
+          "provider_call_records": 6,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P4-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P4-A"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P4"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2326,
+          "payload_digest": "081dda80438386c7a07b184d04ff75ebb627716ecee830c3f72f44f31ba90f34",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-SEARCH-P4-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P4-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P4"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 4866,
+          "payload_digest": "3b989c68275af1ec0247635e986add7016a7c763a5b0b23ee4b5fd4a693d1f2f",
+          "provider_call_records": 6,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-SEARCH-P4-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-SEARCH-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-SEARCH-P4-C"
+            },
+            {
+              "category": "query_id",
+              "token": "SEARCH-P4"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2284,
+          "payload_digest": "79e9ba2836ced64ff904fedb75a27ccc11626d1b60cc013e7d9107493193710f",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P1-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P1-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P1"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7569,
+          "payload_digest": "b5116daf562c46cb17e8838d735df377221e7955d45aa18000d5a6074c2614d2",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P1-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P1-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P1"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2245,
+          "payload_digest": "030233d2a8a97a05feee38c09d462421669bdc06ec835a1382aa98d5ebb7a06b",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P1-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P1-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P1"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7525,
+          "payload_digest": "522c45eab5c177b55a0b48d18035316fb02a6544e64f44e4dd9cff6e49341f4e",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P1-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P1-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P1"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2203,
+          "payload_digest": "f0a38425311181cfbe83103173798986af539faa09ceb348c17b2300cc69ef67",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P2-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P2-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P2"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7643,
+          "payload_digest": "4103b27453f8d133f471663f8f833454b7eb2ad0e51d5b93979ce6cc8fc3eaeb",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P2-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P2-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P2"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2287,
+          "payload_digest": "1eafab14bf73ab90f3115f7479770d913d3b0e4ae03758755ed5f6dd753606cf",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P2-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P2-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P2"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7506,
+          "payload_digest": "c151e4540f0f014e0644429f423e9051b6b30e0166a95faa7aa8bf33cdc48175",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P2-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P2-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P2"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2152,
+          "payload_digest": "7c01a0f5476da5486973a3bd9b5cf18fc58195732943941fdfbe12a8cd689243",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P3-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P3-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P3"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7703,
+          "payload_digest": "f6aa3dcd6777200b926ee270be9e1e9d42d1d00328595ef165d28c37a1ab3c5c",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P3-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P3-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P3"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2275,
+          "payload_digest": "d5efbf644f0d4a422496bfdddc86f279c31308cb40f3eeccc1075fba6842e880",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P3-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P3-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P3"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7680,
+          "payload_digest": "4e968f1d783e3b514aa1844178350722721bc08596e26414d99323607869c28e",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P3-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P3-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P3"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2254,
+          "payload_digest": "7b21667776ccca4192187f8c5d4c4f1897660255a79729e5ea3f1b9130cbe4a5",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P4-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P4-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P4"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7774,
+          "payload_digest": "b0cab6a0b957179d7b8d848ce126618d486a9489b83e55c176fc8bac54939508",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P4-A",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P4-A"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P4"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2326,
+          "payload_digest": "cce296806be65f03f4ead9241eeb5dd6513c082dd186d8721b038405ed9f298e",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-REP-P4-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P4-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P4"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7700,
+          "payload_digest": "5db04e2be8a0bfcd7251f1c4ab3abe08e64256c54a3f2da44bf336aadce4a708",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-REP-P4-C",
+          "hits": [
+            {
+              "category": "pair_id",
+              "token": "R5-REP-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-REP-P4-C"
+            },
+            {
+              "category": "query_id",
+              "token": "REP-P4"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2254,
+          "payload_digest": "0489827172e238bc1b967683590e28c92adc86f8f87c25e06cbea144d2069b0a",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P1-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P1-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7540,
+          "payload_digest": "3e1d831fec2e205149054d406920f5e20549f567313440bc137abc39647caa1a",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P1-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P1-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2254,
+          "payload_digest": "e6b7bdd9e2ae922d6b3dfa855ad2b2622354057247b6c197b79518122d543d58",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P1-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P1-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7511,
+          "payload_digest": "6c6de81358e688d9726e4d5d237d4ffde5024fe10135d7f2641d4ac3626d87ce",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P1-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P1-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2227,
+          "payload_digest": "1d87a8abaf5b7949da434759cc96ccf2aa2cc50d6948ad59dae7afeccbc1a808",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P2-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P2-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7534,
+          "payload_digest": "32ca5707c75a7c04e47255d9be3717cc5c0167c4a703b60d1e363d5c5e872a4c",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P2-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P2-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2296,
+          "payload_digest": "56da013fd167790abe1608e6684a2820297dd948d2eff54d14fb3786665e7aa8",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P2-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P2-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7523,
+          "payload_digest": "bf47fb8a6806a05606d177aee7a0daa686e72026b1d3dc26147e78e02882f5d1",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P2-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P2-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2287,
+          "payload_digest": "e4898289a3df44f37670b312aadc93915fe82af0b393ed01ada7b82fbfc95dcf",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7459,
+          "payload_digest": "dc37c035248b39150875aca112937986df2c3a74c9246266b8f322b2f65b284e",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2245,
+          "payload_digest": "67b260a91a1e9e0224961ac388c7a8026e88301b89e1ddf7f13e13bc95ea88ef",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7421,
+          "payload_digest": "90721dc292a432debd89ab0c8051967dcd164c830cfe810be14a6fbaf7df9a48",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2209,
+          "payload_digest": "c3c70186530f8096a456d2c698715dc1f6e9f84d3f94ce93a3be08da7f42ca00",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7581,
+          "payload_digest": "ccbb669d160aeba7d5bb13978bc179616663d90e7ca5c323b7ffff005dc3c123",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2275,
+          "payload_digest": "4ee58166c6838981e1b2644c1fcb2dc2aefe8b7e21c3b935f81bb855f7533569",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-IMPL-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7528,
+          "payload_digest": "4c59c2fa3d92125945fa6a0b3237b66dd3a030c75ce2cf6beba30500932c2a55",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-IMPL-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "IMPL-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-IMPL-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-IMPL-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2224,
+          "payload_digest": "5e357f519e682dbaaaf0d659b2281515dce9025f640efa45466cb5e0be4358e2",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-MEAS-P1-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P1-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7587,
+          "payload_digest": "a1df592a7fe3dabe7c8f83c43946031b3cfabebb629129131ffaa36a436692da",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-MEAS-P1-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P1-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2257,
+          "payload_digest": "c7190aa41400cdf15927971d390cbe6a27a8a82233fb1f1f334758b2445d7ad7",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-MEAS-P1-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P1-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7504,
+          "payload_digest": "16205ae175c8f296e76cf5a653e24d8488a97dba892fc9097848cf0f03adcc48",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-MEAS-P1-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P1-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2176,
+          "payload_digest": "6b911f089fbf134b0f01e0f067d8eae860226fcf615b95091f3c304361e32160",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-MEAS-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7593,
+          "payload_digest": "ccbf6fa5af10011d5a5f273b375c24029d5da2970409002f8f1c6269bc4e909b",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-MEAS-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2131,
+          "payload_digest": "b0d23bb0bc10008496460cd42a9a7a92aa0d8740f3fd50651c8488c5b0e7d54d",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-MEAS-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7696,
+          "payload_digest": "a2fa65171a85e5d774f405343258b73ff05e1579e9398dd5d22bb1b9fcbc2675",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-MEAS-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2236,
+          "payload_digest": "f6cc609bf5ccd51b991e5b39347e9bab2ceea1407da2e4c33a9cf2cbf177b7dc",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-MEAS-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7559,
+          "payload_digest": "4ac322edb164b042821b39cef0a32c0009ab888796215dbcc3b5d763d0d053aa",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-MEAS-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2209,
+          "payload_digest": "e2057234c2a36abace6dd42332d0a1f5ae037d72e309fdf5fe962c2c0c9fb21e",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-MEAS-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7599,
+          "payload_digest": "22515bb50e73ea74f3fda0a5909598e64f202a48d570278b358774184e9e4c4b",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-MEAS-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "MEAS-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-MEAS-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-MEAS-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2251,
+          "payload_digest": "df2d806193e2033984f2f4d1f2879b3e9208979b57ed3658711e8e45db6db4e8",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P1-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P1-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7653,
+          "payload_digest": "6e9ae643754c364dbf96c50adafd218f1e24aa829e1d0aee7bb54ca10e3d38d5",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P1-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P1-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2305,
+          "payload_digest": "253c3f825b777693ddedfcbc3a83941d0657ec7e162d3c497ed020216f968a5f",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P1-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P1-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7639,
+          "payload_digest": "7221d7d4d29add57527e689ce0e56aafe97a47481df4472d4a7b807cccae46c3",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P1-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P1"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P1"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P1-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2329,
+          "payload_digest": "3fa207ad5362b85bb43ac5204ce389223efdab0ac14bd2617367ec86bb90a4ce",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P2-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P2-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7721,
+          "payload_digest": "32198b13f38b953a474afe7c82802fc7fbc5601c15edd1f9d38adf9104c7e48e",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P2-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P2-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2323,
+          "payload_digest": "034fd1939ff74e1f203e72c117aea81ae03af9a29fcdfafaffc1e6eb491f4970",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P2-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P2-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7547,
+          "payload_digest": "4849b6a8e5392e90067b69e837baa74683309635041de2edd35690bfe1e934a1",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P2-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P2-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2137,
+          "payload_digest": "08b5e05a0bcfa0d5f1d68848accd0dd2d8a6dd5928db82b22473c8ebe6153507",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7697,
+          "payload_digest": "32ecb9d1369add2ad52cba3a184f2086195bef190731f625ff0fee1d394190e4",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2317,
+          "payload_digest": "131256892611c8586bcb2c9879619f84da305d8410fefc2fa55afb7b7d2b4570",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7638,
+          "payload_digest": "b611fc3138c7928bf2b9868dc618e0a75255784d44b2baceb0b30acf3190331a",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2260,
+          "payload_digest": "4accf3ddbc6446562a0cc479058ef953ce820c5418e8dcc8015b2651ada6c3fb",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7538,
+          "payload_digest": "2b8e078caa748379014b358476fb269c4e499da211a7add11b4f7248a14e1a5a",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2266,
+          "payload_digest": "96fd184c93ffb34cd6bbc7d25a19e8370deb53d0c13e5f20803f14d59b6d6221",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-OBJ-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7515,
+          "payload_digest": "37fd3cfc763dbe176a689f3d8630a10d65cbd2c0291eec6634182b29b007489b",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-OBJ-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "OBJ-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-OBJ-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-OBJ-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2245,
+          "payload_digest": "210b21bc30162605344ae3a0f05b42424287757706634376c5bf8d1ab1d4eb13",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-BOUND-P2-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P2-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7860,
+          "payload_digest": "5a53888e78f7c7a4ca40234a19b4695f47064ff9a06e627944900abc9d9a38e2",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-BOUND-P2-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P2-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2284,
+          "payload_digest": "699512a300c11b33f9ba4bd680255a09eda3ff60bcbe2b42ec7fecc961f723ac",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-BOUND-P2-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P2-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7777,
+          "payload_digest": "252025f76a62226a5bf4b10922e6db6600bb17373ab8b422ba2f74290b558d9b",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-BOUND-P2-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P2"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P2"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P2-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2203,
+          "payload_digest": "f7c9d6b89ceb2511d8eedc57f06912dabdf0b5ea8210719b65994b95189c2294",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-BOUND-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7643,
+          "payload_digest": "ef4cdefda663ea0a2ff65737d4e6e15102ff296647795ec030a14102c68baa5a",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-BOUND-P3-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P3-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2269,
+          "payload_digest": "f2466c96aa864c4618e3b8eccb10c132775db7f11c21c626440027e008d5f8db",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-BOUND-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7622,
+          "payload_digest": "17e19805046553c9d3de5f1baec4d1974201f206db07e1e6a86c22f9952130b4",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-BOUND-P3-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P3"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P3"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P3-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2188,
+          "payload_digest": "3fa2cdc5392112899762a825551a1a798af0100a5b07e36526714a323d0efb32",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-BOUND-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 7864,
+          "payload_digest": "aa35cfceede0e6c382496fd5b3c01ea5a3d74334783bdd600b16f79d4099172f",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-BOUND-P4-A",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P4-A"
+            }
+          ],
+          "pair_role": "adverse",
+          "payload_bytes": 2320,
+          "payload_digest": "a8103cf73769b5e82bf75e5bd3a100f42f67ee1017ad5106478cab36268da7b1",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-BOUND-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 7775,
+          "payload_digest": "098b9b0d23d3875ac53a619c585431c6bdfd4fbf345c9a75b89db489cac54523",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-BOUND-P4-C",
+          "hits": [
+            {
+              "category": "query_id",
+              "token": "BOUND-P4"
+            },
+            {
+              "category": "pair_id",
+              "token": "R5-BOUND-P4"
+            },
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-BOUND-P4-C"
+            }
+          ],
+          "pair_role": "control",
+          "payload_bytes": 2233,
+          "payload_digest": "8a1f1927ec98b2b41aa28f8eaf3d1f6ca2485502a05223a9c731f9f6fcf2620e",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-UNRES-P1-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P1-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P1"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 7599,
+          "payload_digest": "8f4fd1272384229bdf483953208993fdab7e5b731487deb37649228778464b36",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-UNRES-P1-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P1-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P1"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 2261,
+          "payload_digest": "a82eb235dbaf5dd7611696b3e5f13367bd3fe5944f06e8d5d1efbc827359b254",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-UNRES-P2-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P2-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P2"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 7918,
+          "payload_digest": "107ec9f72417b8706193057734c9125c63fad4061fa03c981acb834688a37d9a",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-UNRES-P2-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P2-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P2"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 2480,
+          "payload_digest": "2e99964efd4320205095551a5efaa9fc880327efabd7338addcaf152db9cc65c",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-UNRES-P3-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P3-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P3"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 7844,
+          "payload_digest": "22556d9e51d45441bc18cc6f1ecf30bf3057e9e0975740e3780d6a8829315c76",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-UNRES-P3-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P3-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P3"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 2522,
+          "payload_digest": "308caca30da459f6fc1a70d651c50b085c549ced89979e72e9c72b4a65e68e81",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_ARD",
+          "episode_id": "R5-UNRES-P4-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P4-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P4"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 7629,
+          "payload_digest": "44628534677c70699b37a2dcaba039e67cf5372e11975837c5ef51fcea685a98",
+          "provider_call_records": 9,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        },
+        {
+          "arm": "ORION_NATIVE_BASE",
+          "episode_id": "R5-UNRES-P4-U",
+          "hits": [
+            {
+              "category": "episode_id_and_pair_role",
+              "token": "R5-UNRES-P4-U"
+            },
+            {
+              "category": "query_id",
+              "token": "UNRES-P4"
+            }
+          ],
+          "pair_role": "unresolved",
+          "payload_bytes": 2387,
+          "payload_digest": "98191f0a4556b5ffb7910c8ce120a43c51225aff1d9ff87d6ec1d3cf31e84c8f",
+          "provider_call_records": 3,
+          "reason": "forbidden token present in candidate-visible payload",
+          "status": "FAIL"
+        }
+      ],
+      "status": "FAIL",
+      "status_counts": {
+        "FAIL": 96
+      }
+    },
+    "class_noninferiority": {
+      "control_stratum_evaluated": true,
+      "floor": -0.1,
+      "member_level_by_own_gold_class": true,
+      "n_strata_member_level": 8,
+      "n_strata_pair_level": 6,
+      "pair_level_by_adverse_class": true
+    },
+    "domain_margin": {
+      "any_stratum_large_enough": false,
+      "frozen_floor": -0.1,
+      "frozen_floor_verdict": true,
+      "governing_rule": "no actual_domain stratum may have a negative ARD-minus-B3 episode mean",
+      "governing_verdict": true,
+      "min_stratum_size_for_the_floor_to_admit_one_lost_episode": 10,
+      "n_strata": 26,
+      "restatement_is_verdict_identical": true,
+      "sensitivity_widened_stratifier": {
+        "counts": {
+          "CONTROL": 22,
+          "HIGH_LEVEL_ADVERSE": 7,
+          "LOWER_LEVEL_ADVERSE": 15,
+          "UNRESOLVED": 4
+        },
+        "means": {
+          "CONTROL": 0.36363636363636365,
+          "HIGH_LEVEL_ADVERSE": 0.7142857142857143,
+          "LOWER_LEVEL_ADVERSE": 0.6,
+          "UNRESOLVED": 0.0
+        },
+        "one_lost_episode_threshold_per_stratum": {
+          "CONTROL": -0.045454545454545456,
+          "HIGH_LEVEL_ADVERSE": -0.14285714285714285,
+          "LOWER_LEVEL_ADVERSE": -0.06666666666666667,
+          "UNRESOLVED": -0.25
+        },
+        "partition": "frozen HIGH / LOW / control_class / unresolved_class",
+        "strata_where_floor_admits_one_lost_episode": [
+          "CONTROL",
+          "LOWER_LEVEL_ADVERSE"
+        ],
+        "verdict_at_frozen_floor": true,
+        "verdict_at_zero_loss": true
+      },
+      "stratum_size_histogram": {
+        "1": 4,
+        "2": 22
+      }
+    }
+  },
+  "native_base_choice_differences": 27,
+  "native_false_high_level_rate": 0.0,
+  "note": "Guard record for the P1-U-T3 pre-outcome repair. Per-episode runtime rows are omitted on purpose: this file records what the repaired guards say, and carries no result authority. Terminal of the repair: PRE_OUTCOME_PROTOCOL_REPAIR__NO_RESULT_AUTHORITY.",
+  "pair_macro_bootstrap_95_stability": [
+    0.16666666666666666,
+    0.3333333333333333
+  ],
+  "pair_macro_equal_class_orion_native_ard_minus_b3": 0.25,
+  "pair_micro_bootstrap_95_stability": [
+    0.09090909090909091,
+    0.45454545454545453
+  ],
+  "pair_micro_orion_native_ard_minus_b3": 0.2727272727272727,
+  "policy_outcomes_generated": true,
+  "schema": "P1U.NativeOrionResult.v1",
+  "terminal": "P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED"
+}

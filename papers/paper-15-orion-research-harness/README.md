@@ -1,5 +1,22 @@
 # P15 — Scientific Execution Integrity: the ORION research harness
 
+**Stable ID:** ORION-P15
+**Paper issue:** none yet — this directory was opened ahead of one.
+**Status:** `PROSPECTIVE_ACQUISITION_PROTOCOL_FROZEN / NO_SCIENTIFIC_RESULT`
+
+`P15_ACTIVE_CLAIM_AUTHORITY_V2.json` is the machine-readable active lifecycle
+record and `CLAIM_EVIDENCE_LEDGER.md` is its human-readable claim boundary. It
+binds the prospectively frozen `P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md`
+and its fail-closed preflight. P15 still has no H1 or protected experiment, so
+this state is neither a failed result nor an unchecked scientific claim and
+cannot be promoted as a positive empirical finding.
+**Status:** `METHODS_SCOPE_ONLY / NO_SCIENTIFIC_RESULT`
+
+`P15_ACTIVE_CLAIM_AUTHORITY_V1.json` is the machine-readable active lifecycle
+record and `CLAIM_EVIDENCE_LEDGER.md` is its human-readable claim boundary. P15
+has no H1 or protected experiment, so this state is neither a failed result nor
+an unchecked scientific claim and cannot be promoted as a positive empirical
+finding.
 **Stable ID:** ORION-P15  
 **Paper issue:** #979  
 **Promotion programme:** #977 / `TOP_TIER_PROMOTION_V1.md`  
@@ -106,4 +123,14 @@ work is explicit rather than administrative:
 - [ ] submission manuscript and reproducibility package;
 - [ ] separate content-addressed `P15_TOP_TIER_SUBMISSION_READY` closure receipt.
 
+Per #670's rule — research decomposition is fine-grained, publication synthesis is
+coarse-grained — a directory is not an identity. The claim ledger now exists and
+records no empirical authority. Promotion still needs a paper issue, a donor
+matrix against existing research-execution and workflow-provenance systems, a
+protected hostile corpus, a matched comparator or explicitly noncomparative
+estimand, and evaluator separation. The protocol now exists; the other inputs
+do not. `P15A_ACQUISITION_PREFLIGHT_V1.json` records that boundary without
+turning locally authored labels into protected or independent evidence.
+matrix against existing research-execution and workflow-provenance systems, and
+a prospectively frozen protocol; none of those exists yet.
 The planning protocol itself can never emit the final readiness terminal.
