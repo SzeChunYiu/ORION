@@ -51,14 +51,6 @@
       "solvability": "TRANSFERRED_TO_CODEX_LANE"
     },
     {
-      "id": "NR-11",
-      "paper": "P14",
-      "negative": "P14A gate defect (bars above supremum)",
-      "hypothesis": "design defect, superseded",
-      "lever": "verify P14C closure; re-register only if superiority re-claimed",
-      "solvability": "CLOSED_BY_SUCCESSOR_VERIFY"
-    },
-    {
       "id": "NR-12",
       "paper": "P11",
       "negative": "query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET)",
@@ -107,6 +99,11 @@
       "negative": "P7 MATCH_IS_NOT_NECESSARY (NR-10)",
       "successor": "V2 evidence-bounded licensing frame: registry-connectivity is the unique maximal sound opaque rule (9/9 verdicts, 1,987,472 leg checks, zero sound violations); ledger P7.V4.10",
       "status": "P7_NECESSITY_SCOPING_REVIVED__OPAQUE_FRAME_CHARACTERIZED__WITNESS_PRESERVED"
+    },
+    {
+      "negative": "P14A gate defect (NR-11): both bars exceeded statistic supremum",
+      "successor": "closure-by-successor VERIFIED: supremum 0.042326 independently recomputed below both registered bars; P14C same-scope successor byte-reproduces",
+      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 — closed under stopping criterion (c)"
     }
   ],
   "workaround_protocol": {

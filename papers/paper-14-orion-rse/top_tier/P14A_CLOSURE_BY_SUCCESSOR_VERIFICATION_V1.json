@@ -1,0 +1,236 @@
+{
+  "backlog": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "checks": {
+    "full_arm_is_gold_everywhere": true,
+    "p14a_bar_005_met_on_p14c": true,
+    "p14a_bar_008_met_on_p14c": true,
+    "p14a_digest_reproduces": false,
+    "p14a_exit_code_nonzero": true,
+    "p14a_receipt_numbers_reproduce": true,
+    "p14c_008_bar_refutable": true,
+    "p14c_28_cases_7_strata_x_4": true,
+    "p14c_digest_reproduces": true,
+    "p14c_exit_code_zero": true,
+    "p14c_gold_stripped_from_policy_inputs": true,
+    "p14c_multi_review_errors_are_exactly_retain_negative": true,
+    "p14c_retain_prevalence_is_4_of_28": true,
+    "p14c_strongest_baseline_is_multi_review": true,
+    "p14d_acquisition_blocked": true,
+    "promotable_states_equal_three": true,
+    "r1_r2_co_primary_pending_external": true,
+    "single_discriminating_state": true,
+    "supremum_bounded_by_corners": true,
+    "unattainable__accuracy_gain_ge_0_08": true,
+    "unattainable__strongest_baseline_false_promotion_ge_0_05": true
+  },
+  "environment": {
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "python": "3.13.12"
+  },
+  "lane": "NR-11",
+  "p14a_bar_vs_supremum": {
+    "bars": {
+      "accuracy_gain_ge_0_08": {
+        "bar": 0.08,
+        "margin_bar_minus_supremum": 0.037674,
+        "supremum_over_declared_support": 0.04232587750858594,
+        "unattainable": true
+      },
+      "strongest_baseline_false_promotion_ge_0_05": {
+        "bar": 0.05,
+        "margin_bar_minus_supremum": 0.007674,
+        "supremum_over_declared_support": 0.04232587750858594,
+        "unattainable": true
+      }
+    },
+    "declared_post_mixture_rate_box": {
+      "bad_evidence": [
+        0.07500000000000001,
+        0.14
+      ],
+      "donor": [
+        0.14,
+        0.23
+      ],
+      "history": [
+        0.11499999999999999,
+        0.185
+      ],
+      "interaction": [
+        0.11499999999999999,
+        0.185
+      ],
+      "new_evidence": [
+        0.35,
+        0.55
+      ],
+      "nonidentifiable": [
+        0.06,
+        0.11000000000000001
+      ],
+      "positive": [
+        0.425,
+        0.575
+      ],
+      "unfrozen": [
+        0.07500000000000001,
+        0.14
+      ]
+    },
+    "infimum_over_declared_support": 0.009085200732011248,
+    "realized_shipped_run": 0.018375,
+    "replay": {
+      "decision_level_reproduces": true,
+      "digest_attribution": "full-result bytes embed per-family post-mixture rate floats whose low bits follow the executing platform's numpy float path; every decision-level count and summary metric reproduces exactly, so the pinned digest transfers only within the pinning platform",
+      "digest_fidelity": "platform_pinned",
+      "exit_code": 1,
+      "matches_receipt": false,
+      "sha256": "eda969e6abb2285638b5ef91a866aa0d13d15dfe49adfa9686bb402116d335ed",
+      "terminal": "P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET"
+    },
+    "state_enumeration": {
+      "discriminating_state": {
+        "donor_owned": false,
+        "evidence_integrity": true,
+        "frozen": true,
+        "identifiable": true,
+        "interaction_only": false,
+        "live_negative_history": true,
+        "material_new_evidence": false,
+        "positive": true
+      },
+      "discriminating_state_count": 1,
+      "full_arm_divergence_from_gold": 0,
+      "promotable_states": 3,
+      "total_fact_states": 256
+    },
+    "statistic": "prevalence of the single fact state where MULTI_REVIEW disagrees with gold (= strongest-baseline false promotion = full-contract accuracy gain, since ORION_RSE_FULL returns gold exactly)",
+    "supremum_argmax_corner": {
+      "bad_evidence": 0.07500000000000001,
+      "donor": 0.14,
+      "history": 0.185,
+      "interaction": 0.11499999999999999,
+      "new_evidence": 0.35,
+      "nonidentifiable": 0.06,
+      "positive": 0.575,
+      "unfrozen": 0.07500000000000001
+    },
+    "supremum_over_declared_support": 0.04232587750858594
+  },
+  "p14c_successor": {
+    "case_count": 28,
+    "gold_leak_count": 0,
+    "multi_review_error_case_ids": [
+      "RN-01",
+      "RN-02",
+      "RN-03",
+      "RN-04"
+    ],
+    "p14a_verbatim_bars_on_p14c": {
+      "accuracy_gain_ge_0_08": {
+        "bar": 0.08,
+        "bar_strictly_inside_reachable_interval": true,
+        "met": true,
+        "reachable_interval_over_seven_subjects": [
+          0.0,
+          0.1428571428571429
+        ],
+        "realized": 0.1428571428571429
+      },
+      "strongest_baseline_false_promotion_ge_0_05": {
+        "bar": 0.05,
+        "met": true,
+        "reachable_interval": [
+          0.14285714285714285,
+          0.14285714285714285
+        ],
+        "realized": 0.14285714285714285
+      }
+    },
+    "realized": {
+      "accuracy_gain": 0.1428571428571429,
+      "full_accuracy": 1.0,
+      "multi_review_accuracy": 0.8571428571428571,
+      "multi_review_false_promotion": 0.14285714285714285
+    },
+    "replay": {
+      "exit_code": 0,
+      "sha256": "74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63",
+      "terminal": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED"
+    },
+    "retain_negative_case_ids": [
+      "RN-01",
+      "RN-02",
+      "RN-03",
+      "RN-04"
+    ],
+    "strata": {
+      "CANNOT_CHECK": 4,
+      "INTERACTION_ONLY": 4,
+      "NEGATIVE": 4,
+      "RETAIN_NEGATIVE": 4,
+      "SUBSUMED": 4,
+      "SUPPORTED_CLEAN": 4,
+      "SUPPORTED_REOPEN": 4
+    },
+    "strongest_baseline": "MULTI_REVIEW",
+    "subject_gains_over_strongest_baseline": {
+      "ABLATE_DONOR": 0.0,
+      "ABLATE_EVIDENCE_INTEGRITY": 0.1071428571428572,
+      "ABLATE_FREEZE": 0.1071428571428572,
+      "ABLATE_IDENTIFIABILITY": 0.1071428571428572,
+      "ABLATE_INTERACTION": 0.0,
+      "ABLATE_NEGATIVE_HISTORY": 0.0,
+      "ORION_RSE_FULL": 0.1428571428571429
+    }
+  },
+  "r1_r3_external_status": {
+    "co_primary_promotion_condition": {
+      "reason": "Frontier-agent execution and independent human adjudication have not run; pilot systems are deterministic procedures, not adjudicators.",
+      "status": "PENDING_EXTERNAL"
+    },
+    "p14d_preflight": {
+      "execution_authorized": false,
+      "missing_artifacts": [
+        "packet_register.json",
+        "common_resource_manifest.json",
+        "blinded_assignment_manifest.json",
+        "external_adjudicator_custody_attestation.json",
+        "frozen_adjudication_rubric.json",
+        "independent_adjudications.jsonl",
+        "protected_output_register.json",
+        "replay_receipt.json"
+      ],
+      "terminal": "P14D_EXTERNAL_ACQUISITION_BLOCKED"
+    },
+    "substitute_plan": {
+      "R1_frontier_agent_round": {
+        "backlog_row": "External comparators / deployed systems",
+        "boundary_label": "PUBLIC_REFERENCE",
+        "external_dependency": ">=2 external frontier agent systems execute the frozen 67-packet contract",
+        "substitute": "third-party public reference implementations re-hosted frozen in our harness as donor baselines"
+      },
+      "R2_blinded_human_adjudication": {
+        "backlog_row": "Blinded human adjudication (P4 panel, P14D governance)",
+        "boundary_label": "MACHINE_BLINDED",
+        "external_dependency": "independent blinded human experts adjudicate worksheets",
+        "substitute": "independent frozen checker + label-blind cross-model adjudicator under a pre-registered rubric"
+      },
+      "R3_longitudinal_ablation": {
+        "backlog_row": "inherits R1's row (external comparators)",
+        "boundary_label": "PUBLIC_REFERENCE",
+        "external_dependency": "re-run of R1 (external systems) on the round-pair subset",
+        "substitute": "same PUBLIC_REFERENCE systems on the frozen round-pair subset, negative-history partition withheld vs present"
+      }
+    }
+  },
+  "schema": "ORION.P14A.ClosureBySuccessorVerification.v1",
+  "verdicts": {
+    "closure_by_successor_verified": true,
+    "p14a_bars_exceeded_statistic_supremum": true,
+    "p14a_decision_layer_reproduces_cross_platform": true,
+    "p14a_full_result_digest_platform_pinned": true,
+    "p14c_same_scope_successor_with_disclosed_deltas": true,
+    "r1_r3_blocked_and_substitutes_assigned": true
+  }
+}
