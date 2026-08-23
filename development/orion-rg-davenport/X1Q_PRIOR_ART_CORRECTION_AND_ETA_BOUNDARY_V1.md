@@ -105,6 +105,37 @@ The stripped version drops "or more generally if", which changes a sufficient co
 something else entirely. `rtk proxy` does **not** bypass this. **Every verbatim quote must
 come from the Read tool.** All quotes in this document now do.
 
+## Correction 6 — the rank-2 `D_2` **inverse** problem is Gao–Geroldinger **2003** (hit #12)
+
+This one reaches X1-K and X1-M, not just the `η` line. Gao & Geroldinger, "On zero-sum
+sequences in `Z/nZ ⊕ Z/nZ`", **Integers 3 (2003), Paper A08, Theorem 7.1** classifies the
+zero-sum sequences of length `tm − 1` over `C_m ⊕ C_m` that cannot be written as a product
+of `t` non-empty zero-sum subsequences. Their `t = k+1`, so `t >= 3` is `k >= 2` — **`k = 2`
+is their smallest case, i.e. exactly the extremal `D_2` witnesses of X1-K.**
+
+The bridge between my objects and theirs is the standard `S ↔ S·(−σ(S))` correspondence.
+Independently machine-checked over `C_3^2`: 408 extremal `S` of length 7 (**matching X1-K's
+table exactly**) yield 120 distinct `U` of length 8, and **all 120** match the published
+form, none outside.
+
+Zhong 2025 (arXiv:2503.21231) is therefore *not* the origin for `C_n ⊕ C_n`; it makes GG
+2003 unconditional and extends to `n_1 < n_2`. So the rank-2 rows of the X1-K table
+(`C_2^2`, `C_3^2`, `C_5^2`) are covered by published classification.
+
+*Reported, not resolved:* Zhong cites "[29]" for Property B, but [29] in his bibliography is
+Girard's asymptotic-Davenport-bound paper, which does not support it. Probable mis-citation;
+the substantive chain is Reiher + Gao–Geroldinger–Grynkiewicz + Grynkiewicz's 2021 addendum.
+
+### Rank >= 3: NOT FOUND, with the scope stated
+
+The same search found **no** extremal-structure results for `D_k` at rank `>= 3`, and gave a
+reason: the *value* `D_k(G)` is not known there, so the inverse problem is not yet posable.
+Freeze–Schmid determine `D_k(C_2^r)` **values** for `r <= 5` with no structural content;
+Girard–Schmid's rank-3 papers are values, or are about `η`/`s` rather than `D_k`.
+Sources read in full: Zhong 2503.21231, Freeze–Schmid, Girard–Schmid 1806.07636 and
+1809.03178, Cziszter–Domokos–Geroldinger 1505.06059, plus their bibliographies.
+**Gap in coverage, stated:** MathSciNet/zbMATH were not searched (no access).
+
 ## What is NOT retracted
 
 The following remain unchecked against the literature, and are a different question from
