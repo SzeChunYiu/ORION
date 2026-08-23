@@ -1,0 +1,51 @@
+{
+  "atom": "independent determination of the observation-cost hierarchy from main",
+  "authority": {
+    "NOT_R6": true,
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false
+  },
+  "consequence_for_QG34": {
+    "now_settled": "adaptive 3 < class-conditioned fixed 4 < universal fixed 5, so the separation is REAL",
+    "the_caution_was_correct": "at the time F* was unknown; it was right not to claim it and right to settle it separately",
+    "what_QG34_declined_to_claim": "whether adaptive 3 beats the true fixed MINIMUM; the freeze committed that atom to not adjudicating it"
+  },
+  "definitions": {
+    "adaptive_D_star": "minimax adaptive probe depth to identify the orbit type",
+    "class_conditioned_F_star": "for EACH of the 92 joint classes, the minimum FIXED probe set separating that class; then the max over classes",
+    "universal_U_star": "ONE fixed probe set separating every pair of types lying in the same joint class"
+  },
+  "independent_of": "PRs #942/#944 (QG-38), which are open; every number here is recomputed from main",
+  "per_class_minimum_fixed_probe_histogram": {
+    "0": 7,
+    "1": 30,
+    "2": 33,
+    "3": 19,
+    "4": 3
+  },
+  "results": {
+    "adaptive_D_star": 3,
+    "class_conditioned_F_star": 4,
+    "confirmed": true,
+    "hierarchy": "3 < 4 < 5",
+    "universal_U_star": 5
+  },
+  "schema": "ORION.QG.QG32C.CommittedResult.v1",
+  "settles": [
+    "SzeChunYiu/ORION#918 (QG-32b: is four-probe feasible?)",
+    "SzeChunYiu/ORION#928 (QG-32c: independent replication of four-probe infeasibility)",
+    "the fixed-vs-adaptive separation that QG-34 deliberately declined to claim"
+  ],
+  "source_result_digest": "4f7a431c3ee093916a39c9873aaa0e988dee85a159f49431a7c1f80ec07da0ba",
+  "universal_minimum_is_exactly_5": {
+    "distinct_probe_coverage_masks": 168,
+    "four_probe_cover_exists": false,
+    "four_subsets_enumerated_exhaustively": 32018910,
+    "instrument": "research/extensions/orion-qg/qg32c_exhaustive_four_probe.c",
+    "method": "complete enumeration of every 4-subset of the deduplicated coverage masks, no heuristics or bounds",
+    "pairs_needing_separation": 5895
+  }
+}

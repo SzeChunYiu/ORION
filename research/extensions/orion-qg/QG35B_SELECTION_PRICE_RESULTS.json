@@ -1,0 +1,71 @@
+{
+  "atom": "QG-35b: the price of SELECTION and of ACTIONABILITY, against identification",
+  "authority": {
+    "NOT_R6": true,
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false
+  },
+  "freeze": "development/orion-qg-regime-geometry/QG35B_SELECTION_PRICE_FREEZE_V1.md, committed before the solver ran, with definitional pins and four admissible branches",
+  "outcome_branch": "B1 -- D_sel* = 3, so the committed QG-35(c) STANDS and the coarsening 715 -> 646 buys nothing",
+  "results": {
+    "actionable": {
+      "D_star": 3,
+      "histogram": {
+        "0": 16,
+        "1": 31,
+        "2": 38,
+        "3": 7
+      },
+      "never_more_expensive": true,
+      "of_classes": 92,
+      "strictly_cheaper_than_identification_on": 26,
+      "worst_class_count": 7
+    },
+    "identification": {
+      "D_star": 3,
+      "histogram": {
+        "0": 7,
+        "1": 30,
+        "2": 39,
+        "3": 16
+      },
+      "worst_class_count": 16
+    },
+    "selection": {
+      "D_star": 3,
+      "equals_identification_on_all_92_classes": true,
+      "histogram": {
+        "0": 7,
+        "1": 30,
+        "2": 39,
+        "3": 16
+      },
+      "worst_class_count": 16
+    }
+  },
+  "schema": "ORION.QG.QG35B.CommittedResult.v1",
+  "source_result_digest": "875a438d27003989a2c1a2c4b31b5e221a8d866a3ee8e1952255b1921d67e5ee",
+  "the_new_content": "the worst case is 3 for all three targets, but the ACTIONABLE problem is strictly easier in DISTRIBUTION: more than twice as many free starting states (16 vs 7) and less than half as many worst-case states (7 vs 16), with 26 of 92 classes strictly cheaper",
+  "three_targets": {
+    "actionable": "resolve until the INTERSECTION of the remaining optimal-frame sets is nonempty, i.e. until one frame is known to be optimal for every candidate still in play -- what a compiler actually needs",
+    "identification": "resolve to a single orbit type (QG-34's target)",
+    "selection": "resolve until all remaining types share the SAME optimal-frame set (frozenset equality, pinned in the freeze -- not overlap, not lex-min agreement)"
+  },
+  "verification": {
+    "all_three_agree_per_class": true,
+    "cap_soundness": "solver C caps at depth 3, which is sound because singletons are terminal for all three targets, so any identification tree is a valid selection and actionable tree: D_act <= D_sel <= D_id",
+    "infeasibility_certificates": "cert_all true on both frozen solvers",
+    "memo_states": {
+      "actionable": 2244,
+      "selection": 3453
+    },
+    "solver_a": "exact value recursion, bitmask states",
+    "solver_b": "best-first probe ordering with branch and bound",
+    "solver_c": "research/extensions/orion-qg/qg35b_independent_third_solver.py -- iterative deepening on sorted tuples, written independently in the main session",
+    "solvers": 3
+  },
+  "why_actionable_is_the_right_target": "a compiler does not need the input's identity, nor the full set of optimal frames -- it needs one frame it can commit to. That is a weaker stopping condition and it is NOT a partition target, so it needed its own recursion rather than a coarsening"
+}

@@ -1,0 +1,92 @@
+{
+  "authority": {
+    "all_n_production_equivalence": false,
+    "merge": false,
+    "novelty": false,
+    "physical_resources": false,
+    "runtime_superiority": false,
+    "submission": false
+  },
+  "campaign_id": "Q1-C1-LANE-B-INDEPENDENT-CHALLENGE-v1",
+  "candidate_ref": "158fcb08b612ffc82f5a5d2bed4917409084ded8",
+  "chronology": {
+    "contract_commit": "44f649debe79642a6d951961bda65fa1e875fa1a",
+    "protocol_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "ptrace_resource_amendment_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "portable_resource_closure_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "github_resource_closure_commit": "342d7dfa66e691b9cd4d01a2a72985afe7c2526d",
+    "dedicated_environment_lock_commit": "d805be5a5045908d283e0e722fc2857861e04465",
+    "network_trace_failure_record_commit": "89b755eec5a25d23b50d3bb792676983c34d910d",
+    "require_clean_worktree_at_start": true,
+    "require_contract_ancestor_of_runner": true,
+    "require_result_descendant_of_runner": true
+  },
+  "contracts": {
+    "network_trace_failure_record_protocol": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/Q1_C1_NETWORK_TRACE_FAILURE_RECORD_PROTOCOL.md",
+      "sha256": "33d5a74cc700e6a44828e3a22dacf0816db8a96bd967d85c340678c5b34c3242"
+    },
+    "mutation_registry": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_mutations.json",
+      "sha256": "4bc04c589ff2bf5f2f8395e97e35763e365c427b3d7bb41bd6eb9d909a4ed618"
+    },
+    "proof_certificate": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/proofs/q1_c1_zero_sum.proof.json",
+      "sha256": "5cf8462e1ea00a39b9d3992d7183cea3a0e248a5a45e3de8d5b80628ae6dc351"
+    },
+    "proof_schema": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_proof_certificate.schema.json",
+      "sha256": "d7fa9568c8b0b352e84b291082fc33cf3bc087e6253b90187df3044e4c58990d"
+    },
+    "protocol": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/Q1_C1_DUAL_HARNESS_PROOF_CHALLENGE_PROTOCOL.md",
+      "sha256": "4d3c36fd6e6c815c738a80d73da3f6cc99888e83d0af5f21c6770cbdd8481684"
+    },
+    "result_schema": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/q1_c1_result.schema.json",
+      "sha256": "794046242d8f4009b2fdf6bceeb85e6c0765ceff8cbb5e3367d671c63f7f126d"
+    },
+    "small_domains": {
+      "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/fixtures/q1_c1_small_domains.json",
+      "sha256": "50d60befaab71dbbacf2d32fe4502705023f3cede34d5e61d101564cbf5113b9"
+    }
+  },
+  "execution": {
+    "environment": {
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "PATH": "/usr/bin:/bin",
+      "PYTHONHASHSEED": "0",
+      "TZ": "UTC"
+    },
+    "imports": "PYTHON_STANDARD_LIBRARY_ONLY",
+    "interpreter": "RESOLVE_SYS_EXECUTABLE_AT_RUN_START_AND_BIND_SHA256",
+    "network_trace": "/usr/bin/strace -f -qq -e trace=network",
+    "ptrace_unavailable_behavior": "AUDIT_HOOK_PARTIAL_RUN_FORCES_BLOCKED",
+    "repeat_runs": 2,
+    "socket_negative_control": "REQUIRED",
+    "timeout_seconds_per_run": 900
+  },
+  "frozen_domains": {
+    "n1": "ALL_4_POWER_6_LEXICOGRAPHIC_TARGETS",
+    "n2": "SHARPNESS_PLUS_64_RANDOM_RANDOM_20260822_ROWS",
+    "proof_authority": "SYMBOLIC_F2_SQUARED_RULE_CHECK; FINITE_ENUMERATION_CORROBORATIVE_ONLY"
+  },
+  "lane": "LANE_B_INDEPENDENT_CHALLENGE",
+  "protocol_id": "Q1-C1",
+  "protocol_version": "1.0",
+  "runner": {
+    "path": "development/q1-q4-publication-closure-2026-08-22/q1-cycle-01/harness/lane_b_independent_challenge.py",
+    "sha256": "ec35b1d41a9b3d21ee2ec9fe7cad46625ac3bc4f13638fd4aa327a96ad7df719"
+  },
+  "separation": {
+    "author_code_imports": [],
+    "lane_a_reads_before_terminal": [],
+    "permitted_candidate_result": {
+      "canonical_object_sha256": "ed22ef40e960361cb2cc7ee3987284e15ba9334d4197b33d4d8eff3fa9e09d8e",
+      "json_pointer": "/domains/random_panel/critical_witness_samples/8",
+      "path": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+      "sha256": "3eef07d16353b606a133d7fb977d5039ad1c639c7a531a47ae82be4be9051190"
+    }
+  }
+}

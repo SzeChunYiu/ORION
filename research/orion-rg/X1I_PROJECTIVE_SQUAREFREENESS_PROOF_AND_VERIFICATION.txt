@@ -1,0 +1,230 @@
+================================================================================
+THEOREM (projective squarefreeness of maximal zero-sum-free sequences)
+================================================================================
+Let p be a prime, r >= 1, G = C_p^r, and let S be a zero-sum-free sequence over G
+of maximal length |S| = d(G) = r(p-1)   [Olson: D(C_p^r) = r(p-1)+1].
+Then no two DISTINCT elements of supp(S) are scalar multiples of one another;
+equivalently supp(S) injects into PG(r-1,p).
+
+Equivalently: for every 1-dimensional subspace L = <u> of G, all elements of S
+lying in L are equal.
+
+--------------------------------------------------------------------------------
+NOTATION
+--------------------------------------------------------------------------------
+F_p[G]      group algebra, [g] the basis element of g in G.
+I           augmentation ideal of F_p[G].
+For a fixed line L = <u>:
+  S_L       sub-multiset of S lying in L,  A = { alpha in F_p^* : alpha*u in S_L }
+            as a multiset (the coefficient multiset),   k = |A| = |S_L|.
+  S'        = S \ S_L   (the elements of S off L),  |S'| = r(p-1) - k.
+  Sigma(X)  set of all sub-multiset sums of X, INCLUDING the empty sum 0.
+  Sigma*(X) = Sigma(X) \ {0} obtained from nonempty sub-multisets.
+  Lambda    = { mu in F_p : sigma(T') = mu*u for some NONEMPTY T' subset of S' }.
+            Since S is zero-sum-free, 0 is not in Lambda, so Lambda subset F_p^*.
+F_p[L] is identified with F_p[t]/(t^p - 1) via t = [u];  T := t - 1.
+
+--------------------------------------------------------------------------------
+STEP 1.   PRODUCT IDENTITY.     prod_{g in S} (1 - [g]) = sum_{h in G} [h].
+--------------------------------------------------------------------------------
+F_p[C_p^r] = F_p[X_1,...,X_r]/(X_1^p,...,X_r^p) with X_i = x_i - 1, where x_i
+generate the r cyclic factors; I = (X_1,...,X_r).  Monomials X^a with all
+a_i <= p-1 form a basis, so I^m is spanned by the monomials of degree >= m; hence
+      I^{r(p-1)}   = F_p * X_1^{p-1} ... X_r^{p-1},        I^{r(p-1)+1} = 0.
+Since C(p-1,j) = (-1)^j mod p we get (x_i - 1)^{p-1} = sum_{j=0}^{p-1} x_i^j, so
+      X_1^{p-1} ... X_r^{p-1} = sum_{h in G} [h]  =: N.
+Every factor 1 - [g] lies in I and |S| = r(p-1), so P := prod_{g in S}(1-[g])
+lies in I^{r(p-1)} = F_p * N, i.e. P = c*N for some c in F_p.
+Expanding, P = sum_{T subset S} (-1)^{|T|} [sigma(T)], so the coefficient of [0]
+in P equals sum over T with sigma(T)=0 of (-1)^{|T|}, which is 1 because S is
+zero-sum-free (only T = empty contributes).  The coefficient of [0] in N is 1.
+Hence c = 1 and P = N.                                                       []
+
+  Remark.  Only |S| = d(G) and zero-sum-freeness were used.  This is Olson's
+  group-ring argument; the novelty below is what one does with it.
+
+--------------------------------------------------------------------------------
+STEP 2.   PROJECTION TO THE LINE.        a(t) * b(t) = J  in F_p[t]/(t^p - 1).
+--------------------------------------------------------------------------------
+Let pi : F_p[G] -> F_p[L] be the F_p-linear projection [h] |-> [h] if h in L and
+[h] |-> 0 otherwise.  pi is F_p[L]-linear: for lambda*u in L and h in G,
+lambda*u + h lies in L iff h lies in L, so pi([lambda u] * z) = [lambda u] * pi(z).
+Factor P = a_L * Q with
+      a_L := prod_{alpha in A} (1 - [alpha u])  in F_p[L],
+      Q   := prod_{g in S'} (1 - [g]).
+Then    pi(P) = a_L * pi(Q).
+Write   a(t) := prod_{alpha in A} (1 - t^alpha),
+        b(t) := pi(Q) = sum_{mu in F_p} b_mu t^mu,
+                b_mu = sum over T' subset S' with sigma(T') = mu*u of (-1)^{|T'|}.
+By Step 1, pi(P) = pi(N) = sum_{lambda in F_p} t^lambda =: J.   Therefore
+                          a(t) * b(t) = J.                                   (*)
+
+Note b_0 = 1 (S' is zero-sum-free, so only T' = empty sums to 0), and
+                 supp(b) subset Lambda u {0},                                (**)
+because b_mu =/= 0 for mu =/= 0 requires at least one nonempty T' with
+sigma(T') = mu*u.
+
+--------------------------------------------------------------------------------
+STEP 3.   ORDERS.        ord_T(a) = k     and     ord_T(b) = p - 1 - k.
+--------------------------------------------------------------------------------
+R := F_p[t]/(t^p-1) = F_p[T]/(T^p),  T = t-1, is a chain ring: its ideals are
+(T^0) > (T^1) > ... > (T^p) = 0, and every nonzero z in R is uniquely T^m * unit.
+Write ord(z) = m.  For z,w nonzero:  z*w = 0 if ord z + ord w >= p, else
+ord(zw) = ord z + ord w  (the associated graded ring is the polynomial ring F_p[T],
+an integral domain).
+
+For alpha in F_p^*:  1 - t^alpha = 1 - (1+T)^alpha = -( alpha T + C(alpha,2) T^2 + ... ),
+whose lowest term has coefficient -alpha =/= 0, so ord(1 - t^alpha) = 1.
+Since k <= p-1  (S_L is zero-sum-free in L = C_p and d(C_p) = p-1), summing k
+orders stays below p and                ord(a) = k.
+Also J = prod over the single variable = (t-1)^{p-1} = T^{p-1}, so ord(J) = p-1.
+From (*), a*b = J =/= 0, hence ord(a) + ord(b) = p-1, i.e.
+                          ord(b) = p - 1 - k.                                []
+
+--------------------------------------------------------------------------------
+STEP 4.   SPARSITY LEMMA.        0 =/= z in R   ==>   ord_T(z) <= |supp(z)| - 1.
+--------------------------------------------------------------------------------
+Let supp(z) = { mu_1, ..., mu_m } (distinct, viewed as integers in {0,...,p-1}),
+z = sum_l z_l t^{mu_l} with all z_l =/= 0.  Since mu_l <= p-1,
+      t^{mu_l} = (1+T)^{mu_l} = sum_{i=0}^{p-1} C(mu_l, i) T^i   exactly in R.
+So the T^i-coefficient of z is  sum_l z_l C(mu_l, i).
+Suppose ord(z) >= m.  Then for i = 0,...,m-1:   sum_l z_l C(mu_l, i) = 0.
+Now C(x,i) = x(x-1)...(x-i+1)/i! is a polynomial in x of degree exactly i with
+leading coefficient 1/i! =/= 0 in F_p (valid since i <= m-1 <= p-1), and
+C(mu_l, i) is its value at mu_l.  Hence the m x m matrix [ C(mu_l, i) ]_{i,l}
+is obtained from the Vandermonde matrix [ mu_l^i ]_{i,l} by an invertible upper
+triangular row operation, so it is invertible (the mu_l are distinct in F_p).
+Therefore all z_l = 0, contradiction.  Hence ord(z) <= m - 1.                 []
+
+--------------------------------------------------------------------------------
+STEP 5.   THE SANDWICH.
+--------------------------------------------------------------------------------
+(a)  Lower bound.  By Steps 3, 4 and (**):
+       p - 1 - k = ord(b) <= |supp(b)| - 1 <= |Lambda u {0}| - 1 = |Lambda|.
+     So                        |Lambda| >= p - 1 - k.                        (L)
+
+(b)  Upper bound.  If nu in Sigma(A) and mu in Lambda satisfy nu + mu = 0, pick
+     T_L subset S_L with sigma(T_L) = nu*u and a NONEMPTY T' subset S' with
+     sigma(T') = mu*u; then T_L u T' is a nonempty zero-sum sub-multiset of S,
+     contradiction.  Hence Sigma(A) is disjoint from -Lambda, so
+       |Sigma(A)| <= p - |Lambda| <= p - (p-1-k) = k + 1.                    (U)
+
+--------------------------------------------------------------------------------
+STEP 6.   RANK-1 SUBSET-SUM BOUND.
+          A zero-sum-free multiset A over F_p^* with |A| = k has |Sigma(A)| >= k+1,
+          with equality only if A is constant.
+--------------------------------------------------------------------------------
+Order A = (alpha_1,...,alpha_k) and put s_i = alpha_1 + ... + alpha_i, s_0 = 0.
+The s_i (0 <= i <= k) are pairwise distinct: s_i = s_j with i < j would make
+alpha_{i+1} + ... + alpha_j a nonempty zero-sum.  All lie in Sigma(A), so
+|Sigma(A)| >= k+1.
+
+Now suppose A is NOT constant.  Order it so that alpha_1 =/= alpha_2.  We claim
+alpha_2 is distinct from every s_i:
+   alpha_2 =/= s_0 = 0                    (elements of A are nonzero);
+   alpha_2 =/= s_1 = alpha_1              (by the choice of ordering);
+   alpha_2 = s_i for some i >= 2 would give alpha_1 + alpha_3 + alpha_4 + ... + alpha_i = 0,
+             a nonempty zero-sum (it contains alpha_1) -- impossible.
+Since alpha_2 lies in Sigma(A) too, |Sigma(A)| >= k + 2.                      []
+
+--------------------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------------------
+By (U), |Sigma(A)| <= k+1; by Step 6 this forces A to be constant, i.e. all
+elements of S on the line L are equal.  L was an arbitrary line, so supp(S)
+contains at most one point of each line through the origin.                  QED
+
+Corollaries of the sandwich being tight (both inequalities in Step 5 are then
+equalities), for every line L of every maximal zero-sum-free S over C_p^r:
+      |Lambda| = p - 1 - k,   |Sigma(A)| = k + 1,   supp(b) = Lambda u {0}.
+================================================================================
+
+================================================================================
+APPENDIX A -- WHY THE POLYNOMIAL/FROBENIUS METHOD ALONE CANNOT SEE THIS
+================================================================================
+Passing to the associated graded ring in Step 1 (keep only the degree-1 part
+-L_g = -(alpha_1 X_1 + ... + alpha_r X_r) of each factor 1-[g]) turns the identity into
+        prod_{g in S} L_g  =  X_1^{p-1} ... X_r^{p-1}   in F_p[X]/(X_i^p),
+i.e. the coefficient of X_1^{p-1}...X_r^{p-1} in prod L_g equals 1.  This is a
+genuine and useful necessary condition (it immediately gives m_L <= p-1 for every
+line, since L^p = 0 by Frobenius), but L_{cu} = c L_u: the graded identity depends
+ONLY on the multiset of LINES occupied by S, not on which point of each line is
+used.  It is therefore blind to the theorem.  The information that decides the
+question sits in the LOWER-order terms, which the projection pi of Step 2 retains
+in full.  This is why the top-degree condition and the two "reduction" arguments
+below are only partial, while Steps 2-4 are decisive.
+
+APPENDIX B -- THE TWO PARTIAL REDUCTIONS THAT MOTIVATED THE SEARCH (superseded)
+  R1  If some line carries exactly p-1 elements of S then S is squarefree.
+      (Then Lambda = empty, the quotient image is maximal zero-sum-free over C_p^{r-1},
+       and induction applies.)
+  R2  If some hyperplane-of-rank-2 ... in rank 3: if some plane carries exactly
+      2(p-1) elements of S then S is squarefree.
+  Over C_5^3 these cover 17153 and 14269 of the 26369 GL-classes respectively;
+  10997 classes satisfy both, 5944 satisfy NEITHER.  Both are corollaries now.
+
+================================================================================
+APPENDIX C -- COMPUTATIONAL VERIFICATION (all run this session)
+================================================================================
+Primitives validated first:
+  * bitmask translation over C_p^3 is OR-linear, so checking all n singletons
+    against all n translations is a COMPLETE proof of the primitive:
+    27x27 (p=3) and 125x125 (p=5), all PASS; zero-sum-free test agreed with
+    brute force on 3000 random sequences (0 mismatches).
+  * rank-2 enumerator reproduces the known anchor: C_5^2 has exactly 8400
+    maximal zero-sum-free multisets of length 8.
+  * C enumerator reproduces an independent Python enumeration at p=3:
+    69264 maximal zero-sum-free multisets over C_3^3 (exact agreement).
+  * subset-sum "max multiset" routine reproduces d(C_p)=p-1 and the rank-1
+    inverse theorem (only constants attain the maximum) for p=3,5,7,11,13.
+
+Complete censuses, THEOREM verified with zero exceptions:
+  C_3^2   72 maximal sequences           - all projectively squarefree
+  C_5^2   8400 maximal sequences         - all projectively squarefree
+  C_7^2   333648 maximal sequences       - all projectively squarefree
+  C_3^3   69264 maximal sequences        - all projectively squarefree
+  C_5^3   26369 GL(3,5)-classes          - all projectively squarefree
+          (= 39,147,296,000 sequences)
+
+Sharp predictions (|Lambda| = p-1-k, |Sigma(A)| = k+1, supp(b) = Lambda u {0},
+b(0)=1, a*b=J, A constant) verified line-by-line:
+  C_5^3  all 26369 classes x every line met by S   = 196799 lines : 0 failures
+  C_5^3  3000 classes x ALL 31 lines (incl. k=0)   =  93000 lines : 0 failures
+         + Step-1 identity prod(1-[g]) = sum_h [h] : 0 failures
+  C_3^3  1500 sequences x all 13 lines             =  19500 lines : 0 failures
+  C_7^2  1200 sequences x all 8 lines              =   9600 lines : 0 failures
+  C_7^3  156 maximal sequences x all 57 lines      =   8892 lines : 0 failures
+         (support sizes 4-7, i.e. genuinely non-degenerate configurations)
+
+Independent finite-system check (linear algebra, not using Steps 3-4):
+  enumerate every Lambda subset F_p^* and every non-constant zero-sum-free A that is
+  of MAXIMUM size subject to Sigma*(A) cap (-Lambda) = empty, then ask whether the
+  line identity a*b = J admits a solution b supported on Lambda u {0} with b(0)=1.
+      p= 5 :    0 non-constant candidates even before the identity
+      p= 7 :   12 candidates -> 0 survive the identity
+      p=11 :  510 candidates -> 0 survive the identity
+      p=13 : 2832 candidates -> 0 survive the identity
+  Control: constant A always survives.  (This is the finite shadow of the proof.)
+
+Direct falsification attempts (budgeted randomized-order DFS, WITH controls):
+  C_5^3  control (unconstrained, target 12): 200/200 restarts reach 12
+         forced {e1,2e1}: best length 11, 0/200 reach 12
+  C_7^3  control (unconstrained, target 18): 100/100 restarts reach 18
+         forced {e1,2e1}: best length 17, 0/100 reach 18
+         forced {e1,3e1}: best length 17, 0/100 reach 18
+  (c=2 and c=3 cover all live cases at p=7; see Appendix D for the normalisation.)
+================================================================================
+
+APPENDIX D -- EXHAUSTIVE, CENSUS-INDEPENDENT CONFIRMATION AT p=5
+--------------------------------------------------------------------------------
+Up to GL(r,p) a mixed line can be normalised so that two of its elements are
+u = e_1 and c*u, c in {2,...,p-1}; and the scalar automorphism g -> t*g identifies
+the pair {e_1, c e_1} with {e_1, c^{-1} e_1}.  So the live cases are the classes
+{c, c^{-1}} with c =/= p-1 (c = p-1 is excluded outright: u + (p-1)u = 0).
+  p=5 : one live class, {2,3}  (2*3 = 1 mod 5)
+  p=7 : two live classes, {2,4} and {3,5}
+Exhaustive depth-12 search over C_5^3 for a zero-sum-free multiset of length
+12 = d(C_5^3) containing {e_1, 2e_1}:
+      5,247,890,587 search nodes, maximum length attained = 11, solutions = 0.
+Since c=3 is GL-equivalent to c=2, this settles p=5 completely and independently
+of the 26369-class census.

@@ -1,0 +1,70 @@
+{
+  "schema": "orion.programme.set-normalization-boundary.v1",
+  "record": "ORION_TYPED_COORDINATES_ARE_SETS",
+  "authority_scope": "OUTCOME_BLIND_MEASUREMENT",
+  "outcome_accessed": false,
+  "call_sites": 37,
+  "modules": 30,
+  "study_lanes_touched": [
+    "p1",
+    "p2",
+    "p3",
+    "p5",
+    "p7",
+    "p9"
+  ],
+  "source_layers_touched": [
+    "discovery",
+    "engine",
+    "knowledge",
+    "study",
+    "transfer"
+  ],
+  "module_list": [
+    "src/orion/discovery/concept_candidate.py",
+    "src/orion/discovery/episodes.py",
+    "src/orion/discovery/epistemic_tension.py",
+    "src/orion/discovery/thought_experiment.py",
+    "src/orion/engine/mechanical_questions.py",
+    "src/orion/knowledge/backward_multiseed.py",
+    "src/orion/knowledge/backward_multiseed_benchmark.py",
+    "src/orion/study/p1/tables.py",
+    "src/orion/study/p1_p5_successor_readiness.py",
+    "src/orion/study/p2/acq_world.py",
+    "src/orion/study/p2/baselines.py",
+    "src/orion/study/p2/closure_receipts.py",
+    "src/orion/study/p2/echo_world.py",
+    "src/orion/study/p2/runner.py",
+    "src/orion/study/p3/identity_opportunity.py",
+    "src/orion/study/p5/revision_level_v3_preflight.py",
+    "src/orion/study/p7/closure_premises.py",
+    "src/orion/study/p9/attack_potency.py",
+    "src/orion/study/p9/structural_world.py",
+    "src/orion/study/p9/transfer_margins.py",
+    "src/orion/transfer/scientific/literature.py",
+    "src/orion/transfer/v2/bounded_epistemic_study_v1.py",
+    "src/orion/transfer/v2/epistemic_computation.py",
+    "src/orion/transfer/v2/epistemic_responsibility.py",
+    "src/orion/transfer/v2/failure_knowledge_v1.py",
+    "src/orion/transfer/v2/higher_order_epistemic_mechanics.py",
+    "src/orion/transfer/v2/interface_adequacy.py",
+    "src/orion/transfer/v2/p1_method_realization.py",
+    "src/orion/transfer/v2/p2_structure.py",
+    "src/orion/transfer/v2/social_evidence.py"
+  ],
+  "boundary": "Sequence-valued coordinates are canonicalized to a sorted set of their distinct string values. Order and multiplicity do not survive into the model.",
+  "what_it_buys": [
+    "canonical form, so two realizations of the same content compare equal",
+    "content-addressable digests that do not depend on authoring order",
+    "equality that is insensitive to an irrelevant permutation"
+  ],
+  "what_it_costs": "Every claim whose answer depends on order or multiplicity is inexpressible. This is not a bug to be patched at one call site; it is a programme-wide modelling decision, and the honest response is to state it as a scope boundary or to change it deliberately across all of the modules listed here.",
+  "measured_instance": "P9's ORDER_PERMUTATION attack reverses each sequence coordinate and the constructor sorts it back, producing a dataset byte-identical to the base one: same manifest digest, 128 of 128 protected cases unchanged. See P9_ORDER_PERMUTATION_IS_A_NOOP_2026-08-23.json.",
+  "relation_to_the_preservation_theory": "This is the determination theorem's necessity direction, met in the wild: order and multiplicity are coordinates the interface projects away, so no rule over this representation can decide a question that depends on them. The theorem says which question settles the matter; this measurement answers it for ORION as built.",
+  "checks": {
+    "the_normalization_is_present": true,
+    "it_spans_more_than_one_paper": true,
+    "it_spans_more_than_one_layer": true
+  },
+  "all_checks_pass": true
+}

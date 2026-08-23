@@ -1,0 +1,150 @@
+{
+  "atom": "QG-41: does the existence/selection separation hold on a materially different compiler family?",
+  "authority": {
+    "NOT_R6": true,
+    "mathematical_proposal": true,
+    "novelty_claim": false,
+    "physical_advantage_claim": false
+  },
+  "column_level_results_by_summary_variant": {
+    "A support pattern (6 bits)": {
+      "bulk_classes": 64,
+      "existence_all_determined": true,
+      "joint_classes": 194,
+      "selection_choice_split": 95,
+      "selection_shape_split": 0,
+      "types_in_split_classes": 3696
+    },
+    "B distinguished unary+binary responses": {
+      "bulk_classes": 8,
+      "existence_all_determined": true,
+      "joint_classes": 23,
+      "selection_choice_split": 21,
+      "selection_shape_split": 0,
+      "types_in_split_classes": 4092
+    },
+    "C = A + B": {
+      "bulk_classes": 65,
+      "existence_all_determined": true,
+      "joint_classes": 194,
+      "selection_choice_split": 95,
+      "selection_shape_split": 0,
+      "types_in_split_classes": 3696
+    }
+  },
+  "cross_family_picture": {
+    "Qiskit_layout_QG40": "existence NOT free (cruder summary), selection impossible",
+    "SixLCU": "existence FREE, selection impossible, SHAPE determined",
+    "TARE": "existence FREE, selection impossible",
+    "conclusion": "selection failure is generic across all three; existence-freeness is NOT generic -- it holds exactly when the summary is the maximal symmetry quotient, which C1 established for TARE and which a degree sequence is not"
+  },
+  "family": "SixLCU (PREP/SELECT LCU), reconstructed from qg4_second_family on origin/main",
+  "instance_level": {
+    "existence_determined": false,
+    "failing_probe_pairs": 3651063,
+    "probes": 5862960,
+    "reading": "the QG-36 instance-level failure reproduces on SixLCU too",
+    "witnesses": [
+      {
+        "A": [
+          "IIIXXY",
+          "YYXZZI"
+        ],
+        "B": [
+          "IIIXYX",
+          "YYXZZI"
+        ],
+        "costA": 24,
+        "costB": 27
+      },
+      {
+        "A": [
+          "IIIXXY",
+          "YYXYYX"
+        ],
+        "B": [
+          "IIIXYX",
+          "YYXYYX"
+        ],
+        "costA": 24,
+        "costB": 28
+      },
+      {
+        "A": [
+          "IIIXXY",
+          "IXYXZX"
+        ],
+        "B": [
+          "IIIXYX",
+          "IXYXZX"
+        ],
+        "costA": 29,
+        "costB": 27
+      }
+    ]
+  },
+  "reading": {
+    "NEW_middle_layer": "the optimal choice's SHAPE is determined (selection_shape_split = 0 on all three variants) while its IDENTITY is not. TARE analysis did not expose this layer.",
+    "existence_is_free_on_every_variant": true,
+    "orbit_structure": {
+      "orbits": 23,
+      "orbits_argmin_constant": 2,
+      "orbits_partition_constant": 2,
+      "orbits_shape_constant": 23
+    },
+    "selection_is_impossible_on_every_variant": true
+  },
+  "reconstruction_validated_against_the_family_own_referee": {
+    "V1_response_tensor_vs_qg4_member_cost": "0 mismatches / 500",
+    "V2_equivariance_K[g.t][g.c]==K[t][c]": "0 mismatches / 200",
+    "V4_instance_cost_vs_qg4_full_sweep": "checked against the family's exact referee",
+    "note": "the reconstruction is checked against SixLCU's OWN cost model, not against TARE"
+  },
+  "schema": "ORION.QG.QG41.CommittedResult.v1",
+  "source_result_digest": "8227b0c2fb3e7b0d020707d58f8b7fb26fb46ae1f1d384fe5df2cd69a11e4635",
+  "why_this_is_a_real_second_family": "a different construction from TARE with its own choice space -- 2430 choices over 203 partitions, versus TARE's 384 indexed probes",
+  "witnesses": {
+    "reading": "pairs with EQUAL spectrum, EQUAL optimal value, EQUAL optimal-shape set, and DISJOINT optimal-choice sets (intersection 0)",
+    "verified": {
+      "IIIXXY|IIIXYX": {
+        "argmin_sizes": [
+          44,
+          44
+        ],
+        "intersection": 0,
+        "opt": [
+          4,
+          4
+        ],
+        "shape_sets_equal": true,
+        "spectrum_equal": true
+      },
+      "IIXXXY|IIXXYX": {
+        "argmin_sizes": [
+          12,
+          12
+        ],
+        "intersection": 0,
+        "opt": [
+          4,
+          4
+        ],
+        "shape_sets_equal": true,
+        "spectrum_equal": true
+      },
+      "XXYYZZ|XYXYZZ": {
+        "argmin_sizes": [
+          1,
+          1
+        ],
+        "intersection": 0,
+        "opt": [
+          6,
+          6
+        ],
+        "shape_sets_equal": true,
+        "spectrum_equal": true
+      }
+    }
+  }
+}
