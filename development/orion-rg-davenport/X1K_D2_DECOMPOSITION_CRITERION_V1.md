@@ -36,25 +36,45 @@ length `<= m`; Lemma A gives `>= m`. Removing a minimal such `A` leaves
 The criterion is **sufficient, not necessary a priori** — but it turns out to
 predict the truth exactly on every group tested, including the failure.
 
-## The table
+## The table — complete, and the criterion is right every time
 
 | group | `D` | `D_2` | `m` | `f_m` | `D_2-2` | criterion | direct test on the witnesses |
 |-------|-----|-------|-----|-------|---------|-----------|------------------------------|
-| `C_2^2` | 3 | 5 | 2 | 3 | 3 | ✓ tight | **holds** (9 witnesses, all min ZS 2) |
-| `C_2^3` | 4 | 7 | 3 | 4 | 5 | ✓ slack 1 | **holds** (7 witnesses) |
-| `C_2^4` | 5 | 8 | 3 | **8** | 6 | **✗** | **FAILS** — see below |
-| `C_2^5` | 6 | 10 | 4 | 6 | 8 | ✓ slack 2 | not directly tested |
-| `C_3^2` | 5 | 8 | 3 | 6 | 6 | ✓ tight | **holds** (408 witnesses) |
-| `C_3^3` | 7 | 11 | 4 | 9 | 9 | ✓ tight | not directly tested |
-| `C_5^2` | 9 | 14 | 5 | 12 | 12 | ✓ tight | not directly tested |
-| `C_5^3` | 13 | 20 | 7 | 18 | 18 | ✓ tight | **holds** (all 1,405 classes, X1-F4 T1) |
+| `C_2^2` | 3 | 5 | 2 | 3 | 3 | ✓ tight | **holds** — 9 witnesses, all min ZS 2 |
+| `C_2^3` | 4 | 7 | 3 | 4 | 5 | ✓ slack 1 | **holds** — 7, all 3 |
+| `C_2^4` | 5 | 8 | 3 | **8** | 6 | **✗ by 2** | **FAILS** — 3,480, histogram `{3: 3360, 4: 120}` |
+| `C_2^5` | 6 | 10 | 4 | 6 | 8 | ✓ slack 2 | **holds** — 138,880, all 4 |
+| `C_3^2` | 5 | 8 | 3 | 6 | 6 | ✓ tight | **holds** — 408, all 3 |
+| `C_3^3` | 7 | 11 | 4 | 9 | 9 | ✓ tight | **holds** — 400,608, all 4 |
+| `C_5^2` | 9 | 14 | 5 | 12 | 12 | ✓ tight | **holds** — 96,720, all 5 |
+| `C_5^3` | 13 | 20 | 7 | 18 | 18 | ✓ tight | **holds** — all 1,405 classes (X1-F4 T1) |
 
-**The criterion predicts the direct test in 5 of 5 cases where both were run,
-including the negative.**
+**The criterion predicts the direct test in 8 of 8 groups, including the one
+negative.** Every row is a complete enumeration, not a sample.
 
-Note the pattern in the slack column: `f_m = D_2 - 2` **exactly** for
-`C_2^2, C_3^2, C_5^2, C_3^3, C_5^3`, while the elementary 2-groups of rank `>= 3`
-are where it goes slack (`C_2^3`, `C_2^5`) or breaks (`C_2^4`).
+Two patterns worth someone's attention:
+
+- `f_m = D_2 - 2` **exactly** — the criterion is *tight* — for `C_2^2`, `C_3^2`,
+  `C_5^2`, `C_3^3`, `C_5^3`: every rank-`<=2` group tested, and both odd-`p`
+  rank-3 groups.
+- The elementary 2-groups of rank `>= 3` behave irregularly: slack 1 at
+  `C_2^3`, **fails by 2** at `C_2^4`, slack 2 at `C_2^5`. Non-monotone in rank,
+  and `C_2^4` is the sole failure in the table.
+
+### Instrument validation, done before the new rows were trusted
+
+`research/orion-rg/x1k_extremal_d2_witness_enumerator.c` was written after the
+Python enumeration, and was checked against every case Python had already
+settled **before** being used on `C_2^5`, `C_3^3` and `C_5^2`:
+
+| case | Python | C enumerator |
+|---|---|---|
+| `C_2^2` | 9, all min ZS 2 | 9, `{2: 9}` |
+| `C_2^3` | 7, all min ZS 3 | 7, `{3: 7}` |
+| `C_3^2` | 408, all min ZS 3 | 408, `{3: 408}` |
+| `C_2^4` | 3,480, `{3: 3360, 4: 120}` | 3,480, `{3: 3360, 4: 120}` |
+
+4 of 4, including the counterexample histogram.
 
 ## The counterexample, explicitly
 
