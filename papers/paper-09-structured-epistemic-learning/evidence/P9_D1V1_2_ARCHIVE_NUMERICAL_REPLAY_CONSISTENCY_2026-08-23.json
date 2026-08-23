@@ -1,0 +1,70 @@
+{
+  "all_checks_pass": true,
+  "archived_result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a",
+  "arms": {
+    "TRANSCRIPT_BAG": {
+      "accuracy_archived": 0.25,
+      "accuracy_replay": 0.25,
+      "distinct_predictions_replay": 1,
+      "per_case_prediction_agreement": true,
+      "selected_config_archived": "logistic-C0.1",
+      "selected_config_replay": "logistic-C0.1",
+      "selected_match": true
+    },
+    "TYPED_RELATIONAL": {
+      "accuracy_archived": 1.0,
+      "accuracy_replay": 1.0,
+      "distinct_predictions_replay": 3,
+      "per_case_prediction_agreement": true,
+      "selected_config_archived": "logistic-C0.1",
+      "selected_config_replay": "logistic-C0.1",
+      "selected_match": true
+    },
+    "TYPED_SERIALIZED_BAG": {
+      "accuracy_archived": 0.5,
+      "accuracy_replay": 0.5,
+      "distinct_predictions_replay": 1,
+      "per_case_prediction_agreement": true,
+      "selected_config_archived": "logistic-C1",
+      "selected_config_replay": "logistic-C1",
+      "selected_match": true
+    },
+    "UNTYPED_PAIR": {
+      "accuracy_archived": 0.90625,
+      "accuracy_replay": 0.90625,
+      "distinct_predictions_replay": 3,
+      "per_case_prediction_agreement": true,
+      "selected_config_archived": "logistic-C0.1",
+      "selected_config_replay": "logistic-C0.1",
+      "selected_match": true
+    }
+  },
+  "authority_scope": "REPLAY_CHANNEL_DIAGNOSIS_ONLY",
+  "checks": {
+    "all_per_case_predictions_match": true,
+    "all_selected_configs_match": true,
+    "dataset_manifest_digest_identical": true,
+    "typed_serialized_bag_accuracy_equals_archived_0_5": true,
+    "typed_serialized_bag_still_constant": true
+  },
+  "data_channel": {
+    "dataset_manifest_digest_archived": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+    "dataset_manifest_digest_replay": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+    "digest_match": true
+  },
+  "environment": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "locked_replay_environment": {
+    "numpy": "2.5.2",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "source": "uv.lock (P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json)"
+  },
+  "record": "P9_D1V1_2_ARCHIVE_NUMERICAL_REPLAY_CONSISTENCY",
+  "relabels_nothing": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED stays append-only; agreement here restores replay-channel consistency under the archive-matching solver stack, not the validity of a prior-valued measurement. D1v1.3 remains the frozen scientific successor.",
+  "schema": "orion.p9.nr06-replay-consistency.v1"
+}

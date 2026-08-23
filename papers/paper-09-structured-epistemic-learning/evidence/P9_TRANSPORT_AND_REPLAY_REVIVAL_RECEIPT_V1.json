@@ -1,0 +1,120 @@
+{
+  "schema_version": "orion.p9.transport-replay-revival-receipt.v1",
+  "record": "P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1",
+  "backlog_lanes": ["NR-04", "NR-06"],
+  "backlog_source": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "execution_context": {
+    "host": "mac-local-single-script",
+    "constraints_honored": ["no pytest", "no suite", "no xdist", "no repo cloning"],
+    "frozen_cells_or_golds_edited": false
+  },
+  "NR-04": {
+    "negative": "D-A cell CANNOT_CHECK: quality-transport below 0.965 target",
+    "one_stage_attribution": {
+      "stage": "evaluation channel (single-split point accuracy)",
+      "representation_repair_channel": {
+        "bitwise_lossless": true,
+        "max_abs_reconstruction_error": 0.0,
+        "max_rel_reconstruction_error": 0.0,
+        "max_coef_gap_repaired_vs_native": 0.0,
+        "decision_identical_probe_and_protected": true
+      },
+      "evaluation_channel": {
+        "single_split_binomial_sd": 0.009839502729248396,
+        "decision_margin": 0.001161335187760737,
+        "noise_to_margin_ratio": 8.472577799197428,
+        "redraw_mean": 0.9644444444444443,
+        "redraw_sd": 0.009472238800701348,
+        "fraction_of_draws_at_or_above_target": 0.505
+      },
+      "verdict": "lossy by construction in V1; the mismatch is channel noise, not an arm property"
+    },
+    "lever": {
+      "kind": "pre-registered transport-mechanism upgrade",
+      "protocol": "papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_PROTOCOL_V2.md",
+      "protocol_sha256": "a6742ad73a79a4a67d7cf0faaf423f311244a996f3e8dd73da7a2197f5d19f1a",
+      "mechanism": "ensemble-level transport: mean accuracy over R=24 frozen stratified partition re-draws (seeds 20261101+k / 20261201+k), full per-arm pipeline per draw; cells/targets/costs/access classes unchanged",
+      "registered_before_any_v2_outcome": true
+    },
+    "retest": {
+      "runner": "papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_transport_v2.py",
+      "evidence": "papers/paper-09-structured-epistemic-learning/evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_RUN.json",
+      "receipt_sha256": "662b772a3b6a929b8afe5112bfff28c10b0d4709e018abf4755391bbd6495ab2",
+      "before": {
+        "diagnostic_accuracy": 0.8,
+        "D-A_prediction": "ACCESSIBILITY",
+        "D-A_protected_gold": "CANNOT_CHECK",
+        "probe_protected_decision_agreement_cells": 4,
+        "D_A_probe_point_accuracy": 0.9721448467966574,
+        "D_A_protected_point_accuracy": 0.9555555555555556
+      },
+      "after": {
+        "diagnostic_accuracy": 1.0,
+        "D_A_prediction": "CANNOT_CHECK",
+        "D_A_protected_gold": "CANNOT_CHECK",
+        "D_A_cell_correct": true,
+        "probe_protected_decision_agreement_cells": 5,
+        "D_A_probe_level": 0.9635561745589601,
+        "D_A_protected_level": 0.9643518518518519,
+        "false_compute_escalation": 0,
+        "generic_false_compute_escalation": 4,
+        "mean_registered_cost_regret": 0.0,
+        "terminal": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET",
+        "gate_failure_clause": "half-draw decision stability on D-A (protected half-1 level 0.9662 >= 0.965 vs half-0 0.9625); all V1-mirroring clauses pass"
+      }
+    },
+    "D_A_terminal_after_revival": "CANNOT_CHECK (kept, mechanistically grounded)",
+    "mechanistic_reason_D_A_stays_CANNOT_CHECK": "repaired-arm pooled held-out level 693/719 = 0.9638386648122392 (redraw mean 0.9644) is below the frozen 0.965 target by ~0.0006 = 0.17 sigma of the best possible estimator on 719 held-out samples (se 0.0069); the level-target ordering is unresolvable at this dataset size by any transport channel",
+    "remaining_negatives": [
+      "D-A cell terminal CANNOT_CHECK (genuine, now measurable)",
+      "full V2 positive terminal withheld by its own pre-registered stability clause"
+    ]
+  },
+  "NR-06": {
+    "negative": "D1v1.2 locked-env replay FAILED: archived TYPED_SERIALIZED_BAG accuracy 0.50 vs locked reproduction 0.75",
+    "one_stage_attribution": {
+      "stage": "numerical solver channel of the replay lock",
+      "data_serialization_channel": {
+        "dataset_manifest_digest_identical": true,
+        "digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+        "ordering_dedup_typetag_delta_exists": false
+      },
+      "numerical_channel": {
+        "locked_replay_stack": {"python": "3.12.13", "numpy": "2.5.2", "scikit_learn": "1.9.0", "scipy": "1.18.0", "source": "uv.lock"},
+        "archive_matching_stack": {"python": "3.13.12", "numpy": "2.4.4", "scikit_learn": "1.8.0", "scipy": "1.17.1"},
+        "archive_recorded_its_environment": false,
+        "mechanism": "lbfgs coefficient micro-delta under the newer stack flips the 32/128 knife-edge boundary cases (runner-up correct on all) on the degenerate one-effective-feature TYPED_SERIALIZED_BAG design"
+      },
+      "classification": "infrastructure defect (replay lock drifted past the archive's numerical environment) - fixable"
+    },
+    "lever": "pin the replay channel to the archive-matching numerical stack",
+    "retest": {
+      "runner": "papers/paper-09-structured-epistemic-learning/top_tier/revive_p9_nr06_replay_consistency.py",
+      "evidence": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_ARCHIVE_NUMERICAL_REPLAY_CONSISTENCY_2026-08-23.json",
+      "evidence_sha256": "ff83c23e436d249d99ddefe0b34ac1cc2a66747d920dfbec012a3b6a7369bdb4",
+      "agreement": {
+        "dataset_digest_equal": true,
+        "all_selected_configs_match": true,
+        "all_four_arms_per_case_prediction_agreement": true,
+        "typed_serialized_bag_accuracy": 0.5,
+        "typed_serialized_bag_distinct_predictions": 1,
+        "archived_result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a"
+      }
+    },
+    "replay_failure_terminal": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED (append-only, unchanged)",
+    "boundary": "the fix restores replay-channel consistency, not the validity of the prior-valued 0.5 as a representation measurement; D1v1.3 ORDERED_MULTIPLICITY_ROBUSTNESS remains the frozen scientific successor (PROSPECTIVE_FROZEN_NOT_EXECUTED, protected inputs absent)",
+    "remaining_negatives": [
+      "TYPED_SERIALIZED_BAG unresponsive-comparator degeneracy (prior-valued measurement) - owned by successor D1v1.3"
+    ]
+  },
+  "protected_negative_untouched": {
+    "claim": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
+    "repaired": false,
+    "rerun": false,
+    "touched": false
+  },
+  "lane_verdicts": {
+    "NR-04": "ROOT_CAUSED_AND_PARTIALLY_REVIVED: transport-mechanism defect identified and repaired (decision transport stable, diagnostic 5/5); D-A honestly stays CANNOT_CHECK with quantified margin-unresolvability",
+    "NR-06": "ROOT_CAUSED_AND_REPLAY_CONSISTENCY_RESTORED: infrastructure defect (lock/archive solver-stack mismatch) fixed by archive-matched pinning with exact per-case reproduction; scientific repair remains with frozen D1v1.3"
+  }
+}

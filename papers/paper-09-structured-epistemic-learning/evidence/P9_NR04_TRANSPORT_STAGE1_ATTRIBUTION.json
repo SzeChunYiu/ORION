@@ -1,0 +1,43 @@
+{
+  "A_repair_channel": {
+    "decision_identical_probe": true,
+    "decision_identical_protected": true,
+    "max_abs_reconstruction_error": 0.0,
+    "max_coef_gap_repaired_vs_native": 0.0,
+    "max_rel_reconstruction_error": 0.0,
+    "probe_accuracy_native_rep": 0.9721448467966574,
+    "probe_accuracy_repaired_rep": 0.9721448467966574,
+    "protected_accuracy_native_rep": 0.9555555555555556,
+    "protected_accuracy_repaired_rep": 0.9555555555555556
+  },
+  "B_evaluation_channel": {
+    "binomial_sd_single_split": 0.009839502729248396,
+    "decision_margin_abs_level_minus_target": 0.001161335187760737,
+    "frozen_target": 0.965,
+    "noise_to_margin_ratio": 8.472577799197428,
+    "pooled_correct": 693,
+    "pooled_heldout_level": 0.9638386648122392,
+    "pooled_n": 719,
+    "probe_accuracy": 0.9721448467966574,
+    "protected_accuracy": 0.9555555555555556,
+    "protected_n": 360
+  },
+  "C_split_realization": {
+    "fraction_of_draws_at_or_above_target": 0.505,
+    "frozen_draw_seed_included": [
+      20260901
+    ],
+    "n_resample_draws": 200,
+    "redraw_max": 0.9861111111111112,
+    "redraw_mean": 0.9644444444444443,
+    "redraw_min": 0.9333333333333333,
+    "redraw_sd": 0.009472238800701348
+  },
+  "digits_label_sha256": "a3c91c262eddcf7ba8f0e37507c30284493c9b20412ffe4af30d536401f7ba21",
+  "environment": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0"
+  },
+  "schema": "orion.p9.nr04-stage1-attribution.v1"
+}
