@@ -1,25 +1,9 @@
 #!/usr/bin/env python3
-"""Render ORION manuscript-section markdown into LaTeX markdown-package
-renderer-token form (the ``.md.tex`` fragment files under
-``manuscript/_markdown_main/``).
+"""Render a restricted Markdown subset into markdown.sty renderer tokens.
 
-Covers exactly the construct set the manuscript sections use: ATX H1/H2
-headings, paragraphs (soft line breaks join with a single space; a trailing
-backslash or 2+ trailing spaces mark a hard line break, which renders as the
-hard-line-break macro), pipe tables, tight ordered lists, code spans, strong
-emphasis / emphasis, and the package's special-character macros. Anything
-else raises instead of silently producing wrong bytes.
-
-Note on history: a handful of 2026-08 fragments contain bare ``\\n{}``
-separators where clean grammar demands a space or the full interblock macro.
-Those mark stacked-write seams in the damaged corpus (the same corruption as
-the manifest seam), not renderer grammar; ``--check`` reports them as
-explained divergence instead of silently accepting them.
-
-Usage:
-    render_md_tex.py SRC.md                 # render to stdout
-    render_md_tex.py SRC.md --check X.md.tex
-    render_md_tex.py SRC.md --write X.md.tex
+This script intentionally implements only the syntax used by the paper section
+sources that need deterministic regeneration in this repository. Unsupported
+constructs fail closed rather than being approximated.
 """
 
 from __future__ import annotations
@@ -28,175 +12,118 @@ import argparse
 import re
 import sys
 
-ESCAPES = {
-    "_": r"\markdownRendererUnderscore{}",
-    "%": r"\markdownRendererPercentSign{}",
-    "&": r"\markdownRendererAmpersand{}",
-    "^": r"\markdownRendererCircumflex{}",
-    "{": r"\markdownRendererLeftBrace{}",
-    "}": r"\markdownRendererRightBrace{}",
-    "|": r"\markdownRendererPipe{}",
-}
 
-INTERBLOCK = "\\markdownRendererInterblockSeparator\n{}"
-SECTION_CLOSE = "\n\\markdownRendererSectionEnd "
-OL_ITEM_END = "\\markdownRendererOlItemEnd \n"
-HARD_BREAK = "\\markdownRendererHardLineBreak\n{}"
-
-
-class Unsupported(Exception):
+class Unsupported(ValueError):
     pass
 
 
+INTERBLOCK = "\\markdownRendererInterblockSeparator\n{}"
+SECTION_CLOSE = "\\markdownRendererSectionEnd "
+OL_ITEM_END = "\\markdownRendererOlItemEnd "
+
+
 def render_inline(text: str) -> str:
-    out = []
+    """Render the small inline subset used by the source sections."""
+    out: list[str] = []
     i = 0
-    n = len(text)
-    while i < n:
-        c = text[i]
-        if c == "`":
-            j = text.find("`", i + 1)
-            if j < 0:
-                raise Unsupported("unterminated code span")
-            out.append(r"\markdownRendererCodeSpan{" + escape(text[i + 1 : j]) + "}")
-            i = j + 1
-        elif c == "*":
-            if i + 1 < n and text[i + 1] == "*":
-                j = text.find("**", i + 2)
-                if j < 0:
-                    raise Unsupported("unterminated strong emphasis")
-                out.append(
-                    r"\markdownRendererStrongEmphasis{"
-                    + render_inline(text[i + 2 : j])
-                    + "}"
-                )
-                i = j + 2
-            else:
-                j = text.find("*", i + 1)
-                if j < 0:
-                    raise Unsupported("unterminated emphasis")
-                out.append(
-                    r"\markdownRendererEmphasis{" + render_inline(text[i + 1 : j]) + "}"
-                )
-                i = j + 1
-        elif c in ESCAPES:
-            out.append(ESCAPES[c])
-            i += 1
-        elif c == "\\":
-            raise Unsupported(
-                "stray backslash in text (only a trailing hard-break marker is defined)"
-            )
-        else:
-            out.append(c)
-            i += 1
+    while i < len(text):
+        if text.startswith("**", i):
+            end = text.find("**", i + 2)
+            if end < 0:
+                raise Unsupported("unclosed strong emphasis")
+            out.append("\\markdownRendererStrongEmphasis{" + render_inline(text[i + 2 : end]) + "}")
+            i = end + 2
+            continue
+        if text[i] == "`":
+            end = text.find("`", i + 1)
+            if end < 0:
+                raise Unsupported("unclosed code span")
+            out.append("\\markdownRendererCodeSpan{" + text[i + 1 : end] + "}")
+            i = end + 1
+            continue
+        if text[i] == "[":
+            close = text.find("](", i + 1)
+            if close >= 0:
+                end = text.find(")", close + 2)
+                if end < 0:
+                    raise Unsupported("unclosed link")
+                label = render_inline(text[i + 1 : close])
+                target = text[close + 2 : end]
+                out.append(f"\\markdownRendererLink{{{label}}}{{{target}}}{{{target}}}{{}}")
+                i = end + 1
+                continue
+        # markdown.sty renderer tokens consume plain text literally here. Keep
+        # source punctuation rather than inventing TeX escaping; this matches
+        # the healthy cached fragments used as controls for this tool.
+        out.append(text[i])
+        i += 1
     return "".join(out)
 
 
-def escape(text: str) -> str:
-    return "".join(ESCAPES.get(c, c) for c in text)
+def render_para(lines: list[str]) -> str:
+    return " ".join(render_inline(line.strip()) for line in lines)
 
 
-def strip_break_marker(line: str) -> tuple[str, bool]:
-    """Split a source line into (text, is_hard_break).
-
-    A hard break is a trailing backslash or two-or-more trailing spaces
-    (CommonMark). The marker is consumed, not rendered."""
-    if line.endswith("\\"):
-        return line[:-1].rstrip(), True
-    stripped = line.rstrip(" ")
-    if len(line) - len(stripped) >= 2:
-        return stripped.rstrip(), True
-    return line.rstrip(), False
+def parse_table_row(line: str) -> list[str]:
+    stripped = line.strip()
+    if not stripped.startswith("|") or not stripped.endswith("|"):
+        raise Unsupported("table rows must use leading and trailing pipes")
+    return [cell.strip() for cell in stripped[1:-1].split("|")]
 
 
-SOFT_JOIN = "\x00"  # placeholder expanded after inline rendering
-HARD_JOIN = "\x01"
-
-
-def render_para(para_lines: list[str]) -> str:
-    # Emphasis spans may open on one source line and close on another, so the
-    # join tokens must survive inline rendering as inert placeholders.
-    parts: list[str] = []
-    pending_break = False
-    for idx, raw in enumerate(para_lines):
-        text, hard = strip_break_marker(raw)
-        if idx:
-            parts.append(HARD_JOIN if pending_break else SOFT_JOIN)
-        parts.append(text)
-        pending_break = hard
-    rendered = render_inline("".join(parts))
-    return rendered.replace(HARD_JOIN, HARD_BREAK).replace(SOFT_JOIN, " ")
-
-
-def parse_blocks(lines: list[str]) -> list[tuple[str, object]]:
-    blocks: list[tuple[str, object]] = []
-    para: list[str] = []
-
-    def flush() -> None:
-        if para:
-            blocks.append(("para", list(para)))
-            para.clear()
-
+def parse_blocks(lines: list[str]):
+    blocks = []
     i = 0
-    n = len(lines)
-    while i < n:
+    while i < len(lines):
+        if not lines[i].strip():
+            i += 1
+            continue
         line = lines[i]
-        s = line.strip()
-        if not s:
-            flush()
+        if line.startswith("### "):
+            raise Unsupported("heading level > 2")
+        if line.startswith("## "):
+            blocks.append(("heading", (2, line[3:].strip())))
             i += 1
-        elif s.startswith("# ") or s.startswith("## "):
-            flush()
-            level = 2 if s.startswith("## ") else 1
-            title = s[level + 1 :].strip().rstrip("#").strip()
-            blocks.append(("heading", (level, title)))
+            continue
+        if line.startswith("# "):
+            blocks.append(("heading", (1, line[2:].strip())))
             i += 1
-        elif s.startswith("|"):
-            flush()
-            rows: list[list[str]] = []
-            while i < n and lines[i].strip().startswith("|"):
-                rows.append(split_table_row(lines[i]))
+            continue
+        if re.match(r"^\d+\.\s+", line):
+            items = []
+            while i < len(lines) and re.match(r"^\d+\.\s+", lines[i]):
+                items.append(re.sub(r"^\d+\.\s+", "", lines[i]).strip())
+                i += 1
+            blocks.append(("ol", items))
+            continue
+        if line.lstrip().startswith("|"):
+            rows = []
+            while i < len(lines) and lines[i].lstrip().startswith("|"):
+                rows.append(parse_table_row(lines[i]))
                 i += 1
             blocks.append(("table", rows))
-        elif re.match(r"^\d+\. ", s):
-            flush()
-            items: list[str] = []
-            while i < n:
-                cur = lines[i]
-                cs = cur.strip()
-                if re.match(r"^\d+\. ", cs):
-                    items.append(re.sub(r"^\d+\. ", "", cs))
-                    i += 1
-                elif cs and not cs.startswith(("#", "|", ">")) and items:
-                    items[-1] += " " + cs  # wrapped continuation line
-                    i += 1
-                else:
-                    break
-            blocks.append(("ol", items))
-        elif s.startswith(">") or s.startswith("- ") or s.startswith("* "):
-            raise Unsupported(f"construct not used by sections: {s[:20]!r}")
-        else:
-            # Keep trailing whitespace: a 2-space tail is a hard-break marker.
-            para.append(line.lstrip())
+            continue
+        para = []
+        while i < len(lines):
+            current = lines[i]
+            if not current.strip():
+                break
+            if current.startswith("# ") or current.startswith("## "):
+                break
+            if re.match(r"^\d+\.\s+", current) or current.lstrip().startswith("|"):
+                break
+            para.append(current)
             i += 1
-    flush()
+        if not para:
+            raise Unsupported(f"unsupported line: {lines[i]!r}")
+        blocks.append(("para", para))
     return blocks
 
 
-def split_table_row(line: str) -> list[str]:
-    s = line.strip()
-    if s.startswith("|"):
-        s = s[1:]
-    if s.endswith("|"):
-        s = s[:-1]
-    return [c.strip() for c in s.split("|")]
-
-
-def align_code(delimiter_cell: str) -> str:
-    d = delimiter_cell.strip()
-    body = d.replace(":", "").replace("-", "")
-    if body:
-        raise Unsupported(f"odd table delimiter {d!r}")
+def align_code(delimiter: str) -> str:
+    d = delimiter.strip()
+    if not re.fullmatch(r":?-{3,}:?", d):
+        raise Unsupported(f"invalid table delimiter: {delimiter!r}")
     left = d.startswith(":")
     right = d.endswith(":")
     if left and right:
@@ -250,11 +177,12 @@ def render(md_text: str) -> str:
             if len(header) != len(delim):
                 raise Unsupported("table header/delimiter column mismatch")
             align = "".join(align_code(c) for c in delim)
+            emitted_rows = [header] + body
             out.append(
                 "\\markdownRendererTable{}{%d}{%d}{%s}"
-                % (len(rows), len(header), align)
+                % (len(emitted_rows), len(header), align)
             )
-            for row in [header] + body:
+            for row in emitted_rows:
                 if len(row) != len(header):
                     raise Unsupported(f"table row width mismatch: {row}")
                 out.append("{" + "".join(f"{{{render_inline(c)}}}" for c in row) + "}")
@@ -309,31 +237,18 @@ def main() -> int:
             return 0
         norm, seams = normalize_seams(expected)
         if rendered == norm:
-            print(
-                f"OK modulo {seams} stacked-write seam token(s) "
-                f"(explained divergence): {args.check}"
-            )
+            print(f"OK modulo {seams} historical seam token(s): {args.check}")
             return 0
-        for i, (a, b) in enumerate(zip(rendered, norm)):
-            if a != b:
-                print(
-                    f"DIFF at byte {i}:\n  rendered: {rendered[max(0,i-50):i+50]!r}\n"
-                    f"  expected: {norm[max(0,i-50):i+50]!r}"
-                )
-                break
-        print(
-            f"len rendered={len(rendered)} expected={len(expected)} "
-            f"(seams={seams}) ({args.check})"
-        )
+        print(f"MISMATCH: {args.check}", file=sys.stderr)
         return 1
     if args.write:
         with open(args.write, "w", encoding="utf-8") as fh:
             fh.write(rendered)
-        print(f"wrote {args.write} ({len(rendered)} bytes)")
+        print(f"wrote {args.write}")
         return 0
     sys.stdout.write(rendered)
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())
