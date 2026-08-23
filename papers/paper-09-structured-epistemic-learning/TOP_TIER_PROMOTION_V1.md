@@ -2,7 +2,7 @@
 
 **Programme:** #977  
 **Existing controlled authority:** `P9_BOUNDED_STRUCTURAL_LEARNING_PEER_REVIEW_READY_PR` remains valid for its bounded package.  
-**Top-tier state:** `EXTERNAL_PROMOTION_PENDING`
+**Top-tier state:** `CAUSAL_DIAGNOSTIC_EARNED__FINAL_PROMOTION_PENDING`
 
 ## Maximum claim to earn
 
@@ -23,11 +23,11 @@ where:
 - `C` = downstream computation/search/inference budget;
 - `M` = model/access mechanism capacity.
 
-The paper must empirically separate interventions on these coordinates rather than infer the cause of failure from final accuracy alone.
+The paper empirically separates interventions on these coordinates rather than inferring the cause of failure from final accuracy alone.
 
 ## Post-outcome status — 2026-08-23
 
-Two protected studies now constrain the higher claim in opposite but compatible directions.
+Three protected result families now constrain the higher claim.
 
 ### Real-data same-information intervention — supported, bounded
 
@@ -41,37 +41,43 @@ The immutable Qwen2.5 Q4_K_M 0.5B/1.5B/3B outputs originally generated on PR #61
 
 At primary budget 32, `R2_TYPED_STATE - R1_SAME_INFO` is `-0.140625` for 0.5B and `0.0` for both 1.5B and 3B. The positive-delta-every-size gate fails, the largest-model domain-block bootstrap lower bound is not above zero, no smaller-structured substitution is observed, and the aggregate hostile-control gate fails; ORDER is negative at both 0.5B and 3B.
 
-**Required claim subtraction:** P9 must not state or imply a universal monotone law in which larger LLM capacity reveals a stable typed-state accessibility advantage. The higher result is access-class- and system-conditional unless stronger protected evidence later establishes a transferable crossover law.
+**Required claim subtraction:** P9 must not state or imply a universal monotone law in which larger LLM capacity reveals a stable typed-state accessibility advantage.
 
-The exact execution receipts and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
+### Causal intervention diagnostic — supported with a protected CANNOT_CHECK cell
+
+The prospectively frozen diagnostic study now returns `P9_CAUSAL_DIAGNOSTIC_V1_SUPPORTED`; a second implementation returns `P9_CAUSAL_DIAGNOSTIC_SECOND_INDEPENDENT_CHECKER_GREEN`, with exact decision agreement and deterministic replay.
+
+The procedure does not assign failure labels from task names. On a probe split it applies one-coordinate interventions—`INFORMATION`, `ACCESSIBILITY`, `COMPUTATION`—and predicts the lowest-cost intervention that reaches a frozen quality target. On protected data the causal gold is recomputed independently from held-out intervention outcomes.
+
+Across five task families in two qualitatively distinct domains:
+
+- P9 diagnostic accuracy: `0.8` (`4/5`);
+- generic `UNCERTAINTY_ESCALATE_COMPUTE` heuristic: `0.2` (`1/5`);
+- exact executable tasks: `3/3` correct;
+- digits tasks: `1/2` correct;
+- false compute escalations: `0` for P9 vs `4` for the generic heuristic;
+- mean registered intervention-cost regret: `0.0`;
+- all actionable predicted interventions reach their frozen protected target.
+
+The four stable diagnoses cover genuine missing information, representation accessibility and downstream computation. The fifth cell is intentionally retained as an instability: on digits task `D-A`, inverse representation repair clears the probe target (`0.9721448 >= 0.965`) but misses the protected target (`0.9555556 < 0.965`), so protected causal gold is `CANNOT_CHECK` while the probe-time diagnostic predicted `ACCESSIBILITY`.
+
+**Earned claim:** P9 now has a bounded cross-domain causal diagnostic showing that intervention response can distinguish information/accessibility/computation failure substantially better than generic compute escalation, while correctly preserving a deployment-instability `CANNOT_CHECK` instead of retuning it away. **Not earned:** a universal LLM diagnostic, a claim that accessibility repair is always preferred, or a universal cross-system scaling law.
+
+Exact authority is bound in `top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md`; the earlier real-data and Qwen receipts remain equally binding.
 
 ## Protected real-system programme
 
 ### E9.1 — Same-information accessibility scaling
 
-Freeze tasks where two representations carry the same semantic information but differ in accessibility. Sweep at least:
-
-- small/medium/large open-weight models or access mechanisms;
-- multiple inference/search budgets;
-- native/structured representation;
-- same-information serialization;
-- deliberately lossy/missing-information view;
-- explicit deterministic inference control when the operation is known.
-
-Primary question: does additional model/compute close an accessibility deficit, and at what resource cost relative to representation repair?
+Executed at bounded scope through the real-data intervention and protected Qwen model-size/inference surface. The positive and negative surfaces must both remain in the manuscript.
 
 ### E9.2 — Causal diagnostic intervention
 
-For failures pre-classified prospectively as candidate information/accessibility/computation failures, intervene on exactly one coordinate at a time. Score diagnosis by whether the targeted intervention closes the protected failure without changing the other coordinates.
+Executed at bounded scope. Failures are diagnosed from prospectively frozen intervention response and protected causal gold rather than post-hoc labels.
 
 ### E9.3 — Cross-domain transfer of the diagnostic
 
-Execute the frozen diagnosis/intervention procedure in at least two qualitatively distinct domains, preferably:
-
-1. open-weight procedural/agent tasks;
-2. verifier-backed formal/search tasks.
-
-Do not use sibling-paper labels as gold diagnoses.
+The same diagnostic rule is now exercised across a non-synthetic digits domain and an exact executable/formal domain. This closes a bounded two-domain transfer requirement. A stronger open-weight procedural/agent transfer remains strengthening if the final headline explicitly targets LLM agents.
 
 ## Strong comparators
 
@@ -83,7 +89,7 @@ Do not use sibling-paper labels as gold diagnoses.
 - same-information serialization controls;
 - oracle information ceiling only as diagnostic, not a runnable superiority baseline.
 
-All arms must receive matched semantic information and explicit total-resource accounting.
+The causal study additionally includes the generic compute-escalation heuristic. All arms use frozen intervention semantics and report explicit resource coordinates; however, one unified programme-wide model/inference/representation cost vector is not yet complete.
 
 ## Primary endpoints
 
@@ -102,6 +108,7 @@ All arms must receive matched semantic information and explicit total-resource a
 - explicit inference control is an oracle unavailable to realistic systems;
 - post-hoc failure labels make diagnosis appear causal;
 - cross-domain success comes from domain-specific tuning;
+- probe-time diagnosis does not survive protected deployment data—the `D-A` cell demonstrates this can happen and is retained;
 - result merely restates known representation or scaling effects without a separable diagnostic law.
 
 ## Top-tier promotion gate
@@ -110,15 +117,15 @@ All arms must receive matched semantic information and explicit total-resource a
 
 - [x] bounded same-information real-system/access-mechanism scaling surfaces executed, including an authoritative negative Qwen surface;
 - [x] prospectively frozen one-coordinate causal accessibility intervention with deterministic inverse repair;
-- [ ] diagnosis accuracy significantly above generic uncertainty/failure heuristics;
-- [ ] at least two qualitatively distinct protected diagnostic domains;
-- [ ] matched full model/inference/representation resource accounting;
+- [x] diagnosis accuracy above the frozen generic uncertainty/compute-escalation heuristic (`0.8` vs `0.2`);
+- [x] at least two qualitatively distinct protected diagnostic domains (digits + exact executable);
+- [ ] unified matched full model/inference/representation resource accounting for the final headline;
 - [x] protected model-size and inference-budget comparators executed; their Qwen result is negative and retained;
 - [x] exact preservation of the bounded P9 negative/sufficiency history;
 - [x] no universal representation-superiority language;
-- [ ] independent replay/authority beyond same-workflow deterministic byte replay;
-- [ ] immediate pre-submission nearest-work refresh and exact artifact binding.
+- [x] second independently implemented diagnostic verifier plus deterministic replay for the causal study;
+- [ ] immediate pre-submission nearest-work refresh and exact final artifact/manuscript binding.
 
-The unchecked items are genuine remaining promotion requirements. A positive result on the real-data intervention does not erase the Qwen null/negative surface, and the Qwen negative does not erase the real-data causal accessibility result.
+If the final manuscript headline is the demonstrated **causal diagnostic and crossover methodology**, the primary remaining internal scientific gap is unified resource accounting rather than another representation benchmark. If the headline claims universal LLM-agent transfer, an additional open-weight procedural/agent diagnostic domain remains necessary.
 
-If model/compute escalation consistently erases the accessibility residual at comparable cost in a later protected setting, the higher result becomes a crossover/resource law rather than a claim that representation change is intrinsically superior. If that transfer fails, the paper must retain the system-conditional law.
+The protected `D-A` instability and Qwen negative are part of the contribution: they define where the diagnostic or scaling hypothesis does not transport.
