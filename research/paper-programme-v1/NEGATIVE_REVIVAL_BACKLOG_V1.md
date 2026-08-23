@@ -50,6 +50,7 @@ active-claim-authority files + result receipts. Machine form: `NEGATIVE_REVIVAL_
 | P12A `SUPERIORITY_AUTHORITY_WITHHELD` (one-axis ceilings) | P12B equal-action two-signal complementarity, 32 RNG blocks | `ACTIVE_POSITIVE_AUTHORITY` (ledger) |
 | P13 empirical safety-cost authority withheld | P13B authenticated-certificate corruption safety-cost, 4 corruption worlds | `ACTIVE_POSITIVE_AUTHORITY` (ledger) |
 | P9 causal-diagnostic accounting (V1 gaps) | Unified I/A/C/M ledger V2, second checker green | `P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN` (#998) |
+| P4 H3.V2 metric saturation (NR-03) | V2.1 informedness re-run (pre-registered `P4_H3_V21_PROTOCOL_PREREG`): cue `z = 1{evidence==[] and pool==[]} == 1{gold=CC}` on the v1 battery forces identical abstention decisions for all 11 systems (TP=30, FA=0 each); J_CC=1.0 for all eleven, registered Delta-J=0, CI [0,0] | instrument null: comparison unidentifiable on frozen V2 under ANY abstention-axis metric (monotone transform of a constant); supported only on audited V3 exact axis (`P4.H3.V3.CANNOT_CHECK.EXACT_AXIS`); see `P4_H3_METRIC_DEGENERATION_REVIVAL_RECEIPT_V1` |
 
 ## External-execution negatives — workaround protocol (operator directive 2026-08-23)
 
