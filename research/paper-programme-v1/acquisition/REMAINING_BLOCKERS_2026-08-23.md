@@ -35,6 +35,42 @@ in the last place of a float64; two fresh runs are bit-identical to each other; 
 `mrr_at_50`; the smallest gate threshold is 0.01. Demanding bit-equality of a floating-point mean
 across library versions is an unattainable gate, not a failed one.
 
+## The finding that changes P9's plan
+
+**The ORDER_PERMUTATION attack cannot change its own dataset.** D1 v1.3's representation contract
+names `tuple(sorted(set(values)))` as its `forbidden_normalization`. That expression is not
+hypothetical — it is verbatim what `orion.transfer.v2.p1_method_realization._tuple` computes, and
+every method realization in the programme is built through it, across nine coordinates including all
+four the order attack targets.
+
+So the attack reverses each sequence coordinate and the constructor sorts it straight back. Measured:
+
+- the ORDER_PERMUTATION dataset's manifest digest **equals** the base one;
+- **128 of 128** protected cases are identical;
+- **256** left-side coordinates were long enough to reorder, so there was material to attack;
+- the SEMANTIC_ORBIT attack over the same machinery *does* change the data — so this is specific to
+  order and multiplicity, not a broken harness.
+
+To make sure the loss is upstream rather than in the arms, an order- and multiplicity-preserving
+feature family was built to the freeze's own contract — round-trip verified, no contract violations
+on any of the 128 cases — and it **still** measures zero opportunity. The information is gone before
+any arm sees it.
+
+**Consequences, none of which depend on an outcome.** D1 v1.3 registers ORDER_PERMUTATION and
+DUPLICATE_INSERTION as two of its four attack families and TYPED_ORDERED_MULTIPLICITY as one of its
+four arms. None of the three is reachable while that primitive normalizes to a sorted set. And the
+fix is one function shared programme-wide, so it is not a P9 change.
+
+Alongside it, the outcome-blind attainability pass over the existing arms: **4 of 12 measurable
+cells meet the 0.25 opportunity gate, 8 have zero opportunity**, and the protocol forbids passing a
+zero-opportunity cell. Power is adequate at low discordance (0.99 at 5%) and thin at high (0.42 at
+40%), with the calibration check landing exactly on α as it should.
+
+**This is what a power-and-attainability receipt is for.** It cost arithmetic, read no outcome, and
+it says the design cannot be executed as registered — before any compute was spent. P2's frozen IoU
+threshold of 0.03 against an arm capped at 0.0113 is the precedent for what happens when nobody runs
+one.
+
 ## What is actually left, by class
 
 **Class D — someone who is not you.** The residual on P6, and on most of the eleven not attempted.
@@ -66,9 +102,10 @@ would read as if it had touched everything.
 
 ## The next three, in order
 
-1. **P9-T4's power and attainability receipt.** Outcome-blind, local, and it either clears the
-   design or kills it before any compute is spent. P2's IoU ceiling is the precedent for why this
-   goes first.
+1. ~~P9-T4's power and attainability receipt.~~ **Done, and it returned
+   `OPPORTUNITY_GATE_UNATTAINABLE_ON_EXISTING_ARMS`.** The next step it implies is the one above:
+   decide whether to change `_tuple` in the P1 primitive, which is a programme-wide decision about
+   whether method realizations are sets or sequences — a modelling question, not a bug fix.
 2. **P5's eight fields**, then a registry timestamp. That takes an item from `CANNOT_CHECK` to
    `READY_TO_FREEZE_CONFIRMATORY` with no outside party involved.
 3. **Ask a P6 custodian.** Everything they need exists; the ask itself is the remaining work.
