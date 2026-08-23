@@ -164,6 +164,7 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
     paper = _paper(root, candidate_id)
     successor_manifest = paper / "CONTENT_MANIFEST_V2.json"
     manifest_path = successor_manifest if successor_manifest.is_file() else paper / "CONTENT_MANIFEST_V1.json"
+    manifest_path = paper / "CONTENT_MANIFEST_V1.json"
     sums_path = paper / "SHA256SUMS"
     manifest = _load_json(manifest_path)
     if manifest is None or not sums_path.is_file():
@@ -177,6 +178,9 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
         path.relative_to(root).as_posix()
         for path in (manifest_path, sums_path)
         if path.is_file()
+    evidence = (
+        manifest_path.relative_to(root).as_posix(),
+        sums_path.relative_to(root).as_posix(),
     )
     commit = manifest.get("subject_commit")
     status = manifest.get("subject_commit_status")

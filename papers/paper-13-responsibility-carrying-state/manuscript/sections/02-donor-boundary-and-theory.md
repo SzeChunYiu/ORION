@@ -2,7 +2,7 @@
 
 Statistical sufficiency, state abstraction, bisimulation, predictive-state representations and causal abstractions already establish that different tasks can require different retained distinctions. Selective prediction and uncertainty gating use confidence to abstain. Provenance/evidence tracing binds artifacts to origin. Proof-carrying systems attach verifiable certificates. Memory-staleness work asks when stored information is no longer valid. P13 claims none of these primitives.
 
-The residual is **responsibility-scoped certified reuse with explicit reopen semantics and a measured interior safety–cost advantage**.
+The residual is **responsibility-scoped certified reuse with explicit reopen semantics and exact responsibility-support conditions**. Empirical safety–cost superiority remains unestablished because P13A's published harm endpoint was self-scored and had no reachable opportunities.
 
 Let raw world `X` induce correct output `g_rho(X)` for responsibility `rho`, and let compact representation be `Z=T(X)`.
 

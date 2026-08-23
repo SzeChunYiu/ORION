@@ -1,0 +1,44 @@
+{
+  "schema": "ORION.P14.ActiveClaimAuthority.v1",
+  "paper_id": "P14",
+  "active_claim": {
+    "claim_id": "P14.CURRENT.CONTROLLED_CONFORMANCE",
+    "status": "SUPPORTED",
+    "scientific_terminal": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED",
+    "scope": "controlled specification-separated governance conformance over the frozen 28-case, seven-implementation register",
+    "result_artifact": "P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json",
+    "result_sha256": "ce62ff5b16b55888862c2cb42615ee5e4c474ff5dcf957220b65c2b5f7ade733",
+    "replay_artifact": "P14C_PROTOCOL_ADJUDICATION_V2.json",
+    "replay_sha256": "525427105c0403fcde139a5384993b16f9411c977ec874744b35cc41d24afca1"
+  },
+  "threshold_resolution": {
+    "artifact": "P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json",
+    "sha256": "bcbc1441ef54ec1ffff7eb08f4c35d5b0ba5809d500516a49596a54825c2a9f0",
+    "p14a_thresholds_unchanged": [0.05, 0.08],
+    "p14c_realized_statistics": [0.14285714285714285, 0.14285714285714285],
+    "question_answered": true
+  },
+  "historical_adjudicated_record": {
+    "artifact": "P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
+    "sha256": "5c91f882e76d4cdaad37e7ffc0e310a51253f8b2b253e34afa38df11442dc62e",
+    "authority": "NONE",
+    "disposition": "RETAINED_GATE_ATTAINABILITY_DEFECT",
+    "reason": "Both aggregate bars exceeded the statistic's supremum under P14A's frozen sampling support."
+  },
+  "external_validity": "OPEN",
+  "prospective_external_validation": {
+    "campaign_id": "P14D",
+    "lifecycle_state": "ACQUISITION_PROTOCOL_FROZEN",
+    "terminal": "P14D_EXTERNAL_ACQUISITION_BLOCKED",
+    "execution_authorized": false,
+    "protocol_artifact": "P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md",
+    "protocol_sha256": "a428ec46e258260e505e6d1185ee930ad276f4d84b4dbf7837caecf85d814bc8",
+    "preflight_artifact": "P14D_EXTERNAL_ACQUISITION_PREFLIGHT_V1.json",
+    "preflight_sha256": "73da8b6e6042d9a8e2e9ecb9c30cf5e7738b1a10fd86822430e9b1974c989f0b",
+    "validator_artifact": "../../src/orion/study/p14/external_acquisition.py",
+    "validator_sha256": "e23e70ca9c34f6cea7cae4847d7df400167b79ba111c26ed7f595160787efd77",
+    "external_custody_verified": false,
+    "interpretation": "The acquisition path is frozen and fail-closed; it confers no external-validation authority."
+  }
+  "external_validity": "OPEN"
+}

@@ -2,8 +2,31 @@
 
 P12 reframes test-time scaling as a **portfolio of computations**. “Think longer” is not the only adaptive action available to an intelligent system. It may be cheaper to parse, retrieve, compile, restructure or recover state so that less downstream search is required. Conversely, when state already exposes the relevant structure, additional preprocessing is wasteful and reasoning should receive the marginal budget.
 
-The protected benchmark establishes the key causal discriminator: when held-out families contain heterogeneous resource loci, a policy that can move the same total budget across both loci strictly dominates policies that may adapt only one. The result is not an artifact of giving the joint arm more computation, and it survives family-level uncertainty and worst-family reporting.
+P12A demonstrates the construction but not the key discriminator: equal total
+budget was real while equal action capability was not. P12B repairs that
+controlled estimand and finds a positive two-signal effect across the registered
+equal-action panel.
 
-This creates a concrete systems hypothesis for real agents: **test-time scaling curves should be two-dimensional, with state-work and reasoning-work measured on a common receipt, and optimal allocation should shift with the source of difficulty.**
+This leaves a concrete systems hypothesis for real agents:
+The protected benchmark demonstrates the construction but does not establish the
+key causal discriminator. Equal total budget was real; equal action capability
+was not. Most of the margin was unreachable by the named baselines before their
+signals were read.
 
-Adaptive inference should decide not only **how much** computation to spend but **where** to spend it. P12 supplies a matched-budget formulation and a protected controlled result showing strict, broad held-out superiority of joint state–reasoning allocation over both one-axis adaptive alternatives. The next scientific step is not a larger synthetic benchmark; it is a real end-to-end system in which compiler/retrieval work and downstream reasoning/search are charged together and the same superiority contract is tested without privileged signals.
+This leaves a concrete systems hypothesis for P12B and real agents:
+**test-time scaling curves may be two-dimensional, with state-work and
+reasoning-work measured on a common receipt and with action capability held
+fixed across signal ablations.**
+
+Adaptive inference may need to decide not only **how much** computation to spend
+but **where** to spend it. P12 supplies the formulation, an exact failure
+analysis of its first empirical discriminator, and a positive prospectively
+frozen equal-action successor. Current authority is the bounded equal-action
+signal-complementarity result; the P12A comparison boundary remains historical,
+and matched real end-to-end validation is the next claim frontier.
+but **where** to spend it. P12 supplies the formulation and an exact failure
+analysis of its first empirical discriminator. Under
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`, the active terminal is
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. The next step is a prospectively frozen
+P12B with identical four-action capability; real end-to-end validation follows
+only after that controlled contrast is sound.

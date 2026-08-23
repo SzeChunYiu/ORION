@@ -40,6 +40,7 @@
   "execution_authorized": false,
   "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
   "lifecycle_state": "PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT",
+  "lifecycle_state": "PROSPECTIVE_MAXIMUM_CLAIM_MANUSCRIPT",
   "paper_id": "P10",
   "predecessor_boundary": {
     "authority": "LOCAL_REPRODUCIBLE_CORE_ONLY",
@@ -55,6 +56,7 @@
   },
   "promotion_allowed": false,
   "promotion_requirements": [
+    "prospectively_frozen_p10_protocol",
     "native_verifier_backed_execution",
     "strong_donor_complete_comparators",
     "independently_witnessed_ocme_case",

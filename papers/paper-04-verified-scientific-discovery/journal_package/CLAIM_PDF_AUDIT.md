@@ -40,9 +40,11 @@ What that measures was fixed in `FREEZE.md` §5 before the panel ran: terminal
 expressiveness under a non-compensatory gate lattice — the ability to report an
 inability — and not a finer-grained scientific judgement. Nine of the ten
 comparators score 0 because they cannot emit `CANNOT_CHECK` at all. The score is
-quotable because the identifiability register clears at informedness 0.0 over
-fourteen probes and thirteen seeds; the same register reports 1.0 on the V1 and
-V2 constructions.
+quotable because the exact V3/`CANNOT_CHECK` claim axis clears at informedness
+0.0 over fourteen probes and thirteen seeds; the same register reports 1.0 on
+the V1 and V2 constructions. Four digest-prefix noise-control residuals on the
+off-claim `BLOCK`/`PROMOTE` axes remain disclosed; this is not a whole-register
+pass.
 
 This addendum is not a new independent audit. `audit_subject_revision` and
 `audit_date` in `MANIFEST.json` are unchanged, and `P4.PDF` remains **OPEN**.

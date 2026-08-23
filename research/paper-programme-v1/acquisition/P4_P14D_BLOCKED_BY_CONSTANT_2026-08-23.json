@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.programme.blocked-by-constant.v1",
+  "record": "P4_P14D_BLOCKED_BY_CONSTANT",
+  "date": "2026-08-23",
+  "authority_scope": "CLASSIFICATION_ONLY",
+  "outcome_accessed": false,
+  "grants": "Nothing. Neither item's terminal changes.",
+  "a_third_pattern": {
+    "name": "BLOCKED_BY_CONSTANT",
+    "definition": "The item's status is a hardcoded literal in the code that reports it. No input from any party can move it, in either direction.",
+    "how_it_differs": "The two patterns found earlier are about MISSING values -- a literal UNBOUND placeholder, or externality enforced by an identifier substring. This one is about values that are not read at all."
+  },
+  "P4.NATURALISTIC.GENERALITY": {
+    "verdict": "BLOCKED_BY_CONSTANT, and permissive",
+    "preflight_reports": "status READY_FOR_EXTERNAL_BINDING, blockers (), 768 of 672 required units at joint power 0.9551",
+    "what_the_preflight_actually_reads": "three files -- the protocol, one adjudication JSON and one module. Zero case artifacts, against a declared 768 clusters over 4 domains and 8 mechanisms.",
+    "verified_by_mutation": [
+      "external_bindings_required replaced with a single nonsense string: still READY, no blocker. Its only consumer tests non-emptiness.",
+      "unidentifiability_mechanism_count set to 0: still READY. The identifier does not occur anywhere in the readiness module.",
+      "domain_count reduced to 3: blocker raised -- so the checker is not inert, it just checks four integers."
+    ],
+    "independently_confirmed": "external_bindings_required is read once, as `if not external: blockers.append('external_binding_boundary_missing')`. grants_scientific_authority and execution_authorized are hardcoded False in as_dict().",
+    "requires_another_party_with_a_citable_line": 0,
+    "existing_corpus": "45 real cases with claim, evidence and source text over 13 attack families -- one implicit domain, no domain field, no pairing, no cluster identifier.",
+    "reading": "READY_FOR_EXTERNAL_BINDING is a statement about four integers, not about a bound panel."
+  },
+  "P14.D.EXTERNAL_VALIDITY": {
+    "verdict": "BLOCKED_BY_CONSTANT, and refusing",
+    "demonstrated": "All eight required artifact filenames were created as self-authored files and the preflight re-run. missing_artifacts went to [], and terminal, execution_authorized and external_custody_verified were unchanged.",
+    "independently_confirmed": "src/orion/study/p14/external_acquisition.py returns terminal, execution_authorized: False, trusted_external_custody_verifier_configured: False and external_custody_verified: False as literals. Only present_artifacts and missing_artifacts are computed, from is_file(). There is no configuration surface.",
+    "the_stance_is_right": "The module's own docstring says so: actual custody verification requires an independently configured trust boundary that is intentionally absent from this repository. A locally authored file must not buy custody, and a test pins that refusal.",
+    "the_gap": "The refusal is total. There is no attestation format, no signature check and no custodian allowlist, so no input from any party could ever be accepted. The acceptance path has to be built before the external part can be spent on.",
+    "artifact_partition": {
+      "authorable_locally": 5,
+      "requires_another_party": 3,
+      "code_enforced_as_external": 0,
+      "note": "The three that need another party -- a packet register, an adjudicator custody attestation and the independent adjudications -- are required by the protocol's prose, not by any enforcing line."
+    },
+    "also_missing_locally": "P14D has never been run through gate_attainability, though P14A, P14B and P14C were."
+  },
+  "the_asymmetry": "P14D refuses everything and pins the refusal with a test; P4 accepts anything and pins that too. Opposite failure modes, same verdict: substantial local work stands in front of the external part, and neither item's external residue is enforced by a single citable line of code.",
+  "retraction_record_substitution": {
+    "question": "Can publicly adjudicated retraction records supply P14D's independently authored cases?",
+    "verdict": "FAILS",
+    "why": "An ORION governance decision is a pure function of eight booleans emitting a six-value vocabulary -- CANNOT_CHECK, NEGATIVE, SUBSUMED, INTERACTION_ONLY, RETAIN_NEGATIVE, SUPPORTED_RESIDUAL. A retraction record is binary. It cannot yield SUBSUMED versus INTERACTION_ONLY versus RETAIN_NEGATIVE versus CANNOT_CHECK, so somebody has to author that mapping -- which reintroduces exactly the self-authorship P14D exists to exclude. Independence would sit in the source record, not in the label the candidate is scored against.",
+    "supporting": "Four of the eight inputs have no counterpart in retraction metadata at all: frozen_protocol, identifiable, donor_owned and interaction_only are ORION protocol-state properties, not publication attributes. Two more map only by loose analogy, itself an authored mapping. And retraction data supplies none of the other six required artifacts.",
+    "the_sentence": "Retractions adjudicate publications; ORION adjudicates an evaluation's protocol state. Different objects.",
+    "what_survives": "Retraction data could ground a different, narrower external claim. That would be a new protocol with a new claim identity, not P14D.",
+    "status_of_the_earlier_proposal": "The acquisition plan floated this route as a candidate and said explicitly that if the mapping does not hold it should be recorded as having failed. It does not hold. Recorded."
+  },
+  "next_local_action": {
+    "P4": "Bind a case manifest into local_bindings with a sha256 and add the check that reads it -- length, distinct domains, distinct mechanisms and pairing. Until then the readiness verdict is about four integers.",
+    "P14D": "Write the seven intake rejection rules the protocol prose already specifies, and make external_custody_verified computed from a configurable trust anchor rather than a literal. Until the code can consume an answer, no party can discharge the item."
+  }
+}

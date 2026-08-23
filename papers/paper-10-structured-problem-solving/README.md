@@ -8,5 +8,6 @@ each hypothesis.
 H1–H6 are `PROSPECTIVE_NOT_EXECUTED`. Their outcome-free protocol is frozen,
 but its protected donor, evaluator, custody, and attainability inputs are absent,
 so execution is not authorized. This is not a negative result and does not
+H1–H6 are `PROSPECTIVE_NOT_EXECUTED`. This is not a negative result and does not
 authorize a positive one. The shared ORION learning-machine lane remains bounded
 to `LOCAL_REPRODUCIBLE_CORE_ONLY` and cannot discharge a P10 hypothesis.

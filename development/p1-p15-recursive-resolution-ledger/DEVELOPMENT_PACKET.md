@@ -11,6 +11,22 @@ audit and routing artifact, not a promotion instrument.
 - base revision: `fd9892fdafd7734b07c8b24a4384c9e9561b1349`
 - branch: `codex/p1-p15-recursive-resolution-ledger`
 - publication: local commit only; no push or pull request in this task
+- publication: draft PR 970
+
+## 2026-08-23 execution synchronization
+
+The ledger is synchronized with the three range execution PRs:
+
+- PR 973: P1--P5 powered successor freezes and fail-closed external binding;
+- PR 972: P6--P8 local replay closure, P9 locked-environment adjudication and
+  D1v1.3 freeze, and P10 H1--H6 lifecycle authority;
+- PR 971: P11 revalidation, positive bounded P12B/P13B successors, and P14D/P15A
+  external-acquisition freezes.
+
+The synchronized ledger contains 47 items: 11 existing-PR repairs, 10 bounded
+active positive authorities, 10 immutable historical adverse results, five
+prospective successors, and 11 external evidence blockers. No stale
+`remaining_integration_blockers` remain.
 
 ## Required distinctions
 
@@ -50,5 +66,6 @@ license to tune the gate or endpoint after outcomes are visible.
 
 - rerunning protected or external experiments;
 - changing claim terminals or manuscript prose;
+- fabricating external evidence or treating a local replay as independent;
 - merging, publishing, or representing an open repair branch as landed;
 - guaranteeing that any prospective successor will pass.

@@ -69,9 +69,11 @@ the correct `CANNOT_CHECK` terminal on 30/30 gold cases with 0/360 false
 promotions, and the H1-selected comparator `provenai-citation-fidelity-influence`
 scores 0/30. **`deepsciverify-abstract-to-full-escalation` scores 15/30, so
 against it the margin is 0.5, not 1.0**; both numbers belong in any sentence
-about H3. Reportable because the identifiability register clears at informedness
-0.0 over fourteen probes and thirteen seeds against a declared ceiling of 0.0 —
-the same register recovers the V1 and V2 `CANNOT_CHECK` label at 1.0.
+about H3. Reportable because the exact V3/`CANNOT_CHECK` claim axis clears at
+informedness 0.0 over fourteen probes and thirteen seeds against a declared
+ceiling of 0.0 — the same register recovers the V1 and V2 `CANNOT_CHECK` label at
+1.0. Four registered digest-prefix noise-control residuals on `BLOCK`/`PROMOTE`
+remain disclosed; no whole-register clearance is asserted.
 
 What this does and does not change in the negatives above. `P4.H3` in
 `journal_package/MANIFEST.json` is now SUPPORTED on the V3 artifacts, and the V2

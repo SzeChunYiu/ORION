@@ -192,24 +192,28 @@ call, needs no credential, and is deterministic given the archive and the
 bootstrap seed — regenerating from the same archive reproduces the same numbers
 byte for byte apart from the `generated_utc` provenance stamp.
 
-## What remains CANNOT_CHECK for historical V1 without a live provider
+## Failure semantics and historical V1 boundaries
 
-The following statements apply only to the original provider-oriented V1
-archive and are preserved as negative history. They do not describe the
-credential-free v2.2.4 successor above:
+The current frozen V1 archive is complete: all 2,880 expected records are
+present and scored. It therefore contains no missing-evidence
+`CANNOT_CHECK` result. H1 is nevertheless `NOT_SUPPORTED` (ORION 1/48 versus
+the strongest matched baseline 1/48); completeness does not turn that negative
+finding into support. The credential-free v2.2.4 result is a narrower successor,
+not a scientific supersession of H1.
 
-- **H1 (root-success superiority) and H2 (unnecessary-reframe non-inferiority).**
-  Both need traces from full ORION *and* from the five matched baselines under a
-  matched budget. `assess_hypothesis` returns `CANNOT_CHECK` — not
-  `NOT_SUPPORTED` — when the difference cannot be formed.
-- **H3 (reopen precision/recall/F1) and H4 (stability across recursion depth).**
-  Same reason.
-- **Every rate in P1-T2 and every row in P1-T3.** No archived record, no number.
-- **A system that ran on some cases but not others.** A case with no trace is
-  `CANNOT_CHECK` and is excluded from both numerator and denominator; it is
-  never scored as a failure. A case whose 5 repeats are only partially present
-  is `CANNOT_CHECK` too, since a rate reduced over an unknown subset of seeds is
-  a different measurement.
+`CANNOT_CHECK` remains the fail-closed response to a counterfactual incomplete
+archive. In particular:
+
+- **H1/H2 contrasts and H3/H4 diagnostics** require the registered systems,
+  cases, and repeats. If a required difference cannot be formed,
+  `assess_hypothesis` returns `CANNOT_CHECK`, never `NOT_SUPPORTED` or zero.
+- **A missing or partial system/case cell** is excluded from both numerator and
+  denominator and cannot be silently treated as failure. A case with fewer than
+  the registered five repeats is also `CANNOT_CHECK` because it is a different
+  measurement.
+- **Structurally inapplicable metrics** are `NOT_APPLICABLE`, not
+  `CANNOT_CHECK`. For example, hidden-label diagnostics do not apply to control
+  scopes, and control-only diagnostics do not apply to hidden scopes.
 
 Two further limits are structural rather than credential-related, and hold even
 with a complete archive:

@@ -1,6 +1,12 @@
 # Results
 
-Protected terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
+The historical runner printed its preregistered safety-cost terminal. The later
+outcome-entailment adjudication withholds that empirical claim authority. The
+current bounded authority comes from P13B's authenticated-certificate controlled
+finite-world result.
+Historical protected terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
+Current authority: `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD` under
+`P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
 
 | arm | unsafe reuse | verified correctness | unnecessary reopen | mean cost |
 |---|---:|---:|---:|---:|
@@ -10,16 +16,43 @@ Protected terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
 | unqualified compact | 0.3962 | 0.9248 | 0 | 1.0000 |
 | always raw | 0.0000 | 0.9513 | 0.5744 | 5.7319 |
 
-RCS emits `CANNOT_CHECK` for all **237** unsupported/nonrecoverable cases and no other protected case. It eliminates structural unsafe reuse without adopting always-reopen behavior. Mean resource cost is approximately **49.8% lower** than always raw. Two fresh executions are byte-identical with SHA-256 `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f`.
+RCS emits `CANNOT_CHECK` for all **237** certificate-declared
+unsupported/nonrecoverable cases and no other protected case. These action,
+rate, cost and replay numbers are descriptive historical facts. They do not
+establish elimination of unsafe reuse because the harm endpoint is self-scored.
 
-## Why confidence fails
+## Outcome-contingency adjudication
 
-The omitted coordinate is biased within a family, so a MAP decoder can be highly accurate and exceed the 0.80 confidence threshold. But high expected accuracy does not make an unsupported equivalence class sufficient. Confidence asks how often an output is right under a distribution; RCS asks whether state retains distinctions required by a responsibility.
+On the exact 3,840-point audit space, a registered certificate corruption moves
+the RCS action on 2,304 points but moves the published unsafe-reuse endpoint on
+zero. The endpoint has zero opportunities and returns `CANNOT_CHECK`. A control
+that grades the same reuse decisions against independently defined gold support
+has 1,536 live opportunities and passes, establishing that the missing
+denominator is specific to P13A's scorer rather than inevitable.
 
 ## Why provenance fails
 
-Every compact state has valid lineage. Provenance verifies origin but says nothing about whether `m` or `r` was retained. Provenance-only reuse is structurally unsafe on 39.62% of protected episodes.
+Every compact state has valid lineage. `PROVENANCE_ONLY` and `UNQUALIFIED` are
+identical policies and identical result rows here, so path or label multiplicity
+cannot create two independent comparisons.
 
 ## Why always raw is not the answer
 
-Always reopening prevents unsafe compact reuse but pays roughly twice the mean RCS cost and unnecessarily reopens supported cases on 57.44% of episodes. RCS occupies the desired interior safety–cost point.
+Always reopening has the reported historical P13A cost/action profile. P13A
+cannot establish the safety coordinate because its scorer was not independently
+gradable.
+
+## Prospectively frozen P13B
+
+P13B defines gold support from task requirements and state variables without
+reading the certificate. The complete panel contains six state forms and five
+tasks. Omitted, overbroad, forged and stale-epoch worlds each have 30 live
+mutation opportunities before scoring. Authenticated RCS rejects every mutated
+certificate and makes zero gold-scored unsafe reuses in every world; unverified
+RCS has 0, 5, 5 and 16 unsafe reuses in the omitted, overbroad, forged and stale worlds.
+On valid certificates, authenticated RCS is exactly correct and costs 0.6111
+times always raw. Two fresh subprocess payloads are byte-identical, supporting
+the registered controlled finite-world claim.
+Always reopening has the reported historical cost/action profile. Whether RCS
+occupies a valid interior safety–cost frontier remains a P13B question because
+the load-bearing safety coordinate was not independently gradable.

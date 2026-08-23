@@ -10,6 +10,7 @@ donor-complete executables, blinded obstruction gold, independent OCME witness,
 cross-domain replication split, scorer custody, and power/attainability receipt
 are absent. Consequently execution is forbidden and all six hypotheses remain
 `PROSPECTIVE_NOT_EXECUTED`.
+**Lifecycle:** `PROSPECTIVE_MAXIMUM_CLAIM_MANUSCRIPT / NO_P10_PROTECTED_RESULT`
 
 | Claim family | Current authority | Required promotion evidence |
 |---|---|---|

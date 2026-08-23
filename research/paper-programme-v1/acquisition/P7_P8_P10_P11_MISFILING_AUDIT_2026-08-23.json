@@ -1,0 +1,65 @@
+{
+  "schema_version": "orion.programme.misfiling-audit.v1",
+  "record": "P7_P8_P10_P11_MISFILING_AUDIT",
+  "date": "2026-08-23",
+  "authority_scope": "CLASSIFICATION_ONLY",
+  "grants": "Nothing. No terminal changes, no protocol is relabelled, no outcome is read.",
+  "question": "Four items are filed as EXTERNAL_EVIDENCE_BLOCKER. P5 and P2 both turned out to be misfiled when measured. Are these?",
+  "verdicts": {
+    "P7.EMPIRICAL.NAVIGATION.EXTERNAL": {
+      "verdict": "LOCALLY_UNEXECUTED",
+      "placeholders": 0,
+      "evidence": "Its own PROSPECTIVE_EVALUATION_V1.md status line reads 'protocol draft, not frozen / not result-bearing', and no P7 protocol freeze exists on any ref. The next step is to freeze a protocol, which is local.",
+      "replay_mechanics": "All five reproduce-v3 steps pass: generator MATCH, negative-null BOUND, contract manifest PASS over 8 cases and 4 domains, theory closure PASS over 960 transport cases, premise audit PASS. No local defect."
+    },
+    "P8.DEPLOYED.AGENT.EXTERNAL": {
+      "verdict": "LOCALLY_UNEXECUTED",
+      "placeholders": 0,
+      "evidence": "Same shape as P7: an unfrozen draft, no P8 protocol freeze anywhere.",
+      "replay_mechanics": "All five reproduce-v3 steps pass: 17 cases, 5 domains, 5 attacks blocked, theory closure v2 and v2.1 over 62 checks."
+    },
+    "P10.PROTECTED.EXECUTION.EXTERNAL": {
+      "verdict": "LOCALLY_UNEXECUTED",
+      "placeholders": 17,
+      "evidence": "P10_H1_H6_PROTOCOL_FREEZE_V1.json has 8 of 8 required inputs at present:false with artifact:null. The freeze code enforces externality by NAME: an input is required to be non-self-authorizing only when its identifier contains 'independent', 'custod' or 'gold'. Exactly three of the eight match.",
+      "locally_producible": [
+        "protected_task_manifest",
+        "native_verifier_backed_runner",
+        "strongest_donor_complete_comparator_executables",
+        "protected_cross_domain_replication_split",
+        "prospective_power_and_attainability_receipt"
+      ],
+      "genuinely_external": [
+        "blinded_obstruction_gold_and_custodian",
+        "independent_ocme_witness_protocol",
+        "independent_scorer_and_review_custody"
+      ],
+      "note": "This is the direct P5.H1_H4 analogue: five of eight need no outside party, and the last of them has local machinery already in orion.programme.gate_attainability -- the same machinery that, run for P9's D1 v1.3, returned OPPORTUNITY_GATE_UNATTAINABLE_ON_EXISTING_ARMS.",
+      "internal_inconsistency": "The item's next_executable_step gates on 'After lifecycle freeze', while a sibling item in the same ledger records that PR 972 installs a frozen H1-H6 protocol. The freeze does exist on the execution branch, though not at the ledger's declared base_revision."
+    },
+    "P11.REAL_SYSTEMS.EXTERNAL": {
+      "verdict": "LOCALLY_UNEXECUTED",
+      "placeholders": 0,
+      "evidence": "PEER_REVIEW_READINESS.md leaves five boxes unchecked and none of the five requires an outside party.",
+      "stale_claim_found": "One unchecked box -- 'a successor whose hostile gate has a reachable failing region' -- is contradicted by src/orion/study/p11/successor_reach.py, which computes retires_unwinnable_attack_finding = True from an already-executed preflight and result.",
+      "local_audit": "orion.study.p11.attack_audit rolls up to FAIL and exits 3, with terminal_reach FAIL for THRESHOLD_UNCONDITIONAL at attainment margin 0.0 over 6 satisfying and 0 refuting worlds. The exit-3 is declared behaviour, not a defect."
+    }
+  },
+  "counterweight_findings": [
+    "P7 and P8 manifests and replay contracts carry ZERO placeholders, with subject_commit_status BOUND and real hashes. They are not the P5 pattern.",
+    "P7's instances_v1.jsonl and instances_v2.jsonl are byte-identical by design -- the v2 generator names v1 as its SOURCE -- and the same holds for P8's authority cases. Checked by running the generator rather than inferred.",
+    "There IS a real external residue: orion/programme/superiority.py applies an evaluator_custody == EXTERNAL precondition to the harm guard as well as to protected superiority, so eventual PASS on P7-U-T3/T4 and P8-U-T3/T4 does require it. It is simply not the next step."
+  ],
+  "cannot_check": {
+    "item": "P11G payload digest",
+    "detail": "PEER_REVIEW_READINESS.md claims a payload SHA-256 that re-digests differently in an unpinned environment, raising a fidelity error. Sandbox carries scikit-learn 1.8.0 and numpy 2.4.4 against a lock pinning 1.9.0 and 2.4.6+. Real drift cannot be separated from environment drift without the locked environment, so this is recorded as CANNOT_CHECK rather than as a defect.",
+    "resolution": "Run the audit under the locked environment."
+  },
+  "finding": "All four are misfiled. None is blocked on an outside party as its NEXT step; two are unfrozen drafts, one has five of eight inputs it can produce itself, and one carries a stale readiness claim its own code contradicts.",
+  "next_local_action": {
+    "P7": "freeze the prospective evaluation into a protocol JSON with explicit required_inputs",
+    "P8": "the same freeze, then build the workflow arena its own unblock text names",
+    "P10": "produce the five locally-producible required inputs, starting with the power and attainability receipt",
+    "P11": "run the attack audit under the locked environment, which settles both the fidelity digest and the attainability block"
+  }
+}
