@@ -1,0 +1,45 @@
+{
+  "atom": "QG-40: does the existence/selection separation reproduce in a production compiler?",
+  "authority": {
+    "NOT_R6": true,
+    "comparative_performance_claim": false,
+    "mathematical_proposal": true,
+    "novelty_claim": false,
+    "physical_advantage_claim": false
+  },
+  "compiler": "Qiskit 2.5.2, optimization_level=1, seed_transpiler=7, line coupling map, 5 qubits",
+  "explicitly_not_claimed": [
+    "any performance comparison against Qiskit",
+    "that any ORION method beats any production compiler",
+    "behaviour at larger qubit counts, other couplings, other optimisation levels, or under seed variance"
+  ],
+  "no_orion_machinery_used": true,
+  "reading": {
+    "existence_does_NOT_hold_here": "5 of 10 classes contain circuits with different optimal cost",
+    "selection_reproduces": true,
+    "why_that_differs_from_TARE": "TARE's spectrum is the sorted FULL response vector, an information-complete symmetrisation (C1); a degree sequence is far cruder, so the existence half is summary-dependent while the selection half looks generic"
+  },
+  "recorded_instrument_defect": {
+    "caught_by": "research/extensions/orion-qg/qg40_instrument_validity_check.py, which asks whether the measurement can vary at all",
+    "effect": "cost was constant at every layout (|argmin| = 120/120, range [6,6]) and the experiment reported a VACUOUS clean negative",
+    "note": "a negative from a dead instrument is the failure mode this programme exists to prevent, and it nearly shipped",
+    "what": "the first run counted only cx, while routing expresses its work as inserted swap gates"
+  },
+  "results": {
+    "circuits": 22,
+    "classes_tested": 10,
+    "classes_where_optimal_cost_differs": 5,
+    "of_which_disjoint": 4,
+    "pairs_same_summary_same_cost_diff_layout": 7,
+    "summary_classes_multi": 10
+  },
+  "schema": "ORION.QG.QG40.CommittedResult.v1",
+  "setup": {
+    "choice": "initial layout (120 permutations)",
+    "collisions": "built by construction: all 6-edge multigraphs enumerated, deduped by isomorphism, grouped by summary",
+    "cost": "total two-qubit gates after routing (cx + swap)",
+    "object": "CX multigraph circuit",
+    "summary": "(sorted degree sequence, sorted edge-multiplicity multiset), qubit-permutation invariant, no transpiler call"
+  },
+  "source_result_digest": "d36185c50def037bbe272381c2b746d5ec81520836555eebd9d82c6df23f7140"
+}
