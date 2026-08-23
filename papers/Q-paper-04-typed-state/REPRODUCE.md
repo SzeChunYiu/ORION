@@ -26,6 +26,28 @@ Committed result artifacts:
 
 all under `research/extensions/orion-q/nlanes/`.
 
+## Secondary paired uncertainty analysis
+
+The publication analysis does **not** change any frozen protocol, seed, generator, arm, primary metric, gate or terminal. It rebuilds the original stochastic episodes and reports paired treatment/comparator differences with deterministic percentile-bootstrap intervals.
+
+```bash
+python papers/Q-paper-04-typed-state/publication_analysis.py > /tmp/q4-publication-analysis.json
+python - <<'PY'
+import json
+from pathlib import Path
+expected = json.loads(Path('papers/Q-paper-04-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
+actual = json.loads(Path('/tmp/q4-publication-analysis.json').read_text())
+assert actual == expected
+print('Q4 publication paired analysis: MATCH')
+PY
+```
+
+`N4_D` is an exact constructed-chain census and is intentionally reported by exact counts rather than bootstrap uncertainty.
+
+## Benchmark taxonomy
+
+`BENCHMARK_INDEX_V1.json` maps the six separately frozen families into a common publication schema: binding axis, downstream decision, treatment, strongest comparator, hostile/no-value control, primary metric, generator/result/protocol and exact claim boundary. The taxonomy is a post-study synthesis; it does not retroactively make the six studies one preregistered experiment.
+
 ## Donor/negative bounds
 
 The two load-bearing bounding studies are:

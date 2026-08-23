@@ -1,0 +1,104 @@
+{
+  "schema": "ORION.QPaperRefinement.VenueReadinessProfiles.v1",
+  "verified_date": "2026-08-22",
+  "warning": "These are ORION internal readiness gates derived from current official journal criteria. They are not acceptance probabilities and do not bind editors.",
+  "profiles": {
+    "PRX_QUANTUM_STRETCH": {
+      "journal": "PRX Quantum",
+      "official_source": "https://journals.aps.org/prxquantum/about",
+      "publication_model": "SELECTIVE_FIELD_ADVANCEMENT",
+      "scope": "quantum science and technology",
+      "hard_gates": [
+        "scientific_validity",
+        "claim_evidence_alignment",
+        "reproducibility_or_proof_auditability",
+        "prior_work_and_donor_subtraction",
+        "clear_scope_boundary",
+        "at_least_one_exceptionality_axis"
+      ],
+      "exceptionality_axes": [
+        "exceptional_advance",
+        "exceptional_connection",
+        "exceptional_capability",
+        "exceptional_insight"
+      ],
+      "internal_dimension_floor": 8.0,
+      "internal_mean_floor": 8.5,
+      "notes": "Q1 only. A grammar-specific theorem must be framed as consequential structural insight rather than an internal ORION object."
+    },
+    "NPJ_QUANTUM_INFORMATION": {
+      "journal": "npj Quantum Information",
+      "official_source": "https://www.nature.com/npjqi/aims",
+      "publication_model": "HIGH_QUALITY_FIELD_FRONTIER",
+      "scope": "all aspects of quantum information including quantum computing and foundational/theoretical work",
+      "hard_gates": [
+        "scientific_validity",
+        "claim_evidence_alignment",
+        "clear_quantum_information_relevance",
+        "reproducibility_or_proof_auditability",
+        "complete_related_work",
+        "data_code_availability_where_applicable"
+      ],
+      "internal_dimension_floor": 7.0,
+      "internal_mean_floor": 7.8,
+      "notes": "Primary fallback/minimum target for Q1 if PRX Quantum judges breadth/exceptionality insufficient."
+    },
+    "NATURE_COMPUTATIONAL_SCIENCE_STRETCH": {
+      "journal": "Nature Computational Science",
+      "official_source": "https://www.nature.com/natcomputsci/aims",
+      "editorial_context_source": "https://www.nature.com/articles/s43588-021-00068-1",
+      "publication_model": "SELECTIVE_CROSS_DISCIPLINARY_COMPUTATIONAL_ADVANCEMENT",
+      "hard_gates": [
+        "methodological_or_framework_advance",
+        "important_scientific_problem",
+        "state_of_the_art_comparison",
+        "practical_or_scientific_value",
+        "compelling_validation",
+        "real_data_or_real_scientific_workflow_for_headline_empirical_claims",
+        "reproducibility"
+      ],
+      "internal_dimension_floor": 8.0,
+      "internal_mean_floor": 8.6,
+      "notes": "Stretch target for Q2/Q3 only after evidence extends beyond one programme/one frontier measurement. Official editorial guidance explicitly emphasizes real data and relevant state-of-the-art benchmarking."
+    },
+    "NATURE_MACHINE_INTELLIGENCE_STRETCH": {
+      "journal": "Nature Machine Intelligence",
+      "official_source": "https://www.nature.com/natmachintell/aims",
+      "publication_model": "SELECTIVE_BROAD_AI_ADVANCEMENT",
+      "hard_gates": [
+        "high_quality_original_ai_research",
+        "clear_advance_or_insight",
+        "scientific_discovery_relevance_if_ai_for_science",
+        "strong_validation",
+        "generalization_beyond_designed_synthetic_worlds_for_real_agent_claims",
+        "reproducibility_and_transparency"
+      ],
+      "internal_dimension_floor": 8.0,
+      "internal_mean_floor": 8.6,
+      "notes": "Stretch target for Q4 after real scientific-decision transfer; possible future target for Q3 if the benchmark becomes a validated scientific-agent evaluation methodology."
+    },
+    "NPJ_ARTIFICIAL_INTELLIGENCE": {
+      "journal": "npj Artificial Intelligence",
+      "official_source": "https://www.nature.com/npjai/for-authors-and-referees/about/aims",
+      "publication_model": "HIGH_QUALITY_TRANSFORMATIVE_AI",
+      "hard_gates": [
+        "original_ai_method_framework_or_reframed_problem",
+        "beyond_incremental_improvement",
+        "claim_evidence_alignment",
+        "strong_comparators",
+        "practical_or_interdisciplinary_relevance",
+        "reproducibility",
+        "clear_limitations"
+      ],
+      "internal_dimension_floor": 7.0,
+      "internal_mean_floor": 7.8,
+      "notes": "Minimum Nature Portfolio npj-level target for the scoped Q2-Q4 papers if their evidence architecture and framing clear these internal gates."
+    }
+  },
+  "paper_ladders": {
+    "Q1": ["PRX_QUANTUM_STRETCH", "NPJ_QUANTUM_INFORMATION"],
+    "Q2": ["NATURE_COMPUTATIONAL_SCIENCE_STRETCH", "NPJ_ARTIFICIAL_INTELLIGENCE"],
+    "Q3": ["NATURE_COMPUTATIONAL_SCIENCE_STRETCH", "NPJ_ARTIFICIAL_INTELLIGENCE"],
+    "Q4": ["NATURE_MACHINE_INTELLIGENCE_STRETCH", "NPJ_ARTIFICIAL_INTELLIGENCE"]
+  }
+}

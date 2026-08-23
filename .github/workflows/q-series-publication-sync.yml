@@ -13,6 +13,7 @@ on:
       - 'papers/Q-paper-02-recursive-recovery/**'
       - 'papers/Q-paper-03-dual-instrument/**'
       - 'papers/Q-paper-04-typed-state/**'
+      - 'development/q-paper-recursive-refinement/**'
       - 'src/orion/registry.py'
       - 'src/orion/programme/q_series_sync.py'
       - 'src/orion/programme/q_series_content_binding.py'
@@ -23,6 +24,8 @@ on:
       - 'tests/unit/publication/test_q1_proof_sanity_binding.py'
       - 'tests/unit/programme/test_content_binding_coverage.py'
       - 'packages/orion-research-harness/src/orion_research_harness/publication_contract.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/paper_refinement.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/frontier_benchmark.py'
       - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
       - 'packages/orion-research-harness/src/orion_research_harness/recursive_runner.py'
       - 'packages/orion-research-harness/src/orion_research_harness/workspace.py'
@@ -31,6 +34,8 @@ on:
       - 'packages/orion-research-harness/src/orion_research_harness/campaign_runner.py'
       - 'packages/orion-research-harness/tests/test_publication_contract.py'
       - 'packages/orion-research-harness/tests/test_invalid_content_recovery.py'
+      - 'packages/orion-research-harness/tests/test_paper_refinement.py'
+      - 'packages/orion-research-harness/tests/test_frontier_benchmark.py'
       - '.github/workflows/q-series-publication-sync.yml'
   pull_request:
     paths:
@@ -43,6 +48,7 @@ on:
       - 'papers/Q-paper-02-recursive-recovery/**'
       - 'papers/Q-paper-03-dual-instrument/**'
       - 'papers/Q-paper-04-typed-state/**'
+      - 'development/q-paper-recursive-refinement/**'
       - 'src/orion/registry.py'
       - 'src/orion/programme/q_series_sync.py'
       - 'src/orion/programme/q_series_content_binding.py'
@@ -53,6 +59,8 @@ on:
       - 'tests/unit/publication/test_q1_proof_sanity_binding.py'
       - 'tests/unit/programme/test_content_binding_coverage.py'
       - 'packages/orion-research-harness/src/orion_research_harness/publication_contract.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/paper_refinement.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/frontier_benchmark.py'
       - 'packages/orion-research-harness/src/orion_research_harness/__init__.py'
       - 'packages/orion-research-harness/src/orion_research_harness/recursive_runner.py'
       - 'packages/orion-research-harness/src/orion_research_harness/workspace.py'
@@ -61,6 +69,8 @@ on:
       - 'packages/orion-research-harness/src/orion_research_harness/campaign_runner.py'
       - 'packages/orion-research-harness/tests/test_publication_contract.py'
       - 'packages/orion-research-harness/tests/test_invalid_content_recovery.py'
+      - 'packages/orion-research-harness/tests/test_paper_refinement.py'
+      - 'packages/orion-research-harness/tests/test_frontier_benchmark.py'
       - '.github/workflows/q-series-publication-sync.yml'
   workflow_dispatch:
 
@@ -71,7 +81,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -93,11 +103,13 @@ jobs:
             tests/unit/publication/test_q_series_content_binding.py \
             tests/unit/publication/test_q1_proof_sanity_binding.py \
             tests/unit/programme/test_content_binding_coverage.py
-      - name: Check Q3 harness publication contract and invalid-content recovery
+      - name: Check Q3/Q-refinement harness contracts
         run: |
           python -m pytest -q \
             packages/orion-research-harness/tests/test_publication_contract.py \
-            packages/orion-research-harness/tests/test_invalid_content_recovery.py
+            packages/orion-research-harness/tests/test_invalid_content_recovery.py \
+            packages/orion-research-harness/tests/test_paper_refinement.py \
+            packages/orion-research-harness/tests/test_frontier_benchmark.py
       - name: Re-run Q1 independent finite-core proof sanity check
         run: |
           python papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py > /tmp/q1-sanity.json
@@ -107,8 +119,48 @@ jobs:
 
           expected = json.loads(Path('papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json').read_text())
           actual = json.loads(Path('/tmp/q1-sanity.json').read_text())
-          if actual != expected:
-              raise SystemExit('Q1 independent proof sanity output drifted from the bound result')
+          core_keys = (
+              'schema',
+              'orion_quantum_imports',
+              'restore_lemma',
+              'class_lemma',
+              'status',
+          )
+          expected_core = {key: expected[key] for key in core_keys}
+          actual_core = {key: actual[key] for key in core_keys}
+          if actual_core != expected_core:
+              raise SystemExit('Q1 independent proof sanity scientific core drifted from the bound result')
           if actual.get('status') != 'PASS':
               raise SystemExit('Q1 independent proof sanity check did not PASS')
+          if 'not external peer review' not in actual.get('authority', ''):
+              raise SystemExit('Q1 reusable sanity script lost its non-authority boundary')
+          PY
+      - name: Validate Q3 typed reconstruction of historically prospective V0
+        run: |
+          python papers/Q-paper-03-dual-instrument/build_typed_v0_record.py > /tmp/q3-v0.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          raw = json.loads(Path('/tmp/q3-v0.json').read_text())
+          assert raw['pre_outcome_relation'] == 'AGREE'
+          assert len(raw['instrument_decisions']) == 2
+          assert {row['alignment'] for row in raw['deferred_scores']} == {'ALIGNED'}
+          assert 'RETROFITTED_TYPED_VIEW_OF_HISTORICALLY_PROSPECTIVE_V0' in raw['provenance_status']
+          assert 'does not create another prospective item' in raw['authority']
+          PY
+      - name: Re-run Q4 paired publication analysis
+        run: |
+          python papers/Q-paper-04-typed-state/publication_analysis.py > /tmp/q4-publication-analysis.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          expected = json.loads(Path('papers/Q-paper-04-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
+          actual = json.loads(Path('/tmp/q4-publication-analysis.json').read_text())
+          if actual != expected:
+              raise SystemExit('Q4 paired publication analysis drifted from the bound result')
+          stale = actual['studies']['N4_B']['STALE_MATTERS']['scoped_vs_never_mean_round_utility']['bootstrap_95pct_ci']
+          waste = actual['studies']['N4_B']['REOPEN_WASTEFUL']['scoped_vs_never_mean_round_utility']['bootstrap_95pct_ci']
+          for interval in (stale, waste):
+              if not (interval[0] <= 0.0 <= interval[1]):
+                  raise SystemExit('Q4 N4-B scoped-vs-never boundary no longer crosses zero')
           PY

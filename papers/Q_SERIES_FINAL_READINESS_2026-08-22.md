@@ -1,97 +1,115 @@
-# ORION-Q paper wave — final internally achievable readiness
+# ORION-Q paper wave — recursively refined readiness
 
 **Date:** 2026-08-22  
 **Canonical machine spec:** `papers/Q_SERIES_FINAL_SPEC_V1.json`  
-**Sync epoch:** `2026-08-22-q-series-final-v1`
+**Sync epoch:** `2026-08-22-q-series-recursive-v2`  
+**Refinement protocol:** `development/q-paper-recursive-refinement/RECURSIVE_PAPER_REFINEMENT_PROTOCOL.md`
 
-This record states what is complete **inside the repository now**. It does not turn skipped external review, journal peer review, future prospective studies, or external novelty adjudication into PASS states.
+This record states what is complete **inside the repository** after recursive evidence-first paper engineering. Internal scores and mock reviews are not journal decisions. Skipped external pre-review, future prospective studies and bounded prior-art searches do not become scientific PASS states.
 
-## Q1 — Sharp Support-Two Normal Forms for Shared-Tag TARE Quantum Compilation
+## Q1 — A Sharp Support-Two Normal Form for Shared-Tag TARE Quantum Compilation
 
-**Canonical manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`
+**Canonical manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md`
 
-Internal science package complete:
+Scientific core:
 
-- sharp theorem `kappa_R6M = 2` under the declared grammar/objective;
-- analytic all-`n` proof;
-- exact support-one counterexample proving sharpness;
-- standalone no-ORION-import sanity checker/result;
-- finite-domain regime classifier and prospective benzene confirmation retained as supporting evidence only;
-- QG follow-up limitations disclosed;
-- split-TARE coefficient lemma given a classical analytic majorization proof;
-- bounded hostile novelty research plus final exact-statement refresh;
-- claim ledger and figures plan synchronized;
-- reproduction and submission-facing editor/significance package included.
+- analytic arbitrary-`n` support-two theorem under the frozen R6M grammar/objective;
+- exact complete-support-one counterexample, hence `kappa_R6M=2`;
+- proof obstruction matched to the exact frame-for-Tag optimum;
+- finite/prospective results retained only as corroboration;
+- nearest-work theorem-delta table prevents generic Pauli-support reduction from being claimed as novelty;
+- figure contract centers the exchange mechanism and sharpness rather than ORION chronology.
 
-**Owner decision:** external quantum-expert pre-review is skipped. This removes that optional internal checklist item; it does not certify the theorem externally.
+**Round-two terminal:**
 
-**Current status:** `COMPLETE_FOR_SCOPED_THEOREM_PAPER__SUBMISSION_FORMATTING_REMAINS`.
+- PRX Quantum: `READY_FOR_SCOPED_TARGET` under an internal exceptional-insight preflight; real editor judgment remains external.
+- npj Quantum Information: `READY_FOR_SCOPED_TARGET` after ordinary submission production.
+- new Q-era experiment required for the present theorem claim: `NO`.
 
-The remaining work before an actual journal upload is editorial/venue packaging (journal template, rendered figures, bibliography formatting, author metadata and a same-day literature refresh if submission is materially later). No new Q-era scientific experiment is required by the current claim.
+## Q2 — From Negative Results to Theorem
 
-## Q2 — Recursive Recovery of Negative Scientific Results
+**Canonical manuscript:** `papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3_REFINED.md`
 
-**Canonical manuscript:** `papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md`
+Scientific/method core:
 
-Complete for the scoped claim that ORION-Q is a receipted **single-programme case study** of negative-result recovery. `RECEIPT_INDEX_V2.md` reaches the final R6S/N-lane closure instead of the early manuscript snapshot. A reproduction guide and scoped submission package are included.
+- explicit operational definition of productive recovery;
+- typed adverse/absorbed terminals and immutable parent claims;
+- donor first right of refusal;
+- separately frozen successors and saturation/lower-bound stopping;
+- R6 worked trace compressed into a recovery DAG rather than a programme diary;
+- nearest-work matrix subtracts provenance, preregistration, negative-result value, generic retry and baseline comparison as individually donor-owned ideas.
 
-The cross-domain protocol remains valuable successor research if a broader productivity/generalization claim is desired, but it is not required to publish the current bounded case-study paper.
+**Round-two terminal:**
 
-**Current status:** `COMPLETE_FOR_SCOPED_CASE_STUDY`.
+- Nature Computational Science general-method claim: `EVIDENCE_BLOCKED` pending the frozen cross-domain matched comparison.
+- npj Artificial Intelligence / comparable AI-for-science methodology claim: `READY_FOR_SCOPED_TARGET__POSITIONING_RISK` as a single-programme case study.
 
-## Q3 — Dual-Instrument Research Control
+The manuscript may not convert the later R6S theorem into causal evidence that the recovery workflow generally improves science.
 
-**Canonical manuscript:** `papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md`
+## Q3 — Deferred Outcome Scoring for Scientific Decision Instruments
 
-Complete for a systems/benchmark-definition paper with **one** frozen live measurement. Current main repairs the historical malformed-success D2/D3 defects and now exposes a machine-readable Q3 publication contract under `orion_research_harness.publication_contract`. The contract validates deterministic/digest-bound requests and results, create-only persistence, audited failed/invalid-content recovery, campaign authority non-escalation and the declared protected-reference custody surface. A reproduction guide and scoped submission package are included.
+**Canonical manuscript:** `papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3_REFINED.md`
 
-The >=20-item deferred-calibration study remains successor research and is required only for a later predictive/calibration claim.
+Systems/benchmark core:
 
-**Current status:** `COMPLETE_FOR_SCOPED_SYSTEMS_PAPER`.
+- typed `FrontierDecisionItem`, `FrontierInstrumentDecision` and `FrontierDeferredScore` schemas;
+- exact evidence-state/scorer-rule binding;
+- agreement kept separate from later per-instrument alignment;
+- `CANNOT_CHECK`, `UNRESOLVED` and `INVALIDATED_ITEM` retained;
+- shared-versus-distinct instrument decomposition;
+- historical V0 represented under the later typed schema without pretending the schema existed during the original prospective run;
+- Q3 harness invalid-content recovery remains part of benchmark temporal integrity.
 
-## Q4 — Typed Scientific Epistemic State
+**Round-two terminal:**
 
-**Canonical manuscript:** `papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md`
+- Nature Computational Science validation claim: `EVIDENCE_BLOCKED`.
+- npj Artificial Intelligence predictive/calibration claim: `EVIDENCE_BLOCKED` at one genuine prospective item.
+- current benchmark-definition/systems paper: technically coherent and recursively refined, but **not** promoted to npj-level predictive impact by software quality alone.
 
-Complete for the exact-synthetic matched-information mechanism/benchmark claim. The manuscript explicitly gives zero broad novelty credit for typed memory, stale-memory handling or VoI primitives already present in neighboring literature. A reproduction guide and scoped submission package are included.
+The correct evidence upgrade is the already-preregistered multi-frontier series, not retrospective item inflation.
 
-The >=100 real-decision protocol remains successor research and is required only for a future real-agent transfer claim.
+## Q4 — Epistemic Bindings for Scientific Decisions
 
-**Current status:** `COMPLETE_FOR_SCOPED_MECHANISM_PAPER`.
+**Canonical manuscript:** `papers/Q-paper-04-typed-state/MANUSCRIPT_V3_REFINED.md`
+
+Scientific/method core:
+
+- six separately frozen exact-synthetic families organized as a post-study matched-information benchmark taxonomy;
+- machine-readable `BENCHMARK_INDEX_V1.json`;
+- deterministic secondary paired analysis over the original frozen seeds;
+- paired uncertainty now separates robust effects from ambiguous ones;
+- N4-B is explicitly narrowed: scoped reopening strongly avoids unscoped over-reopening, but scoped-vs-never intervals cross zero in both frozen regimes;
+- donor/no-value regimes remain visible rather than being pooled away;
+- nearest-work matrix gives zero broad novelty credit for typed memory, provenance, stale-state handling and VoI.
+
+**Round-two terminal:**
+
+- Nature Machine Intelligence real-agent/scientific-discovery claim: `EVIDENCE_BLOCKED` pending the frozen real-domain transfer study.
+- npj Artificial Intelligence / AI-for-science mechanism-benchmark claim: `READY_FOR_SCOPED_TARGET__POSITIONING_RISK`.
+- additional synthetic family required: `NO`.
 
 ## Framework ↔ paper ↔ harness synchronization
 
-The final Q paper set is no longer prose-only synchronized.
+The V3 publication wave is executable, not prose-only.
 
-- `src/orion/registry.py` fixes the Q-series spec id, sync epoch, paper ids, canonical manuscripts and Q3 harness-contract id.
-- `papers/FRAMEWORK_SNAPSHOT.json` mirrors those identities and remains checked by `tests/unit/publication/test_framework_snapshot.py`.
-- `src/orion/programme/q_series_sync.py` checks paper/evidence boundaries against committed receipts and exact Q1 theorem/sharpness records.
-- `papers/Q_SERIES_CONTENT_BINDING_V1.json` + `q_series_content_binding.py` bind the canonical publication bytes so silent edits fail.
-- `src/orion/programme/content_binding_coverage.py` now recognizes Q1-Q4 as watched canonical subsets in the repository-wide binding survey; historical snapshots remain visibly outside that canonical subset and QG remains unbound until its own publication wave is frozen.
-- `packages/orion-research-harness/src/orion_research_harness/publication_contract.py` validates every implementation surface explicitly listed by the Q3 paper contract.
-- dedicated publication/framework/harness regression tests enforce all of the above.
-- `.github/workflows/q-series-publication-sync.yml` runs those Q-specific tests plus the standalone Q1 finite-core sanity checker on relevant pushes/PRs.
+- `src/orion/registry.py` fixes the recursive V3 epoch and canonical manuscripts.
+- `papers/FRAMEWORK_SNAPSHOT.json` mirrors those identities.
+- `src/orion/programme/q_series_sync.py` verifies theorem evidence, readiness asymmetry and evidence blockers.
+- `papers/Q_SERIES_CONTENT_BINDING_V1.json` binds V3 manuscripts, V3 ledgers, nearest-work/figure contracts, refinement donor/protocol, round-two verdicts and Q4 paired analysis by Git blob identity.
+- `orion_research_harness.paper_refinement` implements evidence-blocking / target-transfer / plateau terminals.
+- `orion_research_harness.frontier_benchmark` implements Q3's typed item/decision/deferred-score contract.
+- `.github/workflows/q-series-publication-sync.yml` runs framework/binding tests, harness refinement/frontier tests, Q1 proof sanity, Q3 typed V0 reconstruction and Q4 paired-analysis reproduction.
 
-These checks are synchronization/integrity instruments. They deliberately grant no scientific, novelty or physical-quantum authority.
-
-## Verification visibility boundary
-
-The repository now contains the executable CI gates required for the final Q-series specification. In this session, GitHub's connector exposes no classic status entries for the direct `main` push commits, and the local execution sandbox cannot clone GitHub due network/DNS restrictions. Therefore this record does **not** claim that the latest Actions run is green without seeing that check result. The publication workflow itself is part of the committed release contract and is triggered by the relevant Q paper/framework/harness paths.
-
-Static review during this synchronization pass found and repaired multiple would-be release failures before finalization, including:
-
-- a skipped-review description that accidentally contained the token used by the non-authority guard for scientific approval;
-- an over-broad Q3 harness contract property that belonged to the benchmark protocol rather than harness implementation;
-- an assumption that all campaign record types shared the same deserialization API;
-- the older global binding survey incorrectly reporting Q1-Q4 as `UNBOUND` despite the new canonical cross-paper binding.
+Green software tests can only establish synchronization/reproduction of the declared local surface. They cannot promote novelty, journal acceptance or a claim whose scientific evidence gate is blocked.
 
 ## Release rule
 
-If a canonical Q manuscript, claim ledger, flagship proof, novelty record, final spec, or Q3 harness contract changes:
+A material change to a canonical V3 manuscript, claim ledger, nearest-work table, figure contract, review terminal, flagship proof, publication analysis, final spec or Q3/Q4 harness contract requires:
 
-1. review whether the scientific claim changes;
-2. update the corresponding manuscript/ledger/spec together;
-3. regenerate the Q-series content binding if canonical bytes changed;
-4. advance the sync epoch if the scientific/publication contract changed materially;
-5. run the publication + harness regression suites;
-6. never let a green software test promote a claim beyond its ledger.
+1. re-checking claim/evidence integrity;
+2. re-running the recursive reviewer/target pass if the argument or target changes;
+3. updating manuscript/ledger/spec together;
+4. regenerating the content binding;
+5. advancing the sync epoch for a materially changed publication contract;
+6. rerunning the publication + harness workflow;
+7. preserving evidence blockers rather than replacing them with higher internal scores.
