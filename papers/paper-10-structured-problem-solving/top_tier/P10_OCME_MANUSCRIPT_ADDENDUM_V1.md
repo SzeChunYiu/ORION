@@ -1,10 +1,10 @@
-# P10 manuscript addendum V1 — formal OCME non-vacuity result
+# P10 manuscript addendum V1 — formal and generated OCME results
 
-This addendum supersedes only the sentence-level status of the top-tier OCME object in `successor/P10_U_MANUSCRIPT.tex`. It does not rewrite historical P10/P9 negatives or claim autonomous method invention.
+This addendum supersedes only the outcome/status layer of `successor/P10_U_MANUSCRIPT.tex`. It does not rewrite historical P10/P9 negatives, the native-Lean `CANNOT_CHECK`, or claim unrestricted autonomous method invention.
 
-## Result now earned
+## Result 1 — exact OCME non-vacuity
 
-The prospectively frozen `P10_OCME_FORMAL_NONVACUITY_PROTOCOL_V1.md` was executed after its task table was committed. Two exact method-language settings demonstrate that the OCME sequence
+The prospectively frozen `P10_OCME_FORMAL_NONVACUITY_PROTOCOL_V1.md` established that the OCME sequence
 
 \[
 \text{frozen old closure}
@@ -13,50 +13,75 @@ The prospectively frozen `P10_OCME_FORMAL_NONVACUITY_PROTOCOL_V1.md` was execute
 \to \text{held-out verified reach}
 \]
 
-is executable and non-vacuous.
+is executable and non-vacuous in two exact method languages.
 
-### Boolean affine closure
+- Boolean affine closure: `AND2` lies outside the 32-function affine family and solves the origin plus three held-out conjunctions.
+- Integer affine closure: `SQUARE` lies outside rational affine closure on the frozen verifier domain and solves the origin plus three held-out shifted squares.
 
-The old closure is the complete set of 32 affine Boolean functions over four inputs. Pairwise conjunction is absent from that closure by exhaustive truth-table membership. A frozen `AND2` primitive lies outside the old closure and verifies the originating conjunction plus three held-out variable-pair conjunctions. XOR, projection and constant controls remain old-closure `KNOWN_COMPOSITION` cases.
+Two structurally independent membership implementations agree. Protected summary: 2 obstruction families, 2 outside-closure edit types, 6 held-out transfers, 0 false expansions, byte replay GREEN. Canonical authority: `P10_OCME_FORMAL_RESULT_RECEIPT_V1.md`.
 
-### Integer affine closure
+This first result proves **non-vacuity**, not generation: `AND2` and `SQUARE` were frozen explicitly as candidate edits before execution.
 
-The old closure is the affine family over the frozen verifier domain `{-3,...,3}`. Shifted-square targets have nonzero second finite difference and cannot equal an affine map; the exact affine candidate determined by two points fails another verifier point. A frozen `SQUARE` primitive lies outside the old closure and, with existing affine pre-maps, verifies the originating square and three held-out shifted squares. Affine controls remain `KNOWN_COMPOSITION`.
+## Result 2 — generated finite OCME
 
-### Protected summary
+A second protocol and its candidate grammars were frozen before any generator/checker implementation. This study now returns `P10_GENERATED_OCME_V1_SUPPORTED` with independent replay.
 
-The protected run establishes:
+### Boolean majority
 
-- 2 exact obstruction-certificate families;
-- 2 independently checked outside-closure edit types;
-- 6 held-out transfer targets solved by the same edit families;
-- 0 false expansions on old-method controls;
-- deterministic byte replay.
+The old language is again the complete GF(2) affine family, but the target family is fresh: three-input majority. The generator receives all 16 anonymous binary Boolean truth tables plus the frozen composition template
 
-Canonical authority is `top_tier/P10_OCME_FORMAL_RESULT_RECEIPT_V1.md`, terminal `P10_OCME_FORMAL_NONVACUITY_V1_GREEN`.
+\[
+g(a,b)\oplus g(a,c)\oplus g(b,c).
+\]
 
-## What this changes in the P10 story
+It sees only the originating triple during selection. Under the preregistered exactness/outside-closure/minimum-complexity rule it selects truth-table code `8`, `[0,0,0,1]`. Only then are the three held-out triples opened; all `3/3` are solved. XOR/projection/constant controls remain `KNOWN_COMPOSITION`.
 
-P10 may now state that **obstruction-certified method-language expansion is a non-vacuous executable scientific object in exact bounded languages**. It no longer needs to present OCME solely as an unimplemented definition.
+### Integer cubic
 
-P10 may **not** state that ORION autonomously invented either primitive. `AND2` and `SQUARE` were frozen explicitly as candidate edits before execution. The result validates obstruction/outside-closure/transfer semantics, not autonomous generation.
+The old language is rational affine functions on `{-4,...,4}`. The generator receives five anonymous unary candidate semantics and the frozen wrapper `primitive(x)+a*x+b`. It sees only the originating cubic-plus-affine target and selects candidate `U3`, whose post-selection semantic reveal is `CUBE`. All three held-out cubic-plus-affine targets are then solved exactly; affine controls remain `KNOWN_COMPOSITION`.
+
+### Generated protected summary
+
+- 2 generated outside-closure selections;
+- 6/6 held-out transfer;
+- 0 false expansions;
+- exact old-language search/synthesis/evolution impossibility in both registered finite closures;
+- no held-out target access during selection;
+- two implementations agree on selected semantics and transfer;
+- byte replay GREEN.
+
+Canonical authority: `P10_GENERATED_OCME_RESULT_RECEIPT_V1.md`.
+
+## What P10 may now claim
+
+P10 may state:
+
+> **Obstruction-certified method-space expansion can be generated under prospectively frozen exact method-language models.** An origin-only search can select semantics that are independently outside the old closure and that create verified held-out reach; stronger search, synthesis or evolutionary recombination restricted to the old closure is formally unable to recover those targets.
+
+This is materially stronger than saying OCME is only a definition or that hand-picked outside-closure primitives exist.
+
+## What P10 may not yet claim
+
+P10 may not state that it has established unrestricted autonomous mathematical invention. The candidate grammars and wrapper/composition templates were supplied prospectively. Native theorem-proving/problem-solving method spaces are far larger than these finite grammars.
+
+The prior native-Lean run remains `CANNOT_CHECK_NATIVE_STATE_COVERAGE` because its frozen eligibility contract admitted zero eligible transitions. That negative cannot be removed by relaxing the contract after seeing the outcome.
 
 ## Remaining maximum-claim gate
 
-The intended broad paper still requires at least one protected generated/non-hand-coded outside-closure edit in a real verifier-backed setting, with:
+The hard remaining bridge is **native verifier-backed OCME after donor first refusal**, not another finite positive. The native study must include, at matched resources where meaningful:
 
-- native proof/program/search baselines;
-- representation/accessibility first refusal from P9/P11;
-- proof repair/library/macro mining;
-- exact/heuristic search;
+- native proof/search baselines;
+- retrieval/premise selection;
+- proof repair and failure-triggered intervention;
+- tactic/macro/library mining;
+- representation/accessibility repair from P9/P11;
 - synthesis;
-- evolutionary code/method search;
-- matched resource accounting;
-- independent implementation/replay;
-- held-out transfer.
+- evolutionary method/code search;
+- exact verifier authority;
+- held-out transfer and false-expansion controls.
 
-A timeout or baseline failure remains insufficient as an obstruction certificate.
+A timeout, low probability or one failed solver remains insufficient as an obstruction certificate.
 
-## Referee-facing positioning after V1
+## Referee-facing positioning
 
-> We first make “method-space expansion” falsifiable rather than rhetorical: an edit can be credited only after exact membership in a frozen old closure has been ruled out and the unchanged verifier confirms new held-out reach. Two exact language families show that this gate is executable and rejects known-composition controls. The unresolved question is whether an agent can generate such an expansion in native formal problem solving after stronger existing search, repair, synthesis and evolutionary mechanisms receive first right of refusal.
+> We make method-space expansion falsifiable rather than rhetorical. First, two exact language families show that the obstruction/outside-closure/transfer gate is non-vacuous. Second, a prospectively frozen generator is not given the final primitive: it selects outside-closure semantics from anonymous candidate grammars using only originating tasks, and those semantics transfer to six held-out targets with zero false expansions and independent verification. This establishes generated obstruction-certified expansion in exact finite method languages. The remaining question is whether the same discipline survives native formal problem solving after strong search, repair, synthesis and evolutionary donors receive first right of refusal.
