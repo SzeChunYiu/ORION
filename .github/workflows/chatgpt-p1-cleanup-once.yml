@@ -1,0 +1,137 @@
+name: chatgpt-p1-cleanup-once
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-cleanup:
+    if: github.head_ref == 'chatgpt/p1-applicability-inventory-cleanup-20260823' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install targeted test dependencies
+        run: python -m pip install -e . pytest
+      - name: Apply exact P1 applicability and duplicate-key regressions
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          tables = Path('src/orion/study/p1/tables.py')
+          text = tables.read_text(encoding='utf-8')
+          old = '''def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
+              payload = {"metric": label, **rate.as_dict(), "interval": None}
+              if rate.n > 0 and rate.unit == "case":
+                  payload["interval"] = stats.wilson_interval(rate.successes, rate.n).as_dict()
+              elif rate.n == 0:
+                  if _metric_applicable(scope, label):
+                      payload["status"] = STATUS_CANNOT_CHECK
+                  else:
+                      payload["status"] = STATUS_NOT_APPLICABLE
+                      payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
+              return payload
+          '''.replace('          ', '')
+          new = '''def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
+              payload = {"metric": label, **rate.as_dict(), "interval": None}
+              if not _metric_applicable(scope, label):
+                  payload["status"] = STATUS_NOT_APPLICABLE
+                  payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
+                  return payload
+              if rate.n > 0 and rate.unit == "case":
+                  payload["interval"] = stats.wilson_interval(rate.successes, rate.n).as_dict()
+              elif rate.n == 0:
+                  payload["status"] = STATUS_CANNOT_CHECK
+              return payload
+          '''.replace('          ', '')
+          if text.count(old) != 1:
+              raise SystemExit(f'expected exactly one _rate_block target, found {text.count(old)}')
+          tables.write_text(text.replace(old, new), encoding='utf-8')
+
+          applicability = Path('tests/unit/study/p1/test_table_applicability.py')
+          text = applicability.read_text(encoding='utf-8')
+          marker = '''def test_unknown_scope_or_metric_fails_closed() -> None:
+          '''.replace('          ', '')
+          addition = '''def test_positive_denominator_does_not_override_metric_applicability() -> None:
+              observed = BinaryRate(successes=1, n=2)
+              block = tables._rate_block(
+                  observed,
+                  label="control_abstention",
+                  scope=tables.SCOPE_HIDDEN_SHIFT,
+              )
+              assert block["status"] == tables.STATUS_NOT_APPLICABLE
+              assert block["interval"] is None
+              assert block["n"] == 2
+              assert block["value"] == 0.5
+              assert "outside its frozen applicability domain" in block["reason"]
+
+
+          '''.replace('          ', '')
+          if text.count(marker) != 1:
+              raise SystemExit(f'expected one applicability insertion marker, found {text.count(marker)}')
+          applicability.write_text(text.replace(marker, addition + marker), encoding='utf-8')
+
+          inventory_test = Path('tests/unit/development/test_cannot_check_inventory.py')
+          text = inventory_test.read_text(encoding='utf-8')
+          marker = '''def test_committed_inventory_matches_derived() -> None:
+          '''.replace('          ', '')
+          addition = '''def test_committed_inventory_has_no_duplicate_json_object_keys() -> None:
+              def reject_duplicates(pairs):
+                  value = {}
+                  for key, item in pairs:
+                      if key in value:
+                          raise ValueError(f"duplicate JSON object key: {key}")
+                      value[key] = item
+                  return value
+
+              json.loads(
+                  INVENTORY_PATH.read_text(encoding="utf-8"),
+                  object_pairs_hook=reject_duplicates,
+              )
+
+
+          '''.replace('          ', '')
+          if text.count(marker) != 1:
+              raise SystemExit(f'expected one inventory insertion marker, found {text.count(marker)}')
+          inventory_test.write_text(text.replace(marker, addition + marker), encoding='utf-8')
+          PY
+      - name: Commit source and hostile tests before deriving inventory
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            src/orion/study/p1/tables.py \
+            tests/unit/study/p1/test_table_applicability.py \
+            tests/unit/development/test_cannot_check_inventory.py
+          git diff --cached --check
+          git commit -m 'fix(p1): make metric applicability independent of denominator'
+      - name: Regenerate derived CANNOT_CHECK inventory from committed source
+        run: |
+          set -euo pipefail
+          python research/development/cannot_check_inventory.py --write
+          python research/development/cannot_check_inventory.py --check
+          python -m json.tool research/development/cannot_check_inventory.json >/dev/null
+      - name: Run targeted hostile regressions
+        run: |
+          set -euo pipefail
+          pytest -q \
+            tests/unit/study/p1/test_table_applicability.py \
+            tests/unit/development/test_cannot_check_inventory.py
+      - name: Commit generated inventory and remove one-shot workflow
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/chatgpt-p1-cleanup-once.yml
+          git add research/development/cannot_check_inventory.json
+          git diff --cached --check
+          git commit -m 'chore: regenerate cannot-check inventory after P1 cleanup'
+          git push origin HEAD:${GITHUB_HEAD_REF}
