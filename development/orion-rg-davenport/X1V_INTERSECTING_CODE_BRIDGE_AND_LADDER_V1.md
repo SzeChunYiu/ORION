@@ -1,5 +1,31 @@
 # ORION-RG X1-V — the intersecting-code bridge: conjecture falsified, `D_2(C_2^9) = 16`, `D_2(C_2^10) = 17`, and the ladder to `r = 15`
 
+> **PRIOR-ART HIT #15 (2026-08-23, full text read).** The entire ladder below is
+> **published**: Borello–Schmid–Scotti, Remark 5.15, verbatim — *"Below we record the
+> values of `(r, D2(E2r))` deduced from Table 2: (1, 4), (2, 5), (3, 7), (4, 8), (5, 10),
+> (6, 11), (7, 12), (8, 14), (9, 16), (10, 17), (11, 18), (12, 19), (13, 21), (14, 22),
+> (15, 23), (16, 25), (17, 27). Any further improvement on the knowledge of `i(k, 2)` would
+> allow to extend this list."* Every value this atom (and X1-U) derived — including the
+> certified 12, 14, 16, 17 — is on that list, in print since June 2024. Theorem 5.12 is
+> also now held verbatim: *"`Dh2(Ephr)` is the smallest integer `n` such that all
+> `[n, n−r]_{p^h}` codes are not intersecting. Therefore `Dh2(Ephr) = min{m ≥ r+1 | m <
+> i(m−r, p^h)}`"*, with Remark 5.11 confirming this **is** the plain `D_2` at `p=2, h=1`;
+> the earlier bridge is their [48] = Plagne–Schmid, *An application of coding theory to
+> estimating Davenport constants*, Des. Codes Cryptogr.; [39] = Kurz, *Divisible minimal
+> codes* (arXiv:2312.00885) sources the minimal-code values.
+>
+> Table 2's binary entries `i(7,2)=20, i(8,2)=24, i(9,2)=26` are **bare exact values** —
+> the paper's convention marks unknowns as intervals `[n1,n2]`, used liberally at other
+> `q` — so the previously "conditional" rungs `r = 11..15` are published-exact too.
+>
+> **Standing of this atom after the hit:** the values are independent re-derivations with
+> explicit machine-verified certificates (BSS print no witnesses; our `r = 7` exhaustive
+> negative, `r = 8` hunt census, and `r = 9` BCH parity-check certificate verify their
+> rows `k = 5, 6` and Remark 5.15 by entirely different routes — perfect agreement on all
+> seventeen rungs). The conjecture-falsification narrative stands as recorded. What BSS
+> does **not** contain (grep + read): any decomposition/criterion content (X1-K/M) or any
+> witness classification (X1-T orbits, strata, censuses) — those remain this programme's.
+
 ## The bridge (published — prior-art hit #14)
 
 The parity-check dictionary: a length-`n` sequence `W` over `C_2^r` of rank `r` corresponds

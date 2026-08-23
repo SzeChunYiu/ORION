@@ -1,5 +1,15 @@
 # ORION-RG X1-U — the `D_2(C_2^r)` frontier: two new exact values, `f_4(C_2^7)`, and a closed-form conjecture
 
+> **SUPERSEDED IN PART — PRIOR-ART HIT #15 (X1-V banner has the verbatim source).** The
+> values `D_2(C_2^7) = 12` and `D_2(C_2^8) = 14` are **published**: Borello–Schmid–Scotti
+> (arXiv:2406.04034, June 2024), Remark 5.15, as part of a list `r ≤ 17` deduced from
+> their intersecting-code Table 2 via their Theorem 5.12. They were not new when derived
+> here. What remains this atom's own: the explicit certificates and exhaustive searches
+> (BSS print values, not witnesses — our routes are independent and agree), the
+> `f_4(C_2^7) = 11` value (not in BSS; still gate-pending elsewhere), the min-ZS-5
+> stratum census at `r = 7` with the second criterion failure, and the falsified
+> conjecture record below.
+
 Freeze–Schmid (Discrete Math. 310 (2010)) determine `D_2(C_2^r)` for `r ≤ 6` and state —
 Read-tool verbatim — *"For larger `r` our bounds are far apart."* This atom decides the next
 two ranks.
