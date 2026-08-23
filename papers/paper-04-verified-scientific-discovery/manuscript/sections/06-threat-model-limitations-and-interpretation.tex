@@ -1,5 +1,12 @@
 \section{Threat model, limitations, and interpretation}
-The result is intentionally bounded. First, the campaign uses 420 synthetic mechanical-gold cases; it does not establish performance on naturally occurring scientific disagreements. The written human-adjudication rubric was never triggered because all final cases were mechanically decidable, so no claim is made about adjudicator agreement. Second, scoring is deterministic and uses no LLM provider. It isolates authority-transition semantics but does not measure the error distribution of a full stochastic research agent.
+The theory and the evidence have different scopes.  Proposition~1 and its
+factorization corollary hold for any finite exact-terminal decision problem, but
+they identify what information and interface make a decision attainable; they
+do not show that a deployed verifier possesses the target-sufficient
+representation.  The empirical layers establish only the representations,
+relations, and case distributions that were frozen for those layers.
+
+First, the V2/V3 campaigns use 420 synthetic mechanical-gold cases; they do not establish performance on naturally occurring scientific disagreements. The written human-adjudication rubric was never triggered because all final cases were mechanically decidable, so no claim is made about adjudicator agreement. P4-X adds five heterogeneous artifact domains and eight archetypes but remains a 400-case exact-contract study, not a population sample of scientific disputes. Second, scoring is deterministic and uses no LLM provider. It isolates authority-transition semantics but does not measure the error distribution of a full stochastic research agent.
 
 Third, comparator mechanisms are matched reimplementations. They instantiate published ideas under one packet and budget, but the result must not be read as a leaderboard against the original ProvenAI, ProvenanceGuard, DeepSciVerify, FIRE, AttributionBench, CLAIM-BENCH, RewardHackingAgents, or related implementations. Fourth, the clean controls are intentionally unambiguous; 60/60 coverage shows that the governed pipeline did not win by blanket refusal but does not estimate recall on difficult benign cases. Fifth, the hostile taxonomy is finite. Adaptive attacks, compromised host infrastructure, side channels outside retained syscall/network telemetry, and novel evaluator attacks remain outside this campaign.
 
@@ -27,9 +34,46 @@ strongest comparator but $0.5$ against the one mechanism that can escalate. And 
 H2, whose clean coverage is $1.0$ for every system on both batteries; that axis remains a design
 limit with no case yet built that could move it.
 
+The V3 nuisance audit is also claim-axis specific.  Its fourteen frozen probes
+and thirteen seeds clear the exact \textsc{CannotCheck} axis at informedness
+$0.0$, while the adjudication receipt retains four off-axis residuals and
+explicitly withholds whole-register clearance.  More importantly, nine of ten
+comparator mechanisms cannot emit \textsc{CannotCheck}.  In the terminology of
+Section~\ref{sec:axis-theory}, V3 has nonzero observed resolution but unmatched
+terminal attainability.  It therefore repairs the V2 construction failure
+without yet supporting a general scientific-judgement claim.
+
 Seventh, the mechanisms composed here are not claimed as novel, and the boundary is worth stating once and plainly. Provenance tracking, attribution evaluation, citation checking, iterative verification, evidence escalation, contamination detection, evaluator-tamper detection, abstention, benchmark auditing, claim-level auditability, provenance ontologies, and generic behavioral-integrity checking are all prior work, cited in Section~\ref{sec:related}. The relevance-versus-authorized-evidence distinction is likewise established there. What is measured here is the behavior of the non-compensatory conjunction of those prerequisites under a protected, gold-blind battery, and nothing beyond it.
+
+P4-X does not remove that boundary.  It grants the strongest comparison product
+ordinary provenance, verification, exact artifact/version binding, evaluator
+custody, epoch handling, and generic authorization before testing the target
+scientific-promotion relation.  Its 400/400 versus 250/400 result shows that the
+registered generic relation is insufficient on the exact successor contracts;
+the 400/400 ideal-product tie simultaneously shows that an information-equivalent
+donor product is sufficient.  Neither count licenses a centralization advantage,
+universal necessity of the exact gate list, or superiority over deployed donor
+systems.
 
 Recent benchmark-auditing work is an additional caution: expert-built tasks and evaluation harnesses can contain specification, environment, ground-truth, or grading defects that materially alter measured rankings \citep{benchguard2026,autobenchmarkaudit2026,hal2025}. Deterministic generation, typed-panel validation, exact split/harness binding, protected custody, post-run public slicing, and independent reproduction mitigate this risk, but these controls do not prove that the 13-family taxonomy is complete or that every benchmark-design assumption is correct.
 
-The appropriate interpretation is architectural: under the frozen attack families and custody model, non-compensatory authority gates prevent promotions that survive strong semantic/citation/source mechanisms when a governance prerequisite is missing. This supports a fail-closed authority transition as an assurance layer; it does not prove universal scientific truth, general abstention ability, or evaluator security.
+The frozen naturalistic successor, identified as
+\idt{P4.H3.NATURALISTIC.V1}, is the upward test rather than a claimed result.  It
+specifies 768 independent source--case-family clusters in 32 strata (four
+domains by eight unidentifiability mechanisms), pairs every unidentifiable unit
+with an identifiable same-source control, freezes four
+\textsc{CannotCheck}-capable primary comparators and a worst-domain gate, and
+requires independent evaluator/raw-case custody plus a source-disjoint
+replication panel.  Its outcomes have not been accessed and the external panel
+is missing.  No naturalistic, cross-domain, external-comparator, or source-
+disjoint result is inferred from the protocol or its power calculation.
 
+The appropriate current interpretation is a verification-axis envelope.  V2
+measures false-promotion separation and records a saturated negative axis; V3
+shows that a shortcut-resistant exact axis can still be interface-limited; and
+P4-X shows both failure of a registered generic-authorization relation and exact
+equivalence when a donor product receives target-sufficient state and the same
+predicate.  Together they support a fail-closed scientific-promotion interface
+and the factorization theory that explains its limits.  They do not prove
+universal scientific truth, naturalistic scientific judgement, general
+abstention ability, or evaluator security.

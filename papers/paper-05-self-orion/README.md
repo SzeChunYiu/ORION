@@ -1,9 +1,26 @@
-# Paper 05 — Self-ORION
+# Paper 05 — Minimal method revision under observational equivalence
 
 **Stable ID:** ORION-P5  
 **Status:** SCOPED WORKING MANUSCRIPT COMPLETE / LOCAL FAILURE-GOVERNANCE FALSIFIER V1 PASSED / EXTERNAL GOVERNED SELF-IMPROVEMENT `CANNOT_CHECK`
 
-## Scoped claim
+## Analytic claim
+
+The paper studies the minimal authorized revision front under a partial order
+of method changes. Exact revision selection through an evidence interface is
+possible iff the required front is constant on every interface fibre; arbitrary
+revision loss is bounded by the conditional Bayes risk inside mixed fibres. On
+a finite ambiguous fibre, an intervention panel is exact iff it covers every
+pair requiring a different revision, so minimum-cost fixed discrimination is
+the induced weighted set-cover problem. If protected promotion differs inside
+an internally identical transcript, no internal rule can be both sound and
+complete.
+
+These are analytic results. They do not establish empirical self-improvement.
+The additive proof/evidence boundary is indexed in
+`THEORY_CLAIM_LEDGER_V2.md`; the historical result-bearing ledger remains
+immutable at `evidence/CLAIM_LEDGER_V1.md`.
+
+## Empirical claim boundary
 
 The candidate contribution is not a self-editing or evolutionary coding agent. Self-ORION treats failures and nulls as persistent knowledge, separates recurrence from causal responsibility, gates invention until ordinary causes and transfer alternatives are challenged, executes challengers in isolated environments, requires replay plus fresh transfer plus protected assurance, retains harmful/null variants, and has no self-merge authority.
 
@@ -52,6 +69,13 @@ Failure record: `research/failures/2026-08-readiness-gate-self-certifiable/READM
 - explicit external attestation and host-only promotion.
 
 No governed self-improvement claim is authorized until these prospective external gates pass.
+
+The three retained attribution errors now have additive, outcome-blind
+factorial successor designs in
+`protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json`. The wide external
+revision-level design is `protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json`:
+768 source-disjoint clusters across eight domains and eight revision classes.
+Neither successor has been executed.
 
 ## Manuscript
 

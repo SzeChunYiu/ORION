@@ -3,6 +3,23 @@
 
 The neighbouring literature is strongest exactly where this paper does not compete. Every mechanism discussed below is treated as a component the design may absorb, not as a rival: a stronger proposer, attributor or acceptor makes the authority boundary drawn here more useful, not less.
 
+The formal parent is statistical decision under partial information. Blackwell
+orders experiments by the decisions their observations support
+\cite{blackwell1953}; sequential design selects observations to distinguish
+competing states \cite{chernoff1959}; and adaptive submodularity identifies
+conditions under which greedy adaptive information collection has performance
+guarantees \cite{golovin2011}, while minimum-test-set work characterizes the
+combinatorial cost of separating finite objects \cite{moret1985}. Model-based diagnosis supplies explicit
+hypotheses, conflicts and discriminating observations
+\cite{reiter1987,dekleer1987}. Those theories are absorbed, not renamed. The
+factorization and conditional Bayes-risk identities in
+Section~\ref{sec:minimal-revision-theory} are standard decision-theoretic
+consequences. The additional target imposed here is the minimal
+\emph{authorized revision front}; the discriminator-cover theorem asks only
+for separation of pairs requiring different fronts, rather than complete
+reconstruction of every latent state. It also makes an uncovered pair an
+explicit impossibility certificate for the registered intervention family.
+
 Archives and self-modification came first. ADAS automates agent-system design through a meta-agent and an archive \cite{adas2024}; Darwin G\"odel Machine performs open-ended self-code modification with empirical validation, an archive and sandboxing \cite{dgm2025}; and ADIAS makes persistent issue identity, lifecycle, evidence and intervention-outcome history a first-class optimization state \cite{adias2026}. Persistent issue state, an archive of candidates and sandboxed validation are therefore inherited here rather than introduced.
 
 Failure attribution is a second neighbourhood, and a crowded one. SAGE uses multi-hypothesis failure attribution to generate evidence-grounded explanations and routes verified root causes to intervention levels \cite{sagemhfa2026}. CausalFlow uses counterfactual intervention to estimate causal responsibility and to generate minimal repairs \cite{causalflow2026}. Failure-driven self-improvement converts failed computer-use trajectories into diagnosed code-level improvements \cite{failurelearning2026}. Each of these answers \emph{which cause explains the failure}. The question they leave open is what an attributed cause is then permitted to authorize, and on whose evidence that authorization rests.
@@ -13,4 +30,19 @@ Acceptance statistics form a third neighbourhood. PACE casts repeated incumbent-
 
 Finally, transfer measurement supplies the outcome discipline. PAST-Bench evaluates whether retained experience causes later-task improvement under matched experience-on/off conditions \cite{pastbench2026}, which motivates pathway-sensitive evaluation rather than treating memory presence as learning. SEVA reports that repeated self-evolution can produce benchmark specialists that improve on one benchmark while regressing on another \cite{seva2026}, which is why replay evidence and fresh-transfer evidence are measured and reported separately below rather than averaged.
 
-What remains after all of this is narrower and explicitly compositional. A persistent development issue may license a method change only after evidence-bound causal discrimination and invention-readiness checks; acceptance additionally requires non-compensatory staged evidence in the order static checks, replay, independent protected fresh transfer and non-harm, and protected assurance, with immutable retention of negative, null and harmful history and of compromise telemetry, with evaluator and holdout custody outside challenger write authority, and with self-certification and merge authority structurally absent. Promotion remains a host decision. Whether that composition yields more transferable and less compromise-prone improvement than simpler self-edit or acceptance systems is an empirical question; architecture alone cannot settle it, and the evidence reported here does not.
+What remains after all of this is broader in target but explicitly
+compositional. A persistent development issue may license only a minimal
+revision front that is identifiable from its evidence and discriminator
+interface. A candidate change then requires non-compensatory staged evidence in
+the order static checks, replay, independent protected fresh transfer and
+non-harm, and protected assurance, with immutable retention of negative, null
+and harmful history and compromise telemetry, evaluator and holdout custody
+outside challenger write authority, and self-certification and merge authority
+structurally absent. Stronger diagnosis, search, repair and anytime-valid
+acceptance mechanisms can be inserted as donor components without changing
+this boundary; they improve the interface only when they split a previously
+mixed required-decision fibre. Promotion remains a host decision. Whether the
+composition yields more transferable and less compromise-prone improvement
+than simpler self-edit or acceptance systems is an empirical question;
+architecture and the analytic theorems alone cannot settle it, and the evidence
+reported here does not.

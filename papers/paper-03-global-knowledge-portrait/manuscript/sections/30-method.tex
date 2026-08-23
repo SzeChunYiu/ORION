@@ -38,10 +38,12 @@ modality $\mu_s$, attribution $a_s$, discourse relation $\delta_s$, and
 assumptions/unresolved information $\Pi_s$.
 
 Each coordinate is a typed hypothesis supported by the source authority
-available for that case, not a value filled merely to complete a schema. In
-the public-reference datasets, unsupported coordinates remain absent or
-unresolved; the study does not ask a model to infer missing gold coordinates
-from raw papers.
+available for that case, not a value filled merely to complete a schema. Its
+observation status is part of the projection: an explicit source statement, an
+explicit source-level absence, and a coordinate never observed by the
+extraction process are not interchangeable. In the public-reference datasets,
+unsupported coordinates remain absent or unresolved; the study does not ask a
+model to infer missing gold coordinates from raw papers.
 
 \subsection{Coordinate-wise comparison}
 
@@ -128,16 +130,21 @@ used as an ablation supporting the reported mapping result.
 
 Nothing here claims the first scientific knowledge graph, cross-domain
 retrieval-augmented system, schema matcher, provenance graph, entity resolver
-or literature-discovery method. The supported empirical object is narrower:
-over the frozen public-reference mapping cases, explicit scientific-coordinate
-conditions plus an obstruction state reduce false merges relative to flat
-predicate canonicalization while satisfying a conservative false-split guard.
+or literature-discovery method. Section~\ref{sec:envelope} makes a general
+formal claim about what any observation and constraint set identifies, and
+about decisions under an explicitly declared loss. The supported external
+empirical object is narrower: over the frozen public-reference mapping cases,
+explicit scientific-coordinate conditions plus an obstruction state reduce
+false merges relative to flat predicate canonicalization while satisfying a
+conservative false-split guard.
 
 Local exact worlds continue to falsify implementation semantics in controlled
 cases, in the manner established for source-local reconstruction and for typed
-contradiction detection~\cite{orion2025paper1,orion2025paper2}. They do not
-establish external raw-text extraction quality, recoverability, downstream
-utility, or broad cross-domain generality; those remain separate prospective
+contradiction detection~\cite{orion2025paper1,orion2025paper2}. They can also
+witness a formal non-identification result when two admissible worlds share an
+observation but require different query answers. They do not establish
+external raw-text extraction quality, recoverability, downstream utility, or
+broad cross-domain empirical generality; those remain separate prospective
 questions.
 
 \endinput

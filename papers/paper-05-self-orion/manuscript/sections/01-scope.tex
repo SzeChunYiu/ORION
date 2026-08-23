@@ -8,25 +8,52 @@
   \label{fig:P5-1}
 \end{figure}
 
-A method-evolving research system must answer two different questions: what change should be tried, and who is allowed to conclude that the change is better. Collapsing those questions creates a self-promotion channel. A coding agent may produce an impressive patch, but if it can also rewrite the benchmark, choose only favorable episodes, change protected governance, or certify its own evidence, improvement is not established.
+A method-evolving research system must answer three different questions: what
+latent defect produced the observation, what is the least method revision that
+the available evidence licenses, and who is allowed to conclude that the
+revision is better. Collapsing the first two turns a recurring symptom into an
+unlicensed broad rewrite. Collapsing the last two creates a self-promotion
+channel. A coding agent may produce an impressive patch, but if it can also
+rewrite the benchmark, choose only favorable episodes, change protected
+governance, or certify its own evidence, improvement is not established.
 
-Development is therefore treated here as an evidence-governed research process rather than as a direct self-edit loop. The claim under test is deliberately narrower than ``autonomous self-improvement'':
+Development is therefore treated here as an evidence-governed research process
+rather than as a direct self-edit loop. The empirical claim under test is
+narrower than ``autonomous self-improvement'', but the analytic question is
+broader than one architecture:
 
 \begin{quote}
 Failures may become method knowledge only after persistent recording, causal discrimination, nearest-work/transfer challenge, isolated challenger execution, replay, fresh transfer and protected assurance; the candidate process cannot grant itself method authority or merge its own change.
 \end{quote}
 
-A method state is not writable merely because a research run failed. A failure first changes the evidence available \emph{about} the method. Only a separately governed transition can change which method is authorized.
+A method state is not writable merely because a research run failed. A failure
+first changes the evidence available \emph{about} the method.
+Section~\ref{sec:minimal-revision-theory} shows that a revision can be identified
+only when the observed evidence and interventions separate every latent
+situation requiring a different minimal front. Only a separately governed
+transition can change which method is authorized.
 
 \subsection{Contributions}
 
-Four mechanisms carry the argument, and each is a property of the mechanism rather than of any particular system that implements it:
+Four contributions carry the argument, and each is a property of the theory or
+mechanism rather than of any particular system that implements it:
 
 \begin{enumerate}
-  \item a failure-to-method path that separates observation, recurrence, attribution, lesson/challenger and authority;
-  \item non-self-promotional evolution, in which candidate generation and candidate authorization remain distinct;
-  \item protected fresh assurance, which requires evidence beyond the episodes used to construct the repair;
-  \item a separate authority layer whose final promotion remains in external host custody.
+  \item a revision-factorization theorem and arbitrary-loss Bayes bound for
+  method revision under observational equivalence;
+  \item a discriminator-cover theorem that converts every unresolved
+  cross-revision collision into an explicit intervention-design problem;
+  \item a failure-to-method path that separates observation, recurrence,
+  attribution, minimal revision, challenger construction and authority; and
+  \item non-self-promotional evolution with isolated execution, protected fresh
+  assurance, immutable adverse history and final promotion in external host
+  custody.
 \end{enumerate}
 
-These are candidate differences from existing work, not established novelty or empirical superiority. Section~\ref{sec:related} places each among its neighbours, and Section~\ref{sec:limitations} states what the present evidence does and does not support.
+The factorization and Bayes identities are standard mathematical consequences
+made operational here for revision-level selection; they are not claimed as
+new general decision theory. The discriminator-cover reduction, typed revision
+target and non-self-promotion consequence form the paper's theoretical
+composition. None establishes empirical superiority. Section~\ref{sec:related}
+places each component among its neighbours, and Section~\ref{sec:limitations}
+states what the present evidence does and does not support.

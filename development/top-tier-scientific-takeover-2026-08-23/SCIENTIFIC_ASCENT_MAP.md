@@ -4,6 +4,9 @@
 **Purpose:** turn every adverse or donor-absorbed result into a materially wider
 research problem without changing the historical terminal that produced it.
 
+The integrated P1--P5 theory, stagewise sufficiency result, and division of
+scientific ownership are in `P1_P5_UMBRELLA_SYNTHESIS.md`.
+
 ## Why the programme is not yet top-tier as a whole
 
 The central problem is not pytest or manuscript formatting. It is an authority

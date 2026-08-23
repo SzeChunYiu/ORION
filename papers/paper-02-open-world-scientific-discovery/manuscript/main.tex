@@ -1,6 +1,10 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
 \usepackage[margin=1in]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
@@ -12,7 +16,7 @@
 \urlstyle{tt}
 \newcommand{\idt}[1]{\path{#1}}
 
-\title{Acquisition Is Not Closure: Fail-Closed Authority for Open-World Scientific-Literature Discovery}
+\title{The Acquisition--Authority Envelope for Open-World Scientific Discovery}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -22,15 +26,75 @@
 \maketitle
 
 \begin{abstract}
-Scientific-literature discovery has two distinct control problems: acquiring useful evidence and deciding what that evidence is allowed to certify. This paper separates an increasingly capable, donor-composable acquisition layer from a fail-closed scientific-closure authority layer. Routes count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; content identity is held apart from question-conditioned processing state; route-local stopping is barred from certifying task-global completeness; and unavailable or censored routes are kept as explicit open obligations. In a frozen \OfflineTaskCount{}-task complete-gold controlled index, the governed system reaches mean recall 0.979487 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes. The frozen statistical plan awards this campaign its committed precision tier, but the achieved half-width still exceeds the frozen superiority margin, so the primary offline result carries the plan's mandatory underpowered label and these numbers support mechanism behavior rather than an inferential superiority claim. A separate credential-free MetaSyn probe, evaluated with the pinned official ID-only evaluator on all 86 released test reviews, reaches retrieval recall 0.7485 and inclusion recall 0.5651; it is a bounded external retrieval/screening probe rather than evidence of multi-provider superiority for the full system. A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference therefore stays undetermined, not a valid null or negative result. A separate post-saturation exact-contract battery isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, the authority rule attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95\% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400. The architectural contribution is therefore bounded: local utility, confidence, coverage, sufficiency or provider failure does not by itself erase unresolved scientific-search obligations, and no deployed or external retrieval-superiority claim follows from the exact-contract result.
+Open-world scientific discovery is not a ranking problem alone.  It is a joint
+control problem over route invention, evidence acquisition, question-conditioned
+processing, preservation of future search options, and scientific closure.  We
+formalize this larger object as an \emph{acquisition--authority envelope}: the
+set of discovery, utility, optionality, safety and cost vectors attainable by a
+class of controllers under a common resource and source-access contract.  The
+formulation absorbs strong lexical, reasoning-aware, structure-aware,
+citation-expansion, coverage, value-of-information and verification-aware
+stopping mechanisms as interchangeable donor components rather than defining
+the contribution against any one retriever.  Four analytic results locate the
+remaining problem.  First, an acquisition-ceiling theorem proves that no
+downstream ranker, reader or synthesizer can recover decision-relevant evidence
+that no admissible route emitted.  Second, a necessary-and-sufficient
+factorization theorem shows that a donor product can implement correct
+scientific closure exactly when closure truth is constant on every fibre of its
+observable state.  Third, an indistinguishable-world lower bound shows that a
+controller cannot simultaneously guarantee low false closure and high valid
+closure yield while a material alternative world remains observationally
+unresolved; acquisition must refine the state or the system must remain open.
+Fourth, the resulting obligation completion is maximally permissive among
+universally sound closure rules under the declared contract.
+
+The archived experiments test parts of this theory at different levels.  In a
+frozen \OfflineTaskCount{}-task complete-gold controlled index, the governed
+system reaches mean recall 0.979487 versus 0.666667 for the strongest
+protocol-frozen confirmatory comparator and makes no premature task closures,
+but the frozen plan requires the result to remain underpowered and descriptive.
+In a separate external adverse campaign, the governed routes emitted only 7 of
+229 gold identifiers, making candidate generation---not downstream
+selection---the binding ceiling; that terminal remains adverse.  On 400
+protected heterogeneous exact contracts, typed authority obtains 400/400 exact
+closure decisions versus 250/400 for a donor-complete product that omits
+unresolved material routes, while an information-equivalent ideal product ties
+400/400 as the factorization theorem predicts.  These results establish an
+analytic and mechanistic framework, not deployed open-world superiority.  A
+separately frozen 768-cluster, four-arena successor is the prospective test of
+cross-arena acquisition-envelope superiority; its external worlds, comparator
+reproductions and independent custody remain unbound, and no outcome is claimed.
 \end{abstract}
 
-\noindent\textbf{Keywords:} scientific literature discovery; information retrieval; deep research agents; systematic review; recall; stopping rules; open-world search.
+\noindent\textbf{Keywords:} open-world scientific discovery; information retrieval; deep research agents; acquisition envelope; scientific closure; systematic review; stopping rules.
 
 \section{Introduction}
-Scientific discovery agents increasingly combine retrieval, query reformulation, reranking, graph expansion, selective reading and learned stopping. Progress in those components does not remove a separate systems question: \emph{what authority does a local acquisition signal have to certify scientific completeness?} This paper studies the control boundary around those mechanisms: when is a route genuinely different, what has already been processed for the current scientific question, when may a route stop, and when must task-level coverage stay open?
+Scientific discovery agents increasingly combine retrieval, query reformulation,
+reranking, graph expansion, selective reading, state compression, contradiction
+handling and learned stopping.  Treating any one component as ``the discovery
+system'' makes scientific comparison unstable: a new retriever can dominate the
+old acquisition layer without answering whether the assembled controller found
+the decision-relevant evidence, kept useful future routes alive, or closed the
+scientific task safely.  We therefore ask a larger question: \emph{what joint
+discovery frontier is attainable under a fixed source-access and resource
+contract, and what information is necessary for a point on that frontier to
+carry scientific-closure authority?}
 
-The paper makes four scoped contributions. First, it formalizes \emph{earned route independence}: tool or provider names carry no evidential weight without distinct backend, query-derivation and capture identities. Second, it separates route-local stopping from task-global closure and treats unavailable or censored routes as typed obligations rather than as negative evidence. Third, it separates content identity from question-conditioned read state, preventing duplicate discovery inflation without suppressing legitimate rereading. Fourth, it makes the acquisition layer donor-composable: stronger lexical, dense, metadata-augmented, reasoning-aware, field-aware, graph-expansion, verification or utility mechanisms can be incorporated without inheriting authority to erase unresolved obligations.
+The paper makes five contributions.  First, it defines the
+\emph{acquisition--authority envelope}, a non-compensatory frontier over
+decision-relevant discovery, scientific utility, future-search optionality,
+false closure, valid closure yield and total charged cost.  This moves the unit
+of theory above individual retrievers and stopping rules.  Second, it proves an
+acquisition-ceiling theorem that attributes an adverse outcome to route
+generation whenever the required evidence never entered the candidate pool.
+Third, it gives a necessary-and-sufficient state-factorization criterion for
+scientific closure and an indistinguishable-world lower bound for any controller
+whose observations conflate closable and materially open worlds.  Fourth, it
+constructs the maximally permissive fail-closed completion of a donor controller
+relative to a declared obligation contract.  Fifth, it instantiates the theory
+with earned route independence and question-conditioned read state, then places
+all archived positive, adverse and undetermined experiments at their exact
+authority levels rather than averaging them into one apparent win.
 
 Let route $r$ be characterized by a backend identity $b_r$, query-derivation process $q_r$, and capture/content identity policy $c_r$. A distinct route label is insufficient for independence. Evidence for route independence must be derived from the actual generation and capture process rather than asserted as a boolean.
 
@@ -44,6 +108,7 @@ This fail-closed rule is especially important for capture--recapture-style diagn
 
 \input{sections/acquisition_authority}
 \input{sections/formalism}
+\input{sections/acquisition_authority-envelope}
 
 \begin{figure}[t]
 \centering
@@ -67,18 +132,63 @@ illustrates.}
 \input{sections/structure-conditioned-discovery-interface}
 
 \section{Related work}
-The neighbouring literature is strongest exactly where this paper does not compete. AutoResearchBench establishes that both specific-target and open-ended scientific literature discovery are still difficult for current agents \cite{autoresearchbench2026}. On the acquisition side, SAGE shows that carefully tuned lexical retrieval can outperform LLM retrievers inside deep-research workflows \cite{sage2026}; AgentIR shows that an agent's reasoning trace is itself a usable retrieval signal \cite{agentir2026}; and SIEVE shows that fielded Boolean admission, structure-rich inspection and selective section fetching improve the accuracy--context tradeoff of deep-research retrieval \cite{sieve2026}. Breadth-first bibliography expansion recovers literature that API-only retrieval misses, and in the same move shows why a human reference list is not a complete single-axis ground truth \cite{rethinkinglitsearch2026}. Each of these is a candidate module for the acquisition layer studied here; a stronger one makes the boundary drawn in this paper more useful, not less.
+AutoResearchBench establishes that both specific-target and open-ended
+scientific-literature discovery remain difficult for current agents
+\cite{autoresearchbench2026}.  The acquisition frontier is already strong and
+heterogeneous: SAGE shows that tuned lexical retrieval can outperform LLM
+retrievers inside deep-research workflows \cite{sage2026}; AgentIR uses the
+agent's reasoning trace as a retrieval signal \cite{agentir2026}; SIEVE combines
+fielded Boolean admission, structure-rich inspection and selective section
+fetching \cite{sieve2026}; and breadth-first bibliography expansion recovers
+material missed by API-only retrieval \cite{rethinkinglitsearch2026}.  Rather
+than reserve a weaker baseline,
+Definition~\ref{def:acquisition-authority-envelope} places all runnable instances and
+their outcome-blind functional analogues inside the donor-complete policy class.
+Their actions enlarge the acquisition envelope; a candidate contribution must
+survive that enlargement.
 
 Screening and stage attribution form a second neighbourhood. MetaSyn separates retrieval from eligibility screening and shows why a retrieval ceiling does not imply an inclusion-recall ceiling \cite{metasyn2026}, and AgentSLR shows that end-to-end systematic-review automation is an active baseline family in its own right \cite{agentslr2026}. This paper adopts their measurement discipline---stage attribution and denominator caution---and inherits their warning that one aggregate recall number hides where the evidence was actually lost.
 
-The stopping literature is the closest neighbour and the most crowded. DeepControl regulates retrieval continuation by marginal information utility \cite{deepcontrol2026}; decision-theoretic screening rules optimize stopping against explicit cost and payoff models \cite{decisionstop2026}; HALT frames stopping as claim--evidence coverage and abstains when coverage cannot be verified \cite{halt2026}; MiCP applies conformal prediction to adaptive multi-turn reasoning so a target coverage level survives early stopping \cite{micp2026}; and a structured Search-R1 variant trains sufficiency and gap judgements for stopping while explicitly declining to claim the stop is safe \cite{multiragstop2026}. Don't Stop Early combines coverage-driven objectives with evidence-aware completion \cite{donotstopearly2026}; Confidence-Based Stopping targets decision sufficiency rather than recall alone \cite{confidencebasedstop2026}; KnowPlan issues a finite closure certificate over atomic source obligations \cite{knowplan2026}; iCORE binds generic work and obligation transitions to evidence \cite{icore2026}; and Science of Intent names open-world closure gaps and misclosure directly \cite{scienceintent2026}. Every one of these answers \emph{when to stop}. The question they leave open is what a stop is permitted to certify when the routes still outstanding are not merely unpromising but unavailable, censored or provider-invalid: a coverage, utility or sufficiency signal computed over the routes that answered says nothing about the route that did not.
+The stopping and obligation literature owns more than ``when to stop.''
+DeepControl and decision-theoretic screening optimize continuation against
+information value, cost and payoff \cite{deepcontrol2026,decisionstop2026}; HALT
+uses claim--evidence coverage and abstains when it cannot verify that coverage
+\cite{halt2026}; MiCP controls adaptive coverage \cite{micp2026}; and structured
+Search-R1 learns sufficiency and gap judgements \cite{multiragstop2026}.  Don't
+Stop Early couples coverage-driven objectives to evidence-aware completion
+\cite{donotstopearly2026}, while Confidence-Based Stopping targets decision
+sufficiency rather than recall alone \cite{confidencebasedstop2026}.  KnowPlan
+provides finite source-obligation certificates \cite{knowplan2026}; iCORE binds
+work and obligation transitions to evidence \cite{icore2026}; and Science of
+Intent explicitly studies closure gaps and misclosure \cite{scienceintent2026}.
+The present theory grants all of these mechanisms to the donor state.  Its
+residual is the factorization question in Theorem~\ref{thm:factorization}: after
+composition, does the retained state actually distinguish every closable world
+from every materially open world?  If yes, the product is sufficient and may
+tie.  If not, no new classifier over the same state can manufacture authority.
 
-Question-conditioned memory has its own line of work: MemChain constructs question-conditioned evidence plans and grounded memory traces \cite{memchain2026}. What literature discovery adds is a dual bookkeeping obligation---content identity, which stops duplicate rediscovery from inflating coverage, held apart from question-conditioned processing state, so that a changed extraction question can legitimately trigger a reread of material already seen.
+Question-conditioned memory has its own line of work: MemChain constructs
+question-conditioned evidence plans and grounded memory traces
+\cite{memchain2026}.  The envelope treats memory as an optionality-bearing
+scientific state, not merely a token cache.  Content identity prevents duplicate
+rediscovery from inflating coverage, whereas question-conditioned processing
+state permits a changed extraction frame to reopen already encountered material.
+Whether that additional coordinate matters is decided by fibre separation and
+prospectively hidden future questions, not by claiming generic memory novelty.
 
 \section{Limitations and integrity}
 The completed controlled experiment is deliberately synthetic. Its complete denominator is what makes missed relevant material and premature closure observable, but the authored routes, public probe vocabulary and easy screening text make it a mechanism test rather than a realistic estimate of retrieval difficulty. The observed +0.31282 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.
 
-The contribution is a control boundary rather than a component, and the components it governs are other people's. Scientific retrieval-augmented generation, agentic literature search, automated systematic review, capture--recapture estimation, lexical, dense, reasoning-aware, field-aware and citation-expansion retrieval, learned or decision-theoretic stopping policies, conformal coverage guarantees, finite obligation ledgers and question-conditioned memory are all prior art, treated here as donor mechanisms and cited as such; the only thing this paper puts forward as its own is the rule about what their outputs may certify.
+The contribution is a comparison and composition theory rather than a claim to
+own its components.  Scientific retrieval-augmented generation, agentic
+literature search, automated systematic review, capture--recapture estimation,
+lexical, dense, reasoning-aware, field-aware and citation-expansion retrieval,
+learned or decision-theoretic stopping, conformal coverage, finite obligation
+ledgers and question-conditioned memory are prior art and enter the donor class.
+The claimed theoretical residual is the joint acquisition--authority envelope,
+its run-conditional acquisition ceiling, the closure-factorization criterion,
+the indistinguishable-world lower bound and the maximally permissive sound
+completion relative to an explicit obligation contract.
 
 The suite carries \OfflineTaskCount{} tasks, which reaches the plan's committed precision tier at an achieved half-width of \OfflineAchievedHalfWidth{} for a standalone rate. The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign that committed authority; because the achieved half-width still exceeds the frozen superiority margin of $0.03$, the primary offline result carries the plan's underpowered label whatever the task count becomes. All \OfflineRunRecordCount{} system/task/repeat executions reproduce exactly, and the \OfflineRepeatCount{} deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.
 
@@ -86,7 +196,24 @@ The exact-contract battery broadens the \emph{contract families} tested, not the
 
 Open-world completeness remains generally unprovable from finite search. External providers are mutable, rate limited and differently scoped, and public benchmark questions and gold identifiers create search-time contamination risk. The corrected MetaSyn run is external but narrow: it uses pinned BM25 retrieval plus a deterministic public-protocol screening rule and the official ID-only evaluator, not the complete route system. Its exact evaluator-side ledger contains 1,677 reference links, of which 598 are missed at retrieval and another 343 are lost after retrieval, leaving 941 final false negatives. These numbers characterize that probe and are not promoted to a general claim about the system.
 
+The theory does not remove that impossibility.  The maximality theorem is
+relative to a declared obligation/realizability contract; it cannot prove that a
+finite open-web route registry contains every material route.  The acquisition
+ceiling is conditional on the captured run and on a valid denominator, not an
+estimate of the best route that might be invented later.  The envelope itself
+depends on the task distribution, budget, access interface and donor class, so
+cross-domain superiority is an empirical hypothesis rather than a corollary of
+the formalism.
+
 Several external authorities remain partially unavailable rather than negative. AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted. SAGE still lacks its published retrieval corpus and official evaluator. The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains undetermined; its observed zero paired effect is not a valid null or negative result. The exact-contract battery does not repair or supersede that external failure. Provider or credential unavailability is likewise kept undetermined, never converted into evidence of absence or a flattering zero-cost result.
+
+The 768-cluster successor also remains entirely prospective.  Its arithmetic
+freeze establishes neither that the task worlds exist in compliant form nor
+that the planned effect is real.  Four source-disjoint arena snapshots,
+reproduced baseline worlds, a capability-matched external comparator, live
+response/cost receipts and independently separated evaluator/gold custody are
+still missing.  No part of that protocol is counted as external evidence in the
+present paper.
 
 The mechanism ablations themselves impose an interpretive limit. Removing the question coordinate from the read ledger changes legitimate reread behavior but does not change aggregate recall in this suite; removing the unavailable-route open state changes censoring/closure semantics while leaving aggregate recall numerically unchanged. These null-on-recall mechanism findings are retained rather than converted into a stronger claim.
 
@@ -95,9 +222,35 @@ All result-bearing statements in the abstract, Results and conclusion are mapped
 \input{sections/availability}
 
 \section{Conclusion}
-This paper advances a systems thesis broader than a contest between individual retrievers: acquisition quality and scientific-closure authority are different layers. The frozen controlled-index companion supports a narrow engineering result: under a complete denominator and matched host-owned budgets, the route/read/stopping governance mechanisms behave in the intended fail-closed directions, and the strongest confirmatory controlled comparator still leaves substantial reachable gold. The separate MetaSyn probe supplies real external retrieval/screening evidence but does not exercise or validate the complete multi-route system. The matched external superiority claim is unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference stays undetermined rather than becoming a valid null.
+Scientific discovery systems should be compared as joint
+acquisition--authority controllers, not as a ranker followed by an unexamined
+stop decision.  The envelope formalism makes that comparison donor-monotone and
+non-compensatory: stronger retrieval, reasoning, coverage, stopping, obligation
+and memory methods are absorbed into the comparator class, while false closure
+cannot be traded for report quality or lower cost.  The acquisition-ceiling
+theorem attributes failures before proposing a repair; the factorization theorem
+states exactly when a product has enough state to implement scientific closure;
+the indistinguishable-world bound proves when new acquisition or new assumptions
+are unavoidable; and the obligation completion is maximally permissive among
+sound rules under its declared contract.
 
-The separate exact-contract battery supplies stronger but still bounded evidence for the closure-authority layer itself. After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, the authority rule obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95\% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure. The effect is the unresolved-route authority rule: all 150 errors made by the donor-complete product are material unavailable/censored/provider-invalid routes that it excludes from the closure denominator. An ideal typed product supplied the same semantics ties 400/400. Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes are still unresolved. Deployed multi-provider and retrieval-engine generality stays undetermined.
+The evidence is deliberately heterogeneous rather than averaged into a single
+claim.  The controlled-index campaign supports mechanism behavior but remains
+underpowered for its frozen superiority margin.  The external 7/229 exposure
+result is an adverse candidate-generation diagnosis, and the provider-invalid
+matched campaign remains undetermined.  The exact-contract battery supports the
+predicted authority distinction---400/400 against 250/400 for a product that
+drops unresolved material routes---while the information-equivalent product's
+400/400 tie confirms that the residual is state sufficiency, not inherent
+centralized expressivity.  These are components of a wider theory, not evidence
+of deployed general superiority.
+
+The upward research target is now precise rather than merely narrower: exceed
+the guarded donor-complete envelope on source-disjoint naturalistic scientific
+worlds by inventing routes that lift the acquisition ceiling, preserving
+decision-relevant future options, and closing safely under independently held
+obligation custody.  The frozen 768-cluster, four-arena successor is designed to
+test that claim, but it has not run and cannot change the current terminal.
 
 \bibliographystyle{plain}
 \bibliography{bibliography,novelty_refresh_2026}

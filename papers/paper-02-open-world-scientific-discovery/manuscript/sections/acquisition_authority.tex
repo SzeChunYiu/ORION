@@ -1,25 +1,28 @@
 \section{Acquisition is not closure}
 \label{sec:acquisition-authority}
 
-The central design move in this paper is to separate two problems that are often
-collapsed into one policy.  An \emph{acquisition policy} decides what to search,
-retrieve, inspect, expand or reread next.  A \emph{closure authority} decides
-whether the evidence state is allowed to support route-local stopping or
-scientific task completion.  Better acquisition can improve recall and reduce
-cost, but it does not automatically acquire authority to declare completeness.
-This separation makes strong external retrieval and stopping mechanisms
-composable rather than adversarial to the contribution of this paper.
+The first design move is to separate two problems that are often collapsed into
+one policy.  An \emph{acquisition policy} decides what to search, retrieve,
+inspect, expand or reread next.  A \emph{closure authority} decides whether the
+evidence state is allowed to support route-local stopping or scientific task
+completion.  The larger theory then reconnects these layers through a joint
+frontier: better acquisition may improve discovery, utility and optionality,
+but it improves scientifically sound closure only when it discharges an
+obligation or exposes a state distinction that closure needs.  This makes strong
+external retrieval and stopping mechanisms composable rather than adversarial
+to the contribution.
 
 Let $x_t$ denote the observable search state at step $t$.  We write an
 acquisition mechanism as
 \[
   a_t \sim A(x_t),
 \]
-where $a_t$ may be a lexical query, a reasoning-aware query, a fielded Boolean
-filter, a graph-expansion action, a selective fetch, a reranking operation, or a
-request for another retrieval round.  No novelty is claimed here for the
-internal form of $A$.  Instead, acquired evidence updates both an evidence state
-$E_t$ and a typed obligation state $O_t$.  Closure is a distinct map
+where $a_t$ may be a lexical query, a newly generated source route, a
+reasoning-aware query, a fielded Boolean filter, a graph-expansion action, a
+selective fetch, a reranking operation, a state-preservation/recovery action, or
+a request for another retrieval round.  No novelty is claimed here for generic
+members of that action family.  Instead, acquired evidence updates both an
+evidence state $E_t$ and a typed obligation state $O_t$.  Closure is a distinct map
 \[
   C(E_t,O_t) \in \{\textsc{continue},\textsc{route-stop},
   \textsc{open},\textsc{cannot-check},\textsc{task-close}\}.
@@ -69,20 +72,24 @@ reasoning to maintain a target coverage guarantee while permitting early stoppin
 \cite{micp2026}; and structured Search-R1 stopping judgments explicitly encode
 sufficiency and remaining gaps \cite{multiragstop2026}.  These signals and
 guarantees can all be useful inputs to acquisition or route-local stopping.  The
-question asked here is narrower: what are those signals permitted to certify
-when routes are dependent, unavailable, censored or only locally exhausted?
+question asked here is higher-order rather than a competition over any one
+signal: what joint discovery frontier does their composition attain, and is the
+resulting state sufficient to certify closure when routes are dependent,
+unavailable, censored or only locally exhausted?
 
 \subsection{The authority residual}
 
-This decomposition yields four residual design claims that are separable from
-the mechanics above.  First, route independence must be earned from backend,
-query-derivation and capture identity rather than from distinct tool names.
-Second, route-local stopping and task-global closure are different authority
-levels.  Third, an unavailable or censored route remains a typed open obligation
-rather than becoming an empty result.  Fourth, content identity and
-question-conditioned processing state must remain distinct so duplicate
-rediscovery does not inflate coverage while a genuinely changed scientific
-question can trigger justified rereading.
+This decomposition yields four interface requirements and one wider comparison
+claim.  Route independence must be earned from backend, query-derivation and
+capture identity rather than from tool names; route-local stopping and
+task-global closure occupy different authority levels; unavailable or censored
+routes remain typed obligations rather than empty results; and content identity
+stays distinct from question-conditioned processing state.  Above those
+requirements, the scientific object is the acquisition--authority envelope:
+the attainable joint frontier over discovery, utility, optionality, closure
+safety, valid closure yield and charged cost.  Section~\ref{sec:envelope}
+derives when a donor-complete product can reach and authorize a point on that
+frontier.
 
 The resulting design is deliberately asymmetric.  It is permissive about
 \emph{how} evidence is acquired: a stronger retriever, query generator,
@@ -97,11 +104,13 @@ published.
 \subsection{Empirical consequence}
 
 The decomposition also fixes the widening experiment.  Candidate-generation
-methods should first be compared and composed under matched query/candidate
-budgets.  Only after candidate recall is high enough to make stopping observable
-should the closure layer be challenged with direct ablations and strong stopping
-baselines.  A positive external result must therefore show both acquisition
-quality and the incremental effect of typed closure authority; a cheaper stop
-that hides reachable relevant evidence is not a positive result.  Conversely,
-a stronger donor retriever that improves acquisition while leaving the closure
-constraints intact strengthens the system rather than weakening the claim.
+methods must be compared and composed under matched \emph{admissible exposure},
+not merely equal request counts.  Only after the acquisition ceiling is high
+enough to make processing and stopping observable should the state and closure
+layers be challenged with direct ablations and strong donor products.  A
+positive external result must therefore improve the guarded joint frontier; a
+cheaper stop that hides reachable evidence or an attractive report assembled
+from a truncated candidate pool is not a positive result.  Conversely, a
+stronger donor retriever that improves acquisition while leaving the closure
+constraints intact strengthens the composed system and raises the comparison
+standard rather than weakening the theory.

@@ -1,65 +1,99 @@
-% Introduction: the problem, the mechanism, and the bounded evidence for it.
+% Introduction: scientific problem, general theory, and evidence layers.
 Scientific claims are distributed across disciplines, each with its own
-terminology, measurement practices, contexts, and representational choices.
-A global synthesis can therefore fail even when every local statement is
-individually well formed: identical surface terms can refer to different
-objects, different labels can denote compatible objects, and apparently
-contradictory claims can differ only in modality, attribution, or context.
-The central problem of this paper is not retrieval itself, but the authority
-to identify two already-structured scientific representations as one global
-statement.
+referents, constructs, measurements, contexts, and representational choices.
+A global synthesis can fail even when every local statement is individually
+well formed. Identical names may denote different objects; nominally similar
+constructs may rest on incompatible operationalizations; apparent
+contradictions may differ only in context, modality or attribution; and an
+extractor may omit the one coordinate that would distinguish a valid merge
+from a false one.
 
-\subsection{The proposal in brief}
+Most integration pipelines nevertheless seek a single completed artifact: a
+canonical schema, fused record, knowledge graph, or generated synthesis. That
+target conflates two questions. The first is epistemic: what do the available
+source projections identify? The second is decisional: what may a particular
+downstream user do given what remains unidentified? A more powerful model or
+a stricter threshold can change the answer to the second question, but it
+cannot recover a fact that is absent from every input while observationally
+equivalent source worlds require different answers.
 
-Each source is represented as a \emph{source-local scientific projection}
-bound to its provenance. A proposed cross-source mapping records scientific
-coordinates such as referent, construct, measurement, context, polarity,
-modality, and attribution separately rather than reducing them to one
-similarity score. When the coordinates required by the claim are compatible,
-the projections may be \emph{glued} into a single global statement. When a
-load-bearing coordinate is incompatible or unresolved, the mapping remains a
-typed \emph{obstruction} or a \emph{plural view} rather than being forced into
-a canonical merge.
+This paper proposes a general alternative: the \emph{epistemic portrait
+envelope}. Each source remains a provenance-bound local projection. Typed
+mapping constraints define the set of global portraits jointly compatible
+with those projections. A query is licensed only when it is invariant across
+that set; otherwise the system returns the identified set or an unresolved
+state. A downstream action is selected separately under an explicit loss for
+false merge, false split and deferral. This formulation absorbs structured
+extraction, scientific-variable semantics, ontology and schema alignment,
+provenance-aware integration, pluralism, partial identification and robust
+decision theory as donor machinery. Its residual contribution is their
+composition at the scientific-identity interface.
 
-That rule is evaluated at the layer for which external evidence currently
-exists. An initial public-reference study contains 32 already-structured cases
-derived from pinned external sources. A second, disjoint 32-case holdout was
-selected and execution-frozen before its system outputs, including its exact
-gold digest, source revisions, evaluator code, bootstrap seed, margins, and
-pass rule. On that confirmatory holdout, coordinate-governed mapping produced
-zero false merges against 0.1875 for flat predicate canonicalization; the
-paired difference was $-0.1875$ with a 95\% bootstrap interval of
-$[-0.34375,-0.0625]$. The false-split difference against an exact-coordinate
-conservative control was $0.000$ with interval $[0.000,0.000]$, satisfying the
-rule declared before those outputs were seen.
+\subsection{Contributions}
 
-The evidence is deliberately narrower than the mechanism's design ambition.
-It does not establish raw-text extraction superiority, expert construct
-validity across the eight case families the broader design describes,
-reader-level recoverability of a generated portrait, downstream
-scientific-answer improvement, or necessity of every semantic coordinate.
-Each of those remains undetermined rather than being inferred from the mapping
-result.
+The paper makes five theoretical contributions and supplies three distinct
+evidence layers.
 
-The surviving empirical claim is the narrow one: for the frozen
-public-reference mapping task, explicit scientific-coordinate conditions plus
-an obstruction state reduce false merges relative to flat predicate
-canonicalization while satisfying the false-split guard declared in advance.
-The initial 32 cases are not pooled into the confirmatory verdict, and
-coordinate ablations with no measured effect are reported as coverage limits
-rather than as proof that those coordinates are unnecessary.
+\begin{enumerate}
+  \item It defines an epistemic portrait envelope over provenance-bound
+        source-local projections and makes identification claim-relative.
+        Scientific plurality within a portrait is distinguished from
+        uncertainty across feasible portraits.
+  \item It proves a fibre criterion: a query is point identified exactly when
+        it is constant across every admissible world that yields the same
+        observed projections. If two such worlds disagree, no deterministic
+        observation-only rule can be uniformly correct.
+  \item It proves a universal factorisation result: every query-sufficient
+        integration interface must refine the identified-set map, so products
+        with equivalent information and loss are required to tie.
+  \item It proves monotonicity under information refinement and defines the
+        observation floor and floor-adjusted avoidable harm. These quantities
+        distinguish an algorithmic failure from irreducible loss caused by
+        missing information.
+  \item It derives downstream merge/separate/defer bounds under asymmetric
+        costs and shows that pairwise-compatible mapping constraints need not
+        possess a joint global completion.
+\end{enumerate}
 
-\subsection{Structure of the paper}
+The first evidence layer is a public-reference mapping study over
+already-structured projections. A disjoint, prospectively execution-frozen
+32-case holdout produced zero false merges for coordinate-governed mapping
+against 0.1875 for flat predicate canonicalization, while satisfying the
+declared false-split guard against an exact-coordinate conservative control.
+The second is a 400-contract exact scientific-identity battery: a
+claim-relative layer outperformed a strong semantic product lacking the same
+authority rules, but tied an ideal product given identical information and
+rules. That tie is required by the theory and prevents an inherent-expressivity
+claim.
 
-Section~\ref{sec:related} positions the mapping rule among the extraction,
-schema-alignment, integration, stance and pluralism literatures it builds on.
-Section~\ref{sec:method} defines source projections, mappings, gluing,
-obstruction, and the three-valued reporting discipline. Section~\ref{sec:dataset}
-describes the two public-reference mapping datasets and their provenance.
-Section~\ref{sec:eval} records the prospective confirmatory design and its
-controls. Section~\ref{sec:results} reports the frozen result and the
-ablations. Section~\ref{sec:limitations} separates the supported mapping claim
-from what remains unmeasured, Section~\ref{sec:conclusion} states the bounded
-conclusion, and Section~\ref{sec:availability} lists every artifact behind a
-reported number.
+The third layer is an adverse partial-observation result. Mechanical
+redactions opened an over-resolution failure channel, and a separate 36-case
+constructed source-record corpus exhibited nine observationally
+indistinguishable two-case orbits with different gold relations. Any rule
+reading only the released projections must lose at least one answer per orbit.
+The current rule reaches the resulting 27/36 ceiling by making eight false
+merges and one false split; a decisiveness-aware repair removes those errors
+only by abstaining on both members of each ambiguous orbit and losing the nine
+answers the current rule happened to get right. We preserve that failure. Its
+scientific value is to identify the observation floor and to show why the next
+experiment must measure avoidable harm above it rather than demand an
+impossible zero.
+
+\subsection{Scope and structure}
+
+The formal results apply to any scientific integration problem satisfying
+their stated world, observation, constraint and loss assumptions. The
+empirical numbers do not inherit that generality. They concern two small
+public-reference mapping sets, exact authored contracts, and a constructed
+partial-observation corpus. Naturalistic multi-domain envelopes, raw-text
+attacks, independent protected gold, and downstream decision improvement
+remain prospective.
+
+Section~\ref{sec:related} positions the framework among the donor literatures.
+Section~\ref{sec:method} defines source-local projections and typed mappings.
+Section~\ref{sec:envelope} develops the envelope, impossibility theorem,
+information order, decision bounds and global-composition result.
+Sections~\ref{sec:dataset}--\ref{sec:results} report the existing evidence
+without pooling its authorities. Sections~\ref{sec:limitations} and
+\ref{sec:conclusion} state the remaining scientific programme.
 \endinput

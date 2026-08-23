@@ -89,6 +89,41 @@ identity, measurement equivalence, context, gluing, obstruction, plural views,
 preservation conditions, and typed mapping hypotheses. These remain
 engineering and semantic falsifiers rather than external empirical evidence.
 
+\subsection{Partial observation: a preserved adverse result and its bound}
+
+A staged partial-observation study asked whether adding an observedness-aware
+decision rule could repair over-resolution when one side of a mapping pair
+lost the coordinate that originally carried the decision. Mechanical
+redactions created 48 probes from the frozen atlases: 12 derivation cases,
+eight held-out public-reference cases, and 28 held-out exact cases. The current
+rule returned a determinate merge on all 48 although the redacted observation
+did not identify that decision. Rules that abstained on every asymmetric
+absence repaired this channel but destroyed determinate answers on intact
+cases. A more selective rule abstained only when admissible completions
+disagreed, improving on blanket abstention but still failing its zero-harm
+gate.
+
+The last amendment showed why another observation-only rule cannot remove that
+cost. Its 36-case constructed source-record corpus contains 27 canonical
+observation orbits. Nine are two-case orbits in which the released projections
+are identical up to bookkeeping, identifier relabelling and left--right
+orientation, while the source-record gold relations differ. At least one
+member of each such orbit is therefore unrecoverable from the projections, so
+the maximum exact agreement of any candidate-visible deterministic rule is
+27/36. The current rule reaches that ceiling with eight false merges and one
+false split. The selective unresolved rule avoids both error types by
+abstaining on both members of each ambiguous orbit, thereby losing the nine
+answers the current rule happens to get right there.
+
+This is an exact identification result on a constructed corpus, not external
+evidence that natural scientific atlases have the same frequency or cost of
+missingness. The historical gates remain failed. The scientific consequence
+is the observation floor formalised in Theorem~\ref{thm:refinement}: a
+successor should compare avoidable false merge or downstream harm above that
+floor and should seek truthful observation refinements, rather than relabel a
+zero-harm threshold or claim that a more elaborate rule can recover erased
+information.
+
 \subsection{What this result does not establish}
 
 The reported result does not establish:
@@ -99,6 +134,10 @@ The reported result does not establish:
         retrieval-augmented or schema systems supports this paper's headline;
   \item \textbf{Generated-portrait recoverability or downstream utility:} no
         frozen reader-level or downstream task result is promoted here;
+  \item \textbf{Naturalistic envelope calibration:} the constructed
+        partial-observation bound proves an observation-level impossibility
+        on its frozen cases, but does not estimate the prevalence, sharpness or
+        loss of partial identification in external scientific corpora;
   \item \textbf{Universal coordinate necessity:} targeted cases for referent,
         construct, measurement, temporal context and additional obstruction
         families do not exist in these datasets;

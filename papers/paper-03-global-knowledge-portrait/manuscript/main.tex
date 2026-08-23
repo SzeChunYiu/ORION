@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{xurl}
@@ -10,9 +10,14 @@
 % spans that are identifiers rather than prose.
 \urlstyle{tt}
 \newcommand{\idt}[1]{\path{#1}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
 
-\title{Representational Compatibility Is Not Scientific Identity:\\
-Coordinate-Governed Mapping of Source-Local Scientific Projections}
+\title{Epistemic Portrait Envelopes:\\
+Partial Identification and Decision Bounds for Scientific Knowledge Integration}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -23,7 +28,7 @@ Coordinate-Governed Mapping of Source-Local Scientific Projections}
 \input{sections/00-abstract}
 \end{abstract}
 
-\noindent\textbf{Keywords:} scientific knowledge integration; provenance; schema alignment; measurement harmonization; scientific pluralism; knowledge representation.
+\noindent\textbf{Keywords:} scientific knowledge integration; partial identification; robust decision theory; provenance; schema alignment; scientific pluralism.
 
 \section{Introduction}
 \label{sec:introduction}
@@ -37,6 +42,10 @@ Coordinate-Governed Mapping of Source-Local Scientific Projections}
 \label{sec:method}
 \input{sections/30-method}
 \input{sections/35-method-structure}
+
+\section{Epistemic portrait envelope theory}
+\label{sec:envelope}
+\input{sections/36-partial-identification-theory}
 
 \section{Public-reference mapping datasets}
 \label{sec:dataset}

@@ -12,6 +12,13 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage[strings]{underscore}
+% Preserve literal underscores in the BibTeX database filename.  The
+% `strings` option otherwise expands them into formatting commands in the aux
+% file, causing BibTeX to skip the novelty-refresh database.
+\begingroup
+\catcode`\_=12
+\gdef\pOneBibDatabases{bibliography,novelty_refresh_2026}
+\endgroup
 \graphicspath{{figures/}{../results/figures/}}
 \captionsetup{font=small,labelfont=bf}
 \setlength{\emergencystretch}{2em}
@@ -75,5 +82,5 @@ evidence does not yet establish naturalistic or model-general superiority.
 \input{sections/08-conclusion}
 
 \bibliographystyle{plain}
-\bibliography{bibliography,novelty_refresh_2026}
+\bibliography{\pOneBibDatabases}
 \end{document}
