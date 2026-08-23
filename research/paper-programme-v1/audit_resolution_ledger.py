@@ -3,9 +3,15 @@
 Exit codes: 0 = all references resolve; 2 = at least one defect; 3 = could not check.
 A missing branch, a missing path, or a PR head that disagrees with the ledger is a defect.
 """
-import json, re, subprocess, sys
+from __future__ import annotations
 
-REPO = "/Users/billy/Desktop/projects/ORION-claude"
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[2]
 PATH_RE = re.compile(r"(?:tests|scripts|papers|research|src)/[\w/.\-]+")
 
 
@@ -23,8 +29,14 @@ def path_on_ref(ref, path):
     return r.returncode == 0
 
 
+def _ledger_path(path: str | Path) -> Path:
+    candidate = Path(path)
+    return candidate if candidate.is_absolute() else REPO / candidate
+
+
 def audit(ledger_path):
-    d = json.load(open(ledger_path))
+    with _ledger_path(ledger_path).open(encoding="utf-8") as handle:
+        d = json.load(handle)
     base = d["base_revision"]
     defects, checked = [], 0
     for p in d["papers"]:
@@ -53,8 +65,11 @@ def audit(ledger_path):
                 target = s.get("ref") if avail == "EXISTING_PR" else base
                 if avail == "EXISTING_PR" and target not in live:
                     continue  # already reported as missing branch
-                ok = (path_on_ref(target, path) if avail == "EXISTING_PR"
-                      else run(["git", "cat-file", "-e", f"{base}:{path}"]).returncode == 0)
+                ok = (
+                    path_on_ref(target, path)
+                    if avail == "EXISTING_PR"
+                    else run(["git", "cat-file", "-e", f"{base}:{path}"]).returncode == 0
+                )
                 if not ok:
                     defects.append((iid, "MISSING_SOURCE_PATH", f"{path} @ {target}"))
             # command paths
@@ -68,10 +83,15 @@ def audit(ledger_path):
                 for tok in PATH_RE.findall(cmd):
                     checked += 1
                     targets = live + [base]
-                    if not any(path_on_ref(t, tok) if t in live else
-                               run(["git", "cat-file", "-e", f"{base}:{tok}"]).returncode == 0
-                               for t in targets):
-                        defects.append((iid, "MISSING_COMMAND_PATH", f"{field}: {tok} (tried {targets})"))
+                    if not any(
+                        path_on_ref(t, tok)
+                        if t in live
+                        else run(["git", "cat-file", "-e", f"{base}:{tok}"]).returncode == 0
+                        for t in targets
+                    ):
+                        defects.append(
+                            (iid, "MISSING_COMMAND_PATH", f"{field}: {tok} (tried {targets})")
+                        )
     return d, checked, defects
 
 

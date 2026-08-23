@@ -6,17 +6,16 @@ fails on `recorded["arms"] == payload["arms"]` while the assertions above it --
 `parameters_sha256`, `verdict`, `world_content_hash` -- all pass. Read as
 "the frozen digest matches but the numbers moved", that is alarming.
 
-It is four values, all `mrr_at_50`, all within three units in the last place of
-a float64. Two fresh runs in one process are bit-identical to each other, so
-this is not nondeterminism; it is the summation order of a mean of reciprocal
-ranks shifting between library versions. And no gate reads `mrr_at_50`: G1, G2,
-G3 and G5 read `hit_at_10`, G4 reads `hit_at_1`, and the smallest gate threshold
-is 0.01 -- thirteen orders of magnitude above the divergence.
+The current committed diagnosis observes only ulp-scale changes in reported
+`mrr_at_50` values. The script derives that description from the measurements on
+every run rather than assuming the same count, field set, or maximum ULP distance
+will hold in another environment. No gate reads `mrr_at_50`: G1, G2, G3 and G5
+read `hit_at_10`, G4 reads `hit_at_1`, and the smallest gate threshold is 0.01.
 
-So the defect is in the comparison, not the result. A reproduction check that
-demands bit-equality of a floating-point mean across environments is asking for
-something no environment can promise, which makes it an unattainable gate rather
-than a failed one.
+So the defect is in the comparison only when the measured checks below establish
+that boundary. A reproduction check that demands bit-equality of a floating-point
+mean across environments is asking for something no environment can promise,
+which makes it an unattainable gate rather than a failed one.
 
 Exit codes: 0 the diagnosis holds, 2 it does not, 3 CANNOT_CHECK.
 """
@@ -58,6 +57,35 @@ def walk(fresh, committed, path=""):
     elif fresh != committed:
         kind = "FLOAT" if isinstance(fresh, float) and isinstance(committed, float) else "NON_FLOAT"
         yield (path, fresh, committed, kind)
+
+
+def build_finding(
+    *,
+    float_diffs: list[dict[str, object]],
+    max_ulps: int,
+    deterministic: bool,
+    checks: dict[str, bool],
+) -> str:
+    """Describe exactly the measurements that support (or fail to support) the diagnosis."""
+    fields = sorted({str(diff.get("field")) for diff in float_diffs})
+    count = len(float_diffs)
+    noun = "value" if count == 1 else "values"
+    field_text = ", ".join(fields) if fields else "none"
+    failing = sorted(name for name, passed in checks.items() if not passed)
+    if failing:
+        return (
+            f"Diagnosis not established: {count} reported float {noun} differ; fields: "
+            f"{field_text}; maximum distance is {max_ulps} ulps. Failing checks: "
+            + ", ".join(failing)
+            + "."
+        )
+    freshness = "bit-identical" if deterministic else "not bit-identical"
+    return (
+        f"{count} reported float {noun} differ; fields: {field_text}; maximum distance is "
+        f"{max_ulps} ulps. Two fresh runs are {freshness} to each other, the frozen parameter "
+        "digest still matches, and the verdict and every gate result are unchanged. No changed "
+        "field is read by a registered gate."
+    )
 
 
 def main() -> int:
@@ -108,6 +136,12 @@ def main() -> int:
         "no_gate_read_field_differs": not gate_fields_touched,
         "every_float_difference_is_within_four_ulps": max_ulps <= 4,
     }
+    finding = build_finding(
+        float_diffs=float_diffs,
+        max_ulps=max_ulps,
+        deterministic=deterministic,
+        checks=checks,
+    )
 
     print(
         json.dumps(
@@ -127,18 +161,14 @@ def main() -> int:
                 "max_ulps": max_ulps,
                 "max_relative_difference": max_relative,
                 "checks": checks,
-                "finding": (
-                    "Four mrr_at_50 values differ by at most three units in the last place of a "
-                    "float64. Two fresh runs are bit-identical to each other, the frozen parameter "
-                    "digest still matches, and the verdict and every gate result are unchanged. No "
-                    "gate reads mrr_at_50."
-                ),
+                "finding": finding,
                 "consequence": (
-                    "The failure is a comparison defect. Bit-equality of a floating-point mean is "
-                    "not attainable across library versions, so a reproduction check that demands "
-                    "it is an unattainable gate. The check should compare gate-read fields and all "
-                    "non-float values exactly, and permit a declared ulp-scale difference only on "
-                    "reported floats no gate consumes."
+                    "The failure is a comparison defect only when the measured checks above pass. "
+                    "Bit-equality of a floating-point mean is not attainable across library "
+                    "versions, so a reproduction check that demands it is an unattainable gate. "
+                    "The check should compare gate-read fields and all non-float values exactly, "
+                    "and permit a declared ulp-scale difference only on reported floats no gate "
+                    "consumes."
                 ),
                 "all_checks_pass": all(checks.values()),
             },

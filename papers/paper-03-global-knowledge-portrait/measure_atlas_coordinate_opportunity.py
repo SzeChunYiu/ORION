@@ -18,7 +18,9 @@ not the same as creating contrasting pairs, and the ledger's success condition
 reproduces every zero measured here.
 
 Nothing here reads a model output or a prediction. It reads the frozen gold and
-counts.
+counts. A committed measurement receipt must identify a repository artifact, so
+inputs outside this checkout fail closed instead of serializing a machine-local
+sandbox path.
 
 Exit codes: 0 measured, 2 a coordinate the ledger calls inert turned out not to
 be, 3 CANNOT_CHECK.
@@ -32,13 +34,31 @@ import json
 import sys
 from pathlib import Path
 
-LEDGER_NAMES_AS_INERT = ("referent_ids", "construct_ids", "measurement_ids", "temporal_context_ids")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+LEDGER_NAMES_AS_INERT = (
+    "referent_ids",
+    "construct_ids",
+    "measurement_ids",
+    "temporal_context_ids",
+)
 
 
 def load(path: Path) -> tuple[list[dict], str]:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    rows = [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     return rows, digest
+
+
+def artifact_locator(path: Path) -> str | None:
+    """Return a stable repo-relative locator, or None for a machine-local input."""
+    try:
+        return path.resolve().relative_to(REPO_ROOT.resolve()).as_posix()
+    except ValueError:
+        return None
 
 
 #: The two sides of a case, as the frozen schema names them.
@@ -46,15 +66,25 @@ LEFT, RIGHT = "left_projection", "right_projection"
 
 
 def measure(rows: list[dict]) -> dict:
-    projections = [row[side] for row in rows for side in (LEFT, RIGHT) if isinstance(row.get(side), dict)]
+    projections = [
+        row[side]
+        for row in rows
+        for side in (LEFT, RIGHT)
+        if isinstance(row.get(side), dict)
+    ]
     keys = collections.Counter(key for projection in projections for key in projection)
     coordinates = {}
     for key in sorted(keys):
-        values = [json.dumps(projection.get(key), sort_keys=True) for projection in projections if key in projection]
+        values = [
+            json.dumps(projection.get(key), sort_keys=True)
+            for projection in projections
+            if key in projection
+        ]
         differs = sum(
             1
             for row in rows
-            if isinstance(row.get(LEFT), dict) and isinstance(row.get(RIGHT), dict)
+            if isinstance(row.get(LEFT), dict)
+            and isinstance(row.get(RIGHT), dict)
             and json.dumps(row[LEFT].get(key), sort_keys=True)
             != json.dumps(row[RIGHT].get(key), sort_keys=True)
         )
@@ -81,6 +111,17 @@ def main() -> int:
         print("usage: measure_atlas_coordinate_opportunity.py GOLD.jsonl")
         return 3
     path = Path(sys.argv[1])
+    locator = artifact_locator(path)
+    if locator is None:
+        print(
+            json.dumps(
+                {
+                    "status": "CANNOT_CHECK",
+                    "error": "measurement input is outside the repository and has no stable locator",
+                }
+            )
+        )
+        return 3
     try:
         rows, digest = load(path)
     except Exception as exc:
@@ -109,7 +150,7 @@ def main() -> int:
                 "record": "P3_ATLAS_COORDINATE_OPPORTUNITY",
                 "authority_scope": "OUTCOME_BLIND_MEASUREMENT",
                 "outcome_accessed": False,
-                "artifact": str(path),
+                "artifact": locator,
                 "artifact_sha256": digest,
                 "cases": measured["cases"],
                 "projections": measured["projections"],
