@@ -26,7 +26,7 @@ def _load_summary() -> dict[str, Any]:
             "missing fail-closed evidence summary; run build_evidence_summary.py first"
         )
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    if data.get("schema") != "P9.OfficialEvidenceSummary.v1.1":
+    if data.get("schema") not in {"P9.OfficialEvidenceSummary.v1.1", "P9.OfficialEvidenceSummary.v1.2"}:
         raise SystemExit(f"unexpected evidence summary schema: {data.get('schema')!r}")
     return data
 
