@@ -2,11 +2,28 @@
 
 **ORION-P12 · issue #665 · resource-accounting owner #664**  
 **Evidence freeze:** 2026-08-21  
-**Submission status:** peer-review package; controlled superiority supported, real-system validation open
+**Submission status:** `P12A_SUPERIORITY_AUTHORITY_WITHHELD`; capability-matched P12B required
+
+**Current authority:** `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. The
+historical P12A result and replay remain unchanged execution records. They do not
+authorize signal-count superiority because the losing arms were also denied
+allocations the winner could emit.
 
 ## Abstract
 
-Test-time scaling is usually treated as a one-dimensional problem: decide how much more reasoning, sampling, search or verification to perform. State construction creates a second inference action. A system can spend computation to make task-relevant structure more accessible *before* downstream reasoning, or spend the same resource reasoning longer over the current state. We formalize this as a two-axis allocation problem under a single matched budget and require state construction, reasoning/search and all auxiliary work to share one resource boundary. In a preregistered held-out benchmark of access-limited, reasoning-limited, jointly limited and easy regimes, every policy receives the same two-unit budget and the same noisy pre-outcome difficulty signals. A frozen joint allocator achieves mean verified success **0.8582**, versus **0.4631** for adaptive-state-only, **0.4528** for adaptive-reasoning-only and **0.5155** for a fixed `(1,1)` allocation. Its mean gain over the better one-axis adaptive policy is **+0.3347**, with a family-block 95% bootstrap interval of **[0.2860, 0.3827]** and a worst-family gain of **+0.1582**. Two executions are byte-identical. These results establish a controlled superiority claim: when task families vary in *where* marginal computation has value, adaptation over both state construction and reasoning strictly outperforms adaptation over either axis alone at identical total budget. Current adaptive test-time-compute work already owns dynamic reasoning-budget allocation; the residual here is the symmetric treatment of **state construction as a competing inference resource**. We do not claim real-LLM or prover superiority until matched end-to-end accounting and held-out real-system validation are completed.
+Test-time scaling is usually treated as a one-dimensional problem. State
+construction creates a second place to spend inference resource, motivating a
+two-axis allocation formulation. We report an exactly reproducible controlled
+run over 16 held-out generated families. Its joint arm scores 0.8582 versus
+0.4631 and 0.4528 for the named one-axis arms. A later hostile audit shows that
+this is not a valid signal-count contrast: the joint arm can emit four
+allocations while each losing arm can emit only two, and both baseline ceilings
+are below the winner's achieved score. When action capability is matched, the
+gain is +0.0408, the worst-family gain is +0.0020, and the frozen positive gate
+is not met. The historical bytes remain; active superiority authority is
+withheld. P12A therefore motivates the resource-location hypothesis and defines
+the corrected comparator contract, while a prospectively frozen P12B must test
+it.
 
 ## 1. Introduction
 
@@ -26,9 +43,12 @@ The paper makes three contributions.
 
 1. **Two-axis inference formulation.** State construction and downstream reasoning are symmetric budgeted actions rather than free preprocessing plus paid reasoning.
 2. **A strict comparator contract.** The joint policy must beat both adaptive-state-only and adaptive-reasoning-only policies at identical total resources, not merely a fixed baseline.
-3. **Protected held-out evidence.** In 16 held-out resource families, a frozen joint allocator produces a +0.3347 average advantage over the stronger one-axis adaptive comparator, with positive gain in every family.
+3. **Comparator-capability adjudication.** The protected run is retained beside
+   the later finding that signal count and permitted allocations varied together.
 
-The result is intentionally controlled. Its purpose is to establish that joint state–reasoning allocation has a falsifiable value beyond generic adaptive test-time compute, and to define the matched-budget contract a real-system paper must satisfy.
+The result is intentionally controlled and exactly reproducible, but its causal
+superiority interpretation is withheld. Its current purpose is to define the
+stronger P12B contract: equal budget, equal actions, then a change in signals.
 
 ## 2. Donor boundary and novelty
 
@@ -117,7 +137,10 @@ No policy is tuned on protected family outcomes.
 
 ## 6. Results
 
-The protected terminal is `P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`.
+The historical protected terminal is
+`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current authority is
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD` under
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 | policy | mean verified success |
 |---|---:|
@@ -134,15 +157,20 @@ The **worst held-out family gain is `+0.158203`**. Joint versus fixed `(1,1)` ga
 
 `0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947`.
 
-### 6.1 Why the result is stronger than a fixed-baseline win
+### 6.1 Comparator capability, not only budget
 
-The scientific comparator is not the fixed `(1,1)` policy. Both one-axis policies already use pre-outcome signals adaptively. The protected result therefore isolates the value of **having both resource coordinates available to the policy**, rather than the generic value of adaptation.
+Both one-axis policies use pre-outcome signals, but each may emit only two
+allocations while `JOINT_FROZEN` may emit four. Their perfect-signal ceilings,
+0.475464 and 0.463623, are below the winner's achieved 0.858154. The historical
+contrast therefore does not isolate the value of a second signal.
 
 ### 6.2 Regime interpretation
 
-The gain arises because families contain different mixtures of access-limited, reasoning-limited and jointly limited examples. A one-axis policy has a structural blind spot: it cannot move resource to the other locus even when its signal identifies that need. The joint policy can.
-
-The experiment therefore tests the proposition's key mechanism without giving the joint arm extra computation.
+The large gain arises primarily because the restricted action sets cannot serve
+opposite-axis and jointly limited regimes at any signal value. With identical
+four-action sets, mean gain is 0.040771, the family-block interval is
+[0.031006, 0.050659], and worst-family gain is 0.001953. The original gate then
+returns `P12A_JOINT_ALLOCATION_SUPERIORITY_GATE_NOT_MET`.
 
 ## 7. Resource-accounting contract for real systems
 
@@ -185,13 +213,21 @@ These results strengthen, rather than weaken, P12's motivation: **adaptive infer
 
 P12 reframes test-time scaling as a **portfolio of computations**. “Think longer” is not the only adaptive action available to an intelligent system. It may be cheaper to parse, retrieve, compile, restructure or recover state so that less downstream search is required. Conversely, when state already exposes the relevant structure, additional preprocessing is wasteful and reasoning should receive the marginal budget.
 
-The protected benchmark establishes the key causal discriminator: when held-out families contain heterogeneous resource loci, a policy that can move the same total budget across both loci strictly dominates policies that may adapt only one. The result is not an artifact of giving the joint arm more computation, and it survives family-level uncertainty and worst-family reporting.
+The protected benchmark demonstrates the construction but does not establish the
+key causal discriminator. Equal total budget was real; equal action capability
+was not. Family-level uncertainty cannot repair that estimand defect.
 
-This creates a concrete systems hypothesis for real agents: **test-time scaling curves should be two-dimensional, with state-work and reasoning-work measured on a common receipt, and optimal allocation should shift with the source of difficulty.**
+This leaves a concrete systems hypothesis: **test-time scaling curves may be
+two-dimensional, but action capability must be held fixed across signal
+ablations and all work must share one receipt.**
 
 ## 12. Conclusion
 
-Adaptive inference should decide not only **how much** computation to spend but **where** to spend it. P12 supplies a matched-budget formulation and a protected controlled result showing strict, broad held-out superiority of joint state–reasoning allocation over both one-axis adaptive alternatives. The next scientific step is not a larger synthetic benchmark; it is a real end-to-end system in which compiler/retrieval work and downstream reasoning/search are charged together and the same superiority contract is tested without privileged signals.
+Adaptive inference may need to decide not only **how much** computation to spend
+but **where** to spend it. P12 supplies the formulation and an exact correction
+to its first empirical discriminator. The next scientific step is a
+prospectively frozen, capability-matched P12B; real end-to-end validation follows
+only after that controlled contrast is sound.
 
 ## References
 

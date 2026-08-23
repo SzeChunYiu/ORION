@@ -8,18 +8,22 @@
 |---|---|---|---|
 | state construction and reasoning can have different marginal value across tasks | SUPPORTED / EXISTENCE + CONTROLLED | formal construction + P12A | controlled heterogeneous resource worlds |
 | joint allocation beats fixed `(1,1)` under identical two-unit budget | SUPPORTED | P12A + V2 adjudication | +0.342651 mean success gain |
-| joint allocation beats both one-axis adaptive policies | **SUPPORTED / PRIMARY** | P12A + `P12A_PROTOCOL_ADJUDICATION_V2.json` | mean +0.334717 vs best one-axis; CI [0.286008,0.382693] |
-| gain is positive in every held-out family | SUPPORTED | P12A | worst-family +0.158203 |
+| joint allocation beats both one-axis adaptive policies because it reads both signals | **AUTHORITY WITHHELD / CANNOT_CHECK** | `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` | baselines' action-set ceilings are below the winner; no causal superiority wording |
+| historical gain is positive in every held-out family | DESCRIPTIVE HISTORY ONLY | P12A | does not repair the capability confound |
 | joint policy gets more compute | FALSE | budget audit | every action satisfies `c+r<=2` |
 | protected signals use outcomes | FALSE | construction/protocol | pre-outcome noisy requirements only |
 | V1 runner alone satisfied every protocol gate | **FALSE / CORRECTED** | PR hostile review | replay was omitted from the V1 terminal path |
 | exact frozen runner is byte-identical across two fresh executions | **SUPPORTED / REPLAY-ADJUDICATED** | V2 adjudicator | both SHA-256 = `0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947` |
 | adaptive test-time compute is novel to P12 | FALSE / DONOR-OWNED | current literature | do not claim |
 | dynamic state/context selection is novel to P12 | FALSE / DONOR-OWNED | retrieval/memory/state literature | do not claim |
-| two-axis state–reasoning allocation has controlled superiority under matched total compute | **SUPPORTED SYNTHESIS** | P12A + V2 protocol adjudication | strongest current paper claim |
+| two-axis state–reasoning allocation has controlled superiority under matched total compute | **NOT AUTHORIZED** | `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` | identical budget did not mean identical action capability |
 | real LLM/prover superiority | OPEN | no real-system result | not authorized |
 
 ## Evidence correction
+
+Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`. The authority record is
+`P12_ACTIVE_CLAIM_AUTHORITY_V1.json`, content-bound to
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
 
 The original P12A executable evaluated seven frozen scientific gates but did not put the protocol's byte-identical replay requirement into its own terminal decision. That is an evidence-adjudication defect, not a change in the scientific comparison. The V1 runner terminal is therefore **non-authoritative alone**.
 
@@ -34,8 +38,14 @@ The original P12A executable evaluated seven frozen scientific gates but did not
 
 ## Residual novelty
 
-P12's residual is not “adaptive inference.” It is the **resource-locus problem**: state construction and downstream reasoning are made symmetric actions inside one matched envelope, and the method must strictly improve over policies allowed to adapt either axis alone.
+P12's residual is not “adaptive inference.” It is the **resource-locus problem**.
+P12A motivates that problem but does not resolve it because signal count and
+allocation capability varied together. P12B must make the actions symmetric
+before measuring the value of an additional signal.
 
 ## Strongest authorized headline
 
-> Under an identical two-unit resource budget across 16 held-out heterogeneous families, a frozen joint state–reasoning allocator reaches 0.8582 verified success and improves by +0.3347 over the better one-axis adaptive policy, with a family-block 95% CI [0.2860,0.3827] and +0.1582 worst-family gain. The exact frozen result is independently replay-adjudicated with two byte-identical payloads.
+> The exact P12A payload is reproducible, but 96.9% of its state-only contrast is
+> beyond the shipped baseline's ceiling. Under the capability-matched reading,
+> the gain is +0.0408 and the frozen superiority gate is not met. No active
+> superiority claim is authorized before P12B.

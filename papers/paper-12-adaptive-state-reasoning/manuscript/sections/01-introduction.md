@@ -16,6 +16,13 @@ The paper makes three contributions.
 
 1. **Two-axis inference formulation.** State construction and downstream reasoning are symmetric budgeted actions rather than free preprocessing plus paid reasoning.
 2. **A strict comparator contract.** The joint policy must beat both adaptive-state-only and adaptive-reasoning-only policies at identical total resources, not merely a fixed baseline.
-3. **Protected held-out evidence.** In 16 held-out resource families, a frozen joint allocator produces a +0.3347 average advantage over the stronger one-axis adaptive comparator, with positive gain in every family.
+3. **A comparator-capability correction.** The protected run is reported with a
+   later hostile adjudication showing that signal count and permitted allocations
+   varied together; a capability-matched P12B is therefore required.
 
-The result is intentionally controlled. Its purpose is to establish that joint state–reasoning allocation has a falsifiable value beyond generic adaptive test-time compute, and to define the matched-budget contract a real-system paper must satisfy.
+The historical result is intentionally controlled and exactly reproducible, but
+its superiority interpretation is withheld by
+`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. Active terminal:
+`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. Its current value is to expose the stronger
+contract a successor must satisfy: equal total budget, equal action capability,
+and only then a variation in available signals.

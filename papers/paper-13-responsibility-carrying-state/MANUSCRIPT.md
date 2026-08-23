@@ -2,11 +2,27 @@
 
 **ORION-P13 · issue #666 · interface track #668**  
 **Evidence freeze:** 2026-08-21  
-**Submission status:** peer-review package; controlled safety–cost superiority supported, real-system gate open
+**Submission status:** exact conditional core supported; `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`
+
+**Current authority:** `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`. Historical
+P13A execution and replay bytes remain unchanged; empirical safety–cost
+superiority is not authorized.
 
 ## Abstract
 
-A compact state is not simply “sufficient” or “insufficient.” Sufficiency is relative to what the downstream system is responsible for doing. A representation adequate for prediction can omit distinctions required for intervention, verification, diagnosis or repair; confidence and provenance alone do not specify that boundary. We formalize **responsibility-relative sufficiency** and introduce a non-self-authorizing `ResponsibilityCarryingState` (RCS) contract that binds a compact state to the responsibilities it supports, its independent witness, explicit omissions, context assumptions, raw-state recoverability, resource envelope and reopen conditions. The paper deliberately preserves a historical negative: an earlier frozen sufficiency-debt experiment missed its preregistered finite-sample sentinel at `0.0556640625 > 0.05`. Root-cause analysis shows that the harness estimated group-majority accuracy and evaluated it on the same sample, then maximized deviation across 100 replicates; the failure is retained rather than retuned. An independently frozen successor instead uses exact responsibility equivalence classes and a prospective held-out reuse benchmark. Across **12,288 protected episodes**, RCS produces **0 unsafe reuses**, **0 unnecessary reopens** and **0.9807 verified correctness**. A confidence-only gate makes **21.56% structurally unsafe reuses**, while provenance-only and unqualified compact state make **39.62%**. RCS has mean resource cost **2.875** units versus **5.732** for always reopening raw state, and emits `CANNOT_CHECK` for every unsupported/nonrecoverable case. Two runs are byte-identical (SHA-256 `ea400698…e6e8d1f`). The protected terminal therefore supports a controlled superiority claim: **an explicit responsibility/recovery contract can eliminate structurally unsafe state reuse without degenerating to always-reopen behavior, whereas scalar confidence and provenance do not encode the same sufficiency boundary.** Real-agent and safety-critical deployment claims remain outside the present evidence.
+A compact state is not simply “sufficient” or “insufficient”; sufficiency is
+relative to the downstream responsibility. We formalize the exact conditional
+notion and an RCS interface whose declared support controls reuse and reopening.
+The paper retains an earlier frozen negative and an exactly reproducible P13A
+benchmark. P13A reports zero RCS unsafe reuse, but a later hostile audit shows
+that this endpoint is self-scored: RCS reuses exactly when its certificate says
+`supported`, while harm is `REUSE and not supported` using that same certificate.
+Across 3,840 enumerated points, certificate corruption moves the RCS action on
+2,304 and the published harm on zero, leaving zero harm opportunities. Active
+empirical superiority authority is therefore withheld. The exact
+responsibility-relative support matrix and conditional interface invariant
+remain supported; P13B must grade reuse against independently defined gold
+support.
 
 ## 1. Introduction
 
@@ -23,7 +39,9 @@ The paper makes four contributions.
 1. **Responsibility-relative sufficiency.** We define exact support as homogeneity of representation equivalence classes under a named downstream responsibility.
 2. **A responsibility-carrying state interface.** RCS binds state identity to supported responsibilities, witnesses, omissions, recovery and reopen semantics without granting scientific self-authority.
 3. **A permanent negative-result analysis.** The old P14A terminal remains negative; we identify why its finite-sample sentinel was a poor proxy for the exact responsibility question rather than silently weakening it.
-4. **Independent controlled superiority evidence.** A new protected benchmark shows zero unsafe RCS reuse with substantially lower cost than always-raw and materially lower unsafe reuse than the confidence-only baseline and than unqualified reuse. Provenance-only is listed separately below but is the unqualified policy on this corpus, where lineage is always valid, so it is not independent evidence.
+4. **Outcome-contingency adjudication.** The protected benchmark is retained with
+   a machine-readable audit showing its zero-harm endpoint cannot vary for RCS;
+   provenance-only is also identified as a duplicate of unqualified reuse.
 
 ## 2. Donor boundary and novelty
 
@@ -175,7 +193,7 @@ exist here.
 
 ## 7. Results
 
-Protected terminal:
+Historical protected terminal:
 
 `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
 
@@ -187,7 +205,12 @@ Protected terminal:
 | unqualified compact | 0.3962 | 0.9248 | 0 | 1.0000 |
 | always raw | 0.0000 | 0.9513 | 0.5744 | 5.7319 |
 
-RCS emits `CANNOT_CHECK` for all **237** unsupported/nonrecoverable cases and for no other protected case. It therefore eliminates structural unsafe reuse without adopting the always-reopen policy. Its mean resource cost is approximately **49.8% lower** than always raw (`2.875` versus `5.732`).
+RCS emits `CANNOT_CHECK` for all **237** certificate-declared
+unsupported/nonrecoverable cases and for no other protected case. Those action,
+cost and replay values remain descriptive. They do not establish empirical harm
+avoidance because the endpoint has zero reachable opportunities. Current
+terminal: `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`, from
+`P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
 
 Two fresh executions are byte-identical with SHA-256:
 
@@ -235,7 +258,14 @@ Because the current P13A endpoint is a controlled finite benchmark with exact kn
 
 ## 12. Conclusion
 
-Sufficiency is a contract over future responsibility, not an intrinsic property of a compact representation. P13 makes that boundary explicit, preserves a preregistered historical failure, replaces its indirect sentinel with exact equivalence-class semantics, and then shows in an independent protected benchmark that responsibility-carrying state can eliminate unsafe compact reuse without paying the cost of always reopening raw evidence. Confidence and provenance remain useful signals, but neither specifies what distinctions the state supports. **A compact state becomes safely reusable only when its authority is scoped to a named responsibility and its reopen conditions are explicit.**
+Sufficiency is a contract over future responsibility, not an intrinsic property
+of a compact representation. P13 makes that exact conditional boundary explicit
+and preserves both historical failures and reproducible descriptive evidence.
+It does not yet show that RCS prevents unsafe reuse under wrong, stale, forged or
+overbroad certificates. That requires P13B with independently defined gold
+support and a live harm denominator. **A compact state's declared authority must
+be scoped to a named responsibility; whether the declaration is correct must be
+tested independently.**
 
 ## References
 
