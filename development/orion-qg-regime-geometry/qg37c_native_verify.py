@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+"""Native ORION-Q gate for QG-37c replication closure."""
+from __future__ import annotations
+import argparse,json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+SRC=ROOT/'artifacts/orion-qg-qg37c-closure.json';GEN=ROOT/'artifacts/orion-qg-qg37c-generic-verification.json';OUT=ROOT/'artifacts/orion-qg-qg37c-native-verification.json';TOKEN='ORIONQG_QG37C_NATIVE=';SUCCESS='QG37C_EXACT_ONE_CORRUPTION_ROBUST_GEOMETRY_CLOSED_BY_INDEPENDENT_REPLICATION'
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--input',type=Path,default=SRC);ap.add_argument('--generic',type=Path,default=GEN);ap.add_argument('--output',type=Path,default=OUT);a=ap.parse_args();s=json.loads(a.input.read_text());g=json.loads(a.generic.read_text())
+ checks={'generic':g.get('all_checks') is True and g.get('terminal')==SUCCESS,'source':s.get('terminal')==SUCCESS and s.get('EXACT_ONE_CORRUPTION_ROBUST_GEOMETRY_AUTHORITY') is True and s.get('EXACT_ROBUSTNESS_OVERHEAD_AUTHORITY') is True,'R1_star':isinstance(s.get('R1_star'),int) and s.get('R1_star')==g.get('R1_star'),'scope':all(s.get(k) is False for k in ('UNIVERSAL_ROBUST_MINIMUM_AUTHORITY','HARDWARE_MEASUREMENT_NOISE_MODEL','STOCHASTIC_PHYSICAL_ERROR_RATE','FAULT_TOLERANCE_THRESHOLD','HARDWARE_MEASUREMENT_MINIMUM','MINIMUM_FULL_FINITE_OPTIMUM_PROBES','GENERIC_CODING_PBSAT_NOVELTY','COMPILER_RUNTIME_ADVANTAGE','physical_quantum_advantage_claim','novelty_authority'))};ok=all(checks.values());o={'schema':'ORIONQG.QG37C.NativeVerification.v1','decision':'ACCEPT_SCOPED_ROBUST_GEOMETRY' if ok else 'REJECT','terminal':SUCCESS if ok else 'QG37C_CANNOT_CHECK','all_checks':ok,'checks':checks,'R1_star':s.get('R1_star') if ok else None,'EXACT_ONE_CORRUPTION_ROBUST_GEOMETRY_AUTHORITY':bool(ok),'EXACT_ROBUSTNESS_OVERHEAD_AUTHORITY':bool(ok),'UNIVERSAL_ROBUST_MINIMUM_AUTHORITY':False,'HARDWARE_MEASUREMENT_NOISE_MODEL':False,'FAULT_TOLERANCE_THRESHOLD':False,'MINIMUM_FULL_FINITE_OPTIMUM_PROBES':False,'physical_quantum_advantage_claim':False,'novelty_authority':False};a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(o,indent=2,sort_keys=True)+'\n');print(TOKEN+json.dumps({'decision':o['decision'],'R1_star':o['R1_star']},sort_keys=True,separators=(',',':')));return 0
+if __name__=='__main__':raise SystemExit(main())

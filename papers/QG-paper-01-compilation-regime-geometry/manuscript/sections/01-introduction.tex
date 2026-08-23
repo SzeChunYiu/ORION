@@ -1,0 +1,9 @@
+\section{Introduction}
+
+A compiler benchmark answers a practical question: which implementation has lower cost on the tested inputs? A regime map asks a structural one: on which inputs is the simple incumbent already exact, what changes when it is not, what restricted family is sufficient for an exact optimum, and can those regions be recognized without rerunning the full optimizer? These questions turn optimization output into an object of study.
+
+We use \emph{compilation regime geometry} for that object and make it operational rather than metaphorical. A map has up to five separately evidenced components: a donor-optimal region; exact counterexamples/trade configurations that leave it; a sufficiency or normal-form theorem reducing unrestricted search; a structural classifier/cost expression if the family admits one; and prospective tests on frozen new inputs. A component may be refuted without invalidating the others.
+
+That last clause became essential as the programme matured. The founding TARE case initially suggested a compact two-trade map. Later exact tests found a third phantom-borrow configuration and then a fourth split+borrow hybrid, while the all-$n$ support-two theorem remained untouched. The third-family StabPrep study delivered an even stronger warning: the mapping programme transfers, but a clean low-order boundary does not.
+
+The present synthesis therefore asks which parts of regime geometry are genuinely transferable. We report current results across TARE/R6M, a rank-2 shared-Tag grammar, SixLCU, and StabPrep, together with objective-indexed and production-semantics stress tests. The contribution is a receipted analysis programme plus the cross-family facts it has actually earned, not a claim that all compiler families share one geometric form.

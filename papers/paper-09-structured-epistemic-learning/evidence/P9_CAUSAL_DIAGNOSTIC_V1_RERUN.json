@@ -1,0 +1,222 @@
+{
+  "diagnosis_accuracy": 0.8,
+  "digits_accuracy": 0.5,
+  "digits_split": {
+    "label_sha256": "a3c91c262eddcf7ba8f0e37507c30284493c9b20412ffe4af30d536401f7ba21",
+    "probe": 359,
+    "protected": 360,
+    "train": 1078
+  },
+  "environment": {
+    "numpy": "2.3.2",
+    "scikit_learn": "1.7.1"
+  },
+  "executable_accuracy": 1.0,
+  "false_compute_escalation": 0,
+  "generic_accuracy": 0.2,
+  "generic_false_compute_escalation": 4,
+  "mean_registered_cost_regret": 0.0,
+  "protected_target_reached_by_prediction": true,
+  "protocol_sha256": "267df46aff7bd5502180524cd96f82b7951a2ae4c1d567e3b53bea6ce3f86015",
+  "receipt_sha256": "bdc4542610df7e2cbad7127d701a80d0099e325543192fa4431bb193628f6915",
+  "rows": [
+    {
+      "base_probe": 0.924791086350975,
+      "base_protected": 0.9111111111111111,
+      "cost_regret": 0.0,
+      "diagnosis_correct": false,
+      "domain": "digits",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "ACCESSIBILITY",
+      "predicted_protected_quality": 0.9555555555555556,
+      "probe": {
+        "ACCESSIBILITY": 0.9721448467966574,
+        "COMPUTATION": 0.11142061281337047,
+        "INFORMATION": 0.924791086350975
+      },
+      "protected": {
+        "ACCESSIBILITY": 0.9555555555555556,
+        "COMPUTATION": 0.11666666666666667,
+        "INFORMATION": 0.9111111111111111
+      },
+      "protected_gold": "CANNOT_CHECK",
+      "resource": {
+        "ACCESSIBILITY": {
+          "parameter_count": 650,
+          "representation_dim": 64,
+          "support_vector_coordinate_count": 0,
+          "transform_touches_per_example": 64
+        },
+        "COMPUTATION": {
+          "parameter_count": 0,
+          "representation_dim": 64,
+          "support_vector_coordinate_count": 68800
+        },
+        "INFORMATION": {
+          "parameter_count": 650,
+          "representation_dim": 64,
+          "support_vector_coordinate_count": 0
+        }
+      },
+      "target": 0.965,
+      "task": "D-A"
+    },
+    {
+      "base_probe": 0.15041782729805014,
+      "base_protected": 0.10277777777777777,
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "digits",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "INFORMATION",
+      "predicted_protected_quality": 0.9555555555555556,
+      "probe": {
+        "ACCESSIBILITY": 0.1532033426183844,
+        "COMPUTATION": 0.14206128133704735,
+        "INFORMATION": 0.9721448467966574
+      },
+      "protected": {
+        "ACCESSIBILITY": 0.10833333333333334,
+        "COMPUTATION": 0.12222222222222222,
+        "INFORMATION": 0.9555555555555556
+      },
+      "protected_gold": "INFORMATION",
+      "resource": {
+        "ACCESSIBILITY": {
+          "parameter_count": 20,
+          "representation_dim": 1,
+          "support_vector_coordinate_count": 0,
+          "transform_touches_per_example": 1
+        },
+        "COMPUTATION": {
+          "parameter_count": 0,
+          "representation_dim": 1,
+          "support_vector_coordinate_count": 1075
+        },
+        "INFORMATION": {
+          "parameter_count": 650,
+          "representation_dim": 64,
+          "support_vector_coordinate_count": 0
+        }
+      },
+      "target": 0.95,
+      "task": "D-I"
+    },
+    {
+      "base_probe": null,
+      "base_protected": null,
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "INFORMATION",
+      "predicted_protected_quality": 1.0,
+      "probe": {
+        "ACCESSIBILITY": 0.52,
+        "COMPUTATION": 0.52,
+        "INFORMATION": 1.0
+      },
+      "protected": {
+        "ACCESSIBILITY": 0.5,
+        "COMPUTATION": 0.5,
+        "INFORMATION": 1.0
+      },
+      "protected_gold": "INFORMATION",
+      "resource": {
+        "operation_count": {
+          "ACCESSIBILITY": 3,
+          "COMPUTATION": 8,
+          "INFORMATION": 4
+        },
+        "semantic_information_bits": {
+          "ACCESSIBILITY": 3,
+          "COMPUTATION": 3,
+          "INFORMATION": 4,
+          "base": 3
+        }
+      },
+      "target": 1.0,
+      "task": "B-I"
+    },
+    {
+      "base_probe": null,
+      "base_protected": null,
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "ACCESSIBILITY",
+      "predicted_protected_quality": 1.0,
+      "probe": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.65
+      },
+      "protected": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.55
+      },
+      "protected_gold": "ACCESSIBILITY",
+      "resource": {
+        "operation_count": {
+          "ACCESSIBILITY": 1,
+          "COMPUTATION": 1,
+          "INFORMATION": 0
+        },
+        "representation_bits": 2
+      },
+      "target": 1.0,
+      "task": "B-A"
+    },
+    {
+      "base_probe": null,
+      "base_protected": null,
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": true,
+      "generic_false_compute_escalation": false,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "COMPUTATION",
+      "predicted_protected_quality": 1.0,
+      "probe": {
+        "ACCESSIBILITY": 0.02,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.02
+      },
+      "protected": {
+        "ACCESSIBILITY": 0.05,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.05
+      },
+      "protected_gold": "COMPUTATION",
+      "resource": {
+        "local_map_count": 3,
+        "operation_count": {
+          "ACCESSIBILITY": 0,
+          "COMPUTATION": 7,
+          "INFORMATION": 0
+        }
+      },
+      "target": 1.0,
+      "task": "B-C"
+    }
+  ],
+  "schema": "P9.CausalDiagnosticResult.v1",
+  "task_count": 5,
+  "terminal": "P9_CAUSAL_DIAGNOSTIC_V1_SUPPORTED"
+}

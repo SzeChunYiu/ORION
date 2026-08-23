@@ -1,0 +1,61 @@
+name: orion-qg-qg37-robust-execution
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/orion-qg-qg37-robust-execution.yml'
+      - 'development/orion-qg-regime-geometry/QG37_*'
+      - 'development/orion-qg-regime-geometry/qg37_*'
+      - 'research/extensions/orion-qg/qg37_*'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg37-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  robust-production:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact numerical dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+      - name: Compile frozen execution
+        run: python -m py_compile research/extensions/orion-qg/qg37_one_corruption_robust.py
+      - name: Execute production robust geometry
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python research/extensions/orion-qg/qg37_one_corruption_robust.py --class-seconds 60 --ablation-seconds 2 | tee artifacts/orion-qg-qg37-summary.log
+      - name: Enforce fail-closed authority ceiling
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg37-robust.json').read_text())
+          assert d['universe']['orbits']==715 and d['universe']['physical_probes']==384 and d['universe']['joint_classes']==92
+          assert all(d['parent_checks'].values())
+          for k in ('HARDWARE_MEASUREMENT_NOISE_MODEL','STOCHASTIC_PHYSICAL_ERROR_RATE','FAULT_TOLERANCE_THRESHOLD','MINIMUM_FULL_FINITE_OPTIMUM_PROBES','GENERIC_CODING_NOVELTY','physical_quantum_advantage_claim','novelty_authority'):
+            assert d[k] is False
+          if d['terminal']=='QG37_EXACT_ONE_CORRUPTION_CLASS_CONDITIONED_PROBE_CODE_MACHINE_CHECKED':
+            assert d['all_92_class_conditioned_exact'] is True
+            assert isinstance(d['R1_star'],int)
+            assert all(r['D3_status']=='EXACT' for r in d['classes'])
+            assert all(r['distance_certificate']['radius1_unique'] is True for r in d['classes'])
+          else:
+            assert d['ONE_CORRUPTION_CLASS_CONDITIONED_IDENTITY_AUTHORITY'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg-qg37-${{ github.event.pull_request.head.sha || github.sha }}
+          path: artifacts/orion-qg-qg37-*
+          if-no-files-found: warn

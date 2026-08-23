@@ -1,0 +1,25 @@
+name: p1-u-r5-fixed-sources
+
+on:
+  pull_request:
+    paths:
+      - 'development/p1-u-gpt-r5-fixed-r4-sources/**'
+      - 'research/claim_expansion/p1/gpt_r5/**'
+      - 'research/claim_expansion/p1/gpt_r2/policy.py'
+      - 'research/claim_expansion/p1/gpt_r2/PROTOCOL_V1.json'
+      - 'tests/unit/p1/test_p1_u_r5_fixed_sources.py'
+      - '.github/workflows/p1-u-r5-fixed-sources.yml'
+  workflow_dispatch:
+
+jobs:
+  frozen-fixed-source-evaluator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Verify fixed R4 source set and R5 evaluator
+        run: pytest -q tests/unit/p1/test_p1_u_r5_fixed_sources.py

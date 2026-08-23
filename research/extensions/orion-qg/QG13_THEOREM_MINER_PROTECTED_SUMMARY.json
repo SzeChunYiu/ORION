@@ -1,0 +1,108 @@
+{
+  "both_accept": true,
+  "gates": {
+    "parent_qg8_cone_recovered": true,
+    "parent_r6i_recovered": true,
+    "parent_r6m_recovered": true,
+    "production_tables_bound": true,
+    "r6i_domain_4096": true,
+    "r6i_no_positive_local_delta": true,
+    "r6i_resource_domain_46080": true,
+    "r6i_uniform_quotient": true,
+    "r6m_domain_16384": true,
+    "r6m_resource_domain_18432": true,
+    "r6m_resource_nonnegative_facet_coefficients": true,
+    "r6m_uniform_quotient": true
+  },
+  "generic_checks": {
+    "digest": true,
+    "i_no_positive": true,
+    "i_ranks": true,
+    "i_resource_count": true,
+    "i_resource_max": true,
+    "i_transition_rows": true,
+    "m_facets": true,
+    "m_ranks": true,
+    "m_resource_count": true,
+    "m_resource_max": true,
+    "m_transition_rows": true,
+    "no_new_authority": true,
+    "parent_open_after": true,
+    "schema": true
+  },
+  "generic_decision": "ACCEPT",
+  "head_sha": "a8dd70174b6ad2363c22ff3212ee7e38bad83da5",
+  "issue": "SzeChunYiu/ORION#767",
+  "native_decision": "ACCEPT",
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "parent_recovery": {
+    "opened_after_synthesis": true,
+    "qg1_sha256": "a04142b9ebefc6582937a353a1ef13ef094ff6093a9698296b09aabf0c5caf2f",
+    "qg8_sha256": "f9b505d908bcafec97e7114c04e29fc1f4b8d650d29ecb9ac69842a971ebaf77",
+    "r6i": {
+      "parent_authority": "ORIONQ_QG1_RANK2_ALL_N_THEOREM_MACHINE_CHECKED__GENERATOR_SUPPORT5_SUFFICES_ALL_N__CAP5_EQUALS_UNRESTRICTED__NOT_R6",
+      "parent_machine_checked": true,
+      "parent_support5_phrase": true,
+      "synthesized_support_bound": 5
+    },
+    "r6m": {
+      "parent_authority": "MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_ALL_N__NOT_R6",
+      "parent_machine_checked": true,
+      "parent_support2_phrase": true,
+      "qg8_conditions": [
+        "t_c >= 2*t_r",
+        "t_nc >= 2*t_r"
+      ],
+      "qg8_terminal": "QG8_OBJECTIVE_INDEXED_SUPPORT2_CONE_ALL_N_MACHINE_CHECKED",
+      "synthesized_cone": [
+        "t_c >= 2*t_r",
+        "t_nc >= 2*t_r"
+      ],
+      "synthesized_support_bound": 2
+    },
+    "r6s_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875"
+  },
+  "physical_quantum_advantage_claim": false,
+  "pr": "SzeChunYiu/ORION#776",
+  "r6i_theorem_candidate": {
+    "edit": "E_R6I_ZERO_BLOCK_GENERATORS",
+    "family": "R6I",
+    "global_proper_subset_condition": "BLOCK_ANTICOMMUTATION_PARITY_IS_NONZERO",
+    "group": "F_2",
+    "max_local_cost_delta": -4,
+    "objective_scope": "FROZEN_R6I_UNIT_OBJECTIVE",
+    "proof_schema": "ZERO_SUM_DEPENDENCE_PLUS_STRICTLY_DECREASING_BLOCK_DELETION",
+    "quotient_basis_by_block": {
+      "A": [
+        544,
+        272,
+        136,
+        68,
+        1
+      ],
+      "B": [
+        32,
+        16,
+        8,
+        4,
+        2
+      ]
+    },
+    "quotient_dimension": 5,
+    "support_bound": 5
+  },
+  "r6m_theorem_candidate": {
+    "edit": "E_R6M_ZERO_FRAME_LETTER",
+    "family": "R6M",
+    "global_proper_subset_condition": "FRAME_ANTICOMMUTATION_PARITY_IS_NONZERO",
+    "group": "F_2",
+    "objective_cone": [
+      "t_c >= 2*t_r",
+      "t_nc >= 2*t_r"
+    ],
+    "proof_schema": "ZERO_SUM_DEPENDENCE_PLUS_NONINCREASING_SUPPORT_DELETION",
+    "quotient_dimension": 2,
+    "support_bound": 2
+  }
+}

@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+\title{Bytes, Builds, and Meaning: Content-Bound Evaluation for Evolving Lean Repositories}
+\author{Sze Chun Yiu}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Machine-checked proof benchmarks are often treated as unusually trustworthy because candidate outputs can be verified by a proof assistant. That confidence is justified only for the proposition actually checked by the exact verifier in the exact environment. It does not by itself establish that the evaluated source, statement, dependencies, extraction pipeline, or task identity are the objects researchers intended to measure. We present a failure-aware evaluation study in Lean 4 that makes these distinctions executable. The study freezes a 457-file, 31-module Mathlib sample (5,655,364 source bytes) at an exact revision and toolchain, then measures coarse tactic-family recurrence under blocked transfer. A first prospectively frozen analysis appeared numerically positive but was invalidated by hostile audit: 1,289 of 4,861 projected proof trajectories (26.52\%) crossed intervening top-level commands. The invalid result is retained. A separately frozen parser amendment removes this contamination and yields a corrected leave-top-module Markov-minus-unigram difference of 0.1046 with a module-bootstrap 95\% interval of [0.0863, 0.1223], while frozen null tests show recurrence concentrated in fewer distinct coarse patterns. We then bind source revision, toolchain, dependencies, source bytes, statement, attempt, verifier command, exit status, and output digests into content-bound receipts. Eight prospectively selected native Lean subjects replay byte-identically and a planted invalid control is rejected; hostile statement, revision, source, and attempt substitutions invalidate receipt binding, whereas a task-id-only store admits stale success after revision drift. The contribution is not a new tactic miner or a claim of theorem meaning. It is an empirical measurement case study showing why native acceptance, artifact identity, extraction validity, statement faithfulness, and scientific authority must remain separate gates in evolving formal repositories.
+\end{abstract}
+
+\noindent\textbf{Keywords:} automated theorem proving; Lean 4; benchmark integrity; reproducibility; formal verification; evaluation methodology; version drift.
+
+\section{Introduction}
+Formal theorem proving offers an unusually strong evaluation primitive: a candidate proof can be checked by a small trusted kernel or a well-defined native runtime. This makes formal mathematics attractive for evaluating machine reasoning. It also creates a tempting shortcut in experimental reasoning. If a file compiles, a benchmark row says success, and the benchmark task name has not changed, one may be tempted to treat the result as an enduring fact about the same scientific object.
+
+That inference is unsafe. A native checker establishes a judgment about a particular formal artifact in a particular environment. It does not establish that two benchmark rows with the same human-readable identifier denote the same statement, that their dependency closures are comparable, that a source parser extracted the intended proof body, or that the formal statement faithfully expresses an informal target. Recent formal-evaluation work increasingly recognizes these distinctions: repository-scale benchmarks bind revision context; dynamic benchmarks evolve over time; statement-faithfulness work separates type checking from semantic equivalence; and benchmark audits reveal that machine checking does not prevent dataset or harness defects \cite{letson2026sorrydb,firsching2026formalconjectures,xin2026verisoftbench,ammanamanchi2026faults,wu2026itpeval}.
+
+This paper studies the measurement boundary directly. Our motivating experiment asks a deliberately modest question: does a frozen Mathlib source sample exhibit coarse tactic-family recurrence that transfers across top-level modules? The scientific value comes from what happened next. The first frozen analysis appeared to satisfy its numerical condition, but an adversarial parser audit showed that 26.52\% of extracted trajectories crossed top-level declaration boundaries and could therefore mix unrelated source regions. We invalidate that result rather than repair it in place. A separately frozen V2.1 extraction rule produces a corrected recurrence result. We then build content-bound native-verification receipts and mutation controls to make several otherwise implicit evaluation assumptions mechanically inspectable.
+
+The paper makes four bounded contributions.
+\begin{enumerate}[leftmargin=*]
+\item \textbf{A quantified false-positive evaluation failure.} We preserve a prospectively frozen positive-looking result and show that it is scientifically inadmissible because 1,289/4,861 projected trajectories cross intervening top-level commands.
+\item \textbf{A corrected, revision-bound source study.} Under a separately frozen parser amendment, blocked next-action predictability remains above a unigram baseline and cross-module recurrence is concentrated in fewer distinct coarse patterns than the registered null families. We explicitly do not infer reusable tactics or proof utility from this signal.
+\item \textbf{Content-bound native receipts.} We bind repository revision, toolchain, dependency manifest, source path and bytes, statement identity, attempt, verifier command, exit status, and output digests into one evaluation record. Eight prospectively selected files replay byte-identically and a planted invalid proof is rejected.
+\item \textbf{Hostile identity-drift controls.} Statement, revision, source-byte, and attempt substitutions invalidate content-bound receipt matching, while a task-id-only result store accepts a stale success after revision drift. This demonstrates a concrete difference between human-readable task identity and execution identity.
+\end{enumerate}
+
+Our claim is methodological and empirical rather than architectural. Content binding is not new by itself, and stronger proof-state/dependency representations already exist \cite{yang2023leandojo,xin2025tacminer}. The contribution is the failure-aware composition of exact identity, immutable invalidation, corrected source analysis, native checking, and mutation attacks in one auditable case study.
+
+\section{Research questions and claim boundary}
+We ask three questions.
+
+\textbf{RQ1: Can a source-level proof analysis produce a numerically positive but scientifically invalid conclusion?} We test this by freezing the original extraction protocol before outcome inspection and then auditing the extractor with hostile top-level-command cases.
+
+\textbf{RQ2: What remains after the extraction defect is repaired prospectively?} We rerun the same corpus and blocked transfer questions under a separately frozen parser amendment and retain the full null distributions.
+
+\textbf{RQ3: Can an evaluation record detect subject drift that a task-id-only store misses?} We construct native Lean receipts and apply controlled mutations to source revision, source bytes, statement, and candidate attempt.
+
+The paper does \emph{not} claim that coarse source recurrence discovers reusable tactics, that the eight-file native audit represents all 457 files, that Lean exit status establishes statement faithfulness, or that a digest match establishes mathematical truth. Those are intentionally outside the supported boundary.
+
+\section{Frozen corpus and source projection}
+\subsection{Exact subject}
+The source population is Mathlib commit \texttt{e72c1e277f31441626621f7d0c7207862fc25569} with toolchain \texttt{leanprover/lean4:v4.34.0-rc1}. An outcome-blind path-hash rule selected up to 16 files per active top-level module while excluding \texttt{Deprecated} and \texttt{Testing}. The resulting frozen sample contains 457 files, 31 top-module labels, and 5,655,364 bytes. The repository stores a source manifest, selection rule, licenses, and dependency information.
+
+\subsection{Projection}
+The source analysis recognizes tactic-mode theorem and lemma bodies following an explicit \texttt{by}, maps recognized lines into 16 coarse tactic families, collapses consecutive duplicate families, and excludes unknown lines. This representation is deliberately weaker than a Lean-native trace. It does not observe elaborated proof states, premise dependencies, tactic semantics, or the proof-state dependence graph available to systems such as LeanDojo and TacMiner \cite{yang2023leandojo,xin2025tacminer}.
+
+\section{The result that failed}
+The V2 protocol was frozen before its result was used. Its extraction rule stopped a projected proof only at a subsequent theorem or lemma. Hostile audit then tested whether other top-level commands could be absorbed into the preceding proof body. They could.
+
+Of 4,861 projected trajectories, 1,289 crossed at least one intervening top-level command, corresponding to 26.52\% of trajectories. Across those trajectories the audit observed 3,903 leaked boundaries. Definitions, instances, namespace transitions, and related declaration-level constructs could therefore contribute lines to a trajectory that was being interpreted as one proof.
+
+This is not a small preprocessing discrepancy. The unit of analysis had been misidentified in more than one quarter of projected trajectories. We therefore mark V2 \texttt{supports\_claim=false}. Its positive-looking numerical outputs remain archived but support no empirical conclusion.
+
+The failure illustrates an important distinction for formal-evaluation research: native formal correctness of upstream files does not validate an external scientific projection over those files. A dataset can consist entirely of valid Lean source while a downstream extractor creates an invalid measurement object.
+
+\section{Prospective correction and corrected result}
+V2.1 was committed as a separate protocol amendment before the repaired outcome. The amendment terminates a projected proof when indentation returns to declaration level, and unit tests cover hostile definition, instance, namespace, and \texttt{end} cases. On the exact frozen corpus, the repaired audit reports no recognized top-level command remaining inside a projected proof body.
+
+Table~\ref{tab:transfer} reports the corrected blocked transfer summary.
+
+\begin{table}[h]
+\centering
+\caption{Corrected V2.1 coarse recurrence results.}
+\label{tab:transfer}
+\begin{tabular}{lrrrrr}
+\toprule
+Split & Bigram seen & Trigram seen & Markov & Unigram & Difference \\
+\midrule
+Leave source out & 0.9970 & 0.9521 & 0.3851 & 0.2796 & 0.1055 \\
+Leave top module out & 0.9959 & 0.9450 & 0.3842 & 0.2796 & 0.1046 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For leave-top-module transfer, the module-bootstrap 95\% interval for Markov-minus-unigram is [0.0862935, 0.1223224]. The observed cross-module vocabulary contains 151 bigrams and 518 trigrams. Under every frozen seed in both order-preserving and provenance-preserving null families, both observed counts fall in the registered significant lower tail.
+
+The supported interpretation is narrow: transitions between coarse source-visible tactic families are concentrated into a relatively small set of recurring patterns and provide blocked next-family predictive signal beyond a unigram frequency baseline. This does not establish that a recurring sequence is an executable macro, that it improves proof search, or that it represents a semantic proof strategy. TacMiner demonstrates why stronger claims require proof-state dependence structure and downstream automation tests rather than source adjacency alone \cite{xin2025tacminer}.
+
+\section{Content-bound native verification}
+\subsection{Receipt object}
+A result row is treated as a measurement over an execution subject rather than over a string task identifier. The receipt binds:
+\begin{itemize}[leftmargin=*]
+\item repository and exact source revision;
+\item Lean toolchain identity;
+\item dependency manifest;
+\item source path and source-byte digest;
+\item statement identity where applicable;
+\item candidate attempt digest;
+\item verifier command and runtime identity;
+\item exit status and stdout/stderr digests.
+\end{itemize}
+
+These fields distinguish at least four concepts: artifact identity, native acceptance, statement faithfulness, and scientific authority. Only the first two are directly exercised by the native-receipt experiment.
+
+\subsection{Prospective native audit}
+Before native outcomes, eight top-module-stratified source files were selected by hash from the 457-file population. Each exact upstream file was executed with \texttt{lake env lean <path>} inside the exact Mathlib checkout. A planted invalid proof of \texttt{False} served as a negative control.
+
+All eight selected files exited successfully under Lean 4.34.0-rc1, release commit \texttt{3447a668783dbce1a8fdb97101dd067687b2b418}. The planted invalid proof exited nonzero. Two complete native replays produced byte-identical receipt archives with SHA-256 \texttt{1aed4fbfb7e9b83eda08bfe19b4d4348dcdbffba82b1db567d05a61aaa8c5b90}.
+
+The native result is intentionally bounded. It establishes native acceptance for the eight exact subjects under the named environment. It is not statistical evidence that the other 449 source files were natively replayed by this experiment.
+
+\section{Identity-drift mutation controls}
+We compare content-bound matching to a minimal task-id-only result store. The hostile controls mutate one load-bearing coordinate while preserving enough superficial identity to tempt stale result reuse.
+
+\begin{table}[h]
+\centering
+\caption{Mutation behavior of naive versus content-bound result identity.}
+\label{tab:mutation}
+\begin{tabular}{lll}
+\toprule
+Mutation & Task-id-only store & Content-bound receipt \\
+\midrule
+Source revision changed & stale success reachable & binding fails \\
+Source bytes changed & stale success reachable & binding fails \\
+Statement changed & may reuse task row & binding fails \\
+Candidate attempt changed & may reuse task row & binding fails \\
+Exact replay & success reachable & binding succeeds \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The point is not that hashes are sophisticated. The point is that a scientific evaluation must define which identity coordinates are constitutive of the measured object. A task name is a useful label but an insufficient execution identity when repositories, dependencies, and formal statements evolve.
+
+\section{Relation to current formal-evaluation work}
+The present contribution is deliberately positioned after mechanism absorption rather than by claiming that surrounding ideas are new.
+
+\textbf{Repository tracing and proof-state data.} LeanDojo and its successors extract proof states, tactics, premises, abstract syntax, and repository dependencies and provide interactive theorem-proving environments \cite{yang2023leandojo,leandojov2}. We therefore call our V2.1 representation a source projection, not a native proof trace.
+
+\textbf{Versioned and evolving benchmarks.} SorryDB packages real repository tasks and emphasizes continuously updated evaluation, while Formal Conjectures separates evolving benchmark development from frozen evaluation subsets \cite{letson2026sorrydb,firsching2026formalconjectures}. VeriSoftBench further shows that repository dependence and cross-file context are first-class empirical variables \cite{xin2026verisoftbench}. These works motivate binding repository context rather than treating statements as detached strings.
+
+\textbf{Proof-pattern mining.} Sequential proof-pattern mining predates this work, and TacMiner uses tactic dependence graphs to discover reusable tactics and measures both proof compression and downstream automation gains \cite{nawaz2019pvs,xin2025tacminer}. Consequently, our corrected source recurrence is descriptive evidence only.
+
+\textbf{Faithfulness and benchmark defects.} ITPEval reports that native type checking can overestimate statement equivalence, and recent formal-benchmark audits document vacuity, specification defects, harness weaknesses, and score distortion even in machine-checked settings \cite{wu2026itpeval,ammanamanchi2026faults}. These findings reinforce our separation of native acceptance from meaning.
+
+\textbf{Version robustness.} Lean Refactor explicitly studies version-aware proof refactoring and zero-shot transfer across later Lean releases \cite{lu2026leanrefactor}. We therefore do not claim that cross-version proof robustness is novel. The prospective P11 V3 protocol treats longitudinal content-bound comparability and native-mechanism retention as future experiments rather than evidence for the present paper.
+
+The residual contribution of the present study is an integrated measurement case: a positive-looking source analysis is invalidated by an extraction-identity failure, repaired prospectively, then connected to native receipt and mutation controls that make execution identity inspectable.
+
+\section{Threats to validity}
+\textbf{Source projection.} V2.1 still excludes 6,097 unrecognized proof-body lines and cannot represent elaboration, proof states, tactic semantics, or dependency structure. It should not be used as a surrogate for native proof traces.
+
+\textbf{Native sample size.} The native audit contains eight prospectively selected files. It validates the receipt workflow on those subjects, not Mathlib-wide native acceptance.
+
+\textbf{Single repository lineage.} The empirical source study uses one Mathlib revision. General claims about evolving repositories require the prospective multi-revision and external-repository experiments defined separately in \texttt{P11\_REOPEN\_PROTOCOL\_V3.md}.
+
+\textbf{Statement meaning.} A Lean process exiting successfully establishes acceptance of the formal artifact under the selected runtime. It does not establish that the statement faithfully encodes an informal mathematical claim. Deterministic or independently adjudicated equivalence checks are separate evidence \cite{wu2026itpeval}.
+
+\textbf{Novelty boundary.} Content hashes, pinned revisions, native checking, immutable snapshots, and tactic mining all have substantial prior art. Our scientific claim is the failure-aware measurement demonstration, not ownership of those components.
+
+\section{Reproducibility}
+The repository contains the corpus manifest, V2 and V2.1 protocol/result artifacts, full null distributions, parser contamination audit, native receipt archive, mutation tests, exact environment identifiers, and a deterministic technical-note readiness checker. The invalid V2 artifacts are retained alongside V2.1 rather than overwritten.
+
+The source-level paper checks reproduce from the repository root using the commands documented in \texttt{P11\_REPRODUCE.md}. Native replay additionally requires the exact Mathlib checkout and Lean 4.34.0-rc1 environment. Missing external inputs are reported as missing rather than reconstructed from memory or substituted after outcome access.
+
+\section{Discussion}
+This case study changes the role of a formal checker in scientific evaluation. The checker is not an oracle over the entire experiment. It is a strong measurement instrument for one coordinate: acceptance of a particular formal artifact under a particular environment. The scientific evaluation remains responsible for binding that coordinate to the intended task, source, statement, dependencies, extraction pipeline, and claim.
+
+The V2 failure is especially instructive because every upstream source file could be perfectly valid Lean while the experiment over those files was still invalid. Formal verification did not fail; measurement identity did. Conversely, the corrected V2.1 result is meaningful precisely because its scope is smaller: it establishes source-visible recurrence under a documented projector and says nothing about reusable tactics without a native dependence representation and downstream prover experiment.
+
+This suggests a general operational principle for evolving formal benchmarks: record results against content-bound execution subjects, retain invalidated protocol versions, and treat semantic faithfulness and scientific authority as additional gates rather than inferred consequences of compilation. The principle is simple, but the mutation controls show that omitting it creates observable stale-result behavior.
+
+\section{Conclusion}
+We presented a revision-bound Lean evaluation case study in which a prospectively frozen, numerically positive result was invalidated after 26.52\% of extracted trajectories were found to cross top-level command boundaries. A separately frozen correction preserved a bounded recurrence result. We then demonstrated content-bound native receipts, deterministic replay, a planted-invalid control, and hostile identity mutations that distinguish exact execution subjects from task-id-only bookkeeping.
+
+The strongest supported conclusion is methodological: machine checking strengthens one layer of evidence but does not collapse artifact identity, extraction validity, native acceptance, statement faithfulness, and scientific authority into a single boolean. Formal-evaluation pipelines become more interpretable when those layers are recorded separately and when invalid results remain part of the scientific record.
+
+\paragraph{Data and code availability.} All result-bearing artifacts, protocols, source manifests, checker scripts, and receipt records used for the claims in this manuscript are committed in the ORION repository under \texttt{papers/candidates/paper-10-content-bound-math-evaluation/}. Exact subject and artifact identifiers are listed in the accompanying claim ledger and reproduction guide.
+
+\paragraph{Use of generative AI.} Generative AI systems were used as research and writing assistants in the development of the ORION programme. Scientific claims in this manuscript are restricted to committed machine-readable artifacts, explicit protocol records, cited external sources, and mechanically checkable repository evidence; model output is not treated as experimental authority.
+
+\bibliographystyle{plain}
+\bibliography{P11_REFERENCES}
+\end{document}

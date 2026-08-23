@@ -1,0 +1,105 @@
+name: orion-q-max-r4eb0-heldout-qg32
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R4EB0_*'
+      - 'development/orion-q-max-r0/max_r4eb0_*'
+      - 'development/orion-q-max-r0/run_max_r4eb0_dual_harness.py'
+      - 'research/extensions/orion-q/max_r4eb0_*'
+      - 'research/extensions/orion-qg/QG32_MIN_SEPARATING_PROBES_RESULTS.json'
+      - '.github/workflows/orion-q-max-r4eb0-heldout-qg32.yml'
+  workflow_dispatch:
+jobs:
+  heldout-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - id: target
+        name: Check frozen target receipt
+        shell: bash
+        run: |
+          if [[ -f research/extensions/orion-qg/QG32_MIN_SEPARATING_PROBES_RESULTS.json ]]; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo 'Forecast/adjudicator freeze only: QG-32 committed receipt is intentionally absent.'
+          fi
+      - uses: actions/setup-python@v5
+        if: steps.target.outputs.ready == 'true'
+        with: {python-version: '3.12'}
+      - name: Install
+        if: steps.target.outputs.ready == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute held-out dual harness
+        if: steps.target.outputs.ready == 'true'
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-q-max-r0/run_max_r4eb0_dual_harness.py | tee artifacts/orion-q-max-r4eb0-summary.json
+      - name: Deterministic adjudicator replay
+        if: steps.target.outputs.ready == 'true'
+        run: |
+          python research/extensions/orion-q/max_r4eb0_heldout_qg32_adjudicator.py --output artifacts/orion-q-max-r4eb0-replay.json > artifacts/orion-q-max-r4eb0-replay.log
+          cmp artifacts/orion-q-max-r4eb0-heldout-qg32.json artifacts/orion-q-max-r4eb0-replay.json
+      - name: Self-consistent adjudication tamper must fail
+        if: steps.target.outputs.ready == 'true'
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-q-max-r4eb0-heldout-qg32.json').read_text())
+          d['adjudication']='CANNOT_CHECK'
+          d['information_layer_action_correct']=False
+          u={k:v for k,v in d.items() if k!='result_digest'}
+          d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+          Path('artifacts/orion-q-max-r4eb0-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-q-max-r0/max_r4eb0_generic_verify.py --input artifacts/orion-q-max-r4eb0-tampered.json --output artifacts/orion-q-max-r4eb0-tampered-verify.json > artifacts/orion-q-max-r4eb0-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-q-max-r4eb0-tampered-verify.json').read_text())
+          assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce transfer authority boundary
+        if: steps.target.outputs.ready == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-q-max-r4eb0-heldout-qg32.json').read_text())
+          g=json.loads(Path('artifacts/orion-q-max-r4eb0-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-q-max-r4eb0-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-q-max-r4eb0-dual-harness.json').read_text())
+          assert d['both_accept'] is True
+          assert a['forecast_number_present'] is False and a['hidden_outcome_dependency_count']==0
+          assert a['false_authority_count']==0
+          assert g['all_checks'] is True and n['all_checks'] is True
+          assert n['responsibility']=='PROSPECTIVE_SAME_DOMAIN_ACTION_TRANSFER_ONLY'
+          for x in (a,g,n,d):
+            assert x['MAX_R4E_QG_SKILLS_COMPILER_GENERAL'] is False
+            assert x['MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE'] is False
+            assert x['MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER'] is False
+            assert x['AUTONOMOUS_SKILL_SELECTION_AUTHORITY'] is False
+            assert x['GENERAL_QUANTUM_SCIENCE_IMPROVEMENT'] is False
+            assert x['NOVELTY_AUTHORITY'] is False
+          PY
+      - name: Upload
+        if: always() && steps.target.outputs.ready == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r4eb0-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-q-max-r4eb0-*.json
+            artifacts/orion-q-max-r4eb0-*.log
+            .orion-q-max-r4eb0-generic/.orion-harness/**
+            .orion-q-max-r4eb0-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

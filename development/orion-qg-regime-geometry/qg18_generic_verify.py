@@ -24,7 +24,6 @@ bound here by sha256 and by its recorded outcome/authority strings.
 
 Emits exactly one decision line: QG18_GENERIC_VERIFY=ACCEPT or =REJECT.
 """
-from __future__ import annotations
 
 import hashlib
 import itertools
@@ -382,7 +381,6 @@ def main() -> int:
 if __name__ == "__main__":
     raise SystemExit(main())
 """Independent generic-ORION verifier for QG-18 TARE intrinsic support."""
-from __future__ import annotations
 
 import hashlib, itertools, json
 from pathlib import Path

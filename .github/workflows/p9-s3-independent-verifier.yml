@@ -1,0 +1,42 @@
+name: p9-s3-independent-verifier
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-structured-neural/verification/S3_INDEPENDENT_VERIFIER_PROTOCOL_V1*.json'
+      - 'research/extensions/p9-structured-neural/verification/verify_s3_independent.py'
+      - 'research/extensions/p9-structured-neural/verification/run_s3_verifier_v1_1.py'
+      - '.github/workflows/p9-s3-independent-verifier.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Download immutable official S3 artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/actions/artifacts/9383620501/zip > /tmp/s3.zip
+          unzip -p /tmp/s3.zip s3-access-attribution-result.json > /tmp/s3-official.json
+      - name: Execute independently frozen verifier
+        run: >-
+          python research/extensions/p9-structured-neural/verification/run_s3_verifier_v1_1.py
+          /tmp/s3-official.json
+          --output /tmp/s3-independent-verification.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-s3-independent-verification
+          path: /tmp/s3-independent-verification.json
+          if-no-files-found: error

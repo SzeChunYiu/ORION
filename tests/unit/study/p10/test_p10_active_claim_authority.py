@@ -19,14 +19,28 @@ def test_committed_record_is_rebuilt_from_bound_bytes() -> None:
     assert json.loads(AUTHORITY.read_text(encoding="utf-8")) == build_active_claim_authority()
 
 
+def test_committed_authority_has_no_duplicate_json_keys() -> None:
+    def reject_duplicates(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON object key: {key}")
+            result[key] = value
+        return result
+
+    json.loads(AUTHORITY.read_text(encoding="utf-8"), object_pairs_hook=reject_duplicates)
+
+
 def test_all_six_hypotheses_are_prospective_not_negative_or_positive() -> None:
     authority = build_active_claim_authority()
     assert authority["active_terminal"] == ACTIVE_TERMINAL
+    assert authority["lifecycle_state"] == "PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT"
     assert authority["scientific_result_state"] == "NO_P10_PROTECTED_RESULT"
     assert set(authority["hypotheses"]) == {f"H{index}" for index in range(1, 7)}
     assert set(authority["hypotheses"].values()) == {"PROSPECTIVE_NOT_EXECUTED"}
     assert authority["active_empirical_claim"] is None
     assert authority["promotion_allowed"] is False
+    assert authority["execution_authorized"] is False
 
 
 def test_predecessor_local_closure_cannot_discharge_p10() -> None:

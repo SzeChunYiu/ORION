@@ -1,0 +1,24 @@
+{
+  "schema": "P9.S3AccessAttributionProtocol.v1.3",
+  "date": "2026-08-19",
+  "parent_protocol": "S3_ACCESS_ATTRIBUTION_PROTOCOL_V1_2.json",
+  "failed_run_id": 32302517958,
+  "failed_run_outcome_accessed": false,
+  "failure_stage": "first learned model fit before any protected prediction/result artifact",
+  "failure": "scikit-learn 1.9 rejects sparse DictVectorizer matrices with int64 sparse indices",
+  "amendment": "Use dense DictVectorizer output for S3 F1 and replayed historical D1 arms while preserving the exact feature dictionaries and estimator/model hyperparameters. Retain D1 v1.2 logistic compatibility (lbfgs) and unchanged tree/RF parameters.",
+  "scientific_changes": [],
+  "unchanged": [
+    "D1 dataset and seed",
+    "train/dev/test split",
+    "all feature semantics",
+    "S3 F1/F2 adapter",
+    "D1 model grid",
+    "dev-only selection rule",
+    "protected test",
+    "metrics",
+    "terminal thresholds",
+    "pre-result expectation"
+  ],
+  "authority": "EXECUTION_COMPATIBILITY_AMENDMENT_ONLY"
+}

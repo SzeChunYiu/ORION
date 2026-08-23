@@ -1,0 +1,117 @@
+name: orion-qg-qg9-t2-tightness
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG9_T2_*'
+      - 'development/orion-qg-regime-geometry/qg9_t2_*'
+      - 'development/orion-qg-regime-geometry/run_qg9_t2_dual_harness.py'
+      - 'research/extensions/orion-qg/qg9_t2_*'
+      - '.github/workflows/orion-qg-qg9-t2-tightness.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg9-t2-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg9-t2-tightness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      QG9_T2_PARENT: a80dbd57d9124f058de7465a13de8c69416c368b
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen parent lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG9_T2_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG9_T2_PARENT}")" = "${QG9_T2_PARENT}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg9_t2_stage1_candidates.py \
+            research/extensions/orion-qg/qg9_t2_cap1_referee.py \
+            development/orion-qg-regime-geometry/qg9_t2_generic_verify.py \
+            development/orion-qg-regime-geometry/qg9_t2_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg9_t2_dual_harness.py
+      - name: Execute stage1, cap1 referee, generic ORION, native ORION-Q
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg9_t2_dual_harness.py \
+            | tee artifacts/orion-qg-qg9-t2-dual-summary.json
+      - name: Deterministic stage1 and referee replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg9_t2_stage1_candidates.py \
+            --output artifacts/orion-qg-qg9-t2-stage1-replay.json \
+            > artifacts/orion-qg-qg9-t2-stage1-replay.log
+          cmp artifacts/orion-qg-qg9-t2-stage1.json artifacts/orion-qg-qg9-t2-stage1-replay.json
+          python research/extensions/orion-qg/qg9_t2_cap1_referee.py \
+            --stage1 artifacts/orion-qg-qg9-t2-stage1.json \
+            --output artifacts/orion-qg-qg9-t2-result-replay.json \
+            > artifacts/orion-qg-qg9-t2-result-replay.log
+          cmp artifacts/orion-qg-qg9-t2-result.json artifacts/orion-qg-qg9-t2-result-replay.json
+      - name: Enforce scientific terminal and anti-overclaim gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('artifacts/orion-qg-qg9-t2-stage1.json').read_text())
+          r=json.loads(Path('artifacts/orion-qg-qg9-t2-result.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg9-t2-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg9-t2-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg9-t2-dual-harness.json').read_text())
+          allowed={
+            'QG9_SUPPORT2_TIGHT_WITNESS_FOUND__CAP1_STRICT_GAP',
+            'QG9_T2_NO_TIGHT_WITNESS_IN_FROZEN_INVERSE_DESIGN_DOMAIN',
+          }
+          assert d['terminal'] in allowed
+          assert d['both_accept'] is True
+          assert g['decision']=='ACCEPT' and all(g['checks'].values())
+          assert s['cap1_opened'] is False and s['unrestricted_dp_opened'] is False
+          assert s['canonical_candidate_count'] > 0
+          assert r['support1_authority'] is False
+          assert r['novelty_authority'] is False
+          assert r['physical_quantum_advantage_claim'] is False
+          assert d['support1_authority'] is False
+          if d['terminal']=='QG9_SUPPORT2_TIGHT_WITNESS_FOUND__CAP1_STRICT_GAP':
+              q=r['positive_witness']
+              assert q is not None
+              assert q['C_DP'] <= q['candidate']['U2'] < q['cap1']['C_cap1']
+              assert n['decision']=='ACCEPT_TIGHT_WITNESS'
+          else:
+              assert r['positive_witness'] is None
+              assert r['unrestricted_dp_opened'] is False
+              assert n['decision']=='ACCEPT_BOUNDED_NEGATIVE'
+          PY
+      - name: Upload T2 protected receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg9-t2-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg9-t2-stage1.json
+            artifacts/orion-qg-qg9-t2-result.json
+            artifacts/orion-qg-qg9-t2-generic-verification.json
+            artifacts/orion-qg-qg9-t2-native-verification.json
+            artifacts/orion-qg-qg9-t2-dual-harness.json
+            artifacts/orion-qg-qg9-t2-dual-summary.json
+            artifacts/orion-qg-qg9-t2-stage1-replay.json
+            artifacts/orion-qg-qg9-t2-result-replay.json
+            .orion-qg-qg9-t2-generic/.orion-harness/**
+            .orion-qg-qg9-t2-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

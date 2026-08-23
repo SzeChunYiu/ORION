@@ -1,0 +1,348 @@
+name: p2-wide-openaire-matched-v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py'
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py'
+      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json'
+      - 'papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json'
+      - 'tests/unit/p2/test_p2_openaire_matched_v2.py'
+      - 'tests/unit/p2/test_p2_openaire_transport_probe_authority.py'
+      - 'tests/unit/p2/test_p2_openaire_analysis_v2_transport_authority.py'
+      - '.github/workflows/p2-wide-openaire-matched-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host-public-split:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install trusted split dependencies
+        run: python -m pip install -e . cryptography
+
+      - name: Materialize pinned benchmark on trusted main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/arb-upstream /tmp/p2-wide-v2-host
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/p2-wide-v2-host
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/p2-wide-v2-host/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/p2-wide-v2-host/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/p2-wide-v2-host/AutoResearchBench.jsonl
+          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-wide-v2-host/AutoResearchBench.jsonl' | sha256sum -c -
+
+      - name: Produce and audit candidate-visible split
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/p2-wide-v2-host/AutoResearchBench.jsonl \
+            --public /tmp/p2-wide-v2-host/wide_public.jsonl \
+            --gt /tmp/p2-wide-v2-host/wide_gt_DO_NOT_EXPORT.jsonl \
+            --manifest /tmp/p2-wide-v2-host/split_manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows = [json.loads(x) for x in Path('/tmp/p2-wide-v2-host/wide_public.jsonl').read_text().splitlines() if x.strip()]
+          assert len(rows) == 400
+          assert all(set(row) == {'task_id', 'question'} for row in rows)
+          assert all('arxiv_id' not in row and 'answer' not in row and 'gold' not in row for row in rows)
+          print('P2_WIDE_V2_PUBLIC_CUSTODY=PASS')
+          PY
+
+      - name: Export public split only
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-wide-v2-public-${{ github.run_id }}
+          path: |
+            /tmp/p2-wide-v2-host/wide_public.jsonl
+            /tmp/p2-wide-v2-host/split_manifest.json
+          if-no-files-found: error
+          retention-days: 7
+
+  acquisition:
+    needs: host-public-split
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ORION test environment
+        run: python -m pip install -e '.[dev]'
+
+      - name: Prove V1 custody plus V2 transport semantics before network outcome
+        run: |
+          python -m py_compile \
+            papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py \
+            papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py
+          pytest -q tests/unit/p2/test_p2_openaire_identity_probe.py
+          pytest -q tests/unit/p2/test_p2_openaire_matched.py
+          pytest -q tests/unit/p2/test_p2_openaire_matched_v2.py
+          pytest -q tests/unit/p2/test_p2_openaire_transport_probe_authority.py
+          pytest -q tests/unit/p2/test_p2_openaire_analysis_v2_transport_authority.py
+
+      - name: Validate documented repeated-pid transport without benchmark gold
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p2-wide-v2
+          python - <<'PY'
+          import hashlib, importlib.util, json, sys, urllib.request
+          from pathlib import Path
+          path = Path('papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py')
+          spec = importlib.util.spec_from_file_location('p2_v2_probe_runner', path)
+          assert spec and spec.loader
+          runner = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = runner
+          spec.loader.exec_module(runner)
+          freeze = json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json').read_text())
+          transport = freeze['transport_repair_evidence']
+          dois = list(transport['probe_dois'])
+          min_result_count = transport['probe_min_result_count']
+          min_matched_doi_count = transport['probe_min_matched_doi_count']
+          assert type(min_result_count) is int and min_result_count >= 1
+          assert type(min_matched_doi_count) is int and min_matched_doi_count >= 1
+          url = runner.build_openaire_crosswalk_url(dois, page_size=runner.TRANSPORT_PROBE_PAGE_SIZE)
+          request = urllib.request.Request(url, headers={'User-Agent': runner.v1.USER_AGENT, 'Accept': 'application/json'})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              status = int(response.status)
+              body = response.read()
+          payload = json.loads(body)
+          assert status == 200, status
+          assert isinstance(payload, dict) and isinstance(payload.get('results'), list)
+          result_count = len(payload['results'])
+          assert result_count >= min_result_count, (result_count, min_result_count)
+          matched_dois = list(runner.extract_requested_doi_matches(payload, dois))
+          assert len(matched_dois) >= min_matched_doi_count, (matched_dois, min_matched_doi_count)
+          receipt = {
+              'schema_version': 'orion.p2.openaire-repeated-pid-transport-probe.v1',
+              'terminal': runner.PROBE_TERMINAL,
+              'http_status': status,
+              'encoding': 'repeated_pid_parameters',
+              'dois': dois,
+              'url_sha256': hashlib.sha256(url.encode()).hexdigest(),
+              'response_sha256': hashlib.sha256(body).hexdigest(),
+              'result_count': result_count,
+              'matched_dois': matched_dois,
+              'benchmark_gold_accessed': False,
+              'promotion_authorized': False,
+          }
+          pending = Path('/tmp/p2-wide-v2/transport_probe.pending.json')
+          final = Path('/tmp/p2-wide-v2/transport_probe.json')
+          response_path = Path('/tmp/p2-wide-v2/transport_probe_response.json')
+          response_path.write_bytes(body)
+          pending.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          validated_probe = runner.validate_transport_probe(pending, freeze)
+          runner.validate_transport_response(response_path, validated_probe, freeze)
+          pending.replace(final)
+          print('P2_WIDE_V2_TRANSPORT_PROBE=' + json.dumps(receipt, sort_keys=True))
+          PY
+
+      - name: Download public split; no evaluator gold enters acquisition
+        uses: actions/download-artifact@v4
+        with:
+          name: p2-wide-v2-public-${{ github.run_id }}
+          path: /tmp/p2-wide-v2/input
+
+      - name: Run full 400-row shared acquisition capture
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p2-wide-v2/capture
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py \
+            --public /tmp/p2-wide-v2/input/wide_public.jsonl \
+            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
+            --identity-receipt papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json \
+            --transport-probe /tmp/p2-wide-v2/transport_probe.json \
+            --out-dir /tmp/p2-wide-v2/capture
+          test -s /tmp/p2-wide-v2/capture/SHARED_ACQUISITION_MANIFEST.json
+          test -s /tmp/p2-wide-v2/capture/candidate_wide_dual_backend_balanced.jsonl
+          test -s /tmp/p2-wide-v2/capture/candidate_wide_dual_backend_governed.jsonl
+
+      - name: Reassert pre-score candidate contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('/tmp/p2-wide-v2/capture')
+          manifest = json.loads((root / 'SHARED_ACQUISITION_MANIFEST.json').read_text())
+          assert manifest['campaign_version'] == 2
+          assert manifest['transport_encoding'] == 'repeated_pid_parameters'
+          assert manifest['transport_probe_terminal'] == 'OPENAIRE_REPEATED_PID_TRANSPORT_VALID'
+          assert manifest['same_acquisition_capture_for_all_systems'] is True
+          assert manifest['candidate_cap'] == 20
+          assert manifest['raw_regex_arxiv_identity_extraction'] is False
+          for system_id, expected in manifest['candidate_hashes'].items():
+              actual = hashlib.sha256((root / f'candidate_{system_id}.jsonl').read_bytes()).hexdigest()
+              assert actual == expected, (system_id, actual, expected)
+          print('P2_WIDE_V2_PRE_SCORE_CANDIDATE_FREEZE=PASS')
+          PY
+
+      - name: Upload frozen V2 candidate/acquisition artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-wide-v2-capture-${{ github.sha }}
+          path: |
+            /tmp/p2-wide-v2/capture/**
+            /tmp/p2-wide-v2/transport_probe.json
+            /tmp/p2-wide-v2/transport_probe_response.json
+            /tmp/p2-wide-v2/input/split_manifest.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
+            papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  evaluate:
+    needs: acquisition
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pinned evaluator runtime dependencies
+        run: python -m pip install -e '.[dev]' cryptography requests tiktoken
+
+      - name: Download already-frozen V2 candidate capture
+        uses: actions/download-artifact@v4
+        with:
+          name: p2-wide-v2-capture-${{ github.sha }}
+          path: /tmp/p2-wide-v2-eval/capture
+
+      - name: Hash candidates before evaluator gold exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          candidates = list(Path('/tmp/p2-wide-v2-eval/capture').rglob('SHARED_ACQUISITION_MANIFEST.json'))
+          assert len(candidates) == 1, candidates
+          root = candidates[0].parent
+          manifest = json.loads(candidates[0].read_text())
+          binding = {}
+          for system_id, expected in manifest['candidate_hashes'].items():
+              path = root / f'candidate_{system_id}.jsonl'
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual == expected
+              binding[system_id] = actual
+          Path('/tmp/p2-wide-v2-eval/PRE_GOLD_CANDIDATE_HASHES.json').write_text(json.dumps(binding, sort_keys=True))
+          Path('/tmp/p2-wide-v2-eval/CAPTURE_ROOT.txt').write_text(str(root))
+          print('P2_WIDE_V2_CANDIDATES_FROZEN_BEFORE_GOLD=PASS')
+          PY
+
+      - name: Materialize evaluator-only pinned benchmark after candidate freeze
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/arb-upstream /tmp/p2-wide-v2-eval/gold
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/p2-wide-v2-eval/gold
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl
+          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl' | sha256sum -c -
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl \
+            --public /tmp/p2-wide-v2-eval/gold/public_rederived_not_used_by_candidates.jsonl \
+            --gt /tmp/p2-wide-v2-eval/gold/wide_gt.jsonl \
+            --manifest /tmp/p2-wide-v2-eval/gold/split_manifest.json
+
+      - name: Run pinned official Wide scorer on frozen candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-v2-eval/CAPTURE_ROOT.txt)
+          mkdir -p /tmp/p2-wide-v2-eval/results
+          for SYSTEM in wide_dual_backend_balanced wide_dual_backend_governed wide_dual_backend_direct_first; do
+            python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+              --input-file "$ROOT/candidate_${SYSTEM}.jsonl" \
+              --gt-file /tmp/p2-wide-v2-eval/gold/wide_gt.jsonl \
+              --no-jina \
+              --output-file "/tmp/p2-wide-v2-eval/results/eval_${SYSTEM}.json"
+          done
+
+      - name: Apply prospectively frozen V2 paired analysis and terminal
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-v2-eval/CAPTURE_ROOT.txt)
+          python papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py \
+            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
+            --manifest "$ROOT/SHARED_ACQUISITION_MANIFEST.json" \
+            --baseline-eval /tmp/p2-wide-v2-eval/results/eval_wide_dual_backend_balanced.json \
+            --orion-eval /tmp/p2-wide-v2-eval/results/eval_wide_dual_backend_governed.json \
+            --diagnostic-eval /tmp/p2-wide-v2-eval/results/eval_wide_dual_backend_direct_first.json \
+            --baseline-candidate "$ROOT/candidate_wide_dual_backend_balanced.jsonl" \
+            --orion-candidate "$ROOT/candidate_wide_dual_backend_governed.jsonl" \
+            --diagnostic-candidate "$ROOT/candidate_wide_dual_backend_direct_first.jsonl" \
+            --output /tmp/p2-wide-v2-eval/results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V2.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/p2-wide-v2-eval/results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V2.json').read_text())
+          print('P2_WIDE_V2_SCIENTIFIC_TERMINAL=' + result['terminal'])
+          print('P2_WIDE_V2_VALID=' + str(result['all_validity_conditions']))
+          print('P2_WIDE_V2_IOU_DELTA=' + str(result['scientific_rule']['official_avg_iou_delta']))
+          print('P2_WIDE_V2_CI95_LOW=' + str(result['scientific_rule']['paired_iou_ci95_low']))
+          PY
+
+      - name: Prove evaluator did not mutate candidate bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-v2-eval/CAPTURE_ROOT.txt)
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path(Path('/tmp/p2-wide-v2-eval/CAPTURE_ROOT.txt').read_text())
+          before = json.loads(Path('/tmp/p2-wide-v2-eval/PRE_GOLD_CANDIDATE_HASHES.json').read_text())
+          for system_id, expected in before.items():
+              actual = hashlib.sha256((root / f'candidate_{system_id}.jsonl').read_bytes()).hexdigest()
+              assert actual == expected
+          print('P2_WIDE_V2_POST_SCORE_CANDIDATE_IMMUTABILITY=PASS')
+          PY
+
+      - name: Upload official V2 evaluator and terminal evidence; never upload evaluator GT
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-wide-v2-evaluation-${{ github.sha }}
+          path: |
+            /tmp/p2-wide-v2-eval/results/*.json
+            /tmp/p2-wide-v2-eval/PRE_GOLD_CANDIDATE_HASHES.json
+            /tmp/p2-wide-v2-eval/gold/split_manifest.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
+          if-no-files-found: warn
+          retention-days: 30

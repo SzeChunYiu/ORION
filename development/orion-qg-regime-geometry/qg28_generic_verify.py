@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Independent generic ORION verifier for QG-28 local-Clifford orbit compression."""
-from __future__ import annotations
 import argparse,hashlib,itertools,json
 from collections import Counter
 from pathlib import Path
@@ -85,7 +84,6 @@ hardcoded both, which made it untestable and made it destroy its own record the
 first time anyone tried; that is not repeated here.
 """
 
-from __future__ import annotations
 
 import hashlib
 import itertools

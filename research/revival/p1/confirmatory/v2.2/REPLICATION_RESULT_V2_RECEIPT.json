@@ -1,0 +1,91 @@
+{
+  "schema_version": "orion.p1.mutation-necessity-replication-result-receipt.v2",
+  "paper_id": "P1",
+  "date": "2026-08-18",
+  "authority": "POWERED_PRIMARY_AND_DISJOINT_REPLICATION_SUPPORTED__INDEPENDENT_VERIFICATION_REQUIRED",
+  "terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+  "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_P1_NECESSITY_RESULT_ONLY__V1_H1_HISTORY_UNCHANGED__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
+  "primary_receipt": "research/revival/p1/confirmatory/v2.2/PRIMARY_RESULT_V2_RECEIPT.json",
+  "subject": {
+    "pr": 399,
+    "branch_head": "847a91fabf8a20e6447aeb86805ed7c61b47ee0a",
+    "pull_request_merge_ref": "c9c9f17f59cb9c17e53ef84f7ec79a5f32b36d27"
+  },
+  "workflow": {
+    "run_id": 32125802466,
+    "freeze_job_id": 95675968711,
+    "replicate_job_id": 95676053076,
+    "freeze_artifact_id": 9320278400,
+    "freeze_artifact_sha256": "43dec0d96600eb67390a5596b57a05679ecab0b421f2ee75803833c61c24001c",
+    "result_artifact_id": 9320334737,
+    "result_artifact_sha256": "c96e21f69fe5446988b57ec28e44b86f46491e2080914ba7af8d97d4014eabe7",
+    "replication_world_freeze_sha256": "5a43b2e0e33f0cc8dbd3c385653084f5694087856c76be1ed1f027917d908ed6",
+    "replication_execution_freeze_sha256": "7077eaad9c4943df753fef144a9f05c8806df4e0ab080fc2f3b8457fab46240c",
+    "result_json_sha256": "d5e5e2423442cd4a4bd7603e9026653b6dd36b2b22c37af4f3a61fbcfedde5d0",
+    "raw_results_sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73",
+    "raw_result_bytes": 41032311
+  },
+  "replication_identity": {
+    "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+    "replication_seed": 202608172212,
+    "primary_confirmatory_seed": 202608172211,
+    "n_worlds": 2882,
+    "hidden_shift_n": 480,
+    "negative_control_n": 2402,
+    "public_sha256": "b4772f693db1e69460bcb531a86bb883afd562bcb219e2038c978e33f7f34afb",
+    "protected_response_matrix_sha256": "768b659a17f055b19dfefc720cee67030c40c6a5f8f55e38fa0c6158c4836d0e",
+    "disjoint_from_primary_public": true,
+    "disjoint_from_primary_protected": true,
+    "candidate_view_leak_count": 0,
+    "runnable_arms": 9,
+    "ablation_arms": 5,
+    "h1_parents": [
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ]
+  },
+  "replication_outcome": {
+    "orion_hidden_shift_success_rate": 1.0,
+    "parent_hidden_shift_success_rate_each": 0.48333333333333334,
+    "orion_minus_each_parent_hidden_shift_success": 0.5166666666666667,
+    "h1_parent_ci95": {
+      "active_voi_repair_parent": [0.4708333333333333, 0.5604166666666667],
+      "darc_r2act_dependency_parent": [0.47291666666666665, 0.5604166666666667],
+      "causalflow_minimal_counterfactual_parent": [0.4708333333333333, 0.5625]
+    },
+    "h1_mcnemar_p_each": 4.421718300208356e-75,
+    "h1_holm_all_pass": true,
+    "orion_negative_control_success_rate": 1.0,
+    "active_voi_negative_control_success_rate": 1.0,
+    "h2_control_difference": 0.0,
+    "h2_unnecessary_reframe_count": 0,
+    "forbidden_high_level_mutation_count": 0,
+    "protected_sibling_regression_count": 0,
+    "mean_orion_spent_budget": 1.8358778625954197,
+    "all_support_gates_pass": true
+  },
+  "frozen_gate_results": {
+    "h1_each_parent_ci_positive": true,
+    "h1_each_parent_practical": true,
+    "h1_holm": true,
+    "h2_control_success_noninferior": true,
+    "h2_zero_unnecessary_reframe": true,
+    "whole_grid_success_noninferior": true,
+    "zero_forbidden_high_level_mutation": true,
+    "zero_protected_sibling_regression": true,
+    "cost_within_margin": true
+  },
+  "independent_artifact_check": {
+    "performed": true,
+    "downloaded_result_artifact": true,
+    "result_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+    "raw_sha_matches_result_binding": true,
+    "result_json_sha256": "d5e5e2423442cd4a4bd7603e9026653b6dd36b2b22c37af4f3a61fbcfedde5d0",
+    "raw_results_sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73"
+  },
+  "next_required_authority": [
+    "Run the pre-existing independent P1 necessity verifier against both primary and replication artifacts without importing the evaluated campaign scorer implementation.",
+    "Only after independent verification, integrate the replicated bounded result into the wider P1 claim ledger/manuscript while preserving the separate status of historical V1 H1 and the other broad P1 hypotheses."
+  ]
+}

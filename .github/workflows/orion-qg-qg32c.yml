@@ -1,0 +1,70 @@
+name: orion-qg-qg32c-mitm-replication
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-qg/qg32c_mitm_replication.py'
+      - 'development/orion-qg-regime-geometry/QG32C_INDEPENDENT_MITM_REPLICATION_PROTOCOL_V1.md'
+      - 'development/orion-qg-regime-geometry/qg32c_generic_verify.py'
+      - 'development/orion-qg-regime-geometry/qg32c_native_verify.py'
+      - 'development/orion-qg-regime-geometry/run_qg32c_dual_harness.py'
+      - '.github/workflows/orion-qg-qg32c.yml'
+  workflow_dispatch:
+jobs:
+  replicate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg32c_dual_harness.py | tee artifacts/orion-qg-qg32c-summary.json
+      - name: Deterministic replay
+        run: |
+          python research/extensions/orion-qg/qg32c_mitm_replication.py --output artifacts/orion-qg-qg32c-replay.json > artifacts/orion-qg-qg32c-replay.log
+          cmp artifacts/orion-qg-qg32c-mitm-replication.json artifacts/orion-qg-qg32c-replay.json
+      - name: Self-consistent semantic tamper must be rejected
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('artifacts/orion-qg-qg32c-mitm-replication.json');d=json.loads(p.read_text())
+          yes='QG32C_INDEPENDENT_REPLICATION_FINDS_FOUR_OR_FEWER_SEPARATOR';no='QG32C_INDEPENDENT_REPLICATION_CONFIRMS_NO_FOUR_PROBE_SEPARATOR'
+          if d['terminal']==no:
+              d['terminal']=yes;d['EXISTS_SEPARATOR_AT_MOST_4']=True;d['witness_probe_indices']=[0,1,2,3];d['witness_size']=4;d['witness_covers_all_unresolved_pairs']=True;d['MINIMUM_FIXED_PROBE_CARDINALITY']=None;d['MINIMUM_FIXED_PROBE_CARDINALITY_AUTHORITY']=False;d['FOUR_OR_FEWER_SEPARATOR_WITNESS_AUTHORITY']=True
+          elif d['terminal']==yes:
+              d['witness_probe_indices']=d['witness_probe_indices'][:-1];d['witness_size']=len(d['witness_probe_indices']);d['witness_covers_all_unresolved_pairs']=False
+          else: raise AssertionError(d['terminal'])
+          u={k:v for k,v in d.items() if k!='result_digest'};d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest();Path('artifacts/orion-qg-qg32c-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg32c_generic_verify.py --input artifacts/orion-qg-qg32c-tampered.json --output artifacts/orion-qg-qg32c-tampered-verify.json > artifacts/orion-qg-qg32c-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg32c-tampered-verify.json').read_text());assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('artifacts/orion-qg-qg32c-mitm-replication.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg32c-generic-verification.json').read_text());n=json.loads(Path('artifacts/orion-qg-qg32c-native-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg32c-dual-harness.json').read_text())
+          assert d['both_accept'] is True;assert g['all_checks'] is True and n['all_checks'] is True
+          for x in (s,g,n,d):
+              assert x['ADAPTIVE_TREE_OPTIMALITY'] is False;assert x['MINIMUM_FULL_FINITE_OPTIMUM_PROBES'] is False;assert x['HARDWARE_MEASUREMENT_MINIMUM'] is False;assert x['QG28_GLOBAL_STATE_MINIMALITY'] is False;assert x['novelty_authority'] is False;assert x['physical_quantum_advantage_claim'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-qg-qg32c-${{ github.sha }}
+          include-hidden-files: true
+          path: |
+            artifacts/orion-qg-qg32c-*.json
+            artifacts/orion-qg-qg32c-*.log

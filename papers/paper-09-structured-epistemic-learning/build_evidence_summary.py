@@ -28,6 +28,10 @@ RECEIPTS = {
     "d1": HERE / "evidence" / "D1_OFFICIAL_WORKFLOW_RECEIPT_V1.md",
 }
 INTEGRATION_RECEIPT = HERE / "evidence" / "P9_INTEGRATION_AUTHORITY_RECEIPT_V1.md"
+UNIFIED_LEDGER_JSON = HERE / "evidence" / "P9_UNIFIED_RESOURCE_LEDGER_V2.json"
+UNIFIED_LEDGER_RECEIPT = HERE / "top_tier" / "P9_UNIFIED_RESOURCE_LEDGER_RESULT_RECEIPT_V2.md"
+CAUSAL_RECEIPT_MD = HERE / "top_tier" / "P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md"
+TOP_TIER_OUTCOMES_LEDGER = ROOT / "papers" / "candidates" / "TOP_TIER_EXECUTION_LEDGER_2026-08-23.md"
 EXPECTED_TERMINALS = {
     "a5": "A5_D0_EXPLICIT_INFERENCE_SUFFICIENT",
     "a2_a4": "A2_A4_D0_EXPLICIT_INFERENCE_SUFFICIENT",
@@ -77,6 +81,100 @@ def require_receipt(name: str, *tokens: str, status: str = "BOUNDED_VERIFIED") -
         "status": status,
         "verification_path": str(path.relative_to(ROOT)),
         "required_tokens": list(tokens),
+    }
+
+
+def require_file_tokens(path: Path, *tokens: str) -> dict[str, Any]:
+    if not path.is_file():
+        raise SystemExit(f"missing authority document: {path.relative_to(ROOT)}")
+    text = path.read_text(encoding="utf-8")
+    missing = [token for token in tokens if token not in text]
+    if missing:
+        raise SystemExit(f"{path.relative_to(ROOT)} missing required tokens: {missing}")
+    return {"path": str(path.relative_to(ROOT)), "required_tokens": list(tokens)}
+
+
+def unified_ledger_summary() -> dict[str, Any]:
+    """Bind the unified I/A/C/M resource ledger V2 into the P9 evidence picture.
+
+    Fail-closed: the committed ledger JSON and its bound run receipt must both
+    exist and carry the pre-registered survival verdict.
+    """
+    if not UNIFIED_LEDGER_JSON.is_file():
+        raise SystemExit(f"missing unified resource ledger: {UNIFIED_LEDGER_JSON.relative_to(ROOT)}")
+    data = json.loads(UNIFIED_LEDGER_JSON.read_text(encoding="utf-8"))
+    if data.get("schema") != "P9.UnifiedResourceLedger.v2":
+        raise SystemExit(f"unexpected unified ledger schema: {data.get('schema')!r}")
+    if data.get("terminal") != "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN":
+        raise SystemExit(f"unified ledger not green: {data.get('terminal')!r}")
+    if data.get("survival_verdict") != "SURVIVES_FULL_ACCOUNTING":
+        raise SystemExit(f"unified ledger survival verdict: {data.get('survival_verdict')!r}")
+    if data.get("scalarization") != "PROHIBITED" or data.get("row_count") != 15:
+        raise SystemExit("unified ledger scalarization/row-count invariant violated")
+    cells = data.get("cell_summaries", {})
+    if set(cells) != {"D-A", "D-I", "B-I", "B-A", "B-C"}:
+        raise SystemExit(f"unified ledger cell set mismatch: {sorted(cells)}")
+    authority = require_file_tokens(
+        UNIFIED_LEDGER_RECEIPT,
+        "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN",
+        str(data["receipt_sha256"]),
+    )
+    return {
+        "schema": data["schema"],
+        "terminal": data["terminal"],
+        "survival_verdict": data["survival_verdict"],
+        "dominance_contradiction_count": len(data.get("dominance_contradictions", [])),
+        "audit_corrections": data["audit_corrections"],
+        "per_cell": {
+            task: {
+                "probe_prediction": cell["probe_prediction_rederived"],
+                "protected_gold": cell["protected_gold_rederived"],
+            }
+            for task, cell in sorted(cells.items())
+        },
+        "receipt_sha256": data["receipt_sha256"],
+        "authority": authority,
+    }
+
+
+def top_tier_outcomes(ledger: dict[str, Any]) -> dict[str, Any]:
+    """One coherent picture: positive, null, negative, CANNOT_CHECK, full ledger."""
+    causal = require_file_tokens(
+        CAUSAL_RECEIPT_MD,
+        "diagnostic accuracy: `0.8`",
+        "generic `UNCERTAINTY_ESCALATE_COMPUTE` accuracy: `0.2`",
+        "protected causal gold is therefore `CANNOT_CHECK`",
+    )
+    outcomes_authority = require_file_tokens(
+        TOP_TIER_OUTCOMES_LEDGER,
+        "P9_REAL_ACCESSIBILITY_SCALING_V1_SUPPORTED",
+        "wine: preregistered accessibility gap did not appear",
+        "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
+    )
+    return {
+        "schema": "P9.TopTierOutcomes.v1",
+        "real_accessibility": {
+            "terminal": "P9_REAL_ACCESSIBILITY_SCALING_V1_SUPPORTED",
+            "wine_cell": "NULL_GAP_DID_NOT_APPEAR_NO_UNIVERSAL_DATASET_CLAIM",
+            "authority": outcomes_authority,
+        },
+        "qwen_scaling": {
+            "terminal": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
+            "disposition": "NEGATIVE_PRESERVED_NOT_REPAIRED_NOT_RERUN",
+            "authority": outcomes_authority,
+        },
+        "causal_diagnostic": {
+            "diagnostic_accuracy": 0.8,
+            "generic_compute_escalation_accuracy": 0.2,
+            "d_a_protected_cell": "CANNOT_CHECK",
+            "authority": causal,
+        },
+        "unified_resource_ledger": ledger,
+        "claim_boundary": (
+            "Bounded P9 outcomes only. Matched full resource accounting does not "
+            "establish a universal resource exchange rate, does not repair the "
+            "D-A CANNOT_CHECK cell, and does not touch the Qwen scaling negative."
+        ),
     }
 
 
@@ -245,16 +343,21 @@ def main() -> None:
         ),
     }
     integration = require_integration_authority()
+    ledger = unified_ledger_summary()
 
     summary = {
-        "schema": "P9.OfficialEvidenceSummary.v1.1",
+        "schema": "P9.OfficialEvidenceSummary.v1.2",
         "source_paths": {name: str(path.relative_to(ROOT)) for name, path in SOURCES.items()},
-        "derived_source_paths": {"d1_paired": str(PAIRED_D1.relative_to(ROOT))},
+        "derived_source_paths": {
+            "d1_paired": str(PAIRED_D1.relative_to(ROOT)),
+            "unified_resource_ledger_v2": str(UNIFIED_LEDGER_JSON.relative_to(ROOT)),
+        },
         "a5": a5_summary(loaded["a5"]),
         "a2_a4": a2_summary(loaded["a2_a4"]),
         "m1": m1_summary(loaded["m1"]),
         "d1": d1_summary(loaded["d1"]),
         "d1_paired": paired,
+        "top_tier_outcomes": top_tier_outcomes(ledger),
         "independent_verification": verifications,
         "integration_authority": integration,
         "independent_expectations_are_results": False,

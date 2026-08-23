@@ -1,0 +1,50 @@
+name: p9-a2-a4-d0-explicit
+
+on:
+  pull_request:
+    paths:
+      - 'src/orion/study/p9/a2_a4_explicit.py'
+      - 'research/extensions/p9-structured-neural/A2_A4_D0_EXPLICIT_PROTOCOL_V1.json'
+      - 'research/extensions/p9-structured-neural/run_a2_a4_d0_explicit.py'
+      - 'development/p9-a2-a4-explicit/**'
+      - 'tests/test_p9_a2_a4_explicit.py'
+      - '.github/workflows/p9-a2-a4-d0-explicit.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: p9-a2-a4-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  explicit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev,candidates]'
+      - run: pytest -q tests/test_p9_a2_a4_explicit.py
+      - run: >-
+          python research/extensions/p9-structured-neural/run_a2_a4_d0_explicit.py
+          --output "$RUNNER_TEMP/a2-a4-results.json"
+          > "$RUNNER_TEMP/a2-a4-full-output.log"
+      - name: Compact result
+        env:
+          RESULT: ${{ runner.temp }}/a2-a4-results.json
+        run: |
+          python - <<'PY'
+          import json, os
+          result=json.load(open(os.environ['RESULT'], encoding='utf-8'))
+          print('P9_A2_A4_TERMINAL='+result['terminal'])
+          print('P9_A2_A4_RESULT_DIGEST='+result['result_digest'])
+          for family_key in ('relation_views','history_views'):
+              for view,row in result[family_key].items():
+                  print(f"P9_A2_A4_VIEW family={family_key} view={view} full={row['full_task_accuracy']} coverage={row['coverage']}")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-a2-a4-d0-explicit-${{ github.sha }}
+          path: ${{ runner.temp }}/a2-a4-results.json
+          if-no-files-found: error

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Independent generic ORION verifier for QG-27 bulk-defect theorem."""
-from __future__ import annotations
 import argparse,hashlib,itertools,json
 from collections import Counter
 from pathlib import Path
@@ -60,7 +59,6 @@ checks it against itself.
 Usage: qg27_generic_verify.py [results.json]   Exit 0 ACCEPT, 1 REJECT.
 """
 
-from __future__ import annotations
 
 import hashlib
 import json

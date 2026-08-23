@@ -1,0 +1,126 @@
+name: orion-qg-qg32b-four-probe
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG32B_*'
+      - 'development/orion-qg-regime-geometry/qg32b_*'
+      - 'development/orion-qg-regime-geometry/run_qg32b_dual_harness.py'
+      - 'research/extensions/orion-qg/qg32b_*'
+      - '.github/workflows/orion-qg-qg32b-four-probe.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg32b-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  four-probe-decision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg32b_dual_harness.py | tee artifacts/orion-qg-qg32b-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg32b_four_probe_feasibility.py --output artifacts/orion-qg-qg32b-replay.json > artifacts/orion-qg-qg32b-replay.log
+          cmp artifacts/orion-qg-qg32b-four-probe.json artifacts/orion-qg-qg32b-replay.json
+      - name: Self-consistent semantic tamper must be rejected
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg32b-four-probe.json').read_text())
+          yes='QG32B_FOUR_PROBE_SEPARATOR_EXISTS__WITNESS_MACHINE_CHECKED'
+          no='QG32B_NO_FOUR_PROBE_SEPARATOR__FIVE_IS_EXACT_MINIMUM_MACHINE_CHECKED'
+          if d['terminal']==no:
+            d['terminal']=yes
+            d['EXISTS_SEPARATOR_AT_MOST_4']=True
+            d['witness_probe_indices']=[0,1,2,3]
+            d['witness_size']=4
+            d['witness_separates_715']=True
+            d['MINIMUM_FIXED_PROBE_CARDINALITY']=None
+            d['MINIMUM_FIXED_PROBE_CARDINALITY_AUTHORITY']=False
+            d['FOUR_OR_FEWER_SEPARATOR_WITNESS_AUTHORITY']=True
+          elif d['terminal']==yes:
+            w=list(d['witness_probe_indices']);assert w
+            d['witness_probe_indices']=w[:-1]
+            d['witness_size']=len(w)-1
+            d['witness_separates_715']=False
+          else:
+            raise AssertionError(d['terminal'])
+          u={k:v for k,v in d.items() if k!='result_digest'}
+          d['result_digest']=hashlib.sha256(json.dumps(u,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+          Path('artifacts/orion-qg-qg32b-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          python development/orion-qg-regime-geometry/qg32b_generic_verify.py --input artifacts/orion-qg-qg32b-tampered.json --output artifacts/orion-qg-qg32b-tampered-verify.json > artifacts/orion-qg-qg32b-tampered-verify.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('artifacts/orion-qg-qg32b-tampered-verify.json').read_text())
+          assert d['decision']=='REJECT' and d['all_checks'] is False
+          PY
+      - name: Enforce four-probe authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg32b-four-probe.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg32b-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg32b-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg32b-dual-harness.json').read_text())
+          yes='QG32B_FOUR_PROBE_SEPARATOR_EXISTS__WITNESS_MACHINE_CHECKED'
+          no='QG32B_NO_FOUR_PROBE_SEPARATOR__FIVE_IS_EXACT_MINIMUM_MACHINE_CHECKED'
+          assert d['terminal'] in {yes,no} and d['both_accept'] is True
+          assert all(a['parent_checks'].values())
+          assert a['reconstruction']['orbits']==715
+          assert a['reconstruction']['probes']==384
+          assert a['reconstruction']['joint_classes']==92
+          assert a['reconstruction']['unresolved_pairs']==5895
+          if d['terminal']==no:
+            assert a['EXISTS_SEPARATOR_AT_MOST_4'] is False
+            assert a['search']['complete_no_if_no_witness'] is True
+            assert a['MINIMUM_FIXED_PROBE_CARDINALITY']==5
+            assert a['MINIMUM_FIXED_PROBE_CARDINALITY_AUTHORITY'] is True
+            assert g['decision']=='ACCEPT_NO_FOUR_PROBE_SEPARATOR' and g['independent']['EXISTS_SEPARATOR_AT_MOST_4'] is False
+            assert n['responsibility']=='EXACT_FIXED_PROBE_MINIMUM_FIVE_FOR_INDEXED_IDENTITY_ONLY'
+            assert d['MINIMUM_FIXED_PROBE_CARDINALITY']==5 and d['MINIMUM_FIXED_PROBE_CARDINALITY_AUTHORITY'] is True
+          else:
+            assert a['EXISTS_SEPARATOR_AT_MOST_4'] is True
+            assert 1 <= a['witness_size'] <= 4
+            assert a['witness_separates_715'] is True
+            assert g['decision']=='ACCEPT_FOUR_PROBE_EXISTS' and g['independent']['EXISTS_SEPARATOR_AT_MOST_4'] is True
+            assert n['responsibility']=='FOUR_OR_FEWER_FIXED_PROBE_SEPARATOR_WITNESS_ONLY'
+            assert d['MINIMUM_FIXED_PROBE_CARDINALITY_AUTHORITY'] is False
+          assert g['all_checks'] is True and n['all_checks'] is True
+          for x in (a,g,n,d):
+            assert x['MINIMUM_FULL_FINITE_OPTIMUM_PROBES'] is False
+            assert x['HARDWARE_MEASUREMENT_MINIMUM'] is False
+            assert x['ADAPTIVE_TREE_OPTIMALITY'] is False
+            assert x['QG28_GLOBAL_STATE_MINIMALITY'] is False
+            assert x['novelty_authority'] is False
+            assert x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg32b-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg32b-*.json
+            artifacts/orion-qg-qg32b-*.log
+            .orion-qg-qg32b-generic/.orion-harness/**
+            .orion-qg-qg32b-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn

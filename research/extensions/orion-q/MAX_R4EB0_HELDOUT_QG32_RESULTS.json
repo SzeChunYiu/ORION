@@ -1,0 +1,63 @@
+{
+  "schema": "ORIONQ.MAXR4EB0.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#914",
+  "pr": "SzeChunYiu/ORION#917",
+  "execution_head": "0e803371e4e2119c2e4ebe7db285205f89fdcbb2",
+  "workflow_run_id": 32578628970,
+  "workflow_artifact_id": 9477225290,
+  "workflow_artifact_sha256": "0c04a51ea6fee6f328bc8933efdc02ab133cb83b675708a0f07233a13dcc6bbb",
+  "terminal": "MAX_R4EB0_QG_DERIVED_AUTHORITY_SKILL_TRANSFERS_PROSPECTIVELY_TO_HELD_OUT_TARE_QUERY",
+  "adjudication": "BORNE_OUT_UPPER_BOUND_ONLY",
+  "source_result_digest": "3ec6d0a2f18dd0fcf6a11e014816fd32702e8bcb28138becdc18ae10640e1739",
+  "protocol_sha256": "0e4cf12f8d9d6cf95cffad54684fb9967acca6f046b70425bedf59ea251fb5d3",
+  "forecast_frozen_before_target_receipt": true,
+  "forecast_number_present": false,
+  "hidden_outcome_dependency_count": 0,
+  "false_authority_count": 0,
+  "information_layer_action_correct": true,
+  "unresolved_pair_localization_valid": true,
+  "target_branch": {
+    "terminal": "QG32_JOINT_SEPARATING_PROBE_UPPER_BOUND_ONLY",
+    "exact_minimum_authority": false,
+    "separating_upper_bound_certified": true,
+    "certified_probe_upper_bound": 5
+  },
+  "frozen_forecast_actions": [
+    "DO_NOT_USE_BULK45_ALONE",
+    "DO_NOT_USE_SPECTRUM54_ALONE",
+    "DO_NOT_TREAT_JOINT_BULK_SPECTRUM_AS_ALREADY_SUFFICIENT",
+    "LOCALIZE_VERIFICATION_TO_UNRESOLVED_JOINT_CLASSES",
+    "ACQUIRE_INDEXED_PROBES_ONLY_FOR_REMAINING_PAIR_SEPARATION",
+    "EXACT_MINIMUM_ONLY_IF_INDEPENDENTLY_CERTIFIED",
+    "UPPER_BOUND_ONLY_IF_MINIMUM_NOT_CLOSED",
+    "PRESERVE_STRONGER_AUTHORITY_NEGATIVES"
+  ],
+  "generic_orion": {
+    "decision": "ACCEPT_HELDOUT_TARE_ACTION_TRANSFER",
+    "independent_adjudication": "BORNE_OUT_UPPER_BOUND_ONLY",
+    "positive_transfer": true,
+    "all_checks": true
+  },
+  "native_orion_q": {
+    "decision": "ACCEPT_HELDOUT_TARE_ACTION_TRANSFER",
+    "responsibility": "PROSPECTIVE_SAME_DOMAIN_ACTION_TRANSFER_ONLY",
+    "all_checks": true
+  },
+  "both_accept": true,
+  "deterministic_adjudicator_replay_byte_identical": true,
+  "self_consistent_adjudication_tamper_rejected": true,
+  "frozen_metric_note": {
+    "protected_adjudicator_indexed_probe_coordinates_avoided_vs_384": null,
+    "reason": "The pre-outcome adjudicator computed this optional reporting metric only from an exact minimum cardinality; QG-32 earned upper-bound-only authority. The scorer is not altered post-outcome.",
+    "independently_derivable_from_target_upper_bound": 379,
+    "used_for_transfer_terminal": false
+  },
+  "MAX_R4EB0_HELDOUT_TARE_TRANSFER": true,
+  "MAX_R4E_QG_SKILLS_COMPILER_GENERAL": false,
+  "MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE": false,
+  "MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER": false,
+  "AUTONOMOUS_SKILL_SELECTION_AUTHORITY": false,
+  "GENERAL_QUANTUM_SCIENCE_IMPROVEMENT": false,
+  "NOVELTY_AUTHORITY": false,
+  "physical_quantum_advantage_claim": false
+}

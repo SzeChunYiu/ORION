@@ -301,7 +301,7 @@ must look like for the statement to fail.
 1. `development/orion-qg-regime-geometry/QG22_COMPLEXITY_SEPARATION_PROTOCOL_V1.md` (this file)
 2. `research/extensions/orion-qg/qg22_complexity_separation.py`
 3. `research/extensions/orion-qg/QG22_COMPLEXITY_SEPARATION_RESULTS.json`
-4. `development/orion-qg-regime-geometry/qg22_generic_verify.py`
+4. `development/orion-qg-regime-geometry/qg22_complexity_separation_verify.py`
 5. `development/orion-qg-regime-geometry/QG22_GENERIC_VERIFICATION.json`
    (the independent verifier's own output)
 

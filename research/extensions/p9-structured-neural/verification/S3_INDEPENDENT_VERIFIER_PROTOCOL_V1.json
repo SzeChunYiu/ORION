@@ -1,0 +1,28 @@
+{
+  "schema": "P9.S3IndependentVerifierProtocol.v1",
+  "date": "2026-08-19",
+  "preprotected_subject_sha": "2223bba790a3e631d3f40f20bb46b156bce19b72",
+  "official_result_available_at_freeze": false,
+  "independence_rules": [
+    "must not import orion.study.p9.s3_access",
+    "must not import orion.study.p9.s3_result",
+    "must independently parse D1 typed-serialized token sequences from the written V1.2 semantics",
+    "must independently construct the frozen logistic/tree/random-forest grid and dev tie-break",
+    "must regenerate the unchanged D1 dataset from the frozen seed/counts",
+    "must compare case-level F1 and F2 predictions, aggregate endpoints, terminal and parent digests to the official artifact",
+    "any discrepancy remains visible; verifier cannot modify official result"
+  ],
+  "material_discrepancies": [
+    "dataset digest mismatch",
+    "F2 case-level prediction mismatch",
+    "F1 case-level prediction mismatch after matching selected config",
+    "selected config mismatch not explained by an exact frozen dev tie-break",
+    "aggregate endpoint mismatch",
+    "terminal mismatch",
+    "official hostile check false"
+  ],
+  "expected_terminal_before_official_artifact": "EXPLICIT_RELATION_BINDING_SUFFICIENT",
+  "expected_F2_accuracy": 1.0,
+  "expected_F1_accuracy": 1.0,
+  "authority": "PRE_ARTIFACT_INDEPENDENT_VERIFIER_FREEZE_NO_RESULT_AUTHORITY"
+}

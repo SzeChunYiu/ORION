@@ -27,7 +27,6 @@ R5/R6 reductions and no pruning bounds).
 Prints exactly one token line:
 ORIONQG_QG15C_GENERIC_VERIFY={"decision":"ACCEPT"|"REJECT",...}
 """
-from __future__ import annotations
 
 import hashlib
 import itertools
@@ -766,7 +765,6 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-from __future__ import annotations
 import hashlib,json,sys
 from collections import Counter,defaultdict
 from pathlib import Path

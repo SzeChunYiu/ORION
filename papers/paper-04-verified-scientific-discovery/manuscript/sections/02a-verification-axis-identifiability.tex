@@ -1,0 +1,127 @@
+\section{Verification-axis identifiability and attainability}
+\label{sec:axis-theory}
+
+A benchmark does not measure a scientific competence merely because it assigns a
+label and reports an accuracy.  The label must be recoverable from the intended
+scientific information, unavailable from construction nuisances, expressible by
+the systems being compared, and capable of varying over the comparison panel.
+These are different requirements.  We formalize them before interpreting the
+protected results.
+
+Let $Y_a\in\mathcal{T}$ be the correct terminal on verification axis $a$ for a
+random benchmark unit, let $D$ be the representation available to a decision
+rule, and let $\mathcal{A}\subseteq\mathcal{T}$ be the terminals that the rule is
+allowed to emit.  For a finite benchmark distribution, the smallest attainable
+exact-terminal error is
+\begin{equation}
+  R_a^*(D,\mathcal{A})
+  = 1-\mathbb{E}_{D}\!\left[
+      \max_{t\in\mathcal{A}}\Pr(Y_a=t\mid D)
+    \right].
+  \label{eq:bayes-axis-risk}
+\end{equation}
+This quantity separates a poor implementation from a task that its information
+or interface makes impossible.
+
+\paragraph{Proposition 1 (exact axis attainability).}
+There exists a decision rule $g(D)\in\mathcal{A}$ with zero exact-terminal error
+if and only if every positive-probability fibre of $D$ contains one target
+terminal and that terminal belongs to $\mathcal{A}$.  Equivalently,
+$Y_a=g(D)$ almost surely for some $g$ with codomain $\mathcal{A}$.
+
+\emph{Proof.}  On a fibre $D=d$, any rule must emit one terminal.  It is correct
+on the whole fibre exactly when the conditional support of $Y_a$ is the
+singleton containing that terminal.  Summing the best fibrewise choices gives
+Equation~\ref{eq:bayes-axis-risk}, and zero risk gives the stated condition.
+\hfill$\square$
+
+\paragraph{Corollary 1 (donor-product factorization).}
+Let $D$ collect the states exposed by a product of provenance, verification,
+custody, freshness, and generic-authorization donors, and let $Y_{\rm promote}$
+be the target scientific-promotion terminal.  An implementation over those
+donors is extensionally equivalent to the target relation if and only if the
+target terminal is constant on every donor-state fibre (and belongs to its
+output alphabet).  If a fibre mixes target terminals, every donor-only rule has
+error at least
+\begin{equation}
+  \sum_d \Pr(D=d)
+  \left[1-\max_{t\in\mathcal{A}}
+  \Pr(Y_{\rm promote}=t\mid D=d)\right].
+  \label{eq:mixed-fibre-bound}
+\end{equation}
+Thus a separate module has no inherent advantage once a donor product receives
+a target-sufficient representation and the same decision relation; conversely,
+no optimization of a representation that merges differently licensed states
+can recover the missing distinction.  This is a factorization boundary, not a
+claim that scientific authority must be centralized.
+
+\paragraph{Proposition 2 (claim-level indistinguishability).}
+Let $W_0$ and $W_1$ be two scientific worlds in which a proposed competence
+claim has opposite truth values, and let $O$ be the complete observable record
+available to an adjudicator.  Under equal prior weight, every adjudicator has
+error at least
+\begin{equation}
+  \frac{1-\operatorname{TV}
+  (\mathcal{L}(O\mid W_0),\mathcal{L}(O\mid W_1))}{2}.
+  \label{eq:claim-identifiability-bound}
+\end{equation}
+In particular, if the observable records have the same distribution, the
+competence claim is not identifiable and the minimum error is $1/2$.
+
+\emph{Proof.}  For any acceptance region $B$, the equal-prior error is
+$\{\Pr_{W_0}(O\in B)+\Pr_{W_1}(O\notin B)\}/2$.  Minimizing over $B$ gives
+one half of one minus the total-variation distance. \hfill$\square$
+
+This second bound concerns interpretation rather than terminal prediction.  A
+score can separate output interfaces while leaving two explanations of that
+score observationally equivalent---for example, a rule that recognizes an
+epistemic insufficiency and a rule that is merely forced into the only
+available non-promoting terminal.  A broader competence headline remains
+unidentified until a discriminator changes the observable law of those worlds.
+
+\paragraph{Nuisance identifiability.}
+Let $N$ contain construction-only quantities such as list length, missingness,
+template, key order, path name, or label-bearing metadata.  The nuisance-only
+Bayes advantage is
+\begin{equation}
+  I_a(N)=\mathbb{E}_{N}\!\left[\max_t\Pr(Y_a=t\mid N)\right]
+  -\max_t\Pr(Y_a=t).
+\end{equation}
+A scientific interpretation requires the intended semantic representation to
+make the terminal attainable while nuisance information contributes no material
+advantage.  A finite shortcut register cannot certify $I_a(N)=0$ for every
+possible decoder.  It certifies only that the frozen probe class found no such
+advantage, which is why claim-axis authorization must name the probe class and
+cannot be promoted to whole-register or naturalistic clearance.
+
+\paragraph{Panel resolution and interface attainability.}
+For a frozen panel $\mathcal{H}$ and score $M_a$, define its observed resolution
+as
+\[
+  \rho_a(\mathcal{H})=\max_{h\in\mathcal{H}}M_a(h)
+  -\min_{h\in\mathcal{H}}M_a(h).
+\]
+When $\rho_a=0$, the experiment supplies no comparative ordering on that axis;
+it does not establish equality of the underlying competences.  When
+$\rho_a>0$ but some comparators lack a target terminal in their output alphabet,
+the contrast establishes interface expressiveness before it establishes the
+finer judgement of when that terminal is scientifically appropriate.  A broad
+verification-axis claim is therefore licensed only inside the intersection of
+four conditions: semantic attainability, nuisance resistance, matched terminal
+attainability, and nonzero panel resolution.  Failures fall into distinct
+research programmes rather than one generic null: repair the construction,
+enlarge the interface, expose a target-sufficient representation, or improve
+the decision rule.
+
+\paragraph{Application to the three P4 evidence layers.}
+The historical V2 H3 axis had $\rho_a=0$: an empty evidence list exposed the
+gold family and every panel member scored 30/30.  That result remains
+\textsc{NotSupported}.  The later V3 construction removes the registered
+shortcuts and obtains nonzero resolution, but nine of ten comparator mechanisms
+cannot emit \textsc{CannotCheck}; its exact claim is therefore terminal
+expressiveness under the frozen gate lattice, not general epistemic judgement.
+The P4-X exact-contract successor tests the donor-factorization boundary more
+directly.  Its ideal typed donor product receives the target-sufficient
+coordinates and predicate and ties exactly at 400/400, while the registered
+generic-authorization and compensatory products do not.  These layers diagnose
+different limits and are not pooled.

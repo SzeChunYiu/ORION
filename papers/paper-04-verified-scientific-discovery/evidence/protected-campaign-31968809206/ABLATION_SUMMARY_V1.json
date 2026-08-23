@@ -1,0 +1,738 @@
+{
+  "ablations": {
+    "ablation-no-behavioral-influence": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.08333333333333333,
+      "false_promotions": 30,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.0028661512195238097,
+      "output_hash": "46a4622d5d1f00f64931326f46ee7267b1ab9c132e4d6322c244a361bad6f4c2",
+      "promotion_opportunities": 360
+    },
+    "ablation-no-checker-lineage-independence": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.08333333333333333,
+      "false_promotions": 30,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.002861462746666667,
+      "output_hash": "504a373b7cedc6c46fc7885b25b606fe5e40cf4510c5478b533c13cf77fb8f74",
+      "promotion_opportunities": 360
+    },
+    "ablation-no-content-provenance-distinction": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.16666666666666666,
+      "false_promotions": 60,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.0028632541347619047,
+      "output_hash": "9b32d235b1ab89aa4ebc46db9570c781dacad1d24ca483b55e5d693fbbffba31",
+      "promotion_opportunities": 360
+    },
+    "ablation-no-evaluator-protection-telemetry": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.25,
+      "false_promotions": 90,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.002863769957142857,
+      "output_hash": "80b92710034eb6564409ce661cdf961acb662fb4990ef3af2a3f18a52303c4e1",
+      "promotion_opportunities": 360
+    },
+    "ablation-no-exact-content-binding": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.08333333333333333,
+      "false_promotions": 30,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.002872311265238095,
+      "output_hash": "2d1ae00049fc4e72a1103ecb38ede6ebdf7ef921d0008b60579c87c8056f94a8",
+      "promotion_opportunities": 360
+    },
+    "ablation-no-hostile-checker-battery": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.08333333333333333,
+      "false_promotions": 30,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.0028600808276190476,
+      "output_hash": "d4dfe917420619cea63065d7f5d8548c0d0448c026fa5cfe32fabb0fb35f52c4",
+      "promotion_opportunities": 360
+    },
+    "ablation-no-search-contamination-block": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.08333333333333333,
+      "false_promotions": 30,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.0028596143214285716,
+      "output_hash": "90000231a6e196775e0e68752d4a4cedb8ce41d7139cc6fb6d05d248d9539406",
+      "promotion_opportunities": 360
+    },
+    "ablation-soft-confidence": {
+      "clean_coverage": 1.0,
+      "clean_false_negative_count": 0,
+      "clean_promotions": 60,
+      "clean_total": 60,
+      "false_promotion_rate": 0.9166666666666666,
+      "false_promotions": 330,
+      "family_summary": {
+        "CITED_NON_INFLUENTIAL": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "CLEAN_POSITIVE": {
+          "correct_terminal_rate": 1.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 60
+        },
+        "CONTENT_SUBSTITUTION": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "EVALUATOR_TAMPER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "HOLDOUT_ACCESS": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 0.0,
+          "false_promotions": 0,
+          "n": 30
+        },
+        "POOLED_SUPPORT_WRONG_OWNER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "POSTHOC_CHECKER_EVALUATOR": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "SAME_LANE_CHECKER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "SEARCH_TIME_CONTAMINATION": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "SOURCE_CONFLATION": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "WEAK_CHECKER": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        },
+        "WRONG_SOURCE": {
+          "correct_terminal_rate": 0.0,
+          "false_promotion_rate": 1.0,
+          "false_promotions": 30,
+          "n": 30
+        }
+      },
+      "mean_latency_seconds": 0.0026024913138095237,
+      "output_hash": "9ffc522f1353db46185d17dcdf09b2a868b3879347ec6d04441f4f5afe6d9fe0",
+      "promotion_opportunities": 360
+    }
+  },
+  "protocol_id": "P4.protected-authority.v1",
+  "repeat_count": 5,
+  "resource_units_per_variant": 9.0,
+  "schema": "P4AblationSummary.v1",
+  "split_hash": "747213c60d7a6087a6f6fda5e25546acae5ee70ec1b5b9b7db3868f208213959",
+  "subject_commit": "46977ea104162c4cf64da8138a4c4759065fe6d4"
+}

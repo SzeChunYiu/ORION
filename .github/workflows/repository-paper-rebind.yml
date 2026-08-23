@@ -1,0 +1,135 @@
+name: repository-paper-rebind
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - repair/p2x-claim-literature-integrity-20260819
+    paths:
+      - '.github/workflows/repository-paper-rebind.yml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/**'
+      - 'papers/paper-03-global-knowledge-portrait/**'
+      - 'papers/paper-04-verified-scientific-discovery/**'
+
+permissions:
+  contents: write
+
+jobs:
+  render-rebind:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install repository and TeX toolchains
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev,candidates]'
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-pictures texlive-fonts-recommended lmodern poppler-utils librsvg2-bin
+          mkdir -p /tmp/orion-render/{P1,P3,P4}
+
+      - name: Render P1
+        run: |
+          set -euo pipefail
+          cd papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log
+          cp main.pdf ../journal_package/manuscript.pdf
+          cp main.pdf main.log /tmp/orion-render/P1/
+          pdfinfo main.pdf > /tmp/orion-render/P1/pdfinfo.txt
+
+      - name: Render P3
+        run: |
+          set -euo pipefail
+          cd papers/paper-03-global-knowledge-portrait/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log
+          ! grep -E 'Overfull \\[hv]box' main.log
+          cp main.pdf ../journal_package/manuscript.pdf
+          cp main.pdf main.log /tmp/orion-render/P3/
+          pdfinfo main.pdf > /tmp/orion-render/P3/pdfinfo.txt
+
+      - name: Render P4 through pinned TMLR style
+        run: |
+          set -euo pipefail
+          pytest -q tests/unit/p4/test_p4_publication_v2.py tests/unit/p4/test_p4_v2_execution_freeze.py
+          python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+          F=papers/paper-04-verified-scientific-discovery/figures
+          for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack p4_5_attribution_vs_support p4_6_cost_false_promotion; do
+            rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
+          done
+          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables
+          BASE=https://raw.githubusercontent.com/JmlrOrg/tmlr-style-file/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992
+          curl -fsSL "$BASE/tmlr.sty" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.sty
+          curl -fsSL "$BASE/tmlr.bst" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.bst
+          cd papers/paper-04-verified-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          ! grep -E 'Overfull \\[hv]box' main.log
+          pdftotext main.pdf /tmp/p4.txt
+          grep -q 'Under review as submission to TMLR' /tmp/p4.txt
+          grep -q '0/360' /tmp/p4.txt
+          grep -q '180/360' /tmp/p4.txt
+          grep -q '60/60' /tmp/p4.txt
+          grep -qi 'not supported' /tmp/p4.txt
+          cp main.pdf ../journal_package/manuscript.pdf
+          cp main.pdf main.log /tmp/orion-render/P4/
+          pdfinfo main.pdf > /tmp/orion-render/P4/pdfinfo.txt
+
+      - name: Regenerate journal package checksums and verify inventory
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          root = Path('.').resolve()
+          checker_path = root / 'research/paper-programme-v1/journal_package/check_journal_package.py'
+          spec = importlib.util.spec_from_file_location('journal_check', checker_path)
+          mod = importlib.util.module_from_spec(spec)
+          assert spec and spec.loader
+          spec.loader.exec_module(mod)
+          for paper_id in ('P1','P3','P4'):
+              paper_root = root / mod.PAPER_DIRS[paper_id]
+              manifest = mod.load_manifest(paper_root / 'journal_package')
+              mod.write_sha256sums(paper_root, mod.hashed_paths(manifest))
+          reports = mod.check_repository(root)
+          failed = [(r.paper_id, r.errors) for r in reports if not r.ok]
+          if failed:
+              raise SystemExit(f'journal package check failed: {failed}')
+          PY
+
+      - name: Archive exact rendered PDFs for visual inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-paper-rebind-${{ github.sha }}
+          path: /tmp/orion-render/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit derived PDFs and checksums
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/manuscript.pdf \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
+            papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf \
+            papers/paper-03-global-knowledge-portrait/journal_package/SHA256SUMS \
+            papers/paper-04-verified-scientific-discovery/journal_package/manuscript.pdf \
+            papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS
+          if git diff --cached --quiet; then
+            echo 'Rendered packages already current.'
+            exit 0
+          fi
+          git commit -m 'chore(papers): render and rebind P1 P3 P4 packages'
+          git push origin HEAD:repair/p2x-claim-literature-integrity-20260819

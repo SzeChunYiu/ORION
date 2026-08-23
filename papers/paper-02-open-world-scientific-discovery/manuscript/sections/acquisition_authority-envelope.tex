@@ -1,0 +1,359 @@
+\section{The acquisition--authority envelope}
+\label{sec:envelope}
+
+The acquisition/closure split becomes substantially more useful when it is
+lifted from a design rule to a comparison theory.  A scientific discovery
+controller has four coupled responsibilities: generate or select a route,
+acquire evidence through it, convert acquired material into decision-usable
+state while preserving useful future cues, and decide whether the task may
+close.  A retriever improves only one part of this object; a stopping policy can
+save cost while making another part worse.  This section defines the joint
+object and derives the conditions under which such local improvements can be
+composed into a scientifically stronger controller.
+
+\subsection{Worlds, obligations and a non-compensatory frontier}
+
+Let $w\in\mathcal W$ be a scientific world and let $h_t$ be the complete
+observable transcript after charged step $t$.  The task contract assigns to
+$w$ a set $\mathcal O(w)$ of \emph{material scientific obligations}.  An
+obligation may be a claim that needs evidence, a contradiction that needs both
+sides inspected, a dataset or code artifact needed to establish reproducibility,
+a route whose availability must be resolved, or a previously retrieved source
+that must be processed under the current question.  Materiality means that
+resolving the obligation can change the predeclared decision, conclusion,
+uncertainty state or admissible closure state.  It is not synonymous with
+relevance to a search query.
+
+A controller $\pi$ comprises route generation $G$, acquisition $A$, a
+question-conditioned state compiler $M$, and closure authority $C$.  Under
+budget $B$, source-access contract $\mathcal I$ and task distribution $P$, let
+its outcome vector be
+\[
+ Z_B(\pi,w)=(D,U,V,-F,Y,-K).
+\]
+Here $D$ is decision-relevant evidence discovery, $U$ is final scientific
+utility, $V$ is the value of search options preserved for prospectively hidden
+future questions, $F$ is false task closure, $Y$ is valid closure yield, and
+$K$ is fully charged cost.  Signs are chosen so larger is better except that
+$F$ is a non-compensatory safety coordinate: a gain in report quality cannot
+purchase permission to hide a false closure.
+
+\begin{definition}[Acquisition--authority envelope]
+\label{def:acquisition-authority-envelope}
+For an admissible policy class $\Pi$,
+\[
+ \mathcal E_{B,\mathcal I}(\Pi)
+ =\operatorname{cl}\left\{
+     \mathbb E_{w\sim P}[Z_B(\pi,w)] :
+     \pi\in\Pi,\ \mathbb E[K(\pi,w)]\le B
+   \right\}.
+\]
+Its \emph{guarded frontier} retains only points satisfying the prospectively
+fixed false-closure, valid-closure-yield, provider-validity and cost guards.
+A candidate establishes envelope improvement only by lying outside the guarded
+frontier of the frozen donor-complete class under the same $P$, $B$ and
+$\mathcal I$; winning against a conveniently weak member of that class is
+insufficient.
+\end{definition}
+
+This definition absorbs the strongest neighbouring components instead of
+opposing them.  Lexical and corpus-side augmentation, reasoning-aware retrieval,
+fielded inspection and selective fetching, and citation expansion enlarge the
+action family of $G$ and $A$ \cite{sage2026,agentir2026,sieve2026,rethinkinglitsearch2026}.
+Claim--evidence coverage, marginal information utility, conformal continuation,
+decision-aware and evidence-aware stopping enlarge the policy and signal class
+\cite{halt2026,deepcontrol2026,micp2026,decisionstop2026,donotstopearly2026,confidencebasedstop2026}.
+Finite source certificates, obligation graphs and question-conditioned memory
+enlarge $M$ and the observable closure state
+\cite{knowplan2026,icore2026,memchain2026,scienceintent2026}.  These are donor
+territory.  The residual question is whether their composition reaches a better
+guarded frontier and whether its closure decision is identifiable from the
+state the product actually retains.
+
+\begin{proposition}[Donor-monotonicity]
+\label{prop:donor-monotonicity}
+If $\Pi_1\subseteq\Pi_2$ under identical task, access and budget contracts, then
+$\mathcal E_{B,\mathcal I}(\Pi_1)\subseteq
+\mathcal E_{B,\mathcal I}(\Pi_2)$.  Consequently, adding a sound donor action,
+signal or memory operation cannot make the attainable envelope smaller, though
+it may leave the guarded frontier unchanged after its cost is charged.
+\end{proposition}
+
+\begin{proof}
+Every policy feasible in $\Pi_1$ remains feasible in $\Pi_2$; take the closure
+of their attainable outcome vectors.  The guarded statement follows because
+the same non-compensatory filters are applied to the superset.
+\end{proof}
+
+This elementary monotonicity result changes the novelty test.  A new paper that
+improves retrieval should be absorbed into the comparator class.  The theory is
+falsified, not protected, if the expanded donor class reaches every proposed
+candidate point under matched resources.
+
+\subsection{The acquisition ceiling: why seven emitted identifiers matter}
+
+Let $G_w$ be a complete evaluator gold set for a fixed task world, $A_\pi(w)$
+the union of gold-normalized identities ever emitted by any admissible route
+during a frozen run, and $S_\pi(w)$ the final submitted set.  A downstream
+ranker, reader or synthesizer that is forbidden to invent evidence satisfies
+$S_\pi(w)\cap G_w\subseteq A_\pi(w)\cap G_w$.
+
+\begin{theorem}[Run-conditional acquisition ceiling]
+\label{thm:acquisition-ceiling}
+For any such downstream policy and any nonempty $G_w$,
+\[
+ \operatorname{Recall}(S_\pi;G_w)
+ \leq \frac{|A_\pi(w)\cap G_w|}{|G_w|}.
+\]
+More generally, if obligations have nonnegative weights $\mu_o$ and each
+obligation can be discharged only by at least one member of evidence set $E_o$,
+then the unnormalized resolved-obligation weight is at most the total weight of
+obligations for which $A_\pi(w)\cap E_o\ne\varnothing$.
+\end{theorem}
+
+\begin{proof}
+The submitted relevant set is a subset of the acquired relevant set, so its
+cardinality cannot be larger.  For the weighted form, an obligation whose
+required evidence set is disjoint from the acquired pool cannot be discharged
+by a downstream operation over that pool; summing the remaining nonnegative
+weights gives the bound.
+\end{proof}
+
+The theorem separates candidate-generation failures from selection failures
+without assuming that a particular retriever is optimal.  In the archived
+external adverse campaign, all routes emitted only 7 of the 229 gold
+identifiers; six were submitted and one was discarded.  The run-conditional
+recall ceiling was therefore $7/229=0.030568$, and 222 gold identities were
+unavailable to every downstream selection rule on that capture.  This does not
+estimate general web discoverability.  It proves the narrower but decisive
+causal fact that reranking or synthesis could not repair that run.  The adverse
+terminal and the separate provider-validity failure remain unchanged.
+
+The same analysis exposes why matched request counts are not a matched
+scientific opportunity.  Let $\xi(a,G_w)$ be the admissible exposure of action
+$a$: the prospectively validated opportunity, through the scorer-compatible
+interface, to emit identities in $G_w$.  Equal $\sum_a 1$ does not imply equal
+$\sum_a\xi(a,G_w)$.
+
+\begin{proposition}[Call matching does not identify exposure matching]
+\label{prop:call-exposure}
+For every positive call budget $m$, there exist two $m$-call policies under the
+same nominal budget whose run-conditional acquisition ceilings are respectively
+one and zero.  Hence call-count equality alone gives no nontrivial bound on the
+difference in discoverability.
+\end{proposition}
+
+\begin{proof}
+Take a one-item gold set.  Give the first policy $m$ calls whose admissible
+support contains the item with a deterministic first-call return, and give the
+second $m$ calls to an interface whose output support is disjoint from the gold
+identity namespace.  Both spend $m$ calls; their acquired-gold fractions are one
+and zero.
+\end{proof}
+
+The archived campaign gave the lexical arm three calls to
+the only scoring-admissible backend and the governed arm one such call plus two
+inadmissible calls.  Its three-versus-three request count was therefore not an
+exposure match.  In a future protected study, exposure must be certified
+outcome-blind through interface-class witnesses or treated as
+\textsc{cannot-check}; gold itself cannot be used as a worker-visible route
+oracle.
+
+\subsection{When can a product implement scientific closure?}
+
+Let $s:\mathcal W\rightarrow\mathcal S$ be everything a donor product makes
+available to its closure rule at a fixed decision time: acquired evidence,
+coverage and utility signals, route states, compiled memory and charged
+resource state.  Write
+\[
+ \mathcal Y_C=\{\textsc{close},\textsc{open},\textsc{cannot-check}\}
+\]
+and let $\kappa:\mathcal W\rightarrow\mathcal Y_C$ be the correct task
+decision under the declared scientific contract.
+
+\begin{theorem}[Closure factorization]
+\label{thm:factorization}
+There exists a decision map $g:\mathcal S\rightarrow\mathcal Y_C$ such that
+$\kappa=g\circ s$ if and only if $\kappa$ is constant on every fibre
+$s^{-1}(z)$.
+\end{theorem}
+
+\begin{proof}
+If $\kappa=g\circ s$ and $s(w)=s(w')$, then
+$\kappa(w)=g(s(w))=g(s(w'))=\kappa(w')$.  Conversely, if $\kappa$ is constant
+on every fibre, define $g(z)$ to be $\kappa(w)$ for any $w$ satisfying
+$s(w)=z$.  Fibre constancy makes the definition independent of the chosen
+$w$.
+\end{proof}
+
+The theorem gives an exact necessary-and-sufficient condition, not a claim that
+a particular architecture is intrinsically more expressive.  Coverage,
+confidence and route-local stop signals are sufficient for task closure only
+when no two worlds with the same retained state require different task
+decisions.  A state that drops the materiality or unresolved status of an
+unavailable route creates a mixed fibre and cannot be repaired by a different
+classifier over that same state.  An information-equivalent product that
+retains the missing coordinate has pure fibres and can tie.  This is exactly the
+boundary exhibited by the protected exact-contract battery: the available-route
+product fails on unresolved material routes, while the ideal typed product is
+decision-identical to the authority rule.
+
+\subsection{The price of an observationally unresolved world}
+
+The factorization obstruction has a quantitative version.  Consider two task
+worlds $w_0,w_1$ whose correct decisions are respectively \textsc{close} and
+\textsc{open}.  Let $P_0$ and $P_1$ be the distributions of the complete
+observable transcript available to the controller before its decision.  Count
+\textsc{cannot-check} as not yielding a valid closure in $w_0$ but not as false
+closure in $w_1$.
+
+\begin{theorem}[Indistinguishable-world lower bound]
+\label{thm:indistinguishable}
+For every randomized closure rule, its false-closure probability $F_1$ in
+$w_1$ and valid-closure shortfall $L_0$ in $w_0$ satisfy
+\[
+ F_1+L_0\geq 1-\operatorname{TV}(P_0,P_1).
+\]
+In particular, if the two worlds are observationally identical, then
+$F_1+L_0=1$ and $\max(F_1,L_0)\geq 1/2$.
+\end{theorem}
+
+\begin{proof}
+The decision rule is a binary test between $P_0$ and $P_1$ once
+\textsc{open} and \textsc{cannot-check} are combined as ``do not close.''  The
+sum of its two testing errors is bounded below by one minus total variation.
+When $P_0=P_1$, a transcript-dependent close probability has the same
+expectation in both worlds, so false closure plus failure to close the closable
+world equals one.
+\end{proof}
+
+This lower bound prevents a cosmetic conversion of every negative result into a
+positive terminal.  If the decisive route is absent from the observable action
+support, no stopping heuristic can create the missing distinction.  Scientific
+progress must instead do at least one of three things: invent an acquisition
+action that makes $P_0$ and $P_1$ distinguishable, retain a state coordinate
+that an earlier compiler erased, or introduce and validate a substantive world
+assumption that rules out one member of the pair.  Otherwise a calibrated open
+or \textsc{cannot-check} state is the only honest output.
+
+\subsection{Authority completion and its maximality}
+
+For a transcript $h$, let $R(h)$ be the registered set of material obligations
+that are not yet independently discharged.  Assume an \emph{adversarial
+realizability contract}: for each $o\in R(h)$ there exists a task world
+consistent with $h$ in which the evidence behind $o$ changes the scientific
+decision or admissible closure state.  Define the obligation-completed closure
+rule
+\[
+ C^+(h)=
+ \begin{cases}
+  \textsc{close}, & R(h)=\varnothing\ \text{and the task contract is valid},\\
+  \textsc{cannot-check}, & \text{required observability or provider validity is unestablished},\\
+  \textsc{open}, & \text{otherwise}.
+ \end{cases}
+\]
+
+\begin{theorem}[Maximally permissive sound completion]
+\label{thm:maximal-completion}
+Relative to the declared obligation and realizability contract, $C^+$ has no
+false closure.  Moreover, any rule using the same contract that closes at a
+history where $R(h)\ne\varnothing$ is unsound on at least one compatible world.
+Thus no universally sound rule closes a strict superset of the histories closed
+by $C^+$.
+\end{theorem}
+
+\begin{proof}
+If $C^+$ closes, every registered material obligation is discharged and the
+contract is valid, which is the contract's definition of admissible closure.  If
+another rule closes with $o\in R(h)$, adversarial realizability supplies a world
+consistent with the same history in which $o$ changes the decision; closure is
+false in that world.  Therefore every universally sound rule must refuse that
+history.
+\end{proof}
+
+The theorem is broad but explicitly contract-relative.  It does not claim that
+an open-web system can enumerate every material obligation from finite search.
+Completeness of $R(h)$ requires either a closed registry, a validated sampling
+model, independently curated hidden-route custody, or a declared
+\textsc{cannot-check} boundary.  The theorem nevertheless provides a positive
+composition result: any future acquisition, ranking, stopping or memory donor
+can be installed below $C^+$ without losing sound closure, and any improvement
+that discharges more obligations moves the controller toward valid closure
+rather than merely increasing a surrogate score.
+
+\begin{corollary}[When acquisition enlarges closure authority]
+Adding a donor mechanism can expand discovery or reduce cost by
+Proposition~\ref{prop:donor-monotonicity}.  It enlarges the set of histories that
+can be soundly closed only if the resulting observation/state map splits a
+previously mixed closure fibre or discharges an obligation in $R(h)$.
+\end{corollary}
+
+This is the sense in which the proposed theory envelops its nearest work.
+Retrieval, coverage, information utility, stopping, obligation certificates and
+memory are all admissible mechanisms inside the envelope.  Their scientific
+value is measured by the joint frontier they make reachable; their outputs do
+not acquire global authority merely by being numerically confident.
+
+\subsection{A failure-derived candidate: obligation-directed adaptive
+exploration}
+
+The theory also specifies a materially stronger acquisition candidate rather
+than treating fail-closed authority as a substitute for finding evidence.  Let
+$m_t(o)$ be the posterior unresolved mass of material obligation $o$, let
+$Q_t(a)$ be the prospectively evaluated option value that action $a$ preserves
+for hidden future questions, and let $J_t(a)$ be the expected reduction in
+closure-fibre ambiguity---the probability mass of closable/open worlds that the
+action is expected to separate.  An \emph{obligation-directed adaptive
+exploration} (ODAE) policy chooses from route invention, retrieval, processing,
+contradiction resolution, state preservation/recovery and closure verification
+by a charged index of the form
+\[
+ a_t\in\arg\max_{a\in\mathcal A(h_t)}
+ \frac{
+   \operatorname{LCB}_t\!\left[
+     \Delta\sum_{o\in R(h_t)}\mu_o m_t(o)\mid a
+   \right]
+   +\lambda Q_t(a)+\beta J_t(a)
+ }{\operatorname{cost}_t(a)}.
+\]
+The lower-confidence term prevents an uncertain route estimate from being
+treated as established gain; $Q_t$ prevents current-question compression from
+destroying future route cues; and $J_t$ values actions that make the closure
+decision identifiable even when their immediate document count is low.  If no
+action has validated support through the frozen interface, the controller emits
+\textsc{cannot-check} rather than assigning that route zero value.
+
+Generic value-of-information, active search, coverage estimation and adaptive
+stopping are donor-owned.  The proposed residual is their non-compensatory
+coupling to material scientific obligations, option preservation and closure
+fibre separation under one charged budget.  ODAE is a prospective policy family,
+not an executed result or current general capability.  Its direct falsifier is a
+donor-complete controller that reaches the same or a better guarded frontier on
+fresh tasks.  Its causal tests must separately vary (i) route support, (ii)
+retrieved-but-unprocessed evidence, (iii) contradiction sides, (iv) future-query
+optionality and (v) closable clean cases; improvement on only the family that
+inspired the policy is insufficient.
+
+\subsection{A prospective cross-arena discriminator}
+
+The theory converts the historical adverse terminals into explicit research
+problems rather than deleting them.  The 7/229 exposure result demands route
+invention and admissible-support estimation before reranking.  The one-third
+scoring-eligible exposure mismatch demands source-interface matching rather
+than call-count matching.  The retrieved-but-unprocessed and future-query
+failures demand option-valued state preservation.  Provider-invalid and
+unresolved-route failures demand independent observability custody and an
+authority-complete state.  Clean closable tasks remain a required counterweight
+against an always-open policy.
+
+A separately frozen successor gives these problems a common empirical target.
+It specifies 768 source-disjoint task-world clusters---192 in each of four
+strata---across four arenas, identical admissible route exposure, three frozen
+primary comparators, an intersection requirement over every contrast, and a
+joint power target of 0.90 under its declared planning model.  That design is a
+protocol, not a result.  Archived baseline-task-world reproduction, four
+source-disjoint arena snapshots, a capability-matched external comparator,
+independent evaluator/gold custody, and live response/cost receipts are still
+required.  Until those bindings exist and the protected campaign runs, the
+general cross-arena envelope-superiority hypothesis remains untested and the
+historical manuscript terminal remains unchanged.

@@ -174,10 +174,6 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
             "CONTENT_MANIFEST_V1.json and SHA256SUMS are both required",
         )
 
-    evidence = tuple(
-        path.relative_to(root).as_posix()
-        for path in (manifest_path, sums_path)
-        if path.is_file()
     evidence = (
         manifest_path.relative_to(root).as_posix(),
         sums_path.relative_to(root).as_posix(),
