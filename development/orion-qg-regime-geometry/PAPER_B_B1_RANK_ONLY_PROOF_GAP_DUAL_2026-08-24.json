@@ -1,0 +1,44 @@
+{
+  "all_local_proof_systems_lower_bound": false,
+  "all_syndrome_preserving_systems_lower_bound": false,
+  "both_accept": true,
+  "ci_authority": false,
+  "complexity_class_lower_bound": false,
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "executions": {
+    "generic": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true,
+    "source": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    }
+  },
+  "generic_decision": "ACCEPT_EXACT_RANK_ONLY_PROOF_GAP",
+  "generic_verification_digest": "77370fa02b6c4bdd0ae0e8481aa79b020d7655f675e2407c61c46e4713a7214d",
+  "intrinsic_support": 1,
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_EXACT_RANK_ONLY_PROOF_GAP",
+  "native_manifest_digest": "7c7fa1a1c03b8c101946ba0ff6600cc880b95506303c7aec286393651115666c",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "product_gap_formula": "4t",
+  "proof_system_scope": "RANK_ONLY_ZERO_SUM_DELETION",
+  "rank_only_certificate_complexity": 5,
+  "receipt_digest": "44ff44c83e0c923d8fbcb1e7a93650e65511c7e838dd35edef9fd333b367808c",
+  "schema": "ORION.PaperB.B1.DualHarness.v1",
+  "second_independent_mechanism": false,
+  "source_result_digest": "1d230beebcbbf3caa1dfa966331c93c227907fe08babbedaae068a4d5df96840",
+  "terminal": "PAPER_B_B1_R6I_RANK_ONLY_CERTIFICATE_COMPLEXITY_5_VS_INTRINSIC_1__DIRECT_PRODUCT_GAP_4T_MACHINE_CORROBORATED"
+}

@@ -1,0 +1,205 @@
+{
+  "authority_scope": "R6I_UNIT_OBJECTIVE_AND_DEFINED_ZSD_PROOF_CLASS_ONLY",
+  "checks": {
+    "independent": true,
+    "no_broad_lower_bound": true,
+    "no_novelty_or_physical": true,
+    "no_second_mechanism_relabel": true,
+    "product_rows": true,
+    "protocol_hash": true,
+    "scope": true,
+    "single_copy": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true
+  },
+  "decision": "ACCEPT_EXACT_RANK_ONLY_PROOF_GAP",
+  "independent": {
+    "all_checks": true,
+    "blocks": {
+      "A": {
+        "all_checks": true,
+        "basis": [
+          1,
+          68,
+          136,
+          272,
+          544
+        ],
+        "checks": {
+          "basis_in_alphabet": true,
+          "rank5": true,
+          "total_nonzero": true,
+          "zero_sum_free": true
+        },
+        "witness": {
+          "rank": 5,
+          "total": 1021,
+          "total_nonzero": true,
+          "zero_subsets": [],
+          "zero_sum_free": true
+        }
+      },
+      "B": {
+        "all_checks": true,
+        "basis": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "checks": {
+          "basis_in_alphabet": true,
+          "rank5": true,
+          "total_nonzero": true,
+          "zero_sum_free": true
+        },
+        "witness": {
+          "rank": 5,
+          "total": 62,
+          "total_nonzero": true,
+          "zero_subsets": [],
+          "zero_sum_free": true
+        }
+      }
+    },
+    "checks": {
+      "blocks": true,
+      "dimensions": true,
+      "direct_sum_lower_word": true,
+      "products": true,
+      "proof_class_excludes_tag_relocation": true,
+      "v6_kappa1": true
+    },
+    "dimensions": [
+      {
+        "beta": 1,
+        "d": 1,
+        "rank": 1,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 2,
+        "d": 2,
+        "rank": 2,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 3,
+        "d": 3,
+        "rank": 3,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 4,
+        "d": 4,
+        "rank": 4,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 5,
+        "d": 5,
+        "rank": 5,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 6,
+        "d": 6,
+        "rank": 6,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 7,
+        "d": 7,
+        "rank": 7,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 8,
+        "d": 8,
+        "rank": 8,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 9,
+        "d": 9,
+        "rank": 9,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 10,
+        "d": 10,
+        "rank": 10,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 11,
+        "d": 11,
+        "rank": 11,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      },
+      {
+        "beta": 12,
+        "d": 12,
+        "rank": 12,
+        "total_nonzero": true,
+        "zero_sum_free": true
+      }
+    ],
+    "products": [
+      {
+        "certificate": 5,
+        "gap": 4,
+        "intrinsic": 1,
+        "ratio": 5,
+        "t": 1
+      },
+      {
+        "certificate": 10,
+        "gap": 8,
+        "intrinsic": 2,
+        "ratio": 5,
+        "t": 2
+      },
+      {
+        "certificate": 15,
+        "gap": 12,
+        "intrinsic": 3,
+        "ratio": 5,
+        "t": 3
+      },
+      {
+        "certificate": 50,
+        "gap": 40,
+        "intrinsic": 10,
+        "ratio": 5,
+        "t": 10
+      },
+      {
+        "certificate": 500,
+        "gap": 400,
+        "intrinsic": 100,
+        "ratio": 5,
+        "t": 100
+      }
+    ]
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.PaperB.B1.GenericVerification.v1",
+  "source_result_digest": "1d230beebcbbf3caa1dfa966331c93c227907fe08babbedaae068a4d5df96840",
+  "verification_digest": "77370fa02b6c4bdd0ae0e8481aa79b020d7655f675e2407c61c46e4713a7214d"
+}
