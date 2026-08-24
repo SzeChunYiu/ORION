@@ -1,0 +1,180 @@
+{
+  "arms": {
+    "ablate__claim_scope_conformance": {
+      "differs_from_full_policy_on": 0,
+      "enforced_obligations": [
+        "evidence_independence",
+        "provenance_and_artifact_version_binding",
+        "contamination_defense",
+        "scientific_authority_resolution"
+      ],
+      "note": "claim_scope_conformance is discharged on 300/300 held-out claims and never varies, so dropping it cannot change any verdict; a 0.000 difference here is an arithmetic identity, not a measured null",
+      "promotes_with_an_undischarged_obligation": 0,
+      "status": "NOT_IDENTIFIABLE",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 229,
+        "PROMOTE": 7
+      }
+    },
+    "ablate__contamination_defense": {
+      "differs_from_full_policy_on": 0,
+      "enforced_obligations": [
+        "claim_scope_conformance",
+        "evidence_independence",
+        "provenance_and_artifact_version_binding",
+        "scientific_authority_resolution"
+      ],
+      "note": "contamination_defense varies: discharged on 298/300",
+      "promotes_with_an_undischarged_obligation": 0,
+      "status": "SCORED",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 229,
+        "PROMOTE": 7
+      }
+    },
+    "ablate__evidence_independence": {
+      "differs_from_full_policy_on": 117,
+      "enforced_obligations": [
+        "claim_scope_conformance",
+        "provenance_and_artifact_version_binding",
+        "contamination_defense",
+        "scientific_authority_resolution"
+      ],
+      "note": "evidence_independence varies: discharged on 10/300",
+      "promotes_with_an_undischarged_obligation": 117,
+      "status": "SCORED",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 112,
+        "PROMOTE": 124
+      }
+    },
+    "ablate__provenance_and_artifact_version_binding": {
+      "differs_from_full_policy_on": 0,
+      "enforced_obligations": [
+        "claim_scope_conformance",
+        "evidence_independence",
+        "contamination_defense",
+        "scientific_authority_resolution"
+      ],
+      "note": "provenance_and_artifact_version_binding is discharged on 300/300 held-out claims and never varies, so dropping it cannot change any verdict; a 0.000 difference here is an arithmetic identity, not a measured null",
+      "promotes_with_an_undischarged_obligation": 0,
+      "status": "NOT_IDENTIFIABLE",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 229,
+        "PROMOTE": 7
+      }
+    },
+    "ablate__scientific_authority_resolution": {
+      "differs_from_full_policy_on": 0,
+      "enforced_obligations": [
+        "claim_scope_conformance",
+        "evidence_independence",
+        "provenance_and_artifact_version_binding",
+        "contamination_defense"
+      ],
+      "note": "scientific_authority_resolution is discharged on 300/300 held-out claims and never varies, so dropping it cannot change any verdict; a 0.000 difference here is an arithmetic identity, not a measured null",
+      "promotes_with_an_undischarged_obligation": 0,
+      "status": "NOT_IDENTIFIABLE",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 229,
+        "PROMOTE": 7
+      }
+    },
+    "full_policy": {
+      "differs_from_full_policy_on": 0,
+      "enforced_obligations": [
+        "claim_scope_conformance",
+        "evidence_independence",
+        "provenance_and_artifact_version_binding",
+        "contamination_defense",
+        "scientific_authority_resolution"
+      ],
+      "promotes_with_an_undischarged_obligation": 0,
+      "status": "SCORED",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 229,
+        "PROMOTE": 7
+      }
+    },
+    "semantic_support_only_baseline": {
+      "differs_from_full_policy_on": 117,
+      "enforced_obligations": [],
+      "note": "promotes on semantic support alone; enforces no obligation",
+      "promotes_with_an_undischarged_obligation": 117,
+      "status": "SCORED",
+      "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
+      "terminal_support": {
+        "BLOCK": 64,
+        "CANNOT_CHECK": 112,
+        "PROMOTE": 124
+      }
+    }
+  },
+  "frozen_map": {
+    "artifact": "SCIFACT_LABEL_STATE_MAP_V2.json",
+    "sha256": "a4dd3fd282e183898bb2352ba7c0d40ad01ce28f27da63db0b3066fa52af0206"
+  },
+  "held_out_split": {
+    "claims": 300,
+    "file": "claims_dev.jsonl",
+    "note": "claims_test.jsonl carries no labels; dev is the labelled held-out split"
+  },
+  "obligation_identifiability": {
+    "claim_scope_conformance": {
+      "ablation": "NOT_IDENTIFIABLE",
+      "discharged_on": 300,
+      "of": 300,
+      "varies": false
+    },
+    "contamination_defense": {
+      "ablation": "SCORED",
+      "discharged_on": 298,
+      "of": 300,
+      "varies": true
+    },
+    "evidence_independence": {
+      "ablation": "SCORED",
+      "discharged_on": 10,
+      "of": 300,
+      "varies": true
+    },
+    "provenance_and_artifact_version_binding": {
+      "ablation": "NOT_IDENTIFIABLE",
+      "discharged_on": 300,
+      "of": 300,
+      "varies": false
+    },
+    "scientific_authority_resolution": {
+      "ablation": "NOT_IDENTIFIABLE",
+      "discharged_on": 300,
+      "of": 300,
+      "varies": false
+    }
+  },
+  "schema": "P4.SciFactGovernanceCampaign.v1",
+  "semantic_coordinate_gold_support": {
+    "CONTRADICT": 64,
+    "NOT_ENOUGH_INFO": 112,
+    "SUPPORT": 124
+  },
+  "semantic_coordinate_source": {
+    "value": "GOLD_ORACLE_SUPPLIED_IDENTICALLY_TO_EVERY_ARM",
+    "why": "P4's boundary states the external labels validate claim/evidence status and ORION's governance action is an operationalization. Supplying the coordinate identically to every arm isolates the governance layer; no arm gains from it and the arms differ only in obligation enforcement"
+  },
+  "terminal_scoring": {
+    "reason": "SciFact provides no external gold for the promotion terminal. Any gold terminal would be computed by the same frozen rule the policy applies, so the full policy would score 1.000 by identity. An earlier draft did this and is corrected here rather than reported.",
+    "status": "CANNOT_CHECK"
+  }
+}
