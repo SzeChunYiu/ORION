@@ -213,7 +213,7 @@ def main() -> int:
             view = _view_for(topic, budget)
             try:
                 report = system.run(view, session, seed=0)
-                note = "; ".join(report.notes) if report.notes else ""
+                note = report.notes if isinstance(report.notes, str) else "; ".join(report.notes)
                 complete = report.task_closed_as_complete
             except Exception as exc:  # a policy that dies is recorded, not hidden
                 note, complete = f"RAISED {type(exc).__name__}: {exc}", None
@@ -227,7 +227,17 @@ def main() -> int:
                     if doc_id not in seen:
                         seen.add(doc_id)
                         surfaced.append(doc_id)
+            route_detail = [
+                {"route": e.route, "status": str(e.status), "docs": len(e.retrieved_doc_ids)}
+                for e in session.route_events
+            ]
+            stop_detail = [
+                {"scope": d.scope, "route": d.route_id, "reason": d.reason}
+                for d in session.stop_decisions
+            ]
             row["arms"][policy.system_id] = {
+                "route_detail": route_detail,
+                "stop_detail": stop_detail,
                 "recall_at_100": round(recall_at_k(surfaced, rel, 100), 6),
                 "ndcg_at_10": round(ndcg_at_k(surfaced, rel, 10), 6),
                 "route_calls": len(session.route_events),
