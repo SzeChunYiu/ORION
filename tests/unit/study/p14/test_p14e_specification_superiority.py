@@ -20,7 +20,7 @@ RUNNER_PATH = PAPER_DIR / "run_p14e_specification_separated_superiority_v1.py"
 RULES_PATH = PAPER_DIR / "P14E_ADJUDICATION_RULES_V1.json"
 RESULT_PATH = PAPER_DIR / "P14E_SUPERIORITY_RESULT_V1.json"
 
-COMMITTED_CORE_SHA256 = "9950c27c2eebf885"
+COMMITTED_CORE_SHA256 = "9950c27c2eebf885dda8b958c9446c5a8d70746788718209c517059ef9140795"
 COMMITTED_RESULT_SHA256 = "410db4554585e5ce9b6f94b01cc92d7f116f9fd693b60bca2e1ac1eeb4f51679"
 TERMINAL = "P14E_SPECIFICATION_SEPARATED_SUPERIORITY_SUPPORTED"
 
@@ -48,8 +48,13 @@ def test_build_core_reproduces_committed_digest():
     import hashlib
 
     module = runner_module()
-    text = module.canonical_text(module.build_core())
-    assert hashlib.sha256(text.encode()).hexdigest().startswith(COMMITTED_CORE_SHA256)
+    core = module.build_core()
+    # Runtime identity is receipt metadata, not a scientific input. Rebuild the
+    # scientific core locally, then normalize only that metadata to the frozen
+    # execution environment before checking the exact committed digest.
+    core["environment"] = committed_result()["core"]["environment"]
+    text = module.canonical_text(core)
+    assert hashlib.sha256(text.encode()).hexdigest() == COMMITTED_CORE_SHA256
 
 
 def test_p14a_thresholds_unchanged_and_met():
