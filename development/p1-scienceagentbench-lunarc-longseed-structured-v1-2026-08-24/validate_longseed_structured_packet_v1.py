@@ -49,16 +49,52 @@ def digest_path(path):
     return digest(path.read_bytes())
 
 
+def verify_packet_manifest():
+    manifest = ROOT / "SHA256SUMS"
+    observed = {}
+    for line in manifest.read_text().splitlines():
+        expected, relative = line.split(None, 1)
+        require(relative not in observed, "duplicate packet manifest path")
+        observed[relative] = expected
+    expected_paths = {
+        path.relative_to(ROOT).as_posix()
+        for path in ROOT.rglob("*")
+        if path.is_file()
+        and path.name != "SHA256SUMS"
+        and "__pycache__" not in path.parts
+    }
+    require(set(observed) == expected_paths, "packet manifest coverage")
+    for relative, expected in observed.items():
+        require(digest_path(ROOT / relative) == expected, "packet manifest hash: " + relative)
+
+
 def verify_manifest():
+    paths = set()
     for line in (JOB / "REMOTE_RUN_SHA256SUMS").read_text().splitlines():
         expected, relative = line.split(None, 1)
-        path = JOB / relative.strip().removeprefix("./")
+        relative = relative.strip().removeprefix("./")
+        paths.add(relative)
+        path = JOB / relative
         require(path.is_file(), "manifest file absent: " + str(path))
         require(digest_path(path) == expected, "manifest hash: " + str(path))
+    return paths
 
 
 def main():
-    verify_manifest()
+    remote_manifest_paths = verify_manifest()
+    require("SACCT_V1.txt" not in remote_manifest_paths, "structured runtime-stage manifest scope")
+    attributes = (
+        "remote-job-3534486/ENVIRONMENT.txt -whitespace\n"
+        "remote-job-3534486/NVIDIA_SMI_AFTER.txt -whitespace\n"
+    )
+    require((ROOT / ".gitattributes").read_text() == attributes, "scoped raw receipt attributes")
+    environment = JOB / "ENVIRONMENT.txt"
+    nvidia_after = JOB / "NVIDIA_SMI_AFTER.txt"
+    require(digest_path(environment) == "80d466c3f71fa4af917fca23f4fd42b30dc89c91b2fdec2063e1234666745d6e", "environment raw hash")
+    require(environment.read_bytes().splitlines(keepends=True)[14] == b"Mon Aug 24 16:30:41 2026       \n", "environment raw whitespace")
+    require(digest_path(nvidia_after) == "e27eab544d373be578785aeb8ab3ba4280fc2c32e391c753596847666ad3f41d", "nvidia raw hash")
+    require(nvidia_after.read_bytes().splitlines(keepends=True)[0] == b"Mon Aug 24 16:32:06 2026       \n", "nvidia raw whitespace")
+    verify_packet_manifest()
     protocol = load(ROOT / "FROZEN_LONGSEED_STRUCTURED_PROTOCOL_V1.json")
     require(protocol["prior_condition"]["job"] == "3534250", "prior job")
     require(protocol["prior_condition"]["status_changed_or_promoted"] is False, "prior promotion")
@@ -152,6 +188,12 @@ def main():
     require(top["cleanup_assurance"] == {"root_absence_status": "PASS_RETAINED_CLEANUP_RECEIPT", "job_absence_status": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT", "process_absence_status": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT"}, "cleanup scope")
     require(top["artifacts"]["protocol_sha256"] == digest_path(ROOT / "FROZEN_LONGSEED_STRUCTURED_PROTOCOL_V1.json"), "top protocol hash")
     require(top["artifacts"]["remote_job_manifest_sha256"] == digest_path(JOB / "REMOTE_RUN_SHA256SUMS"), "top manifest hash")
+    require(top["artifacts"]["sacct_v1_sha256"] == digest_path(JOB / "SACCT_V1.txt"), "top SACCT hash")
+    require(top["post_job_accounting_binding"] == {
+        "path": "remote-job-3534486/SACCT_V1.txt",
+        "remote_run_manifest_coverage": "INTENTIONALLY_EXCLUDED_POST_JOB_LOCAL_RECEIPT",
+        "sha256": digest_path(JOB / "SACCT_V1.txt"),
+    }, "structured accounting binding")
     require(top["artifacts"]["cleanup_receipt_sha256"] == digest_path(ROOT / "REMOTE_CLEANUP_RECEIPT_V1.json"), "top cleanup hash")
 
     for name in ("DEVELOPMENT_PACKET.md", "FAILURE_AND_REPAIR_LOG.md", "HANDOFF_V1.md"):

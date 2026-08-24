@@ -46,6 +46,14 @@ or promote adverse job `3534250` or PR #1150's exact long-prompt result.
   `CANNOT_CHECK_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION_UNAVAILABLE`.
 - Shared remote root: removed. The receipt proves only file/byte inventory and
   root absence; job/process absence is `CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT`.
+- Raw `ENVIRONMENT.txt` and `NVIDIA_SMI_AFTER.txt` bytes, including their
+  vendor-formatted trailing spaces, are unchanged and hash-bound. A packet-local
+  `.gitattributes` exempts only those two raw paths from whitespace diagnostics.
+- The historical remote manifest is runtime-stage coverage and intentionally
+  excludes the later local `SACCT_V1.txt`. Its exact SACCT SHA-256
+  `c3e1c8694ecf5a0f19c8699d46afa0a2c6836725065dea67e065ef65967d1770`
+  is independently bound by the top receipt and packet `SHA256SUMS`; the
+  historical remote manifest remains unchanged.
 
 ## Claim boundary
 

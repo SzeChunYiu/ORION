@@ -65,3 +65,29 @@ The retained receipt proves only 66 files / 18,557,665,195 file bytes,
 absence are `CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT`.
 
 Scientific authority delta: `NONE`.
+
+## Byte-exact raw receipts and post-job accounting coverage
+
+The two retained `nvidia-smi` text receipts are preserved byte for byte,
+including the vendor-formatted trailing spaces before LF:
+
+- `remote-job-3534486/ENVIRONMENT.txt`: 2,228 bytes, SHA-256
+  `80d466c3f71fa4af917fca23f4fd42b30dc89c91b2fdec2063e1234666745d6e`;
+  line 15 is `Mon Aug 24 16:30:41 2026` followed by seven spaces and LF.
+- `remote-job-3534486/NVIDIA_SMI_AFTER.txt`: 1,689 bytes, SHA-256
+  `e27eab544d373be578785aeb8ab3ba4280fc2c32e391c753596847666ad3f41d`;
+  line 1 is `Mon Aug 24 16:32:06 2026` followed by seven spaces and LF.
+
+The packet-local `.gitattributes` disables Git whitespace diagnostics for only
+those two byte-frozen raw paths. It does not normalize or strip them. The
+focused validator asserts the exact attribute bytes, raw hashes, and whitespace
+lines, and `SHA256SUMS` binds the attributes and both raw receipts.
+
+The historical `REMOTE_RUN_SHA256SUMS` is a runtime-stage manifest emitted
+before the local post-job accounting query; it intentionally does not list
+`SACCT_V1.txt` and is not rewritten after observation. `SACCT_V1.txt` SHA-256
+`c3e1c8694ecf5a0f19c8699d46afa0a2c6836725065dea67e065ef65967d1770`
+is instead bound explicitly in the top packet receipt. The packet
+`SHA256SUMS` covers the historical remote manifest, SACCT receipt, and top
+receipt, while the validator asserts both the intentional remote-manifest
+exclusion and the independent accounting binding.
