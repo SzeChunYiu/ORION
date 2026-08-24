@@ -20,7 +20,7 @@ from hashlib import sha256
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-REPO_ROOT = HERE.parents[2]
+REPO_ROOT = HERE.parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 sys.path.insert(0, str(REPO_ROOT))
 
