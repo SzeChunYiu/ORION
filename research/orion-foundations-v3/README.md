@@ -9,21 +9,24 @@ This package replaces a finite-fixture-first presentation with a complete mathem
 - a primitive operational semantics independent of the desired theorem;
 - the six-witness Scientific Advance normal form and the four-factor SSTF quotient;
 - complete theorem statements and derivations OSTC-T0 through OSTC-T23;
-- paper-specific theory upgrades for P1–P15;
+- full paper-level theorem packages for P1–P15;
 - an explicit P1 theory supersession and ownership boundary;
 - a machine-readable theorem/assumption ledger;
+- a Lean 4 mechanized core for the load-bearing theorem skeletons;
 - a frozen execution-only backlog and an execution-agent prompt.
 
-The remaining work is deliberately limited to computation, proof-assistant reconstruction, external adjudication, protected execution, and novelty review. Later execution agents may instantiate, test, refute, or narrow the theory; they may not silently redesign it after outcomes.
+The remaining work is deliberately limited to computation, independent proof reconstruction/review, external adjudication, protected execution, and novelty review. Later execution agents may instantiate, test, refute, or narrow the theory; they may not silently redesign it after outcomes.
 
 ## Canonical files
 
 - `ORION_SCIENTIFIC_TRANSITION_CALCULUS_V1.md` — master formalism.
-- `THEOREM_DERIVATIONS_T0_T23_V1.md` — theorem statements and proofs.
-- `P1_P15_THEORY_UPGRADES_V1.md` — one distinct upward theory per paper.
+- `THEOREM_DERIVATIONS_T0_T23_V1.md` — programme theorem statements and proofs.
+- `PAPER_THEOREM_PACKAGES_V1.md` — complete definitions, theorem families, falsifiers, and predictions for P1–P15.
+- `P1_P15_THEORY_UPGRADES_V1.md` — concise ownership map.
 - `P1_THEORY_SUPERSESSION_V1.md` — theory ownership and RR1 boundary.
 - `THEOREM_LEDGER_V1.json` — machine-readable theorem status.
 - `ASSUMPTION_LEDGER_V1.json` — assumptions and countermodels.
+- `formal/lean/` — pinned Lean 4 project and machine-checked core.
 - `EXECUTION_ONLY_BACKLOG_V1.json` — frozen computation/external jobs.
 - `AI_EXECUTION_PROMPT_V1.md` — prompt for follow-up execution agents.
 - `ISSUE_COMPLETION_MATRIX_V1.md` — issue #1220 reconciliation.
