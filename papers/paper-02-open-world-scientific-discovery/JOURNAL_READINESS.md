@@ -4,6 +4,28 @@
 
 **Scope of that terminal (not machine-scored, and deliberately adjacent to it):** `P2_NARROWED` remains the scientific scope receipt. External ORION-vs-baseline superiority remains `CANNOT_CHECK` and is **not** part of the ready claim. Nothing about that exclusion has changed; it moved off the terminal line because the scoreboard reads that one line and cannot represent a scoped verdict.
 
+That exclusion is now evidenced rather than only asserted. The four-arm
+TREC-COVID comparison in `external/P2_TREC_COVID_ARMS_V1.json` runs ORION's
+routing and stopping against BM25 and an RRF hybrid on the 50 official topics
+under a matched budget, and the pass gate **fails**. Recall@100 for the ORION
+arm sits 0.0177 below the strongest comparator with a paired bootstrap interval
+of `[-0.0273, -0.0091]`: the point estimate is inside the -0.02 noninferiority
+margin but the interval's lower bound is not, and noninferiority is a claim
+about the interval. Cost fails outright and not marginally --- 2.8x the reads
+where the gate requires at least 25% fewer.
+
+One measured result does run the other way, and it is not the gate's criterion:
+nDCG@10 is +0.1488 for the ORION arm with a bootstrap interval of
+`[+0.1010, +0.1995]`, ahead on 42 of 50 topics. Multi-route exploration
+improves top-10 quality substantially. The gate is written on recall and cost,
+and a criterion outside the gate cannot rescue it, so the superiority verdict
+remains `CANNOT_CHECK` on the strength of a comparison that was actually run.
+
+The corpus is BEIR's 171,332-document trec-covid derivative rather than the
+191,175-docid official round-5 release, and the ORION arm's own routing
+terminal is separately `CANNOT_CHECK` because two of five routes are
+unavailable on this corpus. Both are recorded in the artifact.
+
 The `**Current terminal:**` line is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
 
 The terminal line then acquired a second problem, fixed above. It declared `PEER_REVIEW_READY` **and** named the excluded superiority claim as `CANNOT_CHECK` in the same sentence. That reads correctly to a person and is unresolvable for the parser, which treats any `CANNOT_CHECK` on the terminal line as the verdict — fail-closed, and therefore silent. P2 was scored `CANNOT_CHECK` with twelve blockers while its own fail-closed evidence gate (`orion.publication.peer_review_ready.evaluate_paper`) reported `ok=True` with none. The verdict and the scope now occupy separate lines, so the machine reads one claim and the reader still sees both.
