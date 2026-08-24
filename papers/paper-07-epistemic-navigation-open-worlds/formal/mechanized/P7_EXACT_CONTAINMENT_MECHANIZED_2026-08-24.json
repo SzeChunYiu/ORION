@@ -1,0 +1,102 @@
+{
+  "all_discharged": true,
+  "contract_id": "P7.CONTAIN.EXACT_BRIDGE_RULE.V1",
+  "not_licensed": [
+    "any claim that the composition calculus's own incompleteness theorem is retracted; it concerns the old rule and stands",
+    "any claim of empirical coverage; the witnesses are closed finite structures, not systems executed in the world",
+    "any claim of independent formal review; these are solver discharges checked in this repository, not external certificates",
+    "the data-heavy P7 sub-box (>=2 non-retrieval domains, >=50 transitions per domain): no such corpus exists in the repository, so it remains open and is not simulated here"
+  ],
+  "record": "P7_EXACT_CONTAINMENT_MECHANIZED",
+  "replaces": "the intermediate-contract test Match(a,b) := a = b OR Bridge(a,b) of P7.COMMUTE-era composition_calculus_smt (checker_axioms), whose sound-but-incomplete status that calculus proved and kept",
+  "schema_version": "orion.p7.exact-containment.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "REFLEXIVITY_OF_CONTAINMENT",
+      "outcome": "PROVED",
+      "statement": "every contract contains itself",
+      "why_it_matters": "this is the theorem that replaces the old calculus's side condition. There, identity needed Match to be reflexive because Match's first disjunct was equality; here the unit laws rest on a proved property of containment rather than on how the test happens to be written"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "TRANSITIVITY_OF_CONTAINMENT",
+      "outcome": "PROVED",
+      "statement": "containment is transitive",
+      "why_it_matters": "what makes a chain a chain under the new rule: if each hand-off contains, the endpoints' obligation relationship transports across the whole composition, with no bridge registration anywhere in the argument"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "EXACT_RULE_IS_SOUND",
+      "outcome": "PROVED",
+      "statement": "in the obligation semantics --- which mentions no composition rule --- if both legs are total and the first leg's target contains the second leg's source, the composite is total",
+      "why_it_matters": "soundness of the replacement: the exact rule cannot license a composite the obligation semantics rejects, so exchanging Match for Contains buys completeness without paying soundness"
+    },
+    {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "EXACT_RULE_IS_NOT_DROPPABLE",
+      "outcome": "PROVED",
+      "statement": "there is a model of the obligation semantics with both legs total, the containment hand-off false, and the composite not total",
+      "why_it_matters": "the necessity half of exactness: without the containment condition totality does not compose, so the condition is load-bearing rather than decorative"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "EXACT_RULE_SUBSUMES_THE_BRIDGE_RULE",
+      "outcome": "PROVED",
+      "statement": "exact contract equality and every registered bridge both imply containment, under the bridge-soundness obligation alone",
+      "why_it_matters": "no regression: any composite the old rule licensed is licensed by the replacement, so switching calculi never refuses a chain that was previously accepted"
+    },
+    {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "CONTAINMENT_STRICTLY_WEAKER_THAN_MATCH",
+      "outcome": "PROVED",
+      "statement": "there is a model in which both legs are total, the composite is total and demands something, the emitted and consumed contracts demand exactly the same obligations, the containment hand-off holds, and the old intermediate-contract test fails because the contracts are distinct and unbridged",
+      "why_it_matters": "the repair, exhibited: the composites the old rule refused for want of a registration are exactly the ones the replacement accepts, so the incompleteness named in the composition calculus is closed here rather than re-argued"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "LEFT_IDENTITY_UNDER_EXACT_RULE",
+      "outcome": "PROVED",
+      "statement": "in the exact calculus, composing the identity on a transformation's source before it preserves its endpoints, donor-native verdict, every closure coordinate and its closure-carrying verdict exactly",
+      "why_it_matters": "the left unit law under the replacement rule"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "RIGHT_IDENTITY_UNDER_EXACT_RULE",
+      "outcome": "PROVED",
+      "statement": "in the exact calculus, composing a transformation with the identity on its target preserves its endpoints, donor-native verdict, every closure coordinate and its closure-carrying verdict exactly",
+      "why_it_matters": "the right unit law under the replacement rule"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "IDENTITY_STRICT_UNDER_EXACT_RULE",
+      "outcome": "PROVED",
+      "statement": "under extensionality, the unit laws of the exact calculus are equations: composing with the identity on either side returns the same transformation",
+      "why_it_matters": "the equational unit law, which is what a calculus means by a unit"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ASSOCIATIVITY_OBSERVABLE_UNDER_EXACT_RULE",
+      "outcome": "PROVED",
+      "statement": "in the exact calculus, the two bracketings of a three-transformation chain agree on source, target, donor-native verdict and every closure coordinate",
+      "why_it_matters": "associativity observationally: a chain evaluates the same whatever the bracketing, under a rule with no bridge relation in it at all"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ASSOCIATIVITY_STRICT_UNDER_EXACT_RULE",
+      "outcome": "PROVED",
+      "statement": "under extensionality, the two bracketings of a three-transformation chain are the same transformation in the exact calculus",
+      "why_it_matters": "associativity as an equation under the replacement rule"
+    },
+    {
+      "detail": "a closed two-contract world satisfies every axiom of the exact calculus with a demanded obligation and containment both ways between distinct contracts, so the axiom set is consistent and the PROVED lines are not vacuous",
+      "name": "EXACT_CALCULUS_IS_SATISFIABLE",
+      "outcome": "PROVED",
+      "statement": "the exact calculus has a model in which obligations are demanded, a hand-off between distinct obligation-equivalent contracts is licensed, and the old test refuses it",
+      "why_it_matters": "the vacuity guard: a satisfiable witness means the PROVED lines above were proved over a consistent axiom set and were not free facts from a contradiction, and the witness doubles as a worked example of the rule doing what it was built for"
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "the composition rule that asks whether a bridge was registered is replaced by exact containment of demanded obligations; the replacement is sound for the obligation semantics, its side condition is not droppable, it subsumes the old rule and strictly weakens it (licensing the obligation-equivalent hand-offs the old rule refused), containment is reflexive and transitive, and the unit and associativity laws survive the replacement observationally and, under extensionality, as equations"
+}

@@ -179,3 +179,34 @@ The earlier V2 checker remains useful but V2.1 is the normative P6 closure check
 - `P6_THEORY = FINISHED_V2_1`
 
 The correction strengthens the paper because it distinguishes conservative dependency over-approximation from robust minimax necessity rather than treating every recorded edge as semantically realizable.
+
+## 9. The exact Theorem 7 statement as a kernel proof (2026-08-24)
+
+The SMT contract `P6.COMMUTE.RW_NONINTERFERENCE.V1` of the preceding section
+covers a simplified single-array statement. The manuscript's Theorem 7 says
+more, and it is now machine-checked directly under contract id
+`P6.COMMUTE.EXACT_THEOREM7.V1`
+(`src/orion/study/p6/commutation_kernel.py`, record
+`formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json`):
+
+- The environment is the scientific array plus six governance components plus
+  the history; mechanics are read-footprint faithful (Def 5) and
+  write-footprint faithful (Def 6) over declared footprints.
+- The conclusion pairs equality of the scientific projections with
+  swap-equivalence of the ordered histories under independent events.
+- Every one of the 450 derivation steps is an application of a rule in a fixed
+  small kernel (`src/orion/programme/lcf_kernel.py`, LCF discipline: theorems
+  are minted only through kernel rules), the proof serializes, and the whole
+  log is replayed in a fresh kernel that trusts only rule names and input step
+  ids — the replay re-derives every conclusion and reproduces the final theorem
+  exactly, with all residual hypotheses inside the declared theory.
+- A z3 cross-check refutes the negation of the same sentence under the
+  translated write-frame, footprint and separation axioms the proof uses.
+
+Honest boundary: the kernel is ORION-authored Python, not Lean and not
+independently reviewed; a replay re-checks the recorded steps but cannot detect
+a defect shared by every copy of the rules. Independence symmetry of events is
+an axiom of the theory (the sci half does not use it); `mOK` bundles
+admissible-and-not-failed; governance read/write footprints are fixed flags.
+The SMT artifact of the earlier contract remains bound unchanged for what it
+establishes.

@@ -37,3 +37,21 @@ other in a cycle, and the completeness direction becomes unprovable. That was
 not anticipated: an earlier axiomatisation without the rank admitted a model in
 which a sink domain reached its own source, and a differential against the
 committed implementation is what exposed it.
+
+\subsection{The exact commutation statement, kernel-mechanized}
+
+\label{sec:kernel-theorem7}
+
+The full Theorem~7 statement -- multi-component environments, mechanics that
+are read-footprint faithful and write-footprint faithful over their declared
+footprints, and fully scientifically separated -- is machine-checked as a
+kernel proof under contract id
+\texttt{P6.COMMUTE.EXACT\_THEOREM7.V1}. Every derivation step is an
+application of a rule in a fixed small kernel, the serialized proof is
+replayed from nothing in a fresh kernel, and the replay reproduces the exact
+conclusion with every residual hypothesis inside the declared theory; a z3
+cross-check of the same sentence runs alongside. The conclusion pairs
+equality of the two scientific projections with swap-equivalence of the two
+ordered histories under independent events. The kernel is programme-authored
+Python rather than an external proof assistant, and that boundary is stated
+in the mechanized record.

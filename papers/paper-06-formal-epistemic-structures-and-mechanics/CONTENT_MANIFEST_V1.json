@@ -66,7 +66,7 @@
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V2_1.md",
-      "role": "Claim ledger"
+      "role": null
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V3.md",
@@ -74,6 +74,10 @@
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
+      "role": null
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json",
       "role": null
     },
     {
@@ -117,6 +121,18 @@
       "role": null
     },
     {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/P6_CLEANROOM_REPLAY_RECEIPT_V1.json",
+      "role": null
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/check_p6_cleanroom_replay_v1.py",
+      "role": null
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/p6_cleanroom_replay_v1.py",
+      "role": null
+    },
+    {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
       "role": null
     },
@@ -125,19 +141,31 @@
       "role": null
     },
     {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_commutation_contract_binding_v1.py",
+      "role": null
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_commutation_kernel_binding_v1.py",
+      "role": null
+    },
+    {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
       "role": null
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py",
-      "role": "Supporting V2 checker"
+      "role": null
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
-      "role": "Normative assumption checker"
+      "role": null
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json",
+      "role": null
+    },
+    {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json",
       "role": null
     },
     {
@@ -174,7 +202,7 @@
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/FINAL_V2_1.md",
-      "role": "Final manuscript"
+      "role": null
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/FINAL_V3.md",
@@ -206,7 +234,7 @@
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_1.md",
-      "role": "Formal core"
+      "role": null
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_CORRECTIONS.md",
@@ -355,62 +383,6 @@
     {
       "path": "tests/unit/candidates/test_p6_p8_theory_closure_v21.py",
       "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/Makefile",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/REPRODUCE_V3.md",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/P6_CLEANROOM_REPLAY_RECEIPT_V1.json",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/check_p6_cleanroom_replay_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/p6_cleanroom_replay_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_certificate_lifting_scope_smt_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_commutation_contract_binding_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/generate_assumption_countermodels_v2.py",
-      "role": null
     }
   ],
   "candidate_id": "P6",
@@ -462,7 +434,7 @@
     }
   },
   "schema_version": "orion.candidate-content-binding.v1",
-  "subject_commit": "15a7438a1cfd3ef547f4c68b59007fd8d48c52e5",
+  "subject_commit": "da3379a681734abcc77349d0ec726721d1d4577b",
   "subject_commit_blocker": null,
   "subject_commit_status": "BOUND",
   "subject_commit_unbound_paths": []

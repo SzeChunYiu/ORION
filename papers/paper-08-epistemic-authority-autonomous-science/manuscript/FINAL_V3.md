@@ -205,3 +205,24 @@ The calculus is constructive at every interface. Native donor authority is prese
 The strongest conclusion is therefore positive and architecture-independent: **cross-domain scientific authority obeys a complete finite composition law over the registered donor product—heterogeneous local authority composes systematically when scientific discharge is typed, monotone/non-widening by default, explicitly bridgeable, fail-closed, and support-aware**.
 
 **Current science terminal:** `P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT`.
+
+## Native cross-system execution protocol (2026-08-24)
+
+Issue #1086's P8 box additionally asks to "execute actual type-distinct native
+systems and ideal typed-product baseline" and to "cover every ordered
+cross-system pair with clean and hostile cases." The full test design for that
+execution is now frozen as contract `P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
+(`formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_V1.md` and its machine-readable twin):
+four type-distinct native systems --- OPA/Rego, Cedar, in-toto/SLSA,
+Sigstore/cosign --- twelve ordered cross-system pairs, twenty-four case slots
+(clean and hostile for every pair), each hostile slot pinned to one laundering
+mechanism, with the typed product of the authority calculus as the ideal
+baseline and the pass criteria fixed in advance.
+
+The execution itself has not been run: none of the four systems' binaries
+exists in the producing environment and no installation is permitted there.
+The status is `CANNOT_CHECK` with that tooling gap stated in the protocol, not
+simulated away: no native-looking output was produced, and the protocol
+explicitly prohibits reporting a simulation as execution or a partial run as
+full pair coverage. The DENIED-vs-`CANNOT_CHECK` calibration is #1096's and is
+presupposed, not re-derived.
