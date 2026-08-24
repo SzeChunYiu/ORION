@@ -1,0 +1,35 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.direct-route-freeze-synthetic-validation.v1",
+  "authority": "SYNTHETIC_NONBENCHMARK_VALIDATION_ONLY__NO_PRODUCTION_OR_SCIENTIFIC_AUTHORITY",
+  "status": "PASS_SYNTHETIC_HOSTILE_VALIDATION",
+  "artifact_sha256": {
+    "DIRECT_ROUTE_FREEZE_CONTRACT_V1.json": "d927498d78d8adea3f9362e86699e89846e47fc55217bb83c8dd707a606509bd",
+    "DIRECT_ROUTE_PROMPT_BUNDLE_V1.json": "03bfbf7e0870f9b385ee8ff9258df9e083fa9baa0813471795b9c80bafd1ebe6",
+    "direct_route_generation_driver_v1.py": "d74e8c1ed1558b613860d8ae4ee7d49b95afef8ce4060549f93a7484b91f4c90"
+  },
+  "tests": 17,
+  "synthetic_arm_attempts": {
+    "RR": 1,
+    "OS": 1,
+    "NR": 1
+  },
+  "tdd_witness": {
+    "bootstrap_red": "AssertionError: False is not true : direct-route driver is not implemented",
+    "full_suite_red": "Ran 17 tests; FAILED (failures=17)",
+    "pre_receipt_red": "Ran 17 tests; FAILED (failures=1); synthetic receipt is missing"
+  },
+  "owner_prospective_budget_status": "FROZEN_BEFORE_TASK_OR_OUTCOME_OPENING",
+  "task_fit_status": "CANNOT_CHECK_BEFORE_TASK_OPENING",
+  "adapter_capture_status": "TIMING_CAPTURED__ALLOCATION_FINALIZATION_PENDING",
+  "scheduler_finalization_status": "CANNOT_CHECK_PENDING_SCHEDULER_FINALIZATION",
+  "provider_seed_capability": "CONFIRMED",
+  "semantic_choice_sensitivity": "NOT_ESTABLISHED",
+  "candidate_semantic_diversity_gate_enabled": false,
+  "attempt_retention": "ALL_ATTEMPTS_NO_SELECTION",
+  "production_admissibility": "CANNOT_CHECK",
+  "official_tasks_opened": 0,
+  "official_outcomes_opened": 0,
+  "protected_archives_opened": 0,
+  "external_provider_calls": 0,
+  "scientific_authority_delta": "NONE"
+}

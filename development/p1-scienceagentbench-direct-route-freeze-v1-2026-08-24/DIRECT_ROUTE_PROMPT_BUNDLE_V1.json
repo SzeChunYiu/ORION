@@ -1,0 +1,140 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.direct-route-prompt-bundle.v1",
+  "bundle_id": "P1_SAB_DIRECT_ROUTE_PROMPT_BUNDLE_20260824_V1",
+  "authority": "OUTCOME_BLIND_PRODUCTION_SHAPED_TEMPLATES_ONLY__NO_OFFICIAL_TASK_OR_EXECUTION_AUTHORITY",
+  "render_contract": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "terminal_newline": true,
+    "inserted_json": "json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False)",
+    "replacement_rule": "Each declared double-brace marker occurs exactly once and is replaced literally; undeclared or unreplaced markers fail closed."
+  },
+  "output_schemas": {
+    "phase0_state": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "assumptions",
+        "unresolved_inputs",
+        "intended_analysis",
+        "invariants",
+        "output_contract"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "RR_TYPED_STATE",
+            "NR_GENERIC_PLAN"
+          ]
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unresolved_inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "intended_analysis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invariants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_contract": {
+          "type": "string"
+        }
+      }
+    },
+    "final_program": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "program"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "FINAL_PROGRAM"
+        },
+        "program": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "output_schema_canonical_bindings": {
+    "phase0_state": {
+      "canonical_bytes": 567,
+      "canonical_sha256": "11299b5be0c855c1453ef99a14d1637b5c11230409efd68f50fde3394341cba1"
+    },
+    "final_program": {
+      "canonical_bytes": 239,
+      "canonical_sha256": "428e793d1f94a5b9e56731a8dd96a28b7e089aaad63d6a2be722d3ed7b266c2c"
+    }
+  },
+  "templates": {
+    "RR_PHASE0": {
+      "output_schema": "phase0_state",
+      "markers": [
+        "{{ATTEMPT_ORDINAL}}",
+        "{{MASKED_PACKET_JSON}}"
+      ],
+      "text": "ORION P1 ScienceAgentBench RR phase 0. Attempt ordinal: {{ATTEMPT_ORDINAL}}. The packet is outcome-blind and auxiliary fields are intentionally masked. Do not call tools. Do not emit Python. From the visible packet only, return kind RR_TYPED_STATE with explicit assumptions, unresolved inputs, intended analysis steps, invariants, and the required output contract. Do not guess masked values and do not use scoring, feedback, or outcome material. Canonical masked packet JSON follows:\n{{MASKED_PACKET_JSON}}\n"
+    },
+    "RR_PHASE1": {
+      "output_schema": "final_program",
+      "markers": [
+        "{{ATTEMPT_ORDINAL}}",
+        "{{PHASE0_STATE_JSON}}",
+        "{{PHASE0_STATE_SHA256}}",
+        "{{RECOVERED_PACKET_JSON}}"
+      ],
+      "text": "ORION P1 ScienceAgentBench RR phase 1. Attempt ordinal: {{ATTEMPT_ORDINAL}}. The exact sealed RR phase-0 state is reproduced below and its SHA-256 is {{PHASE0_STATE_SHA256}}. Diff the recovered packet against only that typed state, revise affected entries, and return exactly one final self-contained Python program in the required JSON schema. Do not call tools or use scoring, feedback, or outcome routes.\nCanonical sealed RR state JSON:\n{{PHASE0_STATE_JSON}}\nCanonical recovered packet JSON:\n{{RECOVERED_PACKET_JSON}}\n"
+    },
+    "OS_PHASE1": {
+      "output_schema": "final_program",
+      "markers": [
+        "{{ATTEMPT_ORDINAL}}",
+        "{{RECOVERED_PACKET_JSON}}"
+      ],
+      "text": "ORION P1 ScienceAgentBench OS full-context one-shot generation. Attempt ordinal: {{ATTEMPT_ORDINAL}}. Generate from the fully recovered packet and return exactly one final self-contained Python program in the required JSON schema. Do not call tools or use scoring, feedback, or outcome routes. Canonical recovered packet JSON follows:\n{{RECOVERED_PACKET_JSON}}\n"
+    },
+    "NR_PHASE0": {
+      "output_schema": "phase0_state",
+      "markers": [
+        "{{ATTEMPT_ORDINAL}}",
+        "{{MASKED_PACKET_JSON}}"
+      ],
+      "text": "ORION P1 ScienceAgentBench NR phase 0. Attempt ordinal: {{ATTEMPT_ORDINAL}}. The packet is outcome-blind and auxiliary fields are intentionally masked. Do not call tools. Do not emit Python. Return kind NR_GENERIC_PLAN with a bounded generic plan, explicit assumptions, unresolved inputs, invariants, and output contract. This output is discarded before recovery. Do not guess masked values and do not use scoring, feedback, or outcome material. Canonical masked packet JSON follows:\n{{MASKED_PACKET_JSON}}\n"
+    },
+    "NR_PHASE1": {
+      "output_schema": "final_program",
+      "markers": [
+        "{{ATTEMPT_ORDINAL}}",
+        "{{RECOVERED_PACKET_JSON}}"
+      ],
+      "text": "ORION P1 ScienceAgentBench NR phase 1 reset generation. Attempt ordinal: {{ATTEMPT_ORDINAL}}. There is no prior model transcript or state in this request. From the fully recovered packet, generate from scratch and return exactly one final self-contained Python program in the required JSON schema. Do not call tools or use scoring, feedback, or outcome routes. Canonical recovered packet JSON follows:\n{{RECOVERED_PACKET_JSON}}\n"
+    }
+  },
+  "diagnostic_prompt_or_schema_reuse": false,
+  "official_tasks_opened": 0,
+  "official_outcomes_opened": 0,
+  "scientific_authority_delta": "NONE"
+}
