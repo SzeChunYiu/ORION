@@ -10,8 +10,6 @@ from orion.donors import DonorRegistry, normal_orion_donor_registry, orion_q_don
 from orion.mechanics.model import MechanicCell
 from orion.mechanics.questioning import generate_mechanic_questions
 from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
-from orion.self_orion.completion_program import completion_program_cells
-
 from .capability_router import CapabilityRouter
 
 _WORD = re.compile(r"[A-Za-z0-9_]+")
@@ -176,7 +174,11 @@ class PaperParityNavigator:
             raise ValueError("max_active_fibres must retain all core workflow fibres")
         if profile not in {"orion", "orion-q"}:
             raise ValueError("unknown ORION navigation profile")
-        self._cells = cells or tuple(completion_program_cells())
+        if not cells:
+            from orion.self_orion.completion_program import completion_program_cells
+
+            cells = tuple(completion_program_cells())
+        self._cells = cells
         self._donors = donors or (
             orion_q_donor_registry() if profile == "orion-q" else normal_orion_donor_registry()
         )
