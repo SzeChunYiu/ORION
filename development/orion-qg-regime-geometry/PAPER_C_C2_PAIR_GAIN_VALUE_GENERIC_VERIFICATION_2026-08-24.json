@@ -1,0 +1,447 @@
+{
+  "authority_scope": "FROZEN_STRUCTURAL_GRAMMAR_CONSTRUCTION_ONLY",
+  "checks": {
+    "complete_pair_optimizer_false": true,
+    "complete_pair_value_false": true,
+    "direct_deltas_match": true,
+    "independent_checks": true,
+    "no_multiplicative_claim": true,
+    "no_novelty_or_physical": true,
+    "protocol_hash": true,
+    "scope_bounded": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true,
+    "unbounded_additive_true": true
+  },
+  "decision": "ACCEPT_PAIR_INFORMATION_VALUE_AND_OPTIMIZER_SEPARATION",
+  "independent": {
+    "all_checks": true,
+    "census_A": {
+      "gain_maximizers": [
+        {
+          "gain": 10,
+          "has_size_ge_3": true,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 12
+        }
+      ],
+      "max_gain": 10,
+      "max_sum_U": 12,
+      "partition_count": 52,
+      "subset_count": 31,
+      "sum_histogram": {
+        "-2": 1,
+        "0": 1,
+        "1": 8,
+        "10": 6,
+        "12": 1,
+        "3": 6,
+        "4": 6,
+        "5": 10,
+        "6": 6,
+        "7": 1,
+        "8": 6
+      },
+      "sum_maximizers": [
+        {
+          "gain": 10,
+          "has_size_ge_3": true,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 12
+        }
+      ]
+    },
+    "census_B": {
+      "gain_maximizers": [
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        }
+      ],
+      "max_gain": 9,
+      "max_sum_U": 10,
+      "partition_count": 52,
+      "subset_count": 31,
+      "sum_histogram": {
+        "-2": 1,
+        "-3": 1,
+        "0": 1,
+        "1": 8,
+        "10": 6,
+        "2": 1,
+        "3": 6,
+        "4": 6,
+        "5": 10,
+        "6": 6,
+        "8": 6
+      },
+      "sum_maximizers": [
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "partition": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        }
+      ]
+    },
+    "checks": {
+      "A_gain_10": true,
+      "A_unique_sum_12": true,
+      "B_gain_9": true,
+      "B_has_pair_only_sum_maximizer": true,
+      "B_sum_10": true,
+      "composition_symbolic": true,
+      "cross_block_bound_symbolic": true,
+      "direct_t1_t2": true,
+      "local_pair_information_identical": true,
+      "local_partition_counts": true,
+      "local_subset_counts": true,
+      "local_weights": true
+    },
+    "direct": [
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "delta": 10,
+          "optimum": 34,
+          "partition_count": 52,
+          "unary": 44
+        },
+        "A_formula": true,
+        "B": {
+          "best_partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "delta": 9,
+          "optimum": 35,
+          "partition_count": 52,
+          "unary": 44
+        },
+        "B_formula": true,
+        "pair_information_identical": true,
+        "t": 1
+      },
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6,
+              7
+            ],
+            [
+              8,
+              9
+            ]
+          ],
+          "delta": 22,
+          "optimum": 69,
+          "partition_count": 115975,
+          "unary": 91
+        },
+        "A_formula": true,
+        "B": {
+          "best_partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              8,
+              9
+            ]
+          ],
+          "delta": 19,
+          "optimum": 72,
+          "partition_count": 115975,
+          "unary": 91
+        },
+        "B_formula": true,
+        "pair_information_identical": true,
+        "t": 2
+      }
+    ],
+    "pair_information_A": {
+      "pair_common_factors": {
+        "0-1": 3,
+        "0-2": 3,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 3,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 2
+      },
+      "pair_gains": {
+        "0-1": 4,
+        "0-2": 4,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 4,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 4
+      },
+      "weights": [
+        4,
+        4,
+        4,
+        2,
+        2
+      ]
+    },
+    "pair_information_B": {
+      "pair_common_factors": {
+        "0-1": 3,
+        "0-2": 3,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 3,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 2
+      },
+      "pair_gains": {
+        "0-1": 4,
+        "0-2": 4,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 4,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 4
+      },
+      "weights": [
+        4,
+        4,
+        4,
+        2,
+        2
+      ]
+    }
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.PaperC.C2.GenericVerification.v1",
+  "source_result_digest": "b82a965e6f2d063c8aff07b5f21513a4f5e8aecd11b811b9781713ff6dfc7c9f",
+  "verification_digest": "26a4bcde83e042257657db3d2bc584170e267051472fc198790dfde83844c788"
+}
