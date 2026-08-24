@@ -1,0 +1,794 @@
+{
+  "created_at": "2026-08-24T10:20:54+00:00",
+  "cross_side_invariants": {
+    "design_digest_identical": true,
+    "independent_same_version_envs_bit_identical_canary": true,
+    "knife_edge_band_is_32_on_all_sides": true,
+    "no_convergence_warnings_on_any_side": true,
+    "scikit_learn_version_identical": true,
+    "scipy_version_identical": true,
+    "selected_config_identical": true,
+    "selection_rule": "sort by (-dev_accuracy, complexity_rank, config_id)",
+    "within_build_determinism_all_sides": true
+  },
+  "how_to_reproduce": "python papers/paper-09-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py --dump-designs <DIR>   # orion-capable build; then the same script --refit <DIR> under a different build of the numerical stack. Side A used /Users/billy/miniforge3/bin/python3.13; sides B and C used /Users/billy/miniforge3/envs/gnn_trading/bin/python and /Users/billy/miniforge3/envs/particle_tracking_python/bin/python.",
+  "mechanistic_finding": "The deciding factor is the binary build of the numerical stack executing lbfgs, beneath the recorded version manifest. Given bit-identical design inputs, bit-identical labels, identical scipy (1.17.1) and scikit-learn (1.8.0) versions, and the identical frozen selection rule selecting logistic-C1 on every side: the conda CPython 3.13.12 / NumPy 2.4.4 stack converges in 480 lbfgs iterations to the coefficient vector whose canary is 494186ed... and reproduces the archived 0.50 with zero per-case flips on all four arms; the conda CPython 3.11.15 / NumPy 2.4.3 stacks (two independently installed envs, bit-identical canaries 9b56df6a...) converge in 439 iterations to a different terminal vector that flips exactly the 32 sub-margin UNRESOLVED-truth protected cases and lands 0.75. Both sides converge cleanly (no warnings) and are exactly deterministic within build. The archived 0.50 and the divergent 0.75 are the two attractor terminals of a degenerate comparator whose decision boundary sits inside a 0.014-wide probability band on 32 of 128 protected cases; last-bit coefficient differences between builds are amplified across that band. Toggling the executing build toggles the number: that is the one-factor reproduction the reopened box demands.",
+  "method": {
+    "design_dump": {
+      "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "design_digest_TYPED_SERIALIZED_BAG": "sha256:7f4e66475ce1fc2a688784c1d99820e90246846117d40c89e1b2347c2482c5fa",
+      "dump_environment": {
+        "blas_best_effort": "unrecorded",
+        "executable": "/Users/billy/miniforge3/bin/python3.13",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.4",
+        "python": "3.13.12",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      }
+    },
+    "entry_point": "papers/paper-09-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py",
+    "phase_1": "--dump-designs DIR under an orion-capable interpreter: regenerate the frozen dataset (seed p9-d1-method-transfer-v1, 48/16/32 per base pair), guard the content digest against the archive, dump per-family design matrices and labels to npz with a canonical bytes digest.",
+    "phase_2": "--refit DIR under any numpy+scikit-learn interpreter (no orion import): verify the design digest, mirror _select/_fit with the v1.2 lbfgs contract, predict the protected test set, compare per-case against the archived result, and classify the attractor by numeric canary (full sha256 of the converged serialized-arm coefficient bytes).",
+    "why_two_phases": "The divergent-side builds cannot import the orion package; the design dump guarantees both sides consume bit-identical inputs, so the numerical stack is the only variable. np.savez is not byte-deterministic across writes, so the design digest hashes canonical array bytes."
+  },
+  "question": "Reopened #1086 box: the locked 0.50-vs-0.75 serialized-arm divergence. Which factor differs between the 0.50 replay and the 0.75 preflight -- input snapshot, code path, environment, seed, or evaluator/arm config? The bar for resolved: reproduce BOTH numbers on demand by toggling that one factor.",
+  "record": "P9_D1V1_2_BINARY_BUILD_TOGGLE",
+  "schema": "orion.p9.d1v1_2-binary-build-toggle.v1",
+  "scientific_reading": [
+    "The divergence carries no representation-quality information in either direction: 0.50 is the modal-class prior attractor of a degenerate comparator and 0.75 is the same comparator with the knife-edge band resolved the other way on UNRESOLVED-truth cases. This is consistent with the append-only P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json and changes no prior-valued measurement; the historical terminal P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED stays append-only."
+  ],
+  "scope_limits": [
+    "The exact binary of the #1096 preflight is not recoverable from the repo; its side is demonstrated by same-class builds, not by its own executable.",
+    "Sparse-vs-dense design-format independence (identical canary either way) was verified on the archive-matching build only.",
+    "All executions are on one machine (darwin/arm64); no fresh-container or independent-custody replication is claimed.",
+    "The divergent-side refit runs the standalone mirror on the dumped design, not the orion code path, because those interpreters cannot import orion; the mirror reuses the same selection rule, spec table, and v1.2 estimator contract, and its archive-side prediction matches the orion path exactly on side A (same canary, same zero-flip per-case record)."
+  ],
+  "sides": {
+    "A_archive_matching": {
+      "canary_attractor": "ARCHIVE_MATCH",
+      "coherent": true,
+      "convergence_warnings_on_selected": [],
+      "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "design_digest": "sha256:7f4e66475ce1fc2a688784c1d99820e90246846117d40c89e1b2347c2482c5fa",
+      "distinct_predictions": 1,
+      "dump_environment": {
+        "blas_best_effort": "unrecorded",
+        "executable": "/Users/billy/miniforge3/bin/python3.13",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.4",
+        "python": "3.13.12",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      },
+      "environment": {
+        "blas_best_effort": "unrecorded",
+        "executable": "/Users/billy/miniforge3/bin/python3.13",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.4",
+        "python": "3.13.12",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      },
+      "executed_at": "2026-08-24T10:19:09+00:00",
+      "flips_vs_archive": {
+        "cases": [],
+        "count": 0,
+        "targets": []
+      },
+      "margins": {
+        "knife_edge_margin": 0.05,
+        "min": 0.014023872079896638,
+        "n_below": 32,
+        "next_above_band": 0.9994060676010691
+      },
+      "numeric_canary": {
+        "coef_sha256": "494186ed594e077904dea4adbd75dbf8104496825e4cdf18d7e075316ecaf3de",
+        "intercept_sha256": "af3a6c166e56cceb9cef6caed28776cf949f022049c180051774fb5c75711d1e",
+        "n_iter": 480
+      },
+      "observed_attractor": "ARCHIVE_MATCH",
+      "record": "P9_D1V1_2_BUILD_TOGGLE_REFIT",
+      "schema": "orion.p9.d1v1_2-build-toggle.refit.v1",
+      "selection": {
+        "dev_table": [
+          {
+            "complexity_rank": 1,
+            "config_id": "logistic-C1",
+            "dev_accuracy": 0.9583333333333334
+          },
+          {
+            "complexity_rank": 2,
+            "config_id": "logistic-C10",
+            "dev_accuracy": 0.9583333333333334
+          },
+          {
+            "complexity_rank": 11,
+            "config_id": "tree-depth6",
+            "dev_accuracy": 0.9375
+          },
+          {
+            "complexity_rank": 20,
+            "config_id": "rf-depth6",
+            "dev_accuracy": 0.9375
+          },
+          {
+            "complexity_rank": 21,
+            "config_id": "rf-none",
+            "dev_accuracy": 0.9166666666666666
+          },
+          {
+            "complexity_rank": 0,
+            "config_id": "logistic-C0.1",
+            "dev_accuracy": 0.8958333333333334
+          },
+          {
+            "complexity_rank": 10,
+            "config_id": "tree-depth3",
+            "dev_accuracy": 0.7708333333333334
+          }
+        ],
+        "selected_config": "logistic-C1",
+        "selection_rule": "sort by (-dev_accuracy, complexity_rank, config_id)"
+      },
+      "test_accuracy": 0.5,
+      "within_build_determinism": {
+        "max_abs_coef_delta": 0.0,
+        "method": "refit same spec, max |coef_a - coef_b|"
+      }
+    },
+    "B_divergent": {
+      "canary_attractor": "DIVERGENT_SIDE",
+      "coherent": true,
+      "convergence_warnings_on_selected": [],
+      "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "design_digest": "sha256:7f4e66475ce1fc2a688784c1d99820e90246846117d40c89e1b2347c2482c5fa",
+      "distinct_predictions": 2,
+      "dump_environment": {
+        "blas_best_effort": "unrecorded",
+        "executable": "/Users/billy/miniforge3/bin/python3.13",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.4",
+        "python": "3.13.12",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      },
+      "environment": {
+        "blas_best_effort": "blas",
+        "executable": "/Users/billy/miniforge3/envs/gnn_trading/bin/python",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.3",
+        "python": "3.11.15",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      },
+      "executed_at": "2026-08-24T10:19:12+00:00",
+      "flips_vs_archive": {
+        "cases": [
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ie47dac10992f07ee",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i3b4e1387bfca0340",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i4b44fe3693cc99de",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i2da7f3780787c049",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i80bc2153ade73026",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i7a3e7dad76c255a8",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ib2f509e622b76213",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i74fe6bc33d3127dc",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i90c27527ecaf7b55",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i03e3b3fc2eb9dc23",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i959ab007cb407523",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "iac3198b5198a2b5d",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i81e685eb8d1f04a1",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ia55f61fb5a104fd7",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i3d939ab4f9501194",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "iafabb15b10d8ccb1",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "id0d52627fe7da536",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i103e7996084ce3de",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i08fec30fab1c2e90",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "if9c18d409d199b59",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i8c91b8909e7b2642",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i507c79d7d90e674d",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i43a2010b6c1ed03d",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i91983e392b481fdb",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i8b1ce710b778f59f",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i10f839ca01243f3e",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i637a014ade7e951e",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ie59cf40bd855b6e2",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "id8dcbce0f0e5313a",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ibbc4aee08c6b1909",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "id443fdb1fc665093",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "if78aea878f507a8a",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          }
+        ],
+        "count": 32,
+        "targets": [
+          "UNRESOLVED"
+        ]
+      },
+      "margins": {
+        "knife_edge_margin": 0.05,
+        "min": 0.003608649137204767,
+        "n_below": 32,
+        "next_above_band": 0.9993990411554353
+      },
+      "numeric_canary": {
+        "coef_sha256": "9b56df6a102b9b57a723564b36d0068efda2fdac44f5222c5cfd0b374195334b",
+        "intercept_sha256": "13607140022b3137d0310e0dcf7b4eab9d51e5f725f9c96e57828473fd4cd39e",
+        "n_iter": 439
+      },
+      "observed_attractor": "DIVERGENT_SIDE",
+      "record": "P9_D1V1_2_BUILD_TOGGLE_REFIT",
+      "schema": "orion.p9.d1v1_2-build-toggle.refit.v1",
+      "selection": {
+        "dev_table": [
+          {
+            "complexity_rank": 1,
+            "config_id": "logistic-C1",
+            "dev_accuracy": 0.9583333333333334
+          },
+          {
+            "complexity_rank": 2,
+            "config_id": "logistic-C10",
+            "dev_accuracy": 0.9583333333333334
+          },
+          {
+            "complexity_rank": 11,
+            "config_id": "tree-depth6",
+            "dev_accuracy": 0.9375
+          },
+          {
+            "complexity_rank": 20,
+            "config_id": "rf-depth6",
+            "dev_accuracy": 0.9375
+          },
+          {
+            "complexity_rank": 21,
+            "config_id": "rf-none",
+            "dev_accuracy": 0.9166666666666666
+          },
+          {
+            "complexity_rank": 0,
+            "config_id": "logistic-C0.1",
+            "dev_accuracy": 0.8958333333333334
+          },
+          {
+            "complexity_rank": 10,
+            "config_id": "tree-depth3",
+            "dev_accuracy": 0.7708333333333334
+          }
+        ],
+        "selected_config": "logistic-C1",
+        "selection_rule": "sort by (-dev_accuracy, complexity_rank, config_id)"
+      },
+      "test_accuracy": 0.75,
+      "within_build_determinism": {
+        "max_abs_coef_delta": 0.0,
+        "method": "refit same spec, max |coef_a - coef_b|"
+      }
+    },
+    "C_divergent_independent_env": {
+      "canary_attractor": "DIVERGENT_SIDE",
+      "coherent": true,
+      "convergence_warnings_on_selected": [],
+      "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "design_digest": "sha256:7f4e66475ce1fc2a688784c1d99820e90246846117d40c89e1b2347c2482c5fa",
+      "distinct_predictions": 2,
+      "dump_environment": {
+        "blas_best_effort": "unrecorded",
+        "executable": "/Users/billy/miniforge3/bin/python3.13",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.4",
+        "python": "3.13.12",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      },
+      "environment": {
+        "blas_best_effort": "blas",
+        "executable": "/Users/billy/miniforge3/envs/particle_tracking_python/bin/python",
+        "implementation": "CPython",
+        "machine": "arm64",
+        "numpy": "2.4.3",
+        "python": "3.11.15",
+        "scikit_learn": "1.8.0",
+        "scipy": "1.17.1",
+        "system": "Darwin"
+      },
+      "executed_at": "2026-08-24T10:19:48+00:00",
+      "flips_vs_archive": {
+        "cases": [
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ie47dac10992f07ee",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i3b4e1387bfca0340",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i4b44fe3693cc99de",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i2da7f3780787c049",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i80bc2153ade73026",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i7a3e7dad76c255a8",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ib2f509e622b76213",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i74fe6bc33d3127dc",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i90c27527ecaf7b55",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i03e3b3fc2eb9dc23",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i959ab007cb407523",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "iac3198b5198a2b5d",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i81e685eb8d1f04a1",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ia55f61fb5a104fd7",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i3d939ab4f9501194",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "iafabb15b10d8ccb1",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "id0d52627fe7da536",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i103e7996084ce3de",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i08fec30fab1c2e90",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "if9c18d409d199b59",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i8c91b8909e7b2642",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i507c79d7d90e674d",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i43a2010b6c1ed03d",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i91983e392b481fdb",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i8b1ce710b778f59f",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i10f839ca01243f3e",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "i637a014ade7e951e",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ie59cf40bd855b6e2",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "id8dcbce0f0e5313a",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "ibbc4aee08c6b1909",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "id443fdb1fc665093",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          },
+          {
+            "archive_prediction": "OBSTRUCTION",
+            "instance_id": "if78aea878f507a8a",
+            "margin": 0.003608649137204767,
+            "target": "UNRESOLVED",
+            "this_build_prediction": "UNRESOLVED"
+          }
+        ],
+        "count": 32,
+        "targets": [
+          "UNRESOLVED"
+        ]
+      },
+      "margins": {
+        "knife_edge_margin": 0.05,
+        "min": 0.003608649137204767,
+        "n_below": 32,
+        "next_above_band": 0.9993990411554353
+      },
+      "numeric_canary": {
+        "coef_sha256": "9b56df6a102b9b57a723564b36d0068efda2fdac44f5222c5cfd0b374195334b",
+        "intercept_sha256": "13607140022b3137d0310e0dcf7b4eab9d51e5f725f9c96e57828473fd4cd39e",
+        "n_iter": 439
+      },
+      "observed_attractor": "DIVERGENT_SIDE",
+      "record": "P9_D1V1_2_BUILD_TOGGLE_REFIT",
+      "schema": "orion.p9.d1v1_2-build-toggle.refit.v1",
+      "selection": {
+        "dev_table": [
+          {
+            "complexity_rank": 1,
+            "config_id": "logistic-C1",
+            "dev_accuracy": 0.9583333333333334
+          },
+          {
+            "complexity_rank": 2,
+            "config_id": "logistic-C10",
+            "dev_accuracy": 0.9583333333333334
+          },
+          {
+            "complexity_rank": 11,
+            "config_id": "tree-depth6",
+            "dev_accuracy": 0.9375
+          },
+          {
+            "complexity_rank": 20,
+            "config_id": "rf-depth6",
+            "dev_accuracy": 0.9375
+          },
+          {
+            "complexity_rank": 21,
+            "config_id": "rf-none",
+            "dev_accuracy": 0.9166666666666666
+          },
+          {
+            "complexity_rank": 0,
+            "config_id": "logistic-C0.1",
+            "dev_accuracy": 0.8958333333333334
+          },
+          {
+            "complexity_rank": 10,
+            "config_id": "tree-depth3",
+            "dev_accuracy": 0.7708333333333334
+          }
+        ],
+        "selected_config": "logistic-C1",
+        "selection_rule": "sort by (-dev_accuracy, complexity_rank, config_id)"
+      },
+      "test_accuracy": 0.75,
+      "within_build_determinism": {
+        "max_abs_coef_delta": 0.0,
+        "method": "refit same spec, max |coef_a - coef_b|"
+      }
+    }
+  },
+  "what_this_does_and_does_not_separate": "Sides A and B/C differ in CPython version (3.13.12 vs 3.11.15) and NumPy patch (2.4.4 vs 2.4.3) as well as in binary build, so these sides alone cannot attribute the flip to binary build rather than patch version. The operative fact is unaffected: the #1096 preflight reported version strings that do not distinguish it from the archive-matching side, yet landed on the divergent attractor -- a version manifest cannot pin this replay. The fix is the numeric canary (a build fingerprint that predicts the attractor before any accuracy is read) plus a single pinned entry point, not a hardcoded constant."
+}
