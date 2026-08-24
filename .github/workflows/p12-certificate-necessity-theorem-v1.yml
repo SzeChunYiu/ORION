@@ -1,0 +1,60 @@
+name: p12-certificate-necessity-theorem-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_CERTIFICATE_NECESSITY_THEOREM_V1.md'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_certificate_necessity_theorem_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py'
+      - '.github/workflows/p12-certificate-necessity-theorem-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_CERTIFICATE_NECESSITY_THEOREM_V1.md'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_certificate_necessity_theorem_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py'
+      - '.github/workflows/p12-certificate-necessity-theorem-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  falsify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: papers/paper-12-adaptive-state-reasoning/top_tier
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute independent necessity falsifier
+        run: |
+          set -euo pipefail
+          python check_p12_certificate_necessity_theorem_v1.py > p12_certificate_necessity_falsifier_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('p12_certificate_necessity_falsifier_v1.json').read_text())
+          assert p['terminal'] == 'P12_CERTIFICATE_NECESSITY_THEOREM_FALSIFIER_GREEN'
+          assert all(p['gates'].values())
+          fr = p['family_reports']
+          assert fr['C0_identity']['witness_pairs'] == 0
+          assert fr['C0_identity']['cells_enumerated'] == 16170
+          for name in ('C1_sign_only', 'C2a_interval_k2', 'C2b_interval_k3',
+                       'C3a_threshold_theta1', 'C3b_threshold_theta2',
+                       'C4_declared_cost_only'):
+              assert fr[name]['witness_pairs'] >= 1, name
+              assert fr[name]['minimal_witness_ledger_size'] == 1, name
+          print(json.dumps({
+              'terminal': p['terminal'],
+              'gates': p['gates'],
+              'witness_counts': {k: v['witness_pairs'] for k, v in fr.items()},
+          }, sort_keys=True))
+          PY
+      - name: Upload necessity falsifier receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p12-certificate-necessity-theorem-v1
+          path: papers/paper-12-adaptive-state-reasoning/top_tier/p12_certificate_necessity_falsifier_v1.json

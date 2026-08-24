@@ -821,6 +821,27 @@
             "success_condition": "The V3 selector binds the locked-environment V1.1 result, treats family RNG blocks as n=32, preserves equal action sets, and forbids external promotion.",
             "failure_terminal": "P12B_EQUAL_ACTION_AUTHORITY_INVALID"
           }
+        },
+        {
+          "item_id": "P12.NECESSITY.IFF.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P12.SELECTION_NECESSITY_IFF.V1",
+          "disposition": "The successor necessity study closes the parent selection-sufficiency law into an iff: within the registered charged-selection environment, every strict coarsening of the exact per-structure additive certificate channel (sign-only, interval-k for k=2,3, threshold bits at theta=1,2, and certificate-free) admits mechanized indistinguishability witnesses with distinct unique optima, so no coarsening-measurable selector, deterministic or randomized, can be optimal everywhere; the exact-field control admits none.",
+          "scope": "Registered reduced state (ledger sizes 1-2, costs {1,2,3}, deltas {-1..5}, five price pairs, budgets {0..6}) with lemma N1 general; bounded-formal, no prospective-cost, external, or deployment authority.",
+          "authority_artifact": "papers/paper-12-adaptive-state-reasoning/top_tier/P12_CERTIFICATE_NECESSITY_RESULT_RECEIPT_V1.md",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-12-adaptive-state-reasoning/top_tier/P12_CERTIFICATE_NECESSITY_THEOREM_V1.md", "availability": "EXISTING_PR", "ref": "gap/p12-necessity"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_certificate_necessity_theorem_v1.py", "availability": "EXISTING_PR", "ref": "gap/p12-necessity"},
+            {"path": "papers/paper-12-adaptive-state-reasoning/top_tier/P12_CERTIFICATE_NECESSITY_RESULT_RECEIPT_V1.md", "availability": "EXISTING_PR", "ref": "gap/p12-necessity"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_certificate_necessity_theorem_v1.py",
+            "success_condition": "All five gates remain green: the exact-field control has zero witnesses, every coarsening family has a witness with minimal ledger size 1, both reconstruction modes err, the parent DP matches the exhaustive oracle on all 16,170 cells, and the declared enumeration counts are exact.",
+            "failure_terminal": "P12_CERTIFICATE_NECESSITY_AUTHORITY_INVALID"
+          }
         }
       ]
     },
