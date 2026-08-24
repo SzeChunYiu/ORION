@@ -187,7 +187,11 @@ def main() -> int:
                     hits = tuple(d for _, d in scored)
                 else:
                     hits = tuple(index.search(text, depth))
-                postings.append((route, probe, hits))
+                # PublicIndex.lookup matches key == probe exactly, and the
+                # policy queries with the probe TEXT from view.route_probes.
+                # Keying these on the probe NAME made every lookup miss and
+                # every arm score 0.0000 while route calls still registered.
+                postings.append((route, text, hits))
                 wanted.update(hits)
         public = PublicIndex(
             records=tuple((d, record_for(d)) for d in sorted(wanted)),
