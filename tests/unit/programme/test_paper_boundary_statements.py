@@ -82,3 +82,16 @@ def test_p14b_is_marked_diagnostic_for_gold_reuse() -> None:
     text = _flat(PAPERS / "paper-14-orion-rse/MANUSCRIPT.md")
     assert "directly reuses its adjudication function" in text
     assert "removes that implementation circularity" in text
+
+
+def test_p13_marks_its_safety_endpoint_as_self_entailed() -> None:
+    """The endpoint could not move, so neither reading of it is licensed."""
+    text = _flat(PAPERS / "paper-13-responsibility-carrying-state/PEER_REVIEW_READINESS.md")
+    assert "zero opportunities, not zero movements" in text
+    assert "incapable of showing one" in text
+    assert "self-entailed endpoint cannot discriminate" in text
+
+
+def test_p12_marks_prospective_certificate_availability_cannot_check() -> None:
+    text = _flat(PAPERS / "paper-12-adaptive-state-reasoning/PEER_REVIEW_READINESS.md")
+    assert "Prospective certificate availability and forward-time deployment are CANNOT_CHECK" in text
