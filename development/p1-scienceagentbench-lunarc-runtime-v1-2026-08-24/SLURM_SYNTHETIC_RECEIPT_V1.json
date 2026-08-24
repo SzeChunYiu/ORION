@@ -1,0 +1,90 @@
+{
+  "benchmark_archive_opened": false,
+  "benchmark_entries_opened": false,
+  "created_at_utc": "2026-08-24T10:42:07.101655+00:00",
+  "credential_presence_only": {
+    "AZURE_OPENAI_API_VERSION": false,
+    "AZURE_OPENAI_DEPLOYMENT_NAME": false,
+    "AZURE_OPENAI_ENDPOINT": false,
+    "AZURE_OPENAI_KEY": false,
+    "OPENAI_API_KEY": false
+  },
+  "docker_sdk": {
+    "docker_host_scheme": "unix",
+    "package_version": "7.1.0",
+    "ping": true,
+    "server_version": {
+      "ApiVersion": "1.44",
+      "Arch": "amd64",
+      "BuildTime": "2026-07-09T21:38:48+02:00",
+      "Components": [
+        {
+          "Details": {
+            "APIVersion": "5.8.2",
+            "Arch": "amd64",
+            "BuildTime": "2026-07-09T21:38:48+02:00",
+            "Experimental": "false",
+            "GitCommit": "",
+            "GoVersion": "go1.26.4 (Red Hat 1.26.4-1.el9_8)",
+            "KernelVersion": "5.14.0-687.24.1.el9_8.x86_64",
+            "MinAPIVersion": "4.0.0",
+            "Os": "linux"
+          },
+          "Name": "Podman Engine",
+          "Version": "5.8.2"
+        },
+        {
+          "Details": {
+            "Package": "Unknown"
+          },
+          "Name": "Conmon",
+          "Version": "conmon version 2.2.1, commit: "
+        },
+        {
+          "Details": {
+            "Package": "Unknown"
+          },
+          "Name": "OCI Runtime (/projects/hep/fs10/scratch/scyiu/orion_scienceagentbench_v1/podman-toolchain-v1/bin/crun)",
+          "Version": "crun version 1.27\ncommit: a718a92cc9a94955a5a550b6fdec1378c247ec50\nrundir: /tmp/orion-sab-3533810/crun\nspec: 1.0.0\n+SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +YAJL"
+        }
+      ],
+      "GitCommit": "",
+      "GoVersion": "go1.26.4 (Red Hat 1.26.4-1.el9_8)",
+      "KernelVersion": "5.14.0-687.24.1.el9_8.x86_64",
+      "MinAPIVersion": "1.24",
+      "Os": "linux",
+      "Platform": {
+        "Name": "linux/amd64/rocky-9.8"
+      },
+      "Version": "5.8.2"
+    }
+  },
+  "error": null,
+  "gold_evaluator_rubric_or_result_body_opened": false,
+  "host": {
+    "hostname": "cn121",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "slurm_cpus_per_task": "2",
+    "slurm_job_id": "3533810",
+    "slurm_job_partition": "lu48"
+  },
+  "official_evaluator_invoked": false,
+  "official_outcomes_opened": 0,
+  "official_tasks_run": 0,
+  "schema": "orion.p1.sab.lunarc.synthetic-docker-sdk-smoke.v1",
+  "scientific_authority_delta": "NONE",
+  "status": "PASS",
+  "synthetic_build": {
+    "base_image_reference": "docker.io/library/alpine:3.20.3",
+    "base_image_repo_digests": [
+      "docker.io/library/alpine@sha256:029a752048e32e843bd6defe3841186fb8d19a28dae8ec287f433bb9d6d1ad85",
+      "docker.io/library/alpine@sha256:1e42bbe2508154c9126d48c2b8a75420c3544343bf86fd041fb7527e017a4b4a"
+    ],
+    "build_log_sha256": "e1f81272eb1fe66683465eacab61cb76fbedea8feaac7085404075a1ffb0b735",
+    "built_image_id": "sha256:271472b161d65841cad4b6ae2e89d88fd796a18a84628bf334717e766e426fe6",
+    "container_and_image_removed": true,
+    "container_exec_expected_sha256": "0cd3a770dff31ad12e90a8ecb44f782f961d80740c9f9fa3d4f8b4903fa6ea95",
+    "dockerfile_sha256": "74fc4f420813902da7da7064e402f9d09148a71d53b0b2d901932b5548a903a7"
+  },
+  "terminal": "P1_SAB_LUNARC_PODMAN_DOCKER_SDK_SYNTHETIC_SMOKE_PASS__ZERO_TASKS_RUN__ZERO_OUTCOMES_OPENED"
+}
