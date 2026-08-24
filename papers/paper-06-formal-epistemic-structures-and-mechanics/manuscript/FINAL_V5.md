@@ -278,6 +278,49 @@ The separation and propagation halves of that statement hold at any size. The
 five registered lift coordinates and five donor families are an instance of it,
 recovered rather than assumed.
 
+## Bounded executable evidence: ETS and the heterogeneous transition audit
+
+The theorems above are exact statements about the structures. Two bounded
+executable studies test whether the distinction they draw survives contact with
+material the structures did not construct. Both were committed as protocol
+before their cases, both carry frozen gold, and both were reproduced by a second
+checker that does not import or execute the first.
+
+**ETS, 18 frozen cases in three six-case families.**
+
+| system | exact accuracy | unsafe false-admissible | laundering false-admissible | unnecessary reopen |
+|---|---:|---:|---:|---:|
+| strong declared donor product | 0.50 | 9 | 3 | 0 |
+| ETS checker | **1.00** | **0** | **0** | **0** |
+
+ETS accuracy is 1.00 in each of formal/software, agent-memory/tool-state and
+scientific-evidence-state; the donor product is 0.50 in each. The second
+verifier reproduces all 18 gold dispositions exactly, and its label-independence
+attack remints `id`, `family` and `case_type` and confirms the scientific
+terminal does not move.
+
+**Heterogeneous transition audit, 16 frozen cases in four real-domain families**
+(four each: `rocrate-standard`, `p9-artifact-recovery`, `p10-native-coverage`,
+`p15-provenance-import`). The epistemic-transition gate is exact -- `1.0`
+accuracy, `0` unsafe false-admissible, `0` unnecessary reopen, `0` authority
+laundering, perfect in every family. The donor-only gate reaches `0.4375`, with
+`9` unsafe false-admissible decisions and `1` authority-laundering decision, and
+is unsafe in all four families (3/2/2/2). The independent checker's per-family
+unsafe counts agree exactly.
+
+The two studies fail the donor layer in the same direction on different
+material, which is the point: the separation is not an artifact of the
+constructed enumeration.
+
+**Exact scope.** Eighteen and sixteen frozen cases respectively, with gold
+dispositions fixed before execution. Agreement is between two implementations
+inside the same programme, not external adjudication. The ideal enriched-product
+tie is preserved: enriched-product mismatches remain **0**, so the donor product
+is not being beaten on expressive power. Nothing here supports a claim of
+inherent expressivity or inherent centralization -- the donor layer fails on
+admissibility decisions under transition, not because it can express less.
+
+
 ## Limits
 
 The lift coordinates are not claimed to be universally minimal. No claim is made
