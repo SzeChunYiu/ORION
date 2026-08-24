@@ -38,6 +38,9 @@ def test_generate_writes_p5_2_through_p5_7_from_archived_rows(tmp_path: Path) ->
     assert p2["rows"] == p4["rows"] == p5["rows"] == []
     assert p3["summary_metrics"]["correct_attributions"] == 21
     assert p3["summary_metrics"]["incorrect_attributions"] == 3
+    assert p3["summary_metrics"]["macro_f1"] == 0.8726190476190476
+    assert p3["per_family_metrics"]["IMPLEMENTATION_BUG"]["precision"] == 0.75
+    assert p3["per_family_metrics"]["IMPLEMENTATION_BUG"]["f1"] == 0.8571428571428571
     got = {
         (row["case_id"], row["gold"], row["attributed"])
         for row in p3["incorrect_cases"]
@@ -48,4 +51,5 @@ def test_generate_writes_p5_2_through_p5_7_from_archived_rows(tmp_path: Path) ->
     assert p7["status"] == "ARCHIVED_ATTRIBUTION_ONLY"
     md = (tmp_path / "P5_ATTRIBUTION_TABLES_V1.md").read_text()
     assert "P5-HC-002" in md
+    assert "macro-F1 0.8726" in md
     assert "CANNOT_CHECK" in md

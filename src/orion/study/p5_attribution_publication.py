@@ -59,14 +59,37 @@ def _family_metrics(rows: Sequence[Mapping[str, object]]) -> dict[str, dict[str,
     for family in FAMILIES:
         family_rows = [r for r in rows if r.get("gold_root_cause") == family]
         total = len(family_rows)
-        correct = sum(1 for r in family_rows if r.get("correct") is True)
-        recall = (correct / total) if total else 0.0
+        tp = sum(
+            1
+            for r in rows
+            if r.get("gold_root_cause") == family
+            and r.get("attributed_root_cause") == family
+        )
+        fp = sum(
+            1
+            for r in rows
+            if r.get("gold_root_cause") != family
+            and r.get("attributed_root_cause") == family
+        )
+        fn = sum(
+            1
+            for r in rows
+            if r.get("gold_root_cause") == family
+            and r.get("attributed_root_cause") != family
+        )
+        precision = tp / (tp + fp) if tp + fp else 0.0
+        recall = tp / (tp + fn) if tp + fn else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
         out[family] = {
             "cases": [str(r["case_id"]) for r in family_rows],
-            "correct": correct,
-            "f1": recall,
+            "correct": tp,
+            "f1": f1,
+            "fn": fn,
+            "fp": fp,
+            "precision": precision,
             "recall": recall,
             "total": total,
+            "tp": tp,
         }
     return out
 
@@ -251,12 +274,14 @@ def generate(rows: Sequence[Mapping[str, object]], out_dir: Path) -> None:
         f"Accuracy {correct_n}/{len(rows)} = {correct_n / len(rows):.4f}; macro-F1 {macro_f1:.4f}.",
         "Preserved errors: P5-HC-002, P5-HC-012, P5-HC-018.",
         "",
-        "| Gold family | n | correct | recall |",
-        "|---|---:|---:|---:|",
+        "| Gold family | n | correct | precision | recall | F1 |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
     for family, block in family_metrics.items():
         md.append(
-            f"| `{family}` | {block['total']} | {block['correct']} | {float(block['recall']):.4f} |"
+            f"| `{family}` | {block['total']} | {block['correct']} | "
+            f"{float(block['precision']):.4f} | {float(block['recall']):.4f} | "
+            f"{float(block['f1']):.4f} |"
         )
     md += [
         "",

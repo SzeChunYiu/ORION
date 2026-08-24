@@ -8,19 +8,19 @@ Status: `CANNOT_CHECK`. Archived rows have no replay/fresh deltas.
 
 ## Table P5-3 — hidden-cause attribution confusion
 
-Accuracy 21/24 = 0.8750; macro-F1 0.8750.
+Accuracy 21/24 = 0.8750; macro-F1 0.8726.
 Preserved errors: P5-HC-002, P5-HC-012, P5-HC-018.
 
-| Gold family | n | correct | recall |
-|---|---:|---:|---:|
-| `RETRIEVAL_MISS` | 3 | 2 | 0.6667 |
-| `ROUTING_PLANNING_MISS` | 3 | 3 | 1.0000 |
-| `IMPLEMENTATION_BUG` | 3 | 3 | 1.0000 |
-| `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` | 3 | 2 | 0.6667 |
-| `EVALUATOR_METRIC_BUG` | 3 | 3 | 1.0000 |
-| `REPRESENTATION_GAP` | 3 | 2 | 0.6667 |
-| `MEASUREMENT_SPECIFICATION_GAP` | 3 | 3 | 1.0000 |
-| `METHOD_BASIS_GAP` | 3 | 3 | 1.0000 |
+| Gold family | n | correct | precision | recall | F1 |
+|---|---:|---:|---:|---:|---:|
+| `RETRIEVAL_MISS` | 3 | 2 | 1.0000 | 0.6667 | 0.8000 |
+| `ROUTING_PLANNING_MISS` | 3 | 3 | 1.0000 | 1.0000 | 1.0000 |
+| `IMPLEMENTATION_BUG` | 3 | 3 | 0.7500 | 1.0000 | 0.8571 |
+| `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` | 3 | 2 | 1.0000 | 0.6667 | 0.8000 |
+| `EVALUATOR_METRIC_BUG` | 3 | 3 | 1.0000 | 1.0000 | 1.0000 |
+| `REPRESENTATION_GAP` | 3 | 2 | 0.6667 | 0.6667 | 0.6667 |
+| `MEASUREMENT_SPECIFICATION_GAP` | 3 | 3 | 1.0000 | 1.0000 | 1.0000 |
+| `METHOD_BASIS_GAP` | 3 | 3 | 0.7500 | 1.0000 | 0.8571 |
 
 | Case | Gold | Attributed |
 |---|---|---|
