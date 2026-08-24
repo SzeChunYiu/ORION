@@ -11,8 +11,8 @@ This package replaces a finite-fixture-first presentation with a complete mathem
 - complete theorem statements and derivations OSTC-T0 through OSTC-T23;
 - full paper-level theorem packages for P1–P15;
 - an explicit P1 theory supersession and ownership boundary;
-- a machine-readable theorem/assumption ledger;
-- a Lean 4 mechanized core for the load-bearing theorem skeletons;
+- machine-readable programme and paper theorem ledgers plus an assumption ledger;
+- a pinned Lean 4 mechanized core for the load-bearing theorem skeletons;
 - a frozen execution-only backlog and an execution-agent prompt.
 
 The remaining work is deliberately limited to computation, independent proof reconstruction/review, external adjudication, protected execution, and novelty review. Later execution agents may instantiate, test, refute, or narrow the theory; they may not silently redesign it after outcomes.
@@ -22,9 +22,10 @@ The remaining work is deliberately limited to computation, independent proof rec
 - `ORION_SCIENTIFIC_TRANSITION_CALCULUS_V1.md` — master formalism.
 - `THEOREM_DERIVATIONS_T0_T23_V1.md` — programme theorem statements and proofs.
 - `PAPER_THEOREM_PACKAGES_V1.md` — complete definitions, theorem families, falsifiers, and predictions for P1–P15.
+- `PAPER_THEOREM_LEDGER_V1.json` — machine-readable P1–P15 theorem ownership and execution crosswalk.
 - `P1_P15_THEORY_UPGRADES_V1.md` — concise ownership map.
 - `P1_THEORY_SUPERSESSION_V1.md` — theory ownership and RR1 boundary.
-- `THEOREM_LEDGER_V1.json` — machine-readable theorem status.
+- `THEOREM_LEDGER_V1.json` — machine-readable OSTC theorem status.
 - `ASSUMPTION_LEDGER_V1.json` — assumptions and countermodels.
 - `formal/lean/` — pinned Lean 4 project and machine-checked core.
 - `EXECUTION_ONLY_BACKLOG_V1.json` — frozen computation/external jobs.
