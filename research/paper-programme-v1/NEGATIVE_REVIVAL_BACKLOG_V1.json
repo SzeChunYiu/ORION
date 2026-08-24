@@ -42,13 +42,18 @@
     },
     {
       "negative": "P14A gate defect (NR-11): both bars exceeded statistic supremum",
-      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 \u2014 closed under stopping criterion (c)",
+      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 — closed under stopping criterion (c)",
       "successor": "closure-by-successor VERIFIED: supremum 0.042326 independently recomputed below both registered bars; P14C same-scope successor byte-reproduces"
     },
     {
       "negative": "P11 query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET)",
-      "status": "P11_SELECTIVE_PLACEMENT_V1_SUPPORTED \u2014 9/10 LINEAR, 10/10 RBF/KNN; independent checker GREEN, byte-identical replay; secondary seeds 20261122/23/24 all SUPPORTED (receipt P11_SELECTIVE_PLACEMENT_RESULT_RECEIPT_V1)",
+      "status": "P11_SELECTIVE_PLACEMENT_V1_SUPPORTED — 9/10 LINEAR, 10/10 RBF/KNN; independent checker GREEN, byte-identical replay; secondary seeds 20261122/23/24 all SUPPORTED (receipt P11_SELECTIVE_PLACEMENT_RESULT_RECEIPT_V1)",
       "successor": "NR-12 selective placement V1: train-only inner-CV tolerance selector (rs=2026112207, -0.02 bar) places compilation per responsibility; frozen battery re-executed unmodified (max deviation 0.0), |S_f|=3,2,3,4,4"
+    },
+    {
+      "negative": "P12 robustness stress V1: price_axis=BROKEN (zero-regret regimes: empty, 36/36 case records) and distribution_shift_axis=BROKEN (B1/B2 mixes fail) for P12_TRANSFER_ALLOCATOR_V1 (NR-13, #1006)",
+      "status": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED (branch revive/p12-price-aware-nr13, prereg 44d97948f53046e0a9a4d467e129f509d2a4e49e committed BEFORE implementation; SC1 FLAT replication preserved 9/9; regret 0 in all 180 case-regime + 15 joint cells vs BEFORE 45 positive, mass 779/416/2378/3210/5846 -> 0; both axes ROBUST under the original verdict logic; independent checker GREEN 195 cells 0 discrepancies; successor-surface audit GREEN; boundary: reads the charger's published charge certificates, not a forward-time allocator)",
+      "successor": "P12_PRICE_AWARE_ALLOCATOR_V1: exact budgeted argmin of the charged objective on the charger's published ledger (d[s] = p_build*declared[s] - p_serve*(reason_cert[s]-state_cert[s]); 0/1-knapsack DP; 0 new free parameters; tau gate not carried)"
     }
   ],
   "created": "2026-08-23",
@@ -97,6 +102,18 @@
       "negative": "1 root success in 48, below 385-case target",
       "paper": "P1",
       "solvability": "TRANSFERRED_TO_CODEX_LANE"
+    },
+    {
+      "attribution": "selection_rule_price_invariance: frozen greedy-by-q optimizes a FLAT-charged proxy, blind to the charged price vector and the per-structure serve-charge exchange rate (BEFORE census of the 45 positive cells: 13 materialize >=1 unprofitable structure, 32 skip >=1 profitable one, 0 implicate any other stage; RG1 exactness green everywhere)",
+      "hypothesis": "allocator's frozen greedy-by-q selection is price-invariant by construction — it optimizes the FLAT-charged objective, so any skew between build/serve prices moves realized cost without moving the selection; attribution is one-stage (selection rule, not oracle/outputs)",
+      "id": "NR-13",
+      "lever": "price-and-shift-aware successor selector pre-registered against the same frozen 27+9-case pool + regimes/mixes (reads the same price vector the runner charges and the charge-ledger certificates), re-run full battery with two implementations; FLAT replication preserved as a constraint",
+      "negative": "Robustness stress V1: price_axis=BROKEN (zero-regret regime list empty over all 36 case records) and distribution_shift_axis=BROKEN (B1/B2 mixes fail) for P12_TRANSFER_ALLOCATOR_V1 (#1006, run 32672856998)",
+      "paper": "P12",
+      "solvability": "RESEARCH_SOLVABLE",
+      "status": "already_revived",
+      "successor_receipt": "P12_PRICE_AWARE_SUCCESSOR_RESULT_RECEIPT_V1",
+      "terminal_state": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED"
     }
   ],
   "operator_directive": "Every negative result must be researched to positive: root cause or better model. Earned by mechanic improvement, never by tuning outcomes.",
