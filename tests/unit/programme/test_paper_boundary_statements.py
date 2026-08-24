@@ -103,3 +103,12 @@ def test_p15_separates_all_six_execution_concepts() -> None:
     assert "attribution, replay, agreement and attestation as evidence about" in text
     assert "The six are separate and none implies the next" in text
     assert "correct signature over a wrong result" in text
+
+
+def test_p4_states_the_finite_battery_estimand() -> None:
+    """Intervals over an enumerated battery are not population inference."""
+    text = _flat(PAPERS / "paper-04-verified-scientific-discovery/JOURNAL_READINESS.md")
+    assert "estimand is the effect on this finite registered battery" in text
+    assert "Artifacts are not population units" in text
+    assert "Bridge identities are not population units" in text
+    assert "there is no population from which the battery is a sample" in text
