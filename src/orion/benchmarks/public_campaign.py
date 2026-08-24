@@ -298,16 +298,18 @@ def _source_metadata_blockers(source: SourceBinding) -> list[str]:
         blockers.append(f"{prefix}:license_ambiguous")
     if not _valid_url(source.license_url):
         blockers.append(f"{prefix}:license_url_invalid")
-    if not source.citation.strip():
+    if _identity_missing(source.citation):
         blockers.append(f"{prefix}:citation_missing")
     if _timestamp(source.retrieved_at_utc) is None:
         blockers.append(f"{prefix}:retrieval_time_invalid")
-    if not source.task_ids or any(not item.strip() for item in source.task_ids):
+    if not source.task_ids or any(_identity_missing(item) for item in source.task_ids):
         blockers.append(f"{prefix}:task_ids_missing")
     if len(source.task_ids) != len(set(source.task_ids)):
         blockers.append(f"{prefix}:task_ids_duplicated")
     if source.redistributed_content and not source.redistribution_allowed:
         blockers.append(f"{prefix}:redistribution_prohibited")
+    if any(_identity_missing(item) for item in source.exclusions):
+        blockers.append(f"{prefix}:exclusion_identity_invalid")
     return blockers
 
 
@@ -370,7 +372,7 @@ def fetch_and_hash_sources(
 
 def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list[str]:
     blockers: list[str] = []
-    if not freeze.campaign_id.strip():
+    if _identity_missing(freeze.campaign_id):
         blockers.append("campaign_id_missing")
     if not freeze.paper_ids or not set(freeze.paper_ids).issubset(_PAPER_IDS):
         blockers.append("paper_scope_must_be_p6_through_p15")
@@ -384,7 +386,7 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         blockers.append("protocol_not_frozen_before_result")
     if not isinstance(freeze.inference_unit, InferenceUnit):
         blockers.append("inference_unit_not_allowed")
-    if not freeze.estimand.strip() or not freeze.gate.strip():
+    if _identity_missing(freeze.estimand) or _identity_missing(freeze.gate):
         blockers.append("estimand_or_gate_missing")
     if not freeze.sources:
         blockers.append("sources_missing")
@@ -405,14 +407,14 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         blockers.append("task_split_assignment_duplicated")
     if set(assignments) != set(source_tasks):
         blockers.append("frozen_task_split_coverage_mismatch")
-    if any(not split.strip() for split in assignments.values()):
+    if any(_identity_missing(split) for split in assignments.values()):
         blockers.append("split_id_missing")
     unit_assignments = dict(freeze.inference_unit_assignments)
     if len(unit_assignments) != len(freeze.inference_unit_assignments):
         blockers.append("inference_unit_assignment_duplicated")
     if set(unit_assignments) != set(source_tasks):
         blockers.append("inference_unit_task_coverage_mismatch")
-    if any(not unit_id.strip() for unit_id in unit_assignments.values()):
+    if any(_identity_missing(unit_id) for unit_id in unit_assignments.values()):
         blockers.append("inference_unit_identity_missing")
     if freeze.inference_unit is InferenceUnit.SOURCE_TASK and any(
         unit_assignments.get(task_id) != task_id for task_id in source_tasks
@@ -422,7 +424,9 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
     if not freeze.arms:
         blockers.append("arms_missing")
     arm_ids = [arm.arm_id for arm in freeze.arms]
-    if len(arm_ids) != len(set(arm_ids)) or any(not item.strip() for item in arm_ids):
+    if len(arm_ids) != len(set(arm_ids)) or any(
+        _identity_missing(item) for item in arm_ids
+    ):
         blockers.append("arm_ids_invalid_or_duplicated")
     roles = [arm.role for arm in freeze.arms]
     if ArmRole.TREATMENT not in roles or not any(
@@ -445,7 +449,7 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
             blockers.append(f"arm:{arm.arm_id}:model_identity_missing")
         if (
             not arm.tool_access
-            or any(not tool.strip() for tool in arm.tool_access)
+            or any(_identity_missing(tool, allow_none=True) for tool in arm.tool_access)
             or len(arm.tool_access) != len(set(arm.tool_access))
         ):
             blockers.append(f"arm:{arm.arm_id}:tool_access_missing_or_invalid")
@@ -466,7 +470,9 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         blockers.append("evaluator_identity_or_version_missing")
     if not _valid_sha256(freeze.evaluator.artifact_sha256):
         blockers.append("evaluator_sha256_invalid")
-    if not freeze.gold.gold_id.strip() or not freeze.gold.access_scope.strip():
+    if _identity_missing(freeze.gold.gold_id) or _identity_missing(
+        freeze.gold.access_scope
+    ):
         blockers.append("gold_identity_or_access_scope_missing")
     if not _valid_sha256(freeze.gold.artifact_sha256):
         blockers.append("gold_artifact_sha256_invalid")
@@ -531,7 +537,7 @@ def _observation_blockers(
             blockers.append(f"{prefix}:split_drift")
         if item.arm_id not in arm_ids or item.seed not in freeze.seeds:
             blockers.append(f"{prefix}:unfrozen_arm_or_seed")
-        if not item.inference_unit_id.strip():
+        if _identity_missing(item.inference_unit_id):
             blockers.append(f"{prefix}:inference_unit_id_missing")
         if unit_assignments.get(item.task_id) != item.inference_unit_id:
             blockers.append(f"{prefix}:inference_unit_identity_drift")
@@ -773,7 +779,9 @@ def run_fail_closed_campaign(
     blockers.extend(_observation_blockers(freeze, observations))
     blockers.extend(_replay_blockers(replay, gate_result, observations))
 
-    if not gate_result.decision_id.strip() or not gate_result.rationale.strip():
+    if _identity_missing(gate_result.decision_id) or _identity_missing(
+        gate_result.rationale
+    ):
         blockers.append("gate_identity_or_rationale_missing")
     if not isinstance(gate_result.terminal, CampaignTerminal):
         blockers.append("gate_terminal_invalid")

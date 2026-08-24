@@ -594,17 +594,37 @@ def test_placeholder_execution_source_evaluator_and_custody_identities_cannot_pa
         for item in _observations()
     )
     arms = (
-        _arm("orion", ArmRole.TREATMENT, model_id="UNKNOWN"),
-        _arm("strong-baseline", ArmRole.BASELINE, model_id="UNKNOWN"),
+        _arm(
+            "orion",
+            ArmRole.TREATMENT,
+            model_id="UNKNOWN",
+            tool_access=("UNKNOWN",),
+        ),
+        _arm(
+            "strong-baseline",
+            ArmRole.BASELINE,
+            model_id="UNKNOWN",
+            tool_access=("UNKNOWN",),
+        ),
     )
     freeze = _freeze(
-        sources=(_source(pinned_revision="TBD"),),
+        campaign_id="UNKNOWN",
+        estimand="TBD",
+        gate="UNSET",
+        sources=(_source(pinned_revision="TBD", citation="TBD"),),
         arms=arms,
         evaluator=EvaluatorBinding(
             evaluator_id="CANNOT_CHECK",
             version="UNKNOWN",
             artifact_sha256=_digest("official-evaluator"),
             official=True,
+        ),
+        gold=GoldBinding(
+            gold_id="CANNOT_CHECK",
+            artifact_sha256=_digest("gold"),
+            label_schema_sha256=_digest("gold-label-schema"),
+            task_ids=("task-1", "task-2"),
+            access_scope="UNKNOWN",
         ),
         custody=CustodyBinding(
             mode=CustodyMode.SAME_OWNER_PUBLIC,
@@ -621,11 +641,41 @@ def test_placeholder_execution_source_evaluator_and_custody_identities_cannot_pa
         replay=_replay(gate, observations),
     )
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert "campaign_id_missing" in receipt.blockers
+    assert "estimand_or_gate_missing" in receipt.blockers
     assert any("pinned_revision_missing" in blocker for blocker in receipt.blockers)
+    assert any("citation_missing" in blocker for blocker in receipt.blockers)
     assert any("model_identity_missing" in blocker for blocker in receipt.blockers)
+    assert any(
+        "tool_access_missing_or_invalid" in blocker for blocker in receipt.blockers
+    )
     assert "evaluator_identity_or_version_missing" in receipt.blockers
+    assert "gold_identity_or_access_scope_missing" in receipt.blockers
     assert "custody_identity_missing" in receipt.blockers
     assert any("environment_value_missing" in blocker for blocker in receipt.blockers)
+
+
+def test_placeholder_task_split_unit_arm_and_decision_identities_cannot_pass() -> None:
+    freeze = _freeze(
+        sources=(_source(task_ids=("UNKNOWN", "task-2")),),
+        split_assignments=(("UNKNOWN", "TBD"), ("task-2", "TBD")),
+        inference_unit_assignments=(
+            ("UNKNOWN", "CANNOT_CHECK"),
+            ("task-2", "CANNOT_CHECK"),
+        ),
+        arms=(
+            _arm("UNKNOWN", ArmRole.TREATMENT),
+            _arm("strong-baseline", ArmRole.BASELINE),
+        ),
+    )
+    gate = replace(_gate(), decision_id="TBD", rationale="UNKNOWN")
+    receipt = _run(freeze=freeze, gate=gate)
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("task_ids_missing" in blocker for blocker in receipt.blockers)
+    assert "split_id_missing" in receipt.blockers
+    assert "inference_unit_identity_missing" in receipt.blockers
+    assert "arm_ids_invalid_or_duplicated" in receipt.blockers
+    assert "gate_identity_or_rationale_missing" in receipt.blockers
 
 
 def test_post_outcome_freeze_cannot_check() -> None:
