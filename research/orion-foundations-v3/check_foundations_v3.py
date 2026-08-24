@@ -12,7 +12,10 @@ REQUIRED_FILES = {
     "README.md",
     "ORION_SCIENTIFIC_TRANSITION_CALCULUS_V1.md",
     "THEOREM_DERIVATIONS_T0_T23_V1.md",
+    "PROGRAMME_BREAKTHROUGH_THEOREMS_V1.md",
     "PAPER_THEOREM_PACKAGES_V1.md",
+    "PAPER_THEOREM_PROOFS_V1.md",
+    "PAPER_THEOREM_LEDGER_V1.json",
     "P1_P15_THEORY_UPGRADES_V1.md",
     "P1_THEORY_SUPERSESSION_V1.md",
     "THEOREM_LEDGER_V1.json",
@@ -44,6 +47,7 @@ def main() -> int:
         errors.append(f"missing required paths: {missing_paths}")
 
     theorem_ledger = load_json("THEOREM_LEDGER_V1.json")
+    paper_ledger = load_json("PAPER_THEOREM_LEDGER_V1.json")
     assumptions = load_json("ASSUMPTION_LEDGER_V1.json")
     backlog = load_json("EXECUTION_ONLY_BACKLOG_V1.json")
 
@@ -71,13 +75,39 @@ def main() -> int:
     if headings != [str(i) for i in range(24)]:
         errors.append(f"derivation headings mismatch: {headings}")
 
+    breakthroughs = (ROOT / "PROGRAMME_BREAKTHROUGH_THEOREMS_V1.md").read_text(encoding="utf-8")
+    breakthrough_ids = re.findall(r"^## B(\d+) —", breakthroughs, flags=re.MULTILINE)
+    if breakthrough_ids != [str(i) for i in range(1, 9)]:
+        errors.append(f"breakthrough theorem IDs mismatch: {breakthrough_ids}")
+
     paper_packages = (ROOT / "PAPER_THEOREM_PACKAGES_V1.md").read_text(encoding="utf-8")
+    paper_proofs = (ROOT / "PAPER_THEOREM_PROOFS_V1.md").read_text(encoding="utf-8")
     paper_headings = re.findall(r"^# P(\d+) —", paper_packages, flags=re.MULTILINE)
+    proof_headings = re.findall(r"^# P(\d+) proofs\b", paper_proofs, flags=re.MULTILINE)
     if paper_headings != [str(i) for i in range(1, 16)]:
         errors.append(f"paper theorem package headings mismatch: {paper_headings}")
+    if proof_headings != [str(i) for i in range(1, 16)]:
+        errors.append(f"paper proof headings mismatch: {proof_headings}")
     for paper_id in range(1, 16):
         if not re.search(rf"^## P{paper_id}-T1\b", paper_packages, flags=re.MULTILINE):
             errors.append(f"P{paper_id} has no first theorem in paper package")
+        if not re.search(rf"^## P{paper_id}-T1\b", paper_proofs, flags=re.MULTILINE):
+            errors.append(f"P{paper_id} has no first theorem proof")
+
+    paper_rows = paper_ledger.get("papers")
+    if not isinstance(paper_rows, list):
+        errors.append("paper theorem ledger must contain a papers list")
+        paper_rows = []
+    paper_ids = [str(row.get("paper")) for row in paper_rows if isinstance(row, dict)]
+    if paper_ids != [f"P{i}" for i in range(1, 16)]:
+        errors.append(f"paper theorem ledger IDs mismatch: {paper_ids}")
+    paper_theorem_count = sum(
+        len(row.get("theorems", []))
+        for row in paper_rows
+        if isinstance(row, dict) and isinstance(row.get("theorems"), list)
+    )
+    if paper_theorem_count != 77:
+        errors.append(f"expected 77 paper theorems, found {paper_theorem_count}")
 
     assumption_rows = assumptions.get("assumptions")
     if not isinstance(assumption_rows, list):
@@ -169,9 +199,11 @@ def main() -> int:
             digest_rows[name] = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
 
     result = {
-        "schema_version": "orion.foundations.v3-audit.v2",
+        "schema_version": "orion.foundations.v3-audit.v3",
         "status": "PASS" if not errors else "FAIL",
         "theorem_count": len(ids),
+        "breakthrough_theorem_count": len(breakthrough_ids),
+        "paper_theorem_count": paper_theorem_count,
         "assumption_count": len(assumption_ids),
         "paper_theory_count": len(paper_headings),
         "lean_theorem_count": len(required_lean_theorems),
