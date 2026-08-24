@@ -31,6 +31,17 @@ def _clean(value: object) -> str:
     return " ".join(str(value or "").split())
 
 
+def _scientific_domain_ids(query: SearchQuery) -> tuple[str, ...]:
+    """Return only scientific/search-domain identity, never provider provenance.
+
+    Europe PMC/Crossref identity remains exact in item_id/source_uri. Mixing the
+    provider label into domain_ids causes W to treat a retrieval backend as a
+    newly discovered scientific domain and can trigger redundant search loops.
+    """
+
+    return (query.domain_hint,) if query.domain_hint else ()
+
+
 @dataclass(frozen=True)
 class EuropePMCRetrievalProvider(RetrievalProvider):
     """Public Europe PMC REST search adapter for life-sciences literature."""
@@ -93,14 +104,7 @@ class EuropePMCRetrievalProvider(RetrievalProvider):
                     item_id=f"europepmc:{source}:{external_id}",
                     content="\n".join(lines),
                     source_uri=f"https://europepmc.org/article/{source}/{external_id}",
-                    domain_ids=tuple(
-                        dict.fromkeys(
-                            (
-                                *(query.domain_hint and (query.domain_hint,) or ()),
-                                "literature:europe-pmc",
-                            )
-                        )
-                    ),
+                    domain_ids=_scientific_domain_ids(query),
                 )
             )
         return tuple(items)
@@ -183,14 +187,7 @@ class CrossrefRetrievalProvider(RetrievalProvider):
                     item_id=item_id,
                     content="\n".join(lines),
                     source_uri=source_uri,
-                    domain_ids=tuple(
-                        dict.fromkeys(
-                            (
-                                *(query.domain_hint and (query.domain_hint,) or ()),
-                                "literature:crossref",
-                            )
-                        )
-                    ),
+                    domain_ids=_scientific_domain_ids(query),
                 )
             )
         return tuple(items)
