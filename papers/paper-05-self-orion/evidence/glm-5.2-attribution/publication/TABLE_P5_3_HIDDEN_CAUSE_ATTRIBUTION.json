@@ -72,9 +72,13 @@
         "P5-HC-012"
       ],
       "correct": 2,
-      "f1": 0.6666666666666666,
+      "f1": 0.8,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 0.6666666666666666,
-      "total": 3
+      "total": 3,
+      "tp": 2
     },
     "EVALUATOR_METRIC_BUG": {
       "cases": [
@@ -84,8 +88,12 @@
       ],
       "correct": 3,
       "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     "IMPLEMENTATION_BUG": {
       "cases": [
@@ -94,9 +102,13 @@
         "P5-HC-009"
       ],
       "correct": 3,
-      "f1": 1.0,
+      "f1": 0.8571428571428571,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     "MEASUREMENT_SPECIFICATION_GAP": {
       "cases": [
@@ -106,8 +118,12 @@
       ],
       "correct": 3,
       "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     "METHOD_BASIS_GAP": {
       "cases": [
@@ -116,9 +132,13 @@
         "P5-HC-024"
       ],
       "correct": 3,
-      "f1": 1.0,
+      "f1": 0.8571428571428571,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     "REPRESENTATION_GAP": {
       "cases": [
@@ -128,8 +148,12 @@
       ],
       "correct": 2,
       "f1": 0.6666666666666666,
+      "fn": 1,
+      "fp": 1,
+      "precision": 0.6666666666666666,
       "recall": 0.6666666666666666,
-      "total": 3
+      "total": 3,
+      "tp": 2
     },
     "RETRIEVAL_MISS": {
       "cases": [
@@ -138,9 +162,13 @@
         "P5-HC-003"
       ],
       "correct": 2,
-      "f1": 0.6666666666666666,
+      "f1": 0.8,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 0.6666666666666666,
-      "total": 3
+      "total": 3,
+      "tp": 2
     },
     "ROUTING_PLANNING_MISS": {
       "cases": [
@@ -150,8 +178,12 @@
       ],
       "correct": 3,
       "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     }
   },
   "schema_version": "orion.p5.hidden-cause-attribution.v1",
@@ -164,7 +196,7 @@
     "errors": 0,
     "false_method_change_rate": 0.14285714285714285,
     "incorrect_attributions": 3,
-    "macro_f1": 0.875,
+    "macro_f1": 0.8726190476190476,
     "total_cases": 24,
     "total_tokens": 14190
   },
