@@ -1,0 +1,76 @@
+{
+  "schema_version": "orion.p5.revision-level-v3.confirmatory-freeze-receipt.v1",
+  "record": "P5_H1_H4_V3_CONFIRMATORY_FREEZE",
+  "date": "2026-08-24",
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "protocol_path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+  "question_answered_by_this_receipt": "The programme ledger files P5.H1-H4.V3 as an EXTERNAL_EVIDENCE_BLOCKER whose next executable step is: run the confirmatory preflight, bind all eight identity/custody fields, rerun until authorizes_execution=true, then execute. This receipt records the binding step only. No protected outcome of the confirmatory suite was accessed while writing it.",
+  "substitute_protocol_applied": {
+    "operator_authority": "Gap-lane mandate 2026-08-23: external blockers are never waited on; every substitution is documented in the receipt with committed digests.",
+    "external_protected_panel": "Synthetic grounded protected suite from the frozen public generator research/self-orion-v3/confirmatory/build_confirmatory_suite_v1.py (fixed seed, committed digest), grounded in the committed 24-case hidden-cause attribution taxonomy and the eight benchmark-local revision classes.",
+    "independent_evaluators": "Two stdlib-only evaluators with disjoint code paths (no orion imports) and blind JSON interfaces: protected_evaluator_v1.py (decision layer cross-check) and fresh_transfer_evaluator_v1.py (execution/fresh-transfer layer).",
+    "custody": "All sha256 manifests committed to origin/main in the same PR as this receipt, before any policy execution (commit-then-reveal)."
+  },
+  "before": {
+    "status": "CANNOT_CHECK",
+    "blocker_count": 8,
+    "bindings": {
+      "subject_revision": "UNBOUND",
+      "protected_suite_commitment": "UNBOUND",
+      "candidate_packet_sha256": "UNBOUND",
+      "final_split_sha256": "UNBOUND",
+      "evaluator_sha256": "UNBOUND",
+      "evaluation_epoch": "UNBOUND",
+      "baseline_config_sha256": "UNBOUND",
+      "fresh_transfer_evaluator_sha256": "UNBOUND"
+    }
+  },
+  "after": {
+    "status": "READY_TO_FREEZE_CONFIRMATORY",
+    "authorizes_execution": true,
+    "blockers": [],
+    "bindings": {
+      "subject_revision": "8d093e4be30cccf015b81d623d3c05620244a387",
+      "protected_suite_commitment": "f43ced1ff9331952715b87345d6d5887a8bfc5c5a807bc1dc7c67948b9912083",
+      "candidate_packet_sha256": "07dac1fe8daeca08a7db7fc635726d293e525b3737aebd98de4b6fa03e1a6e47",
+      "final_split_sha256": "9a09c6c2166eddd64f3dfdb31402f8b27f4aac004f1b7344b31f48373e4c6c2a",
+      "evaluator_sha256": "8e65fad265d478d7b06af0574751d69e6f42ee02cb10d141e3d01663d00eee13",
+      "evaluation_epoch": "P5V3-CONFIRMATORY-EPOCH-2026-08-24",
+      "baseline_config_sha256": "4c3b3a39338e47865dc245480b6f372595b9d793ab554b5dbac7b375cfa6254d",
+      "fresh_transfer_evaluator_sha256": "dd48a1aeb174c791a22f4a295e48c8926973426f7e9ec85ee9ca30c2a2fe3e8c"
+    }
+  },
+  "binding_recipes": {
+    "subject_revision": "sha1 over the concatenation, in sorted-path order, of sha256(file_bytes).digest() for the five frozen subject modules listed in BASELINE_CONFIG_V1.json subject_bundle.files",
+    "protected_suite_commitment": "orion.study.p5.revision_level_v3_freeze.derive_protected_commitment over the committed suite",
+    "candidate_packet_sha256": "sha256 of the committed CANDIDATE_PACKET_V1.json file bytes (canonical sha256: 4984dc6a4a0a5e384bdb3ad9256ca489d8675a235eb653c5b670013461c94b3c)",
+    "final_split_sha256": "sha256 of the committed CONFIRMATORY_FINAL_SPLIT_V1.json file bytes",
+    "evaluator_sha256": "sha256 of the committed protected_evaluator_v1.py file bytes",
+    "baseline_config_sha256": "sha256 of the committed BASELINE_CONFIG_V1.json file bytes",
+    "fresh_transfer_evaluator_sha256": "sha256 of the committed fresh_transfer_evaluator_v1.py file bytes"
+  },
+  "frozen_design_summary": {
+    "suite_id": "P5.self-orion-v3.confirmatory-panel.v1",
+    "n_cases": 96,
+    "symptom_blocks": 16,
+    "gold_distribution": "12 cases for each of the eight benchmark-local revision classes",
+    "cannot_check_cases": 6,
+    "final_split": "PRIMARY_A 48 / REPLICATION_B 48, stratified 6/6 within each gold class",
+    "decision_rules": "research/self-orion-v3/confirmatory/CONFIRMATORY_DECISION_RULES_V1.json (written before any policy execution; terminals R1-R6 and the CANNOT_CHECK rule are frozen there)",
+    "policy_set": "10 frozen policies from src/orion/study/p5/revision_level_v3_policies.py; no policy code was modified for this freeze"
+  },
+  "preflight_command": "PYTHONPATH=src python research/self-orion-v3/run_confirmatory_preflight_v1.py",
+  "preflight_output": {
+    "status": "READY_TO_FREEZE_CONFIRMATORY",
+    "authorizes_execution": true,
+    "blockers": [],
+    "grants_scientific_authority": false,
+    "grants_p5_peer_review_ready": false,
+    "baseline_binding_digests": [
+      "sha256:3ad92519281178472f992c741cc98cf2485f7cd2594611f4c24249cc41e73323",
+      "sha256:74bd0c6e80a8dd6b2f45f081b4bced20f9bb08d50c34875ac29a72a5d11683fd",
+      "sha256:dd1b056a37d9ef80714482042497c86839a103a69cba5a9c5fb2f4724fcdc96a"
+    ]
+  },
+  "grants": "Execution authorization only, per the preflight's own boundary: grants_scientific_authority=false, grants_p5_peer_review_ready=false. The scientific terminal is produced by the execution receipt under the frozen decision rules, whatever it measures."
+}

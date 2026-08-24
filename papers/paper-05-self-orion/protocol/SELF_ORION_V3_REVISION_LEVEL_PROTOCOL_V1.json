@@ -2,7 +2,7 @@
   "schema_version": "orion.p5.self-orion-v3-revision-level-protocol.v1",
   "paper_id": "P5",
   "protocol_id": "P5.self-orion-v3.revision-level.v1",
-  "protocol_status": "PROSPECTIVE_IMPLEMENTED_NOT_CONFIRMATORY_FROZEN",
+  "protocol_status": "CONFIRMATORY_BINDINGS_WRITTEN_PENDING_EXECUTION",
   "base_subject": "6cc9e0b5171459443b810c4fbc93072082829e47",
   "outcome_accessed": false,
   "authority_scope": "PROSPECTIVE_PROTOCOL_ONLY",
@@ -16,7 +16,7 @@
     "v3_role": "prospective additive revision-level discrimination study"
   },
   "research_question": "When the same visible development failure is compatible with different responsible epistemic layers, does responsibility/interface/minimal-revision control reduce wrong or over-broad revision while preserving fresh-transfer performance relative to matched strong mechanism comparators?",
-  "confirmatory_hypothesis_status": "NOT_FROZEN_PENDING_STRUCTURAL_BINDINGS_AND_PROSPECTIVE_PILOT",
+  "confirmatory_hypothesis_status": "FROZEN_DECISION_RULES_PENDING_EXECUTION",
   "benchmark_local_revision_classes": [
     "EVIDENCE_REPAIR",
     "MEASUREMENT_REPAIR",
@@ -57,16 +57,63 @@
     ]
   },
   "policy_families": [
-    {"id": "no_revision", "implementation": "NO_REVISION", "role": "fixed/no-revision control"},
-    {"id": "direct_self_edit", "implementation": "DIRECT_SELF_EDIT", "role": "broad self-edit control"},
-    {"id": "m_open_only", "implementation": "M_OPEN_ONLY", "role": "M-open model-class-expansion mechanism comparator", "donor": "arxiv:2608.09696", "official_reproduction": false},
-    {"id": "world_model_revision", "implementation": "WORLD_MODEL_REVISION", "role": "world-model update mechanism comparator", "donor": "arxiv:2606.30639", "official_reproduction": false},
-    {"id": "representation_regime_revision", "implementation": "REPRESENTATION_REGIME_ONLY", "role": "representation-regime revision mechanism comparator", "donor": "arxiv:2606.01444", "official_reproduction": false},
-    {"id": "generic_causal_diagnosis", "implementation": "GENERIC_CAUSAL_DIAGNOSIS", "role": "multi-hypothesis diagnosis parent"},
-    {"id": "full_t7", "implementation": "FULL_T7", "role": "responsibility-gated Self-ORION V3 candidate"},
-    {"id": "random_diagnostic", "implementation": "RANDOM_DIAGNOSTIC", "role": "diagnostic-choice control"},
-    {"id": "always_unresolved", "implementation": "ALWAYS_UNRESOLVED", "role": "broken-shut/overconservative control"},
-    {"id": "oracle_ceiling", "implementation": "ORACLE_CEILING", "role": "analysis-only protected ceiling", "excluded_from_superiority_claim": true}
+    {
+      "id": "no_revision",
+      "implementation": "NO_REVISION",
+      "role": "fixed/no-revision control"
+    },
+    {
+      "id": "direct_self_edit",
+      "implementation": "DIRECT_SELF_EDIT",
+      "role": "broad self-edit control"
+    },
+    {
+      "id": "m_open_only",
+      "implementation": "M_OPEN_ONLY",
+      "role": "M-open model-class-expansion mechanism comparator",
+      "donor": "arxiv:2608.09696",
+      "official_reproduction": false
+    },
+    {
+      "id": "world_model_revision",
+      "implementation": "WORLD_MODEL_REVISION",
+      "role": "world-model update mechanism comparator",
+      "donor": "arxiv:2606.30639",
+      "official_reproduction": false
+    },
+    {
+      "id": "representation_regime_revision",
+      "implementation": "REPRESENTATION_REGIME_ONLY",
+      "role": "representation-regime revision mechanism comparator",
+      "donor": "arxiv:2606.01444",
+      "official_reproduction": false
+    },
+    {
+      "id": "generic_causal_diagnosis",
+      "implementation": "GENERIC_CAUSAL_DIAGNOSIS",
+      "role": "multi-hypothesis diagnosis parent"
+    },
+    {
+      "id": "full_t7",
+      "implementation": "FULL_T7",
+      "role": "responsibility-gated Self-ORION V3 candidate"
+    },
+    {
+      "id": "random_diagnostic",
+      "implementation": "RANDOM_DIAGNOSTIC",
+      "role": "diagnostic-choice control"
+    },
+    {
+      "id": "always_unresolved",
+      "implementation": "ALWAYS_UNRESOLVED",
+      "role": "broken-shut/overconservative control"
+    },
+    {
+      "id": "oracle_ceiling",
+      "implementation": "ORACLE_CEILING",
+      "role": "analysis-only protected ceiling",
+      "excluded_from_superiority_claim": true
+    }
   ],
   "feedback_intervention_controls": [
     "NORMAL",
@@ -104,14 +151,14 @@
     "representation_regime_revision"
   ],
   "confirmatory_execution_bindings": {
-    "subject_revision": "UNBOUND",
-    "protected_suite_commitment": "UNBOUND",
-    "candidate_packet_sha256": "UNBOUND",
-    "final_split_sha256": "UNBOUND",
-    "evaluator_sha256": "UNBOUND",
-    "evaluation_epoch": "UNBOUND",
-    "baseline_config_sha256": "UNBOUND",
-    "fresh_transfer_evaluator_sha256": "UNBOUND",
+    "subject_revision": "8d093e4be30cccf015b81d623d3c05620244a387",
+    "protected_suite_commitment": "f43ced1ff9331952715b87345d6d5887a8bfc5c5a807bc1dc7c67948b9912083",
+    "candidate_packet_sha256": "07dac1fe8daeca08a7db7fc635726d293e525b3737aebd98de4b6fa03e1a6e47",
+    "final_split_sha256": "9a09c6c2166eddd64f3dfdb31402f8b27f4aac004f1b7344b31f48373e4c6c2a",
+    "evaluator_sha256": "8e65fad265d478d7b06af0574751d69e6f42ee02cb10d141e3d01663d00eee13",
+    "evaluation_epoch": "P5V3-CONFIRMATORY-EPOCH-2026-08-24",
+    "baseline_config_sha256": "4c3b3a39338e47865dc245480b6f372595b9d793ab554b5dbac7b375cfa6254d",
+    "fresh_transfer_evaluator_sha256": "dd48a1aeb174c791a22f4a295e48c8926973426f7e9ec85ee9ca30c2a2fe3e8c",
     "result_verifier_owner": "#283",
     "candidate_policy_owner": "SelfOrionV3Policy",
     "protected_evaluator_owner": "ExternalProtectedEvaluator",
