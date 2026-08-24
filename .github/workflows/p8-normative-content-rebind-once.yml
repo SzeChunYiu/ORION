@@ -1,16 +1,19 @@
 name: p8-normative-content-rebind-once
 
 on:
-  push:
-    branches:
-      - promote/p8-chain-theorem-current-main
+  pull_request:
+    paths:
+      - 'papers/paper-08-epistemic-authority-autonomous-science/README.md'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V3.md'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json'
+      - 'papers/paper-08-epistemic-authority-autonomous-science/SHA256SUMS'
+      - '.github/workflows/p8-normative-content-rebind-once.yml'
 
 permissions:
   contents: write
 
 jobs:
   rebind-once:
-    if: ${{ !contains(github.event.head_commit.message, 'bind P8 chain-theorem authority bytes') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +25,8 @@ jobs:
       - name: Regenerate with the normative P6-P8 binder
         run: |
           set -euo pipefail
-          python papers/candidates/checkers/check_content_binding_v1.py --write
-          python papers/candidates/checkers/check_content_binding_v1.py --check
+          PYTHONPATH=src python papers/candidates/checkers/check_content_binding_v1.py --write
+          PYTHONPATH=src python papers/candidates/checkers/check_content_binding_v1.py --check
 
       - name: Commit only P8 binding and remove one-shot helpers
         run: |
