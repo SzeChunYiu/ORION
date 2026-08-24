@@ -68,9 +68,21 @@
 
 ## C15.7 — top-tier scientific systems claim
 
-**Maximum statement sought.** Scientific execution needs a fail-closed admission layer that treats attribution, replay and agreement as evidence about execution rather than substitutes for independent scientific validity and claim authority, and this separation improves real research-execution reliability under broad faults at acceptable cost.
+**Maximum statement sought.** Scientific execution needs a fail-closed admission layer that treats attribution, replay, agreement and attestation as evidence about
+execution rather than substitutes for independent scientific validity and
+claim authority, and this separation improves real research-execution reliability under broad faults at acceptable cost.
 
 **Authority:** `CANNOT_CHECK` pending C15.5/C15.6 and external independent validation.
+
+**The six are separate and none implies the next.** Execution attribution says
+which run produced an artifact. Replay says a run can be repeated. Agreement
+says two runs concurred. Attestation says a key signed a statement about one of
+those facts. None of the four says the result is scientifically valid, and
+scientific validity does not confer claim authority, which is a governance
+disposition about what may be asserted. Attestation is the one most easily read
+as more than it is: a signature is evidence that a specific party vouched for a
+specific byte sequence, and a correct signature over a wrong result is exactly
+as verifiable as one over a right result.
 
 ## C15.8 — cryptographic attestation composition is not scientific admission
 
