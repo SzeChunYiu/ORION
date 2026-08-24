@@ -1,9 +1,12 @@
 # P1 ScienceAgentBench Runner V2 allocated-cost amendment — development packet
 
-**Date:** 2026-08-24  
+**Date:** 2026-08-24
+
 **Base:** fresh `origin/main` at `86f85614cd84af5e16a6c69a53256ddfcfbb0d7b`,
-including Analysis Freeze merge `957bc82ff2bcffa61a0bab96bc76fc6f811a9d10`  
-**Scope:** science-contract metadata only; additive amendment to Runner V1  
+including Analysis Freeze merge `957bc82ff2bcffa61a0bab96bc76fc6f811a9d10`
+
+**Scope:** science-contract metadata only; additive amendment to Runner V1
+
 **Question:** Can the open-weight LUNARC route use the prospectively frozen
 `ALLOCATED_ACCELERATOR_SECONDS` primary generation-cost metric without
 weakening Runner V1, losing nullable billed USD, opening an outcome, or
