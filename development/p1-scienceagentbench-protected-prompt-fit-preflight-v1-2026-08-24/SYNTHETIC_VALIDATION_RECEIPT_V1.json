@@ -1,0 +1,38 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-preflight-synthetic-validation.v1",
+  "authority": "SYNTHETIC_NONBENCHMARK_VALIDATION_ONLY__NO_PRODUCTION_OR_SCIENTIFIC_AUTHORITY",
+  "status": "PASS_SYNTHETIC_HOSTILE_VALIDATION",
+  "artifact_sha256": {
+    "PROTECTED_PROMPT_FIT_CONTRACT_V1.json": "d029da6f87f2dd10c222f9fcff743c8efe647b6398e94d9b7499fe5d9b5d9074",
+    "protected_prompt_fit_preflight_v1.py": "fd462439a1f9d6e39a87fb1045ae0bfe2356b0de3f72cbb2b022def389f20d86",
+    "validate_protected_prompt_fit_preflight_v1.py": "36cf6ea99d0caf3e78c8b07b37773b6ae0f40a9a0d5ff17314eb40df1f318b99"
+  },
+  "tests": 26,
+  "synthetic_rows": 2,
+  "synthetic_state_independent_prompt_records": 24,
+  "synthetic_dynamic_rr_phase1_records": 6,
+  "tdd_witness": {
+    "bootstrap_red": "Ran 19 tests; FAILED (failures=19); implementation, contract, and receipt were missing",
+    "core_green_before_receipt": "18 implementation and contract tests passed",
+    "pre_receipt_red": "Ran 19 tests; FAILED (failures=1); synthetic receipt was intentionally missing",
+    "reviewer_hardening_red": "Added test 20 errored with uncaught TypeError for unhashable task ID; prior behavior tests stayed green",
+    "independent_no_go_repair_red": "Four new blocker tests failed: mutable tokenizer identity, missing live staging binding, missing held-input API, and missing openat parent-swap defense",
+    "post_write_input_swap_red": "Added test 25 raised on the input swap but proved the newly created receipt was initially left behind",
+    "output_name_swap_red": "Added test 26 proved a replaced output name required identity-aware failure and rollback that never deletes the replacement"
+  },
+  "exact_gguf_tokenizer_invoked": false,
+  "substitute_tokenizer_invoked": false,
+  "protected_archives_opened": 0,
+  "official_tasks_opened": 0,
+  "official_tasks_executed": 0,
+  "official_outcomes_opened": 0,
+  "external_provider_calls": 0,
+  "production_admissibility": "CANNOT_CHECK",
+  "semantic_choice_sensitivity": "NOT_ESTABLISHED",
+  "billed_cost_usd": null,
+  "billed_cost_status": "CANNOT_CHECK",
+  "scientific_authority_delta": "NONE",
+  "live_gguf_opened": 0,
+  "independent_live_staging_receipts_opened": 0,
+  "descriptor_swap_tests": "PASS_HELD_INPUT_PARENT_RACE_POST_WRITE_ROLLBACK_AND_OUTPUT_NAME_IDENTITY"
+}

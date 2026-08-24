@@ -132,6 +132,10 @@ class SessionConfig:
     budget: Any
     extraction_questions: tuple[str, ...]
     extraction_shift_after_reads: int | None
+    #: The extraction schema version in force. Host-controlled, as the
+    #: DiscoverySession protocol requires. DiscoveryTask does not carry one, so
+    #: it defaults here rather than being invented per call site.
+    extraction_schema: str = "P2.Extraction.v1"
 
     @classmethod
     def from_task(cls, task: DiscoveryTask) -> SessionConfig:
@@ -199,6 +203,18 @@ class BudgetedSession:
         return questions[stage]
 
     @property
+    def current_extraction_schema(self) -> str:
+        """The extraction schema version in force.
+
+        Required by the DiscoverySession protocol. BudgetedSession did not
+        implement it, so any read that recorded the schema raised
+        AttributeError -- the protocol declared a member no implementation
+        provided, and nothing checked.
+        """
+
+        return self._task.extraction_schema
+
+    @property
     def route_events(self) -> tuple[RouteEvent, ...]:
         return tuple(self._route_events)
 
@@ -220,7 +236,7 @@ class BudgetedSession:
             wallclock_seconds=max(0.0, self._clock() - self._started),
             model_tokens=self.__model_tokens,
             tool_calls=self.__tool_calls,
-            search_queries=self.__route_calls_made,
+            query_count=self.__route_calls_made,
             reads=self.__reads_made,
         )
 
@@ -329,10 +345,14 @@ class BudgetedSession:
         )
         return ReadOutcome(
             doc_id=doc_id,
-            content_identity=document.content_identity,
+            # post-#1078 names: the record's identity is the merged source it
+            # resolves to, and the host's verdict is a decision, not a
+            # classification. Renames only; the values are unchanged.
+            merged_source_id=document.content_identity,
             content_digest=document.content_digest,
             extraction_question=question,
-            classification=classification,
+            extraction_schema=self.current_extraction_schema,
+            decision=classification.value,
             text=f"{document.title}\n\n{document.abstract}",
         )
 
