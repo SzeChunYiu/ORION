@@ -1,0 +1,497 @@
+{
+  "abstract_theorem": {
+    "all_checks": true,
+    "checks": {
+      "basis_is_irreducible_lower_model": true,
+      "generic_zero_sum_theorem_donor_owned": true,
+      "nonzero_total_makes_zero_subset_proper": true,
+      "proof_class_excludes_relocation": true,
+      "upper_rule_exactly_qg6_rule": true
+    },
+    "rows": [
+      {
+        "all_checks": true,
+        "basis": [
+          1
+        ],
+        "beta": 1,
+        "dimension": 1,
+        "lower_witness": {
+          "length": 1,
+          "rank": 1,
+          "total_nonzero": true,
+          "total_xor": 1,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2
+        ],
+        "beta": 2,
+        "dimension": 2,
+        "lower_witness": {
+          "length": 2,
+          "rank": 2,
+          "total_nonzero": true,
+          "total_xor": 3,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4
+        ],
+        "beta": 3,
+        "dimension": 3,
+        "lower_witness": {
+          "length": 3,
+          "rank": 3,
+          "total_nonzero": true,
+          "total_xor": 7,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "beta": 4,
+        "dimension": 4,
+        "lower_witness": {
+          "length": 4,
+          "rank": 4,
+          "total_nonzero": true,
+          "total_xor": 15,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "beta": 5,
+        "dimension": 5,
+        "lower_witness": {
+          "length": 5,
+          "rank": 5,
+          "total_nonzero": true,
+          "total_xor": 31,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "beta": 6,
+        "dimension": 6,
+        "lower_witness": {
+          "length": 6,
+          "rank": 6,
+          "total_nonzero": true,
+          "total_xor": 63,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "beta": 7,
+        "dimension": 7,
+        "lower_witness": {
+          "length": 7,
+          "rank": 7,
+          "total_nonzero": true,
+          "total_xor": 127,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128
+        ],
+        "beta": 8,
+        "dimension": 8,
+        "lower_witness": {
+          "length": 8,
+          "rank": 8,
+          "total_nonzero": true,
+          "total_xor": 255,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "beta": 9,
+        "dimension": 9,
+        "lower_witness": {
+          "length": 9,
+          "rank": 9,
+          "total_nonzero": true,
+          "total_xor": 511,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512
+        ],
+        "beta": 10,
+        "dimension": 10,
+        "lower_witness": {
+          "length": 10,
+          "rank": 10,
+          "total_nonzero": true,
+          "total_xor": 1023,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024
+        ],
+        "beta": 11,
+        "dimension": 11,
+        "lower_witness": {
+          "length": 11,
+          "rank": 11,
+          "total_nonzero": true,
+          "total_xor": 2047,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      },
+      {
+        "all_checks": true,
+        "basis": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048
+        ],
+        "beta": 12,
+        "dimension": 12,
+        "lower_witness": {
+          "length": 12,
+          "rank": 12,
+          "total_nonzero": true,
+          "total_xor": 4095,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "upper_by_linear_dependence": true
+      }
+    ]
+  },
+  "all_local_proof_systems_lower_bound": false,
+  "all_syndrome_preserving_systems_lower_bound": false,
+  "base_revision": "8ed6d54c66af4bf0404f833dc872a6db6d07a849",
+  "ci_authority": false,
+  "complexity_class_lower_bound": false,
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "direct_product": {
+    "all_checks": true,
+    "componentwise_v6": true,
+    "lower_word": "union of t bases in the direct-sum quotient",
+    "lower_word_zero_sum_free": true,
+    "not_single_copy_kappa_relabel": true,
+    "rows": [
+      {
+        "additive_gap": 4,
+        "all_checks": true,
+        "copies": 1,
+        "direct_sum_syndrome_dimension": 5,
+        "expected_gap": 4,
+        "intrinsic_search_degree": 1,
+        "intrinsic_summed_support_budget": 1,
+        "rank_only_certificate_budget": 5,
+        "rank_search_degree": 5,
+        "ratio": 5.0
+      },
+      {
+        "additive_gap": 8,
+        "all_checks": true,
+        "copies": 2,
+        "direct_sum_syndrome_dimension": 10,
+        "expected_gap": 8,
+        "intrinsic_search_degree": 2,
+        "intrinsic_summed_support_budget": 2,
+        "rank_only_certificate_budget": 10,
+        "rank_search_degree": 10,
+        "ratio": 5.0
+      },
+      {
+        "additive_gap": 12,
+        "all_checks": true,
+        "copies": 3,
+        "direct_sum_syndrome_dimension": 15,
+        "expected_gap": 12,
+        "intrinsic_search_degree": 3,
+        "intrinsic_summed_support_budget": 3,
+        "rank_only_certificate_budget": 15,
+        "rank_search_degree": 15,
+        "ratio": 5.0
+      },
+      {
+        "additive_gap": 40,
+        "all_checks": true,
+        "copies": 10,
+        "direct_sum_syndrome_dimension": 50,
+        "expected_gap": 40,
+        "intrinsic_search_degree": 10,
+        "intrinsic_summed_support_budget": 10,
+        "rank_only_certificate_budget": 50,
+        "rank_search_degree": 50,
+        "ratio": 5.0
+      },
+      {
+        "additive_gap": 400,
+        "all_checks": true,
+        "copies": 100,
+        "direct_sum_syndrome_dimension": 500,
+        "expected_gap": 400,
+        "intrinsic_search_degree": 100,
+        "intrinsic_summed_support_budget": 100,
+        "rank_only_certificate_budget": 500,
+        "rank_search_degree": 500,
+        "ratio": 5.0
+      }
+    ],
+    "support0_each_component": true,
+    "unbounded_additive_gap": true,
+    "upper_by_dimension": true
+  },
+  "direct_product_amplification_only": true,
+  "gates": {
+    "abstract_beta_equals_d": true,
+    "product_5t_vs_t": true,
+    "production_rank5_sharp_for_class": true,
+    "proof_class_and_donor_boundaries_preserved": true,
+    "protocol_present": true,
+    "qg6_parent_bound": true,
+    "single_copy_5_vs_1": true,
+    "v6_parent_bound": true
+  },
+  "novelty_authority": false,
+  "parent_bindings": {
+    "qg6": {
+      "all_checks": true,
+      "checks": {
+        "gates": true,
+        "no_novelty": true,
+        "no_physical": true,
+        "protected_both_accept": true,
+        "protected_source_digest": true,
+        "rank5": true,
+        "terminal": true
+      },
+      "receipt_file_sha256": "3e32e25656cc0d78d96a9325cf344fcca24f04c4acd8eeb5932eb6e790466b0d",
+      "receipt_path": "development/orion-qg-regime-geometry/QG6_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+      "result_file_sha256": "51d5ffcdd682384cc2259146d0c7e9a835c4644d1cffa36c6d9fca0d1c06f884",
+      "result_path": "research/extensions/orion-qg/QG6_SYNDROME_DIMENSION_RESULTS.json"
+    },
+    "v6": {
+      "all_checks": true,
+      "checks": {
+        "both_accept": true,
+        "generic_accept": true,
+        "kappa1": true,
+        "native_accept": true,
+        "no_novelty": true,
+        "no_physical": true,
+        "protected_both_accept": true,
+        "terminal": true
+      },
+      "receipt_file_sha256": "4e3a3596b3bfbbad584252861efb75a396a815b193bf71c2b0b39a487db023b5",
+      "receipt_path": "development/orion-qg-regime-geometry/QG9_V6_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+      "result_file_sha256": "f8df10d5604267e43701adb032f33baf1dfaa5a6572e5bdeaeda7707c4100b66",
+      "result_path": "research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json"
+    }
+  },
+  "physical_quantum_advantage_claim": false,
+  "production_instantiation": {
+    "additive_gap": 4,
+    "all_checks": true,
+    "blocks": {
+      "A": {
+        "all_checks": true,
+        "basis": [
+          1,
+          68,
+          136,
+          272,
+          544
+        ],
+        "basis_word": {
+          "length": 5,
+          "rank": 5,
+          "total_nonzero": true,
+          "total_xor": 1021,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "checks": {
+          "basis_contained_in_production_alphabet": true,
+          "basis_length5": true,
+          "basis_rank5": true,
+          "basis_total_nonzero": true,
+          "basis_word_zero_sum_free": true,
+          "production_alphabet_spans_basis": true,
+          "reported_rank5": true
+        },
+        "production_alphabet_size": 26
+      },
+      "B": {
+        "all_checks": true,
+        "basis": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "basis_word": {
+          "length": 5,
+          "rank": 5,
+          "total_nonzero": true,
+          "total_xor": 62,
+          "zero_sum_free": true,
+          "zero_sum_subsets": []
+        },
+        "checks": {
+          "basis_contained_in_production_alphabet": true,
+          "basis_length5": true,
+          "basis_rank5": true,
+          "basis_total_nonzero": true,
+          "basis_word_zero_sum_free": true,
+          "production_alphabet_spans_basis": true,
+          "reported_rank5": true
+        },
+        "production_alphabet_size": 26
+      }
+    },
+    "certificate_complexity": 5,
+    "intrinsic_support": 1,
+    "ratio": 5
+  },
+  "proof_system": {
+    "allowed": [
+      "F2_VECTOR_EQUALITY_AND_XOR",
+      "NONZERO_TOTAL_PREMISE",
+      "DELETE_CERTIFIED_ZERO_SUM_PROPER_SUBWORD"
+    ],
+    "excluded": [
+      "TAG_RELOCATION",
+      "CONTRIBUTION_RELABELLING_OUTSIDE_DELETION",
+      "WHOLE_SYSTEM_NORMALIZATION",
+      "ACCEPTANCE_SEMANTICS_BEYOND_NONZERO_TOTAL"
+    ],
+    "name": "RANK_ONLY_ZERO_SUM_DELETION"
+  },
+  "protocol_path": "development/orion-qg-regime-geometry/PAPER_B_B1_RANK_ONLY_PROOF_GAP_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "30d18a0ec53027634fb48a460da4e20fede9092264515dc5d5b1af7153afa59c",
+  "result_digest": "1d230beebcbbf3caa1dfa966331c93c227907fe08babbedaae068a4d5df96840",
+  "schema": "ORION.PaperB.B1.RankOnlyProofGap.v1",
+  "scientific_authority": "R6I_UNIT_OBJECTIVE_AND_DEFINED_ZSD_PROOF_CLASS_ONLY",
+  "second_independent_mechanism": false,
+  "terminal": "PAPER_B_B1_R6I_RANK_ONLY_CERTIFICATE_COMPLEXITY_5_VS_INTRINSIC_1__DIRECT_PRODUCT_GAP_4T_MACHINE_CORROBORATED"
+}
