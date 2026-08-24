@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
@@ -54,6 +55,38 @@ class Report:
         return {t: n for t, n in counts.items() if n > 1 and t}
 
 
+def _version(path: Path) -> tuple[int, str]:
+    """Sort authority records by version number, not by filename.
+
+    Alphabetical order puts V10 before V9, so the highest-numbered record stops
+    being the one read as soon as a paper reaches ten versions. No paper has yet
+    -- P12's V5 is the furthest along -- which is exactly why this would have
+    surfaced as a wrong terminal rather than as an error.
+    """
+    m = re.search(r"_V(\d+)\.json$", path.name)
+    return (int(m.group(1)) if m else -1, path.name)
+
+
+def _terminal_of(rec: dict) -> str | None:
+    """Read the endpoint under any of the shapes papers actually use.
+
+    Six papers carry an authority record and they do not share a schema: P10 and
+    P15 put the endpoint in ``active_terminal``, while P14 nests it as
+    ``active_claim.scientific_terminal``. Keying on ``active_terminal`` alone
+    reported P14 as declaring none, printed identically to the nine papers that
+    genuinely have no record -- a parsing miss and a real absence counted as one.
+    """
+    terminal = rec.get("active_terminal")
+    if isinstance(terminal, str) and terminal:
+        return terminal
+    claim = rec.get("active_claim")
+    if isinstance(claim, dict):
+        nested = claim.get("scientific_terminal") or claim.get("terminal")
+        if isinstance(nested, str) and nested:
+            return nested
+    return None
+
+
 def audit_repository(root: Path | None = None) -> Report:
     root = root or Path(__file__).resolve().parents[3]
     papers = root / "papers"
@@ -69,15 +102,15 @@ def audit_repository(root: Path | None = None) -> Report:
         # declares an authority, and record none if no directory does
         chosen: Endpoint | None = None
         for d in matches:
-            records = sorted(d.glob("*ACTIVE_CLAIM_AUTHORITY*.json"))
+            records = sorted(d.glob("*ACTIVE_CLAIM_AUTHORITY*.json"), key=_version)
             if not records:
                 continue
             try:
                 rec = json.loads(records[-1].read_text())
             except (json.JSONDecodeError, OSError):
                 continue
-            terminal = rec.get("active_terminal")
-            if isinstance(terminal, str) and terminal:
+            terminal = _terminal_of(rec)
+            if terminal:
                 chosen = Endpoint(d.name, terminal, records[-1].name)
                 break
         report.endpoints.append(chosen or Endpoint(matches[0].name, None, None))
