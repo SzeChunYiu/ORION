@@ -151,6 +151,42 @@ class RouteExhaustionAudit:
 
 
 @dataclass(frozen=True)
+class StopAudit:
+    """A stop decision, replayed against the world state at the index it was taken.
+
+    Deprecated: superseded by `RouteStopAudit` and `RouteExhaustionAudit` in the
+    vocabulary refactor landed as #1078 (the O1 oracle split prematurity into
+    false-positive and false-negative channels). Restored verbatim from 2a692316
+    (pre-landing main) because the landing propagated the new `systems`/`gold`
+    without migrating `runner.py` or the p2 test suite, leaving imports of this
+    name broken. Do not build new code on it; use the split audit types.
+    """
+
+    index: int
+    scope: str
+    route: str
+    reason: str
+    claimed_complete: bool
+    still_reachable_count: int
+    still_reachable_identities: tuple[str, ...]
+    remaining_route_calls: int
+    premature: bool
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "index": self.index,
+            "scope": self.scope,
+            "route": self.route,
+            "reason": self.reason,
+            "claimed_complete": self.claimed_complete,
+            "still_reachable_count": self.still_reachable_count,
+            "still_reachable_identities": list(self.still_reachable_identities),
+            "remaining_route_calls": self.remaining_route_calls,
+            "premature": self.premature,
+        }
+
+
+@dataclass(frozen=True)
 class Evaluation:
     """The complete host verdict on one run. Every field is immutable."""
 
@@ -745,6 +781,7 @@ __all__ = [
     "RouteContribution",
     "RouteExhaustionAudit",
     "RouteStopAudit",
+    "StopAudit",
     "evaluate",
     "evaluator_hash",
 ]

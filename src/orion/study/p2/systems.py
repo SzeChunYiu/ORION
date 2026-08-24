@@ -63,6 +63,28 @@ class StopScope(str, Enum):
     TASK = "TASK"
 
 
+class ReadClassification(str, Enum):
+    """Why a read was or was not new work.
+
+    Mirrors `orion.knowledge.identity.ReadDecision` on purpose but is computed
+    independently by the host. An evaluator that classified reads by calling the
+    subsystem under test would hide that subsystem's bugs inside its own score.
+
+    Deprecated: the vocabulary refactor (landed as #1078 from
+    `claude/p2-harness-wip-refactor`) replaced read *classifications* with the
+    plain-string `decision` field on `ReadOutcome`/`ReadEncounter`. This enum is
+    restored verbatim from 2a692316 (pre-landing main) because the landing
+    propagated the new `systems`/`gold` without migrating `runner.py` or the
+    p2 test suite, leaving imports of this name broken. Do not build new code
+    on it; migrate to the `decision` strings.
+    """
+
+    FIRST_READ = "FIRST_READ"
+    DUPLICATE = "DUPLICATE"
+    REVISION_REREAD = "REVISION_REREAD"
+    NEW_QUESTION_REREAD = "NEW_QUESTION_REREAD"
+
+
 @dataclass(frozen=True)
 class ResourceUse:
     """Matched-budget accounting, in the plan's capped-resource currency."""
@@ -226,6 +248,72 @@ class ReadEncounter:
 
 
 @dataclass(frozen=True)
+class RouteEvent:
+    """Host record of one route call, in the order it happened.
+
+    Deprecated: superseded by `RouteTrial` in the vocabulary refactor landed as
+    #1078. Restored verbatim from 2a692316 (pre-landing main) because the
+    landing propagated the new `systems`/`gold` without migrating `runner.py`
+    or the p2 test suite, leaving imports of this name broken. Do not build new
+    code on it; use `RouteTrial`.
+    """
+
+    index: int
+    route: str
+    probe: str
+    backend_identity: str
+    query_derivation_identity: str
+    status: str
+    retrieved_doc_ids: tuple[str, ...]
+    retrieved_content_identities: tuple[str, ...]
+    novel_content_identities: tuple[str, ...]
+    note: str = ""
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "index": self.index,
+            "route": self.route,
+            "probe": self.probe,
+            "backend_identity": self.backend_identity,
+            "query_derivation_identity": self.query_derivation_identity,
+            "status": self.status,
+            "retrieved_doc_ids": list(self.retrieved_doc_ids),
+            "retrieved_content_identities": list(self.retrieved_content_identities),
+            "novel_content_identities": list(self.novel_content_identities),
+            "note": self.note,
+        }
+
+
+@dataclass(frozen=True)
+class ReadEvent:
+    """Host record of one read, keyed on the four coordinates a reread turns on.
+
+    Deprecated: superseded by `ReadEncounter` in the vocabulary refactor landed
+    as #1078. Restored verbatim from 2a692316 (pre-landing main) because the
+    landing propagated the new `systems`/`gold` without migrating `runner.py`
+    or the p2 test suite, leaving imports of this name broken. Do not build new
+    code on it; use `ReadEncounter`.
+    """
+
+    index: int
+    doc_id: str
+    content_identity: str
+    content_digest: str
+    extraction_question: str
+    classification: str
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "index": self.index,
+            "doc_id": self.doc_id,
+            "content_identity": self.content_identity,
+            "content_digest": self.content_digest,
+            "extraction_question": self.extraction_question,
+            "classification": self.classification,
+        }
+
+
+@dataclass(frozen=True)
 class StopDecision:
     """A declared stop, with the position in the timeline it was declared at.
 
@@ -372,10 +460,13 @@ __all__ = [
     "Capture",
     "DiscoverySession",
     "OBLIGATION_STATUSES",
+    "ReadClassification",
     "ReadEncounter",
+    "ReadEvent",
     "ReadOutcome",
     "ResourceUse",
     "RetrievedRecord",
+    "RouteEvent",
     "RouteOutcome",
     "RouteTrial",
     "StopDecision",

@@ -36,3 +36,11 @@ papers/**/manuscript/main.toc
 papers/**/paper/main.log
 papers/**/paper/main.out
 papers/**/paper/main.toc
+
+# Claude agent worktrees are per-session scratch checkouts (AGENTS.md: each
+# session works in its own checkout). When `git worktree add` runs inside the
+# repo, the new directory is a gitlink (mode 160000) with no .gitmodules
+# entry, and actions/checkout's submodule cleanup then exits 128 on every CI
+# job (see #989). Removed from the index in the #1078-fallout repair; ignored
+# here so a worktree checkout can never be re-committed.
+.claude/worktrees/
