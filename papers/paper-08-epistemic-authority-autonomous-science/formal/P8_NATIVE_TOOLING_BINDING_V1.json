@@ -1,0 +1,70 @@
+{
+  "schema_version": "orion.p8.native-tooling-binding.v1",
+  "binding_id": "P8.NATIVE.TOOLING_BINDING.V1",
+  "binds_contract": "P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1",
+  "date": "2026-08-24",
+  "what_this_resolves": "The protocol froze on 2026-08-24 with execution_status CANNOT_CHECK and a recorded tooling_gap: 'opa, cedar, cosign, in-toto-verify, in_toto, slsa-verifier all absent from PATH; no Docker; lane constraints forbid network installation.' Its stated unblock was 'an environment permitted to install the pinned binaries runs this protocol unchanged'. This artifact pins those binaries in such an environment.",
+  "what_this_does_NOT_do": [
+    "It does not execute the protocol. No slot is filled and no native verdict is recorded.",
+    "It does not tick either issue-1086 P8 box. Installing the tools is the precondition, not the campaign.",
+    "It re-decides nothing about scope: the 4 systems, 12 ordered pairs, 24 slots and acceptance criteria are unchanged."
+  ],
+  "execution_environment": {
+    "site": "LUNARC",
+    "scheduler": "SLURM",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "machine": "x86_64",
+    "network_egress_verified": true,
+    "note": "Compute-node outbound egress was verified independently before install."
+  },
+  "pinned_binaries": [
+    {
+      "required_name": "opa",
+      "resolved_path": "/home/scyiu/orion-work/bin/opa",
+      "sha256": "c9f985ce0d345f5484006ade2c695ed9e3f308e4441139e46695c5c182ac0839",
+      "bytes": 60535858,
+      "version": "Version: 1.19.1",
+      "install_route": "official static linux/amd64 release binary"
+    },
+    {
+      "required_name": "cedar",
+      "resolved_path": "/home/scyiu/orion-work/bin/cedar",
+      "sha256": "ad428e9463ae01d4ff0aecf39fa083233b934ca88ed6b95bdb8b616a0214267b",
+      "bytes": 18088608,
+      "version": "cedar-policy-cli 4.12.0",
+      "install_route": "cargo install cedar-policy-cli --locked, built from source"
+    },
+    {
+      "required_name": "cosign",
+      "resolved_path": "/home/scyiu/orion-work/bin/cosign",
+      "sha256": "4629c757b7618056f8ddd7e2625ae9fdd94c0372a65049520bc7d9df9efc7f71",
+      "bytes": 141178250,
+      "version": "v3.1.3",
+      "install_route": "official sigstore linux/amd64 release binary"
+    },
+    {
+      "required_name": "in-toto-verify",
+      "resolved_path": "/home/scyiu/orion-work/ORION/.venv/bin/in-toto-verify",
+      "sha256": "2a4029fe472c761b68a476da7e0f39c0e7729e943f88b6821d7ca95a1f84de9c",
+      "bytes": 199,
+      "version": "in-toto-verify 3.1.0",
+      "install_route": "pip install in-toto into the pinned venv"
+    }
+  ],
+  "install_note_recorded": {
+    "observation": "LUNARC's newest Rust module is 1.76.0. cedar-policy-cli 4.12.0 requires rustc 1.89 or newer, and 3.4.3 fails on a transitive dependency requiring the edition2024 Cargo feature, unsupported by Cargo 1.76.",
+    "resolution": "A user-space toolchain was installed via rustup and cedar-policy-cli 4.12.0 was built from source against it.",
+    "why_recorded": "The build path is part of the binary's identity. A reader reproducing this cannot use the site Rust module and should not discover that by failing."
+  },
+  "remaining_before_execution": [
+    "author the clean and hostile case artifacts for each of the 12 ordered pairs",
+    "run all 24 slots against these pinned binaries",
+    "class every divergence between native verdict and the typed-product baseline",
+    "commit P8_NATIVE_CROSS_SYSTEM_RESULTS.json as data"
+  ],
+  "prohibited_inference_restated": [
+    "simulating any native system and reporting it as execution",
+    "using this binding's existence as evidence of execution",
+    "treating a partial run as coverage of every ordered cross-system pair"
+  ]
+}
