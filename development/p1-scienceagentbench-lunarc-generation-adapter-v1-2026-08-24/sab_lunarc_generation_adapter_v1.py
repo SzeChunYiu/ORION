@@ -26,7 +26,7 @@ from typing import Any, Callable, Iterable, Mapping, Sequence, TypeVar
 ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parents[1]
 CONTRACT_PATH = ROOT / "LUNARC_GENERATION_ADAPTER_CONTRACT_V1.json"
-CONTRACT_SHA256 = "57665824b11b2d0088b0ddac1ba74b52e298575fef84e558bd8e5acc8537daa1"
+CONTRACT_SHA256 = "ae8fe86e4052b65f12176980fb03a653c1ab4b5b4f99c146d0db401563d93883"
 
 RUNNER_V2_ROOT = REPO_ROOT / "development/p1-scienceagentbench-runner-v2-cost-amendment-2026-08-24"
 RUNNER_V2_MODULE_PATH = RUNNER_V2_ROOT / "sab_runner_v2_cost_amendment.py"
@@ -76,7 +76,13 @@ PHASE_SEQUENCE_BY_ARM = {
 
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 CANONICAL_UINT_RE = re.compile(r"^(?:0|[1-9][0-9]*)$")
-SLURM_ID_RE = re.compile(r"^[0-9]+(?:_[0-9]+)?$")
+CANONICAL_POSITIVE_UINT_RE = re.compile(r"^[1-9][0-9]*$")
+CANONICAL_CLUSTER_NAME_RE = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
+CANONICAL_NODE_NAME_RE = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
+CANONICAL_GRES_TYPE_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
+CANONICAL_GPU_UUID_RE = re.compile(
+    r"^GPU-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+)
 UTC_SECONDS_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$")
 
 BASE_RECORD_FIELDS = {
@@ -145,9 +151,17 @@ SCHEDULER_RECORD_FIELDS = {
     "allocation_ended_at_utc",
     "node_name",
     "allocated_gpu_count",
-    "gpu_allocation_keys",
+    "gpu_allocations",
     "exclusive_gres_status",
     "attempt_scope_status",
+}
+SCHEDULER_RAW_RECORD_FIELDS = SCHEDULER_RECORD_FIELDS - {"scheduler_record_sha256"}
+GPU_ALLOCATION_FIELDS = {
+    "node_name",
+    "gres_name",
+    "gres_type",
+    "gres_index",
+    "gpu_uuid",
 }
 
 T = TypeVar("T")
@@ -269,20 +283,91 @@ def _validate_job_identity(value: Any, label: str) -> dict[str, Any]:
     _require_exact_fields(value, JOB_IDENTITY_FIELDS, label)
     cluster = value["cluster"]
     job_id = value["job_id"]
-    if not isinstance(cluster, str) or not cluster.strip():
-        raise ContractError(f"{label}.cluster must be nonempty text")
-    if not isinstance(job_id, str) or SLURM_ID_RE.fullmatch(job_id) is None:
-        raise ContractError(f"{label}.job_id must be a canonical SLURM job identity")
+    if (
+        not isinstance(cluster, str)
+        or CANONICAL_CLUSTER_NAME_RE.fullmatch(cluster) is None
+    ):
+        raise ContractError(
+            f"{label}.cluster must be one canonical lowercase scheduler ClusterName"
+        )
+    if not isinstance(job_id, str):
+        raise ContractError(f"{label}.job_id must be canonical text")
     array_job_id = value["array_job_id"]
     array_task_id = value["array_task_id"]
     if (array_job_id is None) != (array_task_id is None):
-        raise ContractError(f"{label} array_job_id and array_task_id must both be null or bound")
-    if array_job_id is not None:
-        if not isinstance(array_job_id, str) or not array_job_id.isdigit():
-            raise ContractError(f"{label}.array_job_id invalid")
-        if not isinstance(array_task_id, str) or not array_task_id.isdigit():
-            raise ContractError(f"{label}.array_task_id invalid")
+        raise ContractError(
+            f"{label} canonical array_job_id and array_task_id must both be null or bound"
+        )
+    if array_job_id is None:
+        if CANONICAL_POSITIVE_UINT_RE.fullmatch(job_id) is None:
+            raise ContractError(
+                f"{label}.job_id must be one canonical positive base allocation ID; array and step aliases forbidden"
+            )
+    else:
+        if (
+            not isinstance(array_job_id, str)
+            or CANONICAL_POSITIVE_UINT_RE.fullmatch(array_job_id) is None
+            or not isinstance(array_task_id, str)
+            or CANONICAL_UINT_RE.fullmatch(array_task_id) is None
+            or job_id != f"{array_job_id}_{array_task_id}"
+        ):
+            raise ContractError(
+                f"{label} must use exactly one canonical array allocation identity"
+            )
     return dict(value)
+
+
+def _canonical_job_allocation_key(identity: Mapping[str, Any], label: str) -> str:
+    canonical = _validate_job_identity(identity, label)
+    return f"{canonical['cluster']}:{canonical['job_id']}"
+
+
+def _validate_node_name(value: Any, label: str) -> str:
+    if not isinstance(value, str) or CANONICAL_NODE_NAME_RE.fullmatch(value) is None:
+        raise ContractError(
+            f"{label} must be one canonical lowercase scheduler NodeName without aliases"
+        )
+    return value
+
+
+def _validate_gpu_allocations(
+    value: Any, node_name: str, expected_count: int, label: str
+) -> list[dict[str, Any]]:
+    if not isinstance(value, list) or len(value) != expected_count:
+        raise ContractError(
+            f"{label} must contain exactly the scheduler allocated GPU count"
+        )
+    validated: list[dict[str, Any]] = []
+    for index, allocation in enumerate(value):
+        item_label = f"{label} item {index}"
+        _require_exact_fields(allocation, GPU_ALLOCATION_FIELDS, item_label)
+        if allocation["node_name"] != node_name:
+            raise ContractError(f"{item_label} node alias or mismatch")
+        if allocation["gres_name"] != "gpu":
+            raise ContractError(f"{item_label}.gres_name must equal canonical gpu")
+        gres_type = allocation["gres_type"]
+        if (
+            not isinstance(gres_type, str)
+            or CANONICAL_GRES_TYPE_RE.fullmatch(gres_type) is None
+        ):
+            raise ContractError(f"{item_label}.gres_type must be canonical lowercase text")
+        _validate_canonical_uint(allocation["gres_index"], f"{item_label}.gres_index")
+        gpu_uuid = allocation["gpu_uuid"]
+        if not isinstance(gpu_uuid, str) or CANONICAL_GPU_UUID_RE.fullmatch(gpu_uuid) is None:
+            raise ContractError(f"{item_label}.gpu_uuid must be one canonical GPU UUID")
+        validated.append(dict(allocation))
+    if validated != sorted(
+        validated, key=lambda item: (int(item["gres_index"]), item["gpu_uuid"])
+    ):
+        raise ContractError(f"{label} must use canonical GRES-index/GPU-UUID order")
+    uuid_keys = [item["gpu_uuid"] for item in validated]
+    gres_keys = [
+        (item["node_name"], item["gres_name"], item["gres_type"], item["gres_index"])
+        for item in validated
+    ]
+    if len(set(uuid_keys)) != len(uuid_keys) or len(set(gres_keys)) != len(gres_keys):
+        raise ContractError(f"{label} contains duplicate physical GPU or GRES identity")
+    return validated
 
 
 _V2_MODULE: ModuleType | None = None
@@ -665,11 +750,47 @@ def validate_scheduler_snapshot_bindings(
         raise ContractError("scheduler export snapshot SHA-256 mismatch")
 
 
+def parse_scheduler_export_snapshot(
+    payload: bytes,
+) -> dict[str, dict[str, Any]]:
+    """Parse exact LF-terminated JSONL scheduler records keyed by raw-line hash."""
+
+    if not isinstance(payload, bytes) or not payload or not payload.endswith(b"\n"):
+        raise ContractError(
+            "scheduler export snapshot must be nonempty bytes with a final LF"
+        )
+    records_by_raw_sha256: dict[str, dict[str, Any]] = {}
+    for line_number, line in enumerate(payload.splitlines(keepends=True), start=1):
+        if not line.endswith(b"\n") or line.endswith(b"\r\n") or line == b"\n":
+            raise ContractError(
+                f"scheduler export raw record {line_number} must be one nonempty LF-only line"
+            )
+        record_bytes = line[:-1]
+        record = strict_json_object_from_bytes(
+            record_bytes,
+            f"scheduler export raw record {line_number}",
+            f"scheduler-export-jsonl:{line_number}",
+        )
+        _require_exact_fields(
+            record,
+            SCHEDULER_RAW_RECORD_FIELDS,
+            f"scheduler export raw record {line_number}",
+        )
+        raw_record_sha256 = sha256_bytes(line)
+        if raw_record_sha256 in records_by_raw_sha256:
+            raise ContractError(
+                "scheduler export reuses one exact raw record line/hash"
+            )
+        records_by_raw_sha256[raw_record_sha256] = record
+    return records_by_raw_sha256
+
+
 def validate_scheduler_allocation_evidence(
     captures: Sequence[Mapping[str, Any]],
     evidence: Mapping[str, Any],
     plan: Mapping[str, Any],
     run_plan_sha256: str,
+    scheduler_export_snapshot: bytes,
 ) -> dict[str, Any]:
     validated_plan = validate_plan(plan)
     expected_plan_sha = _validate_sha256(run_plan_sha256, "run_plan_sha256")
@@ -704,14 +825,41 @@ def validate_scheduler_allocation_evidence(
         raise ContractError("scheduler evidence route must equal LUNARC/SLURM")
     _validate_sha256(evidence["scheduler_config_snapshot_sha256"], "scheduler config snapshot")
     _validate_sha256(evidence["scheduler_export_sha256"], "scheduler export")
+    observed_export_sha256 = sha256_bytes(scheduler_export_snapshot)
+    if evidence["scheduler_export_sha256"] != observed_export_sha256:
+        raise ContractError("scheduler export snapshot SHA-256 mismatch")
+    raw_records_by_sha256 = parse_scheduler_export_snapshot(
+        scheduler_export_snapshot
+    )
     records = evidence["records"]
     if not isinstance(records, list):
         raise ContractError("scheduler evidence records must be a list")
 
     scheduler_by_tuple: dict[tuple[str, str, int], dict[str, Any]] = {}
     job_bindings: dict[str, tuple[str, str, int]] = {}
+    used_raw_record_hashes: set[str] = set()
     for index, record in enumerate(records):
         _require_exact_fields(record, SCHEDULER_RECORD_FIELDS, f"scheduler record {index}")
+        raw_record_sha256 = _validate_sha256(
+            record["scheduler_record_sha256"], "scheduler raw record SHA-256"
+        )
+        if raw_record_sha256 in used_raw_record_hashes:
+            raise ContractError(
+                "scheduler evidence reuses one exact raw scheduler record/hash"
+            )
+        raw_record = raw_records_by_sha256.get(raw_record_sha256)
+        if raw_record is None:
+            raise ContractError(
+                "scheduler evidence record hash is absent from exact retained raw export bytes"
+            )
+        parsed_record = {
+            field: record[field] for field in SCHEDULER_RAW_RECORD_FIELDS
+        }
+        if parsed_record != raw_record:
+            raise ContractError(
+                "scheduler evidence parsed fields do not equal the exact retained raw record"
+            )
+        used_raw_record_hashes.add(raw_record_sha256)
         task_id = record["task_id"]
         arm_id = record["arm_id"]
         attempt = record["attempt"]
@@ -729,23 +877,31 @@ def validate_scheduler_allocation_evidence(
         if key in scheduler_by_tuple:
             raise ContractError(f"duplicate scheduler tuple {key}")
         scheduler_by_tuple[key] = dict(record)
-        identity = _validate_job_identity(
+        identity_key = _canonical_job_allocation_key(
             record["slurm_job_identity"], f"scheduler record {index} job identity"
         )
-        identity_hash = canonical_hash(identity)
-        if identity_hash in job_bindings:
+        if identity_key in job_bindings:
             raise ContractError(
                 "one SLURM job/allocation identity cannot bind two task/arm/attempt tuples"
             )
-        job_bindings[identity_hash] = key
+        job_bindings[identity_key] = key
     if set(scheduler_by_tuple) != expected_tuples or len(records) != len(expected_tuples):
         raise ContractError(
             "scheduler tuple set must equal all 918 tuples: "
             f"missing={len(expected_tuples-set(scheduler_by_tuple))} "
             f"extra={len(set(scheduler_by_tuple)-expected_tuples)}"
         )
+    if (
+        used_raw_record_hashes != set(raw_records_by_sha256)
+        or len(raw_records_by_sha256) != len(expected_tuples)
+    ):
+        raise ContractError(
+            "exact retained scheduler export record set must equal all 918 evidence records"
+        )
 
     intervals_by_gpu: dict[str, list[tuple[datetime, datetime, tuple[str, str, int]]]] = {}
+    gpu_uuid_to_node: dict[str, str] = {}
+    gres_device_to_uuid: dict[tuple[str, str, str, str], str] = {}
     index_records: list[dict[str, Any]] = []
     for task_id in v2.TASK_IDS:
         for arm in v2.ARMS:
@@ -759,7 +915,6 @@ def validate_scheduler_allocation_evidence(
                     "slurm_in_job_snapshot_sha256"
                 ]:
                     raise ContractError(f"scheduler/capture in-job snapshot mismatch for {key}")
-                _validate_sha256(record["scheduler_record_sha256"], "scheduler record SHA-256")
                 if record["scheduler_record_source"] != "SCONTROL_AND_SACCT":
                     raise ContractError("scheduler record must bind both scontrol and sacct evidence")
                 scheduler_state = record["scheduler_job_state"]
@@ -784,24 +939,33 @@ def validate_scheduler_allocation_evidence(
                 )
                 if count != expected_count:
                     raise ContractError("scheduler allocated GPU count does not match frozen plan/capture")
-                node = record["node_name"]
-                if not isinstance(node, str) or not node.strip():
-                    raise ContractError("scheduler node_name must be nonempty")
-                gpu_keys = record["gpu_allocation_keys"]
-                if (
-                    not isinstance(gpu_keys, list)
-                    or len(gpu_keys) != count
-                    or not all(
-                        isinstance(value, str)
-                        and value.startswith(node + "/")
-                        and len(value) > len(node) + 1
-                        for value in gpu_keys
+                node = _validate_node_name(record["node_name"], "scheduler node_name")
+                gpu_allocations = _validate_gpu_allocations(
+                    record["gpu_allocations"],
+                    node,
+                    count,
+                    "scheduler GPU allocations",
+                )
+                gpu_keys: list[str] = []
+                for allocation in gpu_allocations:
+                    gpu_uuid = allocation["gpu_uuid"]
+                    prior_node = gpu_uuid_to_node.setdefault(gpu_uuid, node)
+                    if prior_node != node:
+                        raise ContractError(
+                            "one physical GPU UUID cannot use multiple scheduler NodeName aliases"
+                        )
+                    gres_key = (
+                        node,
+                        allocation["gres_name"],
+                        allocation["gres_type"],
+                        allocation["gres_index"],
                     )
-                    or len(set(gpu_keys)) != len(gpu_keys)
-                ):
-                    raise ContractError(
-                        "scheduler GPU allocation keys must be unique node/GPU identities matching allocated GPU count"
-                    )
+                    prior_uuid = gres_device_to_uuid.setdefault(gres_key, gpu_uuid)
+                    if prior_uuid != gpu_uuid:
+                        raise ContractError(
+                            "one scheduler node/GRES identity cannot alias multiple GPU UUIDs"
+                        )
+                    gpu_keys.append(f"{node}/{gpu_uuid}")
                 started = _parse_utc_seconds(
                     record["allocation_started_at_utc"], "allocation start"
                 )
@@ -810,8 +974,10 @@ def validate_scheduler_allocation_evidence(
                 )
                 if ended <= started:
                     raise ContractError("scheduler allocation interval must have end strictly after start")
-                for gpu_key in gpu_keys:
-                    intervals_by_gpu.setdefault(gpu_key, []).append((started, ended, key))
+                for allocation in gpu_allocations:
+                    intervals_by_gpu.setdefault(allocation["gpu_uuid"], []).append(
+                        (started, ended, key)
+                    )
                 index_records.append(
                     {
                         "task_id": task_id,
@@ -823,6 +989,7 @@ def validate_scheduler_allocation_evidence(
                         "allocation_started_at_utc": record["allocation_started_at_utc"],
                         "allocation_ended_at_utc": record["allocation_ended_at_utc"],
                         "allocated_gpu_count": record["allocated_gpu_count"],
+                        "gpu_allocations": [dict(item) for item in gpu_allocations],
                         "gpu_allocation_keys": list(gpu_keys),
                     }
                 )
@@ -850,6 +1017,10 @@ def validate_scheduler_allocation_evidence(
         "scheduler_evidence_canonical_sha256": canonical_hash(evidence),
         "scheduler_config_snapshot_sha256": evidence["scheduler_config_snapshot_sha256"],
         "scheduler_export_sha256": evidence["scheduler_export_sha256"],
+        "scheduler_raw_record_count": len(raw_records_by_sha256),
+        "scheduler_raw_record_hash_set_sha256": canonical_hash(
+            sorted(raw_records_by_sha256)
+        ),
         "tuple_count": len(expected_tuples),
         "unique_slurm_job_count": len(job_bindings),
         "allocation_count_by_arm": {
@@ -870,12 +1041,27 @@ def finalize_v2_candidate_ledger(
     run_plan_sha256: str,
     captures: Sequence[Mapping[str, Any]],
     scheduler_evidence: Mapping[str, Any],
+    scheduler_config_snapshot: bytes,
+    scheduler_export_snapshot: bytes,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     verify_frozen_dependencies()
     validated_plan = validate_plan(plan)
     expected_plan_sha = _validate_sha256(run_plan_sha256, "run_plan_sha256")
+    if not isinstance(scheduler_config_snapshot, bytes):
+        raise ContractError("scheduler config snapshot must be exact bytes")
+    if not isinstance(scheduler_export_snapshot, bytes):
+        raise ContractError("scheduler export snapshot must be exact bytes")
+    validate_scheduler_snapshot_bindings(
+        scheduler_evidence,
+        sha256_bytes(scheduler_config_snapshot),
+        sha256_bytes(scheduler_export_snapshot),
+    )
     allocation_index = validate_scheduler_allocation_evidence(
-        captures, scheduler_evidence, validated_plan, expected_plan_sha
+        captures,
+        scheduler_evidence,
+        validated_plan,
+        expected_plan_sha,
+        scheduler_export_snapshot,
     )
     captures_by_tuple = {
         (capture["task_id"], capture["arm_id"], capture["attempt"]): capture
@@ -964,6 +1150,11 @@ def finalize_v2_candidate_ledger(
         "run_plan_sha256": expected_plan_sha,
         "capture_ledger_canonical_sha256": canonical_hash(captures),
         "scheduler_evidence_canonical_sha256": canonical_hash(scheduler_evidence),
+        "scheduler_config_snapshot_sha256": sha256_bytes(scheduler_config_snapshot),
+        "scheduler_export_snapshot_sha256": sha256_bytes(scheduler_export_snapshot),
+        "scheduler_raw_record_hash_set_sha256": allocation_index[
+            "scheduler_raw_record_hash_set_sha256"
+        ],
         "allocation_index_canonical_sha256": canonical_hash(allocation_index),
         "candidate_ledger_canonical_sha256": canonical_hash(ledger),
         "candidate_record_count": len(records),
@@ -1144,13 +1335,18 @@ def main(argv: Iterable[str] | None = None) -> int:
         _, _, capture_ledger = read_json_snapshot(args.capture_ledger, "capture ledger")
         _require_exact_fields(capture_ledger, {"records"}, "capture ledger")
         _, _, evidence = read_json_snapshot(args.scheduler_evidence, "scheduler evidence")
-        observed_config_sha = sha256_file(args.scheduler_config_snapshot)
-        observed_export_sha = sha256_file(args.scheduler_export_snapshot)
-        validate_scheduler_snapshot_bindings(
-            evidence, observed_config_sha, observed_export_sha
-        )
+        try:
+            scheduler_config_snapshot = args.scheduler_config_snapshot.read_bytes()
+            scheduler_export_snapshot = args.scheduler_export_snapshot.read_bytes()
+        except OSError as exc:
+            raise ContractError("scheduler snapshot input is unreadable") from exc
         ledger, allocation_index, seal = finalize_v2_candidate_ledger(
-            plan, run_plan_sha256, capture_ledger["records"], evidence
+            plan,
+            run_plan_sha256,
+            capture_ledger["records"],
+            evidence,
+            scheduler_config_snapshot,
+            scheduler_export_snapshot,
         )
         ledger_file_sha, ledger_identity = _write_new_canonical_json_with_identity(
             args.output_ledger, ledger

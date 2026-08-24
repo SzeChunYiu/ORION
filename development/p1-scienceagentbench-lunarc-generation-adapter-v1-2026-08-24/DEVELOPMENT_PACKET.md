@@ -30,13 +30,18 @@ all 918 tuples, and (4) projecting only records accepted by unchanged Runner V2?
 4. Emit timing-captured but allocation-pending sidecars; never self-attest
    exclusivity in the generation process.
 5. Validate a scheduler evidence ledger containing exactly the same 918 tuples,
-   one unique job/allocation identity per tuple, exact GPU counts, bounded
-   scheduler intervals, and scheduler-confirmed consumable exclusive GRES.
-6. Reject overlap of the same node/GPU allocation key while allowing concurrent
-   attempts on different GPU keys.
-7. Emit exact Runner V2 records only after fiber 5 passes; preserve missing
+   one canonical unique job/allocation identity per tuple, exact structured GPU
+   allocations, bounded scheduler intervals, and scheduler-confirmed consumable
+   exclusive GRES.
+6. Bind every parsed scheduler-evidence row to one exact retained LF-only JSONL
+   record whose SHA-256 includes the terminating LF; require an exact 918-record
+   bijection with no missing, extra, duplicate or reused raw records.
+7. Reject overlap of the same canonical physical GPU UUID while allowing
+   concurrent attempts on different UUIDs, and reject NodeName/GRES/UUID aliases.
+8. Emit exact Runner V2 records only after fibers 5–7 pass; preserve missing
    billed USD as null and use integer-only accelerator-second serialization.
-8. Hash-bind captures, scheduler evidence, allocation index, final ledger,
+9. Hash-bind exact scheduler config/export bytes, the raw-record hash-set
+   identity, captures, scheduler evidence, allocation index, final ledger,
    adapter/contract and unchanged Runner V2 identities without opening outcomes.
 
 ## Saturation and challenge
@@ -69,9 +74,15 @@ to write `EXCLUSIVE_NO_OVERLAP_CONFIRMED` into a V2 ledger.
 - mutually exclusive one-shot success versus `CANNOT_CHECK` terminal receipts;
 - Boolean, negative, decreasing and float clock values;
 - base-record identity/seed/field drift;
-- missing/duplicate/extra tuples and reused job identities;
-- GPU count/key drift, unbound/environment-only allocation status, invalid
-  scheduler intervals, nonterminal job states and same-GPU overlap;
+- missing/duplicate/extra tuples and reused canonical job identities;
+- composite-with-null, mismatched-array, leading-zero, case and step-form job
+  aliases;
+- structured GPU count/field drift, noncanonical NodeName/GRES/GPU UUID aliases,
+  UUID-to-node or node/GRES-to-UUID remapping, unbound/environment-only
+  allocation status, invalid scheduler intervals, nonterminal job states and
+  same-physical-GPU overlap;
+- exact raw-line hash/field mismatch, raw-record reuse, missing/extra/duplicate
+  raw records, missing final LF and CRLF scheduler export records;
 - scheduler config/export snapshots whose raw-file hashes do not match the
   scheduler-evidence bindings;
 - exact integer-derived quantity and nullable billed USD;
@@ -92,6 +103,16 @@ directories, retryable failed captures, dual success/`CANNOT_CHECK` emission and
 non-strict base-record serialization. Each finding was reproduced as a failing
 test before its tightening. The release contract therefore records post-test-
 first tightening rather than claiming that its final bytes predated every fix.
+
+A subsequent reviewer demonstrated a concrete allocation-alias failure: the
+same `job_id="4000001_1"` could be admitted once with both array fields null and
+again with `array_job_id="4000001"` and `array_task_id="1"`. Tests 35–41 first
+made the canonical job representation, GPU case alias, exact raw-record field
+binding, raw-record non-reuse/exact set, structured NodeName/GRES/UUID alias and
+wrapper-identity requirements fail. The repair now rejects composite-with-null,
+mismatched, leading-zero, case and step aliases; keys uniqueness by canonical
+`cluster:job_id`; indexes overlap by canonical GPU UUID; and binds every parsed
+row to an exact retained LF-terminated raw line.
 
 ## Reopen triggers
 

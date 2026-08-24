@@ -2,7 +2,7 @@
 
 ## Terminal
 
-`P1_SAB_LUNARC_GENERATION_ADAPTER_SYNTHETIC_HOSTILE_VALIDATION_PASS tests=34 official_tasks=0 official_outcomes=0`
+`P1_SAB_LUNARC_GENERATION_ADAPTER_SYNTHETIC_HOSTILE_VALIDATION_PASS tests=41 official_tasks=0 official_outcomes=0`
 
 ## What this increment closes
 
@@ -19,16 +19,32 @@
   exclusive one-shot terminal emissions; a phase or metadata failure cannot be
   corrected and retried inside the same capture.
 - Finalization requires 918 capture tuples and 918 scheduler tuples, one unique
-  SLURM job or array element per tuple, matching in-job snapshots, matched frozen
-  GPU counts, scheduler-confirmed consumable exclusive GRES and nonoverlapping
-  half-open allocation intervals for each node/GPU key. Running or pending jobs
-  cannot be finalized; each record must carry one normalized terminal state.
+  canonical SLURM allocation identity per tuple, matching in-job snapshots,
+  matched frozen GPU counts, scheduler-confirmed consumable exclusive GRES and
+  nonoverlapping half-open allocation intervals for each canonical physical GPU
+  UUID. Running or pending jobs cannot be finalized; each record must carry one
+  normalized terminal state.
+- Allocation identities use one lowercase canonical cluster plus either one
+  positive base job decimal or the exact `array_job_id_array_task_id` composite
+  with both canonical array fields bound. Composite-with-null, mismatched array,
+  leading-zero, case, reused canonical `cluster:job_id` and job-step aliases such
+  as `.batch` fail closed.
+- Each scheduler row carries structured `gpu_allocations` with exact NodeName,
+  GRES name/type/index and canonical NVIDIA GPU UUID fields. Case/lexical
+  aliases, UUID-to-node remapping and node/GRES-to-UUID remapping reject; overlap
+  is indexed by canonical GPU UUID rather than a caller-chosen string key.
+- Every parsed scheduler row must equal one retained strict-JSON raw record. Its
+  `scheduler_record_sha256` hashes the exact JSONL line including the terminating
+  LF. The export must contain exactly 918 distinct LF-only records bound
+  bijectively to the 918 evidence rows; CRLF, missing/extra/duplicate records,
+  field/hash mismatch or raw-record reuse fail closed.
 - Cross-job allocation overlap uses scheduler UTC intervals. Raw-monotonic
   coordinates from different jobs, hosts or boots are never compared.
 - Only after scheduler finalization does the adapter project
   `EXCLUSIVE_NO_OVERLAP_CONFIRMED` into a complete V2 ledger. The unchanged V2
   validator revalidates all 918 records.
-- The adapter seal hash-binds the exact run-plan snapshot, capture ledger,
+- The adapter seal hash-binds the exact run-plan snapshot, exact scheduler-config
+  and scheduler-export bytes, the raw-record hash-set identity, capture ledger,
   scheduler evidence, allocation index, final V2 ledger, this adapter/contract,
   unchanged Runner V2 and unchanged Runner V1.
 - Finalizer outputs use new-file-only creation. If a later output destination is
@@ -53,12 +69,16 @@ immediate end read but permits only `cannot_check_sidecar()`, never a V2 record.
 
 `run_lunarc_attempt_v1.sh` maps one new output directory and one wrapper
 invocation to one tuple, retains a raw `scontrol show job -dd` snapshot and
-invokes exactly one frozen driver. The snapshot and SLURM environment are not
+invokes exactly one frozen driver. For an array element it emits the exact
+`${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}` allocation identity; otherwise it
+emits the canonical base `SLURM_JOB_ID`. The snapshot and SLURM environment are not
 exclusivity proof. An independently retained post-job `sacct`/`scontrol` export
-and scheduler-config snapshot must be normalized into the exact
-scheduler-evidence schema before finalization. The finalizer CLI requires both
-raw snapshot files and rejects either file when its SHA-256 does not match the
-corresponding scheduler-evidence field.
+and scheduler-config snapshot must be normalized into the exact scheduler-
+evidence schema and LF-only JSONL record export before finalization. The
+`finalize_v2_candidate_ledger(...)` interface and finalizer CLI require the exact
+config/export bytes, not only claimed hashes. They reject either file when its
+SHA-256 does not match the corresponding scheduler-evidence field, and they bind
+the exact export record set into the allocation index and adapter seal.
 
 ## Focused verification
 

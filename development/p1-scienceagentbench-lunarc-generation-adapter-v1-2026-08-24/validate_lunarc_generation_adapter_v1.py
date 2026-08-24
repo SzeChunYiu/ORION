@@ -26,6 +26,9 @@ ROOT = Path(__file__).resolve().parent
 MODULE_PATH = ROOT / "sab_lunarc_generation_adapter_v1.py"
 WRAPPER_PATH = ROOT / "run_lunarc_attempt_v1.sh"
 RECEIPT_PATH = ROOT / "SYNTHETIC_VALIDATION_RECEIPT_V1.json"
+SYNTHETIC_CONFIG_SNAPSHOT = b"synthetic scheduler config snapshot\n"
+SYNTHETIC_GPU_UUID_1 = "GPU-aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa1"
+SYNTHETIC_GPU_UUID_2 = "GPU-bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb2"
 
 
 def load_module():
@@ -124,7 +127,7 @@ def base_record(plan: dict, task_id: str, arm: str, attempt: int) -> dict:
 
 def job_identity(index: int) -> dict:
     return {
-        "cluster": "synthetic-lunarc",
+        "cluster": "lunarc",
         "job_id": str(4_000_000 + index),
         "array_job_id": None,
         "array_task_id": None,
@@ -174,38 +177,73 @@ def iso_z(value: datetime) -> str:
     return value.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def scheduler_evidence(captures: list[dict]) -> dict:
+def scheduler_evidence(captures: list[dict]) -> tuple[dict, bytes]:
     base = datetime(2026, 8, 24, 0, 0, 0, tzinfo=timezone.utc)
     records = []
+    raw_lines = []
     for index, capture in enumerate(captures):
         started = base + timedelta(seconds=2 * index)
+        raw_record = {
+            "task_id": capture["task_id"],
+            "arm_id": capture["arm_id"],
+            "attempt": capture["attempt"],
+            "slurm_job_identity": copy.deepcopy(capture["slurm_job_identity"]),
+            "in_job_snapshot_sha256": capture["slurm_in_job_snapshot_sha256"],
+            "scheduler_record_source": "SCONTROL_AND_SACCT",
+            "scheduler_job_state": "COMPLETED",
+            "allocation_started_at_utc": iso_z(started),
+            "allocation_ended_at_utc": iso_z(started + timedelta(seconds=1)),
+            "node_name": "synthetic-cn001",
+            "allocated_gpu_count": capture["exclusive_gpu_count"],
+            "gpu_allocations": [
+                {
+                    "node_name": "synthetic-cn001",
+                    "gres_name": "gpu",
+                    "gres_type": "a40",
+                    "gres_index": "0",
+                    "gpu_uuid": SYNTHETIC_GPU_UUID_1,
+                }
+            ],
+            "exclusive_gres_status": "SCHEDULER_CONFIRMED_CONSUMABLE_EXCLUSIVE_GRES",
+            "attempt_scope_status": "ONE_TASK_ARM_ATTEMPT_ONLY_CONFIRMED",
+        }
+        raw_line = adapter.canonical_json_bytes(raw_record) + b"\n"
+        raw_lines.append(raw_line)
         records.append(
             {
-                "task_id": capture["task_id"],
-                "arm_id": capture["arm_id"],
-                "attempt": capture["attempt"],
-                "slurm_job_identity": copy.deepcopy(capture["slurm_job_identity"]),
-                "in_job_snapshot_sha256": capture["slurm_in_job_snapshot_sha256"],
-                "scheduler_record_sha256": synthetic_hash(f"sacct:{index}"),
-                "scheduler_record_source": "SCONTROL_AND_SACCT",
-                "scheduler_job_state": "COMPLETED",
-                "allocation_started_at_utc": iso_z(started),
-                "allocation_ended_at_utc": iso_z(started + timedelta(seconds=1)),
-                "node_name": "synthetic-cn001",
-                "allocated_gpu_count": capture["exclusive_gpu_count"],
-                "gpu_allocation_keys": ["synthetic-cn001/GPU-SYNTHETIC-0001"],
-                "exclusive_gres_status": "SCHEDULER_CONFIRMED_CONSUMABLE_EXCLUSIVE_GRES",
-                "attempt_scope_status": "ONE_TASK_ARM_ATTEMPT_ONLY_CONFIRMED",
+                **raw_record,
+                "scheduler_record_sha256": hashlib.sha256(raw_line).hexdigest(),
             }
         )
-    return {
+    export_snapshot = b"".join(raw_lines)
+    evidence = {
         "schema_version": adapter.SCHEDULER_EVIDENCE_SCHEMA,
         "site": "LUNARC",
         "scheduler": "SLURM",
-        "scheduler_config_snapshot_sha256": synthetic_hash("slurm-config"),
-        "scheduler_export_sha256": synthetic_hash("slurm-export"),
+        "scheduler_config_snapshot_sha256": hashlib.sha256(
+            SYNTHETIC_CONFIG_SNAPSHOT
+        ).hexdigest(),
+        "scheduler_export_sha256": hashlib.sha256(export_snapshot).hexdigest(),
         "records": records,
     }
+    return evidence, export_snapshot
+
+
+def rebind_scheduler_export(evidence: dict) -> bytes:
+    """Regenerate exact synthetic raw records after an intentional mutation."""
+
+    raw_lines = []
+    for record in evidence["records"]:
+        raw_record = {
+            field: copy.deepcopy(record[field])
+            for field in adapter.SCHEDULER_RAW_RECORD_FIELDS
+        }
+        raw_line = adapter.canonical_json_bytes(raw_record) + b"\n"
+        record["scheduler_record_sha256"] = hashlib.sha256(raw_line).hexdigest()
+        raw_lines.append(raw_line)
+    snapshot = b"".join(raw_lines)
+    evidence["scheduler_export_sha256"] = hashlib.sha256(snapshot).hexdigest()
+    return snapshot
 
 
 class AdapterSyntheticTests(unittest.TestCase):
@@ -214,12 +252,23 @@ class AdapterSyntheticTests(unittest.TestCase):
         cls.plan = synthetic_plan()
         cls.run_plan_sha256 = synthetic_hash("run-plan-exact-bytes")
         cls.captures = all_captures(cls.plan, cls.run_plan_sha256)
-        cls.evidence = scheduler_evidence(cls.captures)
+        cls.evidence, cls.scheduler_export_snapshot = scheduler_evidence(cls.captures)
+        cls.scheduler_config_snapshot = SYNTHETIC_CONFIG_SNAPSHOT
 
     def assert_reject(self, callable_, fragment: str) -> None:
         with self.assertRaises(adapter.ContractError) as caught:
             callable_()
         self.assertIn(fragment.lower(), str(caught.exception).lower())
+
+    def validate_scheduler(self, captures: list[dict], evidence: dict) -> dict:
+        scheduler_export_snapshot = rebind_scheduler_export(evidence)
+        return adapter.validate_scheduler_allocation_evidence(
+            captures,
+            evidence,
+            self.plan,
+            self.run_plan_sha256,
+            scheduler_export_snapshot,
+        )
 
     def test_01_upstream_and_contract_hashes_are_frozen(self) -> None:
         adapter.verify_frozen_dependencies()
@@ -433,27 +482,43 @@ class AdapterSyntheticTests(unittest.TestCase):
         self.assertNotIn("accelerator_allocation_status", capture)
 
     def test_11_complete_scheduler_evidence_builds_exact_index(self) -> None:
-        index = adapter.validate_scheduler_allocation_evidence(
-            self.captures, self.evidence, self.plan, self.run_plan_sha256
-        )
+        index = self.validate_scheduler(self.captures, copy.deepcopy(self.evidence))
         self.assertEqual(index["status"], "EXCLUSIVE_NO_OVERLAP_CONFIRMED")
         self.assertEqual(index["tuple_count"], 918)
         self.assertEqual(index["unique_slurm_job_count"], 918)
+        self.assertEqual(index["scheduler_raw_record_count"], 918)
+        self.assertEqual(
+            len(adapter.parse_scheduler_export_snapshot(self.scheduler_export_snapshot)),
+            918,
+        )
+        first_raw_line = self.scheduler_export_snapshot.splitlines(keepends=True)[0]
+        self.assertEqual(
+            self.evidence["records"][0]["scheduler_record_sha256"],
+            hashlib.sha256(first_raw_line).hexdigest(),
+        )
+        self.assertNotEqual(
+            self.evidence["records"][0]["scheduler_record_sha256"],
+            hashlib.sha256(first_raw_line[:-1]).hexdigest(),
+        )
         self.assertEqual(index["overlap_conflict_count"], 0)
 
     def test_12_missing_duplicate_or_extra_scheduler_tuple_rejects(self) -> None:
         missing = copy.deepcopy(self.evidence)
         missing["records"].pop()
         duplicate = copy.deepcopy(self.evidence)
-        duplicate["records"][-1] = copy.deepcopy(duplicate["records"][0])
+        duplicate["records"][-1]["task_id"] = duplicate["records"][0]["task_id"]
+        duplicate["records"][-1]["arm_id"] = duplicate["records"][0]["arm_id"]
+        duplicate["records"][-1]["attempt"] = duplicate["records"][0]["attempt"]
         extra = copy.deepcopy(self.evidence)
         extra["records"].append(copy.deepcopy(extra["records"][0]))
-        for evidence in (missing, duplicate, extra):
+        for evidence, fragment in (
+            (missing, "tuple"),
+            (duplicate, "tuple"),
+            (extra, "reuses"),
+        ):
             self.assert_reject(
-                lambda evidence=evidence: adapter.validate_scheduler_allocation_evidence(
-                    self.captures, evidence, self.plan, self.run_plan_sha256
-                ),
-                "tuple",
+                lambda evidence=evidence: self.validate_scheduler(self.captures, evidence),
+                fragment,
             )
 
     def test_13_one_slurm_job_cannot_bind_two_attempts(self) -> None:
@@ -462,9 +527,7 @@ class AdapterSyntheticTests(unittest.TestCase):
             evidence["records"][0]["slurm_job_identity"]
         )
         self.assert_reject(
-            lambda: adapter.validate_scheduler_allocation_evidence(
-                self.captures, evidence, self.plan, self.run_plan_sha256
-            ),
+            lambda: self.validate_scheduler(self.captures, evidence),
             "job",
         )
 
@@ -476,9 +539,7 @@ class AdapterSyntheticTests(unittest.TestCase):
             evidence = copy.deepcopy(self.evidence)
             evidence["records"][10][field] = value
             self.assert_reject(
-                lambda evidence=evidence: adapter.validate_scheduler_allocation_evidence(
-                    self.captures, evidence, self.plan, self.run_plan_sha256
-                ),
+                lambda evidence=evidence: self.validate_scheduler(self.captures, evidence),
                 fragment,
             )
 
@@ -492,9 +553,7 @@ class AdapterSyntheticTests(unittest.TestCase):
             evidence = copy.deepcopy(self.evidence)
             evidence["records"][0]["exclusive_gres_status"] = status
             self.assert_reject(
-                lambda evidence=evidence: adapter.validate_scheduler_allocation_evidence(
-                    self.captures, evidence, self.plan, self.run_plan_sha256
-                ),
+                lambda evidence=evidence: self.validate_scheduler(self.captures, evidence),
                 "scheduler",
             )
 
@@ -503,16 +562,14 @@ class AdapterSyntheticTests(unittest.TestCase):
             ("allocated_gpu_count", "2"),
             ("allocated_gpu_count", "0"),
             ("allocated_gpu_count", "01"),
-            ("gpu_allocation_keys", []),
-            ("gpu_allocation_keys", ["x", "x"]),
+            ("gpu_allocations", []),
+            ("gpu_allocations", [{}, {}]),
         )
         for field, value in mutations:
             evidence = copy.deepcopy(self.evidence)
             evidence["records"][0][field] = value
             self.assert_reject(
-                lambda evidence=evidence: adapter.validate_scheduler_allocation_evidence(
-                    self.captures, evidence, self.plan, self.run_plan_sha256
-                ),
+                lambda evidence=evidence: self.validate_scheduler(self.captures, evidence),
                 "gpu",
             )
 
@@ -526,9 +583,7 @@ class AdapterSyntheticTests(unittest.TestCase):
             evidence["records"][0]["allocation_started_at_utc"] = start
             evidence["records"][0]["allocation_ended_at_utc"] = end
             self.assert_reject(
-                lambda evidence=evidence: adapter.validate_scheduler_allocation_evidence(
-                    self.captures, evidence, self.plan, self.run_plan_sha256
-                ),
+                lambda evidence=evidence: self.validate_scheduler(self.captures, evidence),
                 "interval",
             )
 
@@ -536,9 +591,7 @@ class AdapterSyntheticTests(unittest.TestCase):
         evidence = copy.deepcopy(self.evidence)
         evidence["records"][0]["scheduler_job_state"] = "RUNNING"
         self.assert_reject(
-            lambda: adapter.validate_scheduler_allocation_evidence(
-                self.captures, evidence, self.plan, self.run_plan_sha256
-            ),
+            lambda: self.validate_scheduler(self.captures, evidence),
             "terminal",
         )
 
@@ -551,9 +604,7 @@ class AdapterSyntheticTests(unittest.TestCase):
             "allocation_ended_at_utc"
         ]
         self.assert_reject(
-            lambda: adapter.validate_scheduler_allocation_evidence(
-                self.captures, evidence, self.plan, self.run_plan_sha256
-            ),
+            lambda: self.validate_scheduler(self.captures, evidence),
             "overlap",
         )
 
@@ -565,12 +616,11 @@ class AdapterSyntheticTests(unittest.TestCase):
         evidence["records"][1]["allocation_ended_at_utc"] = evidence["records"][0][
             "allocation_ended_at_utc"
         ]
-        evidence["records"][1]["gpu_allocation_keys"] = [
-            "synthetic-cn001/GPU-SYNTHETIC-0002"
-        ]
-        index = adapter.validate_scheduler_allocation_evidence(
-            self.captures, evidence, self.plan, self.run_plan_sha256
+        evidence["records"][1]["gpu_allocations"][0]["gpu_uuid"] = (
+            SYNTHETIC_GPU_UUID_2
         )
+        evidence["records"][1]["gpu_allocations"][0]["gres_index"] = "1"
+        index = self.validate_scheduler(self.captures, evidence)
         self.assertEqual(index["overlap_conflict_count"], 0)
 
     def test_21_raw_monotonic_values_are_not_cross_job_overlap_coordinates(self) -> None:
@@ -578,14 +628,17 @@ class AdapterSyntheticTests(unittest.TestCase):
         captures[0]["monotonic_start_ns"] = captures[1]["monotonic_start_ns"]
         captures[0]["monotonic_end_ns"] = captures[1]["monotonic_end_ns"]
         captures[0]["monotonic_elapsed_ns"] = captures[1]["monotonic_elapsed_ns"]
-        index = adapter.validate_scheduler_allocation_evidence(
-            captures, self.evidence, self.plan, self.run_plan_sha256
-        )
+        index = self.validate_scheduler(captures, copy.deepcopy(self.evidence))
         self.assertFalse(index["cross_job_raw_monotonic_comparison_used"])
 
     def test_22_finalizer_emits_exact_v2_ledger_and_integer_cost(self) -> None:
         ledger, index, seal = adapter.finalize_v2_candidate_ledger(
-            self.plan, self.run_plan_sha256, self.captures, self.evidence
+            self.plan,
+            self.run_plan_sha256,
+            self.captures,
+            self.evidence,
+            self.scheduler_config_snapshot,
+            self.scheduler_export_snapshot,
         )
         by_tuple, billed, totals = v2._validate_candidate_ledger(
             ledger,
@@ -604,7 +657,12 @@ class AdapterSyntheticTests(unittest.TestCase):
 
     def test_23_missing_billed_usd_stays_null_and_zero_is_not_imputed(self) -> None:
         ledger, _, seal = adapter.finalize_v2_candidate_ledger(
-            self.plan, self.run_plan_sha256, self.captures, self.evidence
+            self.plan,
+            self.run_plan_sha256,
+            self.captures,
+            self.evidence,
+            self.scheduler_config_snapshot,
+            self.scheduler_export_snapshot,
         )
         self.assertTrue(
             all(
@@ -618,7 +676,12 @@ class AdapterSyntheticTests(unittest.TestCase):
 
     def test_24_per_record_allocation_status_mutation_is_rejected(self) -> None:
         ledger, _, _ = adapter.finalize_v2_candidate_ledger(
-            self.plan, self.run_plan_sha256, self.captures, self.evidence
+            self.plan,
+            self.run_plan_sha256,
+            self.captures,
+            self.evidence,
+            self.scheduler_config_snapshot,
+            self.scheduler_export_snapshot,
         )
         ledger["records"][0]["accelerator_allocation_status"] = "CANNOT_CHECK"
         with self.assertRaises(v2.ContractError) as caught:
@@ -632,12 +695,29 @@ class AdapterSyntheticTests(unittest.TestCase):
 
     def test_25_adapter_seal_hash_binds_all_evidence_and_unchanged_v2(self) -> None:
         ledger, index, seal = adapter.finalize_v2_candidate_ledger(
-            self.plan, self.run_plan_sha256, self.captures, self.evidence
+            self.plan,
+            self.run_plan_sha256,
+            self.captures,
+            self.evidence,
+            self.scheduler_config_snapshot,
+            self.scheduler_export_snapshot,
         )
         self.assertEqual(seal["capture_ledger_canonical_sha256"], canonical_hash(self.captures))
         self.assertEqual(seal["scheduler_evidence_canonical_sha256"], canonical_hash(self.evidence))
         self.assertEqual(seal["allocation_index_canonical_sha256"], canonical_hash(index))
         self.assertEqual(seal["candidate_ledger_canonical_sha256"], canonical_hash(ledger))
+        self.assertEqual(
+            seal["scheduler_raw_record_hash_set_sha256"],
+            index["scheduler_raw_record_hash_set_sha256"],
+        )
+        self.assertEqual(
+            seal["scheduler_config_snapshot_sha256"],
+            hashlib.sha256(self.scheduler_config_snapshot).hexdigest(),
+        )
+        self.assertEqual(
+            seal["scheduler_export_snapshot_sha256"],
+            hashlib.sha256(self.scheduler_export_snapshot).hexdigest(),
+        )
         self.assertEqual(seal["runner_v2_module_sha256"], adapter.RUNNER_V2_MODULE_SHA256)
         self.assertFalse(seal["official_outcomes_opened"])
 
@@ -673,15 +753,9 @@ class AdapterSyntheticTests(unittest.TestCase):
             plan_path.write_text(json.dumps(self.plan, indent=2) + "\n")
             run_plan_sha256 = hashlib.sha256(plan_path.read_bytes()).hexdigest()
             captures = all_captures(self.plan, run_plan_sha256)
-            evidence = scheduler_evidence(captures)
-            config_snapshot_path.write_bytes(b"synthetic scontrol show config\n")
-            export_snapshot_path.write_bytes(b"synthetic scontrol+sacct export\n")
-            evidence["scheduler_config_snapshot_sha256"] = hashlib.sha256(
-                config_snapshot_path.read_bytes()
-            ).hexdigest()
-            evidence["scheduler_export_sha256"] = hashlib.sha256(
-                export_snapshot_path.read_bytes()
-            ).hexdigest()
+            evidence, export_snapshot = scheduler_evidence(captures)
+            config_snapshot_path.write_bytes(SYNTHETIC_CONFIG_SNAPSHOT)
+            export_snapshot_path.write_bytes(export_snapshot)
             captures_path.write_text(json.dumps({"records": captures}, indent=2) + "\n")
             evidence_path.write_text(json.dumps(evidence, indent=2) + "\n")
             with redirect_stdout(io.StringIO()) as stdout:
@@ -751,15 +825,9 @@ class AdapterSyntheticTests(unittest.TestCase):
             plan_path.write_text(json.dumps(self.plan, indent=2) + "\n")
             run_plan_sha256 = hashlib.sha256(plan_path.read_bytes()).hexdigest()
             captures = all_captures(self.plan, run_plan_sha256)
-            evidence = scheduler_evidence(captures)
-            config_snapshot_path.write_bytes(b"synthetic scontrol show config\n")
-            export_snapshot_path.write_bytes(b"synthetic scontrol+sacct export\n")
-            evidence["scheduler_config_snapshot_sha256"] = hashlib.sha256(
-                config_snapshot_path.read_bytes()
-            ).hexdigest()
-            evidence["scheduler_export_sha256"] = hashlib.sha256(
-                export_snapshot_path.read_bytes()
-            ).hexdigest()
+            evidence, export_snapshot = scheduler_evidence(captures)
+            config_snapshot_path.write_bytes(SYNTHETIC_CONFIG_SNAPSHOT)
+            export_snapshot_path.write_bytes(export_snapshot)
             captures_path.write_text(json.dumps({"records": captures}, indent=2) + "\n")
             evidence_path.write_text(json.dumps(evidence, indent=2) + "\n")
             index_path.write_bytes(b"hostile-race-winner\n")
@@ -816,15 +884,15 @@ class AdapterSyntheticTests(unittest.TestCase):
     def test_32_hostile_scheduler_member_types_fail_as_contract_errors(self) -> None:
         hostile_cases = (
             ("scheduler_job_state", [], "state"),
-            ("gpu_allocation_keys", [{}], "gpu"),
+            ("gpu_allocations", [{}], "gpu"),
         )
         for field, value, fragment in hostile_cases:
             with self.subTest(field=field):
                 evidence = copy.deepcopy(self.evidence)
                 evidence["records"][0][field] = value
                 self.assert_reject(
-                    lambda evidence=evidence: adapter.validate_scheduler_allocation_evidence(
-                        self.captures, evidence, self.plan, self.run_plan_sha256
+                    lambda evidence=evidence: self.validate_scheduler(
+                        self.captures, evidence
                     ),
                     fragment,
                 )
@@ -872,6 +940,243 @@ class AdapterSyntheticTests(unittest.TestCase):
             lambda: failed.cannot_check_sidecar("SECOND_FAILURE", b"synthetic"),
             "finalized",
         )
+
+    def test_35_slurm_allocation_identity_has_one_canonical_representation(self) -> None:
+        canonical_array = {
+            "cluster": "lunarc",
+            "job_id": "4000001_1",
+            "array_job_id": "4000001",
+            "array_task_id": "1",
+        }
+        self.assertEqual(
+            adapter._validate_job_identity(canonical_array, "canonical array"),
+            canonical_array,
+        )
+        self.assertEqual(
+            adapter._canonical_job_allocation_key(
+                canonical_array, "canonical array"
+            ),
+            "lunarc:4000001_1",
+        )
+        hostile_identities = (
+            {
+                "cluster": "lunarc",
+                "job_id": "4000001_1",
+                "array_job_id": None,
+                "array_task_id": None,
+            },
+            {
+                "cluster": "lunarc",
+                "job_id": "04000001",
+                "array_job_id": None,
+                "array_task_id": None,
+            },
+            {
+                "cluster": "lunarc",
+                "job_id": "4000001_1",
+                "array_job_id": "4000001",
+                "array_task_id": "01",
+            },
+            {
+                "cluster": "lunarc",
+                "job_id": "4000001_1",
+                "array_job_id": "4000002",
+                "array_task_id": "1",
+            },
+            {
+                "cluster": "LUNARC",
+                "job_id": "4000001",
+                "array_job_id": None,
+                "array_task_id": None,
+            },
+            {
+                "cluster": "lunarc",
+                "job_id": "4000001.batch",
+                "array_job_id": None,
+                "array_task_id": None,
+            },
+        )
+        for identity in hostile_identities:
+            with self.subTest(identity=identity):
+                self.assert_reject(
+                    lambda identity=identity: adapter._validate_job_identity(
+                        identity, "hostile identity"
+                    ),
+                    "canonical",
+                )
+
+        captures = copy.deepcopy(self.captures)
+        evidence = copy.deepcopy(self.evidence)
+        alias_null = copy.deepcopy(hostile_identities[0])
+        captures[0]["slurm_job_identity"] = copy.deepcopy(alias_null)
+        evidence["records"][0]["slurm_job_identity"] = copy.deepcopy(alias_null)
+        captures[1]["slurm_job_identity"] = copy.deepcopy(canonical_array)
+        evidence["records"][1]["slurm_job_identity"] = copy.deepcopy(canonical_array)
+        self.assert_reject(
+            lambda: self.validate_scheduler(captures, evidence),
+            "canonical",
+        )
+
+    def test_36_gpu_case_alias_cannot_evade_same_physical_gpu_overlap(self) -> None:
+        evidence = copy.deepcopy(self.evidence)
+        evidence["records"][1]["allocation_started_at_utc"] = evidence["records"][0][
+            "allocation_started_at_utc"
+        ]
+        evidence["records"][1]["allocation_ended_at_utc"] = evidence["records"][0][
+            "allocation_ended_at_utc"
+        ]
+        evidence["records"][1]["gpu_allocations"][0]["gpu_uuid"] = (
+            SYNTHETIC_GPU_UUID_1.upper()
+        )
+        self.assert_reject(
+            lambda: self.validate_scheduler(self.captures, evidence),
+            "gpu",
+        )
+
+    def test_37_parsed_scheduler_fields_must_equal_exact_raw_record(self) -> None:
+        evidence = copy.deepcopy(self.evidence)
+        evidence["records"][0]["scheduler_job_state"] = "FAILED"
+        self.assert_reject(
+            lambda: adapter.validate_scheduler_allocation_evidence(
+                self.captures,
+                evidence,
+                self.plan,
+                self.run_plan_sha256,
+                self.scheduler_export_snapshot,
+            ),
+            "exact retained raw record",
+        )
+
+    def test_38_one_raw_scheduler_record_cannot_bind_two_evidence_rows(self) -> None:
+        evidence = copy.deepcopy(self.evidence)
+        evidence["records"][1]["scheduler_record_sha256"] = evidence["records"][0][
+            "scheduler_record_sha256"
+        ]
+        self.assert_reject(
+            lambda: adapter.validate_scheduler_allocation_evidence(
+                self.captures,
+                evidence,
+                self.plan,
+                self.run_plan_sha256,
+                self.scheduler_export_snapshot,
+            ),
+            "reuses",
+        )
+
+    def test_39_raw_scheduler_export_line_set_is_exact_and_unambiguous(self) -> None:
+        lines = self.scheduler_export_snapshot.splitlines(keepends=True)
+        missing = b"".join(lines[:-1])
+        missing_evidence = copy.deepcopy(self.evidence)
+        missing_evidence["scheduler_export_sha256"] = hashlib.sha256(missing).hexdigest()
+        self.assert_reject(
+            lambda: adapter.validate_scheduler_allocation_evidence(
+                self.captures,
+                missing_evidence,
+                self.plan,
+                self.run_plan_sha256,
+                missing,
+            ),
+            "absent",
+        )
+
+        duplicate = self.scheduler_export_snapshot + lines[0]
+        duplicate_evidence = copy.deepcopy(self.evidence)
+        duplicate_evidence["scheduler_export_sha256"] = hashlib.sha256(
+            duplicate
+        ).hexdigest()
+        self.assert_reject(
+            lambda: adapter.validate_scheduler_allocation_evidence(
+                self.captures,
+                duplicate_evidence,
+                self.plan,
+                self.run_plan_sha256,
+                duplicate,
+            ),
+            "reuses",
+        )
+
+        extra_raw_record = json.loads(lines[0][:-1])
+        extra_raw_record["scheduler_job_state"] = "FAILED"
+        extra_line = adapter.canonical_json_bytes(extra_raw_record) + b"\n"
+        extra = self.scheduler_export_snapshot + extra_line
+        extra_evidence = copy.deepcopy(self.evidence)
+        extra_evidence["scheduler_export_sha256"] = hashlib.sha256(extra).hexdigest()
+        self.assert_reject(
+            lambda: adapter.validate_scheduler_allocation_evidence(
+                self.captures,
+                extra_evidence,
+                self.plan,
+                self.run_plan_sha256,
+                extra,
+            ),
+            "exact retained scheduler export record set",
+        )
+
+        crlf = lines[0][:-1] + b"\r\n" + b"".join(lines[1:])
+        crlf_evidence = copy.deepcopy(self.evidence)
+        crlf_evidence["scheduler_export_sha256"] = hashlib.sha256(crlf).hexdigest()
+        self.assert_reject(
+            lambda: adapter.validate_scheduler_allocation_evidence(
+                self.captures,
+                crlf_evidence,
+                self.plan,
+                self.run_plan_sha256,
+                crlf,
+            ),
+            "LF-only",
+        )
+
+    def test_40_structured_node_uuid_and_gres_aliases_reject(self) -> None:
+        hostile_cases = []
+
+        uppercase_node = copy.deepcopy(self.evidence)
+        uppercase_node["records"][1]["node_name"] = "SYNTHETIC-CN001"
+        uppercase_node["records"][1]["gpu_allocations"][0]["node_name"] = (
+            "SYNTHETIC-CN001"
+        )
+        hostile_cases.append((uppercase_node, "canonical"))
+
+        node_alias = copy.deepcopy(self.evidence)
+        node_alias["records"][1]["node_name"] = "synthetic-cn002"
+        node_alias["records"][1]["gpu_allocations"][0]["node_name"] = (
+            "synthetic-cn002"
+        )
+        hostile_cases.append((node_alias, "aliases"))
+
+        gres_alias = copy.deepcopy(self.evidence)
+        gres_alias["records"][1]["gpu_allocations"][0]["gpu_uuid"] = (
+            SYNTHETIC_GPU_UUID_2
+        )
+        hostile_cases.append((gres_alias, "GRES"))
+
+        lexical_index_alias = copy.deepcopy(self.evidence)
+        lexical_index_alias["records"][1]["gpu_allocations"][0]["gres_index"] = "00"
+        hostile_cases.append((lexical_index_alias, "canonical"))
+
+        uppercase_gres_type = copy.deepcopy(self.evidence)
+        uppercase_gres_type["records"][1]["gpu_allocations"][0]["gres_type"] = "A40"
+        hostile_cases.append((uppercase_gres_type, "canonical"))
+
+        for evidence, fragment in hostile_cases:
+            with self.subTest(fragment=fragment):
+                self.assert_reject(
+                    lambda evidence=evidence: self.validate_scheduler(
+                        self.captures, evidence
+                    ),
+                    fragment,
+                )
+
+    def test_41_wrapper_emits_canonical_base_or_array_allocation_identity(self) -> None:
+        source = WRAPPER_PATH.read_text()
+        self.assertIn(
+            'CANONICAL_JOB_ID="${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}"',
+            source,
+        )
+        self.assertIn(
+            '[[ "$SLURM_CLUSTER_NAME" =~ ^[a-z][a-z0-9]*(-[a-z0-9]+)*$ ]]',
+            source,
+        )
+        self.assertIn('"$CANONICAL_JOB_ID"', source)
 
 
 def write_receipt(result: unittest.TestResult) -> None:

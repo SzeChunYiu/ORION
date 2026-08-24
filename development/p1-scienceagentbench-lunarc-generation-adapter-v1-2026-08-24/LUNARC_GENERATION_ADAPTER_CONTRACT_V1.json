@@ -28,19 +28,43 @@
     "cannot_check_schema_version": "orion.p1.scienceagentbench.lunarc-generation-attempt-cannot-check.v1",
     "rule": "A capture never writes EXCLUSIVE_NO_OVERLAP_CONFIRMED. Incomplete phase order, clock failure, operation failure, missing base metadata or allocation-finalization failure emits or permits only a CANNOT_CHECK sidecar, never a Runner V2 record."
   },
-  "allocation_evidence": {
-    "schema_version": "orion.p1.scienceagentbench.lunarc-scheduler-allocation-evidence.v1",
-    "site": "LUNARC",
-    "scheduler": "SLURM",
-    "tuple_count": 918,
-    "allocation_scope": "ONE_UNIQUE_SLURM_JOB_OR_ARRAY_ELEMENT_PER_TASK_ARM_ATTEMPT",
-    "required_exclusivity_status": "SCHEDULER_CONFIRMED_CONSUMABLE_EXCLUSIVE_GRES",
-    "required_attempt_scope_status": "ONE_TASK_ARM_ATTEMPT_ONLY_CONFIRMED",
-    "environment_only_evidence_allowed": false,
-    "gpu_identity": "NODE_NAME_PLUS_SCHEDULER_BOUND_GPU_UUID_OR_GRES_IDENTITY",
-    "interval_rule": "HALF_OPEN_SCHEDULER_ALLOCATION_INTERVALS__SAME_GPU_KEY_MUST_NOT_OVERLAP",
-    "terminal_state_rule": "FINALIZATION_REQUIRES_ONE_NORMALIZED_TERMINAL_SLURM_STATE__RUNNING_OR_PENDING_FORBIDDEN",
-    "cross_job_raw_monotonic_comparison_allowed": false
+    "allocation_evidence": {
+        "schema_version": "orion.p1.scienceagentbench.lunarc-scheduler-allocation-evidence.v1",
+        "site": "LUNARC",
+        "scheduler": "SLURM",
+        "tuple_count": 918,
+        "allocation_scope": "ONE_UNIQUE_SLURM_JOB_OR_ARRAY_ELEMENT_PER_TASK_ARM_ATTEMPT",
+        "canonical_allocation_identity_key": "cluster:job_id after exact canonical identity validation",
+        "cluster_name_rule": "LOWERCASE_PATTERN_[a-z][a-z0-9]*(-[a-z0-9]+)*__CASE_OR_LEXICAL_ALIASES_FORBIDDEN",
+        "base_job_identity_rule": "job_id is one positive canonical decimal string without leading zeros; array_job_id and array_task_id are both JSON null",
+        "array_job_identity_rule": "array_job_id is one positive canonical decimal string, array_task_id is one canonical unsigned decimal string, and job_id equals array_job_id + '_' + array_task_id exactly",
+        "forbidden_job_aliases": "COMPOSITE_JOB_ID_WITH_NULL_ARRAY_FIELDS__MISMATCHED_ARRAY_FIELDS__LEADING_ZERO_DECIMALS__CASE_ALIASES__JOB_STEP_FORMS_INCLUDING_.batch",
+        "required_exclusivity_status": "SCHEDULER_CONFIRMED_CONSUMABLE_EXCLUSIVE_GRES",
+        "required_attempt_scope_status": "ONE_TASK_ARM_ATTEMPT_ONLY_CONFIRMED",
+        "environment_only_evidence_allowed": false,
+        "raw_scheduler_export_binding": {
+            "format": "NONEMPTY_UTF8_STRICT_JSON_OBJECTS__ONE_PER_LF_ONLY_LINE__FINAL_LF_REQUIRED__CRLF_FORBIDDEN",
+            "record_hash": "SHA256_OF_EXACT_RAW_JSONL_LINE_INCLUDING_ITS_TERMINATING_LF",
+            "parsed_field_rule": "EVERY_EVIDENCE_RECORD_FIELD_EXCEPT_scheduler_record_sha256_MUST_EQUAL_THE_RETAINED_RAW_RECORD_EXACTLY",
+            "cardinality_rule": "EXACTLY_918_DISTINCT_RAW_LINES_AND_HASHES_BIND_EXACTLY_918_EVIDENCE_ROWS__MISSING_EXTRA_DUPLICATE_OR_REUSED_RECORDS_FORBIDDEN"
+        },
+        "gpu_identity": {
+            "fields": [
+                "node_name",
+                "gres_name",
+                "gres_type",
+                "gres_index",
+                "gpu_uuid"
+            ],
+            "node_name_rule": "ONE_CANONICAL_LOWERCASE_NODE_NAME_MATCHING_[a-z][a-z0-9]*(-[a-z0-9]+)*",
+            "gres_rule": "gres_name_EQUALS_gpu__gres_type_IS_CANONICAL_LOWERCASE_TEXT__gres_index_IS_CANONICAL_UNSIGNED_DECIMAL",
+            "gpu_uuid_rule": "CANONICAL_NVIDIA_GPU_UUID_WITH_GPU-_PREFIX_AND_LOWERCASE_HEX_BODY",
+            "alias_rejection": "ONE_GPU_UUID_CANNOT_MAP_TO_MULTIPLE_NODE_NAMES__ONE_NODE_GRES_IDENTITY_CANNOT_MAP_TO_MULTIPLE_GPU_UUIDS",
+            "cardinality_rule": "STRUCTURED_ALLOCATION_COUNT_EQUALS_SCHEDULER_ALLOCATED_GPU_COUNT_AND_FROZEN_CAPTURE_COUNT"
+        },
+        "interval_rule": "HALF_OPEN_SCHEDULER_ALLOCATION_INTERVALS__SAME_CANONICAL_GPU_UUID_MUST_NOT_OVERLAP",
+        "terminal_state_rule": "FINALIZATION_REQUIRES_ONE_NORMALIZED_TERMINAL_SLURM_STATE__RUNNING_OR_PENDING_FORBIDDEN",
+        "cross_job_raw_monotonic_comparison_allowed": false
   },
   "finalization": {
     "allocation_index_schema_version": "orion.p1.scienceagentbench.lunarc-allocation-index.v1",
@@ -50,7 +74,7 @@
     "cost_arithmetic": "exclusive_gpu_count-times-monotonic_elapsed_ns-divided-by-1000000000__INTEGER_DIVMOD_ONLY__CANONICAL_DECIMAL",
     "billed_usd_missingness": "CANNOT_CHECK_MEANS_BOTH_BILLED_FIELDS_ARE_JSON_NULL__ZERO_IMPUTATION_FORBIDDEN",
     "all_attempts": "ALL_ATTEMPTS_NO_SELECTION",
-    "evidence_binding": "The adapter seal binds exact run-plan bytes, all capture receipts, scheduler evidence, allocation index, final V2 ledger, adapter bytes, contract bytes and unchanged Runner V2 bytes before any outcome opening."
+        "evidence_binding": "The finalizer accepts exact scheduler-config and LF-only scheduler-export bytes. The adapter seal binds their exact SHA-256 values, the exact raw-record hash-set identity, exact run-plan bytes, all capture receipts, scheduler evidence, allocation index, final V2 ledger, adapter bytes, contract bytes and unchanged Runner V2 bytes before any outcome opening."
   },
   "forbidden_capabilities": [
     "benchmark archive or protected task reader",

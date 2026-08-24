@@ -59,6 +59,17 @@ done
 [[ -n "$OUTPUT_DIR" && "$OUTPUT_DIR" = /* ]] || usage
 : "${SLURM_JOB_ID:?must run as one SLURM allocation or array element}"
 : "${SLURM_CLUSTER_NAME:?SLURM_CLUSTER_NAME is required}"
+[[ "$SLURM_CLUSTER_NAME" =~ ^[a-z][a-z0-9]*(-[a-z0-9]+)*$ ]] || usage
+[[ "$SLURM_JOB_ID" =~ ^[1-9][0-9]*$ ]] || usage
+ARRAY_JOB_ID=${SLURM_ARRAY_JOB_ID:-}
+ARRAY_TASK_ID=${SLURM_ARRAY_TASK_ID:-}
+if [[ -n "$ARRAY_JOB_ID" || -n "$ARRAY_TASK_ID" ]]; then
+  [[ "$ARRAY_JOB_ID" =~ ^[1-9][0-9]*$ ]] || usage
+  [[ "$ARRAY_TASK_ID" =~ ^(0|[1-9][0-9]*)$ ]] || usage
+  CANONICAL_JOB_ID="${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}"
+else
+  CANONICAL_JOB_ID=$SLURM_JOB_ID
+fi
 command -v scontrol >/dev/null
 command -v sha256sum >/dev/null
 command -v python3 >/dev/null
@@ -74,7 +85,7 @@ failure_sidecar() {
   local failed_command=$3
   set +e
   python3 - "$FAILURE" "$TASK_ID" "$ARM_ID" "$ATTEMPT" "$SLURM_CLUSTER_NAME" \
-    "$SLURM_JOB_ID" "$rc" "$failed_line" "$failed_command" <<'PY'
+    "$CANONICAL_JOB_ID" "$rc" "$failed_line" "$failed_command" <<'PY'
 import hashlib
 import json
 import pathlib
@@ -118,8 +129,8 @@ scontrol show job -dd "$SLURM_JOB_ID" > "$SNAPSHOT"
 test -s "$SNAPSHOT"
 SNAPSHOT_SHA256=$(sha256sum "$SNAPSHOT" | awk '{print $1}')
 
-python3 - "$IDENTITY" "$SLURM_CLUSTER_NAME" "$SLURM_JOB_ID" \
-  "${SLURM_ARRAY_JOB_ID:-}" "${SLURM_ARRAY_TASK_ID:-}" "$SNAPSHOT_SHA256" <<'PY'
+python3 - "$IDENTITY" "$SLURM_CLUSTER_NAME" "$CANONICAL_JOB_ID" \
+  "$ARRAY_JOB_ID" "$ARRAY_TASK_ID" "$SNAPSHOT_SHA256" <<'PY'
 import json
 import pathlib
 import sys
