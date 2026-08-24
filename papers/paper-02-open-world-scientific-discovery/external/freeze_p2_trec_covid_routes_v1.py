@@ -28,7 +28,7 @@ import json
 from pathlib import Path
 
 DATA = Path.home() / "orion-work/trec/trec-covid"
-OUT = Path(__file__).resolve().parent / "P2_TREC_COVID_ROUTE_FREEZE_V2.json"
+OUT = Path(__file__).resolve().parent / "P2_TREC_COVID_ROUTE_FREEZE_V3.json"
 
 AVAILABLE = {
     "LEXICAL": ["keyword"],
@@ -45,7 +45,18 @@ UNAVAILABLE = {
 #: thing under measurement rather than a formality.
 BUDGET = {
     "max_route_calls": 6,
-    "max_reads": 20,
+    # V2 set this to 20. The first route returns a depth-100 posting and the
+    # policy reads until the cap, so LEXICAL alone consumed the entire read
+    # budget; the session then stays closed and every later route stopped with
+    # budget_exhausted. Every arm degenerated to a single route, which is the
+    # one thing this comparison must not do.
+    #
+    # The principle, stated rather than tuned: the budget must let each
+    # AVAILABLE route be probed and its results read, so that what binds is
+    # route allocation -- the quantity under measurement -- and not read
+    # starvation on whichever route happens to run first. Three routes are
+    # available here, so the per-route allowance of 20 is multiplied by three.
+    "max_reads": 60,
     "max_tool_calls": 40,
     # V1 set this to 0 to mean "no model budget". Budget.__post_init__ rejects
     # anything below 1, so V1 could not be constructed and no arm ever ran on
@@ -85,14 +96,17 @@ def main() -> int:
     topics.sort(key=lambda t: int(t["topic"]))
 
     freeze = {
-        "schema": "P2.TrecCovidRouteFreeze.v2",
+        "schema": "P2.TrecCovidRouteFreeze.v3",
         "supersedes": {
-            "artifact": "P2_TREC_COVID_ROUTE_FREEZE_V1.json",
-            "sha256": "03fe5bdf9c66b5ff624c786ed89ebbed64c749a20c17a063af63dfd59364ae92",
+            "artifact": "P2_TREC_COVID_ROUTE_FREEZE_V2.json",
+            "sha256": "1b1fca4008c9ed54bc27feff658972fbb68d8c86d38db47e267f8d0ae45a7e56",
             "reason": (
-                "V1 froze max_model_tokens=0. Budget.__post_init__ requires >=1, so V1 "
-                "was unconstructible and no arm was ever scored against it. It is "
-                "retained as the historical freeze, not deleted."
+                "V2 froze max_reads=20. A depth-100 posting let the first route "
+                "consume the whole read budget, closing the session, so every "
+                "later route stopped with budget_exhausted and all four arms "
+                "degenerated to one route -- the comparison could not occur. No "
+                "arm was ever scored against V2. V1 and V2 are retained as "
+                "historical freezes, not deleted."
             ),
         },
         "purpose": "topic -> route-probe mapping, frozen before any arm is scored",
