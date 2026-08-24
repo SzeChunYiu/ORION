@@ -1,0 +1,228 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.direct-route-freeze.v1",
+  "contract_id": "P1_SAB_DIRECT_ROUTE_FREEZE_20260824_V1",
+  "authority": "ADDITIVE_OUTCOME_BLIND_DIRECT_GENERATION_ROUTE_FREEZE_ONLY__NO_RUN_OR_ANALYSIS_AUTHORITY",
+  "upstream_bindings": [
+    {
+      "path": "development/p1-scienceagentbench-runner-v1-2026-08-24/RUNNER_CONTRACT_V1.json",
+      "sha256": "e191540f131b3e7e33b0c040900bea94336dbd0d704b247b547a5c361b6e242f"
+    },
+    {
+      "path": "development/p1-scienceagentbench-runner-v1-2026-08-24/sab_verified_runner_v1.py",
+      "sha256": "15d6f511be9b3b1dbac408cc41812b0f72e1dd7aa700983035438efb8ed416df"
+    },
+    {
+      "path": "development/p1-scienceagentbench-runner-v2-cost-amendment-2026-08-24/RUNNER_V2_COST_AMENDMENT_CONTRACT.json",
+      "sha256": "806a497798ed162af06130ec9bc12a1edf6153dc4adb690886c1c1d87f67dc0e"
+    },
+    {
+      "path": "development/p1-scienceagentbench-runner-v2-cost-amendment-2026-08-24/sab_runner_v2_cost_amendment.py",
+      "sha256": "14c7d42b0b5add7c9bc4ae8608f74b422c638d0e795ef26996dcef4a87afe8ae"
+    },
+    {
+      "path": "development/p1-scienceagentbench-analysis-freeze-v1-2026-08-24/ANALYSIS_CONTRACT_V1.json",
+      "sha256": "0cae220a5b2f73156eda63a01f769dfdecbf8ad1fa16bd0995e3f906cff391d4"
+    },
+    {
+      "path": "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/LUNARC_GENERATION_ADAPTER_CONTRACT_V1.json",
+      "sha256": "ae8fe86e4052b65f12176980fb03a653c1ab4b5b4f99c146d0db401563d93883"
+    },
+    {
+      "path": "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/sab_lunarc_generation_adapter_v1.py",
+      "sha256": "e46434fd37872a4ca7abce35375043bca2035fce52e3f36d611b1a03b98aefb9"
+    },
+    {
+      "path": "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/run_lunarc_attempt_v1.sh",
+      "sha256": "1d4655350c1a037cd4e51ee11e15e21491c5bfd7cea125948beb2e152c73b582"
+    }
+  ],
+  "repaired_pr1159_bindings": {
+    "merge_commit": "53cc59353b82a3908dd8066de268d326bec3908f",
+    "merged_head": "a39741adcbd8142446c8f87c4eb0743c50f28a9e",
+    "files": [
+      {
+        "path": "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/FROZEN_LONGSEED_MECHANISM_PROTOCOL_V1.json",
+        "sha256": "a939165b0e4b74662a3e991bf8029ce7c0d2bce22ca07dde6f7efd74bc6db944"
+      },
+      {
+        "path": "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/LONGSEED_MECHANISM_RECEIPT_V1.json",
+        "sha256": "111a9a9390782bd3253f82c5ba2a2a074cc940b94660292888b3239dd2af6c84"
+      },
+      {
+        "path": "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/PROMPT_PROVENANCE_V1.json",
+        "sha256": "12de378f4f020e4baa23a71f689ab290f340dbdec239bebe4e52360127e999c9"
+      },
+      {
+        "path": "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/FROZEN_LONGSEED_STRUCTURED_PROTOCOL_V1.json",
+        "sha256": "8636ae1ca5e0bfc64e1244d05290da92bfd2c712070fda3084828de8506d8928"
+      },
+      {
+        "path": "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/LONGSEED_STRUCTURED_RECEIPT_V1.json",
+        "sha256": "f41111109054a7cc5c136195a47f8a0b6a163d51bd914b49bf1dfa5616ae4114"
+      },
+      {
+        "path": "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/FROZEN_OUTPUT_SCHEMA_V1.json",
+        "sha256": "7b9ffda6c9daa1f39a1350959590112c5c663c6373a81e1e3fbffa23f0649498"
+      }
+    ]
+  },
+  "diagnostic_only_bindings": {
+    "promotion_to_rr_os_nr_prompt_or_schema_forbidden": true,
+    "prompt_prefix": {
+      "bytes": 90575,
+      "sha256": "6c52c9055c03367832e9e61c31f49489194cecd94e732fbc7ca59caeb40cf918"
+    },
+    "prompt_suffix": {
+      "bytes": 451,
+      "sha256": "170e270a3663993a0457f4ca9d9ac8c7da59549cfc29dfb1ca924e005afb6919"
+    },
+    "prompt_combined": {
+      "bytes": 91026,
+      "sha256": "b55831c8657f3a1f5556833204b5aff79fe84e58f170edaa228909401e222f72"
+    }
+  },
+  "model_runtime_binding": {
+    "model_filename": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+    "model_bytes": 18556689568,
+    "model_sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad",
+    "model_revision": "b17cb02dd882d5b6ab62fc777ad2995f19668350",
+    "llama_server_sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+    "cuda_backend_sha256": "fbe27c15253195c10559d98c6ba9c6d476a65d2bbf0240307b4a46d8aa17cefb",
+    "ollama_executable_provenance_sha256": "d0758d38ac5882a2c68fd930d0c1220af1952469fa9f30c268746d4021709bf4",
+    "llama_cpp_version": "b10434",
+    "llama_cpp_commit": "7e4c0a96880dae4fc4268ad441f8a6446bd5460a",
+    "server_geometry": {
+      "listen_host": "127.0.0.1",
+      "context_tokens": 32768,
+      "parallel_slots": 1,
+      "continuous_batching": false,
+      "cache_prompt": false,
+      "context_shift": false
+    }
+  },
+  "tokenizer_binding": {
+    "source_revision": "b2cff646eb4bb1d68355c01b18ae02e7cf42d120",
+    "tokenizer_json_sha256": "19564a48c4f71a2a1b937cce34c737a1e662b171c5f5d7edf641a15cd896f07d",
+    "tokenizer_config_json_sha256": "60f6e8cb15c98dd07300a3cc465ea662de245d2095e4245616af21b2324db3fc",
+    "inference_tokenizer_binding": "GGUF_BYTES",
+    "separately_extracted_inference_tokenizer_identity": "CANNOT_CHECK",
+    "production_prompt_token_counts": "CANNOT_CHECK"
+  },
+  "route_descriptor": {
+    "base_url": "http://127.0.0.1:8080",
+    "request_path": "/completion",
+    "host_kind": "EXACT_IP_LITERAL_LOOPBACK",
+    "credential_mode": "NONE_REQUIRED",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "proxies": {},
+    "redirects_allowed": false,
+    "secret_file_reads_allowed": false,
+    "secret_environment_reads_allowed": false,
+    "model_pull_or_download_allowed_during_attempt": false,
+    "external_provider_calls_allowed": false,
+    "kernel_egress_absence": "CANNOT_CHECK",
+    "runner_credential_route_status": "BOUND_OWNER_CONTROLLED"
+  },
+  "sampling": {
+    "temperature": 0.2,
+    "top_k": 20,
+    "top_p": 0.95,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "stream": false,
+    "return_tokens": true,
+    "cache_prompt": false
+  },
+  "seed_schedule": {
+    "1": 101,
+    "2": 202,
+    "3": 303
+  },
+  "tool_policy": {
+    "tool_call_cap": 0,
+    "external_provider_calls": 0,
+    "final_candidates_per_attempt": 1
+  },
+  "budget_owner_selection_interface": {
+    "status": "OWNER_PROSPECTIVE_BUDGET_FROZEN_BEFORE_TASK_OR_OUTCOME_OPENING",
+    "basis": "OWNER_SELECTED_ROUTE_FEASIBLE_EQUAL_ENVELOPE_WITHOUT_TASK_OR_OUTCOME_ACCESS",
+    "selected_before_task_or_outcome_opening": true,
+    "protected_prompt_sizes_used": false,
+    "context_window_tokens": 32768,
+    "budget_by_arm": {
+      "RR": {
+        "total_input_token_cap": 57344,
+        "total_output_token_cap": 8192,
+        "tool_call_cap": 0,
+        "wall_time_seconds_cap": 1800.0,
+        "local_execution_seconds_cap": 30.0,
+        "final_candidates_per_attempt": 1
+      },
+      "OS": {
+        "total_input_token_cap": 57344,
+        "total_output_token_cap": 8192,
+        "tool_call_cap": 0,
+        "wall_time_seconds_cap": 1800.0,
+        "local_execution_seconds_cap": 30.0,
+        "final_candidates_per_attempt": 1
+      },
+      "NR": {
+        "total_input_token_cap": 57344,
+        "total_output_token_cap": 8192,
+        "tool_call_cap": 0,
+        "wall_time_seconds_cap": 1800.0,
+        "local_execution_seconds_cap": 30.0,
+        "final_candidates_per_attempt": 1
+      }
+    },
+    "phase_output_caps_by_arm": {
+      "RR": {
+        "RR_PHASE0": 1024,
+        "RR_PHASE1": 7168
+      },
+      "OS": {
+        "OS_PHASE1": 8192
+      },
+      "NR": {
+        "NR_PHASE0": 1024,
+        "NR_PHASE1": 7168
+      }
+    },
+    "rationale": "With context 32768, the two-phase arms can admit at most 31744 phase-0 prompt tokens plus 25600 phase-1 prompt tokens under the fixed phase caps, for the widest route-feasible equal cumulative input envelope 57344; OS retains the same acceptance envelope and the full 8192 output cap. The positive 30-second local cap is a matched prospective reserve required by unchanged Runner V1/V2; this generation-only driver forbids tool and candidate-program execution and therefore records actual local execution usage as zero.",
+    "local_execution_usage_semantics": "ACTUAL_TOOL_OR_CANDIDATE_PROGRAM_EXECUTION_ONLY__DIRECT_GENERATION_ROUTE_HAS_ZERO_EVENTS",
+    "live_context_rule": "For every call, observed timings.prompt_n plus frozen phase n_predict must be less than or equal to 32768.",
+    "truncation_allowed": false,
+    "context_shift_allowed": false,
+    "post_observation_budget_changes_allowed": false,
+    "task_fit_status": "CANNOT_CHECK_BEFORE_TASK_OPENING"
+  },
+  "arm_state_semantics": {
+    "RR": [
+      "RR_PHASE0_TYPED_STATE_CANONICALLY_SEALED",
+      "RR_PHASE1_RECEIVES_EXACT_CANONICAL_STATE_AND_SHA256"
+    ],
+    "OS": [
+      "OS_PHASE1_ONLY"
+    ],
+    "NR": [
+      "NR_PHASE0_GENERIC_PLAN_DISCARDED",
+      "NR_PHASE1_BUILDER_HAS_NO_PHASE0_ARGUMENT_OR_STATE"
+    ]
+  },
+  "claim_boundary": {
+    "provider_seed_capability": "CONFIRMED",
+    "semantic_choice_sensitivity": "NOT_ESTABLISHED",
+    "candidate_semantic_diversity_gate_enabled": false,
+    "attempt_retention": "ALL_ATTEMPTS_NO_SELECTION",
+    "production_admissibility": "CANNOT_CHECK",
+    "scientific_authority_delta": "NONE"
+  },
+  "attempt_retention": "ALL_ATTEMPTS_NO_SELECTION",
+  "runner_or_adapter_modification": false,
+  "production_execution_authority": false,
+  "official_tasks_opened": 0,
+  "official_outcomes_opened": 0,
+  "scientific_authority_delta": "NONE"
+}
