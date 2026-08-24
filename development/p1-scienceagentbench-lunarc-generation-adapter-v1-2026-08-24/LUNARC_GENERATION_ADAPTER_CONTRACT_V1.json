@@ -1,0 +1,65 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.lunarc-generation-adapter-contract.v1",
+  "authority": "GENERATION_TIMING_AND_SCHEDULER_ALLOCATION_METADATA_ONLY__NO_EVALUATOR_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "status": "FROZEN_V1_RELEASE_CONTRACT__POST_TEST_FIRST_TIGHTENING",
+  "upstream": {
+    "runner_v2_contract_sha256": "806a497798ed162af06130ec9bc12a1edf6153dc4adb690886c1c1d87f67dc0e",
+    "runner_v2_module_sha256": "14c7d42b0b5add7c9bc4ae8608f74b422c638d0e795ef26996dcef4a87afe8ae",
+    "runner_v1_module_sha256": "15d6f511be9b3b1dbac408cc41812b0f72e1dd7aa700983035438efb8ed416df"
+  },
+  "timing_capture": {
+    "clock_id": "CLOCK_MONOTONIC_RAW",
+    "clock_api": "clock_gettime_ns",
+    "clock_values": "NONNEGATIVE_PYTHON_INTEGER_NOT_BOOLEAN__SERIALIZED_AS_CANONICAL_UNSIGNED_DECIMAL_STRING",
+    "start_boundary": "IMMEDIATELY_BEFORE_FIRST_MODEL_GENERATION_OPERATION",
+    "end_boundary": "IMMEDIATELY_AFTER_FINAL_MODEL_GENERATION_OPERATION_OR_FINAL_ATTEMPTED_OPERATION_EXCEPTION",
+    "elapsed_rule": "monotonic_end_ns-minus-monotonic_start_ns",
+    "fallback_allowed": false,
+    "phase_sequence_by_arm": {
+      "RR": ["RR_PHASE0", "RR_PHASE1"],
+      "OS": ["OS_PHASE1"],
+      "NR": ["NR_PHASE0", "NR_PHASE1"]
+    }
+  },
+  "capture_receipt": {
+    "schema_version": "orion.p1.scienceagentbench.lunarc-generation-attempt-capture.v1",
+    "successful_capture_status": "TIMING_CAPTURED__ALLOCATION_FINALIZATION_PENDING",
+    "allocation_status_before_finalization": "CANNOT_CHECK_PENDING_SCHEDULER_FINALIZATION",
+    "cannot_check_schema_version": "orion.p1.scienceagentbench.lunarc-generation-attempt-cannot-check.v1",
+    "rule": "A capture never writes EXCLUSIVE_NO_OVERLAP_CONFIRMED. Incomplete phase order, clock failure, operation failure, missing base metadata or allocation-finalization failure emits or permits only a CANNOT_CHECK sidecar, never a Runner V2 record."
+  },
+  "allocation_evidence": {
+    "schema_version": "orion.p1.scienceagentbench.lunarc-scheduler-allocation-evidence.v1",
+    "site": "LUNARC",
+    "scheduler": "SLURM",
+    "tuple_count": 918,
+    "allocation_scope": "ONE_UNIQUE_SLURM_JOB_OR_ARRAY_ELEMENT_PER_TASK_ARM_ATTEMPT",
+    "required_exclusivity_status": "SCHEDULER_CONFIRMED_CONSUMABLE_EXCLUSIVE_GRES",
+    "required_attempt_scope_status": "ONE_TASK_ARM_ATTEMPT_ONLY_CONFIRMED",
+    "environment_only_evidence_allowed": false,
+    "gpu_identity": "NODE_NAME_PLUS_SCHEDULER_BOUND_GPU_UUID_OR_GRES_IDENTITY",
+    "interval_rule": "HALF_OPEN_SCHEDULER_ALLOCATION_INTERVALS__SAME_GPU_KEY_MUST_NOT_OVERLAP",
+    "terminal_state_rule": "FINALIZATION_REQUIRES_ONE_NORMALIZED_TERMINAL_SLURM_STATE__RUNNING_OR_PENDING_FORBIDDEN",
+    "cross_job_raw_monotonic_comparison_allowed": false
+  },
+  "finalization": {
+    "allocation_index_schema_version": "orion.p1.scienceagentbench.lunarc-allocation-index.v1",
+    "required_allocation_index_status": "EXCLUSIVE_NO_OVERLAP_CONFIRMED",
+    "candidate_ledger_schema_version": "orion.p1.scienceagentbench.candidate-ledger.allocated-accelerator-seconds.v2",
+    "adapter_seal_schema_version": "orion.p1.scienceagentbench.lunarc-generation-adapter-seal.v1",
+    "cost_arithmetic": "exclusive_gpu_count-times-monotonic_elapsed_ns-divided-by-1000000000__INTEGER_DIVMOD_ONLY__CANONICAL_DECIMAL",
+    "billed_usd_missingness": "CANNOT_CHECK_MEANS_BOTH_BILLED_FIELDS_ARE_JSON_NULL__ZERO_IMPUTATION_FORBIDDEN",
+    "all_attempts": "ALL_ATTEMPTS_NO_SELECTION",
+    "evidence_binding": "The adapter seal binds exact run-plan bytes, all capture receipts, scheduler evidence, allocation index, final V2 ledger, adapter bytes, contract bytes and unchanged Runner V2 bytes before any outcome opening."
+  },
+  "forbidden_capabilities": [
+    "benchmark archive or protected task reader",
+    "candidate-body reader after hashing",
+    "credential reader",
+    "official evaluator invocation",
+    "official outcome opening",
+    "cost-ratio or success-rate analysis",
+    "metric fallback or billed-USD imputation"
+  ],
+  "scientific_authority_delta": "NONE"
+}

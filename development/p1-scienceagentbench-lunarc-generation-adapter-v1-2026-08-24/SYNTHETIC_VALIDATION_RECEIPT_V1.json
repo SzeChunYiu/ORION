@@ -1,0 +1,25 @@
+{
+  "clock": "CLOCK_MONOTONIC_RAW_VIA_CLOCK_GETTIME_NS",
+  "errors": 0,
+  "failures": 0,
+  "fixtures": "SYNTHETIC_NONBENCHMARK_METADATA_ONLY",
+  "official_evaluator_invocations": 0,
+  "official_outcomes_opened": 0,
+  "official_tasks_run": 0,
+  "production_shape": {
+    "arms": [
+      "RR",
+      "OS",
+      "NR"
+    ],
+    "attempts_per_task_arm": 3,
+    "task_count": 102,
+    "tuple_count": 918
+  },
+  "pytest_or_ci_run": false,
+  "scheduler_evidence": "SYNTHETIC_SCONTROL_AND_SACCT_SHAPED_METADATA",
+  "schema_version": "orion.p1.scienceagentbench.lunarc-generation-adapter-synthetic-validation.v1",
+  "scientific_authority_delta": "NONE",
+  "skipped": 0,
+  "tests_run": 34
+}
