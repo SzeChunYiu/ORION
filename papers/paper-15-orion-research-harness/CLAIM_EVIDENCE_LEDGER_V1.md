@@ -62,7 +62,21 @@
 
 **Statement sought.** P15 semantics compose with standard research-object/provenance and claim-aware artifact-lineage representations without requiring a competing metadata layer.
 
-**Authority:** `PROPOSED / CANNOT_CHECK`.
+**Authority:** `SUPPORTED_BOUNDED` for the composition claim; `CANNOT_CHECK` for
+claim-aware observability. **Updated 2026-08-24:** the prospectively frozen
+provenance-interoperability study has landed, so the row no longer reads
+`PROPOSED`. It evaluates 22 cases -- the 18 existing hostile SEI cases plus four
+real ORION workflow receipts -- and shows the SEI admission boundary survives
+representation through W3C PROV and RO-Crate / Workflow-Run structures. Its
+protocol was frozen before the adapter and the independent checker, with one
+pre-outcome correction to the fact vector made while no outcome existed.
+
+What that supports is the composition half of the statement sought: the
+separation is not obtained only by forcing users into an ORION-specific receipt
+representation. It does not support the claim-aware observability half, which
+has no study, and it grants no production or superiority authority -- C15.5
+remains `CANNOT_CHECK` on its own requirements, which this study discharges only
+one of.
 
 **Donor ownership:** RO-Crate 1.3, Workflow Run RO-Crate, execution-provenance work and artifact-centered claim-aware observability are explicitly donor-owned in `top_tier/P15_NEAREST_WORK_DELTA_2026-08-23.md`.
 
