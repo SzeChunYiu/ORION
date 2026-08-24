@@ -1,0 +1,31 @@
+{
+  "schema": "ORION.P15Q3.SharedInstrumentPackageBinding.v1",
+  "package": "orion-research-harness",
+  "package_version": "0.1.0",
+  "release_status": "RELEASE_CANDIDATE_UNTAGGED",
+  "declared_license_expression": "Apache-2.0",
+  "license_osi_approved": true,
+  "relicensing_authority": "CANNOT_CHECK",
+  "shared_surfaces": [
+    "P15_SCIENTIFIC_EXECUTION_INTEGRITY",
+    "Q3_TWO_INSTRUMENT_FRONTIER_DECISION",
+    "CONTENT_BOUND_NON_AUTHORIZING_RECEIPT",
+    "FAIL_CLOSED_CLI"
+  ],
+  "artifacts": {
+    "pyproject": {"path": "packages/orion-research-harness/pyproject.toml", "sha256": "d75778a3c6b06e395e418ce9fb63db0cc85b5cebaa5a47cee696e3bf722ea6e9"},
+    "license": {"path": "packages/orion-research-harness/LICENSE", "sha256": "0aa5601529f3d68e1557b5eb34ab8b371ee0931db10db128e67bb02c6f857963"},
+    "p15_api": {"path": "packages/orion-research-harness/src/orion_research_harness/scientific_execution_integrity.py", "sha256": "d4e998e556c7ec261c38cf2d69da9c57a43f0ee452f5335a60de66303501abb1"},
+    "shared_api": {"path": "packages/orion-research-harness/src/orion_research_harness/p15_q3_instrument.py", "sha256": "f2b7f6ffe65d4976d6ffbd25bd3930ae440738c0f9db2655398a39f1b7e8c2a4"},
+    "cli": {"path": "packages/orion-research-harness/src/orion_research_harness/cli.py", "sha256": "267b852081caf8ea209e67f12b09633cda6fa7a142751de88bf6b54f82823488"}
+  },
+  "scientific_authority_delta": "NONE",
+  "independent_authority": "CANNOT_CHECK",
+  "external_adoption": "CANNOT_CHECK",
+  "codecheck_or_acm_replay": "CANNOT_CHECK",
+  "site_independence": "CANNOT_CHECK",
+  "public_data_confers_custody": false,
+  "public_runtime_campaign": "NOT_RUN",
+  "versioned_release": "NOT_CREATED",
+  "boundary": "This binding establishes an in-repository release candidate and shared executable surface. The Apache expression is mechanically declared, but rights-holder authorization to relicense pre-existing files is CANNOT_CHECK. It does not satisfy the >=30 workload / >=20 upstream failure / three-image campaign, an external release, independent replay, or scientific superiority."
+}
