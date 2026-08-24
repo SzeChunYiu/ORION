@@ -51,6 +51,32 @@ level, with \textbf{0/4} real false promotions. That matters because a detector
 that refuses everything would score perfectly on the attack families above and be
 useless.
 
+\subsection{Provenance interoperability, and what its size measures are not}
+
+A second frozen study asks whether the admission boundary survives being carried
+in someone else's representation, which matters because a separation obtained
+only by forcing users into an ORION-specific receipt is not much of a
+separation. Execution-only facts were serialized independently of scientific
+fields, through the production \texttt{prov} 3.1.0 library for W3C PROV-JSON
+and through an RO-Crate 1.3 / Workflow-Run \texttt{CreateAction} projection
+carrying the same normalized vector. Over 22 cases -- the 18 hostile SEI cases
+plus four real ORION workflow receipts -- both round-trips are exact
+(\textbf{1.000}), with \textbf{0} scientific fields leaked into
+provenance-only records, \textbf{0} native-versus-imported SEI disagreements,
+\textbf{0} provenance-only false scientific successes, and \textbf{0}
+real-receipt false rejections or false promotions.
+
+The size measures are reported because omitting them would hide the cost of the
+representation, not because they characterize anything: mean PROV-JSON
+\textbf{1619.64} bytes per case and mean RO-Crate JSON-LD \textbf{2014.64}
+bytes per case.
+
+These are descriptive figures over a 22-case corpus. They are not a performance
+characterization and must not be read as one. Twenty-two cases cannot establish
+how either serialization behaves at corpus scale, hosted wall time is not used
+as a performance claim anywhere in this paper, and no throughput, latency or
+storage projection follows from these numbers.
+
 \paragraph{Scope.} A frozen 22-case corpus with simulated per-role keys. No
 hardware-backed custody, external timestamping or KMS, and no comparison against
 production Sigstore or in-toto is claimed. The composition-and-boundary statement
