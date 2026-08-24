@@ -14,6 +14,7 @@ one value is not known to be able to return the others.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -498,7 +499,21 @@ def test_main_requires_its_argv_and_runs_as_a_subprocess(capsys):
     completed = subprocess.run(
         [sys.executable, "-m", "orion.study.p9.hostile_representation_attacks", "--print-digest"],
         cwd=str(REPO_ROOT),
-        env={"PYTHONPATH": str(REPO_ROOT / "src"), "PATH": "/usr/bin:/bin:/usr/local/bin"},
+        env={
+            "PYTHONPATH": str(REPO_ROOT / "src"),
+            "PATH": "/usr/bin:/bin:/usr/local/bin",
+            # The interpreter binary needs its own runtime loader path. A
+            # Python installed outside a default prefix (an HPC module, pyenv,
+            # some conda layouts) keeps libpython there, and scrubbing this
+            # kills the child with exit 127 before Python starts. Carrying it
+            # does not weaken the isolation this env is for: it is the
+            # loader's path, not an import path.
+            **{
+                key: value
+                for key, value in os.environ.items()
+                if key in ("LD_LIBRARY_PATH", "DYLD_LIBRARY_PATH")
+            },
+        },
         capture_output=True,
         text=True,
     )

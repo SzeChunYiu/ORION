@@ -28,6 +28,7 @@ than a tautology in either direction.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from dataclasses import replace
@@ -280,7 +281,21 @@ class TestFreezeBinding:
         completed = subprocess.run(
             [sys.executable, "-m", "orion.study.p3.partial_observation_probe", "--print-digest"],
             cwd=REPO_ROOT,
-            env={"PYTHONPATH": "src", "PATH": "/usr/bin:/bin"},
+            env={
+                "PYTHONPATH": "src",
+                "PATH": "/usr/bin:/bin",
+                # The interpreter binary needs its own runtime loader path.
+                # A Python installed outside a default prefix (an HPC module,
+                # pyenv, some conda layouts) keeps libpython there, and
+                # scrubbing this kills the child with exit 127 before Python
+                # starts. Carrying it does not weaken the isolation this env
+                # is for: it is the loader's path, not an import path.
+                **{
+                    key: value
+                    for key, value in os.environ.items()
+                    if key in ("LD_LIBRARY_PATH", "DYLD_LIBRARY_PATH")
+                },
+            },
             capture_output=True,
             text=True,
             check=True,
