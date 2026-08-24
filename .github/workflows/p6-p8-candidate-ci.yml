@@ -41,6 +41,8 @@ jobs:
           tests/unit/candidates/test_p6_p8_theory_closure_v21.py
           tests/unit/candidates/test_p8_formal_core_primitives.py
           tests/unit/candidates/test_p6_p8_merged_review_suites.py
+      - name: Candidate exact-source binding gate
+        run: python papers/candidates/checkers/check_content_binding_v1.py --check
       - name: Peer-review submission gate
         run: pytest -q tests/unit/candidates/test_p6_p8_peer_review_ready.py
       - name: Install submission PDF toolchain
