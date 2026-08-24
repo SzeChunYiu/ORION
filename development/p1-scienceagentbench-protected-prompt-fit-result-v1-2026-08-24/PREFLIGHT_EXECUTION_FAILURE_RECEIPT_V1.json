@@ -1,0 +1,106 @@
+{
+  "authority": "BODY_FREE_EXECUTION_FAILURE_BINDING_ONLY__NO_PROMPT_FIT_TOKENIZATION_GENERATION_EVALUATION_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "counts": {
+    "authorized_protected_tasks_opened_for_preflight": 102,
+    "official_outcomes_opened": 0,
+    "packet_bodies_retained": 0,
+    "prompt_bodies_retained": 0,
+    "prompt_fit_receipts_emitted": 0,
+    "tasks_executed": 0
+  },
+  "execution": {
+    "cli": "python3 protected_prompt_fit_preflight_v1.py --row-source AUTHORIZED_ROWS_V2.json --mask-manifest MASK_MANIFEST_V1.json --prompt-bundle DIRECT_ROUTE_PROMPT_BUNDLE_V1.json --live-gguf Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf --live-staging-receipt LIVE_GGUF_STAGING_RECEIPT_V1.json --output PROTECTED_PROMPT_FIT_RECEIPT_V1.json",
+    "exit_code": 1,
+    "expected_output": "PROTECTED_PROMPT_FIT_RECEIPT_V1.json",
+    "failure_stage": "MERGED_STATIC_PROMPT_RENDERING",
+    "finished_at_utc": "2026-08-24T17:41:58Z",
+    "first_observed_failure": {
+      "attempt": 1,
+      "instance_id": "4",
+      "phase_id": "OS_PHASE1"
+    },
+    "host_role": "LUNARC_PRIVATE_PREFLIGHT_HOST",
+    "output_exists": false,
+    "production_receipt_emitted": false,
+    "started_at_utc": "2026-08-24T17:41:44Z",
+    "stdout_stderr": {
+      "bytes": 109,
+      "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+      "sha256": "c0869361865a938f946873051daa7b6f97223c9e90fea23a9834f31acb126693"
+    },
+    "terminal_line": "P1_SAB_PROTECTED_PROMPT_FIT_PREFLIGHT_V1_FAIL: prompt template OS_PHASE1 has unreplaced marker or missing LF",
+    "token_ledger_supplied": false
+  },
+  "input_bindings": {
+    "authorized_rows": {
+      "bytes": 278882,
+      "retention": "PRIVATE_NON_REPOSITORY_TEMP_ROOT_ONLY",
+      "sha256": "c1a8901e8ad0ed4a1d5f15533def5e7ec6f514c61192a516f8f273c191e9a023"
+    },
+    "live_gguf_staging_receipt": {
+      "bytes": 1306,
+      "sha256": "3a3f82d3d376ee418aa1db3f20712dc2cf9d84ef1c147b4fccc331651dce2e73"
+    },
+    "live_model": {
+      "bytes": 18556689568,
+      "file_mode": "0400",
+      "measurement_method": "HELD_FILE_DESCRIPTOR_FSTAT_AND_FULL_SHA256",
+      "sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad"
+    },
+    "model_source_receipt": {
+      "bytes": 1379,
+      "file_mode": "0400",
+      "retention": "REMOTE_STAGING_ROOT_ONLY",
+      "sha256": "3b50b7ec2fc3d4191b19e56391ddcbfdbbdfbc8144a3235e3987ef65f0846ade"
+    },
+    "outcome_blind_extraction_receipt": {
+      "bytes": 1307,
+      "sha256": "446064c3a59b8387deec447c8f65fa7f410cbfc9f7934a21a3ed956f083e1acb"
+    }
+  },
+  "private_source_receipt": {
+    "bytes": 4046,
+    "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+    "sha256": "0588007859d829f57bb0bf24df02424c7fb57ad053b91f914896afe9c753a7a6"
+  },
+  "repository": {
+    "execution_checkout_sha": "6172ee61e336490b75d3a39bc3a8af86a8946c94",
+    "merged_preflight_commit": "eaef8171de537b2d388c2b1310bccc23a92eaed3",
+    "merged_preflight_files_modified_for_execution": false,
+    "merged_preflight_pr": 1179,
+    "remote_staged_public_files": {
+      "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_FREEZE_CONTRACT_V1.json": {
+        "bytes": 9665,
+        "sha256": "67e586c59f6b30beac7cab6e94cf2d176b2a1536a20ac8e9138fc8c7860e98f4"
+      },
+      "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_PROMPT_BUNDLE_V1.json": {
+        "bytes": 5959,
+        "sha256": "03bfbf7e0870f9b385ee8ff9258df9e083fa9baa0813471795b9c80bafd1ebe6"
+      },
+      "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/direct_route_generation_driver_v1.py": {
+        "bytes": 49039,
+        "sha256": "23d0a7a1bfee2060f44e26a418564061d8aca412093ba930351ecf33a913f480"
+      },
+      "development/p1-scienceagentbench-preflight-2026-08-24/MASK_MANIFEST_V1.json": {
+        "bytes": 161005,
+        "sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758"
+      },
+      "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/PROTECTED_PROMPT_FIT_CONTRACT_V1.json": {
+        "bytes": 7211,
+        "sha256": "d029da6f87f2dd10c222f9fcff743c8efe647b6398e94d9b7499fe5d9b5d9074"
+      },
+      "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/protected_prompt_fit_preflight_v1.py": {
+        "bytes": 73080,
+        "sha256": "fd462439a1f9d6e39a87fb1045ae0bfe2356b0de3f72cbb2b022def389f20d86"
+      }
+    }
+  },
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-execution-failure-receipt.v1",
+  "typed_result": {
+    "dynamic_rr_phase1": "CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_AND_EXACT_GGUF_TOKEN_LEDGER_REQUIRED",
+    "production_admissibility": "CANNOT_CHECK",
+    "scientific_authority_delta": "NONE",
+    "static_state_independent_prompt_fit": "CANNOT_CHECK_MERGED_PREFLIGHT_FAILED_BEFORE_RECEIPT",
+    "token_counts": null
+  }
+}

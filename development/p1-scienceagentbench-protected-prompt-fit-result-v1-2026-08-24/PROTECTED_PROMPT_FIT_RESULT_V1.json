@@ -1,0 +1,127 @@
+{
+  "authority": "ADVERSE_BODY_FREE_PREFLIGHT_RESULT_ONLY__NO_GENERATION_EVALUATION_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "body_free_collision_diagnostic": {
+    "affected_task_ids": [
+      "4",
+      "10",
+      "88",
+      "89"
+    ],
+    "collision_location": "CANONICAL_RECOVERED_PACKET_JSON_INSERTED_INTO_MERGED_TEMPLATE",
+    "diagnostic": "ALL_AND_ONLY_DOUBLE_BRACE_COLLISION_PROBES_FAILED_CLOSED",
+    "double_brace_collision_probes_that_passed": 0,
+    "failed_probes": 24,
+    "failed_with_double_brace_collision": 24,
+    "failed_without_double_brace_collision": 0,
+    "interpretation": "POST_FAILURE_DIAGNOSIS_ONLY__DOES_NOT_REPLACE_A_PRODUCTION_PREFLIGHT_RECEIPT",
+    "method": "MERGED_PACKETIZE_BOUND_ROW_AND_MERGED_STATIC_PROMPT_RENDERER__HASH_STATUS_OUTPUT_ONLY",
+    "passed_probes": 1200,
+    "phase_failure_counts": {
+      "NR_PHASE0": 0,
+      "NR_PHASE1": 12,
+      "OS_PHASE1": 12,
+      "RR_PHASE0": 0
+    },
+    "static_prompt_probes": 1224,
+    "tasks_probed": 102
+  },
+  "claim_boundary": {
+    "credentials_opened": false,
+    "evaluation_performed": false,
+    "external_model_api_called": false,
+    "generation_performed": false,
+    "manuscript_or_pdf_changed": false,
+    "merged_preflight_implementation_changed_or_bypassed": false,
+    "pytest_or_ci_run_for_protected_execution": false,
+    "result_is_production_admissibility": false,
+    "result_is_prompt_fit_success": false,
+    "result_is_scientific_evidence": false
+  },
+  "counts": {
+    "authorized_rows": 102,
+    "evaluator_fields_decoded": 0,
+    "gold_fields_decoded": 0,
+    "official_outcomes_opened": 0,
+    "outcome_fields_decoded": 0,
+    "packet_bodies_in_repository": 0,
+    "private_task_row_sources_in_repository": 0,
+    "production_prompt_fit_receipts": 0,
+    "prompt_bodies_in_repository": 0,
+    "rubric_fields_decoded": 0,
+    "tasks_executed": 0
+  },
+  "next_discriminator": "A_SEPARATELY_REVIEWED_ADDITIVE_PREFLIGHT_AMENDMENT_MUST_DISTINGUISH_TEMPLATE_MARKERS_FROM_LITERAL_BRACES_IN_INSERTED_AUTHORIZED_JSON__THEN_A_NEW_PROTECTED_RUN_MUST_EMIT_ITS_OWN_RECEIPT",
+  "observed_execution": {
+    "exit_code": 1,
+    "first_observed_failure": {
+      "attempt": 1,
+      "instance_id": "4",
+      "phase_id": "OS_PHASE1"
+    },
+    "output_exists": false,
+    "production_receipt_emitted": false,
+    "terminal_line": "P1_SAB_PROTECTED_PROMPT_FIT_PREFLIGHT_V1_FAIL: prompt template OS_PHASE1 has unreplaced marker or missing LF"
+  },
+  "receipt_bindings": {
+    "execution_failure_receipt": {
+      "bytes": 4884,
+      "sha256": "d2ff2f880cf4025759263b9bb6eb29bcbc487eb4dbe4bed9b3a176ad15198594"
+    },
+    "live_gguf_staging_receipt": {
+      "bytes": 1306,
+      "sha256": "3a3f82d3d376ee418aa1db3f20712dc2cf9d84ef1c147b4fccc331651dce2e73"
+    },
+    "outcome_blind_extraction_receipt": {
+      "bytes": 1307,
+      "sha256": "446064c3a59b8387deec447c8f65fa7f410cbfc9f7934a21a3ed956f083e1acb"
+    },
+    "prompt_marker_collision_diagnostic": {
+      "bytes": 277147,
+      "sha256": "a65be72d96ecfd65a748cfa9a48f48248250d4a6f234e8340bc81ac5419bcf54"
+    }
+  },
+  "repository": {
+    "execution_checkout_sha": "6172ee61e336490b75d3a39bc3a8af86a8946c94",
+    "merged_preflight_commit": "eaef8171de537b2d388c2b1310bccc23a92eaed3",
+    "merged_preflight_files_modified_for_execution": false,
+    "merged_preflight_pr": 1179,
+    "remote_staged_public_files": {
+      "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_FREEZE_CONTRACT_V1.json": {
+        "bytes": 9665,
+        "sha256": "67e586c59f6b30beac7cab6e94cf2d176b2a1536a20ac8e9138fc8c7860e98f4"
+      },
+      "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_PROMPT_BUNDLE_V1.json": {
+        "bytes": 5959,
+        "sha256": "03bfbf7e0870f9b385ee8ff9258df9e083fa9baa0813471795b9c80bafd1ebe6"
+      },
+      "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/direct_route_generation_driver_v1.py": {
+        "bytes": 49039,
+        "sha256": "23d0a7a1bfee2060f44e26a418564061d8aca412093ba930351ecf33a913f480"
+      },
+      "development/p1-scienceagentbench-preflight-2026-08-24/MASK_MANIFEST_V1.json": {
+        "bytes": 161005,
+        "sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758"
+      },
+      "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/PROTECTED_PROMPT_FIT_CONTRACT_V1.json": {
+        "bytes": 7211,
+        "sha256": "d029da6f87f2dd10c222f9fcff743c8efe647b6398e94d9b7499fe5d9b5d9074"
+      },
+      "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/protected_prompt_fit_preflight_v1.py": {
+        "bytes": 73080,
+        "sha256": "fd462439a1f9d6e39a87fb1045ae0bfe2356b0de3f72cbb2b022def389f20d86"
+      }
+    },
+    "result_lane": "development/p1-scienceagentbench-protected-prompt-fit-result-v1-2026-08-24/"
+  },
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-result.v1",
+  "status": "CANNOT_CHECK_MERGED_PREFLIGHT_FAILED_CLOSED",
+  "typed_outcome": {
+    "all_state_independent_prompts_fit": null,
+    "dynamic_rr_phase1": "CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_AND_EXACT_GGUF_TOKEN_LEDGER_REQUIRED",
+    "exact_gguf_token_ledger_present": false,
+    "production_admissibility": "CANNOT_CHECK",
+    "scientific_authority_delta": "NONE",
+    "state_independent_static_prompt_fit": "CANNOT_CHECK_NO_PRODUCTION_RECEIPT",
+    "token_counts": null
+  }
+}
