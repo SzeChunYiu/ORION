@@ -1,0 +1,165 @@
+{
+  "boundary": {
+    "benchmark_archive_opened": false,
+    "benchmark_entries_or_tasks_opened": false,
+    "credentials_opened_or_retained": false,
+    "official_dockerfile_bytes_modified": false,
+    "official_outcomes_opened": 0,
+    "official_tasks_run": 0,
+    "prediction_gold_evaluator_rubric_or_result_body_opened": false,
+    "scientific_authority_delta": "NONE"
+  },
+  "interpretation": "The failed runs are runtime discriminators, not benchmark outcomes. The pass establishes only a rootless single-map-adapted public base build/inspection/cleanup witness.",
+  "jobs": [
+    {
+      "build_log_normalized_json_bytes": 2704,
+      "build_log_normalized_json_event_count": 20,
+      "build_log_normalized_json_sha256": "0a8148d868e6ee56f183b4dfaac3dbb2827540450ac86587d84e8c4b99825485",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Mount a 27-byte read-only apt configuration that keeps the apt sandbox at the only representable container identity.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533829.json",
+      "receipt_sha256": "9270d5899074260536afd65ba5c6a204c8b8c27dbfc0eca4e78e77907a36bc47",
+      "runtime_discriminator": "The exact apt RUN could not drop to the upstream _apt UID/GID: setgroups(65534) returned EPERM and the HTTP method died.",
+      "slurm_job_id": "3533829",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 87678,
+      "build_log_normalized_json_event_count": 981,
+      "build_log_normalized_json_sha256": "d2af8c7ea196c878523ea81c4b001c50b5acb47c9bb39c7377d36507fcf623d2",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Add a content-bound LD_PRELOAD identity shim for the single-map namespace.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533832.json",
+      "receipt_sha256": "5eec89b048bd4c65258b4553a402a17698a5986bafe1757c62149f8930357792",
+      "runtime_discriminator": "The apt sandbox repair admitted downloads, but package maintainer ownership changes for fontconfig, ssh-agent and related packages returned EINVAL.",
+      "slurm_job_id": "3533832",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 87832,
+      "build_log_normalized_json_event_count": 992,
+      "build_log_normalized_json_sha256": "4b4696baca18371d32dcbe3fb5fc4d778e94e5233afb5fee5276a64c8c2b6f35",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Add a pre-build adapter probe and retain a wider bounded build-event tail before changing semantics.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533835.json",
+      "receipt_sha256": "bbf78493ab37e1557c9717417aee83801cc07d581c14d113da7dc77b8e4704ee",
+      "runtime_discriminator": "The first identity shim still forwarded normalized chown calls into overlay and the same maintainer packages failed.",
+      "slurm_job_id": "3533835",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 87762,
+      "build_log_normalized_json_event_count": 987,
+      "build_log_normalized_json_sha256": "65045ef58399b0314d90d9f3da61b618c25d9d373a15cee70adbc3ef766a5758",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Add fail-closed command-path ownership normalization for maintainers that bypass or sanitize LD_PRELOAD.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533838.json",
+      "receipt_sha256": "35091533f9855d90d2182bd6b2a417d708ea00fbb78bdfb054b407b9ea733283",
+      "runtime_discriminator": "The probe proved LD_PRELOAD and simple root ownership worked, but maintainer chown/chgrp calls still failed inside the apt transaction.",
+      "slurm_job_id": "3533838",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 87552,
+      "build_log_normalized_json_event_count": 972,
+      "build_log_normalized_json_sha256": "1da74d6062b5fa3fb54c1689d5a7a3dd5300147849d7b7898cd9e3866906210c",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Change identity and ownership requests to bounded no-op acknowledgements for the already single-owner filesystem.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533841.json",
+      "receipt_sha256": "f0aa3dcdf13d9648fdcbc0273f6436c5d0b4766e3ddd4eb805c3c9a7db271db1",
+      "runtime_discriminator": "Ownership command wrappers under /usr/local were bypassed by the sanitized package-maintainer PATH.",
+      "slurm_job_id": "3533841",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 87650,
+      "build_log_normalized_json_event_count": 979,
+      "build_log_normalized_json_sha256": "6d1daa813fa794b5eb2c938bdbe53d46ca0e142e73f4ec5f68ca4e55c3e2e5c1",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Mount the same read-only no-op wrapper directly at /usr/bin/chown and /usr/bin/chgrp.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533843.json",
+      "receipt_sha256": "79494d0d1c0b8deab487a509145600a6277cdeeedc38b1302a253113420748a7",
+      "runtime_discriminator": "No-op semantics were correct in the probe, but wrappers remained outside the sanitized package-maintainer PATH.",
+      "slurm_job_id": "3533843",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 763313,
+      "build_log_normalized_json_event_count": 28712,
+      "build_log_normalized_json_sha256": "f12ab0a7eb8d777be346f507ff3dd7417ad7ed488e2e3887efdf592d094f2d7e",
+      "error": {
+        "message": "building at STEP \"RUN adduser --disabled-password --gecos 'dog' nonroot\": while running runtime: exit status 1\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Add an exact-argument, fail-closed nonroot account adapter for the one pinned adduser command.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533844.json",
+      "receipt_sha256": "7f96438343b537691a5bf9ca38385ce45707c3c2a8566c79331c846b41f48f99",
+      "runtime_discriminator": "Direct ownership mounts allowed apt, Conda and the large official pip install to finish; the final exact adduser step failed on chown 1000:1000 /home/nonroot.",
+      "slurm_job_id": "3533844",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 86660,
+      "build_log_normalized_json_event_count": 988,
+      "build_log_normalized_json_sha256": "0929b798f5f8c8a0ca2de4db9b7db5d3a174b2987768ffa35502d78bab0a7c0b",
+      "error": {
+        "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+        "type": "BuildError"
+      },
+      "mechanism_specific_repair_to_next_job": "Move only that adapter to /usr/local/sbin so sanitized package scripts use the upstream adduser while the final Dockerfile shell resolves the exact-command adapter.",
+      "node_local_job_root_removed": true,
+      "receipt_path": "failure-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533851.json",
+      "receipt_sha256": "307213641bb5e217a36e9515ae982c574eaa225bb15b54c59a899094f732ea68",
+      "runtime_discriminator": "Mounting the exact-command adduser adapter at /usr/sbin/adduser also intercepted an openssh-client maintainer invocation and correctly refused unexpected arguments.",
+      "slurm_job_id": "3533851",
+      "status": "FAIL"
+    },
+    {
+      "build_log_normalized_json_bytes": 672301,
+      "build_log_normalized_json_event_count": 22232,
+      "build_log_normalized_json_sha256": "5bc54b20e286379b87a214c7c7dab6b87014cce965eea324c6e13e8845de589e",
+      "node_local_job_root_removed": true,
+      "receipt_path": "SLURM_OFFICIAL_BASE_RECEIPT_V1.json",
+      "receipt_sha256": "8117d9f4f1c20c26f4d15b8544fdb9c75bc856b01edf2dda31e84efaf27f9452",
+      "resolution": "Exact 1,251-byte Dockerfile rebuilt after cleanup-gate hardening; hostile cleanup regressions pass and container, built image, resolved base image, residual image list, runtime socket root and node-local job root were all cleared.",
+      "slurm_job_id": "3533961",
+      "status": "PASS"
+    }
+  ],
+  "official_dockerfile_sha256": "08045fc892652a6835adb808ee6db4dc5715ae64f65878eb0d0140e7d8c29a15",
+  "schema": "orion.p1.sab.lunarc.official-public-base-failure-atlas.v1",
+  "superseded_cleanup_guard_witness": {
+    "disposition": "receipt facts retained; harness repaired and whole smoke rerun before integration",
+    "receipt_path": "superseded-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533859.json",
+    "receipt_sha256": "e52765de0931dd35f0a71d26b7888f861d0d20422b89aacbd6dcbdd1a198d8c4",
+    "review_finding": "residual image sweep exception could retain an initially empty remaining_image_ids list and still satisfy the V1 cleanup predicate",
+    "slurm_job_id": "3533859",
+    "status": "PASS_RECEIPT_SUPERSEDED_BY_FAIL_CLOSED_HARNESS_REVIEW"
+  },
+  "terminal": "P1_SAB_LUNARC_OFFICIAL_PUBLIC_BASE_FAILURE_CHAIN_BOUND__8_RUNTIME_FAILURES_AND_1_SUPERSEDED_PASS_REPAIRED_TO_REVIEWED_PASS__ZERO_TASKS_RUN__ZERO_OUTCOMES_OPENED"
+}

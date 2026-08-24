@@ -1,0 +1,50 @@
+{
+  "boundary": {
+    "benchmark_archive_opened": false,
+    "benchmark_entry_or_task_body_opened": false,
+    "credential_opened_or_retained": false,
+    "gold_evaluator_rubric_or_result_body_opened": false,
+    "official_outcomes_opened": 0,
+    "official_tasks_run": 0,
+    "prediction_body_opened": false,
+    "public_base_dockerfile_body_opened": true,
+    "scientific_authority_delta": "NONE"
+  },
+  "cannot_check": {
+    "full_benchmark_execution": "CANNOT_CHECK_ZERO_TASKS_RUN",
+    "official_instance_and_evaluator_runtime": "CANNOT_CHECK_BASE_ONLY",
+    "upstream_dependency_immutability": "CANNOT_CHECK_DOCKERFILE_CONTAINS_UNHASHED_NETWORK_DEPENDENCIES"
+  },
+  "created_at_utc": "2026-08-24T10:49:57.650977+00:00",
+  "orion_binding": {
+    "integration_base_commit": "adf76040815e71218776793e2f1a7d1afdb6e9d2",
+    "synthetic_runtime_merge_pr": 1112,
+    "synthetic_runtime_predecessor_path": "development/p1-scienceagentbench-lunarc-runtime-v1-2026-08-24"
+  },
+  "rendered_base_dockerfile": {
+    "arch_argument": "x86_64",
+    "bytes": 1251,
+    "conda_arch_rendered": "x86_64",
+    "extraction": "Python AST literal evaluation followed by official str.format arguments",
+    "leading_newline": true,
+    "platform_argument": "linux/x86_64",
+    "retained_path": "OFFICIAL_BASE_DOCKERFILE_V1",
+    "sha256": "08045fc892652a6835adb808ee6db4dc5715ae64f65878eb0d0140e7d8c29a15",
+    "symbol": "_DOCKERFILE_BASE",
+    "trailing_newline_count": 2
+  },
+  "schema": "orion.p1.sab.public-base-source-binding.v1",
+  "source_file": {
+    "bytes": 5851,
+    "git_blob_sha1_verified_from_downloaded_bytes": true,
+    "only_public_harness_source_opened": true,
+    "sha256": "b0122b82a64165389a134216dffda8d6e9d3ff8bfc3ebb3795a00d54f2194b25"
+  },
+  "upstream": {
+    "commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d",
+    "git_blob_sha1": "d0e11f6a2beb89080a242eb77a9f211dabf74069",
+    "path": "evaluation/harness/dockerfiles.py",
+    "repository": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+    "retrieval": "GitHub Contents API at the exact commit"
+  }
+}
