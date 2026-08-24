@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed focused validator for the bounded direct-seed repair packet."""
+"""Fail-closed focused validator for the bounded direct-seed witness packet."""
 
 import hashlib
 import json
@@ -13,6 +13,11 @@ TERMINAL = (
     "BETWEEN_SEED_SENSITIVITY__CACHE_N_ZERO__PROMPT_N_CONSTANT__JOB_3534123__"
     "COST_CANNOT_CHECK__NO_BENCHMARK_OR_PROTECTED_INPUTS"
 )
+NON_COMPOSABILITY_STATUSES = {
+    "27764_TOKEN_CACHE_OFF_REPLAY": "NOT_RUN",
+    "PR1130_EXACT_REPLAY_FIXTURE_DIRECT_ROUTE": "NOT_RUN",
+    "PRODUCTION_ADMISSIBILITY": "NOT_ESTABLISHED",
+}
 
 
 def require(condition, message):
@@ -49,6 +54,16 @@ def verify_remote_manifest(directory, manifest_name):
         path = directory / relative
         require(path.is_file(), "manifest file missing: " + str(path))
         require(digest_path(path) == expected, "manifest hash mismatch: " + str(path))
+
+
+def sacct_rows(path):
+    lines = path.read_text().splitlines()
+    header = lines[0].split("|")
+    rows = {}
+    for line in lines[1:]:
+        values = line.split("|")
+        rows[values[0]] = dict(zip(header, values))
+    return rows
 
 
 def verify_source_canonicalization():
@@ -146,6 +161,10 @@ def verify_condition(job_dir, name, cache_prompt, expected_cache, expected_promp
 
 def main():
     source = verify_source_canonicalization()
+    source_request = load(ROOT / "source-pr1130/replay_seed101_1.request.json")
+    require(source_request["options"]["temperature"] == 0.8, "PR1130 temperature")
+    require(source_request["options"]["num_predict"] == 96, "PR1130 token cap")
+    require(source_request["options"]["num_ctx"] == 32768, "PR1130 context size")
     require((ROOT / "OLLAMA_V0.32.14_LLAMA_CPP_VERSION.txt").read_text() == "b10434\n", "llama.cpp version file")
     runtime = load(ROOT / "RUNTIME_SOURCE_PIN_V1.json")
     require(runtime["ollama_github_tag_commit"] == "d67ad83426633195089509347ffd4fe795120198", "Ollama tag")
@@ -164,8 +183,16 @@ def main():
     require(load(cancelled / "primary_cache_off/CONDITION_RECEIPT_V1.json")["status"] == "PASS_CACHE_OFF_DETERMINISTIC_AND_SEED_SENSITIVE", "partial CPU receipt retained")
     cancelled_energy = load(cancelled / "GPU_ENERGY_RECEIPT_POSTHOC_V1.json")
     require(cancelled_energy["billed_usd"] is None and cancelled_energy["max_memory_used_mib"] == 1255.0, "cancelled telemetry")
+    cancelled_sacct = sacct_rows(cancelled / "SACCT_V1.txt")
+    require("ConsumedEnergyRaw" not in cancelled_sacct["3534108"], "cancelled top-level energy must be unreported")
+    require(cancelled_sacct["3534108.batch"]["ConsumedEnergyRaw"] == "0", "cancelled batch energy")
+    require(cancelled_sacct["3534108.extern"]["ConsumedEnergyRaw"] == "0", "cancelled extern energy")
 
     require("3534123|p1_sab_seed_v1|gpua40i|cg15|COMPLETED|00:01:03|0:0|" in (result / "SACCT_V1.txt").read_text(), "result sacct")
+    result_sacct = sacct_rows(result / "SACCT_V1.txt")
+    require(result_sacct["3534123"]["ConsumedEnergyRaw"] == "0", "result top-level energy")
+    require(result_sacct["3534123.batch"]["ConsumedEnergyRaw"] == "0", "result batch energy")
+    require(result_sacct["3534123.extern"]["ConsumedEnergyRaw"] == "0", "result extern energy")
     job = load(result / "JOB_RECEIPT_V1.json")
     require(job["status"] == "PASS_PRIMARY_CACHE_OFF_DETERMINISTIC_AND_SEED_SENSITIVE", "result job status")
     require(job["slurm_job_id"] == "3534123", "result job id")
@@ -185,6 +212,11 @@ def main():
     require(primary["gates"]["between_seed_token_array_sensitivity"] is True, "primary sensitivity")
     require(primary["records"][0]["token_array_sha256"] == "35ea602a3d475ac1a522d066969b89c26532b5f2504e0409e805ad9153f75659", "seed 101 token hash")
     require(primary["records"][1]["token_array_sha256"] == "10fa4f4e19f20c3a957b25bd572f293a35227972f59901656701d6f901791e8f", "seed 202 token hash")
+    direct_request = load(result / "primary_cache_off/request_01_seed_101.json")
+    require(direct_request["temperature"] == 0.2, "direct temperature")
+    require(direct_request["n_predict"] == 128, "direct token cap")
+    geometry = (result / "FROZEN_SERVER_GEOMETRY.txt").read_text()
+    require("ctx_size=4096\n" in geometry, "direct context size")
 
     negative = verify_condition(result, "negative_control_cache_on", True, [0, 69, 69, 69, 69, 69], [70, 1, 1, 1, 1, 1])
     require(negative["status"] == "OBSERVED_CACHE_ON_NEGATIVE_CONTROL", "negative status")
@@ -201,7 +233,7 @@ def main():
     require(cleanup["du_bytes_before_cleanup"] == 18556938228, "cleanup bytes")
 
     top = load(ROOT / "DIRECT_SEED_REPAIR_RECEIPT_V1.json")
-    require(top["status"] == "PASS_BOUNDED_DIRECT_COMPLETION_CACHE_OFF_SEED_REPAIR", "top status")
+    require(top["status"] == "PASS_BOUNDED_DIRECT_COMPLETION_CACHE_OFF_SEED_WITNESS", "top status")
     require(top["terminal"] == TERMINAL, "top terminal")
     require(top["source_adverse_evidence"]["canonicalization_status"] == source["status"], "top source")
     require(top["jobs"]["3534108"]["state"] == "CANCELLED by 6350", "top cancelled job")
@@ -216,7 +248,62 @@ def main():
     require(top["scientific_authority_delta"] == "NONE", "top authority")
     require(top["resources"]["slurm_top_level_gpu_allocation_elapsed_seconds_total"] == 212, "top resource seconds")
     require(top["resources"]["slurm_batch_elapsed_seconds_total"] == 243, "batch seconds")
+    consumed = top["resources"]["slurm_consumed_energy_raw"]
+    require(consumed["3534108"] == {
+        "top_level": None,
+        "top_level_status": "CANNOT_CHECK",
+        "batch_step": 0,
+        "extern_step": 0,
+    }, "cancelled consumed energy accounting")
+    require(consumed["3534123"] == {
+        "top_level": 0,
+        "top_level_status": "OBSERVED",
+        "batch_step": 0,
+        "extern_step": 0,
+    }, "result consumed energy accounting")
+    require("slurm_consumed_energy_raw_both_jobs" not in top["resources"], "aggregated consumed energy must be absent")
     require(math.isclose(top["resources"]["sample_integrated_energy_wh_total"], 1.2592378833333315, rel_tol=0, abs_tol=1e-15), "energy total")
+    non_composability = top["non_composability"]
+    for field, expected in NON_COMPOSABILITY_STATUSES.items():
+        require(non_composability[field] == expected, field)
+    require(non_composability["WITNESS_COMPOSITION"] == "FORBIDDEN", "witness composition")
+    require(non_composability["direct_witness"] == {
+        "route": "llama-server /completion",
+        "prompt_tokens": 70,
+        "temperature": 0.2,
+        "token_cap": 128,
+        "context_size": 4096,
+    }, "direct witness parameters")
+    require(non_composability["pr1130_adverse_witness"] == {
+        "route": "Ollama /api/generate",
+        "prompt_tokens": 42,
+        "temperature": 0.8,
+        "token_cap": 96,
+        "context_size": 32768,
+    }, "PR1130 witness parameters")
+    require(non_composability["long_context_witness"] == {
+        "prompt_tokens": 27764,
+        "cache_off_replay": "NOT_RUN",
+    }, "long-context witness parameters")
+    require(top["cleanup_evidence_boundary"] == {
+        "retained_receipt_establishes": [
+            "du_bytes_before_cleanup",
+            "file_bytes_removed",
+            "files_removed",
+            "remote_root_deleted",
+            "remote_root_absent_after_cleanup",
+        ],
+        "post_termination_gguf_rehash": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT",
+        "contemporaneous_process_absence": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT",
+    }, "cleanup evidence boundary")
+    require(all(status in handoff for status in [
+        "27764_TOKEN_CACHE_OFF_REPLAY=NOT_RUN",
+        "PR1130_EXACT_REPLAY_FIXTURE_DIRECT_ROUTE=NOT_RUN",
+        "PRODUCTION_ADMISSIBILITY=NOT_ESTABLISHED",
+        "WITNESS_COMPOSITION=FORBIDDEN",
+    ]), "handoff non-composability statuses")
+    require("no active job, no matching process" not in handoff, "unsupported cleanup process claim")
+    require("rehashed after terminating" not in handoff, "unsupported cleanup rehash claim")
     require(top["artifacts"]["source_canonicalization_sha256"] == digest_path(ROOT / "SOURCE_CANONICALIZATION_V1.json"), "top source hash")
     require(top["artifacts"]["remote_job_3534108_manifest_sha256"] == digest_path(cancelled / "REMOTE_PARTIAL_SHA256SUMS"), "top cancelled manifest")
     require(top["artifacts"]["remote_job_3534123_manifest_sha256"] == digest_path(result / "REMOTE_RUN_SHA256SUMS"), "top result manifest")
@@ -228,4 +315,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

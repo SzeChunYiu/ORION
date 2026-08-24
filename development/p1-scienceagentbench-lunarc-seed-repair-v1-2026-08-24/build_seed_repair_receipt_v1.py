@@ -31,7 +31,7 @@ def main():
 
     receipt = {
         "schema": "orion.p1.scienceagentbench.lunarc-direct-seed-repair.v1",
-        "status": "PASS_BOUNDED_DIRECT_COMPLETION_CACHE_OFF_SEED_REPAIR",
+        "status": "PASS_BOUNDED_DIRECT_COMPLETION_CACHE_OFF_SEED_WITNESS",
         "terminal": terminal,
         "source_adverse_evidence": {
             "source_pr": 1130,
@@ -103,7 +103,20 @@ def main():
             "maximum_vram_mib_result_job": result_job["gpu_telemetry"]["max_memory_used_mib"],
             "result_job_gpu": result_job["gpu_telemetry"]["gpu_name"],
             "result_job_gpu_uuid": result_job["gpu_telemetry"]["gpu_uuid"],
-            "slurm_consumed_energy_raw_both_jobs": 0,
+            "slurm_consumed_energy_raw": {
+                "3534108": {
+                    "top_level": None,
+                    "top_level_status": "CANNOT_CHECK",
+                    "batch_step": 0,
+                    "extern_step": 0,
+                },
+                "3534123": {
+                    "top_level": 0,
+                    "top_level_status": "OBSERVED",
+                    "batch_step": 0,
+                    "extern_step": 0,
+                },
+            },
         },
         "cost": {
             "billed_usd": None,
@@ -111,6 +124,41 @@ def main():
             "gpu_seconds_and_sampled_energy_are_not_currency": True,
         },
         "cleanup": cleanup,
+        "cleanup_evidence_boundary": {
+            "retained_receipt_establishes": [
+                "du_bytes_before_cleanup",
+                "file_bytes_removed",
+                "files_removed",
+                "remote_root_deleted",
+                "remote_root_absent_after_cleanup",
+            ],
+            "post_termination_gguf_rehash": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT",
+            "contemporaneous_process_absence": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT",
+        },
+        "non_composability": {
+            "27764_TOKEN_CACHE_OFF_REPLAY": "NOT_RUN",
+            "PR1130_EXACT_REPLAY_FIXTURE_DIRECT_ROUTE": "NOT_RUN",
+            "PRODUCTION_ADMISSIBILITY": "NOT_ESTABLISHED",
+            "WITNESS_COMPOSITION": "FORBIDDEN",
+            "direct_witness": {
+                "route": "llama-server /completion",
+                "prompt_tokens": 70,
+                "temperature": 0.2,
+                "token_cap": 128,
+                "context_size": 4096,
+            },
+            "pr1130_adverse_witness": {
+                "route": "Ollama /api/generate",
+                "prompt_tokens": 42,
+                "temperature": 0.8,
+                "token_cap": 96,
+                "context_size": 32768,
+            },
+            "long_context_witness": {
+                "prompt_tokens": 27764,
+                "cache_off_replay": "NOT_RUN",
+            },
+        },
         "artifacts": {
             "source_canonicalization_sha256": digest(packet / "SOURCE_CANONICALIZATION_V1.json"),
             "remote_job_3534108_manifest_sha256": digest(packet / "remote-job-3534108/REMOTE_PARTIAL_SHA256SUMS"),
@@ -120,9 +168,10 @@ def main():
         "forbidden_inputs": result_job["forbidden_inputs"],
         "limitations": [
             "Synthetic nonbenchmark infrastructure witness only; no protected task, outcome, gold program, evaluator, rubric, or credential was opened.",
-            "The pass discriminates one direct llama-server cache-off route on one A40 and one fixture; it does not erase or rewrite PR #1130's adverse Ollama-route evidence.",
+            "The direct 70-token, temperature-0.2, cap-128, context-4096 witness is not the PR #1130 42-token Ollama, temperature-0.8, cap-96, context-32768 witness and is not the 27,764-token long-context witness.",
+            "The PR #1130 exact replay fixture was not run through the direct route; the 27,764-token cache-off replay was not run; these witnesses must not be composed and no cause of PR #1130's adverse result is established.",
             "Cache-on negative control showed replay failure for seed 101 after cache reuse; cache-enabled direct inference is not promoted.",
-            "No official ScienceAgentBench execution, task-quality, superiority, manuscript, or publication claim follows from this receipt.",
+            "Production admissibility is not established; no official ScienceAgentBench execution, task-quality, superiority, manuscript, or publication claim follows from this receipt.",
         ],
         "scientific_authority_delta": "NONE",
     }
