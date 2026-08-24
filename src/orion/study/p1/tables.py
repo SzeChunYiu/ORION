@@ -437,14 +437,14 @@ def _metric_applicable(scope: str, metric: str) -> bool:
 
 def _rate_block(rate, *, label: str, scope: str = SCOPE_ALL) -> dict:
     payload = {"metric": label, **rate.as_dict(), "interval": None}
+    if not _metric_applicable(scope, label):
+        payload["status"] = STATUS_NOT_APPLICABLE
+        payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
+        return payload
     if rate.n > 0 and rate.unit == "case":
         payload["interval"] = stats.wilson_interval(rate.successes, rate.n).as_dict()
     elif rate.n == 0:
-        if _metric_applicable(scope, label):
-            payload["status"] = STATUS_CANNOT_CHECK
-        else:
-            payload["status"] = STATUS_NOT_APPLICABLE
-            payload["reason"] = f"{label} is outside its frozen applicability domain for scope {scope}"
+        payload["status"] = STATUS_CANNOT_CHECK
     return payload
 
 

@@ -25,6 +25,21 @@ def _load_module():
     return module
 
 
+def test_committed_inventory_has_no_duplicate_json_object_keys() -> None:
+    def reject_duplicates(pairs):
+        value = {}
+        for key, item in pairs:
+            if key in value:
+                raise ValueError(f"duplicate JSON object key: {key}")
+            value[key] = item
+        return value
+
+    json.loads(
+        INVENTORY_PATH.read_text(encoding="utf-8"),
+        object_pairs_hook=reject_duplicates,
+    )
+
+
 def test_committed_inventory_matches_derived() -> None:
     module = _load_module()
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
@@ -295,7 +310,8 @@ def test_the_precision_fix_lost_no_classification() -> None:
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 202, classified
+    # Current source derives 204 classified emitters; keep this exact, not a lower bound.
+    assert sum(classified.values()) == 204, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
