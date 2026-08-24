@@ -23,9 +23,7 @@ import dataclasses
 import importlib
 import pathlib
 
-RUNNER = (
-    pathlib.Path(__file__).resolve().parents[3] / "src/orion/study/p2/runner.py"
-)
+P2 = pathlib.Path(__file__).resolve().parents[3] / "src/orion/study/p2"
 
 #: Constructions known to be stale, with why they are not fixed here.
 KNOWN_OPEN = {
@@ -38,11 +36,20 @@ KNOWN_OPEN = {
 
 
 def _stale() -> dict[str, dict[str, list[str]]]:
-    tree = ast.parse(RUNNER.read_text())
+    """Every module in the package, not just runner.py.
+
+    Scoping this to one file was itself the bug's shape: the same rename had
+    left callers behind in baselines.py and offline_systems.py, and a
+    runner-only audit reported clean while two more sites still raised.
+    """
     systems = importlib.import_module("orion.study.p2.systems")
     known = {n: c for n, c in vars(systems).items() if dataclasses.is_dataclass(c)}
     found: dict[str, dict[str, list[str]]] = {}
-    for node in ast.walk(tree):
+    nodes = []
+    for path in sorted(P2.glob("*.py")):
+        for node in ast.walk(ast.parse(path.read_text())):
+            nodes.append((path.name, node))
+    for module, node in nodes:
         if not isinstance(node, ast.Call) or not isinstance(node.func, ast.Name):
             continue
         cls = known.get(node.func.id)
@@ -58,7 +65,11 @@ def _stale() -> dict[str, dict[str, list[str]]]:
         passed = {kw.arg for kw in node.keywords if kw.arg}
         unknown, missing = sorted(passed - fields), sorted(required - passed)
         if unknown or missing:
-            found[node.func.id] = {"unknown": unknown, "missing": missing}
+            found[node.func.id] = {
+                "unknown": unknown,
+                "missing": missing,
+                "module": module,
+            }
     return found
 
 
@@ -72,9 +83,9 @@ def test_no_new_stale_construction_appears() -> None:
 
 
 def test_read_and_stop_paths_are_migrated() -> None:
-    """The paths P2's own measurements read: reads and stops."""
+    """The paths P2's own measurements read: reads, stops and reports."""
     stale = _stale()
-    for name in ("ReadOutcome", "StopDecision", "ResourceUse"):
+    for name in ("ReadOutcome", "StopDecision", "ResourceUse", "SystemReport"):
         assert name not in stale, f"{name} is stale: {stale.get(name)}"
 
 

@@ -290,7 +290,7 @@ def _explore_citations(ctx: _RunContext) -> bool:
 def _report(ctx: _RunContext, *, complete: bool, note: str) -> SystemReport:
     ctx.reread_for_new_question()
     return SystemReport(
-        claimed_relevant_content_identities=tuple(sorted(ctx.claims)),
+        claimed_relevant_merged_source_ids=tuple(sorted(ctx.claims)),
         task_closed_as_complete=complete,
         abstained=False,
         notes=note,
