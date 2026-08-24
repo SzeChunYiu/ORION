@@ -785,6 +785,25 @@ def test_observation_boolean_seed_cannot_alias_frozen_integer_seed() -> None:
     assert any("seed_not_nonnegative_integer" in item for item in receipt.blockers)
 
 
+def test_record_identity_is_structured_not_delimiter_concatenated() -> None:
+    first = replace(_observations()[0], task_id="a", split_id="b|c")
+    second = replace(_observations()[0], task_id="a|b", split_id="c")
+    assert first.record_id != second.record_id
+    assert len(first.record_id) == len(second.record_id) == 64
+
+
+def test_duplicate_gold_task_registry_cannot_pass_set_coverage() -> None:
+    freeze = _freeze(
+        gold=replace(
+            _freeze().gold,
+            task_ids=("task-1", "task-2", "task-2"),
+        )
+    )
+    receipt = _run(freeze=freeze)
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert "gold_task_ids_duplicated" in receipt.blockers
+
+
 def test_post_outcome_freeze_cannot_check() -> None:
     receipt = _run(result_created_at_utc="2026-08-24T09:59:59+00:00")
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK

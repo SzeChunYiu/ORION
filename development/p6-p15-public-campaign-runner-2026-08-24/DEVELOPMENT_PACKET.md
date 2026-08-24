@@ -81,6 +81,9 @@ coerce. Budgets, usage, seeds, counts, intervals, and costs reject Booleans as
 numbers and reject non-finite numeric values.
 Enum fields and observation seeds also require exact runtime types, preventing
 string roles and Python's `True == 1` equality from satisfying frozen identities.
+Execution-record identities are SHA-256 hashes of canonical structured
+`[task, split, arm, seed]` arrays rather than delimiter-concatenated strings;
+source, split, inference-unit, execution, and gold registries reject duplicates.
 
 ## Saturation-basis challenge
 

@@ -161,7 +161,12 @@ class Observation:
 
     @property
     def record_id(self) -> str:
-        return f"{self.task_id}|{self.split_id}|{self.arm_id}|{self.seed}"
+        structured_identity = json.dumps(
+            [self.task_id, self.split_id, self.arm_id, self.seed],
+            separators=(",", ":"),
+            ensure_ascii=False,
+        ).encode("utf-8")
+        return hashlib.sha256(structured_identity).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -507,6 +512,8 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         blockers.append("gold_artifact_sha256_invalid")
     if not _valid_sha256(freeze.gold.label_schema_sha256):
         blockers.append("gold_label_schema_sha256_invalid")
+    if len(freeze.gold.task_ids) != len(set(freeze.gold.task_ids)):
+        blockers.append("gold_task_ids_duplicated")
     if set(freeze.gold.task_ids) != set(source_tasks):
         blockers.append("gold_task_coverage_mismatch")
     if not isinstance(freeze.custody.mode, CustodyMode):
@@ -559,6 +566,9 @@ def _observation_blockers(
         (item.task_id, item.split_id, item.arm_id, item.seed) for item in observations
     ]
     observed = set(observed_keys)
+    record_ids = [item.record_id for item in observations]
+    if len(record_ids) != len(set(record_ids)):
+        blockers.append("execution_record_ids_duplicated")
     if len(observed_keys) != len(observed):
         blockers.append("execution_records_duplicated")
     if observed != expected:
