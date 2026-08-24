@@ -1,0 +1,313 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.preflight-receipt.v1",
+  "receipt_id": "P1_SAB_PREFLIGHT_20260824_V1",
+  "authority": "SOURCE_LICENSE_ACCESS_EVALUATOR_AND_PROTOCOL_PREFLIGHT_ONLY__NO_BENCHMARK_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "audited_at": "2026-08-24T09:19:26Z",
+  "orion_binding": {
+    "repository": "https://github.com/SzeChunYiu/ORION",
+    "issue": "https://github.com/SzeChunYiu/ORION/issues/1086",
+    "p1_gate": {
+      "population": "full verified ScienceAgentBench benchmark",
+      "effect": "solve-rate gain >= 0.08 over strongest arm with paired 95% CI lower bound > 0",
+      "discipline": "no discipline loses > 0.05",
+      "cost": "<= 1.5x",
+      "evaluator": "official evaluator passes"
+    },
+    "claim_boundary": "A successful future run can test bounded utility on real scientific code tasks. The ORION-authored mask and causal account cannot establish hidden-formulation responsibility, typed responsibility-to-authority licensing, protected custody, independent adjudication or autonomous-science superiority.",
+    "audit_start_base_commit": "9805f309b923e17a68905e004e7898733197c7b6",
+    "integration_base_commit": "3616f0f1a69b571fcbf85fa3093aa050765c7fc9"
+  },
+  "inspection_boundary": {
+    "public_annotation_inputs_opened": true,
+    "annotation_contents_redistributed": false,
+    "sharepoint_landing_metadata_opened": true,
+    "zip_central_directory_metadata_opened": true,
+    "gold_program_bodies_opened": false,
+    "evaluation_program_bodies_opened": false,
+    "scoring_rubric_bodies_opened": false,
+    "gold_result_bodies_opened": false,
+    "official_or_historical_task_outcomes_opened": false,
+    "tasks_executed": 0,
+    "large_data_added_to_orion": false,
+    "archive_header_bytes_opened": 1,
+    "zip_file_entry_data_opened": false
+  },
+  "sources": {
+    "archival_paper": {
+      "title": "ScienceAgentBench: Toward Rigorous Assessment of Language Agents for Data-Driven Scientific Discovery",
+      "record": "https://arxiv.org/abs/2410.05080v3",
+      "version": "v3",
+      "updated": "2025-03-31T14:39:44Z",
+      "venue_note": "ICLR 2025",
+      "record_snapshot_sha256": "8cfa8c815a2e75d001057def2bcfd376712207f9ce9b44c050fce11c41619d60",
+      "primary_record_claims": {
+        "tasks": 102,
+        "papers": 44,
+        "disciplines": 4,
+        "attempts_in_reported_evaluation": 3
+      }
+    },
+    "official_code": {
+      "url": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+      "commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d",
+      "commit_date": "2026-07-18T05:25:41Z",
+      "tree": "7c70f7f9a0416dc03ebd1641a51089ee7d04e7b7",
+      "default_branch": "main",
+      "github_repository_size_kib": 180224,
+      "current_recursive_tree_entries": 37,
+      "current_tree_blob_count": 31,
+      "current_tree_blob_bytes": 210191,
+      "tree_listing_sha256": "97f80ef1e4d3553a14f3a057eaa63f05489de4f580029ed9bb68875b9a300cc3",
+      "readme": {
+        "bytes": 12039,
+        "sha256": "0696fe4ffa234ea30346901d9d61263d20d548e58810049c873b2049ac1a04b1"
+      },
+      "license": {
+        "bytes": 1088,
+        "sha256": "93b43d692b033b76129504448695bfe76ef22d18b11e51352bfab4b5622e5aaa",
+        "spdx": "MIT"
+      },
+      "benchmark_directory": "placeholder only in the current Git tree; full benchmark is an external SharePoint artifact"
+    },
+    "verified_annotations": {
+      "url": "https://huggingface.co/datasets/osunlp/ScienceAgentBench",
+      "revision": "9c6e96c9e74572e979b0930ee735041cef528cb7",
+      "last_modified": "2026-05-01T15:07:13Z",
+      "access": "public, not gated",
+      "card_license": "cc-by-4.0 with per-task exceptions stated in the card",
+      "split": "verified",
+      "tasks": 102,
+      "domains": {
+        "Bioinformatics": 27,
+        "Computational Chemistry": 20,
+        "Geographical Information Science": 27,
+        "Psychology and Cognitive science": 28
+      },
+      "source_repositories": 30,
+      "parquet": {
+        "path": "data/verified-00000-of-00001.parquet",
+        "bytes": 129086,
+        "logical_dataset_bytes_reported": 280489,
+        "sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147",
+        "lfs_oid_sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147"
+      },
+      "card": {
+        "bytes": 5705,
+        "sha256": "e482e8a8662d84a991ea473bc7934e945364c489d2c49396bc5979a6f674c9d0"
+      },
+      "validation_csv": {
+        "bytes": 278626,
+        "sha256": "7f490f17f721a9c7e9415d3608a1a37d1a5315a26862cf556e3096ac4062face",
+        "not_admissible_for_p1_run": true
+      },
+      "verified_vs_validation_input_audit": {
+        "same_102_instance_ids": true,
+        "changed_task_inst_count": 9,
+        "changed_instance_ids": [
+          "12",
+          "26",
+          "29",
+          "31",
+          "32",
+          "34",
+          "35",
+          "67",
+          "92"
+        ],
+        "other_field_changes": 0
+      }
+    },
+    "full_verified_artifact": {
+      "landing_url": "https://buckeyemailosu-my.sharepoint.com/:u:/g/personal/chen_8336_osu_edu/IQB870QrmuqwS5Ck33cHpJfkAVt3LsMeariREIwP3AT7byA?e=3ckueC",
+      "filename": "benchmark_verified.zip",
+      "modified": "2026-04-29T23:39:42Z",
+      "sharepoint_unique_id": "2b44ef7c-ea9a-4bb0-90a4-df7707a497e4",
+      "etag": "{2B44EF7C-EA9A-4BB0-90A4-DF7707A497E4},3",
+      "server_reported_stream_hash": "0x02E6A689FF5119810547A020C7A4D14CCD76DC4144",
+      "stream_hash_algorithm": "NOT_ASSERTED",
+      "download_access_probe": {
+        "status": 206,
+        "requested_range": "bytes=0-0",
+        "content_range": "bytes 0-0/1769478786",
+        "first_byte_hex": "50",
+        "content_type": "application/x-zip-compressed"
+      },
+      "archive_bytes": 1769478786,
+      "archive_payload_sha256": null,
+      "archive_payload_sha256_status": "CANNOT_CHECK_NOT_DOWNLOADED",
+      "central_directory": {
+        "offset": 1769361388,
+        "bytes": 117376,
+        "sha256": "2bd7f1a85ce55654f50af5cb7461ef17a2c913596f1def28b205f0325539567e",
+        "entries": 955,
+        "files": 845,
+        "directories": 110,
+        "encrypted_file_entries": 845,
+        "compressed_payload_bytes": 1769241952,
+        "uncompressed_bytes": 4071815117,
+        "second_level_summary": {
+          "benchmark/datasets": [
+            519,
+            1751440858,
+            4034965105
+          ],
+          "benchmark/eval_programs": [
+            226,
+            17643071,
+            36431050
+          ],
+          "benchmark/gold_programs": [
+            104,
+            92641,
+            228113
+          ],
+          "benchmark/scoring_rubrics": [
+            103,
+            64341,
+            180550
+          ]
+        }
+      },
+      "body_downloaded": false,
+      "orion_retention_rule": "Never add ZIP, extracted datasets, gold programs, evaluator programs, rubrics, gold results, container layers or raw run outputs to ORION. Retain IDs, terms, hashes, byte counts and bounded result receipts only."
+    }
+  },
+  "license_and_redistribution": {
+    "code": {
+      "scope": "official GitHub code",
+      "spdx": "MIT",
+      "status": "VERIFIED_AT_PINNED_COMMIT"
+    },
+    "default_tasks": {
+      "instance_count": 96,
+      "declared_license": "CC-BY-4.0",
+      "status": "DECLARED_BY_OFFICIAL_DATASET_CARD_AND_README"
+    },
+    "exceptions": [
+      {
+        "instance_ids": [
+          "3"
+        ],
+        "source": "hackingmaterials/matminer",
+        "pinned_revision": "8ddb18c74064ab3668d7b5aed7c360abdfdae5de",
+        "license_blob": "5e152337d9027a6882b866061839c226d9001200",
+        "license_text_sha256": "e4df766c6937dad4a0f0646e2afbbc1689aacb3a0c30db687acbd86f73083cc4",
+        "github_spdx": "NOASSERTION",
+        "treatment": "retain exact upstream notice/conditions; do not relabel CC-BY-4.0"
+      },
+      {
+        "instance_ids": [
+          "32",
+          "46",
+          "53",
+          "54",
+          "84"
+        ],
+        "source": "rasterio/rasterio",
+        "pinned_revision": "9709d1fce53b8c11ace1741ef25cfe427b197fb8",
+        "license_blob": "66a2a4ba461238a9ea71a723109ba5fd540d50d0",
+        "license_text_sha256": "7666d012678c262c12e4e1ac77c0d1a2080bf020dd19c6745a2e4e874d8208d4",
+        "github_spdx": "NOASSERTION",
+        "treatment": "retain exact upstream notice/conditions; do not relabel CC-BY-4.0"
+      }
+    ],
+    "official_redistribution_instruction": "Please DO NOT redistribute the unzipped data files online.",
+    "p1_policy": "Execute all 102 locally only after terms and hashes are bound; redistribute no archive/extracted content. Publish task IDs, arm outputs authored by ORION, metrics, failure receipts and source citations only.",
+    "verdict": "CONDITIONAL_LOCAL_USE_WITH_ATTRIBUTION_AND_UPSTREAM_TERMS__NO_FULL_ARTIFACT_REDISTRIBUTION"
+  },
+  "official_evaluator_preflight": {
+    "source_available": true,
+    "runtime_verified": false,
+    "status": "CANNOT_CHECK_RUNTIME",
+    "pinned_files": {
+      "evaluation/harness/run_evaluation.py": "1de6a40b3536bb983fce467217fb1b343774372501597b801b1f60f99428f8b3",
+      "evaluation/harness/dockerfiles.py": "b0122b82a64165389a134216dffda8d6e9d3ff8bfc3ebb3795a00d54f2194b25",
+      "gpt4_visual_judge.py": "e9a95f36638485c6e478c7412b14e8d9b94e0f0055a8db57ff71be6092a3d61a",
+      "calculate_metrics.py": "ba36dc941b6c7ca294ce6c96fc2c02a9dbfdcd4926c7b3f5d3713fbc31da59d4",
+      "run_infer.py": "de02f45825fcfaeb9ca8a3430e6fed1e03436f4071dba5e2e333488b7cb8316a",
+      "agent.py": "41552973b8eaae55bb7c78012b37d2e3487570802f01f5bec12b5c39be21e0df"
+    },
+    "verified_split_hazards": [
+      "run_infer.py hardcodes split=validation",
+      "run_evaluation.py defaults to split=validation",
+      "the verified split changes task_inst for 9/102 tasks; an omitted --split verified is scientifically material"
+    ],
+    "required_evaluation_argument": "--split verified",
+    "visual_judge": {
+      "required_credentials": "OpenAI API key or complete Azure OpenAI credential tuple is enforced before dataset evaluation",
+      "openai_model": "gpt-4o-2024-05-13",
+      "temperature": 0.2,
+      "samples_per_judgment": 3,
+      "deterministic": false,
+      "callability_checked": false
+    },
+    "reproducibility_and_secret_risks": [
+      "ubuntu:22.04 is not digest-pinned",
+      "several pip dependencies are ranges or unpinned",
+      "task-derived packages are installed without versions",
+      "two Git dependencies use an unpinned branch/HEAD",
+      "official Dockerfile serializes API credentials into image ENV; use only an owner-approved disposable runtime and purge images/build context"
+    ],
+    "official_resource_statement": {
+      "all_102_latency": "20-30 minutes reported with 8 workers on 16 cores/32 GB RAM",
+      "transient_disk_formula_gb": "5 + max_workers * 25",
+      "instance_cache_upper_bound_gb": 2600
+    },
+    "local_host_observation": {
+      "docker_client": "29.3.0",
+      "docker_daemon_available": false,
+      "filesystem_free_gib_approx": 5.0,
+      "credential_environment": "all required OpenAI/Azure variables absent",
+      "resource_gate": "FAIL_CLOSED"
+    }
+  },
+  "protocol_feasibility": {
+    "deterministic_mask_without_outcomes": {
+      "verdict": "YES",
+      "evidence": "A 102-task hash-only manifest freezes visible/masked fields and exact recovery from the public verified input split; no outcome/gold/evaluator body was opened.",
+      "manifest_path": "MASK_MANIFEST_V1.json",
+      "manifest_sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758"
+    },
+    "matched_arms_without_outcomes": {
+      "verdict": "DESIGNABLE_BUT_NOT_YET_FROZEN",
+      "evidence": "Arm identities, estimands, guards and no-outcome rules are specified, but immutable model/provider/tokenizer/prompts/budgets/seeds and runnable adapters remain unbound.",
+      "protocol_path": "PROTOCOL_DESIGN_V0.json",
+      "protocol_sha256": "252bdbfa166ccc6ad23e9f3ef7c29679036ab52d8268eeb48b8799a0c4598623"
+    },
+    "confirmatory_execution": "BLOCKED_CANNOT_CHECK"
+  },
+  "blockers": [
+    {
+      "id": "PF-01",
+      "blocker": "Full benchmark_verified.zip SHA-256 is absent because the 1.769 GB archive was intentionally not downloaded.",
+      "closure": "Download to approved external storage, record exact bytes/SHA-256/ETag, decrypt there, and verify the directory manifest; retain no payload in ORION."
+    },
+    {
+      "id": "PF-02",
+      "blocker": "Upstream inference and evaluator defaults target validation, while the required population is verified and 9 task instructions differ.",
+      "closure": "Implement an additive wrapper pinned to the verified revision and require --split verified; fail closed on any ID, count, field-hash or split mismatch."
+    },
+    {
+      "id": "PF-03",
+      "blocker": "Official evaluator runtime is unavailable on this host: Docker daemon absent, about 5 GiB free versus at least 30 GB transient at one worker, and evaluator credentials absent.",
+      "closure": "Use an approved isolated host with sufficient disk/RAM, working Docker, outbound package access and owner-controlled credentials; do not use the ORION repository for data/cache."
+    },
+    {
+      "id": "PF-04",
+      "blocker": "Official visual scoring is stochastic and its dated gpt-4o-2024-05-13 route was not proven callable; dependency/image resolution is not fully immutable.",
+      "closure": "Before freeze, prove the exact official route callable, preserve all three judge samples, bind image/dependency manifests, and predeclare failure as CANNOT_CHECK rather than substituting a scorer."
+    },
+    {
+      "id": "PF-05",
+      "blocker": "RR/OS/NR adapters, exact prompt bytes, tokenizer, model/provider, seeds and matched token/tool/time budgets do not yet exist.",
+      "closure": "Implement and static-verify adapters on synthetic nonbenchmark fixtures, byte-bind every runtime input, then cut a signed protocol freeze before official scoring."
+    },
+    {
+      "id": "PF-06",
+      "blocker": "ScienceAgentBench supplies task success, not protected hidden-formulation responsibility or transition-authority labels.",
+      "closure": "Keep any future positive bounded to public scientific-task recovery utility; typed causal attribution, independent custody and P1 licensing authority remain CANNOT_CHECK."
+    }
+  ],
+  "terminal": "P1_SAB_PREFLIGHT_SOURCE_AND_MASK_READY__102_VERIFIED_TASKS_BOUND__FULL_ARCHIVE_SHA256_AND_VERIFIED_RUNNER_RUNTIME_CANNOT_CHECK__ZERO_OUTCOMES_OPENED__ZERO_TASKS_RUN",
+  "scientific_authority_delta": "NONE"
+}

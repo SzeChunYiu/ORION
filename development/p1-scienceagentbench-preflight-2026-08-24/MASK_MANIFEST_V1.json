@@ -1,0 +1,3932 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.mask-manifest.v1",
+  "manifest_id": "P1_SAB_MASK_MANIFEST_20260824_V1",
+  "authority": "PUBLIC_INPUT_BINDING_AND_MASK_DEFINITION_ONLY__NO_GOLD_EVALUATOR_BODY_OR_OUTCOME_AUTHORITY",
+  "created_at": "2026-08-24T09:19:26Z",
+  "source": {
+    "dataset": "osunlp/ScienceAgentBench",
+    "revision": "9c6e96c9e74572e979b0930ee735041cef528cb7",
+    "split": "verified",
+    "verified_parquet_sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147",
+    "viewer_row_receipts_sha256": [
+      "2150afe3a762c69c67b23e95dd917defa3331f2b628253ead8bde93a3abc36a5",
+      "7354690fecebdfbc589610896e42c2a479b6f3adf33fe3e01cf51bd25de010fd"
+    ]
+  },
+  "intervention": {
+    "phase_0_visible_fields": [
+      "task_inst",
+      "output_fname"
+    ],
+    "phase_0_controller_only_fields": [
+      "instance_id",
+      "domain"
+    ],
+    "phase_0_masked_fields": [
+      "domain_knowledge",
+      "dataset_folder_tree",
+      "dataset_preview"
+    ],
+    "phase_0_dataset_filesystem": "NOT_MOUNTED_OR_READABLE_BY_AGENT",
+    "recovery_trigger": "AFTER_PHASE_0_PLAN_AND_BEFORE_ANY_CANDIDATE_PROGRAM_EXECUTION_OR_OFFICIAL_SCORING",
+    "phase_1_recovery": "EXACT_SOURCE_VALUE_FOR_EACH_MASKED_FIELD_PLUS_READ_ONLY_TASK_DATASET_MOUNT",
+    "gold_eval_rubric_visibility": "NEVER_VISIBLE_TO_ANY_ARM",
+    "empty_field_rule": "NULL_RECOVERS_TO_NULL; TASK_RETAINED; NO EXCLUSION OR SUBSTITUTE MASK",
+    "post_outcome_changes_forbidden": true
+  },
+  "counts": {
+    "tasks": 102,
+    "domains": {
+      "Bioinformatics": 27,
+      "Computational Chemistry": 20,
+      "Geographical Information Science": 27,
+      "Psychology and Cognitive science": 28
+    },
+    "default_cc_by_task_count": 96,
+    "upstream_terms_exception_task_count": 6,
+    "null_domain_knowledge_count": 4,
+    "null_dataset_preview_count": 18,
+    "null_dataset_folder_tree_count": 0
+  },
+  "instance_id_order_sha256": "90b66203d8372d3555b1ba9e99757ab17bf4180cdf2dc16819bde98ecb5a81a9",
+  "records": [
+    {
+      "instance_id": "1",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 261,
+          "canonical_json_sha256": "6993fe91722285b19e893bf296dcc09abd775d32037ae995632a483556f44758"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 36,
+          "canonical_json_sha256": "35efd7e35a526fe71eecb01ba3222ebce7ab35da5b6003fdf1a811d14c502532"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 845,
+          "canonical_json_sha256": "eaa1cacc1488e4c77a587e5a9ff50707bdaa519ddec2596171fd553816e24548"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 63,
+          "canonical_json_sha256": "620be94877538ca6f184b8a061879bf65739f1612b8a480671c399dfc5356e51"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 331,
+          "canonical_json_sha256": "6477d5aa3936cd1e5348cf539bddecf082456ecdf3954e8dba8fa4b6eae15342"
+        }
+      },
+      "binding_sha256": "22afbc171d3a132e627bbf2c00a12de0c55c013a38a15fea32e2ec12719577f0"
+    },
+    {
+      "instance_id": "2",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 251,
+          "canonical_json_sha256": "4547e3e456caeea60f749c5fdb124657ae3641146e0d905ccb278fc227615bd3"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "695a78eeccbf5ff5632f4f1f893bac2f694dadb86c0c65a74044a10b15b42a47"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 593,
+          "canonical_json_sha256": "e255cd83c52dddfd940818f559c8d7df7692cc15e49841966921c7c1f0e460b5"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 62,
+          "canonical_json_sha256": "8844d88538adb081f11040ebd13787fbd9c702e238be715b33762a693541a6dd"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 525,
+          "canonical_json_sha256": "cb32f512181d769b737bc5b7e4c7582b35d1a2a62962b5ca9ebee7f5bbf07bd8"
+        }
+      },
+      "binding_sha256": "29a16fb68aa33a65017071c0878b20db1f89c593ccc3250eec5e55395f82a1fb"
+    },
+    {
+      "instance_id": "3",
+      "domain": "Computational Chemistry",
+      "license_partition": "MATMINER_UPSTREAM_TERMS",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 267,
+          "canonical_json_sha256": "678e44cc77acffcedd74c5dd82b213cb204b2f111be8cdda16f0bad573664487"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 40,
+          "canonical_json_sha256": "1c558bed0061ac79d3571dcf6f38284bd7112e24ead0664696ffe2f39ca98fdd"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 479,
+          "canonical_json_sha256": "a8658c947155baa9a03631e41e363df54e9a81266e9d41624ce5c88129a36ff1"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 116,
+          "canonical_json_sha256": "979810a7acd7f51a54262dd9ad2276b3636b61be123708380bff43b140285b13"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1830,
+          "canonical_json_sha256": "cd843959aaf4a4e39e4dd1af8ad0afb653cbe1337b16461b456c7f3f94c81b67"
+        }
+      },
+      "binding_sha256": "082a7f4f1eb920d63949715763c8a50e0a02378af78dbd4c26a2d99ccb9b0fe5"
+    },
+    {
+      "instance_id": "4",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 300,
+          "canonical_json_sha256": "f20756b65fcbb32c45a2e6f083239cf195c2c04d39cddb90d7bfbd4cbd5372b6"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 31,
+          "canonical_json_sha256": "8ed8c17ab968ef932ecaa9267f599861ac4bf4030cb0dcb23e0e7fe7233f65c3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 514,
+          "canonical_json_sha256": "33093d0330be165a4a7b4c2ce98c359d13014d581ebbb82778b84cbe740a69a3"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 66,
+          "canonical_json_sha256": "948cb844248e8c6f1ffbecdbd33a1beb5b93373858ce8cccaf46efbbf42d0bfc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 2193,
+          "canonical_json_sha256": "63806c3a66c9e2c626cc1e3138ba0143c4930a5dbd7ef7eb7e52c86cadb593f5"
+        }
+      },
+      "binding_sha256": "80dd5902e9668c82ce68ef8b1038af42ce276cb497514a38955c551c99b6b354"
+    },
+    {
+      "instance_id": "5",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 324,
+          "canonical_json_sha256": "e7931d7bc9c34689bc7e94a5596d65cd946a9527e58d5d46832ddf382c4b347d"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 34,
+          "canonical_json_sha256": "e055f42b4f6c1bb442eef020415e884e9763d658c07fa6e75ffc2f8b40a88bbc"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "9bacc14bfd462337f3c48a2256b3be90faab4a365010014b9f93a7e23b631ecd"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 832,
+          "canonical_json_sha256": "4067aef39de546dcc6aedf205cd377434e34c98f43f1c7b73fc259a23c4a3ce6"
+        }
+      },
+      "binding_sha256": "b7287ce2291903f45c3503f84a9b67fe8106a28830dfee90e54e25a8281875d2"
+    },
+    {
+      "instance_id": "6",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 226,
+          "canonical_json_sha256": "46670ce39763a9940267fb5d4cb4eb832996535d15442ce652003e8711185ee0"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 48,
+          "canonical_json_sha256": "c649866f878d24d155f50f3bbf6800a69fd38f5d82e0231fbc49b37a26917a83"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 249,
+          "canonical_json_sha256": "7711d3e80bb72638878758178396b300d1949163a7888b0997350e220a82218e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "9bacc14bfd462337f3c48a2256b3be90faab4a365010014b9f93a7e23b631ecd"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 832,
+          "canonical_json_sha256": "4067aef39de546dcc6aedf205cd377434e34c98f43f1c7b73fc259a23c4a3ce6"
+        }
+      },
+      "binding_sha256": "3449c79d74ce138149e8df91790074e31f5c9b8130e1a1a53a8dd802ac5af22b"
+    },
+    {
+      "instance_id": "7",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 197,
+          "canonical_json_sha256": "f24ca5afff718093c4dc1af842e55c7a68b7fa48bed2a5d942a0f19607dbda34"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "451f3c06a7d8fcfb64c2cd30a6990362cbab849978d68e1cd48be04f7dada4bd"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 951,
+          "canonical_json_sha256": "8d2b73bebce68a5ff4f5916cd3fb49fd7f31873f13a662fa24f47f110adf7601"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "9bacc14bfd462337f3c48a2256b3be90faab4a365010014b9f93a7e23b631ecd"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 832,
+          "canonical_json_sha256": "4067aef39de546dcc6aedf205cd377434e34c98f43f1c7b73fc259a23c4a3ce6"
+        }
+      },
+      "binding_sha256": "871e2cac2bf99ba5ae6ab5c3504adfc633609b06edd43526c924395374210d73"
+    },
+    {
+      "instance_id": "8",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 384,
+          "canonical_json_sha256": "81c64040d2305f38d1d923610f1fa0200e7e1454f82982c1aa32de907c29b3d2"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 56,
+          "canonical_json_sha256": "e8676b1096c616c36580e5167eea1da72e43d3c9dd6670524167bc27e7519a6f"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 587,
+          "canonical_json_sha256": "bbfd5a9244159cf6d5ca75ed58371ac08d412f35727774992aebb08f4ec3c3f4"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "9bacc14bfd462337f3c48a2256b3be90faab4a365010014b9f93a7e23b631ecd"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 832,
+          "canonical_json_sha256": "4067aef39de546dcc6aedf205cd377434e34c98f43f1c7b73fc259a23c4a3ce6"
+        }
+      },
+      "binding_sha256": "de9399811e03a7d29bba46e7cb7c301f1de2afa2113b492d6416df3c2030d055"
+    },
+    {
+      "instance_id": "9",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 264,
+          "canonical_json_sha256": "caaed03ee62c5f1c2cd4339b0e7f69324786bf22e5ef5452fcecb7825955596f"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 39,
+          "canonical_json_sha256": "86138a2779042249e2b91a5be196ae0be5c6f81fdffba3c21009b9a913cb010e"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 228,
+          "canonical_json_sha256": "7fc66ffa5782da6c233c879d6ec9718baf74ebb0513c40fa534022dcfec600a4"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 300,
+          "canonical_json_sha256": "408e92bf6e04331f1719fb37cde83857fa5e5dbc441f1a2fa3a1aa8ec2dfec09"
+        }
+      },
+      "binding_sha256": "1e1e59be8a48192ca945e8bcb415c2f908c5264997c3d7101447793c5cb2a1a6"
+    },
+    {
+      "instance_id": "10",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 171,
+          "canonical_json_sha256": "c07b4d84b95459c91649057181c16da003458f8781de4758a7958e6364ad88e6"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 40,
+          "canonical_json_sha256": "36e4ab155c3104eb27f8b064aaaffbb9ff89d09b5bf2b1e5e103e2cce835f448"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 593,
+          "canonical_json_sha256": "488b3b3e0b252d69fcae33815ecbd7ead63dcaf302d1345197b551f16ae947f7"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 72,
+          "canonical_json_sha256": "62c09d6e74177c4afea19b02f06bb68deb93bb142a425e54b0a6e2f58d504edc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1038,
+          "canonical_json_sha256": "f34d7ef947a3cdfafb0a941f3dd3e298d63b25f6f070b071bd1fcd3fd5196365"
+        }
+      },
+      "binding_sha256": "785d99b0f2db57d2220ff48d8d4011bc535e68e529c3b35e39bc5b3e1a19e9ff"
+    },
+    {
+      "instance_id": "11",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 188,
+          "canonical_json_sha256": "c2be40a79b6f1e0b382891ef1805613027c3196f2ec3ce56c18530ced712db6a"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 34,
+          "canonical_json_sha256": "255c3ef55d6b3fe5d958381b2eb3a2499750293f498d038e2ac87dc7693972c5"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 640,
+          "canonical_json_sha256": "041c4c569138f129c4470e39217fa8e8ac4bb6f124ef3d0c7668757c99a63f77"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 2655,
+          "canonical_json_sha256": "72d7425a8ff109efd99d163aca79d45897d191b2f03f6af2d3cb6fa68bb8d976"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 356,
+          "canonical_json_sha256": "baf75e4e196461eb9c2dcc2f2629563f6f16e1f4da85b5c82607df77408438d5"
+        }
+      },
+      "binding_sha256": "f12d292b6f4bbdcf3f45c5274a25c9e973f2e5faa0f337af50c66f798e700ad4"
+    },
+    {
+      "instance_id": "12",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 410,
+          "canonical_json_sha256": "39c82e235a16784cc4cfa6e98084d6d4f18aef4ba29a83f6b7791ac62fcf649b"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 40,
+          "canonical_json_sha256": "b061b818a1690458bd7ee8b86292e2f18c6b3e404b0627e10648f69e104c0247"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 903,
+          "canonical_json_sha256": "6f752e20c92f01873609ce08da693a2b3c4b5a07ab7002d426e2254d48db3e48"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 197,
+          "canonical_json_sha256": "8088cd528a0d86530200f266ce44245553a7bafff9b3786abe91348d664b6526"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 13148,
+          "canonical_json_sha256": "f53d3d24d01ba82754d67588522b68f72db14d8c48b24d0508bf0c44e4024eb6"
+        }
+      },
+      "binding_sha256": "dfa99fcf6baecd5f72fe94343aab32d52adeebc5a2a8cf4b065d682e690bf8c8"
+    },
+    {
+      "instance_id": "13",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 255,
+          "canonical_json_sha256": "3952ed25eab511eaa075faa96299498d5de2cfadea11bd8ee40769608b9d1109"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 32,
+          "canonical_json_sha256": "73aca9b85a61bd02d3630b1148debf12c49ccc696217011fd1d293990a815e69"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 580,
+          "canonical_json_sha256": "948554e3175487625349ab442377dbaec229f61800cf3a81cd2fa04fd87e4332"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 88,
+          "canonical_json_sha256": "d513a0fc26dbfb089f43060194e91860fa5e31106b37a785fabf51f5201a61f0"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 243,
+          "canonical_json_sha256": "1ea9582c648dcbff7a0a2739df12758967bebbebf48a956977ba8abcb8ef49cb"
+        }
+      },
+      "binding_sha256": "265b7b8e287800a8a4d8d66a9232ac6e41a56b8ea81210a71cbbd1f7575c18ec"
+    },
+    {
+      "instance_id": "14",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 280,
+          "canonical_json_sha256": "18cd9c24cbaecb7f3abf1e921d8012b0c7e97978a68ea47ce5000353ecfc6cce"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 36,
+          "canonical_json_sha256": "ab7b3bca640cef6c21e88e656f80fb6ed1624ff84662c76fea2e808402b68910"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 139,
+          "canonical_json_sha256": "d3f1c8e60cedda615f5520deb02f406b1815f987816c3d4932abaf86f6cb0179"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 345,
+          "canonical_json_sha256": "528371f92eeda780bb0a341809c0e32b6d9b1668c9cb7f2b85576e9268010fb5"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1108,
+          "canonical_json_sha256": "280186ebedfe28ec880500cb388e8504b6cdb09083974bca18d78a85d934e6c7"
+        }
+      },
+      "binding_sha256": "a4840c26d80bcbff4ef3ee8898224978716ff9495a007c70f26985e109667492"
+    },
+    {
+      "instance_id": "15",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 214,
+          "canonical_json_sha256": "bb0586d781a7b179776c4994bc6f235444748c6d6cb6213e5c958830b4f45eda"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 28,
+          "canonical_json_sha256": "b115e10f293fcd04cad22f6f0a3db8c710a51cc1604e74026371ab8067296792"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 621,
+          "canonical_json_sha256": "d8b2bf814a44bce3d74da3369fe434c012b929b51f4e8c4cfb9fbf00fdad393b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 107,
+          "canonical_json_sha256": "73aa2151d1e76dd20377f318b49b26c8d23f2b10b382591dc1e25ce68b03ad2b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 229,
+          "canonical_json_sha256": "fc8159ecf9ff8d0555788a988ae8c03092a648d40ef509a78f9ebf71f7441904"
+        }
+      },
+      "binding_sha256": "4265f230d48ec619e43f0247f0519ab4bf25607c4bbeb08118c07fef9fa514b7"
+    },
+    {
+      "instance_id": "16",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 377,
+          "canonical_json_sha256": "78b55fd7f1f4e3ddcc1275fdc5cfa84f0153b410957a721a94a7b9fb87b470ef"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 42,
+          "canonical_json_sha256": "6a9003734be475366e759db660be1ec228939d052a36d69ce4604948f995dd66"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1563,
+          "canonical_json_sha256": "6057c20d387b9898598a925326e50d5b951a61966ec4ab3631c1de046359d806"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 55,
+          "canonical_json_sha256": "a065d3467f3667e6bf5250b6d4513f533a87f7e71627211f754291c429423de6"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 793,
+          "canonical_json_sha256": "4591aeeaec25d77c135783852900f045b9f39c71a61386dc5ed4e2447806b71c"
+        }
+      },
+      "binding_sha256": "366d0bef18a34f1cf521179fa66db80d0fdba8e040685d9cf2782fedb22d79ab"
+    },
+    {
+      "instance_id": "17",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 376,
+          "canonical_json_sha256": "cf421cfa610d898264cf54c05008cb4e311bc6531d88bdd14d14eec7300f395e"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 34,
+          "canonical_json_sha256": "f481bb5da6ead3a2f8d69b3bc2d6c8669b800dcdb543ba69aef5c459f1536497"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1221,
+          "canonical_json_sha256": "8b708d3bdbf38c5429a3ab577c7dd80bcf0359272a0be60a3759f53b3b431518"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 42,
+          "canonical_json_sha256": "0004b7df9bd0f9f128feac0e0197f41fb79b54114cf5b54e81d41f87372160f3"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 3495,
+          "canonical_json_sha256": "5cd1015f24b73ca1c741d410286db92de5593c18d683bdf6fa00c6aa0e737713"
+        }
+      },
+      "binding_sha256": "6266d0c0656ba3cd70e7473f66aa1669d9294536ca7b8dc97c0fbe0efadf5db7"
+    },
+    {
+      "instance_id": "18",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 1093,
+          "canonical_json_sha256": "9a87ffb80889a126036ca4bbc7b934112eca2b8597ad041646444faa4eb54487"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 26,
+          "canonical_json_sha256": "5c8e13d9be95798d57be65e3ad5013f1f10bb8c454b1b36932d81c35b7d6b7f1"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 680,
+          "canonical_json_sha256": "f4a1e0a80be6db16c3ff73955313827e33d3087dc9c8e2fe9066889f9c7640f5"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "376d9041fc39d7620bfb6ed1e9c07c9824f99b3af2dd15195ac42936a17b3643"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 469,
+          "canonical_json_sha256": "538b5d55331fa8579e4b31efc354754d23b2bb50a2192d7bd97855152f55347e"
+        }
+      },
+      "binding_sha256": "ec212072268181ce9b74565dae7eccb9add2a241fefb31701ad40af53680f15c"
+    },
+    {
+      "instance_id": "19",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 1103,
+          "canonical_json_sha256": "0b16e8c6f78a191c703f935b6904d6eee4bfdbb5320687b69c65191406f912da"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 27,
+          "canonical_json_sha256": "e3b515306ff017183d47a64100c745b6f9827c7bbd4abc96ccac9ca9b2453e08"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 666,
+          "canonical_json_sha256": "0d219dbe5c38cf583d2130b77fd01836082885dc3bf40416f4cf5aa2acfef32a"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "376d9041fc39d7620bfb6ed1e9c07c9824f99b3af2dd15195ac42936a17b3643"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 469,
+          "canonical_json_sha256": "538b5d55331fa8579e4b31efc354754d23b2bb50a2192d7bd97855152f55347e"
+        }
+      },
+      "binding_sha256": "318edbfea301485245ee9eed2881e46c7e5f4c5f8e49cfa4557e6b3ed58e8c02"
+    },
+    {
+      "instance_id": "20",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 185,
+          "canonical_json_sha256": "1fcf38b055f5c1aa27e40d44e96eba69856e3ebc99768089c9641d5bc25cc853"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "c705515f07d98d76bc74e328f88e6331f5a68b46d58882b464b1325f22581363"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 808,
+          "canonical_json_sha256": "6cf5376693fe1c32b67cace74a42b81f08072af107ce0a166b428fc2130fcda4"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 55,
+          "canonical_json_sha256": "9837e3e53a84b3aefe6bf8a2d375227a485970ab8ac3e0538aa54c1986cc6c32"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 945,
+          "canonical_json_sha256": "c14f96e0155c07363ce4921c8f9dbe8edb85be78206c49b787d7c91e2ee4c587"
+        }
+      },
+      "binding_sha256": "a7e2b07321ee6191e0f550cf78aa71e6c7e7d90bebcad9382784eb6ed6374a02"
+    },
+    {
+      "instance_id": "21",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 266,
+          "canonical_json_sha256": "8e93a8d4325f897de9bb5e4d87b243984c4b791413bfd9ad02239f772398d28e"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "5e139936a459a861d0716ba832cf6201666e6ec002b24ea13b9f386dceb88603"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 249,
+          "canonical_json_sha256": "2d6013dd9ed9d7aa9c9aa9b98a73571b18d298896010a76964e68db06b17afc2"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 71,
+          "canonical_json_sha256": "a5f22972a85d61a633442fbbfefa3aaf585b33dd515f21af592e010b836ee5b7"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1038,
+          "canonical_json_sha256": "4801f6d556861df21a9247b4e247c335f8a12899e8b4532456f95b112cb5c2f9"
+        }
+      },
+      "binding_sha256": "6c2894d9817638bcab3cb8af3382a57b44723462a342d6e8e9cb31113d622f38"
+    },
+    {
+      "instance_id": "22",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 513,
+          "canonical_json_sha256": "cae59fc37a50458dd12bd0eade817d9d218615aace560ff8a9ec13f4f56a4c90"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "58c8391b5d81603a2d16662fcbd66b4fb866b29399437d0453925e01a530b977"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 931,
+          "canonical_json_sha256": "632ede156f8aff69fe3012dfe5bd356386b48b238fe76854c23e315caa2f55fa"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 75,
+          "canonical_json_sha256": "310c2a1aaef052f81a3db28aadf8774b6357ccb7f2ea0bbe049bc85573d0a81f"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 5083,
+          "canonical_json_sha256": "73e2e613f65b157c52a18cced1e89fec65dd505317e2416908569bfb618a7b0a"
+        }
+      },
+      "binding_sha256": "64b8d73497dd7370df14afb340061ee20b2874e617c930c0ebd9862919a8cd2a"
+    },
+    {
+      "instance_id": "23",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 427,
+          "canonical_json_sha256": "76e8b7f700790e706b920cecebb0e23b4e24ec67cb07e9e6c8fcd2c454878deb"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "105b1a33ec51da15033aad7e57dd689d17bbd09b33122099903d8de0aae3009c"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 578,
+          "canonical_json_sha256": "5222b5621c5b494a98d3744982820bd20f0adb69de2bd87246b0ae4def2c7b1f"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 137,
+          "canonical_json_sha256": "1499f7a84422aba433e4d6c5dff324fbd96e20a049a23ee8637a75204056f6ac"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 2141,
+          "canonical_json_sha256": "803bb1e9563f8fce88cb62fa17002a160857979f721e771075ba33ec4ddb3898"
+        }
+      },
+      "binding_sha256": "8812f491836e0394a184a37ca512c1f9575b44190bd7998e368de85ffb461c3c"
+    },
+    {
+      "instance_id": "24",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 206,
+          "canonical_json_sha256": "6e205fd1d18e0036c0aaf8292a0ab026514bef85099ec600107b6c5e2d7d3740"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 50,
+          "canonical_json_sha256": "f482155d356c4efeaebf2c5a15ffeab21a6b2b08b1f3f6c5ef9c7afb50d4b855"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 160,
+          "canonical_json_sha256": "64c26ac1e62d0f2f4f21e9b66ca46d21495a2b872ee3e7ecfe3244ab7659ab06"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 71,
+          "canonical_json_sha256": "12e2de1be57ab8150de3dc68c8b06a119a9add76db6247c9436818372c148e3a"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 353,
+          "canonical_json_sha256": "e1946dc1a36b0f6bf419bec0028a94ad7644a38cdf407cef5f5fb67d8c2152a0"
+        }
+      },
+      "binding_sha256": "f0b7213017568dbbd8341a2a30035a29b4addbed79bb84f2e596868bd8eb42fd"
+    },
+    {
+      "instance_id": "25",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 403,
+          "canonical_json_sha256": "4e14eb28ca741179af7a6aacfc72fbcbdae07a8188279e957592b51001b0c041"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 50,
+          "canonical_json_sha256": "74c657328ee23d73452c7d15062d0a0e6634dd523b72baf95f902d54f065d3e6"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 381,
+          "canonical_json_sha256": "61cddf79489d46aea6feadded1c7182fb63d9a9f99b7903ea906b13f4c7ebf6d"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 71,
+          "canonical_json_sha256": "12e2de1be57ab8150de3dc68c8b06a119a9add76db6247c9436818372c148e3a"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 353,
+          "canonical_json_sha256": "e1946dc1a36b0f6bf419bec0028a94ad7644a38cdf407cef5f5fb67d8c2152a0"
+        }
+      },
+      "binding_sha256": "fdfc2e8fe9388d9c11a8e0153007aff7f91fbb50c42098d28a4b28a290a7a18b"
+    },
+    {
+      "instance_id": "26",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 325,
+          "canonical_json_sha256": "31b09a17a81cc3b689947c71822303bde038895de23053547e5c9caee1ef2148"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 42,
+          "canonical_json_sha256": "92438545ea76150a380ee7cb3758eb3c2c7abe3b3006880e4e4d4b1c48ad1c8f"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 361,
+          "canonical_json_sha256": "310669a029a3ed2f49a80fc4e1f29c41b3c6793bcdde5138ec0a60b55b995444"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 52,
+          "canonical_json_sha256": "d69b88afc95e71d15990deb6e244b64d89494c764a54769928ef53e878a39ee9"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "9cd0defe06432161a42dbf99ebda6ed78e7a5120b0e0316d182df3bbc7aeec72"
+    },
+    {
+      "instance_id": "27",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 463,
+          "canonical_json_sha256": "1f8a91deeda0688b3f9da63bb020763e32217604dd7efc7183d664be25f2424c"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 34,
+          "canonical_json_sha256": "978a2c8987e58d735ba66ba85c741e0ff6b37e6bc0526f30a1c96aab8887c7cd"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 247,
+          "canonical_json_sha256": "3fc8a64916ef4f7b6bc80120d976da9beab4ce72dbc46bfdc0ebe63b685011ba"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 173,
+          "canonical_json_sha256": "649a28f91675b2f16b95b216fa9563f291db92ea49d7e4817ac6171e8c2a161e"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1032,
+          "canonical_json_sha256": "5be9fb97d99851a607af0ef7401f29b4130faf8cf1017e588c5447fd30eb5c4e"
+        }
+      },
+      "binding_sha256": "4b582cd5f9b22b089565d066e925bec5625ed2500f638f2943dbb1e6ff95c513"
+    },
+    {
+      "instance_id": "28",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 280,
+          "canonical_json_sha256": "14117583d2b3607b2db297dd9b4aa42bf3ddfa6d9da246e4b2a4e30fe184f0a4"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "8a4f82383c3da658ce66dd18710be44a89fc915026faadec26a8a15443960bb5"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 195,
+          "canonical_json_sha256": "d17e3693372c364c7945c88269b883caf4e0d7349a6241b89769781491c62f20"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 119,
+          "canonical_json_sha256": "135c88bb76318533b4e4cd0ad4026875519982902b87869b9338a3740b8ba26d"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1067,
+          "canonical_json_sha256": "92705c179194742d082d0c7a9c07021d03efc5e29a7cebfa2357b950d4a573a7"
+        }
+      },
+      "binding_sha256": "05489e22be682c66bfe11cd3095027d08f742cbcc18a311897d279a695ef2a80"
+    },
+    {
+      "instance_id": "29",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 379,
+          "canonical_json_sha256": "8711911ebd2b149790b1bdca318e32b3e041810515abcad69247e4f0c71ec9f4"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 55,
+          "canonical_json_sha256": "30291cf8608650022f31d8a890868d287c7bcac6aa2ed7e5ba8c61cafe97a3ce"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 532,
+          "canonical_json_sha256": "ea1739cf8d0e37666d00e3396039f5bad546f64a5ef0639696dfb3cea9aaa63e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 128,
+          "canonical_json_sha256": "20fe366fe7f458fd5e3503a43be5f6ccaa4709f941c262adc97c9f681221e07b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 955,
+          "canonical_json_sha256": "d93c4dc53a12bfb9132a1f856438e8ef646784f00ada9bf7d0117b26b7d0047c"
+        }
+      },
+      "binding_sha256": "464fab857117acf08f65119559d92e22796dbb697dc67234c2e2b232b85c108a"
+    },
+    {
+      "instance_id": "30",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 188,
+          "canonical_json_sha256": "111c0a7eafe83a8fa95541726f43d7e9205bfe017ad200abf01562686367ddcf"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 39,
+          "canonical_json_sha256": "aae4c4f73e6e59882171541bd738fbb3f53f19d956ffba710d472e49e7ffb515"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 429,
+          "canonical_json_sha256": "d91c86b90f594a33869bcc2dd8712dbf4769145e76f25a8a9f923f69dfd12421"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 119,
+          "canonical_json_sha256": "135c88bb76318533b4e4cd0ad4026875519982902b87869b9338a3740b8ba26d"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "3cfaf6859c750e4a55538541802f295de68bd65d735ac3b087efb8aa15c18d4e"
+    },
+    {
+      "instance_id": "31",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 221,
+          "canonical_json_sha256": "03706bed660c6184dcc196eee1ba32af32c894c674b4e14cce7c64f4538525c3"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 29,
+          "canonical_json_sha256": "1408ba87b93ba5da29014ab055396d73c4504efe7485369e4d57f243549a1428"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 525,
+          "canonical_json_sha256": "3b00141630ff363e86f5d180796ab7b7a1a7a325cd89dc233955cf45acd58ba5"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 119,
+          "canonical_json_sha256": "135c88bb76318533b4e4cd0ad4026875519982902b87869b9338a3740b8ba26d"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "59be73cf079889f3dfd862711d76fce942215af55c538b1b20636543ca69779d"
+    },
+    {
+      "instance_id": "32",
+      "domain": "Geographical Information Science",
+      "license_partition": "RASTERIO_UPSTREAM_TERMS",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 372,
+          "canonical_json_sha256": "06845b87aaf340427177b46b012af24baba254c55ccd81c6e6f4a86ca9556158"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "536ab50032acac3a4235d10e872f2b6683cca8053c59fe137bee8883c270a06a"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 526,
+          "canonical_json_sha256": "00e3307892d1b07ea79d56563ab2c657354ff3293301766c1a021fd75baf8b8c"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 230,
+          "canonical_json_sha256": "dc2a288803f8ff0fa46ef4e41e8789456f670d726cf1d958453c702bb0ca715b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1547,
+          "canonical_json_sha256": "4565faeae04d87809696ac21f6515b33e6cf7ec4a91e9d3dd32f558044deb78d"
+        }
+      },
+      "binding_sha256": "81445a516cabb126759e1f411a337db97c53e3163a18b2fa642fbadb5e8a89b3"
+    },
+    {
+      "instance_id": "33",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 319,
+          "canonical_json_sha256": "e5132bb956808e06531f34af077b99c0fe1c59cbb0aaf572de6ccd0682de1360"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "e16c0c6fbf26472034b0a6943020b39757a334d00b17c3f27194cbdea4e3c119"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 311,
+          "canonical_json_sha256": "f1a6d1c403a9524118df345c800f8e59385b82a2474a25d64a27af9380b67c52"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 97,
+          "canonical_json_sha256": "1cec3d4e52a11455ffed0297e29bc7f7e0156d48d6b1c5fb780a231504f50f19"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1499,
+          "canonical_json_sha256": "10ccf34518a5aa3dd7793fdeb9f2a894bda8c1cc1faf472f208d952837daa7cd"
+        }
+      },
+      "binding_sha256": "4cbfa15d9f19c28b2bf8119976b208fb00cfcab50dd0a038a8091479dd639b82"
+    },
+    {
+      "instance_id": "34",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 369,
+          "canonical_json_sha256": "1b96c3d286b8361ebe1a03bee140cb0f63b2078cf91384b30b1d595642b10118"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 36,
+          "canonical_json_sha256": "e43c06806044c47da06129880d058e144e10ad4c6631370116d60e57171275fc"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 209,
+          "canonical_json_sha256": "7e8546f8b356886ee017518c2dafc26c1165e486d2bbe229a5d89d6229dd0134"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 128,
+          "canonical_json_sha256": "20fe366fe7f458fd5e3503a43be5f6ccaa4709f941c262adc97c9f681221e07b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 955,
+          "canonical_json_sha256": "d93c4dc53a12bfb9132a1f856438e8ef646784f00ada9bf7d0117b26b7d0047c"
+        }
+      },
+      "binding_sha256": "1fc281ec7c1fc75fbca3aa452d6cd96d983c1c0eed185de8e11d2077986dc543"
+    },
+    {
+      "instance_id": "35",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 372,
+          "canonical_json_sha256": "96bf4e6ac8b86cbff0d733ff42ef6a82a6484dd28941e36580bfae0ce3918029"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 36,
+          "canonical_json_sha256": "bf8e14971f8bced6010b262ce79da293ff27f7d104ac407665114dfe719ce3cb"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 244,
+          "canonical_json_sha256": "262e5b8fb64128354a91c3412eb42fc0209623593146ab9aa4e8cb075c3ed978"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 128,
+          "canonical_json_sha256": "20fe366fe7f458fd5e3503a43be5f6ccaa4709f941c262adc97c9f681221e07b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 955,
+          "canonical_json_sha256": "d93c4dc53a12bfb9132a1f856438e8ef646784f00ada9bf7d0117b26b7d0047c"
+        }
+      },
+      "binding_sha256": "edfcc577e0bf101d7a0196822252e91e8f6ab788b0275beb964ffa76c275770a"
+    },
+    {
+      "instance_id": "36",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 280,
+          "canonical_json_sha256": "4cba690c41a251346d516dd04feb38fe298fdebf79478396d4b9d769a5a45afe"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 43,
+          "canonical_json_sha256": "c5f9564fc5ae02e9fdc12be6a9c252edb5b9bbf8ef157534f9e88701555793a7"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 153,
+          "canonical_json_sha256": "6c561fcfcb0eb79d7fcb30175c7208c923d4ad70d30f662c9da003ec678f9851"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 49,
+          "canonical_json_sha256": "3698466a0c9bedd852125a00d5f56a56339ec20292a0cb71b3fda4d55ce8a0b5"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 316,
+          "canonical_json_sha256": "095c4d6801886adb6e007837c5d0d1a3d5dc7d23c0c986d69f3c24773a55198b"
+        }
+      },
+      "binding_sha256": "1dc92f20c90246f5deac1d235cb18278bc9b613eda1a9b72ed2c451b396e783b"
+    },
+    {
+      "instance_id": "37",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 387,
+          "canonical_json_sha256": "b4c7fcd67407c986b5ee0503e91268e5237b0279ac018950108c1b37042973a9"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 36,
+          "canonical_json_sha256": "458b239f042490c3dccbf9a4ab49772b76499f3e107e0584de19dff9e9d9edf0"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 242,
+          "canonical_json_sha256": "8f9e121683c4d2fc9269630a3f96d0a6fb187d0accccc8edcd87c5c3708c667b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "056b79aa860006dca3f29c7398333c37a48292d71c0423eadb476a155741166e"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 333,
+          "canonical_json_sha256": "809f77c07f4e6443d844197817b4e61d93002add94071fa799bf7393b4b28489"
+        }
+      },
+      "binding_sha256": "271b58adcbc6ccc30e08f8c6ecc58e98a0435ca744ebad1c9d2b1b7897993e2c"
+    },
+    {
+      "instance_id": "38",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 255,
+          "canonical_json_sha256": "61cb8db930021505cbda221dce556d1f193ef614d2981ef0265361887360df63"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "94fd88aab6613fc208a5c57a293bec4f49cac5f9078c5e36ddc200e48184814b"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 404,
+          "canonical_json_sha256": "d5aa731bfa8518e1f89c61b31f0d33ad901b49b6776b9ec3ec47bf13437623c9"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 52,
+          "canonical_json_sha256": "d69b88afc95e71d15990deb6e244b64d89494c764a54769928ef53e878a39ee9"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "ccca8820de21982b6c62d95b200a502b9b3d62a0b8c70a88d0e0ea9455aa2e58"
+    },
+    {
+      "instance_id": "39",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 277,
+          "canonical_json_sha256": "6f90a9c8587123439fb9fcb202d23edc68d6fd9b6b3f0198d4967ac6f67b33be"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 50,
+          "canonical_json_sha256": "b879508209ae35cde8980573fc5bc2f0a16e328137859df01d3f3ef95931cdd5"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 327,
+          "canonical_json_sha256": "b26a60cc5ff18bad95ff94acbe0609e1ab2199f143055b44b9d2caeeabe439ef"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 53,
+          "canonical_json_sha256": "26d29ef3838aa327a1cb91fbae8186fca128b75668cd65b4bf27ae6e2299d91d"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "c393366c370d704d4468ae695377df6e40d90f49e6c2b19dbd247d5c455815f8"
+    },
+    {
+      "instance_id": "40",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 492,
+          "canonical_json_sha256": "fa681322543c6db3af45c6b0388b01c641727aeb5ad9c4ecf50dc315da59015c"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 29,
+          "canonical_json_sha256": "4ca8c737208ee177485854eff5231352f5481d6ef6d750e82175ebb0fad2c7a4"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 293,
+          "canonical_json_sha256": "2d7499234ccb650b3d2dac24154783799c771bf14510421aa569de17240d40a8"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 123,
+          "canonical_json_sha256": "8ba2c30244d7b1fb2b0e9f7302b5fdcdaa82d00753f0ad92fcc0a87a308df3ff"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 25010,
+          "canonical_json_sha256": "45e95de0b316e8ce6a54289104c46b633ee658cebab4ddd12679fbc5a5d42e0e"
+        }
+      },
+      "binding_sha256": "093b41e22c9623a536689e784c359ca9a7dd856c5da70cba5683020ce492bfc6"
+    },
+    {
+      "instance_id": "41",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 498,
+          "canonical_json_sha256": "48b4630bb976030e7c59d3c24bf60e3dbc781539cef9a8032b6a07541245957e"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 30,
+          "canonical_json_sha256": "a46ba0e44f102a62c8c8abb81e508878f7d165ba5ef5a965facce05ce637a8f3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 376,
+          "canonical_json_sha256": "9a9dc5fb4147392499184002aff985b24a5c0bff7f5d0a45167c889ed9c5a193"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 123,
+          "canonical_json_sha256": "8ba2c30244d7b1fb2b0e9f7302b5fdcdaa82d00753f0ad92fcc0a87a308df3ff"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 25010,
+          "canonical_json_sha256": "45e95de0b316e8ce6a54289104c46b633ee658cebab4ddd12679fbc5a5d42e0e"
+        }
+      },
+      "binding_sha256": "b7a820a5261dbec5fff5b896b7ececebd914eb8b6e61763dd3d17c8ef3168e0c"
+    },
+    {
+      "instance_id": "42",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 272,
+          "canonical_json_sha256": "af9778f3c4fe16613ca5e66b89d5ae36c66bc7de10cfc0f4b4609964d53e1dff"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "24c5c62314b2d8a2a37c61d8da46a203b447841683446d4a9059874ddf182fa1"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 470,
+          "canonical_json_sha256": "6b2cc46eb4f486f2d6ec6eb0aa815341a246bd612579f5a2b6b1085b2b2e3f82"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 128,
+          "canonical_json_sha256": "20fe366fe7f458fd5e3503a43be5f6ccaa4709f941c262adc97c9f681221e07b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 955,
+          "canonical_json_sha256": "d93c4dc53a12bfb9132a1f856438e8ef646784f00ada9bf7d0117b26b7d0047c"
+        }
+      },
+      "binding_sha256": "5fd7f78a9f8a11e75067597ee5823d6e5cb93ffdf4097fd9f4ebd398663d0383"
+    },
+    {
+      "instance_id": "43",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 238,
+          "canonical_json_sha256": "783343ee158966efbe90cf7544345ecc7d89b5513c67068e642927d6dd21914b"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "2ac9abddb271757a440b8944a27241660044f2a3b886e967a6a83f798e3b6b30"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 294,
+          "canonical_json_sha256": "c32099afce3ffd62246120b4ab7ec148bf8a0ae6cfcee4ca7d36171fe9b41373"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 128,
+          "canonical_json_sha256": "20fe366fe7f458fd5e3503a43be5f6ccaa4709f941c262adc97c9f681221e07b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 955,
+          "canonical_json_sha256": "d93c4dc53a12bfb9132a1f856438e8ef646784f00ada9bf7d0117b26b7d0047c"
+        }
+      },
+      "binding_sha256": "288a08ad49debbb8d1a6212e787e7fa9749ead4e8c89903e1ef182a87f709fab"
+    },
+    {
+      "instance_id": "44",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 426,
+          "canonical_json_sha256": "b3949ade2759914e0ae42419d5b9d88a8fa954d755a6550d9590890b50a52266"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 28,
+          "canonical_json_sha256": "4e72f6c7b07b0db1b53d283046eeb50e95090f51bc63bfdb356f55070351f47c"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 206,
+          "canonical_json_sha256": "1e315e5be48ae80fb4ff21248d9eb2692be3d9b08bdd61cea7d807586ff4fa76"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 43,
+          "canonical_json_sha256": "40f784f6d9e70052de9f8018de7d2a30ae339d85cb10d4d35243921b9464d783"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 693,
+          "canonical_json_sha256": "6c95f56bce89ea73ffd479c4c8057405b46f6eeabb3fff312eaf3864abacae29"
+        }
+      },
+      "binding_sha256": "41e12342d5ff96778c74bbb41af898ea4b986fa8f2f53e8231a0819de30665a5"
+    },
+    {
+      "instance_id": "45",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 323,
+          "canonical_json_sha256": "58942ad4191bae5f7909ca44623ab4fb4126afba7983b51d4df05fb163808b98"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "de67931118d6cfe4ce1a7cc34fabc3a672f1e5fcaeea441d13e17f7d40a43147"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 384,
+          "canonical_json_sha256": "3a2b056c540f6213f7d555a49d2ef546145ce5cd67c3b8c1aaf4bae51fecc6da"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 65,
+          "canonical_json_sha256": "4bb676361e6bbe5ee15694c455f4acc16edb642a3d1be4b9922c3a4ba2e28dd9"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 3156,
+          "canonical_json_sha256": "c9d0df05ccf10f0271a4110794523bfcacd96697d797b43d21a9665b239f2941"
+        }
+      },
+      "binding_sha256": "fdf0858afd4f278d52638d28b25cca8868f2760378913fe10263df0557531bfb"
+    },
+    {
+      "instance_id": "46",
+      "domain": "Geographical Information Science",
+      "license_partition": "RASTERIO_UPSTREAM_TERMS",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 166,
+          "canonical_json_sha256": "aff2f78dcd57fa7f31c6e9a580fb4093b1b4ba1a51c1b3aa96500d73a8ce7e99"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 29,
+          "canonical_json_sha256": "48a940599ef4d636568e87977cb897d112f6d5fefb8f9afcfcd2b572de76831b"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 595,
+          "canonical_json_sha256": "3e5eadddea43e7fa9d5f571d49a8f31d22839bd8fa9f26d9a5e24fde8eadd2ca"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 642,
+          "canonical_json_sha256": "60e6b6e3200ee2c2e3f9454c8a58eabf28342cc6b37d8da06fe19d0c7d6b7e3f"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 282,
+          "canonical_json_sha256": "42d45f44e1aeaf08c0edf1aba831e19c8e893ef79b59f6655910415c33ec1582"
+        }
+      },
+      "binding_sha256": "13d9d09eab1025562b92a5e788b917128a64d9524f4ade3d35cc6e21043ab7f4"
+    },
+    {
+      "instance_id": "47",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 266,
+          "canonical_json_sha256": "8e8d0a7894cc5b5b41037d40dadbe2af5c46da00c515622f5d2cd12105aa0a10"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 38,
+          "canonical_json_sha256": "274caf04255279e3fb60cdcf9652ef91bc6527bf5c6ae73a3816f54a972b169c"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 272,
+          "canonical_json_sha256": "b62c36d2f25c2aa514a72d6622c1558cfe574830424ae67815f339250a2006b3"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 642,
+          "canonical_json_sha256": "60e6b6e3200ee2c2e3f9454c8a58eabf28342cc6b37d8da06fe19d0c7d6b7e3f"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1797,
+          "canonical_json_sha256": "cfdc45aeaa9b8c8cd318ace011d3a0f7fb3a1c6e15f7ab8a7d6bbda5595dc6ba"
+        }
+      },
+      "binding_sha256": "15c2b4e1d0d9ba5498c554d8b87e0d89a86e834b1deed32eeb283855174e35a9"
+    },
+    {
+      "instance_id": "48",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 211,
+          "canonical_json_sha256": "deaae6d64e8f5a4f3f2d5985c641ac2e735668a4fb0d3ea31bdaaa05b9bbd5a4"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "8caa6ed67847e321136f834db756acd79281652a8ce235b75df9f2757e4d68fd"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 637,
+          "canonical_json_sha256": "744649651351e087f27bf1f771c902a5bd35d754663cc4e6a2b3183587cb977d"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 49,
+          "canonical_json_sha256": "541f528b52daef0679c53bfd0520891422ffaedb8ccc77621b89ce842c208c88"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 373,
+          "canonical_json_sha256": "d794e2eb1be7914c2003f4ee45f90d2c857d18779af1adf362a778439444a20d"
+        }
+      },
+      "binding_sha256": "b27884ff0a304ab6e1c28cbe79d2eb6545e21a76e255b09392348b0096f9fe36"
+    },
+    {
+      "instance_id": "49",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 195,
+          "canonical_json_sha256": "17f2bf883191ba2259f7a87cb864fec58273657eac8970909233f4bc08c51450"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 31,
+          "canonical_json_sha256": "8b7ef7cd261a5b89338f219004dc573cc149a7a8a2c93ac178c435f2e8dcbcf1"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 674,
+          "canonical_json_sha256": "6a4949d64679ee82cb6154486a17a0a313b5ac14e98a241429b56c512c1e1bdb"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "b9066c8cee5ea8b4d5c5074ce879b0391a026b7b4161d869f15a172f12f62678"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 573,
+          "canonical_json_sha256": "b9cc6f6bddb5ac9a0c6fbb08ec5a9023d4e8aa7ee1ee6edf61f0b9c5f4c88c42"
+        }
+      },
+      "binding_sha256": "9a704cdd6c407a69c839ec3e1b7de6d8b6eb1e4a6638c10bdbdadef88fcc0f8c"
+    },
+    {
+      "instance_id": "50",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 303,
+          "canonical_json_sha256": "d60b972e176f3a6ad13ade9933dc57b28f4f564bada8bee0b9f0291855d13441"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "ff3631e4431d00ca6801483dc15fa5e8ee2f464388f4bf197780e701a7a03d24"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 674,
+          "canonical_json_sha256": "6a4949d64679ee82cb6154486a17a0a313b5ac14e98a241429b56c512c1e1bdb"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 46,
+          "canonical_json_sha256": "e706b396a1945a7dfdbc24c64b2d795d433eb459f51b8e08757bb250adb5ab47"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 542,
+          "canonical_json_sha256": "22dbb8ca380e48f77b441300835fdd59bef3b68baf6c5353f662bc71b8fa22eb"
+        }
+      },
+      "binding_sha256": "f84c8d769ff0ec2d82c086bddaa88c446d9ef4ad67d002b989d113ed1dcbb82d"
+    },
+    {
+      "instance_id": "51",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 249,
+          "canonical_json_sha256": "5152a60b45e19b28e7fa8eb08846c0bdef88818d45a21005e771c8b42efce8ce"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "f9a90327bd294ea8bbeef0dcc8c33f2b364414941c43e5bc86f3f3df2e73789a"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 359,
+          "canonical_json_sha256": "5bb7a9a07bb792ead3bf52fee8a7187fb3be5d79d40792a582b90bcd7ac6000d"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "cfb873031ba60d54359b9487e040671291f0ed59342103c0f7d378604a3ca121"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 3980,
+          "canonical_json_sha256": "11fa9bc2cc811830493c93f78e4d72ce9ec82e004a47f3d89e6cfc2bd623f55e"
+        }
+      },
+      "binding_sha256": "d1c9fc213a75569d34787ad0d8f563dd38f4fd114d6c08e12c0c3fa7704fcec1"
+    },
+    {
+      "instance_id": "52",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 303,
+          "canonical_json_sha256": "6e0c7de99480ba9a5faa7f315b28e77d39a7c068126848ce3e8bbe9ee995c69b"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "d39945a8acb010fd6e67ad4d6beac3fb8a4e1d088acd8db548f3bc89808b2867"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 444,
+          "canonical_json_sha256": "08f106146843a726c2ed0914b77e2b761f11cce01f63ea227c5205cb36ad6cd8"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 111,
+          "canonical_json_sha256": "c1d29f4aab18aa50194c3657317295a4ae08a16ffd238d29cc757012da4a4ecc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 4663,
+          "canonical_json_sha256": "c3efaa3dcba8baf9c42db4b7cbb4bde9b4179e19e207e5c09af091a4fad5dfdb"
+        }
+      },
+      "binding_sha256": "535a7439572311b78ea336d3bd6c38d5a68e0c62d318107314c1849e624f0f8b"
+    },
+    {
+      "instance_id": "53",
+      "domain": "Geographical Information Science",
+      "license_partition": "RASTERIO_UPSTREAM_TERMS",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 311,
+          "canonical_json_sha256": "1510feb601c63d430958afa8a69c53b89fc415e64722c6d39ed2a95d09aaa79a"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "770ae4c067e87d07dce284499c39a488fdb438a2ffdc7329220ee56a50d3f648"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 382,
+          "canonical_json_sha256": "02482628420d6e3ff54e8f065b99783788beb3022c3b94719cf696b77ee87d24"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 642,
+          "canonical_json_sha256": "60e6b6e3200ee2c2e3f9454c8a58eabf28342cc6b37d8da06fe19d0c7d6b7e3f"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1334,
+          "canonical_json_sha256": "8173ff751651b6be26891638a9c8b13271fcb8a132664a3740b64f578e175f41"
+        }
+      },
+      "binding_sha256": "940069f8fe4faa1b2dc002a5de3f92d2dbe7a5614b25741d9fcbe65f270c279d"
+    },
+    {
+      "instance_id": "54",
+      "domain": "Geographical Information Science",
+      "license_partition": "RASTERIO_UPSTREAM_TERMS",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 261,
+          "canonical_json_sha256": "ad246f7e7cc239e275dd06ee267306d5424b150b6a089c0b352c41bffadba06f"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 39,
+          "canonical_json_sha256": "92435d00b23b7c88045786cc1b8161afb548b94ab4e15cd207a3c47dea8fd166"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 541,
+          "canonical_json_sha256": "8381a80d4e5e479ff79d7bae8ec84bfc58afdb190efdbedfcb1b9070ec76772c"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 642,
+          "canonical_json_sha256": "60e6b6e3200ee2c2e3f9454c8a58eabf28342cc6b37d8da06fe19d0c7d6b7e3f"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1371,
+          "canonical_json_sha256": "b5bd77bb40aa388caa90662e5cc66b355fa1330d48b7735d63bea27639ecf0d9"
+        }
+      },
+      "binding_sha256": "7fd5dee3b51678563e677b5bdbf179b70c44868a19a786350602c4b6e6d767fc"
+    },
+    {
+      "instance_id": "55",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 249,
+          "canonical_json_sha256": "d5f74b62aad26c1b008c91800052040281845316d2c0cf81e44364632149016c"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "388a4b99c123b59f19d058c4d7f78e4e976dd65c44bb7c094360524e24985d7f"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 570,
+          "canonical_json_sha256": "98f797e116186e024b6fdfe3543f14ec31cdfd45228166191b23caa97618e2f5"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 49,
+          "canonical_json_sha256": "5f0bf6e233240389279f1c3af1e6e4b264eebc068e5afa04fea34fcb9b731fcc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 414,
+          "canonical_json_sha256": "31af94a36202c97aae3e5dc26c7239372eae62cf5c877c89ce87eafc9ce68cb2"
+        }
+      },
+      "binding_sha256": "d161e57a6ff0e41ce84aa74932ccb179fbb7b5913cb09e543766bf2a3e423e90"
+    },
+    {
+      "instance_id": "56",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 253,
+          "canonical_json_sha256": "251710e99753c98ec71e6f11382c29ca90752554ca0e0836b3ac10bc3a560aad"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "55c9058c4dac8c5e1f13710e615bb3dd17e724b44764004688677ae5dbc453a6"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 691,
+          "canonical_json_sha256": "2537c7a749fb95bed5aa240d12f8634a0c9b0ada5570366d9c2a5ef65b93ba90"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 55,
+          "canonical_json_sha256": "11de82cd39854372a70077d3671433d126b36a3f6411864a8c5e35b95548f27a"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 356,
+          "canonical_json_sha256": "d00e22d3cfe841db10b5ef340902a1a9ce6b29a3d8e096c187fb0f4e4bddea0f"
+        }
+      },
+      "binding_sha256": "f98ebb9cfb8c1310ac7b31deb73a770aefdbd1387ffc84687f9ee89a77f911d1"
+    },
+    {
+      "instance_id": "57",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 209,
+          "canonical_json_sha256": "557fe4363bc58fa742e34353d26186d0a6232f66ef26118f068473ebfd530120"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 30,
+          "canonical_json_sha256": "4bb6e32995d07b867c39a0b82224e236e2ad19a0dd4b05adfe95a3831657b6b1"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 866,
+          "canonical_json_sha256": "941075171ce4f7bd7c5351d89b3cc769a860a8587f728dc751d3bea2a49fbd9e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1215,
+          "canonical_json_sha256": "9e216cad88948be455fcb31acf429b0a592a7791064379ab07a48692ee268191"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 183,
+          "canonical_json_sha256": "d895b659cc6c79c90db35a75a0710229ad71f3189d90881820203dba053f546e"
+        }
+      },
+      "binding_sha256": "7d04139717fc3fd05b5d009c29b6a78539c7460db9b8d12556f31081011f8a75"
+    },
+    {
+      "instance_id": "58",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 336,
+          "canonical_json_sha256": "d637314489b8fc91d6bfe2560cdd2ae99ee35066e10c38a84368ec6df7800a91"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 30,
+          "canonical_json_sha256": "fdfd8bdd9fdc99dd1343e7a9185daf94232b6cace7cd7816d4d5371accf9532b"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 866,
+          "canonical_json_sha256": "941075171ce4f7bd7c5351d89b3cc769a860a8587f728dc751d3bea2a49fbd9e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1215,
+          "canonical_json_sha256": "9e216cad88948be455fcb31acf429b0a592a7791064379ab07a48692ee268191"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1003,
+          "canonical_json_sha256": "043d49616eb06f8bd201e93234ff90f6118081654e8de880284c118b36d80555"
+        }
+      },
+      "binding_sha256": "3393c54445fe4367036cde9cff83d5c49bcb61deee032f421a8dbb7450a6cf51"
+    },
+    {
+      "instance_id": "59",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 245,
+          "canonical_json_sha256": "f8f5d768acc4e12065b732b19088173e88202f90bf774a5aab6e21afa4b451a6"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 30,
+          "canonical_json_sha256": "14171e70bdff3b9948a749c9fcebf6f57a68899e9e8ffaa22f3a146af0a18416"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 866,
+          "canonical_json_sha256": "941075171ce4f7bd7c5351d89b3cc769a860a8587f728dc751d3bea2a49fbd9e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1215,
+          "canonical_json_sha256": "9e216cad88948be455fcb31acf429b0a592a7791064379ab07a48692ee268191"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1003,
+          "canonical_json_sha256": "043d49616eb06f8bd201e93234ff90f6118081654e8de880284c118b36d80555"
+        }
+      },
+      "binding_sha256": "726e288e8a031a6bed4ec71130b740a085fd00d230dbf57024345349cc4136c0"
+    },
+    {
+      "instance_id": "60",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 341,
+          "canonical_json_sha256": "e662e156fc90a03ba12de5daf459b854b9069ffc86e517feac2f96ad76df9a9f"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 29,
+          "canonical_json_sha256": "09053ec51effa5a736e11185055cf08d69fedcbf4ee1a455ab9848e2e6f98602"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 866,
+          "canonical_json_sha256": "941075171ce4f7bd7c5351d89b3cc769a860a8587f728dc751d3bea2a49fbd9e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1215,
+          "canonical_json_sha256": "9e216cad88948be455fcb31acf429b0a592a7791064379ab07a48692ee268191"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1003,
+          "canonical_json_sha256": "043d49616eb06f8bd201e93234ff90f6118081654e8de880284c118b36d80555"
+        }
+      },
+      "binding_sha256": "53bf21603acb27585aeb91882cc221feab917313c811ae7cc73b150db8ef8513"
+    },
+    {
+      "instance_id": "61",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 306,
+          "canonical_json_sha256": "00664e8c4d0fe3957144ba939c30892ea7f6d7c12139c5c25d21e6cf49ae6086"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 46,
+          "canonical_json_sha256": "10f477ce85bc6bccdc652aa3d6ad5cd144609051dfae56d9b0018c34d0d58c5d"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 866,
+          "canonical_json_sha256": "941075171ce4f7bd7c5351d89b3cc769a860a8587f728dc751d3bea2a49fbd9e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1215,
+          "canonical_json_sha256": "9e216cad88948be455fcb31acf429b0a592a7791064379ab07a48692ee268191"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 395,
+          "canonical_json_sha256": "9439513bee883009bfbc6e665fb7ef361d48a7b4228dd30d621cb28fade00e34"
+        }
+      },
+      "binding_sha256": "7b30daedff0380607bdd051edbf24eb09700a1dd65c921901221b15d4baffd12"
+    },
+    {
+      "instance_id": "62",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 294,
+          "canonical_json_sha256": "27c9a0b9ba45a742c1f25f35173c18885ec8a1237a67a647afdb3b100ed7c9b6"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 40,
+          "canonical_json_sha256": "7e5955011404dc4028b0e98a526366e9ef4f4a1150d39753ff40e030ff0f6c40"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 866,
+          "canonical_json_sha256": "941075171ce4f7bd7c5351d89b3cc769a860a8587f728dc751d3bea2a49fbd9e"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1215,
+          "canonical_json_sha256": "9e216cad88948be455fcb31acf429b0a592a7791064379ab07a48692ee268191"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 395,
+          "canonical_json_sha256": "9439513bee883009bfbc6e665fb7ef361d48a7b4228dd30d621cb28fade00e34"
+        }
+      },
+      "binding_sha256": "2442e19376479fdd86f37f1d38c0d75fe6fe581c8e797a1203fc648643c948bb"
+    },
+    {
+      "instance_id": "63",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 431,
+          "canonical_json_sha256": "6cb043674fe1681b49c013602232294c2fb0c845998b89550ce75bce4b7592f0"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 31,
+          "canonical_json_sha256": "c541c5bbd87cd689e2d6b769849ee338e9e66a324045b82dd8c8a3d14e955f27"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 451,
+          "canonical_json_sha256": "daab383507858b19ae79215f50ef18620d7b635bb6c43373983119bb9b4b6c08"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 128,
+          "canonical_json_sha256": "20fe366fe7f458fd5e3503a43be5f6ccaa4709f941c262adc97c9f681221e07b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 982,
+          "canonical_json_sha256": "b02c478f036ed96728520c5cecb9086164394093377813ab25d35f4121a29f77"
+        }
+      },
+      "binding_sha256": "6a6a5916c8d1cfb3b9d5abb3ae16c35d7af751b90619e30adc6ea5d9503b07e1"
+    },
+    {
+      "instance_id": "64",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 308,
+          "canonical_json_sha256": "81fa529737a44157711e9892f3d0424b2427dff4873451c0a1cf95c75ec04c8c"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 54,
+          "canonical_json_sha256": "b8fd60813b33de750de7e43a8737e307550c9f33c898944dc4371355c8c34e7c"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 540,
+          "canonical_json_sha256": "fa819e10d03b77d344df3d116c0823554faf5a7a101485a2e8ff3d5008b0104d"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 196,
+          "canonical_json_sha256": "193ae6238b1bd6ec964510a2693efee27660e52cd49ad9393aa74ba101e164fc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "86de9d5b605bd53750a4b2f461b57ea0b94faa89c0d63257ec3a1b24c85d41d0"
+    },
+    {
+      "instance_id": "65",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 226,
+          "canonical_json_sha256": "8e76e572944d9263caf1cbf5f37f258342e143554a55c661a7323149224607e9"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 45,
+          "canonical_json_sha256": "26e49f61c9c2ee163321e1f39889a60c64634859f8cc3f490df7ad937127e567"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 645,
+          "canonical_json_sha256": "91e75b98d175ec53bfbbd62da33e52340df8bc428764e4ae224227fccec562fb"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 196,
+          "canonical_json_sha256": "193ae6238b1bd6ec964510a2693efee27660e52cd49ad9393aa74ba101e164fc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "85cbc86c29c0537613b9fb2cbb079c5af0cd339b4ce5dd2cd11fcf48abddc745"
+    },
+    {
+      "instance_id": "66",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 315,
+          "canonical_json_sha256": "54acc76afeed29b2e3df49d467e096efb427cf12f28ff39b2e51fc85297f2d93"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 52,
+          "canonical_json_sha256": "ca63222ad3f98710bb2b8ca2985048f06d623b4978a872196f7169ee0fafcade"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 80,
+          "canonical_json_sha256": "1e69c753e119cdefab8b3b59ff25b02a54ead7cbfba4d9470ac260a3c8926b91"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 290,
+          "canonical_json_sha256": "9432add2c811d1bc6dfd12066594e95aa2034d6830353c4b64c81d3395f700d5"
+        }
+      },
+      "binding_sha256": "bbab2f802ee9524b274ffde74f9e1c17ae0887010c898617c9ed22f6c35e27db"
+    },
+    {
+      "instance_id": "67",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 552,
+          "canonical_json_sha256": "46e7543a3a0d091a245ee985aa3254b2dec324aef64b6d27402ae80b40da572a"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 52,
+          "canonical_json_sha256": "b8311b286ab752bdb222e7959f7de8fb712117aaefe290862980fb052e8427df"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 256,
+          "canonical_json_sha256": "15410181b78e4c1cdb83ecc663cd0e1f2a6cdcc62b8fef3b440e5aaa48552268"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 923,
+          "canonical_json_sha256": "e1be64674120148378672e8d275d703b5cc1a2f8c4e46f6019bdab9c6853e74f"
+        }
+      },
+      "binding_sha256": "3ce017a62566f4e6cc354892e9e936c6a52c87d542cc8aa7f36ea23be59d74f8"
+    },
+    {
+      "instance_id": "68",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 457,
+          "canonical_json_sha256": "50ee02d0ae9efec85ec9b32f9caad4e04c162eb6cf8c56532991fb451f541a05"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 61,
+          "canonical_json_sha256": "928c63a3a4aac944e48f505b49c7f578b92315e3d551661ba9800271f9da8a9e"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 137,
+          "canonical_json_sha256": "e0dfe96ff5f5ddab94a00c19b754918423465383df39a72b3bc86a82593c0ff7"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "8e95657e2242a9d16b7f29007dc11b3f2209e27c313a2ef50b34afac96b237b1"
+    },
+    {
+      "instance_id": "69",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 270,
+          "canonical_json_sha256": "441487170194de9ab41b964babf8f7e047df0b9ccc1be97d98093e8c63250b84"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 36,
+          "canonical_json_sha256": "eb022ffe6acbe83b3c3e0526823bd17fc60d6061aa5a1cbe92bdeb592c18b585"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 427,
+          "canonical_json_sha256": "78515854d257570a69e08d8d5adf0ec3cd0faf070aa3892edb993739d5f0aef7"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "c931308269628c321ddb63f3f0aa969cd537f85776eace31c8fe2e02584e8de3"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 554,
+          "canonical_json_sha256": "134d6e8877e9642a5e6c763ae283b576d0a53fc85787662fdfa21698a42ae299"
+        }
+      },
+      "binding_sha256": "2e26fb092ce5baf8fcaa85b086824fd409530526f06aafd28f5b05d040b089bb"
+    },
+    {
+      "instance_id": "70",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 299,
+          "canonical_json_sha256": "c0782b4e0c0f37ca5230a2bef5cffff0a5651ba3b15bbe9e8586be78e61d9ce1"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "1107891de42dd9ea047e1fdfdd57e321ba399c4970bfb7c69a03d27f4557c257"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1134,
+          "canonical_json_sha256": "ce1427ec80a30d7a8ad2fa186397ed4ecbf21a3a52c3759eb19fb9dcf9f935a6"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 41,
+          "canonical_json_sha256": "c931308269628c321ddb63f3f0aa969cd537f85776eace31c8fe2e02584e8de3"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 554,
+          "canonical_json_sha256": "134d6e8877e9642a5e6c763ae283b576d0a53fc85787662fdfa21698a42ae299"
+        }
+      },
+      "binding_sha256": "10ef5f46ca9d74c4ee2a1edcbc3c1d2b262c9ed3082600f32d8c655c02098d81"
+    },
+    {
+      "instance_id": "71",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 370,
+          "canonical_json_sha256": "dbabc1b8ed1b696caf193c46a0dce6e15ebecac4565385f7d6204246a94ad497"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 43,
+          "canonical_json_sha256": "189294312eccb007229708115f02681571e06ccc78849c98f2d3d3781c2623a3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 702,
+          "canonical_json_sha256": "1822a3b7def47748c9c39d08743dbd0863aa0bfded4be87145e83e9286c88252"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 101,
+          "canonical_json_sha256": "ebeab1f697e626342c9e5eb6d05eb4877b62c6dfdf78c6108086a41530edd013"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "dff52ae666ebaa57663bdf7adc9e2cb91c152252c762273a0b6f69d14ec629e1"
+    },
+    {
+      "instance_id": "72",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 372,
+          "canonical_json_sha256": "8be6e18ade61f814953dca8f367d714bbed09643c870758c44103b52dab14165"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 44,
+          "canonical_json_sha256": "cd7fa974166ef1cf6f05148e43d0032d194b7577ab930ae550f6a6c619d4fbd0"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1759,
+          "canonical_json_sha256": "40da85afafe3ab750ede77ad4e1ebb6038591d73b5ff5229cfa7830bc11a672f"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 101,
+          "canonical_json_sha256": "ebeab1f697e626342c9e5eb6d05eb4877b62c6dfdf78c6108086a41530edd013"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "d29316bff1998189e63132f2c994185a27c7fdc4d894a75dc96bcb51234c2b88"
+    },
+    {
+      "instance_id": "73",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 227,
+          "canonical_json_sha256": "cf841d3ec1d00868bfb74f53f81ebed59b2a50d88c1759994af52fa1558695d3"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "fbc71e130a0f7ba3aeb3717d56b6af290bf2f94bb55e411cb8ba14a39a7a3c33"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 88,
+          "canonical_json_sha256": "cb7e91d7222a1905bc5a066db5e3f74ca8c7a820158fe055174b9a05543ff178"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "4b1d03434b68f8a900cbf6b62bf8fccd90ea40e143bae5d391be7fc76a29a489"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "3091ca0445d451cf893377f0206101109d3e020dad4f05b4953582b6b0d372df"
+    },
+    {
+      "instance_id": "74",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 523,
+          "canonical_json_sha256": "118374d64c130872e723c5b73b1bf878d85f700ca53568670e02b1e436efd1ca"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 71,
+          "canonical_json_sha256": "7024d965f46d4b9bd883afcc8879d2f9c162db1161d96c7f041e2852c7dcf631"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 628,
+          "canonical_json_sha256": "fd11b4da8fecbbf8ca9a6b24ab18591a2f8ddd759c24a7f1bc9ba28271bc7c4d"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 196,
+          "canonical_json_sha256": "193ae6238b1bd6ec964510a2693efee27660e52cd49ad9393aa74ba101e164fc"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "d15f2de1e900a5df8056fb555d7fba771eb3e9c588c16e13c30cee7ff4cbbcd5"
+    },
+    {
+      "instance_id": "75",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 261,
+          "canonical_json_sha256": "41067d1fffe3459395c8c20812f772466f294d5a2486e1c4f4f79f234af2e0cc"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 38,
+          "canonical_json_sha256": "8d0c712e387529cb58044c46b10c18fc766b27f73aa208142e75e213badbbbee"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1478,
+          "canonical_json_sha256": "f0ef6e22cd681ca135c57796a20fd3bd686d168b89cedebfbd2a42682fcb856b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 43,
+          "canonical_json_sha256": "690bdc372d638fcd7bd5de84b6872d6a3b6709ee3d659ee3c3bff4b479de05a3"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 505,
+          "canonical_json_sha256": "3444f9b29497fc8fcd311495d1a9052a8b438e73c065f198e0474644eef158cf"
+        }
+      },
+      "binding_sha256": "5d06a464c100931dfe8fb68dfc441699c9c04e8e37a28fffa60d59ffa927927f"
+    },
+    {
+      "instance_id": "76",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 516,
+          "canonical_json_sha256": "c729a46c8f08c2efe7441d80e53cecc7988268d18a40ac83cebb50e736eea865"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 40,
+          "canonical_json_sha256": "be190d131ba304b128d5388b54867c5f2e84ff27fdbe0f9532c8371891cc43d8"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 346,
+          "canonical_json_sha256": "007cc890bc2634477392c5c36ae61074e60abd2f7733aebc1c3c0f33fe9dbe98"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 221,
+          "canonical_json_sha256": "3b7e200a32314f1b54e216b441c86f6ac58510df4d8f606efb499fcca56101aa"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 902,
+          "canonical_json_sha256": "6582f1fa3303e51d49a52f578b1511f5c2e29396d5cf7e77314f32316d89ba88"
+        }
+      },
+      "binding_sha256": "c9f77c50b85121bca246ff91c5229bd5db796650788fef4c9f038eeaec338527"
+    },
+    {
+      "instance_id": "77",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 563,
+          "canonical_json_sha256": "0d4bb0d63a17e92cd72491f4a367de3627036761482025f9723a2095c655a418"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 45,
+          "canonical_json_sha256": "50eac3a5e9b888b985cc6cab619660550ce9bdf27c92b9f0c9c62d4bffa256a3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 243,
+          "canonical_json_sha256": "8764622430db66f2955804e9579f1c27a56ccc8f36eb78b857139e8e82db4c91"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 65,
+          "canonical_json_sha256": "f742236303a81f568e1bae2afd4328170ccc836380a61a9b9c18a705b2bc05de"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1970,
+          "canonical_json_sha256": "83573f76322ab3958fdc38282e5b60420e3011e9b983d6dc77bade44e0336003"
+        }
+      },
+      "binding_sha256": "f046e367ac980c380dd7dfc22275873d5a48aa0faa3e05aa916567c393039422"
+    },
+    {
+      "instance_id": "78",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 478,
+          "canonical_json_sha256": "ab492fdc00454269bdc2df2906db58f03145580cdbca437a965ab2aa568540f5"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 43,
+          "canonical_json_sha256": "ff9dd0c486076400e04a6727f0b151fe99094622a96e991b59d887f76fcea1d3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 582,
+          "canonical_json_sha256": "46aaf836a4ef8eefb55f350781fbccf33945986e880e3f2ac00f55fa65438036"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1684,
+          "canonical_json_sha256": "4f287216aab69a28222c12307f592ec0377872ee5809f6e5b9eccbaed89eed37"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 570,
+          "canonical_json_sha256": "0f3b6e92578deb55b329d92d9a875ebd6b34c277635fef42ce0f6a7e52e4a75d"
+        }
+      },
+      "binding_sha256": "a668d1dc5df22d9f3709bdddeca4c045d080f812771afa861590080458d7eb17"
+    },
+    {
+      "instance_id": "79",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 282,
+          "canonical_json_sha256": "d3c9170ba31ba51ce7ae9a1c70ce6dba92126cc8a7c11a30d3555da5c501010f"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 25,
+          "canonical_json_sha256": "71e16db7d8bb34a650b9b266de1bbc016f681579b667e8fdf0b77596301740f3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 32,
+          "canonical_json_sha256": "151b94c3af265cba360b288a5913012dc03b122c7a8317efa06a920a41fece81"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1192,
+          "canonical_json_sha256": "1fa83e46faef55f415ffbc3e578f7c1098c6e573350968d3585bdf95ef104e7c"
+        }
+      },
+      "binding_sha256": "6288536f4de85c061c9d3fa3feed6daebe90cd9702c3fccf75b26db0c983b4c0"
+    },
+    {
+      "instance_id": "80",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 322,
+          "canonical_json_sha256": "d478680b37144232776594fadc2f3a4ebfaf7403fde99336acaf6928261710f4"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 32,
+          "canonical_json_sha256": "3f29415870173829b7748ff7928931956056fd8cc207861865975e8235ae1c62"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 32,
+          "canonical_json_sha256": "151b94c3af265cba360b288a5913012dc03b122c7a8317efa06a920a41fece81"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1192,
+          "canonical_json_sha256": "1fa83e46faef55f415ffbc3e578f7c1098c6e573350968d3585bdf95ef104e7c"
+        }
+      },
+      "binding_sha256": "f1cb2c9377ba1ae136621972f56038cb64015166a6eb762a8deae03953bdd469"
+    },
+    {
+      "instance_id": "81",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 352,
+          "canonical_json_sha256": "26845f878371bd336b0c574039296d09bb573d2c96a58c140f30b9b3691d6e52"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 23,
+          "canonical_json_sha256": "86b1dcbb4f729f3da59102c1ba3fd0ff03aa586c02a757a428d993551bc24a83"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 760,
+          "canonical_json_sha256": "ac8a18b165846afab101e84e91a2095b4edee02539dc9f8d3c269c683cab1715"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "e75c031f0771f06b44cf730827825475c06871a475f085bd4e4c0d4d0810703a"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1435,
+          "canonical_json_sha256": "da8faa694990fb4753dc2ab5764cade6aa481dbb9097485178f3f0637984a0bc"
+        }
+      },
+      "binding_sha256": "450be0402bfbbfbeedac2b380680e7e90e61d57734283c2a16782767c4d0fe89"
+    },
+    {
+      "instance_id": "82",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 152,
+          "canonical_json_sha256": "3b380d3825dd9ce8ff378a9e5cff980bc7eb359ec12247c100c50e6d8eb6e503"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 29,
+          "canonical_json_sha256": "087f2099647c0faac7842d948aac73c58751e92e7325c9e3a44862fb41a88546"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 390,
+          "canonical_json_sha256": "01b8e67b801c3c0834978b76ce3c4aa9b17f013f7454574f9eb35800662a0e0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "e75c031f0771f06b44cf730827825475c06871a475f085bd4e4c0d4d0810703a"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1435,
+          "canonical_json_sha256": "da8faa694990fb4753dc2ab5764cade6aa481dbb9097485178f3f0637984a0bc"
+        }
+      },
+      "binding_sha256": "12c8b35e9cee085041dd119fea230f8c6ba5827968e428bd4260dbcad60ffbdb"
+    },
+    {
+      "instance_id": "83",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 669,
+          "canonical_json_sha256": "85fa057d35067ba0cfa61aae57136515f9020a064106fb8f63a372a36d137f25"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 42,
+          "canonical_json_sha256": "823b184f95e05529bdd96a173258df8bb7350af7610e77622f4cb45a7af89114"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 681,
+          "canonical_json_sha256": "d9a04c0b888b117680b180609431baad83605ea9014814b0f7d86c89b046ff50"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 64,
+          "canonical_json_sha256": "6cf2409064534da063edf5c9a03fc5006ea622ee7b23310f74cc7c0eca4ec225"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1363,
+          "canonical_json_sha256": "5c6772feef676cffb477e464b1bbaacd5608f9871ef7b0041f2409bf9cad9c2e"
+        }
+      },
+      "binding_sha256": "810db07cbd7aeba993a2562c997016cc340c226741622e4a5216fffda9fc8469"
+    },
+    {
+      "instance_id": "84",
+      "domain": "Geographical Information Science",
+      "license_partition": "RASTERIO_UPSTREAM_TERMS",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 486,
+          "canonical_json_sha256": "d1865d9f871ac05aa28e213678ad3be8d8ff42d22e3924981ba6070fd95e00fc"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "ee763c4cd315c96c7caed7fbbe9828d2b74a3209463ab59e1ea994b36f19bfba"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 662,
+          "canonical_json_sha256": "48e3a61c1672e5827289103e0fdcfd77857c5aef07fb6654479735d799e61e42"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 227,
+          "canonical_json_sha256": "9eabb9d5dcd2e63006b1dea9aea5d6e0150dd9f50b43216c0c65555d6bf88764"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "9661f1cc161e18cdf22221dc45b77640d130dfb67c017c4ebe9bb96e6020c680"
+    },
+    {
+      "instance_id": "85",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 309,
+          "canonical_json_sha256": "657a60325edaf4858b9de257958d28a219fe84cc11e4763fe14bb602d7bb8ecf"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 31,
+          "canonical_json_sha256": "cc049f9e582110ba38e47025c28ae84a9c6ce91f4aa103899efb6ec5f2c4cbd2"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 513,
+          "canonical_json_sha256": "f66e1264d7f0dd540e7cc3685f49c42f979d96ca05b3a3c8b87d452b1e32cee5"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 34,
+          "canonical_json_sha256": "7f4589de1a133870167c7478d64861c1153a650743bf1801dc174a7cdd5149e8"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 343,
+          "canonical_json_sha256": "f243d1df8f48762272b9eef992e75e65181b3c73495819c832d92fbef5e35e7c"
+        }
+      },
+      "binding_sha256": "23d8a2a06bfe474ddec0934719e718583dd67362bed521abaf1d22d8aae8df09"
+    },
+    {
+      "instance_id": "86",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 207,
+          "canonical_json_sha256": "f6a993804a3b5e1459f10b6c3afd71f0ad6122f1489e460390b7e43b109d1b60"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 26,
+          "canonical_json_sha256": "5f8a0e9df72d552ff964271e9a017bb454ef9a8806655dc1cfcc899d90e5340c"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 255,
+          "canonical_json_sha256": "cb94fe54bb37b4d79e762aef93b04890d327c036e75153a5c8a87ba12dcc50b9"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 53,
+          "canonical_json_sha256": "6a5a52ab280a082ca2b7084adfc4d8fdf6efc8538ae7a3cf3f2bcfac69a1f030"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 392,
+          "canonical_json_sha256": "e82bdb5f905227f09a4cd9cb35d5c51b3c9a2835bf2f8b77de38a6ebc133e1bf"
+        }
+      },
+      "binding_sha256": "4b219daa01ade3a9c31c5f901619d232fdf0af368200b35996d0a6d3e48e80d8"
+    },
+    {
+      "instance_id": "87",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 256,
+          "canonical_json_sha256": "266bc247d64afd1d60357133826f278f0a6cb6ea8bba5e1e642d9d3f7e861023"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 38,
+          "canonical_json_sha256": "f16f9e51da27badb940c79a1ded6854183c6c3e612d9cfebd66a9d98a87a04b3"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 289,
+          "canonical_json_sha256": "afb9655c9cf5efda5ea21190682f8834d555087850547489ff6d3eb20ad1d6e4"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 49,
+          "canonical_json_sha256": "b3f74700773201fd4bc05d7b55a82f881c6ceda4034421c295ef98d56bc6d80f"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 226,
+          "canonical_json_sha256": "853a0e255c6167b2b3754a18cee64824c40080166f8cf3ca5759c36e462f2487"
+        }
+      },
+      "binding_sha256": "fa06a51e4de801a678663e641ccaa596dea615734f9b4d54bc1b81b6d6d224b7"
+    },
+    {
+      "instance_id": "88",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 277,
+          "canonical_json_sha256": "73e8d83aca886c40225008831a0bc6546a662262a788680841061a89c991c1ec"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 37,
+          "canonical_json_sha256": "e8d2118de5e493d0047338b4e0fa66b9ba59d9ce7b3cea02ff1ddb055aa86264"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 243,
+          "canonical_json_sha256": "fae71529f81cfb7f9aff3d91d29afbb3553130880b56260c4b311e56285ceb77"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 85,
+          "canonical_json_sha256": "a75a47aba7f9597060ce4e6c6eae642549561b1ddebb6fec6f9c234b226e8494"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1476,
+          "canonical_json_sha256": "ab7ad24dddfac1c1c72cb389cebee8b0cc342904c1a70ae58b98ed172d999b74"
+        }
+      },
+      "binding_sha256": "0de71d00c073fe804b77b7f648503f12378e282dc516cf42c38ee3f20c60c739"
+    },
+    {
+      "instance_id": "89",
+      "domain": "Geographical Information Science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 255,
+          "canonical_json_sha256": "43c00d606389d7790dc8a44eb3cb6e85b0a0a0e12ba7fe735d7701b45ba32905"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 34,
+          "canonical_json_sha256": "831aac7249ad1ed0757a1b85352ca86f72a980718c46cb3a1195df268e304ef5"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 365,
+          "canonical_json_sha256": "f9dac9f65fd3a7202f030567e6716684cc46f7e6d6b1d4c053db9fb62853d147"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 85,
+          "canonical_json_sha256": "775bae6518e8849704b1a9172a68aec00faceb4f2de220e41b99cce4bcdad81a"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 2028,
+          "canonical_json_sha256": "a2f7cb9d68f4e38fa393f8064961c6b2be4be3aa40281a74dfe37b22872b9d8f"
+        }
+      },
+      "binding_sha256": "3302b7673bd9577798d9e1940b17439b8648a437806e814518da7a404fee909e"
+    },
+    {
+      "instance_id": "90",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 400,
+          "canonical_json_sha256": "3275837e4fb0846433261de6d4b877fe3fdeb5a75cae257394fa259e97324873"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 54,
+          "canonical_json_sha256": "44d022bb7db09eb8e4c96764e0eb96f92756139451aded0c77fd0efc757ed257"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 80,
+          "canonical_json_sha256": "db281ca6364b9f2a01048d8afb05788d0c8cc6b7d3660cd6a95b057c2259e429"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 546,
+          "canonical_json_sha256": "d5454a566cb326be78ed944340384491e2e0eeaf8df7c6b2930fea7705ff7608"
+        }
+      },
+      "binding_sha256": "df2b037e292aee29f5f0b5d453de348efdacb7264dc70d064356b31514748b6f"
+    },
+    {
+      "instance_id": "91",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 558,
+          "canonical_json_sha256": "8e3ea83272b3c9371b98c3ba2431526c5716ff6d48c4fb774149916cf8a92cd7"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 45,
+          "canonical_json_sha256": "ebb3af3738e0a6dd1e56288b36d92aeea9b33ede29e5f5dff65853255423c8fe"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 211,
+          "canonical_json_sha256": "a182b49f9ca743563b1546a1b92bd113e0aecbe92361191bfe566b073e796471"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 532,
+          "canonical_json_sha256": "bf0fbb37b6d2b3b06287d8134a4cfad17c991c7d88906beafa031641e7dc78b8"
+        }
+      },
+      "binding_sha256": "378609bb42c6e5a190bf843742393b8ff1216d467786ec893b87d0ccd44d7fae"
+    },
+    {
+      "instance_id": "92",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 983,
+          "canonical_json_sha256": "120bbd1c8e91147444e1837de699766684f2d53ce47a01259f3d6a9734038687"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 38,
+          "canonical_json_sha256": "29254b2047201606a6aab70bf0871bbc6651246a388356a9f57aa21ea2d14d06"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 211,
+          "canonical_json_sha256": "a182b49f9ca743563b1546a1b92bd113e0aecbe92361191bfe566b073e796471"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1066,
+          "canonical_json_sha256": "6322d70c491de2b60e3521c55b0a675714fd5875f7eea4879434d2a2960d9f78"
+        }
+      },
+      "binding_sha256": "d4d08d991573f81ef0f106647e81bebb1687e5bb7cd3af10db7685f218e837ef"
+    },
+    {
+      "instance_id": "93",
+      "domain": "Psychology and Cognitive science",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 680,
+          "canonical_json_sha256": "805129ea70398b9aeebb7a23f6c9d9913423a0e63ad3b53fc1fd6e64e35ce937"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 51,
+          "canonical_json_sha256": "6a67354ca235771e5608b8f7163a74e59b903cb939ead22e322a69c0356d71cc"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "cefeffb730e9e2d56f664c3a8091e41ed068cff196d1317423a0044c76690f0b"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 211,
+          "canonical_json_sha256": "a182b49f9ca743563b1546a1b92bd113e0aecbe92361191bfe566b073e796471"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 532,
+          "canonical_json_sha256": "a513bf41bb7094e3f0057a29b8570fa7ef916b2277931550657ee83f02011d40"
+        }
+      },
+      "binding_sha256": "2aa624ad841c6946957ef4552b59ca39ca51e872c25233fe30627e6d162d4e2c"
+    },
+    {
+      "instance_id": "94",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 470,
+          "canonical_json_sha256": "4d42bd26c4cb0422a8ee1737b1786019780d2d436df56d000c24c27c87ee3b62"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 53,
+          "canonical_json_sha256": "a40b81a7560a2d711ab8b6a856abb71f860cab4da6858441c18bbdaeebf580d0"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 217,
+          "canonical_json_sha256": "7ddc629e807f41ebf76993f86f1d119f52effe4ea00269c3c8be8b692e3fe6ab"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "c7c0264ac9f7cfbaf9977c48ca45e9ce35ef61422e8848a16a251455381fa930"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "e454eab3957988115d2d6b02572d918cbb5ff65a01c4314bb81d9a27f4de9154"
+    },
+    {
+      "instance_id": "95",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 578,
+          "canonical_json_sha256": "444a1b3b02b346e7508d2affb6bfde2587db96f0038434ea9da7fe6977504790"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 42,
+          "canonical_json_sha256": "180764b0ef2f8cc91d9df8781366054a4fc81df121401c8be39d53ea6d53333c"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 220,
+          "canonical_json_sha256": "23213332b604ea91c6f52d9091d4de5af494ca0a3ba54da9db79e3c10d9bd51f"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 57,
+          "canonical_json_sha256": "0143cae8e2c1c65d8e11040531b0a81594f76fa32a606a13d4da17d0ad927f51"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "f9eeb41d984eb3a46d65a4b527d9b42a500d943a5c60209437c2e042e70e9f8b"
+    },
+    {
+      "instance_id": "96",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 261,
+          "canonical_json_sha256": "46a91a307423c13cf6484f73c44fd0d276a2844555def155edc95b189b984002"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 31,
+          "canonical_json_sha256": "97574504988c17980c569d4c9dc375d380690fa0e0f6802687b9f280a64f8b94"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 1133,
+          "canonical_json_sha256": "8a5bb264197f72817b8f132bfa872855e32dd782c5550fbeb9ba05fdd159d7a3"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 42,
+          "canonical_json_sha256": "f73708b525513f7d9d69c9139646980837a18c16797237ec741ad71ce57a92df"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 557,
+          "canonical_json_sha256": "13ad7c252075299c19164db31de1a52974768410e7208e00f71ef272e57dc809"
+        }
+      },
+      "binding_sha256": "4eaae180ac4f7402ce3c8d762e660534eae00c0a2144e79ebdcc5f5ce927f7a8"
+    },
+    {
+      "instance_id": "97",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 351,
+          "canonical_json_sha256": "697a0ec8301ac7cc70ed7af2a671d6366c85ac5fdfa1223e0e93b6fb720c04fc"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 51,
+          "canonical_json_sha256": "33e12221e72c0257ce008fa371ef59278094327277d744c5b1ada88b67eb2c97"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 238,
+          "canonical_json_sha256": "52b89faeb949b0ece380bbf0ba5572e93eadf40626b02382196e2ad4fa7fa0bd"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 72,
+          "canonical_json_sha256": "e445c554760edc1d62e0b6c7e28f2e82855b5c5785dfe4c8d2cbe27bc82ec42b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "e2f4242736eb5c35ffb414b9f36fed7da35808829d92c11ec8f191c24d859082"
+    },
+    {
+      "instance_id": "98",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 390,
+          "canonical_json_sha256": "bc06b45656da18f7a31ed286e83c31bdce0abe72b5ff647c70dc0577bcdda941"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 26,
+          "canonical_json_sha256": "b69ee767d34c0624112076add792c4d2e7bf723711456374143d9c40c8213d71"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 581,
+          "canonical_json_sha256": "4e561ba77f5940fe5dc733d88cbf93492ee4c77ba0bd3df0f92cb844f0ec5410"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "00766438157bdab88a3e6606c1bc9878b625a740244ace9b197a53187038bf5d"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 471,
+          "canonical_json_sha256": "eb8ffade1b5718a83ec0aca46333eb5e83d9c00bf7ec82a46a3e417d99f70277"
+        }
+      },
+      "binding_sha256": "57cddac1baff157bfde42c4cab1f87f61e621d560e2e282831aaaae8fe783b3d"
+    },
+    {
+      "instance_id": "99",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 215,
+          "canonical_json_sha256": "5ec9ae2c9983ebd76df52fa0525566d3d4cea442899d8731bdb92a529fad5845"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 31,
+          "canonical_json_sha256": "fada3d01d3076875be16f426c8f12960bd3b9e88e042bb5f98fd014b1d0ed5cf"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 511,
+          "canonical_json_sha256": "004f1e6e3a402bc56b6896d49f44932237639bd884b381b297fcda52555e3bb7"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "0c9f6adcf23325408d74768234cf4b8beb38c182fd990c395e10285d9d21a503"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 472,
+          "canonical_json_sha256": "5353c21342d4ba5d02146d1bd27bff0f10c00b51a3e5d010352d12e541aac3de"
+        }
+      },
+      "binding_sha256": "7a14047fc89efe282f47dd2757fa33da2d4359d01beb663ebcd357829a6adb2c"
+    },
+    {
+      "instance_id": "100",
+      "domain": "Bioinformatics",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 240,
+          "canonical_json_sha256": "bdc5031ca4aa929deeb58ff4f5b310c384479ad2a90ab086d900d0ef364f0405"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 33,
+          "canonical_json_sha256": "9b069ee7d62cd422b664747831f716ac646e965c3686e66251aeb0ab0194c19b"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 572,
+          "canonical_json_sha256": "67515d1d24b8a7f01ee7e1c6c1a053af4a94d2bfa770a8dcfe8a05411f345ee2"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 35,
+          "canonical_json_sha256": "0c9f6adcf23325408d74768234cf4b8beb38c182fd990c395e10285d9d21a503"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 472,
+          "canonical_json_sha256": "5353c21342d4ba5d02146d1bd27bff0f10c00b51a3e5d010352d12e541aac3de"
+        }
+      },
+      "binding_sha256": "6ebb59d758272de3306a524d011521a36cde71f118cd741a68925f35e3764214"
+    },
+    {
+      "instance_id": "101",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 487,
+          "canonical_json_sha256": "e0b7e66cff0c9b6dc6374738b060f212846b3359455c954a1d80d78e37d12e7f"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 56,
+          "canonical_json_sha256": "945d3fbaf4502ea671afc14f741e96b5013c55ef64530288221cde463d8e512e"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 99,
+          "canonical_json_sha256": "3eb05db87d882b34cfa69aec4f0bbf87020c4cc2e0889f270bd0f474465d39d9"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 89,
+          "canonical_json_sha256": "a4965cb60a622fc9b3f9b0f31a433a247bd73cb705d87d5a329d7b8d1e5398eb"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "1ed729436993bef11d4499d145361af155ecd0633c3faf2c044173a70f414d36"
+    },
+    {
+      "instance_id": "102",
+      "domain": "Computational Chemistry",
+      "license_partition": "CC-BY-4.0_DEFAULT_TASK_PARTITION",
+      "fields": {
+        "task_inst": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 430,
+          "canonical_json_sha256": "d8ad1be850f16a1c3d7ff8cc43951eed839044a550dea145a1fb18bc58e07ca7"
+        },
+        "output_fname": {
+          "state": "VISIBLE_FROM_PHASE_0",
+          "value_type": "string",
+          "canonical_json_bytes": 45,
+          "canonical_json_sha256": "8333ac4c28ef77758058b21d80c955d34966f23a87abc3d05f0f49dda261b70f"
+        },
+        "domain_knowledge": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 261,
+          "canonical_json_sha256": "02505d3b6494a3ff010d286eeafb7b59862cc09ad7b541c37bc154bea94f55f4"
+        },
+        "dataset_folder_tree": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "string",
+          "canonical_json_bytes": 59,
+          "canonical_json_sha256": "8c812252097ee8d3769434fecb16ee5ae0d0ce0e5e2fc535b834180c7b7a3f1b"
+        },
+        "dataset_preview": {
+          "state": "MASK_THEN_EXACT_RECOVER",
+          "value_type": "null",
+          "canonical_json_bytes": 4,
+          "canonical_json_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+        }
+      },
+      "binding_sha256": "99b1ea394d13beb96b525254e1cc3580b10e68c8bb2a6c97492fabdf623da263"
+    }
+  ],
+  "outcomes_opened": false,
+  "scientific_authority_delta": "NONE"
+}
