@@ -251,6 +251,14 @@ def _valid_sha256(value: object) -> bool:
     )
 
 
+def _valid_finite_number(value: object) -> bool:
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+    )
+
+
 def _valid_url(value: str) -> bool:
     parsed = urlparse(value)
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
@@ -306,7 +314,11 @@ def _source_metadata_blockers(source: SourceBinding) -> list[str]:
         blockers.append(f"{prefix}:task_ids_missing")
     if len(source.task_ids) != len(set(source.task_ids)):
         blockers.append(f"{prefix}:task_ids_duplicated")
-    if source.redistributed_content and not source.redistribution_allowed:
+    if type(source.redistribution_allowed) is not bool or type(
+        source.redistributed_content
+    ) is not bool:
+        blockers.append(f"{prefix}:redistribution_flags_not_boolean")
+    elif source.redistributed_content is True and source.redistribution_allowed is False:
         blockers.append(f"{prefix}:redistribution_prohibited")
     if any(_identity_missing(item) for item in source.exclusions):
         blockers.append(f"{prefix}:exclusion_identity_invalid")
@@ -457,12 +469,17 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         if len(budget_keys) != len(set(budget_keys)):
             blockers.append(f"arm:{arm.arm_id}:resource_budget_fields_duplicated")
         if any(
-            not key.strip() or not math.isfinite(value) or value < 0
+            not isinstance(key, str)
+            or _identity_missing(key)
+            or not _valid_finite_number(value)
+            or value < 0
             for key, value in arm.resource_budget
         ):
             blockers.append(f"arm:{arm.arm_id}:resource_budget_invalid")
 
-    if not freeze.evaluator.official:
+    if type(freeze.evaluator.official) is not bool:
+        blockers.append("evaluator_official_flag_not_boolean")
+    if freeze.evaluator.official is not True:
         blockers.append("official_evaluator_required")
     if _identity_missing(freeze.evaluator.evaluator_id) or _identity_missing(
         freeze.evaluator.version
@@ -502,7 +519,11 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         == freeze.custody.evaluator_custodian_id.strip()
     ):
         blockers.append("external_custody_owner_and_custodian_must_differ")
-    if not freeze.seeds or len(freeze.seeds) != len(set(freeze.seeds)):
+    if (
+        not freeze.seeds
+        or len(freeze.seeds) != len(set(freeze.seeds))
+        or any(type(seed) is not int or seed < 0 for seed in freeze.seeds)
+    ):
         blockers.append("seeds_missing_or_duplicated")
     return blockers
 
@@ -545,7 +566,9 @@ def _observation_blockers(
             blockers.append(f"{prefix}:outcome_invalid")
         if not _valid_sha256(item.raw_output_sha256):
             blockers.append(f"{prefix}:raw_output_sha256_invalid")
-        if not item.raw_output_retained:
+        if type(item.raw_output_retained) is not bool:
+            blockers.append(f"{prefix}:raw_output_retained_flag_not_boolean")
+        if item.raw_output_retained is not True:
             blockers.append(f"{prefix}:raw_output_not_retained")
         if item.evaluator_version != freeze.evaluator.version:
             blockers.append(f"{prefix}:evaluator_version_drift")
@@ -563,7 +586,10 @@ def _observation_blockers(
         if len(usage_keys) != len(set(usage_keys)):
             blockers.append(f"{prefix}:resource_usage_fields_duplicated")
         if any(
-            not key.strip() or not math.isfinite(value) or value < 0
+            not isinstance(key, str)
+            or _identity_missing(key)
+            or not _valid_finite_number(value)
+            or value < 0
             for key, value in item.resource_usage
         ):
             blockers.append(f"{prefix}:resource_usage_invalid")
@@ -578,7 +604,7 @@ def _observation_blockers(
             for dimension, ceiling in arm.resource_budget:
                 if dimension not in usage:
                     blockers.append(f"{prefix}:budget_dimension_missing:{dimension}")
-                elif math.isfinite(usage[dimension]) and usage[dimension] > ceiling:
+                elif _valid_finite_number(usage[dimension]) and usage[dimension] > ceiling:
                     blockers.append(f"{prefix}:resource_budget_exceeded:{dimension}")
     unit_ids_by_case: dict[tuple[str, str, int], set[str]] = {}
     for item in observations:
@@ -638,7 +664,9 @@ def _replay_blockers(
     for field, value in digest_fields.items():
         if not _valid_sha256(value):
             blockers.append(f"replay:{field}_sha256_invalid")
-    if not replay.fresh_container:
+    if type(replay.fresh_container) is not bool:
+        blockers.append("replay:fresh_container_flag_not_boolean")
+    if replay.fresh_container is not True:
         blockers.append("replay:not_fresh_container")
     if replay.original_predictions_sha256 != replay.replay_predictions_sha256:
         blockers.append("replay:prediction_digest_mismatch")
@@ -787,6 +815,8 @@ def run_fail_closed_campaign(
         blockers.append("gate_terminal_invalid")
     if not _valid_sha256(gate_result.evaluator_output_sha256):
         blockers.append("gate_evaluator_output_sha256_invalid")
+    if type(gate_result.included_record_count) is not int:
+        blockers.append("gate_included_record_count_not_integer")
     if gate_result.included_record_count != len(observations):
         blockers.append("gate_did_not_include_every_execution_record")
     expected_record_ids_sha256 = _canonical_sha256(
@@ -819,7 +849,9 @@ def run_fail_closed_campaign(
         blockers.append("gate_comparator_arm_not_frozen_comparator")
     if not isinstance(gate_result.interval_method, IntervalMethod):
         blockers.append("gate_interval_method_not_paired_or_blocked")
-    if not math.isclose(gate_result.confidence_level, 0.95):
+    if not _valid_finite_number(gate_result.confidence_level) or not math.isclose(
+        gate_result.confidence_level, 0.95
+    ):
         blockers.append("gate_confidence_level_not_95_percent")
     numeric_values = (
         gate_result.effect_estimate,
@@ -829,40 +861,58 @@ def run_fail_closed_campaign(
         gate_result.comparator_cost,
         gate_result.cost_ratio,
     )
-    if not all(math.isfinite(value) for value in numeric_values):
+    gate_numbers_valid = all(_valid_finite_number(value) for value in numeric_values)
+    if not gate_numbers_valid:
         blockers.append("gate_nonfinite_estimate_interval_or_cost")
-    if not gate_result.ci_lower <= gate_result.effect_estimate <= gate_result.ci_upper:
+    if gate_numbers_valid and not (
+        gate_result.ci_lower <= gate_result.effect_estimate <= gate_result.ci_upper
+    ):
         blockers.append("gate_confidence_interval_order_invalid")
 
     frozen_inference_units = set(dict(freeze.inference_unit_assignments).values())
+    if type(gate_result.inference_unit_count) is not int:
+        blockers.append("gate_inference_unit_count_not_integer")
     if gate_result.inference_unit_count != len(frozen_inference_units):
         blockers.append("gate_inference_unit_count_mismatch")
     costs_by_arm: dict[str, float] = {}
     for item in observations:
-        costs_by_arm[item.arm_id] = costs_by_arm.get(item.arm_id, 0.0) + dict(
-            item.resource_usage
-        ).get("cost", 0.0)
+        cost = dict(item.resource_usage).get("cost")
+        if _valid_finite_number(cost):
+            costs_by_arm[item.arm_id] = costs_by_arm.get(item.arm_id, 0.0) + float(cost)
     observed_subject_cost = costs_by_arm.get(gate_result.subject_arm_id)
     observed_comparator_cost = costs_by_arm.get(gate_result.comparator_arm_id)
-    if observed_subject_cost is None or not math.isclose(
+    if (
+        observed_subject_cost is None
+        or not _valid_finite_number(gate_result.subject_cost)
+        or not math.isclose(
         gate_result.subject_cost, observed_subject_cost
+        )
     ):
         blockers.append("gate_subject_cost_mismatch")
-    if observed_comparator_cost is None or not math.isclose(
+    if (
+        observed_comparator_cost is None
+        or not _valid_finite_number(gate_result.comparator_cost)
+        or not math.isclose(
         gate_result.comparator_cost, observed_comparator_cost
+        )
     ):
         blockers.append("gate_comparator_cost_mismatch")
-    expected_cost_ratio = (
-        math.inf
-        if gate_result.comparator_cost == 0 and gate_result.subject_cost > 0
-        else (
-            1.0
-            if gate_result.comparator_cost == 0
-            else gate_result.subject_cost / gate_result.comparator_cost
+    if gate_numbers_valid:
+        expected_cost_ratio = (
+            math.inf
+            if gate_result.comparator_cost == 0 and gate_result.subject_cost > 0
+            else (
+                1.0
+                if gate_result.comparator_cost == 0
+                else gate_result.subject_cost / gate_result.comparator_cost
+            )
         )
-    )
-    if not math.isfinite(expected_cost_ratio) or not math.isclose(
-        gate_result.cost_ratio, expected_cost_ratio
+    else:
+        expected_cost_ratio = math.inf
+    if (
+        not math.isfinite(expected_cost_ratio)
+        or not _valid_finite_number(gate_result.cost_ratio)
+        or not math.isclose(gate_result.cost_ratio, expected_cost_ratio)
     ):
         blockers.append("gate_cost_ratio_mismatch")
     blockers.extend(

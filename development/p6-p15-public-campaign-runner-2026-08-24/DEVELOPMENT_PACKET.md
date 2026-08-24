@@ -76,6 +76,10 @@ runtime, source-revision/citation/task, evaluator, gold, model/tool, custody,
 split/unit, estimand/gate, and decision identities reject placeholder sentinels
 such as `UNKNOWN`, `CANNOT_CHECK`, `TBD`, and `UNSET`.
 
+Security-relevant flags require exact Boolean values; truthy strings do not
+coerce. Budgets, usage, seeds, counts, intervals, and costs reject Booleans as
+numbers and reject non-finite numeric values.
+
 ## Saturation-basis challenge
 
 Saturation could be false if a native benchmark requires a licence condition,

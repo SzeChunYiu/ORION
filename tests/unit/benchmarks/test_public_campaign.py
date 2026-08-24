@@ -678,6 +678,75 @@ def test_placeholder_task_split_unit_arm_and_decision_identities_cannot_pass() -
     assert "gate_identity_or_rationale_missing" in receipt.blockers
 
 
+def test_truthy_string_false_cannot_bypass_required_boolean_flags() -> None:
+    source = _source(
+        redistribution_allowed="false",
+        redistributed_content="false",
+    )
+    evaluator = replace(_freeze().evaluator, official="false")
+    freeze = _freeze(sources=(source,), evaluator=evaluator)
+    observations = list(_observations())
+    observations[0] = replace(observations[0], raw_output_retained="false")
+    replay = replace(_replay(), fresh_container="false")
+    receipt = _run(
+        freeze=freeze,
+        observations=tuple(observations),
+        replay=replay,
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("redistribution_flags_not_boolean" in item for item in receipt.blockers)
+    assert "evaluator_official_flag_not_boolean" in receipt.blockers
+    assert any(
+        "raw_output_retained_flag_not_boolean" in item for item in receipt.blockers
+    )
+    assert "replay:fresh_container_flag_not_boolean" in receipt.blockers
+
+
+def test_booleans_cannot_masquerade_as_numeric_fields() -> None:
+    arms = (
+        _arm(
+            "orion",
+            ArmRole.TREATMENT,
+            resource_budget=(("attempts", True), ("tokens", 1000.0)),
+        ),
+        _arm(
+            "strong-baseline",
+            ArmRole.BASELINE,
+            resource_budget=(("attempts", True), ("tokens", 1000.0)),
+        ),
+    )
+    observations = list(_observations())
+    observations[0] = replace(
+        observations[0],
+        resource_usage=(("attempts", True), ("cost", True), ("tokens", 800.0)),
+    )
+    gate = replace(
+        _gate(),
+        included_record_count=True,
+        confidence_level=True,
+        inference_unit_count=True,
+        effect_estimate=True,
+        ci_lower=False,
+        ci_upper=True,
+        subject_cost=True,
+        comparator_cost=True,
+        cost_ratio=True,
+    )
+    receipt = _run(
+        freeze=_freeze(arms=arms, seeds=(True,)),
+        observations=tuple(observations),
+        gate=gate,
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("resource_budget_invalid" in item for item in receipt.blockers)
+    assert "seeds_missing_or_duplicated" in receipt.blockers
+    assert any("resource_usage_invalid" in item for item in receipt.blockers)
+    assert "gate_included_record_count_not_integer" in receipt.blockers
+    assert "gate_confidence_level_not_95_percent" in receipt.blockers
+    assert "gate_inference_unit_count_not_integer" in receipt.blockers
+    assert "gate_nonfinite_estimate_interval_or_cost" in receipt.blockers
+
+
 def test_post_outcome_freeze_cannot_check() -> None:
     receipt = _run(result_created_at_utc="2026-08-24T09:59:59+00:00")
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
