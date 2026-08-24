@@ -1,0 +1,274 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.runner-contract.v1",
+  "contract_id": "P1_SAB_VERIFIED_RUNNER_20260824_V1",
+  "authority": "NETWORK_FREE_RUNNER_CONTRACT_ONLY__NO_BENCHMARK_EXECUTION_EVALUATION_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "status": "STATIC_CONTRACT_FROZEN__OWNER_RUNTIME_BINDINGS_AND_OFFICIAL_RUNTIME_CANNOT_CHECK",
+  "production_constants": {
+    "dataset": "osunlp/ScienceAgentBench",
+    "split": "verified",
+    "verified_parquet_sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147",
+    "mask_manifest_path": "development/p1-scienceagentbench-preflight-2026-08-24/MASK_MANIFEST_V1.json",
+    "mask_manifest_sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758",
+    "official_source_commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d",
+    "task_ids": {
+      "canonical_type": "decimal string",
+      "exact_range_inclusive": [
+        1,
+        102
+      ],
+      "count": 102,
+      "leading_zero_allowed": false
+    },
+    "arms_in_order": [
+      "RR",
+      "OS",
+      "NR"
+    ],
+    "attempts_per_task_arm": 3,
+    "final_candidates_per_attempt": 1,
+    "candidate_record_count": 918,
+    "official_evaluator_split_argv": [
+      "--split",
+      "verified"
+    ]
+  },
+  "production_cli": {
+    "module": "sab_verified_runner_v1.py",
+    "commands": {
+      "validate-bindings": {
+        "purpose": "Validate the pinned input identity and a fully bound matched run plan without generating candidates.",
+        "required_arguments": [
+          "--split verified",
+          "--parquet PATH",
+          "--mask-manifest PATH",
+          "--run-plan PATH",
+          "--output PATH"
+        ]
+      },
+      "seal-candidates": {
+        "purpose": "Validate and content-seal the complete 102 x 3 x 3 candidate ledger after generation and before any evaluator command is emitted.",
+        "required_arguments": [
+          "--split verified",
+          "--parquet PATH",
+          "--mask-manifest PATH",
+          "--run-plan PATH",
+          "--candidate-ledger PATH",
+          "--output PATH"
+        ]
+      },
+      "emit-evaluator-command": {
+        "purpose": "Emit one inert official evaluator argv receipt for a named arm and attempt after complete-ledger sealing; never invoke it.",
+        "required_arguments": [
+          "--split verified",
+          "--seal-receipt PATH",
+          "--official-repo-root PATH",
+          "--benchmark-path PATH",
+          "--pred-program-path PATH",
+          "--log-fname PATH",
+          "--arm {RR,OS,NR}",
+          "--attempt {1,2,3}",
+          "--run-id TEXT",
+          "--output PATH"
+        ]
+      }
+    },
+    "constant_override_arguments_forbidden": [
+      "expected parquet digest",
+      "expected mask digest",
+      "expected task IDs",
+      "arm set",
+      "attempt count",
+      "official source commit",
+      "evaluator module"
+    ],
+    "split_rule": "--split is required to make intent explicit, but only the immutable value verified is accepted; omission, validation, and every other value fail closed."
+  },
+  "run_plan_contract": {
+    "schema_version": "orion.p1.scienceagentbench.run-plan.v1",
+    "required_top_level_fields": [
+      "schema_version",
+      "split",
+      "task_ids",
+      "arms",
+      "attempts_per_task_arm",
+      "bindings",
+      "budget_by_arm",
+      "cost_accounting"
+    ],
+    "extra_fields_allowed": false,
+    "bindings": {
+      "required_fields": [
+        "model_id",
+        "provider",
+        "tokenizer_revision",
+        "prompt_bundle_sha256_by_arm",
+        "seed_schedule",
+        "provider_seed_capability",
+        "model_parameters_sha256",
+        "tool_policy_sha256",
+        "generation_runtime_manifest_sha256",
+        "credential_route_sha256",
+        "credential_route_status"
+      ],
+      "credential_route_status_required": "BOUND_OWNER_CONTROLLED",
+      "provider_seed_capability_required": "CONFIRMED",
+      "secret_values_allowed": false,
+      "placeholder_values_forbidden": [
+        "AUTHOR_INPUT_NEEDED",
+        "CANNOT_CHECK",
+        "TBD",
+        "TODO",
+        "UNKNOWN",
+        "UNBOUND"
+      ],
+      "prompt_rule": "Each arm binds its complete ordered prompt/system/tool/recovery serialization as one SHA-256; prompt hashes need not match across scientifically distinct arms.",
+      "seed_rule": "One three-attempt schedule is paired across tasks and arms; booleans and missing attempts are invalid."
+    },
+    "budget_fields": [
+      "total_input_token_cap",
+      "total_output_token_cap",
+      "tool_call_cap",
+      "wall_time_seconds_cap",
+      "local_execution_seconds_cap",
+      "final_candidates_per_attempt"
+    ],
+    "budget_rule": "All fields are prospective nonnegative finite numbers, token/tool/candidate caps are integers, final_candidates_per_attempt equals 1, and the entire envelope is exactly equal across RR, OS, and NR.",
+    "cost_accounting_required": "ALL_ATTEMPTS_NO_SELECTION"
+  },
+  "candidate_ledger_contract": {
+    "schema_version": "orion.p1.scienceagentbench.candidate-ledger.v1",
+    "required_top_level_fields": [
+      "schema_version",
+      "split",
+      "run_plan_sha256",
+      "cost_accounting",
+      "records"
+    ],
+    "extra_fields_allowed": false,
+    "cost_accounting_required": "ALL_ATTEMPTS_NO_SELECTION",
+    "required_record_fields": [
+      "task_id",
+      "arm_id",
+      "attempt",
+      "seed",
+      "input_tokens",
+      "output_tokens",
+      "tool_calls",
+      "wall_time_seconds",
+      "local_execution_wall_time_seconds",
+      "billed_cost_usd",
+      "failure",
+      "raw_output_sha256",
+      "candidate_program_sha256"
+    ],
+    "exact_tuple_set": "Every (task_id, arm_id, attempt) in 1..102 x {RR,OS,NR} x {1,2,3} appears exactly once; no extras or duplicates.",
+    "measurement_rule": "Usage fields are actual per-attempt values, not caps or selected-attempt summaries. Non-null values are finite, nonnegative, and no greater than the arm's matched prospective cap; booleans and numeric strings are invalid.",
+    "success_record_rule": "failure is null; all usage values and both SHA-256 fields are non-null.",
+    "failure_record_rule": {
+      "required_fields": [
+        "status",
+        "stage",
+        "code",
+        "detail_sha256"
+      ],
+      "status_required": "CANNOT_CHECK",
+      "stages": [
+        "GENERATION",
+        "LOCAL_EXECUTION",
+        "USAGE_ACCOUNTING",
+        "RAW_OUTPUT_SEALING"
+      ],
+      "null_preservation": "Usage and hashes may remain null when genuinely unavailable; present partial measurements remain recorded. No solved field exists."
+    },
+    "hash_rule": "Every hash field is present. Non-null hashes are lowercase 64-hex SHA-256 strings. A successful record cannot use null hashes.",
+    "outcome_fields_allowed": false
+  },
+  "seal_receipt_contract": {
+    "schema_version": "orion.p1.scienceagentbench.candidate-seal-receipt.v1",
+    "required_status": "COMPLETE_CANDIDATE_LEDGER_SEALED__EVALUATOR_NOT_INVOKED",
+    "binds": [
+      "verified split",
+      "verified Parquet SHA-256",
+      "mask-manifest SHA-256",
+      "official source commit",
+      "run-plan SHA-256",
+      "candidate-ledger SHA-256",
+      "canonical tuple-set SHA-256",
+      "918 candidate records"
+    ],
+    "evaluator_outcomes_opened": false,
+    "official_evaluator_invoked": false
+  },
+  "evaluator_command_contract": {
+    "official_module": "evaluation.harness.run_evaluation",
+    "base_argv": [
+      "python",
+      "-m",
+      "evaluation.harness.run_evaluation"
+    ],
+    "required_flags": [
+      "--benchmark_path",
+      "--pred_program_path",
+      "--log_fname",
+      "--run_id",
+      "--split"
+    ],
+    "split_rule": "The argv contains exactly one standalone --split token, followed immediately by verified, and contains no --split= token.",
+    "precondition": "A complete candidate-seal receipt matching all production constants exists before command construction.",
+    "output": "Canonical JSON argv receipt only; no shell string is executed.",
+    "official_source_commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d",
+    "execution_allowed": false,
+    "runtime_status": "CANNOT_CHECK"
+  },
+  "forbidden_surfaces": {
+    "forbidden_nested_field_fragments": [
+      "gold",
+      "rubric",
+      "evaluator_feedback",
+      "evaluation_result",
+      "official_outcome",
+      "official_score",
+      "success_rate",
+      "solved",
+      "judge_response",
+      "result_body"
+    ],
+    "forbidden_path_components": [
+      "gold_programs",
+      "gold_results",
+      "eval_programs",
+      "evaluation_programs",
+      "scoring_rubrics",
+      "evaluator_feedback",
+      "official_results"
+    ],
+    "forbidden_runtime_capabilities": [
+      "network access",
+      "model/provider calls",
+      "subprocess or shell execution",
+      "Docker control",
+      "Parquet parsing",
+      "official evaluator import or invocation",
+      "gold/evaluator/rubric/result body reads"
+    ]
+  },
+  "synthetic_validation_boundary": {
+    "production_constant_overrides": "FORBIDDEN_AT_CLI",
+    "internal_nonbenchmark_expected_hash_and_id_parameters": "ALLOWED_ONLY_FOR_SYNTHETIC_FIXTURES",
+    "official_parquet_opened": false,
+    "official_task_text_opened": false,
+    "benchmark_archive_opened": false,
+    "gold_evaluator_rubric_or_result_body_opened": false,
+    "official_evaluator_invoked": false,
+    "network_required": false
+  },
+  "missingness_policy": {
+    "runtime_or_evaluator_failure": "CANNOT_CHECK",
+    "partial_or_missing_record": "CANNOT_CHECK",
+    "coerce_to_solved_zero": false,
+    "nulls_preserved": true,
+    "statistical_metrics_computed_by_runner": false
+  },
+  "retention_boundary": "Do not commit benchmark Parquet, benchmark ZIP/extracted data, task text, candidate raw bodies, predicted programs, evaluator/gold/rubric bodies, evaluator logs, credentials, container layers, or official outcomes. Commit only this contract, code, synthetic fixtures/receipt, hashes, and bounded handoff.",
+  "scientific_authority_delta": "NONE"
+}
