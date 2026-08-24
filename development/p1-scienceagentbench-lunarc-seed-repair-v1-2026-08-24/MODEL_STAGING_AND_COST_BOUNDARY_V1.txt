@@ -1,0 +1,37 @@
+P1 ScienceAgentBench direct-seed repair staging/resource boundary
+date_utc=2026-08-24
+authority=SYNTHETIC_NONBENCHMARK_DIAGNOSTIC_ONLY
+
+model_repository=unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF
+model_revision=b17cb02dd882d5b6ab62fc777ad2995f19668350
+model_filename=Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf
+model_bytes=18556689568
+model_sha256=fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad
+
+staging_failure=Initial resumable curl was locally interrupted for a bounded multi-connection resume, but its remote process remained alive.
+staging_repair=aria2c resumed the same pinned URL; stale remote curl PIDs 1865495 and 1865425 were then killed; size and SHA-256 were reverified after process termination.
+staging_result=PASS_EXACT_MODEL_BYTES_REVERIFIED_BEFORE_JOB_AND_BEFORE_CLEANUP
+staging_network_bytes_billed_cost=CANNOT_CHECK
+
+job_3534108_top_level_state=CANCELLED by 6350
+job_3534108_top_level_elapsed_seconds=149
+job_3534108_batch_elapsed_seconds=180
+job_3534123_top_level_state=COMPLETED
+job_3534123_top_level_elapsed_seconds=63
+job_3534123_batch_elapsed_seconds=63
+slurm_top_level_gpu_allocation_elapsed_seconds_total=212
+slurm_batch_elapsed_seconds_total=243
+sampled_allocation_gpu_seconds_total=135.801
+sample_integrated_energy_wh_total=1.2592378833333315
+slurm_consumed_energy_raw_both_jobs=0
+
+billed_usd=null
+cost_status=CANNOT_CHECK_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION_UNAVAILABLE
+boundary=SLURM elapsed time, sampled GPU seconds, sampled energy, and billing TRES are retained separately and are not currency.
+
+remote_cleanup_status=PASS_REMOTE_ROOT_REMOVED
+remote_cleanup_du_bytes_before=18556938228
+remote_cleanup_file_bytes_removed=18556917097
+remote_cleanup_files_removed=87
+remote_cleanup_utc=2026-08-24T12:59:30Z
+scientific_authority_delta=NONE
