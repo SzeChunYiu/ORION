@@ -146,9 +146,13 @@ def wl_histogram(
     for a, b in edges:
         adj[a].append(b)
         adj[b].append(a)
-    # coordinate names carry signal; atom identity is domain-specific surface,
-    # so the initial colour is the coordinate name only. Without this the arm
-    # would memorise atoms that a held-out domain never shows.
+    # The initial colour is the coordinate NAME only, never the value. A
+    # held-out domain shares zero value atoms with train, so value-keyed
+    # colours could not transfer and the arm would only memorise. The cost is
+    # real and measured: this bounds the arm to agreement-as-degree, and on
+    # transactional_workflows it collapses to a single predicted class rather
+    # than decoding imperfectly. See the correction block in
+    # P9_SERIALIZATION_FOUR_DOMAIN_V1.json.
     colour = {i: (labels[i].split("=", 1)[0] if i > 1 else labels[i]) for i in range(n)}
     hist: dict[str, float] = {}
     for r in range(rounds + 1):

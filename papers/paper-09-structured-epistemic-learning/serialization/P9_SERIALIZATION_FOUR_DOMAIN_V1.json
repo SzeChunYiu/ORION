@@ -1,4 +1,14 @@
 {
+  "correction_2026_08_24": {
+    "actual": "on transactional_workflows the arm predicts OBSTRUCTION for all 128 held-out instances under both serializations, exactly the majority-class null; on graph_algorithms it never predicts ALIGNED",
+    "cause": "wl_histogram seeds each atom node's colour with the coordinate NAME only, dropping value identity. That is a deliberate anti-memorisation choice -- a held-out domain shares zero value atoms with train, so value-keyed colours could not transfer -- but it bounds the arm to agreement-as-degree and it cannot represent every distinction.",
+    "collapsed_cells": [
+      "transactional_workflows/invertible",
+      "transactional_workflows/relational"
+    ],
+    "effect_on_headline": "none. The result is relational 1.000 versus invertible at-or-below-null at a 0.000-0.031 collision floor, which involves the linear and tree arms only.",
+    "what": "the graph-kernel arm's 0.500 cells were first described as imperfect decoding"
+  },
   "invertibility_guard": {
     "instances_checked": 1024,
     "meaning": "both serializations provably carry the same information",
@@ -355,9 +365,10 @@
           "learners": {
             "graph_kernel": {
               "accuracy": 0.5,
+              "degenerate": "COLLAPSED_TO_SINGLE_CLASS",
               "macro_f1": 0.222222,
               "n_test": 128,
-              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "note": "predicts one class for every held-out instance and scores exactly the majority-class null: this arm learned nothing in this domain, which is a different fact from decoding imperfectly",
               "predicted_label_support": {
                 "OBSTRUCTION": 128
               }
@@ -398,9 +409,10 @@
           "learners": {
             "graph_kernel": {
               "accuracy": 0.5,
+              "degenerate": "COLLAPSED_TO_SINGLE_CLASS",
               "macro_f1": 0.222222,
               "n_test": 128,
-              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "note": "predicts one class for every held-out instance and scores exactly the majority-class null: this arm learned nothing in this domain, which is a different fact from decoding imperfectly",
               "predicted_label_support": {
                 "OBSTRUCTION": 128
               }
