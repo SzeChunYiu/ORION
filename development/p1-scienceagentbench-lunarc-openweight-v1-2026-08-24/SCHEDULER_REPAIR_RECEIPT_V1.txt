@@ -1,0 +1,35 @@
+schema=orion.p1.scienceagentbench.lunarc-openweight-scheduler-repair.v1
+authority=SYNTHETIC_NONBENCHMARK_INFRASTRUCTURE_ONLY
+
+initial_job=3533950
+initial_partition=gpua40
+initial_state=PENDING
+initial_reason=Resources
+initial_excluded_nodes=cg[01-02]
+initial_projected_start=2026-08-24T17:16:06+02:00
+observed_idle_node=cg02|gpua40|idle|gpu:a40:1
+
+failed_same_job_update=scontrol update JobId=3533950 Partition=gpua40,gpua40i
+failed_update_terminal=Multiple partition job request not supported when a partition is set in the association for job 3533950
+duplicate_job_submitted_for_this_repair=false
+
+accepted_same_job_update=scontrol update JobId=3533950 Partition=gpua40i
+accepted_job_state=RUNNING
+accepted_start=2026-08-24T13:56:21+02:00
+accepted_node=cg13
+
+repaired_job=3533966
+repaired_initial_partition=gpua40i
+repaired_initial_state=PENDING
+repaired_initial_reason=Resources
+repaired_initial_excluded_nodes=cg13
+repaired_initial_projected_start=2026-08-24T19:56:24+02:00
+cg13_alloc_tres_at_probe=cpu=8,mem=42400M
+cg13_gpu_allocated_at_probe=false
+
+accepted_exclusion_clear=scontrol update JobId=3533966 ExcNodeList=
+accepted_repaired_job_state=RUNNING
+accepted_repaired_start=2026-08-24T14:07:58+02:00
+accepted_repaired_node=cg13
+
+scientific_authority_delta=NONE

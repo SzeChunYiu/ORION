@@ -1,0 +1,19 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.lunarc-openweight-tokenizer-precheck.v1",
+  "status": "PASS_SOURCE_TOKENIZER_PRECHECK",
+  "authority": "SYNTHETIC_NONBENCHMARK_INFRASTRUCTURE_ONLY",
+  "source_tokenizer_repository": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+  "source_tokenizer_revision": "b2cff646eb4bb1d68355c01b18ae02e7cf42d120",
+  "tokenizer_json_sha256": "19564a48c4f71a2a1b937cce34c737a1e662b171c5f5d7edf641a15cd896f07d",
+  "tokenizers_runtime_version": "0.22.2",
+  "fixture": "SYNTHETIC_FIXTURE_V1.json",
+  "frozen_long_prompt_utf8_bytes": 90575,
+  "source_tokenizer_raw_prompt_tokens": 27756,
+  "requested_num_ctx": 32768,
+  "reserved_maximum_output_tokens": 128,
+  "precheck": "24000 <= 27756 < 32768 - 128",
+  "interpretation": "Pre-job source-tokenizer raw prompt check only. The live Ollama prompt_eval_count and marker-retention result are authoritative for the executed GGUF route and are recorded separately.",
+  "official_task_content": false,
+  "outcomes_opened": false,
+  "scientific_authority_delta": "NONE"
+}

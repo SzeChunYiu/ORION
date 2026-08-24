@@ -1,0 +1,6 @@
+FROM /projects/hep/fs10/scratch/scyiu/orion_p1_sab_openweight_v1_20260824/model/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf
+PARAMETER num_ctx 32768
+PARAMETER temperature 0.8
+PARAMETER top_p 0.95
+PARAMETER top_k 20
+PARAMETER repeat_penalty 1.0

@@ -1,0 +1,53 @@
+{
+  "schema": "orion.p1.scienceagentbench.lunarc-openweight-source-provenance.v1",
+  "status": "PARTIAL__JOB_3533950_EXACT_SUBMITTED_BYTES_CANNOT_CHECK__JOB_3533966_EXACT_SUBMITTED_BYTES_RETAINED",
+  "authority": "EXECUTION_SOURCE_PROVENANCE_ONLY",
+  "job_3533950": {
+    "slurm_job_id": "3533950",
+    "exact_original_submitted_bytes_status": "CANNOT_CHECK_EXACT_ORIGINAL_SUBMITTED_BYTES_NOT_RETAINED",
+    "retained_hash_manifest": "remote-job-3533950/SUBMITTED_CODE_SHA256SUMS",
+    "retained_hash_manifest_sha256": "52c4910ca7eba099757056f8a89fdb3416b1b806298107acccd443a4af663afd",
+    "recorded_submitted_sha256_by_basename": {
+      "SYNTHETIC_FIXTURE_V1.json": "31b2a96ee443a65faea97582d36b482993e6f2d5f19b4314c5e3f4a29f3f4f5f",
+      "openweight_synthetic_smoke_v1.py": "fb8089c3fd7ab42e58fa7e2f24ca4eee82bb559d72df9f4eee4bbbb4f0580ac9",
+      "run_lunarc_openweight_smoke_v1.sh": "d2236945fd76ca5f5c3ff36152ad62db84a982d273c3d8adeeae22ba9aa1c8a5",
+      "summarize_gpu_telemetry_v1.py": "db8039bff4dc0053005aa385f4ae9ce2ebb5328a85da23160b6297787340bc97"
+    },
+    "retained_traceback": "remote-job-3533950/harness.stderr",
+    "retained_traceback_sha256": "34f652eb4ec9ecc7cd3e29239b35a72a8119ed1c6c88d86c7f838f6f3ebd413c",
+    "traceback_observation": "positions = dict(zip(..., strict=True)) followed by TypeError: zip() takes no keyword arguments",
+    "causal_boundary": "COMPATIBLE_WITH_ZIP_IMPLEMENTATION_OR_INTERPRETER_LACKING_STRICT__SPECIFIC_CAUSE_NOT_ESTABLISHED",
+    "exact_byte_reproduction_claimed": false
+  },
+  "job_3533966": {
+    "slurm_job_id": "3533966",
+    "exact_submitted_bytes_status": "PASS_EXACT_SUBMITTED_BYTES_RETAINED_AND_HASH_MATCH",
+    "retained_source_directory": "submitted-source-job-3533966",
+    "retained_hash_manifest": "remote-job-3533966/REPAIRED_CODE_SHA256SUMS",
+    "retained_hash_manifest_sha256": "2b973e63eb862d9826c2d336fc46b16aba1bcd034b3d336284b15bb6239b4dd2",
+    "files": {
+      "SYNTHETIC_FIXTURE_V1.json": {
+        "bytes": 2896,
+        "sha256": "31b2a96ee443a65faea97582d36b482993e6f2d5f19b4314c5e3f4a29f3f4f5f"
+      },
+      "openweight_synthetic_smoke_v1.py": {
+        "bytes": 16262,
+        "sha256": "7a42554ffe9b63499cf5ac33379dab8b14a5e121ae5a22ede86e9d4154d76683"
+      },
+      "run_lunarc_openweight_smoke_v1.sh": {
+        "bytes": 8234,
+        "sha256": "348ce9e4958f7493e5c8caaea9a130baaf319f2abe0c2d0b5789772066511126"
+      },
+      "summarize_gpu_telemetry_v1.py": {
+        "bytes": 3271,
+        "sha256": "db8039bff4dc0053005aa385f4ae9ce2ebb5328a85da23160b6297787340bc97"
+      }
+    }
+  },
+  "current_top_level_sources": {
+    "relationship": "POST_RUN_PACKET_REFERENCE_SOURCES__NOT_EXECUTION_PROVENANCE",
+    "note": "Top-level packet sources may be corrected after execution. Only submitted-source-job-3533966 is claimed as the exact retained source set for job 3533966."
+  },
+  "repair_relation": "DOCUMENTED_SOURCE_CHANGE_ONLY__NO_EXACT_BYTE_DIFF_CLAIM_AGAINST_UNAVAILABLE_JOB_3533950_SOURCES",
+  "scientific_authority_delta": "NONE"
+}
