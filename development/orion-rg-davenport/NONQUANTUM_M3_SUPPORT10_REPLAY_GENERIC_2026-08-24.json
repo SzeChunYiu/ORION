@@ -1,0 +1,48 @@
+{
+  "authority_scope": "BOUNDED_C5CUBED_SUPPORT10_EXCLUSION_ONLY",
+  "c0_31_authority": false,
+  "checks": {
+    "bounded_authority": true,
+    "byte_hash": true,
+    "exact_rows": true,
+    "m2_digest": true,
+    "m2_hash": true,
+    "no_c0_or_d4": true,
+    "no_external_or_prospective": true,
+    "no_novelty_venue_quantum": true,
+    "no_support11_or_23": true,
+    "patterns": true,
+    "protocol_hash": true,
+    "rank3_forced": true,
+    "scope": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true,
+    "u128_hash": true
+  },
+  "decision": "ACCEPT_SUPPORT10_EXCLUSION",
+  "exact_d4_authority": false,
+  "independent_external_replay_complete": false,
+  "independent_patterns": [
+    [
+      1,
+      3,
+      6
+    ],
+    [
+      3,
+      0,
+      7
+    ]
+  ],
+  "novelty_authority": false,
+  "prospective_validation_authority": false,
+  "quantum_claim": false,
+  "schema": "ORION.NonQuantumMath.M3.GenericVerification.v1",
+  "source_result_digest": "bc1a727fe936a3cd3ddf033bb0ac9c6ebad6d6969a9e10c45c8d53fd2732e044",
+  "support_11_plus_theorem_authority": false,
+  "support_23_theorem_authority": false,
+  "venue_authority": false,
+  "verification_digest": "0e9ba2725953409baab3ce38e95a106a4798feb54cb109263b0d04803595acb1"
+}
