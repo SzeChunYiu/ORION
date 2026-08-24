@@ -1,13 +1,20 @@
 # Paper 04 — Verified Scientific Discovery
 
 **Stable ID:** ORION-P4  
-**Current science:** `SCIENCE_CLOSED_V3`; PDF/typesetting refresh deferred.  
-**Current science manuscript:** `manuscript/FINAL_V3.md`.  
-**Historical rendered base:** `manuscript/main.tex` and the existing V2 PDF/package remain byte-preserved until the later render pass.
+**Current science:** `SCIENTIFIC_ASCENT_V4_THEORY_INTEGRATED`; external naturalistic execution remains open.  
+**Current science manuscript:** `manuscript/main.tex`.  
+**Historical specification:** `manuscript/FINAL_V3.md` and `CLAIM_LEDGER_V3.md` remain the preserved pre-ascent record.  
+**PDF boundary:** the existing PDF/package remains a historical V2 artifact until a new render and audit are explicitly performed.
 
 ## Current research question
 
-After strong provenance, claim verification, artifact/version binding, checker/evaluator custody, contamination defense and generic authorization mechanisms are absorbed into the comparison product, is a separate **non-compensatory scientific claim-promotion relation** still needed to prevent authority laundering?
+When can a verification axis support a scientific-competence claim, and after strong provenance, claim verification, artifact/version binding, checker/evaluator custody, contamination defense and generic authorization mechanisms are absorbed into the comparison product, what state and relation are sufficient for **scientific claim promotion**?
+
+## V4 verification-axis theory
+
+The manuscript now supplies an exact finite-space attainability result. For a target terminal, a system representation and an allowed output alphabet, zero terminal error is attainable if and only if the target is constant on each positive-mass representation fibre and the fibre's target is available in the output alphabet. The corresponding fibrewise Bayes risk is an irreducible lower bound otherwise.
+
+This yields a donor-product factorization boundary: an information-equivalent donor product with the target-sufficient state and the same relation must tie; a donor state that merges differently licensed scientific states cannot recover the target distinction by optimization alone. Broad verification-axis interpretation additionally requires nuisance resistance and nonzero panel resolution.
 
 ## Historical protected V2 result
 
@@ -43,13 +50,13 @@ Exact protected successor:
 
 P4 does **not** claim provenance tracking, source-aware factuality, claim/evidence verification, citation fidelity, evidence influence, evaluator auditing, contamination detection, abstention, assurance cases, evidence-backed permission graphs or generic authorization as atomic novelty. Those are reusable donor mechanisms.
 
-The V3 contribution is the coupling above them:
+The exact-contract P4-X contribution is the coupling above them:
 
 > **Scientific claim promotion is a distinct target-bound authority relation. Successful local evidence, verification and generic authorization cannot compensate for a missing hard scientific-promotion obligation such as claim scope, evidence independence or unresolved scientific authority.**
 
 An information-equivalent typed product with the same scientific coordinates and promotion predicate ties exactly, so P4 makes no inherent expressivity or centralization claim.
 
-## Current claim ceiling
+## Current empirical claim ceiling
 
 Supported only on the registered heterogeneous exact contracts:
 
@@ -65,10 +72,11 @@ Still not claimed:
 
 ## Current source map
 
-- current V3 science specification: `manuscript/FINAL_V3.md`;
-- V3 claim authority: `CLAIM_LEDGER_V3.md`;
-- later render-ready successor section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
-- historical TMLR V2 source: `manuscript/main.tex`;
+- current V4 manuscript source: `manuscript/main.tex`;
+- current V4 claim authority: `CLAIM_LEDGER_V4.md`;
+- verification-axis theory: `manuscript/sections/02a-verification-axis-identifiability.tex`;
+- preserved V3 science specification and authority: `manuscript/FINAL_V3.md`, `CLAIM_LEDGER_V3.md`;
+- integrated P4-X source section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
 - exact successor science/verification artifacts: `research/claim_expansion/p4/`.
 
-PDF generation is intentionally deferred. The existing PDF remains a historical V2 artifact until a later render integrates the V3 source.
+The 768-cluster naturalistic successor remains prospective and has no external-panel outcome. PDF generation is intentionally deferred. The existing PDF remains a historical V2 artifact.
