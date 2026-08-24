@@ -124,6 +124,7 @@
       "accelerator_allocation_status"
     ],
     "base_record_fields": "All Runner V1 candidate record fields remain present. billed_cost_usd is nullable only in this allocated-metric amendment and is byte-equal to generation_billed_cost_usd whenever authoritative.",
+    "failure_code_rule": "Typed candidate failures preserve Runner V1 bound-string semantics: code must contain non-whitespace text and must not contain AUTHOR_INPUT_NEEDED, CANNOT_CHECK, TBD, TODO, UNKNOWN, or UNBOUND as a case-insensitive substring.",
     "exact_tuple_set": "Every tuple in 1..102 x {RR,OS,NR} x {1,2,3} occurs exactly once: 918 records, no missing, extra, duplicate, or selected-only subset.",
     "canonical_integer_rule": "GPU counts and monotonic times are strings matching 0 or a nonzero digit followed by digits. No sign, exponent, decimal point, leading zero, Boolean, or JSON number is accepted.",
     "canonical_decimal_rule": "Costs are strings with no sign, exponent, leading zero, or redundant trailing fractional zero. Zero is exactly 0. Negative, non-finite, float, Boolean, and numeric-string coercion are forbidden.",

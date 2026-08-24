@@ -28,7 +28,7 @@ from typing import Any, Iterable, Mapping, Sequence
 ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parents[1]
 AMENDMENT_CONTRACT_PATH = ROOT / "RUNNER_V2_COST_AMENDMENT_CONTRACT.json"
-AMENDMENT_CONTRACT_SHA256 = "d94f9c3f0fdd416d34161e9b08b8a129a013f47a61df4c9427367fcc64c8a660"
+AMENDMENT_CONTRACT_SHA256 = "0226a0c8350803e6e47eea846df3871c02c790ababdf3d4cf290461834e0369d"
 
 V1_ROOT = REPO_ROOT / "development/p1-scienceagentbench-runner-v1-2026-08-24"
 V1_CONTRACT_PATH = V1_ROOT / "RUNNER_CONTRACT_V1.json"
@@ -149,6 +149,14 @@ FAILURE_STAGES = {
     "LOCAL_EXECUTION",
     "USAGE_ACCOUNTING",
     "RAW_OUTPUT_SEALING",
+}
+V1_PLACEHOLDER_FRAGMENTS = {
+    "AUTHOR_INPUT_NEEDED",
+    "CANNOT_CHECK",
+    "TBD",
+    "TODO",
+    "UNKNOWN",
+    "UNBOUND",
 }
 INTEGER_USAGE_FIELDS = {"input_tokens", "output_tokens", "tool_calls"}
 NUMBER_USAGE_FIELDS = {"wall_time_seconds", "local_execution_wall_time_seconds"}
@@ -461,8 +469,14 @@ def _validate_failure(value: Any, label: str) -> None:
         raise ContractError(f"{label}.status must equal CANNOT_CHECK")
     if value["stage"] not in FAILURE_STAGES:
         raise ContractError(f"{label}.stage invalid")
-    if not isinstance(value["code"], str) or not value["code"]:
-        raise ContractError(f"{label}.code must be nonempty text")
+    code = value["code"]
+    if not isinstance(code, str) or not code.strip():
+        raise ContractError(f"{label}.code must be nonempty bound text")
+    matched = sorted(
+        fragment for fragment in V1_PLACEHOLDER_FRAGMENTS if fragment in code.upper()
+    )
+    if matched:
+        raise ContractError(f"{label}.code is unbound: contains {matched[0]}")
     _validate_sha256(value["detail_sha256"], f"{label}.detail_sha256")
 
 

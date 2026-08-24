@@ -405,6 +405,13 @@ class RunnerV2CostAmendmentSyntheticTests(unittest.TestCase):
         self.assertIsNone(by_tuple[("1", "RR", 1)]["candidate_program_sha256"])
         self.assertGreater(totals["RR"], 0)
 
+        for hostile_code in ("", "   ", "TODO", "unknown-runtime", "CANNOT_CHECK"):
+            hostile = copy.deepcopy(failed)
+            hostile["records"][0]["failure"]["code"] = hostile_code
+            self.assert_reject(
+                lambda hostile=hostile: self.validate_ledger(hostile), "code"
+            )
+
     def test_28_duplicate_json_members_fail_closed(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "duplicate.json"
