@@ -68,28 +68,38 @@ single scoring module is the only code permitted to read it.
 
 \subsection{Suite validity}
 
-The suite was audited for the possibility of answering without comprehension.
-Sixteen surface statistics were tested under two statistics (maximum
-between-family mean gap; leave-one-out nearest-class-mean accuracy) and two
-labellings (six-family; control versus hidden) on both splits, against
-shuffle-equal-$n$ nulls: no comparison survives Holm correction. Because
-univariate tests cannot see a cue carried by the interaction of two surfaces, a
-joint-space leave-one-out nearest-neighbour classifier was run over the
-$z$-scored feature space; it recovers the family at $0.062$ against a $0.167$
-majority baseline. Because statistical tests over derived surfaces cannot see a
-cue carried by the text itself, every token in the corpus was tested in both
-directions for presence predicting the label; no separator survives. Panel
-degeneracy was tested with an independent probe over case features and blind
-responders, which returns clean on both splits.
+The preregistered validity battery was applied to the then-frozen 66-case
+historical corpus. Sixteen derived surface statistics were tested under two
+statistics (maximum between-family mean gap; leave-one-out
+nearest-class-mean accuracy) and two labellings (six-family; control versus
+hidden) on both splits, against shuffle-equal-$n$ nulls; no comparison survived
+Holm correction. A joint-space leave-one-out nearest-neighbour classifier over
+the $z$-scored derived-feature space recovered the family at $0.062$ against a
+$0.167$ majority baseline. The registered token-presence scan over the
+then-frozen public prompts and observable-resource descriptions also reported
+no separator, and a degeneracy probe over case features and blind responders
+returned clean on both splits.
 
-Two exploitable rules were found and removed during construction. Both are
-reported because their removal is part of the executed design: a resource-count
-imbalance arising from balancing two members of a linearly dependent triple, and
-a rule keyed on the presence of a digit in the prompt that separated hidden
-cases from controls at $0.771$ against a $0.667$ baseline. A residual of
-low-level lexical cues remains at approximately $0.10$ lift and is reported as a
-limitation rather than pursued; with forty-eight cases and an unbounded space of
-text statistics, some statistic always separates.
+That negative surface report did not establish a shortcut-free suite. A later
+author-lane solvability audit examined the historical \texttt{PublicView}
+representation available to a blind responder, including exact prompt phrases
+and resource-path stems. It found that ``The team's framing is'' separated all
+44 hidden-shift cases from all 22 controls, while \texttt{proposal}/
+\texttt{trial} path stems identified 10 of 11 decomposition cases and none of
+the other 55. A responder using only path stems and two fixed phrases could
+therefore solve 33 of 66 cases. The preregistered surface audit had missed these
+later-audited perfect shortcuts; its negative finding is retained as chronology,
+not as evidence that the historical public views were cue-free.
+
+Before the freeze, two other exploitable rules were found and removed during
+construction: a resource-count imbalance arising from balancing two members of
+a linearly dependent triple, and a rule keyed on the presence of a digit in the
+prompt that separated hidden cases from controls at $0.771$ against a $0.667$
+baseline. The earlier audit also reported residual low-level lexical cues at
+approximately $0.10$ lift. Those repairs and residual-cue estimates did not
+remove the phrase and path-stem shortcuts found later. The 66-case corpus is
+therefore retained as a development falsifier, not promoted as a clean
+predictive benchmark or evidence of general responsibility inference.
 
 \subsection{Systems under test}
 
