@@ -1,0 +1,165 @@
+{
+  "boundary": {
+    "benchmark_archive_opened": false,
+    "benchmark_entries_opened": false,
+    "gold_evaluator_rubric_or_result_body_opened": false,
+    "official_evaluator_invoked": false,
+    "official_outcomes_opened": 0,
+    "official_task_or_prediction_body_opened": false,
+    "official_tasks_run": 0,
+    "public_base_dockerfile_body_opened": true,
+    "scientific_authority_delta": "NONE"
+  },
+  "bounded_inspection": {},
+  "build_log": {
+    "bounded_tail": [
+      "{\"stream\":\"Setting up git (1:2.34.1-1ubuntu1.17) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up python3-pip (22.0.2+dfsg-1ubuntu0.7) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up python3.10-dev (3.10.12-1~22.04.16) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up g++ (4:11.2.0-1ubuntu1) ...\\r\\n\"}\n",
+      "{\"stream\":\"update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode\\r\\n\"}\n",
+      "{\"stream\":\"update-alternatives: warning: skip creation of /usr/share/man/man1/c++.1.gz because associated file /usr/share/man/man1/g++.1.gz (of link group c++) doesn't exist\\r\\n\"}\n",
+      "{\"stream\":\"Setting up gnupg (2.2.27-3ubuntu2.5) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up build-essential (12.9ubuntu3) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up libalgorithm-diff-xs-perl (0.04-6build3) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up libalgorithm-merge-perl (0.08-3) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up libpython3-dev:amd64 (3.10.6-1~22.04.1) ...\\r\\n\"}\n",
+      "{\"stream\":\"Setting up python3-dev (3.10.6-1~22.04.1) ...\\r\\n\"}\n",
+      "{\"stream\":\"Processing triggers for libc-bin (2.35-0ubuntu3.14) ...\\r\\n\"}\n",
+      "{\"stream\":\"Processing triggers for ca-certificates (20260601~22.04.1) ...\\r\\n\"}\n",
+      "{\"stream\":\"Updating certificates in /etc/ssl/certs...\\r\\n\"}\n",
+      "{\"stream\":\"0 added, 0 removed; done.\\r\\nRunning hooks in /etc/ca-certificates/update.d...\\r\\n\"}\n",
+      "{\"stream\":\"done.\\r\\n\"}\n",
+      "{\"stream\":\"Errors were encountered while processing:\\r\\n fontconfig-config\\r\\n libfontconfig1:amd64\\r\\n openssh-client\\r\\n libgd3:amd64\\r\\n libc-devtools\\r\\n\"}\n",
+      "{\"stream\":\"W: chown to root:adm of file /var/log/apt/term.log failed - OpenLog (22: Invalid argument)\\nE: Sub-process /usr/bin/dpkg returned an error code (1)\\n\"}\n",
+      "{\"error\":\"building at STEP \\\"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\\\": while running runtime: exit status 100\\n\",\"errorDetail\":{\"message\":\"building at STEP \\\"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\\\": while running runtime: exit status 100\\n\"}}\n"
+    ],
+    "normalized_json_bytes": 87678,
+    "normalized_json_event_count": 981,
+    "normalized_json_sha256": "d2af8c7ea196c878523ea81c4b001c50b5acb47c9bb39c7377d36507fcf623d2",
+    "raw_log_retained_in_repository": false
+  },
+  "cannot_check": {
+    "benchmark_archive": "CANNOT_CHECK_NOT_RETAINED_OR_EXTRACTED",
+    "credentials_and_judge_route": "CANNOT_CHECK_CREDENTIALS_ABSENT",
+    "dependency_reproducibility": "CANNOT_CHECK_OFFICIAL_DOCKERFILE_PINS_RANGES_OR_LATEST_CHANNEL_RESOLUTION",
+    "full_102_task_execution": "CANNOT_CHECK_ZERO_TASKS_RUN",
+    "miniconda_installer_digest": "CANNOT_CHECK_NOT_PINNED_BY_OFFICIAL_DOCKERFILE",
+    "official_evaluator": "CANNOT_CHECK_NOT_IMPORTED_OR_INVOKED",
+    "official_instance_images": "CANNOT_CHECK_NOT_BUILT"
+  },
+  "cleanup": {
+    "built_image_removed": false,
+    "container_removed": false,
+    "finalized_at_utc": "2026-08-24T10:58:26.836757+00:00",
+    "node_local_filesystem_bytes": 1680259907584,
+    "node_local_free_bytes_after_image_cleanup": 1594803183616,
+    "node_local_free_bytes_before_build": 1594803306496,
+    "node_local_graphroot": "/local/slurmtmp.3533832/orion-sab-official-base-v1/containers-graphroot",
+    "node_local_job_root": "/local/slurmtmp.3533832/orion-sab-official-base-v1",
+    "node_local_job_root_removal_pending": false,
+    "node_local_job_root_removed": true,
+    "remaining_image_ids": [],
+    "resolved_base_image_removed": false,
+    "runtime_socket_root_removed": true
+  },
+  "created_at_utc": "2026-08-24T10:58:26.705227+00:00",
+  "credential_presence_only": {
+    "AZURE_OPENAI_API_VERSION": false,
+    "AZURE_OPENAI_DEPLOYMENT_NAME": false,
+    "AZURE_OPENAI_ENDPOINT": false,
+    "AZURE_OPENAI_KEY": false,
+    "OPENAI_API_KEY": false
+  },
+  "docker_sdk": {
+    "docker_host_scheme": "unix",
+    "package_version": "7.1.0",
+    "ping": true,
+    "server_version": {
+      "ApiVersion": "1.44",
+      "Arch": "amd64",
+      "BuildTime": "2026-07-09T21:38:48+02:00",
+      "Components": [
+        {
+          "Details": {
+            "APIVersion": "5.8.2",
+            "Arch": "amd64",
+            "BuildTime": "2026-07-09T21:38:48+02:00",
+            "Experimental": "false",
+            "GitCommit": "",
+            "GoVersion": "go1.26.4 (Red Hat 1.26.4-1.el9_8)",
+            "KernelVersion": "5.14.0-687.24.1.el9_8.x86_64",
+            "MinAPIVersion": "4.0.0",
+            "Os": "linux"
+          },
+          "Name": "Podman Engine",
+          "Version": "5.8.2"
+        },
+        {
+          "Details": {
+            "Package": "Unknown"
+          },
+          "Name": "Conmon",
+          "Version": "conmon version 2.2.1, commit: "
+        },
+        {
+          "Details": {
+            "Package": "Unknown"
+          },
+          "Name": "OCI Runtime (/projects/hep/fs10/scratch/scyiu/orion_scienceagentbench_v1/podman-toolchain-v1/bin/crun)",
+          "Version": "crun version 1.27\ncommit: a718a92cc9a94955a5a550b6fdec1378c247ec50\nrundir: /tmp/orion-sab-base-3533832/crun\nspec: 1.0.0\n+SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +YAJL"
+        }
+      ],
+      "GitCommit": "",
+      "GoVersion": "go1.26.4 (Red Hat 1.26.4-1.el9_8)",
+      "KernelVersion": "5.14.0-687.24.1.el9_8.x86_64",
+      "MinAPIVersion": "1.24",
+      "Os": "linux",
+      "Platform": {
+        "Name": "linux/amd64/rocky-9.8"
+      },
+      "Version": "5.8.2"
+    }
+  },
+  "error": {
+    "message": "building at STEP \"RUN apt update && apt install -y wget git build-essential libffi-dev libtiff-dev python3 python3-pip python-is-python3 jq curl locales locales-all tzdata libxrender1 && rm -rf /var/lib/apt/lists/*\": while running runtime: exit status 100\n",
+    "type": "BuildError"
+  },
+  "host": {
+    "hostname": "cn121",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "slurm_cpus_per_task": "4",
+    "slurm_job_id": "3533832",
+    "slurm_job_partition": "lu48",
+    "tmpdir": "/local/slurmtmp.3533832"
+  },
+  "resolved_identities": {
+    "built_image": {},
+    "ubuntu_22_04_image_id": null,
+    "ubuntu_22_04_repo_digests": []
+  },
+  "rootless_runtime_adapter": {
+    "apt_sandbox_config_bytes": 27,
+    "apt_sandbox_config_mounted_read_only_for_run_steps": true,
+    "apt_sandbox_config_sha256": "3abdae1e98cd78a24d4de9f6707f611d21b8495a8f04228dda69c9d69f62d7b3",
+    "apt_sandbox_user_forced_to_root": true,
+    "docker_sdk_context_owner_normalization_sha256": "a7c3e02fe61d464ff30202366c325d8497a8b7a9d17622c78d8ab8a9e9251c69",
+    "dockerfile_bytes_modified": false,
+    "reason": "single-map rootless namespace cannot represent the upstream _apt UID/GID privilege drop"
+  },
+  "schema": "orion.p1.sab.lunarc.official-public-base-smoke.v1",
+  "source_binding": {
+    "commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d",
+    "git_blob_sha1": "d0e11f6a2beb89080a242eb77a9f211dabf74069",
+    "path": "evaluation/harness/dockerfiles.py",
+    "rendered_arch": "x86_64",
+    "rendered_dockerfile_bytes": 1251,
+    "rendered_dockerfile_sha256": "08045fc892652a6835adb808ee6db4dc5715ae64f65878eb0d0140e7d8c29a15",
+    "rendered_platform": "linux/x86_64",
+    "repository": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+    "source_file_sha256": "b0122b82a64165389a134216dffda8d6e9d3ff8bfc3ebb3795a00d54f2194b25",
+    "source_receipt_sha256": "7c91b3a4f47e694d745d46eec6ed74fe3fdb92a726c1cbdf21e08467f51da758"
+  },
+  "status": "FAIL",
+  "terminal": "P1_SAB_LUNARC_OFFICIAL_PUBLIC_BASE_SMOKE_FAIL__ZERO_TASKS_RUN__ZERO_OUTCOMES_OPENED"
+}
