@@ -1,0 +1,117 @@
+{
+ "schema_version": "orion.p6.revalidation-comparison.v1",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "domains": [
+  {
+   "domain": "numpy",
+   "package": "numpy",
+   "usable": true,
+   "modules": 426,
+   "import_edges": 1076,
+   "commits_examined": 700,
+   "changes_used": 347,
+   "certificate_decisions": 147822,
+   "policies": {
+    "full-reset": {
+     "retained": 0,
+     "retained_invalid": 0,
+     "retention_rate": 0.0,
+     "savings_vs_full_reset": 0
+    },
+    "native-dep": {
+     "retained": 117532,
+     "retained_invalid": 28709,
+     "retention_rate": 0.7951,
+     "savings_vs_full_reset": 117532
+    },
+    "selective": {
+     "retained": 110677,
+     "retained_invalid": 0,
+     "retention_rate": 0.7487,
+     "savings_vs_full_reset": 110677
+    }
+   }
+  },
+  {
+   "domain": "scipy",
+   "package": "scipy",
+   "usable": true,
+   "modules": 813,
+   "import_edges": 2156,
+   "commits_examined": 700,
+   "changes_used": 552,
+   "certificate_decisions": 448776,
+   "policies": {
+    "full-reset": {
+     "retained": 0,
+     "retained_invalid": 0,
+     "retention_rate": 0.0,
+     "savings_vs_full_reset": 0
+    },
+    "native-dep": {
+     "retained": 400140,
+     "retained_invalid": 51353,
+     "retention_rate": 0.8916,
+     "savings_vs_full_reset": 400140
+    },
+    "selective": {
+     "retained": 380990,
+     "retained_invalid": 0,
+     "retention_rate": 0.849,
+     "savings_vs_full_reset": 380990
+    }
+   }
+  },
+  {
+   "domain": "flask",
+   "package": "src/flask",
+   "usable": true,
+   "modules": 24,
+   "import_edges": 19,
+   "commits_examined": 371,
+   "changes_used": 331,
+   "certificate_decisions": 7944,
+   "policies": {
+    "full-reset": {
+     "retained": 0,
+     "retained_invalid": 0,
+     "retention_rate": 0.0,
+     "savings_vs_full_reset": 0
+    },
+    "native-dep": {
+     "retained": 0,
+     "retained_invalid": 0,
+     "retention_rate": 0.0,
+     "savings_vs_full_reset": 0
+    },
+    "selective": {
+     "retained": 7096,
+     "retained_invalid": 0,
+     "retention_rate": 0.8933,
+     "savings_vs_full_reset": 7096
+    }
+   }
+  }
+ ],
+ "summary": {
+  "domains_usable": 3,
+  "changes_per_domain": {
+   "numpy": 347,
+   "scipy": 552,
+   "flask": 331
+  },
+  "zero_retained_invalid": {
+   "numpy": true,
+   "scipy": true,
+   "flask": true
+  },
+  "native_dep_retained_invalid": {
+   "numpy": 28709,
+   "scipy": 51353,
+   "flask": 0
+  },
+  "selective_savings_positive_every_domain": true
+ }
+}
