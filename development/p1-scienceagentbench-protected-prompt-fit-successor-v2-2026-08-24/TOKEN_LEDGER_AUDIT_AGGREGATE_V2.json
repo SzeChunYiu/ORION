@@ -1,0 +1,147 @@
+{
+  "authority": "BODY_FREE_AGGREGATE_OF_BOUND_EXACT_GGUF_TOKEN_LEDGER_AND_REPAIRED_PREFLIGHT_RECEIPT_ONLY__NO_PROMPT_BODY_GENERATION_EXECUTION_EVALUATION_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "claim_boundary": {
+    "billed_cost_status": "CANNOT_CHECK",
+    "billed_cost_usd": null,
+    "credentials_used": false,
+    "evaluator_or_outcome_opened": false,
+    "external_api_invoked": false,
+    "generation_invoked": false,
+    "official_outcomes_opened": 0,
+    "official_tasks_executed": 0,
+    "production_admissibility": "CANNOT_CHECK",
+    "pytest_or_ci_invoked": false,
+    "scientific_authority_delta": "NONE",
+    "task_prompt_packet_bodies_retained": 0
+  },
+  "dynamic_rr_phase1": {
+    "all_records_cannot_check": true,
+    "records": 306,
+    "status": "CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_REQUIRED",
+    "tasks": 102
+  },
+  "measurement": {
+    "all_state_independent_prompts_fit": true,
+    "context_window_tokens": 32768,
+    "fit_status": "FIT_FROM_BOUND_TOKEN_LEDGER",
+    "minimum_remaining_context_margin_tokens": 3554,
+    "packet_kind_records": {
+      "MASKED_PACKET": 612,
+      "RECOVERED_PACKET": 612
+    },
+    "phase_summary": {
+      "NR_PHASE0": {
+        "fit_records": 306,
+        "not_fit_records": 0,
+        "occupied_context_tokens": {
+          "maximum": 1492,
+          "minimum": 1237
+        },
+        "phase_output_cap": 1024,
+        "prompt_tokens": {
+          "maximum": 468,
+          "minimum": 213
+        },
+        "records": 306,
+        "remaining_context_margin_tokens": {
+          "maximum": 31531,
+          "minimum": 31276
+        }
+      },
+      "NR_PHASE1": {
+        "fit_records": 306,
+        "not_fit_records": 0,
+        "occupied_context_tokens": {
+          "maximum": 28205,
+          "minimum": 7386
+        },
+        "phase_output_cap": 7168,
+        "prompt_tokens": {
+          "maximum": 21037,
+          "minimum": 218
+        },
+        "records": 306,
+        "remaining_context_margin_tokens": {
+          "maximum": 25382,
+          "minimum": 4563
+        }
+      },
+      "OS_PHASE1": {
+        "fit_records": 306,
+        "not_fit_records": 0,
+        "occupied_context_tokens": {
+          "maximum": 29214,
+          "minimum": 8395
+        },
+        "phase_output_cap": 8192,
+        "prompt_tokens": {
+          "maximum": 21022,
+          "minimum": 203
+        },
+        "records": 306,
+        "remaining_context_margin_tokens": {
+          "maximum": 24373,
+          "minimum": 3554
+        }
+      },
+      "RR_PHASE0": {
+        "fit_records": 306,
+        "not_fit_records": 0,
+        "occupied_context_tokens": {
+          "maximum": 1492,
+          "minimum": 1237
+        },
+        "phase_output_cap": 1024,
+        "prompt_tokens": {
+          "maximum": 468,
+          "minimum": 213
+        },
+        "records": 306,
+        "remaining_context_margin_tokens": {
+          "maximum": 31531,
+          "minimum": 31276
+        }
+      }
+    },
+    "state_independent_prompt_records": 1224,
+    "static_fit_records": 1224,
+    "static_not_fit_records": 0,
+    "tasks": 102,
+    "worst_occupied_context_tokens": 29214
+  },
+  "private_ledger_bindings": {
+    "canonical_token_ledger_content_sha256": "93f42c0bdad394a558f61880896e8f68402dd87da00cfa28d4d0c7cfff96aa67",
+    "private_token_id_audit": {
+      "bytes": 4664053,
+      "records": 1224,
+      "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+      "sha256": "04e33ef543e9ba602ed11eaa99145ecd765be883b0efd427c36b30e3d865b5fc"
+    },
+    "raw_exact_gguf_token_ledger_file": {
+      "bytes": 196220,
+      "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+      "sha256": "340a51d96f9e39a53c5317fb3999ad28e5918d17af7a6d93381e4a4e7ae7c82d"
+    },
+    "raw_ledger_or_token_id_audit_in_repository": false
+  },
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-token-ledger-audit-aggregate.v2",
+  "source_receipt": {
+    "bytes": 539479,
+    "path": "PROTECTED_PROMPT_FIT_RECEIPT_V1.json",
+    "sha256": "4ff1163b7e405b5881a7d2d4aea10bb634aaf49ada7bfc0c02159a1b5e18fa83"
+  },
+  "status": "PASS_ALL_1224_STATE_INDEPENDENT_PROMPTS_FIT",
+  "tokenizer_semantics": {
+    "add_special": true,
+    "canonical_request_json": true,
+    "host": "127.0.0.1",
+    "integer_token_ids_retained_privately": true,
+    "parse_special": true,
+    "prompt_request_response_hashes_retained": true,
+    "repeat_count": 3,
+    "repeat_identity": "THREE_BYTE_AND_INTEGER_TOKEN_ID_IDENTICAL_RESPONSES_PER_PROMPT",
+    "route": "POST /tokenize",
+    "runtime": "llama-server b10434 loopback endpoint",
+    "tokenize_requests": 3672
+  }
+}
