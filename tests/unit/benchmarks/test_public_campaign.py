@@ -201,8 +201,13 @@ def _environment_bundle_digest(observations: tuple[Observation, ...]) -> str:
     )
 
 
-def _replay(**overrides: object) -> ReplayBinding:
-    observations = _observations()
+def _replay(
+    gate: GateResult | None = None,
+    observations: tuple[Observation, ...] | None = None,
+    **overrides: object,
+) -> ReplayBinding:
+    observations = observations or _observations()
+    gate = gate or _gate()
     values: dict[str, object] = {
         "fresh_container": True,
         "container_image_sha256": _digest("container"),
@@ -212,6 +217,7 @@ def _replay(**overrides: object) -> ReplayBinding:
         "replay_predictions_sha256": _bundle_digest(_observation_rows(observations)),
         "original_result_sha256": _digest("gate-output"),
         "replay_result_sha256": _digest("gate-output"),
+        "gate_result_sha256": _bundle_digest(gate.__dict__),
     }
     values.update(overrides)
     return ReplayBinding(**values)  # type: ignore[arg-type]
@@ -231,7 +237,9 @@ def _surfaces(
         AuthoritySurface(
             kind=kind,
             path=f"publication/{kind.value.lower()}{suffixes[kind]}",
-            file_sha256=_digest(f"file:{kind.value}"),
+            file_sha256=hashlib.sha256(
+                _surface_bytes(kind, terminal, _digest("gate-output"))
+            ).hexdigest(),
             declared_terminal=terminal,
             evidence_sha256=_digest("gate-output"),
         )
@@ -239,9 +247,29 @@ def _surfaces(
     )
 
 
+def _surface_bytes(
+    kind: SurfaceKind,
+    terminal: CampaignTerminal,
+    evidence_sha256: str,
+) -> bytes:
+    return (
+        f"file:{kind.value}\n"
+        f"ORION_SURFACE_BINDING_V1|{terminal.value}|{evidence_sha256}\n"
+    ).encode("utf-8")
+
+
+def _surface_reader_for(surfaces: tuple[AuthoritySurface, ...]):
+    contents = {
+        surface.path: _surface_bytes(
+            surface.kind, surface.declared_terminal, surface.evidence_sha256
+        )
+        for surface in surfaces
+    }
+    return contents.__getitem__
+
+
 def _surface_reader(path: str) -> bytes:
-    surface = next(item for item in _surfaces() if item.path == path)
-    return f"file:{surface.kind.value}".encode("utf-8")
+    return _surface_reader_for(_surfaces())(path)
 
 
 def _run(
@@ -251,18 +279,24 @@ def _run(
     gate: GateResult | None = None,
     replay: ReplayBinding | None = None,
     surfaces: tuple[AuthoritySurface, ...] | None = None,
+    surface_reader=None,
     result_created_at_utc: str = "2026-08-24T11:00:00+00:00",
 ):
     freeze = freeze or _freeze()
+    observations = observations if observations is not None else _observations()
+    gate = gate or _gate()
+    replay = replay or _replay(gate, observations)
+    surfaces = surfaces if surfaces is not None else _surfaces()
+    surface_reader = surface_reader or _surface_reader_for(surfaces)
     receipts = fetch_and_hash_sources(freeze, lambda _: b"dataset")
     return run_fail_closed_campaign(
         freeze=freeze,
         source_receipts=receipts,
-        observations=observations if observations is not None else _observations(),
-        gate_result=gate or _gate(),
-        replay=replay or _replay(),
-        authority_surfaces=surfaces if surfaces is not None else _surfaces(),
-        surface_reader=_surface_reader,
+        observations=observations,
+        gate_result=gate,
+        replay=replay,
+        authority_surfaces=surfaces,
+        surface_reader=surface_reader,
         result_created_at_utc=result_created_at_utc,
     )
 
@@ -323,6 +357,7 @@ def test_gate_metrics_are_cryptographically_bound_into_receipt() -> None:
     assert second.terminal is CampaignTerminal.PASS
     assert second.receipt_sha256 != first.receipt_sha256
     assert second.gate_result_sha256 != first.gate_result_sha256
+    assert second.replay_sha256 != first.replay_sha256
 
 
 def test_ambiguous_license_prevents_fetch_and_fails_closed() -> None:
@@ -513,6 +548,24 @@ def test_evaluator_and_environment_drift_cannot_check() -> None:
     assert any("environment_incomplete" in blocker for blocker in receipt.blockers)
 
 
+def test_blank_required_environment_values_cannot_pass_even_when_replay_matches() -> None:
+    observations = tuple(
+        replace(
+            item,
+            environment=tuple(
+                (key, "" if key in {"os", "runtime"} else value)
+                for key, value in item.environment
+            ),
+        )
+        for item in _observations()
+    )
+    gate = _gate()
+    replay = _replay(gate, observations)
+    receipt = _run(observations=observations, gate=gate, replay=replay)
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("environment_value_missing" in blocker for blocker in receipt.blockers)
+
+
 def test_post_outcome_freeze_cannot_check() -> None:
     receipt = _run(result_created_at_utc="2026-08-24T09:59:59+00:00")
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
@@ -579,13 +632,34 @@ def test_authority_surfaces_require_unique_canonical_paths_and_verified_bytes() 
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert "authority_surface_paths_aliased" in receipt.blockers
     assert "authority_surface_file_hashes_aliased" in receipt.blockers
-    assert any("read_failed" in blocker for blocker in receipt.blockers)
+    assert any("file_sha256_mismatch" in blocker for blocker in receipt.blockers)
 
     noncanonical = list(_surfaces())
     noncanonical[0] = replace(noncanonical[0], path="publication/../escape.md")
     receipt = _run(surfaces=tuple(noncanonical))
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert any("path_or_file_sha256_invalid" in blocker for blocker in receipt.blockers)
+
+
+def test_hash_verified_surface_bytes_must_contain_declared_gate_semantics() -> None:
+    unrelated = _digest("unrelated-evidence")
+    surfaces: list[AuthoritySurface] = []
+    actual_bytes: dict[str, bytes] = {}
+    for surface in _surfaces():
+        contradictory = _surface_bytes(surface.kind, CampaignTerminal.FAIL, unrelated)
+        actual_bytes[surface.path] = contradictory
+        surfaces.append(
+            replace(surface, file_sha256=hashlib.sha256(contradictory).hexdigest())
+        )
+    receipt = _run(
+        surfaces=tuple(surfaces),
+        surface_reader=actual_bytes.__getitem__,
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any(
+        "semantic_binding_missing_or_mismatched" in blocker
+        for blocker in receipt.blockers
+    )
 
 
 def test_gate_must_bind_exact_record_and_raw_output_identities() -> None:
@@ -608,7 +682,7 @@ def test_swapping_raw_outputs_between_records_breaks_association_binding() -> No
     observations[1] = replace(
         observations[1], raw_output_sha256=_observations()[0].raw_output_sha256
     )
-    receipt = _run(observations=tuple(observations))
+    receipt = _run(observations=tuple(observations), replay=_replay())
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert "gate_observation_association_binding_mismatch" in receipt.blockers
     assert "replay:predictions_not_bound_to_execution_records" in receipt.blockers

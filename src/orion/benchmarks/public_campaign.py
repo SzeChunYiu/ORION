@@ -198,6 +198,7 @@ class ReplayBinding:
     replay_predictions_sha256: str
     original_result_sha256: str
     replay_result_sha256: str
+    gate_result_sha256: str
 
 
 @dataclass(frozen=True)
@@ -531,6 +532,8 @@ def _observation_blockers(
             blockers.append(f"{prefix}:environment_fields_duplicated")
         if not _REQUIRED_ENVIRONMENT.issubset(environment):
             blockers.append(f"{prefix}:environment_incomplete")
+        if any(not environment.get(key, "").strip() for key in _REQUIRED_ENVIRONMENT):
+            blockers.append(f"{prefix}:environment_value_missing")
         for key in ("container_image_sha256", "dependency_lock_sha256"):
             if key in environment and not _valid_sha256(environment[key]):
                 blockers.append(f"{prefix}:{key}_invalid")
@@ -608,6 +611,7 @@ def _replay_blockers(
         "replay_predictions": replay.replay_predictions_sha256,
         "original_result": replay.original_result_sha256,
         "replay_result": replay.replay_result_sha256,
+        "gate_result": replay.gate_result_sha256,
     }
     for field, value in digest_fields.items():
         if not _valid_sha256(value):
@@ -630,6 +634,8 @@ def _replay_blockers(
         blockers.append("replay:original_result_not_bound_to_gate")
     if replay.replay_result_sha256 != gate_result.evaluator_output_sha256:
         blockers.append("replay:replay_result_not_bound_to_gate")
+    if replay.gate_result_sha256 != _canonical_sha256(asdict(gate_result)):
+        blockers.append("replay:gate_result_digest_mismatch")
     for item in observations:
         environment = dict(item.environment)
         if environment.get("container_image_sha256") != replay.container_image_sha256:
@@ -663,12 +669,23 @@ def _surface_blockers(
         ):
             blockers.append(f"{prefix}:path_or_file_sha256_invalid")
         try:
-            observed_file_sha256 = hashlib.sha256(surface_reader(surface.path)).hexdigest()
+            surface_bytes = surface_reader(surface.path)
+            observed_file_sha256 = hashlib.sha256(surface_bytes).hexdigest()
         except Exception as exc:
             blockers.append(f"{prefix}:read_failed:{type(exc).__name__}")
         else:
             if observed_file_sha256 != surface.file_sha256:
                 blockers.append(f"{prefix}:file_sha256_mismatch")
+            terminal_value = (
+                surface.declared_terminal.value
+                if isinstance(surface.declared_terminal, CampaignTerminal)
+                else str(surface.declared_terminal)
+            )
+            semantic_marker = (
+                f"ORION_SURFACE_BINDING_V1|{terminal_value}|{surface.evidence_sha256}"
+            ).encode("ascii")
+            if semantic_marker not in surface_bytes:
+                blockers.append(f"{prefix}:semantic_binding_missing_or_mismatched")
         if surface.declared_terminal is not gate_result.terminal:
             blockers.append(f"{prefix}:terminal_mismatch")
         if surface.evidence_sha256 != gate_result.evaluator_output_sha256:

@@ -63,6 +63,13 @@ metrics and interval are included in the signed receipt payload. Replay result,
 prediction, environment, and container identities must resolve to that same
 execution bundle.
 
+Each publication surface must be read through its canonical path, match its
+declared file SHA-256, and contain an uncompressed
+`ORION_SURFACE_BINDING_V1|<terminal>|<evidence_sha256>` marker. This makes the
+terminal/evidence agreement a property of the verified bytes rather than a
+parallel metadata assertion. The replay also binds the canonical full gate
+result digest, not only the evaluator-output artifact hash.
+
 ## Saturation-basis challenge
 
 Saturation could be false if a native benchmark requires a licence condition,
