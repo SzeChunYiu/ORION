@@ -6,7 +6,10 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
+
+sys.dont_write_bytecode = True
 
 from cleanup_gate_v1 import batch_cleanup_passed, driver_cleanup_passed
 
@@ -306,7 +309,10 @@ def main() -> int:
     files = {
         str(path.relative_to(ROOT))
         for path in ROOT.rglob("*")
-        if path.is_file() and path.name != "SHA256SUMS"
+        if path.is_file()
+        and path.name != "SHA256SUMS"
+        and path.suffix != ".pyc"
+        and "__pycache__" not in path.parts
     }
     assert set(recorded) == files
     for name, digest in recorded.items():
