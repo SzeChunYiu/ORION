@@ -178,3 +178,11 @@ def test_p5_baseline_and_ablation_table_is_explicit_cannot_check() -> None:
     # the two reasons must stay distinct
     assert "not executed; no SWE-bench Verified run exists" in text
     assert "comparator unavailable; not replaced by a weak proxy" in text
+
+
+def test_p1_frames_v2_2_4_as_frozen_generator_mechanism_evidence() -> None:
+    """Two seeds test the draw; they do not widen the construction."""
+    text = _flat(PAPERS / "paper-01-recursive-epistemic-reconstruction/JOURNAL_READINESS.md")
+    assert "Both are runs of a frozen generator" in text
+    assert "not 2,882 independent observations of scientific practice" in text
+    assert "Replication across seeds is exactly as broad as the generator" in text
