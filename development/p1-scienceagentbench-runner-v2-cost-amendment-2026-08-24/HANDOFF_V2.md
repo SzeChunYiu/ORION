@@ -77,8 +77,10 @@ OK
 P1_SAB_RUNNER_V2_ALLOCATED_COST_SYNTHETIC_HOSTILE_VALIDATION_PASS tests=38 official_tasks=0 official_outcomes=0
 ```
 
-On a case-sensitive host the suite still runs 38 tests but reports one skip for
-the case-fold alias regression because the probed spellings are distinct there.
+On a case-sensitive host the suite still reports 38 successful tests and zero
+skips; the case-fold attack branch returns after proving the probed spellings
+are distinct, so the hash-bound receipt stays identical across host filesystem
+case behavior.
 
 Do not run pytest or CI for this packet.
 

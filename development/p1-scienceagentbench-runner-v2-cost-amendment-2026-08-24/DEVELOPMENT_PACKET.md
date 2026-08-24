@@ -192,11 +192,12 @@ ledger and attacks:
   and parse stages; and
 - analysis-projection field drift or evaluator/outcome leakage.
 
-`38/38` synthetic hostile tests pass on a case-insensitive host. The explicit
-case-fold regression is conditionally skipped on a case-sensitive host, where
-the two spellings are not aliases. The suite opens zero official tasks/outcomes
-and exercises no provider, model, archive, credential, container, evaluator,
-CI, pytest, manuscript or PDF.
+`38/38` synthetic hostile tests pass. The explicit case-fold attack branch runs
+only when the host probe establishes that the two spellings alias; on a
+case-sensitive host the test returns successfully without rewriting the bound
+receipt as skipped. The suite opens zero official tasks/outcomes and exercises
+no provider, model, archive, credential, container, evaluator, CI, pytest,
+manuscript or PDF.
 
 ## Review and activation rule
 

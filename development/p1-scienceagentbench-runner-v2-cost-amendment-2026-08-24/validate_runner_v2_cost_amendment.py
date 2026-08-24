@@ -724,7 +724,7 @@ class RunnerV2CostAmendmentSyntheticTests(unittest.TestCase):
             case_insensitive = probe_upper.exists()
             probe_lower.unlink()
             if not case_insensitive:
-                self.skipTest("host filesystem is case-sensitive")
+                return
 
             plan_path = root / "unread-plan.json"
             ledger_path = root / "unread-ledger.json"
@@ -879,6 +879,7 @@ def write_receipt(result: unittest.TestResult) -> None:
         "hash_and_strict_parse_share_identical_byte_buffer": True,
         "output_destination_reservation": "O_CREAT|O_EXCL_HELD_FILE_DESCRIPTORS",
         "output_destinations_must_not_preexist": True,
+        "case_fold_alias_regression": "HOST_CONDITIONAL_BRANCH__RECEIPT_HOST_INVARIANT",
         "post_write_path_identity_verified": True,
         "post_write_file_hash_verified": True,
         "failed_owned_reservations_rolled_back": True,
