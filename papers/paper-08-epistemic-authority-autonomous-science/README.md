@@ -70,6 +70,16 @@ P8's residual object is the scientific **discharge/admission relation above loca
 ## Remaining top-tier blockers
 
 1. **Independent external scientific adjudication.** The current formal interpretation, theorem suite and tests were authored in the same research programme; the 20-case gold is independently implemented but not externally governed.
+
+   To state the boundary in the terms the reader needs: the 20-case gold is
+   **same-programme gold**. It was authored inside this project, by the people
+   who wrote the calculus it scores. Agreement between the calculus and that
+   gold is therefore internal consistency, and it is not externally governed
+   scientific adjudication. Nothing in this paper's numbers distinguishes
+   "the calculus is right" from "the calculus and its gold share an author",
+   and only adjudication by parties outside the programme can separate those.
+   The result stands as a specification-conformance result and is reported as
+   one.
 2. **Real integrated authorization/evidence donor.** Demonstrate P8's residual scientific-discharge distinction against a strong deployed-style authorization/evidence stack at matched information.
 3. **Manuscript correction.** Remove every claim that treats 169 as heterogeneous breadth and replace it with the mechanized interpretation + exhaustive soundness identity.
 4. **Submission closure.** Current nearest-work refresh, clean-environment replay, PDF/clipping/content-binding audit and exact final submission-byte binding.

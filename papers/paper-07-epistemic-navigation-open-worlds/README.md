@@ -63,6 +63,19 @@ Witness-aware closure transport holds at exact accuracy `1.0` on three qualitati
 
 Bound receipts: `top_tier/P7_REAL_REGIME_TRANSPORT_RESULT_RECEIPT_V1.md` (classes 1–2) and `top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md` (class 3).
 
+**What the `1.0` is, and what it is not.** It is exact conformance to a finite,
+frozen contract on the cases listed above: 14 RO-Crate transitions, 712
+protected Wine rows, 5 protected WDBC strata. Every one of those sets is
+enumerated in advance, so a perfect score means the rule was applied correctly
+to each member, not that the rule holds beyond them. It is **not** universal
+regime transport. No population is sampled here and no interval is estimated,
+so there is nothing from which to project to unseen change classes, and a
+reader who takes `1.0` as evidence of general transport is reading a
+conformance result as a generalisation. The multi-repository retention study in
+`transitions/` bears on the same boundary from the other side: exact
+containment made 0 unnecessary reopenings on real histories, which is a second
+finite result and not a wider one.
+
 The third class closes the objective/world/obligation gap: the goal structure itself changes while representations and responsibilities are held fixed, so value-level preservation cannot even express the new obligation — accuracy-only summaries are `CANNOT_CHECK` — and the change cuts both ways (one fold satisfies the old accuracy obligation but fails the new recall obligation, a value-only false closure; one fold fails the old and satisfies the new, where value-only needlessly reopens).
 
 This licenses the bounded claim that witness/evidence-aware closure transport — not value preservation alone, not unconditional reopening — survives all three executed change classes. It does **not** license universal scientific-regime transport across arbitrary world-model, objective or agent changes.
