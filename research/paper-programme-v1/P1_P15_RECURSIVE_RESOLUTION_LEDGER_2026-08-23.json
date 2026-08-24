@@ -372,6 +372,34 @@
             "success_condition": "All protected project, split, donor, identity, and independent evaluator bindings clear before the frozen powered panel executes once.",
             "failure_terminal": "P5_WIDE_REVISION_LEVEL_CANNOT_CHECK_EXTERNAL_BINDINGS"
           }
+        },
+        {
+          "item_id": "P5.H1_H4.CONFIRMATORY_EXECUTION",
+          "category": "PROSPECTIVE_SUCCESSOR_REQUIRED",
+          "claim_id": "P5.H1-H4.V3.EXECUTION",
+          "disposition": "Confirmatory execution ran 2026-08-24 under the frozen bindings landed in PR #1062 and the frozen decision rules: every binding digest verified, the independent evaluator cross-check agreed for all ten policies, and both split halves agreed on direction. Measured: FULL_T7 sat at the safety floor (accuracy 12/96, false-broad 0, harm 0, fresh transfer 12/96) while GENERIC_CAUSAL_DIAGNOSIS was perfect on all four primary endpoints; none of the seven frozen terminals' conditions held, and the receipt records NO_TERMINAL_UNDER_FROZEN_RULES verbatim without inventing a terminal or retuning a rule.",
+          "positive_authority_granted": false,
+          "post_hoc_relabeling_prohibited": true,
+          "one_stage_failure_attribution": "Suite expectation modeling: the confirmatory generator registered two diagnostics in every hypothesis expectation map while the frozen T7 protocol observes exactly one discriminator per bounded session; assess_responsibility stays UNRESOLVED while any modeled discriminator of a surviving hypothesis is unobserved (REQUIRED_DISCRIMINATOR_OBSERVATION_MISSING), so the responsibility gate never identified and FULL_T7 never promoted. The committed development suite models one discriminator per hypothesis, which is why development instrumentation reached FULL_T7 accuracy 1.0. Policy code and gate semantics are internally consistent; the frozen panel is retained unregenerated as genuine evidence of the subject's observational-completeness requirement.",
+          "source_refs": [
+            {"path": "research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json", "availability": "THIS_PR"},
+            {"path": "research/self-orion-v3/confirmatory/run_confirmatory_execution_v1.py", "availability": "THIS_PR"},
+            {"path": "research/self-orion-v3/confirmatory/CONFIRMATORY_DECISION_RULES_V1.json", "availability": "PR_1062"},
+            {"path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json", "availability": "THIS_PR"},
+            {"path": "src/orion/transfer/v2/epistemic_responsibility.py", "availability": "BASE_REVISION"}
+          ],
+          "secondary_analyses_measured": {
+            "h2_feedback_non_compensation": "NOT CONFIRMED (drops 0.0 under NONE and PERMUTED; uninformative at the safety floor)",
+            "h3_cannot_check_blocking": "CONFIRMED (FULL_T7 authority violations 0; DIRECT_SELF_EDIT, M_OPEN_ONLY, WORLD_MODEL_REVISION, REPRESENTATION_REGIME_ONLY each above 0)",
+            "h4_negative_history_readmission": "CONFIRMED AS PRE-REGISTERED (history-blind frozen policies re-admit harm at round-1 rates under both readings of the readmit set)"
+          },
+          "next_executable_step": {
+            "kind": "SUCCESSOR_PANEL",
+            "successor_claim_id": "P5.H1-H4.V4",
+            "mechanic_change": "Hypothesis expectation sets completable within the bounded single-observation protocol (the committed development-suite contract), plus preservation-conflict cases that exercise the revision-gate blocking branch; strictly more coverage than the V3 panel (all V3 case families retained).",
+            "success_condition": "New frozen rules file authored before the successor execution and surjective onto the measured outcome space, including the region this execution exposed (subject below the accuracy bar while a comparator is above it).",
+            "failure_terminal": "P5_V4_SUCCESSOR_FROZEN_RULES_INCOMPLETE"
+          }
         }
       ]
     },

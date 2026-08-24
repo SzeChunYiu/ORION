@@ -2,9 +2,9 @@
   "schema_version": "orion.p5.self-orion-v3-revision-level-protocol.v1",
   "paper_id": "P5",
   "protocol_id": "P5.self-orion-v3.revision-level.v1",
-  "protocol_status": "CONFIRMATORY_BINDINGS_WRITTEN_PENDING_EXECUTION",
+  "protocol_status": "CONFIRMATORY_EXECUTED_2026-08-24_NO_TERMINAL_UNDER_FROZEN_RULES",
   "base_subject": "6cc9e0b5171459443b810c4fbc93072082829e47",
-  "outcome_accessed": false,
+  "outcome_accessed": true,
   "authority_scope": "PROSPECTIVE_PROTOCOL_ONLY",
   "grants_scientific_authority": false,
   "grants_peer_review_ready": false,
@@ -16,7 +16,7 @@
     "v3_role": "prospective additive revision-level discrimination study"
   },
   "research_question": "When the same visible development failure is compatible with different responsible epistemic layers, does responsibility/interface/minimal-revision control reduce wrong or over-broad revision while preserving fresh-transfer performance relative to matched strong mechanism comparators?",
-  "confirmatory_hypothesis_status": "FROZEN_DECISION_RULES_PENDING_EXECUTION",
+  "confirmatory_hypothesis_status": "EXECUTED_2026-08-24_NO_FROZEN_TERMINAL_SUBJECT_AT_SAFETY_FLOOR_SUCCESSOR_REQUIRED",
   "benchmark_local_revision_classes": [
     "EVIDENCE_REPAIR",
     "MEASUREMENT_REPAIR",
@@ -162,7 +162,7 @@
     "result_verifier_owner": "#283",
     "candidate_policy_owner": "SelfOrionV3Policy",
     "protected_evaluator_owner": "ExternalProtectedEvaluator",
-    "outcome_accessed": false
+    "outcome_accessed": true
   },
   "structural_binding_status": {
     "programme_receipt_owner": "#454",
@@ -181,5 +181,13 @@
     "CANNOT_CHECK"
   ],
   "negative_result_policy": "Null, harmful, M-open-sufficient, diagnosis-only and overconservative outcomes are retained as valid terminals and may not be retuned into a positive claim.",
-  "publication_rule": "No development or preflight terminal supports H1-H4, peer-review readiness, or novelty. Any result-bearing update requires exact final bindings, protected execution, independent #283 verification, and #287 nearest-work/novelty authority."
+  "publication_rule": "No development or preflight terminal supports H1-H4, peer-review readiness, or novelty. Any result-bearing update requires exact final bindings, protected execution, independent #283 verification, and #287 nearest-work/novelty authority.",
+  "confirmatory_execution_receipt": {
+    "path": "research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json",
+    "schema_version": "orion.p5.revision-level-v3.confirmatory-execution-receipt.v1",
+    "terminal_under_frozen_rules": "NO_TERMINAL_UNDER_FROZEN_RULES",
+    "one_stage_attribution": "The confirmatory generator modeled two diagnostics in every hypothesis expectation map while the frozen T7 protocol observes one discriminator per bounded session; assess_responsibility stays UNRESOLVED while any modeled discriminator of a surviving hypothesis is unobserved, so FULL_T7 never promoted (accuracy 12/96, fresh transfer 12/96, zero harm, zero authority violations).",
+    "revival_lever": "Successor panel with hypothesis expectation sets completable within the bounded protocol (the committed development-suite contract) plus preservation-conflict cases exercising the revision-gate blocking branch; strictly more coverage than this panel.",
+    "grants_scientific_authority": false
+  }
 }
