@@ -1,0 +1,44 @@
+{
+  "both_accept": true,
+  "c0_31_authority": false,
+  "ci_authority": false,
+  "d2_novelty_authority": false,
+  "d4_31_determines_tail": false,
+  "exact_d4_authority": false,
+  "executions": {
+    "generic": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true,
+    "source": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    }
+  },
+  "generic_decision": "ACCEPT_C5_CUBED_TAIL_CORRIDOR",
+  "generic_recurrence_novelty_authority": false,
+  "generic_verification_digest": "80bb34bedd4cb935f58fb55371f3d76b2d9376e701b969be8c0e4672e4936dab",
+  "max_k_checked_per_lane": 10000,
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_C5_CUBED_TAIL_CORRIDOR",
+  "native_manifest_digest": "e2613e9d98c19a44e8bfb5e6ffd4a012b8f51a4a8d962bb1b16185f5cddea1e3",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "quantum_claim": false,
+  "receipt_digest": "f69bde4893351cb1e33da8d2d2538f745cd34280aa3951de2b7a082c3ced5ad2",
+  "result_owner": "NON_QUANTUM_MATH",
+  "schema": "ORION.NonQuantumMath.M1.DualHarness.v1",
+  "source_result_digest": "7223f3f47d27eacbd6d5d398ef188c7022913e510552c7407bb3f8c71f952261",
+  "support_23_external_replay_required": true,
+  "support_23_theorem_authority": false,
+  "terminal": "NONQUANTUM_M1_C5CUBED_ALL_K_GE4_ONE_UNIT_CORRIDOR__D4_30_IMPLIES_EXACT_TAIL_5K_PLUS10",
+  "venue_authority": false
+}

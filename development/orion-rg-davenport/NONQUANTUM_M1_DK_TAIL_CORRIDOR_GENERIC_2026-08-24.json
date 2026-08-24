@@ -1,0 +1,87 @@
+{
+  "authority_scope": "DERIVED_C5_CUBED_GENERALIZED_DAVENPORT_TAIL_THEOREM_ONLY",
+  "checks": {
+    "d4_open": true,
+    "independent_recurrence": true,
+    "no_d4_31_tail": true,
+    "no_novelty_venue_quantum": true,
+    "parents": true,
+    "protocol_hash": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true,
+    "support_nonaggregable": true,
+    "theorem_scope": true
+  },
+  "d4_31_determines_tail": false,
+  "decision": "ACCEPT_C5_CUBED_TAIL_CORRIDOR",
+  "exact_d4_authority": false,
+  "novelty_authority": false,
+  "parents": {
+    "all_checks": true,
+    "checks": {
+      "d2_exact": true,
+      "d2_no_novelty": true,
+      "d3_exact": true,
+      "d3_no_novelty": true,
+      "short_threshold": true,
+      "support_local_only": true,
+      "support_replay_pending": true
+    },
+    "sha256": {
+      "d2": "5a0f8eb28ae47067534f001cd9571915ba6ce78bc1fd3a2bfa992f80faf4146c",
+      "d3": "4f559c48062d0c0ec6cfce45359445b2c85e718556ef8d0c3581b54510aadd0c",
+      "support": "75662f1beeb208c77b59939385a310acf649f310114bf819cfc5a3be99fe9307"
+    }
+  },
+  "quantum_claim": false,
+  "recurrence": {
+    "all_checks": true,
+    "checks": {
+      "base_interval": true,
+      "conditional_exact_tail": true,
+      "d4_31_tail_not_inferred": true,
+      "registered_early_line": true,
+      "unconditional_corridor": true
+    },
+    "max_k": 10000,
+    "sample": {
+      "10": {
+        "if_d4_30": 60,
+        "lower": 60,
+        "upper": 61
+      },
+      "100": {
+        "if_d4_30": 510,
+        "lower": 510,
+        "upper": 511
+      },
+      "1000": {
+        "if_d4_30": 5010,
+        "lower": 5010,
+        "upper": 5011
+      },
+      "10000": {
+        "if_d4_30": 50010,
+        "lower": 50010,
+        "upper": 50011
+      },
+      "4": {
+        "if_d4_30": 30,
+        "lower": 30,
+        "upper": 31
+      },
+      "5": {
+        "if_d4_30": 35,
+        "lower": 35,
+        "upper": 36
+      }
+    }
+  },
+  "schema": "ORION.NonQuantumMath.M1.GenericVerification.v1",
+  "source_result_digest": "7223f3f47d27eacbd6d5d398ef188c7022913e510552c7407bb3f8c71f952261",
+  "support_23_theorem_authority": false,
+  "venue_authority": false,
+  "verification_digest": "80bb34bedd4cb935f58fb55371f3d76b2d9376e701b969be8c0e4672e4936dab"
+}

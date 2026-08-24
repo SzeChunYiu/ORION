@@ -1,0 +1,158 @@
+{
+  "base_revision": "0dc9e07badae039743a6966dd9198586a497d72f",
+  "c0_31_authority": false,
+  "ci_authority": false,
+  "d2_novelty_authority": false,
+  "d4_31_determines_tail": false,
+  "exact_d4_authority": false,
+  "gates": {
+    "d4_remains_open": true,
+    "donor_and_novelty_boundaries_preserved": true,
+    "parents_bound": true,
+    "protocol_present": true,
+    "support_frontier_kept_nonaggregable": true,
+    "tail_recurrence_exact": true
+  },
+  "generic_recurrence_novelty_authority": false,
+  "novelty_authority": false,
+  "parent_ledger": {
+    "all_checks": true,
+    "d2": {
+      "all_checks": true,
+      "checks": {
+        "exact_20": true,
+        "machine_checked": true,
+        "no_novelty": true,
+        "s_le_6_exact_24": true,
+        "terminal": true
+      },
+      "path": "research/orion-rg/X1F0_D2_C5CUBED_EXACT_RESULTS.json",
+      "sha256": "5a0f8eb28ae47067534f001cd9571915ba6ce78bc1fd3a2bfa992f80faf4146c"
+    },
+    "d3": {
+      "all_checks": true,
+      "checks": {
+        "exact_25": true,
+        "lower_witness_24": true,
+        "no_novelty": true,
+        "terminal": true,
+        "upper_zero_survivors": true
+      },
+      "path": "research/orion-rg/X1F_D3_C5CUBED_EXACT_RESULTS.json",
+      "sha256": "4f559c48062d0c0ec6cfce45359445b2c85e718556ef8d0c3581b54510aadd0c"
+    },
+    "donor_files": {
+      "all_checks": true,
+      "checks": {
+        "all_k_lower_bound": true,
+        "all_k_upper_registered": true,
+        "conditional_upper_registered": true,
+        "d2_donor_correction": true,
+        "d4_interval_registered": true,
+        "recurrence_killed_as_novel": true
+      },
+      "d2_donor_sha256": "347a6cd967d4716c05aeec5241b454935ce92457075328963b07aaab910fbbde",
+      "d4_protocol_sha256": "39719afd49ef0f2bb9d82008cc1311847703ae685f961796ca9e27626ebcbf82",
+      "lower_audit_sha256": "276cada148b2d719bd8996aecf3dfa17a9fc842278387e96930337c6e916886c",
+      "prior_audit_sha256": "04b93e12f328f2ba4da2b6097d12a806dbdb5cd45e04217d505890f3f2b468f6"
+    }
+  },
+  "protocol_path": "development/orion-rg-davenport/NONQUANTUM_M1_DK_TAIL_CORRIDOR_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "fbf7c471fbd2bdf1ceb3717db0c424729971111d4ca229af295b37b8653000b8",
+  "quantum_claim": false,
+  "recurrence_ledger": {
+    "all_checks": true,
+    "checks": {
+      "all_k_corridor_width_one": true,
+      "conditional_exact_tail": true,
+      "d2_d3_on_lower_line": true,
+      "d4_31_tail_propagation_claimed": false,
+      "d4_interval_30_31": true,
+      "finite_evaluation_is_proof": false,
+      "human_induction_all_k": true
+    },
+    "max_k_checked": 10000,
+    "recurrence": "U_{k+1}=max(U_k+5,32)",
+    "rows": [
+      {
+        "conditional_d4_30_upper": 30,
+        "corridor_upper": 31,
+        "corridor_width": 1,
+        "k": 4,
+        "lower": 30
+      },
+      {
+        "conditional_d4_30_upper": 35,
+        "corridor_upper": 36,
+        "corridor_width": 1,
+        "k": 5,
+        "lower": 35
+      },
+      {
+        "conditional_d4_30_upper": 40,
+        "corridor_upper": 41,
+        "corridor_width": 1,
+        "k": 6,
+        "lower": 40
+      },
+      {
+        "conditional_d4_30_upper": 60,
+        "corridor_upper": 61,
+        "corridor_width": 1,
+        "k": 10,
+        "lower": 60
+      },
+      {
+        "conditional_d4_30_upper": 510,
+        "corridor_upper": 511,
+        "corridor_width": 1,
+        "k": 100,
+        "lower": 510
+      },
+      {
+        "conditional_d4_30_upper": 5010,
+        "corridor_upper": 5011,
+        "corridor_width": 1,
+        "k": 1000,
+        "lower": 5010
+      },
+      {
+        "conditional_d4_30_upper": 50010,
+        "corridor_upper": 50011,
+        "corridor_width": 1,
+        "k": 10000,
+        "lower": 50010
+      }
+    ]
+  },
+  "result_digest": "7223f3f47d27eacbd6d5d398ef188c7022913e510552c7407bb3f8c71f952261",
+  "result_owner": "NON_QUANTUM_MATH",
+  "schema": "ORION.NonQuantumMath.M1.DKTailCorridor.v1",
+  "scientific_authority": "DERIVED_C5_CUBED_GENERALIZED_DAVENPORT_TAIL_THEOREM_ONLY",
+  "support_23_theorem_authority": false,
+  "support_frontier": {
+    "aggregable_as_theorem": false,
+    "all_checks": true,
+    "bounded_conclusion": "Every length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length <=5 has support size at least 23.",
+    "checks": {
+      "bounded_only": true,
+      "does_not_prove_d4": true,
+      "external_replay_required": true,
+      "no_theorem_authority": true,
+      "schema": true,
+      "support_23_frontier": true
+    },
+    "path": "research/orion-rg/X1K_C0_SUPPORT_BOUND_RESULTS_V1.json",
+    "sha256": "75662f1beeb208c77b59939385a310acf649f310114bf819cfc5a3be99fe9307",
+    "used_in_tail_proof": false
+  },
+  "terminal": "NONQUANTUM_M1_C5CUBED_ALL_K_GE4_ONE_UNIT_CORRIDOR__D4_30_IMPLIES_EXACT_TAIL_5K_PLUS10",
+  "theorem": {
+    "conditional": "if D_4=30, then D_k=5k+10 for every k>=2",
+    "current_exact_gate": "D_4 in {30,31}",
+    "d4_31_tail_consequence": "NOT_DETERMINED",
+    "group": "C_5^3",
+    "unconditional": "for every k>=4, 5k+10 <= D_k <= 5k+11"
+  },
+  "venue_authority": false
+}
