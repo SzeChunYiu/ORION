@@ -188,6 +188,13 @@ P14A or P14B.
 - Precedence variants test donor-over-interaction/history, interaction-over-history, validity failure and negative evidence.
 - Six ablations separately remove evidence-integrity, freeze, identifiability, donor, interaction and negative-history checks.
 
+The inference unit is the stratum, not the case. The 28 cases are four
+precedence variants of each of seven semantic strata, so they are not 28
+independent draws and no interval is computed as if they were. Accuracy over
+them is a conformance count against a frozen specification: it says a policy
+handled every registered variant, not that it would handle a sampled population
+at that rate.
+
 The explicit case specification is internal to the programme, not a human external-adjudication dataset. P14C therefore evaluates **conformance to a separately frozen specification**, not truth about open-ended science.
 
 ### 8.2 Results
