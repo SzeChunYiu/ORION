@@ -1,0 +1,48 @@
+{
+  "both_accept": true,
+  "ci_authority": false,
+  "executions": {
+    "generic": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true,
+    "source": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    }
+  },
+  "formal_models_checked_per_lane": 254253,
+  "generic_decision": "ACCEPT_STRATIFIED_AUTHORITY_CALCULUS",
+  "generic_verification_digest": "62256e05066b2d731bf1913933b786ea6f6d2c226d8632f80224df73e53f87f6",
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_STRATIFIED_AUTHORITY_CALCULUS",
+  "native_manifest_digest": "c11be2749e0cab88a2c326212ee9b4b3be087f8cc79f37c283e0cf504e274212",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "original_forecast_errors": 1,
+  "original_forecast_exact": 9545,
+  "original_forecast_total": 9546,
+  "paper_c_result_owner": "PAPER_C",
+  "paper_d_owns_paper_c_results": false,
+  "physical_quantum_advantage_claim": false,
+  "prospective_repair_authority": false,
+  "qg5b_post_outcome_repair": true,
+  "real_static_framework_integration": false,
+  "receipt_digest": "f798c1593ba75bb0b8f9609e06123dffe3f7b6e0d475f3b3e8a4cf9740258ee0",
+  "retracted": [
+    "ORIGINAL_CLOSED_FORM_EXACTNESS",
+    "ORIGINAL_REGIME_LABEL"
+  ],
+  "schema": "ORION.PaperD.D1.DualHarness.v1",
+  "second_independent_forecasting_family": false,
+  "source_result_digest": "8b753ada54ef61fcb622f57d56855a1a2c1bc4defae6f4a1a41d8094826083c2",
+  "terminal": "PAPER_D_D1_STRATIFIED_AUTHORITY_CALCULUS_EXACT_MINIMAL_RETRACTION__QG5_COUNTEREXAMPLE_LOCALIZED__SIXLCU_NONINTERFERENCE_CORROBORATED"
+}
