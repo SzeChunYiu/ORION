@@ -21,12 +21,11 @@ check happened to instantiate. A commutation result proved only for
 ``(write + sum(reads) + 1) mod 2`` could be a property of modular arithmetic;
 proved against an arbitrary function, it can only be a property of separation.
 
-That framing also makes the converse statable, and it is stated: separation is
-not merely sufficient for commutation, it is necessary. :data:`SEPARATION_IS_NECESSARY`
-exhibits the countermodel --- if one mechanic reads what the other writes, some
-transformer makes the two orders differ. A sufficient condition presented
-without its converse invites the reading that it is the only such condition, and
-here it genuinely is the boundary.
+That framing also makes the sharp entailment boundary statable.  Read/write
+noninterference is sufficient for every frame-faithful transformer.  If either
+cross-read exclusion is removed, commutation is no longer entailed: some
+frame-faithful transformer and state disagree.  This is not a claim that two
+particular interfering mechanics can never happen to commute.
 """
 
 from __future__ import annotations
@@ -42,6 +41,7 @@ from orion.programme.mechanized import (
 )
 
 SCHEMA_VERSION = "orion.p6.separation-calculus-smt.v1"
+COMMUTATION_CONTRACT_ID = "P6.COMMUTE.RW_NONINTERFERENCE.V1"
 
 EXECUTABLE_MODEL = (
     "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
@@ -51,7 +51,8 @@ EXECUTABLE_MODEL = (
 SEPARATED_COMMUTATION = Theorem(
     name="SEPARATED_COMMUTATION",
     statement=(
-        "two local mechanics with distinct write coordinates, neither reading what "
+        f"{COMMUTATION_CONTRACT_ID}: two local mechanics with distinct write "
+        "coordinates, neither reading what "
         "the other writes, commute on any state over any value domain, for every "
         "transformer obeying its declared frame"
     ),
@@ -70,8 +71,9 @@ SEPARATION_IS_NECESSARY = Theorem(
         "whose two orders disagree"
     ),
     why_it_matters=(
-        "states the converse, so separation is reported as the boundary it is and "
-        "not as one sufficient condition among unnamed others"
+        "states the converse at the level of universal entailment: without either "
+        "cross-read exclusion, a countermodel exists; it does not say that every "
+        "specific pair of interfering mechanics must fail to commute"
     ),
 )
 
@@ -256,53 +258,56 @@ def prove_all(*, timeout_ms: int = 30000) -> tuple[ProofResult, ...]:
 
 
 def _prove_necessity(*, timeout_ms: int) -> ProofResult:
-    """Exhibit a countermodel to commutation when separation is dropped.
+    """Exhibit symmetric cross-read countermodels with disjoint writes.
 
     Discharged by satisfiability: the theorem asserts that a disagreeing model
-    exists, so a model *is* the proof and ``unsat`` would refute it. Written as
-    its own function because the polarity is the opposite of every other claim
-    here, and burying that in a shared loop would make the report's ``PROVED``
-    mean two different things.
+    exists for each omitted cross-read exclusion, so models are the proof and
+    ``unsat`` would refute it.  The mechanics below are explicit deterministic
+    array updates.  Each writes only its own coordinate and reads only its
+    declared coordinate; the sole violated premise is named by the case.
     """
 
     solver = require_z3()
-    Coord = solver.DeclareSort("NCoord")
-    Value = solver.DeclareSort("NValue")
-    State = solver.ArraySort(Coord, Value)
-    wl, wr = solver.Consts("nwl nwr", Coord)
-    FL = solver.Function("NFL", State, Value)
-    FR = solver.Function("NFR", State, Value)
-    state = solver.Const("nstate", State)
+    State = solver.ArraySort(solver.IntSort(), solver.IntSort())
 
-    checker = solver.Solver()
-    checker.set("timeout", timeout_ms)
-    # Coordinates are distinct, but the right mechanic reads what the left
-    # writes: separation fails on exactly one clause.
-    checker.add(wl != wr)
-    checker.add(
-        solver.Store(solver.Store(state, wl, FL(state)), wr, FR(solver.Store(state, wl, FL(state))))
-        != solver.Store(solver.Store(state, wr, FR(state)), wl, FL(solver.Store(state, wr, FR(state))))
-    )
-    verdict = checker.check()
+    def left_reads_right() -> Any:
+        state = solver.Const("left_reads_right_state", State)
+        left = lambda s: solver.Store(s, 0, solver.Select(s, 1))
+        right = lambda s: solver.Store(s, 1, solver.Select(s, 1) + 1)
+        return right(left(state)) != left(right(state))
+
+    def right_reads_left() -> Any:
+        state = solver.Const("right_reads_left_state", State)
+        left = lambda s: solver.Store(s, 0, solver.Select(s, 0) + 1)
+        right = lambda s: solver.Store(s, 1, solver.Select(s, 0))
+        return right(left(state)) != left(right(state))
+
+    verdicts = []
+    for witness in (left_reads_right(), right_reads_left()):
+        checker = solver.Solver()
+        checker.set("timeout", timeout_ms)
+        checker.add(witness)
+        verdicts.append(checker.check())
     from orion.programme.mechanized import ProofOutcome
 
-    if verdict == solver.sat:
+    if verdicts == [solver.sat, solver.sat]:
         return ProofResult(
             SEPARATION_IS_NECESSARY,
             ProofOutcome.PROVED,
-            "a disagreeing model exists, so separation is not merely sufficient",
+            "disagreeing models exist for both cross-read directions with disjoint "
+            "writes and explicit frame-faithful deterministic mechanics",
         )
-    if verdict == solver.unsat:
+    if solver.unsat in verdicts:
         return ProofResult(
             SEPARATION_IS_NECESSARY,
             ProofOutcome.COUNTEREXAMPLE,
-            "no disagreeing model exists: commutation would hold without separation, "
-            "which would mean the separation hypothesis is doing no work",
+            "one cross-read direction had no disagreeing model; the symmetric "
+            "load-bearing claim is not discharged",
         )
     return ProofResult(
         SEPARATION_IS_NECESSARY,
         ProofOutcome.UNKNOWN,
-        f"solver returned unknown ({checker.reason_unknown()}); NOT discharged",
+        "solver returned unknown for at least one cross-read direction; NOT discharged",
     )
 
 

@@ -131,6 +131,8 @@ Suppose `m` declares no read of mutable ambient variable `z` but secretly branch
 
 ### Theorem 7 — history-aware commutation under faithful full separation
 
+Stable contract: `P6.COMMUTE.RW_NONINTERFERENCE.V1`.
+
 Let deterministic admissible `m,n` be read/write-footprint faithful and fully scientifically separated, including authority, provenance, obligations, dependency state, resources and declared external inputs. Whenever both orders are defined,
 
 \[

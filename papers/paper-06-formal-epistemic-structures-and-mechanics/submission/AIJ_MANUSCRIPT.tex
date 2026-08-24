@@ -115,6 +115,8 @@ Conservative dependency structure can reopen more certificates than a richer pro
 This distinction prevents a changed claim from carrying its own previous authority through mutation while still permitting legitimate protected re-certification.
 
 \section{Composition and history}
+The commutation result below is bound as
+\texttt{P6.COMMUTE.RW\_NONINTERFERENCE.V1}.
 Declared footprints are useful only if enforced. A mechanic is read-footprint faithful when its effects, outputs, obligation emissions, and failure choices depend only on declared semantic inputs or explicitly registered external inputs. It is write-footprint faithful when every committed mutation lies within the declared write/effect interface.
 
 A hidden ambient read defeats syntactic separation: if $m$ secretly reads mutable variable $z$ while $n$ writes $z$, order can change $m$ even though the declared footprints appear disjoint.
