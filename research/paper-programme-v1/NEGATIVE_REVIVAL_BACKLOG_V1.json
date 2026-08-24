@@ -1,121 +1,107 @@
 {
-  "schema": "ORION_NEGATIVE_REVIVAL_BACKLOG_V1",
-  "created": "2026-08-23",
-  "operator_directive": "Every negative result must be researched to positive: root cause or better model. Earned by mechanic improvement, never by tuning outcomes.",
-  "protected_negatives": [
-    {
-      "claim": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
-      "paper": "P9",
-      "reason": "operator-designated protected; receipt forbids repair or re-run"
-    }
-  ],
-  "lanes": [
-    {
-      "id": "NR-01",
-      "paper": "P5",
-      "negative": "3 residual attribution errors P5-HC-002/012/018, 21/24",
-      "hypothesis": "symptom-ambiguity error class",
-      "lever": "attribution-mechanism refinement + frozen 24-case re-run",
-      "solvability": "TRANSFERRED_TO_CODEX_LANE"
-    },
-    {
-      "id": "NR-03",
-      "paper": "P4",
-      "negative": "H3.V2 metric saturated 1.0 on all 11 systems",
-      "hypothesis": "degenerate measurement (ceiling artifact)",
-      "lever": "non-saturating discriminative V2.1 metric + registered re-run",
-      "solvability": "TRANSFERRED_TO_CODEX_LANE"
-    },
-    {
-      "id": "NR-05",
-      "paper": "P9",
-      "negative": "T4 hostile attack defeated narrow representation claim",
-      "hypothesis": "representation blind spot exploited",
-      "lever": "representation hardening vs frozen attack class",
-      "solvability": "RESEARCH_SOLVABLE"
-    },
-    {
-      "id": "NR-08",
-      "paper": "P2",
-      "negative": "external campaign 7/229 gold, delta beyond sampling ceiling",
-      "hypothesis": "acquisition mechanism vs ceiling unattributed",
-      "lever": "bounded-internal acquisition simulation",
-      "solvability": "TRANSFERRED_TO_CODEX_LANE"
-    },
-    {
-      "id": "NR-09",
-      "paper": "P1",
-      "negative": "1 root success in 48, below 385-case target",
-      "hypothesis": "underpowered execution",
-      "lever": "execute frozen R7A powered successor",
-      "solvability": "TRANSFERRED_TO_CODEX_LANE"
-    }
-  ],
   "already_revived": [
     {
       "negative": "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
-      "successor": "P12B equal-action two-signal complementarity",
-      "status": "ACTIVE_POSITIVE_AUTHORITY"
+      "status": "ACTIVE_POSITIVE_AUTHORITY",
+      "successor": "P12B equal-action two-signal complementarity"
     },
     {
       "negative": "P13 empirical safety-cost authority withheld",
-      "successor": "P13B authenticated-certificate corruption safety-cost",
-      "status": "ACTIVE_POSITIVE_AUTHORITY"
+      "status": "ACTIVE_POSITIVE_AUTHORITY",
+      "successor": "P13B authenticated-certificate corruption safety-cost"
     },
     {
       "negative": "P9 causal-diagnostic V1 accounting",
-      "successor": "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN (#998)",
-      "status": "GREEN"
+      "status": "GREEN",
+      "successor": "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN (#998)"
     },
     {
       "negative": "P10 module deltas: Control -0.033333 (7W/9L, MDA=10, p=0.804), CategoryTheory -0.005 (21W/22L, p=1.0)",
-      "successor": "P10 module-negative revival V2 (#1021): one-stage attribution (Control: negative net concentrates in calculation context 5W/17L vs donor-pooled rewrite 46% plurality; CT: strongest structure LOO +0.3815, smallest shift JS 0.0265), donor-side levers data-rejected (confidence-gate 0.0968, majority-gate 0.0003), V2 exact paired claim rule alpha=0.05: 20/20 claimable-sign modules POSITIVE, 0 claimable negative, 6 sign-withheld; family sign test 1.049e-5 -> 1.907e-6",
-      "status": "CORRECTED_UNRESOLVED_PER_MODULE_WITH_LANDED_V2_CLAIM_RULE (receipt P10_MODULE_NEGATIVE_REVIVAL_RECEIPT_V1, PR #1021)"
+      "status": "CORRECTED_UNRESOLVED_PER_MODULE_WITH_LANDED_V2_CLAIM_RULE (receipt P10_MODULE_NEGATIVE_REVIVAL_RECEIPT_V1, PR #1021)",
+      "successor": "P10 module-negative revival V2 (#1021): one-stage attribution (Control: negative net concentrates in calculation context 5W/17L vs donor-pooled rewrite 46% plurality; CT: strongest structure LOO +0.3815, smallest shift JS 0.0265), donor-side levers data-rejected (confidence-gate 0.0968, majority-gate 0.0003), V2 exact paired claim rule alpha=0.05: 20/20 claimable-sign modules POSITIVE, 0 claimable negative, 6 sign-withheld; family sign test 1.049e-5 -> 1.907e-6"
     },
     {
       "negative": "P9 D-A transport instability (NR-04): CANNOT_CHECK, quality-transport below 0.965",
-      "successor": "Ensemble-level transport V2 (pre-registered, R=24 re-draws): representation channel bitwise lossless, evaluation channel was the lossy stage (noise-to-margin 8.47)",
-      "status": "diagnostic 5/5, all-cell decision agreement; D-A honestly stays CANNOT_CHECK (margin unresolvable at n=719); V2 stability clause withheld the full positive (P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1)"
+      "status": "diagnostic 5/5, all-cell decision agreement; D-A honestly stays CANNOT_CHECK (margin unresolvable at n=719); V2 stability clause withheld the full positive (P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1)",
+      "successor": "Ensemble-level transport V2 (pre-registered, R=24 re-draws): representation channel bitwise lossless, evaluation channel was the lossy stage (noise-to-margin 8.47)"
     },
     {
       "negative": "P9 D1v1.2 replay divergence (NR-06): archived 0.50 vs frozen-env reproduction",
-      "successor": "Replay lock pinned to archive-matching solver stack (sklearn 1.9.0 vs archive 1.8.0; data channel digest-identical)",
-      "status": "exact per-case reproduction of all four arms (TSB 0.5, constant predictor); locked-replay FAILED terminal stays append-only; scientific repair stays with frozen D1v1.3"
+      "status": "exact per-case reproduction of all four arms (TSB 0.5, constant predictor); locked-replay FAILED terminal stays append-only; scientific repair stays with frozen D1v1.3",
+      "successor": "Replay lock pinned to archive-matching solver stack (sklearn 1.9.0 vs archive 1.8.0; data channel digest-identical)"
     },
     {
       "negative": "P11 r=3 gap unmet / pooled attack prevailed (NR-07)",
-      "successor": "decoder-CAPACITY attribution: proven width law n* = 2 ln p / rho(r)^2 with rho(r) = C(r-1,(r-1)/2)/2^(r-1); both gap gates unattainable at r=3 against the capacity-augmented pool; r=7 window survives the stronger attack",
-      "status": "P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1 (width-conditioned claim made precise; byte-identical replay)"
+      "status": "P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1 (width-conditioned claim made precise; byte-identical replay)",
+      "successor": "decoder-CAPACITY attribution: proven width law n* = 2 ln p / rho(r)^2 with rho(r) = C(r-1,(r-1)/2)/2^(r-1); both gap gates unattainable at r=3 against the capacity-augmented pool; r=7 window survives the stronger attack"
     },
     {
       "negative": "P7 MATCH_IS_NOT_NECESSARY (NR-10)",
-      "successor": "V2 evidence-bounded licensing frame: registry-connectivity is the unique maximal sound opaque rule (9/9 verdicts, 1,987,472 leg checks, zero sound violations); ledger P7.V4.10",
-      "status": "P7_NECESSITY_SCOPING_REVIVED__OPAQUE_FRAME_CHARACTERIZED__WITNESS_PRESERVED"
+      "status": "P7_NECESSITY_SCOPING_REVIVED__OPAQUE_FRAME_CHARACTERIZED__WITNESS_PRESERVED",
+      "successor": "V2 evidence-bounded licensing frame: registry-connectivity is the unique maximal sound opaque rule (9/9 verdicts, 1,987,472 leg checks, zero sound violations); ledger P7.V4.10"
     },
     {
       "negative": "P14A gate defect (NR-11): both bars exceeded statistic supremum",
-      "successor": "closure-by-successor VERIFIED: supremum 0.042326 independently recomputed below both registered bars; P14C same-scope successor byte-reproduces",
-      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 \u2014 closed under stopping criterion (c)"
+      "status": "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1 \u2014 closed under stopping criterion (c)",
+      "successor": "closure-by-successor VERIFIED: supremum 0.042326 independently recomputed below both registered bars; P14C same-scope successor byte-reproduces"
     },
     {
       "negative": "P11 query-family phase gate not met: LINEAR 3/10, RBF 5/10, KNN 5/10 vs frozen >=8/10 (#996/#1016, P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET)",
-      "successor": "NR-12 selective placement V1: train-only inner-CV tolerance selector (rs=2026112207, -0.02 bar) places compilation per responsibility; frozen battery re-executed unmodified (max deviation 0.0), |S_f|=3,2,3,4,4",
-      "status": "P11_SELECTIVE_PLACEMENT_V1_SUPPORTED \u2014 9/10 LINEAR, 10/10 RBF/KNN; independent checker GREEN, byte-identical replay; secondary seeds 20261122/23/24 all SUPPORTED (receipt P11_SELECTIVE_PLACEMENT_RESULT_RECEIPT_V1)"
+      "status": "P11_SELECTIVE_PLACEMENT_V1_SUPPORTED \u2014 9/10 LINEAR, 10/10 RBF/KNN; independent checker GREEN, byte-identical replay; secondary seeds 20261122/23/24 all SUPPORTED (receipt P11_SELECTIVE_PLACEMENT_RESULT_RECEIPT_V1)",
+      "successor": "NR-12 selective placement V1: train-only inner-CV tolerance selector (rs=2026112207, -0.02 bar) places compilation per responsibility; frozen battery re-executed unmodified (max deviation 0.0), |S_f|=3,2,3,4,4"
     }
   ],
-  "workaround_protocol": {
-    "directive": "operator 2026-08-23: independent research, no humans; external data worked around by us",
-    "rule": "substitute strongest internally-executable mechanism; disclose substitution boundary; re-scope claim; never fake externality",
-    "substitutes": {
-      "blinded_human_adjudication": "blinded machine adjudication (independent frozen checker + label-blind cross-model adjudicator, pre-registered rubric) -> MACHINE_BLINDED",
-      "external_comparators": "public reference implementations re-hosted frozen as donor baselines -> PUBLIC_REFERENCE",
-      "real_world_data": "public-domain/self-acquired; else generative synthetic grounded in published statistics -> SYNTHETIC_GROUND",
-      "frontier_checkpoints": "maximal in-custody scale slice; scaling-trajectory bound with custody boundary",
-      "protected_executions": "run frozen protocols in CI with protected seeds (execution lanes, not blockers)"
+  "created": "2026-08-23",
+  "lanes": [
+    {
+      "hypothesis": "symptom-ambiguity error class",
+      "id": "NR-01",
+      "lever": "attribution-mechanism refinement + frozen 24-case re-run",
+      "negative": "3 residual attribution errors P5-HC-002/012/018, 21/24",
+      "paper": "P5",
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
+    },
+    {
+      "hypothesis": "degenerate measurement (ceiling artifact)",
+      "id": "NR-03",
+      "lever": "non-saturating discriminative V2.1 metric + registered re-run",
+      "negative": "H3.V2 metric saturated 1.0 on all 11 systems",
+      "paper": "P4",
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
+    },
+    {
+      "attribution": "answer_determination_numerics",
+      "hypothesis": "representation blind spot exploited",
+      "id": "NR-05",
+      "lever": "representation hardening vs frozen attack class",
+      "negative": "T4 hostile attack defeated narrow representation claim",
+      "paper": "P9",
+      "pr": 1046,
+      "solvability": "RESEARCH_SOLVABLE",
+      "status": "already_revived",
+      "successor_receipt": "P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_RESULT_2026-08-24",
+      "terminal_state": "P9_T4_SUCCESSOR_REVIVED_STABLE"
+    },
+    {
+      "hypothesis": "acquisition mechanism vs ceiling unattributed",
+      "id": "NR-08",
+      "lever": "bounded-internal acquisition simulation",
+      "negative": "external campaign 7/229 gold, delta beyond sampling ceiling",
+      "paper": "P2",
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
+    },
+    {
+      "hypothesis": "underpowered execution",
+      "id": "NR-09",
+      "lever": "execute frozen R7A powered successor",
+      "negative": "1 root success in 48, below 385-case target",
+      "paper": "P1",
+      "solvability": "TRANSFERRED_TO_CODEX_LANE"
     }
-  },
+  ],
+  "operator_directive": "Every negative result must be researched to positive: root cause or better model. Earned by mechanic improvement, never by tuning outcomes.",
   "ownership_split": {
-    "directive_date": "2026-08-23",
+    "codex_branch": "codex/p1-p15-takeover-20260823",
     "codex_lane": [
       "P1",
       "P2",
@@ -123,7 +109,8 @@
       "P4",
       "P5"
     ],
-    "codex_branch": "codex/p1-p15-takeover-20260823",
+    "directive_date": "2026-08-23",
+    "this_session_duty": "drive P6-P15 to top-tier-ready, fix every negative, combine codex-contributed P6-P15 branches instead of duplicating",
     "this_session_lane": [
       "P6",
       "P7",
@@ -136,12 +123,30 @@
       "P14",
       "P15"
     ],
-    "this_session_duty": "drive P6-P15 to top-tier-ready, fix every negative, combine codex-contributed P6-P15 branches instead of duplicating",
     "transferred_lanes": [
       "NR-01",
       "NR-03",
       "NR-08",
       "NR-09"
     ]
+  },
+  "protected_negatives": [
+    {
+      "claim": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
+      "paper": "P9",
+      "reason": "operator-designated protected; receipt forbids repair or re-run"
+    }
+  ],
+  "schema": "ORION_NEGATIVE_REVIVAL_BACKLOG_V1",
+  "workaround_protocol": {
+    "directive": "operator 2026-08-23: independent research, no humans; external data worked around by us",
+    "rule": "substitute strongest internally-executable mechanism; disclose substitution boundary; re-scope claim; never fake externality",
+    "substitutes": {
+      "blinded_human_adjudication": "blinded machine adjudication (independent frozen checker + label-blind cross-model adjudicator, pre-registered rubric) -> MACHINE_BLINDED",
+      "external_comparators": "public reference implementations re-hosted frozen as donor baselines -> PUBLIC_REFERENCE",
+      "frontier_checkpoints": "maximal in-custody scale slice; scaling-trajectory bound with custody boundary",
+      "protected_executions": "run frozen protocols in CI with protected seeds (execution lanes, not blockers)",
+      "real_world_data": "public-domain/self-acquired; else generative synthetic grounded in published statistics -> SYNTHETIC_GROUND"
+    }
   }
 }
