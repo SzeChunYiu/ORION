@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.p5.revision-level-v3.baseline-config.v1",
+  "config_id": "P5V3-CONFIRMATORY-BASELINE-CONFIG-2026-08-24",
+  "created_before_outcome_access": true,
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "policy_families": [
+    {"id": "no_revision", "implementation": "NO_REVISION", "role": "fixed/no-revision control"},
+    {"id": "direct_self_edit", "implementation": "DIRECT_SELF_EDIT", "role": "broad self-edit control"},
+    {"id": "m_open_only", "implementation": "M_OPEN_ONLY", "role": "M-open model-class-expansion mechanism comparator", "donor": "arxiv:2608.09696", "official_reproduction": false},
+    {"id": "world_model_revision", "implementation": "WORLD_MODEL_REVISION", "role": "world-model update mechanism comparator", "donor": "arxiv:2606.30639", "official_reproduction": false},
+    {"id": "representation_regime_revision", "implementation": "REPRESENTATION_REGIME_ONLY", "role": "representation-regime revision mechanism comparator", "donor": "arxiv:2606.01444", "official_reproduction": false},
+    {"id": "generic_causal_diagnosis", "implementation": "GENERIC_CAUSAL_DIAGNOSIS", "role": "multi-hypothesis diagnosis parent"},
+    {"id": "full_t7", "implementation": "FULL_T7", "role": "responsibility-gated Self-ORION V3 candidate"},
+    {"id": "random_diagnostic", "implementation": "RANDOM_DIAGNOSTIC", "role": "diagnostic-choice control"},
+    {"id": "always_unresolved", "implementation": "ALWAYS_UNRESOLVED", "role": "broken-shut/overconservative control"},
+    {"id": "oracle_ceiling", "implementation": "ORACLE_CEILING", "role": "analysis-only protected ceiling", "excluded_from_superiority_claim": true}
+  ],
+  "feedback_intervention_controls": ["NORMAL", "PERMUTED", "NONE", "CONTRADICTORY", "RANDOM"],
+  "baseline_structural_bindings": {
+    "source": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V2.json",
+    "required_for_confirmatory": ["m_open_only", "world_model_revision", "representation_regime_revision"],
+    "dispositions": {
+      "m_open_only": "MECHANISM_COMPARATOR_BOUND",
+      "world_model_revision": "MECHANISM_COMPARATOR_BOUND",
+      "representation_regime_revision": "MECHANISM_COMPARATOR_BOUND"
+    }
+  },
+  "subject_bundle": {
+    "recipe": "sha1 over the concatenation, in sorted-path order, of sha256(file_bytes).digest() for each listed file",
+    "files": [
+      "src/orion/study/p5/revision_level_v3_development.py",
+      "src/orion/study/p5/revision_level_v3_freeze.py",
+      "src/orion/study/p5/revision_level_v3_policies.py",
+      "src/orion/study/p5/revision_level_v3_preflight.py",
+      "src/orion/study/p5/revision_level_v3_score.py"
+    ],
+    "subject_revision_sha1": "8d093e4be30cccf015b81d623d3c05620244a387"
+  },
+  "independent_evaluators": {
+    "decision_layer": {
+      "path": "research/self-orion-v3/confirmatory/protected_evaluator_v1.py",
+      "sha256": "8e65fad265d478d7b06af0574751d69e6f42ee02cb10d141e3d01663d00eee13",
+      "code_path": "stdlib-only, no orion imports; blind interface over committed JSON"
+    },
+    "fresh_transfer_layer": {
+      "path": "research/self-orion-v3/confirmatory/fresh_transfer_evaluator_v1.py",
+      "sha256": "dd48a1aeb174c791a22f4a295e48c8926973426f7e9ec85ee9ca30c2a2fe3e8c",
+      "code_path": "stdlib-only, no orion imports; blind interface over committed JSON"
+    }
+  },
+  "frozen_suite_and_split": {
+    "suite_path": "research/self-orion-v3/confirmatory/PROTECTED_CONFIRMATORY_SUITE_V1.json",
+    "suite_sha256": "bde0b68200e6be135f175bbaadda70d0ce66676dd30a2070aaf841286519d9a4",
+    "candidate_packet_path": "research/self-orion-v3/confirmatory/CANDIDATE_PACKET_V1.json",
+    "candidate_packet_sha256": "07dac1fe8daeca08a7db7fc635726d293e525b3737aebd98de4b6fa03e1a6e47",
+    "final_split_path": "research/self-orion-v3/confirmatory/CONFIRMATORY_FINAL_SPLIT_V1.json",
+    "final_split_sha256": "9a09c6c2166eddd64f3dfdb31402f8b27f4aac004f1b7344b31f48373e4c6c2a",
+    "decision_rules_path": "research/self-orion-v3/confirmatory/CONFIRMATORY_DECISION_RULES_V1.json",
+    "decision_rules_sha256": "fa32cd6ab4adfb8faacf7513fb0d3265b7f672b6d86b4361234134165a261d76",
+    "generator_path": "research/self-orion-v3/confirmatory/build_confirmatory_suite_v1.py",
+    "generator_sha256": "ff5e6f972b8705281e8d79b49ccdb1fb63b499bd80c1d8519650950da70a2440"
+  }
+}

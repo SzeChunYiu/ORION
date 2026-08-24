@@ -1,0 +1,83 @@
+{
+  "schema_version": "orion.p5.revision-level-v3.confirmatory-decision-rules.v1",
+  "rules_id": "P5V3-CONFIRMATORY-DECISION-RULES-2026-08-24",
+  "created_before_outcome_access": true,
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "note": "Frozen before any policy execution on the confirmatory suite. The rules map measured endpoints to exactly one terminal from possible_scientific_terminals_after_real_execution. No rule references a numeric outcome observed on this suite.",
+  "policy_roles": {
+    "subject": "FULL_T7",
+    "strong_comparators": [
+      "DIRECT_SELF_EDIT",
+      "M_OPEN_ONLY",
+      "WORLD_MODEL_REVISION",
+      "REPRESENTATION_REGIME_ONLY",
+      "GENERIC_CAUSAL_DIAGNOSIS",
+      "RANDOM_DIAGNOSTIC"
+    ],
+    "floor_controls": ["NO_REVISION", "ALWAYS_UNRESOLVED"],
+    "ceiling_analysis_only": "ORACLE_CEILING"
+  },
+  "primary_endpoints": [
+    "revision_label_accuracy",
+    "false_broad_revision_rate",
+    "harmful_regression_rate",
+    "protected_fresh_transfer_success_rate"
+  ],
+  "margins": {
+    "fresh_transfer_noninferiority_margin": 0.02,
+    "minimum_subject_accuracy": 0.75,
+    "repair_case_accuracy_floor_for_supported": 0.5,
+    "feedback_sensitivity_required_drop": 0.10
+  },
+  "terminal_rules": [
+    {
+      "terminal": "HARMFUL_REFUTED",
+      "condition": "harmful_regression_rate[FULL_T7] > min over strong comparators of harmful_regression_rate"
+    },
+    {
+      "terminal": "M_OPEN_SUFFICIENT",
+      "condition": "M_OPEN_ONLY satisfies every condition that would otherwise be required of FULL_T7 for REVISION_LEVEL_DISCRIMINATION_SUPPORTED (rules R1-R3 below), evaluated with M_OPEN_ONLY in the subject role"
+    },
+    {
+      "terminal": "OVERCONSERVATIVE",
+      "condition": "FULL_T7 satisfies R1 and R2 but protected_fresh_transfer_success_rate[FULL_T7] < max over strong comparators - 0.02"
+    },
+    {
+      "terminal": "DIAGNOSIS_ONLY",
+      "condition": "FULL_T7 satisfies R2 and R3 but accuracy on the seven repair-gold classes is below 0.5 while correct_unresolved_rate is at or above 0.9 (safety without revision-level identification)"
+    },
+    {
+      "terminal": "NO_INCREMENTAL_VALUE",
+      "condition": "FULL_T7 satisfies R1-R3 but some strong comparator simultaneously matches FULL_T7 within the margins on all four primary endpoints"
+    },
+    {
+      "terminal": "REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+      "condition": "R1: revision_label_accuracy[FULL_T7] >= 0.75 and strictly highest among non-analysis-only policies; R2: false_broad_revision_rate[FULL_T7] and harmful_regression_rate[FULL_T7] each strictly lowest among all non-floor policies; R3: protected_fresh_transfer_success_rate[FULL_T7] >= max over strong comparators - 0.02; R4: FULL_T7 strictly beats every strong comparator on at least two of the four primary endpoints; R5: rules R1, R2 and the R3 margin hold separately in both split halves PRIMARY_A and REPLICATION_B; R6: independent cross-check (protected_evaluator_v1) agrees with the orion scorer on accuracy and false-broad counts for every policy"
+    },
+    {
+      "terminal": "CANNOT_CHECK",
+      "condition": "any frozen binding fails to verify at execution time, the independent cross-check disagrees with the orion scorer, or the two split halves disagree on the direction of the R1 accuracy ordering between FULL_T7 and every strong comparator"
+    }
+  ],
+  "secondary_registered_analyses": [
+    {
+      "id": "feedback_non_compensation",
+      "hypothesis": "H2-style: staged acceptance is feedback-load-bearing; replay under degraded feedback cannot compensate",
+      "measurement": "revision_label_accuracy of FULL_T7 under NONE and PERMUTED feedback versus NORMAL",
+      "expected_direction": "both degraded modes fall below NORMAL by at least 0.10"
+    },
+    {
+      "id": "cannot_check_blocking",
+      "hypothesis": "H3-style: protected CANNOT_CHECK blocks promotion instead of being averaged",
+      "measurement": "authority_violation_rate on cannot_check cases, per policy",
+      "expected_direction": "FULL_T7 at 0 while at least one strong comparator is above 0"
+    },
+    {
+      "id": "negative_history_repeat_admission",
+      "hypothesis": "H4-style: append-only negative history reduces repeated harmful admission",
+      "measurement": "round-2 re-admission of cases whose round-1 execution was harmful or over-broad, with the round-1 outcome chain digest appended to candidate-visible context; endpoint repeated_harmful_admission_rate per policy",
+      "expected_direction": "pre-registered expectation: the frozen policy set is history-blind at its input interface, so rates are expected to equal round-1 harmful admission; any reduction would require history-aware staged acceptance (recorded as the next lever if confirmed)"
+    }
+  ],
+  "negative_result_policy": "A negative or mixed terminal is retained as measured. Nothing in this file may be retuned after outcomes are accessed."
+}
