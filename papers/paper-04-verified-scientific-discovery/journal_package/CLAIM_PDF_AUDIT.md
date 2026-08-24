@@ -95,3 +95,31 @@ audit by the same session that packaged it — not an independent proofread. The
 exact file (by hash) is recorded. `audit_subject_revision` and `audit_date` in
 `MANIFEST.json` are unchanged; the render binding lives in
 `MANIFEST.json` under `pdf_render_binding`.
+
+## Addendum, 2026-08-24 (second) — abstract-carrier restoration re-render
+
+Integration commit `6474c521` rewrote the abstract to the identifiability
+framing and compressed the H3-v3 result to a qualitative clause, dropping the
+`$[1.0,1.0]$` carrier paragraph that
+`tests/unit/p4/test_p4_h3_v3_promotion.py::test_the_manuscript_never_reports_the_margin_without_the_other_one`
+binds (the abstract must state the repaired-battery interval together with the
+15/30 and the $0.5$ margin, as the introduction findings list and the results
+section already did). The commit touched no test files; the drop was collateral
+damage of the abstract rewrite, not a reconciled removal. This re-render
+restores the pre-`6474c521` abstract sentence (both margins, pre-registered
+terminal-expressiveness reading) inside the new abstract.
+
+| Field | Value |
+|---|---|
+| Source revision | `abfc846a61a1596309a7ebc0ac38e579aa0f333f` (manuscript/main.tex carries the restored carrier; all other `\input` sections unmodified from `93cf5f41`; commit rebased without content change from the pre-rebase render revision, `main.tex` sha256 unchanged at `df0010d0afe449dd980524776ca8154b52eded6c3970469baf93c1fd1451ed20`) |
+| SHA-256 | `2d3841da6c0a70b169dcaf162fb126fc0e1b0c9c54d0a15fd897744239644f71` |
+| Pages | 26 |
+| Engine | tectonic (XeTeX; PDF producer xdvipdfmx 0.1) |
+
+**Content audit (programmatic).** `pdftotext` extraction of this render
+confirms the abstract now carries "paired difference 1.0, 95% CI [1.0, 1.0]"
+together with "selects it on 15/30, so the margin against that mechanism is
+0.5" in the same paragraph. Page count is unchanged at 26. The engine-honesty
+and independence caveats of the first addendum apply unchanged: local tectonic
+render, same-session mechanical audit, `P4.PDF` stays OPEN pending an
+independent proofread of this exact file (by hash).
