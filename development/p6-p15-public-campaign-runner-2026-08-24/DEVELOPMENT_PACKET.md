@@ -70,6 +70,11 @@ terminal/evidence agreement a property of the verified bytes rather than a
 parallel metadata assertion. The replay also binds the canonical full gate
 result digest, not only the evaluator-output artifact hash.
 
+Exactly one canonical marker must occur in both the raw bytes and the
+reader-visible extracted text; a second/conflicting marker fails closed. Required
+runtime, source-revision, evaluator, model, and custody identities reject
+placeholder sentinels such as `UNKNOWN`, `CANNOT_CHECK`, `TBD`, and `UNSET`.
+
 ## Saturation-basis challenge
 
 Saturation could be false if a native benchmark requires a licence condition,

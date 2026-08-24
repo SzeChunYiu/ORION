@@ -230,12 +230,17 @@ class CampaignReceipt:
 
 Fetcher = Callable[[SourceBinding], bytes]
 SurfaceReader = Callable[[str], bytes]
+SurfaceTextReader = Callable[[str], str]
 
 _PAPER_IDS = frozenset(f"P{number}" for number in range(6, 16))
 _REQUIRED_ENVIRONMENT = frozenset(
     {"container_image_sha256", "os", "runtime", "dependency_lock_sha256"}
 )
 _UNKNOWN_LICENSE_MARKERS = ("UNKNOWN", "CANNOT_CHECK", "UNLICENSED", "TBD")
+_UNKNOWN_IDENTITY_MARKERS = frozenset(
+    {"UNKNOWN", "CANNOT_CHECK", "TBD", "UNSET", "N/A", "NA", "NULL"}
+)
+_SURFACE_BINDING_PREFIX = b"ORION_SURFACE_BINDING_V1|"
 
 
 def _valid_sha256(value: object) -> bool:
@@ -249,6 +254,15 @@ def _valid_sha256(value: object) -> bool:
 def _valid_url(value: str) -> bool:
     parsed = urlparse(value)
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
+
+
+def _identity_missing(value: str, *, allow_none: bool = False) -> bool:
+    normalized = value.strip().upper()
+    if not normalized:
+        return True
+    if normalized == "NONE":
+        return not allow_none
+    return normalized in _UNKNOWN_IDENTITY_MARKERS
 
 
 def _timestamp(value: str) -> datetime | None:
@@ -269,11 +283,11 @@ def _canonical_sha256(value: object) -> str:
 def _source_metadata_blockers(source: SourceBinding) -> list[str]:
     blockers: list[str] = []
     prefix = f"source:{source.source_id or '<missing>'}"
-    if not source.source_id.strip():
+    if _identity_missing(source.source_id):
         blockers.append("source_id_missing")
     if not _valid_url(source.url):
         blockers.append(f"{prefix}:url_invalid")
-    if not source.pinned_revision.strip():
+    if _identity_missing(source.pinned_revision):
         blockers.append(f"{prefix}:pinned_revision_missing")
     if not _valid_sha256(source.sha256):
         blockers.append(f"{prefix}:sha256_invalid")
@@ -427,7 +441,7 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
     for arm in freeze.arms:
         if not _valid_sha256(arm.implementation_sha256):
             blockers.append(f"arm:{arm.arm_id}:implementation_sha256_invalid")
-        if not arm.model_id.strip():
+        if _identity_missing(arm.model_id, allow_none=True):
             blockers.append(f"arm:{arm.arm_id}:model_identity_missing")
         if (
             not arm.tool_access
@@ -446,7 +460,9 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
 
     if not freeze.evaluator.official:
         blockers.append("official_evaluator_required")
-    if not freeze.evaluator.evaluator_id.strip() or not freeze.evaluator.version.strip():
+    if _identity_missing(freeze.evaluator.evaluator_id) or _identity_missing(
+        freeze.evaluator.version
+    ):
         blockers.append("evaluator_identity_or_version_missing")
     if not _valid_sha256(freeze.evaluator.artifact_sha256):
         blockers.append("evaluator_sha256_invalid")
@@ -461,8 +477,8 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
     if not isinstance(freeze.custody.mode, CustodyMode):
         blockers.append("custody_mode_missing_or_invalid")
     if (
-        not freeze.custody.execution_owner_id.strip()
-        or not freeze.custody.evaluator_custodian_id.strip()
+        _identity_missing(freeze.custody.execution_owner_id)
+        or _identity_missing(freeze.custody.evaluator_custodian_id)
     ):
         blockers.append("custody_identity_missing")
     if freeze.custody.mode in {
@@ -532,7 +548,7 @@ def _observation_blockers(
             blockers.append(f"{prefix}:environment_fields_duplicated")
         if not _REQUIRED_ENVIRONMENT.issubset(environment):
             blockers.append(f"{prefix}:environment_incomplete")
-        if any(not environment.get(key, "").strip() for key in _REQUIRED_ENVIRONMENT):
+        if any(_identity_missing(environment.get(key, "")) for key in _REQUIRED_ENVIRONMENT):
             blockers.append(f"{prefix}:environment_value_missing")
         for key in ("container_image_sha256", "dependency_lock_sha256"):
             if key in environment and not _valid_sha256(environment[key]):
@@ -647,6 +663,7 @@ def _surface_blockers(
     surfaces: tuple[AuthoritySurface, ...],
     gate_result: GateResult,
     surface_reader: SurfaceReader,
+    surface_text_reader: SurfaceTextReader,
 ) -> list[str]:
     blockers: list[str] = []
     kinds = [surface.kind for surface in surfaces]
@@ -668,6 +685,14 @@ def _surface_blockers(
             or not _valid_sha256(surface.file_sha256)
         ):
             blockers.append(f"{prefix}:path_or_file_sha256_invalid")
+        terminal_value = (
+            surface.declared_terminal.value
+            if isinstance(surface.declared_terminal, CampaignTerminal)
+            else str(surface.declared_terminal)
+        )
+        semantic_marker = (
+            f"ORION_SURFACE_BINDING_V1|{terminal_value}|{surface.evidence_sha256}"
+        ).encode("ascii")
         try:
             surface_bytes = surface_reader(surface.path)
             observed_file_sha256 = hashlib.sha256(surface_bytes).hexdigest()
@@ -676,16 +701,26 @@ def _surface_blockers(
         else:
             if observed_file_sha256 != surface.file_sha256:
                 blockers.append(f"{prefix}:file_sha256_mismatch")
-            terminal_value = (
-                surface.declared_terminal.value
-                if isinstance(surface.declared_terminal, CampaignTerminal)
-                else str(surface.declared_terminal)
-            )
-            semantic_marker = (
-                f"ORION_SURFACE_BINDING_V1|{terminal_value}|{surface.evidence_sha256}"
-            ).encode("ascii")
-            if semantic_marker not in surface_bytes:
+            raw_markers = [
+                line.strip()
+                for line in surface_bytes.splitlines()
+                if _SURFACE_BINDING_PREFIX in line
+            ]
+            if raw_markers != [semantic_marker]:
                 blockers.append(f"{prefix}:semantic_binding_missing_or_mismatched")
+        try:
+            extracted_text = surface_text_reader(surface.path)
+        except Exception as exc:
+            blockers.append(f"{prefix}:text_extract_failed:{type(exc).__name__}")
+        else:
+            text_marker = semantic_marker.decode("ascii")
+            extracted_markers = [
+                line.strip()
+                for line in extracted_text.splitlines()
+                if "ORION_SURFACE_BINDING_V1|" in line
+            ]
+            if extracted_markers != [text_marker]:
+                blockers.append(f"{prefix}:extracted_semantic_binding_mismatch")
         if surface.declared_terminal is not gate_result.terminal:
             blockers.append(f"{prefix}:terminal_mismatch")
         if surface.evidence_sha256 != gate_result.evaluator_output_sha256:
@@ -702,6 +737,7 @@ def run_fail_closed_campaign(
     replay: ReplayBinding,
     authority_surfaces: Iterable[AuthoritySurface],
     surface_reader: SurfaceReader,
+    surface_text_reader: SurfaceTextReader,
     result_created_at_utc: str,
 ) -> CampaignReceipt:
     """Audit a complete campaign bundle and emit PASS/FAIL/CANNOT_CHECK.
@@ -821,7 +857,14 @@ def run_fail_closed_campaign(
         gate_result.cost_ratio, expected_cost_ratio
     ):
         blockers.append("gate_cost_ratio_mismatch")
-    blockers.extend(_surface_blockers(authority_surfaces, gate_result, surface_reader))
+    blockers.extend(
+        _surface_blockers(
+            authority_surfaces,
+            gate_result,
+            surface_reader,
+            surface_text_reader,
+        )
+    )
 
     blockers = list(dict.fromkeys(blockers))
     terminal = CampaignTerminal.CANNOT_CHECK if blockers else gate_result.terminal
@@ -893,6 +936,7 @@ __all__ = [
     "SourceBinding",
     "SourceFetchReceipt",
     "SurfaceReader",
+    "SurfaceTextReader",
     "SurfaceKind",
     "fetch_and_hash_sources",
     "run_fail_closed_campaign",

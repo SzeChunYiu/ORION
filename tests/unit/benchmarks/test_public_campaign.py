@@ -272,6 +272,15 @@ def _surface_reader(path: str) -> bytes:
     return _surface_reader_for(_surfaces())(path)
 
 
+def _surface_text_reader_for(surfaces: tuple[AuthoritySurface, ...]):
+    byte_reader = _surface_reader_for(surfaces)
+    return lambda path: byte_reader(path).decode("utf-8")
+
+
+def _surface_text_reader(path: str) -> str:
+    return _surface_reader(path).decode("utf-8")
+
+
 def _run(
     *,
     freeze: CampaignFreeze | None = None,
@@ -280,6 +289,7 @@ def _run(
     replay: ReplayBinding | None = None,
     surfaces: tuple[AuthoritySurface, ...] | None = None,
     surface_reader=None,
+    surface_text_reader=None,
     result_created_at_utc: str = "2026-08-24T11:00:00+00:00",
 ):
     freeze = freeze or _freeze()
@@ -288,6 +298,7 @@ def _run(
     replay = replay or _replay(gate, observations)
     surfaces = surfaces if surfaces is not None else _surfaces()
     surface_reader = surface_reader or _surface_reader_for(surfaces)
+    surface_text_reader = surface_text_reader or _surface_text_reader_for(surfaces)
     receipts = fetch_and_hash_sources(freeze, lambda _: b"dataset")
     return run_fail_closed_campaign(
         freeze=freeze,
@@ -297,6 +308,7 @@ def _run(
         replay=replay,
         authority_surfaces=surfaces,
         surface_reader=surface_reader,
+        surface_text_reader=surface_text_reader,
         result_created_at_utc=result_created_at_utc,
     )
 
@@ -332,6 +344,7 @@ def test_receipt_digest_is_stable_under_bundle_input_order() -> None:
         replay=_replay(),
         authority_surfaces=_surfaces(),
         surface_reader=_surface_reader,
+        surface_text_reader=_surface_text_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     reverse = run_fail_closed_campaign(
@@ -342,6 +355,7 @@ def test_receipt_digest_is_stable_under_bundle_input_order() -> None:
         replay=_replay(),
         authority_surfaces=tuple(reversed(_surfaces())),
         surface_reader=_surface_reader,
+        surface_text_reader=_surface_text_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     assert reverse.receipt_sha256 == forward.receipt_sha256
@@ -398,6 +412,7 @@ def test_hash_mismatch_and_prohibited_redistribution_cannot_check() -> None:
         replay=_replay(),
         authority_surfaces=_surfaces(),
         surface_reader=_surface_reader,
+        surface_text_reader=_surface_text_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
@@ -416,6 +431,7 @@ def test_pass_source_receipt_cannot_retain_a_blocker() -> None:
         replay=_replay(),
         authority_surfaces=_surfaces(),
         surface_reader=_surface_reader,
+        surface_text_reader=_surface_text_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
@@ -566,6 +582,52 @@ def test_blank_required_environment_values_cannot_pass_even_when_replay_matches(
     assert any("environment_value_missing" in blocker for blocker in receipt.blockers)
 
 
+def test_placeholder_execution_source_evaluator_and_custody_identities_cannot_pass() -> None:
+    observations = tuple(
+        replace(
+            item,
+            environment=tuple(
+                (key, "UNKNOWN" if key == "os" else "CANNOT_CHECK" if key == "runtime" else value)
+                for key, value in item.environment
+            ),
+        )
+        for item in _observations()
+    )
+    arms = (
+        _arm("orion", ArmRole.TREATMENT, model_id="UNKNOWN"),
+        _arm("strong-baseline", ArmRole.BASELINE, model_id="UNKNOWN"),
+    )
+    freeze = _freeze(
+        sources=(_source(pinned_revision="TBD"),),
+        arms=arms,
+        evaluator=EvaluatorBinding(
+            evaluator_id="CANNOT_CHECK",
+            version="UNKNOWN",
+            artifact_sha256=_digest("official-evaluator"),
+            official=True,
+        ),
+        custody=CustodyBinding(
+            mode=CustodyMode.SAME_OWNER_PUBLIC,
+            execution_owner_id="UNKNOWN",
+            evaluator_custodian_id="TBD",
+            attestation_sha256="",
+        ),
+    )
+    gate = _gate()
+    receipt = _run(
+        freeze=freeze,
+        observations=observations,
+        gate=gate,
+        replay=_replay(gate, observations),
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("pinned_revision_missing" in blocker for blocker in receipt.blockers)
+    assert any("model_identity_missing" in blocker for blocker in receipt.blockers)
+    assert "evaluator_identity_or_version_missing" in receipt.blockers
+    assert "custody_identity_missing" in receipt.blockers
+    assert any("environment_value_missing" in blocker for blocker in receipt.blockers)
+
+
 def test_post_outcome_freeze_cannot_check() -> None:
     receipt = _run(result_created_at_utc="2026-08-24T09:59:59+00:00")
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
@@ -658,6 +720,38 @@ def test_hash_verified_surface_bytes_must_contain_declared_gate_semantics() -> N
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert any(
         "semantic_binding_missing_or_mismatched" in blocker
+        for blocker in receipt.blockers
+    )
+
+
+def test_surface_bytes_and_extracted_text_reject_dual_conflicting_markers() -> None:
+    surfaces: list[AuthoritySurface] = []
+    actual_bytes: dict[str, bytes] = {}
+    unrelated = _digest("unrelated-evidence")
+    for surface in _surfaces():
+        payload = (
+            _surface_bytes(
+                surface.kind,
+                surface.declared_terminal,
+                surface.evidence_sha256,
+            )
+            + f"ORION_SURFACE_BINDING_V1|FAIL|{unrelated}\n".encode("ascii")
+            + b"visible claim: external/top-tier authority\n"
+        )
+        actual_bytes[surface.path] = payload
+        surfaces.append(replace(surface, file_sha256=hashlib.sha256(payload).hexdigest()))
+    receipt = _run(
+        surfaces=tuple(surfaces),
+        surface_reader=actual_bytes.__getitem__,
+        surface_text_reader=lambda path: actual_bytes[path].decode("utf-8"),
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any(
+        "semantic_binding_missing_or_mismatched" in blocker
+        for blocker in receipt.blockers
+    )
+    assert any(
+        "extracted_semantic_binding_mismatch" in blocker
         for blocker in receipt.blockers
     )
 
