@@ -23,15 +23,15 @@
       "detail": "negation is unsatisfiable under the axioms",
       "name": "SEPARATED_COMMUTATION",
       "outcome": "PROVED",
-      "statement": "two local mechanics with distinct write coordinates, neither reading what the other writes, commute on any state over any value domain, for every transformer obeying its declared frame",
+      "statement": "P6.COMMUTE.RW_NONINTERFERENCE.V1: two local mechanics with distinct write coordinates, neither reading what the other writes, commute on any state over any value domain, for every transformer obeying its declared frame",
       "why_it_matters": "the finite core checks this for four binary coordinates and one modular transformer; against an arbitrary transformer the result can only be a property of separation rather than of the arithmetic that instantiated it"
     },
     {
-      "detail": "a disagreeing model exists, so separation is not merely sufficient",
+      "detail": "disagreeing models exist for both cross-read directions with disjoint writes and explicit frame-faithful deterministic mechanics",
       "name": "SEPARATION_IS_NECESSARY",
       "outcome": "PROVED",
       "statement": "if one mechanic reads the coordinate the other writes, commutation is not entailed: there is a state and a pair of frame-respecting transformers whose two orders disagree",
-      "why_it_matters": "states the converse, so separation is reported as the boundary it is and not as one sufficient condition among unnamed others"
+      "why_it_matters": "states the converse at the level of universal entailment: without either cross-read exclusion, a countermodel exists; it does not say that every specific pair of interfering mechanics must fail to commute"
     },
     {
       "detail": "negation is unsatisfiable under the axioms",
