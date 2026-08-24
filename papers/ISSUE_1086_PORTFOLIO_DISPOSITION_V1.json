@@ -1,0 +1,77 @@
+{
+  "authority": "PORTFOLIO_EDITORIAL_DISPOSITION_ONLY__NO_NEW_SCIENTIFIC_AUTHORITY",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1086",
+  "schema_version": "orion.issue-1086.portfolio-disposition.v1",
+  "effective_date": "2026-08-24",
+  "decisions": [
+    {
+      "decision_id": "D1",
+      "papers": ["P1", "P2", "P3", "P4"],
+      "status": "ADOPTED",
+      "disposition": "SHARED_INTERNAL_SPECIFICATION_TEST_FAMILY",
+      "rule": "The repeated 400-case exact-contract batteries are one shared internal specification-test family and are not external replications."
+    },
+    {
+      "decision_id": "D2",
+      "papers": ["P1", "P2", "P3", "P4"],
+      "status": "ADOPTED_CONDITIONAL",
+      "disposition": "SEPARATE_ONLY_AFTER_DISTINCT_EXTERNAL_EVIDENCE",
+      "required_external_partitions": {
+        "P1": "ScienceAgentBench",
+        "P2": "TREC-COVID",
+        "P3": "OAEI",
+        "P4": "SciFact/Crossref"
+      },
+      "rule": "A paper remains separately publishable only after its own frozen external gate passes on the named disjoint evidence partition."
+    },
+    {
+      "decision_id": "D3",
+      "papers": ["P6", "P7", "P8"],
+      "status": "ADOPTED_CONDITIONAL",
+      "disposition": "CONSOLIDATE_UNIFIED_CALCULUS",
+      "rule": "Consolidate certificate, closure and authority calculus unless each component passes a distinct external discriminator."
+    },
+    {
+      "decision_id": "D4",
+      "papers": ["P9"],
+      "status": "ADOPTED_CONDITIONAL",
+      "disposition": "STANDALONE_BLOCKED",
+      "rule": "P9 remains standalone only after the locked replay discrepancy is resolved."
+    },
+    {
+      "decision_id": "D5",
+      "papers": ["P10"],
+      "status": "ADOPTED",
+      "disposition": "EXECUTION_PROGRAMME",
+      "rule": "P10 remains an execution programme until H1-H6 have been run under the frozen design."
+    },
+    {
+      "decision_id": "D6",
+      "papers": ["P12"],
+      "status": "ADOPTED_CONDITIONAL",
+      "disposition": "STRICT_STOP_GO",
+      "rule": "Publish P12 separately only if its frozen successor study passes; otherwise publish the bounded null/boundary result and stop the positive claim."
+    },
+    {
+      "decision_id": "D7",
+      "papers": ["P13", "P14"],
+      "status": "ADOPTED",
+      "disposition": "CONSOLIDATE_LIFECYCLE_CONTRACT_SAFETY",
+      "rule": "Consolidate P13 and P14 around machine-verifiable lifecycle-contract safety; broader governance claims remain CANNOT_CHECK without independent human adjudication."
+    },
+    {
+      "decision_id": "D8",
+      "papers": ["P15", "Q3"],
+      "status": "ADOPTED",
+      "disposition": "CONSOLIDATE_SOFTWARE_INSTRUMENT",
+      "rule": "Consolidate P15 and Q3 as one software/instrument paper and package."
+    }
+  ],
+  "non_bypass_boundaries": [
+    "Public online data does not create independent adjudication.",
+    "An AI session, local hash, same-owner replay or same-owner CI does not create protected confirmation.",
+    "Missing license, gold, comparator, custody or semantic authority remains CANNOT_CHECK.",
+    "This disposition record changes portfolio structure only and cannot promote a paper score."
+  ],
+  "scientific_authority_delta": "NONE"
+}
