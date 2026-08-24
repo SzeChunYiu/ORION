@@ -52,8 +52,24 @@ def audit(authority_path: Path = AUTHORITY, *, check_package: bool = True) -> di
             errors.append(f"V3 {key} changed")
     if authority.get("top_tier_submission_allowed") is not False:
         errors.append("top-tier submission gate must remain false")
+    if authority.get("promotion_allowed") != v3.get("promotion_allowed"):
+        errors.append("V3 bounded promotion flag changed")
     if authority.get("external_public_benchmark_status") != "CANNOT_CHECK_NO_BOUND_PUBLIC_DATA_RESULT":
         errors.append("public benchmark CANNOT_CHECK boundary missing")
+    if authority.get("artifact_identity_note") != (
+        "No P12C artifact exists. The adverse landed study is "
+        "P12_ROBUSTNESS_STRESS_V1; the later successor is conditional on exact "
+        "published charge certificates and is not public-data validation."
+    ):
+        errors.append("P12C identity boundary missing or drifted")
+    required_forbidden = {
+        "PRICE_OR_SHIFT_ROBUSTNESS_OF_V1_ALLOCATOR",
+        "FORWARD_TIME_DEPLOYABILITY_FROM_EXACT_CERTIFICATES",
+        "SCIENCEAGENTBENCH_OR_EXTERNAL_TRANSFER",
+        "P12C_ARTIFACT_IDENTITY",
+    }
+    if not required_forbidden.issubset(set(authority.get("forbidden_promotions", []))):
+        errors.append("required lifecycle forbidden promotions missing")
 
     transfer = authority.get("transfer_claim_leaf", {})
     if transfer.get("terminal") != "P12_TRANSFER_ALLOCATION_V1_SUPPORTED":
@@ -68,16 +84,25 @@ def audit(authority_path: Path = AUTHORITY, *, check_package: bool = True) -> di
         errors.append("transfer scope drifted")
     robust = authority.get("robustness_boundary_leaf", {})
     if (
-        robust.get("price_axis") != "BROKEN"
+        robust.get("authority") != "BINDING_NEGATIVE_BOUNDARY"
+        or robust.get("terminal") != "P12_ROBUSTNESS_STRESS_V1_EXECUTED"
+        or robust.get("price_axis") != "BROKEN"
         or robust.get("distribution_shift_axis") != "BROKEN"
+        or robust.get("flat_replication") != "SUPPORTED"
         or robust.get("retuned") is not False
     ):
         errors.append("robustness negative drifted")
     successor = authority.get("price_aware_successor_leaf", {})
     if successor.get("terminal") != "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED":
         errors.append("successor terminal drifted")
+    if successor.get("status") != "SUPPORTED_CONDITIONAL_ON_EXACT_PUBLISHED_CERTIFICATES":
+        errors.append("successor conditional status drifted")
     if successor.get("battery_cells_cross_checked") != 195:
         errors.append("successor coverage drifted")
+    if successor.get("successor_positive_cells") != 0:
+        errors.append("successor regret cells drifted")
+    if successor.get("new_free_parameters") != 0:
+        errors.append("successor free-parameter count drifted")
     if successor.get("forward_time_deployability") != "CANNOT_CHECK":
         errors.append("forward-time boundary missing")
 
