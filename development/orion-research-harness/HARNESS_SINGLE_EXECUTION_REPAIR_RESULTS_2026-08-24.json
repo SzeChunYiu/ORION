@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.ResearchHarness.SingleExecutionRepair.v1",
+  "base_revision": "4ba814eebfbcc4cb9ec9de0618e0e6442c7f3799",
+  "terminal": "HARNESS_LOCAL_SERVICE_CALL_SINGLE_INVOCATION_VERIFIED",
+  "authority": "HARNESS_INTEGRITY_ONLY",
+  "protocol": "development/orion-research-harness/HARNESS_SINGLE_EXECUTION_REPAIR_2026-08-24.md",
+  "protocol_sha256": "50b07d77960600eeca6d4d885899b9b5fa2d5b478b6249d164211f45a25b66f6",
+  "implementation_sha256": {
+    "packages/orion-research-harness/src/orion_research_harness/local_tools.py": "d3439a22bdc6687ef70f38e7f592913116dae362618da7133e5417b285592e66",
+    "packages/orion-research-harness/tests/test_local_single_execution.py": "7582b74c592e59053ff591abf3c0fc31e401ed23d823c52fb20480b22a16a2c9"
+  },
+  "verification": {
+    "targeted_command": "/tmp/orion-harness-fix-venv-20260824/bin/python -m pytest packages/orion-research-harness/tests/test_local_single_execution.py -q",
+    "targeted_result": "1 passed in 0.03s",
+    "pre_rebase_adjacent_suite": "40 passed in 5.85s on 30c903d3aee757b4c05f05729bb329fe43f20563",
+    "compile_command": "python -m compileall -q packages/orion-research-harness/src/orion_research_harness/local_tools.py",
+    "compile_result": "PASS",
+    "fixed_ref_archive": "/tmp/orion-main-baseline.5vSJau",
+    "fixed_ref_command": "git archive 30c903d3aee757b4c05f05729bb329fe43f20563 | tar -x -C /tmp/orion-main-baseline.5vSJau"
+  },
+  "preserved_baseline_adverse": {
+    "current_main_harness_package_import": "BLOCKED_BY_CIRCULAR_IMPORT",
+    "current_main_import_error": "PaperParityNavigator cannot be imported from partially initialized orion.engine.navigation",
+    "current_main_import_scope": "introduced outside this repair between 30c903d3aee757b4c05f05729bb329fe43f20563 and 4ba814eebfbcc4cb9ec9de0618e0e6442c7f3799",
+    "full_suite_without_uncollectable_module": "377 passed, 4 failed, 1 skipped",
+    "fixed_ref_same_four_failures": "4 failed, 2 passed",
+    "uncollectable_module": "packages/orion-research-harness/tests/test_paper_parity_campaign.py",
+    "uncollectable_reason": "build_donor_campaign_manifest is not exported from orion_research_harness",
+    "scientific_negative": false,
+    "scope_decision": "PREEXISTING_BASELINE_DAMAGE__NOT_RELABELED_OR_FIXED_IN_THIS_PR"
+  },
+  "remaining_boundary": {
+    "one_invocation_per_service_call": true,
+    "repeated_service_call_reexecution_suppressed": false,
+    "distributed_exactly_once": false,
+    "transactional_side_effect_rollback": false,
+    "timeout_policy_conflict_adjudicated": false,
+    "historical_receipts_revalidated": false,
+    "scientific_authority": false,
+    "publication_authority": false
+  }
+}
