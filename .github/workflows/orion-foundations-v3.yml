@@ -75,16 +75,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
-        with:
-          lake-package-directory: research/orion-foundations-v3/formal/lean
-          auto-config: false
-          build: false
-          test: false
-          lint: false
-          use-github-cache: false
+      - name: Install pinned Lean toolchain
+        shell: bash
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf \
+            https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install leanprover/lean4:v4.33.0
       - name: Generate Lake manifest and compile proofs
         working-directory: research/orion-foundations-v3/formal/lean
+        shell: bash
         run: |
           lake update
           lake build
