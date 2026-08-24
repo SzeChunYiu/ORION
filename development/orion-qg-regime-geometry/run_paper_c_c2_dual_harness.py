@@ -71,13 +71,7 @@ def run_python(workspace: ResearchWorkspace, script: str, timeout: int) -> dict[
     }
 
 
-def main() -> int:
-    generic_workspace_path = Path(
-        tempfile.mkdtemp(prefix="orion-paper-c-c2-generic-", dir="/tmp")
-    )
-    native_workspace_path = Path(
-        tempfile.mkdtemp(prefix="orion-paper-c-c2-native-", dir="/tmp")
-    )
+def _run(generic_workspace_path: Path, native_workspace_path: Path) -> int:
     for artifact in (SOURCE, GENERIC, DUAL):
         artifact.unlink(missing_ok=True)
 
@@ -165,8 +159,6 @@ def main() -> int:
     }
     dual["receipt_digest"] = hashlib.sha256(canonical(dual).encode()).hexdigest()
     DUAL.write_text(json.dumps(dual, indent=2, sort_keys=True) + "\n")
-    shutil.rmtree(generic_workspace_path)
-    shutil.rmtree(native_workspace_path)
     print(
         canonical(
             {
@@ -180,6 +172,23 @@ def main() -> int:
         )
     )
     return 0
+
+
+def main() -> int:
+    workspace_paths: list[Path] = []
+    try:
+        generic_workspace_path = Path(
+            tempfile.mkdtemp(prefix="orion-paper-c-c2-generic-", dir="/tmp")
+        )
+        workspace_paths.append(generic_workspace_path)
+        native_workspace_path = Path(
+            tempfile.mkdtemp(prefix="orion-paper-c-c2-native-", dir="/tmp")
+        )
+        workspace_paths.append(native_workspace_path)
+        return _run(generic_workspace_path, native_workspace_path)
+    finally:
+        for workspace_path in workspace_paths:
+            shutil.rmtree(workspace_path, ignore_errors=True)
 
 
 if __name__ == "__main__":

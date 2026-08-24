@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+import pytest
+
 from orion_research_harness.campaign_control import decide_campaign, manifest_digest, validate_manifest
 from orion_research_harness.campaign_protocol import CampaignState
 from orion_research_harness.domains.orion_qg.paper_c_c2_pair_value import (
@@ -52,6 +54,21 @@ def _analyzer():
     return module
 
 
+def _dual_harness():
+    root = Path(__file__).resolve().parents[3]
+    path = (
+        root
+        / "development"
+        / "orion-qg-regime-geometry"
+        / "run_paper_c_c2_dual_harness.py"
+    )
+    spec = importlib.util.spec_from_file_location("run_paper_c_c2_dual_harness", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def test_paper_c_c2_manifest_validates_and_preserves_scope() -> None:
     validate_manifest(PAPER_C_C2_PAIR_VALUE_CAMPAIGN_MANIFEST)
     text = repr(PAPER_C_C2_PAIR_VALUE_CAMPAIGN_MANIFEST)
@@ -85,3 +102,28 @@ def test_paper_c_c2_full_t1_t2_optimization_matches_scalable_formula() -> None:
     direct = _analyzer().direct_exact_checks()
     assert direct["all_checks"] is True
     assert [(row["A_delta"], row["B_delta"]) for row in direct["rows"]] == [(10, 9), (22, 19)]
+
+
+def test_paper_c_c2_dual_harness_cleans_workspaces_after_failure(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    harness = _dual_harness()
+    created: list[Path] = []
+
+    def fake_mkdtemp(*, prefix: str, dir: str) -> str:
+        assert dir == "/tmp"
+        path = tmp_path / prefix
+        path.mkdir()
+        created.append(path)
+        return str(path)
+
+    def fail_run(*_args: object) -> int:
+        raise RuntimeError("injected failure after workspace creation")
+
+    monkeypatch.setattr(harness.tempfile, "mkdtemp", fake_mkdtemp)
+    monkeypatch.setattr(harness, "_run", fail_run)
+    with pytest.raises(RuntimeError, match="injected failure"):
+        harness.main()
+
+    assert len(created) == 2
+    assert all(not path.exists() for path in created)
