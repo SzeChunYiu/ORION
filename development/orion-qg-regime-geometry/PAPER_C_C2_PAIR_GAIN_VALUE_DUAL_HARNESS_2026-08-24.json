@@ -1,0 +1,42 @@
+{
+  "both_accept": true,
+  "ci_authority": false,
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "executions": {
+    "analyzer": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "generic_verifier": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true
+  },
+  "generic_decision": "ACCEPT_PAIR_INFORMATION_VALUE_AND_OPTIMIZER_SEPARATION",
+  "generic_verification_digest": "26a4bcde83e042257657db3d2bc584170e267051472fc198790dfde83844c788",
+  "multiplicative_approximation_lower_bound": false,
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_PAIR_INFORMATION_VALUE_AND_OPTIMIZER_SEPARATION",
+  "native_manifest_digest": "498178f7eb4e0f307087cc3707ba617b416fd11bb8e1d5abe51c72d616ad7e6a",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "optimizer_triple_vs_pair_separation": true,
+  "pair_information_identical": true,
+  "physical_quantum_advantage_claim": false,
+  "receipt_digest": "27ddf01acd9ea83183f76e958e734395be2a3c44605b26f34761ba7ab0fecf2f",
+  "schema": "ORION.PaperC.C2.DualHarness.v1",
+  "source_result_digest": "b82a965e6f2d063c8aff07b5f21513a4f5e8aecd11b811b9781713ff6dfc7c9f",
+  "terminal": "PAPER_C_C2_COMPLETE_PAIR_INFORMATION_VALUE_GAP_2T_MINUS_1_UNBOUNDED__OPTIMIZER_TRIPLE_VS_PAIR_SEPARATION",
+  "theorem_authority": "FROZEN_STRUCTURAL_GRAMMAR_CONSTRUCTION_ONLY",
+  "unbounded_additive_value_ambiguity": true,
+  "value_gap_formula": "2t-1"
+}

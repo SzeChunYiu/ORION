@@ -1,0 +1,3382 @@
+{
+  "base_revision": "35b1b591bf7fce5d61ec4edb7d8537c5255bda7b",
+  "c1_parent_binding": {
+    "all_checks": true,
+    "checks": {
+      "all_gates": true,
+      "decision_only": true,
+      "digest": true,
+      "four_index": true,
+      "no_novelty": true,
+      "no_optimizer_parent_authority": true,
+      "no_physical": true,
+      "no_value_parent_authority": true,
+      "terminal": true
+    },
+    "file_sha256": "3ffdd36ab1c73680930f3e5471ec095a5dd2ea33438765d3ccca0584bc9afeff",
+    "path": "research/extensions/orion-qg/PAPER_C_C1_ALL_M_DECISION_RESULTS_2026-08-24.json",
+    "result_digest": "455883f266c0294e10e451346c123ed27e1a807ff72312142c7c43bb4c5e3a53"
+  },
+  "complete_pair_information_optimizer_sufficient": false,
+  "complete_pair_information_value_sufficient": false,
+  "construction": {
+    "gadgets_use_disjoint_coordinates": true,
+    "local_A_codes": [
+      85,
+      277,
+      1045,
+      5,
+      5
+    ],
+    "local_B_codes": [
+      85,
+      277,
+      325,
+      5,
+      5
+    ],
+    "local_qubits": 6,
+    "local_terms": 5,
+    "pauli_alphabet": "X_OR_I_ONLY"
+  },
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "direct_exact_checks": {
+    "all_checks": true,
+    "direct_check_digest": "733b2db75aa3ecc4ed3aad68f64d131ca6a29a0e376b34434dc340eefde2ed1f",
+    "rows": [
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "A_delta": 10,
+        "A_formula_exact": true,
+        "B_best_partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "B_delta": 9,
+        "B_formula_exact": true,
+        "both_same_decision": true,
+        "both_strictly_improved": true,
+        "expected_A_delta": 10,
+        "expected_B_delta": 9,
+        "pair_information_identical": true,
+        "partition_count": 52,
+        "qubits": 6,
+        "t": 1,
+        "term_count": 5
+      },
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "A_delta": 22,
+        "A_formula_exact": true,
+        "B_best_partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "B_delta": 19,
+        "B_formula_exact": true,
+        "both_same_decision": true,
+        "both_strictly_improved": true,
+        "expected_A_delta": 22,
+        "expected_B_delta": 19,
+        "pair_information_identical": true,
+        "partition_count": 115975,
+        "qubits": 12,
+        "t": 2,
+        "term_count": 10
+      }
+    ]
+  },
+  "gates": {
+    "c1_parent_bound": true,
+    "direct_t1_t2_full_partition_checks": true,
+    "local_partition_proof_complete": true,
+    "negative_and_donor_boundaries_preserved": true,
+    "pair_information_exactly_identical": true,
+    "protocol_present": true,
+    "scalable_claim_comes_from_composition_proof": true
+  },
+  "multiplicative_approximation_lower_bound": false,
+  "network_access": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "proof_ledger": {
+    "all_checks": true,
+    "checks": {
+      "A_local_gain_10": true,
+      "A_unique_sum_U_12": true,
+      "B_local_gain_9": true,
+      "B_pair_only_sum_maximizers_exist": true,
+      "B_sum_U_10": true,
+      "all_31_subsets_derived": true,
+      "all_52_partitions_derived": true,
+      "composition_A_12t_minus_2": true,
+      "composition_B_10t_minus_1": true,
+      "cross_block_U_strictly_negative": true,
+      "cross_block_split_cannot_increase_max_bits": true,
+      "gap_2t_minus_1_unbounded": true,
+      "local_pair_factors_identical": true,
+      "local_pair_gains_identical": true,
+      "local_weights_identical": true,
+      "single_block_F0_nonprofitable_for_t_ge_2": true
+    },
+    "composition_formula_rows": [
+      {
+        "A_delta": 10,
+        "B_delta": 9,
+        "expected_gap": 1,
+        "gap": 1,
+        "t": 1
+      },
+      {
+        "A_delta": 22,
+        "B_delta": 19,
+        "expected_gap": 3,
+        "gap": 3,
+        "t": 2
+      },
+      {
+        "A_delta": 34,
+        "B_delta": 29,
+        "expected_gap": 5,
+        "gap": 5,
+        "t": 3
+      },
+      {
+        "A_delta": 118,
+        "B_delta": 99,
+        "expected_gap": 19,
+        "gap": 19,
+        "t": 10
+      },
+      {
+        "A_delta": 1198,
+        "B_delta": 999,
+        "expected_gap": 199,
+        "gap": 199,
+        "t": 100
+      }
+    ],
+    "cross_gadget_argument": {
+      "bound": "U(S)=-b(s)w(S)+h(s)<=1-2s*b(s)<0",
+      "fact": "f(S)=0 for every block meeting two gadgets",
+      "replacement": "split into singleton blocks; sum_U increases and max_bits cannot increase"
+    },
+    "local_partition_census_A": {
+      "all_partition_rows": [
+        {
+          "gain": -5,
+          "has_size_ge_3": true,
+          "max_bits": 3,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": -2
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 10,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 12
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 7
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              3,
+              4
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              3,
+              4
+            ],
+            [
+              1
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2,
+              4
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 0,
+          "has_size_ge_3": false,
+          "max_bits": 0,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 0
+        }
+      ],
+      "gain_histogram": {
+        "-1": 8,
+        "-5": 1,
+        "0": 1,
+        "10": 1,
+        "2": 12,
+        "3": 6,
+        "4": 4,
+        "5": 7,
+        "7": 6,
+        "8": 3,
+        "9": 3
+      },
+      "gain_maximizers": [
+        {
+          "gain": 10,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 12
+        }
+      ],
+      "max_gain": 10,
+      "max_sum_U": 12,
+      "partition_count": 52,
+      "sum_U_histogram": {
+        "-2": 1,
+        "0": 1,
+        "1": 8,
+        "10": 6,
+        "12": 1,
+        "3": 6,
+        "4": 6,
+        "5": 10,
+        "6": 6,
+        "7": 1,
+        "8": 6
+      },
+      "sum_U_maximizers": [
+        {
+          "gain": 10,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 12
+        }
+      ]
+    },
+    "local_partition_census_B": {
+      "all_partition_rows": [
+        {
+          "gain": -5,
+          "has_size_ge_3": true,
+          "max_bits": 3,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": -2
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 0,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 2
+        },
+        {
+          "gain": -5,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": -3
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              3,
+              4
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              3,
+              4
+            ],
+            [
+              1
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2,
+              4
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "sum_U": 4
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 7,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 8
+        },
+        {
+          "gain": -1,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 1
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              2
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 5,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum_U": 6
+        },
+        {
+          "gain": 3,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              4
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 2,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3
+            ]
+          ],
+          "sum_U": 3
+        },
+        {
+          "gain": 4,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 5
+        },
+        {
+          "gain": 0,
+          "has_size_ge_3": false,
+          "max_bits": 0,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "sum_U": 0
+        }
+      ],
+      "gain_histogram": {
+        "-1": 8,
+        "-5": 2,
+        "0": 2,
+        "2": 12,
+        "3": 6,
+        "4": 4,
+        "5": 6,
+        "7": 6,
+        "8": 3,
+        "9": 3
+      },
+      "gain_maximizers": [
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        }
+      ],
+      "max_gain": 9,
+      "max_sum_U": 10,
+      "partition_count": 52,
+      "sum_U_histogram": {
+        "-2": 1,
+        "-3": 1,
+        "0": 1,
+        "1": 8,
+        "10": 6,
+        "2": 1,
+        "3": 6,
+        "4": 6,
+        "5": 10,
+        "6": 6,
+        "8": 6
+      },
+      "sum_U_maximizers": [
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 8,
+          "has_size_ge_3": true,
+          "max_bits": 2,
+          "partition": [
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "sum_U": 10
+        },
+        {
+          "gain": 9,
+          "has_size_ge_3": false,
+          "max_bits": 1,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "sum_U": 10
+        }
+      ]
+    },
+    "local_subset_U_A": [
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 4,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          0
+        ],
+        "weight": 4
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 4,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          1
+        ],
+        "weight": 4
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 4,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          2
+        ],
+        "weight": 4
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 2,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          3
+        ],
+        "weight": 2
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 2,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          4
+        ],
+        "weight": 2
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 3,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          1
+        ],
+        "weight": 8
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 3,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          2
+        ],
+        "weight": 8
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          3
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          4
+        ],
+        "weight": 6
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 3,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          1,
+          2
+        ],
+        "weight": 8
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          1,
+          3
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          1,
+          4
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          2,
+          3
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          2,
+          4
+        ],
+        "weight": 6
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          3,
+          4
+        ],
+        "weight": 4
+      },
+      {
+        "T": 6,
+        "U": 7,
+        "bits": 2,
+        "common_factor": 3,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          1,
+          2
+        ],
+        "weight": 12
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          1,
+          3
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          1,
+          4
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          2,
+          3
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          2,
+          4
+        ],
+        "weight": 10
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          3,
+          4
+        ],
+        "weight": 8
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          1,
+          2,
+          3
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          1,
+          2,
+          4
+        ],
+        "weight": 10
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          1,
+          3,
+          4
+        ],
+        "weight": 8
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          2,
+          3,
+          4
+        ],
+        "weight": 8
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "weight": 14
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "weight": 14
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "weight": 12
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "weight": 12
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "weight": 12
+      },
+      {
+        "T": -2,
+        "U": -2,
+        "bits": 3,
+        "common_factor": 2,
+        "h": 0,
+        "size": 5,
+        "subset": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "weight": 16
+      }
+    ],
+    "local_subset_U_B": [
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 4,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          0
+        ],
+        "weight": 4
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 4,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          1
+        ],
+        "weight": 4
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 4,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          2
+        ],
+        "weight": 4
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 2,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          3
+        ],
+        "weight": 2
+      },
+      {
+        "T": 0,
+        "U": 0,
+        "bits": 0,
+        "common_factor": 2,
+        "h": 0,
+        "size": 1,
+        "subset": [
+          4
+        ],
+        "weight": 2
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 3,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          1
+        ],
+        "weight": 8
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 3,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          2
+        ],
+        "weight": 8
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          3
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          0,
+          4
+        ],
+        "weight": 6
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 3,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          1,
+          2
+        ],
+        "weight": 8
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          1,
+          3
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          1,
+          4
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          2,
+          3
+        ],
+        "weight": 6
+      },
+      {
+        "T": 2,
+        "U": 3,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          2,
+          4
+        ],
+        "weight": 6
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 1,
+        "common_factor": 2,
+        "h": 1,
+        "size": 2,
+        "subset": [
+          3,
+          4
+        ],
+        "weight": 4
+      },
+      {
+        "T": -4,
+        "U": -3,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          1,
+          2
+        ],
+        "weight": 12
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          1,
+          3
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          1,
+          4
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          2,
+          3
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          2,
+          4
+        ],
+        "weight": 10
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          0,
+          3,
+          4
+        ],
+        "weight": 8
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          1,
+          2,
+          3
+        ],
+        "weight": 10
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          1,
+          2,
+          4
+        ],
+        "weight": 10
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          1,
+          3,
+          4
+        ],
+        "weight": 8
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 3,
+        "subset": [
+          2,
+          3,
+          4
+        ],
+        "weight": 8
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "weight": 14
+      },
+      {
+        "T": 0,
+        "U": 1,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "weight": 14
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "weight": 12
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "weight": 12
+      },
+      {
+        "T": 4,
+        "U": 5,
+        "bits": 2,
+        "common_factor": 2,
+        "h": 1,
+        "size": 4,
+        "subset": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "weight": 12
+      },
+      {
+        "T": -2,
+        "U": -2,
+        "bits": 3,
+        "common_factor": 2,
+        "h": 0,
+        "size": 5,
+        "subset": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "weight": 16
+      }
+    ],
+    "pair_information_A": {
+      "pair_common_factors": {
+        "0-1": 3,
+        "0-2": 3,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 3,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 2
+      },
+      "pair_gains": {
+        "0-1": 4,
+        "0-2": 4,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 4,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 4
+      },
+      "weights": [
+        4,
+        4,
+        4,
+        2,
+        2
+      ]
+    },
+    "pair_information_B": {
+      "pair_common_factors": {
+        "0-1": 3,
+        "0-2": 3,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 3,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 2
+      },
+      "pair_gains": {
+        "0-1": 4,
+        "0-2": 4,
+        "0-3": 2,
+        "0-4": 2,
+        "1-2": 4,
+        "1-3": 2,
+        "1-4": 2,
+        "2-3": 2,
+        "2-4": 2,
+        "3-4": 4
+      },
+      "weights": [
+        4,
+        4,
+        4,
+        2,
+        2
+      ]
+    }
+  },
+  "protected_subject_access": false,
+  "protocol_path": "development/orion-qg-regime-geometry/PAPER_C_C2_PAIR_GAIN_VALUE_SEPARATION_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "d006ba86d524ea9366e021a14c0678d3dfc750381489c39344f6b718d94cce7e",
+  "result_digest": "b82a965e6f2d063c8aff07b5f21513a4f5e8aecd11b811b9781713ff6dfc7c9f",
+  "schema": "ORION.PaperC.C2.PairInformationValueSeparation.v1",
+  "scientific_authority": "EXACT_FROZEN_STRUCTURAL_GRAMMAR_CONSTRUCTION_ONLY",
+  "terminal": "PAPER_C_C2_COMPLETE_PAIR_INFORMATION_VALUE_GAP_2T_MINUS_1_UNBOUNDED__OPTIMIZER_TRIPLE_VS_PAIR_SEPARATION",
+  "theorem": {
+    "A_exact_improvement": "12t-2",
+    "B_exact_improvement": "10t-1",
+    "decision": "both strictly improve over unary",
+    "family": "For every t>=1, A_t and B_t have m=5t terms and n=6t columns",
+    "optimizer_A": "exactly t target triples plus t padding pairs",
+    "optimizer_B": "pair blocks and singletons only; no block of size >=3",
+    "pair_information": "ordered weights and complete labeled pair-gain matrices are identical",
+    "value_gap": "2t-1 (unbounded)"
+  },
+  "unbounded_additive_value_ambiguity": true
+}
