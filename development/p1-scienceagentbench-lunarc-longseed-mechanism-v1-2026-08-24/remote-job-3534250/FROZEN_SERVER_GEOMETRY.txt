@@ -1,0 +1,17 @@
+host=127.0.0.1
+port=11474
+ctx_size=32768
+parallel_slots=1
+continuous_batching=false
+threads=8
+threads_batch=8
+batch_size=512
+ubatch_size=512
+cache_type_k=f16
+cache_type_v=f16
+flash_attention=on
+n_gpu_layers=all
+context_shift=false
+cache_prompt=false
+temperature=0.8
+request_order=101,202,101,202,101,202

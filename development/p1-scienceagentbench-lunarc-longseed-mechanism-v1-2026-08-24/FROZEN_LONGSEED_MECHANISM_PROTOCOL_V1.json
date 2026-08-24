@@ -1,0 +1,112 @@
+{
+  "schema": "orion.p1.scienceagentbench.longseed-mechanism-protocol.v1",
+  "authority": "SYNTHETIC_NONBENCHMARK_MECHANISM_DIAGNOSTIC_ONLY",
+  "non_composability": {
+    "prior_packet_pr": 1150,
+    "prior_exact_long_result": "ADVERSE_BETWEEN_SEED_SENSITIVITY",
+    "prior_result_changed_or_promoted": false,
+    "production_admissibility_established": false,
+    "mechanism_witness_composable_with_prior_result": false
+  },
+  "prompt": {
+    "prefix_source_pr": 1130,
+    "prefix_source_commit": "92f078040c9e5248af44ae2e7ec8930124d41ca5",
+    "prefix_bytes": 90575,
+    "prefix_sha256": "6c52c9055c03367832e9e61c31f49489194cecd94e732fbc7ca59caeb40cf918",
+    "suffix_bytes": 451,
+    "suffix_sha256": "170e270a3663993a0457f4ca9d9ac8c7da59549cfc29dfb1ca924e005afb6919",
+    "combined_bytes": 91026,
+    "combined_sha256": "b55831c8657f3a1f5556833204b5aff79fe84e58f170edaa228909401e222f72",
+    "prompt_bodies_retained_in_this_packet": false,
+    "suffix_contract": "PRESERVE_SIX_MARKERS_AND_ADD_ONE_OF_EIGHT_EQUALLY_VALID_SYNTHETIC_CHOICES"
+  },
+  "model": {
+    "repository": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+    "revision": "b17cb02dd882d5b6ab62fc777ad2995f19668350",
+    "filename": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+    "bytes": 18556689568,
+    "sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad"
+  },
+  "runtime": {
+    "site_module": "ollama/0.32.14",
+    "ollama_release": "v0.32.14",
+    "ollama_tag_commit": "d67ad83426633195089509347ffd4fe795120198",
+    "llama_cpp_version": "b10434",
+    "llama_cpp_commit": "7e4c0a96880dae4fc4268ad441f8a6446bd5460a",
+    "site_ollama_executable_sha256": "d0758d38ac5882a2c68fd930d0c1220af1952469fa9f30c268746d4021709bf4",
+    "site_llama_server_executable_sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+    "site_cuda_v13_backend_sha256": "fbe27c15253195c10559d98c6ba9c6d476a65d2bbf0240307b4a46d8aa17cefb"
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 11474,
+    "ctx_size": 32768,
+    "parallel_slots": 1,
+    "continuous_batching": false,
+    "threads": 8,
+    "threads_batch": 8,
+    "batch_size": 512,
+    "ubatch_size": 512,
+    "cache_type_k": "f16",
+    "cache_type_v": "f16",
+    "flash_attention": true,
+    "n_gpu_layers": "all",
+    "context_shift": false,
+    "cache_prompt": false
+  },
+  "request_order": [101, 202, 101, 202, 101, 202],
+  "sampling": {
+    "temperature": 0.8,
+    "top_k": 20,
+    "top_p": 0.95,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "n_predict": 128,
+    "stream": false,
+    "return_tokens": true
+  },
+  "required_markers": [
+    "MK0_7b91c2",
+    "MK1_a46fd8",
+    "MK2_19e3ab",
+    "MK3_c58071",
+    "MK4_ef268d",
+    "MK5_34da90"
+  ],
+  "allowed_sampling_choices": [
+    "amber",
+    "cobalt",
+    "delta",
+    "ember",
+    "fjord",
+    "glyph",
+    "harbor",
+    "iris"
+  ],
+  "gates": {
+    "within_seed_generated_token_identity": true,
+    "within_seed_content_identity": true,
+    "between_seed_generated_token_sensitivity": true,
+    "between_seed_content_sensitivity": true,
+    "cache_n_all_zero": true,
+    "prompt_n_constant": true,
+    "truncated_false": true,
+    "markers_complete_and_ordered": true,
+    "sampling_choice_allowed": true
+  },
+  "cost": {
+    "billed_usd": null,
+    "status": "CANNOT_CHECK_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION_UNAVAILABLE"
+  },
+  "forbidden_inputs": {
+    "protected_archive": true,
+    "benchmark_tasks": true,
+    "outcomes": true,
+    "gold_programs": true,
+    "evaluators": true,
+    "rubrics": true,
+    "credentials": true
+  },
+  "production_replay_status_regardless_of_result": "BLOCKED",
+  "scientific_authority_delta": "NONE"
+}
