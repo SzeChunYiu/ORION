@@ -15,7 +15,6 @@ import math
 import re
 import struct
 import sys
-from decimal import Decimal, ROUND_HALF_EVEN, localcontext
 from fractions import Fraction
 from pathlib import Path
 from typing import Any
@@ -23,7 +22,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 CONTRACT_PATH = ROOT / "ANALYSIS_CONTRACT_V1.json"
-CONTRACT_SHA256 = "143ce29af997257f3cccea19dc1ae97521889472fb3981ca1ad6d0fbafbdec81"
+CONTRACT_SHA256 = "0cae220a5b2f73156eda63a01f769dfdecbf8ad1fa16bd0995e3f906cff391d4"
 
 OUTCOME_SCHEMA = "orion.p1.scienceagentbench.outcome-ledger.v1"
 RESULT_SCHEMA = "orion.p1.scienceagentbench.analysis-result.v1"
@@ -38,7 +37,7 @@ BOOTSTRAP_REPLICATES = 100_000
 BOOTSTRAP_SEED = 20_260_824
 GAIN_THRESHOLD = Fraction(8, 100)
 DISCIPLINE_NI_THRESHOLD = Fraction(-5, 100)
-COST_RATIO_THRESHOLD = Decimal("1.5")
+COST_RATIO_THRESHOLD = Fraction(3, 2)
 
 TOP_LEVEL_FIELDS = {
     "schema_version",
@@ -57,13 +56,13 @@ TOP_LEVEL_FIELDS = {
     "cost_accounting",
     "records",
 }
-ARTIFACT_HASH_FIELDS = {
+ARTIFACT_HASH_FIELDS = (
     "candidate_seal_sha256",
     "run_plan_sha256",
     "generation_ledger_sha256",
     "evaluator_runtime_manifest_sha256",
     "official_evaluator_identity_sha256",
-}
+)
 TASK_FIELDS = {
     "task_id",
     "discipline",
@@ -103,6 +102,10 @@ TASK_ID_RE = re.compile(r"^(?:[1-9][0-9]*)$")
 
 class ContractError(RuntimeError):
     """The committed analysis contract is absent, changed, or malformed."""
+
+
+class DuplicateJsonMemberError(ValueError):
+    """A JSON object repeated a member name and is therefore ambiguous."""
 
 
 class MT19937Reference:
@@ -177,11 +180,20 @@ def _json_no_constants(value: str) -> None:
     raise ValueError(f"non-finite JSON constant {value!r} is forbidden")
 
 
+def _reject_duplicate_json_members(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for name, member in pairs:
+        if name in value:
+            raise DuplicateJsonMemberError(f"duplicate JSON member name {name!r}")
+        value[name] = member
+    return value
+
+
 def _load_json_bytes(payload: bytes) -> Any:
     return json.loads(
         payload.decode("utf-8"),
-        parse_float=Decimal,
         parse_constant=_json_no_constants,
+        object_pairs_hook=_reject_duplicate_json_members,
     )
 
 
@@ -237,13 +249,14 @@ def _is_sha256(value: Any) -> bool:
     return isinstance(value, str) and HEX_RE.fullmatch(value) is not None
 
 
-def _decimal_string(value: Any) -> Decimal | None:
+def _decimal_string(value: Any) -> Fraction | None:
     if not isinstance(value, str) or DECIMAL_RE.fullmatch(value) is None:
         return None
-    parsed = Decimal(value)
-    if not parsed.is_finite() or parsed < 0:
-        return None
-    return parsed
+    whole, separator, fractional = value.partition(".")
+    if not separator:
+        return Fraction(int(whole), 1)
+    coefficient = int(whole + fractional)
+    return Fraction(coefficient, 10 ** len(fractional))
 
 
 def _nullable_sha(value: Any) -> bool:
@@ -625,24 +638,52 @@ def _validate_ledger(
     return reasons, parsed, observed, parsed_cost_metric
 
 
-def _fraction_text(value: Fraction) -> str:
-    with localcontext() as context:
-        context.prec = 50
-        decimal_value = Decimal(value.numerator) / Decimal(value.denominator)
-        return format(decimal_value.quantize(Decimal("0.000000000001"), rounding=ROUND_HALF_EVEN), "f")
+def _fraction_text(value: Fraction, places: int = 12) -> str:
+    """Round one rational to fixed decimal places using exact half-even logic."""
+
+    negative = value < 0
+    numerator = abs(value.numerator) * (10**places)
+    quotient, remainder = divmod(numerator, value.denominator)
+    twice_remainder = 2 * remainder
+    if twice_remainder > value.denominator or (
+        twice_remainder == value.denominator and quotient % 2 == 1
+    ):
+        quotient += 1
+    whole, fractional = divmod(quotient, 10**places)
+    sign = "-" if negative and quotient != 0 else ""
+    return f"{sign}{whole}.{fractional:0{places}d}"
 
 
-def _decimal_text(value: Decimal) -> str:
+def _exact_decimal_text(value: Fraction) -> str:
+    """Serialize an exact terminating rational without ambient precision."""
+
     if value == 0:
         return "0"
-    return format(value.normalize(), "f")
+    negative = value < 0
+    numerator = abs(value.numerator)
+    denominator = value.denominator
+    powers_of_two = 0
+    powers_of_five = 0
+    while denominator % 2 == 0:
+        denominator //= 2
+        powers_of_two += 1
+    while denominator % 5 == 0:
+        denominator //= 5
+        powers_of_five += 1
+    if denominator != 1:
+        raise ContractError("exact decimal total unexpectedly has a nonterminating denominator")
+    places = max(powers_of_two, powers_of_five)
+    scaled = numerator * (10**places // value.denominator)
+    if places == 0:
+        text = str(scaled)
+    else:
+        digits = str(scaled).rjust(places + 1, "0")
+        text = f"{digits[:-places]}.{digits[-places:]}".rstrip("0").rstrip(".")
+    return f"-{text}" if negative else text
 
 
-def _ratio_text(numerator: Decimal, denominator: Decimal) -> str:
-    with localcontext() as context:
-        context.prec = 50
-        value = numerator / denominator
-        return format(value.quantize(Decimal("0.000000000001"), rounding=ROUND_HALF_EVEN), "f")
+def _ratio_text(numerator: Fraction, denominator: Fraction) -> str:
+    return _fraction_text(numerator / denominator)
 
 
 def _paired_stratified_bootstrap(
@@ -676,8 +717,8 @@ def _paired_stratified_bootstrap(
 
     rr_os_numerators.sort()
     rr_nr_numerators.sort()
-    lower_index = math.ceil(Decimal("0.025") * BOOTSTRAP_REPLICATES) - 1
-    upper_index = math.ceil(Decimal("0.975") * BOOTSTRAP_REPLICATES) - 1
+    lower_index = math.ceil(Fraction(25, 1000) * BOOTSTRAP_REPLICATES) - 1
+    upper_index = math.ceil(Fraction(975, 1000) * BOOTSTRAP_REPLICATES) - 1
     denominator = len(task_ids)
 
     def interval(values: list[int]) -> dict[str, Any]:
@@ -716,10 +757,10 @@ def _evaluate_complete_gate(
     input_ledger_sha256: str | None,
 ) -> dict[str, Any]:
     solved: dict[str, dict[str, int]] = {}
-    primary_generation_costs = {arm: Decimal(0) for arm in ARMS}
-    generation_billed_costs = {arm: Decimal(0) for arm in ARMS}
+    primary_generation_costs = {arm: Fraction(0) for arm in ARMS}
+    generation_billed_costs = {arm: Fraction(0) for arm in ARMS}
     generation_billed_missing = {arm: 0 for arm in ARMS}
-    evaluator_costs = {arm: Decimal(0) for arm in ARMS}
+    evaluator_costs = {arm: Fraction(0) for arm in ARMS}
     evaluator_cost_missing = {arm: 0 for arm in ARMS}
     for task_id in task_ids:
         solved[task_id] = {}
@@ -805,6 +846,7 @@ def _evaluate_complete_gate(
     )
     gain_pass = strongest_gain >= GAIN_THRESHOLD
     cost_pass = primary_generation_costs["RR"] <= COST_RATIO_THRESHOLD * strongest_cost
+    exact_cost_ratio = primary_generation_costs["RR"] / strongest_cost
     overall_pass = paired_ci_pass and gain_pass and discipline_pass and cost_pass
 
     return {
@@ -861,11 +903,14 @@ def _evaluate_complete_gate(
                 "metric": cost_metric,
                 "cost_gate_metric_binding_sha256": _canonical_object_sha256(cost_metric),
                 "total_quantity_by_arm": {
-                    arm: _decimal_text(value)
+                    arm: _exact_decimal_text(value)
                     for arm, value in primary_generation_costs.items()
                 },
                 "strongest_comparator": strongest,
-                "RR_to_strongest_comparator_ratio": _ratio_text(
+                "RR_to_strongest_comparator_ratio_exact_fraction": (
+                    f"{exact_cost_ratio.numerator}/{exact_cost_ratio.denominator}"
+                ),
+                "RR_to_strongest_comparator_ratio_display_12dp": _ratio_text(
                     primary_generation_costs["RR"], strongest_cost
                 ),
                 "operator": "<=",
@@ -874,7 +919,7 @@ def _evaluate_complete_gate(
             },
             "generation_billed_usd_separate": {
                 "total_available_usd_by_arm": {
-                    arm: _decimal_text(value)
+                    arm: _exact_decimal_text(value)
                     for arm, value in generation_billed_costs.items()
                 },
                 "missing_attempts_by_arm": generation_billed_missing,
@@ -886,14 +931,15 @@ def _evaluate_complete_gate(
             },
             "official_evaluator_cost_separate": {
                 "total_available_usd_by_arm": {
-                    arm: _decimal_text(value) for arm, value in evaluator_costs.items()
+                    arm: _exact_decimal_text(value)
+                    for arm, value in evaluator_costs.items()
                 },
                 "missing_attempts_by_arm": evaluator_cost_missing,
                 "complete_by_arm": {
                     arm: evaluator_cost_missing[arm] == 0 for arm in ARMS
                 },
-                "total_available_usd_all_arms": _decimal_text(
-                    sum(evaluator_costs.values(), Decimal(0))
+                "total_available_usd_all_arms": _exact_decimal_text(
+                    sum(evaluator_costs.values(), Fraction(0))
                 ),
                 "included_in_generation_ratio": False,
                 "missing_is_zero": False,

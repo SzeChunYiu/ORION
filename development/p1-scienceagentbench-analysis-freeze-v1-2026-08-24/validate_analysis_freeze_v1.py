@@ -9,6 +9,9 @@ import copy
 import hashlib
 import json
 import math
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -217,7 +220,8 @@ class AnalysisFreezeSyntheticTests(unittest.TestCase):
         self.assertEqual(cost["accounting"], "ALL_ATTEMPTS_NO_SELECTION")
         self.assertEqual(cost["metric"]["metric_id"], "BILLED_USD")
         self.assertEqual(cost["total_quantity_by_arm"], {"RR": "3.672", "OS": "3.06", "NR": "3.366"})
-        self.assertEqual(cost["RR_to_strongest_comparator_ratio"], "1.200000000000")
+        self.assertEqual(cost["RR_to_strongest_comparator_ratio_exact_fraction"], "6/5")
+        self.assertEqual(cost["RR_to_strongest_comparator_ratio_display_12dp"], "1.200000000000")
         separate = result["gate_components"]["official_evaluator_cost_separate"]
         self.assertFalse(separate["included_in_generation_ratio"])
         self.assertEqual(separate["total_available_usd_all_arms"], "0.918")
@@ -232,7 +236,8 @@ class AnalysisFreezeSyntheticTests(unittest.TestCase):
         billed = result["gate_components"]["generation_billed_usd_separate"]
         self.assertEqual(result["status"], "PASS")
         self.assertEqual(cost["metric"]["unit"], "accelerator-second")
-        self.assertEqual(cost["RR_to_strongest_comparator_ratio"], "1.200000000000")
+        self.assertEqual(cost["RR_to_strongest_comparator_ratio_exact_fraction"], "6/5")
+        self.assertEqual(cost["RR_to_strongest_comparator_ratio_display_12dp"], "1.200000000000")
         self.assertEqual(billed["missing_attempts_by_arm"], {"RR": 306, "OS": 306, "NR": 306})
         self.assertFalse(billed["missing_is_zero"])
         self.assertFalse(billed["gate_primary"])
@@ -282,9 +287,35 @@ class AnalysisFreezeSyntheticTests(unittest.TestCase):
         result = self.analyze_without_bootstrap(ledger)
         cost = result["gate_components"]["generation_cost"]
         self.assertEqual(result["status"], "FAIL")
-        self.assertEqual(cost["RR_to_strongest_comparator_ratio"], "1.600000000000")
+        self.assertEqual(cost["RR_to_strongest_comparator_ratio_exact_fraction"], "8/5")
+        self.assertEqual(cost["RR_to_strongest_comparator_ratio_display_12dp"], "1.600000000000")
         self.assertFalse(cost["pass"])
         self.assertEqual(cost["threshold"], "1.5")
+
+    def test_cost_ratio_one_point_five_plus_epsilon_fails_exactly(self) -> None:
+        ledger = synthetic_ledger(
+            generation_costs={
+                "RR": "1.500000000000000000000000000001",
+                "OS": "1",
+                "NR": "1",
+            }
+        )
+        result = self.analyze_without_bootstrap(ledger)
+        cost = result["gate_components"]["generation_cost"]
+        self.assertEqual(result["status"], "FAIL")
+        self.assertFalse(cost["pass"])
+        self.assertEqual(
+            cost["total_quantity_by_arm"]["RR"],
+            "459.000000000000000000000000000306",
+        )
+        self.assertEqual(cost["total_quantity_by_arm"]["OS"], "306")
+        self.assertNotEqual(
+            cost["RR_to_strongest_comparator_ratio_exact_fraction"], "3/2"
+        )
+        self.assertEqual(
+            cost["RR_to_strongest_comparator_ratio_display_12dp"],
+            "1.500000000000",
+        )
 
     def test_zero_strongest_comparator_cost_is_cannot_check(self) -> None:
         ledger = synthetic_ledger(
@@ -413,6 +444,69 @@ class AnalysisFreezeSyntheticTests(unittest.TestCase):
         self.assertEqual(missing["cannot_check_reasons"][0]["code"], "LEDGER_READ_FAILURE")
         self.assertEqual(malformed["cannot_check_reasons"][0]["code"], "LEDGER_PARSE_FAILURE")
 
+    def test_duplicate_json_member_validation_then_verified_is_cannot_check(self) -> None:
+        serialized = json.dumps(self.valid_ledger, separators=(",", ":"))
+        duplicate_split = serialized.replace(
+            '"split":"verified"',
+            '"split":"validation","split":"verified"',
+            1,
+        )
+        self.assertIn('"split":"validation","split":"verified"', duplicate_split)
+        with tempfile.TemporaryDirectory(prefix="sab-analysis-duplicate-json-") as tmp:
+            path = Path(tmp) / "duplicate-split.json"
+            path.write_text(duplicate_split, encoding="utf-8")
+            result = analysis.analyze_path(path)
+        self.assertEqual(result["status"], "CANNOT_CHECK")
+        self.assertIsNone(result["estimands"])
+        self.assertEqual(
+            result["cannot_check_reasons"][0]["code"], "LEDGER_PARSE_FAILURE"
+        )
+        self.assertEqual(
+            result["cannot_check_reasons"][0]["detail"],
+            "DuplicateJsonMemberError",
+        )
+
+    def test_cannot_check_output_is_byte_identical_across_python_hash_seeds(self) -> None:
+        ledger = copy.deepcopy(self.valid_ledger)
+        for field in analysis.ARTIFACT_HASH_FIELDS:
+            ledger[field] = "invalid"
+        with tempfile.TemporaryDirectory(prefix="sab-analysis-hashseed-") as tmp:
+            root = Path(tmp)
+            ledger_path = root / "synthetic-hostile-ledger.json"
+            ledger_path.write_text(json.dumps(ledger) + "\n", encoding="utf-8")
+            outputs = []
+            for seed in ("1", "777"):
+                output_path = root / f"result-{seed}.json"
+                environment = dict(os.environ)
+                environment["PYTHONHASHSEED"] = seed
+                completed = subprocess.run(
+                    [
+                        sys.executable,
+                        str(ROOT / "sab_outcome_analysis_v1.py"),
+                        "--outcome-ledger",
+                        str(ledger_path),
+                        "--output",
+                        str(output_path),
+                    ],
+                    check=False,
+                    capture_output=True,
+                    env=environment,
+                    text=True,
+                )
+                self.assertEqual(completed.returncode, 3, completed.stderr)
+                outputs.append(output_path.read_bytes())
+        self.assertEqual(outputs[0], outputs[1])
+        result = json.loads(outputs[0])
+        artifact_paths = [
+            reason["path"]
+            for reason in result["cannot_check_reasons"]
+            if reason["code"] == "INVALID_ARTIFACT_SHA256"
+        ]
+        self.assertEqual(
+            artifact_paths,
+            [f"$.{field}" for field in analysis.ARTIFACT_HASH_FIELDS],
+        )
+
     def test_analyzer_has_no_network_subprocess_random_or_scientific_import(self) -> None:
         source = (ROOT / "sab_outcome_analysis_v1.py").read_text(encoding="utf-8")
         tree = ast.parse(source)
@@ -467,6 +561,10 @@ def build_receipt(result: unittest.result.TestResult) -> dict:
         ],
         "missing_billed_usd_treated_as_zero": False,
         "post_outcome_cost_metric_fallback_allowed": False,
+        "cost_arithmetic": "EXACT_INTEGER_COEFFICIENT_SCALE_AND_FRACTION",
+        "one_point_five_plus_epsilon_regression_passed": True,
+        "duplicate_json_member_names_rejected": True,
+        "pythonhashseed_byte_identity_checked": [1, 777],
         "missing_and_evaluator_failures_preserved_as_cannot_check": True,
         "terminal": "P1_SAB_OUTCOME_ANALYSIS_FREEZE_SYNTHETIC_HOSTILE_VALIDATION_PASS__OFFICIAL_OUTCOMES_CANNOT_CHECK__ZERO_OFFICIAL_RECORDS_OPENED",
         "scientific_authority_delta": "NONE",

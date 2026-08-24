@@ -88,9 +88,10 @@ ScienceAgentBench outcomes.
 ### Search-universe saturation
 
 The admissible implementation universe is deliberately narrow: Python
-standard-library JSON/hash parsing, exact schema/set checks, a local reference
-MT19937 uint32 implementation, paired within-stratum resampling, exact
-`Fraction`/`Decimal` gates, and generated synthetic receipts. NumPy/SciPy,
+standard-library duplicate-rejecting JSON/hash parsing, exact schema/set checks,
+a local reference MT19937 uint32 implementation, paired within-stratum
+resampling, exact integer-coefficient/`Fraction` gates, and generated synthetic
+receipts. NumPy/SciPy,
 provider SDKs, network clients, official evaluator imports, subprocesses,
 benchmark archives, and outcome adapters are excluded because none is needed
 to freeze or validate the decision rule.
@@ -111,8 +112,10 @@ arms independently, pools attempts as independent rows, selects only the
 stronger-comparator contrast for inference, resolves comparator ties
 implicitly, uses a best-attempt cost, treats a missing evaluator receipt as a
 zero, drops a bad discipline, applies `>` where `>=` was frozen (or vice versa),
-or lets JSON numbers such as booleans, `NaN`, or exponent strings pass through
-coercion. The hostile validation must target those exact boundaries.
+or lets duplicate JSON names, booleans, `NaN`, or exponent strings pass through
+last-member-wins parsing/coercion. It can also become byte-nondeterministic when
+validation reasons are accumulated by iterating a Python set under different
+hash seeds. The hostile validation must target those exact boundaries.
 
 ## Missed-knowledge hypotheses
 
@@ -134,8 +137,9 @@ coercion. The hostile validation must target those exact boundaries.
    its contrast is required. Requiring positive lower bounds against both OS
    and NR is the frozen multiplicity guard.
 7. Cost or interval equality at a threshold can be mishandled by rounded display
-   values. Gate comparisons must use exact values before 12-place display
-   serialization.
+   values or a finite ambient decimal context. Unbounded input decimals must be
+   parsed as integer coefficients over powers of ten; totals and the `3/2`
+   comparison must remain exact Fractions before 12-place display serialization.
 8. A complete but wrong task-to-discipline map could make stratification
    reproducible yet scientifically invalid. The exact map and upstream
    mask-manifest digest are bound in the contract.
@@ -174,11 +178,19 @@ official result or create scientific authority.
   billed-USD primary become `CANNOT_CHECK`;
 - point gain below `0.08`, a discipline contrast below `-0.05`, and cost ratio
   above `1.5` each fail the gate;
+- the adversarial ratio `1.500000000000000000000000000001` fails under exact
+  coefficient/scale and Fraction arithmetic even though its labeled 12-place
+  display rounds to `1.500000000000`; the exact reduced ratio is also reported;
 - a zero strongest-comparator cost denominator becomes `CANNOT_CHECK` before
   bootstrap;
 - missing/duplicate tasks or attempts, wrong split, wrong discipline, extra
   fields, bad hashes, numeric coercions, exponent costs, and Boolean outcomes
   become `CANNOT_CHECK` before metrics;
+- duplicate JSON member names at any nesting depth are rejected; specifically,
+  a ledger containing `split=validation` followed by `split=verified` becomes
+  `CANNOT_CHECK` rather than accepting the last member;
+- hostile `CANNOT_CHECK` result bytes are identical across distinct
+  `PYTHONHASHSEED` processes, and artifact-hash reasons follow one frozen tuple;
 - a typed evaluator/runtime failure retains null outcomes and produces
   `CANNOT_CHECK`, never solved zero;
 - unreadable and malformed JSON paths emit typed `CANNOT_CHECK` results; and

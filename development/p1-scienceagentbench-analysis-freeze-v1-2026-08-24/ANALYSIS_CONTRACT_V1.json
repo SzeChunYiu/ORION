@@ -318,10 +318,10 @@
         "extra_fields_allowed": false,
         "ok_record_rule": "status OK; candidate/evaluator hashes are lowercase 64-hex; valid_program is integer 0 or 1 (not Boolean); success_rate is an exact nonnegative decimal string in [0,1]; generation_cost_quantity is an exact nonnegative decimal string in the frozen primary metric; billed USD and evaluator billed USD are exact decimal strings or null; failure is null. BILLED_USD primary requires non-null billed USD equal to generation_cost_quantity.",
         "cannot_check_record_rule": "status CANNOT_CHECK; failure has exactly status=CANNOT_CHECK, stage, code, detail_sha256; outcomes are null; available hashes/cost quantities/billed costs remain recorded and nulls remain null.",
-        "decimal_string_rule": "ASCII base-10 only, no sign or exponent, no leading zero except zero itself; finite and nonnegative."
+        "decimal_string_rule": "ASCII base-10 only, no sign or exponent, no leading zero except zero itself; parsed as an unbounded integer coefficient over 10^scale and reduced to an exact Fraction. No ambient Decimal/float precision participates in totals or gates."
       }
     },
-    "missingness_rule": "Any unreadable ledger, schema defect, wrong identity, missing/duplicate/extra task or nested attempt, nonparseable value, or CANNOT_CHECK evaluator record makes the complete gate CANNOT_CHECK before any solve metric or bootstrap is computed. Nothing is coerced to solved=0.",
+    "missingness_rule": "Any unreadable ledger, duplicate JSON member name, schema defect, wrong identity, missing/duplicate/extra task or nested attempt, nonparseable value, or CANNOT_CHECK evaluator record makes the complete gate CANNOT_CHECK before any solve metric or bootstrap is computed. Nothing is coerced to solved=0.",
     "retention_rule": "The committed packet contains no official outcome ledger. Production ledgers, raw evaluator bodies, judge responses, candidate bodies, credentials and benchmark artifacts remain outside ORION.",
     "cost_gate_metric_binding": {
       "required_before": "candidate generation and any official outcome opening",
@@ -339,7 +339,8 @@
         }
       },
       "selection_rule": "Exactly one supported metric is frozen before generation/outcomes. Missing, post-outcome-selected, non-authoritative or binding-mismatched metric identity is CANNOT_CHECK; the analyzer never falls back from one metric to the other."
-    }
+    },
+    "json_member_rule": "Duplicate JSON member names at any nesting depth are a parse failure and gate-level CANNOT_CHECK; last-member-wins parsing is forbidden."
   },
   "estimands": {
     "inference_unit": "task, paired across arms; attempts are collapsed within task-arm and are not independent n",
@@ -407,7 +408,9 @@
     "zero_denominator": "CANNOT_CHECK_COST_DENOMINATOR_ZERO",
     "missing_or_non_authoritative_primary_quantity": "CANNOT_CHECK_COST_IDENTITY_OR_QUANTITY",
     "billed_usd_reporting": "Retain and report generation_billed_cost_usd separately when authoritative; missing billed USD is never zero. It is gate-primary only when metric_id is BILLED_USD.",
-    "official_evaluator_cost": "Retain and report official_evaluator_billed_cost_usd separately with availability counts; never include it in the generation-cost ratio."
+    "official_evaluator_cost": "Retain and report official_evaluator_billed_cost_usd separately with availability counts; never include it in the generation-cost ratio.",
+    "arithmetic": "Every per-attempt decimal string is converted to an exact Fraction via integer coefficient/10^scale. Arm totals, strongest-comparator denominator, the 3/2 threshold multiplication and pass/fail comparison use exact integer rational arithmetic with no ambient precision or rounding.",
+    "reporting": "Report every arm total as its exact terminating decimal, the cost ratio as an exact reduced numerator/denominator fraction, and a separately labeled 12-decimal half-even display. The display never determines the gate."
   },
   "overall_gate": {
     "pass_iff_all": [
@@ -431,8 +434,9 @@
       "CANNOT_CHECK"
     ],
     "cannot_check_rule": "When gate_evaluable is false, estimands and gate metrics are null and typed reasons are retained.",
-    "rounding": "Rates and bootstrap bounds are emitted to 12 decimal places for display; gate comparisons use exact Fractions or Decimals before display rounding.",
-    "scientific_authority_delta": "NONE"
+    "rounding": "Rates and bootstrap bounds are emitted to 12 decimal places using exact integer half-even rounding; cost totals are exact terminating decimals and the ratio includes an exact reduced fraction plus a labeled 12-place display. All gate comparisons use exact Fractions before display rounding.",
+    "scientific_authority_delta": "NONE",
+    "determinism": "Validation reason order is frozen by explicit field tuples and sorted set differences; canonical result JSON bytes must be identical across PYTHONHASHSEED values."
   },
   "forbidden": [
     "changing the RNG, seed, replicate count, interval rank rule or task strata after any official outcome is opened",
@@ -441,6 +445,8 @@
     "dropping missing/evaluator-failed tasks or attempts",
     "coercing missing, invalid, runtime-failed or evaluator-failed outcomes to solved=0",
     "falling back between billed USD and accelerator-seconds after outcomes, or treating missing billed USD as zero",
+    "accepting duplicate JSON member names or relying on last-member-wins parser behavior",
+    "using ambient Decimal or floating-point precision for cost totals, threshold multiplication or gate comparison",
     "treating a synthetic validation pass as benchmark evidence, protected custody, independence or scientific promotion"
   ],
   "official_outcomes_opened": false,

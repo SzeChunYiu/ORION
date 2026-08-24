@@ -13,6 +13,28 @@ independent review, or scientific promotion.
 
 Scientific authority delta: `NONE`.
 
+## Independent-review repair disposition
+
+The initial PR bytes were `NO-GO`. This revision closes the three reported
+analysis-contract defects without opening outcomes:
+
+1. **Exact cost arithmetic:** every accepted decimal becomes an unbounded
+   integer coefficient over `10^scale` and then an exact `Fraction`. Arm totals,
+   the strongest-comparator denominator, multiplication by exact `3/2`, and the
+   pass/fail comparison never use ambient decimal or float precision. The
+   adversarial per-attempt RR value
+   `1.500000000000000000000000000001` against comparator value `1` now fails;
+   the result reports the exact reduced ratio as well as a labeled rounded
+   display.
+2. **Duplicate JSON names:** `object_pairs_hook` rejects a repeated member at
+   any depth. A hostile ledger containing `split=validation` followed by
+   `split=verified` produces `CANNOT_CHECK` instead of last-member-wins
+   acceptance.
+3. **Hash-seed determinism:** artifact hash fields are one fixed tuple, all
+   residual set differences are sorted, and subprocess validation proves
+   byte-identical canonical `CANNOT_CHECK` results under `PYTHONHASHSEED=1` and
+   `777`.
+
 ## Byte-bound analysis identity
 
 | Item | Frozen value |
@@ -31,7 +53,7 @@ Scientific authority delta: `NONE`.
 | Missingness | Any missing, duplicate, partial, wrong-split, unparseable, runtime-failed or evaluator-failed task/attempt is gate-level `CANNOT_CHECK`, never solved zero |
 
 Contract SHA-256:
-`143ce29af997257f3cccea19dc1ae97521889472fb3981ca1ad6d0fbafbdec81`.
+`0cae220a5b2f73156eda63a01f769dfdecbf8ad1fa16bd0995e3f906cff391d4`.
 The analyzer hardcodes and verifies this digest before accepting a ledger.
 
 ## Exact bootstrap mechanics
@@ -95,6 +117,8 @@ failure, hash, decimal, metric and retention fields. Important properties:
 - task IDs are canonical decimal strings, not integers or zero-padded text;
 - success rate and cost quantities are exact decimal strings with no sign,
   exponent, non-finite value, Boolean coercion, or implicit rounding;
+- duplicate JSON member names are rejected at every nesting depth; a later
+  member never overwrites an earlier member;
 - OK records require complete outcomes and primary cost; typed
   `CANNOT_CHECK` records retain available partial hashes/costs and keep outcomes
   null;
@@ -103,8 +127,14 @@ failure, hash, decimal, metric and retention fields. Important properties:
 - attempts determine within-task success but never increase inferential `n`;
 - all 306 generation attempts per arm contribute to primary cost, independent
   of which attempt solved; and
-- display values use 12 decimals, while threshold decisions use exact
-  `Fraction` or `Decimal` comparisons.
+- decimal strings become unbounded integer coefficients over `10^scale`; cost
+  totals, ratios, and the `3/2` gate use exact `Fraction` arithmetic with no
+  ambient precision;
+- cost totals are exact terminating decimals and ratios include an exact
+  reduced fraction plus a separately labeled 12-place half-even display; the
+  display never determines pass/fail; and
+- validation-reason order is frozen, so canonical result bytes are invariant
+  across `PYTHONHASHSEED` values.
 
 ## CLI
 
@@ -133,11 +163,15 @@ directory. It commits no fixture ledger. The focused standard-library run covers
   bootstrap replicates;
 - both strongest-comparator paths and the OS tie break;
 - gain `0.08`, discipline `-0.05`, paired-lower-bound and cost `1.5` gates;
+- an exact `1.5 + 10^-30` per-attempt RR cost regression, which must fail even
+  though the labeled 12-place ratio display rounds to `1.500000000000`;
 - all-attempt cost, separate evaluator cost, zero denominators, billed-USD and
   allocated-accelerator-second identities;
 - cost-identity/hash drift and missing billed USD under a billed-USD primary;
 - missing/duplicate/partial/wrong-split/evaluator-failed records and hostile
   JSON type coercions; and
+- duplicate JSON names (`validation` then `verified`) and byte-identical
+  `CANNOT_CHECK` output across separate `PYTHONHASHSEED` processes; and
 - absence of network, subprocess, high-level random, provider, Docker,
   official-evaluator, NumPy, SciPy or CLI override surfaces.
 
