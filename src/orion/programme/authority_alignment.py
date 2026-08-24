@@ -70,10 +70,25 @@ class Surfaces:
         return len(sets) > 1 and any(s != sets[0] for s in sets[1:])
 
 
+#: A citation inside a section or table whose heading marks it historical is
+#: historical however far the heading is. P15 lists superseded records in a
+#: two-row table; the heading sits beyond any fixed window for the second row,
+#: so a proximity rule read a superseded record as active.
+HEADING = re.compile(r"^(?:#{1,6}\s+.*|\|.*Superseded.*\||\|.*Historical.*\|)$", re.M | re.I)
+
+
+def _governing_heading(text: str, pos: int) -> str:
+    starts = [m for m in HEADING.finditer(text) if m.start() < pos]
+    return starts[-1].group(0) if starts else ""
+
+
 def _active_versions(text: str) -> set[str]:
     """Versions the document treats as active, ignoring ones marked historical."""
     out: set[str] = set()
     for m in AUTHORITY.finditer(text):
+        heading = _governing_heading(text, m.start())
+        if HISTORICAL_NEAR.search(heading) or re.search(r"superseded", heading, re.I):
+            continue
         left = text[max(0, m.start() - WINDOW) : m.start()]
         right = text[m.end() : m.end() + WINDOW]
         window = left + " " + right
