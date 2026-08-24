@@ -4,3 +4,4 @@ defaultTargets = ["OrionFoundations"]
 
 [[lean_lib]]
 name = "OrionFoundations"
+roots = ["OrionFoundations", "Std.Tactic.Omega"]
