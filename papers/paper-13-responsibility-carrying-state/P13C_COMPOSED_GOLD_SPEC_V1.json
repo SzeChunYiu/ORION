@@ -1,0 +1,21 @@
+{
+  "authority_boundary": "composed_p13a_truth_model_gold_over_p13b_certificate_class",
+  "current_epoch": 2,
+  "paper_id": "P13",
+  "schema": "ORION.P13B.GoldSupportSpec.v1",
+  "state_forms": {
+    "Z1": ["x", "m"],
+    "Z2": ["x", "m", "r"],
+    "Z3": ["x", "m", "r", "a"],
+    "Z4": ["x", "a"],
+    "Z5": ["x"],
+    "Z6": ["x", "r"]
+  },
+  "task_requirements": {
+    "DECIDE": ["x"],
+    "INTERVENE": ["x", "m"],
+    "PREDICT": ["x"],
+    "REPAIR": ["r"],
+    "VERIFY": ["x", "m"]
+  }
+}
