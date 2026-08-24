@@ -42,8 +42,17 @@ by \idt{scripts/render_suite_facts.py}, so prose cannot drift from the frozen
 suite. The precision tier the frozen power record assigns to the achieved
 half-width is registered there under the label \texttt{\AchievedTier}, with
 \RequiredNForHOne{} cases required for the primary hypothesis and
-\RequiredNForHTwo{} for the restraint hypothesis. The 86 cells lost to live-provider failures and re-executed against the
-frozen subject are listed in \idt{rerun_cells_manifest.json}.
+\RequiredNForHTwo{} for the restraint hypothesis. The tracked
+\idt{results/INTEGRITY_NOTE.md} preserves the failed historical attempt at
+commit \texttt{85d32db0}: 2,794 scored records and 86
+\textsc{Cannot-check} records, all in \texttt{orion\_live\_provider} (78
+authentication, four rate-limit and four internal-server errors), with 23 of
+48 provider cases lacking a scored repeat. That 86-record count describes a
+historical execution failure, not current missingness, and no per-cell rerun
+manifest is available in a clean checkout. The current tracked raw archive is
+authoritative and contains 2,880 of 2,880 \texttt{OK} run records and 2,880 of
+2,880 \texttt{SCORED} score records, with zero current
+\textsc{Cannot-check} records.
 
 \subsection{The hidden-formulation study}
 The scored archive is \idt{results/raw/test_scored.jsonl} with its run records
@@ -189,17 +198,17 @@ The validator and 18-entry manifest establish bounded internal consistency and
 byte integrity, not independent semantic review or owner authority.
 
 \subsection{Outcome-blind source-native adapter audit}
-The bounded semantic-interface handoff is
-\idt{../lane-handoffs/p1-source-native-action-adapter-v2/}. Its amended
-protocol, compatibility matrix, certification result, partial adapter,
-conditional certificate, taxonomy provenance and primary captures are bound by
-the 47-entry \idt{SHA256SUMS} manifest. The manifest digest is
+The full 47-entry semantic-interface handoff and its recorded independent
+checksum receipt remain in external custody and are not present in a clean
+repository checkout. The manuscript retains only the recorded handoff manifest
+digest,
 \idt{9f4503f693e155b12fb8c333f4777619cec1d66e387dcfc0e141fffa6933847d}.
-An independent standard-library \texttt{hashlib.sha256} pass over every entry
-recorded zero failures in
-\idt{../lane-handoffs/p1-source-native-action-adapter-integration-v3/INDEPENDENT_SHA256_VERIFICATION_V1.json}.
-That receipt checks byte integrity only; it is not external semantic review,
-case authority or empirical verification.
+Because neither the manifest entries nor the independent receipt are
+repository-available, clean-checkout byte verification is
+\textsc{Cannot-check}; the historical zero-failure checksum statement is not a
+current repository integrity result. No private or large payload is
+redistributed here, and the unavailable handoff cannot serve as
+repository-available evidence or external semantic authority.
 
 The audit enumerates all 117,649 total maps: 0 are fully certified, 116,929 are
 rejected, and 720 remain not disproved but uncertified. The only currently
@@ -208,8 +217,11 @@ remain unbound because exhaustive target denotations and an owner-approved
 decision/action bridge are absent. The full-withdrawal counterexample is
 explicitly conditional on later owner-ratification of proposed closed-world
 target denotations. No case text, row-level outcome, protected gold or system
-outcome was accessed, and the captured public taxonomies license semantic
-development only, not an R7 transition.
+outcome was accessed. These counts are bounded provenance statements recorded
+from the unavailable handoff, not independently checkable current-repository
+facts or external semantic authority. Licensing for the captured public
+taxonomies remains uncertain; no redistribution right or R7 transition is
+assumed.
 
 The external comparator identity and interface audit is
 \idt{development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json},
