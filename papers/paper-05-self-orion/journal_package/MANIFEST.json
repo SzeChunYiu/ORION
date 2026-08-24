@@ -3,7 +3,7 @@
   "paper_id": "P5",
   "package_status": "SCAFFOLDING",
   "declared_paper_terminal": "CANNOT_CHECK",
-  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
+  "audit_subject_revision": "c6c71c6c758aa605fa414ff8eaeb87f1ef4b0672",
   "audit_date": "2026-08-24",
   "issue": 160,
   "required_files": [
@@ -12,12 +12,60 @@
       "role": "manuscript-source"
     },
     {
+      "path": "manuscript/bibliography.bib",
+      "role": "bibliography"
+    },
+    {
+      "path": "manuscript/main.pdf",
+      "role": "local-working-pdf"
+    },
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "journal-package-snapshot-pdf"
+    },
+    {
       "path": "evidence/FALSIFIER_V1.md",
       "role": "local-falsifier"
     },
     {
       "path": "evidence/glm-5.2-attribution/report.json",
-      "role": "attribution-report"
+      "role": "historical-attribution-report"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution-v2/report.json",
+      "role": "post-outcome-instrument-report"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution-v2/results_control_v1replay.jsonl",
+      "role": "instrument-control-rows"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution-v2/results_treatment_v2.jsonl",
+      "role": "instrument-treatment-rows"
+    },
+    {
+      "path": "protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
+      "role": "instrument-protocol"
+    },
+    {
+      "path": "top_tier/P5_RESIDUAL_ERROR_REVIVAL_DISPOSITION_2026-08-24.json",
+      "role": "instrument-disposition"
+    },
+    {
+      "path": "top_tier/P5_RESIDUAL_ERROR_REVIVAL_RECEIPT_V1.json",
+      "role": "instrument-receipt"
+    },
+    {
+      "path": "evidence/revision-level-v3/CONFIRMATORY_EXECUTION_RESULT_2026-08-24.md",
+      "role": "revision-level-human-result"
+    },
+    {
+      "path": "protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+      "role": "revision-level-protocol"
+    },
+    {
+      "path": "../../research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json",
+      "role": "revision-level-machine-receipt"
     },
     {
       "path": "REPRODUCE.md",
@@ -42,19 +90,9 @@
     {
       "path": "THEORY_CLAIM_LEDGER_V2.md",
       "role": "theory-and-evidence-claim-ledger"
-    },
-    {
-      "path": "manuscript/main.pdf",
-      "role": "local-working-pdf-not-submission-package"
     }
   ],
   "missing_artifacts": [
-    {
-      "path": "journal_package/manuscript.pdf",
-      "role": "compiled-pdf",
-      "status": "CANNOT_CHECK",
-      "reason": "Working draft only. This package does not fabricate a PDF."
-    },
     {
       "path": "journal_package/DOI.txt",
       "role": "permanent-archive-doi",
@@ -109,13 +147,36 @@
     },
     {
       "id": "P5.PDF",
-      "text": "Local Tectonic build and full 39-page visual inspection completed; independent external PDF proofread remains open.",
+      "text": "Tectonic build and local visual inspection completed for all 37 pages.",
       "artifacts": [
         "manuscript/main.pdf",
+        "journal_package/manuscript.pdf",
         "journal_package/CLAIM_PDF_AUDIT.md"
       ],
-      "status": "BOUNDED",
-      "boundary": "Local build and visual QA only; independent external proofread and submission-format PDF remain open."
+      "status": "BOUNDED_LOCAL_QA",
+      "boundary": "PDF SHA-256 d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482; independent external proofread and submission-format authority remain open."
+    },
+    {
+      "id": "P5.ATTR.V2",
+      "text": "On the unchanged public 24-case suite, the V1 replay remains 21/24 while the staged extraction plus deterministic diagnosis instrument records 24/24.",
+      "artifacts": [
+        "evidence/glm-5.2-attribution-v2/report.json",
+        "protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
+        "top_tier/P5_RESIDUAL_ERROR_REVIVAL_DISPOSITION_2026-08-24.json"
+      ],
+      "status": "BOUNDED_POST_OUTCOME_INSTRUMENT_DIAGNOSIS_ONLY",
+      "boundary": "Protocol and outcomes first appear together; independent preregistration chronology, blind/fresh transfer, model-capability gain and superiority are not established."
+    },
+    {
+      "id": "P5.V3",
+      "text": "The frozen 96-case revision-level execution records FULL_T7 12/96, zero false-broad and harmful-regression rates, and no registered terminal; bounded H3/H4 secondary checks pass while H2 is not confirmed and H1 has no terminal.",
+      "artifacts": [
+        "evidence/revision-level-v3/CONFIRMATORY_EXECUTION_RESULT_2026-08-24.md",
+        "../../research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json",
+        "protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json"
+      ],
+      "status": "BOUNDED_NO_TERMINAL",
+      "boundary": "Constructed frozen panel only; grants_scientific_authority=false; no general H1 or superiority authority."
     }
   ],
   "scientific_result_verification": {
@@ -124,5 +185,15 @@
     "records_present": [
       "research/verification/records/P5.glm-5.2-attribution-21-24.json"
     ]
+  },
+  "claim_boundary": "IDENTIFICATION_AND_AUTHORITY_ENVELOPE__FROZEN_96_CASE_NO_TERMINAL__NO_GENERAL_SELF_IMPROVEMENT_OR_SUPERIORITY_AUTHORITY",
+  "render_binding": {
+    "source_subject_revision": "c6c71c6c758aa605fa414ff8eaeb87f1ef4b0672",
+    "tool": "tectonic",
+    "page_count": 37,
+    "pdf_sha256": "d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482",
+    "working_and_package_pdf_byte_identical": true,
+    "local_all_page_visual_qa": "COMPLETE",
+    "independent_external_pdf_proofread": "OPEN"
   }
 }
