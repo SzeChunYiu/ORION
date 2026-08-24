@@ -1,0 +1,1136 @@
+{
+  "schema": "ORION.P13P14.PublicLifecycleCampaignProtocol.v1",
+  "status": "FROZEN_ACQUISITION_PILOT_AWAITING_EXECUTION",
+  "freeze_epoch": "2026-08-24T13:08:28Z",
+  "issue": 1086,
+  "papers": [
+    "P13",
+    "P14"
+  ],
+  "consolidated_scope": "machine_verifiable_lifecycle_contract_safety",
+  "primary_endpoint": "NONE__ACQUISITION_BINDING_AND_HOSTILE_FIXTURE_COMPLETENESS_ONLY",
+  "inference_unit": "NONE__PILOT_NOT_INFERENTIAL",
+  "issue_1086_external_campaign_gate": "OPEN",
+  "repository_count": 30,
+  "organization_count": 26,
+  "orion_as_subject": false,
+  "case_families": [
+    "CLEAN",
+    "UNKNOWN_REPOSITORY",
+    "FORGED_HEAD",
+    "STALE_PARENT",
+    "FORGED_LICENSE",
+    "REVERSED_TIMESTAMP",
+    "FORGED_COMMIT_URL"
+  ],
+  "policies": [
+    "LIFECYCLE_SELECTIVE",
+    "PROVENANCE_ONLY",
+    "CONFIDENCE_ONLY",
+    "ALWAYS_FULL_RECORD"
+  ],
+  "predicate_order": [
+    "repository",
+    "head_sha",
+    "parent_sha",
+    "license_sha256",
+    "timestamp_order",
+    "commit_url"
+  ],
+  "frozen_cost_unit": "one exact predicate comparison; not wall time, bytes, API billing, energy or monetary cost",
+  "mutations": [
+    "OMIT_REPOSITORY",
+    "OMIT_HEAD",
+    "OMIT_PARENT",
+    "OMIT_LICENSE",
+    "OMIT_TIMESTAMP",
+    "OMIT_COMMIT_URL",
+    "TRUST_CONFIDENCE"
+  ],
+  "acquisition_requirement": {
+    "live_git_required": true,
+    "manifest_only_gold_prohibited": true,
+    "required_observations": [
+      "head_object_exists",
+      "parent_object_exists",
+      "parent_is_direct_parent",
+      "license_blob_matches_git_object",
+      "license_sha256_matches_blob_bytes",
+      "raw_command_receipt_digest"
+    ],
+    "result_creation_in_this_increment": "PROHIBITED",
+    "later_receipt_must_bind": [
+      "protocol_sha256",
+      "runner_sha256",
+      "source_commit",
+      "git_version",
+      "repository_remote",
+      "observed_objects",
+      "retained_command_receipts"
+    ]
+  },
+  "runner": {
+    "path": "development/p13-p14-public-lifecycle-v1/run_p13_p14_public_lifecycle_v1.py",
+    "sha256": "cc0c54bdc610e627bdda2974f2322e49a35bfd07fea239e5d2b44e30e2df18ac"
+  },
+  "gates": {
+    "forged_object_false_accept_rate_max": 0,
+    "stale_or_overbroad_false_accept_rate_max": 0.01,
+    "valid_accept_rate_min": 0.95,
+    "predicate_check_reduction_vs_always_full_min": 0.25,
+    "repository_block_bootstrap_lower_bound_min": 0,
+    "positive_organization_count_min": 4,
+    "mutation_score_min": 0.95,
+    "decision_equivalence_with_always_full_required": true
+  },
+  "bootstrap": {
+    "seed": 1314,
+    "replicates": 10000,
+    "unit": "repository",
+    "interval": "percentile_95",
+    "authority": "FUTURE_CAMPAIGN_ONLY__NOT_RUN__REPEATED_TEMPLATE_IS_NONINFERENTIAL"
+  },
+  "boundaries": {
+    "semantic_governance_correctness": "CANNOT_CHECK",
+    "independent_expert_adjudication": "CANNOT_CHECK",
+    "protected_custody": "CANNOT_CHECK",
+    "public_data_confers_independence": false,
+    "same_owner_replay_confers_independence": false,
+    "external_git_reverification": "NOT_RUN",
+    "objective_gold_authority": "CANNOT_CHECK_UNTIL_LIVE_GIT_ACQUISITION",
+    "inferential_promotion_authority": false,
+    "repository_bootstrap_inference": "NOT_AUTHORIZED",
+    "issue_1086_gate_authority": false,
+    "scientific_authority_delta": "NONE",
+    "not_measured": [
+      "test_exit",
+      "signed_tag_validity",
+      "runtime_cost",
+      "network_cost",
+      "energy",
+      "human_governance_quality"
+    ]
+  },
+  "records": [
+    {
+      "repository": "psf/requests",
+      "organization": "psf",
+      "source_url": "https://github.com/psf/requests",
+      "head_sha": "8f8b212de8c2129d7954c6cd373762880375620a",
+      "parent_sha": "8068356288978c4f54661ae6f95afe0e0831885e",
+      "head_committed_at": "2026-08-17T19:03:13Z",
+      "commit_url": "https://github.com/psf/requests/commit/8f8b212de8c2129d7954c6cd373762880375620a",
+      "ancestry_probe": {
+        "base_expression": "8f8b212de8c2129d7954c6cd373762880375620a^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "8068356288978c4f54661ae6f95afe0e0831885e"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "Apache-2.0",
+        "git_blob_sha1": "67db8588217f266eb561f75fae738656325deac9",
+        "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "bytes": 10142,
+        "url": "https://github.com/psf/requests/blob/8f8b212de8c2129d7954c6cd373762880375620a/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pallets/flask",
+      "organization": "pallets",
+      "source_url": "https://github.com/pallets/flask",
+      "head_sha": "d318b683471101618febed18996405ad26462110",
+      "parent_sha": "2a8a38b051fc248865730bf3511bf2e2ea325e81",
+      "head_committed_at": "2026-08-16T18:35:31Z",
+      "commit_url": "https://github.com/pallets/flask/commit/d318b683471101618febed18996405ad26462110",
+      "ancestry_probe": {
+        "base_expression": "d318b683471101618febed18996405ad26462110^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "2a8a38b051fc248865730bf3511bf2e2ea325e81"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "9d227a0cc43c3268d15722b763bd94ad298645a1",
+        "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+        "bytes": 1475,
+        "url": "https://github.com/pallets/flask/blob/d318b683471101618febed18996405ad26462110/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pallets/click",
+      "organization": "pallets",
+      "source_url": "https://github.com/pallets/click",
+      "head_sha": "2c8cd3ac958a7eb316d67f2d316c27086c4c0369",
+      "parent_sha": "e1fd5946ab26aaf372009eaff1acf947140b40fb",
+      "head_committed_at": "2026-08-20T16:12:10Z",
+      "commit_url": "https://github.com/pallets/click/commit/2c8cd3ac958a7eb316d67f2d316c27086c4c0369",
+      "ancestry_probe": {
+        "base_expression": "2c8cd3ac958a7eb316d67f2d316c27086c4c0369^",
+        "status": "ahead",
+        "ahead_by": 2,
+        "merge_base_sha": "e1fd5946ab26aaf372009eaff1acf947140b40fb"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "d12a849186982399c537c5b9a8fd77bf2edd5eab",
+        "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+        "bytes": 1475,
+        "url": "https://github.com/pallets/click/blob/2c8cd3ac958a7eb316d67f2d316c27086c4c0369/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pallets/jinja",
+      "organization": "pallets",
+      "source_url": "https://github.com/pallets/jinja",
+      "head_sha": "5ef70112a1ff19c05324ff889dd30405b1002044",
+      "parent_sha": "0514dce5097f8929f22edc247cad1576c64e8d48",
+      "head_committed_at": "2025-06-14T20:34:58Z",
+      "commit_url": "https://github.com/pallets/jinja/commit/5ef70112a1ff19c05324ff889dd30405b1002044",
+      "ancestry_probe": {
+        "base_expression": "5ef70112a1ff19c05324ff889dd30405b1002044^",
+        "status": "ahead",
+        "ahead_by": 3,
+        "merge_base_sha": "0514dce5097f8929f22edc247cad1576c64e8d48"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "c37cae49ec77ad6ebb25568c1605f1fee5313cfb",
+        "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+        "bytes": 1475,
+        "url": "https://github.com/pallets/jinja/blob/5ef70112a1ff19c05324ff889dd30405b1002044/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pallets/werkzeug",
+      "organization": "pallets",
+      "source_url": "https://github.com/pallets/werkzeug",
+      "head_sha": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+      "parent_sha": "002fcc5450870362028d3ffb3d91f05a4f1fa559",
+      "head_committed_at": "2026-08-21T23:57:30Z",
+      "commit_url": "https://github.com/pallets/werkzeug/commit/0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+      "ancestry_probe": {
+        "base_expression": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455^",
+        "status": "ahead",
+        "ahead_by": 19,
+        "merge_base_sha": "002fcc5450870362028d3ffb3d91f05a4f1fa559"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "c37cae49ec77ad6ebb25568c1605f1fee5313cfb",
+        "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+        "bytes": 1475,
+        "url": "https://github.com/pallets/werkzeug/blob/0005c79e09bae5f4cc2bd8ccd468d7dafe24a455/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "numpy/numpy",
+      "organization": "numpy",
+      "source_url": "https://github.com/numpy/numpy",
+      "head_sha": "71596b96a678b2d769f81e8b2fb84b2b43a99f68",
+      "parent_sha": "ffa72d99810dc54fa4222c3ffc623c4b268191b1",
+      "head_committed_at": "2026-08-24T09:16:17Z",
+      "commit_url": "https://github.com/numpy/numpy/commit/71596b96a678b2d769f81e8b2fb84b2b43a99f68",
+      "ancestry_probe": {
+        "base_expression": "71596b96a678b2d769f81e8b2fb84b2b43a99f68^",
+        "status": "ahead",
+        "ahead_by": 2,
+        "merge_base_sha": "ffa72d99810dc54fa4222c3ffc623c4b268191b1"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "f37a12cc4cccf83af4517809791777e71c1df2a9",
+        "sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+        "bytes": 1543,
+        "url": "https://github.com/numpy/numpy/blob/71596b96a678b2d769f81e8b2fb84b2b43a99f68/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "scipy/scipy",
+      "organization": "scipy",
+      "source_url": "https://github.com/scipy/scipy",
+      "head_sha": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+      "parent_sha": "1339f61b5d9c8e5aaf1c3150a9917c6faa12252e",
+      "head_committed_at": "2026-08-24T06:42:28Z",
+      "commit_url": "https://github.com/scipy/scipy/commit/6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+      "ancestry_probe": {
+        "base_expression": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "1339f61b5d9c8e5aaf1c3150a9917c6faa12252e"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "1032aece8a8109d67f238de6865d8b08e750a8c0",
+        "sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94",
+        "bytes": 1531,
+        "url": "https://github.com/scipy/scipy/blob/6a1d12b8c2b767b79f977a0212bcabb6446bfbf9/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pandas-dev/pandas",
+      "organization": "pandas-dev",
+      "source_url": "https://github.com/pandas-dev/pandas",
+      "head_sha": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+      "parent_sha": "b9e9608e5337c1c019b6b77c7c49d84584cea7ae",
+      "head_committed_at": "2026-08-24T07:25:54Z",
+      "commit_url": "https://github.com/pandas-dev/pandas/commit/0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+      "ancestry_probe": {
+        "base_expression": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "b9e9608e5337c1c019b6b77c7c49d84584cea7ae"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "bd1cc2a30c626d0bbe43ab6ec1c4744c2e2df831",
+        "sha256": "9850f6b5bdef7346503065807b878deb8058b976c5c329f4c4d23bf4796ce9ae",
+        "bytes": 1634,
+        "url": "https://github.com/pandas-dev/pandas/blob/0c48f9eb6de21210dfb881fdaa5719fbde4c37cb/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "scikit-learn/scikit-learn",
+      "organization": "scikit-learn",
+      "source_url": "https://github.com/scikit-learn/scikit-learn",
+      "head_sha": "b589cc5ca4084b6a46725e8368d97c2b342f67f8",
+      "parent_sha": "3654de014e4bda0247eca1bf9344989103aefd00",
+      "head_committed_at": "2026-08-24T12:19:11Z",
+      "commit_url": "https://github.com/scikit-learn/scikit-learn/commit/b589cc5ca4084b6a46725e8368d97c2b342f67f8",
+      "ancestry_probe": {
+        "base_expression": "b589cc5ca4084b6a46725e8368d97c2b342f67f8^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "3654de014e4bda0247eca1bf9344989103aefd00"
+      },
+      "license": {
+        "path": "COPYING",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "3d7ee432c15b685eaa654b6abe8f8e3ea8126a8d",
+        "sha256": "50d6a9d340f19ab355609917993114daf5f47e3161067bcf34955bbd05cd9cb0",
+        "bytes": 1532,
+        "url": "https://github.com/scikit-learn/scikit-learn/blob/b589cc5ca4084b6a46725e8368d97c2b342f67f8/COPYING",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pytest-dev/pytest",
+      "organization": "pytest-dev",
+      "source_url": "https://github.com/pytest-dev/pytest",
+      "head_sha": "c99f595a896eb84c1dda4f4b85a0929c52011e27",
+      "parent_sha": "cfe321c4862cad89cd6745d75516a9680b078ff9",
+      "head_committed_at": "2026-08-24T04:09:23Z",
+      "commit_url": "https://github.com/pytest-dev/pytest/commit/c99f595a896eb84c1dda4f4b85a0929c52011e27",
+      "ancestry_probe": {
+        "base_expression": "c99f595a896eb84c1dda4f4b85a0929c52011e27^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "cfe321c4862cad89cd6745d75516a9680b078ff9"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "c3f1657fce94589bd1ec7cead810639047f3d359",
+        "sha256": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b",
+        "bytes": 1091,
+        "url": "https://github.com/pytest-dev/pytest/blob/c99f595a896eb84c1dda4f4b85a0929c52011e27/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "pydantic/pydantic",
+      "organization": "pydantic",
+      "source_url": "https://github.com/pydantic/pydantic",
+      "head_sha": "53bae790cacb9272a9b08ab87a962d286d51cf1b",
+      "parent_sha": "24b9b3370685390c7d0265613dc073e142ac6db6",
+      "head_committed_at": "2026-08-24T10:35:15Z",
+      "commit_url": "https://github.com/pydantic/pydantic/commit/53bae790cacb9272a9b08ab87a962d286d51cf1b",
+      "ancestry_probe": {
+        "base_expression": "53bae790cacb9272a9b08ab87a962d286d51cf1b^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "24b9b3370685390c7d0265613dc073e142ac6db6"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "488c6260c10f2e88fa1fae58a63fccec8d600cd1",
+        "sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+        "bytes": 1129,
+        "url": "https://github.com/pydantic/pydantic/blob/53bae790cacb9272a9b08ab87a962d286d51cf1b/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "fastapi/fastapi",
+      "organization": "fastapi",
+      "source_url": "https://github.com/fastapi/fastapi",
+      "head_sha": "c3f316b7e814667e8ee81e03a7330d00ee61e45c",
+      "parent_sha": "452e526877cccec949e96180916cbb55c40a6581",
+      "head_committed_at": "2026-08-19T08:58:10Z",
+      "commit_url": "https://github.com/fastapi/fastapi/commit/c3f316b7e814667e8ee81e03a7330d00ee61e45c",
+      "ancestry_probe": {
+        "base_expression": "c3f316b7e814667e8ee81e03a7330d00ee61e45c^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "452e526877cccec949e96180916cbb55c40a6581"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "3e92463e6bd522a2a21e5f0a80d8089d6c4be20d",
+        "sha256": "4ec89ffc81485b97fec584b2d4a961032eeffe834453894fd9c1274906cc744e",
+        "bytes": 1086,
+        "url": "https://github.com/fastapi/fastapi/blob/c3f316b7e814667e8ee81e03a7330d00ee61e45c/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "encode/httpx",
+      "organization": "encode",
+      "source_url": "https://github.com/encode/httpx",
+      "head_sha": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+      "parent_sha": "ae1b9f66238f75ced3ced5e4485408435de10768",
+      "head_committed_at": "2026-02-23T10:40:42Z",
+      "commit_url": "https://github.com/encode/httpx/commit/b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+      "ancestry_probe": {
+        "base_expression": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "ae1b9f66238f75ced3ced5e4485408435de10768"
+      },
+      "license": {
+        "path": "LICENSE.md",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "ab79d16a3f4c6c894c028d1f7431811e8711b42b",
+        "sha256": "4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d",
+        "bytes": 1508,
+        "url": "https://github.com/encode/httpx/blob/b5addb64f0161ff6bfe94c124ef76f6a1fba5254/LICENSE.md",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "django/django",
+      "organization": "django",
+      "source_url": "https://github.com/django/django",
+      "head_sha": "0b40210e4808937a7c0922e8b7502bff4752faa3",
+      "parent_sha": "03988c5a5ba248c3b9b11ea96fd4fda5e98849aa",
+      "head_committed_at": "2026-08-23T19:37:51Z",
+      "commit_url": "https://github.com/django/django/commit/0b40210e4808937a7c0922e8b7502bff4752faa3",
+      "ancestry_probe": {
+        "base_expression": "0b40210e4808937a7c0922e8b7502bff4752faa3^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "03988c5a5ba248c3b9b11ea96fd4fda5e98849aa"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "5f4f225dd282aa7e4361ec3c2750bbbaaed8ab1f",
+        "sha256": "b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669",
+        "bytes": 1552,
+        "url": "https://github.com/django/django/blob/0b40210e4808937a7c0922e8b7502bff4752faa3/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "apache/airflow",
+      "organization": "apache",
+      "source_url": "https://github.com/apache/airflow",
+      "head_sha": "98747f873f247f5bb378cb8012447103610a4fc3",
+      "parent_sha": "b03e48a875d991ad42b9d81efb7e75e001879404",
+      "head_committed_at": "2026-08-24T12:00:37Z",
+      "commit_url": "https://github.com/apache/airflow/commit/98747f873f247f5bb378cb8012447103610a4fc3",
+      "ancestry_probe": {
+        "base_expression": "98747f873f247f5bb378cb8012447103610a4fc3^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "b03e48a875d991ad42b9d81efb7e75e001879404"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "Apache-2.0",
+        "git_blob_sha1": "11069edd79019f7dafbe3138841cf289209270dd",
+        "sha256": "8173d5c29b4f956d532781d2b86e4e30f83e6b7878dce18c919451d6ba707c90",
+        "bytes": 10850,
+        "url": "https://github.com/apache/airflow/blob/98747f873f247f5bb378cb8012447103610a4fc3/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "eslint/eslint",
+      "organization": "eslint",
+      "source_url": "https://github.com/eslint/eslint",
+      "head_sha": "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b",
+      "parent_sha": "3c3ae53a43721162f0db76c69665ebd9d752ea52",
+      "head_committed_at": "2026-08-24T11:47:53Z",
+      "commit_url": "https://github.com/eslint/eslint/commit/ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b",
+      "ancestry_probe": {
+        "base_expression": "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "3c3ae53a43721162f0db76c69665ebd9d752ea52"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "b607bb36e96c33fd8ef50897db0336c585b6137a",
+        "sha256": "3b6be04f862a077a4b97929dbf247299360824d9365f8603c263769303ace18c",
+        "bytes": 1094,
+        "url": "https://github.com/eslint/eslint/blob/ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "prettier/prettier",
+      "organization": "prettier",
+      "source_url": "https://github.com/prettier/prettier",
+      "head_sha": "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5",
+      "parent_sha": "b38fc57487d172cc789e1a4dc60aadd45cde17ee",
+      "head_committed_at": "2026-08-23T08:13:56Z",
+      "commit_url": "https://github.com/prettier/prettier/commit/d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5",
+      "ancestry_probe": {
+        "base_expression": "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "b38fc57487d172cc789e1a4dc60aadd45cde17ee"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "5767e34d30ab78796220f9492726dd2f677d4166",
+        "sha256": "b0f2417199889f1c0d28ec4e0244eacf1a15de5819d61f641dd7d8f45153ac9c",
+        "bytes": 1065,
+        "url": "https://github.com/prettier/prettier/blob/d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "webpack/webpack",
+      "organization": "webpack",
+      "source_url": "https://github.com/webpack/webpack",
+      "head_sha": "ce97d583e1cd8f3e47b70737de72e91b567a8497",
+      "parent_sha": "578b86b63d75f62832eb24923e3b19cfc6077567",
+      "head_committed_at": "2026-08-23T18:38:59Z",
+      "commit_url": "https://github.com/webpack/webpack/commit/ce97d583e1cd8f3e47b70737de72e91b567a8497",
+      "ancestry_probe": {
+        "base_expression": "ce97d583e1cd8f3e47b70737de72e91b567a8497^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "578b86b63d75f62832eb24923e3b19cfc6077567"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "8c11fc7289b75463fe07534fcc8224e333feb7ff",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e",
+        "bytes": 1071,
+        "url": "https://github.com/webpack/webpack/blob/ce97d583e1cd8f3e47b70737de72e91b567a8497/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "vitejs/vite",
+      "organization": "vitejs",
+      "source_url": "https://github.com/vitejs/vite",
+      "head_sha": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+      "parent_sha": "2e8355d67c19c68e867ee633121fc91e007c846c",
+      "head_committed_at": "2026-08-24T04:37:03Z",
+      "commit_url": "https://github.com/vitejs/vite/commit/c32e784c95b51f7969cebc7522a5037f14fb6606",
+      "ancestry_probe": {
+        "base_expression": "c32e784c95b51f7969cebc7522a5037f14fb6606^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "2e8355d67c19c68e867ee633121fc91e007c846c"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "b7e97ecb6aa4dd70b3e3a637afa2ae16feb7cd12",
+        "sha256": "692057af3d664cbb79ac38293eb50aa3c4987f8182e2a440136e59e08f1b4a54",
+        "bytes": 1101,
+        "url": "https://github.com/vitejs/vite/blob/c32e784c95b51f7969cebc7522a5037f14fb6606/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "vercel/next.js",
+      "organization": "vercel",
+      "source_url": "https://github.com/vercel/next.js",
+      "head_sha": "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8",
+      "parent_sha": "75c1f1f6e04cfb83895eceba911934205bff4916",
+      "head_committed_at": "2026-08-24T13:03:55Z",
+      "commit_url": "https://github.com/vercel/next.js/commit/88483bdedc83b5c32d3c3f2fb2a0972069cd29e8",
+      "ancestry_probe": {
+        "base_expression": "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "75c1f1f6e04cfb83895eceba911934205bff4916"
+      },
+      "license": {
+        "path": "license.md",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "5948ee9bd0de5064423688a2967ab3111c2658ed",
+        "sha256": "ee765244e2d59f5234d474f62e0766fa0c8b99af967fdd4c0cb8dcb0c76ea224",
+        "bytes": 1079,
+        "url": "https://github.com/vercel/next.js/blob/88483bdedc83b5c32d3c3f2fb2a0972069cd29e8/license.md",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "microsoft/vscode",
+      "organization": "microsoft",
+      "source_url": "https://github.com/microsoft/vscode",
+      "head_sha": "8d4b385871e77afd48f0917f8358379944924117",
+      "parent_sha": "ade09f53cb41afe69b773becc29612fda777da5f",
+      "head_committed_at": "2026-08-24T12:47:54Z",
+      "commit_url": "https://github.com/microsoft/vscode/commit/8d4b385871e77afd48f0917f8358379944924117",
+      "ancestry_probe": {
+        "base_expression": "8d4b385871e77afd48f0917f8358379944924117^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "ade09f53cb41afe69b773becc29612fda777da5f"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "0ac28ee234d232ac0691f39cebf95bf6b2a763a5",
+        "sha256": "9480271317925265e806a9a196aaa33410a962fa9d4d1e248a4a5187bc8c9df9",
+        "bytes": 1088,
+        "url": "https://github.com/microsoft/vscode/blob/8d4b385871e77afd48f0917f8358379944924117/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "microsoft/TypeScript",
+      "organization": "microsoft",
+      "source_url": "https://github.com/microsoft/TypeScript",
+      "head_sha": "e9e477458d7b975ed5e43117fb85f6bc87363a6a",
+      "parent_sha": "d6c4afddb2c55f4a9dea7b59293a99a8fdea1799",
+      "head_committed_at": "2026-08-24T01:23:34Z",
+      "commit_url": "https://github.com/microsoft/TypeScript/commit/e9e477458d7b975ed5e43117fb85f6bc87363a6a",
+      "ancestry_probe": {
+        "base_expression": "e9e477458d7b975ed5e43117fb85f6bc87363a6a^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "d6c4afddb2c55f4a9dea7b59293a99a8fdea1799"
+      },
+      "license": {
+        "path": "LICENSE.txt",
+        "declared_spdx": "Apache-2.0",
+        "git_blob_sha1": "8746124b277914d0f0fd9cf4aef2ed3b587143d9",
+        "sha256": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47",
+        "bytes": 9197,
+        "url": "https://github.com/microsoft/TypeScript/blob/e9e477458d7b975ed5e43117fb85f6bc87363a6a/LICENSE.txt",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "golang/go",
+      "organization": "golang",
+      "source_url": "https://github.com/golang/go",
+      "head_sha": "aafcf7a2b86634bf9f06c9d336c1a25478392975",
+      "parent_sha": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+      "head_committed_at": "2026-08-24T11:08:03Z",
+      "commit_url": "https://github.com/golang/go/commit/aafcf7a2b86634bf9f06c9d336c1a25478392975",
+      "ancestry_probe": {
+        "base_expression": "aafcf7a2b86634bf9f06c9d336c1a25478392975^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "a0044c2d09d47f2e2308538c70da4d7d359ed24a"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+        "bytes": 1453,
+        "url": "https://github.com/golang/go/blob/aafcf7a2b86634bf9f06c9d336c1a25478392975/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "kubernetes/kubernetes",
+      "organization": "kubernetes",
+      "source_url": "https://github.com/kubernetes/kubernetes",
+      "head_sha": "e81f39c0e03ce8ed8e2660c9147b391edd9e262b",
+      "parent_sha": "96e8ae4bfae1e74e376dab201a0e42a92b885ecb",
+      "head_committed_at": "2026-08-20T18:59:46Z",
+      "commit_url": "https://github.com/kubernetes/kubernetes/commit/e81f39c0e03ce8ed8e2660c9147b391edd9e262b",
+      "ancestry_probe": {
+        "base_expression": "e81f39c0e03ce8ed8e2660c9147b391edd9e262b^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "96e8ae4bfae1e74e376dab201a0e42a92b885ecb"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "Apache-2.0",
+        "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "bytes": 11358,
+        "url": "https://github.com/kubernetes/kubernetes/blob/e81f39c0e03ce8ed8e2660c9147b391edd9e262b/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "prometheus/prometheus",
+      "organization": "prometheus",
+      "source_url": "https://github.com/prometheus/prometheus",
+      "head_sha": "503180645ef0984bf3abdcf998ca16fe9aaeb21e",
+      "parent_sha": "e4334de10cb91a6c8e05bc7f8e0afa1336e141a7",
+      "head_committed_at": "2026-08-24T12:33:35Z",
+      "commit_url": "https://github.com/prometheus/prometheus/commit/503180645ef0984bf3abdcf998ca16fe9aaeb21e",
+      "ancestry_probe": {
+        "base_expression": "503180645ef0984bf3abdcf998ca16fe9aaeb21e^",
+        "status": "ahead",
+        "ahead_by": 5,
+        "merge_base_sha": "e4334de10cb91a6c8e05bc7f8e0afa1336e141a7"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "Apache-2.0",
+        "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "url": "https://github.com/prometheus/prometheus/blob/503180645ef0984bf3abdcf998ca16fe9aaeb21e/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "denoland/deno",
+      "organization": "denoland",
+      "source_url": "https://github.com/denoland/deno",
+      "head_sha": "02f52d6be370f12de8a79391bd2172f7c334e12d",
+      "parent_sha": "d01388751b1d6f89b83c86473560a20ba9b675d3",
+      "head_committed_at": "2026-08-24T13:00:28Z",
+      "commit_url": "https://github.com/denoland/deno/commit/02f52d6be370f12de8a79391bd2172f7c334e12d",
+      "ancestry_probe": {
+        "base_expression": "02f52d6be370f12de8a79391bd2172f7c334e12d^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "d01388751b1d6f89b83c86473560a20ba9b675d3"
+      },
+      "license": {
+        "path": "LICENSE.md",
+        "declared_spdx": "MIT",
+        "git_blob_sha1": "b641c75c0b04ccfddcb1145d2554ab49b6ca9411",
+        "sha256": "f62497fffecc0852960c8d3e6934b9db86d16396e9b604072e923892cae3a588",
+        "bytes": 1074,
+        "url": "https://github.com/denoland/deno/blob/02f52d6be370f12de8a79391bd2172f7c334e12d/LICENSE.md",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "ansible/ansible",
+      "organization": "ansible",
+      "source_url": "https://github.com/ansible/ansible",
+      "head_sha": "b85437b7f6e39476252b271778b8c7dcebbd931a",
+      "parent_sha": "9cf16a4aca7898481c257f1e17ad28d0b67b1f85",
+      "head_committed_at": "2026-08-19T18:12:48Z",
+      "commit_url": "https://github.com/ansible/ansible/commit/b85437b7f6e39476252b271778b8c7dcebbd931a",
+      "ancestry_probe": {
+        "base_expression": "b85437b7f6e39476252b271778b8c7dcebbd931a^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "9cf16a4aca7898481c257f1e17ad28d0b67b1f85"
+      },
+      "license": {
+        "path": "COPYING",
+        "declared_spdx": "GPL-3.0-or-later",
+        "git_blob_sha1": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "bytes": 35149,
+        "url": "https://github.com/ansible/ansible/blob/b85437b7f6e39476252b271778b8c7dcebbd931a/COPYING",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "celery/celery",
+      "organization": "celery",
+      "source_url": "https://github.com/celery/celery",
+      "head_sha": "8d2bccca0478cad48f31a75eaebc0ce389f65425",
+      "parent_sha": "2de9b55eab6071098b45603f1876c6e8946dd086",
+      "head_committed_at": "2026-08-22T14:29:20Z",
+      "commit_url": "https://github.com/celery/celery/commit/8d2bccca0478cad48f31a75eaebc0ce389f65425",
+      "ancestry_probe": {
+        "base_expression": "8d2bccca0478cad48f31a75eaebc0ce389f65425^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "2de9b55eab6071098b45603f1876c6e8946dd086"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "93411068ab7db9401ec4d5c9d52ca14f77e794fc",
+        "sha256": "c358cdf77f28bbab50d4a754e123118339c15230349e82bf66489cece3ac093a",
+        "bytes": 2717,
+        "url": "https://github.com/celery/celery/blob/8d2bccca0478cad48f31a75eaebc0ce389f65425/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "home-assistant/core",
+      "organization": "home-assistant",
+      "source_url": "https://github.com/home-assistant/core",
+      "head_sha": "cbde7ecf465c1ea1375e1860e550c26a2f51d323",
+      "parent_sha": "84e071d7951ec25b7acccd5a7b116fd486287176",
+      "head_committed_at": "2026-08-24T12:57:54Z",
+      "commit_url": "https://github.com/home-assistant/core/commit/cbde7ecf465c1ea1375e1860e550c26a2f51d323",
+      "ancestry_probe": {
+        "base_expression": "cbde7ecf465c1ea1375e1860e550c26a2f51d323^",
+        "status": "ahead",
+        "ahead_by": 1,
+        "merge_base_sha": "84e071d7951ec25b7acccd5a7b116fd486287176"
+      },
+      "license": {
+        "path": "LICENSE.md",
+        "declared_spdx": "Apache-2.0",
+        "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "url": "https://github.com/home-assistant/core/blob/cbde7ecf465c1ea1375e1860e550c26a2f51d323/LICENSE.md",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    },
+    {
+      "repository": "sympy/sympy",
+      "organization": "sympy",
+      "source_url": "https://github.com/sympy/sympy",
+      "head_sha": "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2",
+      "parent_sha": "e950d313a932bc6cccbc95376b3821cd2f8b5af4",
+      "head_committed_at": "2026-08-23T23:57:49Z",
+      "commit_url": "https://github.com/sympy/sympy/commit/46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2",
+      "ancestry_probe": {
+        "base_expression": "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2^",
+        "status": "ahead",
+        "ahead_by": 2,
+        "merge_base_sha": "e950d313a932bc6cccbc95376b3821cd2f8b5af4"
+      },
+      "license": {
+        "path": "LICENSE",
+        "declared_spdx": "BSD-3-Clause",
+        "git_blob_sha1": "0744f229d697ca3ed1b1b257bfdb70e3eecf0b9e",
+        "sha256": "07a5e9819f727b4986ad2829c7a29a6320d42575f720eb24d71b7fef573a0286",
+        "bytes": 7885,
+        "url": "https://github.com/sympy/sympy/blob/46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2/LICENSE",
+        "full_text_redistributed": false
+      },
+      "retrieval": {
+        "date": "2026-08-24",
+        "connector": "GitHub",
+        "operations": [
+          "search_commits",
+          "compare_commits",
+          "fetch_file"
+        ],
+        "raw_repository_downloaded": false
+      }
+    }
+  ]
+}
