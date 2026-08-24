@@ -22,8 +22,16 @@
 - Both OS and NR all-attempt totals must be positive, so the later
   outcome-selected strongest comparator cannot have a zero denominator.
 - All four CLI paths must be pairwise distinct by resolved path and, where
-  existing, device/inode identity. Symlink/hardlink aliases and either output
-  overwriting an input or the other output fail before validation/write.
+  existing, device/inode identity. Both output paths must be new. Before input
+  validation or payload writes, the CLI exclusively reserves both with
+  `O_CREAT|O_EXCL`, keeps their descriptors open, and rejects pre-existing,
+  symlink/hardlink, output/input, output/output and host-filesystem case-fold
+  aliases.
+- Canonical output bytes are written through the held descriptors, `fsync`ed,
+  reread and verified by exact bytes/SHA-256. Path identities are checked before
+  and after writes and after both emissions. Failure rolls back only paths that
+  still identify their owned reservations, never attacker replacements or
+  inputs.
 - Run plan and candidate ledger are each read once; their hashes and parsed
   strict-JSON objects come from the same immutable byte buffers.
 - The output is a deterministic 102 x 9 generation-cost projection using the
@@ -64,10 +72,13 @@ git diff --check origin/main...HEAD
 Expected focused terminal:
 
 ```text
-Ran 35 tests
+Ran 38 tests
 OK
-P1_SAB_RUNNER_V2_ALLOCATED_COST_SYNTHETIC_HOSTILE_VALIDATION_PASS tests=32 official_tasks=0 official_outcomes=0
+P1_SAB_RUNNER_V2_ALLOCATED_COST_SYNTHETIC_HOSTILE_VALIDATION_PASS tests=38 official_tasks=0 official_outcomes=0
 ```
+
+On a case-sensitive host the suite still runs 38 tests but reports one skip for
+the case-fold alias regression because the probed spellings are distinct there.
 
 Do not run pytest or CI for this packet.
 
@@ -85,8 +96,8 @@ python3 \
   --output-receipt /approved/external/candidate-cost-seal-receipt-v2.json
 ```
 
-All paths must be absolute. Production plans, ledgers and receipts stay outside
-the repository.
+All paths must be absolute, and both output destinations must not already exist.
+Production plans, ledgers and receipts stay outside the repository.
 
 ## Review-required next steps
 

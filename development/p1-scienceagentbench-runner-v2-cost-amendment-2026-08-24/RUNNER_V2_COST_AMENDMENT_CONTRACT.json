@@ -170,8 +170,12 @@
       "output-ledger path",
       "output-receipt path"
     ],
-    "pairwise_rule": "All four CLI paths must identify pairwise distinct files before any input validation or output write. Equal lexical/resolved paths, symlink aliases, and equal device/inode identities such as hardlinks are rejected. Existing inode identities are checked for every pair.",
-    "overwrite_rule": "Neither output may overwrite either input, and the receipt may not overwrite the projection. Alias rejection occurs before prepare_production_seal and before directory creation or file write.",
+    "pairwise_rule": "All four CLI paths undergo lexical, resolved, symlink, and existing-device/inode preflight as pairwise distinct before output reservation. Equal lexical/resolved paths, symlink aliases, and equal device/inode identities such as hardlinks are rejected.",
+    "output_reservation_rule": "Before prepare_production_seal or any payload write, both outputs are atomically created with O_RDWR|O_CREAT|O_EXCL mode 0600. Their file descriptors remain open through payload verification, so a pre-existing destination or a filesystem-equivalent spelling such as a case-fold collision fails closed rather than being overwritten.",
+    "reserved_identity_rule": "Each reserved output must be a regular file with a unique (st_dev, st_ino) identity distinct from the other reservation and from both then-existing inputs. Every payload write uses only the held file descriptor; the pathname must still resolve to that reserved identity before and after the write and after both outputs have been emitted.",
+    "post_write_verification_rule": "After fsync, the emitter rereads the held descriptor and requires exact byte equality and SHA-256 equality with the intended canonical JSON plus newline. A pathname identity change or byte/hash mismatch fails closed.",
+    "overwrite_rule": "Neither output may pre-exist or overwrite either input, and the receipt may not overwrite the projection. Output/output and output/input aliases are forbidden by both preflight identity checks and exclusive filesystem reservation.",
+    "rollback_rule": "Any reservation, validation, write, identity, or hash failure closes every held descriptor and unlinks only paths that still identify their owned reserved inodes. A substituted path or input is never unlinked as rollback collateral.",
     "programmatic_rule": "prepare_production_seal separately rejects run-plan/candidate-ledger aliasing even when used without the CLI."
   },
   "input_snapshot_contract": {
@@ -192,7 +196,9 @@
       "timing provenance and GPU-count binding",
       "all 918 records and three arm totals",
       "nullable billed-USD availability counts",
-      "strictly positive OS and NR denominator precondition"
+      "strictly positive OS and NR denominator precondition",
+      "single-read input snapshot policy",
+      "exclusive output reservation and post-write identity/hash policy"
     ]
   },
   "fail_closed_rejections": [
@@ -205,7 +211,9 @@
     "missing billed USD represented as zero or any AVAILABLE/CANNOT_CHECK/value mismatch",
       "zero OS total or zero NR total",
       "duplicate JSON members, extra fields, upstream hash drift, unequal Runner V1 budgets, seed drift, cap exceedance, or malformed failure/hash fields",
-      "any lexical, resolved, symlink, hardlink, or existing-inode alias among inputs and outputs",
+      "any lexical, resolved, symlink, hardlink, existing-inode, or filesystem case-fold alias among inputs and outputs",
+      "any pre-existing output destination or failure to reserve both outputs exclusively before validation",
+      "any reserved-output identity substitution or post-write byte/hash mismatch",
       "any attempt to seal parsed run-plan or candidate-ledger content under the hash of different path bytes"
   ],
   "forbidden_surfaces": [

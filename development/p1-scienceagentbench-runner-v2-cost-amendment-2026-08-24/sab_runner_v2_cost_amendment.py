@@ -17,18 +17,20 @@ import hashlib
 import importlib.util
 import json
 import math
+import os
 import re
+import stat
 import sys
 from fractions import Fraction
 from pathlib import Path
 from types import ModuleType
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any, Iterable, Mapping, NamedTuple, Sequence
 
 
 ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parents[1]
 AMENDMENT_CONTRACT_PATH = ROOT / "RUNNER_V2_COST_AMENDMENT_CONTRACT.json"
-AMENDMENT_CONTRACT_SHA256 = "71de699586b6bbd07ee20d6d83b598d06ef7e1ebccf14ba475d98d559afa66b2"
+AMENDMENT_CONTRACT_SHA256 = "806a497798ed162af06130ec9bc12a1edf6153dc4adb690886c1c1d87f67dc0e"
 
 V1_ROOT = REPO_ROOT / "development/p1-scienceagentbench-runner-v1-2026-08-24"
 V1_CONTRACT_PATH = V1_ROOT / "RUNNER_CONTRACT_V1.json"
@@ -201,6 +203,15 @@ class ContractError(ValueError):
 
 class DuplicateJsonMemberError(ValueError):
     """JSON repeated a member and therefore has ambiguous identity."""
+
+
+class ReservedDestination(NamedTuple):
+    """Exclusive output-path reservation held open through final verification."""
+
+    label: str
+    path: Path
+    fd: int
+    identity: tuple[int, int]
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -394,6 +405,145 @@ def _validate_pairwise_distinct_paths(
                     f"{right_label}={validated[right_label]} identify the same file"
                 )
     return validated
+
+
+def _reservation_matches_path(reservation: ReservedDestination) -> bool:
+    try:
+        path_stat = reservation.path.stat()
+        fd_stat = os.fstat(reservation.fd)
+    except OSError:
+        return False
+    return (
+        (path_stat.st_dev, path_stat.st_ino) == reservation.identity
+        and (fd_stat.st_dev, fd_stat.st_ino) == reservation.identity
+        and stat.S_ISREG(fd_stat.st_mode)
+    )
+
+
+def _require_reservation_identity(reservation: ReservedDestination) -> None:
+    if not _reservation_matches_path(reservation):
+        raise ContractError(
+            f"{reservation.label} identity changed after exclusive reservation"
+        )
+
+
+def _rollback_reservations(
+    reservations: Mapping[str, ReservedDestination],
+) -> None:
+    for reservation in reservations.values():
+        if _reservation_matches_path(reservation):
+            try:
+                reservation.path.unlink()
+            except OSError:
+                pass
+        try:
+            os.close(reservation.fd)
+        except OSError:
+            pass
+
+
+def _close_reservations(
+    reservations: Mapping[str, ReservedDestination],
+) -> None:
+    for reservation in reservations.values():
+        try:
+            os.close(reservation.fd)
+        except OSError as exc:
+            raise ContractError(
+                f"cannot close verified {reservation.label}: {reservation.path}"
+            ) from exc
+
+
+def _reserve_output_destinations(
+    input_paths: Mapping[str, Path], output_paths: Mapping[str, Path]
+) -> dict[str, ReservedDestination]:
+    """Atomically reserve new, distinct output files and keep their fds open."""
+
+    reservations: dict[str, ReservedDestination] = {}
+    try:
+        for label, path in output_paths.items():
+            try:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_EXCL, 0o600)
+            except FileExistsError as exc:
+                raise ContractError(
+                    f"{label} already exists or aliases another path: {path}"
+                ) from exc
+            except OSError as exc:
+                raise ContractError(f"cannot reserve {label}: {path}") from exc
+            fd_stat = os.fstat(fd)
+            if not stat.S_ISREG(fd_stat.st_mode):
+                os.close(fd)
+                raise ContractError(f"{label} reservation is not a regular file: {path}")
+            reservation = ReservedDestination(
+                label=label,
+                path=path,
+                fd=fd,
+                identity=(fd_stat.st_dev, fd_stat.st_ino),
+            )
+            reservations[label] = reservation
+            _require_reservation_identity(reservation)
+
+        identities = [reservation.identity for reservation in reservations.values()]
+        if len(set(identities)) != len(identities):
+            raise ContractError("output reservations identify the same filesystem object")
+
+        for input_label, input_path in input_paths.items():
+            try:
+                input_stat = input_path.stat()
+            except OSError as exc:
+                raise ContractError(
+                    f"cannot identify existing {input_label}: {input_path}"
+                ) from exc
+            input_identity = (input_stat.st_dev, input_stat.st_ino)
+            for reservation in reservations.values():
+                if reservation.identity == input_identity:
+                    raise ContractError(
+                        f"{reservation.label} aliases existing {input_label}: {input_path}"
+                    )
+        return reservations
+    except Exception:
+        _rollback_reservations(reservations)
+        raise
+
+
+def _write_reserved_canonical_json(
+    reservation: ReservedDestination, value: Mapping[str, Any]
+) -> str:
+    """Write through the held fd, then verify bytes and path identity exactly."""
+
+    payload = _canonical_json_bytes(value) + b"\n"
+    _require_reservation_identity(reservation)
+    try:
+        os.lseek(reservation.fd, 0, os.SEEK_SET)
+        os.ftruncate(reservation.fd, 0)
+        offset = 0
+        while offset < len(payload):
+            written = os.write(reservation.fd, payload[offset:])
+            if written <= 0:
+                raise OSError("zero-byte output write")
+            offset += written
+        os.fsync(reservation.fd)
+        os.lseek(reservation.fd, 0, os.SEEK_SET)
+        observed_chunks = []
+        remaining = len(payload) + 1
+        while remaining > 0:
+            chunk = os.read(reservation.fd, min(remaining, 1 << 20))
+            if not chunk:
+                break
+            observed_chunks.append(chunk)
+            remaining -= len(chunk)
+        observed = b"".join(observed_chunks)
+    except OSError as exc:
+        raise ContractError(
+            f"cannot write and verify {reservation.label}: {reservation.path}"
+        ) from exc
+    if observed != payload or _sha256_bytes(observed) != _sha256_bytes(payload):
+        raise ContractError(
+            f"post-write byte/hash verification failed for {reservation.label}"
+        )
+    _require_reservation_identity(reservation)
+    return _sha256_bytes(payload)
 
 
 def _metric_object() -> dict[str, str]:
@@ -868,14 +1018,6 @@ def prepare_production_seal(
     )
 
 
-def _write_canonical_json(path: Path | str, value: Mapping[str, Any]) -> str:
-    destination = _validate_absolute_path(path, "output path")
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    payload = _canonical_json_bytes(value) + b"\n"
-    destination.write_bytes(payload)
-    return _sha256_bytes(payload)
-
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
@@ -893,6 +1035,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: Iterable[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
+    reservations: dict[str, ReservedDestination] = {}
     try:
         paths = _validate_pairwise_distinct_paths(
             {
@@ -902,16 +1045,42 @@ def main(argv: Iterable[str] | None = None) -> int:
                 "output-receipt path": args.output_receipt,
             }
         )
+        reservations = _reserve_output_destinations(
+            {
+                "run-plan path": paths["run-plan path"],
+                "candidate-ledger path": paths["candidate-ledger path"],
+            },
+            {
+                "output-ledger path": paths["output-ledger path"],
+                "output-receipt path": paths["output-receipt path"],
+            },
+        )
         projection, receipt = prepare_production_seal(
             paths["run-plan path"], paths["candidate-ledger path"]
         )
-        emitted_file_sha256 = _write_canonical_json(
-            paths["output-ledger path"], projection
+        emitted_file_sha256 = _write_reserved_canonical_json(
+            reservations["output-ledger path"], projection
         )
         receipt["emitted_cost_projection_file_sha256"] = emitted_file_sha256
-        _write_canonical_json(paths["output-receipt path"], receipt)
+        receipt[
+            "output_destination_policy"
+        ] = "EXCLUSIVE_O_EXCL_RESERVATIONS__PAIRWISE_DISTINCT__POST_WRITE_IDENTITY_AND_HASH_VERIFIED"
+        receipt[
+            "input_snapshot_policy"
+        ] = "ONE_READ_PER_INPUT__SHA256_AND_STRICT_JSON_FROM_IDENTICAL_BYTES"
+        _write_reserved_canonical_json(
+            reservations["output-receipt path"], receipt
+        )
+        for reservation in reservations.values():
+            _require_reservation_identity(reservation)
     except ContractError as exc:
+        _rollback_reservations(reservations)
         parser.error(str(exc))
+    except Exception:
+        _rollback_reservations(reservations)
+        raise
+    else:
+        _close_reservations(reservations)
     print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
     return 0
 

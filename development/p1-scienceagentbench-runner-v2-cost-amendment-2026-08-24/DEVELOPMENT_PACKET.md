@@ -139,12 +139,24 @@ these bytes and must bind the emitted file as `generation_ledger_sha256`.
 ## I/O identity and immutable input snapshots
 
 The four CLI roles—run plan, candidate ledger, output projection and output
-receipt—must identify pairwise distinct files before validation begins or an
-output directory/file is written. The guard compares resolved paths (therefore
-following symlinks) and, for existing objects, `(st_dev, st_ino)` identity
-(therefore detecting hardlinks). It rejects either output overwriting an input,
-the receipt overwriting the projection, and input/input aliasing. The
-programmatic seal entry point repeats the input/input guard.
+receipt—first undergo pairwise lexical/resolved and existing `(st_dev, st_ino)`
+preflight (therefore detecting symlinks and hardlinks). Both outputs must be new:
+before input validation or any payload write, the CLI atomically reserves each
+destination with `O_RDWR|O_CREAT|O_EXCL` mode `0600` and keeps both descriptors
+open through final verification. This filesystem-aware step rejects a
+pre-existing output and also rejects two nonexistent spellings that the host
+filesystem treats as the same path, including case-fold collisions on
+case-insensitive APFS/HFS. Reserved output identities must be unique and
+distinct from both inputs. The programmatic seal entry point separately repeats
+the input/input guard.
+
+Canonical JSON is written only through each held descriptor. After `fsync`, the
+descriptor is reread and the observed bytes and SHA-256 must exactly equal the
+intended canonical bytes; the pathname must still identify the reserved inode
+before and after writing and after both emissions. Any reservation, validation,
+write, hash or identity failure rolls back only a pathname that still identifies
+its owned reservation. A substituted path or input is never deleted as
+collateral.
 
 Each input is then read exactly once as bytes. SHA-256 and strict UTF-8 JSON
 parsing—including duplicate-member rejection—operate on that same immutable
@@ -172,13 +184,19 @@ ledger and attacks:
 - zero OS or NR all-attempt totals;
 - Runner V1 unequal budgets, cap exceedance, candidate failures and hashes; and
 - output/output and output/input lexical, symlink and hardlink aliases;
+- pre-existing outputs and case-folded nonexistent output collisions on a
+  case-insensitive filesystem;
+- post-write destination substitution, byte/hash corruption and safe owned-file
+  rollback;
 - deterministic run-plan and candidate-ledger swaps between hypothetical hash
   and parse stages; and
 - analysis-projection field drift or evaluator/outcome leakage.
 
-`35/35` synthetic hostile tests pass. They open zero official tasks/outcomes and
-exercise no provider, model, archive, credential, container, evaluator, CI,
-pytest, manuscript or PDF.
+`38/38` synthetic hostile tests pass on a case-insensitive host. The explicit
+case-fold regression is conditionally skipped on a case-sensitive host, where
+the two spellings are not aliases. The suite opens zero official tasks/outcomes
+and exercises no provider, model, archive, credential, container, evaluator,
+CI, pytest, manuscript or PDF.
 
 ## Review and activation rule
 

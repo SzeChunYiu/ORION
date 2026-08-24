@@ -510,7 +510,7 @@ class RunnerV2CostAmendmentSyntheticTests(unittest.TestCase):
         self.assertIn("official_evaluator_invoked", source)
         self.assertIn("official_outcomes_opened", source)
 
-    def test_33_output_output_alias_rejects_before_validation_or_write(self) -> None:
+    def test_33_output_alias_and_preexisting_destination_reject_before_validation(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             plan_path = root / "unread-plan.json"
@@ -539,6 +539,34 @@ class RunnerV2CostAmendmentSyntheticTests(unittest.TestCase):
                 )
             self.assertEqual(caught.exception.code, 2)
             self.assertFalse(shared_output.exists())
+
+            existing_output = root / "existing-output.json"
+            distinct_receipt = root / "distinct-receipt.json"
+            existing_output.write_bytes(b"preserved-existing-output")
+            with (
+                mock.patch.object(
+                    amendment,
+                    "prepare_production_seal",
+                    side_effect=AssertionError("validation must not start"),
+                ),
+                redirect_stderr(io.StringIO()),
+                self.assertRaises(SystemExit) as caught,
+            ):
+                amendment.main(
+                    [
+                        "--run-plan",
+                        str(plan_path),
+                        "--candidate-ledger",
+                        str(ledger_path),
+                        "--output-ledger",
+                        str(existing_output),
+                        "--output-receipt",
+                        str(distinct_receipt),
+                    ]
+                )
+            self.assertEqual(caught.exception.code, 2)
+            self.assertEqual(existing_output.read_bytes(), b"preserved-existing-output")
+            self.assertFalse(distinct_receipt.exists())
 
     def test_34_output_input_lexical_symlink_and_hardlink_aliases_reject(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -687,6 +715,116 @@ class RunnerV2CostAmendmentSyntheticTests(unittest.TestCase):
                 "0.01",
             )
 
+    def test_36_case_folded_nonexistent_outputs_alias_on_case_insensitive_fs(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            probe_lower = root / "case-probe"
+            probe_upper = root / "CASE-PROBE"
+            probe_lower.write_text("probe", encoding="utf-8")
+            case_insensitive = probe_upper.exists()
+            probe_lower.unlink()
+            if not case_insensitive:
+                self.skipTest("host filesystem is case-sensitive")
+
+            plan_path = root / "unread-plan.json"
+            ledger_path = root / "unread-ledger.json"
+            output_lower = root / "case-output.json"
+            output_upper = root / "CASE-OUTPUT.JSON"
+            with (
+                mock.patch.object(
+                    amendment,
+                    "prepare_production_seal",
+                    side_effect=AssertionError("validation must not start"),
+                ),
+                redirect_stderr(io.StringIO()),
+                self.assertRaises(SystemExit) as caught,
+            ):
+                amendment.main(
+                    [
+                        "--run-plan",
+                        str(plan_path),
+                        "--candidate-ledger",
+                        str(ledger_path),
+                        "--output-ledger",
+                        str(output_lower),
+                        "--output-receipt",
+                        str(output_upper),
+                    ]
+                )
+            self.assertEqual(caught.exception.code, 2)
+            self.assertFalse(output_lower.exists())
+            self.assertFalse(output_upper.exists())
+
+    def test_37_post_write_identity_change_fails_closed_without_input_overwrite(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            input_path = root / "input.json"
+            output_path = root / "output.json"
+            input_path.write_text("input-preserved", encoding="utf-8")
+            reservations = amendment._reserve_output_destinations(
+                {"input path": input_path}, {"output path": output_path}
+            )
+            reservation = reservations["output path"]
+            real_fsync = amendment.os.fsync
+            swapped = False
+
+            def swap_after_fsync(fd: int) -> None:
+                nonlocal swapped
+                real_fsync(fd)
+                if fd == reservation.fd and not swapped:
+                    swapped = True
+                    output_path.unlink()
+                    output_path.write_bytes(b"synthetic-attacker-replacement")
+
+            try:
+                with mock.patch.object(amendment.os, "fsync", swap_after_fsync):
+                    self.assert_reject(
+                        lambda: amendment._write_reserved_canonical_json(
+                            reservation, {"synthetic": "payload"}
+                        ),
+                        "identity changed",
+                    )
+            finally:
+                amendment._rollback_reservations(reservations)
+            self.assertEqual(input_path.read_text(encoding="utf-8"), "input-preserved")
+            self.assertEqual(output_path.read_bytes(), b"synthetic-attacker-replacement")
+
+    def test_38_post_write_hash_mismatch_rolls_back_reserved_output(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            input_path = root / "input.json"
+            output_path = root / "output.json"
+            input_path.write_text("input-preserved", encoding="utf-8")
+            reservations = amendment._reserve_output_destinations(
+                {"input path": input_path}, {"output path": output_path}
+            )
+            reservation = reservations["output path"]
+            real_read = amendment.os.read
+            corrupted = False
+
+            def corrupt_verification_read(fd: int, size: int) -> bytes:
+                nonlocal corrupted
+                payload = real_read(fd, size)
+                if fd == reservation.fd and payload and not corrupted:
+                    corrupted = True
+                    payload = bytes([payload[0] ^ 1]) + payload[1:]
+                return payload
+
+            try:
+                with mock.patch.object(
+                    amendment.os, "read", corrupt_verification_read
+                ):
+                    self.assert_reject(
+                        lambda: amendment._write_reserved_canonical_json(
+                            reservation, {"synthetic": "payload"}
+                        ),
+                        "byte/hash verification",
+                    )
+            finally:
+                amendment._rollback_reservations(reservations)
+            self.assertEqual(input_path.read_text(encoding="utf-8"), "input-preserved")
+            self.assertFalse(output_path.exists())
+
 
 def write_receipt(result: unittest.TestResult) -> None:
     receipt = {
@@ -715,7 +853,11 @@ def write_receipt(result: unittest.TestResult) -> None:
             "Runner V1 budget/cap/failure invariant regression",
             "duplicate JSON members",
             "output-output and output-input lexical/symlink/hardlink aliases",
+            "pre-existing output destination non-overwrite",
             "single-read immutable input snapshots under deterministic path swap",
+            "case-folded nonexistent output collision on case-insensitive filesystems",
+            "post-write destination identity substitution",
+            "post-write byte/hash verification corruption and reservation rollback",
             "Analysis Freeze V1 projection field drift",
             "execution-capability or outcome/evaluator field leakage"
         ],
@@ -735,6 +877,11 @@ def write_receipt(result: unittest.TestResult) -> None:
         "run_plan_reads_for_hash_and_parse": 1,
         "candidate_ledger_reads_for_hash_and_parse": 1,
         "hash_and_strict_parse_share_identical_byte_buffer": True,
+        "output_destination_reservation": "O_CREAT|O_EXCL_HELD_FILE_DESCRIPTORS",
+        "output_destinations_must_not_preexist": True,
+        "post_write_path_identity_verified": True,
+        "post_write_file_hash_verified": True,
+        "failed_owned_reservations_rolled_back": True,
         "official_tasks_run": 0,
         "official_outcomes_opened": 0,
         "official_evaluator_invoked": False,
