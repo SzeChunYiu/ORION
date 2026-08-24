@@ -286,6 +286,17 @@ material the structures did not construct. Both were committed as protocol
 before their cases, both carry frozen gold, and both were reproduced by a second
 checker that does not import or execute the first.
 
+That second checker is not the one whose independence this paper withdraws
+above. The withdrawn one replaces a universal quantifier with an early-return
+loop and cannot diverge from the reference on any point, so its agreement
+confirms a transcription. These two evaluate the same frozen case facts and gold
+through a distinct prioritized defect-set formulation and independently
+reconstruct the T6.1--T6.3 summary invariants, so they can disagree and the CI
+gate requires that they do not on any protected classification. Neither,
+however, is external: both implementations are written inside this programme,
+and genuine independent review remains outstanding for these studies exactly as
+it does for the enumeration.
+
 **ETS, 18 frozen cases in three six-case families.**
 
 | system | exact accuracy | unsafe false-admissible | laundering false-admissible | unnecessary reopen |
