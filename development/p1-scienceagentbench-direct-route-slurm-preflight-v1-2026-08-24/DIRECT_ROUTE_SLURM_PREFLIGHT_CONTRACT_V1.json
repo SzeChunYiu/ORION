@@ -1,0 +1,106 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.direct-route-slurm-preflight.v1",
+  "authority": "SYNTHETIC_PREFLIGHT_IMPLEMENTATION_ONLY__NO_OFFICIAL_OR_SCIENTIFIC_AUTHORITY",
+  "status": "ADDITIVE_BRIDGE_FROZEN_FOR_SYNTHETIC_VALIDATION",
+  "base_main_commit": "465ddcc04a644c41010defa558b93395d200b36f",
+  "merged_pr1168_head": "346469046ac27a012775bc3361ecce7764fc0ab2",
+  "upstream_modification_allowed": false,
+  "wrapper_execution_allowed": false,
+  "wrapper_binding_role": "BYTE_BOUND_SCHEDULER_SEMANTICS_DONOR_NONINVOKED",
+  "scheduler_capture_execution": "DIRECT_SUPERVISOR_SCONTROL_EXACT_ARGV_AND_PINNED_ATTEMPT_DIRECTORY_FD",
+  "upstream_bindings": [
+    {
+      "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/direct_route_generation_driver_v1.py",
+      "sha256": "23d0a7a1bfee2060f44e26a418564061d8aca412093ba930351ecf33a913f480"
+    },
+    {
+      "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_FREEZE_CONTRACT_V1.json",
+      "sha256": "67e586c59f6b30beac7cab6e94cf2d176b2a1536a20ac8e9138fc8c7860e98f4"
+    },
+    {
+      "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_PROMPT_BUNDLE_V1.json",
+      "sha256": "03bfbf7e0870f9b385ee8ff9258df9e083fa9baa0813471795b9c80bafd1ebe6"
+    },
+    {
+      "path": "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/sab_lunarc_generation_adapter_v1.py",
+      "sha256": "e46434fd37872a4ca7abce35375043bca2035fce52e3f36d611b1a03b98aefb9"
+    },
+    {
+      "path": "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/run_lunarc_attempt_v1.sh",
+      "sha256": "1d4655350c1a037cd4e51ee11e15e21491c5bfd7cea125948beb2e152c73b582"
+    }
+  ],
+  "lane_artifact_bindings": {
+    "bridge_sha256": "93ee3abec947a2b6fe6b9a4d1fb7871bbee56c1e190430c4193431a640c93006",
+    "launcher_sha256": "eec521d77db9324f4c8373bce2b5e9de0214c2c51808bfcf450e41e1707350ee"
+  },
+  "runtime_artifacts": {
+    "model_filename": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+    "model_bytes": 18556689568,
+    "model_sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad",
+    "llama_server_sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+    "cuda_backend_sha256": "fbe27c15253195c10559d98c6ba9c6d476a65d2bbf0240307b4a46d8aa17cefb",
+    "llama_cpp_version": "b10434",
+    "llama_cpp_commit": "7e4c0a96880dae4fc4268ad441f8a6446bd5460a"
+  },
+  "server_geometry": {
+    "listen_host": "127.0.0.1",
+    "listen_port": 8080,
+    "context_tokens": 32768,
+    "parallel_slots": 1,
+    "continuous_batching": false,
+    "request_cache_prompt": false,
+    "context_shift": false
+  },
+  "process_attestation": {
+    "required": true,
+    "bindings": [
+      "model_exact_bytes_and_sha256",
+      "server_executable_device_inode_and_sha256",
+      "cuda_backend_path_and_sha256",
+      "launcher_sha256",
+      "proc_cmdline_exact_argv",
+      "proc_environment_backend_and_empty_proxies",
+      "server_owned_ipv4_loopback_8080_listener",
+      "health_and_exact_one_slot"
+    ]
+  },
+  "deadline": {
+    "clock": "CLOCK_MONOTONIC_RAW",
+    "cap_nanoseconds": 1800000000000,
+    "scope": "ONE_REMAINING_FIRST_TO_FINAL_DEADLINE_ACROSS_ALL_PHASES",
+    "per_phase_timeout_reset_allowed": false,
+    "deadline_failure": "ADAPTER_GENERATION_CAPTURE_CANNOT_CHECK_SIDECAR"
+  },
+  "run_plan_binding_extension": {
+    "separate_hash_bound_extension_required": true,
+    "direct_driver_sha256_required": true,
+    "static_rendered_prompt_sha256_required": true,
+    "rr_phase1_dynamic_binding": "TEMPLATE_PLUS_RECOVERED_PACKET_PLUS_STRICT_PARSED_CANONICAL_RR_PHASE0_STATE_AND_SHA256",
+    "observed_request_hash_receipt_required": true,
+    "adapter_v2_ledger_native_binding_status": "NOT_EXTENDED__SEPARATE_BRIDGE_RECEIPT_REQUIRED",
+    "production_claim_until_joint_918_bridge_receipts_are_finalized": "CANNOT_CHECK"
+  },
+  "failure_policy": {
+    "pre_capture_failure": "PREFLIGHT_CANNOT_CHECK",
+    "post_capture_failure": "GENERATION_ATTEMPT_CAPTURE_CANNOT_CHECK_SIDECAR",
+    "generic_wrapper_failure_is_not_adapter_capture": true,
+    "unchanged_wrapper_execution": "FORBIDDEN_NONINVOKED",
+    "scheduler_semantics_source": "EXACT_SHA256_BOUND_WRAPPER_BYTES_DONOR_ONLY",
+    "scheduler_capture_implementation": "DIRECT_SUPERVISOR_WITHOUT_WRAPPER_PROCESS",
+    "new_file_only_outputs": true,
+    "output_parent_binding": "PINNED_VERIFIED_DIRECTORY_DESCRIPTORS_WITH_MKDIRAT_OPENAT_RELATIVE_OPERATIONS",
+    "process_cleanup_scope": "ENTIRE_OWNED_PROCESS_GROUP_EVEN_IF_LEADER_ALREADY_EXITED",
+    "cleanup_isolation": "WRAPPER_CLEANUP_FAILURE_CANNOT_PREVENT_SERVER_CLEANUP",
+    "server_cleanup_required": true
+  },
+  "claim_boundary": {
+    "official_tasks_opened": 0,
+    "official_outcomes_opened": 0,
+    "task_fit_status": "CANNOT_CHECK_BEFORE_TASK_OPENING",
+    "production_admissibility": "CANNOT_CHECK",
+    "scheduler_finalization_status": "CANNOT_CHECK_PENDING_SCHEDULER_FINALIZATION",
+    "scientific_authority_delta": "NONE",
+    "semantic_choice_sensitivity": "NOT_ESTABLISHED"
+  }
+}
