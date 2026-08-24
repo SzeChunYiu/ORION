@@ -1,0 +1,47 @@
+name: ORION foundations V3 theory audit
+
+on:
+  pull_request:
+    paths:
+      - "research/orion-foundations-v3/**"
+      - ".github/workflows/orion-foundations-v3.yml"
+  push:
+    paths:
+      - "research/orion-foundations-v3/**"
+      - ".github/workflows/orion-foundations-v3.yml"
+
+jobs:
+  theory-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Reject execution-lane edits
+        shell: bash
+        run: |
+          base="${{ github.event.pull_request.base.sha || github.event.before }}"
+          if [[ -z "$base" || "$base" == "0000000000000000000000000000000000000000" ]]; then
+            base="HEAD^"
+          fi
+          git diff --name-only "$base"...HEAD | tee /tmp/foundations-v3-paths.txt
+          unexpected="$(grep -Ev '^(research/orion-foundations-v3/|\.github/workflows/orion-foundations-v3\.yml)$' /tmp/foundations-v3-paths.txt || true)"
+          if [[ -n "$unexpected" ]]; then
+            echo "Unexpected non-theory paths:" >&2
+            echo "$unexpected" >&2
+            exit 1
+          fi
+          if grep -Eiq '(^|/)(rr1|finalizer|slurm|lunarc|custody)(/|$)' /tmp/foundations-v3-paths.txt; then
+            echo "Execution/finalizer path entered theory PR" >&2
+            exit 1
+          fi
+      - name: Validate theory package
+        run: python research/orion-foundations-v3/check_foundations_v3.py
+      - name: Parse JSON artifacts
+        run: |
+          python -m json.tool research/orion-foundations-v3/THEOREM_LEDGER_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/ASSUMPTION_LEDGER_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/EXECUTION_ONLY_BACKLOG_V1.json >/dev/null
