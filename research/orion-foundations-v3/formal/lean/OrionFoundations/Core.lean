@@ -74,8 +74,14 @@ theorem ostc_t2_exact_target_sufficiency [Inhabited γ]
           _ = decode (interface y) := congrArg decode hxy
           _ = target y := (hdecode y).symm
   · intro h
-    exact ⟨decoderOfFiberConstant interface target h,
-      fun x => decoderOfFiberConstant_spec interface target h x⟩
+    classical
+    let decode : β → γ := fun z =>
+      if hz : ∃ y, interface y = z then target (Classical.choose hz) else default
+    refine ⟨decode, ?_⟩
+    intro x
+    dsimp [decode]
+    have hx : ∃ y, interface y = interface x := ⟨x, rfl⟩
+    rw [dif_pos hx]
 
 
 theorem ostc_t3_fiberwise_optimality
