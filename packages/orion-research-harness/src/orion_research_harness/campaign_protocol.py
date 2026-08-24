@@ -8,6 +8,9 @@ from .protocol import content_digest
 _STATE_SCHEMA = "ORION.ResearchCampaignState.v1"
 _DECISION_SCHEMA = "ORION.ResearchCampaignDecision.v1"
 _TRANSITION_SCHEMA = "ORION.ResearchCampaignTransition.v1"
+CAMPAIGN_STATE_SCHEMA = _STATE_SCHEMA
+CAMPAIGN_DECISION_SCHEMA = _DECISION_SCHEMA
+CAMPAIGN_TRANSITION_SCHEMA = _TRANSITION_SCHEMA
 _AUTHORITY_FIELDS = (
     "grants_scientific_authority",
     "grants_novelty_authority",
@@ -323,6 +326,9 @@ class CampaignTransition:
 
 
 __all__ = [
+    "CAMPAIGN_DECISION_SCHEMA",
+    "CAMPAIGN_STATE_SCHEMA",
+    "CAMPAIGN_TRANSITION_SCHEMA",
     "CampaignDecision",
     "CampaignState",
     "CampaignTransition",

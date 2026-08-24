@@ -1,0 +1,44 @@
+{
+  "schema": "ORION.ResearchHarness.CampaignContractBindingRepair.v1",
+  "base_revision": "6b6b5390053504a4525b6857bfe3ab425034fda0",
+  "terminal": "CAMPAIGN_PUBLICATION_CONTRACT_REBOUND",
+  "authority": "HARNESS_CONTRACT_BINDING_ONLY",
+  "protocol": "development/orion-research-harness/CAMPAIGN_CONTRACT_BINDING_REPAIR_2026-08-24.md",
+  "protocol_sha256": "9f7f9936957d8f5c9ebfeac89727ce23accfad9d91c6b8a9b63e704d39308dc5",
+  "implementation_sha256": {
+    "packages/orion-research-harness/src/orion_research_harness/campaign_protocol.py": "14b22082389de8a2294bcbec6746c3cb1cd50d595bdb2312afb4dd8dd001934a",
+    "packages/orion-research-harness/src/orion_research_harness/publication_contract.py": "6368a0fdb260853effa70742b197509e66c7ffa2d4cb20be486f90d083efefad",
+    "packages/orion-research-harness/tests/test_publication_contract.py": "0a9dd2fbd39aa0f64163c3e5b3efbe1736cc8c81385a6f9ab62887fea740cd9a",
+    "tests/unit/runtime/test_import_boundaries.py": "51096016ab1ccc5035372a97201646f977f16e2750c2906a2ccbf876c9aa5810"
+  },
+  "verification": {
+    "focused_command": "PYTHONPATH=packages/orion-research-harness/src:src /tmp/orion-harness-fix-venv-20260824/bin/python -m pytest packages/orion-research-harness/tests/test_publication_contract.py tests/unit/runtime/test_import_boundaries.py tests/unit/runtime/test_paper_parity_runtime.py tests/unit/runtime/test_runtime.py -q",
+    "focused_result": "13 passed in 15.44s",
+    "typed_probe_terminal": "CAMPAIGN_PUBLICATION_CONTRACT_REBOUND",
+    "package_root_importable": true
+  },
+  "preserved_adverse": {
+    "campaign_broader_suite_result": "10 failed, 6 passed in 2.25s",
+    "campaign_failure_classes": [
+      "local execution receipt incompatibility",
+      "missing shadow_control decision surface",
+      "strict type validation drift",
+      "capability contract failure mapping drift",
+      "shadow allowlist validation drift"
+    ],
+    "paper_parity_campaign_collection": "missing build_donor_campaign_manifest export from package root",
+    "p2_runner_importable": false,
+    "p2_runner_signature": "missing ReadClassification in orion.study.p2.systems",
+    "scientific_negative": false,
+    "classification": "MECHANICAL_BINDING_REPAIR_WITH_ADJACENT_BASELINE_FAILURES"
+  },
+  "remaining_boundary": {
+    "campaign_runtime_validated": false,
+    "paper_parity_campaign_collectable": false,
+    "p2_schema_reconciled": false,
+    "dual_harness_executable": false,
+    "historical_receipts_revalidated": false,
+    "scientific_authority": false,
+    "publication_authority": false
+  }
+}

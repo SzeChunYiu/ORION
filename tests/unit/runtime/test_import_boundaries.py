@@ -74,9 +74,7 @@ import orion
 def test_harness_import_does_not_eagerly_execute_incomplete_p2_runner() -> None:
     completed = _fresh_import("import orion_research_harness")
 
-    assert "ReadClassification" not in completed.stderr
-    if completed.returncode != 0:
-        assert "CAMPAIGN_DECISION_SCHEMA" in completed.stderr
+    assert completed.returncode == 0, completed.stderr
 
 
 def test_direct_p2_runner_import_preserves_schema_interleaving_as_adverse() -> None:
