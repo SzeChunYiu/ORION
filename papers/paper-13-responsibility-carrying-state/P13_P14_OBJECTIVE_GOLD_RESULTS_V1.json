@@ -1,0 +1,1638 @@
+{
+ "schema_version": "orion.p13p14.objective-gold-derivation-results.v1",
+ "executes_contract": "P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1",
+ "uses_corpus": "P13_P14_PINNED_REPOSITORY_CORPUS_V1.json",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "repositories_attempted": 31,
+ "repositories_derived": 31,
+ "organizations": [
+  "apache",
+  "emberjs",
+  "erlang",
+  "golang",
+  "jquery",
+  "microsoft",
+  "pallets",
+  "pandas-dev",
+  "psf",
+  "pydata",
+  "redis",
+  "rust-lang",
+  "scipy",
+  "vuejs"
+ ],
+ "facts_decided": 123,
+ "facts_cannot_check": 32,
+ "test_exit_disposition": "every TEST_EXIT fact is CANNOT_CHECK: the locked per-repository runtime the contract requires does not exist, and an exit status obtained another way is not that fact",
+ "records": [
+  {
+   "repo_id": "apache/kafka",
+   "pinned_sha": "808bbe535b1ca8e4c80e2e124db01184ef907858",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "808bbe535b1ca8e4c80e2e124db01184ef907858",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "808bbe535b1ca8e4c80e2e124db01184ef907858"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "ee5f55f7e151245a0ec38dd343ac0b06309a04a3",
+     "b": "808bbe535b1ca8e4c80e2e124db01184ef907858",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "4.4.0-rc0",
+     "target": "634a935e729197848ffd958c06458215f96f103e",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: no signature found"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "ee5f55f7e151245a0ec38dd343ac0b06309a04a3",
+     "b": "808bbe535b1ca8e4c80e2e124db01184ef907858",
+     "a_epoch": 1787563545,
+     "b_epoch": 1787566484,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "emberjs/ember.js",
+   "pinned_sha": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "27355cdcbf5db4d08fcfdda7787d1f081d24f52b",
+     "b": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v7.4.0-alpha.2-ember-source",
+     "target": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v7.4.0-alpha.2-ember-source: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "27355cdcbf5db4d08fcfdda7787d1f081d24f52b",
+     "b": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+     "a_epoch": 1787095439,
+     "b_epoch": 1787101259,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "erlang/otp",
+   "pinned_sha": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "8a8df42671cfc39d64f436ee56cf5a04b8f9f35f",
+     "b": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "OTP-27.3.4.16",
+     "target": "30d37823fff97aa262619d7ec24e2fd3c3c1a9be",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: no signature found"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "8a8df42671cfc39d64f436ee56cf5a04b8f9f35f",
+     "b": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368",
+     "a_epoch": 1787565100,
+     "b_epoch": 1787565495,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "golang/crypto",
+   "pinned_sha": "71488c48c2dfecf900e52caa55f88ef4fef62d54",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "71488c48c2dfecf900e52caa55f88ef4fef62d54",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "71488c48c2dfecf900e52caa55f88ef4fef62d54"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "82adefa711cb8d9a1f12c7ea91b491007d21819f",
+     "b": "71488c48c2dfecf900e52caa55f88ef4fef62d54",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v0.55.0",
+     "target": "f44d03d253a1503e51b059ca880867c51d878242",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v0.55.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "82adefa711cb8d9a1f12c7ea91b491007d21819f",
+     "b": "71488c48c2dfecf900e52caa55f88ef4fef62d54",
+     "a_epoch": 1787172166,
+     "b_epoch": 1787493199,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "golang/go",
+   "pinned_sha": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "a0044c2d09d47f2e2308538c70da4d7d359ed24a"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "2247540ca08e77764da5acc86bd19dc74c0b7d13",
+     "b": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "go1.27.0",
+     "target": "8af21751f066eced273ca3ce49506b366847c623",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: go1.27.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "2247540ca08e77764da5acc86bd19dc74c0b7d13",
+     "b": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+     "a_epoch": 1787563854,
+     "b_epoch": 1787563877,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "golang/net",
+   "pinned_sha": "fc715e5c972bf4ec70ca609630538e6b71d6480c",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "fc715e5c972bf4ec70ca609630538e6b71d6480c",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "fc715e5c972bf4ec70ca609630538e6b71d6480c"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "37f3d6f02f416ee4b2e752493f052ccdcd2df450",
+     "b": "fc715e5c972bf4ec70ca609630538e6b71d6480c",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v0.58.0",
+     "target": "acc78e0d2b2c855c0c4fbdcfe5f42a9e3d0f9778",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v0.58.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "37f3d6f02f416ee4b2e752493f052ccdcd2df450",
+     "b": "fc715e5c972bf4ec70ca609630538e6b71d6480c",
+     "a_epoch": 1787160366,
+     "b_epoch": 1787193970,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "golang/sys",
+   "pinned_sha": "e8c1c3274309bd87f360205f5706e986ceccb317",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "e8c1c3274309bd87f360205f5706e986ceccb317",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "e8c1c3274309bd87f360205f5706e986ceccb317"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "effdf5d9636b622bdffd9eb2df870dd3e93075b9",
+     "b": "e8c1c3274309bd87f360205f5706e986ceccb317",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v0.47.0",
+     "target": "9e7e939dcafac07e8ab4cffa6e5fc74908413f00",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v0.47.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "effdf5d9636b622bdffd9eb2df870dd3e93075b9",
+     "b": "e8c1c3274309bd87f360205f5706e986ceccb317",
+     "a_epoch": 1787228548,
+     "b_epoch": 1787235850,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "golang/text",
+   "pinned_sha": "dac6be3876335b7e1d2ea7d209d9bfb930306291",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "dac6be3876335b7e1d2ea7d209d9bfb930306291",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "dac6be3876335b7e1d2ea7d209d9bfb930306291"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "91daecbb061baa9d835f3a3cc130b9d58ce912c5",
+     "b": "dac6be3876335b7e1d2ea7d209d9bfb930306291",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v0.41.0",
+     "target": "acdba6655fd45cdb5ab73c9d6a8981333bd65a39",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v0.41.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "91daecbb061baa9d835f3a3cc130b9d58ce912c5",
+     "b": "dac6be3876335b7e1d2ea7d209d9bfb930306291",
+     "a_epoch": 1786492342,
+     "b_epoch": 1787160526,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "golang/tools",
+   "pinned_sha": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "ed9ed918a1e0aad1ed54642e4a8f1c90b34b6b49",
+     "b": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v0.49.0",
+     "target": "18332fec72972efbb8ab9881984fec2d8cfc2b58",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v0.49.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "ed9ed918a1e0aad1ed54642e4a8f1c90b34b6b49",
+     "b": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc",
+     "a_epoch": 1787238153,
+     "b_epoch": 1787260232,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "jquery/jquery",
+   "pinned_sha": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "1183ba16fe38ebac23db3b885080e864f494954e",
+     "b": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "4.0.0",
+     "target": "4f2fae08f23b54ce09322e62e73cce6161b8d3cb",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: directory '/home/scyiu/.gnupg' created\ngpg: keybox '/home/scyiu/.gnupg/pubring.kbx' created\ngpg: Signature made Sun 18 Jan 2026 01:27:28 AM CET\ngpg:       "
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "1183ba16fe38ebac23db3b885080e864f494954e",
+     "b": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b",
+     "a_epoch": 1786028052,
+     "b_epoch": 1787238589,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "jquery/qunit",
+   "pinned_sha": "d304f6ee3cf7645a78e3f3882c901d0206990edc",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "d304f6ee3cf7645a78e3f3882c901d0206990edc",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "d304f6ee3cf7645a78e3f3882c901d0206990edc"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "d03ec1312d4897d448d74e7d506b6d50dd7f8294",
+     "b": "d304f6ee3cf7645a78e3f3882c901d0206990edc",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "2.26.0",
+     "target": "75b55a05e30d0b5f4dcf929678618dd74fd01966",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Mon 01 Jun 2026 06:09:53 AM CEST\ngpg:                using RSA key 77D3DB3054FAA8C2BCCB81FEED2F24296602F50A\ngpg: Can't check signature: No p"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "d03ec1312d4897d448d74e7d506b6d50dd7f8294",
+     "b": "d304f6ee3cf7645a78e3f3882c901d0206990edc",
+     "a_epoch": 1780287641,
+     "b_epoch": 1780288515,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "microsoft/vscode",
+   "pinned_sha": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "7c54fda801c73e35072ac759b6d93f8c69c65d7b",
+     "b": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "1.134.0",
+     "target": "474a349ad5b745e512ef86b864d1c74f7264dd7a",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: 1.134.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "7c54fda801c73e35072ac759b6d93f8c69c65d7b",
+     "b": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6",
+     "a_epoch": 1787563544,
+     "b_epoch": 1787567983,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "pallets/flask",
+   "pinned_sha": "d318b683471101618febed18996405ad26462110",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "d318b683471101618febed18996405ad26462110",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "d318b683471101618febed18996405ad26462110"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "2a8a38b051fc248865730bf3511bf2e2ea325e81",
+     "b": "d318b683471101618febed18996405ad26462110",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "3.1.3",
+     "target": "22d924701a6ae2e4cd01e9a15bbaf3946094af65",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Thu 19 Feb 2026 05:56:48 AM CET\ngpg:                using RSA key 95803D56D8718432305120DD43368A7AA8CC5926\ngpg: Can't check signature: No pu"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "2a8a38b051fc248865730bf3511bf2e2ea325e81",
+     "b": "d318b683471101618febed18996405ad26462110",
+     "a_epoch": 1786487569,
+     "b_epoch": 1786905331,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "pallets/jinja",
+   "pinned_sha": "5ef70112a1ff19c05324ff889dd30405b1002044",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "5ef70112a1ff19c05324ff889dd30405b1002044",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "5ef70112a1ff19c05324ff889dd30405b1002044"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "0514dce5097f8929f22edc247cad1576c64e8d48",
+     "b": "5ef70112a1ff19c05324ff889dd30405b1002044",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "3.1.6",
+     "target": "15206881c006c79667fe5154fe80c01c65410679",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Wed 05 Mar 2025 08:59:41 PM CET\ngpg:                using RSA key 95803D56D8718432305120DD43368A7AA8CC5926\ngpg: Can't check signature: No pu"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "0514dce5097f8929f22edc247cad1576c64e8d48",
+     "b": "5ef70112a1ff19c05324ff889dd30405b1002044",
+     "a_epoch": 1749761979,
+     "b_epoch": 1749933298,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "pallets/werkzeug",
+   "pinned_sha": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "002fcc5450870362028d3ffb3d91f05a4f1fa559",
+     "b": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "3.1.8",
+     "target": "c1a26b45fb06d5e086b4d6be820c3302f588d815",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Thu 02 Apr 2026 07:25:42 PM CEST\ngpg:                using RSA key 95803D56D8718432305120DD43368A7AA8CC5926\ngpg:                issuer \"davi"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "002fcc5450870362028d3ffb3d91f05a4f1fa559",
+     "b": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+     "a_epoch": 1787237137,
+     "b_epoch": 1787356650,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "pandas-dev/pandas",
+   "pinned_sha": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "b9e9608e5337c1c019b6b77c7c49d84584cea7ae",
+     "b": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v3.0.5",
+     "target": "e68db09ecf6427d1b62e565bacf17f2e525a3032",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: no signature found"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "b9e9608e5337c1c019b6b77c7c49d84584cea7ae",
+     "b": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+     "a_epoch": 1787514985,
+     "b_epoch": 1787556354,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "pandas-dev/pandas-stubs",
+   "pinned_sha": "af30812c6901331be77e8ed76db8f099f20d00b8",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "af30812c6901331be77e8ed76db8f099f20d00b8",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "af30812c6901331be77e8ed76db8f099f20d00b8"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "763c1ea6d6c9695deb22f07fe2d8ff6eebe1bfbc",
+     "b": "af30812c6901331be77e8ed76db8f099f20d00b8",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v3.0.5.260730",
+     "target": "bf7bb7b9c433ad1460d4d8b9b7d6b2f87ef4a7f8",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v3.0.5.260730: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "763c1ea6d6c9695deb22f07fe2d8ff6eebe1bfbc",
+     "b": "af30812c6901331be77e8ed76db8f099f20d00b8",
+     "a_epoch": 1787335921,
+     "b_epoch": 1787430605,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "psf/black",
+   "pinned_sha": "8947c48ef2077c3a301b03c1e814dc2e3f78436e",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "8947c48ef2077c3a301b03c1e814dc2e3f78436e",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "8947c48ef2077c3a301b03c1e814dc2e3f78436e"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "c835e9db6377e6dc55643c83607fa38f17572fad",
+     "b": "8947c48ef2077c3a301b03c1e814dc2e3f78436e",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "26.5.1",
+     "target": "87928e6d6761a4a6d22250e1fee5601b3998086e",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: 26.5.1: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "c835e9db6377e6dc55643c83607fa38f17572fad",
+     "b": "8947c48ef2077c3a301b03c1e814dc2e3f78436e",
+     "a_epoch": 1787164416,
+     "b_epoch": 1787230874,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "pydata/xarray",
+   "pinned_sha": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "63b61d37ab4f77b7804f076c025480dbc791e678",
+     "b": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v2026.07.0",
+     "target": "0238035a646a04a6d2b603cc5cee5cbefa304e23",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v2026.07.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "63b61d37ab4f77b7804f076c025480dbc791e678",
+     "b": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a",
+     "a_epoch": 1787172420,
+     "b_epoch": 1787172511,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "redis/jedis",
+   "pinned_sha": "fdc5606a67c1b6f9567c6f738e541e18467c60e6",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "fdc5606a67c1b6f9567c6f738e541e18467c60e6",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "fdc5606a67c1b6f9567c6f738e541e18467c60e6"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "ecfed3ded77cdbf751c19975644cefa3f6efa063",
+     "b": "fdc5606a67c1b6f9567c6f738e541e18467c60e6",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v8.0.0",
+     "target": "8e393b981492d7a7b9e8347d2d80170d02f1fd89",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v8.0.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "ecfed3ded77cdbf751c19975644cefa3f6efa063",
+     "b": "fdc5606a67c1b6f9567c6f738e541e18467c60e6",
+     "a_epoch": 1787301287,
+     "b_epoch": 1787566360,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "redis/redis-py",
+   "pinned_sha": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "081923b8a202f9481e8f46357c8bbf99cc322cae",
+     "b": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v8.1.0",
+     "target": "e013126df18e476fbb8b8215f040f39bd3242683",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v8.1.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "081923b8a202f9481e8f46357c8bbf99cc322cae",
+     "b": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6",
+     "a_epoch": 1787305711,
+     "b_epoch": 1787558422,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "rust-lang/cargo",
+   "pinned_sha": "bb983ad0bd166bd151db189a066bba32039a223b",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "bb983ad0bd166bd151db189a066bba32039a223b",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "bb983ad0bd166bd151db189a066bba32039a223b"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "ed4cb4fe45e6268fbb9bfbecfb207d98321019a0",
+     "b": "bb983ad0bd166bd151db189a066bba32039a223b",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "0.99.0",
+     "target": "797e8a9bca276c1c9f9f738d2a20f484fa4eea9d",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Thu 20 Aug 2026 07:10:25 PM CEST\ngpg:                using RSA key 108F66205EAEB0AAA8DD5E1C85AB96E6FA1BE5FE\ngpg: Can't check signature: No p"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "ed4cb4fe45e6268fbb9bfbecfb207d98321019a0",
+     "b": "bb983ad0bd166bd151db189a066bba32039a223b",
+     "a_epoch": 1787439830,
+     "b_epoch": 1787544101,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "rust-lang/miri",
+   "pinned_sha": "a854cde861f2142584e2d7ed49ca66827d4b749a",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "a854cde861f2142584e2d7ed49ca66827d4b749a",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "a854cde861f2142584e2d7ed49ca66827d4b749a"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "0a7591085607d7b97cae40666b830e36685ee590",
+     "b": "a854cde861f2142584e2d7ed49ca66827d4b749a",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "verdict": "CANNOT_CHECK",
+     "reason": "no tags present in the fetched state"
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "0a7591085607d7b97cae40666b830e36685ee590",
+     "b": "a854cde861f2142584e2d7ed49ca66827d4b749a",
+     "a_epoch": 1787553568,
+     "b_epoch": 1787559404,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 3,
+   "facts_cannot_check": 2
+  },
+  {
+   "repo_id": "rust-lang/rust",
+   "pinned_sha": "347a1dbf428ab92f284e3afafacfa7eb46341a5d",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "347a1dbf428ab92f284e3afafacfa7eb46341a5d",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "347a1dbf428ab92f284e3afafacfa7eb46341a5d"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "04a3cad16c522be4fd15ca76d3c119c14be68954",
+     "b": "347a1dbf428ab92f284e3afafacfa7eb46341a5d",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "1.98.0",
+     "target": "88d9e12ae178fab0fb5cc050a94da85685d449ea",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Thu 20 Aug 2026 07:10:21 PM CEST\ngpg:                using RSA key 108F66205EAEB0AAA8DD5E1C85AB96E6FA1BE5FE\ngpg: Can't check signature: No p"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "04a3cad16c522be4fd15ca76d3c119c14be68954",
+     "b": "347a1dbf428ab92f284e3afafacfa7eb46341a5d",
+     "a_epoch": 1787545377,
+     "b_epoch": 1787556092,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "rust-lang/rustfmt",
+   "pinned_sha": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "1191d91d83f5582766404b4e912d19cd89866d56",
+     "b": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v1.10.0",
+     "target": "d427a7c1adc8afd86a7ebf3daec769a434cb2307",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Tue 21 Jul 2026 05:42:32 PM CEST\ngpg:                using RSA key 8D3EE3CBE5A5A764224892FB5A1A5479A194CFD4\ngpg: Can't check signature: No p"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "1191d91d83f5582766404b4e912d19cd89866d56",
+     "b": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c",
+     "a_epoch": 1787411700,
+     "b_epoch": 1787562306,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "scipy/scipy",
+   "pinned_sha": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "1339f61b5d9c8e5aaf1c3150a9917c6faa12252e",
+     "b": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v1.18.1",
+     "target": "e4e854eaa8f18d807cd3496028e257e36caa93cc",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "gpg: Signature made Fri 21 Aug 2026 07:56:17 PM CEST\ngpg:                using RSA key AD0C5067D1DECED72F6245670196A9293365B112\ngpg:                issuer \"tyle"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "1339f61b5d9c8e5aaf1c3150a9917c6faa12252e",
+     "b": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+     "a_epoch": 1787533513,
+     "b_epoch": 1787553748,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "vuejs/pinia",
+   "pinned_sha": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "5d6ac5b86491041aa83a663a9a31189c707aff08"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "35c334ba452b6b417329e3a006f472066ea50171",
+     "b": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "@pinia/nuxt@1.0.2",
+     "target": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: no signature found"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "35c334ba452b6b417329e3a006f472066ea50171",
+     "b": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+     "a_epoch": 1786535158,
+     "b_epoch": 1786537065,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "vuejs/vite",
+   "pinned_sha": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "c32e784c95b51f7969cebc7522a5037f14fb6606"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "2e8355d67c19c68e867ee633121fc91e007c846c",
+     "b": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "create-vite@9.2.0",
+     "target": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: create-vite@9.2.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "2e8355d67c19c68e867ee633121fc91e007c846c",
+     "b": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+     "a_epoch": 1787544790,
+     "b_epoch": 1787546223,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "vuejs/vue",
+   "pinned_sha": "9e88707940088cb1f4cd7dd210c9168a50dc347c",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "9e88707940088cb1f4cd7dd210c9168a50dc347c",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "9e88707940088cb1f4cd7dd210c9168a50dc347c"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "73486cb5f5862a443b42c2aff68b82320218cbcd",
+     "b": "9e88707940088cb1f4cd7dd210c9168a50dc347c",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v2.7.16",
+     "target": "13f4e7dc03e2caed900ac70ff8b8fe58dda45663",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v2.7.16: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "73486cb5f5862a443b42c2aff68b82320218cbcd",
+     "b": "9e88707940088cb1f4cd7dd210c9168a50dc347c",
+     "a_epoch": 1718369532,
+     "b_epoch": 1728545054,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "vuejs/vue-router",
+   "pinned_sha": "680ccc68c506cca9be6207745043245d61fa715a",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "680ccc68c506cca9be6207745043245d61fa715a",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "680ccc68c506cca9be6207745043245d61fa715a"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "4e8213582d012c0523ebd56fe981b1952d05913d",
+     "b": "680ccc68c506cca9be6207745043245d61fa715a",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v3.6.5",
+     "target": "4f934f712b0ce333419d475254e860f81d7014cd",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: no signature found"
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "4e8213582d012c0523ebd56fe981b1952d05913d",
+     "b": "680ccc68c506cca9be6207745043245d61fa715a",
+     "a_epoch": 1764342277,
+     "b_epoch": 1764342463,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  },
+  {
+   "repo_id": "vuejs/vuex",
+   "pinned_sha": "bd907467b8392d6671bb115738285ff7f63d0cf6",
+   "derived": true,
+   "facts": [
+    {
+     "class_id": "OBJECT_HASH_EXISTENCE",
+     "object": "bd907467b8392d6671bb115738285ff7f63d0cf6",
+     "value": true,
+     "observed": {
+      "cat_file_exit": 0,
+      "rev_parse": "bd907467b8392d6671bb115738285ff7f63d0cf6"
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "ANCESTRY",
+     "a": "7b024d8bc7ed8e273b8bd853b1e23ec78ab1b045",
+     "b": "bd907467b8392d6671bb115738285ff7f63d0cf6",
+     "value": true,
+     "observed": {
+      "exit": 0
+     },
+     "verdict": "TRUE"
+    },
+    {
+     "class_id": "TAG_SIGNATURE",
+     "tag": "v4.1.0",
+     "target": "d56222431b91e1927459f7f463e74bb43158ef2b",
+     "verdict": "UNSIGNED",
+     "observed": {
+      "verify_tag_exit": 1,
+      "stderr": "error: v4.1.0: cannot verify a non-tag object of type commit."
+     }
+    },
+    {
+     "class_id": "TIMESTAMP_ORDER",
+     "a": "7b024d8bc7ed8e273b8bd853b1e23ec78ab1b045",
+     "b": "bd907467b8392d6671bb115738285ff7f63d0cf6",
+     "a_epoch": 1691494737,
+     "b_epoch": 1727270800,
+     "verdict": "LESS"
+    },
+    {
+     "class_id": "TEST_EXIT",
+     "verdict": "CANNOT_CHECK",
+     "reason": "the contract requires the recorded test command to run inside the locked runtime recorded for the campaign; no such runtime exists, and an exit status obtained any other way is not this fact"
+    }
+   ],
+   "facts_decided": 4,
+   "facts_cannot_check": 1
+  }
+ ]
+}
