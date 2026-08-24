@@ -6,11 +6,20 @@ import json
 import os
 import select
 import subprocess
+import sys
 import time
 from pathlib import Path
 from typing import Any
 
-from extract_p10_native_trace_state_v1 import (
+# The legacy extractor imports the publication framework from a historical
+# candidate path that contains tests but not the package.  The clean CI shards
+# do not inherit the separate P9/P10 workflow's PYTHONPATH, so bind the canonical
+# framework before importing the shared feature helpers.
+ROOT = Path(__file__).resolve().parents[3]
+FRAMEWORK = ROOT / "papers" / "orion-learning-machine" / "framework"
+sys.path.insert(0, str(FRAMEWORK))
+
+from extract_p10_native_trace_state_v1 import (  # noqa: E402
     BULLET,
     EXTRACTOR_SCHEMA,
     LEAN_TOOLCHAIN,
