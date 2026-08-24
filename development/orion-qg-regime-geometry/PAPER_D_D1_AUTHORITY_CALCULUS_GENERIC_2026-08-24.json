@@ -1,0 +1,114 @@
+{
+  "authority_scope": "FORMAL_STRATIFIED_CERTIFICATE_CALCULUS_AND_BOUND_PARENT_INSTANTIATIONS_ONLY",
+  "checks": {
+    "formal": true,
+    "no_framework_integration": true,
+    "no_novelty_or_physical": true,
+    "no_prospective_relabel": true,
+    "no_second_forecaster": true,
+    "paper_c": true,
+    "protocol_hash": true,
+    "qg5": true,
+    "scope": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true
+  },
+  "decision": "ACCEPT_STRATIFIED_AUTHORITY_CALCULUS",
+  "formal": {
+    "all_checks": true,
+    "alternatives": {
+      "all_paths_fail": true,
+      "one_path_survives": true
+    },
+    "failures": 0,
+    "models": 254253,
+    "rows": [
+      {
+        "assignments": 3,
+        "graphs": 1,
+        "models": 3,
+        "n": 1
+      },
+      {
+        "assignments": 9,
+        "graphs": 2,
+        "models": 18,
+        "n": 2
+      },
+      {
+        "assignments": 27,
+        "graphs": 8,
+        "models": 216,
+        "n": 3
+      },
+      {
+        "assignments": 81,
+        "graphs": 64,
+        "models": 5184,
+        "n": 4
+      },
+      {
+        "assignments": 243,
+        "graphs": 1024,
+        "models": 248832,
+        "n": 5
+      }
+    ]
+  },
+  "novelty_authority": false,
+  "paper_c": {
+    "all_checks": true,
+    "checks": {
+      "decision": true,
+      "pair_optimizer": true,
+      "pair_value": true,
+      "parents": true,
+      "rwise_value": true
+    },
+    "decision_survives": true,
+    "paper_d_owns_results": false,
+    "parent_sha256": {
+      "c1": "3ffdd36ab1c73680930f3e5471ec095a5dd2ea33438765d3ccca0584bc9afeff",
+      "c2": "3a5e8eeee12d246ccf2a1d7422bdf4e0c0027c066934870272cdee9e7a6055f1",
+      "c3": "3cdfd845652f243741635c6ad11fe3c0531262c6667023c91fac29a8f459a802"
+    }
+  },
+  "physical_quantum_advantage_claim": false,
+  "prospective_repair_authority": false,
+  "qg5": {
+    "all_checks": true,
+    "checks": {
+      "counts": true,
+      "falsifier": true,
+      "label_refuted": true,
+      "repair": true,
+      "repair_is_not_prospective": true,
+      "support": true,
+      "upper": true
+    },
+    "counts": {
+      "errors": 1,
+      "exact": 9545,
+      "total": 9546
+    },
+    "parent_sha256": {
+      "qg5": "f5ef5c7599cb4331d18d4edb95b434961efa55c2f9ac18263bdbfb017df5fc3e",
+      "qg5b": "7701d4fb708a0a235493a0e4da72076d5d8b77a3e19fa9997ab6a5de51997f16"
+    },
+    "retracted": [
+      "ORIGINAL_CLOSED_FORM_EXACTNESS",
+      "ORIGINAL_REGIME_LABEL"
+    ],
+    "survivors": [
+      "F2_EXACTNESS",
+      "FEASIBLE_UPPER_BOUND",
+      "REPAIRED_REGIME_LABEL",
+      "SUPPORT_TWO_SUFFICIENCY"
+    ]
+  },
+  "schema": "ORION.PaperD.D1.GenericVerification.v1",
+  "source_result_digest": "8b753ada54ef61fcb622f57d56855a1a2c1bc4defae6f4a1a41d8094826083c2",
+  "verification_digest": "62256e05066b2d731bf1913933b786ea6f6d2c226d8632f80224df73e53f87f6"
+}

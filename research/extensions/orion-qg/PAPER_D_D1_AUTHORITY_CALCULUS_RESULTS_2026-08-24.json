@@ -1,0 +1,167 @@
+{
+  "base_revision": "fa85599ad8ec057f98f935735ab02e30cbbb49ee",
+  "ci_authority": false,
+  "cross_unregistered_system_transfer": false,
+  "formal_ledger": {
+    "all_checks": true,
+    "alternative_derivation_checks": {
+      "all_alternatives_refuted_retract_conclusion": true,
+      "independent_alternative_rescues_conclusion": true
+    },
+    "failure_count": 0,
+    "failures_verbatim": [],
+    "finite_enumeration_is_proof": false,
+    "rows": [
+      {
+        "assignments_per_graph": 3,
+        "graphs": 1,
+        "models_checked": 3,
+        "node_count": 1
+      },
+      {
+        "assignments_per_graph": 9,
+        "graphs": 2,
+        "models_checked": 18,
+        "node_count": 2
+      },
+      {
+        "assignments_per_graph": 27,
+        "graphs": 8,
+        "models_checked": 216,
+        "node_count": 3
+      },
+      {
+        "assignments_per_graph": 81,
+        "graphs": 64,
+        "models_checked": 5184,
+        "node_count": 4
+      },
+      {
+        "assignments_per_graph": 243,
+        "graphs": 1024,
+        "models_checked": 248832,
+        "node_count": 5
+      }
+    ],
+    "symbolic_topological_induction_proof_registered": true,
+    "total_models_checked": 254253
+  },
+  "gates": {
+    "donor_and_ownership_boundaries_preserved": true,
+    "formal_calculus_corroborated": true,
+    "original_denominator_preserved": true,
+    "paper_c_noninterference_bound": true,
+    "post_outcome_boundary_preserved": true,
+    "protocol_present": true,
+    "qg5_exact_retraction_bound": true
+  },
+  "generic_fixed_point_novelty_authority": false,
+  "novelty_authority": false,
+  "paper_c_noninterference": {
+    "all_checks": true,
+    "authorized": [
+      "DECISION_CERTIFICATE_EXACT"
+    ],
+    "checks": {
+      "all_parent_gates": true,
+      "c1_terminal": true,
+      "c2_terminal": true,
+      "c3_terminal": true,
+      "decision_survives": true,
+      "optimizer_insufficiency_bound": true,
+      "value_insufficiency_bound": true
+    },
+    "is_second_forecasting_family": false,
+    "paper_d_ownership_claim": false,
+    "parent_files": {
+      "c1_sha256": "3ffdd36ab1c73680930f3e5471ec095a5dd2ea33438765d3ccca0584bc9afeff",
+      "c2_sha256": "3a5e8eeee12d246ccf2a1d7422bdf4e0c0027c066934870272cdee9e7a6055f1",
+      "c3_sha256": "3cdfd845652f243741635c6ad11fe3c0531262c6667023c91fac29a8f459a802"
+    },
+    "refuted_sufficiency_claims": [
+      "FIXED_R_INTERACTION_VALUE_SUFFICIENT",
+      "PAIR_INFORMATION_OPTIMIZER_SUFFICIENT",
+      "PAIR_INFORMATION_VALUE_SUFFICIENT"
+    ],
+    "result_owner": "PAPER_C"
+  },
+  "paper_c_result_ownership": false,
+  "paper_d_standalone_novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "prospective_repair_authority": false,
+  "protocol_path": "development/orion-qg-regime-geometry/PAPER_D_D1_AUTHORITY_CALCULUS_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "da78f883738bda22f557ad01a8aac4494708690bdcf0712aa47393be512d1b18",
+  "qg5_instantiation": {
+    "all_checks": true,
+    "checks": {
+      "constructive_upper_survives": true,
+      "exact_counterexample": true,
+      "minimal_retraction_exact": true,
+      "original_exact_count_9545": true,
+      "original_label_refuted": true,
+      "original_total_9546": true,
+      "qg5_protocol_hash": true,
+      "qg5b_protocol_hash": true,
+      "repair_panel_entries_not_denominator": true,
+      "repair_separately_supported": true,
+      "single_error": true,
+      "support_theorem_survives": true
+    },
+    "counterexample": {
+      "C_DP": 10,
+      "F2": 10,
+      "F_original": 11,
+      "f_Bprime": 10,
+      "index": 7,
+      "n": 3,
+      "original_label": "donor_exact",
+      "truth_donor_exact": false
+    },
+    "exact_retraction": [
+      "ORIGINAL_CLOSED_FORM_EXACTNESS",
+      "ORIGINAL_REGIME_LABEL"
+    ],
+    "original_benchmark": {
+      "errors": 1,
+      "exact": 9545,
+      "total": 9546,
+      "universal_exactness": false
+    },
+    "parent_files": {
+      "qg5_path": "research/extensions/orion-qg/QG5_CERTIFIED_FORECAST_RESULTS.json",
+      "qg5_sha256": "f5ef5c7599cb4331d18d4edb95b434961efa55c2f9ac18263bdbfb017df5fc3e",
+      "qg5b_path": "research/extensions/orion-qg/QG5B_EXACT_FORECASTER_RESULTS.json",
+      "qg5b_sha256": "7701d4fb708a0a235493a0e4da72076d5d8b77a3e19fa9997ab6a5de51997f16"
+    },
+    "post_authority": [
+      "F2_EXACTNESS",
+      "FEASIBLE_UPPER_BOUND",
+      "REPAIRED_REGIME_LABEL",
+      "SUPPORT_TWO_SUFFICIENCY"
+    ],
+    "pre_authority": [
+      "F2_EXACTNESS",
+      "FEASIBLE_UPPER_BOUND",
+      "ORIGINAL_CLOSED_FORM_EXACTNESS",
+      "ORIGINAL_REGIME_LABEL",
+      "REPAIRED_REGIME_LABEL",
+      "SUPPORT_TWO_SUFFICIENCY"
+    ],
+    "qg5b_is_post_outcome_repair": true,
+    "qg5b_is_prospective_confirmation": false,
+    "qg5b_panel_entries": 9547
+  },
+  "real_static_framework_integration": false,
+  "result_digest": "8b753ada54ef61fcb622f57d56855a1a2c1bc4defae6f4a1a41d8094826083c2",
+  "schema": "ORION.PaperD.D1.StratifiedAuthority.v1",
+  "scientific_authority": "FORMAL_STRATIFIED_CERTIFICATE_CALCULUS_AND_BOUND_PARENT_INSTANTIATIONS_ONLY",
+  "second_independent_forecasting_family": false,
+  "terminal": "PAPER_D_D1_STRATIFIED_AUTHORITY_CALCULUS_EXACT_MINIMAL_RETRACTION__QG5_COUNTEREXAMPLE_LOCALIZED__SIXLCU_NONINTERFERENCE_CORROBORATED",
+  "theorem": {
+    "alternative_derivation": "one untainted proof tree suffices",
+    "authorized_set": "unique least fixed point from non-refuted seeds",
+    "minimal_retraction": "pre_authority minus post_authority",
+    "noninterference": "ancestry-disjoint claims retain authority",
+    "object": "finite acyclic registered certificate hypergraph"
+  }
+}
