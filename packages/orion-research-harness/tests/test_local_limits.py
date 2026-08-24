@@ -127,6 +127,41 @@ def test_local_capability_rejects_unsupported_payload_keys(tmp_path: Path):
     assert "a.txt" in result["entries"]
 
 
+def test_campaign_cycle_provenance_is_reserved_but_adjacent_unknown_key_fails(tmp_path: Path):
+    """Runner-injected state/decision digests bind identity without widening semantics."""
+    project = tmp_path / "project"
+    project.mkdir()
+    workspace = ResearchWorkspace.initialize(
+        project / "ws", project_root=project, allow_process_tools=True
+    )
+    provenance = {
+        "campaign_id": "test:campaign",
+        "phase_id": "S0",
+        "selected_id": "COMPUTE:TEST",
+        "selected_kind": "COMPUTATION",
+        "campaign_state_digest": "a" * 64,
+        "campaign_decision_digest": "b" * 64,
+    }
+    result = local_tools.execute_local(
+        workspace,
+        "PYTHON",
+        {"code": "print('bound')", "timeout": 5, **provenance},
+    )
+    assert result["returncode"] == 0
+    assert result["stdout"].strip() == "bound"
+
+    with pytest.raises(ValueError, match="unsupported key"):
+        local_tools.execute_local(
+            workspace,
+            "PYTHON",
+            {
+                "code": "print('must not run')",
+                **provenance,
+                "campaign_result_digest": "c" * 64,
+            },
+        )
+
+
 def test_payload_vocabulary_matches_what_the_executor_reads(tmp_path: Path):
     """Every declared key must be one the executor actually honors.
 

@@ -1,0 +1,44 @@
+{
+  "adverse_terminals": [
+    {
+      "classification": "PRE_REPAIR_ENGINEERING_CANNOT_CHECK",
+      "terminal": "PYTHON payload has unsupported key(s) ['campaign_decision_digest', 'campaign_state_digest']"
+    },
+    {
+      "classification": "POST_FIRST_FIX_STORE_IDENTITY_REOPEN",
+      "terminal": "CAMPAIGN_REACHED_TERMINAL__PUBLIC_WORKSPACE_LATEST_STATE_RETURNED_NONE"
+    },
+    {
+      "classification": "OUT_OF_SCOPE_BROADER_SUITE",
+      "terminal": "ORION_RG_LIVE_CAMPAIGNS_3_FAILED__TOP_LEVEL_TERMINAL_KEY_MISSING_FOR_TWO__C15_ARTIFACT_INTEGRITY_FALSE_FOR_ONE"
+    }
+  ],
+  "authority": {
+    "ci_authority": false,
+    "merge_authority": false,
+    "novelty_authority": false,
+    "physical_quantum_advantage_claim": false,
+    "scientific_authority": false,
+    "scope": "HARNESS_EXECUTION_AND_PERSISTENCE_IDENTITY_ONLY"
+  },
+  "base_revision": "3616f0f1a69b571fcbf85fa3093aa050765c7fc9",
+  "changed_file_sha256": {
+    "packages/orion-research-harness/src/orion_research_harness/campaign_store.py": "aed6e74156fca00ed351066765b096685604aae6fd593faf3448ecf14204485c",
+    "packages/orion-research-harness/src/orion_research_harness/local_tools.py": "82210e8522826ad04d1e791f0095487d8d41cfdd087bd8e30df3fe603c9b3b92",
+    "packages/orion-research-harness/tests/test_campaign.py": "5de1e6f65855af19bf38d306bdac0805c1b6d198d8206f782fbb8fa503c2f5ab",
+    "packages/orion-research-harness/tests/test_local_limits.py": "02a51bcd8867f6345e4240f41f0bc4843a0233e1fafeee1bf2c3e9f12449e11e"
+  },
+  "ci_skipped_by_request": true,
+  "engineering_amendment_path": "development/orion-research-harness/CAMPAIGN_PROVENANCE_KEY_BINDING_ENGINEERING_AMENDMENT_1_2026-08-24.md",
+  "engineering_amendment_sha256": "07492086d6067bd04f2f268a290578610fb33cd4a211cab967d27f20c393fe64",
+  "focused_validation": {
+    "command": "PYTHONPATH=packages/orion-research-harness/src:src python -m pytest -q test_local_limits::{provenance,unknown} test_campaign::{generic,failed,immutable} test_paper_parity_campaign.py",
+    "passed": 9,
+    "runtime_seconds": 2.55,
+    "terminal": "9 passed in 2.55s"
+  },
+  "protocol_path": "development/orion-research-harness/CAMPAIGN_PROVENANCE_KEY_BINDING_REPAIR_2026-08-24.md",
+  "protocol_sha256": "44c7b2b86a1d79f4826ef8f2a1221d4d4ac52f9e46d0836c6e944f181d7e4915",
+  "schema": "ORION.Harness.CampaignProvenanceKeyBindingResults.v1",
+  "terminal": "CAMPAIGN_STATE_AND_DECISION_PROVENANCE_KEYS_BOUND__NATIVE_LOCAL_CAMPAIGN_RESTORED"
+}
