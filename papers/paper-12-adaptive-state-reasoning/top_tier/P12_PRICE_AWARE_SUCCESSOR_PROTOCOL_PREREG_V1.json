@@ -1,0 +1,197 @@
+{
+  "schema": "P12.PriceAwareSuccessorProtocolPrereg.v1",
+  "lane": "NR-13",
+  "study": "P12_PRICE_AWARE_SUCCESSOR_V1",
+  "paper_dir": "papers/paper-12-adaptive-state-reasoning/top_tier",
+  "registered_date": "2026-08-24",
+  "registration_order": [
+    "1. this prereg is committed and pushed BEFORE the successor selector is implemented or its battery is executed",
+    "2. the ORIGINAL allocator battery was re-executed locally before this prereg for diagnosis only (it is the published BROKEN receipt's own battery, unchanged); its numbers are frozen below as the BEFORE state",
+    "3. after the successor battery runs, the successor definition in this file is frozen: any post-hoc change to the rule requires a new prereg version and re-registration"
+  ],
+  "negative_being_revived": {
+    "verdicts": {
+      "price_axis": "BROKEN",
+      "distribution_shift_axis": "BROKEN"
+    },
+    "subject": "P12_TRANSFER_ALLOCATOR_V1 (tau=4, greedy-by-desc-q, cumulative declared <= B=500, ties by case order)",
+    "source_receipt": "P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1",
+    "source_protocol": "P12_ROBUSTNESS_PROTOCOL_V2.md",
+    "source_pr": 1006,
+    "source_ci_run": 32672856998,
+    "published_key_numbers": {
+      "price_axis_zero_regret_regimes": [],
+      "shift_case_mixes_zero_regret": false,
+      "shift_joint_mixes_zero_regret_regimes": [],
+      "v1_flat_zero_regret_replicated": true,
+      "hidden_parameterization_audit": "GREEN"
+    }
+  },
+  "frozen_pool_identity": {
+    "note": "byte-identical to the original stress battery; nothing is regenerated, re-tuned or extended",
+    "v1_cases": {
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_v1.json",
+      "sha256": "7694b3cffc8ff3c4f9ac93f49bf9cb0c4857921ba003199f82c463c2ef0606d4"
+    },
+    "expanded_cases": {
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json",
+      "sha256": "f5ff1ebcb959fad54d52e5e0c68b1b56bc463394cde2376a6cf18cb86cd847ca"
+    },
+    "generator": {
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py",
+      "sha256": "b393bc66671302da16d8cd092d3a8569cf4587c6a50b3aa7d840a10b24d10438"
+    },
+    "frozen_v1_engines": {
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py",
+      "sha256": "134b9ce97e41b691e8d7d780bcbfe9a52d2fd6d02b2f173bd9b7bc543007cdd9"
+    },
+    "original_stress_runner": {
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py",
+      "sha256": "2f233bf3e9fd6c7c11a5cd1d5f430a6e436139030227e228cfef4d6068c7ebb6"
+    },
+    "original_independent_checker": {
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py",
+      "sha256": "0d5d5ac4aef7552f3fcb41fe41d136cfffd0bde9c9b8dbe3625c66acd3225f2d"
+    },
+    "regimes": [
+      ["FLAT", 1, 1],
+      ["MEM2X", 2, 1],
+      ["CMP2X", 1, 2],
+      ["MEM4X", 4, 1],
+      ["CMP4X", 1, 4]
+    ],
+    "budget_semantics": "S1 nominal (gates): sum of unpriced declared construction cost <= B=500; prices reweight the objective only",
+    "mixes": {
+      "b1": ["MIX_BAL_27", "MIX_KNAP_HEAVY", "MIX_PATH_HEAVY", "MIX_SAT_HEAVY"],
+      "b2_joint": ["JOINT_BAL", "JOINT_KNAP_HEAVY", "JOINT_PATH_HEAVY"]
+    }
+  },
+  "one_stage_attribution": {
+    "stage": "the selection rule (frozen greedy-by-q), not the arithmetic (RG1 exactness green everywhere in the original battery)",
+    "mechanism": "the frozen rule optimizes a FLAT-charged proxy (rank by pending multiplicity q, greedy budget packing in that order) and is blind to BOTH (a) the price vector the runner charges and (b) the per-structure serve-charge exchange rate it is amortizing; under any price skew or workload shape where per-query saving is not rank-isomorphic to q, the rule skips profitable structures (tau gate, ranking, or greedy displacement), takes unprofitable ones, and mispacks the budget among profitable ones",
+    "diagnosis_evidence_frozen_before_successor_run": {
+      "method": "local re-execution of the ORIGINAL battery (unchanged code, frozen pools) + per-cell decomposition of every positive-regret cell into per-structure priced marginal deltas d[s] = p_build*declared[s] - p_serve*(reason[s]-state[s])",
+      "original_positive_cells_total": 45,
+      "original_positive_cells_by_set_regime": {
+        "V1_9": {"FLAT": 0, "MEM2X": 0, "CMP2X": 1, "MEM4X": 2, "CMP4X": 3},
+        "EXPANDED_27": {"FLAT": 6, "MEM2X": 5, "CMP2X": 8, "MEM4X": 10, "CMP4X": 10}
+      },
+      "failure_mode_census": {
+        "cells_with_take_unprofitable": 13,
+        "cells_with_skip_profitable": 32,
+        "cells_with_other_primary_mode": 0,
+        "classification_rule": "a cell is take_unprofitable if the frozen rule materialized >= 1 structure with d >= 0 (priority), else skip_profitable if the oracle materialized >= 1 profitable structure the rule left out (tau-gated, outranked, or greedily displaced)",
+        "reading": "all 45 positive cells are selection-rule errors: 13 cells materialize at least one unprofitable structure; the other 32 leave out at least one profitable structure via the tau gate (q=3 shapes T4/T9B), the q-ranking (T6/T9 races), or greedy budget packing among profitable structures (SAT_T3 CMP4X: rule packs S3A+S3B=46, oracle packs S3B+S3C=500 with larger total saving). Zero cells require any stage other than the selection rule"
+      },
+      "sigma_over_declared_heterogeneity": {
+        "definition": "per-query serve saving ratio sigma = (reason-state)/q divided by declared_cost, over all structures of the frozen pools",
+        "SAT_PROPAGATION": [0.118, 0.9],
+        "PATH_PLANNING": [0.353, 0.876],
+        "KNAPSACK": [0.153, 0.642],
+        "reading": "the exchange rate the allocator must amortize varies by a factor ~5-8 within each domain and the three domains overlap; profitability is NOT a function of (q, declared_cost) alone",
+        "impossibility_note": "no price-indexed threshold on the (q, declared, price) surface can classify the frozen pool's cells correctly (e.g. at FLAT: PATH_T4 (q=3, declared=225, oracle takes) vs KNAP_T4 (q=3, declared=248, oracle skips) vs the same KNAP_T4 at CMP4X (oracle takes)); separating these requires the per-structure serve charges, i.e. information the frozen rule never reads. This is why the lever is a widened readable surface, not a re-tuned threshold. Any (q,decl,price) rule that happened to separate all 180 cells would be pool-fitted, not principled, and is explicitly not attempted."
+      }
+    }
+  },
+  "successor_definition": {
+    "name": "P12_PRICE_AWARE_ALLOCATOR_V1",
+    "mechanic": "close the objective-vs-charging mismatch: the selector optimizes the SAME objective the runner charges, on the charger's own published ledger (price vector + per-structure charge certificates), instead of a price-blind q-ranking proxy",
+    "readable_surface": [
+      "sid",
+      "queries (pending workload; the rule uses the certified charges, not the payloads)",
+      "declared_cost (frozen declared construction cost)",
+      "B_budget (=500, S1 nominal semantics)",
+      "p_build, p_serve (the same price vector the runner charges)",
+      "reason_serve_certificate[sid] (measured serve charge of the pending queries under the REASON locus, as published by the charging environment)",
+      "state_serve_certificate[sid] (measured serve charge under the STATE locus)"
+    ],
+    "forbidden_surface": [
+      "domain names and domain engines (SAT_PROPAGATION / PATH_PLANNING / KNAPSACK, sat_*/path_*/knap_*)",
+      "domain payload keys (cnf, grid, items, goal, c_max)",
+      "any numeric literal outside {B_budget}",
+      "any per-case or per-regime lookup table"
+    ],
+    "rule": "per structure s compute priced marginal delta d[s] = p_build*declared[s] - p_serve*(reason_cert[s] - state_cert[s]); select the S1-budget-feasible subset (sum of declared <= 500) maximizing total saving sum(-d[s]); solved EXACTLY as 0/1 knapsack by dynamic programming over integer declared weights; deterministic tie-break: on equal DP value prefer the branch that does NOT take the item (walk items in frozen structure order); unprofitable structures (d[s] >= 0) are never taken (implied by exact maximization, since taking one only consumes budget)",
+    "new_free_parameters": 0,
+    "parameters_inherited_frozen": {"B_budget": 500, "price regimes": "the five frozen regimes", "pool": "the two frozen case files"},
+    "tau_note": "the frozen tau=4 gate is NOT carried into the successor: eligibility is decided by the sign of the priced marginal delta itself. At FLAT this makes the successor weakly BETTER than the V1 allocator on the expanded pool (the V1 tau gate is one of the two diagnosed misclassifiers); the FLAT constraint below is stated on regret and on V1-9 realized cost, not on selection identity",
+    "shift_awareness": "subsumed, and this is pre-registered as a finding to verify: the rule takes no regime or mix label as input. B1 aggregates are sums of per-case successor regrets; B2 joint mixes apply the same rule to the union structure list under one shared nominal budget. If the successor is green on B1/B2 it follows that the original shift-axis failures were the same price/proxy mismatch acting through the mix, not a separate distribution-shift mechanism",
+    "implementation_independence": {
+      "implementation_A_runner": {
+        "charging": "frozen V1 engines imported unmodified (run_transfer_allocation_v1.serve_case / build_cost decomposition, identical to run_p12_robustness_v1.per_structure_charges)",
+        "argmin": "0/1 knapsack DP over integer declared weights (capacity 500), never-tie take",
+        "script": "run_p12_price_aware_successor_v1.py"
+      },
+      "implementation_B_checker": {
+        "charging": "the existing INDEPENDENT checker engines (check_p12_robustness_independent_v1: full-rescan fixpoint UP, bidirectional-BFS completion distances, exhaustive 2^n knapsack truth with closed-form charge models) imported, not re-typed",
+        "argmin": "exhaustive budget-feasible subset enumeration, first-mask tie-break (a different exact algorithm class from the DP)",
+        "script": "check_p12_price_aware_successor_independent_v1.py"
+      },
+      "agreement_requirement": "the two implementations must agree exactly on every per-structure charge certificate, every successor priced-realized value, and every regret (successor and restrictions) in all 180 case-regime cells and all 15 joint-mix-regime cells; selections must additionally be identical whenever the budgeted optimum is unique, and when optima tie the two selected sets may differ only with identical priced value (tie cells are enumerated and reported)"
+    }
+  },
+  "evaluation_battery": {
+    "sets": ["V1_9 (9 cases)", "EXPANDED_27 (27 cases)"],
+    "regimes": 5,
+    "case_regime_cells": {"V1_9": 45, "EXPANDED_27": 135},
+    "b1_mixes": 4,
+    "b2_joint_mixes": 3,
+    "arms_evaluated": ["REASON_ONLY", "STATE_ALWAYS", "P12_PRICE_AWARE_ALLOCATOR_V1", "ORACLE_LOCATION (diagnostic)"],
+    "original_allocator_reference": "the frozen P12_TRANSFER_ALLOCATOR_V1 is evaluated side-by-side in the same run purely as the BEFORE column of the receipt; it is unchanged and not part of the successor claim"
+  },
+  "success_criteria": {
+    "SC1_FLAT_replication_constraint": {
+      "statement": "under FLAT prices the successor must reproduce the original allocator's zero-regret result on the V1 9-case set",
+      "checks": [
+        "successor priced regret == 0 in all 9 V1-9 cases at FLAT",
+        "successor FLAT priced-realized == original allocator FLAT priced-realized in each of the 9 V1-9 cases (both optimal at FLAT; equality of cost, selection identity not required)"
+      ]
+    },
+    "SC2_price_axis": {
+      "statement": "successor priced regret == 0 in EVERY case record of BOTH sets under ALL five regimes, and in EVERY B2 joint mix under all five regimes",
+      "cells": "180 case-regime cells + 15 joint-mix-regime cells"
+    },
+    "SC3_shift_axis": {
+      "statement": "B1 aggregate successor regret == 0 in all 4 mixes x 5 regimes AND B2 joint regret == 0 in all 3 mixes x 5 regimes (verdict ROBUST under the original battery's own verdict logic, recomputed on successor numbers)"
+    },
+    "SC4_two_implementations": {
+      "statement": "independent checker (different charge engines + different argmin algorithm class) reports discrepancy_count == 0 against the runner's emitted JSON"
+    },
+    "SC5_successor_surface_audit": {
+      "statement": "adapted hidden-parameterization audit of the successor is GREEN: static AST reachability from the successor entry point contains no domain symbol, no payload key, no numeric literal outside B_budget; dynamic proof: selection on structures stripped to {sid, queries, declared_cost} + certificates + prices is byte-identical to selection on full structures for every case and every union; self-validation catches each of 3 injected mutants (domain-name branch; payload-key read; engine call) and passes a harmless rename"
+    },
+    "SC6_price_responsiveness_liveness": {
+      "statement": "the successor's selections must actually respond to the price vector on the frozen pool: at least one (case, structure) cell where the successor's materialization differs between at least two regimes (guards against a price-blind rule passing by pool accident)"
+    }
+  },
+  "statistics": {
+    "design": "exact exhaustive census over the frozen finite pool; no sampling, no p-values",
+    "reported": [
+      "per set x regime: count of positive-regret cells for the successor (target 0) alongside the frozen BEFORE counts",
+      "per B1 mix x regime: aggregate successor regret (target 0)",
+      "per B2 mix x regime: successor regret (target 0)",
+      "total regret mass before vs after per regime",
+      "tie-cell census (cells where the budgeted optimum is not unique), with both implementations' selected sets and values"
+    ]
+  },
+  "failure_modes_to_report_honestly": [
+    "partial repair: any positive successor cell surviving -> attribute the residual to ONE stage (e.g. certificate charging vs argmin vs audit surface) and name the next lever; terminal P12_PRICE_AWARE_SUCCESSOR_PARTIAL",
+    "FLAT replication failure: successor regret > 0 on any V1-9 FLAT cell -> the successor lost the V1 anchor; report as failure, do not retune",
+    "implementation disagreement: any discrepancy between the two charging paths -> halt, report the exact cells, terminal P12_PRICE_AWARE_SUCCESSOR_FAILED (numerics are not allowed to fake the revival)",
+    "audit INVALID: a mutant passing the audit or the rename failing it -> audit invalid, outcome unbound until fixed",
+    "price-blindness: SC6 unmet -> the successor ignored the price vector; report even if regrets are green"
+  ],
+  "terminals": {
+    "supported": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED (SC1-SC6 all green: both axes repaired under the original battery's own verdict logic)",
+    "partial": "P12_PRICE_AWARE_SUCCESSOR_PARTIAL (one axis green, the other not, with one-stage attribution of the residual)",
+    "failed": "P12_PRICE_AWARE_SUCCESSOR_FAILED (constraint or implementation failure; the honest receipt is the deliverable)",
+    "corrected_with_failed_revival": "valid terminal if the lever is executed and documented but does not repair"
+  },
+  "non_claims": [
+    "no claim that the successor is a FORWARD-TIME allocator: it reads the charging environment's published per-structure serve-charge certificates (the P9-style resource ledger the runner compiles anyway). The revived statement is information-theoretic and construction-level: the V1 regret was entirely an objective/information mismatch in the selection rule; given the charger's own published ledger and prices, exact budgeted optimization of the charged objective attains zero priced regret on the frozen pool in every regime and mix. Deployable allocation without charge measurement remains open and is the named next lever.",
+    "no re-tuning of the original allocator, the pools, the regimes, the budget or any V1 file",
+    "no upgrade, widening or retraction of the landed P12B equal-action complementarity authority",
+    "the ORACLE_LOCATION arm stays hindsight-diagnostic; the successor is compared AGAINST it, never identified with it (different algorithm: DP knapsack + published-ledger surface vs exhaustive enumeration)",
+    "no claim about pools, prices or workloads outside the frozen 27+9 cases, 5 regimes and 7 mixes"
+  ]
+}
