@@ -1,0 +1,26 @@
+{
+  "schema": "orion.p1.scienceagentbench.longseed-mechanism-prompt-provenance.v1",
+  "status": "PASS_PREFIX_SUFFIX_COMBINED_BYTES_FROZEN_BEFORE_EXECUTION",
+  "prefix": {
+    "source_pr": 1130,
+    "source_commit": "92f078040c9e5248af44ae2e7ec8930124d41ca5",
+    "source_path": "development/p1-scienceagentbench-lunarc-openweight-v1-2026-08-24/remote-job-3533966/raw/long_context_seed101.request.json",
+    "source_git_blob_oid": "93925929822c6117928f1a81a60bb67ba632f8f6",
+    "bytes": 90575,
+    "sha256": "6c52c9055c03367832e9e61c31f49489194cecd94e732fbc7ca59caeb40cf918"
+  },
+  "suffix": {
+    "authority": "SYNTHETIC_NONBENCHMARK_MECHANISM_ONLY",
+    "semantic_contract": "PRESERVE_SIX_MARKERS_AND_ADD_ONE_OF_EIGHT_EQUALLY_VALID_SYNTHETIC_CHOICES",
+    "bytes": 451,
+    "sha256": "170e270a3663993a0457f4ca9d9ac8c7da59549cfc29dfb1ca924e005afb6919"
+  },
+  "combined": {
+    "construction": "EXACT_PREFIX_BYTES_CONCATENATED_WITH_EXACT_SUFFIX_BYTES_WITHOUT_SEPARATOR_MUTATION",
+    "bytes": 91026,
+    "sha256": "b55831c8657f3a1f5556833204b5aff79fe84e58f170edaa228909401e222f72"
+  },
+  "prompt_bodies_retained_in_this_packet": false,
+  "forbidden_inputs_opened": false,
+  "scientific_authority_delta": "NONE"
+}

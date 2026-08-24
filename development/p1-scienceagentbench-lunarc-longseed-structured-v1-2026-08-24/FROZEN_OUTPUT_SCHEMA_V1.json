@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "markers": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "MK0_7b91c2"},
+        {"const": "MK1_a46fd8"},
+        {"const": "MK2_19e3ab"},
+        {"const": "MK3_c58071"},
+        {"const": "MK4_ef268d"},
+        {"const": "MK5_34da90"}
+      ],
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "sampling_choice": {
+      "type": "string",
+      "enum": ["amber", "cobalt", "delta", "ember", "fjord", "glyph", "harbor", "iris"]
+    }
+  },
+  "required": ["markers", "sampling_choice"],
+  "additionalProperties": false
+}
