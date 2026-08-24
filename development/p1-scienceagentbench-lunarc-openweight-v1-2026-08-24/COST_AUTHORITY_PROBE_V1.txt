@@ -1,0 +1,22 @@
+probe_utc=2026-08-24T12:15:13Z
+failed_command=projinfo -p gpua40i lu2026-2-51
+failed_terminal=Error: Cannot tell you about partition gpua40i. (rc 255)
+
+repair_command=projinfo lu2026-2-51
+(Counting the number of core hours used since 2026-07-24/00:00:00 until now.)
+
+Project             Used[h]   Current allocation [h/month]
+   User
+-----------------------------------------------------
+lu2026-2-51          653.20               60000
+   scyiu             653.20
+
+
+command=scontrol show config filtered AccountingStorageTRES/TRESBillingWeights
+AccountingStorageTRES   = cpu,mem,energy,node,billing,fs/disk,vmem,pages,gres/gpu,gres/gpu:a100,gres/gpu:a40,gres/gpumem,gres/gpuutil
+
+command=sacctmgr association fields
+cosmos|lu2026-2-51|gpua40|normal,test||
+cosmos|lu2026-2-51|gpua40i|normal,test||
+
+owner_authoritative_currency_conversion=NOT_EXPOSED_BY_THESE_COMMANDS

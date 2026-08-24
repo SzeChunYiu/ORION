@@ -1,0 +1,160 @@
+ ;;
+ ;;
+ ;;
+}
+}
+}
+}
+all_proxy=
+ALL_PROXY=
+BASH_ENV=/usr/share/lmod/lmod/init/bash
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+BASH_FUNC_scl%%=() {  if [ "$1" = "load" -o "$1" = "unload" ]; then
+BASH_FUNC_which%%=() {  ( alias;
+ case "$-" in 
+COBBLER_SERVER=10.50.0.1
+CUDA_VISIBLE_DEVICES=0
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/6350/bus
+DEBUGINFOD_IMA_CERT_PATH=/etc/keys/ima:
+ echo "Shell debugging restarted" 1>&2;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ else
+ENVIRONMENT=BATCH
+ esac;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+ eval "module $@";
+ fi
+ fi;
+ fi;
+ fi;
+FPATH=/usr/share/lmod/lmod/init/ksh_funcs
+GPU_DEVICE_ORDINAL=0
+HISTTIMEFORMAT=%y-%m-%d %T # 
+HOME=/home/scyiu
+HOSTNAME=cg13
+http_proxy=
+HTTP_PROXY=
+https_proxy=
+HTTPS_PROXY=
+HYDRA_BOOTSTRAP=slurm
+HYDRA_LAUNCHER_EXTRA_ARGS=--external-launcher
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS=--external-launcher
+I_MPI_HYDRA_BOOTSTRAP=slurm
+__Init_Default_Modules=1
+KRB5CCNAME=KCM:
+LANG=en_US.UTF-8
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+_LMFILES_=/usr/share/modulefiles/Core/SoftwareTree/Milan.lua:/sw/Modules/modulefiles/Core/ollama/0.32.14
+LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
+LMOD_DIR=/usr/share/lmod/lmod/libexec
+ __lmod_my_status=$?;
+LMOD_PKG=/usr/share/lmod/lmod
+LMOD_RC=/sw/lmod/lmodrc.lua
+__LMOD_REF_COUNT_MANPATH=/usr/share/lmod/lmod/share/man:1;:1;/opt/thinlinc/share/man:1
+__LMOD_REF_COUNT_MODULEPATH_ROOT=/sw/Modules/modulefiles:1;/usr/share/modulefiles:1
+__LMOD_REF_COUNT_MODULEPATH=/sw/Modules/versions:1;/sw/Modules/modulefiles/Core:1;/sw/easybuild_milan/modules/all/Core:1;/etc/scl/modulefiles:1;/etc/modulefiles:1;/usr/share/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1
+__LMOD_REF_COUNT_PATH=/sw/pkg/gfxlauncher:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/home/scyiu/bin:1;.:1;/sw/pkg/lunarc/bin:1;/sw/pkg/slurm/local/bin:1;/opt/thinlinc/bin:1;/opt/thinlinc/sbin:1;/sw/pkg/ollama/0.32.14/bin:1
+__LMOD_REF_COUNT_XDG_DATA_DIRS=/home/scyiu/.local/share/flatpak/exports/share:1;/var/lib/flatpak/exports/share:1;/usr/local/share:1;/usr/share:1
+LMOD_ROOT=/usr/share/lmod
+LMOD_SETTARG_FULL_SUPPORT=no
+ __lmod_sh_dbg='v'
+ __lmod_sh_dbg='vx'
+ __lmod_sh_dbg='x'
+LMOD_sys=Linux
+LMOD_SYSTEM_DEFAULT_MODULES=SoftwareTree/Milan
+LMOD_VERSION=8.7.65
+LOADEDMODULES=SoftwareTree/Milan:ollama/0.32.14
+LOGNAME=scyiu
+MANPATH=/usr/share/lmod/lmod/share/man::/opt/thinlinc/share/man
+MODULEPATH_ROOT=/sw/Modules/modulefiles:/usr/share/modulefiles
+MODULEPATH=/sw/Modules/versions:/sw/Modules/modulefiles/Core:/sw/easybuild_milan/modules/all/Core:/etc/scl/modulefiles:/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+MODULESHOME=/usr/share/lmod/lmod
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0ge30sCm1UID0gewpTb2Z0d2FyZVRyZWUgPSB7CmFjdGlvbkEgPSB7CltbcHJlcGVuZF9wYXRoKCJNT0RVTEVQQVRIIiwiL3N3L01vZHVsZXMvbW9kdWxlZmlsZXMvQ29yZTovc3cvZWFzeWJ1aWxkX21pbGFuL21vZHVsZXMvYWxsL0NvcmUiKV1dLAp9LApmbiA9ICIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmUvU29mdHdhcmVUcmVlL01pbGFuLmx1YSIsCmZ1bGxOYW1lID0gIlNvZnR3YXJlVHJlZS9NaWxhbiIsCmxvYWRPcmRlciA9IDEsCnByb3BUID0gewpsbW9kID0gewpzdGlja3kgPSAxLAp9LAp9
+_ModuleTable002_=LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gIlNvZnR3YXJlVHJlZS9NaWxhbiIsCndWID0gIiptaWxhbi4qemZpbmFsIiwKfSwKb2xsYW1hID0gewphY3Rpb25BID0gewpbW3ByZXBlbmRfcGF0aCgiTU9EVUxFUEFUSCIsIi9zdy9Nb2R1bGVzL3ZlcnNpb25zIildXSwKfSwKZm4gPSAiL3N3L01vZHVsZXMvbW9kdWxlZmlsZXMvQ29yZS9vbGxhbWEvMC4zMi4xNCIsCmZ1bGxOYW1lID0gIm9sbGFtYS8wLjMyLjE0IiwKbG9hZE9yZGVyID0gMiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJvbGxhbWEvMC4zMi4xNCIsCndWID0gIjAwMDAwMDAwMC4wMDAwMDAwMzIuMDAwMDAwMDE0
+_ModuleTable003_=Lip6ZmluYWwiLAp9LAp9LAptcGF0aEEgPSB7CiIvc3cvTW9kdWxlcy92ZXJzaW9ucyIsICIvc3cvTW9kdWxlcy9tb2R1bGVmaWxlcy9Db3JlIgosICIvc3cvZWFzeWJ1aWxkX21pbGFuL21vZHVsZXMvYWxsL0NvcmUiLCAiL2V0Yy9zY2wvbW9kdWxlZmlsZXMiCiwgIi9ldGMvbW9kdWxlZmlsZXMiLCAiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcyIsICIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IgosICIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmUiLCAiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsCn0sCnN5c3RlbUJhc2VNUEFUSCA9ICIvZXRjL3NjbC9tb2R1bGVmaWxlczovZXRjL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXM6
+_ModuleTable004_=L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9MaW51eDovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmU6L3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsCn0K
+_ModuleTable_Sz_=4
+MOTD_SHOWN=pam
+NAISS_TMP=/local/slurmtmp.3533966
+no_proxy=127.0.0.1,localhost
+NO_PROXY=127.0.0.1,localhost
+OLLAMA_HOST=127.0.0.1:11471
+OLLAMA_KEEP_ALIVE=30m
+OLLAMA_MODELS=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_openweight_v1_20260824/run/job-3533966/ollama-models
+OLLAMA_NOHISTORY=1
+OLLAMA_NOPRUNE=1
+OMPI_MCA_plm_slurm_args=--external-launcher
+ONDEMAND_DT_DIR=/sw/pkg/gfxlauncher
+PATH=/sw/pkg/gfxlauncher:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/scyiu/bin:.:/sw/pkg/lunarc/bin:/sw/pkg/slurm/local/bin:/opt/thinlinc/bin:/opt/thinlinc/sbin:/sw/pkg/ollama/0.32.14/bin
+PDSH_RCMD_TYPE=ssh
+PRTE_MCA_plm_slurm_args=--external-launcher
+PWD=/home/scyiu
+ return $__lmod_my_status
+ROCR_VISIBLE_DEVICES=0
+S_COLORS=auto
+ set +$__lmod_sh_dbg;
+ set -$__lmod_sh_dbg;
+SHELL=/bin/bash
+SHLVL=1
+SLURM_CLUSTER_NAME=(null)
+SLURM_CONF=/var/spool/slurm/slurmd/conf-cache/slurm.conf
+SLURM_CPUS_ON_NODE=8
+SLURM_CPUS_PER_TASK=8
+SLURMD_NODENAME=cg13
+SLURM_GPUS_ON_NODE=1
+SLURM_GTIDS=0
+SLURM_JOB_ACCOUNT=lu2026-2-51
+SLURM_JOB_CPUS_PER_NODE=8
+SLURM_JOB_END_TIME=1787576878
+SLURM_JOB_GID=6300
+SLURM_JOB_GPUS=0
+SLURM_JOB_ID=3533966
+SLURM_JOBID=3533966
+SLURM_JOB_NAME=p1_sab_ow_v1
+SLURM_JOB_NODELIST=cg13
+SLURM_JOB_NUM_NODES=1
+SLURM_JOB_PARTITION=gpua40i
+SLURM_JOB_QOS=normal
+SLURM_JOB_START_TIME=1787573278
+SLURM_JOB_UID=6350
+SLURM_JOB_USER=scyiu
+SLURM_LOCALID=0
+SLURM_MEM_PER_NODE=65536
+SLURM_NNODES=1
+SLURM_NODEID=0
+SLURM_NODELIST=cg13
+SLURM_NPROCS=1
+SLURM_NTASKS=1
+SLURM_PRIO_PROCESS=0
+SLURM_PROCID=0
+SLURM_SCRIPT_CONTEXT=prolog_task
+SLURM_SUBMIT_DIR=/home/scyiu
+SLURM_SUBMIT_HOST=cosmos2.int.lunarc
+SLURM_TASK_PID=3309163
+SLURM_TASKS_PER_NODE=1
+SLURM_TOPOLOGY_ADDR=core.swf1.cg13
+SLURM_TOPOLOGY_ADDR_PATTERN=switch.switch.node
+SLURM_TRES_PER_TASK=cpu:8
+SNIC_TMP=/local/slurmtmp.3533966
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SSH_CLIENT=194.47.223.45 58158 22
+SSH_CONNECTION=194.47.223.45 58158 194.47.223.52 22
+TMPDIR=/local/slurmtmp.3533966
+ unset __lmod_sh_dbg;
+USER=scyiu
+_=/usr/bin/env
+ /usr/bin/scl "$@";
+ *v*)
+ *v*x*)
+which_declare=declare -f
+ *x*)
+XDG_DATA_DIRS=/home/scyiu/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+XDG_RUNTIME_DIR=/run/user/6350
+XDG_SESSION_CLASS=user
+XDG_SESSION_ID=24046
+XDG_SESSION_TYPE=tty
+ZE_AFFINITY_MASK=0

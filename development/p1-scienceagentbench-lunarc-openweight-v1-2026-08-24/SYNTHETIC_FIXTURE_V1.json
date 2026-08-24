@@ -1,0 +1,89 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.lunarc-openweight-synthetic-fixture.v1",
+  "fixture_id": "P1_SAB_OPENWEIGHT_SYNTHETIC_NONBENCHMARK_V1",
+  "authority": "SYNTHETIC_NONBENCHMARK_INFRASTRUCTURE_ONLY",
+  "official_task_content": false,
+  "protected_archive_access_permitted": false,
+  "outcomes_opened": false,
+  "evaluator_access_permitted": false,
+  "credential_access_permitted": false,
+  "decoding": {
+    "num_ctx": 32768,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0
+  },
+  "arm_seeds": {
+    "RR": 101,
+    "OS": 202,
+    "NR": 303
+  },
+  "masked_packet": {
+    "instance_id": "synthetic-openweight-1",
+    "domain": "SYNTHETIC_ARITHMETIC",
+    "task_inst": "Write a self-contained Python program that reads an inline list of values, computes the population mean, and writes the required JSON object.",
+    "output_fname": "synthetic_result.json",
+    "domain_knowledge": "<MASKED:domain_knowledge>",
+    "dataset_folder_tree": "<MASKED:dataset_folder_tree>",
+    "dataset_preview": "<MASKED:dataset_preview>",
+    "dataset_filesystem": "NOT_MOUNTED"
+  },
+  "recovered_packet": {
+    "instance_id": "synthetic-openweight-1",
+    "domain": "SYNTHETIC_ARITHMETIC",
+    "task_inst": "Write a self-contained Python program that reads an inline list of values, computes the population mean, and writes the required JSON object.",
+    "output_fname": "synthetic_result.json",
+    "domain_knowledge": "Population mean equals sum(values) divided by len(values).",
+    "dataset_folder_tree": [
+      "synthetic_numbers.json"
+    ],
+    "dataset_preview": {
+      "values": [
+        3,
+        6,
+        9,
+        12
+      ]
+    },
+    "dataset_filesystem": "SYNTHETIC_INLINE_ONLY_NO_MOUNT"
+  },
+  "long_context": {
+    "filler_line_count": 1200,
+    "filler_template": "FILLER_{index:04d} amber cobalt delta ember fjord glyph harbor iris juniper kelp.",
+    "marker_positions": [
+      0,
+      240,
+      480,
+      720,
+      960,
+      1199
+    ],
+    "marker_values": [
+      "MK0_7b91c2",
+      "MK1_a46fd8",
+      "MK2_19e3ab",
+      "MK3_c58071",
+      "MK4_ef268d",
+      "MK5_34da90"
+    ],
+    "minimum_reported_prompt_tokens": 24000,
+    "maximum_output_tokens": 128
+  },
+  "replay_probe": {
+    "seed": 101,
+    "maximum_output_tokens": 96,
+    "prompt": "Synthetic replay probe. Return exactly one compact JSON object with keys hypothesis, discriminator, and stop_rule for choosing between two imaginary sensors A and B. Do not use markdown."
+  },
+  "sensitivity_probe": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "maximum_output_tokens": 96,
+    "prompt": "Synthetic seed-sensitivity probe. Invent one novel six-letter lowercase codename for an imaginary scientific instrument, then give a seven-word calibration rule. Return compact JSON only."
+  },
+  "scientific_authority_delta": "NONE"
+}
