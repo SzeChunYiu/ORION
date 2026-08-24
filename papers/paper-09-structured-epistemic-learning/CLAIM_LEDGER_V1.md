@@ -26,6 +26,38 @@ These may remain scientifically useful successor programmes, but they may not ap
 - natural-paper expert gold;
 - LLM integration / P10 structured reasoning.
 
+## Replay determinism record (2026-08-24, append-only)
+
+The reopened 0.50-vs-0.75 serialized-arm divergence (`P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED`)
+is mechanistically resolved without changing any claim row:
+
+- **Deciding factor** (one-factor toggle, `evidence/P9_D1V1_2_BINARY_BUILD_TOGGLE_2026-08-24.json`):
+  the binary build of the numerical stack executing lbfgs, beneath the recorded
+  version manifest. Bit-identical design inputs, identical scipy 1.17.1 and
+  scikit-learn 1.8.0, identical frozen selection rule and selected config —
+  conda CPython 3.13.12/NumPy 2.4.4 converges in 480 lbfgs iterations to the
+  archived 0.50 (zero per-case flips on all four arms); conda CPython
+  3.11.15/NumPy 2.4.3 builds (two independent envs, bit-identical canaries)
+  converge in 439 iterations to 0.75, flipping exactly the 32 sub-margin
+  UNRESOLVED-truth knife-edge cases. Both sides converge cleanly and are
+  deterministic within build. The version manifest underdetermines the replay;
+  a version-number pin was never a determinism pin.
+- **Determinism enforcement** (`top_tier/replay_d1v1_2_pinned.py`): one documented
+  entry point that fingerprints the executing build by a numeric canary (full
+  sha256 of the converged serialized-arm coefficient bytes) and fails closed
+  unless the canary predicts the observed per-case attractor. This pins the
+  pinning protocol, not a hardcoded accuracy.
+- **Two clean replays** (`evidence/P9_D1V1_2_PINNED_REPLAY_R1_2026-08-24.json`,
+  `..._R2_...`): separate process executions under the pinned archive-matching
+  build with identical deterministic cores, identical result digests
+  (`sha256:a79453e6335501bdc1431053ddcf458dbd48ff3a75b77efb28fc71759527e89f`),
+  and per-case equality with the archived result on all four arms.
+- **No relabelling**: the archived 0.5 remains the modal-class prior of a
+  degenerate comparator, not a representation measurement; the divergence
+  carries no representation-quality information in either direction; the
+  historical terminal stays append-only. Binding checker:
+  `top_tier/check_d1v1_2_pinned_replay_v1.py`.
+
 ## Paper gate
 
 A standalone P9 manuscript is allowed only if:

@@ -115,3 +115,29 @@ Direct open-weight LLM T3/T4 structure×compute claims remain separate: where th
 - regenerate the full evidence summary/tables/PDF from the current receipts;
 - rerun clean-environment reproduction, anonymity and clipping/content-binding gates;
 - bind exact final manuscript, evidence, environment and PDF bytes.
+
+## Replay determinism (2026-08-24)
+
+The reopened 0.50-vs-0.75 serialized-arm divergence is mechanistically closed
+by a one-factor toggle: with bit-identical inputs, identical scipy/scikit-learn
+versions, and the identical frozen selection rule, the executing **binary
+build** of the numerical stack decides which attractor lbfgs terminates on
+(480 iterations → the archived 0.50 with zero per-case flips; 439 iterations →
+0.75 with the same 32 UNRESOLVED knife-edge cases flipped). Both sides converge
+cleanly; both are deterministic within build; the version manifest
+underdetermines the replay. Determinism is enforced by a pinned entry point
+whose numeric canary (converged serialized-arm coefficient hash) predicts the
+attractor before any accuracy is read, with two clean replays recorded and a
+binding checker over the committed tree:
+
+| File | Role |
+|---|---|
+| `top_tier/replay_d1v1_2_pinned.py` | single documented pinned replay entry point (canary, margins, attractor classification, canonical digest) |
+| `top_tier/demonstrate_d1v1_2_build_toggle.py` | two-phase A/B toggle: dump bit-identical designs, refit under any build |
+| `evidence/P9_D1V1_2_BINARY_BUILD_TOGGLE_2026-08-24.json` | toggle receipt: both numbers reproduced by the one factor |
+| `evidence/P9_D1V1_2_PINNED_REPLAY_R1_2026-08-24.json` / `..._R2_...` | two clean replays, identical cores and digests, archive per-case equality |
+| `top_tier/check_d1v1_2_pinned_replay_v1.py` | binding checker over the committed tree (append-only history byte-anchored) |
+
+Nothing is relabelled: the archived 0.5 remains the modal-class prior of a
+degenerate comparator, `P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED` stays
+append-only, and no claim row changes.

@@ -98,3 +98,22 @@ vectors equal, TSB accuracy `0.5` with the constant predictor restored.
 | `top_tier/run_causal_diagnostic_transport_v2.py` + `evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_RUN.json` | V2 re-test (receipt SHA-256 `662b772a3b6a929b8afe5112bfff28c10b0d4709e018abf4755391bbd6495ab2`) |
 | `top_tier/revive_p9_nr06_replay_consistency.py` + `evidence/P9_D1V1_2_ARCHIVE_NUMERICAL_REPLAY_CONSISTENCY_2026-08-23.json` | NR-06 replay-consistency check |
 | `evidence/P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1.json` | machine-readable receipt |
+
+## Addendum 2026-08-24: binary-build resolution of the reopened divergence
+
+The 0.50-vs-0.75 divergence was reopened by a fresh preflight (#1086) that
+reported version strings indistinguishable from the archive-matching
+environment yet landed on 0.75. It is now resolved mechanistically:
+`evidence/P9_D1V1_2_BINARY_BUILD_TOGGLE_2026-08-24.json` reproduces **both**
+numbers on demand by toggling exactly one factor — the executing binary build
+of the numerical stack (conda CPython 3.13.12/NumPy 2.4.4 → 0.50 archive match,
+480 lbfgs iterations; conda CPython 3.11.15/NumPy 2.4.3 → 0.75, 439 iterations,
+the same 32 UNRESOLVED knife-edge cases flipped) — on bit-identical design
+inputs with identical scipy/scikit-learn versions and selection rule. The
+version manifest underdetermines this replay; determinism is now enforced by
+`top_tier/replay_d1v1_2_pinned.py` (numeric canary + pinned entry point, fail
+closed), with two clean replays recorded in
+`evidence/P9_D1V1_2_PINNED_REPLAY_R1_2026-08-24.json` / `..._R2_...` and bound
+by `top_tier/check_d1v1_2_pinned_replay_v1.py`. The boundary above is
+unchanged: nothing is relabelled, and the archived 0.5 is still the modal-class
+prior, not a measurement.
