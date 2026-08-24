@@ -1,0 +1,115 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.protocol-design.v0",
+  "protocol_id": "P1_SAB_RECURSIVE_RECOVERY_PROTOCOL_DESIGN_20260824_V0",
+  "authority": "OUTCOME_BLIND_PROTOCOL_DESIGN_ONLY__NOT_A_PREREGISTERED_OR_RUN_CONFIRMATORY_PROTOCOL",
+  "status": "MASK_FROZEN__MATCHED_ARM_AND_RUNTIME_BINDINGS_INCOMPLETE",
+  "created_at": "2026-08-24T09:19:26Z",
+  "question": "On all 102 verified ScienceAgentBench tasks, does a typed recursive reconstruction controller improve official task solve rate after an exact, prospectively fixed auxiliary-context recovery event relative to the stronger of a full-context one-shot arm and a staged no-reconstruction arm under matched generation budgets?",
+  "source_population": {
+    "dataset": "osunlp/ScienceAgentBench",
+    "revision": "9c6e96c9e74572e979b0930ee735041cef528cb7",
+    "split": "verified",
+    "task_ids": "1..102",
+    "task_count": 102,
+    "mask_manifest": {
+      "path": "MASK_MANIFEST_V1.json",
+      "sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758"
+    },
+    "exclusions": [],
+    "license_exceptions_retained_and_reported": [
+      "3",
+      "32",
+      "46",
+      "53",
+      "54",
+      "84"
+    ]
+  },
+  "common_intervention": {
+    "phase_0": "Expose task_inst and output_fname; replace domain_knowledge, dataset_folder_tree and dataset_preview by deterministic typed mask markers bound to MASK_MANIFEST_V1.json. No candidate execution or official score is permitted.",
+    "recovery": "Before any candidate program execution, reveal the exact masked source values and make the task dataset available read-only. Null values recover to null. No task is dropped or remasked.",
+    "always_hidden": [
+      "gold_program bodies",
+      "evaluation-program bodies",
+      "gold result files",
+      "scoring-rubric bodies",
+      "official evaluation outputs from any arm until all candidates are sealed"
+    ],
+    "no_outcome_adaptation": true,
+    "construct_boundary": "This is an ORION-authored input-availability intervention. It does not provide hidden-formulation responsibility labels or scientific transition-authority gold."
+  },
+  "candidate_arms": [
+    {
+      "arm_id": "RR",
+      "name": "typed_recursive_reconstruction",
+      "phase_0_action": "Emit a schema-bound state containing assumptions, unresolved inputs, intended analysis, invariants and output contract.",
+      "phase_1_action": "Diff the recovered packet against the state, revise only affected entries, then emit one final self-contained Python program.",
+      "state_persistence": "typed state persists across recovery"
+    },
+    {
+      "arm_id": "OS",
+      "name": "matched_full_context_one_shot",
+      "phase_0_action": "No task-dependent model output is used.",
+      "phase_1_action": "Receive the fully recovered packet and emit one final self-contained Python program in one direct generation.",
+      "state_persistence": "none"
+    },
+    {
+      "arm_id": "NR",
+      "name": "staged_no_reconstruction_reset",
+      "phase_0_action": "Emit a generic bounded plan from the masked packet.",
+      "phase_1_action": "Discard phase-0 task state, receive the fully recovered packet and emit one final self-contained Python program from scratch.",
+      "state_persistence": "none"
+    }
+  ],
+  "matching_contract_to_bind_before_freeze": {
+    "attempts_per_task_arm": 3,
+    "final_candidates_per_attempt": 1,
+    "model": "AUTHOR_INPUT_NEEDED_EXACT_IMMUTABLE_MODEL_ID",
+    "provider": "AUTHOR_INPUT_NEEDED",
+    "tokenizer_revision": "AUTHOR_INPUT_NEEDED",
+    "total_input_token_cap_per_attempt": "AUTHOR_INPUT_NEEDED_EQUAL_ACROSS_ARMS",
+    "total_output_token_cap_per_attempt": "AUTHOR_INPUT_NEEDED_EQUAL_ACROSS_ARMS",
+    "tools": "same read-only task dataset and same Python/package policy after recovery; no gold/evaluator feedback",
+    "temperature_top_p_seed": "AUTHOR_INPUT_NEEDED_AND_PROVIDER_CAPABILITY_NEEDED",
+    "timeout_and_local_execution_budget": "AUTHOR_INPUT_NEEDED_EQUAL_ACROSS_ARMS",
+    "cost_accounting": "Record actual input/output tokens, tool calls, wall time and billed USD for every attempt; total cost includes all three attempts, never only the selected successful attempt."
+  },
+  "official_scoring": {
+    "source_commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d",
+    "required_cli_split": "verified",
+    "task_solved_definition": "valid_program == 1 and official success_rate == 1 for at least one of the three sealed attempts",
+    "all_attempts_retained": true,
+    "upstream_calculate_metrics_best_run_cost_not_primary": true,
+    "reason": "Upstream calculate_metrics.py reports the cost of the selected best attempt; the prospective cost gate must count every attempted trajectory."
+  },
+  "estimands_and_gate": {
+    "inference_unit": "task, paired across arms; generated rows, attempts and seeds are not independent n",
+    "primary_estimand": "overall paired solve-rate difference RR minus the empirically stronger aggregate comparator among OS and NR",
+    "multiplicity_guard": "Compute RR-OS and RR-NR prospectively; require both paired 95% CI lower bounds > 0. The stronger-comparator point gain must be >= 0.08.",
+    "paired_interval": "100000-replicate task bootstrap, stratified within the four fixed disciplines, with a frozen RNG implementation and seed to be byte-bound before execution",
+    "discipline_guard": "For each discipline, RR solve rate minus each comparator solve rate must be >= -0.05; publish all four rates and both contrasts.",
+    "cost_guard": "Total generation cost for RR divided by total generation cost of the stronger comparator <= 1.5. Report official-evaluator cost separately.",
+    "official_evaluator_guard": "All 102 tasks receive a parseable official evaluator record; missing, partial, wrong-split or runtime-failed records are CANNOT_CHECK, not solved=0.",
+    "failure_reporting": "Publish every task/attempt status, invalid program, timeout, runtime/evaluator failure, discipline, tokens, cost and raw-output hash."
+  },
+  "freeze_requirements": [
+    "full benchmark_verified.zip SHA-256 and byte count recorded outside ORION",
+    "verified-split adapter and exact prompts byte-bound",
+    "model/provider/tokenizer/seeds/token/tool/time budgets byte-bound",
+    "official GPT-4o visual-judge route or authorized exact deployment proven callable and its stochastic outputs preserved",
+    "Docker/base/instance dependency manifests and secret-handling plan frozen",
+    "fresh-container dry run on nonbenchmark synthetic fixtures only",
+    "protocol, task-mask manifest, runner and analysis script hashes signed before any official evaluation output is opened"
+  ],
+  "forbidden": [
+    "opening gold/evaluator/rubric bodies during adapter development",
+    "using validation instead of verified",
+    "task exclusions after seeing failures",
+    "best-attempt-only cost",
+    "tuning masks/prompts/gates after an official outcome",
+    "claiming public benchmark execution is protected or independent custody",
+    "claiming task recovery identifies why recovery worked or licenses a P1 scientific transition"
+  ],
+  "outcomes_opened": false,
+  "scientific_authority_delta": "NONE"
+}
