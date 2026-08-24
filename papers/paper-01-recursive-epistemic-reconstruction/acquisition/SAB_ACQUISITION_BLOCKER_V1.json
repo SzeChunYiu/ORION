@@ -1,0 +1,43 @@
+{
+  "schema": "P1.SABAcquisitionBlocker.v1",
+  "blocks": [
+    "#1086 P1: Run the full benchmark with the official evaluator.",
+    "#1086 P1: Compare recursive reconstruction against matched one-shot and no-reconstruction arms.",
+    "#1086 P1: Publish every task-level failure and discipline result.",
+    "#1086 P12: Use >=20 task families, >=3 domains and >=2 model families (outcome scoring requires the evaluator)."
+  ],
+  "what_is_obtainable_without_the_operator": {
+    "annotation_sheet": {
+      "source": "https://huggingface.co/datasets/osunlp/ScienceAgentBench",
+      "obtained": true,
+      "sha256_prefix": "7f490f17f721a9c7e9415d36",
+      "contents": "102 rows: instance_id, domain, subtask_categories, task_inst, domain_knowledge, dataset_folder_tree, dataset_preview, gold_program_name, eval_script_name",
+      "sufficient_for": "the masking freeze in PR #1183, and any analysis over task metadata",
+      "not_sufficient_for": "scoring a generated program, because gold_program_name and eval_script_name are NAMES; neither the datasets nor the eval programs are in this sheet or in the GitHub repository"
+    },
+    "github_repository": {
+      "source": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+      "obtained": true,
+      "revision": "c26e151",
+      "note": "benchmark/README.md is a placeholder that reads 'This file is left blank intentionally'"
+    }
+  },
+  "what_is_not_obtainable": {
+    "artifact": "the full benchmark (datasets/ and eval_programs/)",
+    "distribution": "a personal SharePoint share link in the repository README",
+    "url_shape": "https://buckeyemailosu-my.sharepoint.com/:u:/g/personal/chen_8336_osu_edu/IQB870Qrmuq...",
+    "attempts": [
+      {"form": "direct GET", "result": "HTTP 302 to an interactive sign-in page"},
+      {"form": "?download=1", "result": "HTTP 302, content-type text/html, content-length 191"},
+      {"form": "&e=...&download=1", "result": "HTTP 302, content-type text/html, content-length 191"}
+    ],
+    "conclusion": "the link requires an interactive browser session; it is not scriptable, and no mirror of the datasets or eval programs was found on HuggingFace or in the repository"
+  },
+  "what_would_unblock_it": {
+    "action": "open the SharePoint link in a browser, download the archive, and place it where the harness can read it",
+    "then": "unzip under the ScienceAgentBench checkout so that benchmark/datasets/ and benchmark/eval_programs/ resolve, per the repository's own directory layout",
+    "further_requirement": "the evaluator provisions per-task conda environments (config_conda_env.py references conda 13 times), so the execution host needs conda and per-task environment creation",
+    "unblocks": "P1's three remaining execution boxes and P12's outcome scoring"
+  },
+  "not_a_workaround": "No proxy scoring was substituted. Scoring generated programs against anything other than the official evaluator would not be 'the full benchmark with the official evaluator', which is what the box asks for."
+}
