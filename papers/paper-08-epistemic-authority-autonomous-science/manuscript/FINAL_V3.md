@@ -166,6 +166,35 @@ Final X4 enumeration:
 
 A separate checker independently reconstructs the final enumeration.
 
+## Real evidence-discharge study: 20 cases across four domains
+
+The theorems above are exact statements about the calculus. Whether the
+discharge and revocation semantics behave as specified on real material is a
+separate question, and it is answered on 20 frozen real-domain cases spanning
+four settings -- empirical, formal, multiple-support and systems.
+
+- exact scientific-discharge accuracy: **1.0** in all four domains;
+- false scientific promotions: **0**;
+- 12 explicit action/scientific-separation cases;
+- full support revocation blocks discharge, and partial revocation preserves
+  the support that was retained;
+- independent checker and deterministic replay: GREEN.
+
+The twelve separation cases are the point of the study rather than a subset of
+it. Four states must stay distinct and are kept distinct throughout: an agent may
+hold **action permission** to run something, which is a local authorization fact;
+**scientific discharge** is the separate question of whether the resulting
+evidence can authorize a conclusion; `DENIED` records that discharge was refused
+on the evidence presented; and `CANNOT_CHECK` records that the question was not
+answerable at all. Collapsing the first into the second is authority laundering,
+and collapsing `CANNOT_CHECK` into `DENIED` manufactures a negative finding out
+of an absent one.
+
+This is bounded real evidence that the semantics behave as specified. It is not
+independent external adjudication of the calculus: the checker is a second
+implementation inside the same programme, not an outside authority.
+
+
 ## Strongest supported claim
 
 > P8 establishes a complete finite composition law for cross-domain scientific authority over thirteen heterogeneous donor families. Native donor authority is conserved; all 169 registered ordered donor pairs compose under compatible, narrowed, or explicitly protectedly bridged scientific authority; matched widening variants establish the non-widening boundary; unresolved blockers fail closed; complete independent support is exactly revocable; and the semantics are portable to an equally typed decentralized implementation.
