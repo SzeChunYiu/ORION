@@ -1,0 +1,62 @@
+name: ORION foundations V3 theory audit
+
+on:
+  pull_request:
+    paths:
+      - "research/orion-foundations-v3/**"
+      - ".github/workflows/orion-foundations-v3.yml"
+  push:
+    paths:
+      - "research/orion-foundations-v3/**"
+      - ".github/workflows/orion-foundations-v3.yml"
+
+jobs:
+  theory-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Reject execution-lane edits
+        shell: bash
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            base="$PR_BASE_SHA"
+            head="$PR_HEAD_SHA"
+          else
+            base="$PUSH_BEFORE_SHA"
+            head="$EVENT_SHA"
+            if [[ -z "$base" || "$base" == "0000000000000000000000000000000000000000" ]]; then
+              base="$head^"
+            fi
+          fi
+
+          git cat-file -e "$base^{commit}" 2>/dev/null || git fetch origin "$base"
+          git cat-file -e "$head^{commit}" 2>/dev/null || git fetch origin "$head"
+          git diff --name-only "$base" "$head" | tee /tmp/foundations-v3-paths.txt
+
+          unexpected="$(grep -Ev '^(research/orion-foundations-v3/.*|\.github/workflows/orion-foundations-v3\.yml)$' /tmp/foundations-v3-paths.txt || true)"
+          if [[ -n "$unexpected" ]]; then
+            echo "Unexpected non-theory paths:" >&2
+            echo "$unexpected" >&2
+            exit 1
+          fi
+          if grep -Eiq '(^|/)(rr1|finalizer|slurm|lunarc|custody)(/|$)' /tmp/foundations-v3-paths.txt; then
+            echo "Execution/finalizer path entered theory PR" >&2
+            exit 1
+          fi
+      - name: Validate theory package
+        run: python research/orion-foundations-v3/check_foundations_v3.py
+      - name: Parse JSON artifacts
+        run: |
+          python -m json.tool research/orion-foundations-v3/THEOREM_LEDGER_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/ASSUMPTION_LEDGER_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/EXECUTION_ONLY_BACKLOG_V1.json >/dev/null

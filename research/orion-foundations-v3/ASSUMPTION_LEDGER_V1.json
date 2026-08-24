@@ -1,0 +1,17 @@
+{
+  "assumptions": [
+    {"id":"A1","statement":"Every concrete trace is finite.","failure":"infinite unproductive derivation; completeness extraction may not terminate."},
+    {"id":"A2","statement":"Rules are finitary and typed.","failure":"infinitary premise sets or untyped coercion break structural checking."},
+    {"id":"A3","statement":"Within an epoch, derivations are positive and stratified.","failure":"nonmonotone self-reference requires stable-model/fixed-point semantics."},
+    {"id":"A4","statement":"Revocation/regime change creates a new stratum and history is append-only.","failure":"destructive history rewrite makes audit and revocation nonlocal."},
+    {"id":"A5","statement":"Ordinary authority morphisms attenuate; widening is explicit protected coercion.","failure":"implicit widening refutes non-amplification."},
+    {"id":"A6","statement":"Blockers are explicit three-valued facts.","failure":"missing blocker representation can be laundered as clearance."},
+    {"id":"A7","statement":"Every admitted target has a finite complete support family.","failure":"non-finitely supported conclusions require extended proof objects."},
+    {"id":"A8","statement":"Method operations and resource charges are declared.","failure":"hidden computation defeats obstruction and resource claims."},
+    {"id":"A9","statement":"Candidate proposals have no external adoption authority.","failure":"self-promotion countermodel."},
+    {"id":"A10","statement":"Execution integrity is orthogonal absent a registered bridge.","failure":"receipt/signature laundering into scientific truth."}
+  ],
+  "minimality": "class-relative; not universal metaphysical minimality",
+  "schema_version": "orion.foundations.assumption-ledger.v1",
+  "workflow_class": "W-dagger"
+}
