@@ -1,0 +1,88 @@
+===FILE=== orion_study_p6_separation_calculus_smt___node_count_6.out
+  PROVED          SEPARATED_COMMUTATION
+  PROVED          SEPARATION_IS_NECESSARY
+  PROVED          WRITE_LOCALITY
+  PROVED          FRAME_DETERMINACY
+  PROVED          IDEMPOTENT_ON_FIXPOINT
+  instantiation: 31104/31104 frame-respecting, 30720 perturbations outside the frame
+===FILE=== orion_study_p6_separation_calculus_smt___node_count_7.out
+  PROVED          SEPARATED_COMMUTATION
+  PROVED          SEPARATION_IS_NECESSARY
+  PROVED          WRITE_LOCALITY
+  PROVED          FRAME_DETERMINACY
+  PROVED          IDEMPOTENT_ON_FIXPOINT
+  instantiation: 172928/172928 frame-respecting, 172032 perturbations outside the frame
+===FILE=== orion_study_p7_composition_calculus_smt___differential_trials_20000.out
+<frozen runpy>:128: RuntimeWarning: 'orion.study.p7.composition_calculus_smt' found in sys.modules after import of package 'orion.study.p7', but prior to execution of 'orion.study.p7.composition_calculus_smt'; this may result in unpredictable behaviour
+  PROVED          IDENTITY_CARRIES
+  PROVED          LEFT_IDENTITY
+  PROVED          RIGHT_IDENTITY
+  PROVED          IDENTITY_STRICT
+  PROVED          ASSOCIATIVITY_OBSERVABLE
+  PROVED          ASSOCIATIVITY_CARRIES
+  PROVED          ASSOCIATIVITY_STRICT
+  PROVED          INTERMEDIATE_CONTRACT_COMPOSITION
+  PROVED          UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS
+  PROVED          COMPOSITION_NON_AMPLIFICATION
+  PROVED          SINGLE_COORDINATE_SEPARATION
+  PROVED          DONOR_CONSERVATIVITY
+  PROVED          IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST
+  PROVED          STRICT_LAWS_NEED_EXTENSIONALITY
+  PROVED          TOTALITY_COMPOSES_UNDER_MATCH
+  PROVED          CONTAINMENT_IS_THE_EXACT_CONDITION
+  PROVED          MATCH_IS_NOT_NECESSARY
+  PROVED          CONTAINMENT_FAILURE_ADMITS_A_COUNTERMODEL
+  chain ladder: 8/8 lengths discharged
+  differential: 20072/20072 agree, 3148 positive, both verdicts exercised: True
+  instances: 50/50 committed composition rows discharged as instances
+  bridge-soundness axiom is load-bearing: True
+===FILE=== orion_study_p7_composition_calculus_smt___differential_trials_5000.out
+<frozen runpy>:128: RuntimeWarning: 'orion.study.p7.composition_calculus_smt' found in sys.modules after import of package 'orion.study.p7', but prior to execution of 'orion.study.p7.composition_calculus_smt'; this may result in unpredictable behaviour
+  PROVED          IDENTITY_CARRIES
+  PROVED          LEFT_IDENTITY
+  PROVED          RIGHT_IDENTITY
+  PROVED          IDENTITY_STRICT
+  PROVED          ASSOCIATIVITY_OBSERVABLE
+  PROVED          ASSOCIATIVITY_CARRIES
+  PROVED          ASSOCIATIVITY_STRICT
+  PROVED          INTERMEDIATE_CONTRACT_COMPOSITION
+  PROVED          UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS
+  PROVED          COMPOSITION_NON_AMPLIFICATION
+  PROVED          SINGLE_COORDINATE_SEPARATION
+  PROVED          DONOR_CONSERVATIVITY
+  PROVED          IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST
+  PROVED          STRICT_LAWS_NEED_EXTENSIONALITY
+  PROVED          TOTALITY_COMPOSES_UNDER_MATCH
+  PROVED          CONTAINMENT_IS_THE_EXACT_CONDITION
+  PROVED          MATCH_IS_NOT_NECESSARY
+  PROVED          CONTAINMENT_FAILURE_ADMITS_A_COUNTERMODEL
+  chain ladder: 8/8 lengths discharged
+  differential: 5072/5072 agree, 801 positive, both verdicts exercised: True
+  instances: 50/50 committed composition rows discharged as instances
+  bridge-soundness axiom is load-bearing: True
+===FILE=== orion_study_p8_authority_calculus_smt___differential_trials_100000.out
+  PROVED          SCOPE_NON_AMPLIFICATION
+  PROVED          DOMAIN_CONFINEMENT
+  PROVED          NO_LAUNDERING_GENERAL
+  PROVED          NON_COMPENSATORY
+  PROVED          DEFEATER_MONOTONICITY
+  PROVED          EPOCH_ISOLATION
+  PROVED          ONE_STEP_LEMMA
+  PROVED          CONV_IMPLIES_REACH
+  PROVED          CYCLE_COLLAPSE
+  PROVED          ACYCLIC_STRICTNESS
+  chain ladder: 8/8 proved
+  differential: 100000/100000 agree, 13416 authorised
+===FILE=== orion_study_p8_authority_calculus_smt___differential_trials_20000.out
+  PROVED          SCOPE_NON_AMPLIFICATION
+  PROVED          DOMAIN_CONFINEMENT
+  PROVED          NO_LAUNDERING_GENERAL
+  PROVED          NON_COMPENSATORY
+  PROVED          DEFEATER_MONOTONICITY
+  PROVED          EPOCH_ISOLATION
+  PROVED          ONE_STEP_LEMMA
+  PROVED          CONV_IMPLIES_REACH
+  PROVED          CYCLE_COLLAPSE
+  PROVED          ACYCLIC_STRICTNESS
+  chain ladder: 8/8 proved
+  differential: 20000/20000 agree, 2723 authorised
