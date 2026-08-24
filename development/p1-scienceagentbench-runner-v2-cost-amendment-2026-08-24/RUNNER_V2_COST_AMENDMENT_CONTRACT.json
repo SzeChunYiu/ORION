@@ -1,0 +1,237 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.runner-v2-cost-amendment-contract.v1",
+  "contract_id": "P1_SAB_RUNNER_V2_ALLOCATED_ACCELERATOR_COST_AMENDMENT_20260824",
+  "authority": "GENERATION_COST_METADATA_CONTRACT_ONLY__NO_BENCHMARK_EXECUTION_EVALUATION_OUTCOME_OR_SCIENTIFIC_AUTHORITY",
+  "status": "PROSPECTIVE_STATIC_AMENDMENT_FROZEN__OFFICIAL_RUN_AND_OUTCOMES_CANNOT_CHECK",
+  "amendment_scope": "ALLOCATED_ACCELERATOR_SECONDS_ONLY__BILLED_USD_REMAINS_UNCHANGED_RUNNER_V1",
+  "upstream_bindings": {
+    "runner_v1_contract_path": "development/p1-scienceagentbench-runner-v1-2026-08-24/RUNNER_CONTRACT_V1.json",
+    "runner_v1_contract_sha256": "e191540f131b3e7e33b0c040900bea94336dbd0d704b247b547a5c361b6e242f",
+    "runner_v1_module_path": "development/p1-scienceagentbench-runner-v1-2026-08-24/sab_verified_runner_v1.py",
+    "runner_v1_module_sha256": "15d6f511be9b3b1dbac408cc41812b0f72e1dd7aa700983035438efb8ed416df",
+    "analysis_freeze_contract_path": "development/p1-scienceagentbench-analysis-freeze-v1-2026-08-24/ANALYSIS_CONTRACT_V1.json",
+    "analysis_freeze_contract_sha256": "0cae220a5b2f73156eda63a01f769dfdecbf8ad1fa16bd0995e3f906cff391d4",
+    "analysis_freeze_merge_commit": "957bc82ff2bcffa61a0bab96bc76fc6f811a9d10"
+  },
+  "base_runner_invariants_retained": {
+    "split": "verified",
+    "task_ids": "canonical decimal strings 1..102 in order",
+    "arms_in_order": [
+      "RR",
+      "OS",
+      "NR"
+    ],
+    "attempts_per_task_arm": 3,
+    "candidate_record_count": 918,
+    "budget_matching": "Runner V1 validation is invoked on the unchanged base-plan projection; all prospective envelopes remain identical across RR, OS, and NR.",
+    "seed_matching": "One three-attempt schedule remains paired across every task and arm.",
+    "cost_accounting": "ALL_ATTEMPTS_NO_SELECTION",
+    "missingness": "Candidate failures remain typed CANNOT_CHECK and are never converted to outcomes or solved zero.",
+    "billed_usd_route": "The BILLED_USD route remains byte-bound to and handled only by unmodified Runner V1. This amendment rejects BILLED_USD rather than shadowing or changing it."
+  },
+  "allocated_route": {
+    "route_profile": {
+      "route_id": "OPEN_WEIGHT_LUNARC_SLURM_EXCLUSIVE_GPU_V1",
+      "site": "LUNARC",
+      "scheduler": "SLURM",
+      "model_weight_class": "OPEN_WEIGHT",
+      "accelerator_kind": "GPU"
+    },
+    "route_profile_binding": "SHA-256 of canonical UTF-8 JSON with lexicographically sorted keys and separators comma/colon without whitespace.",
+    "no_fallback": "The amendment accepts exactly ALLOCATED_ACCELERATOR_SECONDS. BILLED_USD, a different accelerator metric, a post-outcome substitution, or any extra fallback field is rejected."
+  },
+  "cost_gate_metric": {
+    "metric_id": "ALLOCATED_ACCELERATOR_SECONDS",
+    "unit": "accelerator-second",
+    "allocation_rule": "FOR_EACH_ATTEMPT_SUM_EXCLUSIVE_ACCELERATOR_COUNT_TIMES_MONOTONIC_GENERATION_WALL_SECONDS__NO_OVERLAP_DOUBLE_ALLOCATION__THEN_SUM_ALL_ATTEMPTS",
+    "binding_phase": "BEFORE_CANDIDATE_GENERATION_AND_OUTCOME_OPENING",
+    "binding_sha256_rule": "SHA-256 of canonical UTF-8 JSON with ensure_ascii=false, keys sorted lexicographically, and separators comma/colon with no whitespace.",
+    "identity_scope": "The exact object and binding digest are carried by the run plan, the complete candidate ledger, the cost projection, the seal, and every one of the 918 attempt records by the same metric ID and digest.",
+    "arithmetic": "Per attempt, generation_cost_quantity is exactly exclusive_gpu_count times monotonic_elapsed_ns divided by 1000000000. Integer arithmetic creates one canonical decimal string; floats and rounding are not used.",
+    "all_attempt_scope": "Every attempt contributes, including candidate-generation failures and attempts that later have no selected outcome."
+  },
+  "cost_measurement_binding": {
+    "required_fields": [
+      "clock_id",
+      "clock_api",
+      "clock_unit",
+      "clock_semantics",
+      "start_boundary",
+      "end_boundary",
+      "elapsed_rule",
+      "allocation_scope",
+      "overlap_rule",
+      "attempt_identity_scope",
+      "exclusive_gpu_count_by_arm"
+    ],
+    "required_constants": {
+      "clock_id": "CLOCK_MONOTONIC_RAW",
+      "clock_api": "clock_gettime_ns",
+      "clock_unit": "nanosecond",
+      "clock_semantics": "MONOTONIC_NOT_WALL_CLOCK__NO_REALTIME_SUBSTITUTION",
+      "start_boundary": "IMMEDIATELY_BEFORE_FIRST_MODEL_GENERATION_OPERATION",
+      "end_boundary": "IMMEDIATELY_AFTER_FINAL_MODEL_GENERATION_OPERATION",
+      "elapsed_rule": "monotonic_end_ns-minus-monotonic_start_ns",
+      "allocation_scope": "EXCLUSIVE_SLURM_GPU_ALLOCATION_FOR_ONE_TASK_ARM_ATTEMPT",
+      "overlap_rule": "NO_OVERLAP_DOUBLE_ALLOCATION",
+      "attempt_identity_scope": "EACH_TASK_ARM_ATTEMPT_EXACTLY_ONCE"
+    },
+    "gpu_count_rule": "exclusive_gpu_count_by_arm has exactly RR, OS, and NR values. Each value is a strictly positive canonical unsigned decimal string and all three are byte-identical/equal. Every attempt repeats its arm's frozen count.",
+    "provenance_rule": "Every attempt repeats the hash of this entire prospective measurement object and records canonical start, end, and elapsed nanoseconds. End cannot precede start and elapsed must equal end minus start exactly.",
+    "allocation_rule": "Every attempt must state EXCLUSIVE_NO_OVERLAP_CONFIRMED. Shared/overlapping accelerators or unbound allocation are inadmissible."
+  },
+  "run_plan_amendment_contract": {
+    "schema_version": "orion.p1.scienceagentbench.run-plan.allocated-accelerator-seconds.v2",
+    "extra_fields_allowed": false,
+    "required_additional_fields": [
+      "amendment_scope",
+      "base_runner_contract_sha256",
+      "base_runner_module_sha256",
+      "analysis_contract_sha256",
+      "route_profile",
+      "route_profile_binding_sha256",
+      "cost_gate_metric",
+      "cost_gate_metric_binding_sha256",
+      "cost_measurement_binding",
+      "cost_measurement_binding_sha256"
+    ],
+    "prospective_freeze_rule": "The byte hash of the complete run plan is recorded by the candidate ledger and seal. Metric, allocation, GPU count, and timing provenance cannot be selected or changed after candidate generation or outcome opening."
+  },
+  "candidate_ledger_amendment_contract": {
+    "schema_version": "orion.p1.scienceagentbench.candidate-ledger.allocated-accelerator-seconds.v2",
+    "extra_fields_allowed": false,
+    "required_top_level_fields": [
+      "schema_version",
+      "split",
+      "run_plan_sha256",
+      "cost_gate_metric",
+      "cost_gate_metric_binding_sha256",
+      "cost_measurement_binding_sha256",
+      "cost_accounting",
+      "records"
+    ],
+    "required_cost_record_fields": [
+      "generation_cost_quantity",
+      "generation_billed_cost_usd",
+      "generation_billed_cost_status",
+      "cost_metric_id",
+      "cost_gate_metric_binding_sha256",
+      "exclusive_gpu_count",
+      "timing_provenance_sha256",
+      "monotonic_start_ns",
+      "monotonic_end_ns",
+      "monotonic_elapsed_ns",
+      "accelerator_allocation_status"
+    ],
+    "base_record_fields": "All Runner V1 candidate record fields remain present. billed_cost_usd is nullable only in this allocated-metric amendment and is byte-equal to generation_billed_cost_usd whenever authoritative.",
+    "failure_code_rule": "Typed candidate failures preserve Runner V1 bound-string semantics: code must contain non-whitespace text and must not contain AUTHOR_INPUT_NEEDED, CANNOT_CHECK, TBD, TODO, UNKNOWN, or UNBOUND as a case-insensitive substring.",
+    "exact_tuple_set": "Every tuple in 1..102 x {RR,OS,NR} x {1,2,3} occurs exactly once: 918 records, no missing, extra, duplicate, or selected-only subset.",
+    "canonical_integer_rule": "GPU counts and monotonic times are strings matching 0 or a nonzero digit followed by digits. No sign, exponent, decimal point, leading zero, Boolean, or JSON number is accepted.",
+    "canonical_decimal_rule": "Costs are strings with no sign, exponent, leading zero, or redundant trailing fractional zero. Zero is exactly 0. Negative, non-finite, float, Boolean, and numeric-string coercion are forbidden.",
+    "billed_usd_rule": {
+      "AVAILABLE": "billed_cost_usd and generation_billed_cost_usd are the same canonical decimal string.",
+      "CANNOT_CHECK": "both fields are null. They are not zero, omitted, or replaced by the primary accelerator quantity.",
+      "role": "Billed USD is retained separately for availability reporting and is never primary or fallback on this route."
+    },
+    "zero_denominator_guard": "Because the analysis strongest comparator is outcome-selected later, both OS and NR all-attempt allocated totals must be strictly positive before sealing. This guarantees whichever comparator becomes strongest has a nonzero denominator without opening outcomes."
+  },
+  "emitted_projection_contract": {
+    "schema_version": "orion.p1.scienceagentbench.analysis-generation-cost-projection.v2",
+    "purpose": "Generation-side exact-field projection for the separately reviewed future outcome adapter; it is not an outcome ledger and contains no evaluator or result fields.",
+    "required_top_level_fields": [
+      "schema_version",
+      "analysis_contract_sha256",
+      "split",
+      "run_plan_sha256",
+      "source_candidate_ledger_sha256",
+      "cost_gate_metric",
+      "cost_gate_metric_binding_sha256",
+      "cost_accounting",
+      "records"
+    ],
+    "task_fields": [
+      "task_id",
+      "attempt_records"
+    ],
+    "attempt_fields": [
+      "arm_id",
+      "attempt",
+      "candidate_program_sha256",
+      "generation_cost_quantity",
+      "generation_billed_cost_usd"
+    ],
+    "analysis_freeze_exactness": "The metric object, binding digest, cost accounting token, task/arm/attempt identities, candidate hash field, generation_cost_quantity field, and nullable generation_billed_cost_usd field use the exact spellings, types, and semantics frozen at Analysis Freeze V1 SHA-256 0cae220a5b2f73156eda63a01f769dfdecbf8ad1fa16bd0995e3f906cff391d4. No conversion, rounding, fallback, or missing-to-zero step is permitted.",
+    "boundary": "The future outcome adapter must add discipline, official task/evaluator hashes, status, valid_program, success_rate, evaluator billed USD, and failure. This amendment does not fabricate them and therefore does not claim that its projection alone is the full or analysis-executable outcome ledger."
+  },
+  "io_identity_contract": {
+    "paths": [
+      "run-plan path",
+      "candidate-ledger path",
+      "output-ledger path",
+      "output-receipt path"
+    ],
+    "pairwise_rule": "All four CLI paths undergo lexical, resolved, symlink, and existing-device/inode preflight as pairwise distinct before output reservation. Equal lexical/resolved paths, symlink aliases, and equal device/inode identities such as hardlinks are rejected.",
+    "output_reservation_rule": "Before prepare_production_seal or any payload write, both outputs are atomically created with O_RDWR|O_CREAT|O_EXCL mode 0600. Their file descriptors remain open through payload verification, so a pre-existing destination or a filesystem-equivalent spelling such as a case-fold collision fails closed rather than being overwritten.",
+    "reserved_identity_rule": "Each reserved output must be a regular file with a unique (st_dev, st_ino) identity distinct from the other reservation and from both then-existing inputs. Every payload write uses only the held file descriptor; the pathname must still resolve to that reserved identity before and after the write and after both outputs have been emitted.",
+    "post_write_verification_rule": "After fsync, the emitter rereads the held descriptor and requires exact byte equality and SHA-256 equality with the intended canonical JSON plus newline. A pathname identity change or byte/hash mismatch fails closed.",
+    "overwrite_rule": "Neither output may pre-exist or overwrite either input, and the receipt may not overwrite the projection. Output/output and output/input aliases are forbidden by both preflight identity checks and exclusive filesystem reservation.",
+    "rollback_rule": "Any reservation, validation, write, identity, or hash failure closes every held descriptor and unlinks only paths that still identify their owned reserved inodes. A substituted path or input is never unlinked as rollback collateral.",
+    "programmatic_rule": "prepare_production_seal separately rejects run-plan/candidate-ledger aliasing even when used without the CLI."
+  },
+  "input_snapshot_contract": {
+    "single_read_rule": "The run plan and candidate ledger are each read exactly once as bytes. SHA-256 and strict duplicate-rejecting UTF-8 JSON parsing are both computed from that same immutable in-memory byte buffer.",
+    "toctou_rule": "No path is hashed and then reopened for parsing. A replacement, symlink retarget, or content swap after the one read cannot cause parsed content to be sealed under a different byte hash.",
+    "receipt_rule": "run_plan_sha256 and candidate_ledger_sha256 identify the exact respective byte snapshots whose parsed objects were validated and projected."
+  },
+  "seal_receipt_contract": {
+    "schema_version": "orion.p1.scienceagentbench.candidate-cost-seal-receipt.v2",
+    "required_status": "ALLOCATED_ACCELERATOR_COST_LEDGER_SEALED__OUTCOMES_NOT_OPENED",
+    "binds": [
+      "unmodified Runner V1 contract and module hashes",
+      "merged Analysis Freeze V1 contract hash",
+      "run-plan bytes",
+      "candidate-ledger bytes",
+      "emitted cost-projection canonical bytes and file bytes",
+      "cost-metric identity and binding",
+      "timing provenance and GPU-count binding",
+      "all 918 records and three arm totals",
+      "nullable billed-USD availability counts",
+      "strictly positive OS and NR denominator precondition",
+      "single-read input snapshot policy",
+      "exclusive output reservation and post-write identity/hash policy"
+    ]
+  },
+  "fail_closed_rejections": [
+    "BILLED_USD inside this amendment or any other metric/fallback field",
+    "metric identity, unit, allocation rule, binding phase, or hash drift",
+    "route, GPU count, monotonic clock, timing boundary, provenance hash, or no-overlap drift",
+    "missing, duplicate, extra, or selected-only task/arm/attempt records",
+    "negative, signed, exponent, floating, Boolean, leading-zero, trailing-zero, non-finite, or otherwise noncanonical exact cost/timing values",
+    "end before start, elapsed mismatch, or derived accelerator quantity mismatch",
+    "missing billed USD represented as zero or any AVAILABLE/CANNOT_CHECK/value mismatch",
+      "zero OS total or zero NR total",
+      "duplicate JSON members, extra fields, upstream hash drift, unequal Runner V1 budgets, seed drift, cap exceedance, or malformed failure/hash fields",
+      "any lexical, resolved, symlink, hardlink, existing-inode, or filesystem case-fold alias among inputs and outputs",
+      "any pre-existing output destination or failure to reserve both outputs exclusively before validation",
+      "any reserved-output identity substitution or post-write byte/hash mismatch",
+      "any attempt to seal parsed run-plan or candidate-ledger content under the hash of different path bytes"
+  ],
+  "forbidden_surfaces": [
+    "benchmark archive, task text, candidate raw body, predicted program body",
+    "gold, rubric, evaluator, judge, result, or official outcome body",
+    "credential or secret material",
+    "model/provider/network/subprocess/container/evaluator execution",
+    "manuscript, PDF, CI, pytest, scientific analysis, superiority or transition authority"
+  ],
+  "synthetic_validation_boundary": {
+    "fixtures": "Deterministic synthetic nonbenchmark hashes, task identities, timings, usages, and nullable billed costs only.",
+    "official_tasks_run": 0,
+    "official_outcomes_opened": 0,
+    "official_evaluator_invoked": false,
+    "benchmark_archive_opened": false,
+    "credentials_opened": false,
+    "scientific_authority_delta": "NONE"
+  },
+  "retention_boundary": "Commit only this contract, validator/emitter code, synthetic verification receipt, packet, handoff, and SHA-256 manifest. Never commit a production run plan, ledger, projection, timing receipt, candidate, evaluator record, credential, task, outcome, archive, manuscript, or PDF.",
+  "scientific_authority_delta": "NONE"
+}
