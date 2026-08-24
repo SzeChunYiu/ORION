@@ -3,6 +3,23 @@
 **Decision:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT`  
 **Not authorized:** cross-domain or real-agent superiority
 
+**Active authority:** `P11_ACTIVE_CLAIM_AUTHORITY_V2.json` — active terminal
+`P11_WIDTH_CONDITIONED_AUTHORITY_SUPPORTED`, paper-level outcome
+`SUPPORTED_WITH_EXPLICIT_WIDTH_AND_RESPONSIBILITY_BOUNDARIES`,
+`promotion_allowed=true`.
+
+This report previously named no authority at all, while `MANUSCRIPT.md` and
+`CLAIM_EVIDENCE_LEDGER.md` both cite V2. Three documents describing one paper's
+readiness, two of them bound to a record and the third free-floating, is the
+condition under which they drift: nothing would have flagged this report if the
+authority moved to V3, because it was not reading from one.
+
+The decision above is scoped by that terminal and by the width and
+responsibility boundaries it names. In particular the ten-responsibility family
+result stays negative — LINEAR 3/10, RBF 5/10, KNN 5/10 against a frozen
+`>=8/10` gate — and readiness for external review is readiness for the
+width-conditioned result, not for the family-scale claim that failed.
+
 ## Five-lens hostile review
 
 ### 1. Theory / systems lens

@@ -229,3 +229,20 @@ def test_p15_c156_reflects_the_landed_interoperability_study() -> None:
     # and must not over-claim: the other half and C15.5 stay CANNOT_CHECK
     assert "does not support the claim-aware observability half" in text
     assert "C15.5 remains `CANNOT_CHECK`" in text
+
+
+def test_p11_three_documents_cite_the_same_authority() -> None:
+    """Two bound to a record and a third free-floating is how they drift."""
+    import re
+
+    d = PAPERS / "paper-11-state-as-computation"
+    for name in ("MANUSCRIPT.md", "CLAIM_EVIDENCE_LEDGER.md", "PEER_REVIEW_READINESS.md"):
+        versions = set(re.findall(r"P11_ACTIVE_CLAIM_AUTHORITY_V(\d+)\.json", (d / name).read_text()))
+        assert versions == {"2"}, f"{name} cites {versions or 'no authority'}"
+
+
+def test_p11_readiness_scopes_itself_to_the_width_conditioned_result() -> None:
+    text = _flat(PAPERS / "paper-11-state-as-computation/PEER_REVIEW_READINESS.md")
+    assert "P11_WIDTH_CONDITIONED_AUTHORITY_SUPPORTED" in text
+    assert "LINEAR 3/10, RBF 5/10, KNN 5/10" in text
+    assert "not for the family-scale claim that failed" in text
