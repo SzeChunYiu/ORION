@@ -1,0 +1,191 @@
+{
+ "schema_version": "orion.p3.conference-multipair-melt.v1",
+ "track": "OAEI Conference (2019 dataset)",
+ "matcher": "LogMap-4.0",
+ "scorer": "MELT 3.3 ConfusionMatrixMetric",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "analysis_unit": "ontology_pair",
+ "pairs": 15,
+ "per_pair": [
+  {
+   "pair": "cmt-confOf",
+   "reference_correspondences": 16,
+   "system_correspondences": 6,
+   "true_positives": 5,
+   "false_positives": 1,
+   "false_negatives": 11,
+   "precision": 0.8333333333333334,
+   "recall": 0.3125,
+   "f1": 0.45454545454545453
+  },
+  {
+   "pair": "cmt-edas",
+   "reference_correspondences": 13,
+   "system_correspondences": 9,
+   "true_positives": 8,
+   "false_positives": 1,
+   "false_negatives": 5,
+   "precision": 0.8888888888888888,
+   "recall": 0.6153846153846154,
+   "f1": 0.7272727272727274
+  },
+  {
+   "pair": "cmt-ekaw",
+   "reference_correspondences": 11,
+   "system_correspondences": 8,
+   "true_positives": 6,
+   "false_positives": 2,
+   "false_negatives": 5,
+   "precision": 0.75,
+   "recall": 0.5454545454545454,
+   "f1": 0.631578947368421
+  },
+  {
+   "pair": "cmt-iasted",
+   "reference_correspondences": 4,
+   "system_correspondences": 5,
+   "true_positives": 4,
+   "false_positives": 1,
+   "false_negatives": 0,
+   "precision": 0.8,
+   "recall": 1.0,
+   "f1": 0.888888888888889
+  },
+  {
+   "pair": "cmt-sigkdd",
+   "reference_correspondences": 12,
+   "system_correspondences": 11,
+   "true_positives": 11,
+   "false_positives": 0,
+   "false_negatives": 1,
+   "precision": 1.0,
+   "recall": 0.9166666666666666,
+   "f1": 0.9565217391304348
+  },
+  {
+   "pair": "confOf-edas",
+   "reference_correspondences": 19,
+   "system_correspondences": 13,
+   "true_positives": 10,
+   "false_positives": 3,
+   "false_negatives": 9,
+   "precision": 0.7692307692307693,
+   "recall": 0.5263157894736842,
+   "f1": 0.625
+  },
+  {
+   "pair": "confOf-ekaw",
+   "reference_correspondences": 20,
+   "system_correspondences": 15,
+   "true_positives": 14,
+   "false_positives": 1,
+   "false_negatives": 6,
+   "precision": 0.9333333333333333,
+   "recall": 0.7,
+   "f1": 0.8
+  },
+  {
+   "pair": "confOf-iasted",
+   "reference_correspondences": 9,
+   "system_correspondences": 4,
+   "true_positives": 4,
+   "false_positives": 0,
+   "false_negatives": 5,
+   "precision": 1.0,
+   "recall": 0.4444444444444444,
+   "f1": 0.6153846153846153
+  },
+  {
+   "pair": "confOf-sigkdd",
+   "reference_correspondences": 7,
+   "system_correspondences": 5,
+   "true_positives": 5,
+   "false_positives": 0,
+   "false_negatives": 2,
+   "precision": 1.0,
+   "recall": 0.7142857142857143,
+   "f1": 0.8333333333333333
+  },
+  {
+   "pair": "edas-ekaw",
+   "reference_correspondences": 23,
+   "system_correspondences": 16,
+   "true_positives": 12,
+   "false_positives": 4,
+   "false_negatives": 11,
+   "precision": 0.75,
+   "recall": 0.5217391304347826,
+   "f1": 0.6153846153846153
+  },
+  {
+   "pair": "edas-iasted",
+   "reference_correspondences": 19,
+   "system_correspondences": 8,
+   "true_positives": 7,
+   "false_positives": 1,
+   "false_negatives": 12,
+   "precision": 0.875,
+   "recall": 0.3684210526315789,
+   "f1": 0.5185185185185185
+  },
+  {
+   "pair": "edas-sigkdd",
+   "reference_correspondences": 15,
+   "system_correspondences": 8,
+   "true_positives": 7,
+   "false_positives": 1,
+   "false_negatives": 8,
+   "precision": 0.875,
+   "recall": 0.4666666666666667,
+   "f1": 0.608695652173913
+  },
+  {
+   "pair": "ekaw-iasted",
+   "reference_correspondences": 10,
+   "system_correspondences": 10,
+   "true_positives": 7,
+   "false_positives": 3,
+   "false_negatives": 3,
+   "precision": 0.7,
+   "recall": 0.7,
+   "f1": 0.7
+  },
+  {
+   "pair": "ekaw-sigkdd",
+   "reference_correspondences": 11,
+   "system_correspondences": 8,
+   "true_positives": 7,
+   "false_positives": 1,
+   "false_negatives": 4,
+   "precision": 0.875,
+   "recall": 0.6363636363636364,
+   "f1": 0.7368421052631579
+  },
+  {
+   "pair": "iasted-sigkdd",
+   "reference_correspondences": 15,
+   "system_correspondences": 17,
+   "true_positives": 13,
+   "false_positives": 4,
+   "false_negatives": 2,
+   "precision": 0.7647058823529411,
+   "recall": 0.8666666666666667,
+   "f1": 0.8125
+  }
+ ],
+ "aggregate_by_pair": {
+  "macro_precision": 0.8543,
+  "macro_recall": 0.6223,
+  "macro_f1": 0.7016,
+  "f1_min": 0.4545,
+  "f1_max": 0.9565,
+  "f1_median": 0.7
+ },
+ "aggregation_note": "Macro over ontology pairs. Correspondence rows are NOT the analysis unit; a pair with many correspondences does not outweigh a pair with few.",
+ "dataset_digests": {
+  "conference.zip": "78688cda05857b594be188db6831abc5d890d2e38d6602e0cd8d3c82ecb24546",
+  "reference-alignment.zip": "782e0175253d817288e1f7ed29f738a7fa9e57a8b9c77bb3b11c12b80405d4bf"
+ }
+}
