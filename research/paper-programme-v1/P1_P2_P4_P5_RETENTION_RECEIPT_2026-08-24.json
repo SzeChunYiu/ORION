@@ -1,0 +1,85 @@
+{
+  "schema": "ORION.Programme.HistoricalRetentionReceipt.v1",
+  "receipt_date": "2026-08-24",
+  "purpose": "Execute the four HISTORICAL_ADVERSE_RESULT replay-and-retain steps assigned to the P1-P5 gap lane and record that every adverse terminal remains reproducible and unchanged. This receipt adds no claim, grants no authority, and edits no frozen result.",
+  "items": [
+    {
+      "ledger_item_id": "P1.H1.V1.HISTORICAL",
+      "claim_id": "P1.H1.V1",
+      "command": "PYTHONPATH=src python -m pytest tests/unit/publication/test_journal_package.py -q",
+      "exit_code": 0,
+      "outcome": "13 passed after the integrity repair recorded below; the initial run on origin/main 269ae98a failed 2 of 13 (test_all_five_packages_pass_on_committed_tree, test_p1_h1_remains_not_supported) on SHA256SUMS digest mismatches in all five journal packages.",
+      "receipts_retained": [
+        {
+          "path": "papers/paper-01-recursive-epistemic-reconstruction/journal_package/MANIFEST.json",
+          "fact": "claim P1.H1 status=NOT_SUPPORTED, lifecycle=HISTORICAL_IMMUTABLE, current_claim=false",
+          "unchanged_since": "9150be3b (#949)"
+        },
+        {
+          "path": "research/verification/records/P1.H1.root-success-not-supported.json",
+          "unchanged_since": "9150be3b (#949)"
+        }
+      ],
+      "integrity_repair": {
+        "root_cause": "Branch-forest sweep commit 1f545b8d landed paper-file changes (manuscript sections, ledgers, evidence) for P1-P5 after the last journal-package SHA256SUMS regeneration in 89d695ad (#617), so the committed tree no longer matched the recorded digests. No claim, verdict, or frozen result was altered by the sweep; only the derived digest manifests drifted.",
+        "repair": "Regenerated SHA256SUMS for all five packages with the checker's own --write-hashes mode (research/paper-programme-v1/journal_package/check_journal_package.py), then re-ran the checker (all five packages ok) and the full single-file pytest (13 passed).",
+        "authority_invariants_reasserted_by_test": "P1.H1 remains NOT_SUPPORTED; the narrow-successor laundering test still passes; every package still declares its committed claim boundary."
+      },
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P2.EXTERNAL_SIGNAL.HISTORICAL",
+      "claim_id": "P2.BOUNDED_EXTERNAL_SIGNAL.V1",
+      "command": "python -m json.tool papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json",
+          "sha256": "3357e43763e360b01abc01435ce615721b8a3b3c0163092364362dfd48305c11",
+          "authority": "DIAGNOSIS_OF_A_FROZEN_NEGATIVE_NOT_A_REVISION_OF_IT",
+          "frozen_verdict": "BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE",
+          "diagnosed_finding": "The frozen IoU threshold was unreachable under the arm's own measured acquisition (7/229 gold items acquired; registered delta beyond the sampling ceiling; treatment/baseline admissible exposure unmatched)."
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P4.H3.V2.HISTORICAL",
+      "claim_id": "P4.H3.V2",
+      "command": "python -m json.tool papers/paper-04-verified-scientific-discovery/evidence/audit/P4_METHOD_AUTHORITY_PANEL_RESOLUTION_2026-08-22.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_METHOD_AUTHORITY_PANEL_RESOLUTION_2026-08-22.json",
+          "sha256": "b1900b02c3d1a5ec945b4346c2423bb85a3f1b4f623fe11f81a0bef8e45b50ad",
+          "authority": "READS_A_PUBLISHED_PANEL_EDITS_NOTHING",
+          "limitation_retained": "The V2 method-authority metric saturated (clean_promotion_coverage values 1.0 for every nontrivial policy; two indistinguishable arms), so the panel's resolving power could not support the registered comparison. This V2 limitation stays historical and distinct from the V3 exact-axis authority."
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P5.GLM52.RESIDUAL_ERRORS.HISTORICAL",
+      "claim_id": "P5.GLM52.ATTRIBUTION.DIAGNOSTIC",
+      "command": "python -m json.tool papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
+          "sha256": "2dbb4639233dde9893771778e32f76014516fc428e55bcaf97b0a6c971301f0e",
+          "authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
+          "residual_errors": ["P5-HC-002", "P5-HC-012", "P5-HC-018"],
+          "accuracy": "21/24 = 0.875",
+          "corrected_standard_macro_f1": 0.8726190476190476,
+          "establishes_h1_h4": false
+        }
+      ],
+      "success_condition_met": true
+    }
+  ],
+  "notes": [
+    "All four replay commands were executed verbatim from the ledger's next_executable_step on this worktree; no failure_terminal fired.",
+    "The P1 pytest failure on raw origin/main was a derived-digest drift (bookkeeping), not a change to any frozen verdict: the NOT_SUPPORTED authority and its record were bit-identical since #949. The repair regenerates digests from the committed tree using the checker's own write path; the test re-validates every semantic invariant after regeneration.",
+    "python interpreter: /Users/billy/miniforge3/bin/python3 (single-file pytest, single json.tool invocations; no test suites, no worker pools)."
+  ]
+}
