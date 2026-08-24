@@ -41,7 +41,7 @@ def FiberConstant (interface : α → β) (target : α → γ) : Prop :=
 
 noncomputable def decoderOfFiberConstant [Inhabited γ]
     (interface : α → β) (target : α → γ)
-    (h : FiberConstant interface target) : β → γ := by
+    (_h : FiberConstant interface target) : β → γ := by
   classical
   exact fun z =>
     if hz : ∃ x, interface x = z then
@@ -58,7 +58,6 @@ theorem decoderOfFiberConstant_spec [Inhabited γ]
   unfold decoderOfFiberConstant
   have hx : ∃ y, interface y = interface x := ⟨x, rfl⟩
   rw [dif_pos hx]
-  exact h x (Classical.choose hx) (Classical.choose_spec hx).symm
 
 
 theorem ostc_t2_exact_target_sufficiency [Inhabited γ]
@@ -76,7 +75,7 @@ theorem ostc_t2_exact_target_sufficiency [Inhabited γ]
           _ = target y := (hdecode y).symm
   · intro h
     exact ⟨decoderOfFiberConstant interface target h,
-      decoderOfFiberConstant_spec interface target h⟩
+      fun x => decoderOfFiberConstant_spec interface target h x⟩
 
 
 theorem ostc_t3_fiberwise_optimality
