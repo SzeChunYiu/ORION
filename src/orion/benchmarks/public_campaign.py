@@ -14,6 +14,7 @@ from enum import Enum
 import hashlib
 import json
 import math
+from pathlib import PurePosixPath
 from typing import Callable, Iterable
 from urllib.parse import urlparse
 
@@ -227,6 +228,7 @@ class CampaignReceipt:
 
 
 Fetcher = Callable[[SourceBinding], bytes]
+SurfaceReader = Callable[[str], bytes]
 
 _PAPER_IDS = frozenset(f"P{number}" for number in range(6, 16))
 _REQUIRED_ENVIRONMENT = frozenset(
@@ -424,6 +426,14 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
     for arm in freeze.arms:
         if not _valid_sha256(arm.implementation_sha256):
             blockers.append(f"arm:{arm.arm_id}:implementation_sha256_invalid")
+        if not arm.model_id.strip():
+            blockers.append(f"arm:{arm.arm_id}:model_identity_missing")
+        if (
+            not arm.tool_access
+            or any(not tool.strip() for tool in arm.tool_access)
+            or len(arm.tool_access) != len(set(arm.tool_access))
+        ):
+            blockers.append(f"arm:{arm.arm_id}:tool_access_missing_or_invalid")
         budget_keys = [key for key, _ in arm.resource_budget]
         if len(budget_keys) != len(set(budget_keys)):
             blockers.append(f"arm:{arm.arm_id}:resource_budget_fields_duplicated")
@@ -459,6 +469,16 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
         CustodyMode.PROTECTED_EXTERNAL_ATTESTED,
     } and not _valid_sha256(freeze.custody.attestation_sha256):
         blockers.append("external_custody_attestation_sha256_invalid")
+    if (
+        freeze.custody.mode
+        in {
+            CustodyMode.INDEPENDENT_ATTESTED,
+            CustodyMode.PROTECTED_EXTERNAL_ATTESTED,
+        }
+        and freeze.custody.execution_owner_id.strip()
+        == freeze.custody.evaluator_custodian_id.strip()
+    ):
+        blockers.append("external_custody_owner_and_custodian_must_differ")
     if not freeze.seeds or len(freeze.seeds) != len(set(freeze.seeds)):
         blockers.append("seeds_missing_or_duplicated")
     return blockers
@@ -527,6 +547,9 @@ def _observation_blockers(
             blockers.append(f"{prefix}:cost_missing")
         arm = arms_by_id.get(item.arm_id)
         if arm is not None:
+            budget_dimensions = {dimension for dimension, _ in arm.resource_budget}
+            if set(usage) != budget_dimensions | {"cost"}:
+                blockers.append(f"{prefix}:unfrozen_resource_dimension")
             for dimension, ceiling in arm.resource_budget:
                 if dimension not in usage:
                     blockers.append(f"{prefix}:budget_dimension_missing:{dimension}")
@@ -617,15 +640,35 @@ def _replay_blockers(
 def _surface_blockers(
     surfaces: tuple[AuthoritySurface, ...],
     gate_result: GateResult,
+    surface_reader: SurfaceReader,
 ) -> list[str]:
     blockers: list[str] = []
     kinds = [surface.kind for surface in surfaces]
     if Counter(kinds) != Counter(SurfaceKind):
         blockers.append("authority_surface_set_incomplete_or_duplicated")
+    paths = [surface.path for surface in surfaces]
+    if len(paths) != len(set(paths)):
+        blockers.append("authority_surface_paths_aliased")
+    if len({surface.file_sha256 for surface in surfaces}) != len(surfaces):
+        blockers.append("authority_surface_file_hashes_aliased")
     for surface in surfaces:
         prefix = f"surface:{getattr(surface.kind, 'value', surface.kind)}"
-        if not surface.path.strip() or not _valid_sha256(surface.file_sha256):
+        parsed_path = PurePosixPath(surface.path)
+        if (
+            not surface.path.strip()
+            or parsed_path.is_absolute()
+            or ".." in parsed_path.parts
+            or str(parsed_path) != surface.path
+            or not _valid_sha256(surface.file_sha256)
+        ):
             blockers.append(f"{prefix}:path_or_file_sha256_invalid")
+        try:
+            observed_file_sha256 = hashlib.sha256(surface_reader(surface.path)).hexdigest()
+        except Exception as exc:
+            blockers.append(f"{prefix}:read_failed:{type(exc).__name__}")
+        else:
+            if observed_file_sha256 != surface.file_sha256:
+                blockers.append(f"{prefix}:file_sha256_mismatch")
         if surface.declared_terminal is not gate_result.terminal:
             blockers.append(f"{prefix}:terminal_mismatch")
         if surface.evidence_sha256 != gate_result.evaluator_output_sha256:
@@ -641,6 +684,7 @@ def run_fail_closed_campaign(
     gate_result: GateResult,
     replay: ReplayBinding,
     authority_surfaces: Iterable[AuthoritySurface],
+    surface_reader: SurfaceReader,
     result_created_at_utc: str,
 ) -> CampaignReceipt:
     """Audit a complete campaign bundle and emit PASS/FAIL/CANNOT_CHECK.
@@ -670,6 +714,8 @@ def run_fail_closed_campaign(
             blockers.append(f"source:{receipt.source_id}:fetch_or_hash_not_pass")
         elif source is None or receipt.observed_sha256 != source.sha256:
             blockers.append(f"source:{receipt.source_id}:receipt_hash_mismatch")
+        elif receipt.blocker:
+            blockers.append(f"source:{receipt.source_id}:pass_receipt_contains_blocker")
 
     blockers.extend(_observation_blockers(freeze, observations))
     blockers.extend(_replay_blockers(replay, gate_result, observations))
@@ -758,7 +804,7 @@ def run_fail_closed_campaign(
         gate_result.cost_ratio, expected_cost_ratio
     ):
         blockers.append("gate_cost_ratio_mismatch")
-    blockers.extend(_surface_blockers(authority_surfaces, gate_result))
+    blockers.extend(_surface_blockers(authority_surfaces, gate_result, surface_reader))
 
     blockers = list(dict.fromkeys(blockers))
     terminal = CampaignTerminal.CANNOT_CHECK if blockers else gate_result.terminal
@@ -829,6 +875,7 @@ __all__ = [
     "ReplayBinding",
     "SourceBinding",
     "SourceFetchReceipt",
+    "SurfaceReader",
     "SurfaceKind",
     "fetch_and_hash_sources",
     "run_fail_closed_campaign",

@@ -220,16 +220,28 @@ def _replay(**overrides: object) -> ReplayBinding:
 def _surfaces(
     terminal: CampaignTerminal = CampaignTerminal.PASS,
 ) -> tuple[AuthoritySurface, ...]:
+    suffixes = {
+        SurfaceKind.MANUSCRIPT: ".md",
+        SurfaceKind.ACTIVE_AUTHORITY: ".json",
+        SurfaceKind.CLAIM_LEDGER: ".json",
+        SurfaceKind.RESULT: ".json",
+        SurfaceKind.RENDERED_PDF: ".pdf",
+    }
     return tuple(
         AuthoritySurface(
             kind=kind,
-            path=f"publication/{kind.value.lower()}",
+            path=f"publication/{kind.value.lower()}{suffixes[kind]}",
             file_sha256=_digest(f"file:{kind.value}"),
             declared_terminal=terminal,
             evidence_sha256=_digest("gate-output"),
         )
         for kind in SurfaceKind
     )
+
+
+def _surface_reader(path: str) -> bytes:
+    surface = next(item for item in _surfaces() if item.path == path)
+    return f"file:{surface.kind.value}".encode("utf-8")
 
 
 def _run(
@@ -250,6 +262,7 @@ def _run(
         gate_result=gate or _gate(),
         replay=replay or _replay(),
         authority_surfaces=surfaces if surfaces is not None else _surfaces(),
+        surface_reader=_surface_reader,
         result_created_at_utc=result_created_at_utc,
     )
 
@@ -284,6 +297,7 @@ def test_receipt_digest_is_stable_under_bundle_input_order() -> None:
         gate_result=_gate(),
         replay=_replay(),
         authority_surfaces=_surfaces(),
+        surface_reader=_surface_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     reverse = run_fail_closed_campaign(
@@ -293,6 +307,7 @@ def test_receipt_digest_is_stable_under_bundle_input_order() -> None:
         gate_result=_gate(),
         replay=_replay(),
         authority_surfaces=tuple(reversed(_surfaces())),
+        surface_reader=_surface_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     assert reverse.receipt_sha256 == forward.receipt_sha256
@@ -347,10 +362,29 @@ def test_hash_mismatch_and_prohibited_redistribution_cannot_check() -> None:
         gate_result=_gate(),
         replay=_replay(),
         authority_surfaces=_surfaces(),
+        surface_reader=_surface_reader,
         result_created_at_utc="2026-08-24T11:00:00+00:00",
     )
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert any("fetch_or_hash_not_pass" in blocker for blocker in receipt.blockers)
+
+
+def test_pass_source_receipt_cannot_retain_a_blocker() -> None:
+    freeze = _freeze()
+    receipts = fetch_and_hash_sources(freeze, lambda _: b"dataset")
+    receipts = (replace(receipts[0], blocker="source_hash_mismatch"),)
+    receipt = run_fail_closed_campaign(
+        freeze=freeze,
+        source_receipts=receipts,
+        observations=_observations(),
+        gate_result=_gate(),
+        replay=_replay(),
+        authority_surfaces=_surfaces(),
+        surface_reader=_surface_reader,
+        result_created_at_utc="2026-08-24T11:00:00+00:00",
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert "source:public-source-v1:pass_receipt_contains_blocker" in receipt.blockers
 
 
 def test_unmatched_budgets_and_generated_row_unit_cannot_check() -> None:
@@ -367,6 +401,25 @@ def test_unmatched_budgets_and_generated_row_unit_cannot_check() -> None:
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert "arm_resource_budgets_not_exactly_matched" in receipt.blockers
     assert "inference_unit_not_allowed" in receipt.blockers
+
+
+def test_execution_identity_and_every_usage_dimension_must_be_frozen() -> None:
+    arms = (
+        _arm("orion", ArmRole.TREATMENT, model_id="", tool_access=()),
+        _arm("strong-baseline", ArmRole.BASELINE, model_id="", tool_access=()),
+    )
+    observations = list(_observations())
+    observations[0] = replace(
+        observations[0],
+        resource_usage=observations[0].resource_usage + (("gpu_hours", 99999.0),),
+    )
+    receipt = _run(freeze=_freeze(arms=arms), observations=tuple(observations))
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("model_identity_missing" in blocker for blocker in receipt.blockers)
+    assert any(
+        "tool_access_missing_or_invalid" in blocker for blocker in receipt.blockers
+    )
+    assert any("unfrozen_resource_dimension" in blocker for blocker in receipt.blockers)
 
 
 def test_missing_gold_or_custody_binding_cannot_check() -> None:
@@ -418,6 +471,18 @@ def test_external_custody_claim_needs_attestation_but_still_is_not_self_proving(
     receipt = _run(freeze=bound)
     assert receipt.terminal is CampaignTerminal.PASS
     assert receipt.independent_authority == "CANNOT_CHECK"
+
+    contradictory = replace(
+        bound,
+        custody=replace(
+            bound.custody,
+            execution_owner_id="same-owner",
+            evaluator_custodian_id="same-owner",
+        ),
+    )
+    receipt = _run(freeze=contradictory)
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert "external_custody_owner_and_custodian_must_differ" in receipt.blockers
 
 
 def test_missing_or_duplicate_record_cannot_hide_adverse_output() -> None:
@@ -499,6 +564,28 @@ def test_authority_surface_mismatch_cannot_check() -> None:
     assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
     assert any("terminal_mismatch" in blocker for blocker in receipt.blockers)
     assert any("evidence_digest_mismatch" in blocker for blocker in receipt.blockers)
+
+
+def test_authority_surfaces_require_unique_canonical_paths_and_verified_bytes() -> None:
+    aliased = tuple(
+        replace(
+            surface,
+            path="publication/same.file",
+            file_sha256=_digest("fabricated-same-file"),
+        )
+        for surface in _surfaces()
+    )
+    receipt = _run(surfaces=aliased)
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert "authority_surface_paths_aliased" in receipt.blockers
+    assert "authority_surface_file_hashes_aliased" in receipt.blockers
+    assert any("read_failed" in blocker for blocker in receipt.blockers)
+
+    noncanonical = list(_surfaces())
+    noncanonical[0] = replace(noncanonical[0], path="publication/../escape.md")
+    receipt = _run(surfaces=tuple(noncanonical))
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("path_or_file_sha256_invalid" in blocker for blocker in receipt.blockers)
 
 
 def test_gate_must_bind_exact_record_and_raw_output_identities() -> None:
