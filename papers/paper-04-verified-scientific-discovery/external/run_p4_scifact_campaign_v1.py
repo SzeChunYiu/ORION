@@ -7,10 +7,24 @@ requires every promotion obligation discharged, and any undischarged obligation
 yields CANNOT_CHECK. That is the frozen rule from
 SCIFACT_LABEL_STATE_MAP_V2.json, and this executes it rather than restating it.
 
-The semantic coordinate is supplied from gold, declared and not hidden. This
-study measures whether the governance layer withholds promotion when it should,
-not whether a model can read a paper. Every arm receives the identical semantic
-coordinate, so no arm gains from it and the arms differ only in governance.
+What can and cannot be scored here
+----------------------------------
+SciFact supplies external gold for the SEMANTIC coordinate: whether the cited
+evidence supports, contradicts, or fails to settle the claim. That is scored.
+
+It supplies no gold for the promotion TERMINAL. "Should this be promoted" is
+ORION's own construct, so any gold terminal must be computed by the same rule
+the policy applies -- and a policy scored against its own definition returns
+1.000 by identity, not by performance. An earlier draft of this file did
+exactly that and reported a perfect full_policy. It is the defect P14 was
+criticised for, one file over, and the number is deleted rather than explained.
+
+The terminal is therefore CANNOT_CHECK against this corpus, which is what P4's
+own boundary already says: the external labels validate claim/evidence status,
+and ORION's governance action is an operationalization, not independent policy
+truth. What remains measurable, and is measured, is how far each arm's terminal
+DIVERGES from the full policy, and whether an obligation is identifiable at
+all.
 
 Identifiability is reported per ablation rather than assumed. Three of the five
 obligations are constant-true across the held-out split, so dropping them
@@ -81,19 +95,6 @@ def terminal(verdict: str, discharged: dict[str, bool], enforced: tuple[str, ...
     return "CANNOT_CHECK"
 
 
-def macro_f1(gold: list[str], pred: list[str]) -> float:
-    labels = sorted(set(gold) | set(pred))
-    scores = []
-    for lab in labels:
-        tp = sum(1 for g, p in zip(gold, pred) if g == lab and p == lab)
-        fp = sum(1 for g, p in zip(gold, pred) if g != lab and p == lab)
-        fn = sum(1 for g, p in zip(gold, pred) if g == lab and p != lab)
-        prec = tp / (tp + fp) if tp + fp else 0.0
-        rec = tp / (tp + fn) if tp + fn else 0.0
-        scores.append(2 * prec * rec / (prec + rec) if prec + rec else 0.0)
-    return sum(scores) / len(scores) if scores else 0.0
-
-
 def main() -> int:
     if not MAP.is_file():
         print(f"P4_CAMPAIGN_CANNOT_CHECK: frozen map missing at {MAP}")
@@ -125,7 +126,8 @@ def main() -> int:
     }
     counts = {o: sum(r["discharged"][o] for r in rows) for o in OBLIGATIONS}
 
-    gold = [terminal(r["verdict"], r["discharged"], OBLIGATIONS) for r in rows]
+    # The only externally gold-backed coordinate.
+    semantic_gold = [r["verdict"] for r in rows]
 
     arms: dict[str, dict] = {}
     full = [terminal(r["verdict"], r["discharged"], OBLIGATIONS) for r in rows]
@@ -180,7 +182,16 @@ def main() -> int:
             }
             for o in OBLIGATIONS
         },
-        "gold_terminal_support": dict(Counter(gold)),
+        "semantic_coordinate_gold_support": dict(Counter(semantic_gold)),
+        "terminal_scoring": {
+            "status": "CANNOT_CHECK",
+            "reason": (
+                "SciFact provides no external gold for the promotion terminal. Any gold "
+                "terminal would be computed by the same frozen rule the policy applies, "
+                "so the full policy would score 1.000 by identity. An earlier draft did "
+                "this and is corrected here rather than reported."
+            ),
+        },
         "arms": {},
     }
     for name, arm in arms.items():
@@ -188,28 +199,33 @@ def main() -> int:
         result["arms"][name] = {
             "status": arm["status"],
             "enforced_obligations": arm["enforced"],
-            "macro_f1": round(macro_f1(gold, pred), 6),
-            "accuracy": round(sum(int(a == b) for a, b in zip(gold, pred)) / len(gold), 6),
+            "terminal_scored_against_gold": "CANNOT_CHECK__NO_EXTERNAL_TERMINAL_GOLD",
             "terminal_support": dict(Counter(pred)),
-            "false_promotions": sum(
-                1 for g, p in zip(gold, pred) if p == "PROMOTE" and g != "PROMOTE"
-            ),
+            # measurable without circularity: divergence from the full policy,
+            # and promotions issued where an obligation was undischarged
             "differs_from_full_policy_on": sum(1 for a, b in zip(pred, full) if a != b),
+            "promotes_with_an_undischarged_obligation": sum(
+                1
+                for r, p in zip(rows, pred)
+                if p == "PROMOTE" and not all(r["discharged"][o] for o in OBLIGATIONS)
+            ),
         }
         if arm.get("note"):
             result["arms"][name]["note"] = arm["note"]
     out = HERE / "P4_SCIFACT_CAMPAIGN_V1.json"
     out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
 
-    print(f"held-out claims: {len(dev)}   gold terminals: {result['gold_terminal_support']}")
+    print(f"held-out claims: {len(dev)}")
+    print(f"semantic gold (externally backed): {result['semantic_coordinate_gold_support']}")
+    print(f"terminal scoring: {result['terminal_scoring']['status']} -- no external gold exists")
     print("\nobligation identifiability:")
     for o in OBLIGATIONS:
         i = result["obligation_identifiability"][o]
         print(f"  {o:44s} {i['discharged_on']:3d}/{i['of']}  {i['ablation']}")
-    print(f"\n{'arm':46s}{'status':17s}{'macroF1':>9}{'acc':>8}{'falsePromo':>12}{'diff':>6}")
+    print(f"\n{'arm':46s}{'status':17s}{'diverges':>10}{'unsafe_promotions':>19}")
     for name, a in result["arms"].items():
-        print(f"{name:46s}{a['status']:17s}{a['macro_f1']:9.4f}{a['accuracy']:8.4f}"
-              f"{a['false_promotions']:12d}{a['differs_from_full_policy_on']:6d}")
+        print(f"{name:46s}{a['status']:17s}{a['differs_from_full_policy_on']:10d}"
+              f"{a['promotes_with_an_undischarged_obligation']:19d}")
     print(f"\nwrote {out} ({out.stat().st_size} bytes)")
     return 0
 
