@@ -68,14 +68,15 @@ def test_validator_checks_base_source_existence(tmp_path):
 
 
 def test_validator_requires_steps_for_remaining_integration_blockers():
+    # The committed ledger currently carries no open integration blockers, so
+    # the rule is exercised by injecting them. Mutating committed data stopped
+    # working once every blocker was resolved, and quietly skipping the rule
+    # would leave the validator untested against its own fail-closed branch.
     document = _ledger()
-    item = next(
-        item
-        for paper in document["papers"]
-        for item in paper["items"]
-        if item.get("remaining_integration_blockers")
-    )
-    item["remaining_integration_blockers"][0]["next_executable_step"] = ""
+    item = _first_item(document, "PROSPECTIVE_SUCCESSOR_REQUIRED")
+    item["remaining_integration_blockers"] = [
+        {"blocker": "successor protocol not yet authored", "next_executable_step": ""}
+    ]
     assert any("remaining_integration_blockers" in error for error in validate_ledger(document))
     item = _first_item(document, "FIXED_BY_EXISTING_PR")
     item["remaining_integration_blockers"] = [
