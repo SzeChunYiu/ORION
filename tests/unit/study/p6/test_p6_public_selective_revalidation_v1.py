@@ -1,5 +1,6 @@
 import importlib.util
 import json
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
@@ -43,6 +44,7 @@ def test_protocol_freezes_three_licensed_domains_and_no_result():
         lambda p: p["datasets"][2].__setitem__("required_change_sets", 100.0),
         lambda p: p["sampling"].__setitem__("population_inference", True),
         lambda p: p["statistics"].__setitem__("bootstrap_draws", 10000.0),
+        lambda p: p["acquisition"].__setitem__("materialization", "lazy per-blob"),
         lambda p: p["runtime"].__setitem__("python", "3.12"),
         lambda p: p["selection_contract"].__setitem__("gold_independence_boundary", "independent"),
         lambda p: p["gate"].__setitem__("zero_invalid_certificates_against_native_closure", False),
@@ -146,3 +148,82 @@ def test_fetch_head_and_frozen_ref_must_both_match():
         runner.verify_frozen_refs(expected, expected, "b" * 40)
     with pytest.raises(ValueError, match="fetched commit"):
         runner.verify_frozen_refs(expected, "b" * 40, expected)
+
+
+def test_materialized_head_must_match_frozen_ref(monkeypatch):
+    runner = load_runner()
+    expected = "a" * 40
+    monkeypatch.setattr(runner.subprocess, "run", lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr=b""))
+    monkeypatch.setattr(runner, "git", lambda *args, **kwargs: "b" * 40 + "\n")
+    with pytest.raises(ValueError, match="materialized HEAD"):
+        runner.materialize_frozen_head(Path("/unused"), expected)
+
+
+def test_materialization_failure_is_cannot_check_input(monkeypatch):
+    runner = load_runner()
+    monkeypatch.setattr(runner.subprocess, "run", lambda *args, **kwargs: SimpleNamespace(returncode=9, stdout=b"", stderr=b"failed"))
+    with pytest.raises(runner.AcquisitionFailure) as raised:
+        runner.materialize_frozen_head(Path("/unused"), "a" * 40)
+    assert raised.value.receipt["stage"] == "MATERIALIZE_FROZEN_HEAD"
+    assert raised.value.receipt["terminal"] == "EXIT_NONZERO"
+    assert raised.value.receipt["exit_code"] == 9
+
+
+def test_timeout_retains_structured_command_receipt(monkeypatch):
+    runner = load_runner()
+    def timeout(*args, **kwargs):
+        raise runner.subprocess.TimeoutExpired(args[0], kwargs["timeout"], output=b"partial", stderr=b"slow")
+    monkeypatch.setattr(runner.subprocess, "run", timeout)
+    with pytest.raises(runner.AcquisitionFailure) as raised:
+        runner.run_acquisition_command("TEST_TIMEOUT", ["git", "fetch"], Path("/unused"), 7)
+    assert raised.value.receipt == {
+        "stage": "TEST_TIMEOUT",
+        "argv": ["git", "fetch"],
+        "terminal": "TIMEOUT",
+        "timeout_seconds": 7,
+        "exit_code": None,
+        "stdout_sha256": runner.digest(b"partial"),
+        "stderr_sha256": runner.digest(b"slow"),
+    }
+
+
+def test_execute_retains_three_structured_cannot_check_receipts(monkeypatch):
+    runner = load_runner()
+    protocol = json.loads(PROTOCOL.read_text())
+    monkeypatch.setattr(runner, "validate_execution_source", lambda root: {"source_branch": "main", "source_commit": "f" * 40, "committed_blob_equality": {}})
+    monkeypatch.setattr(runner, "validate_runtime", lambda protocol: protocol["runtime"])
+    receipt = {"stage": "MATERIALIZE_FROZEN_HEAD", "argv": ["git", "checkout"], "terminal": "TIMEOUT", "timeout_seconds": 900, "exit_code": None, "stdout_sha256": None, "stderr_sha256": runner.digest(b"slow")}
+    def fail(*args, **kwargs):
+        raise runner.AcquisitionFailure(dict(receipt))
+    monkeypatch.setattr(runner, "acquire", fail)
+    result = runner.execute(protocol, ROOT)
+    assert len(result["domains"]) == 3
+    assert all(domain["status"] == "CANNOT_CHECK" and domain["acquisition_failure_receipt"] == receipt for domain in result["domains"])
+    assert result["data_coverage_gate"] == "NOT_MET"
+    assert result["native_conformance_gate"] == "NOT_MET"
+    assert result["savings_gate"] == "NOT_MET"
+    assert result["scientific_authority_delta"] == "NONE"
+
+
+def test_execute_retains_real_git_helper_nonzero_receipts(monkeypatch):
+    runner = load_runner()
+    protocol = json.loads(PROTOCOL.read_text())
+    monkeypatch.setattr(runner, "validate_execution_source", lambda root: {"source_branch": "main", "source_commit": "f" * 40, "committed_blob_equality": {}})
+    monkeypatch.setattr(runner, "validate_runtime", lambda protocol: protocol["runtime"])
+    monkeypatch.setattr(
+        runner.subprocess,
+        "run",
+        lambda *args, **kwargs: SimpleNamespace(returncode=17, stdout=b"partial", stderr=b"denied"),
+    )
+    result = runner.execute(protocol, ROOT)
+    assert len(result["domains"]) == 3
+    for domain in result["domains"]:
+        receipt = domain["acquisition_failure_receipt"]
+        assert receipt["stage"] == "GIT_INIT"
+        assert receipt["argv"] == ["git", "init", "--quiet"]
+        assert receipt["terminal"] == "EXIT_NONZERO"
+        assert receipt["exit_code"] == 17
+        assert receipt["stdout_sha256"] == runner.digest(b"partial")
+        assert receipt["stderr_sha256"] == runner.digest(b"denied")
+    assert result["data_coverage_gate"] == "NOT_MET"
+    assert result["scientific_authority_delta"] == "NONE"

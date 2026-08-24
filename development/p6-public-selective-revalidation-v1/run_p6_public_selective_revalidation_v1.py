@@ -24,6 +24,12 @@ RUNNER_PATH = "development/p6-public-selective-revalidation-v1/run_p6_public_sel
 RESULT_SCHEMA = "ORION.P6.PublicSelectiveRevalidationResult.v1"
 
 
+class AcquisitionFailure(RuntimeError):
+    def __init__(self, receipt: dict[str, Any]):
+        super().__init__(f"acquisition stage failed: {receipt['stage']}")
+        self.receipt = receipt
+
+
 def canonical(value: Any) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
 
@@ -88,8 +94,8 @@ def dataset_rows() -> list[dict[str, Any]]:
 def expected_protocol(root: Path = ROOT) -> dict[str, Any]:
     return {
         "schema": "ORION.P6.PublicSelectiveRevalidationProtocol.v1",
-        "status": "FROZEN_NO_RESULTS",
-        "frozen_utc": "2026-08-24T15:10:00Z",
+        "status": "FROZEN_NO_RESULTS_AFTER_OPERATIONAL_REPAIR",
+        "frozen_utc": "2026-08-24T15:31:00Z",
         "issue": 1086,
         "paper": "P6_COMPONENT_OF_P6_P8_UNIFIED_CALCULUS",
         "outcome_accessed": False,
@@ -120,6 +126,12 @@ def expected_protocol(root: Path = ROOT) -> dict[str, Any]:
             "simultaneous_one_sided_alpha": 0.05,
             "domain_count_for_bonferroni": 3,
             "seed": 660024,
+        },
+        "acquisition": {
+            "fetch": "initialize an empty repository and fetch the exact frozen commit SHA with depth 2000",
+            "materialization": "one detached checkout of refs/heads/frozen before graph parsing to batch frozen-head blob acquisition",
+            "moving_branch_observation": "record pre/post ls-remote hashes and whether they differ; never substitute the branch head",
+            "failed_attempt_boundary": "the earlier lazy one-blob-per-request attempt was interrupted before any result file or metric existed",
         },
         "gate": {
             "domain_count": 3,
@@ -179,7 +191,9 @@ def validate_protocol(protocol: Mapping[str, Any], root: Path = ROOT) -> None:
 
 
 def git(repo: Path, *args: str, binary: bool = False) -> str | bytes:
-    raw = subprocess.check_output(["git", *args], cwd=repo)
+    stage = "GIT_" + re.sub(r"[^A-Z0-9]+", "_", args[0].upper()).strip("_")
+    completed = run_acquisition_command(stage, ["git", *args], repo, 600)
+    raw = completed.stdout
     return raw if binary else raw.decode()
 
 
@@ -351,23 +365,95 @@ def verify_frozen_refs(expected: str, fetch_head: str, frozen_ref: str) -> None:
         raise ValueError("frozen ref differs from frozen head")
 
 
+def _stream_digest(value: Any) -> str | None:
+    if value is None:
+        return None
+    if isinstance(value, str):
+        value = value.encode()
+    if not isinstance(value, bytes):
+        value = repr(value).encode()
+    return digest(value)
+
+
+def run_acquisition_command(stage: str, argv: Sequence[str], path: Path, timeout: int):
+    try:
+        completed = subprocess.run(argv, cwd=path, capture_output=True, check=False, timeout=timeout)
+    except subprocess.TimeoutExpired as error:
+        raise AcquisitionFailure({
+            "stage": stage,
+            "argv": list(argv),
+            "terminal": "TIMEOUT",
+            "timeout_seconds": timeout,
+            "exit_code": None,
+            "stdout_sha256": _stream_digest(error.stdout),
+            "stderr_sha256": _stream_digest(error.stderr),
+        }) from error
+    except OSError as error:
+        raise AcquisitionFailure({
+            "stage": stage,
+            "argv": list(argv),
+            "terminal": "OS_ERROR",
+            "timeout_seconds": timeout,
+            "exit_code": None,
+            "stdout_sha256": None,
+            "stderr_sha256": digest(str(error).encode()),
+        }) from error
+    if type(completed.returncode) is not int:
+        raise TypeError("acquisition exit code must be an exact integer")
+    if completed.returncode != 0:
+        raise AcquisitionFailure({
+            "stage": stage,
+            "argv": list(argv),
+            "terminal": "EXIT_NONZERO",
+            "timeout_seconds": timeout,
+            "exit_code": completed.returncode,
+            "stdout_sha256": _stream_digest(completed.stdout),
+            "stderr_sha256": _stream_digest(completed.stderr),
+        })
+    return completed
+
+
+def materialize_frozen_head(path: Path, expected: str) -> dict[str, Any]:
+    argv = ["git", "checkout", "--quiet", "--detach", "refs/heads/frozen"]
+    completed = run_acquisition_command("MATERIALIZE_FROZEN_HEAD", argv, path, 900)
+    observed = git(path, "rev-parse", "HEAD").strip()
+    if observed != expected:
+        raise ValueError("materialized HEAD differs from frozen head")
+    return {
+        "materialize_argv": argv,
+        "materialize_exit_code": completed.returncode,
+        "materialize_stderr_sha256": digest(completed.stderr),
+        "observed_materialized_head": observed,
+    }
+
+
 def acquire(dataset: Mapping[str, Any], root: Path) -> tuple[Path, dict[str, Any]]:
     path = root / dataset["id"]
-    path.mkdir()
-    subprocess.run(["git", "init", "--quiet"], cwd=path, capture_output=True, check=True, timeout=60)
-    subprocess.run(["git", "remote", "add", "origin", dataset["clone_url"]], cwd=path, capture_output=True, check=True, timeout=60)
+    try:
+        path.mkdir()
+    except OSError as error:
+        raise AcquisitionFailure({
+            "stage": "CREATE_TEMP_REPOSITORY",
+            "argv": ["mkdir", "<temporary_repository>"],
+            "terminal": "OS_ERROR",
+            "timeout_seconds": 0,
+            "exit_code": None,
+            "stdout_sha256": None,
+            "stderr_sha256": digest(str(error).encode()),
+        }) from error
+    run_acquisition_command("GIT_INIT", ["git", "init", "--quiet"], path, 60)
+    run_acquisition_command("ADD_REMOTE", ["git", "remote", "add", "origin", dataset["clone_url"]], path, 60)
     ls_remote_argv = ["git", "ls-remote", "--heads", dataset["clone_url"], dataset["branch"]]
-    remote_pre = subprocess.run(ls_remote_argv, capture_output=True, check=True, timeout=120)
+    remote_pre = run_acquisition_command("OBSERVE_REMOTE_PRE", ls_remote_argv, path, 120)
     command = ["git", "fetch", "--quiet", "--filter=blob:none", "--depth", str(dataset["history_depth"]), "origin", dataset["head_commit"]]
-    completed = subprocess.run(command, cwd=path, capture_output=True, check=False, timeout=600)
-    if completed.returncode != 0:
-        raise RuntimeError(f"exact frozen-head fetch failed: {dataset['id']}")
+    completed = run_acquisition_command("FETCH_EXACT_FROZEN_HEAD", command, path, 600)
     head = dataset["head_commit"]
     observed_fetch_head = git(path, "rev-parse", "FETCH_HEAD").strip()
     git(path, "update-ref", "refs/heads/frozen", head)
     observed_frozen_ref = git(path, "rev-parse", "refs/heads/frozen").strip()
     verify_frozen_refs(head, observed_fetch_head, observed_frozen_ref)
-    remote_post = subprocess.run(ls_remote_argv, capture_output=True, check=True, timeout=120)
+    materialization = materialize_frozen_head(path, head)
+    remote_post = run_acquisition_command("OBSERVE_REMOTE_POST", ls_remote_argv, path, 120)
     license_blob = git(path, "rev-parse", f"{head}:{dataset['license_path']}").strip()
     if license_blob != dataset["license_git_blob_sha1"]:
         raise ValueError("license blob drift")
@@ -381,6 +467,7 @@ def acquire(dataset: Mapping[str, Any], root: Path) -> tuple[Path, dict[str, Any
         "remote_branch_post_sha256": digest(remote_post.stdout),
         "remote_branch_moved_during_acquisition": remote_pre.stdout != remote_post.stdout,
         "license_git_blob_sha1": license_blob,
+        **materialization,
     }
 
 
@@ -399,12 +486,26 @@ def execute(protocol: Mapping[str, Any], root: Path = ROOT) -> dict[str, Any]:
                 edges, import_audit = dependency_edges(repo, dataset["head_commit"], dataset["id"], nodes)
                 changes = eligible_changes(repo, dataset["head_commit"], set(nodes), dataset["required_change_sets"])
             except Exception as error:
+                failure_receipt = (
+                    error.receipt
+                    if isinstance(error, AcquisitionFailure)
+                    else {
+                        "stage": "UNSTRUCTURED_DOMAIN_FAILURE",
+                        "argv": [],
+                        "terminal": "EXCEPTION",
+                        "timeout_seconds": 0,
+                        "exit_code": None,
+                        "stdout_sha256": None,
+                        "stderr_sha256": digest(str(error).encode()),
+                    }
+                )
                 domains.append({
                     "dataset_id": dataset["id"],
                     "domain": dataset["domain"],
                     "status": "CANNOT_CHECK",
                     "failure_type": type(error).__name__,
                     "failure_message_sha256": digest(str(error).encode()),
+                    "acquisition_failure_receipt": failure_receipt,
                     "change_set_count": 0,
                     "rows": [],
                 })
