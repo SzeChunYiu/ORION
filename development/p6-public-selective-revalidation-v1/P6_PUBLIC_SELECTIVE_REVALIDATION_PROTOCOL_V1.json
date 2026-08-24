@@ -1,0 +1,132 @@
+{
+  "schema": "ORION.P6.PublicSelectiveRevalidationProtocol.v1",
+  "status": "FROZEN_NO_RESULTS",
+  "frozen_utc": "2026-08-24T15:10:00Z",
+  "issue": 1086,
+  "paper": "P6_COMPONENT_OF_P6_P8_UNIFIED_CALCULUS",
+  "outcome_accessed": false,
+  "results_exist": false,
+  "systems": [
+    "SELECTIVE_REVALIDATION",
+    "NATIVE_DEPENDENCY_CLOSURE",
+    "FULL_RESET"
+  ],
+  "selection_contract": {
+    "change_set": "artifact paths changed by one eligible first-parent commit and still present in the frozen-head artifact universe",
+    "native_dependency_closure": "changed artifacts plus every frozen-head reverse-transitive dependent under parsed domain-native import/include syntax",
+    "selective_revalidation": "same exact reverse-transitive closure; equivalence to native closure is expected and must be retained",
+    "full_reset": "every artifact in the frozen-head domain universe",
+    "gold": "native dependency closure under the same frozen graph",
+    "gold_independence_boundary": "gold and SELECTIVE_REVALIDATION use the same reachability predicate; safety is conformance, not independent semantic validation"
+  },
+  "datasets": [
+    {
+      "id": "nfcore_rnaseq_nextflow",
+      "domain": "scientific_workflow",
+      "repository": "nf-core/rnaseq",
+      "clone_url": "https://github.com/nf-core/rnaseq.git",
+      "source_url": "https://github.com/nf-core/rnaseq",
+      "branch": "master",
+      "head_commit": "1f03b53ef799e298f60c813440e961e867017043",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "license_git_blob_sha1": "d720749d3382f5f8cd4505af8908bb4577f1f240",
+      "artifact_rule": "paths ending .nf or .config",
+      "dependency_rule": "Nextflow include/from and includeConfig relative paths at the frozen head",
+      "history_depth": 2000,
+      "required_change_sets": 100
+    },
+    {
+      "id": "mathlib4_lean",
+      "domain": "formal_mathematics",
+      "repository": "leanprover-community/mathlib4",
+      "clone_url": "https://github.com/leanprover-community/mathlib4.git",
+      "source_url": "https://github.com/leanprover-community/mathlib4",
+      "branch": "master",
+      "head_commit": "dc84fcbe9e049439c1c36d6db290cc0565f77788",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "license_git_blob_sha1": "8dada3edaf50dbc082c9a125058f25def75e625a",
+      "artifact_rule": "Mathlib/**/*.lean",
+      "dependency_rule": "Lean import declarations at the frozen head",
+      "history_depth": 2000,
+      "required_change_sets": 100
+    },
+    {
+      "id": "geneontology_go_ontology",
+      "domain": "versioned_ontology",
+      "repository": "geneontology/go-ontology",
+      "clone_url": "https://github.com/geneontology/go-ontology.git",
+      "source_url": "https://github.com/geneontology/go-ontology",
+      "branch": "master",
+      "head_commit": "97b20201b32a62e0ca8a07743743b8fdc1f2a1a1",
+      "license": "CC-BY-4.0",
+      "license_path": "LICENSE",
+      "license_git_blob_sha1": "10fabd90118f7ce38bb2e4753e105e744442a429",
+      "artifact_rule": "paths ending .obo, .owl, or .ofn",
+      "dependency_rule": "ontology import declarations resolvable to frozen-head repository paths",
+      "history_depth": 2000,
+      "required_change_sets": 100
+    }
+  ],
+  "sampling": {
+    "walk": "first-parent from exact frozen head",
+    "eligible": "commit has at least one changed path in the frozen-head artifact universe",
+    "take": "first 100 eligible commits in reverse chronological order",
+    "inference_unit": "commit_change_set",
+    "serial_dependence": true,
+    "population_inference": false
+  },
+  "statistics": {
+    "endpoint": "1 - selected_artifact_count / full_reset_artifact_count",
+    "interpretation": "deterministic block-resampling sensitivity analysis only; no stochastic coverage guarantee",
+    "block_size": 10,
+    "bootstrap_draws": 10000,
+    "simultaneous_one_sided_alpha": 0.05,
+    "domain_count_for_bonferroni": 3,
+    "seed": 660024
+  },
+  "gate": {
+    "domain_count": 3,
+    "change_sets_per_domain": 100,
+    "zero_invalid_certificates_against_native_closure": true,
+    "positive_savings_every_domain": true,
+    "block_resampling_lower_quantile_gt_zero_every_domain": true,
+    "mutations_killed_globally": [
+      "OMITTED_READ",
+      "OMITTED_EDGE",
+      "ALTERNATIVE_SUPPORT_ALL_DEPENDENCIES"
+    ]
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "python_implementation": "CPython",
+    "git": "2.51.1",
+    "dependencies": "stdlib_and_git_only"
+  },
+  "retention": {
+    "every_retained_eligible_change_set": true,
+    "every_attempted_domain_has_success_or_cannot_check_terminal": true,
+    "null_harmful_and_zero_savings_rows": true,
+    "upstream_file_contents": false,
+    "commit_ids_changed_paths_graph_and_decision_hashes": true
+  },
+  "runner": {
+    "path": "development/p6-public-selective-revalidation-v1/run_p6_public_selective_revalidation_v1.py",
+    "sha256": "29c02ca7ff2f6ba648567f48d9940daa92eecbc7de120c25421e1073bc14d11c"
+  },
+  "authority": {
+    "closes_issue_box": false,
+    "scientific_authority_delta": "NONE",
+    "independent_adjudication": "CANNOT_CHECK",
+    "protected_custody": "CANNOT_CHECK",
+    "population_inference": false
+  },
+  "non_bypass_boundaries": [
+    "The study replays public change sets against dependency syntax parsed by ORION at the frozen head; it is not a historical native build/test or native-tool replay.",
+    "Deleted paths and dependencies not representable in the frozen-head graph are outside the estimand.",
+    "Native-closure equivalence is implementation conformance, not evidence that the selector is scientifically novel or more precise than native systems.",
+    "Public Git history does not create independent adjudication, protected custody, or semantic target-obligation confirmation.",
+    "The protocol closes no issue box until a later unchanged clean-main execution passes and is reviewed."
+  ]
+}
