@@ -17,13 +17,17 @@ from orion.study.p12.equal_action_successor_v1_1 import (
     adjudicate,
     build_core,
 )
-from orion.study.p12.successor_authority import build_active_claim_authority
+from orion.study.p12.successor_authority import (
+    build_active_claim_authority,
+    build_active_claim_authority_v3,
+)
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
 HISTORICAL_RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json"
 RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json"
 AUTHORITY = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V3.json"
+AUTHORITY_V4 = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V4.json"
 
 
 def test_typed_views_do_not_carry_a_withheld_signal() -> None:
@@ -100,7 +104,7 @@ def test_v1_receipt_is_preserved_append_only() -> None:
 
 def test_v3_authority_rebuilds_and_keeps_p12a_historical() -> None:
     authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
-    assert authority == build_active_claim_authority()
+    assert authority == build_active_claim_authority_v3()
     assert authority["active_claim_leaf"]["terminal"] == SUPPORTED
     assert authority["historical_boundary_leaf"]["terminal"] == (
         "P12A_SUPERIORITY_AUTHORITY_WITHHELD"
@@ -112,3 +116,15 @@ def test_v3_authority_rebuilds_and_keeps_p12a_historical() -> None:
         "numpy_version": environment["numpy_version"],
         "uv_lock_sha256": environment["uv_lock_sha256"],
     }
+
+
+def test_v4_authority_preserves_v3_and_binds_landed_lifecycle() -> None:
+    authority = json.loads(AUTHORITY_V4.read_text(encoding="utf-8"))
+    assert authority == build_active_claim_authority()
+    v3 = json.loads(AUTHORITY.read_text(encoding="utf-8"))
+    assert authority["active_claim_leaf"] == v3["active_claim_leaf"]
+    assert authority["historical_boundary_leaf"] == v3["historical_boundary_leaf"]
+    assert authority["robustness_boundary_leaf"]["price_axis"] == "BROKEN"
+    assert authority["robustness_boundary_leaf"]["distribution_shift_axis"] == "BROKEN"
+    assert authority["price_aware_successor_leaf"]["forward_time_deployability"] == "CANNOT_CHECK"
+    assert authority["top_tier_submission_allowed"] is False

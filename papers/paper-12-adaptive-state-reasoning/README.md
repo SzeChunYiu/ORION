@@ -7,7 +7,7 @@
 
 ## Canonical manuscript
 
-`MANUSCRIPT.md` is the current peer-review manuscript. Its historical P12A/P12B sections remain part of the evidence story, but the current top-tier claim is defined by the later verifier-backed resource-location and unchanged-allocator receipts.
+`manuscript/sections/*.md` are the canonical publication source and `manuscript/main.pdf` is the rendered paper. `MANUSCRIPT.md` is a historical integrated review snapshot. Current claim authority is `P12_ACTIVE_CLAIM_AUTHORITY_V4.json`.
 
 ## Current scientific state
 
@@ -15,7 +15,7 @@ P12 now has three evidence layers that must be read in order.
 
 ### 1. Historical comparison correction
 
-P12A remains a valid execution record but not a valid signal-count superiority result: the joint arm could emit allocations unavailable to the one-axis arms. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` permanently withholds that causal superiority interpretation.
+P12A remains a valid execution record but not a valid signal-count superiority result: the joint arm could emit allocations unavailable to the one-axis arms. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` permanently sets `P12A_SUPERIORITY_AUTHORITY_WITHHELD`. V4 preserves P12B's bounded `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED` terminal.
 
 P12B repairs the comparator by giving all signal policies the same four-action set and two-unit budget. Across 32 independent family RNG blocks, the two-signal policy gains `0.253906` over the stronger one-signal policy with stratified family-block 95% interval `[0.251221, 0.256653]`. This remains controlled equal-action evidence, not the final top-tier object.
 
@@ -51,20 +51,13 @@ The result therefore supports a bounded **resource-location** claim rather than 
 
 This is a cross-domain transfer result for the registered allocator and case family. It is **not** a proof of universal allocation optimality.
 
-## Current top-tier blocker
+## Landed robustness boundary and successor
 
-The remaining scientific blocker is robustness, not another basic benchmark. Open gap-wave PR #1006 freezes an additive stress study over the already-bound allocator; until its receipt is bound, none of those stress results are scientific authority for this paper.
+The preregistered stress study is complete. The original q-greedy allocator's FLAT result replicates, but its price and distribution-shift axes are both **BROKEN**. That negative remains binding and was not retuned.
 
-The frozen study tests:
+A separately preregistered successor reads the charging environment's exact per-structure certificates and prices and solves the registered budgeted objective exactly. It reaches zero priced regret in all 195 frozen battery cells with two implementations agreeing. This is a conditional selection result, not a forward-time deployment result: whether exact certificates are available before action is `CANNOT_CHECK`.
 
-- altered state-build / serve prices;
-- nominal-budget versus priced-budget semantics;
-- case-level and shared-budget task-distribution mixtures;
-- an expanded 9→27 stress set;
-- a static + dynamic hidden-domain-parameterization audit with mutant self-validation;
-- a second independent implementation.
-
-No threshold or allocator parameter may be changed after that run. Whatever the frozen robustness verdict is—robust, regime-conditional or broken—must be bound and written into the paper.
+Selection-sufficiency and certificate-necessity falsifiers support the exact-certificate boundary in the registered finite environment. They do not establish external transfer.
 
 ## Manuscript integration rule
 
@@ -79,12 +72,12 @@ Manuscript-facing integration notes are in `top_tier/P12_TOP_TIER_MANUSCRIPT_INT
 - `PEER_REVIEW_READINESS.md`
 - `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`
 - `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json`
-- `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`
+- `P12_ACTIVE_CLAIM_AUTHORITY_V4.json`
 - `top_tier/P12_TRANSFER_ALLOCATION_RESULT_RECEIPT_V1.md`
 - `top_tier/P12_TOP_TIER_MANUSCRIPT_INTEGRATION_2026-08-23.md`
 
-The robustness protocol/runner/checker remain in open PR #1006 until that lane is reconciled and landed.
+The transfer, robustness, price-aware successor and theorem receipts are content-bound by V4.
 
 ## Explicit nonclaims
 
-No universal resource-allocation optimality, no cross-domain scalar exchange rate between heterogeneous charged units, no open-weight LLM generality unless separately executed, and no claim that the historical P12A margin isolates signal count. Robustness to price and distribution shift remains pending until the frozen robustness receipt is bound.
+No universal resource-allocation optimality, no cross-domain scalar exchange rate between heterogeneous charged units, no open-weight LLM generality, and no claim that the historical P12A margin isolates signal count. The V1 allocator is not price- or shift-robust. The successor is not a forward-time allocator because it consumes exact published charge certificates. No `P12C` artifact or bound public ScienceAgentBench result exists.
