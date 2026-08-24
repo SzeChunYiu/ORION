@@ -1,0 +1,1390 @@
+{
+  "arms": {
+    "no_reconstruction": "masked domain_knowledge, no recovery step. Isolates how much the masked knowledge was worth.",
+    "one_shot_reconstruction": "masked, one single recovery attempt before solving.",
+    "recursive_reconstruction": "masked, iterative recover -> check -> refine before solving. The arm under test.",
+    "unmasked_ceiling": "full domain_knowledge, no recovery step. Not a competitor: it is the attainable ceiling this intervention removes support from."
+  },
+  "budget": {
+    "identical_model": true,
+    "identical_tool_access": true,
+    "max_attempts": 3,
+    "max_model_tokens_per_task": 60000,
+    "max_tool_calls_per_task": 40
+  },
+  "by_domain": {
+    "Bioinformatics": {
+      "MASKED": 23,
+      "NOT_MASKABLE": 4
+    },
+    "Computational Chemistry": {
+      "MASKED": 18,
+      "NOT_MASKABLE": 2
+    },
+    "Geographical Information Science": {
+      "MASKED": 26,
+      "NOT_MASKABLE": 1
+    },
+    "Psychology and Cognitive science": {
+      "MASKED": 27,
+      "NOT_MASKABLE": 1
+    }
+  },
+  "entries": [
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "1",
+      "masked_indices": [
+        2,
+        4,
+        6,
+        7
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "7570a0a203e407fb8ee6fa8dbe44fe9890cfc4575073f7e9fa3faf03cfb9779a",
+      "retained_text_sha256": "1decdd0a7b76d408ff9c0fe99f3a09509f0a489482d23ae7c7e82fca35ab9f1e",
+      "sentence_count": 8,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "2",
+      "masked_indices": [
+        2,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "137194a3c764a258ec855ff841cefaa3d5dd078da95f1b0b7c167fe7a5625968",
+      "retained_text_sha256": "8133dff19bc4a4cf8a219e595c56acf9c9392e7b5a715fd2144c1119ea6b7da1",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "3",
+      "masked_indices": [
+        0,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "fc982cca5086bd675e6817689471e154317f3c17e4608f98c2ba5bc99a95aa74",
+      "retained_text_sha256": "eb94c8fbb385296d5b16922edfc9522675342a83987df12bba570be7167e801a",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "4",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "8197f0189965b2e42ded9f8ed83b6e913f9fc25e49a64988cf6814898065c7c2",
+      "retained_text_sha256": "993b0ef98242e70582f803e3456637264fc1792b48757aa329c9d7940564e480",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "5",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "6",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "7",
+      "masked_indices": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "3f9de33181b9d4d24ccc61b38642a2e108ed81cbb198689ab88ab955f2a68e00",
+      "retained_text_sha256": "8d6cb975f0f0d75831ca1fd49cc267e5d8c59f4721d9809a1e9acd42064dfeb3",
+      "sentence_count": 8,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "8",
+      "masked_indices": [
+        0,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "b7e4dd26bbb7632294156ed108cfea38a4a4b79d20a6b348b3e679b1af51937d",
+      "retained_text_sha256": "3437e602d2c1a44f6d8efd10b9c1c26b011e1008b6aeb5addf98d2dc8a4caf23",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "9",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "10",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "1cff46447bb833bbbba049df3c389c486b206dcc7b0a5e2932996d92a26d4e22",
+      "retained_text_sha256": "323f9fbf90f363123efe07b9a021a8426921c0000f701ee12c58595da1daabec",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "11",
+      "masked_indices": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "f0628bc807184536aff4fccee655c815a33c3e2d334e000461ca09d5f5cf474b",
+      "retained_text_sha256": "4df10f6e8e3eab09b1aad55e8be765be6ed5f5463c9e3c8ac75fa274f5c6a036",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "12",
+      "masked_indices": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "7c38a811b85532b8f2a016339ee26e515bbf2a11ca8f7b88f2de7f0d7c487317",
+      "retained_text_sha256": "7cc5382d534d22bc1f09471b11d2bd74b9cf1ae3b7208e5110d74ed5559fefcb",
+      "sentence_count": 9,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "13",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "8717e5ba90a90a364add38c68225c120b464c58141baee4a9729ec6effd2ff3c",
+      "retained_text_sha256": "06e7ec8ad2703658d1e624732974d638aeef8129193d8ef5cefdc2931104a800",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "14",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "15",
+      "masked_indices": [
+        3,
+        4
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "e0dbab570ebe54987324250bd50f4f97a5a79b722e7e38d78249115d29c98fb5",
+      "retained_text_sha256": "6a0a89e2091f2d53a9f928ea2500922ac137d76b655f854a95c7ca362121a99a",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "16",
+      "masked_indices": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "masked_sentence_count": 6,
+      "masked_text_sha256": "f1d0ffe547631a3cb40d4cba205ae6ded6b0f73e32faab758e4406b7d7a88977",
+      "retained_text_sha256": "4d9c3998f04eacdf3bfe155f61bfac07f9317bbc5597e04d5998c8d4037a905c",
+      "sentence_count": 11,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "17",
+      "masked_indices": [
+        0,
+        2,
+        4,
+        5,
+        8,
+        10
+      ],
+      "masked_sentence_count": 6,
+      "masked_text_sha256": "d158ed7f5f3bd916ae9d4bad458465c0a941c918e02b1ce61330092c0ff61199",
+      "retained_text_sha256": "af7027830f07acc466f848e38f37cd9ddf62904d35bb5635989d89e3ca3e8808",
+      "sentence_count": 11,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "18",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "082ff68420c7efffcbd807df7033bf2ae0ff34205f99058b157f24a986f6cc61",
+      "retained_text_sha256": "f92519c6a015eb94ff15c7442a846fe50eb4c1c534e17b332c692c5cb76988b2",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "19",
+      "masked_indices": [
+        0,
+        4
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "c3dc011ec5e97cd705d24f5862c0ad0372c3c0af372aa039c369eb4a59e26260",
+      "retained_text_sha256": "186fc908cf4059921b12a9901a172847bc3b5acabc00b89d9c3a6bb03471093a",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "20",
+      "masked_indices": [
+        1,
+        2,
+        3,
+        5,
+        9
+      ],
+      "masked_sentence_count": 5,
+      "masked_text_sha256": "b57697c00045f9b9b1327a5b5c64c37d18b21c688d74f641b37504907eaad5c6",
+      "retained_text_sha256": "5eb8f831eb8ce10836a67d0ad0e891d92a952483cddb14f6b935a4fa42ce3d3c",
+      "sentence_count": 10,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "21",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "4a7efe547a0fa6bf6538a3173c46d64ccac240d0facf32753a7d50e9be5c4f40",
+      "retained_text_sha256": "0179bb4f84488c2ccda029e34598466a39ccc485f2e3a90e5745a16a86cb3654",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "22",
+      "masked_indices": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "9c395c3ccf109d436fb150a7848c19904dd667c17f0fa06f175f0298ed325e8b",
+      "retained_text_sha256": "ad1113e940ff3eb2de1294aa22ce83a607e5889cd4e7529057b7bc4d32677c07",
+      "sentence_count": 9,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "23",
+      "masked_indices": [
+        3,
+        4
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "323f9fbf90f363123efe07b9a021a8426921c0000f701ee12c58595da1daabec",
+      "retained_text_sha256": "524cfbcfe80499baaf14e462c92fd6a9640e9cc229a5589c6066a232f8cbf783",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "24",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "198266d97e420d8d22fd5aa3676f9c32dd9ee217f5fb33321d7e3aae599c337b",
+      "retained_text_sha256": "76047583ca777aa32cd87af9c3d36963242eedd8a6cdecbf3f0535662db73570",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "25",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "eac8396d981931fab2760b61c157247d5b55ea5924bc847058f2d4290a9f72d0",
+      "retained_text_sha256": "a1fcd43f1f54e6fc2e4bba01c1796d2fc3c68de735a3c9b846e603e4e7d0ede4",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "26",
+      "masked_indices": [
+        0,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "c5e228b0bc604f88df2a46ac80d0b475f89e5b58cae5548c90c580fb29d3d492",
+      "retained_text_sha256": "c999a19afc22615c6963fb6019bafb53bfc3dbdafb47ddfedda2b915b5bbf05e",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "27",
+      "masked_indices": [
+        0
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "b01c5c72704c17061c6ba73d444fcadc466b0f4a7a7125ba30e46724f6a8bb46",
+      "retained_text_sha256": "a83af1855eee945b0b2607e6f66308c23d50f300f5457e3e81bd2fed6ee40aee",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "28",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "3f688c1f6acc8c59ab390bfb7cd4fc73a2a9178bd15efdc153ec9f9b99c8c96d",
+      "retained_text_sha256": "58c3848c3f9560fdf352ef807fd6067f3f50933e55903ba9465016d7c289f5a5",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "29",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "244f6431ec8db0c894a27540fb2938b36e71d2d5f3251ba8fe26207466e4c86e",
+      "retained_text_sha256": "ffa19487b165c955d30ff27a120a23f79153a3effdeaeade60784144ebff2832",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "30",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "b6ce243c7787d502ac97ebaaffa54cdd7f929ef1023d54753faab155b112eedd",
+      "retained_text_sha256": "1709ed192e3dc848421d050ae79e11d5e54bd3d5b3662b0a0164396ad4ec04f9",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "31",
+      "masked_indices": [
+        2,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "c044d96645fd2b711b3f798b3b5c6b62450fe1b23069d39e8ca5a810d58f598f",
+      "retained_text_sha256": "5f589d9799e3a6685d7d22de13dcdcbe2ed0fe5f4364ff74c8a385082105025a",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "32",
+      "masked_indices": [
+        0,
+        3,
+        5
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "92116ae0de4f5b738081660847c4e27b9ae9ad3072808ad3bd6b5afe07f9b64c",
+      "retained_text_sha256": "8731a9cf37f7c714b5714e15270d63852105f754f30504ca2fff2e8bf17c0540",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "33",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "4c9e48d81c23fb93f019af5ae773d8eecd85470aa1b642900eadc64c732b401d",
+      "retained_text_sha256": "d725700160d2b6ba098df17af9c07095cdc0b16e384fe8b3a8c3fdb96da94e52",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "34",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "308315a99fa5240380212bab0a281282ca5cdc365e32d79c0fc76d3a2150ea04",
+      "retained_text_sha256": "e6a6270fc15dcffd2b4cfcfc880809dcf0ffe8d1518fbbdc8c2fb6ae99827c39",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "35",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "6339337bddc8f9ae0b6cbc095a171906ad8138b289f7a77d16bab91b9c5180dc",
+      "retained_text_sha256": "7b6c2736d7e4aada92eeeba22e5a6121bf36c8eba0405ebd304ab527c38d14e7",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "36",
+      "masked_indices": [
+        0
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "1772deb718e1a79239454f05696045cb956a1eccf82f19404242ba3bdc2ce1f1",
+      "retained_text_sha256": "979710bd9836d7c9a87c1aa23609b37b84e8f937a3a468dd24818ccdb72563f0",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "37",
+      "masked_indices": [
+        0
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "85a69e4f6c71db57789e9524b379d8fb682a0b600d977acd6454b82a45d8304a",
+      "retained_text_sha256": "e1fb100663114dca7d1dbd43ddaffd66b8fa5a91bdf46804ba2c8a48dbd5b396",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "38",
+      "masked_indices": [
+        2,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "def16c4a610c179a2727c68fb18ec84a0c84f633ec3bcfa7b4207e7554789e9e",
+      "retained_text_sha256": "25915e1d5f90c9cef7807127744b2ccd7196d8152aedcf3ea6f28dc0d6513a35",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "39",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "e409a7fed697ab1f91256a6d900b28e7c130b13edb46f33224e1443f6851aab8",
+      "retained_text_sha256": "f677403a60f46d649ea2c1b3e6ef783627c4c8d22509395861ffef421aa2f281",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "40",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "d5f8ca08399be2bea194027392c6f0da74b1884bba43188cc5b521a63cbd9c60",
+      "retained_text_sha256": "5b711fe9bd528d8cae86e6835d0fdd425f7eac3f7eb3fcb9d411fc2c36f3d550",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "41",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "20213a0392ef3043e1315a093e208cba8c41c6ae21f8f6a42a25447472d8d328",
+      "retained_text_sha256": "e9b4861a19f6ee06bebca2f2ab903f5fe5c77db700add9f3e3020aeeca113e8b",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "42",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "8fcc95296917466afb6aee974dbe5b3e8cd997337058f204978dfb193092b2b0",
+      "retained_text_sha256": "39db1cf431a97c05929898c516b997d833177587ad9618144452d2c6b9dc9f07",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "43",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "3ea0100e5b225c33a5ba059468609dc388ce755ca9927a6dabc36d490f1d32b5",
+      "retained_text_sha256": "6a52da043cba0d3566cebb5e5fa95480ae2a7f8a23bd566fca066ebdfc061db0",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "44",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "84cdb2ec31719174efd0a41eefcc7f992845f0a399e8f449f6f6a3cfe45b8d60",
+      "retained_text_sha256": "8e988599611efe7b9da574030ac0bd83139b16b8a7e556e40eb46553b4ea7aa8",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "45",
+      "masked_indices": [
+        1,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "46c739d9a41f5f0eb6cb97e82c3691301177a34cb715a80f60f3fba19659f7d2",
+      "retained_text_sha256": "be2e0d694504efdac98cfab33b2f0af71caa426329b70e42def4176d225fa552",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "46",
+      "masked_indices": [
+        0,
+        4,
+        5
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "624317ac66c361df3535aaafa2568883dd366b8f902a8177d510945775e1259c",
+      "retained_text_sha256": "632a17d5a66ac18856942c71b95e1a6fb254324230e92e8b9fb9545a3ed78490",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "47",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "93a5d4260244ec74161fc11fcf3bee9448612605b220d0e3ea1b1843fd97e653",
+      "retained_text_sha256": "73285b0aebbbb4c93de1f6359b0a2bdfac01894278c642ae53bf877398347e76",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "48",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "9dafc3428525681b4c1814c5e42e7693bb0868f427e07e191bf3cc505869592c",
+      "retained_text_sha256": "f5b0d4226e10ca8ab3bccfd816d6ca7b9112182d23216202d8df14813463aa3b",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "49",
+      "masked_indices": [
+        1,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "67f681a808d628c91c7d1fd0ec651d119a206b0c16662ab284b7e020d91fe029",
+      "retained_text_sha256": "06c5ae9affaba2378f73fabebbf55d33dac5c8a07b8254fe6836a7525ec88318",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "50",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "17e001d8f664523808158301a3c6d76dba9f3710a44b433569a756083514fbb2",
+      "retained_text_sha256": "b871536f1bb12eae7227806d456abe9a5e6a55a08bdafef8a4fdcaf0d7b421ae",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "51",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "15969b0ae1d64b6a91bf79966002a9c565d7d7a822af87a3ef700bf7b3d2e281",
+      "retained_text_sha256": "4e5b314d2dad29bc0cf857115b369d13091140e834e7d38693aba3aae418c5c2",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "52",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "24947e42f49c315341f72f466e6af6b0752cc4d56eb36d401176ace6b03d0127",
+      "retained_text_sha256": "a08d4b756717b7b0a488424779c13dfaf28825ea39a563d4e68c92b8a1dd9c76",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "53",
+      "masked_indices": [
+        0
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "3e9394d110e8c79adb5631badd412ccf18c0819ac8d0c178b0da3f40aa6129ba",
+      "retained_text_sha256": "fdebad0fa40b21078af294533ca0d9eb1113e129681c2d6b36999e514468c855",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "54",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "216473f48009dd875dbbb267cf0eb7926ee371dcc8cf49f36fba21d6765bde1c",
+      "retained_text_sha256": "ed4a6344c03f78f66085608cc3fb89ff8651aa232e6f870de4fd442940c5c5bc",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "55",
+      "masked_indices": [
+        3,
+        4
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "325c8e8c39c17dbf21ab728de2dd4b07d10b548022b2c23a45d606d6b2fa3009",
+      "retained_text_sha256": "3f84d88d8583d8e9095ee6cbc55f1bb0ae2d3e821d2fa67143c1d5ae31e1331a",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "56",
+      "masked_indices": [
+        1,
+        3,
+        4
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "bc67ac367a58e8e389018a1ca91dbcb44bbec2b32c7abff7ae697f3e95c2e224",
+      "retained_text_sha256": "5f692d2338a38243d257357f81986965722ec4e2d163cc7cc3f445c198777b28",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "57",
+      "masked_indices": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "fc66eaec616af940aec34f86334e7c38211c182a45e128bb2a870b3a1b51963a",
+      "retained_text_sha256": "9f43582a0fd7e2a7b9437b309f12e15fa761685a161777b1740aa93ddef3eeb9",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "58",
+      "masked_indices": [
+        1,
+        3,
+        4,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "a0ca7f10465852e88865be22f9918e4cf8417a0ece641127b4908eaf8d9b75ae",
+      "retained_text_sha256": "6d578150c364e3c98758370a1e9458e80ab0fd52fed1bc40c2ce2c9667f8baaf",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "59",
+      "masked_indices": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "91e45a123f3aaff5a7908aba5a7f211877fb2c9b9728eec6cb9d32b4a49ff7b9",
+      "retained_text_sha256": "0d182cc3705651c8fd26bfc10616c1fbffd1ee79b480a76f011cf8d07e38fc41",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "60",
+      "masked_indices": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "6339c37e4792a697f843d2133a566c79b6c1f781847ba4dbf3c632a4e5a3202e",
+      "retained_text_sha256": "c0e538fc5f424f0babfda3631798842608cd398a06e5c39a76e70dd0cbc2bd28",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "61",
+      "masked_indices": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "130686c2ae0ee874e260efdb06a9a4d89d9306e908133ba788a2020216003fa1",
+      "retained_text_sha256": "5160444de403ad891b0fb7d246a73bc990a1d76cae74f8d7a69acca59e6c3a17",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "62",
+      "masked_indices": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "a0ca7f10465852e88865be22f9918e4cf8417a0ece641127b4908eaf8d9b75ae",
+      "retained_text_sha256": "6d578150c364e3c98758370a1e9458e80ab0fd52fed1bc40c2ce2c9667f8baaf",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "63",
+      "masked_indices": [
+        0,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "4e990276e257553de384049c172c66ce5760fc6c76eddd6aa44a19a5566eb8a8",
+      "retained_text_sha256": "ed9c2bb09010fff5673aa8b19b6aa13dc3834ba85e2219de21f0a7871d859387",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "64",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "c3420232302cfa7463abb45fe773184e0f33b13060e86cf9a3828231b27db024",
+      "retained_text_sha256": "6e108bf96848466e6a24ef519e70c8dae121b1bd9f7d28b46938e8133b0ae9aa",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "65",
+      "masked_indices": [
+        2,
+        4
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "4e71984e20498b584a4c6e05bcd0aa9a8f120ca3e58fbf6b933117e7489c93b1",
+      "retained_text_sha256": "d879ff140a5249569352c549798fc4af75bd684a83121270a8d01c3d72073cd4",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "66",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "7f7ac631fa439b8f49f0bf6538fde92326b5f5738994c323be2577c459a033ce",
+      "retained_text_sha256": "dd10c30ff2e7b98cbc4f849183dca5243c4176d9c1f43fa9a152e5c057939038",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "67",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "c56bb9c80ecf8fc1e5995a17ba2c6c39d41d4f0a75dba5b289eecbb5a72525da",
+      "retained_text_sha256": "4f0a1f4ce2dc96c3b1e2d076eb69305e02d24d8503b4c0878511dbed5d356595",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "68",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "5fbb50da6f73940cccad6b87272dcaa94d623722cfa4856fd81068e35bec2807",
+      "retained_text_sha256": "d4cbdfcbf42cdeb1d1751ee6f336cd51036c49d29b36492de7ee25e014d0fb97",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "69",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "34b390c757f5e03eb51cbeb932efdea6ab3e8f7b49e5a6c9e3a59f86546f4d31",
+      "retained_text_sha256": "c1a248fdb05dced23f6a488f1de6f90857fbce813f70db3c1931f62532a1ce49",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "70",
+      "masked_indices": [
+        0,
+        1,
+        5,
+        6,
+        9,
+        11
+      ],
+      "masked_sentence_count": 6,
+      "masked_text_sha256": "17fd3f649dd2467e8a5404bb4a0046f8f3965ef45bdc98367791f986c6748808",
+      "retained_text_sha256": "752f749d1f7392f685fbba64c4fe7fae1ccb251a3fd650173e749c81b74e494c",
+      "sentence_count": 12,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "71",
+      "masked_indices": [
+        2,
+        3,
+        4
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "e96fa91057ae0328451299ae3f09af2192d618283b10bc984fbde5bdf77d5373",
+      "retained_text_sha256": "3342d91a95602961ac4cb50bf66e2518afddb5295648d6d496f9518ffc428d7f",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "72",
+      "masked_indices": [
+        0,
+        3,
+        4,
+        5,
+        8,
+        12,
+        13
+      ],
+      "masked_sentence_count": 7,
+      "masked_text_sha256": "02274632d71645c6ffc638ae1c2234369cb8fb2fc6492c8189e43b176d7d0a5e",
+      "retained_text_sha256": "21ee7bd1976d4d2fee798ff8f9fb4f67a3792e4375cd3f38b5127b3f4797c170",
+      "sentence_count": 14,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "73",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "74",
+      "masked_indices": [
+        0,
+        4
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "513ea8cd19ff3b5ef9a3e9f453a5c0a3f490c1d905896d4d9aec1c0fd1ce6852",
+      "retained_text_sha256": "956b98321cb65429da1da8b28e249dc65a5467320869a0cceb5277e654ae60f0",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "75",
+      "masked_indices": [
+        0,
+        2,
+        3,
+        4,
+        7,
+        11,
+        12
+      ],
+      "masked_sentence_count": 7,
+      "masked_text_sha256": "0dbc70fdcfdea9c781d9291a2b673cebd68749bb3d724eb4e1e0c20c6cb8da62",
+      "retained_text_sha256": "7603524389c2427a10a58f1d37914d29b83a9e5d8b0dd0ba2b95a3b22394be4c",
+      "sentence_count": 14,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "76",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "479cb168ce84533a21f69002ee079705ad36f3d16a33d9c7172fe7f1c1fd76da",
+      "retained_text_sha256": "62f3d51e5266b92d2d35080974ef6bae682b8327a3eb4a902aa4aa70bfe75351",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "77",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "9eb28c99470bc6fbc9742eb80c4ba5b585c55ef26a36eea53d803fdd6c4f923d",
+      "retained_text_sha256": "998938be992a975742b16b018091d1047c1046125bb02d9fb5f5c0185f248552",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "78",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "bdd4bb01a84083bea1a2b3f527f61b9d7ae810e475c35f2dd6d70092854f7f9d",
+      "retained_text_sha256": "28f522a04bc36d998040a6fb287f2e981c329057f8e7d0d417f2ee7a563f9787",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "79",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "80",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "81",
+      "masked_indices": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "be528af1ad3d32eec2bfaaa6dafd4a20b1092c10b44cf7fab0bbdc6545965899",
+      "retained_text_sha256": "3b75fc2c7277310a491d372adef42601b597ec53694eaaeb419d5a2770c9ae58",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "82",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "7fb269b377e0ef4e41d00eb44a59d9e879d6fc1563208185b0bc7cdf3ef12598",
+      "retained_text_sha256": "8d553e20f93f6c13bf102f1a840a5e2fa657284fc85ca6adbd70d1ae8bff4e28",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "83",
+      "masked_indices": [
+        0,
+        4,
+        5,
+        6
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "6896a0d6bab7fe9a05a9c3431b0f2b7cb2a3b2da7787dff192a7e89a25c986c8",
+      "retained_text_sha256": "148d3a95eab98c50f5ca3459bee223d3c83c7cf29e46d2b77b98ed04f6324d7e",
+      "sentence_count": 7,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "84",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "6b69ee02dd9bf12957713079a5d1f7973a448b883e79f92fdc4b024be19af99c",
+      "retained_text_sha256": "c659e08b7819813ca24e7b9beb880bd8df6ce88397fb561855c4f4bb8c664df4",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "85",
+      "masked_indices": [
+        0,
+        3,
+        4
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "d1476f44fd002c5dfa11dbc291d6ba032e34f8f90c550519a4e47484d8918781",
+      "retained_text_sha256": "ec5b98c9aac53a78684539f7bec7f6c37828cd2328c17457c17f785c338483eb",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "86",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "9f140e35fa0895a0ce7b0982d4a7a34d93c95cfd48659a15d38fd575b53c18f3",
+      "retained_text_sha256": "4b356d54ba3c2b9767f98a17ab48ddea32713912f7dbaf96cb69e76fc39296ca",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "87",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "3d7cb15e1bd6de38b51ab4f244e0eb3006b9bc63c7ffbc78cdd3a82e78d0276b",
+      "retained_text_sha256": "ee004feb42e9a3b657446c9f4b35ae6aa948367bff613b9622f9869ec33594ee",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "88",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "b64ed9d66d533ba74ea2081bdbf0d9758092b494dea185b5bc87f1c1a5882011",
+      "retained_text_sha256": "bdbd61e9aaf70c7e145837ee0430237f1f43e546c11969ace18c540c8140ec8a",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Geographical Information Science",
+      "instance_id": "89",
+      "masked_indices": [
+        1,
+        3
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "e1ca5ba1afdb33acb046c3bd452b983d24bf14b97271a9793c5a99490b283880",
+      "retained_text_sha256": "4483499a1d5344f06181623aa1357efee06b2c398a44ece3f0db4d5309363270",
+      "sentence_count": 5,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "90",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "5fbb50da6f73940cccad6b87272dcaa94d623722cfa4856fd81068e35bec2807",
+      "retained_text_sha256": "d4cbdfcbf42cdeb1d1751ee6f336cd51036c49d29b36492de7ee25e014d0fb97",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "91",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "7f7ac631fa439b8f49f0bf6538fde92326b5f5738994c323be2577c459a033ce",
+      "retained_text_sha256": "dd10c30ff2e7b98cbc4f849183dca5243c4176d9c1f43fa9a152e5c057939038",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "92",
+      "masked_indices": [
+        1,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "7f7ac631fa439b8f49f0bf6538fde92326b5f5738994c323be2577c459a033ce",
+      "retained_text_sha256": "dd10c30ff2e7b98cbc4f849183dca5243c4176d9c1f43fa9a152e5c057939038",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Psychology and Cognitive science",
+      "instance_id": "93",
+      "masked_indices": [
+        0,
+        2
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "c56bb9c80ecf8fc1e5995a17ba2c6c39d41d4f0a75dba5b289eecbb5a72525da",
+      "retained_text_sha256": "4f0a1f4ce2dc96c3b1e2d076eb69305e02d24d8503b4c0878511dbed5d356595",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "94",
+      "masked_indices": [
+        1
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "dff3d0e42bc073e78d768aa1888c336b7357e194c295a35cf379f798b07ea1c9",
+      "retained_text_sha256": "70e2e897edbf7d73a2a1a8ef1eba0f80e21d903d46b6302351d1bfa8d202872d",
+      "sentence_count": 2,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "95",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "b9a7ad4c6f5bd7d0c70e75209892dce73411c47faa7cb190adf5f24a25647494",
+      "retained_text_sha256": "1a672f7f6ff49b9c986137f7472610cdb621448e0642eb4284748e2ad8badfae",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "96",
+      "masked_indices": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "masked_sentence_count": 4,
+      "masked_text_sha256": "62302bbdbb84c96c3e1df6cc91a51bfeb206da5e64fc1d9bf09433d7bd9f866c",
+      "retained_text_sha256": "ad4c0c8571b70d6de3d2829b8c68fe752a8ba5060fc58b3e423b8e2a6ff088c3",
+      "sentence_count": 8,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "97",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "23287237cad5257411e7fec631a498e9f52fcf9d6dfeecf9166a128d6dd254d0",
+      "retained_text_sha256": "40bc391cb611f15b1b799a4614321b2d153a962a76e98055c0644a7b97e16337",
+      "sentence_count": 3,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "98",
+      "masked_indices": [
+        0,
+        1
+      ],
+      "masked_sentence_count": 2,
+      "masked_text_sha256": "06a801e9b895b2562fa4e26b262df789efda602fcce8d5eccbd9a1e5cd974fb3",
+      "retained_text_sha256": "093ff9f8c7df3770328ef4c73687663484690a438ba0d6696ba09ee53264390a",
+      "sentence_count": 4,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "99",
+      "masked_indices": [
+        0,
+        1,
+        5
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "e9346f4fcc5e261b65c93c6dd05f66e06fd8959c35c52ac29ff825ecbee90bef",
+      "retained_text_sha256": "0b8cbbe6388af3095c7da8eab3ffad9b9942b2b55f629dd27f54236877d69507",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Bioinformatics",
+      "instance_id": "100",
+      "masked_indices": [
+        0,
+        2,
+        3
+      ],
+      "masked_sentence_count": 3,
+      "masked_text_sha256": "674ca2e6a6af22578498ececb42c015713fc3d0f6ad9ad6b23af3f3f2834973b",
+      "retained_text_sha256": "10aa7a19caae1d4b53e08a3b7437ba059386427728c1cb0e42579cbd11800515",
+      "sentence_count": 6,
+      "status": "MASKED"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "101",
+      "reason": "only 1 sentence(s); minimum is 2",
+      "sentence_count": 1,
+      "status": "NOT_MASKABLE"
+    },
+    {
+      "domain": "Computational Chemistry",
+      "instance_id": "102",
+      "masked_indices": [
+        0
+      ],
+      "masked_sentence_count": 1,
+      "masked_text_sha256": "94d1152eb7091330639ae92f7b837239f4cffd02c0ae7e0b8582f48b238c70ef",
+      "retained_text_sha256": "be0638924dca74ac4dec7f7ac4d26f06380159d97bf8d3ec219824a4f366d6d8",
+      "sentence_count": 2,
+      "status": "MASKED"
+    }
+  ],
+  "masked_field": "domain_knowledge",
+  "outcome_accessed": false,
+  "purpose": "deterministic masking/recovery intervention, frozen before any scoring",
+  "schema": "P1.MaskingFreeze.v1",
+  "selection_rule": {
+    "granularity": "sentence",
+    "mask_fraction": 0.5,
+    "method": "rank sentence indices by blake2b(salt|instance_id|index), take first k",
+    "min_sentences_to_mask": 2,
+    "salt": "orion-p1-recursive-reconstruction-v1",
+    "searched_over": false,
+    "split": "(?<=[.!?])\\s+"
+  },
+  "source": {
+    "dataset": "osunlp/ScienceAgentBench (HuggingFace annotation sheet)",
+    "file": "ScienceAgentBench.csv",
+    "rows": 102,
+    "sha256": "7f490f17f721a9c7e9415d3608a1a37d1a5315a26862cf556e3096ac4062face"
+  },
+  "totals": {
+    "instances": 102,
+    "maskable": 94,
+    "masked_fraction_realised": 0.526906,
+    "not_maskable": 8,
+    "sentences_in_maskable": 446,
+    "sentences_masked": 235
+  },
+  "unmasked_fields_and_why": {
+    "task_inst": "masking the instruction would change what is asked; a failure there would be a failure at a different task"
+  }
+}
