@@ -150,6 +150,22 @@ Freeze plotting code/spec before final outcome analysis.
 
 **Status:** COMPLETE. The abstract, successor methods/results, nearest-work boundary, limitations, conclusion, reproducibility contract, claim ledger, exact table, and generated figure now report the powered primary and disjoint replication without erasing historical V1 negative evidence.
 
+**What those two runs are evidence about.** Both are runs of a frozen
+generator. `P1.epistemic-mutation-necessity.v2.2.4` fixes the case generator
+before either seed is drawn, so the primary run at seed `202608172211` and the
+disjoint replication at `202608172212` differ in sampling and in nothing else.
+They are therefore mechanism evidence: they establish how the registered
+mechanism behaves on cases that generator produces, and the disjoint seed
+establishes that the behaviour is not an artefact of one draw.
+
+They are not evidence about anything the generator does not produce. The 480
+hidden shifts and 2,402 controls are not 2,882 independent observations of
+scientific practice; they are enumerated draws from one frozen construction,
+and a second seed tests the draw rather than widening the construction.
+Replication across seeds is exactly as broad as the generator, which is why
+model-general, naturalistic and open-ended superiority are separately and
+explicitly not claimed above.
+
 ## 8. Reproducibility package
 
 - [x] versioned benchmark manifest and case generator/source list;
