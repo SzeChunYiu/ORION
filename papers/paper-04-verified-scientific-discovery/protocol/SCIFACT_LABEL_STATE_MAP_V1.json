@@ -1,0 +1,148 @@
+{
+  "schema_version": "orion.p4.scifact-label-state-map.v1",
+  "protocol_id": "P4.scifact-external-promotion-authority.mapping.v1",
+  "authority": "FROZEN_PRE_SCORING_LABEL_TO_STATE_ADAPTER__NOT_A_RESULT__NO_EXTERNAL_ADJUDICATION_PERFORMED",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1086",
+  "issue_boxes": [
+    "P4 box 1: Freeze the SUPPORT/REFUTE/insufficient-evidence mapping to P4 states before scoring.",
+    "P4 box 3: Use Crossref/RW only for DOI update, epoch and revocation conformance."
+  ],
+  "frozen_utc": "2026-08-24T10:10:46Z",
+  "freeze_status": "FROZEN_BEFORE_ANY_SCIFACT_SCORING",
+  "outcome_accessed": false,
+  "scifact_outcome_artifacts_present_at_freeze": 0,
+  "source_binding": {
+    "dataset": "allenai/scifact",
+    "revision": "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e",
+    "revision_provenance": "papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_SOURCE_REGISTRY_V1.json (ORION-pinned revision, frozen 2026-08-17)",
+    "license_binding": {
+      "claims_and_annotations": "CC BY 4.0",
+      "abstracts": "ODC-By 1.0 via S2ORC upstream terms; no full-text redistribution assumption",
+      "code": "Apache-2.0"
+    },
+    "official_evaluator": "allenai/scifact-evaluator",
+    "evaluator_status": "NOT_EXECUTED_IN_THIS_FREEZE"
+  },
+  "scifact_label_vocabulary": {
+    "evidence_document_labels": ["SUPPORT", "REFUTE"],
+    "claim_verdict_labels": ["SUPPORT", "REFUTE", "NOT_ENOUGH_INFO"],
+    "vocabulary_note": "The official SciFact release expresses per-evidence-document labels SUPPORT/REFUTE and the derived claim verdict SUPPORT/REFUTE/NOT_ENOUGH_INFO. No other external label may enter the semantic-support coordinate."
+  },
+  "p4_state_vocabulary": {
+    "semantic_support": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT", "UNRESOLVED"],
+    "authority_terminals": ["PROMOTE", "BLOCK", "CANNOT_CHECK"],
+    "provenance": "papers/paper-04-verified-scientific-discovery/protocol/ATTACK_CASE_SCHEMA_V1.json"
+  },
+  "frozen_mapping": [
+    {
+      "scifact_label": "SUPPORT",
+      "p4_semantic_support": "SUPPORTED",
+      "terminal_rule": "PROMOTE_ELIGIBLE__CONDITIONAL_FAIL_CLOSED",
+      "terminal_on_all_obligations_discharged": "PROMOTE",
+      "terminal_on_any_unresolved_obligation": "CANNOT_CHECK",
+      "never_terminal": "BLOCK",
+      "required_promotion_obligations": [
+        "claim_scope_conformance",
+        "evidence_independence",
+        "scientific_authority_resolution",
+        "provenance_and_artifact_version_binding",
+        "evaluator_custody",
+        "contamination_defense",
+        "evaluation_epoch_freshness"
+      ],
+      "rule_text": "A gold SUPPORT label clears the semantic-support coordinate only. It is a necessary gate for PROMOTE, never a sufficient one: PROMOTE additionally requires every registered P4 promotion obligation to be discharged, and any unresolved obligation forces fail-closed CANNOT_CHECK. A gold SUPPORT alone can never yield BLOCK."
+    },
+    {
+      "scifact_label": "REFUTE",
+      "p4_semantic_support": "CONTRADICTED",
+      "terminal_rule": "BLOCK_DECISIVE",
+      "terminal": "BLOCK",
+      "rule_text": "A gold REFUTE label (evidence level or composed claim verdict) is decisive for the semantic coordinate and forbids promotion. It maps to BLOCK directly and is not subject to obligation-based upgrade."
+    },
+    {
+      "scifact_label": "NOT_ENOUGH_INFO",
+      "p4_semantic_support": "INSUFFICIENT",
+      "terminal_rule": "CANNOT_CHECK_FAIL_CLOSED",
+      "terminal": "CANNOT_CHECK",
+      "rule_text": "A claim with no qualifying gold evidence maps to INSUFFICIENT and the fail-closed CANNOT_CHECK terminal, matching the registered P4 INSUFFICIENT_EVIDENCE family."
+    }
+  ],
+  "claim_verdict_composition": {
+    "rule_order": ["contradiction_dominates", "support_requires_no_contradiction", "empty_evidence_is_insufficient"],
+    "rules": {
+      "contradiction_dominates": "If any gold evidence document carries REFUTE, the composed claim verdict is REFUTE regardless of supporting documents.",
+      "support_requires_no_contradiction": "The composed claim verdict is SUPPORT only when at least one gold evidence document carries SUPPORT and none carries REFUTE.",
+      "empty_evidence_is_insufficient": "A claim with an empty gold evidence set composes to NOT_ENOUGH_INFO."
+    }
+  },
+  "unresolved_state_policy": {
+    "rule": "NO_SCIFACT_LABEL_MAPS_TO_UNRESOLVED",
+    "rule_text": "UNRESOLVED is reserved for ORION-internal states in which the external label itself cannot be read (for example truncated claim text or an unreadable evidence record). Assigning UNRESOLVED to a readable SciFact label would smuggle adjudication ambiguity into an externally labelled coordinate and is forbidden. A case whose label cannot be read is a transport failure and its terminal is CANNOT_CHECK."
+  },
+  "crossref_retraction_watch_constraint": {
+    "policy": "CROSSREF_RW_COORDINATE_ONLY__NEVER_SEMANTIC_ADJUDICATION",
+    "allowed_uses": [
+      "DOI_METADATA_UPDATE",
+      "EVALUATION_EPOCH",
+      "REVOCATION_CONFORMANCE"
+    ],
+    "allowed_use_definitions": {
+      "DOI_METADATA_UPDATE": "Resolving or updating the canonical DOI identifier and its deposit metadata for a cited evidence source. Updates change the identifier coordinate only.",
+      "EVALUATION_EPOCH": "Recording the Crossref/Retraction Watch snapshot date that stamps when revocation and DOI conformance were measured. All conformance judgements are evaluated against this frozen epoch.",
+      "REVOCATION_CONFORMANCE": "Checking whether a cited evidence DOI carries an active retraction in the recorded snapshot."
+    },
+    "forbidden_uses": [
+      "semantic_support_adjudication",
+      "claim_text_or_label_alteration",
+      "gold_label_substitution",
+      "comparator_construction_or_tuning",
+      "evidence_substitution_or_recall_augmentation",
+      "any_change_to_a_SciFact_derived_semantic_support_coordinate"
+    ],
+    "conformance_rules": {
+      "active_retraction_on_gold_evidence_doi": {
+        "revocation_nonconformant": true,
+        "forced_terminal": "BLOCK",
+        "recorded_as": "REVOCATION_BLOCK",
+        "distinct_from": "semantic CONTRADICTED",
+        "rule_text": "An actively retracted gold-evidence source fails revocation conformance. Fail-closed BLOCK is forced and is recorded as a revocation-coordinate failure, never conflated with a semantic CONTRADICTED verdict."
+      },
+      "no_retraction_observed": {
+        "revocation_nonconformant": false,
+        "rule_text": "Absence of an observed retraction clears the revocation coordinate only. It never upgrades semantic support: no-retraction is not evidence of support."
+      },
+      "stale_promotion_rule": {
+        "rule_text": "On exact DOI-update and epoch-change cases, the terminal must be computed against the frozen evaluation epoch. A promotion justifiable only by the pre-update DOI state or a superseded epoch is a stale promotion, is counted as a false promotion, and must occur zero times.",
+        "gate": "zero stale promotions on exact DOI/update/epoch cases"
+      }
+    },
+    "snapshot_requirements": {
+      "crossref_rw_snapshot_date": "CANNOT_CHECK__NOT_YET_RECORDED",
+      "crossref_rw_terms": "CANNOT_CHECK__NOT_YET_RECORDED",
+      "rule": "Before any scoring run, the Crossref/Retraction Watch snapshot date and terms must be recorded here; a run without a recorded snapshot is not conformant to this map."
+    }
+  },
+  "arms_and_analysis_freeze": {
+    "inference_unit": "SciFact claim identifier (one claim = one unit); evidence rows are nested within claims and are never independent units",
+    "required_arms": [
+      "full_policy",
+      "strongest_runnable_baseline",
+      "component_ablations"
+    ],
+    "unavailable_arm_policy": "Any arm that cannot be executed is recorded CANNOT_CHECK. Weak proxies are never substituted for an unavailable comparator.",
+    "heldout_rule": "Scoring uses held-out SciFact claims only; the mapping above is frozen before any held-out label is opened.",
+    "pass_gate": {
+      "macro_f1_improvement_over_strongest_ablation": ">= 0.03 with paired lower CI > 0",
+      "false_promotion_rate": "<= 0.01",
+      "evidence_rationale_f1_noninferiority": "within 0.02",
+      "stale_promotions_on_exact_doi_update_epoch_cases": 0
+    },
+    "interval_method": "paired bootstrap over claim identifiers (the inference unit), never over evidence rows",
+    "external_boundary": "SciFact labels validate claim/evidence status. ORION's governance action is an operationalization, not independent policy truth."
+  },
+  "non_bypass_boundaries": [
+    "This map is an adapter frozen before scoring; it creates no external adjudication and no scientific authority.",
+    "No SciFact outcome file exists in this repository at freeze time; any future outcome artifact must carry a creation timestamp after frozen_utc.",
+    "Changing any mapping row, composition rule, Crossref/RW constraint or pass gate after the first SciFact scoring artifact appears is a protocol violation and requires a new versioned map with a new identity."
+  ]
+}

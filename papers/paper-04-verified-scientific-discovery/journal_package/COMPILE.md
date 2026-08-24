@@ -1,8 +1,8 @@
 # ORION-P4 compile instructions
 
-TMLR template. Official `tmlr.sty` / `tmlr.bst` are pinned from upstream commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992` in the TMLR audit workflow; they are not vendored in this tree.
+TMLR template. `tmlr.sty` / `tmlr.bst` are vendored in `manuscript/` as tracked files, which is what the 2026-08-24 local render used. The CI audit workflow still pins upstream commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992` for its clean-room compile; whether the vendored copies are byte-identical to that pin is CANNOT_CHECK without fetching upstream.
 
-Clean-room compile is performed by `.github/workflows/p4_tmlr_submission_audit.yml`. Locally, after obtaining unmodified official style files:
+Clean-room compile is performed by `.github/workflows/p4_tmlr_submission_audit.yml`. Locally, either the pdflatex sequence:
 
 ```bash
 cd papers/paper-04-verified-scientific-discovery/manuscript
@@ -10,6 +10,13 @@ pdflatex main.tex
 bibtex main
 pdflatex main.tex
 pdflatex main.tex
+```
+
+or a single-file tectonic render (XeTeX; what produced the tracked 2026-08-24 `manuscript/main.pdf`, 26 pages):
+
+```bash
+cd papers/paper-04-verified-scientific-discovery/manuscript
+tectonic main.tex
 ```
 
 Figures regenerate from immutable public V2 aggregates:
@@ -33,4 +40,4 @@ This is the same step `.github/workflows/p4_tmlr_submission_audit.yml` performs,
 which is why the clean-room compile passes there while the sequence documented
 here previously did not run locally.
 
-Do not copy a PDF into `journal_package/`. The audited release PDF identity is recorded as a missing in-tree artifact with its GitHub Release SHA in `MANIFEST.json`.
+Do not copy a PDF into `journal_package/`. The compiled PDF lives in-tree at `manuscript/main.pdf`, hash-bound via `MANIFEST.json` `pdf_render_binding` and `SHA256SUMS`; the audited release PDF identity is recorded with its GitHub Release SHA in `MANIFEST.json`.

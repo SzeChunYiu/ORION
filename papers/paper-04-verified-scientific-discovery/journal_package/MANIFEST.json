@@ -66,14 +66,95 @@
     {
       "path": "JOURNAL_READINESS.md",
       "role": "gate-checklist"
+    },
+    {
+      "path": "CLAIM_LEDGER_V4.md",
+      "role": "claim-ledger-v4"
+    },
+    {
+      "path": "manuscript/sections/01-introduction.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/02-related-work.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/02a-verification-axis-identifiability.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/03-non-escalating-authority-transition.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/04-methods.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/05-results.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/06-threat-model-limitations-and-interpretation.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/07-broader-impact-and-governance.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/08-data-and-code-availability.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/09-conclusion.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/10-freeze-and-custody-identifiers.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/11-ablation-interpretation.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex",
+      "role": "p4x-promotion-authority-section"
+    },
+    {
+      "path": "manuscript/main.pdf",
+      "role": "compiled-pdf-in-tree",
+      "binding": "pdf_render_binding"
+    },
+    {
+      "path": "protocol/SCIFACT_LABEL_STATE_MAP_V1.json",
+      "role": "scifact-label-state-map-frozen"
+    },
+    {
+      "path": "protocol/SCIFACT_LABEL_STATE_MAP_V1.md",
+      "role": "scifact-label-state-map-prose"
+    },
+    {
+      "path": "protocol/check_scifact_label_state_map_v1.py",
+      "role": "scifact-label-state-map-checker"
     }
   ],
+  "pdf_render_binding": {
+    "note": "Local tectonic (XeTeX/xdvipdfmx) render, not the CI clean-room artifact; see CLAIM_PDF_AUDIT.md addendum 2026-08-24.",
+    "source_revision": "d4cf8c09c128c0b0331b96b45385c35a96b9427e",
+    "rendered_utc_date": "2026-08-24",
+    "engine": "tectonic (XeTeX, xdvipdfmx producer)",
+    "sha256": "7a6b5182480a6bd89eca05c6ace33501db22ee049119bfd1cd5da56a1ea3be6c",
+    "pages": 26
+  },
   "missing_artifacts": [
     {
       "path": "journal_package/manuscript.pdf",
-      "role": "compiled-pdf-in-tree",
+      "role": "compiled-pdf-copied-into-package",
       "status": "CANNOT_CHECK",
-      "reason": "Audited 12-page PDF is in GitHub Release orion-p4-v2-peer-review-ready-saturated-2026-08-17 (SHA-256 f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf), not a tracked repo file. This package does not copy or fabricate a PDF."
+      "reason": "Intentionally not copied: COMPILE.md forbids copying a PDF into journal_package/. An in-tree compiled PDF exists and is hash-bound as manuscript/main.pdf (pdf_render_binding; local tectonic render 2026-08-24). The audited 12-page release PDF remains in GitHub Release orion-p4-v2-peer-review-ready-saturated-2026-08-17 (SHA-256 f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf)."
     },
     {
       "path": "journal_package/DOI.txt",
@@ -128,8 +209,11 @@
     },
     {
       "id": "P4.PDF",
-      "text": "Independent final PDF proofread of the in-tree journal PDF.",
-      "artifacts": [],
+      "text": "Independent final PDF proofread of the in-tree journal PDF. An in-tree PDF now exists (manuscript/main.pdf, hash-bound) and passed a programmatic render + content audit on 2026-08-24 (26 pages; title/abstract/sections/P4-X successor section/H1 and H3 figures present; recorded in CLAIM_PDF_AUDIT.md addendum). The independent human proofread itself has not been performed.",
+      "artifacts": [
+        "manuscript/main.pdf",
+        "journal_package/CLAIM_PDF_AUDIT.md"
+      ],
       "status": "OPEN"
     }
   ],

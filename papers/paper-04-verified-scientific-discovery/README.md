@@ -4,7 +4,7 @@
 **Current science:** `SCIENTIFIC_ASCENT_V4_THEORY_INTEGRATED`; external naturalistic execution remains open.  
 **Current science manuscript:** `manuscript/main.tex`.  
 **Historical specification:** `manuscript/FINAL_V3.md` and `CLAIM_LEDGER_V3.md` remain the preserved pre-ascent record.  
-**PDF boundary:** the existing PDF/package remains a historical V2 artifact until a new render and audit are explicitly performed.
+**PDF boundary:** since 2026-08-24 a fresh render exists in-tree — `manuscript/main.pdf` (26 pages, local tectonic/XeTeX; SHA-256 and source revision bound in `journal_package/MANIFEST.json` `pdf_render_binding`). It supersedes the historical V2 PDF as the current manuscript render; the independent proofread box (`P4.PDF`) remains OPEN.
 
 ## Current research question
 
@@ -79,4 +79,4 @@ Still not claimed:
 - integrated P4-X source section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
 - exact successor science/verification artifacts: `research/claim_expansion/p4/`.
 
-The 768-cluster naturalistic successor remains prospective and has no external-panel outcome. PDF generation is intentionally deferred. The existing PDF remains a historical V2 artifact.
+The 768-cluster naturalistic successor remains prospective and has no external-panel outcome. A fresh render of the current V4 sources exists in-tree (`manuscript/main.pdf`, 2026-08-24, local tectonic; see `journal_package/CLAIM_PDF_AUDIT.md`); the independent proofread of it remains OPEN, and the historical V2 release PDF is unchanged.
