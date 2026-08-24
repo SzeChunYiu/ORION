@@ -9,7 +9,7 @@ capable but is not admissible to the merged verified runner. Do not run any
 official ScienceAgentBench task or weaken the runner contract.
 
 This lane is integrated on `origin/main`
-`2c96d32e552aba43bc4a5bed2da624f6083740cf`. The intervening PF-01 artifact
+`93cf5f4120e650af0085bc9c540b82093a42993c`. The intervening PF-01 artifact
 identity receipt closes only exact archive identity; PF-02 through PF-06 remain
 open and PF-01 does not authorize official extraction or execution.
 
