@@ -19,6 +19,10 @@
 | exact frozen P13A runner is byte-identical across two fresh executions | **SUPPORTED / REPLAY-ADJUDICATED** | V2 adjudicator | both SHA-256 = `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f` |
 | responsibility-carrying state eliminates unsafe reuse while avoiding always-reopen cost in the controlled benchmark | **NOT AUTHORIZED** | `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json` | P13B requires independently graded support and matched frontier |
 | authenticated RCS rejects omitted, overbroad, forged and stale certificates without gold-scored unsafe reuse in the registered finite panel | **SUPPORTED / CONTROLLED P13B** | `P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json` | 30 live mutation opportunities per world; zero authenticated unsafe reuse; valid-panel cost ratio 0.6111 vs always raw |
+| composed authenticated RCS has zero unsafe reuse, rejects every scheduled corruption, stays correct and pays 0.539x always-raw cost in the registered composed finite world | **SUPPORTED / CONTROLLED P13C** | `P13C_COMPOSED_RESULT_V1.json`; receipt `P13C_COMPOSED_RESULT_RECEIPT_V1.md`; 11/11 gates green; terminal `P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED` | 12,288 episodes (seed 2026082113), 2,457 scheduled corruptions all rejected; verified correct 0.97933 (noninferior to always-raw 0.95247 and unverified RCS 0.98063); zero unnecessary reopens on the 9,831 valid-certificate episodes; 254 exact `CANNOT_CHECK`; byte-identical two-subprocess replay SHA-256 `645961cf01afe15f1b5976244b76b846c31d3c6119af4fbbc031e4b2a3611e57` |
+| the trusting comparator unverified RCS commits unsafe reuse under the same corruption register | **SUPPORTED / CONTROLLED P13C** | `P13C_COMPOSED_RESULT_V1.json` `summary.arms.UNVERIFIED_RCS` | 330 unsafe reuses (FORGED 66, OVERBROAD 87, STALE 177; rate 0.0269) plus 123 adversary-induced unnecessary reopens under omitted support — registered composed finite world only |
+| broader correct-governance / social-responsibility claims for lifecycle contracts | **CANNOT_CHECK** | `P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json` (issue #1086 decision D7) | requires two independent experts plus tie-break/custodian; no artifact in this repository provides them |
+| external lifecycle-contract campaign gold derivation | **PROSPECTIVE RULE / OPEN** | `P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md` | gold only from object/hash existence, ancestry, tag/signature, test exit, timestamp order; never ORION as external subject; 30–50 pinned repositories from >=5 unrelated organizations remains OPEN |
 | real-agent / safety-critical superiority | OPEN | no external domain result | not authorized |
 
 ## Evidence correction
@@ -31,6 +35,19 @@ Active authority is split. `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` keeps
 `P13.EXACT.RESPONSIBILITY_RELATIVE_SUPPORT` as `SUPPORTED_EXACT` and sets
 `P13A.EMPIRICAL.SAFETY_COST_SUPERIORITY` to `CANNOT_CHECK`. Active terminal:
 `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`.
+
+**V3 correction (2026-08-24, issue #1086 P13–P15 lane):**
+`P13_ACTIVE_CLAIM_AUTHORITY_V3.json` activates the composed P13C leaf on top of
+the unchanged V2 leaves; V2 remains the active authority for the P13B leaf (the
+recursive-resolution ledger continues to pin its P13.B item to V2). V3 active
+terminal: `P13_CONTROLLED_COMPOSED_SAFETY_EFFICACY_AUTHORITY_SUPPORTED`. V3 adds
+no external authority: the P13C leaf is scoped to the registered composed finite
+world, and `EXTERNAL_VALIDATION`, `REAL_AGENT_SAFETY`,
+`POPULATION_GENERALIZATION`, `P13C_COMPOSED_RESULT_AS_EXTERNAL_VALIDATION` and
+`P13C_COMPOSED_RESULT_AS_POPULATION_EVIDENCE` remain forbidden promotions.
+Under issue #1086 decision D7 the paper's supported scope is narrowed to
+machine-verifiable lifecycle contracts (manuscript section 8.1); broader
+correct-governance and social-responsibility claims stay CANNOT_CHECK.
 
 The original P13A runner evaluated the frozen scientific efficacy/safety/cost gates but did not include the protocol's byte-identical replay requirement in its terminal decision. The V1 runner terminal is therefore **non-authoritative alone**. This does not alter the benchmark or any result.
 
