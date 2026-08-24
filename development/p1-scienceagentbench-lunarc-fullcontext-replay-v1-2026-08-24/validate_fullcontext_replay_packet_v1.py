@@ -178,6 +178,11 @@ def main():
     require(top["status"] == "COMPLETE_MIXED_SHORT_PASS_LONG_ADVERSE", "top status")
     require(top["terminal"] == RESULT_TERMINAL, "top terminal")
     require(top["production_replay_status"] == "BLOCKED", "production block")
+    require(top["cleanup_assurance"] == {
+        "root_absence_status": "PASS_RETAINED_CLEANUP_RECEIPT",
+        "job_absence_status": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT",
+        "process_absence_status": "CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT",
+    }, "cleanup assurance boundary")
     require(top["resources"]["slurm_top_level_gpu_allocation_elapsed_seconds_total"] == 181, "allocated seconds")
     require(top["cost"]["billed_usd"] is None, "billed USD")
     require(all(value is False for value in top["forbidden_inputs"].values()), "top forbidden inputs")

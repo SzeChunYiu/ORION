@@ -107,4 +107,6 @@ change. A recursive retained-file scan found neither the short prompt prefix nor
 
 After all receipts were copied and verified, the isolated remote root was
 removed: 68 files, 18,557,293,301 file bytes, 18,557,303,002 `du` bytes. The
-root, both jobs, and matching processes were confirmed absent.
+retained cleanup receipt proves root absence. Subsequent job/process absence is
+`CANNOT_CHECK_FROM_RETAINED_CLEANUP_RECEIPT`; no stronger persisted cleanup
+claim is made.
