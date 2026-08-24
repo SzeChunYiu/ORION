@@ -1,19 +1,25 @@
 \section{The general theorems}
 
-\textbf{Local mechanics.} Let a mechanic act on a state over an uninterpreted
-coordinate sort and an uninterpreted value sort, with a declared frame naming
-the coordinates it may write. The transformer itself is an uninterpreted
-function constrained only by that frame. Then: two mechanics whose frames are
-disjoint commute; separation is \emph{necessary} for commutation and not only
-sufficient; a mechanic writes only inside its frame; the frame and the input
-determine the output; and the fixpoint of a mechanic is conservative over
-coordinates outside its frame.
+\textbf{Local mechanics
+(\texttt{P6.COMMUTE.RW\_NONINTERFERENCE.V1}).} Let deterministic,
+admissible mechanics act on a state over uninterpreted coordinate and value
+sorts. Each mechanic must be read-footprint faithful and write-footprint
+faithful. Their write coordinates are distinct, neither mechanic reads the
+coordinate written by the other, and neither changes an obligation, authority
+fact, provenance object, dependency, resource, or declared external input
+consumed by the other. Whenever both sequential compositions are defined, the
+two orders have the same current scientific projection. Their ordered audit
+histories need not be literally equal; they are equivalent under swaps of
+adjacent independent commit events.
 
-Because the transformer is arbitrary, commutation is a property of separation.
-The bounded check of V4 instantiated it at modular arithmetic, which is a
-property of that arithmetic. The shipped mechanic is shown to obey its declared
-frame on all \textbf{5,280} exhaustive perturbations, so the bounded result is an
-instance.
+The two cross-read exclusions are load-bearing. If either is removed while the
+writes remain disjoint, a frame-faithful transformer and state can make the two
+orders disagree. This is a necessity claim about what the stated assumptions
+must exclude to entail commutation for every admissible transformer, not a claim
+that every particular pair of interfering mechanics fails to commute. The
+bounded V4 modular check is only an instance of this stronger contract, and the
+shipped mechanic obeys its declared frame on all \textbf{5,280} exhaustive
+perturbations.
 
 \textbf{Change propagation.} Over an uninterpreted node sort, with reachability
 axiomatised as the reflexive--transitive closure of the dependency edge:

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import ast
 import contextlib
+import hashlib
 import io
 import json
 
@@ -32,6 +33,26 @@ from orion.study.p8.terminal_audit import audit_p8_authority_receipts, main, rep
 from orion.transfer.v2 import p8_method_authority as authority
 
 X4_RESULT = p8.REPO_ROOT / "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
+REAL_DISCHARGE_GOLD = (
+    p8.REPO_ROOT
+    / "papers/paper-08-epistemic-authority-autonomous-science/top_tier/"
+    "p8_real_evidence_discharge_gold_v1.json"
+)
+
+
+def test_real_discharge_gold_keeps_denied_distinct_from_cannot_check():
+    raw = REAL_DISCHARGE_GOLD.read_bytes()
+    payload = json.loads(raw)
+    terminals = list(payload["gold"].values())
+
+    assert hashlib.sha256(raw).hexdigest() == (
+        "6186a483d26de39e6c5c2e5039ba70a3b4de0c9a3957405d3faabf4b3ba2a9c0"
+    )
+    assert payload["schema"] == "P8.RealEvidenceDischargeGold.v1"
+    assert set(terminals) == {"AUTHORIZED", "DENIED", "CANNOT_CHECK"}
+    assert terminals.count("AUTHORIZED") == 8
+    assert terminals.count("DENIED") == 4
+    assert terminals.count("CANNOT_CHECK") == 8
 
 
 def test_emitter_reproduces_the_committed_summary_exactly():

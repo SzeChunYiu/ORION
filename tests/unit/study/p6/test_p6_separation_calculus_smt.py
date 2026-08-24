@@ -47,7 +47,9 @@ class TestTheorems:
 
         result = calc._prove_necessity(timeout_ms=30000)
         assert result.outcome is ProofOutcome.PROVED
-        assert "disagreeing model exists" in result.detail
+        assert "both cross-read directions" in result.detail
+        assert "disjoint writes" in result.detail
+        assert "frame-faithful deterministic mechanics" in result.detail
 
 
 class TestTheApparatusCanFail:
