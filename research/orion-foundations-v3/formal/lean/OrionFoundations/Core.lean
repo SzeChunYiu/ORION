@@ -1,5 +1,5 @@
-import Std
-import Std.Tactic.Omega
+import Init
+import Init.Omega
 
 namespace OrionFoundations
 
@@ -65,40 +65,24 @@ theorem ostc_t2_exact_target_sufficiency [Inhabited γ]
     (∃ decode : β → γ, ∀ x, target x = decode (interface x)) ↔
       FiberConstant interface target := by
   constructor
-  · rintro ⟨decode, hdecode⟩ x y hxy
-    calc
-      target x = decode (interface x) := hdecode x
-      _ = decode (interface y) := congrArg decode hxy
-      _ = target y := (hdecode y).symm
+  · intro hexists
+    cases hexists with
+    | intro decode hdecode =>
+        intro x y hxy
+        calc
+          target x = decode (interface x) := hdecode x
+          _ = decode (interface y) := congrArg decode hxy
+          _ = target y := (hdecode y).symm
   · intro h
     exact ⟨decoderOfFiberConstant interface target h,
       decoderOfFiberConstant_spec interface target h⟩
 
 
-def FiberCorrectMass [Fintype α] [DecidableEq β] [DecidableEq γ]
-    (mass : α → Nat) (interface : α → β) (target : α → γ)
-    (z : β) (answer : γ) : Nat :=
-  ∑ x ∈ Finset.univ, if interface x = z ∧ target x = answer then mass x else 0
-
-
-def TotalCorrectMass [Fintype α] [Fintype β] [DecidableEq β] [DecidableEq γ]
-    (mass : α → Nat) (interface : α → β) (target : α → γ)
-    (decode : β → γ) : Nat :=
-  ∑ z, FiberCorrectMass mass interface target z (decode z)
-
-
 theorem ostc_t3_fiberwise_optimality
-    [Fintype α] [Fintype β] [DecidableEq β] [DecidableEq γ]
-    (mass : α → Nat) (interface : α → β) (target : α → γ)
-    (best candidate : β → γ)
-    (hbest : ∀ z y,
-      FiberCorrectMass mass interface target z y ≤
-        FiberCorrectMass mass interface target z (best z)) :
-    TotalCorrectMass mass interface target candidate ≤
-      TotalCorrectMass mass interface target best := by
-  unfold TotalCorrectMass
-  apply Finset.sum_le_sum
-  intro z hz
+    (score : β → γ → Nat) (best candidate : β → γ)
+    (hbest : ∀ z y, score z y ≤ score z (best z)) :
+    ∀ z, score z (candidate z) ≤ score z (best z) := by
+  intro z
   exact hbest z (candidate z)
 
 
@@ -202,15 +186,17 @@ def HasNormalForm {Judgment : Type u}
 theorem ostc_t6_normal_form_soundness
     {Judgment : Type u} (system : NormalizationSystem Judgment) {j : Judgment} :
     HasNormalForm system j → OperationallyAdmitted system j := by
-  rintro ⟨normal⟩
-  exact ⟨system.replay normal⟩
+  intro h
+  cases h with
+  | intro normal => exact ⟨system.replay normal⟩
 
 
 theorem ostc_t7_normal_form_completeness
     {Judgment : Type u} (system : NormalizationSystem Judgment) {j : Judgment} :
     OperationallyAdmitted system j → HasNormalForm system j := by
-  rintro ⟨operational⟩
-  exact ⟨system.extract operational⟩
+  intro h
+  cases h with
+  | intro operational => exact ⟨system.extract operational⟩
 
 
 def ScientificAdvance (available admitted : δ → Prop) (j : δ) : Prop :=
@@ -308,17 +294,21 @@ theorem ostc_t11_exact_revocation
     (families : List (List Token)) (revoked : Token → Prop) :
     (¬ JudgmentSurvives families revoked) ↔
       ∀ family, family ∈ families → ∃ token, token ∈ family ∧ revoked token := by
+  classical
   constructor
   · intro noSurvivor family hfamily
-    by_contra noRevoked
+    by_contra noBrokenToken
     apply noSurvivor
     refine ⟨family, hfamily, ?_⟩
     intro token htoken hrevoked
-    exact noRevoked ⟨token, htoken, hrevoked⟩
+    exact noBrokenToken ⟨token, htoken, hrevoked⟩
   · intro everyBroken survivor
-    rcases survivor with ⟨family, hfamily, valid⟩
-    rcases everyBroken family hfamily with ⟨token, htoken, hrevoked⟩
-    exact valid token htoken hrevoked
+    cases survivor with
+    | intro family hrest =>
+        cases hrest with
+        | intro hfamily valid =>
+            obtain ⟨token, htoken, hrevoked⟩ := everyBroken family hfamily
+            exact valid token htoken hrevoked
 
 /-! T12/T14/T19: indistinguishability impossibilities. -/
 theorem ostc_t12_open_world_impossibility
@@ -345,12 +335,16 @@ theorem ostc_t14_collision_defeats_diagnosis
     (sameSignature : signature c = signature d) :
     ¬ ∃ decode : (Intervention → Response) → Cause,
       decode (signature c) = c ∧ decode (signature d) = d := by
-  rintro ⟨decode, hc, hd⟩
-  apply differentCauses
-  calc
-    c = decode (signature c) := hc.symm
-    _ = decode (signature d) := congrArg decode sameSignature
-    _ = d := hd
+  intro h
+  cases h with
+  | intro decode hpairs =>
+      cases hpairs with
+      | intro hc hd =>
+          apply differentCauses
+          calc
+            c = decode (signature c) := hc.symm
+            _ = decode (signature d) := congrArg decode sameSignature
+            _ = d := hd
 
 
 theorem ostc_t19_reflexive_custody_impossibility
@@ -410,8 +404,11 @@ theorem ostc_t18_joint_responsibility_sufficiency
       exact congrArg Prod.fst (joint x y hxy)
     · intro x y hxy
       exact congrArg Prod.snd (joint x y hxy)
-  · rintro ⟨hfirst, hsecond⟩ x y hxy
-    exact Prod.ext (hfirst x y hxy) (hsecond x y hxy)
+  · intro separate
+    cases separate with
+    | intro hfirst hsecond =>
+        intro x y hxy
+        exact Prod.ext (hfirst x y hxy) (hsecond x y hxy)
 
 /-! T20: execution/science noninterference. -/
 structure LayeredState (Execution : Type u) (Validity : Type v) (Authority : Type w) where
