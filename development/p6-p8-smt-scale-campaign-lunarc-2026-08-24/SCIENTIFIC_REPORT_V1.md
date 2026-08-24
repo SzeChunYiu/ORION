@@ -24,7 +24,16 @@ the shape that suits a batch scheduler.
 | P8 | authority | 20,000 trials | 400 (**50×**) | 10 PROVED | 20,000/20,000 agree, 2,723 authorised |
 | P8 | authority | 100,000 trials | 400 (**250×**) | 10 PROVED | 100,000/100,000 agree, 13,416 authorised |
 
-**33 distinct theorems. Zero disagreements at any scale.**
+A second array pushed each calculus further:
+
+| paper | calculus | scale | CI default | theorems | agreement |
+|---|---|---|---|---:|---|
+| P6 | separation | node-count 8 | 5 | 5 PROVED | 919,552/919,552 |
+| P6 | separation | node-count 9 | 5 | 5 PROVED | **4,723,200/4,723,200** |
+| P7 | composition | 200,000 trials | 120 (**1,667×**) | 18 PROVED | 200,072/200,072 |
+| P8 | authority | **1,000,000 trials** | 400 (**2,500×**) | 10 PROVED | **1,000,000/1,000,000** |
+
+**33 distinct theorems across ten runs. Zero disagreements at any scale.**
 
 For P6 the parameter moves only from 5 to 7, but the instantiation space it induces grows
 combinatorially — 31,104 then 172,928 frame-respecting instantiations, every one checked.
@@ -55,6 +64,6 @@ validation and no cross-system coverage.
 
 ## Still running when this was written
 
-`p6.reopening_calculus_smt` at node-count 6, 7 and 8. Its default is 4; the search grows
-exponentially, and those three tasks had not converged. Their absence here is a statement
-about elapsed time, not about their outcome.
+`p6.reopening_calculus_smt` at node-count 6, 7 and 8, against a CI default of 4. After
+**1h22m** none had converged. That is recorded as unfinished, not as a negative result: an
+SMT search that has not returned says nothing about the theorem it was asked about.

@@ -54,6 +54,42 @@
       "scale_multiple_of_default": 1.4
     },
     {
+      "paper": "P6",
+      "calculus": "separation_calculus",
+      "scale_parameter": "node-count",
+      "scale_value": 8,
+      "ci_default": 5,
+      "scale_multiple_of_default": 1.6,
+      "theorems_proved": 5,
+      "theorems": [
+        "SEPARATED_COMMUTATION",
+        "SEPARATION_IS_NECESSARY",
+        "WRITE_LOCALITY",
+        "FRAME_DETERMINACY",
+        "IDEMPOTENT_ON_FIXPOINT"
+      ],
+      "agreement_line": "919552/919552 frame-respecting, 917504 perturbations outside the frame",
+      "output_sha256": "b6c1af452d06739095cb8f073b32e41bb838592c7732e1063256d70ef77e9223"
+    },
+    {
+      "paper": "P6",
+      "calculus": "separation_calculus",
+      "scale_parameter": "node-count",
+      "scale_value": 9,
+      "ci_default": 5,
+      "scale_multiple_of_default": 1.8,
+      "theorems_proved": 5,
+      "theorems": [
+        "SEPARATED_COMMUTATION",
+        "SEPARATION_IS_NECESSARY",
+        "WRITE_LOCALITY",
+        "FRAME_DETERMINACY",
+        "IDEMPOTENT_ON_FIXPOINT"
+      ],
+      "agreement_line": "4723200/4723200 frame-respecting, 4718592 perturbations outside the frame",
+      "output_sha256": "20bb07515faf9e450f655c94dc0c077161ef37e5ae25fa10b14ca60e14eb5bb0"
+    },
+    {
       "paper": "P7",
       "calculus": "composition_calculus",
       "scale_parameter": "differential-trials",
@@ -116,6 +152,37 @@
       "scale_multiple_of_default": 166.7
     },
     {
+      "paper": "P7",
+      "calculus": "composition_calculus",
+      "scale_parameter": "differential-trials",
+      "scale_value": 200000,
+      "ci_default": 120,
+      "scale_multiple_of_default": 1666.7,
+      "theorems_proved": 18,
+      "theorems": [
+        "IDENTITY_CARRIES",
+        "LEFT_IDENTITY",
+        "RIGHT_IDENTITY",
+        "IDENTITY_STRICT",
+        "ASSOCIATIVITY_OBSERVABLE",
+        "ASSOCIATIVITY_CARRIES",
+        "ASSOCIATIVITY_STRICT",
+        "INTERMEDIATE_CONTRACT_COMPOSITION",
+        "UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS",
+        "COMPOSITION_NON_AMPLIFICATION",
+        "SINGLE_COORDINATE_SEPARATION",
+        "DONOR_CONSERVATIVITY",
+        "IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST",
+        "STRICT_LAWS_NEED_EXTENSIONALITY",
+        "TOTALITY_COMPOSES_UNDER_MATCH",
+        "CONTAINMENT_IS_THE_EXACT_CONDITION",
+        "MATCH_IS_NOT_NECESSARY",
+        "CONTAINMENT_FAILURE_ADMITS_A_COUNTERMODEL"
+      ],
+      "agreement_line": "200072/200072 agree, 31895 positive, both verdicts exercised: True",
+      "output_sha256": "1129cd77b6245e2154f8e91f9dfe9b423e04418c9feb984bfff5069fee127619"
+    },
+    {
       "paper": "P8",
       "calculus": "authority_calculus",
       "scale_parameter": "differential-trials",
@@ -160,10 +227,33 @@
       "output_sha256": "6182ac57cfcf368343c173a79c55ff630606ef6975aa0cdfbbfe720c1d31f5e6",
       "ci_default": 400,
       "scale_multiple_of_default": 250.0
+    },
+    {
+      "paper": "P8",
+      "calculus": "authority_calculus",
+      "scale_parameter": "differential-trials",
+      "scale_value": 1000000,
+      "ci_default": 400,
+      "scale_multiple_of_default": 2500.0,
+      "theorems_proved": 10,
+      "theorems": [
+        "SCOPE_NON_AMPLIFICATION",
+        "DOMAIN_CONFINEMENT",
+        "NO_LAUNDERING_GENERAL",
+        "NON_COMPENSATORY",
+        "DEFEATER_MONOTONICITY",
+        "EPOCH_ISOLATION",
+        "ONE_STEP_LEMMA",
+        "CONV_IMPLIES_REACH",
+        "CYCLE_COLLAPSE",
+        "ACYCLIC_STRICTNESS"
+      ],
+      "agreement_line": "1000000/1000000 agree, 133386 authorised",
+      "output_sha256": "8e15feb613fefe1e5b4f55cfe4926c9ce6470edb9f2877a2a7dc9965dbe96b76"
     }
   ],
   "totals": {
-    "runs": 6,
+    "runs": 10,
     "distinct_theorems": 33,
     "all_theorems_proved": true,
     "any_disagreement": false
@@ -178,5 +268,10 @@
     "orion.study.p6.reopening_calculus_smt --node-count 6",
     "orion.study.p6.reopening_calculus_smt --node-count 7",
     "orion.study.p6.reopening_calculus_smt --node-count 8"
-  ]
+  ],
+  "deep_extension": {
+    "array_job": "3534201",
+    "note": "A second array pushed each calculus further. P8's authority calculus reached 1,000,000 differential trials, 2,500x its CI default, with every trial agreeing."
+  },
+  "reopening_note": "The reopening calculus had not converged after 1h22m at any of node-count 6, 7 or 8 against a CI default of 4. Recorded as unfinished, not as a negative result: an SMT search that has not returned says nothing about the theorem."
 }
