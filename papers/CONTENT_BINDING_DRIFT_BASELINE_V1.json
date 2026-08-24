@@ -1,0 +1,65 @@
+{
+  "schema": "CONTENT_BINDING_DRIFT_BASELINE_V1",
+  "purpose": "Debt record, not approval. Each entry is a paper whose SHA256SUMS no longer describes its own files. Recorded so that CI can fail on NEW drift without first turning red on drift that predates the check.",
+  "how_this_was_found": "content_binding_coverage exits 1 on the live tree, but every test of it used synthetic fixtures, so nothing ran it against the repository. The digest gate was reporting a failure no CI job read.",
+  "not_to_be_regenerated": "Refreshing a manifest to match drifted content deletes the evidence that the content moved, which is what the manifest exists to record. Entries leave this file by reconciling the paper, never by rewriting digests to match whatever is on disk now.",
+  "papers": {
+    "papers/paper-01-recursive-epistemic-reconstruction": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-02-open-world-scientific-discovery": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-03-global-knowledge-portrait": {
+      "drifted": 6,
+      "missing": 0
+    },
+    "papers/paper-04-verified-scientific-discovery": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-05-self-orion": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-06-formal-epistemic-structures-and-mechanics": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-07-epistemic-navigation-open-worlds": {
+      "drifted": 2,
+      "missing": 0
+    },
+    "papers/paper-08-epistemic-authority-autonomous-science": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-10-structured-problem-solving": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-11-state-as-computation": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-12-adaptive-state-reasoning": {
+      "drifted": 2,
+      "missing": 0
+    },
+    "papers/paper-13-responsibility-carrying-state": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-14-orion-rse": {
+      "drifted": 1,
+      "missing": 0
+    },
+    "papers/paper-15-orion-research-harness": {
+      "drifted": 3,
+      "missing": 0
+    }
+  },
+  "total_papers_drifted": 14
+}
