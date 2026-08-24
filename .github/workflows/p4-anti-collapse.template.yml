@@ -1,0 +1,208 @@
+# Phase 4 Anti-Collapse Monitoring Workflow Template
+# Status: PREPARATORY — Not active until Issue #209 closes and Issue #210 authorizes
+
+name: p4-anti-collapse-monitor
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycle_id:
+        description: 'Programme cycle to monitor'
+        required: true
+        type: string
+  # schedule: intentionally omitted. This template is PREPARATORY and must not
+  # run on a timer. A placeholder cron value does NOT disable a workflow -- it is
+  # an invalid cron expression that fails workflow parsing, producing a failed
+  # run on every push. Add a real cron only when the programme is activated.
+
+env:
+  PHASE_4_STATUS: 'PREPARATORY_AWAITING_ACTIVATION'
+
+jobs:
+  benchmark-overfitting:
+    name: 'Detect Benchmark Overfitting / Evaluator Gaming'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Analyze evaluator modifications
+        run: |
+          python src/phase4/anticollapse/evaluator_mods.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Compare held-out access patterns
+        run: |
+          python src/phase4/anticollapse/holdout_access.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect test weakening
+        run: |
+          python src/phase4/anticollapse/test_weakening.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Flag overfitting indicators
+        run: |
+          python src/phase4/anticollapse/flag_overfit.py --cycle-id ${{ inputs.cycle_id }}
+
+  search-universe-collapse:
+    name: 'Detect Search-Universe Collapse / Monoculture'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Analyze source-family diversity
+        run: |
+          python src/phase4/anticollapse/source_diversity.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect repeated-source monoculture
+        run: |
+          python src/phase4/anticollapse/monoculture.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Check for blind-spot accumulation
+        run: |
+          python src/phase4/anticollapse/blind_spots.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Validate coverage obligations
+        run: |
+          python src/phase4/anticollapse/coverage.py --cycle-id ${{ inputs.cycle_id }}
+
+  method-monoculture:
+    name: 'Detect Method Monoculture / Forgotten Negative History'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Analyze method diversity
+        run: |
+          python src/phase4/anticollapse/method_diversity.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Check for forgotten negative history
+        run: |
+          python src/phase4/anticollapse/forgotten_negatives.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Verify failure-class tracking
+        run: |
+          python src/phase4/anticollapse/failure_classes.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect unrecognized failure patterns
+        run: |
+          python src/phase4/anticollapse/unrecognized_failures.py --cycle-id ${{ inputs.cycle_id }}
+
+  stale-authority:
+    name: 'Detect Stale Authority / Source Version Substitution'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify source version bindings
+        run: |
+          python src/phase4/anticollapse/source_versions.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect content substitution
+        run: |
+          python src/phase4/anticollapse/content_substitution.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Check for stale evidence
+        run: |
+          python src/phase4/anticollapse/stale_evidence.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Validate authority freshness
+        run: |
+          python src/phase4/anticollapse/authority_freshness.py --cycle-id ${{ inputs.cycle_id }}
+
+  hidden-deletion:
+    name: 'Detect Hidden Deletion / Laundering of Harmful Results'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify append-only negative history
+        run: |
+          python src/phase4/anticollapse/append_only.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect history laundering
+        run: |
+          python src/phase4/anticollapse/history_laundering.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Check for deleted harmful outcomes
+        run: |
+          python src/phase4/anticollapse/deleted_harmful.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Verify historical reproducibility
+        run: |
+          python src/phase4/anticollapse/historical_repro.py --cycle-id ${{ inputs.cycle_id }}
+
+  circular-self-citation:
+    name: 'Detect Circular Self-Citation / Self-Verification'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Analyze citation patterns
+        run: |
+          python src/phase4/anticollapse/citation_patterns.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect circular references
+        run: |
+          python src/phase4/anticollapse/circular_refs.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Check for self-verification loops
+        run: |
+          python src/phase4/anticollapse/self_verification.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Validate external independence
+        run: |
+          python src/phase4/anticollapse/external_independence.py --cycle-id ${{ inputs.cycle_id }}
+
+  repeated-failure-classes:
+    name: 'Detect Repeated Recognized Failure Classes'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Match against known failure classes
+        run: |
+          python src/phase4/anticollapse/match_failures.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Check for recurrence without intervention
+        run: |
+          python src/phase4/anticollapse/recurrence_without_intervention.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Verify failure-class learning
+        run: |
+          python src/phase4/anticollapse/failure_learning.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Generate failure-class report
+        run: |
+          python src/phase4/anticollapse/failure_report.py --cycle-id ${{ inputs.cycle_id }}
+
+  escalation:
+    name: 'Block or Escalate Under Insufficient Protected Evidence'
+    runs-on: ubuntu-latest
+    needs: [benchmark-overfitting, search-universe-collapse, method-monoculture, stale-authority, hidden-deletion, circular-self-citation, repeated-failure-classes]
+    if: always()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Aggregate anti-collapse findings
+        run: |
+          python src/phase4/anticollapse/aggregate.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Determine escalation level
+        run: |
+          python src/phase4/anticollapse/escalate.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Generate anti-collapse verdict
+        run: |
+          python src/phase4/anticollapse/verdict.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Block cycle if critical violations found
+        if: steps.escalate.outputs.critical_violations == 'true'
+        run: |
+          echo "CRITICAL: Cycle blocked due to anti-collapse violations"
+          exit 1

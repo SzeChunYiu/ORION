@@ -1,0 +1,231 @@
+# Phase 4 Programme Cycle Workflow Template
+# Status: PREPARATORY — Not active until Issue #209 closes and Issue #210 authorizes
+# This template defines the structure for programme-cycle CI
+
+name: p4-programme-cycle
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycle_id:
+        description: 'Programme cycle identifier'
+        required: true
+        type: string
+      epoch:
+        description: 'Evaluation epoch'
+        required: true
+        type: string
+  # schedule: intentionally omitted. This template is PREPARATORY and must not
+  # run on a timer. A placeholder cron value does NOT disable a workflow -- it is
+  # an invalid cron expression that fails workflow parsing, producing a failed
+  # run on every push. Add a real cron only when the programme is activated.
+
+env:
+  PHASE_4_STATUS: 'PREPARATORY_AWAITING_ACTIVATION'
+
+jobs:
+  constitutional-check:
+    name: 'Constitutional Boundary Validation'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate evaluator immutability
+        run: |
+          python tests/phase4/constitutional/test_evaluator_immutability.py
+
+      - name: Validate negative history immutability
+        run: |
+          python tests/phase4/constitutional/test_negative_history_immutability.py
+
+      - name: Validate state change traceability
+        run: |
+          python tests/phase4/constitutional/test_state_change_traceability.py
+
+  knowledge-layer-sync:
+    name: 'Knowledge Layer Synchronization'
+    runs-on: ubuntu-latest
+    needs: constitutional-check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync object knowledge (K)
+        run: |
+          python src/phase4/knowledge/sync_object_knowledge.py --epoch ${{ inputs.epoch }}
+
+      - name: Sync search-universe knowledge (W)
+        run: |
+          python src/phase4/knowledge/sync_search_universe.py --epoch ${{ inputs.epoch }}
+
+      - name: Sync method knowledge (M)
+        run: |
+          python src/phase4/knowledge/sync_method_knowledge.py --epoch ${{ inputs.epoch }}
+
+      - name: Propagate invalidations
+        run: |
+          python src/phase4/invalidation/propagate.py --epoch ${{ inputs.epoch }}
+
+  cycle-execution:
+    name: 'Programme Cycle Execution'
+    runs-on: ubuntu-latest
+    needs: knowledge-layer-sync
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select research question
+        run: |
+          python src/phase4/cycle/select_question.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Atomize uncertainties
+        run: |
+          python src/phase4/cycle/atomize.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Search nearest work
+        run: |
+          python src/phase4/cycle/search_nearest.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Freeze protocol
+        run: |
+          python src/phase4/cycle/freeze_protocol.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Delegate bounded work
+        run: |
+          python src/phase4/cycle/delegate.py --cycle-id ${{ inputs.cycle_id }}
+
+  protected-evaluation:
+    name: 'Protected Evaluation Outside Candidate Custody'
+    runs-on: ubuntu-latest
+    needs: cycle-execution
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run motivating replay
+        run: |
+          python src/phase4/evaluation/replay.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Run independent fresh transfer
+        run: |
+          python src/phase4/evaluation/fresh_transfer.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Run protected assurance
+        run: |
+          python src/phase4/evaluation/protected_assurance.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Generate evaluation receipt
+        run: |
+          python src/phase4/receipts/generate_evaluation.py --cycle-id ${{ inputs.cycle_id }}
+
+  anti-collapse-checks:
+    name: 'Anti-Collapse / Hostile Checks'
+    runs-on: ubuntu-latest
+    needs: protected-evaluation
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect benchmark overfitting
+        run: |
+          python src/phase4/anticollapse/benchmark_overfit.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect search-universe collapse
+        run: |
+          python src/phase4/anticollapse/search_universe_collapse.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect method monoculture
+        run: |
+          python src/phase4/anticollapse/method_monoculture.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect stale authority
+        run: |
+          python src/phase4/anticollapse/stale_authority.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect hidden deletion
+        run: |
+          python src/phase4/anticollapse/hidden_deletion.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Detect circular self-citation
+        run: |
+          python src/phase4/anticollapse/circular_citation.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Generate anti-collapse report
+        run: |
+          python src/phase4/receipts/generate_anticollapse.py --cycle-id ${{ inputs.cycle_id }}
+
+  outcome-archival:
+    name: 'Archive Accepted / Null / Harmful / Rejected Outcomes'
+    runs-on: ubuntu-latest
+    needs: anti-collapse-checks
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Archive cycle outcome
+        run: |
+          python src/phase4/archival/archive_cycle.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Update dependency graph
+        run: |
+          python src/phase4/dependency/update_graph.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Reopen affected knowledge states
+        run: |
+          python src/phase4/invalidation/reopen.py --cycle-id ${{ inputs.cycle_id }}
+
+      - name: Generate cycle receipt
+        run: |
+          python src/phase4/receipts/generate_cycle.py --cycle-id ${{ inputs.cycle_id }}
+
+  epoch-manifest:
+    name: 'Generate Immutable Evaluation Epoch Manifest'
+    runs-on: ubuntu-latest
+    needs: outcome-archival
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate epoch manifest
+        run: |
+          python src/phase4/epochs/generate_manifest.py --epoch ${{ inputs.epoch }}
+
+      - name: Upload epoch manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: epoch-manifest-${{ inputs.epoch }}
+          path: epochs/${{ inputs.epoch }}/manifest.json
+
+  longitudinal-audit:
+    name: 'Longitudinal Sustainability Audit'
+    runs-on: ubuntu-latest
+    needs: epoch-manifest
+    if: always()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Audit object-knowledge quality
+        run: |
+          python src/phase4/audit/object_knowledge_quality.py --epoch ${{ inputs.epoch }}
+
+      - name: Audit search-universe coverage
+        run: |
+          python src/phase4/audit/search_universe_coverage.py --epoch ${{ inputs.epoch }}
+
+      - name: Audit method selection
+        run: |
+          python src/phase4/audit/method_selection.py --epoch ${{ inputs.epoch }}
+
+      - name: Audit worst-family regressions
+        run: |
+          python src/phase4/audit/worst_family_regressions.py --epoch ${{ inputs.epoch }}
+
+      - name: Audit cost/latency envelope
+        run: |
+          python src/phase4/audit/cost_latency.py --epoch ${{ inputs.epoch }}
+
+      - name: Generate longitudinal report
+        run: |
+          python src/phase4/receipts/generate_longitudinal.py --epoch ${{ inputs.epoch }}
