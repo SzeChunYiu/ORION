@@ -78,7 +78,13 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: research/orion-foundations-v3/formal/lean
-          build: true
+          auto-config: false
+          build: false
           test: false
           lint: false
           use-github-cache: false
+      - name: Generate Lake manifest and compile proofs
+        working-directory: research/orion-foundations-v3/formal/lean
+        run: |
+          lake update
+          lake build
