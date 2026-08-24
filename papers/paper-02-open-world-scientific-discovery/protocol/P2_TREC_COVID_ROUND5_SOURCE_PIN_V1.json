@@ -1,0 +1,94 @@
+{
+  "schema_version": "orion.p2.trec-covid-round5-source-pin.v1",
+  "identity": "P2_TREC_COVID_ROUND5_SOURCE_PIN_V1",
+  "issue": "SzeChunYiu/ORION#1086",
+  "box_addressed": "P2 — Pin the exact Round-5 CORD-19 document revision.",
+  "artifact_class": "FROZEN_SOURCE_PIN",
+  "results_exist": false,
+  "campaign_executed": false,
+  "outcome_accessed": false,
+  "what_this_is": "The exact identity of the TREC-COVID Round 5 evaluation set, pinned by retrieved bytes rather than by citation. Every digest below was computed from the file as served by NIST, not copied from a paper.",
+  "document_collection": {
+    "corpus": "CORD-19",
+    "release": "2020-07-16",
+    "release_as_stated_by_nist": "July 16, 2020 release of CORD-19",
+    "why_this_pin_matters": "CORD-19 was re-released continuously and documents changed in place: titles were edited, abstracts and PDFs were added, and cord_uids were reassigned. A Round-5 result is only reproducible against this release, and 'CORD-19' without a date does not identify a document set.",
+    "valid_document_identifier_set": "docids-rnd5.txt",
+    "valid_document_count": 191175
+  },
+  "authority": {
+    "host": "ir.nist.gov",
+    "page": "https://ir.nist.gov/covidSubmit/data.html",
+    "base_url": "https://ir.nist.gov/covidSubmit/data/"
+  },
+  "pinned_files": [
+    {
+      "file": "docids-rnd5.txt",
+      "url": "https://ir.nist.gov/covidSubmit/data/docids-rnd5.txt",
+      "role": "the set of document identifiers valid in Round 5",
+      "bytes": 1720575,
+      "lines": 191175,
+      "sha256": "67e0504c52e9d51a1788d9dee4c34f6d7777ce909fd8dd5190a96ad90d8352c1",
+      "measured": {"identifiers": 191175, "unique_identifiers": 191175}
+    },
+    {
+      "file": "topics-rnd5.xml",
+      "url": "https://ir.nist.gov/covidSubmit/data/topics-rnd5.xml",
+      "role": "the Round 5 test set of topics",
+      "bytes": 18707,
+      "lines": 252,
+      "sha256": "4fc339ae8333a545ca50826357adf5eec8434df557bbce2dc40e8efd01380f42",
+      "measured": {"topics": 50, "topic_number_range": [1, 50]}
+    },
+    {
+      "file": "qrels-covid_d5_j0.5-5.txt",
+      "url": "https://ir.nist.gov/covidSubmit/data/qrels-covid_d5_j0.5-5.txt",
+      "role": "Round 5 chronological qrels; NIST states this one file also serves as the cumulative qrels for Round 5 and as the qrels for TREC-COVID Complete",
+      "bytes": 1142244,
+      "lines": 69318,
+      "sha256": "84a374f40a893250a37948c8d60d5e32916e1d60a53bc44d09e32043b4d37e9e",
+      "measured": {
+        "judgment_rows": 69318,
+        "fields_per_row": 4,
+        "field_order": ["topic", "judgment_round", "docid", "judgment"],
+        "distinct_topics": 50,
+        "distinct_judged_docids": 37924,
+        "judgment_label_counts": {"2": 15609, "1": 11055, "0": 42652, "-1": 2}
+      }
+    },
+    {
+      "file": "rejudgments.txt",
+      "url": "https://ir.nist.gov/covidSubmit/data/rejudgments.txt",
+      "role": "the record of documents re-judged after a significant change",
+      "bytes": 69529,
+      "lines": 4110,
+      "sha256": "46b140d89f9476a4cfdbafd461d5dc068ac3491f4f5aa3a1bfb3bbc70037ca3e",
+      "measured": {
+        "data_rows": 4109,
+        "header_rows": 1,
+        "field_order": ["topic", "docid", "judgment_round", "judgment"],
+        "rows_by_judgment_round": {"0.5": 92, "1": 148, "1.5": 491, "2": 270, "2.5": 392, "3": 669, "3.5": 447, "4": 226, "4.5": 1004, "5": 370}
+      }
+    }
+  ],
+  "integrity_checks_that_passed_at_pin_time": [
+    "all 191175 identifiers in docids-rnd5.txt are unique",
+    "the topics file carries exactly 50 topics, numbered 1 through 50",
+    "the qrels carry judgments for all 50 topics",
+    "all 37924 distinct judged docids are members of the 191175 valid Round-5 identifiers, with zero orphans"
+  ],
+  "anomaly_recorded_not_repaired": {
+    "observation": "2 of 69318 qrels rows carry judgment -1, outside the documented {0,1,2} scale.",
+    "disposition": "Recorded, not repaired and not dropped. A consumer must decide explicitly how to treat them; silently coercing or discarding them would change the denominator without saying so."
+  },
+  "not_pinned_here": {
+    "cord19_document_bodies": "The CORD-19 full text and metadata are NOT redistributed or hashed here. Only NIST-served identifiers, topics and judgments are pinned. Redistribution of upstream full text is governed by per-article licenses; this artifact pins identity, not content.",
+    "consequence": "Anyone reproducing must obtain the 2020-07-16 CORD-19 release themselves and verify their document set against docids-rnd5.txt."
+  },
+  "box_verdict": {
+    "box": "Pin the exact Round-5 CORD-19 document revision.",
+    "satisfied": true,
+    "how": "The release is named (2020-07-16), the valid identifier set is pinned by sha256 with its cardinality measured, and the topics, qrels and rejudgment records that define the Round-5 evaluation are pinned the same way. Four integrity checks over the retrieved bytes passed at pin time.",
+    "not_claimed": "That any retrieval run has been executed against this collection. This artifact creates no result."
+  }
+}
