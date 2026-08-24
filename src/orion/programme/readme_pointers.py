@@ -34,6 +34,18 @@ EXIT_MISSING = 4
 
 CANONICAL = tuple(f"paper-{i:02d}" for i in range(1, 16))
 
+#: Names explicitly marked historical are not competing current pointers. P12
+#: writes "`MANUSCRIPT.md` is a historical integrated review snapshot"; counting
+#: that as a second manuscript would flag a README for being clearer than one
+#: that silently omitted the old file.
+HISTORICAL = re.compile(
+    r"`?([A-Za-z0-9_./-]+\.(?:json|md|tex|pdf))`?[^\n]{0,80}?"
+    r"\b(?:historical|superseded|preserved|old|previous|prior)\b"
+    r"|\b(?:historical|superseded|preserved|old|previous|prior)\b[^\n]{0,80}?"
+    r"`?([A-Za-z0-9_./-]+\.(?:json|md|tex|pdf))`?",
+    re.IGNORECASE,
+)
+
 #: A README is unambiguous when it designates one item as current, however many
 #: it mentions. These are the forms the papers actually use.
 DESIGNATION = re.compile(
@@ -57,15 +69,19 @@ class PaperPointers:
     readme_exists: bool = True
 
     designated: tuple[str, ...] = ()
+    historical: tuple[str, ...] = ()
 
     @property
     def ambiguous(self) -> list[str]:
         """Several mentioned AND none of them designated as current."""
         out = []
         for key, n in self.counts.items():
-            if n <= 1:
+            names = self.names.get(key, ())
+            # names marked historical do not compete for currency
+            live = [x for x in names if x not in self.historical]
+            if len(live) <= 1:
                 continue
-            if any(d in self.names.get(key, ()) for d in self.designated):
+            if any(d in names for d in self.designated):
                 continue
             out.append(key)
         return sorted(out)
@@ -98,6 +114,7 @@ def audit_repository(root: Path | None = None) -> list[PaperPointers]:
             rec.names[key] = found
             rec.counts[key] = len(found)
         rec.designated = tuple(sorted(set(DESIGNATION.findall(text))))
+        rec.historical = tuple(sorted({g for pair in HISTORICAL.findall(text) for g in pair if g}))
         out.append(rec)
     return out
 
@@ -105,6 +122,12 @@ def audit_repository(root: Path | None = None) -> list[PaperPointers]:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", type=Path, default=None)
+    # P13 is a documented exception rather than a defect: V3's own
+    # historical_authority_note states "V2 remains the active authority for the
+    # P13B leaf ... V3 adds the composed P13C leaf on top of the identical V2
+    # leaves". Two active authorities is that paper's design, stated in the
+    # record. #1131 asks for exactly one, which is a question for the author and
+    # not something a checker should settle by choosing one.
     args = ap.parse_args(argv)
     try:
         records = audit_repository(args.root)
@@ -128,6 +151,9 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  EXACTLY ONE {rec.paper:42s} {marks}")
             exact += 1
     print(f"\nexactly one of each: {exact}   ambiguous: {ambiguous}   absent: {absent}")
+    print("note: paper-13 declares two active authorities by design (V2 for the P13B")
+    print("      leaf, V3 for the composed P13C leaf), stated in V3's own record.")
+    print("      That is a design question for #1131, not a README defect.")
     if ambiguous:
         print("README_POINTERS_AMBIGUOUS: a README naming several has one and has not said which")
         return EXIT_AMBIGUOUS

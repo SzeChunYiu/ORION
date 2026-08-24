@@ -63,3 +63,21 @@ def test_live_tree_state_is_recorded() -> None:
     assert len(records) == 15
     exact = [r for r in records if r.readme_exists and not r.ambiguous and not r.absent]
     assert exact, "at least some papers point cleanly"
+
+
+def test_a_name_marked_historical_does_not_compete_for_currency() -> None:
+    """P12 says MANUSCRIPT.md is a historical snapshot; that is clarity, not ambiguity."""
+    from orion.programme.readme_pointers import audit_repository
+
+    p12 = next(r for r in audit_repository() if r.paper.startswith("paper-12"))
+    assert p12.counts["manuscript"] > 1, "P12 does mention more than one manuscript"
+    assert "manuscript" not in p12.ambiguous, "the historical one must not count as competing"
+
+
+def test_p13_two_active_authorities_are_reported_not_silently_resolved() -> None:
+    """V3's record says V2 remains active for the P13B leaf. Two is the design."""
+    from orion.programme.readme_pointers import audit_repository
+
+    p13 = next(r for r in audit_repository() if r.paper.startswith("paper-13"))
+    assert p13.counts["authority"] == 2
+    assert "authority" in p13.ambiguous
