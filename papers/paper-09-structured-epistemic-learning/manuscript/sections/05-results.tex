@@ -2,6 +2,38 @@
 
 \input{generated_headline_tables.tex}
 
+\subsection{Main result: the diagnostic beats generic compute escalation}
+
+Five task families were frozen across two qualitatively distinct domains. The
+diagnostic selects among \textsc{information}, \textsc{accessibility} and
+\textsc{computation} from development and probe intervention responses, under a
+prospectively fixed lowest-cost-meeting-quality-target rule; the protected causal
+gold is recomputed independently from held-out intervention outcomes.
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+policy & families diagnosed correctly & false compute escalations \\
+\hline
+registered diagnostic & \textbf{4/5} (0.8) & \textbf{0} \\
+generic \textsc{uncertainty-escalate-compute} & 1/5 (0.2) & 4 \\
+\hline
+\end{tabular}
+\end{center}
+
+The second column is the one that carries the argument. The generic policy does
+not merely score lower; it escalates compute in four of the five families,
+including those where the binding constraint was information or accessibility and
+where more compute cannot help. Diagnosing \emph{which} constraint binds is what
+avoids paying for the wrong intervention, which is the paper's thesis stated as a
+cost.
+
+The result is bounded by design. The held-out digits accessibility cell remains
+\textsc{cannot-check} because the registered threshold does not transport to it, and
+that cell is reported rather than dropped. Five task families across two domains
+is a small, frozen grid: it establishes that the two policies separate here, in
+the predicted direction, not that the diagnostic transports generally.
+
 \subsection{M1 separates information from computation}
 
 Across the frozen view ladder, M1 never exceeds its empirical deterministic ceiling. Surface and topology both attain their ceilings (\MOneSurfaceAccuracy/\MOneSurfaceCeiling{} and \MOneTopologyAccuracy/\MOneTopologyCeiling{}, respectively), while typed reaches \MOneTypedAccuracy{} at a ceiling of \MOneTypedCeiling{}. Richer views expose more information but also reveal a residual: current obtains \MOneCurrentAccuracy{} against an overall ceiling of \MOneCurrentCeiling{}, and semantic obtains \MOneSemanticAccuracy{} against \MOneSemanticCeiling{}.
