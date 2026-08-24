@@ -1,32 +1,20 @@
 # Discussion and conclusion
 
-P12 reframes test-time scaling as a **portfolio of computations**. “Think longer” is not the only adaptive action available to an intelligent system. It may be cheaper to parse, retrieve, compile, restructure or recover state so that less downstream search is required. Conversely, when state already exposes the relevant structure, additional preprocessing is wasteful and reasoning should receive the marginal budget.
+P12 reframes test-time scaling as a portfolio of computations. It can be useful
+to build state before searching over it, but the correct locus depends on the
+objective and on what cost information is available.
 
-P12A demonstrates the construction but not the key discriminator: equal total
-budget was real while equal action capability was not. P12B repairs that
-controlled estimand and finds a positive two-signal effect across the registered
-equal-action panel.
+The evidence sequence is deliberately non-monotone. P12A's apparent
+signal-count result is withheld because action capability differed. The equal-action P12B
+supports signal complementarity after matching actions. One unchanged q/c/B
+rule then transfers across three exact internal domains, but a preregistered
+stress battery breaks its price and distribution-shift claims. A price-aware
+successor repairs those frozen cells only after reading exact charge
+certificates. The formal falsifiers explain why the missing information matters.
 
-This leaves a concrete systems hypothesis for real agents:
-The protected benchmark demonstrates the construction but does not establish the
-key causal discriminator. Equal total budget was real; equal action capability
-was not. Most of the margin was unreachable by the named baselines before their
-signals were read.
-
-This leaves a concrete systems hypothesis for P12B and real agents:
-**test-time scaling curves may be two-dimensional, with state-work and
-reasoning-work measured on a common receipt and with action capability held
-fixed across signal ablations.**
-
-Adaptive inference may need to decide not only **how much** computation to spend
-but **where** to spend it. P12 supplies the formulation, an exact failure
-analysis of its first empirical discriminator, and a positive prospectively
-frozen equal-action successor. Current authority is the bounded equal-action
-signal-complementarity result; the P12A comparison boundary remains historical,
-and matched real end-to-end validation is the next claim frontier.
-but **where** to spend it. P12 supplies the formulation and an exact failure
-analysis of its first empirical discriminator. Under
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`, the active terminal is
-`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. The next step is a prospectively frozen
-P12B with identical four-action capability; real end-to-end validation follows
-only after that controlled contrast is sound.
+P12_ACTIVE_CLAIM_AUTHORITY_V4.json keeps these leaves separate. The strongest
+current conclusion is conditional: exact charge information permits optimal
+selection in the registered additive setting, while coarsened or absent charge
+information cannot guarantee it. Whether useful certificates can be obtained
+prospectively on public scientific-agent tasks is the next stop/go experiment,
+not an already earned external result.

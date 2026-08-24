@@ -18,6 +18,11 @@
 | dynamic state/context selection is novel to P12 | FALSE / DONOR-OWNED | retrieval/memory/state literature | do not claim |
 | two-axis state–reasoning allocation has controlled superiority under matched total compute | **NOT AUTHORIZED** | `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` | identical budget did not mean identical action capability |
 | two signals improve exact allocation when all arms share the same four actions | **SUPPORTED / CONTROLLED P12B** | `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json` | mean gain 0.253906 across 32 family RNG blocks; stratified 95% CI [0.251221, 0.256653]; locked CPython 3.12.13 / NumPy 2.5.2 replay |
+| one unchanged q/c/B allocator matches the hindsight location oracle in the registered three-domain transfer battery | **SUPPORTED / BOUNDED INTERNAL EXACT DOMAINS** | `P12_TRANSFER_ALLOCATION_RESULT_RECEIPT_V1.md` | zero regret in 9/9 cases across SAT, path planning and knapsack; no domain-specific parameter |
+| the V1 q-greedy allocator is robust to registered price and distribution shift | **NEGATIVE / FALSE** | `P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md` | both axes BROKEN; FLAT replication supported; no retuning |
+| exact price-aware selection eliminates regret on the frozen stress battery when exact per-structure charge certificates are supplied | **SUPPORTED / CONDITIONAL** | price-aware result + independent checker; 195 cells | does not authorize forward-time availability or deployment |
+| exact charge fields are necessary and sufficient for guaranteed-everywhere selection | **SUPPORTED / REGISTERED FORMAL ENVIRONMENT** | selection-sufficiency and certificate-necessity receipts | each registered coarsening has a witness; no claim beyond the declared additive model |
+| ScienceAgentBench/public-data transfer or a P12C result exists | **CANNOT_CHECK / NO BOUND ARTIFACT** | repository inventory | no `P12C` artifact exists; do not infer public validation from internal exact domains |
 | real LLM/prover superiority | OPEN | no real-system result | not authorized |
 
 ## Evidence correction
@@ -25,19 +30,15 @@
 The historical P12A terminal remains `P12A_SUPERIORITY_AUTHORITY_WITHHELD` in
 `P12_ACTIVE_CLAIM_AUTHORITY_V1.json`. Current bounded authority is
 `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED` in
-`P12_ACTIVE_CLAIM_AUTHORITY_V3.json`.
+`P12_ACTIVE_CLAIM_AUTHORITY_V4.json`, which preserves V3's active P12B leaf and
+binds the transfer support, robustness negative, conditional successor and
+exact-certificate boundary as separate lifecycle leaves.
 
 The V1 P12B receipt is preserved unchanged. Its scientific counts and estimates
 reconstruct under the repository lock, but strict whole-core replay rejects its
 NumPy 2.3.5 environment field. The append-only V1.1 result binds `uv.lock`,
 CPython 3.12.13 and NumPy 2.5.2 and passes two fresh byte-identical subprocesses.
-Active terminal: `P12A_SUPERIORITY_AUTHORITY_WITHHELD`. The authority record is
-`P12_ACTIVE_CLAIM_AUTHORITY_V1.json`, content-bound to
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
-
-The original P12A executable evaluated seven frozen scientific gates but did not put the protocol's byte-identical replay requirement into its own terminal decision. That is an evidence-adjudication defect, not a change in the scientific comparison. The V1 runner terminal is therefore **non-authoritative alone**.
-
-`verify_p12a_protocol_adjudication_v2.py` executes the unchanged V1 runner twice in fresh subprocess directories, hashes the complete canonical JSON, checks every original scientific gate, and only then emits the authoritative terminal. Both executions reproduce the committed scientific payload exactly with SHA-256 `0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947`. No policy, seed, threshold, budget, metric, comparator, family, or outcome was changed.
+The original P12A executable evaluated seven frozen scientific gates but did not put the protocol's byte-identical replay requirement into its own terminal decision. That is an evidence-adjudication defect, not a change in the scientific comparison. The V1 runner terminal is therefore **non-authoritative alone**. V4 does not alter that history.
 
 ## Donor subtraction
 
@@ -55,17 +56,4 @@ real-system resource-locus claim remains open.
 
 ## Strongest authorized headline
 
-> P12A's apparent superiority is historically retained but confounded by action
-> capability. In prospectively frozen P12B, all arms share four exact actions and
-> the two-signal policy gains 0.253906 over the stronger one-signal policy across
-> 32 independent family RNG blocks.
-P12A motivates that problem but does not resolve it because signal count and
-allocation capability varied together. P12B must make the actions symmetric
-before measuring the value of an additional signal.
-
-## Strongest authorized headline
-
-> The exact P12A payload is reproducible, but 96.9% of its state-only contrast is
-> beyond the shipped baseline's ceiling. Under the capability-matched reading,
-> the gain is +0.0408 and the frozen superiority gate is not met. No active
-> superiority claim is authorized before P12B.
+> In three registered exact domains, one unchanged allocator matches the hindsight location oracle in nine protected cases. Its q-greedy form fails the registered price and distribution shifts; conditional on exact published charge certificates, a price-aware successor is optimal throughout the frozen battery. External/public-data transfer remains open.

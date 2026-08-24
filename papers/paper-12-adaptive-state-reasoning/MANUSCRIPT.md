@@ -1,5 +1,7 @@
 # Adaptive State–Reasoning Co-Design under Matched Total Compute
 
+> **Historical integrated review snapshot — noncanonical.** The editable publication source is `manuscript/sections/*.md`, the rendered paper is `manuscript/main.pdf`, and the sole current claim authority is `P12_ACTIVE_CLAIM_AUTHORITY_V4.json`. This snapshot preserves earlier review history and must not be used as the current submission source.
+
 **ORION-P12 · issue #665 · resource-accounting owner #664**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`; controlled equal-action world

@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
 ADJUDICATION = PAPER / "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json"
 ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V1.json"
-SUCCESSOR_ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V3.json"
+SUCCESSOR_ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V4.json"
 SUCCESSOR_TERMINAL = "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED"
 
 
@@ -68,7 +68,7 @@ def test_current_publication_surfaces_bind_positive_successor_and_historical_bou
     for relative in authority_surfaces:
         text = (PAPER / relative).read_text(encoding="utf-8")
         assert "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json" in text, relative
-        assert "P12_ACTIVE_CLAIM_AUTHORITY_V3.json" in text, relative
+        assert "P12_ACTIVE_CLAIM_AUTHORITY_V4.json" in text, relative
         assert SUCCESSOR_TERMINAL in text, relative
 
     for relative in (
@@ -91,6 +91,7 @@ def test_current_publication_surfaces_bind_positive_successor_and_historical_bou
 
     authority = json.loads(SUCCESSOR_ACTIVE.read_text(encoding="utf-8"))
     assert authority["promotion_allowed"] is True
+    assert authority["top_tier_submission_allowed"] is False
     assert authority["active_terminal"] == SUCCESSOR_TERMINAL
     assert authority["historical_boundary_leaf"]["terminal"] == AUTHORITY_TERMINAL
 
