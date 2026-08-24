@@ -1,0 +1,54 @@
+name: p13c-composed-safety-efficacy-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md'
+      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json'
+      - 'papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py'
+      - 'src/orion/study/p13/authenticated_successor.py'
+      - '.github/workflows/p13c-composed-safety-efficacy-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md'
+      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json'
+      - 'papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py'
+      - 'src/orion/study/p13/authenticated_successor.py'
+      - '.github/workflows/p13c-composed-safety-efficacy-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  falsify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute composed safety-efficacy benchmark (two-subprocess replay)
+        run: |
+          set -euo pipefail
+          python papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py \
+            --out papers/paper-13-responsibility-carrying-state/p13c_composed_result_ci.json \
+            > p13c_ci_summary.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('papers/paper-13-responsibility-carrying-state/p13c_composed_result_ci.json').read_text())
+          assert p['terminal'] == 'P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED', p['terminal']
+          assert all(p['gates'].values()), {k: v for k, v in p['gates'].items() if not v}
+          counts = p['core']['counts']
+          assert counts['episodes'] == 12288
+          assert counts['corrupted_episodes'] == 2457
+          assert counts['corrupted_certificates_rejected'] == 2457
+          assert p['core']['totals']['AUTHENTICATED_RCS']['unsafe'] == 0
+          print(json.dumps({'terminal': p['terminal'], 'gates': p['gates']}, sort_keys=True))
+          PY
+      - name: Upload composed result receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p13c-composed-safety-efficacy-v1
+          path: papers/paper-13-responsibility-carrying-state/p13c_composed_result_ci.json
