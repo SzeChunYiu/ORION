@@ -1041,6 +1041,28 @@
             "success_condition": "Independent case authorship and implementation are hidden from candidate construction and all gates are frozen before execution.",
             "failure_terminal": "P14_EXTERNAL_VALIDITY_REMAINS_OPEN"
           }
+        },
+        {
+          "item_id": "P14.E.SUPERIORITY.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P14E.SPECIFICATION_SEPARATED_SUPERIORITY.V1",
+          "disposition": "P14E repairs the three recorded P14 defects as mechanism improvements (balanced strata mixture; specification separation; verified nuisance reminting) and meets P14A's unchanged thresholds on 6,720 protected cases. P14A's negative, P14B's diagnostic status and P14C's conformance authority are retained verbatim.",
+          "scope": "6,720 randomized hidden-gold cases; 12 families x 7 strata x 80; gold from an interpreted frozen rule table; policies facts-only.",
+          "authority_artifact": "papers/paper-14-orion-rse/P14E_SUPERIORITY_CLAIM_AUTHORITY_V1.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-14-orion-rse/P14E_SUPERIORITY_CLAIM_AUTHORITY_V1.json", "availability": "EXISTING_PR", "ref": "gap/p14e-superiority"},
+            {"path": "papers/paper-14-orion-rse/P14E_SUPERIORITY_RESULT_RECEIPT_V1.md", "availability": "EXISTING_PR", "ref": "gap/p14e-superiority"},
+            {"path": "papers/paper-14-orion-rse/P14E_SPECIFICATION_SEPARATED_SUPERIORITY_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "gap/p14e-superiority"},
+            {"path": "papers/paper-14-orion-rse/P14E_SUPERIORITY_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "gap/p14e-superiority"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python papers/paper-14-orion-rse/run_p14e_specification_separated_superiority_v1.py",
+            "success_condition": "Terminal P14E_SPECIFICATION_SEPARATED_SUPERIORITY_SUPPORTED with all twelve gates green and byte-identical two-subprocess replay.",
+            "failure_terminal": "P14E_SUPERIORITY_RECEIPT_INVALID"
+          }
         }
       ]
     },

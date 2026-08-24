@@ -1,0 +1,924 @@
+{
+  "accuracy_gain_vs_strongest": 0.1428571428571429,
+  "core": {
+    "adjudication_rules": "papers/paper-14-orion-rse/P14E_ADJUDICATION_RULES_V1.json",
+    "adjudication_rules_sha256": "8697cff0c6cc41d889b78d5953c4b3f88800ebf2aa6dbf749fc58b7dc91b3457",
+    "claim_id": "P14E_SPECIFICATION_SEPARATED_SUPERIORITY",
+    "design": {
+      "cases_per_stratum_per_family": 80,
+      "decision_budget_checks": 7,
+      "free_rate_range": [
+        0.25,
+        0.75
+      ],
+      "n_families": 12,
+      "rng": "stdlib random.Random",
+      "seed": 2026082401,
+      "strata": [
+        "SUPPORTED_CLEAN",
+        "SUPPORTED_REOPEN",
+        "RETAIN_NEGATIVE",
+        "SUBSUMED",
+        "INTERACTION_ONLY",
+        "CANNOT_CHECK",
+        "NEGATIVE"
+      ],
+      "total_cases": 6720
+    },
+    "environment": {
+      "python_implementation": "CPython",
+      "python_version": "3.13.12"
+    },
+    "families": [
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9839285714285714,
+          "ABLATE_FREEZE": 0.9785714285714285,
+          "ABLATE_IDENTIFIABILITY": 0.9767857142857143,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 0,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.7450041246611578,
+            "interaction_only": 0.38017739266404055,
+            "live_negative_history": 0.6813064532551487,
+            "material_new_evidence": 0.5547810273048397,
+            "positive": 0.48660220487020867
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.4875831076927925,
+            "material_new_evidence": 0.6010434234206752
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.35774065607178074,
+            "interaction_only": 0.5381709812147555,
+            "live_negative_history": 0.5207236905519677,
+            "material_new_evidence": 0.5982020856003059
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.27404381035923897,
+            "live_negative_history": 0.5265620524429635,
+            "material_new_evidence": 0.29812554467630725
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.519675481641092
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9839285714285714,
+          "ABLATE_FREEZE": 0.9857142857142858,
+          "ABLATE_IDENTIFIABILITY": 0.9785714285714285,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 1,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.7256611843515093,
+            "interaction_only": 0.5661031416432504,
+            "live_negative_history": 0.6658424117508983,
+            "material_new_evidence": 0.46222611312671974,
+            "positive": 0.6520290960797903
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.43406101460590496,
+            "material_new_evidence": 0.34525132982889534
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.5491096541195883,
+            "interaction_only": 0.3748365218025359,
+            "live_negative_history": 0.3134653499991159,
+            "material_new_evidence": 0.5388600072756775
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.34039408450749276,
+            "live_negative_history": 0.6540537484311764,
+            "material_new_evidence": 0.29223836971561773
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.5845229696217321
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9803571428571428,
+          "ABLATE_FREEZE": 0.975,
+          "ABLATE_IDENTIFIABILITY": 0.9821428571428571,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 2,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.6162152438010164,
+            "interaction_only": 0.67770875337432,
+            "live_negative_history": 0.6525308705016649,
+            "material_new_evidence": 0.43711753977464224,
+            "positive": 0.612674170378373
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.29661258010165853,
+            "material_new_evidence": 0.33756790183231594
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.7206177537594205,
+            "interaction_only": 0.4361720384821084,
+            "live_negative_history": 0.7219973442188188,
+            "material_new_evidence": 0.6242372000107538
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.44066422576570746,
+            "live_negative_history": 0.5418857553889643,
+            "material_new_evidence": 0.4557107313333902
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.5464838670891514
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9839285714285714,
+          "ABLATE_FREEZE": 0.9767857142857143,
+          "ABLATE_IDENTIFIABILITY": 0.9785714285714285,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 3,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.5826760158267197,
+            "interaction_only": 0.6017508037111998,
+            "live_negative_history": 0.49276910705901955,
+            "material_new_evidence": 0.6892333738544476,
+            "positive": 0.6498817825201741
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.27711086339339014,
+            "material_new_evidence": 0.6616949100840763
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.5917537647344332,
+            "interaction_only": 0.6814791658229358,
+            "live_negative_history": 0.4663608519673865,
+            "material_new_evidence": 0.28568449999231815
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.6072775813714154,
+            "live_negative_history": 0.6859844104923705,
+            "material_new_evidence": 0.5985221894172865
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.32305076370201863
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9696428571428571,
+          "ABLATE_FREEZE": 0.9785714285714285,
+          "ABLATE_IDENTIFIABILITY": 0.9803571428571428,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 4,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.40716929268986696,
+            "interaction_only": 0.6439789765119197,
+            "live_negative_history": 0.6901264123853794,
+            "material_new_evidence": 0.6424187291097692,
+            "positive": 0.5524159562949129
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.35420444550571456,
+            "material_new_evidence": 0.54885534207981
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.4880424542613681,
+            "interaction_only": 0.688433475717976,
+            "live_negative_history": 0.6564730040804887,
+            "material_new_evidence": 0.5565181591346606
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.539018571796944,
+            "live_negative_history": 0.2795635182818494,
+            "material_new_evidence": 0.7216926910525726
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.39644821019721316
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9785714285714285,
+          "ABLATE_FREEZE": 0.9732142857142857,
+          "ABLATE_IDENTIFIABILITY": 0.9839285714285714,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 5,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.5409371981113558,
+            "interaction_only": 0.5923232763588184,
+            "live_negative_history": 0.32882621400800804,
+            "material_new_evidence": 0.5461255111740895,
+            "positive": 0.2562772377967035
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.26069087819919284,
+            "material_new_evidence": 0.5626155445464918
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.5203920329809577,
+            "interaction_only": 0.39179763458700784,
+            "live_negative_history": 0.34151555286317536,
+            "material_new_evidence": 0.6934127529386935
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.7150558312791804,
+            "live_negative_history": 0.6364469614485369,
+            "material_new_evidence": 0.5275807084784572
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.598297949569658
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9839285714285714,
+          "ABLATE_FREEZE": 0.9785714285714285,
+          "ABLATE_IDENTIFIABILITY": 0.9875,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 6,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.572747173216948,
+            "interaction_only": 0.31926133038636284,
+            "live_negative_history": 0.4053815594831628,
+            "material_new_evidence": 0.4190880658130443,
+            "positive": 0.28404971721483285
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.36504179156351996,
+            "material_new_evidence": 0.5999401452619513
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.42637031815948684,
+            "interaction_only": 0.44566236923810765,
+            "live_negative_history": 0.43310799199356176,
+            "material_new_evidence": 0.3591485334727552
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.5070177827966609,
+            "live_negative_history": 0.47558738942329887,
+            "material_new_evidence": 0.3231634697285026
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.6412339051490639
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9589285714285715,
+          "ABLATE_FREEZE": 0.9785714285714285,
+          "ABLATE_IDENTIFIABILITY": 0.9767857142857143,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 7,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.4696882566210461,
+            "interaction_only": 0.719077874947502,
+            "live_negative_history": 0.5369456562833548,
+            "material_new_evidence": 0.7119405303049022,
+            "positive": 0.6139089245717655
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.6646667218983094,
+            "material_new_evidence": 0.27860286231370396
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.5047607743483287,
+            "interaction_only": 0.2893255350304592,
+            "live_negative_history": 0.5756475570393425,
+            "material_new_evidence": 0.3167457551336619
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.4067219715770751,
+            "live_negative_history": 0.574897927564245,
+            "material_new_evidence": 0.3199182408918785
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.4224398082583676
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9714285714285714,
+          "ABLATE_FREEZE": 0.9839285714285714,
+          "ABLATE_IDENTIFIABILITY": 0.9857142857142858,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 8,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.26744583505332115,
+            "interaction_only": 0.3064933293871351,
+            "live_negative_history": 0.6451125715929413,
+            "material_new_evidence": 0.7246690143550181,
+            "positive": 0.38856703909537404
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.45871050775481825,
+            "material_new_evidence": 0.527003064854072
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.7225841455865831,
+            "interaction_only": 0.5460215965125643,
+            "live_negative_history": 0.6937028924946613,
+            "material_new_evidence": 0.6434572850402831
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.6115029435616683,
+            "live_negative_history": 0.5030215155367125,
+            "material_new_evidence": 0.7168694186936941
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.45993062450564864
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9785714285714285,
+          "ABLATE_FREEZE": 0.9714285714285714,
+          "ABLATE_IDENTIFIABILITY": 0.975,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 9,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.36326934928312593,
+            "interaction_only": 0.6107767884569137,
+            "live_negative_history": 0.5851708333083483,
+            "material_new_evidence": 0.44090880180837433,
+            "positive": 0.3807087462675689
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.5277793985228321,
+            "material_new_evidence": 0.4762098202980362
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.3678337976101116,
+            "interaction_only": 0.5040825220055914,
+            "live_negative_history": 0.6648131514484263,
+            "material_new_evidence": 0.2800835677485631
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.5327921430992573,
+            "live_negative_history": 0.34684308140647746,
+            "material_new_evidence": 0.4235012394219857
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.6978896496124836
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9875,
+          "ABLATE_FREEZE": 0.9857142857142858,
+          "ABLATE_IDENTIFIABILITY": 0.9714285714285714,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 10,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.6102275962239453,
+            "interaction_only": 0.38586075505552103,
+            "live_negative_history": 0.4058419131972505,
+            "material_new_evidence": 0.299034962614983,
+            "positive": 0.7481337927894725
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.49881628996519106,
+            "material_new_evidence": 0.29739365348394436
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.3920772217484005,
+            "interaction_only": 0.6295065025943536,
+            "live_negative_history": 0.41626207668851156,
+            "material_new_evidence": 0.7343418133756835
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.3867028794668653,
+            "live_negative_history": 0.3899402235831321,
+            "material_new_evidence": 0.5702456286145173
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.6477778368776268
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      },
+      {
+        "arm_correct": {
+          "ABLATE_DONOR": 0.8571428571428571,
+          "ABLATE_EVIDENCE_INTEGRITY": 0.9839285714285714,
+          "ABLATE_FREEZE": 0.975,
+          "ABLATE_IDENTIFIABILITY": 0.9821428571428571,
+          "ABLATE_INTERACTION": 0.8571428571428571,
+          "ABLATE_NEGATIVE_HISTORY": 0.8571428571428571,
+          "DONOR_AWARE_REVIEW": 0.7142857142857143,
+          "MULTI_REVIEW": 0.8571428571428571,
+          "ORION_RSE_FULL": 1.0,
+          "RAW_POSITIVE": 0.42857142857142855,
+          "REFLECTION_CHECKLIST": 0.5714285714285714
+        },
+        "family": 11,
+        "free_rates": {
+          "CANNOT_CHECK": {
+            "donor_owned": 0.5862976340496382,
+            "interaction_only": 0.6192777610166452,
+            "live_negative_history": 0.25344332865654423,
+            "material_new_evidence": 0.612131510543688,
+            "positive": 0.6830824949916573
+          },
+          "INTERACTION_ONLY": {
+            "live_negative_history": 0.638883127571369,
+            "material_new_evidence": 0.6760636319887008
+          },
+          "NEGATIVE": {
+            "donor_owned": 0.7188585177927729,
+            "interaction_only": 0.5026903179611448,
+            "live_negative_history": 0.5434727054991275,
+            "material_new_evidence": 0.4158099289460038
+          },
+          "RETAIN_NEGATIVE": {},
+          "SUBSUMED": {
+            "interaction_only": 0.5920578262226357,
+            "live_negative_history": 0.643445591227862,
+            "material_new_evidence": 0.35373305000974337
+          },
+          "SUPPORTED_CLEAN": {
+            "material_new_evidence": 0.37562337746161817
+          },
+          "SUPPORTED_REOPEN": {}
+        },
+        "stratum_counts": {
+          "CANNOT_CHECK": 80,
+          "INTERACTION_ONLY": 80,
+          "NEGATIVE": 80,
+          "RETAIN_NEGATIVE": 80,
+          "SUBSUMED": 80,
+          "SUPPORTED_CLEAN": 80,
+          "SUPPORTED_REOPEN": 80
+        }
+      }
+    ],
+    "generation_audit": {
+      "determinism_violations": 0,
+      "gold_leak_checks": 6720,
+      "gold_stratum_violations": 0,
+      "pinned_violations": 0,
+      "remint_violations": 0
+    },
+    "paper_id": "P14",
+    "per_stratum_accuracy": {
+      "ABLATE_DONOR": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 1.0,
+        "SUBSUMED": 0.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "ABLATE_EVIDENCE_INTEGRITY": {
+        "CANNOT_CHECK": 0.8510416666666667,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 1.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "ABLATE_FREEZE": {
+        "CANNOT_CHECK": 0.8489583333333334,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 1.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "ABLATE_IDENTIFIABILITY": {
+        "CANNOT_CHECK": 0.859375,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 1.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "ABLATE_INTERACTION": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 0.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 1.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "ABLATE_NEGATIVE_HISTORY": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 0.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "DONOR_AWARE_REVIEW": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 0.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 0.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "MULTI_REVIEW": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 0.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "ORION_RSE_FULL": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 1.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 1.0,
+        "SUBSUMED": 1.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "RAW_POSITIVE": {
+        "CANNOT_CHECK": 0.0,
+        "INTERACTION_ONLY": 0.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 0.0,
+        "SUBSUMED": 0.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      },
+      "REFLECTION_CHECKLIST": {
+        "CANNOT_CHECK": 1.0,
+        "INTERACTION_ONLY": 0.0,
+        "NEGATIVE": 1.0,
+        "RETAIN_NEGATIVE": 0.0,
+        "SUBSUMED": 0.0,
+        "SUPPORTED_CLEAN": 1.0,
+        "SUPPORTED_REOPEN": 1.0
+      }
+    },
+    "protocol": "papers/paper-14-orion-rse/P14E_SPECIFICATION_SEPARATED_SUPERIORITY_PROTOCOL_V1.md",
+    "protocol_sha256": "660bdd47ffa5b79b7ec557a601988f1af6828ac803b4461cb6682e95f6dfe34f",
+    "schema": "ORION.P14E.SpecificationSeparatedSuperiority.Core.v1",
+    "subject_identity": {
+      "adjudicator": "generic interpreter of frozen rule table (parse + first-match)",
+      "circularity_control": "policy arms never call the adjudicator or see gold",
+      "full_policy": "independently written facts-only policy from protocol prose"
+    },
+    "summary": {
+      "ABLATE_DONOR": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.8571428571428571,
+        "false_promotion_rate": 0.05044642857142857,
+        "n": 6720,
+        "retain_negative_accuracy": 1.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "ABLATE_EVIDENCE_INTEGRITY": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.9787202380952381,
+        "false_promotion_rate": 0.0019345238095238096,
+        "n": 6720,
+        "retain_negative_accuracy": 1.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "ABLATE_FREEZE": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.9784226190476191,
+        "false_promotion_rate": 0.0017857142857142857,
+        "n": 6720,
+        "retain_negative_accuracy": 1.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "ABLATE_IDENTIFIABILITY": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.9799107142857143,
+        "false_promotion_rate": 0.0019345238095238096,
+        "n": 6720,
+        "retain_negative_accuracy": 1.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "ABLATE_INTERACTION": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.8571428571428571,
+        "false_promotion_rate": 0.11354166666666667,
+        "n": 6720,
+        "retain_negative_accuracy": 1.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "ABLATE_NEGATIVE_HISTORY": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.8571428571428571,
+        "false_promotion_rate": 0.14285714285714285,
+        "n": 6720,
+        "retain_negative_accuracy": 0.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "DONOR_AWARE_REVIEW": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.7142857142857143,
+        "false_promotion_rate": 0.2857142857142857,
+        "n": 6720,
+        "retain_negative_accuracy": 0.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "MULTI_REVIEW": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.8571428571428571,
+        "false_promotion_rate": 0.14285714285714285,
+        "n": 6720,
+        "retain_negative_accuracy": 0.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "ORION_RSE_FULL": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 1.0,
+        "false_promotion_rate": 0.0,
+        "n": 6720,
+        "retain_negative_accuracy": 1.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "RAW_POSITIVE": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.42857142857142855,
+        "false_promotion_rate": 0.5047619047619047,
+        "n": 6720,
+        "retain_negative_accuracy": 0.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      },
+      "REFLECTION_CHECKLIST": {
+        "decision_budget_checks": 7,
+        "disposition_accuracy": 0.5714285714285714,
+        "false_promotion_rate": 0.42857142857142855,
+        "n": 6720,
+        "retain_negative_accuracy": 0.0,
+        "supported_reopen_accuracy": 1.0,
+        "useful_discovery_recall": 1.0
+      }
+    }
+  },
+  "gates": {
+    "accuracy_gain_ge_0_08": true,
+    "byte_identical_two_subprocess_replay": true,
+    "every_ablation_strictly_worse": true,
+    "full_disposition_accuracy_one": true,
+    "full_useful_discovery_recall_one": true,
+    "full_zero_false_promotion": true,
+    "gold_never_enters_policy_input": true,
+    "matched_decision_budget": true,
+    "nuisance_reminting_and_determinism_verified": true,
+    "retain_and_reopen_exact": true,
+    "strongest_baseline_false_promotion_ge_0_05": true,
+    "strongest_baseline_is_multi_review": true
+  },
+  "replay": {
+    "byte_identical": true,
+    "first_core_sha256": "9950c27c2eebf885dda8b958c9446c5a8d70746788718209c517059ef9140795",
+    "fresh_python_subprocesses": 2,
+    "second_core_sha256": "9950c27c2eebf885dda8b958c9446c5a8d70746788718209c517059ef9140795"
+  },
+  "schema": "ORION.P14E.SpecificationSeparatedSuperiority.Result.v1",
+  "strongest_non_orion_baseline": "MULTI_REVIEW",
+  "terminal": "P14E_SPECIFICATION_SEPARATED_SUPERIORITY_SUPPORTED"
+}

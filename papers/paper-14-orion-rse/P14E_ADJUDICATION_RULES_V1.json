@@ -1,0 +1,114 @@
+{
+  "schema": "ORION.P14E.AdjudicationRuleTable.v1",
+  "frozen": "2026-08-24",
+  "purpose": "Machine-readable adjudication specification for P14E. The harness adjudicator interprets this ordered rule table to assign the protected gold disposition of every generated case. Policy arms never receive this object or its output; they receive case facts only.",
+  "dispositions": [
+    "CANNOT_CHECK",
+    "NEGATIVE",
+    "SUBSUMED",
+    "INTERACTION_ONLY",
+    "RETAIN_NEGATIVE",
+    "SUPPORTED_RESIDUAL"
+  ],
+  "rule_evaluation": "first rule whose condition predicate holds wins; conditions are stated over the eight case facts",
+  "case_facts": [
+    "positive",
+    "evidence_integrity",
+    "frozen_protocol",
+    "identifiable",
+    "donor_owned",
+    "interaction_only",
+    "live_negative_history",
+    "material_new_evidence"
+  ],
+  "rules": [
+    {
+      "order": 1,
+      "disposition": "CANNOT_CHECK",
+      "condition": "not evidence_integrity or not frozen_protocol or not identifiable",
+      "rationale": "admissibility screening fails: the record cannot be scientifically adjudicated"
+    },
+    {
+      "order": 2,
+      "disposition": "NEGATIVE",
+      "condition": "not positive",
+      "rationale": "no positive observation to adjudicate"
+    },
+    {
+      "order": 3,
+      "disposition": "SUBSUMED",
+      "condition": "donor_owned",
+      "rationale": "nearest donor fully owns the proposed residual"
+    },
+    {
+      "order": 4,
+      "disposition": "INTERACTION_ONLY",
+      "condition": "interaction_only",
+      "rationale": "evidence supports only a joint interaction, not a standalone atom"
+    },
+    {
+      "order": 5,
+      "disposition": "RETAIN_NEGATIVE",
+      "condition": "live_negative_history and not material_new_evidence",
+      "rationale": "putative positive is a same-evidence rereading of a live negative/subsumed history"
+    },
+    {
+      "order": 6,
+      "disposition": "SUPPORTED_RESIDUAL",
+      "condition": "true",
+      "rationale": "valid, identifiable, prospectively frozen standalone residual with no unreopened negative-history conflict"
+    }
+  ],
+  "promotion_authorizing_disposition": "SUPPORTED_RESIDUAL",
+  "stratum_free_coordinates": {
+    "comment": "Per stratum, the coordinates that the generator remints uniformly without changing the protected disposition (gold short-circuits before reading them, or the stratum pins them to the value the rule table requires). Every other coordinate is pinned by the stratum. The reminting verification gate requires both boolean values of every listed free coordinate to occur in every family-by-stratum cell.",
+    "CANNOT_CHECK": {
+      "pinned": "at least one of evidence_integrity/frozen_protocol/identifiable is false (failing subset reminted uniformly over the 7 nonempty subsets)",
+      "free": [
+        "positive",
+        "donor_owned",
+        "interaction_only",
+        "live_negative_history",
+        "material_new_evidence"
+      ]
+    },
+    "NEGATIVE": {
+      "pinned": "positive=false; evidence_integrity=frozen_protocol=identifiable=true",
+      "free": [
+        "donor_owned",
+        "interaction_only",
+        "live_negative_history",
+        "material_new_evidence"
+      ]
+    },
+    "SUBSUMED": {
+      "pinned": "positive=true; evidence_integrity=frozen_protocol=identifiable=true; donor_owned=true",
+      "free": [
+        "interaction_only",
+        "live_negative_history",
+        "material_new_evidence"
+      ]
+    },
+    "INTERACTION_ONLY": {
+      "pinned": "positive=true; evidence_integrity=frozen_protocol=identifiable=true; donor_owned=false; interaction_only=true",
+      "free": [
+        "live_negative_history",
+        "material_new_evidence"
+      ]
+    },
+    "RETAIN_NEGATIVE": {
+      "pinned": "positive=true; evidence_integrity=frozen_protocol=identifiable=true; donor_owned=false; interaction_only=false; live_negative_history=true; material_new_evidence=false",
+      "free": []
+    },
+    "SUPPORTED_REOPEN": {
+      "pinned": "positive=true; evidence_integrity=frozen_protocol=identifiable=true; donor_owned=false; interaction_only=false; live_negative_history=true; material_new_evidence=true",
+      "free": []
+    },
+    "SUPPORTED_CLEAN": {
+      "pinned": "positive=true; evidence_integrity=frozen_protocol=identifiable=true; donor_owned=false; interaction_only=false; live_negative_history=false",
+      "free": [
+        "material_new_evidence"
+      ]
+    }
+  }
+}
