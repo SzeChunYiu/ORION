@@ -2,16 +2,59 @@
 
 \begin{center}
 \fcolorbox{black}{gray!10}{\parbox{0.91\linewidth}{
-\textbf{No protected paper result exists.} Unit tests and deterministic scans
-establish only conformance of a checked implementation to their registered cases.
-They do not estimate general reliability, authenticate all executor claims, or
-establish scientific corroboration.}}
+\textbf{No protected superiority result exists.} One bounded result has been
+frozen and executed (\S\ref{sec:attestation-composition}); it is
+\textsc{bounded-executable-verified} and it is largely a negative. Unit tests and
+deterministic scans establish only conformance of a checked implementation to
+their registered cases. They do not estimate general reliability, authenticate
+all executor claims, or establish scientific corroboration.}}
 \end{center}
 
 This chapter is intentionally not populated with prospective tables or inferred
 numbers. A publication result may be added only after the protocol in
 Section~\ref{sec:attacks} is frozen on an immutable digest and executed by an
 identified implementation under the declared custody plan.
+
+\subsection{Attestation composition is not scientific admission}
+\label{sec:attestation-composition}
+
+The attestation-composition V2 protocol was frozen on an immutable digest and
+executed (run \texttt{32664075763}, artifact \texttt{9499830847}, ZIP SHA-256
+\texttt{fccf3b28f3f33af8b07a87eab6764742c7882de88018d65be16e2dba1dee3bff}), with
+a second independent implementation GREEN on all 13 agreement-table entries. It
+therefore meets the condition above, and it is reported here because its
+principal finding is adverse.
+
+\paragraph{The negative first: signatures do not observe key custody.} Under a
+full key-set compromise, simulated by re-signing with genuine key material, the
+signature layer detects \textbf{0/6}. Worse, those same six cases
+\emph{false-promote} through \textsc{chain-plus-sei} (\textbf{6/6}). A chain
+that verifies perfectly says nothing about whether the right party held the key.
+Key custody is an inherited premise, now explicitly registered as one, not
+something the cryptographic layer measures. Collapsing the chain directly into
+the scientific-admission decision false-promotes a further \textbf{12} cases,
+where the properly scoped cryptographic-only reading returns \cannotcheck{}
+everywhere.
+
+\paragraph{What did hold.} Over the frozen 22-case corpus, three-link Ed25519
+chains verify and fail closed against every registered attack family: truncation
+\textbf{66/66}, substitution \textbf{22/22}, splice-with-partial-re-signing
+\textbf{22/22}, reorder \textbf{22/22}, cross-occurrence replay \textbf{22/22}
+and stale or consumed re-presentation \textbf{22/22}. Chain-plus-SEI agreement
+with the frozen gold is \textbf{22/22}, and scientific-field leakage into the
+cryptographic/provenance layer is \textbf{0}.
+
+\paragraph{The layer does not win by rejecting everything.} False rejection over
+the full valid workload -- seven execution-valid fault cases plus four real
+receipts -- is \textbf{0/11} at the chain layer and \textbf{0/5} at disposition
+level, with \textbf{0/4} real false promotions. That matters because a detector
+that refuses everything would score perfectly on the attack families above and be
+useless.
+
+\paragraph{Scope.} A frozen 22-case corpus with simulated per-role keys. No
+hardware-backed custody, external timestamping or KMS, and no comparison against
+production Sigstore or in-toto is claimed. The composition-and-boundary statement
+is verified within that scope; the C15.5 superiority claim remains \cannotcheck{}.
 
 When results exist, the primary table must contain one row per attack family and
 report the frozen fixture count, false admissions, false rejections, coverage

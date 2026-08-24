@@ -297,6 +297,61 @@ real-agent safety, population generalization, certificate-authority
 independence or deployment authority is claimed. Active authority:
 `P13_ACTIVE_CLAIM_AUTHORITY_V3.json`.
 
+### 7.6 Primary real-data result: the 17,970-episode responsibility shift
+
+The results above are exact and verifier-backed, which is also their limit: they
+are constructed worlds. The paper's primary *real-data* evidence is a
+responsibility change on non-synthetic handwritten digits, where a compact state
+learned for a parity responsibility is later reused under an exact digit-identity
+responsibility. Across **17,970 episodes**:
+
+| arm | exact-digit accuracy | unsupported exact-digit reuse |
+|---|---|---|
+| RCS | 0.9699 | **0** |
+| confidence-only | 0.3957 | 0.7774 |
+| provenance-only / unqualified | 0.2376 | 1.0 |
+
+RCS reads **33** floats per episode against always-raw's **64**, a
+**48.4375%** reduction in raw reads, while matching always-raw's task accuracies
+exactly -- combined 0.9435, exact-digit 0.9699, parity 0.9171. The saving is
+therefore not bought with accuracy.
+
+This is the paper's claim in its sharpest real-data form. A compact
+representation can be current, provenanced and highly confident with respect to
+the old responsibility while being structurally inadequate for the stronger one.
+Confidence continuity and provenance continuity each fail here in the direction
+the contract predicts: provenance-only reuses without support in *every*
+episode, and confidence-only in more than three quarters of them.
+
+### 7.7 Donor-complete baseline: the D2 comparison
+
+The relevant question is not whether RCS beats a weak baseline but whether the
+responsibility-registration axis reduces to the provenance/grounding axis a
+donor-complete memory already has. The D2 study answers it on 48 episodes
+(4 cells x 12), protocol and gold dispositions frozen before the runner, with an
+independent checker reporting zero invariant failures.
+
+| arm | verifier-correct | unsupported reuse | mean literal reads | solver calls |
+|---|---|---|---|---|
+| `D2_CORE` | 36/48 | 12 | 6.25 | 12 |
+| `D2_PLUS` | 36/48 | 12 | 6.25 | 12 |
+| `RCS` | **48/48** | **0** | 5.0 | 24 |
+| `COMPOSED` | **48/48** | **0** | 5.0 | 24 |
+| `ALWAYS_RAW` | 48/48 | 0 | 5.5 | 24 |
+
+Both donor arms -- including `D2_PLUS`, the strongest demand-graded form --
+commit **12** unsupported reuses on `B_CHANGED_CURRENT`: they carry provenance
+continuity across a responsibility change and reuse on the strength of it. RCS
+and `COMPOSED` are perfect on the same episodes, and `COMPOSED` is also cheaper
+than either donor arm on reads, 5.0 against 6.25.
+
+That is the load-bearing comparison for the residual claim in §2.2:
+responsibility registration is not reducible to provenance. The scope is
+bounded -- five variables, a frozen episode family, seed 20261307 -- and the
+result is that the two axes come apart inside it, not that they must come apart
+in general.
+
+
 ## 8. Certificate transport, invalidation and authority
 
 Responsibility support is conditional on evidence identity, transform version, required context, witness identity and resource envelope. A semantic change can therefore require preserve, reopen, revoke or `CANNOT_CHECK` behavior.
