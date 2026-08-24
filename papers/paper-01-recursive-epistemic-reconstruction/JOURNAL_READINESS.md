@@ -8,7 +8,7 @@
 > `evidence/NEAREST_WORK_MATRIX_V2.md`. Historical package-readiness statements
 > below are read subject to the current two-axis terminal and blockers.
 
-**Current terminal:** bounded mechanical claim `SUPPORTED`; current enlarged manuscript and journal package `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`).
+**Current terminal:** `CANNOT_CHECK` for submission readiness. The bounded mechanical claim is `SUPPORTED`, and that is unchanged; what cannot be checked is the enlarged manuscript and journal package, which are `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`). The previous wording stated both facts but named neither scoreboard status, so `research/publication/scoreboard.py` read the line as unparseable and P1 declared no scorable terminal at all. An unscorable paper is not a neutral state: it is absent from the one place the programme reads readiness from.
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
 
 The bounded result and the package are different authorities. The primary and
