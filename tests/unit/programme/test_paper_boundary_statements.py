@@ -95,3 +95,11 @@ def test_p13_marks_its_safety_endpoint_as_self_entailed() -> None:
 def test_p12_marks_prospective_certificate_availability_cannot_check() -> None:
     text = _flat(PAPERS / "paper-12-adaptive-state-reasoning/PEER_REVIEW_READINESS.md")
     assert "Prospective certificate availability and forward-time deployment are CANNOT_CHECK" in text
+
+
+def test_p15_separates_all_six_execution_concepts() -> None:
+    """Attestation is the one most easily read as scientific validity."""
+    text = _flat(PAPERS / "paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER_V1.md")
+    assert "attribution, replay, agreement and attestation as evidence about" in text
+    assert "The six are separate and none implies the next" in text
+    assert "correct signature over a wrong result" in text
