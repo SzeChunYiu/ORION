@@ -59,6 +59,17 @@ The earlier D1 same-information serialization margin is **not** a robust headlin
 - the smaller typed-relational vs untyped-pair separation remains structurally invariant under that orbit;
 - an order-reminting attack has an empty denominator under the frozen construction and is `CANNOT_CHECK`, not a pass.
 
+Successor lane (2026-08-24, `NO_SCIENTIFIC_AUTHORITY_REPRESENTATION_REVIVAL_ONLY`, scope
+`BOUNDED_D1_ONLY`): the defeat's one-stage attribution is `answer_determination_numerics`
+(value spelling keyed the feature columns; the rank-88/150 matrix had equal-fit optima that
+solver path and column order alone chose between). The registered successor representation
+`TYPED_INVARIANT_PROFILE_BAG` — isomorphism-invariant profile colours over the same token
+multiset — holds the raw-token orbit guard at 128/0, is stable under all solver-family and
+column-order probes (0 changed answers), and recovers BASE accuracy 0.75 with an independent
+second checker GREEN:
+`evidence/P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_RECEIPT_2026-08-24.md`.
+The frozen defeat itself stands immutable; the retired-margin rule above is unchanged.
+
 This adverse result strengthens the current P9 identity: the paper should diagnose **which resource/representation coordinate matters**, not claim that one serialization is intrinsically superior.
 
 ## Strongest paper-level claim
