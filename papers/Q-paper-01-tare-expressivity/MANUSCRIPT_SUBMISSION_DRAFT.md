@@ -1,6 +1,6 @@
-# Sharp Support-Two Normal Forms for Shared-Tag TARE Quantum Compilation
+# Constraint-Rank Normal Forms for Shared-Tag TARE Quantum Compilation
 
-**Submission-oriented draft — 2026-08-22**
+**Submission-oriented draft — 2026-08-23**
 
 This draft is the current publication-facing Q1 version. It incorporates the final closed ORION-Q results and the analytic proof derivation in `HUMAN_PROOF_R6S_2026-08-22.md`. Earlier manuscript versions remain in the directory as historical snapshots. TARE and all donor-owned primitives are explicitly credited; no internal authority string is treated as external novelty certification.
 
@@ -8,19 +8,19 @@ This draft is the current publication-facing Q1 version. It incorporates the fin
 
 ## Abstract
 
-Tag-and-Restore Encoding (TARE) block-encodes linear combinations of Pauli strings through auxiliary mutually anticommuting frames, a shared Tag operator, and Restore corrections. The freedom to choose those auxiliary objects creates a coupled compiler space in which a high-support frame can trade implementation cost against shared-Tag support and Restore factoring. We determine the exact support complexity of a frozen three-block shared-one-bit-Tag TARE-M2 family.
+Tag-and-Restore Encoding (TARE) block-encodes linear combinations of Pauli strings through auxiliary mutually anticommuting frames, shared Tag operators, and Restore corrections. The freedom to choose those auxiliary objects creates a coupled compiler space in which a high-support frame can trade implementation cost against Tag support and Restore factoring. We give a general constraint-rank normal form for this class of parity-coupled representation problems. If an object's active coordinates contribute to a rank-`d` binary constraint signature, the required signature sum is nonzero, and every constraint-preserving deletion refunds at least its coupled local penalty, then every optimum has an equally good representative of support at most `d`. The rank bound is tight over the abstract system class and exposes an objective phase boundary through the local refund-versus-penalty inequalities.
 
-Let `kappa` denote the smallest integer such that every admitted instance, at every qubit count, has an exact optimum in which every auxiliary frame Pauli acts nontrivially on at most `k` qubits. We prove
+We then determine the exact support complexity of the frozen three-block shared-one-bit-Tag TARE-M2 family. Its frame-partner anticommutation and shared-Tag syndrome give rank two, and its minimum frame refund dominates the worst local Restore penalty. Let `kappa` denote the smallest integer such that every admitted instance, at every qubit count, has an exact optimum in which every auxiliary frame Pauli acts nontrivially on at most `k` qubits. We prove
 
 \[
 \boxed{\kappa=2.}
 \]
 
-The upper bound is analytic. For any support-three-or-larger frame Pauli, each active qubit is labeled by a two-bit class recording its contribution to frame anticommutation and the shared-Tag syndrome. Odd global anticommutation forces a nonempty proper zero-sum subset of at most two classes. Removing the corresponding frame letters preserves both constraints. The three-way Restore cost can be written as ordinary local support minus a two-unit discount when all three Restore letters coincide; changing one frame letter can therefore increase Restore cost by at most two, never more than the minimum frame-support refund. Iterating the exchange yields a support-two optimum for arbitrary system size. The bound is tight: an exact two-qubit instance has unrestricted cost 5 while the complete all-support-one frame family has optimum 6.
+The R6M proof is the rank-two specialization. For any support-three-or-larger frame Pauli, each active qubit is labeled by a two-bit class recording its contribution to frame anticommutation and the shared-Tag syndrome. Linear dependence gives a nonempty proper zero-sum subset. Removing the corresponding frame letters preserves both constraints. The three-way Restore cost can be written as ordinary local support minus a two-unit discount when all three Restore letters coincide; changing one frame letter can therefore increase Restore cost by at most two, never more than the minimum frame-support refund. Iterating the exchange yields a support-two optimum for arbitrary system size. The bound is tight: an exact two-qubit instance has unrestricted cost 5 while the complete all-support-one frame family has optimum 6.
 
 The sharp threshold is mechanistic rather than accidental. The zero-sum exchange fails precisely on the weight-two parity patterns realized by the optimal frame-for-Tag coupling trade. A second exact mechanism trades increased shared-Tag support for split frame anchors. On registered finite domains, closed-form tests for these first two mechanisms classify donor exactness with zero error over 9,771 instances without invoking the unrestricted dynamic program; a prospectively frozen prediction on a previously unread public benzene DUCC Hamiltonian is subsequently confirmed on all 15 matchings. We explicitly do not promote this finite-domain two-mechanism classifier to an all-size taxonomy: later adversarial follow-up work finds additional support-two subregimes while leaving the support-two theorem intact.
 
-The result gives a sharp exact normal form for a nontrivial TARE compiler family: arbitrary-support auxiliary frames are unnecessary, but two-qubit support is genuinely required. Supporting studies provide a coefficient-majorization rule for split-TARE normalization and a public 20-qubit H2O Pareto point. The theorem is grammar- and objective-specific and makes no claim of general block-encoding, fault-tolerant-resource, or physical quantum advantage.
+The result gives a rank-controlled normal-form theory and a sharp exact realization in a nontrivial TARE compiler family: arbitrary-support auxiliary frames are unnecessary in R6M, but two-qubit support is genuinely required. Supporting studies provide a coefficient-majorization rule for split-TARE normalization and a public 20-qubit H2O Pareto point. The sharp numerical corollary is grammar- and objective-specific and makes no claim of general block-encoding, fault-tolerant-resource, or physical quantum advantage.
 
 ---
 
@@ -36,7 +36,14 @@ That freedom raises a structural question that is different from designing a heu
 
 An unrestricted frame Pauli may act on arbitrarily many of the `n` system qubits. It is not obvious that spread support is wasteful because all cost components are coupled. Adding one frame letter increases the anticommuting-rotation cost but can alter the minimum Tag compatible with all blocks or change whether several Restore strings share a factorizable local letter. A purely local sparsity argument is therefore insufficient.
 
-We solve this support-complexity problem exactly for the frozen three-block R6M TARE-M2 grammar used throughout the ORION-Q programme. Define the **intrinsic uniform support number**
+We first solve a wider structural problem: when support coordinates carry a
+finite-rank binary signature of all constraints that a deletion must preserve,
+how large can an irreducible optimum be? The answer is the signature rank when
+local support refunds dominate the coupled deletion penalty. This theorem is
+independent of the number of ambient qubits and identifies exactly which
+objective inequalities make the exchange valid.
+
+We then solve the support-complexity problem exactly for the frozen three-block R6M TARE-M2 grammar used throughout the ORION-Q programme. Define the **intrinsic uniform support number**
 
 \[
 \kappa_{\mathrm{R6M}}
@@ -53,13 +60,19 @@ The upper bound applies for arbitrary `n`, arbitrary admitted targets and every 
 
 The lower bound is independent and exact. The complete support-one family—including arbitrary per-block anchors, every ordered anticommuting local pair, both global label orientations, every target permutation, and the minimum compatible Tag—loses on a two-qubit instance to a support-two optimum.
 
-Three aspects make the result stronger than a loose normal-form upper bound.
+Four aspects make the result stronger than a loose normal-form upper bound.
 
-1. **Sharpness.** Support two is both sufficient and sometimes necessary.
-2. **Proof/optimizer agreement.** The only obstruction to pushing the exchange from support two to support one is exactly the parity pattern realized by the optimal support-two coupling witness.
-3. **Predictive structure.** Before the all-size theorem was obtained, exact finite-domain work discovered interpretable coupling regimes and prospectively predicted a fresh public Hamiltonian's donor-exact behavior.
+1. **Constraint-rank generality.** The support cap is controlled by the rank of the preserved binary relations rather than by ambient system size.
+2. **Sharpness.** Support two is both sufficient and sometimes necessary in R6M.
+3. **Proof/optimizer agreement.** The only obstruction to pushing the exchange from support two to support one is exactly the parity pattern realized by the optimal support-two coupling witness.
+4. **Predictive structure.** Before the all-size theorem was obtained, exact finite-domain work discovered interpretable coupling regimes and prospectively predicted a fresh public Hamiltonian's donor-exact behavior.
 
-The paper is intentionally narrow about novelty. TARE itself, anticommuting unitary partitioning, Pauli-frame compilation, binary-symplectic simplification and Clifford synthesis all have established literatures. Our contribution is the sharp normal-form theorem and its coupling boundary for this declared TARE grammar/objective.
+The paper is intentionally narrow about novelty. TARE itself, linear dependence,
+zero-sum subsequences, anticommuting unitary partitioning, Pauli-frame
+compilation, binary-symplectic simplification and Clifford synthesis all have
+established literatures. Our contribution is the constraint-rank/cost-dominance
+normal-form theorem and its sharp coupling boundary in the declared TARE
+grammar/objective.
 
 ---
 
@@ -111,9 +124,71 @@ Before our theorem, nothing in this frozen grammar prevents a frame Pauli from h
 
 ---
 
-## 3. Main theorem: support two is a sharp normal form
+## 3. General theorem: support is bounded by constraint rank
 
-### Theorem 1 (support-two normal form)
+Consider a nonzero representation object `R` with active coordinate set `A`.
+Each coordinate `q` carries a signature `v_q` in a `d`-dimensional vector space
+`V` over `F_2`. The signature records all independent binary relations that
+must survive deletion. Feasibility requires
+
+\[
+\sum_{q\in A}v_q=b\ne0.
+\]
+
+The nonzero target is load-bearing: it prevents the complete support from being
+the only zero-sum dependence and therefore keeps the object nonzero after an
+exchange.
+
+Call the objective **deletion-dominated** if every nonempty proper subset `Q`
+with zero signature sum can be removed without increasing total cost. A
+sufficient condition is coordinate separability and bounds
+
+\[
+\Delta L(Q)\le\sum_{q\in Q}\rho_q
+\le\sum_{q\in Q}m_q,
+\]
+
+for every null-deletable set `Q`, where `m_q` is the direct support refund and
+`rho_q` bounds the coordinate's contribution to the increase in coupled local
+terms.
+
+### Theorem 1 (constraint-rank support normal form)
+
+Every feasible representation in a deletion-dominated binary system can be
+transformed without increasing cost into a feasible representation of support
+at most `d`. Consequently every optimum has an equally good representative of
+support at most the rank of its preserved constraint signature.
+
+**Proof.** If `|A|>d`, the multiset `{v_q:q in A}` is linearly dependent. Over
+`F_2`, a nontrivial dependence is a nonempty subset `Q` whose signature sum is
+zero. Since the full set sums to `b != 0`, `Q` is proper. Its deletion preserves
+the signature, leaves `R` nonzero, does not increase cost, and strictly reduces
+support. Iterating terminates at support at most `d`. Starting from an optimum,
+every intermediate representation remains optimal. ∎
+
+The rank bound is tight over the abstract class. Let the available coordinate
+positions have signatures `e_1,...,e_d`, the standard basis of `F_2^d`, and
+require `b=e_1+...+e_d`. Feasibility forces all `d` positions active, so no
+uniform bound below `d` is possible without additional structure.
+
+For a frame with one partner-anticommutation constraint and `s` independent
+shared-Tag/label syndromes, `d<=s+1`. Thus any such TARE family satisfying the
+deletion-dominance inequality has a conditional support-`s+1` normal form. The
+parameter is constraint rank, not raw Tag count: dependent syndromes do not
+increase it.
+
+The theorem also identifies an objective phase boundary. If `lambda_q` is the
+worst coupled-cost increase of a constraint-preserving deletion, the proof
+applies throughout the region `m_q>=lambda_q` for every coordinate. When an
+objective crosses one of these inequalities, higher support is not thereby
+proved necessary, but this dominance proof no longer removes it. Deriving the
+corresponding regions for hardware-aware objectives is a concrete generalization
+problem rather than an invitation to extrapolate the frozen support-count
+result.
+
+## 4. R6M theorem: support two is a sharp normal form
+
+### Theorem 2 (R6M support-two normal form)
 
 For every qubit count `n`, every admitted six-target instance, every matching, every target permutation and every central-branch choice in the frozen R6M grammar, there exists an optimal feasible configuration in which every frame Pauli has support at most two. Equivalently,
 
@@ -121,7 +196,7 @@ For every qubit count `n`, every admitted six-target instance, every matching, e
 C_{DP}=C_{D^{++}}.
 \]
 
-### 3.1 Parity classes
+### 4.1 Parity classes
 
 Take any feasible configuration with a frame Pauli `R` of support `w>=3`. Let `R'` be its anticommuting partner in the same two-element frame and `S` the shared Tag.
 
@@ -158,7 +233,7 @@ Suppose neither occurs. Then all active classes are distinct and nonzero. Since 
 
 Thus choose `Q` of size one or two and zero `R` on `Q`. The modified `R` remains nonzero because `|Q|<=2<w`.
 
-### 3.2 Restore penalty
+### 4.2 Restore penalty
 
 We now show the move cannot cost more in Restore support than it saves in frame support.
 
@@ -197,13 +272,13 @@ Removing one support coordinate from a frame Pauli refunds multiplier `m in {2,4
 
 The selected subset has zero beta sum, so no Tag repair is needed and the Tag cost does not change.
 
-### 3.3 Descent
+### 4.3 Descent
 
 Apply the exchange to any support-3-or-larger frame Pauli. Cost never increases and total frame support strictly decreases. Repeating terminates with every frame support at most two.
 
-Starting from an optimum gives a support-two optimum, proving Theorem 1. ∎
+Starting from an optimum gives a support-two optimum, proving Theorem 2. ∎
 
-### 3.4 Machine corroboration
+### 4.4 Machine corroboration
 
 The original R6S campaign reached the same theorem by independently checking the local inequality over its complete frozen tabulation and machine-corroborating the class lemma:
 
@@ -218,11 +293,11 @@ These computations now serve as independent certification/stress evidence. The m
 
 ---
 
-## 4. Sharpness: support one is not sufficient
+## 5. Sharpness: support one is not sufficient
 
-Theorem 1 establishes `kappa<=2`. To determine the exact intrinsic number we must rule out a universal support-one normal form.
+Theorem 2 establishes `kappa<=2`. To determine the exact intrinsic number we must rule out a universal support-one normal form.
 
-### 4.1 Complete support-one family
+### 5.1 Complete support-one family
 
 R6O defines `D+` by sweeping every support-one frame configuration permitted by the full grammar:
 
@@ -234,7 +309,7 @@ R6O defines `D+` by sweeping every support-one frame configuration permitted by 
 
 For support-one frames, every compatible Tag can be replaced by that minimum Tag without affecting Restore terms and without increasing cost. Therefore `D+` is the complete support-one frame family for this objective.
 
-### 4.2 Tag-anchor trade
+### 5.2 Tag-anchor trade
 
 R6N first shows that the narrower common-anchor donor is not complete:
 
@@ -246,7 +321,7 @@ The expanded weight-one family `D+` repairs this instance.
 
 Here the compiler **pays Tag support to gain anchor freedom**.
 
-### 4.3 Frame-for-Tag trade
+### 5.3 Frame-for-Tag trade
 
 R6O then refutes `D+` itself. The smallest witness has
 
@@ -258,7 +333,7 @@ A support-two frame on the cheap central branch buys a smaller Tag/better Restor
 
 Here the compiler **pays frame support to save global Tag/Restore cost**.
 
-### 4.4 The proof obstruction is the same mechanism
+### 5.4 The proof obstruction is the same mechanism
 
 At support `w>=3`, Lemma 1 always supplies a proper subset preserving both parities. At `w=2`, it can fail. The four failing two-class patterns in the original R6S receipt have one coordinate locally commuting with the partner (`alpha=0`) while still anticommutes with the Tag (`beta=1`); deleting it flips the Tag syndrome.
 
@@ -266,7 +341,7 @@ That is exactly the coupling exploited by the R6O support-two optimum. The theor
 
 ---
 
-## 5. Consequence: polynomial-size direct normal-form family
+## 6. Consequence: polynomial-size direct normal-form family
 
 The number of nonidentity `n`-qubit Paulis of support at most two is
 
@@ -288,11 +363,11 @@ This yields a simple polynomial-size direct candidate family for the fixed six-t
 
 ---
 
-## 6. Finite-domain regime prediction
+## 7. Finite-domain regime prediction
 
 The all-size normal form does not require a complete taxonomy of all support-two optima. ORION-Q separately fitted/tested a smaller structural description around the first two discovered trades.
 
-### 6.1 R6Q
+### 7.1 R6Q
 
 A closed-form predicate compares the donor with:
 
@@ -312,13 +387,13 @@ On those same domains, `C_DP=min(C_R6L,C_D+,f_B)`.
 
 This is finite-domain exact evidence, not an all-`n` theorem.
 
-### 6.2 Prospective R6R test
+### 7.2 Prospective R6R test
 
 A selection rule frozen before reading candidate coefficients chooses a previously unread public benzene `cc-pVDZ` DUCC2 subject from a pinned Hamiltonian library. The regime prediction is committed and digest-printed before the unrestricted R6M DP is invoked.
 
 All 15 perfect matchings are predicted `donor_exact`; all 15 later match the exact regime and cost.
 
-### 6.3 Later counterexamples delimit the claim
+### 7.3 Later counterexamples delimit the claim
 
 After ORION-Q closed, the separate QG programme deliberately attacked the finite closed-form taxonomy and found additional support-two subregimes at higher `n`. This follow-up does **not** refute the support-two normal form or `kappa=2`. It demonstrates that normal-form complexity and taxonomy complexity are separate problems.
 
@@ -326,9 +401,9 @@ We disclose that later evidence here and make no universal two-trade claim.
 
 ---
 
-## 7. Public-Hamiltonian grounding
+## 8. Public-Hamiltonian grounding
 
-### 7.1 H4 and equilibrium N2
+### 8.1 H4 and equilibrium N2
 
 For the 30 registered matchings across frozen H4 (`n=8`) and equilibrium N2 (`n=12`) six-term batches,
 
@@ -338,13 +413,13 @@ C_{DP}=C_{D^{++}}=C_{D^+}=C_{R6L}.
 
 The finite R6Q diagnostics identify no profitable split/borrow move on those rows. These subjects therefore illustrate a useful consequence of the structural analysis: the expensive unrestricted optimizer can agree exactly with a simple donor because the relevant couplings are absent.
 
-### 7.2 Coefficient majorization
+### 8.2 Coefficient majorization
 
 A separate split-TARE result proves that, for equal-size coefficient groups, sorting coefficients and taking contiguous groups minimizes the outer-LCU normalization coordinate. The deterministic receipt reports zero failures across 8,700 exhaustive partition evaluations.
 
 On a public LiH example the optimal split normalization is 0.90085 versus a random-split mean of 1.10415, with only 0.415% overhead relative to the Pauli-L1 value. The theorem is explicitly coefficient-coordinate only.
 
-### 7.3 H2O structural Pareto point
+### 8.3 H2O structural Pareto point
 
 The public H2O/cc-pVTZ DUCC instance contains 8,082 nonidentity Pauli terms on 20 qubits. A frozen implementation-aware structural compiler point reduces `C` from 8,078 to 4,972 (38.45%) with relative normalization overhead `9.087e-6`.
 
@@ -352,7 +427,7 @@ This is not a full fault-tolerant resource estimate and is included as grounding
 
 ---
 
-## 8. Related work and exact novelty boundary
+## 9. Related work and exact novelty boundary
 
 ### TARE
 
@@ -374,38 +449,56 @@ Two bounded hostile searches dated 2026-08-22—including a final refresh after 
 
 ---
 
-## 9. Discussion
+### Linear dependence and zero-sum language
 
-### 9.1 A large representation can have a small intrinsic coupling scale
+The subset lemma underlying Theorem 1 is ordinary linear dependence over
+`F_2`; equivalently it is the elementary zero-sum property of a finite
+elementary abelian two-group. We claim no novelty for that algebra. The result
+of interest is the support normal form obtained when the constraint signature
+is coupled to a compiler-specific local cost-dominance inequality, and the
+sharp R6M obstruction where that exchange stops.
+
+## 10. Discussion
+
+### 10.1 A large representation can have a small intrinsic coupling scale
 
 The unrestricted family permits support growing with `n`, but the exact optimum never needs more than two-qubit frame support. This is stronger than empirical sparsity: the coupling scale is bounded independently of system size.
 
-### 9.2 Sharp normal forms can be easier than complete taxonomies
+### 10.2 Sharp normal forms can be easier than complete taxonomies
 
 Later QG counterexamples show that additional support-two mechanisms exist beyond the first finite-domain split/borrow classification. Yet none can require support three. A compiler may therefore admit a simple exact normal form even when the internal phase diagram of that normal form remains rich.
 
-### 9.3 The practical next question is objective dependence
+### 10.3 Constraint rank and objective dependence
 
-The theorem is proved for the frozen support-count objective. Hardware-aware weights can change which structural trades are profitable, and later QG work explicitly finds objective-dependent support phases. The correct next step for application is not to generalize this theorem by rhetoric but to derive the corresponding phase regions under compiled resource models.
+The general theorem separates two sources of support complexity. Constraint rank
+controls how many active coordinates can be irreducible under parity-preserving
+deletion; the refund-versus-penalty inequalities determine whether deletion is
+cost-dominated. Hardware-aware weights can change which structural trades are
+profitable, and later QG work explicitly finds objective-dependent support
+phases. The correct next step is to derive those phase regions and their sharp
+counterexamples under compiled resource models.
 
 ---
 
-## 10. Claim boundary
+## 11. Claim boundary
 
 We claim:
 
-1. an analytic all-`n` support-two normal-form theorem for the frozen R6M grammar/objective;
-2. an exact two-qubit support-one counterexample;
-3. the sharp intrinsic uniform support number `kappa_R6M=2`;
-4. correspondence between the proof's weight-two obstruction and an exact optimal coupling witness;
-5. finite-domain zero-error R6Q classification on its 9,771 registered rows;
-6. a prospectively frozen R6R fresh-subject confirmation;
-7. bounded supporting chemistry/majorization results with their stated scopes.
+1. a constraint-rank support normal form for deletion-dominated binary systems;
+2. tightness of the rank bound over the abstract system class and a conditional support-`s+1` shared-Tag corollary;
+3. an analytic all-`n` support-two normal-form theorem for the frozen R6M grammar/objective;
+4. an exact two-qubit support-one counterexample;
+5. the sharp intrinsic uniform support number `kappa_R6M=2`;
+6. correspondence between the proof's weight-two obstruction and an exact optimal coupling witness;
+7. finite-domain zero-error R6Q classification on its 9,771 registered rows;
+8. a prospectively frozen R6R fresh-subject confirmation;
+9. bounded supporting chemistry/majorization results with their stated scopes.
 
 We do not claim:
 
 - novelty of TARE, unitary partitioning or Pauli-frame/symplectic optimization;
-- support-two sufficiency outside the declared grammar/objective;
+- that every multi-Tag TARE grammar satisfies deletion dominance or attains the rank bound sharply;
+- support-two sufficiency outside the declared R6M grammar/objective;
 - a complete all-`n` two-trade taxonomy;
 - algorithmic speedup over the existing exact DP;
 - a universal block-encoding lower bound;
