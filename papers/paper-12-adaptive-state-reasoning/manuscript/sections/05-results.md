@@ -1,56 +1,69 @@
 # Results
 
-The historical runner printed its preregistered superiority terminal. The later
-comparison-validity adjudication withholds that claim authority. The current
-bounded authority comes from the prospectively frozen P12B equal-action result.
-The historical protected terminal is
-`P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current claim authority is
-`P12A_SUPERIORITY_AUTHORITY_WITHHELD` under
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`.
+## Comparator correction and equal-action successor
 
-| policy | mean verified success |
-|---|---:|
-| `JOINT_FROZEN` | **0.858154** |
-| `FIXED_11` | 0.515503 |
-| `ADAPTIVE_STATE_ONLY` | 0.463135 |
-| `ADAPTIVE_REASON_ONLY` | 0.452759 |
+The historical P12A runner printed
+P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED, but the later capability audit
+found that the joint arm could emit four allocations and the named one-axis
+arms only two. P12A_SUPERIORITY_AUTHORITY_WITHHELD is therefore the binding
+P12A disposition.
 
-The joint policy improves over the better one-axis adaptive policy by **mean `+0.334717`**, family-block 95% bootstrap CI **`[0.286008, 0.382693]`**.
+P12B changes the estimand rather than the threshold. Every signal policy may
+emit the same four allocations under budget two. The independent unit is one
+family RNG block (n=32); 1,024 episodes in a block are technical observations.
+Mean two-signal gain over the stronger one-signal arm is **0.253906**, the
+stratified family-block 95% bootstrap interval is **[0.251221, 0.256653]**, and
+minimum family gain is **0.196289**. An append-only locked-environment
+revalidation reproduces the result under CPython 3.12.13 and NumPy 2.5.2. Its
+terminal is P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED.
 
-The **worst held-out family gain is `+0.158203`**. Joint versus fixed `(1,1)` gain is **`+0.342651`** on average. Every allocation respects the two-unit budget, the oracle ceiling holds in every family, and two fresh executions produce the identical SHA-256
+## Unchanged three-domain transfer
 
-`0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947`.
+One frozen allocator reads pending multiplicity, declared materialization cost
+and the shared budget; it has no domain identifier or domain-specific
+parameter. Across three protected cases in each of SAT propagation, 15x15 path
+planning and 0/1 knapsack, all arms return independently verified exact task
+outputs.
 
-## Why the historical contrast is not a signal-count result
+| domain | reason-only maximum regret | always-materialize maximum regret | allocator regret |
+|---|---:|---:|---:|
+| SAT propagation | 190 | 2 | 0/3 |
+| path planning | 1,202 | 225 | 0/3 |
+| knapsack | 1,102 | 282 | 0/3 |
 
-Both one-axis policies use pre-outcome signals, but they may emit only two
-allocations while `JOINT_FROZEN` may emit four. `ADAPTIVE_STATE_ONLY` has a
-perfect-signal ceiling of 0.475464 and `ADAPTIVE_REASON_ONLY` a ceiling of
-0.463623, both below the winner's achieved 0.858154. The comparison therefore
-does not isolate the value of a second signal.
+The terminal P12_TRANSFER_ALLOCATION_V1_SUPPORTED authorizes only this
+nine-case, three-domain result under each domain's registered charged unit.
 
-## Regime interpretation
+## Preregistered robustness negative
 
-The large gain arises primarily because a one-axis policy's restricted action set
-cannot serve the opposite-axis and jointly limited regimes at any signal value.
+The stress study covers five build/serve price regimes, 45 original and 135
+expanded case-regime cells, four case mixes and three shared-budget mixes. All
+task outputs remain exact, two implementations agree, and the hidden
+parameterization audit is green. The V1 FLAT zero-regret result replicates.
+However, the price-axis verdict is **BROKEN** and the distribution-shift verdict
+is **BROKEN**. No price regime yields zero regret over all 36 case records and
+the registered B1/B2 mixtures fail. This negative was retained without retuning.
 
-Giving one-signal policies the same four allocations yields mean gain 0.040771,
-family-block interval [0.031006, 0.050659], and worst-family gain 0.001953. The
-original positive gate is not met. This failure motivated a new frozen P12B
-rather than a post-hoc threshold change.
+## Price-aware exact-certificate successor
 
-## Prospectively frozen P12B
+The separately preregistered successor optimizes the same charged objective by
+0/1-knapsack dynamic programming. It reads exact published per-structure
+reason-serve and state-serve certificates plus prices and the nominal budget.
+It adds no free parameter and reaches zero priced regret in all **195** frozen
+case/mix cells; independent exhaustive selection agrees. Its terminal is
+P12_PRICE_AWARE_SUCCESSOR_SUPPORTED.
 
-P12B gives all three arms the same four actions and budget two, and scores the
-exact required allocation. The independent unit is one family RNG block
-(`n=32`); 1,024 episodes within each block are technical observations. Mean
-two-signal gain over the stronger one-signal arm is 0.253906. The stratified
-family-block 95% bootstrap interval is [0.251221, 0.256653], minimum family gain
-is 0.196289, and every fixed sigma stratum exceeds 0.21. Two fresh subprocess
-payloads are byte-identical, supporting the controlled equal-action
-signal-complementarity claim. An append-only V1.1 revalidation reproduces the
-same values under the repository lock's CPython 3.12.13 and NumPy 2.5.2
-environment; the original environment receipt remains unchanged.
-original positive gate then returns
-`P12A_JOINT_ALLOCATION_SUPERIORITY_GATE_NOT_MET`. A new frozen P12B, not a
-post-hoc threshold change, is required for positive authority.
+This does not show that exact certificates are available before an action. The
+successor is a conditional construction-level result, not a forward-time
+allocator.
+
+## Selection-information boundary
+
+The selection-sufficiency falsifier checks 7,147,140 reduced-state cells with
+zero mismatches and catches all three registered wrong selectors. The
+certificate-necessity falsifier verifies that every registered coarsening
+(sign, interval, threshold and certificate-free) admits an indistinguishable
+pair with different unique optima, while the exact-field control admits none.
+The terminals are P12_SELECTION_SUFFICIENCY_THEOREM_FALSIFIER_GREEN and
+P12_CERTIFICATE_NECESSITY_THEOREM_FALSIFIER_GREEN. This is an exact boundary
+inside the declared additive finite environment.

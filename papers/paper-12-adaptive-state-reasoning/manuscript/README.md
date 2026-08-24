@@ -5,7 +5,8 @@ This directory is the editable publication source for ORION-P12.
 - Every chapter has one canonical human-editable Markdown file in `sections/`.
 - Every chapter has a matching `.tex` wrapper with the same stem.
 - `main.tex` assembles the paper.
-- The historical integrated `../MANUSCRIPT.md` remains as the frozen peer-review snapshot that seeded this split.
+- The historical integrated `../MANUSCRIPT.md` is explicitly noncanonical.
+- `../P12_ACTIVE_CLAIM_AUTHORITY_V4.json` is the sole current claim authority.
 - Scientific protocols, receipts, and replay adjudication remain outside `paper/` so prose edits cannot silently mutate evidence authority.
 
 Edit the `.md` chapter first. The sibling `.tex` file is intentionally thin and imports that text via the LaTeX `markdown` package.

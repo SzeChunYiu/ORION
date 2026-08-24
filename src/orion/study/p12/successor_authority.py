@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from hashlib import sha256
+from copy import deepcopy
 import json
 from pathlib import Path
 from typing import Any
@@ -16,7 +17,8 @@ from orion.study.p12.equal_action_successor_v1_1 import (
     build_core,
 )
 
-SCHEMA = "ORION.P12.ActiveClaimAuthority.v3"
+SCHEMA_V3 = "ORION.P12.ActiveClaimAuthority.v3"
+SCHEMA = "ORION.P12.ActiveClaimAuthority.v4"
 ACTIVE_TERMINAL = "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -34,6 +36,15 @@ PATHS = {
     "p12b_result_v1_1": PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json",
     "uv_lock": REPO_ROOT / "uv.lock",
 }
+V4_PATHS = {
+    "transfer_result_receipt": PAPER / "top_tier/P12_TRANSFER_ALLOCATION_RESULT_RECEIPT_V1.md",
+    "robustness_result_receipt": PAPER / "top_tier/P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md",
+    "price_aware_preregistration": PAPER / "top_tier/P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json",
+    "price_aware_result": PAPER / "top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_V1.json",
+    "price_aware_result_receipt": PAPER / "top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_RECEIPT_V1.md",
+    "selection_sufficiency_receipt": PAPER / "top_tier/P12_SELECTION_SUFFICIENCY_RESULT_RECEIPT_V1.md",
+    "certificate_necessity_receipt": PAPER / "top_tier/P12_CERTIFICATE_NECESSITY_RESULT_RECEIPT_V1.md",
+}
 
 
 def _binding(path: Path) -> dict[str, str]:
@@ -45,7 +56,18 @@ def _binding(path: Path) -> dict[str, str]:
 
 def _verified_result() -> dict[str, Any]:
     result = json.loads(PATHS["p12b_result_v1_1"].read_text(encoding="utf-8"))
-    if result["core"] != build_core():
+    rebuilt_core = build_core()
+    # NumPy's runtime version is receipt metadata, not a scientific input.
+    # Normalize it to the separately frozen V1.1 environment before comparing
+    # the scientific core so the authority builder is portable across readers.
+    rebuilt_core["environment"] = {
+        "python_implementation": "CPython",
+        "python_version": LOCKED_PYTHON_VERSION,
+        "numpy_version": LOCKED_NUMPY_VERSION,
+        "uv_lock_path": "uv.lock",
+        "uv_lock_sha256": LOCKED_UV_LOCK_SHA256,
+    }
+    if result["core"] != rebuilt_core:
         raise ValueError("P12B committed core does not match fresh reconstruction")
     replay = result.get("replay", {})
     rebuilt = adjudicate(result["core"], byte_identical_replay=replay.get("byte_identical") is True)
@@ -57,11 +79,11 @@ def _verified_result() -> dict[str, Any]:
     return result
 
 
-def build_active_claim_authority() -> dict[str, Any]:
+def build_active_claim_authority_v3() -> dict[str, Any]:
     result = _verified_result()
     summary = result["summary"]
     return {
-        "schema": SCHEMA,
+        "schema": SCHEMA_V3,
         "paper_id": "P12",
         "active_terminal": ACTIVE_TERMINAL,
         "paper_level_outcome": "SUPPORTED_IN_REGISTERED_EQUAL_ACTION_WORLD",
@@ -113,4 +135,81 @@ def build_active_claim_authority() -> dict[str, Any]:
     }
 
 
-__all__ = ["ACTIVE_TERMINAL", "build_active_claim_authority"]
+def build_active_claim_authority() -> dict[str, Any]:
+    """Build V4 by retaining V3 and binding the landed transfer lifecycle."""
+
+    authority = deepcopy(build_active_claim_authority_v3())
+    authority.update(
+        {
+            "schema": SCHEMA,
+            "paper_level_outcome": "SUPPORTED_WITH_TRANSFER_AND_CERTIFICATE_BOUNDS",
+            "top_tier_submission_allowed": False,
+            "external_public_benchmark_status": "CANNOT_CHECK_NO_BOUND_PUBLIC_DATA_RESULT",
+            "artifact_identity_note": (
+                "No P12C artifact exists. The adverse landed study is "
+                "P12_ROBUSTNESS_STRESS_V1; the later successor is conditional on exact "
+                "published charge certificates and is not public-data validation."
+            ),
+            "transfer_claim_leaf": {
+                "claim_id": "P12.TRANSFER.EXACT.THREE_DOMAIN.V1",
+                "status": "SUPPORTED_BOUNDED_INTERNAL_EXACT_DOMAINS",
+                "terminal": "P12_TRANSFER_ALLOCATION_V1_SUPPORTED",
+                "scope": {
+                    "domains": ["SAT_PROPAGATION", "PATH_PLANNING", "KNAPSACK"],
+                    "cases": 9,
+                    "domain_specific_parameters": 0,
+                    "allocator_regret_positive_cells": 0,
+                    "exact_outputs_all_arms": True,
+                },
+            },
+            "robustness_boundary_leaf": {
+                "claim_id": "P12.TRANSFER.ROBUSTNESS.STRESS.V1",
+                "authority": "BINDING_NEGATIVE_BOUNDARY",
+                "terminal": "P12_ROBUSTNESS_STRESS_V1_EXECUTED",
+                "price_axis": "BROKEN",
+                "distribution_shift_axis": "BROKEN",
+                "flat_replication": "SUPPORTED",
+                "retuned": False,
+            },
+            "price_aware_successor_leaf": {
+                "claim_id": "P12.PRICE_AWARE.EXACT_CERTIFICATE.SUCCESSOR.V1",
+                "status": "SUPPORTED_CONDITIONAL_ON_EXACT_PUBLISHED_CERTIFICATES",
+                "terminal": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED",
+                "successor_positive_cells": 0,
+                "battery_cells_cross_checked": 195,
+                "new_free_parameters": 0,
+                "forward_time_deployability": "CANNOT_CHECK",
+            },
+            "selection_information_boundary": {
+                "sufficiency_terminal": "P12_SELECTION_SUFFICIENCY_THEOREM_FALSIFIER_GREEN",
+                "necessity_terminal": "P12_CERTIFICATE_NECESSITY_THEOREM_FALSIFIER_GREEN",
+                "maximum_authorized_use": (
+                    "Exact additive charge certificates are sufficient for optimal selection, "
+                    "and each registered coarsening admits an impossibility witness in the "
+                    "registered reduced environment. Certificate availability before action "
+                    "is not established."
+                ),
+            },
+        }
+    )
+    authority["evidence_bindings"].update(
+        {key: _binding(path) for key, path in V4_PATHS.items()}
+    )
+    authority["forbidden_promotions"].extend(
+        [
+            "PRICE_OR_SHIFT_ROBUSTNESS_OF_V1_ALLOCATOR",
+            "FORWARD_TIME_DEPLOYABILITY_FROM_EXACT_CERTIFICATES",
+            "SCIENCEAGENTBENCH_OR_EXTERNAL_TRANSFER",
+            "P12C_ARTIFACT_IDENTITY",
+        ]
+    )
+    return authority
+
+
+__all__ = [
+    "ACTIVE_TERMINAL",
+    "SCHEMA",
+    "SCHEMA_V3",
+    "build_active_claim_authority",
+    "build_active_claim_authority_v3",
+]

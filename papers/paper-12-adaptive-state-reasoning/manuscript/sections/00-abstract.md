@@ -1,24 +1,22 @@
-Test-time scaling is usually treated as a one-dimensional problem: decide how
-much more reasoning, sampling, search or verification to perform. State
-construction creates a second inference action. We formalize the resulting
-two-axis allocation problem under one budget and report a preregistered
-controlled run over 16 held-out generated families. The frozen joint arm scores
-0.8582, versus 0.4631 and 0.4528 for the two named one-axis arms, and the run is
-byte-reproducible. A later comparator-capability audit changes the interpretation,
-not the historical bytes: the joint arm can emit four allocations while each
-one-axis arm can emit only two, and both losing-arm ceilings are below the
-winner's achieved score. With identical four-action sets, the gain is +0.0408,
-the worst-family gain is +0.0020, and the original gate is not met. The
-comparison-validity adjudication therefore withholds P12A superiority authority.
-A prospectively frozen P12B then gives all arms the identical four actions and
-scores exact allocation. Across 32
-independent family RNG blocks, the two-signal arm gains 0.253906 over the
-stronger one-signal arm (stratified family-block 95% bootstrap interval 0.251221
-to 0.256653); every family and every fixed noise stratum passes. Current bounded
-authority is the controlled equal-action signal-complementarity result;
-naturalistic and external-system superiority remain open.
-the worst-family gain is +0.0020, and the original gate is not met. Consequently
-`P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` sets the active terminal to
-`P12A_SUPERIORITY_AUTHORITY_WITHHELD`. P12A motivates the resource-location
-hypothesis but does not establish signal-count superiority; that claim requires
-a prospectively frozen, capability-matched P12B.
+Test-time scaling is usually framed as deciding how much more reasoning to
+perform. We study a different decision: where computation should be spent
+between state construction and downstream reasoning. An initial comparison is
+retained as historical because its action capabilities differed. A
+prospectively frozen equal-action successor isolates signal complementarity:
+across 32 independent simulated family blocks, the two-signal policy improves
+exact allocation accuracy over the stronger one-signal policy by 0.253906
+(stratified family-block 95% interval 0.251221–0.256653).
+
+We then freeze one q/c/B allocation rule and apply it unchanged to SAT
+propagation, grid path planning and 0/1 knapsack. It matches the hindsight
+resource-location oracle in all nine protected cases, while reason-only and
+always-materialize restrictions incur positive regret in every domain. A
+preregistered stress study supplies the critical negative: the q-greedy rule's
+FLAT result replicates, but its price and distribution-shift axes are both
+**BROKEN**. A separately preregistered price-aware successor reaches zero regret
+in all 195 frozen cells when given exact published per-structure charge
+certificates; independent implementations agree. Formal falsifiers support the
+necessity/sufficiency boundary for exact certificate fields in the registered
+finite environment. These are bounded internal exact-domain results, not
+ScienceAgentBench, naturalistic-agent, forward-time-certificate, or external
+validation.
