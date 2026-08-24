@@ -1,7 +1,7 @@
 {
   "schema": "ORION.P6.PublicSelectiveRevalidationProtocol.v1",
-  "status": "FROZEN_NO_RESULTS",
-  "frozen_utc": "2026-08-24T15:10:00Z",
+  "status": "FROZEN_NO_RESULTS_AFTER_OPERATIONAL_REPAIR",
+  "frozen_utc": "2026-08-24T15:31:00Z",
   "issue": 1086,
   "paper": "P6_COMPONENT_OF_P6_P8_UNIFIED_CALCULUS",
   "outcome_accessed": false,
@@ -86,6 +86,12 @@
     "domain_count_for_bonferroni": 3,
     "seed": 660024
   },
+  "acquisition": {
+    "fetch": "initialize an empty repository and fetch the exact frozen commit SHA with depth 2000",
+    "materialization": "one detached checkout of refs/heads/frozen before graph parsing to batch frozen-head blob acquisition",
+    "moving_branch_observation": "record pre/post ls-remote hashes and whether they differ; never substitute the branch head",
+    "failed_attempt_boundary": "the earlier lazy one-blob-per-request attempt was interrupted before any result file or metric existed"
+  },
   "gate": {
     "domain_count": 3,
     "change_sets_per_domain": 100,
@@ -113,7 +119,7 @@
   },
   "runner": {
     "path": "development/p6-public-selective-revalidation-v1/run_p6_public_selective_revalidation_v1.py",
-    "sha256": "29c02ca7ff2f6ba648567f48d9940daa92eecbc7de120c25421e1073bc14d11c"
+    "sha256": "40a6731b41b0f95e24416160eff92a0f503495dff11177bbe088197c6e6a6730"
   },
   "authority": {
     "closes_issue_box": false,

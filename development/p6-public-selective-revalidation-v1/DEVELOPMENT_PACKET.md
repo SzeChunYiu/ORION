@@ -47,7 +47,13 @@ validation or novelty.
 
 ## Chronology and authority
 
-This increment freezes protocol and runner only and contains no outcome. A later
+An initial clean-main execution attempt was interrupted during nf-core graph
+materialization because partial-clone `git show` issued one fetch per blob. It
+created no result file and exposed no metric. This amended freeze adds one
+detached exact-head checkout before parsing, allowing Git to batch missing head
+blobs; the exact fetched SHA and materialized `HEAD` must both match.
+
+This increment freezes the repaired protocol and runner and contains no outcome. A later
 execution must start from clean `main`, bind committed bytes, use Python 3.12 and
 Git 2.51.1, fetch each exact frozen commit SHA, and retain adverse, null and
 zero-savings rows. Every attempted domain emits either an executed terminal or
