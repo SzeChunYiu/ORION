@@ -82,6 +82,7 @@ theorem ostc_t2_exact_target_sufficiency [Inhabited γ]
     dsimp [decode]
     have hx : ∃ y, interface y = interface x := ⟨x, rfl⟩
     rw [dif_pos hx]
+    exact h x (Classical.choose hx) (Classical.choose_spec hx).symm
 
 
 theorem ostc_t3_fiberwise_optimality
