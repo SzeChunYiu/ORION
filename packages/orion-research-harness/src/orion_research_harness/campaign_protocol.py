@@ -5,11 +5,9 @@ from typing import Any, Mapping, Sequence
 
 from .protocol import content_digest
 
-CAMPAIGN_STATE_SCHEMA = "ORION.ResearchCampaignState.v1"
-CAMPAIGN_DECISION_SCHEMA = "ORION.ResearchCampaignDecision.v1"
-CAMPAIGN_TRANSITION_SCHEMA = "ORION.ResearchCampaignTransition.v1"
-_HEX = set("0123456789abcdef")
-
+_STATE_SCHEMA = "ORION.ResearchCampaignState.v1"
+_DECISION_SCHEMA = "ORION.ResearchCampaignDecision.v1"
+_TRANSITION_SCHEMA = "ORION.ResearchCampaignTransition.v1"
 _AUTHORITY_FIELDS = (
     "grants_scientific_authority",
     "grants_novelty_authority",
@@ -20,60 +18,35 @@ _AUTHORITY_FIELDS = (
 )
 
 
-def _authority_false() -> dict[str, bool]:
+def authority_false() -> dict[str, bool]:
     return {key: False for key in _AUTHORITY_FIELDS}
 
 
-def _require_string(value: Any, *, name: str, nonempty: bool = True) -> str:
+def _string(value: Any, name: str, *, allow_empty: bool = False) -> str:
     if not isinstance(value, str):
         raise TypeError(f"{name} must be a string")
-    if nonempty and not value.strip():
+    if not allow_empty and not value.strip():
         raise ValueError(f"{name} must be non-empty")
     return value
 
 
-def _require_bool(value: Any, *, name: str) -> bool:
-    if not isinstance(value, bool):
-        raise TypeError(f"{name} must be a boolean")
-    return value
-
-
-def _require_nonnegative_int(value: Any, *, name: str) -> int:
-    if not isinstance(value, int) or isinstance(value, bool):
-        raise TypeError(f"{name} must be an integer")
-    if value < 0:
-        raise ValueError(f"{name} must be non-negative")
-    return value
-
-
-def _require_digest(value: Any, *, name: str) -> str:
-    digest = _require_string(value, name=name)
-    if len(digest) != 64 or any(character not in _HEX for character in digest):
+def _digest(value: Any, name: str) -> str:
+    value = _string(value, name)
+    if len(value) != 64 or any(ch not in "0123456789abcdef" for ch in value):
         raise ValueError(f"{name} must be a lowercase SHA-256 digest")
-    return digest
+    return value
 
 
-def _require_array(value: Any, *, name: str) -> tuple[Any, ...]:
-    if isinstance(value, (str, bytes)) or not isinstance(value, (tuple, list)):
+def _strings(value: Any, name: str) -> tuple[str, ...]:
+    if isinstance(value, (str, bytes)) or not isinstance(value, (list, tuple)):
         raise TypeError(f"{name} must be an array")
-    return tuple(value)
-
-
-def _string_array(value: Any, *, name: str) -> tuple[str, ...]:
-    return tuple(
-        _require_string(item, name=f"{name} entry")
-        for item in _require_array(value, name=name)
-    )
-
-
-def _unique_strings(value: Any, *, name: str) -> tuple[str, ...]:
-    rows = _string_array(value, name=name)
+    rows = tuple(_string(item, f"{name} entry") for item in value)
     if len(rows) != len(set(rows)):
-        raise ValueError(f"duplicate {name}")
-    return tuple(sorted(rows))
+        raise ValueError(f"{name} must not contain duplicates")
+    return rows
 
 
-def _require_authority_false(raw: Mapping[str, Any]) -> None:
+def _authority_must_be_false(raw: Mapping[str, Any]) -> None:
     for key in _AUTHORITY_FIELDS:
         if raw.get(key) is not False:
             raise ValueError(f"campaign authority field must be false: {key}")
@@ -82,20 +55,20 @@ def _require_authority_false(raw: Mapping[str, Any]) -> None:
 @dataclass(frozen=True)
 class ProtectedReference:
     ref_id: str
-    path: str
-    blob: str
+    path: str = ""
+    blob: str = ""
     released: bool = False
 
-    def verify(self) -> None:
-        _require_string(self.ref_id, name="protected ref_id")
-        _require_string(self.path, name="protected path", nonempty=False)
-        _require_string(self.blob, name="protected blob", nonempty=False)
-        _require_bool(self.released, name="protected released")
+    def __post_init__(self) -> None:
+        _string(self.ref_id, "ref_id")
+        _string(self.path, "path", allow_empty=True)
+        _string(self.blob, "blob", allow_empty=True)
+        if not isinstance(self.released, bool):
+            raise TypeError("released must be a boolean")
         if not self.path and not self.blob:
             raise ValueError("protected reference requires path or blob")
 
     def as_dict(self) -> dict[str, Any]:
-        self.verify()
         return {
             "ref_id": self.ref_id,
             "path": self.path,
@@ -107,20 +80,15 @@ class ProtectedReference:
     def from_dict(cls, raw: Mapping[str, Any]) -> "ProtectedReference":
         if not isinstance(raw, Mapping):
             raise TypeError("protected reference must be an object")
-        item = cls(
-            ref_id=_require_string(raw.get("ref_id"), name="protected ref_id"),
-            path=_require_string(
-                raw.get("path", ""), name="protected path", nonempty=False
-            ),
-            blob=_require_string(
-                raw.get("blob", ""), name="protected blob", nonempty=False
-            ),
-            released=_require_bool(
-                raw.get("released", False), name="protected released"
-            ),
+        released = raw.get("released", False)
+        if not isinstance(released, bool):
+            raise TypeError("released must be a boolean")
+        return cls(
+            ref_id=_string(raw.get("ref_id"), "ref_id"),
+            path=_string(raw.get("path", ""), "path", allow_empty=True),
+            blob=_string(raw.get("blob", ""), "blob", allow_empty=True),
+            released=released,
         )
-        item.verify()
-        return item
 
 
 @dataclass(frozen=True)
@@ -136,7 +104,7 @@ class CampaignState:
     history_digests: tuple[str, ...]
     authority_ceiling: str
     state_digest: str
-    schema: str = CAMPAIGN_STATE_SCHEMA
+    schema: str = _STATE_SCHEMA
 
     @property
     def observation_map(self) -> dict[str, str]:
@@ -150,12 +118,12 @@ class CampaignState:
             "phase_id": self.phase_id,
             "cycle_index": self.cycle_index,
             "manifest_digest": self.manifest_digest,
-            "observations": [[key, value] for key, value in self.observations],
+            "observations": [[k, v] for k, v in self.observations],
             "active_hard_obligations": list(self.active_hard_obligations),
             "protected_refs": [item.as_dict() for item in self.protected_refs],
             "history_digests": list(self.history_digests),
             "authority_ceiling": self.authority_ceiling,
-            **_authority_false(),
+            **authority_false(),
         }
 
     def as_dict(self) -> dict[str, Any]:
@@ -163,29 +131,29 @@ class CampaignState:
         return {**self.unsigned(), "state_digest": self.state_digest}
 
     def validate(self) -> None:
-        if self.schema != CAMPAIGN_STATE_SCHEMA:
+        if self.schema != _STATE_SCHEMA:
             raise ValueError("unsupported campaign state schema")
-        _require_string(self.campaign_id, name="campaign_id")
-        _require_string(self.claim_id, name="claim_id")
-        _require_string(self.phase_id, name="phase_id")
-        _require_nonnegative_int(self.cycle_index, name="cycle_index")
-        _require_digest(self.manifest_digest, name="manifest_digest")
-        _require_string(self.authority_ceiling, name="authority_ceiling")
-        if len(self.observations) != len({key for key, _ in self.observations}):
+        _string(self.campaign_id, "campaign_id")
+        _string(self.claim_id, "claim_id")
+        _string(self.phase_id, "phase_id")
+        if not isinstance(self.cycle_index, int) or isinstance(self.cycle_index, bool) or self.cycle_index < 0:
+            raise ValueError("cycle_index must be a non-negative integer")
+        _digest(self.manifest_digest, "manifest_digest")
+        _string(self.authority_ceiling, "authority_ceiling")
+        if len(self.observations) != len({k for k, _ in self.observations}):
             raise ValueError("duplicate campaign observation")
         for key, value in self.observations:
-            _require_string(key, name="campaign observation key")
-            _require_string(value, name="campaign observation value")
-        _unique_strings(self.active_hard_obligations, name="active hard obligation")
+            _string(key, "observation key")
+            _string(value, "observation value")
+        _strings(self.active_hard_obligations, "active_hard_obligations")
         if len(self.protected_refs) != len({item.ref_id for item in self.protected_refs}):
             raise ValueError("duplicate protected reference")
         for item in self.protected_refs:
             if not isinstance(item, ProtectedReference):
                 raise TypeError("protected_refs entries must be ProtectedReference")
-            item.verify()
-        for index, digest in enumerate(self.history_digests):
-            _require_digest(digest, name=f"history_digests[{index}]")
-        _require_digest(self.state_digest, name="state_digest")
+        for index, value in enumerate(self.history_digests):
+            _digest(value, f"history_digests[{index}]")
+        _digest(self.state_digest, "state_digest")
         if self.state_digest != content_digest(self.unsigned()):
             raise ValueError("campaign state digest mismatch")
 
@@ -206,93 +174,52 @@ class CampaignState:
     ) -> "CampaignState":
         if not isinstance(observations, Mapping):
             raise TypeError("observations must be an object")
-        observation_rows = tuple(
-            sorted(
-                (
-                    _require_string(key, name="campaign observation key"),
-                    _require_string(value, name="campaign observation value"),
-                )
-                for key, value in observations.items()
-            )
-        )
-        obligation_rows = _unique_strings(
-            active_hard_obligations, name="active hard obligation"
-        )
-        protected_rows = _require_array(protected_refs, name="protected_refs")
-        for item in protected_rows:
-            if not isinstance(item, ProtectedReference):
-                raise TypeError("protected_refs entries must be ProtectedReference")
-            item.verify()
-        history_rows = _string_array(history_digests, name="history_digests")
-        for index, digest in enumerate(history_rows):
-            _require_digest(digest, name=f"history_digests[{index}]")
-        base = cls(
-            campaign_id=_require_string(campaign_id, name="campaign_id"),
-            claim_id=_require_string(claim_id, name="claim_id"),
-            phase_id=_require_string(phase_id, name="phase_id"),
-            cycle_index=_require_nonnegative_int(cycle_index, name="cycle_index"),
-            manifest_digest=_require_digest(manifest_digest, name="manifest_digest"),
-            observations=observation_rows,
-            active_hard_obligations=obligation_rows,
-            protected_refs=tuple(protected_rows),
-            history_digests=history_rows,
-            authority_ceiling=_require_string(
-                authority_ceiling, name="authority_ceiling"
-            ),
+        rows = tuple(sorted((_string(k, "observation key"), _string(v, "observation value")) for k, v in observations.items()))
+        obligations = _strings(tuple(active_hard_obligations), "active_hard_obligations")
+        refs = tuple(protected_refs)
+        history = tuple(history_digests)
+        seed = cls(
+            campaign_id=_string(campaign_id, "campaign_id"),
+            claim_id=_string(claim_id, "claim_id"),
+            phase_id=_string(phase_id, "phase_id"),
+            cycle_index=cycle_index,
+            manifest_digest=_digest(manifest_digest, "manifest_digest"),
+            observations=rows,
+            active_hard_obligations=obligations,
+            protected_refs=refs,
+            history_digests=history,
+            authority_ceiling=_string(authority_ceiling, "authority_ceiling"),
             state_digest="",
         )
-        state = cls(**{**base.__dict__, "state_digest": content_digest(base.unsigned())})
+        state = cls(**{**seed.__dict__, "state_digest": content_digest(seed.unsigned())})
         state.validate()
         return state
 
     @classmethod
     def from_dict(cls, raw: Mapping[str, Any]) -> "CampaignState":
-        if not isinstance(raw, Mapping):
-            raise TypeError("campaign state must be an object")
-        if raw.get("schema") != CAMPAIGN_STATE_SCHEMA:
+        if not isinstance(raw, Mapping) or raw.get("schema") != _STATE_SCHEMA:
             raise ValueError("unsupported campaign state schema")
-        _require_authority_false(raw)
-        observations_raw = _require_array(raw.get("observations"), name="observations")
-        observations: list[tuple[str, str]] = []
-        for index, row in enumerate(observations_raw):
-            pair = _require_array(row, name=f"observations[{index}]")
-            if len(pair) != 2:
-                raise ValueError(f"observations[{index}] must have two entries")
-            observations.append(
-                (
-                    _require_string(pair[0], name=f"observations[{index}][0]"),
-                    _require_string(pair[1], name=f"observations[{index}][1]"),
-                )
-            )
+        _authority_must_be_false(raw)
+        obs_raw = raw.get("observations", ())
+        if not isinstance(obs_raw, list):
+            raise TypeError("observations must be an array")
+        observations = []
+        for row in obs_raw:
+            if not isinstance(row, list) or len(row) != 2:
+                raise ValueError("observation row must contain two entries")
+            observations.append((_string(row[0], "observation key"), _string(row[1], "observation value")))
         state = cls(
-            schema=CAMPAIGN_STATE_SCHEMA,
-            campaign_id=_require_string(raw.get("campaign_id"), name="campaign_id"),
-            claim_id=_require_string(raw.get("claim_id"), name="claim_id"),
-            phase_id=_require_string(raw.get("phase_id"), name="phase_id"),
-            cycle_index=_require_nonnegative_int(
-                raw.get("cycle_index"), name="cycle_index"
-            ),
-            manifest_digest=_require_digest(
-                raw.get("manifest_digest"), name="manifest_digest"
-            ),
+            campaign_id=_string(raw.get("campaign_id"), "campaign_id"),
+            claim_id=_string(raw.get("claim_id"), "claim_id"),
+            phase_id=_string(raw.get("phase_id"), "phase_id"),
+            cycle_index=raw.get("cycle_index"),
+            manifest_digest=_digest(raw.get("manifest_digest"), "manifest_digest"),
             observations=tuple(observations),
-            active_hard_obligations=_unique_strings(
-                raw.get("active_hard_obligations", ()),
-                name="active hard obligation",
-            ),
-            protected_refs=tuple(
-                ProtectedReference.from_dict(item)
-                for item in _require_array(
-                    raw.get("protected_refs", ()), name="protected_refs"
-                )
-            ),
-            history_digests=_string_array(
-                raw.get("history_digests", ()), name="history_digests"
-            ),
-            authority_ceiling=_require_string(
-                raw.get("authority_ceiling"), name="authority_ceiling"
-            ),
-            state_digest=_require_digest(raw.get("state_digest"), name="state_digest"),
+            active_hard_obligations=_strings(raw.get("active_hard_obligations", ()), "active_hard_obligations"),
+            protected_refs=tuple(ProtectedReference.from_dict(item) for item in raw.get("protected_refs", ())),
+            history_digests=_strings(raw.get("history_digests", ()), "history_digests"),
+            authority_ceiling=_string(raw.get("authority_ceiling"), "authority_ceiling"),
+            state_digest=_digest(raw.get("state_digest"), "state_digest"),
         )
         state.validate()
         return state
@@ -308,9 +235,8 @@ class CampaignDecision:
     revision: Mapping[str, Any]
     computation: Mapping[str, Any]
     control: Mapping[str, Any]
-    shadow_control: Mapping[str, Any] | None
     decision_digest: str
-    schema: str = CAMPAIGN_DECISION_SCHEMA
+    schema: str = _DECISION_SCHEMA
 
     def unsigned(self) -> dict[str, Any]:
         return {
@@ -323,8 +249,7 @@ class CampaignDecision:
             "revision": dict(self.revision),
             "computation": dict(self.computation),
             "control": dict(self.control),
-            "shadow_control": None if self.shadow_control is None else dict(self.shadow_control),
-            **_authority_false(),
+            **authority_false(),
         }
 
     def as_dict(self) -> dict[str, Any]:
@@ -332,25 +257,14 @@ class CampaignDecision:
         return {**self.unsigned(), "decision_digest": self.decision_digest}
 
     def validate(self) -> None:
-        if self.schema != CAMPAIGN_DECISION_SCHEMA:
+        if self.schema != _DECISION_SCHEMA:
             raise ValueError("unsupported campaign decision schema")
-        _require_string(self.phase_id, name="decision phase_id")
+        _string(self.phase_id, "phase_id")
         if self.selected_kind is not None:
-            _require_string(self.selected_kind, name="selected_kind")
+            _string(self.selected_kind, "selected_kind")
         if self.selected_id is not None:
-            _require_string(self.selected_id, name="selected_id")
-        for name, value in (
-            ("responsibility", self.responsibility),
-            ("interface", self.interface),
-            ("revision", self.revision),
-            ("computation", self.computation),
-            ("control", self.control),
-        ):
-            if not isinstance(value, Mapping):
-                raise TypeError(f"{name} must be an object")
-        if self.shadow_control is not None and not isinstance(self.shadow_control, Mapping):
-            raise TypeError("shadow_control must be an object or null")
-        _require_digest(self.decision_digest, name="decision_digest")
+            _string(self.selected_id, "selected_id")
+        _digest(self.decision_digest, "decision_digest")
         if self.decision_digest != content_digest(self.unsigned()):
             raise ValueError("campaign decision digest mismatch")
 
@@ -361,12 +275,12 @@ class CampaignTransition:
     cycle_index: int
     before_state_digest: str
     decision_digest: str
-    capability_request_digest: str | None
-    capability_result_digest: str | None
+    request_digest: str | None
+    result_digest: str | None
     after_state_digest: str
     terminal: str
     transition_digest: str
-    schema: str = CAMPAIGN_TRANSITION_SCHEMA
+    schema: str = _TRANSITION_SCHEMA
 
     def unsigned(self) -> dict[str, Any]:
         return {
@@ -375,11 +289,11 @@ class CampaignTransition:
             "cycle_index": self.cycle_index,
             "before_state_digest": self.before_state_digest,
             "decision_digest": self.decision_digest,
-            "capability_request_digest": self.capability_request_digest,
-            "capability_result_digest": self.capability_result_digest,
+            "request_digest": self.request_digest,
+            "result_digest": self.result_digest,
             "after_state_digest": self.after_state_digest,
             "terminal": self.terminal,
-            **_authority_false(),
+            **authority_false(),
         }
 
     def as_dict(self) -> dict[str, Any]:
@@ -387,22 +301,31 @@ class CampaignTransition:
         return {**self.unsigned(), "transition_digest": self.transition_digest}
 
     def validate(self) -> None:
-        if self.schema != CAMPAIGN_TRANSITION_SCHEMA:
+        if self.schema != _TRANSITION_SCHEMA:
             raise ValueError("unsupported campaign transition schema")
-        _require_string(self.campaign_id, name="transition campaign_id")
-        _require_nonnegative_int(self.cycle_index, name="transition cycle_index")
-        _require_digest(self.before_state_digest, name="before_state_digest")
-        _require_digest(self.decision_digest, name="decision_digest")
-        if self.capability_request_digest is not None:
-            _require_digest(
-                self.capability_request_digest, name="capability_request_digest"
-            )
-        if self.capability_result_digest is not None:
-            _require_digest(
-                self.capability_result_digest, name="capability_result_digest"
-            )
-        _require_digest(self.after_state_digest, name="after_state_digest")
-        _require_string(self.terminal, name="transition terminal")
-        _require_digest(self.transition_digest, name="transition_digest")
+        _string(self.campaign_id, "campaign_id")
+        if not isinstance(self.cycle_index, int) or isinstance(self.cycle_index, bool) or self.cycle_index < 0:
+            raise ValueError("cycle_index must be a non-negative integer")
+        for value, name in (
+            (self.before_state_digest, "before_state_digest"),
+            (self.decision_digest, "decision_digest"),
+            (self.after_state_digest, "after_state_digest"),
+            (self.transition_digest, "transition_digest"),
+        ):
+            _digest(value, name)
+        if self.request_digest is not None:
+            _digest(self.request_digest, "request_digest")
+        if self.result_digest is not None:
+            _digest(self.result_digest, "result_digest")
+        _string(self.terminal, "terminal")
         if self.transition_digest != content_digest(self.unsigned()):
             raise ValueError("campaign transition digest mismatch")
+
+
+__all__ = [
+    "CampaignDecision",
+    "CampaignState",
+    "CampaignTransition",
+    "ProtectedReference",
+    "authority_false",
+]
