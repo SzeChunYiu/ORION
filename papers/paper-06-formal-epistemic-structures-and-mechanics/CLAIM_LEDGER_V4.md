@@ -29,3 +29,9 @@ The zero-mismatch ideal-product result is a portability theorem, not a loss of c
 
 ## Scope ceiling
 The registered formal envelope does not itself establish deployed-agent performance, universal minimality of the five lift coordinates, or novelty for donor-owned certificate mechanisms. Those are separate empirical or literature claims rather than qualifications on the proved certificate-lifting and necessary-and-sufficient repair result.
+
+## Independent clean-room replay authority (2026-08-24)
+
+| ID | Permitted claim | Authority | Forbidden upgrade |
+|---|---|---|---|
+| P6.V4.7 | The frozen V2 manifest + V3 local replay bundle was re-executed by a second, independently implemented clean-room unit with a disjoint code path (`evidence/independent/p6_cleanroom_replay_v1.py`): 21/21 contract/manifest digests recompute, the countermodel register re-derives byte-for-byte from its own serializer and schema walk, all 12 hostile-kind verdicts agree under its own decision procedures, and the certificate-lifting SMT obligation re-discharges UNSAT by its own exhaustive two-Boolean enumeration plus a z3 cross-check, with all three weakened mutants live with witnesses. An Ed25519-signed receipt is committed and independently checked (`check_p6_cleanroom_replay_v1.py`, no shared code; tamper-tested). | SUBSTITUTE INDEPENDENT-UNIT REPLAY (operator-approved substitute protocol) | Any empirical, deployed, population, or cross-domain authority; any upgrade of the bounded formal scope; "externally reproduced by an outside party". The substitute is a second implementation inside the programme, not external custodianship. |
