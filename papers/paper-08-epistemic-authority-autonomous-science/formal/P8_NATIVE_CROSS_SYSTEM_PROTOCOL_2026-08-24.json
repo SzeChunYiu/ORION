@@ -1,0 +1,123 @@
+{
+  "schema_version": "orion.p8.native-cross-system-protocol.v1",
+  "contract_id": "P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1",
+  "date_frozen": "2026-08-24",
+  "issue_box": "Execute actual type-distinct native systems and ideal typed-product baseline. Cover every ordered cross-system pair with clean and hostile cases.",
+  "execution_status": "CANNOT_CHECK",
+  "tooling_gap": {
+    "observed": "2026-08-24 in the producing lane: opa, cedar, cosign, in-toto-verify, in_toto, slsa-verifier all absent from PATH; no Docker; lane constraints forbid network installation.",
+    "required_binaries": ["opa", "cedar", "cosign", "in-toto-verify"],
+    "unblock": "an environment permitted to install the pinned binaries runs this protocol unchanged; the slots and acceptance criteria do not re-decide scope."
+  },
+  "systems": [
+    {
+      "id": "OPA",
+      "name": "OPA / Rego",
+      "evidence_type": "policy decision over untyped JSON input",
+      "native_verdict_surface": "boolean / defined-vs-undefined"
+    },
+    {
+      "id": "CDR",
+      "name": "Cedar",
+      "evidence_type": "typed action permit on schema-typed entities",
+      "native_verdict_surface": "Allow / Deny + errors"
+    },
+    {
+      "id": "ITT",
+      "name": "in-toto / SLSA",
+      "evidence_type": "attestation-layout fulfillment by signed links",
+      "native_verdict_surface": "layout verifies / not"
+    },
+    {
+      "id": "SIG",
+      "name": "Sigstore / cosign",
+      "evidence_type": "keyless signature over an identity",
+      "native_verdict_surface": "signature verifies / not"
+    }
+  ],
+  "baseline": {
+    "definition": "the P8 authority calculus typed derivation, componentwise typed product, no undeclared cross-system coercion",
+    "contract": "P8.AUTHORITY.TERMINALS.V1",
+    "ideality_means": "the product construction the paper defines; not a claim of equality with any native system's internals"
+  },
+  "ordered_pairs": [
+    {
+      "emitter": "OPA", "consumer": "CDR",
+      "clean_case_id": "P8.NC.OPA_CDR.CLEAN", "hostile_case_id": "P8.NC.OPA_CDR.HOSTILE",
+      "hostile_mechanism": "untyped policy allow presented as a typed action permit: type-confused principal"
+    },
+    {
+      "emitter": "CDR", "consumer": "OPA",
+      "clean_case_id": "P8.NC.CDR_OPA.CLEAN", "hostile_case_id": "P8.NC.CDR_OPA.HOSTILE",
+      "hostile_mechanism": "schema-typed entity name reused as an untyped Rego role string: role-name collision"
+    },
+    {
+      "emitter": "OPA", "consumer": "ITT",
+      "clean_case_id": "P8.NC.OPA_ITT.CLEAN", "hostile_case_id": "P8.NC.OPA_ITT.HOSTILE",
+      "hostile_mechanism": "allow decision replayed as a step fulfillment: no artifact-digest binding"
+    },
+    {
+      "emitter": "ITT", "consumer": "OPA",
+      "clean_case_id": "P8.NC.ITT_OPA.CLEAN", "hostile_case_id": "P8.NC.ITT_OPA.HOSTILE",
+      "hostile_mechanism": "attestation fed as policy input although not signed for this consumer"
+    },
+    {
+      "emitter": "OPA", "consumer": "SIG",
+      "clean_case_id": "P8.NC.OPA_SIG.CLEAN", "hostile_case_id": "P8.NC.OPA_SIG.HOSTILE",
+      "hostile_mechanism": "policy grant presented as a signing identity: no keyless identity proof"
+    },
+    {
+      "emitter": "SIG", "consumer": "OPA",
+      "clean_case_id": "P8.NC.SIG_OPA.CLEAN", "hostile_case_id": "P8.NC.SIG_OPA.HOSTILE",
+      "hostile_mechanism": "certificate SAN presented as a policy principal outside its scope"
+    },
+    {
+      "emitter": "CDR", "consumer": "ITT",
+      "clean_case_id": "P8.NC.CDR_ITT.CLEAN", "hostile_case_id": "P8.NC.CDR_ITT.HOSTILE",
+      "hostile_mechanism": "typed permit presented as a layout step completion: no link metadata"
+    },
+    {
+      "emitter": "ITT", "consumer": "CDR",
+      "clean_case_id": "P8.NC.ITT_CDR.CLEAN", "hostile_case_id": "P8.NC.ITT_CDR.HOSTILE",
+      "hostile_mechanism": "unverified link fields forged into Cedar entity attributes"
+    },
+    {
+      "emitter": "CDR", "consumer": "SIG",
+      "clean_case_id": "P8.NC.CDR_SIG.CLEAN", "hostile_case_id": "P8.NC.CDR_SIG.HOSTILE",
+      "hostile_mechanism": "policy-local principal presented as a signature identity"
+    },
+    {
+      "emitter": "SIG", "consumer": "CDR",
+      "clean_case_id": "P8.NC.SIG_CDR.CLEAN", "hostile_case_id": "P8.NC.SIG_CDR.HOSTILE",
+      "hostile_mechanism": "cosign identity presented as an entity the schema does not declare"
+    },
+    {
+      "emitter": "ITT", "consumer": "SIG",
+      "clean_case_id": "P8.NC.ITT_SIG.CLEAN", "hostile_case_id": "P8.NC.ITT_SIG.HOSTILE",
+      "hostile_mechanism": "attestation bundle presented as a signature over the artifact bytes"
+    },
+    {
+      "emitter": "SIG", "consumer": "ITT",
+      "clean_case_id": "P8.NC.SIG_ITT.CLEAN", "hostile_case_id": "P8.NC.SIG_ITT.HOSTILE",
+      "hostile_mechanism": "artifact signature presented as a step-execution link"
+    }
+  ],
+  "case_classes": ["clean", "hostile"],
+  "slot_count": 24,
+  "hostile_pass_criterion": "consumer native verdict must not coerce to AUTHORIZED; any AUTHORIZED-on-hostile is a laundering finding and is recorded, never discarded",
+  "clean_pass_criterion": "consumer native verdict coerces to AUTHORIZED and the typed-product baseline is AUTHORIZED; a failing clean case is a conservatism finding",
+  "results_file": "P8_NATIVE_CROSS_SYSTEM_RESULTS.json",
+  "acceptance": [
+    "all 24 slots carry records produced by the pinned binaries",
+    "zero hostile slots coerce to AUTHORIZED",
+    "every divergence between native and baseline is classed",
+    "the results file is committed as data"
+  ],
+  "prohibited_inference": [
+    "simulating any native system and reporting it as execution",
+    "reporting the ideal baseline as any native system's behaviour",
+    "using this protocol's existence as evidence of execution",
+    "re-deriving the DENIED vs CANNOT_CHECK calibration (done in #1096)",
+    "treating a partial run as coverage of every ordered cross-system pair"
+  ]
+}

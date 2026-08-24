@@ -232,3 +232,51 @@ lane, and independent reproduction remains open. P7's other formal core — the
 
 **Current science terminal:**
 `P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT`.
+
+## 19. The exact containment rule (2026-08-24)
+
+Section 18's rule asks whether the intermediate contract is *identical or
+registered-bridged*, and that section keeps the finding that the rule is sound
+but incomplete against the obligation semantics: it refuses composites whose
+contracts demand exactly the same obligations when no bridge has been
+registered. This section replaces the rule; the incompleteness finding about
+the old rule stands, append-only, as the reason the replacement exists.
+
+The replacement is the condition Section 18's own characterization named:
+
+    Contains(a, b)  :=  forall o. Demands(b, o) -> Demands(a, o)
+
+read as "the emitted contract demands every obligation the consumed contract
+demands". Coordinate transport becomes: a composite holds a closure coordinate
+exactly when both legs hold it, and the distinguished `obligations_total`
+coordinate additionally requires `Contains(Tgt t, Src u)`. Nothing else in the
+calculus changes, and nothing is typed by a caller or waiting on a registrar:
+the hand-off is a function of the two contracts' obligation content.
+
+Twelve discharges under contract `P7.CONTAIN.EXACT_BRIDGE_RULE.V1`
+(`src/orion/study/p7/exact_containment.py`, receipt
+`formal/mechanized/P7_EXACT_CONTAINMENT_MECHANIZED_2026-08-24.json`, bound by
+`formal/check_exact_containment_binding_v1.py`):
+
+- **Soundness.** Under the obligation semantics alone — which mentions no
+  composition rule — two total legs with a containing hand-off compose to a
+  total composite.
+- **The condition is not droppable.** A model with two total legs, a
+  non-containing hand-off and a non-total composite exists, so the condition is
+  load-bearing.
+- **Completeness, stated precisely.** The old rule implies containment (nothing
+  previously licensed is lost), and a closed-world witness exhibits a composite
+  the old rule refuses — distinct, unbridged, obligation-equivalent contracts —
+  that the replacement licenses. Together with soundness this is the sense in
+  which the replacement is exact: the weakest condition of this form that keeps
+  totality composing.
+- **Unit and associativity survive.** Containment is reflexive and transitive;
+  the unit laws hold observationally and, under extensionality, as equations;
+  associativity holds both ways. No bridge relation appears anywhere in the new
+  calculus.
+
+What this does not change: the composition calculus of Section 18 and its
+receipt remain bound and un-retracted; the replacement is a second calculus
+whose transport clause differs in one place. The data-heavy sub-box — at least
+two non-retrieval domains with at least fifty transitions per domain — remains
+open: no such corpus exists in the repository, and none is simulated.

@@ -239,3 +239,15 @@ and the standard library only:
 V2.1 closes primitives internal to the theory. It moves neither of the two `CANNOT_CHECK`
 terminals, which depend on literature closure and on a strong baseline discriminator
 respectively, and it does not weaken §10's product-decomposition result.
+
+## Addendum (2026-08-24): native cross-system execution protocol
+
+The P8 native-execution box is frozen as contract
+`P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1` (protocol document plus machine-readable
+twin plus binding checker under `formal/`): twelve ordered cross-system pairs
+over OPA/Rego, Cedar, in-toto/SLSA and Sigstore, clean and hostile cases for
+every pair, ideal typed-product baseline. The protocol **is not executed**:
+the required binaries are absent from the producing environment, the status is
+`CANNOT_CHECK` with the tooling gap recorded, and simulation-as-execution is a
+prohibited inference. Nothing in V2.1's closure or in the §10 product
+decomposition is changed by this addendum.

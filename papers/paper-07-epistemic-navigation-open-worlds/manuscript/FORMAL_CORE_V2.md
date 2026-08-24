@@ -380,3 +380,25 @@ There are no remaining mathematical `THEOREM TARGET` placeholders in V2.
 - `P7_EXTERNAL_AGENT_PERFORMANCE = OPEN_IF_CLAIMED`
 
 A later empirical failure does not make the theory incomplete; it changes the empirical claim or publication disposition.
+
+## Addendum (2026-08-24): the exact containment replacement
+
+`P7.CONTAIN.EXACT_BRIDGE_RULE.V1` replaces the intermediate-contract test
+`Match(a, b) := a = b OR Bridge(a, b)` in the coordinate transport axiom with
+exact containment `Contains(a, b) := forall o. Demands(b, o) -> Demands(a, o)`,
+everything else in the calculus unchanged. Discharged by solver refutation and
+by closed-world witnesses (`src/orion/study/p7/exact_containment.py`):
+
+- `REFLEXIVITY_OF_CONTAINMENT`, `TRANSITIVITY_OF_CONTAINMENT`
+- `EXACT_RULE_IS_SOUND`, `EXACT_RULE_IS_NOT_DROPPABLE`
+- `EXACT_RULE_SUBSUMES_THE_BRIDGE_RULE`,
+  `CONTAINMENT_STRICTLY_WEAKER_THAN_MATCH`
+- `LEFT_IDENTITY_UNDER_EXACT_RULE`, `RIGHT_IDENTITY_UNDER_EXACT_RULE`,
+  `IDENTITY_STRICT_UNDER_EXACT_RULE`
+- `ASSOCIATIVITY_OBSERVABLE_UNDER_EXACT_RULE`,
+  `ASSOCIATIVITY_STRICT_UNDER_EXACT_RULE`
+- `EXACT_CALCULUS_IS_SATISFIABLE` (the vacuity guard: the axiom set has a
+  model, so the PROVED lines are not free facts from a contradiction)
+
+The incompleteness theorem about the *old* rule is not retracted; it is the
+reason the replacement exists. `P7_THEORY = CLOSED_V2` plus this addendum.

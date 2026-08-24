@@ -319,3 +319,17 @@ Three of V4's seven reported quantities are withdrawn here, and the check that
 was supposed to validate change propagation is shown to have asserted
 tautologies. The result is a smaller set of claims held more firmly. That
 exchange is the point of the exercise.
+
+## The exact commutation statement, kernel-mechanized
+
+Theorem 7's full statement — multi-component environments, mechanics that are
+read-footprint faithful and write-footprint faithful over their declared
+footprints, fully scientifically separated — is now checked as a kernel proof
+under contract id `P6.COMMUTE.EXACT_THEOREM7.V1`: 450 rule applications in an
+LCF-style kernel, the serialized log replayed from nothing in a fresh kernel
+(reproducing the exact conclusion, all residual hypotheses inside the theory),
+and a z3 cross-check of the same sentence alongside. The conclusion pairs
+equality of the two scientific projections with swap-equivalence of the two
+ordered histories under independent events. The kernel is ORION-authored
+Python, not Lean and not independently reviewed; that boundary is recorded in
+the mechanized artifact with the replay verdict.
