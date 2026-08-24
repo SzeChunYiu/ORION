@@ -1,0 +1,458 @@
+{
+  "invertibility_guard": {
+    "instances_checked": 1024,
+    "meaning": "both serializations provably carry the same information",
+    "round_trip_failed": 0,
+    "round_trip_ok": 1024
+  },
+  "per_domain": {
+    "cache_admission": {
+      "arms": {
+        "exact_oracle": {
+          "invertible": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "note": "attainable ceiling, not a competitor: the gold labels are this predicate",
+          "relational": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "structure_read_directly": {
+            "accuracy": 1.0,
+            "n_test": 128
+          }
+        },
+        "invertible": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 1,
+            "distinct_feature_vectors": 62,
+            "error_floor": 0.03125,
+            "forced_errors": 4
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "ALIGNED": 32,
+                "OBSTRUCTION": 64,
+                "UNRESOLVED": 32
+              }
+            },
+            "linear": {
+              "accuracy": 0.5,
+              "macro_f1": 0.222222,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 128
+              }
+            },
+            "tree": {
+              "accuracy": 0.75,
+              "macro_f1": 0.6,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        },
+        "majority_class_null": {
+          "accuracy": 0.5,
+          "macro_f1": 0.222222,
+          "note": "a learner that does not beat this has not been shown to read anything",
+          "predicted_label": "OBSTRUCTION"
+        },
+        "relational": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 0,
+            "distinct_feature_vectors": 13,
+            "error_floor": 0.0,
+            "forced_errors": 0
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "ALIGNED": 32,
+                "OBSTRUCTION": 64,
+                "UNRESOLVED": 32
+              }
+            },
+            "linear": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 32,
+                "OBSTRUCTION": 64,
+                "UNRESOLVED": 32
+              }
+            },
+            "tree": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 32,
+                "OBSTRUCTION": 64,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        }
+      },
+      "n_test": 128,
+      "n_train": 384,
+      "test_label_support": {
+        "ALIGNED": 32,
+        "OBSTRUCTION": 64,
+        "UNRESOLVED": 32
+      },
+      "train_domains": [
+        "numerical_methods",
+        "graph_algorithms",
+        "transactional_workflows"
+      ]
+    },
+    "graph_algorithms": {
+      "arms": {
+        "exact_oracle": {
+          "invertible": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "note": "attainable ceiling, not a competitor: the gold labels are this predicate",
+          "relational": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "structure_read_directly": {
+            "accuracy": 1.0,
+            "n_test": 128
+          }
+        },
+        "invertible": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 1,
+            "distinct_feature_vectors": 62,
+            "error_floor": 0.03125,
+            "forced_errors": 4
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 0.75,
+              "macro_f1": 0.6,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            },
+            "linear": {
+              "accuracy": 0.25,
+              "macro_f1": 0.133333,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 128
+              }
+            },
+            "tree": {
+              "accuracy": 0.75,
+              "macro_f1": 0.6,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        },
+        "majority_class_null": {
+          "accuracy": 0.5,
+          "macro_f1": 0.222222,
+          "note": "a learner that does not beat this has not been shown to read anything",
+          "predicted_label": "OBSTRUCTION"
+        },
+        "relational": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 0,
+            "distinct_feature_vectors": 13,
+            "error_floor": 0.0,
+            "forced_errors": 0
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 0.75,
+              "macro_f1": 0.6,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            },
+            "linear": {
+              "accuracy": 0.78125,
+              "macro_f1": 0.805217,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 60,
+                "OBSTRUCTION": 36,
+                "UNRESOLVED": 32
+              }
+            },
+            "tree": {
+              "accuracy": 0.96875,
+              "macro_f1": 0.969639,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 36,
+                "OBSTRUCTION": 60,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        }
+      },
+      "n_test": 128,
+      "n_train": 384,
+      "test_label_support": {
+        "ALIGNED": 32,
+        "OBSTRUCTION": 64,
+        "UNRESOLVED": 32
+      },
+      "train_domains": [
+        "numerical_methods",
+        "transactional_workflows",
+        "cache_admission"
+      ]
+    },
+    "numerical_methods": {
+      "arms": {
+        "exact_oracle": {
+          "invertible": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "note": "attainable ceiling, not a competitor: the gold labels are this predicate",
+          "relational": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "structure_read_directly": {
+            "accuracy": 1.0,
+            "n_test": 128
+          }
+        },
+        "invertible": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 0,
+            "distinct_feature_vectors": 62,
+            "error_floor": 0.0,
+            "forced_errors": 0
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "ALIGNED": 36,
+                "OBSTRUCTION": 60,
+                "UNRESOLVED": 32
+              }
+            },
+            "linear": {
+              "accuracy": 0.46875,
+              "macro_f1": 0.212766,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 128
+              }
+            },
+            "tree": {
+              "accuracy": 0.71875,
+              "macro_f1": 0.589744,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        },
+        "majority_class_null": {
+          "accuracy": 0.46875,
+          "macro_f1": 0.212766,
+          "note": "a learner that does not beat this has not been shown to read anything",
+          "predicted_label": "OBSTRUCTION"
+        },
+        "relational": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 0,
+            "distinct_feature_vectors": 11,
+            "error_floor": 0.0,
+            "forced_errors": 0
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "ALIGNED": 36,
+                "OBSTRUCTION": 60,
+                "UNRESOLVED": 32
+              }
+            },
+            "linear": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 36,
+                "OBSTRUCTION": 60,
+                "UNRESOLVED": 32
+              }
+            },
+            "tree": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 36,
+                "OBSTRUCTION": 60,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        }
+      },
+      "n_test": 128,
+      "n_train": 384,
+      "test_label_support": {
+        "ALIGNED": 36,
+        "OBSTRUCTION": 60,
+        "UNRESOLVED": 32
+      },
+      "train_domains": [
+        "graph_algorithms",
+        "transactional_workflows",
+        "cache_admission"
+      ]
+    },
+    "transactional_workflows": {
+      "arms": {
+        "exact_oracle": {
+          "invertible": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "note": "attainable ceiling, not a competitor: the gold labels are this predicate",
+          "relational": "ARM_DOES_NOT_CONSUME_A_SERIALIZATION",
+          "structure_read_directly": {
+            "accuracy": 1.0,
+            "n_test": 128
+          }
+        },
+        "invertible": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 1,
+            "distinct_feature_vectors": 62,
+            "error_floor": 0.03125,
+            "forced_errors": 4
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 0.5,
+              "macro_f1": 0.222222,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "OBSTRUCTION": 128
+              }
+            },
+            "linear": {
+              "accuracy": 0.75,
+              "macro_f1": 0.6,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            },
+            "tree": {
+              "accuracy": 0.75,
+              "macro_f1": 0.6,
+              "n_test": 128,
+              "predicted_label_support": {
+                "OBSTRUCTION": 96,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        },
+        "majority_class_null": {
+          "accuracy": 0.5,
+          "macro_f1": 0.222222,
+          "note": "a learner that does not beat this has not been shown to read anything",
+          "predicted_label": "OBSTRUCTION"
+        },
+        "relational": {
+          "collision_floor_on_held_out": {
+            "ambiguous_groups": 0,
+            "distinct_feature_vectors": 13,
+            "error_floor": 0.0,
+            "forced_errors": 0
+          },
+          "learners": {
+            "graph_kernel": {
+              "accuracy": 0.5,
+              "macro_f1": 0.222222,
+              "n_test": 128,
+              "note": "WL over the method-comparison graph. Under the invertible serialization the graph is rebuilt by parsing the token stream, so any match with the relational column is a demonstrated recovery, not a shared code path",
+              "predicted_label_support": {
+                "OBSTRUCTION": 128
+              }
+            },
+            "linear": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 32,
+                "OBSTRUCTION": 64,
+                "UNRESOLVED": 32
+              }
+            },
+            "tree": {
+              "accuracy": 1.0,
+              "macro_f1": 1.0,
+              "n_test": 128,
+              "predicted_label_support": {
+                "ALIGNED": 32,
+                "OBSTRUCTION": 64,
+                "UNRESOLVED": 32
+              }
+            }
+          }
+        }
+      },
+      "n_test": 128,
+      "n_train": 384,
+      "test_label_support": {
+        "ALIGNED": 32,
+        "OBSTRUCTION": 64,
+        "UNRESOLVED": 32
+      },
+      "train_domains": [
+        "numerical_methods",
+        "graph_algorithms",
+        "cache_admission"
+      ]
+    }
+  },
+  "protocol": {
+    "held_out_definition": "zero shared value atoms with train (P9 D1 protected-split rule)",
+    "held_out_domains": [
+      "numerical_methods",
+      "graph_algorithms",
+      "transactional_workflows",
+      "cache_admission"
+    ],
+    "instances_per_domain": 128,
+    "train": "the other three domains"
+  },
+  "schema": "P9.SerializationFourDomain.v1",
+  "seed": "p9-serialization-four-domain-v1"
+}
