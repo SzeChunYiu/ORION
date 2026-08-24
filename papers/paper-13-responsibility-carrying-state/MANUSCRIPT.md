@@ -78,6 +78,39 @@ P13 combines a different set of requirements into one operational object:
 
 The novelty is therefore not “certified reuse” in the abstract. It is **responsibility-scoped certified reuse with explicit reopen semantics and exact support conditions**. The historical benchmark's action and cost profile is descriptive; `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json` withholds empirical safety–cost superiority because the published harm endpoint had no reachable opportunities.
 
+### 2.3 Ownership against the neighbouring ORION papers
+
+Three papers in this programme reason about whether something survives a change,
+and the words overlap enough that the boundaries are worth stating rather than
+leaving to a reader to infer.
+
+**P7 and P13 both say "transport", about different objects.** P7 owns
+closure-carrying transport: given a representation, responsibility/ontology or
+objective change, does a previously established *closure* still hold, and can a
+witness-aware policy tell when it does? Its unit is the closure and its failure
+mode is a false closure. P13 owns responsibility-scoped *reuse*: given a change
+of responsibility, may a compact state or an issued support certificate be
+relied on again, and what must be reopened when it may not? Its unit is the
+support relation and its failure mode is unsupported reuse. A closure that
+transports says nothing about whether the state behind it is sufficient for a
+new responsibility, and the digits study here is precisely a case where a state
+is current, provenanced and confident, and still inadequate.
+
+**P13 and P15 both say "certificate", at different layers.** P15 owns the
+admission boundary above execution records: an attestation chain can verify
+perfectly and still authorize no scientific claim, which is why its
+full-key-compromise result is reported as a negative. P13 sits above the object
+rather than the record: it asks whether the *content* a certificate vouches for
+still supports the responsibility now being asked of it. The two failure modes
+are independent -- P15's holds with the content valid and the custody
+unobserved; P13's holds with the signature perfect and the responsibility
+changed -- which is why neither result substitutes for the other.
+
+P14's relation is different again and is not a boundary but a consolidation:
+under issue #1086 decision D7, P13 and P14 are consolidated into one
+machine-verifiable lifecycle-contract safety scope, recorded in §8.1.
+
+
 ## 3. Responsibility-relative sufficiency
 
 Let raw world `X` induce correct output `g_rho(X)` for responsibility `rho`, and let compact representation be `Z=T(X)`.
