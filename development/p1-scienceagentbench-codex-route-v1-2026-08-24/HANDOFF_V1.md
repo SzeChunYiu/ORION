@@ -93,8 +93,9 @@ closed.
 From the repository root, run only:
 
 ```bash
-python development/p1-scienceagentbench-codex-route-v1-2026-08-24/validate_codex_route_v1.py
-shasum -a 256 -c development/p1-scienceagentbench-codex-route-v1-2026-08-24/SHA256SUMS
+cd development/p1-scienceagentbench-codex-route-v1-2026-08-24
+PYTHONDONTWRITEBYTECODE=1 python validate_codex_route_v1.py
+shasum -a 256 -c SHA256SUMS
 ```
 
 Expected validator terminal:
