@@ -1,0 +1,46 @@
+{
+  "both_accept": true,
+  "bounded_support_le9_theorem_authority": true,
+  "c0_31_authority": false,
+  "ci_authority": false,
+  "exact_d4_authority": false,
+  "executions": {
+    "generic": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true,
+    "source": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    }
+  },
+  "generic_decision": "ACCEPT_SATURATION_DEFECT_SUPPORT_LE9",
+  "generic_verification_digest": "98d148e9c3fea0359a615b888c02273768d8aebc7a992a786764c8b1f64c302f",
+  "independent_external_replay_complete": false,
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_SATURATION_DEFECT_SUPPORT_LE9",
+  "native_manifest_digest": "1464416c1787c2ef7534cbad466c29ed7b279ecfc2005b7ae95d3e88bab07ffa",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "prospective_validation_authority": false,
+  "quantum_claim": false,
+  "receipt_digest": "f66d25db7006524c31cf80b7a612626c3a79bf33f530c8f354028c369598e13e",
+  "result_owner": "NON_QUANTUM_MATH",
+  "schema": "ORION.NonQuantumMath.M2.DualHarness.v1",
+  "source_result_digest": "846ffcc2329c13fb6a1811028beeca21cfd7f69f1203bc4a4b269d5d98f2f697",
+  "support8_normalized_supports_per_c_engine": 564,
+  "support8_solutions_per_c_engine": 0,
+  "support9_nodes_per_c_engine": 6537270,
+  "support9_solutions_per_c_engine": 0,
+  "support_23_theorem_authority": false,
+  "terminal": "NONQUANTUM_M2_EXPONENT_P_SATURATION_DEFECT_LEMMA__C5CUBED_SUPPORT_LE9_EXCLUDED_BY_ISOLATED_DUAL_REPLAY",
+  "venue_authority": false
+}
