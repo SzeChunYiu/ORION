@@ -1,0 +1,168 @@
+{
+  "base_revision": "f04e5b27da6d88ac8c62638671c331f6e6b6b8bf",
+  "bounded_support_le10_theorem_authority": true,
+  "c0_31_authority": false,
+  "ci_authority": false,
+  "exact_d4_authority": false,
+  "gates": {
+    "full_c0_not_claimed": true,
+    "isolated_dual_replay": true,
+    "m2_parent_bound": true,
+    "pattern_reduction": true,
+    "post_outcome_status_preserved": true,
+    "protocol_present": true,
+    "support11_plus_not_claimed": true
+  },
+  "independent_external_replay_complete": false,
+  "m2_parent": {
+    "all_checks": true,
+    "checks": {
+      "bounded_parent": true,
+      "digest": true,
+      "no_c0_d4": true,
+      "no_external": true,
+      "no_prospective": true,
+      "no_support23": true,
+      "terminal": true
+    },
+    "path": "research/orion-rg/NONQUANTUM_M2_SATURATION_DEFECT_REPLAY_RESULTS_2026-08-24.json",
+    "result_digest": "846ffcc2329c13fb6a1811028beeca21cfd7f69f1203bc4a4b269d5d98f2f697",
+    "sha256": "dab3811dd903c37adbcd0cb4379aac424b795b4a2925d2db83e32afd9cd77fb1"
+  },
+  "novelty_authority": false,
+  "pattern_ledger": {
+    "all_checks": true,
+    "checks": {
+      "all_have_at_least_four_mult4": true,
+      "complete_patterns": true,
+      "rank2_term_count_exceeds_eta": true,
+      "rank3_normalization_complete": true
+    },
+    "patterns": [
+      [
+        1,
+        3,
+        6
+      ],
+      [
+        3,
+        0,
+        7
+      ]
+    ],
+    "rank2_eta": 13
+  },
+  "prospective_validation_authority": false,
+  "protocol_path": "development/orion-rg-davenport/NONQUANTUM_M3_SUPPORT10_REPLAY_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "86eedd383f12d8a88ffc030a919aa7a8cc47e315f44e6043d42efd1effce387c",
+  "quantum_claim": false,
+  "replay_ledger": {
+    "all_checks": true,
+    "build_mode": "gnu11 O3 Wall Wextra Werror",
+    "byte_build": {
+      "compile_command": [
+        "gcc",
+        "-std=gnu11",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "/workspace/scratch/19ec2cca0f71/ORION_HARNESS_ITER_10/research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+        "-o",
+        "<temporary-executable>"
+      ],
+      "compile_returncode": 0,
+      "compile_stderr": "",
+      "compile_stdout": "",
+      "source_path": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+      "source_sha256": "03d5f54a7a63ddb05d2c75fbb608e8ebaa4e2dc5da1809f09f9a72c3d8d12dd3"
+    },
+    "checks": {
+      "all_unsat": true,
+      "registered_rows": true,
+      "temporary_executables_deleted": true,
+      "two_patterns": true,
+      "u128_byte_exact_agreement": true
+    },
+    "compiler": "gcc",
+    "rows": [
+      {
+        "bytes": {
+          "a1": 1,
+          "b2": 3,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 272119,
+          "solutions": 0,
+          "support": 10
+        },
+        "pattern": [
+          1,
+          3,
+          6
+        ],
+        "u128": {
+          "a1": 1,
+          "b2": 3,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 272119,
+          "solutions": 0,
+          "support": 10
+        }
+      },
+      {
+        "bytes": {
+          "a1": 3,
+          "b2": 0,
+          "c4": 7,
+          "leaves": 3558,
+          "nodes": 210700,
+          "solutions": 0,
+          "support": 10
+        },
+        "pattern": [
+          3,
+          0,
+          7
+        ],
+        "u128": {
+          "a1": 3,
+          "b2": 0,
+          "c4": 7,
+          "leaves": 3558,
+          "nodes": 210700,
+          "solutions": 0,
+          "support": 10
+        }
+      }
+    ],
+    "u128_build": {
+      "compile_command": [
+        "gcc",
+        "-std=gnu11",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "/workspace/scratch/19ec2cca0f71/ORION_HARNESS_ITER_10/research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+        "-o",
+        "<temporary-executable>"
+      ],
+      "compile_returncode": 0,
+      "compile_stderr": "",
+      "compile_stdout": "",
+      "source_path": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+      "source_sha256": "a3cd33e09dfa972c62ce2844a8ec2caeda218ca7870ce14c28b3ad3a427f055a"
+    }
+  },
+  "result_digest": "bc1a727fe936a3cd3ddf033bb0ac9c6ebad6d6969a9e10c45c8d53fd2732e044",
+  "result_owner": "NON_QUANTUM_MATH",
+  "schema": "ORION.NonQuantumMath.M3.Support10Replay.v1",
+  "scientific_authority": "BOUNDED_C5CUBED_SUPPORT10_EXCLUSION_ONLY",
+  "support_11_plus_theorem_authority": false,
+  "support_23_theorem_authority": false,
+  "terminal": "NONQUANTUM_M3_C5CUBED_SUPPORT10_BOTH_DEFICIT_PATTERNS_EXCLUDED__OBSTRUCTION_SUPPORT_AT_LEAST11",
+  "theorem": "a length-31 total-zero 5-short-free sequence over C_5^3, if one exists, has support at least 11",
+  "venue_authority": false
+}
