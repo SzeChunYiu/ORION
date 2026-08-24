@@ -7,7 +7,8 @@
 This packet is an outcome-blind source, rights, access, evaluator and protocol
 preflight. It is not a benchmark result, protocol preregistration, independent
 review or scientific promotion. No benchmark task was run. Public annotation
-inputs and ZIP directory metadata were inspected; ZIP payloads, gold programs,
+inputs, one ZIP header byte and ZIP directory metadata were inspected; file-entry
+payloads, gold programs,
 evaluation-program bodies, rubric bodies, gold results and task outcomes were
 not opened.
 
