@@ -1,0 +1,196 @@
+{
+  "base_revision": "df58c9d3bd7dedab0011ca2e126bfcf5fcd35429",
+  "bounded_support_le9_theorem_authority": true,
+  "c0_31_authority": false,
+  "ci_authority": false,
+  "exact_d4_authority": false,
+  "gates": {
+    "external_replay_not_claimed": true,
+    "full_c0_not_claimed": true,
+    "isolated_dual_replay": true,
+    "post_outcome_status_preserved": true,
+    "protocol_present": true,
+    "symbolic_lemma": true
+  },
+  "independent_external_replay_complete": false,
+  "novelty_authority": false,
+  "prospective_validation_authority": false,
+  "protocol_path": "development/orion-rg-davenport/NONQUANTUM_M2_SATURATION_DEFECT_REPLAY_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "f30316253fc965b14035e6a174558f649f9329f60d8b2f78afcf8370874fee68",
+  "quantum_claim": false,
+  "replay_ledger": {
+    "all_checks": true,
+    "build_mode": "C11 O3 warnings-as-admission-failure",
+    "checks": {
+      "support8_bit": true,
+      "support8_byte": true,
+      "support8_engines_agree": true,
+      "support8_schema": true,
+      "support9_bit": true,
+      "support9_both_unsat": true,
+      "support9_byte": true,
+      "support9_schema": true,
+      "temporary_executables_deleted": true
+    },
+    "compiler": "gcc",
+    "support8": {
+      "compile_command": [
+        "gcc",
+        "-std=c11",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "/workspace/scratch/19ec2cca0f71/ORION_HARNESS_ITER_09/research/orion-rg/x1k_property_c_support_check.c",
+        "-o",
+        "<temporary-executable>"
+      ],
+      "compile_returncode": 0,
+      "compile_stderr": "",
+      "compile_stdout": "",
+      "output": {
+        "authority": {
+          "independent_external_replay_required": true,
+          "novelty_claim": false
+        },
+        "conditional_consequence": "if replayed and the normalization proof is accepted, a 31-term zero-sum short-free C_5^3 sequence cannot have support size 8",
+        "engine_bit_reverse": {
+          "minus_support_sum_in_support": 0,
+          "nodes": 80202,
+          "normalized_supports": 564
+        },
+        "engine_byte": {
+          "minus_support_sum_in_support": 0,
+          "nodes": 80202,
+          "normalized_supports": 564
+        },
+        "engines_agree": true,
+        "expected_discovery_row": true,
+        "normalization": "support contains e1,e2,e3; GL(3,5)-complete for rank-3 supports",
+        "schema": "ORION.RG.X1K.PropertyCSupportCheck.v1"
+      },
+      "run_returncode": 0,
+      "run_stderr": "",
+      "source_path": "research/orion-rg/x1k_property_c_support_check.c",
+      "source_sha256": "646c223dfc7d356117e8df01d01129c58fa6fb3648705f3f39927e7f36ce7b84"
+    },
+    "support9": {
+      "compile_command": [
+        "gcc",
+        "-std=c11",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "/workspace/scratch/19ec2cca0f71/ORION_HARNESS_ITER_09/research/orion-rg/x1k_c0_support9_check.c",
+        "-o",
+        "<temporary-executable>"
+      ],
+      "compile_returncode": 0,
+      "compile_stderr": "",
+      "compile_stdout": "",
+      "output": {
+        "authority": {
+          "isolated_replay_required": true,
+          "novelty_claim": false,
+          "theorem_authority": false
+        },
+        "bit_reverse_engine": {
+          "forced_final_candidates": 146788,
+          "nodes": 6537270,
+          "solutions": 0
+        },
+        "both_engines_unsat": true,
+        "byte_engine": {
+          "forced_final_candidates": 138785,
+          "nodes": 6537270,
+          "solutions": 0
+        },
+        "conditional_consequence": "combined with the symbolic no-multiplicity-3 lemma and support-8 check, isolated replay would force any length-31 zero-sum short-free obstruction to have support at least 10",
+        "group": "C_5^3",
+        "length": 31,
+        "multiplicity_pattern": "4^7 2^1 1^1",
+        "normalization": "loop every basis multiplicity assignment; enumerate remaining support canonically; force final point from total sum",
+        "schema": "ORION.RG.X1K.C0Support9Check.v1",
+        "support_size": 9
+      },
+      "run_returncode": 0,
+      "run_stderr": "",
+      "source_path": "research/orion-rg/x1k_c0_support9_check.c",
+      "source_sha256": "65dae6df0c29f5584d1f42d6be8dc553cb4bc5e1e9df64f284427050368c5f04"
+    }
+  },
+  "result_digest": "846ffcc2329c13fb6a1811028beeca21cfd7f69f1203bc4a4b269d5d98f2f697",
+  "result_owner": "NON_QUANTUM_MATH",
+  "schema": "ORION.NonQuantumMath.M2.SaturationDefectReplay.v1",
+  "scientific_authority": "GENERAL_EXPONENT_P_SATURATION_DEFECT_LEMMA_AND_BOUNDED_C5CUBED_SUPPORT_LE9_EXCLUSION",
+  "support_23_theorem_authority": false,
+  "symbolic_ledger": {
+    "all_checks": true,
+    "checks": {
+      "all_sample_remainders_equal_x": true,
+      "all_sample_remainders_length_one": true,
+      "finite_samples_are_not_all_prime_proof": true,
+      "human_all_prime_proof_registered": true,
+      "support9_unique_pattern": true
+    },
+    "general_statement": "in an odd-prime exponent-p saturated p-short-free sequence, a point of multiplicity m<p forces x^m R with |R|<=p-1-m and sigma(R)=-(m+1)x; multiplicity p-2 is impossible",
+    "sample_rows": [
+      {
+        "forbidden_multiplicity": 1,
+        "max_remainder_length": 1,
+        "p": 3,
+        "remainder_sum_coefficient_mod_p": 1
+      },
+      {
+        "forbidden_multiplicity": 3,
+        "max_remainder_length": 1,
+        "p": 5,
+        "remainder_sum_coefficient_mod_p": 1
+      },
+      {
+        "forbidden_multiplicity": 5,
+        "max_remainder_length": 1,
+        "p": 7,
+        "remainder_sum_coefficient_mod_p": 1
+      },
+      {
+        "forbidden_multiplicity": 9,
+        "max_remainder_length": 1,
+        "p": 11,
+        "remainder_sum_coefficient_mod_p": 1
+      },
+      {
+        "forbidden_multiplicity": 11,
+        "max_remainder_length": 1,
+        "p": 13,
+        "remainder_sum_coefficient_mod_p": 1
+      },
+      {
+        "forbidden_multiplicity": 15,
+        "max_remainder_length": 1,
+        "p": 17,
+        "remainder_sum_coefficient_mod_p": 1
+      },
+      {
+        "forbidden_multiplicity": 17,
+        "max_remainder_length": 1,
+        "p": 19,
+        "remainder_sum_coefficient_mod_p": 1
+      }
+    ],
+    "support9_patterns": [
+      [
+        1,
+        1,
+        7
+      ]
+    ]
+  },
+  "terminal": "NONQUANTUM_M2_EXPONENT_P_SATURATION_DEFECT_LEMMA__C5CUBED_SUPPORT_LE9_EXCLUDED_BY_ISOLATED_DUAL_REPLAY",
+  "theorems": {
+    "c5cubed_bounded": "a length-31 total-zero 5-short-free sequence over C_5^3, if one exists, has support at least 10",
+    "general_saturation_defect": "in an odd-prime exponent-p saturated p-short-free sequence, a point of multiplicity m<p forces x^m R with |R|<=p-1-m and sigma(R)=-(m+1)x; multiplicity p-2 is impossible"
+  },
+  "venue_authority": false
+}
