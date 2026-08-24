@@ -31,10 +31,6 @@ from orion.self_orion.readiness import (
     ShadowSelfDrivingArchitectureEvidence,
     assess_readiness_stage,
 )
-from orion.study.p2.corpus import DiscoveryRoute
-from orion.study.p2.freeze import load_suite
-from orion.study.p2.runner import execute as execute_p2
-from orion.study.p2.systems import StopScope, SystemReport
 from orion.study.p9.identifiability import analyze_identifiability
 from orion.study.p9.structural_world import (
     AffineTransport,
@@ -109,6 +105,9 @@ class _P2SingleRoute:
         self.system_id = f"harness-programme-p2-close-{close}"
 
     def run(self, view, session, *, seed):
+        from orion.study.p2.corpus import DiscoveryRoute
+        from orion.study.p2.systems import SystemReport
+
         found: set[str] = set()
         for probe in view.probes_for(DiscoveryRoute.LEXICAL):
             outcome = session.query(DiscoveryRoute.LEXICAL.value, probe)
@@ -118,6 +117,8 @@ class _P2SingleRoute:
 
 
 def _p2_fixture():
+    from orion.study.p2.freeze import load_suite
+
     suite = load_suite()
     task = next(
         item
@@ -156,6 +157,9 @@ def _p1() -> tuple[bool, bool, str]:
 
 
 def _p2() -> tuple[bool, bool, str]:
+    from orion.study.p2.runner import execute as execute_p2
+    from orion.study.p2.systems import StopScope
+
     suite, task = _p2_fixture()
     local = execute_p2(
         _P2SingleRoute(close=False),
