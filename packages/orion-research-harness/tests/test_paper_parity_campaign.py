@@ -8,6 +8,9 @@ from orion_research_harness import (
     run_campaign,
     run_campaign_cycle,
 )
+from orion_research_harness.donor_campaign import (
+    build_donor_campaign_manifest as module_build_donor_campaign_manifest,
+)
 
 
 def _problem(profile: str) -> dict[str, object]:
@@ -19,6 +22,10 @@ def _problem(profile: str) -> dict[str, object]:
         "success_criteria": ["No donor omission.", "No authority escalation."],
         "navigation_profile": profile,
     }
+
+
+def test_donor_campaign_builder_root_export_is_module_identity():
+    assert build_donor_campaign_manifest is module_build_donor_campaign_manifest
 
 
 def test_normal_orion_campaign_is_immediately_terminal_when_no_external_donor(tmp_path: Path):

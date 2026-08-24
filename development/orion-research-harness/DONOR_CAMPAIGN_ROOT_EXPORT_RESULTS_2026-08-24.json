@@ -1,0 +1,37 @@
+{
+  "schema": "ORION.ResearchHarness.DonorCampaignRootExportRepair.v1",
+  "base_revision": "284f8a6926a91287c9311812d637d02fd607c565",
+  "terminal": "DONOR_CAMPAIGN_ROOT_EXPORT_REPAIRED__NEXT_BLOCKER_EXPOSED",
+  "authority": "PYTHON_PUBLIC_EXPORT_ONLY",
+  "protocol": "development/orion-research-harness/DONOR_CAMPAIGN_ROOT_EXPORT_REPAIR_2026-08-24.md",
+  "protocol_sha256": "817e109f145ed8e41b367eac9e82539fcdb11744e26086f82b54d8bcac6c7d19",
+  "implementation_sha256": {
+    "packages/orion-research-harness/src/orion_research_harness/__init__.py": "258e60d0ce504a1d684bb0d60a4258097d925dc2365ba7442c8221cfd44ba76f",
+    "packages/orion-research-harness/tests/test_paper_parity_campaign.py": "233a2964454ce560330f0d600a6f170a20e94bfaed9e0c63435011646cf228e2"
+  },
+  "verification": {
+    "command": "PYTHONPATH=packages/orion-research-harness/src:src /tmp/orion-harness-fix-venv-20260824/bin/python -m pytest packages/orion-research-harness/tests/test_paper_parity_campaign.py -q",
+    "result": "2 failed, 2 passed in 1.88s",
+    "typed_probe_terminal": "DONOR_CAMPAIGN_ROOT_EXPORT_REPAIRED",
+    "root_module_function_identity": true
+  },
+  "preserved_adverse": {
+    "paper_parity_campaign_suite_green": false,
+    "next_signature": "tests expect donor registry v1 while current registries report v2",
+    "normal_observed_registry_id": "orion:donors:normal:v2",
+    "orion_q_observed_registry_id": "orion:donors:orion-q:v2",
+    "p2_runner_importable": false,
+    "campaign_broader_suite_green": false,
+    "scientific_negative": false,
+    "classification": "EXPORT_REPAIR_WITH_NEXT_CONTRACT_BLOCKER"
+  },
+  "remaining_boundary": {
+    "paper_parity_campaign_validated": false,
+    "donor_campaign_execution_validated": false,
+    "dual_harness_executable": false,
+    "external_donor_executed": false,
+    "historical_receipts_revalidated": false,
+    "scientific_authority": false,
+    "publication_authority": false
+  }
+}

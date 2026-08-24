@@ -16,6 +16,7 @@ from .campaign_protocol import (
     ProtectedReference,
 )
 from .campaign_runner import initialize_campaign, run_campaign, run_campaign_cycle
+from .donor_campaign import build_donor_campaign_manifest
 from .execution_coverage import ExecutionMode, execution_coverage
 from .governance_runtime import (
     ContextCandidate,
@@ -110,6 +111,7 @@ __all__ = [
     "assimilate_negative_result",
     "atom_calculus_surface",
     "build_resolution_obligation",
+    "build_donor_campaign_manifest",
     "compile_workspace_development_fibre",
     "create_refinement_state",
     "decide_campaign",
