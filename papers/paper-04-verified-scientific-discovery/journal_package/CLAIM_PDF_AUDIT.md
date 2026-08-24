@@ -55,3 +55,43 @@ pins its digest — so its gate table still reads `H3 … NOT_SUPPORTED`, which 
 the correct record of the V2 campaign it certifies, and it is not annotated here
 or anywhere. The same applies to `evidence/protected_v2/` and
 `protocol/PROTECTED_RUN_BINDINGS_V2.json`.
+
+## Addendum, 2026-08-24 — an in-tree PDF exists
+
+`manuscript/main.pdf` is now a tracked, hash-bound compiled PDF:
+
+| Field | Value |
+|---|---|
+| Source revision | `d4cf8c09c128c0b0331b96b45385c35a96b9427e` (main.tex and all `\input` sections unmodified from HEAD at render time) |
+| SHA-256 | `7a6b5182480a6bd89eca05c6ace33501db22ee049119bfd1cd5da56a1ea3be6c` |
+| Pages | 26 |
+| Engine | tectonic (XeTeX; PDF producer xdvipdfmx 0.1) |
+
+**Engine honesty.** This is a local tectonic/XeTeX render, not the CI artifact:
+`.github/workflows/p4_tmlr_submission_audit.yml` compiles clean-room with
+latexmk/pdflatex against upstream-pinned `tmlr.sty`/`tmlr.bst`. The tracked PDF
+therefore establishes that the committed sources compile end-to-end and what
+they render to under one engine; it does not establish bit-identity with the CI
+PDF (TeX engines are not bit-reproducible across engines), and it is not a
+substitute for a green clean-room compile. The `tmlr.sty`/`tmlr.bst` files are
+vendored in `manuscript/` (tracked), which is what made the local render
+possible; `COMPILE.md` is corrected accordingly.
+
+**Content audit (programmatic, 2026-08-24).** `pdftotext` extraction of the
+rendered PDF confirms: TMLR under-review front matter and title; abstract and
+keywords; all eleven section sources render (introduction through ablation
+interpretation); the `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex` successor
+section ("Post-saturation successor: donor-complete scientific-promotion
+authority") is included; headline figures `0/360` vs `180/360` false promotions
+and the `30/30` correct-`CANNOT_CHECK` contrast appear in abstract, findings and
+results. The string "SciFact" does not appear in the manuscript — correct, since
+`protocol/SCIFACT_LABEL_STATE_MAP_V1.json` is a frozen pre-scoring protocol
+artifact, not a manuscript claim; its absence is recorded here so nobody reads
+the PDF as covering it.
+
+**What this does not establish.** This is a render and a mechanical content
+audit by the same session that packaged it — not an independent proofread. The
+`P4.PDF` claim above stays **OPEN** until an independent final proofread of this
+exact file (by hash) is recorded. `audit_subject_revision` and `audit_date` in
+`MANIFEST.json` are unchanged; the render binding lives in
+`MANIFEST.json` under `pdf_render_binding`.

@@ -1,0 +1,151 @@
+{
+  "schema_version": "orion.p3.oaei-track-license-manifest.v1",
+  "protocol_id": "P3.structured-scientific-identity.oaei-semtab-license-manifest.v1",
+  "authority": "METADATA_ONLY_LICENSE_MANIFEST__NO_DATASET_PAYLOAD_DOWNLOADED__NO_REFERENCE_ALIGNMENT_OPENED__NO_SCORING_PERFORMED",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1086",
+  "issue_boxes": [
+    "P3 box 1: Verify every selected track's license before download; exclude UMLS/eClass or registration-restricted tracks unless authorized.",
+    "P3 box 3: Add at least one natural ontology-pair track; bench23 alone is generated from one seed ontology."
+  ],
+  "frozen_utc": "2026-08-24T10:20:24Z",
+  "manifest_status": "FROZEN_LICENSE_AND_SELECTION_RECORD__EXECUTION_NOT_PERFORMED",
+  "outcome_accessed": false,
+  "builds_on": {
+    "path": "development/p3-selective-envelope-harm-successor-v4-2026-08-23/SOURCE_FAMILY_RIGHTS.json",
+    "audit_id": "P3.V4.SOURCE.FAMILY.RIGHTS.METADATA_ONLY.2026-08-23",
+    "boundary": "That audit opened no dataset payloads, no reference alignments, no matcher outputs, no ontology entity bodies, and performed no runtime execution. This manifest inherits that boundary."
+  },
+  "primary_sources": [
+    {
+      "source_id": "BENCH23_OAEI_2025",
+      "role": "primary-benchmark",
+      "selection_status": "LICENSE_VERIFIED__SELECTED",
+      "license": {
+        "name": "CC-BY-4.0",
+        "verification": "VERIFIED_WITH_URL_AND_DATE",
+        "verified_utc": "2026-08-24T10:20:24Z",
+        "evidence_url": "https://zenodo.org/api/records/15827289",
+        "evidence_field": "metadata.license.id = cc-by-4.0",
+        "evidence_fetch_sha256": "c1bef9b8c73db044dd81cdf97ce7721e9cdb00e8be5244a5bcbe0371b2488bfd"
+      },
+      "record": {
+        "doi": "10.5281/zenodo.15827289",
+        "title": "OAEI 2025 benchmark tests (bench23)",
+        "created_utc": "2025-07-07T08:34:39Z",
+        "file": "bench23.zip",
+        "file_bytes": 1034779,
+        "file_md5_published": "5c70ace8a58d828de693509440eae762",
+        "file_sha256_published": null,
+        "integrity_note": "The record publishes MD5 only. A SHA-256 must be computed locally at download time and recorded before any scoring run; MD5 is collision-prone and is treated as transport sanity, not tamper evidence."
+      },
+      "composition_limitation": "Per the record description, bench23 consists of the systematic alteration of ONE seed ontology in the bibliographic domain. It therefore cannot alone satisfy the natural-ontology-pair requirement; a natural-pair track is mandatory alongside it.",
+      "download_status": "NOT_DOWNLOADED_IN_THIS_MANIFEST__LICENSE_VERIFIED_PRE_DOWNLOAD_PER_BOX_1"
+    }
+  ],
+  "natural_pair_candidates": [
+    {
+      "source_id": "OAEI_2025_CONFERENCE_RA1",
+      "role": "natural-ontology-pair-track__primary_candidate",
+      "selection_status": "LICENSE_CANNOT_CHECK__NOT_SELECTED_YET",
+      "license": {
+        "name": null,
+        "verification": "CANNOT_CHECK",
+        "reason": "No explicit licence on the OAEI Conference track page or the OntoFarm landing page; the track's citation request is not a licence grant.",
+        "evidence": "SOURCE_FAMILY_RIGHTS.json family OAEI_CONFERENCE rights block; track-page sha256 697a21c9d3317bffb65b9dc47ff18f1da308019832bf16219fae7e00c7ac3dbb; ontofarm landing sha256 b268a3789454b57417e2d72eeeb0b4cff60da13de47d9eead7f2a145c8b9ef96"
+      },
+      "track_metadata": {
+        "crisp_reference_test_cases": 21,
+        "ontologies_in_crisp_reference": 7,
+        "ontologies_total": 16,
+        "suite_id": "conference",
+        "version_id": "conference-v1",
+        "framework": "MELT/TDRS",
+        "input_archive_url": "https://oaei.ontologymatching.org/2025/conference/data/conference.zip",
+        "reference_archive_url": "https://oaei.ontologymatching.org/2025/conference/data/reference-alignment.zip",
+        "archive_liveness_at_inherited_audit": "HTTP 200 for both input and reference archives (ETag-bound only; no published cryptographic checksum)"
+      },
+      "unblock_requirement": "An explicit licence for the input ontologies and the reference alignment from the track organizers or OntoFarm maintainers, or a lawful alternative natural-pair source. Until then this candidate stays pointer-only and unselected."
+    },
+    {
+      "source_id": "OAEI_2025_BIODIV",
+      "role": "natural-ontology-pair-track__secondary_candidate",
+      "selection_status": "LICENSE_CANNOT_CHECK__ARCHIVE_DEAD__NOT_SELECTED",
+      "license": {
+        "name": null,
+        "verification": "CANNOT_CHECK",
+        "reason": "No explicit licence on the track page, and the advertised bundle URL returned 404 at the inherited audit. Individual input-ontology upstream licences (ENVO CC0 1.0, SWEET CC0 1.0, NCBI Taxonomy CC0 1.0 OBO edition, TAXREF-LD CC BY 3.0 France) do not license the OAEI snapshot or the reference alignments.",
+        "evidence": "SOURCE_FAMILY_RIGHTS.json family OAEI_BIODIV rights block"
+      },
+      "track_metadata": {
+        "source_pairs": [["ENVO", "SWEET"], ["NCBI Taxonomy", "TAXREF-LD"]],
+        "reference_alignments": 2,
+        "framework": "MELT (claimed by track page)",
+        "advertised_archive_url": "https://upload.uni-jena.de/data/68b028e813c9c3.77183112/biodiv.zip",
+        "archive_liveness_at_inherited_audit": "HTTP 404"
+      }
+    }
+  ],
+  "excluded_tracks": [
+    {
+      "source_id": "OAEI_LARGEBIO_LEGACY_2015",
+      "exclusion_terminal": "EXCLUDED__UMLS_ASSOCIATED_UNAUTHORIZED",
+      "basis": "Reference alignments are UMLS Metathesaurus-derived; SNOMED CT input is LICENCE_REQUIRED (charges/registration may apply outside member territories); UMLS use requires an individual licence and UTS account with source-vocabulary redistribution restrictions. Bundle terminal in the inherited audit: NOT_LAWFUL_PUBLIC_PANEL_READY.",
+      "evidence": "SOURCE_FAMILY_RIGHTS.json family OAEI_LARGEBIO rights block"
+    },
+    {
+      "source_id": "OAEI_BIO_ML",
+      "exclusion_terminal": "EXCLUDED__UMLS_ASSOCIATED_UNAUTHORIZED__VIA_CAMPAIGN_SUCCESSION",
+      "basis": "The OAEI 2025 campaign states Bio-ML supersedes LargeBio and Phenotype (recorded in the inherited audit's campaign-status note). Bio-ML itself was not separately audited here; its exclusion rests on the campaign's own succession statement and the LargeBio UMLS/SNOMED entanglement. If Bio-ML is ever wanted, it needs its own metadata-only rights audit before any licence conclusion.",
+      "evidence": "SOURCE_FAMILY_RIGHTS.json OAEI_LARGEBIO.provider_release_identity.current_campaign_status"
+    },
+    {
+      "source_id": "ECLASS",
+      "exclusion_terminal": "EXCLUDED__ISSUE_DIRECTIVE",
+      "basis": "Issue #1086 box 1 excludes eClass unless authorized. eClass is additionally not among the seven OAEI families audited in the bound 2025-campaign audit, so no separate presence, licence or registration status was recorded for it.",
+      "evidence": "SOURCE_FAMILY_RIGHTS.json families enumeration"
+    }
+  ],
+  "other_audited_families_not_selected": [
+    {
+      "source_id": "OAEI_ANATOMY",
+      "terminal": "CANNOT_CHECK__REFERENCE_ALIGNMENT_LICENCE_ABSENT",
+      "note": "Inputs are CC BY 4.0 (Adult Mouse Anatomy, NCI Thesaurus anatomy subset per OBO metadata) and the audited reference provenance is MGI-derived (Ringwald/Hayamizu; later Beisswanger) — Anatomy is NOT UMLS-associated in the bound audit and is not excluded under the UMLS rule; it is blocked solely by the missing explicit reference-alignment licence and snapshot-to-upstream mapping."
+    },
+    {
+      "source_id": "OAEI_MULTIFARM",
+      "terminal": "CANNOT_CHECK__AND_NOT_INDEPENDENT_OF_CONFERENCE",
+      "note": "Translation derivative of the OntoFarm seed; collapses with Conference for replication counting."
+    },
+    {
+      "source_id": "OAEI_KNOWLEDGE_GRAPH",
+      "terminal": "CANNOT_CHECK__PARTIAL_GOLD_AND_RIGHTS_UNRESOLVED",
+      "note": "Track explicitly calls its gold partial."
+    },
+    {
+      "source_id": "OAEI_COMMON_KNOWLEDGE",
+      "terminal": "CANNOT_CHECK__NO_REPOSITORY_OR_TRACK_LEVEL_LICENCE",
+      "note": "Both linked gold repositories have no root licence at pinned heads; NELL-DBpedia gold explicitly partial."
+    }
+  ],
+  "licensed_fallback": {
+    "source_id": "SEMTAB_2025",
+    "activation_status": "NOT_ACTIVATED",
+    "license": {
+      "name": null,
+      "verification": "CANNOT_CHECK",
+      "reason": "The SemTab 2025 challenge page carries no licence statement for its data (fetched and inspected 2026-08-24T10:20:24Z; page sha256 bdc363c8b403127555ca56697addb8dc096c7daecd92acfaff4bb2ecd06da20c). The fallback is not activated while the primary path (bench23 + a natural-pair track) is pursued; activating it later requires its own licence verification first."
+    }
+  },
+  "scoring_framework": {
+    "name": "MELT",
+    "license": "MIT",
+    "license_evidence": "SOURCE_FAMILY_RIGHTS.json framework block: LICENSE file sha256 6259170d9437ff0c01c2441c5ba08b032c6e98bb4db90f31de295c27054e64cd at audited head db893731fdf29371603847e3664dc18b80d45d4b",
+    "execution_status": "NOT_EXECUTED_IN_REPOSITORY"
+  },
+  "non_bypass_boundaries": [
+    "Licence verification precedes download: no dataset payload named in this manifest has been downloaded or opened.",
+    "A CANNOT_CHECK licence terminal is never upgraded by inaction, elapsed time, or upstream-licence adjacency; only new explicit evidence upgrades it.",
+    "Selection of a natural-pair track requires the licence unblock recorded above; bench23 alone cannot satisfy the natural-pair requirement.",
+    "Incomplete reference alignments never make absent entity pairs true negatives (issue boundary); this manifest records licences only and grants no labelling semantics."
+  ]
+}
