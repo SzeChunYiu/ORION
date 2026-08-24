@@ -2,7 +2,10 @@
 
 **Decision:** CONTROLLED_LIFECYCLE_RESULT_BOUND__PUBLIC_TRANSFER_OPEN
 
-The sole current authority is P12_ACTIVE_CLAIM_AUTHORITY_V4.json. It preserves
+The sole current authority is P12_ACTIVE_CLAIM_AUTHORITY_V5.json, which preserves
+every leaf, terminal, status and binding of the now-historical
+P12_ACTIVE_CLAIM_AUTHORITY_V4.json byte-for-byte and adds only the stop/go
+campaign leaf. That inherited V4 content preserves
 P12B's equal-action signal-complementarity terminal and binds the transfer
 support, robustness negative, conditional price-aware successor and
 certificate-information boundary as distinct leaves.
