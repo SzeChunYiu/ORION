@@ -19,6 +19,27 @@
 
 The H3 null is retained as a null result; it is not converted into a positive claim.
 
+**What every interval above is an interval about.** The estimand is the effect
+on this finite registered battery --- 360 constructed authority cases for H1,
+60 clean-coverage cases for H2, 30 for H3 --- and nothing wider. These cases
+were enumerated by construction, not drawn from a population of scientific
+claims, so `[-0.553,-0.447]` is a statement about how the effect varies under
+resampling of that fixed set. It is not a confidence interval for the effect on
+scientific claims in general, and there is no population from which the battery
+is a sample.
+
+Two consequences follow, and both are easy to get wrong. Artifacts are not
+population units: counting 360 artifacts does not make 360 independent
+observations of anything beyond the battery, because the artifacts were
+generated to cover a designed grid. Bridge identities are not population units
+either: a bridge identity is a construction that connects two registered
+worlds, so repeating it varies the construction rather than sampling a
+scientific population. An interval computed over either is a statement about
+the design, and reading it as a statement about science is the specific error
+this note exists to prevent. The `[0,0]` intervals make the same point in the
+clearest form: a degenerate interval on a saturated cell is arithmetic, not
+evidence of precision.
+
 ## Prospective freeze and custody gate
 
 - [x] repaired subject frozen before hidden-set generation;
