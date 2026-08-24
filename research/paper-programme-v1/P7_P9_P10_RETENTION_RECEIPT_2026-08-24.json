@@ -1,0 +1,124 @@
+{
+  "schema": "ORION.Programme.HistoricalRetentionReceipt.v1",
+  "receipt_date": "2026-08-24",
+  "purpose": "Execute the replay-and-retain and authority-replay steps assigned to the P6-P10 gap lane and record that every adverse terminal and bounded formal authority remains reproducible and unchanged. This receipt adds no claim, grants no new authority, and edits no frozen result.",
+  "items": [
+    {
+      "ledger_item_id": "P7.MATCH_NECESSITY.HISTORICAL_LIMITATION",
+      "claim_id": "P7.COMPOSITION.MATCH_NECESSITY",
+      "command": "python -m json.tool papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
+          "sha256": "3db379d23daf43dff7e41576f7ee233dc9b4d5168dd0f3688e51ba736d7d31e4",
+          "bridge_match_is_no_longer_a_supplied_premise": true,
+          "not_licensed_includes": "any necessity reading derived from conditional soundness; the committed 25 successes remain instances of a general theorem, not 25 independent facts"
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P9.T4.HOSTILE_ATTACK.HISTORICAL",
+      "claim_id": "P9.U.T4",
+      "command": "python -m json.tool papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+          "sha256": "dce7bc05225b7b1f151a70b64286aaa50a7f58fb1ac7a1ee92b9c7d7ba1f9957",
+          "outcome": "FAIL",
+          "verdict": "T4_ATTACK_SUCCEEDED"
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P9.D1V1_2.LOCKED_ENV.HISTORICAL",
+      "claim_id": "P9.D1V1_2.LOCKED_ENV_REPRODUCTION",
+      "command": "uv run --frozen --extra candidates --extra proofs python -m orion.study.p9.transfer_audit --json",
+      "exit_code": 3,
+      "exit_code_meaning": "the audit's top-level Outcome.CANNOT_CHECK blocks (return 3 iff outcome blocks); this is the frozen audit faithfully reporting the retained divergence, not a receipt-integrity failure",
+      "command_note": "run verbatim from the ledger plus the repo's declared candidate/proof extras; the bare command without extras cannot import scikit-learn on a clean environment (ModuleNotFoundError), so the extras are the declared way this module executes (pyproject [project.optional-dependencies] candidates/proofs)",
+      "receipts_retained": [
+        {
+          "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json",
+          "sha256": "5022889c95dc97d6fc499b6d7d1eab6a29533245c949dc7c2d708d8722c8f377",
+          "terminal": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED",
+          "overall_outcome": "FAIL"
+        }
+      ],
+      "replay_observed": {
+        "result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a",
+        "terminal": "D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED",
+        "independence_outcome": "PASS",
+        "oracle_outcome": "CANNOT_CHECK",
+        "outcome": "CANNOT_CHECK",
+        "arms": {
+          "TRANSCRIPT_BAG": "PASS ARM_REPRODUCED 0.25 -> 0.25",
+          "TYPED_RELATIONAL": "PASS ARM_REPRODUCED 1.0 -> 1.0",
+          "UNTYPED_PAIR": "PASS ARM_REPRODUCED 0.90625 -> 0.90625",
+          "TYPED_SERIALIZED_BAG": "CANNOT_CHECK SCORE_DIVERGED archived 0.5 -> reproduced 0.75, blocker environment_identity_is_not_the_recorded_one (python recorded 3.12.13, observed 3.13.12)"
+        },
+        "divergence_remains_append_only": true,
+        "independent_unit_credit": 0,
+        "positive_authority_minted": false
+      },
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P10.MATHLIB.MODULE_NEGATIVES.HISTORICAL",
+      "claim_id": "P10.MATHLIB_TRANSFER.V2_1.MODULE_ROBUSTNESS",
+      "command": "python -m json.tool papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
+          "sha256": "5ddd51d2256aa23b517175b34e1e3cf851acaea76b9896855da5e66afd2a422e",
+          "analysis_status": "POST_HOC_DERIVED_FROM_FROZEN_V2_1_BLOCK_RECEIPTS",
+          "worst_modules": [["Control", -0.03333333333333333], ["CategoryTheory", -0.005780346820809248]],
+          "claim_boundary": "Post-hoc breadth/sensitivity analysis of the frozen source-projection result only; not a new preregistered endpoint and not proof-state, tactic-library, or prover-utility evidence."
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P8.FORMAL.AUTHORITY_COMPOSITION.ACTIVE",
+      "claim_id": "P8.AUTHORITY_COMPOSITION.13_DONOR_FORMAL",
+      "command": "python -m json.tool papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json",
+          "sha256": "9c66459c3801447f8a216120b5eb4a73ff5f27a058147bd9b556f53787227083",
+          "all_discharged": true,
+          "undischarged": [],
+          "solver": "5.1.0"
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P6.FORMAL.DONOR_STACK.ACTIVE",
+      "claim_id": "P6.CERTIFICATE_LIFTING.BOUNDED_FORMAL",
+      "command": "python -m pytest tests/unit/publication/test_framework_snapshot.py -q",
+      "exit_code": 0,
+      "observed": "1 passed in 0.15s",
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P7.FORMAL.NAVIGATION.ACTIVE",
+      "claim_id": "P7.CLOSURE_CARRYING_NAVIGATION.BOUNDED_FORMAL",
+      "command": "python -m pytest tests/unit/publication/test_framework_snapshot.py -q",
+      "exit_code": 0,
+      "observed": "1 passed in 0.15s",
+      "success_condition_met": true
+    }
+  ],
+  "notes": [
+    "All commands were executed on this worktree from the ledger's next_executable_step; no failure_terminal fired.",
+    "The P6/P7 authority-replay command was run as a single-file pytest invocation (permitted class); no test suite, no xdist, no coverage, no worker pools.",
+    "The P9 D1v1.2 replay reproduces the three exact arms and retains the TYPED_SERIALIZED_BAG 0.5->0.75 divergence as CANNOT_CHECK under a different recorded environment; independent_unit_credit stays zero and no D1v1.2 positive authority is minted.",
+    "python interpreter: /Users/billy/miniforge3/bin/python3; uv 0.9.x frozen lockfile."
+  ]
+}
