@@ -1,0 +1,120 @@
+{
+  "artifact_bindings": {
+    "CLEANUP_V1.json": {
+      "bytes": 260,
+      "sha256": "2d8843e4849ea16bf729d1872246f4f45458aceb00b0643e050cc0334c812f04"
+    },
+    "FROZEN_JOB_SCRIPT_V1.slurm": {
+      "bytes": 12825,
+      "sha256": "cbcfa367b167f5b4f7d6577c0145979fd1bc6b9167e6526772fcc0044fef2f18"
+    },
+    "FROZEN_RUNTIME_HASHES.txt": {
+      "bytes": 462,
+      "sha256": "b3f40f484e08da8999891dbd325bc2c5711b4030d0087e874583e55fd154a87e"
+    },
+    "FROZEN_TOKENIZER_GEOMETRY.json": {
+      "bytes": 234,
+      "sha256": "7fd9e36d30b40b5b39a37a8693dfdbfd0a017266b40f6421a8cf375cffe2f549"
+    },
+    "JOB_RECEIPT_V1.json": {
+      "bytes": 1324,
+      "sha256": "8644d0b02e125e4cdf75ca0ed913a2fbf0e818ebf358a9ace15d7be7fcabfbc4"
+    },
+    "REMOTE_ARTIFACT_SHA256SUMS": {
+      "bytes": 756,
+      "sha256": "586e7cb737b82cfcd460cb0adbc4e4f846912e7f4df4685488b009ebdabe48f6"
+    },
+    "SACCT_V1.txt": {
+      "bytes": 621,
+      "sha256": "465d9c198439c0b91eb3cd15ea27f8346be74c7c7f566ec6af7c447f857c1099"
+    },
+    "SLOTS.json": {
+      "bytes": 66,
+      "sha256": "39cf5a5b0639296f3a75ebe7c2e162bc51b6e239886c5f41430c1869b68d4e6d"
+    },
+    "TERMINAL.txt": {
+      "bytes": 107,
+      "sha256": "d0c99330dc84d0f2faa1d7032abb9e12da63d9bd8af38d807ab2f229a935c247"
+    },
+    "TOKENIZER_PROBE_V1.json": {
+      "bytes": 6844,
+      "sha256": "700aabce43e6b834bae4335855149d3b9de7d4b0861cf07e0a49ce9d113020e1"
+    }
+  },
+  "claim_boundary": {
+    "benchmark_or_outcome_claim": "NONE",
+    "established": "POST_TOKENIZE_RETURNS_REPEATABLE_EXACT_TOKEN_IDS_FOR_FOUR_INVENTED_PROMPTS_UNDER_FROZEN_RUNTIME_AND_EXPLICIT_MODE",
+    "generation_correctness": "CANNOT_CHECK_NOT_INVOKED",
+    "production_admissibility": "CANNOT_CHECK",
+    "protected_prompt_fit": "CANNOT_CHECK_NO_PROTECTED_PROMPT_OPENED_OR_TOKENIZED",
+    "scientific_authority_delta": "NONE"
+  },
+  "cost": {
+    "billed_usd": null,
+    "status": "CANNOT_CHECK_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION_UNAVAILABLE"
+  },
+  "job": {
+    "account": "lu2026-2-51",
+    "bounded_slurm_jobs_used": 1,
+    "elapsed": "00:01:00",
+    "exact_terminal": "P1_SAB_EXACT_GGUF_TOKENIZER_PROBE_PASS__JOB_3537594__NO_GENERATION__NO_PROTECTED_INPUTS__COST_CANNOT_CHECK",
+    "exit_code": "0:0",
+    "gpu": "a40:1",
+    "partition": "gpua40i",
+    "slurm_job_id": "3537594",
+    "state": "COMPLETED",
+    "time_limit": "00:20:00"
+  },
+  "mode_discriminator": {
+    "completion_equivalent_token_count": 13,
+    "plain_no_special_token_count": 16,
+    "prompt_label": "literal_special_marker",
+    "special_token_id_observed_in_completion_equivalent_mode": 151644,
+    "token_arrays_identical": false
+  },
+  "probe_counts": {
+    "credentials_used": 0,
+    "explicit_modes": 2,
+    "external_api_invocations": 0,
+    "generation_invocations": 0,
+    "invented_prompts": 4,
+    "official_outcomes_opened": 0,
+    "official_tasks_opened": 0,
+    "protected_inputs_opened": 0,
+    "repeatable_records": 8,
+    "repeats_per_record": 3,
+    "token_records": 8
+  },
+  "remote_source": {
+    "job_artifact_directory": "job-3537594",
+    "remote_hash_manifest": {
+      "bytes": 756,
+      "sha256": "586e7cb737b82cfcd460cb0adbc4e4f846912e7f4df4685488b009ebdabe48f6"
+    },
+    "root": "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_exact_tokenizer_probe_v1_20260824"
+  },
+  "required_completion_equivalent_mode": {
+    "add_special": true,
+    "parse_special": true,
+    "repeatability_check_required": true,
+    "route": "POST /tokenize"
+  },
+  "retention": {
+    "credentials": "ABSENT",
+    "generated_completions": "ABSENT",
+    "invented_prompt_bodies": "FROZEN_JOB_SCRIPT_ONLY",
+    "model_or_runtime_binary": "ABSENT_HASH_BINDINGS_ONLY",
+    "protected_prompt_or_task_bodies": "ABSENT",
+    "server_log": "EXCLUDED_AS_UNNECESSARY_FOR_PASS_VERIFICATION"
+  },
+  "runtime": {
+    "cuda_backend_sha256": "fbe27c15253195c10559d98c6ba9c6d476a65d2bbf0240307b4a46d8aa17cefb",
+    "llama_cpp_commit": "7e4c0a96880dae4fc4268ad441f8a6446bd5460a",
+    "llama_cpp_version": "b10434",
+    "llama_server_sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+    "model_bytes": 18556689568,
+    "model_sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad"
+  },
+  "schema": "orion.p1.scienceagentbench.exact-gguf-tokenizer-result.v1",
+  "status": "PASS_EXACT_FROZEN_GGUF_TOKENIZER_ROUTE_REPEATABILITY_ON_INVENTED_PROMPTS"
+}
