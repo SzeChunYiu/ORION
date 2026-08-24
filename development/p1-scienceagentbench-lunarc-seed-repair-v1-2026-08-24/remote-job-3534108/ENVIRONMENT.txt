@@ -1,0 +1,41 @@
+utc=2026-08-24T12:52:10Z
+host=cg15
+job_id=3534108
+ollama_module=ollama/0.32.14
+ollama_tag_commit=d67ad83426633195089509347ffd4fe795120198
+llama_cpp_version=b10434
+llama_cpp_commit=7e4c0a96880dae4fc4268ad441f8a6446bd5460a
+ollama_bin=/sw/pkg/ollama/0.32.14/bin/ollama
+llama_server=/sw/pkg/ollama/0.32.14/lib/ollama/llama-server
+Warning: could not connect to a running Ollama instance
+Warning: client version is 0.32.14
+version: 0.1.0-dev (build 1, commit 7e4c0a968)
+built with GNU 13.3.1 for Linux x86_64
+Mon Aug 24 14:52:10 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A40                     Off |   00000000:4B:00.0 Off |                    0 |
+|  0%   27C    P8             28W /  300W |    1255MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            1468      G   /usr/libexec/Xorg                        48MiB |
+|    0   N/A  N/A         1729160      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729161      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729162      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729163      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729164      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729165      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729166      G   pvserver                                140MiB |
+|    0   N/A  N/A         1729167      G   pvserver                                140MiB |
++-----------------------------------------------------------------------------------------+
