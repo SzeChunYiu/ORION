@@ -14,8 +14,9 @@ import io
 import json
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parent
@@ -509,6 +510,183 @@ class RunnerV2CostAmendmentSyntheticTests(unittest.TestCase):
         self.assertIn("official_evaluator_invoked", source)
         self.assertIn("official_outcomes_opened", source)
 
+    def test_33_output_output_alias_rejects_before_validation_or_write(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            plan_path = root / "unread-plan.json"
+            ledger_path = root / "unread-ledger.json"
+            shared_output = root / "shared-output.json"
+            with (
+                mock.patch.object(
+                    amendment,
+                    "prepare_production_seal",
+                    side_effect=AssertionError("validation must not start"),
+                ),
+                redirect_stderr(io.StringIO()),
+                self.assertRaises(SystemExit) as caught,
+            ):
+                amendment.main(
+                    [
+                        "--run-plan",
+                        str(plan_path),
+                        "--candidate-ledger",
+                        str(ledger_path),
+                        "--output-ledger",
+                        str(shared_output),
+                        "--output-receipt",
+                        str(shared_output),
+                    ]
+                )
+            self.assertEqual(caught.exception.code, 2)
+            self.assertFalse(shared_output.exists())
+
+    def test_34_output_input_lexical_symlink_and_hardlink_aliases_reject(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            plan_path = root / "plan.json"
+            ledger_path = root / "ledger.json"
+            plan_path.write_text("{}\n", encoding="utf-8")
+            ledger_path.write_text("{}\n", encoding="utf-8")
+            symlink_output = root / "plan-symlink.json"
+            symlink_output.symlink_to(plan_path)
+            hardlink_output = root / "ledger-hardlink.json"
+            hardlink_output.hardlink_to(ledger_path)
+            distinct_output = root / "distinct-output.json"
+
+            hostile_path_sets = (
+                {
+                    "run-plan path": plan_path,
+                    "candidate-ledger path": ledger_path,
+                    "output-ledger path": plan_path,
+                    "output-receipt path": distinct_output,
+                },
+                {
+                    "run-plan path": plan_path,
+                    "candidate-ledger path": ledger_path,
+                    "output-ledger path": symlink_output,
+                    "output-receipt path": distinct_output,
+                },
+                {
+                    "run-plan path": plan_path,
+                    "candidate-ledger path": ledger_path,
+                    "output-ledger path": distinct_output,
+                    "output-receipt path": hardlink_output,
+                },
+            )
+            for named_paths in hostile_path_sets:
+                self.assert_reject(
+                    lambda named_paths=named_paths: amendment._validate_pairwise_distinct_paths(
+                        named_paths
+                    ),
+                    "alias",
+                )
+            with (
+                mock.patch.object(
+                    amendment,
+                    "prepare_production_seal",
+                    side_effect=AssertionError("validation must not start"),
+                ),
+                redirect_stderr(io.StringIO()),
+                self.assertRaises(SystemExit) as caught,
+            ):
+                amendment.main(
+                    [
+                        "--run-plan",
+                        str(plan_path),
+                        "--candidate-ledger",
+                        str(ledger_path),
+                        "--output-ledger",
+                        str(plan_path),
+                        "--output-receipt",
+                        str(distinct_output),
+                    ]
+                )
+            self.assertEqual(caught.exception.code, 2)
+            self.assertEqual(plan_path.read_text(encoding="utf-8"), "{}\n")
+
+    def test_35_swapped_inputs_cannot_create_hash_parse_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            plan_path = root / "race-plan.json"
+            ledger_path = root / "race-ledger.json"
+
+            original_plan = copy.deepcopy(self.plan)
+            original_plan_bytes = (json.dumps(original_plan, indent=2) + "\n").encode()
+            plan_path.write_bytes(original_plan_bytes)
+            original_plan_sha256 = hashlib.sha256(original_plan_bytes).hexdigest()
+            original_ledger = synthetic_ledger(original_plan, original_plan_sha256)
+            original_ledger_bytes = (json.dumps(original_ledger, indent=2) + "\n").encode()
+            ledger_path.write_bytes(original_ledger_bytes)
+            original_ledger_sha256 = hashlib.sha256(original_ledger_bytes).hexdigest()
+
+            swapped_plan = copy.deepcopy(original_plan)
+            swapped_plan["bindings"]["model_id"] = "synthetic-swapped-valid-model"
+            swapped_plan_bytes = (json.dumps(swapped_plan, indent=2) + "\n").encode()
+            swapped_ledger = copy.deepcopy(original_ledger)
+            swapped_record = swapped_ledger["records"][0]
+            swapped_record["generation_billed_cost_status"] = "AVAILABLE"
+            swapped_record["billed_cost_usd"] = "0.01"
+            swapped_record["generation_billed_cost_usd"] = "0.01"
+            swapped_ledger_bytes = (json.dumps(swapped_ledger, indent=2) + "\n").encode()
+
+            real_read_bytes = Path.read_bytes
+            read_counts = {plan_path: 0, ledger_path: 0}
+
+            def racing_read_bytes(path: Path) -> bytes:
+                payload = real_read_bytes(path)
+                if path == plan_path:
+                    read_counts[plan_path] += 1
+                    if read_counts[plan_path] == 1:
+                        plan_path.write_bytes(swapped_plan_bytes)
+                elif path == ledger_path:
+                    read_counts[ledger_path] += 1
+                    if read_counts[ledger_path] == 1:
+                        ledger_path.write_bytes(swapped_ledger_bytes)
+                return payload
+
+            captured_model_ids: list[str] = []
+            real_validate_run_plan = amendment._validate_run_plan
+
+            def capture_validated_plan(plan, **kwargs):
+                captured_model_ids.append(plan["bindings"]["model_id"])
+                return real_validate_run_plan(plan, **kwargs)
+
+            with (
+                mock.patch.object(Path, "read_bytes", racing_read_bytes),
+                mock.patch.object(
+                    amendment,
+                    "_validate_run_plan",
+                    side_effect=capture_validated_plan,
+                ),
+            ):
+                projection, receipt = amendment.prepare_production_seal(
+                    plan_path, ledger_path
+                )
+
+            self.assertEqual(read_counts, {plan_path: 1, ledger_path: 1})
+            self.assertEqual(
+                captured_model_ids, [original_plan["bindings"]["model_id"]]
+            )
+            self.assertEqual(receipt["run_plan_sha256"], original_plan_sha256)
+            self.assertEqual(
+                receipt["candidate_ledger_sha256"], original_ledger_sha256
+            )
+            self.assertNotEqual(
+                receipt["run_plan_sha256"], hashlib.sha256(plan_path.read_bytes()).hexdigest()
+            )
+            self.assertNotEqual(
+                receipt["candidate_ledger_sha256"],
+                hashlib.sha256(ledger_path.read_bytes()).hexdigest(),
+            )
+            first_projection = projection["records"][0]["attempt_records"][0]
+            self.assertIsNone(first_projection["generation_billed_cost_usd"])
+            self.assertEqual(
+                json.loads(ledger_path.read_text())["records"][0][
+                    "generation_billed_cost_usd"
+                ],
+                "0.01",
+            )
+
 
 def write_receipt(result: unittest.TestResult) -> None:
     receipt = {
@@ -536,6 +714,8 @@ def write_receipt(result: unittest.TestResult) -> None:
             "zero OS or NR prospective comparator total",
             "Runner V1 budget/cap/failure invariant regression",
             "duplicate JSON members",
+            "output-output and output-input lexical/symlink/hardlink aliases",
+            "single-read immutable input snapshots under deterministic path swap",
             "Analysis Freeze V1 projection field drift",
             "execution-capability or outcome/evaluator field leakage"
         ],
@@ -550,6 +730,11 @@ def write_receipt(result: unittest.TestResult) -> None:
         "missing_billed_usd_imputed_as_zero": False,
         "post_outcome_metric_fallback_allowed": False,
         "strongest_comparator_zero_denominator_allowed": False,
+        "cli_input_output_aliasing_allowed": False,
+        "existing_symlink_or_hardlink_aliasing_allowed": False,
+        "run_plan_reads_for_hash_and_parse": 1,
+        "candidate_ledger_reads_for_hash_and_parse": 1,
+        "hash_and_strict_parse_share_identical_byte_buffer": True,
         "official_tasks_run": 0,
         "official_outcomes_opened": 0,
         "official_evaluator_invoked": False,

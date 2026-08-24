@@ -21,6 +21,11 @@
   `CANNOT_CHECK`. Missing is never imputed as zero.
 - Both OS and NR all-attempt totals must be positive, so the later
   outcome-selected strongest comparator cannot have a zero denominator.
+- All four CLI paths must be pairwise distinct by resolved path and, where
+  existing, device/inode identity. Symlink/hardlink aliases and either output
+  overwriting an input or the other output fail before validation/write.
+- Run plan and candidate ledger are each read once; their hashes and parsed
+  strict-JSON objects come from the same immutable byte buffers.
 - The output is a deterministic 102 x 9 generation-cost projection using the
   exact Analysis Freeze V1 metric and generation field names/types. It contains
   no evaluator or outcome fields and is not presented as a full outcome ledger.
@@ -59,7 +64,7 @@ git diff --check origin/main...HEAD
 Expected focused terminal:
 
 ```text
-Ran 32 tests
+Ran 35 tests
 OK
 P1_SAB_RUNNER_V2_ALLOCATED_COST_SYNTHETIC_HOSTILE_VALIDATION_PASS tests=32 official_tasks=0 official_outcomes=0
 ```
@@ -113,4 +118,3 @@ the repository.
 
 Synthetic verification is conformance evidence only. Scientific authority
 delta remains `NONE`.
-

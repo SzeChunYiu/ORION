@@ -133,6 +133,24 @@ It contains no evaluator/result fields. A future independently reviewed outcome
 adapter must add the other exact Analysis Freeze fields without transforming
 these bytes and must bind the emitted file as `generation_ledger_sha256`.
 
+## I/O identity and immutable input snapshots
+
+The four CLI roles—run plan, candidate ledger, output projection and output
+receipt—must identify pairwise distinct files before validation begins or an
+output directory/file is written. The guard compares resolved paths (therefore
+following symlinks) and, for existing objects, `(st_dev, st_ino)` identity
+(therefore detecting hardlinks). It rejects either output overwriting an input,
+the receipt overwriting the projection, and input/input aliasing. The
+programmatic seal entry point repeats the input/input guard.
+
+Each input is then read exactly once as bytes. SHA-256 and strict UTF-8 JSON
+parsing—including duplicate-member rejection—operate on that same immutable
+buffer. The path is never hashed and reopened for parsing. A deterministic
+hostile regression replaces both valid input paths immediately after their one
+read; the seal continues to bind and project only the original captured bytes,
+with one read per input, so swapped bodies cannot be certified under earlier
+hashes.
+
 ## Hostile review matrix
 
 Focused standard-library verification constructs a full synthetic 102 x 3 x 3
@@ -150,9 +168,12 @@ ledger and attacks:
 - missing, duplicate, extra, wrong-arm/attempt/seed and selected-only records;
 - zero OS or NR all-attempt totals;
 - Runner V1 unequal budgets, cap exceedance, candidate failures and hashes; and
+- output/output and output/input lexical, symlink and hardlink aliases;
+- deterministic run-plan and candidate-ledger swaps between hypothetical hash
+  and parse stages; and
 - analysis-projection field drift or evaluator/outcome leakage.
 
-`32/32` synthetic hostile tests pass. They open zero official tasks/outcomes and
+`35/35` synthetic hostile tests pass. They open zero official tasks/outcomes and
 exercise no provider, model, archive, credential, container, evaluator, CI,
 pytest, manuscript or PDF.
 

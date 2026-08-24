@@ -28,7 +28,7 @@ from typing import Any, Iterable, Mapping, Sequence
 ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parents[1]
 AMENDMENT_CONTRACT_PATH = ROOT / "RUNNER_V2_COST_AMENDMENT_CONTRACT.json"
-AMENDMENT_CONTRACT_SHA256 = "0226a0c8350803e6e47eea846df3871c02c790ababdf3d4cf290461834e0369d"
+AMENDMENT_CONTRACT_SHA256 = "71de699586b6bbd07ee20d6d83b598d06ef7e1ebccf14ba475d98d559afa66b2"
 
 V1_ROOT = REPO_ROOT / "development/p1-scienceagentbench-runner-v1-2026-08-24"
 V1_CONTRACT_PATH = V1_ROOT / "RUNNER_CONTRACT_V1.json"
@@ -237,21 +237,44 @@ def _reject_nonfinite_constant(value: str) -> Any:
     raise ValueError(f"non-finite JSON constant is forbidden: {value}")
 
 
-def _load_json(path: Path | str, label: str) -> dict[str, Any]:
-    candidate = Path(path)
+def _strict_json_object_from_bytes(
+    payload: bytes, label: str, source: Path | str
+) -> dict[str, Any]:
     try:
+        text = payload.decode("utf-8")
         value = json.loads(
-            candidate.read_text(encoding="utf-8"),
+            text,
             object_pairs_hook=_reject_duplicate_members,
             parse_constant=_reject_nonfinite_constant,
         )
-    except OSError as exc:
-        raise ContractError(f"required {label} is unreadable: {candidate}") from exc
     except (UnicodeDecodeError, json.JSONDecodeError, DuplicateJsonMemberError, ValueError) as exc:
-        raise ContractError(f"{label} is not unambiguous strict UTF-8 JSON: {candidate}") from exc
+        raise ContractError(
+            f"{label} is not unambiguous strict UTF-8 JSON: {source}"
+        ) from exc
     if not isinstance(value, dict):
         raise ContractError(f"{label} must be a JSON object")
     return value
+
+
+def _read_json_snapshot(
+    path: Path | str, label: str
+) -> tuple[bytes, str, dict[str, Any]]:
+    """Read once, then hash and strict-parse that exact immutable byte buffer."""
+
+    candidate = Path(path)
+    try:
+        payload = candidate.read_bytes()
+    except OSError as exc:
+        raise ContractError(f"required {label} is unreadable: {candidate}") from exc
+    return (
+        payload,
+        _sha256_bytes(payload),
+        _strict_json_object_from_bytes(payload, label, candidate),
+    )
+
+
+def _load_json(path: Path | str, label: str) -> dict[str, Any]:
+    return _read_json_snapshot(path, label)[2]
 
 
 def _require_exact_fields(value: Any, expected: set[str], label: str) -> None:
@@ -329,6 +352,48 @@ def _validate_absolute_path(path: Path | str, label: str) -> Path:
     if matched:
         raise ContractError(f"{label} contains forbidden path component {sorted(matched)[0]}")
     return candidate
+
+
+def _validate_pairwise_distinct_paths(
+    named_paths: Mapping[str, Path | str],
+) -> dict[str, Path]:
+    """Reject lexical, resolved, symlink, hardlink, and existing-inode aliases."""
+
+    validated: dict[str, Path] = {}
+    identities: dict[str, tuple[Path, tuple[int, int] | None]] = {}
+    for label, raw_path in named_paths.items():
+        candidate = _validate_absolute_path(raw_path, label)
+        try:
+            resolved = candidate.resolve(strict=False)
+        except (OSError, RuntimeError) as exc:
+            raise ContractError(f"cannot resolve {label}: {candidate}") from exc
+        try:
+            stat_result = candidate.stat()
+        except FileNotFoundError:
+            inode = None
+        except OSError as exc:
+            raise ContractError(f"cannot identify {label}: {candidate}") from exc
+        else:
+            inode = (stat_result.st_dev, stat_result.st_ino)
+        validated[label] = candidate
+        identities[label] = (resolved, inode)
+
+    labels = list(validated)
+    for left_index, left_label in enumerate(labels):
+        left_resolved, left_inode = identities[left_label]
+        for right_label in labels[left_index + 1 :]:
+            right_resolved, right_inode = identities[right_label]
+            if left_resolved == right_resolved or (
+                left_inode is not None
+                and right_inode is not None
+                and left_inode == right_inode
+            ):
+                raise ContractError(
+                    "I/O path alias forbidden: "
+                    f"{left_label}={validated[left_label]} and "
+                    f"{right_label}={validated[right_label]} identify the same file"
+                )
+    return validated
 
 
 def _metric_object() -> dict[str, str]:
@@ -728,14 +793,22 @@ def _prepare_seal(
     *,
     expected_task_ids: Sequence[str] = TASK_IDS,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    input_paths = _validate_pairwise_distinct_paths(
+        {
+            "run-plan path": run_plan_path,
+            "candidate-ledger path": candidate_ledger_path,
+        }
+    )
     analysis_contract = _load_and_verify_upstream_contracts()
-    plan_path = _validate_absolute_path(run_plan_path, "run-plan path")
-    ledger_path = _validate_absolute_path(candidate_ledger_path, "candidate-ledger path")
-    run_plan_sha256 = _sha256_file(plan_path)
-    candidate_ledger_sha256 = _sha256_file(ledger_path)
-    plan = _load_json(plan_path, "allocated cost run plan")
+    plan_path = input_paths["run-plan path"]
+    ledger_path = input_paths["candidate-ledger path"]
+    _, run_plan_sha256, plan = _read_json_snapshot(
+        plan_path, "allocated cost run plan"
+    )
     _validate_run_plan(plan, expected_task_ids=expected_task_ids)
-    ledger = _load_json(ledger_path, "allocated candidate ledger")
+    _, candidate_ledger_sha256, ledger = _read_json_snapshot(
+        ledger_path, "allocated candidate ledger"
+    )
     by_tuple, billed_counts, allocated_ns_totals = _validate_candidate_ledger(
         ledger,
         plan,
@@ -821,12 +894,22 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
     try:
-        projection, receipt = prepare_production_seal(
-            args.run_plan, args.candidate_ledger
+        paths = _validate_pairwise_distinct_paths(
+            {
+                "run-plan path": args.run_plan,
+                "candidate-ledger path": args.candidate_ledger,
+                "output-ledger path": args.output_ledger,
+                "output-receipt path": args.output_receipt,
+            }
         )
-        emitted_file_sha256 = _write_canonical_json(args.output_ledger, projection)
+        projection, receipt = prepare_production_seal(
+            paths["run-plan path"], paths["candidate-ledger path"]
+        )
+        emitted_file_sha256 = _write_canonical_json(
+            paths["output-ledger path"], projection
+        )
         receipt["emitted_cost_projection_file_sha256"] = emitted_file_sha256
-        _write_canonical_json(args.output_receipt, receipt)
+        _write_canonical_json(paths["output-receipt path"], receipt)
     except ContractError as exc:
         parser.error(str(exc))
     print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, separators=(",", ":")))

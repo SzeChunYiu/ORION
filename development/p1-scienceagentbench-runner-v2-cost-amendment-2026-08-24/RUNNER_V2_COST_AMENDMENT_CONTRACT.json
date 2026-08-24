@@ -163,6 +163,22 @@
     "analysis_freeze_exactness": "The metric object, binding digest, cost accounting token, task/arm/attempt identities, candidate hash field, generation_cost_quantity field, and nullable generation_billed_cost_usd field use the exact spellings, types, and semantics frozen at Analysis Freeze V1 SHA-256 0cae220a5b2f73156eda63a01f769dfdecbf8ad1fa16bd0995e3f906cff391d4. No conversion, rounding, fallback, or missing-to-zero step is permitted.",
     "boundary": "The future outcome adapter must add discipline, official task/evaluator hashes, status, valid_program, success_rate, evaluator billed USD, and failure. This amendment does not fabricate them and therefore does not claim that its projection alone is the full or analysis-executable outcome ledger."
   },
+  "io_identity_contract": {
+    "paths": [
+      "run-plan path",
+      "candidate-ledger path",
+      "output-ledger path",
+      "output-receipt path"
+    ],
+    "pairwise_rule": "All four CLI paths must identify pairwise distinct files before any input validation or output write. Equal lexical/resolved paths, symlink aliases, and equal device/inode identities such as hardlinks are rejected. Existing inode identities are checked for every pair.",
+    "overwrite_rule": "Neither output may overwrite either input, and the receipt may not overwrite the projection. Alias rejection occurs before prepare_production_seal and before directory creation or file write.",
+    "programmatic_rule": "prepare_production_seal separately rejects run-plan/candidate-ledger aliasing even when used without the CLI."
+  },
+  "input_snapshot_contract": {
+    "single_read_rule": "The run plan and candidate ledger are each read exactly once as bytes. SHA-256 and strict duplicate-rejecting UTF-8 JSON parsing are both computed from that same immutable in-memory byte buffer.",
+    "toctou_rule": "No path is hashed and then reopened for parsing. A replacement, symlink retarget, or content swap after the one read cannot cause parsed content to be sealed under a different byte hash.",
+    "receipt_rule": "run_plan_sha256 and candidate_ledger_sha256 identify the exact respective byte snapshots whose parsed objects were validated and projected."
+  },
   "seal_receipt_contract": {
     "schema_version": "orion.p1.scienceagentbench.candidate-cost-seal-receipt.v2",
     "required_status": "ALLOCATED_ACCELERATOR_COST_LEDGER_SEALED__OUTCOMES_NOT_OPENED",
@@ -187,8 +203,10 @@
     "negative, signed, exponent, floating, Boolean, leading-zero, trailing-zero, non-finite, or otherwise noncanonical exact cost/timing values",
     "end before start, elapsed mismatch, or derived accelerator quantity mismatch",
     "missing billed USD represented as zero or any AVAILABLE/CANNOT_CHECK/value mismatch",
-    "zero OS total or zero NR total",
-    "duplicate JSON members, extra fields, upstream hash drift, unequal Runner V1 budgets, seed drift, cap exceedance, or malformed failure/hash fields"
+      "zero OS total or zero NR total",
+      "duplicate JSON members, extra fields, upstream hash drift, unequal Runner V1 budgets, seed drift, cap exceedance, or malformed failure/hash fields",
+      "any lexical, resolved, symlink, hardlink, or existing-inode alias among inputs and outputs",
+      "any attempt to seal parsed run-plan or candidate-ledger content under the hash of different path bytes"
   ],
   "forbidden_surfaces": [
     "benchmark archive, task text, candidate raw body, predicted program body",
