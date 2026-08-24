@@ -14,22 +14,64 @@
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "p2x_claim_bindings", "key": "case_count"},
-        {"artifact": "p2x_claim_bindings", "key": "p2x_correct"},
-        {"artifact": "p2x_claim_bindings", "key": "case_count"},
-        {"artifact": "p2x_claim_bindings", "key": "b1_correct"},
-        {"artifact": "p2x_claim_bindings", "key": "case_count"},
-        {"artifact": "p2x_claim_bindings", "key": "paired_difference"},
-        {"artifact": "p2x_claim_bindings", "key": "confidence_level_percent"},
-        {"artifact": "p2x_claim_bindings", "key": "ci_lower"},
-        {"artifact": "p2x_claim_bindings", "key": "ci_upper"},
-        {"artifact": "p2x_claim_bindings", "key": "b3_correct"},
-        {"artifact": "p2x_claim_bindings", "key": "case_count"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "p2x_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b1_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "paired_difference"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "confidence_level_percent"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "ci_lower"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "ci_upper"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "p2x_false_task_closures"},
-        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"},
-        {"artifact": "p2x_claim_bindings", "key": "b3_decision_mismatches"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "p2x_false_task_closures"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_ok"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_decision_mismatches"
+        }
       ],
       "note": "Promoted P2-X abstract result; exact-contract authority only; offline mechanism evidence remains DESCRIPTIVE under the existing ledger policy."
     },
@@ -37,15 +79,24 @@
       "claim_id": "P2-XL01",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Its 400-case exact battery spans five acquisition settings and includes seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
+      "sentence": "Its 400 cases span five acquisition settings and include seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "p2x_claim_bindings", "key": "case_count"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "nonmaterial_decoy_cases"},
-        {"artifact": "p2x_claim_bindings", "key": "independent_verification_case_count"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "nonmaterial_decoy_cases"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_case_count"
+        }
       ],
       "note": "Battery scope and explicit-state limitation."
     },
@@ -53,15 +104,24 @@
       "claim_id": "P2-XL02",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The 1.000 P2-X ESCD ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
+      "sentence": "The 1.000 exact-closure ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "p2x_claim_bindings", "key": "p2x_rate"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "p2x_rate"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "scientific_terminal"},
-        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "scientific_terminal"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_ok"
+        }
       ],
       "note": "Bounded exact-contract interpretation of the P2-X ceiling."
     },
@@ -69,13 +129,19 @@
       "claim_id": "P2-XL03",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and B3 shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
+      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and the ideal-product arm shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "b3_equivalence_pass"},
-        {"artifact": "p2x_claim_bindings", "key": "b3_decision_mismatches"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_equivalence_pass"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_decision_mismatches"
+        }
       ],
       "note": "Ideal-product equivalence and explicit non-generality boundary."
     },
@@ -87,19 +153,52 @@
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "p2x_claim_bindings", "key": "p2x_correct"},
-        {"artifact": "p2x_claim_bindings", "key": "case_count"},
-        {"artifact": "p2x_claim_bindings", "key": "b1_correct"},
-        {"artifact": "p2x_claim_bindings", "key": "case_count"},
-        {"artifact": "p2x_claim_bindings", "key": "paired_difference"},
-        {"artifact": "p2x_claim_bindings", "key": "confidence_level_percent"},
-        {"artifact": "p2x_claim_bindings", "key": "ci_lower"},
-        {"artifact": "p2x_claim_bindings", "key": "ci_upper"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "p2x_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b1_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "paired_difference"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "confidence_level_percent"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "ci_lower"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "ci_upper"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "p2x_false_task_closures"},
-        {"artifact": "p2x_claim_bindings", "key": "clean_task_stop_pass"},
-        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "p2x_false_task_closures"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "clean_task_stop_pass"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_ok"
+        }
       ],
       "note": "P2-X conclusion headline with non-regression gates; offline mechanism evidence remains DESCRIPTIVE."
     },
@@ -111,11 +210,20 @@
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "p2x_claim_bindings", "key": "b1_errors"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b1_errors"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "primary_pass"},
-        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "primary_pass"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_ok"
+        }
       ],
       "note": "Registered failure family behind the B1 difference."
     },
@@ -127,12 +235,24 @@
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "p2x_claim_bindings", "key": "b3_correct"},
-        {"artifact": "p2x_claim_bindings", "key": "case_count"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "b3_equivalence_pass"},
-        {"artifact": "p2x_claim_bindings", "key": "b3_decision_mismatches"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_equivalence_pass"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_decision_mismatches"
+        }
       ],
       "note": "Ideal typed product is extensionally tied under identical semantics."
     },
@@ -145,9 +265,18 @@
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "scientific_terminal"},
-        {"artifact": "p2x_claim_bindings", "key": "b3_equivalence_pass"},
-        {"artifact": "p2x_claim_bindings", "key": "independent_verification_ok"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "scientific_terminal"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_equivalence_pass"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_ok"
+        }
       ],
       "note": "Bounded interpretation only; donor-owned generic mechanisms remain non-novel."
     },
@@ -160,7 +289,10 @@
       "strength": "CANNOT_CHECK",
       "numeric_bindings": [],
       "support_artifacts": [
-        {"artifact": "p2x_claim_bindings", "key": "external_retrieval_generality"}
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "external_retrieval_generality"
+        }
       ],
       "note": "Explicit non-promotion boundary; P2-X exact contracts do not establish deployment generality."
     }

@@ -551,8 +551,8 @@ were excluded — zero file collisions (verified). Gap-wave agent branches
 - `papers/paper-02-global-knowledge-portrait/README.md` ← `<-`
 - `papers/paper-03-verified-discovery/README.md` ← `<-`
 - `papers/paper-04-self-orion/README.md` ← `<-`
-- `papers/paper-02-open-world-scientific-discovery/evidence/offline_gold/tasks.json` ← `<-`
-- `papers/paper-02-open-world-scientific-discovery/evidence/offline_gold/world.json` ← `<-`
+- `papers/paper-02-open-world-scientific-discovery/evidence/offline_gold_preserved_smallworld/tasks.json` ← `<-`
+- `papers/paper-02-open-world-scientific-discovery/evidence/offline_gold_preserved_smallworld/world.json` ← `<-`
 - `papers/paper-02-open-world-scientific-discovery/evidence/access/LIVE_PROVIDER_PREFLIGHT_2026-08-16.json` ← `<-`
 - `src/orion/providers/llm/llama_cpp_cli.py` ← `<-`
 - `src/orion/providers/open_weight_phase2.py` ← `<-`

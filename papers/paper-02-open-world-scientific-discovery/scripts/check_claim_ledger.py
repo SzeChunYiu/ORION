@@ -59,6 +59,7 @@ from typing import Any
 
 PAPER_DEFAULT = Path(__file__).resolve().parents[1]
 LEDGER_RELATIVE = Path("protocol") / "CLAIM_LEDGER_V1.json"
+ADDENDUM_RELATIVE = Path("protocol") / "CLAIM_LEDGER_P2X_ADDENDUM_V1.json"
 
 SUPPORT_TYPES = {
     "OFFLINE_MECHANISM",
@@ -457,6 +458,62 @@ def _load_json(path: Path, label: str) -> Any:
         return json.loads(_read(path))
     except json.JSONDecodeError as exc:
         raise HarnessError(f"{label} is not valid JSON ({path}): {exc}") from exc
+
+
+def _load_ledger(paper: Path) -> dict[str, Any]:
+    """Load the base claim ledger and merge any post-freeze addendum.
+
+    The V1 ledger is immutable audit history: claims promoted after the freeze
+    (the P2-X successor wave) are bound by ``CLAIM_LEDGER_P2X_ADDENDUM_V1.json``,
+    which extends the base ledger without editing it.  Here the addendum's
+    claims, artifacts and allowlist entries merge into one ledger dict so the
+    same checks apply to promoted claims with no second code path.  An
+    addendum that redefines a base claim or artifact is a harness error, never
+    a silent override.
+    """
+    ledger = _load_json(paper / LEDGER_RELATIVE, "claim ledger")
+    addendum_path = paper / ADDENDUM_RELATIVE
+    if not addendum_path.is_file():
+        return ledger
+    addendum = _load_json(addendum_path, "claim-ledger addendum")
+    if not isinstance(addendum, dict):
+        raise HarnessError(f"claim-ledger addendum must be a JSON object ({addendum_path})")
+    if addendum.get("base_ledger") != LEDGER_RELATIVE.name:
+        raise HarnessError(
+            f"claim-ledger addendum declares base_ledger {addendum.get('base_ledger')!r}; "
+            f"this checker verifies {LEDGER_RELATIVE.name}"
+        )
+    for required in ("schema_version", "purpose", "claims"):
+        if not addendum.get(required):
+            raise HarnessError(f"claim-ledger addendum missing required field {required!r}")
+    merged = dict(ledger)
+    artifacts = dict(merged.get("artifacts", {}))
+    for alias, relative in addendum.get("artifacts", {}).items():
+        if alias in artifacts and artifacts[alias] != relative:
+            raise HarnessError(
+                f"claim-ledger addendum redefines artifact alias {alias!r} with a "
+                f"different path than {LEDGER_RELATIVE}"
+            )
+        artifacts[alias] = relative
+    merged["artifacts"] = artifacts
+    base_ids = {claim.get("claim_id") for claim in merged.get("claims", [])}
+    for claim in addendum["claims"]:
+        cid = claim.get("claim_id")
+        if cid in base_ids:
+            raise HarnessError(
+                f"claim-ledger addendum duplicates base claim_id {cid!r}; an addendum "
+                "extends the base ledger and must not redefine its claims"
+            )
+    merged["claims"] = [*merged.get("claims", []), *addendum["claims"]]
+    merged["non_claim_sentences"] = [
+        *merged.get("non_claim_sentences", []),
+        *addendum.get("non_claim_sentences", []),
+    ]
+    merged["known_defects"] = [
+        *merged.get("known_defects", []),
+        *addendum.get("known_defects", []),
+    ]
+    return merged
 
 
 def _artifact_payloads(paper: Path, ledger: dict[str, Any], report: Report) -> dict[str, Any]:
@@ -906,7 +963,7 @@ def _check_task_count_agreement(
 
 
 def run_check(paper: Path, strict: bool = False) -> tuple[int, Report]:
-    ledger = _load_json(paper / LEDGER_RELATIVE, "claim ledger")
+    ledger = _load_ledger(paper)
     for required in ("schema_version", "regions", "artifacts", "claims"):
         if required not in ledger:
             raise HarnessError(f"claim ledger missing required field {required!r}")
@@ -959,7 +1016,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.emit_sentences:
-            ledger = _load_json(paper / LEDGER_RELATIVE, "claim ledger")
+            ledger = _load_ledger(paper)
             spec = ledger["regions"].get(args.emit_sentences)
             if spec is None:
                 raise HarnessError(f"unknown region {args.emit_sentences!r}")
