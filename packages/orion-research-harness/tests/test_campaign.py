@@ -12,6 +12,7 @@ from orion_research_harness.campaign_runner import (
     initialize_campaign,
     run_campaign,
 )
+from orion_research_harness.campaign_store import CampaignStore
 from orion_research_harness.domains.orion_q import MAX_R6_CAMPAIGN_MANIFEST
 from orion_research_harness.local_tools import service_local_request
 from orion_research_harness.workspace import ResearchWorkspace
@@ -105,6 +106,7 @@ def test_generic_campaign_runs_through_shared_local_receipts(tmp_path):
     assert final.observation_map["DONE"] == "YES"
     assert final.cycle_index == 1
     assert len(workspace.pending_requests()) == 0
+    assert CampaignStore(workspace).latest_state("toy:campaign") == final.as_dict()
 
 
 def test_failed_local_process_is_failed_receipt_and_does_not_advance_campaign(tmp_path):

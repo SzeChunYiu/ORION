@@ -38,7 +38,14 @@ _CAPABILITY_PAYLOAD_KEYS = {
 #: digest is bound to the cycle that issued it (see campaign_runner). These are
 #: provenance, deliberately not read by the executor, and are legal everywhere.
 _RESERVED_PROVENANCE_KEYS = frozenset(
-    {"campaign_id", "phase_id", "selected_id", "selected_kind"}
+    {
+        "campaign_id",
+        "phase_id",
+        "selected_id",
+        "selected_kind",
+        "campaign_state_digest",
+        "campaign_decision_digest",
+    }
 )
 
 

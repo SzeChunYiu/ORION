@@ -49,10 +49,14 @@ class CampaignStore:
 
     def __init__(self, workspace: ResearchWorkspace) -> None:
         self.workspace = workspace
-        self.root = workspace.meta_root / "campaign-control"
-        self.manifests = self.root / "manifests"
-        self.states = self.root / "states"
-        self.cycles = self.root / "cycles"
+        # CampaignStore is the hardened runner-facing interface, while the
+        # workspace methods are the public replay/inspection interface.  They
+        # must name one immutable object store: separate roots make a campaign
+        # reach TERMINAL while public readers still see no state.
+        self.root = workspace.meta_root
+        self.manifests = workspace.campaigns_dir
+        self.states = workspace.campaign_states_dir
+        self.cycles = workspace.campaign_cycles_dir
 
     def freeze_manifest(self, campaign_id: str, manifest: Mapping[str, Any]) -> Path:
         payload = dict(manifest)
