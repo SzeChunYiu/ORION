@@ -49,6 +49,16 @@ endpoint.** The exact support matrix and byte replay remain valid. The later
 outcome-entailment adjudication enumerates 3,840 points: the action changes on
 2,304 while the self-scored harm moves on zero and has zero opportunities.
 
+That is a methodological negative, and the distinction matters. The endpoint did
+not fail to show a safety effect; it was incapable of showing one. Harm was
+scored by the same construction that produced the action, so across all 3,840
+enumerated points there is no configuration in which harm could have moved ---
+zero opportunities, not zero movements. A self-entailed endpoint cannot
+discriminate between a safe system and an unsafe one, so no reading of P13A's
+result, favourable or adverse, is licensed about safety. It is preserved for
+what it does establish: that the endpoint's construction, not the system's
+behaviour, is what the number measured.
+
 ### Novelty / donor
 
 **Pass only for the exact conditional core.** The interior safety–cost result is
