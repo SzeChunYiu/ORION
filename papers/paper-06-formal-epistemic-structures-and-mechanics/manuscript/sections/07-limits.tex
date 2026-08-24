@@ -17,6 +17,20 @@ claimed. Independent
 proof review remains outstanding, and the withdrawal above of a ``second
 implementation'' that could not disagree is the reason to be exact about it.
 
+Naming what stands in review's place is the other half of that disclosure. The
+mechanized results are only as strong as the code that had to be correct for
+them to hold, and that code is not hypothetical: it is five in-repository
+kernel modules --- \texttt{orion.core.claims},
+\texttt{orion.programme.guard\_exercise}, \texttt{orion.programme.identity},
+\texttt{orion.programme.records} and
+\texttt{orion.programme.refutation\_capacity} --- together with the Z3 solver
+the checks defer to. Z3 is not reviewed here and its correctness is assumed.
+This list is not written by hand; it is the transitive import closure of the
+formal executables, recomputed by \texttt{orion.programme.p6\_trusted\_base},
+which fails closed if the disclosure and the imports diverge. A trusted base
+stated once and left to drift would be a worse disclosure than none, because it
+would read as current.
+
 Finally, the naturalistic question is untouched. No multi-domain corpus of real
 changes --- code patches, dataset revisions, model revisions, analysis changes,
 instrument recalibrations, manuscript claim revisions --- has been assembled, so
