@@ -1,1 +1,1 @@
-public import Init.Omega
+import Init.Omega
