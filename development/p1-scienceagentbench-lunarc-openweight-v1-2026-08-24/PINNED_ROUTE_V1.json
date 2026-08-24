@@ -51,7 +51,14 @@
     "listen_scope": "LOOPBACK_ONLY",
     "proxy_variables": "CLEARED",
     "model_import": "PINNED_LOCAL_GGUF_ONLY",
-    "cloud_route": "DISABLED_BY_CONFIGURATION_AND_NO_PULL_REQUESTED"
+    "ollama_no_cloud_observed": false,
+    "ollama_remotes_observed": [
+      "ollama.com"
+    ],
+    "cloud_capability": "ENABLED",
+    "pull_event_observed_in_retained_logs": false,
+    "kernel_level_egress_audit": "NOT_PERFORMED",
+    "cloud_boundary": "BOUNDARY_ONLY__CLOUD_CAPABILITY_ENABLED__NO_PULL_EVENT_OBSERVED__NO_KERNEL_EGRESS_AUDIT"
   },
   "slurm": {
     "cluster": "cosmos",

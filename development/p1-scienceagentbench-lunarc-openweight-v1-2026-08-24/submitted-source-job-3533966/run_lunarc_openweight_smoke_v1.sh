@@ -153,40 +153,17 @@ for line in sockets.splitlines():
     if ':11471' in line: listeners.append(line)
 loopback_only=bool(listeners) and all(('127.0.0.1:11471' in x or '[::1]:11471' in x) for x in listeners)
 proxy_clear=all(re.search(rf'^{name}=$',env,re.M) for name in ['HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','http_proxy','https_proxy','all_proxy'])
-cloud_disabled_true='Ollama cloud disabled: true' in log
-cloud_disabled_false='Ollama cloud disabled: false' in log
-no_cloud_match=re.search(r'OLLAMA_NO_CLOUD:(true|false)',log)
-remotes_match=re.search(r'OLLAMA_REMOTES:\[([^]]*)\]',log)
-ollama_no_cloud_observed=(no_cloud_match.group(1)=='true') if no_cloud_match else None
-ollama_remotes_observed=(remotes_match.group(1).split() if remotes_match and remotes_match.group(1) else [])
-cloud_capability_enabled=True if cloud_disabled_false else (False if cloud_disabled_true else None)
-pull_event_lines=[
- line for line in log.splitlines()
- if re.search(r'\bmsg="pulling(?: manifest| [^"]+)"',line,re.I)
-]
-cloud_state_complete=(
- cloud_capability_enabled is not None
- and ollama_no_cloud_observed is not None
- and remotes_match is not None
- and cloud_capability_enabled == (not ollama_no_cloud_observed)
-)
+cloud_tokens=['registry.ollama.ai','ollama.com/library','pulling manifest']
+cloud_log_hits=[x for x in cloud_tokens if x in log]
 model_blob=(run/'ollama-models/blobs/sha256-fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad')
 route={
  'schema':'orion.p1.scienceagentbench.lunarc-openweight-route-receipt.v1',
- 'status':'PASS' if smoke['status']=='PASS' and loopback_only and proxy_clear and cloud_state_complete and not pull_event_lines and model_blob.exists() else 'FAIL',
+ 'status':'PASS' if smoke['status']=='PASS' and loopback_only and proxy_clear and not cloud_log_hits and model_blob.exists() else 'FAIL',
  'slurm_job_id':os.environ['SLURM_JOB_ID'],
  'model_blob_expected_sha256':'fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad',
  'ollama_content_addressed_model_blob_present':model_blob.exists(),
  'loopback_listener_only':loopback_only,'listener_lines':listeners,
- 'proxy_variables_cleared':proxy_clear,
- 'ollama_no_cloud_observed':ollama_no_cloud_observed,
- 'ollama_remotes_observed':ollama_remotes_observed,
- 'cloud_capability_enabled':cloud_capability_enabled,
- 'pull_event_observed_in_retained_log':bool(pull_event_lines),
- 'pull_event_lines':pull_event_lines,
- 'kernel_level_egress_audit_performed':False,
- 'cloud_boundary':'BOUNDARY_ONLY__CLOUD_CAPABILITY_ENABLED__NO_PULL_EVENT_OBSERVED__NO_KERNEL_EGRESS_AUDIT' if cloud_capability_enabled and not pull_event_lines else 'BOUNDARY_NOT_SATISFIED',
- 'local_registry_identifier_note':'registry.ollama.ai may be a local manifest namespace and is not treated as a pull event by itself.',
+ 'proxy_variables_cleared':proxy_clear,'server_log_cloud_token_hits':cloud_log_hits,
  'smoke_receipt_sha256':hashlib.sha256((run/'raw/SMOKE_RECEIPT_V1.json').read_bytes()).hexdigest(),
  'cost':{'billed_usd':None,'status':'CANNOT_CHECK_PENDING_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION','gpu_seconds_and_energy_separate':True},
  'forbidden_inputs':{'protected_archive_opened':False,'benchmark_task_opened':False,'outcome_opened':False,'evaluator_opened':False,'credential_opened':False},

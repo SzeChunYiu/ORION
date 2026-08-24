@@ -48,6 +48,18 @@ files, and both `OLLAMA_STORE_SHA256SUMS` files retain the exact bindings.
 | `3533950` | `gpua40i` / `cg13` | 363 s | `FAILED 1:0` | Ten requests completed, then the harness hit `TypeError: zip() takes no keyword arguments` before constructing the long prompt. Preserved; never promoted. |
 | `3533966` | `gpua40i` / `cg13` | 288 s | `FAILED 2:0` | All 11 requests completed. Harness deliberately returned 2 because frozen probes were adverse. This is the result-bearing job. |
 
+For job `3533950`, the retained traceback shows
+`positions = dict(zip(..., strict=True))` followed by
+`TypeError: zip() takes no keyword arguments`. This is compatible with a `zip`
+implementation or interpreter lacking `strict`, but the exact original harness
+and batch-script bytes are no longer retained. Their submitted SHA-256 values
+remain recorded, while exact-byte reproduction is
+`CANNOT_CHECK_EXACT_ORIGINAL_SUBMITTED_BYTES_NOT_RETAINED`. No more specific
+cause is claimed. Job `3533966` is different: all four exact submitted sources
+are retained under `submitted-source-job-3533966/` and hash-match
+`remote-job-3533966/REPAIRED_CODE_SHA256SUMS`. See
+`SOURCE_PROVENANCE_V1.json`.
+
 The job-level `MaxRSS` values cover the batch process, not the separately
 running Ollama server. NVIDIA telemetry observed 22,838 MiB maximum VRAM in the
 result-bearing job and 100% maximum GPU utilization.
@@ -131,11 +143,16 @@ currency value was invented. See `COST_AUTHORITY_PROBE_V1.txt`.
 
 ## Network and cleanup boundary
 
-Ollama listened on `127.0.0.1:11471`; all proxy variables were cleared; the
-model was imported from the verified local GGUF and no pull was requested or
-logged. Ollama's local manifest namespace contains the literal
-`registry.ollama.ai`; the observed template-selection line is not a pull event.
-This is a bounded configuration/log witness, not a kernel-level egress audit.
+Ollama listened on `127.0.0.1:11471`; all proxy variables were cleared; and the
+model was imported from the verified local GGUF. Both retained server logs
+explicitly report `OLLAMA_NO_CLOUD:false`, `OLLAMA_REMOTES:[ollama.com]`, and
+`Ollama cloud disabled: false`: cloud capability remained enabled. No pull
+event was observed in the retained logs. Ollama's local manifest namespace
+contains the literal `registry.ollama.ai`; the observed template-selection
+line is not a pull event. There was no kernel-level egress audit. The exact
+boundary is
+`BOUNDARY_ONLY__CLOUD_CAPABILITY_ENABLED__NO_PULL_EVENT_OBSERVED__NO_KERNEL_EGRESS_AUDIT`,
+not a cloud-off or zero-egress claim.
 
 Both job traps stopped Ollama and removed imported model stores. After local
 receipt/manifest verification, the entire LUNARC root was removed:
@@ -150,7 +167,7 @@ receipt/manifest verification, the entire LUNARC root was removed:
 From the packet directory:
 
 ```bash
-python3 validate_openweight_packet_v1.py
+/usr/bin/python3 validate_openweight_packet_v1.py
 sha256sum -c SHA256SUMS
 ```
 
@@ -163,4 +180,3 @@ fail.
 Paper 1 superiority or mechanism claim. It shows that the pinned route can run
 locally and exposes two reasons it is not yet suitable for official execution:
 non-replay at the same seed and RR truncation under the frozen cap.
-

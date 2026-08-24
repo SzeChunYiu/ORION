@@ -8,8 +8,9 @@ Authority: infrastructure witness only; no Paper 1 outcome or scientific-authori
 
 1. Can the exact bytes of a public, pinned Qwen3-Coder GGUF be verified before
    import into a pinned LUNARC Ollama runtime?
-2. Can Ollama serve the imported model only on loopback with cloud/proxy use
-   disabled for the generation interval?
+2. Can Ollama serve the imported model only on loopback with proxy variables
+   cleared, while accurately recording that Ollama cloud capability remained
+   enabled and that no pull event was observed in the retained logs?
 3. Can one frozen, nonbenchmark fixture exercise the RR persistent-state, OS
    one-shot, and NR reset generation topologies with seeds 101, 202, and 303?
 4. Does a repeated same-request/same-seed probe replay byte-identically, and
@@ -40,9 +41,11 @@ Authority: infrastructure witness only; no Paper 1 outcome or scientific-authori
 ## Challenge to the saturation basis
 
 - A loopback listener and cleared proxy variables do not prove a kernel-level
-  absence of every outbound packet. The route therefore records socket
-  snapshots and server logs and makes only a bounded cloud-off configuration
-  claim.
+  absence of every outbound packet. Both retained jobs reported
+  `OLLAMA_NO_CLOUD:false`, `OLLAMA_REMOTES:[ollama.com]`, and
+  `Ollama cloud disabled: false`. The route therefore makes only this boundary
+  claim:
+  `BOUNDARY_ONLY__CLOUD_CAPABILITY_ENABLED__NO_PULL_EVENT_OBSERVED__NO_KERNEL_EGRESS_AUDIT`.
 - GPU inference can be nondeterministic even with a fixed sampling seed. A
   replay mismatch is retained as an adverse result rather than repaired away.
 - Recalling distributed long-context markers plus a nontruncated reported token
@@ -73,8 +76,10 @@ Authority: infrastructure witness only; no Paper 1 outcome or scientific-authori
 ## Hostile checks and reopen triggers
 
 - Any model/tokenizer/runtime/manifest/blob hash mismatch fails closed.
-- Any non-loopback Ollama listening socket, cloud-looking server-log token, or
-  inherited proxy setting fails closed.
+- Any non-loopback Ollama listening socket, inherited proxy setting, actual
+  pull event in the retained server log, or missing cloud-capability state
+  fails closed. The literal `registry.ollama.ai` is not by itself a pull event;
+  Ollama also uses it as a local manifest namespace.
 - Missing seeds, token counters, request/response bytes, raw hashes, or GPU
   telemetry fail closed.
 - Same-seed byte mismatch or no different-seed sensitivity is reported as a
@@ -90,4 +95,3 @@ The job must not read or mount any protected ScienceAgentBench archive, task,
 outcome, gold program, evaluator, rubric, credential, or secret. It must not run
 an official task or evaluator. All payloads are frozen synthetic text authored
 in this packet.
-

@@ -106,19 +106,25 @@ failed probe is deleted or silently normalized.
 
 ## Remote execution failures
 
-## F10 — job 3533950 exposed Python 3.9 incompatibility after ten valid calls
+## F10 — job 3533950 reached `zip(..., strict=True)` TypeError after ten valid calls
 
 - **Observed:** job `3533950` completed model import and ten generation calls,
   then failed before the long-context call with exit `1:0`. Exact terminal:
   `TypeError: zip() takes no keyword arguments` at
   `positions = dict(zip(..., strict=True))`. The job-level failure receipt bound
   the failed harness command and line 123; no pass receipt was emitted.
-- **Cause:** LUNARC's system Python predates the Python 3.10 `zip(strict=...)`
-  keyword used by the local development interpreter.
+- **Causal boundary:** this traceback is compatible with a `zip`
+  implementation or interpreter lacking support for `strict`. The exact
+  original submitted harness and batch-script bytes are not retained, so exact
+  byte reproduction is
+  `CANNOT_CHECK_EXACT_ORIGINAL_SUBMITTED_BYTES_NOT_RETAINED`; no specific
+  interpreter cause is established.
 - **Repair:** replace the version-specific keyword with an explicit length
   assertion followed by ordinary `zip`. Preserve failed job `3533950` in the
   packet, re-run focused local compilation, and submit one clean whole smoke on
-  the already-proven `gpua40i` route. No failed output is promoted.
+  the already-proven `gpua40i` route. This describes the applied source change,
+  not proof that the unavailable original bytes were reproduced. No failed
+  output is promoted.
 
 ## F11 — first loopback readiness probe raced server startup
 
