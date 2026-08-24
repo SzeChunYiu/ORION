@@ -357,9 +357,13 @@ class BudgetedSession:
             StopDecision(
                 index=self._next_index(),
                 scope=StopScope.ROUTE.value,
-                route=route,
+                route_id=route,
+                # how many times this route had already been called when the
+                # system gave up on it; the oracle needs it to tell an early
+                # abandonment from one taken after genuine attempts
+                attempt_index=self._route_calls.get(route, 0),
                 reason=reason,
-                claimed_complete=False,
+                declared=False,
             )
         )
 
@@ -380,9 +384,10 @@ class BudgetedSession:
             StopDecision(
                 index=self._next_index(),
                 scope=StopScope.TASK.value,
-                route="",
+                route_id="",
+                attempt_index=0,
                 reason=reason,
-                claimed_complete=claimed_complete,
+                declared=claimed_complete,
             )
         )
 
