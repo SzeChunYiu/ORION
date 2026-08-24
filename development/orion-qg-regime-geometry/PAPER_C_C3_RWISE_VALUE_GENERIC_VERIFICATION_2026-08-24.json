@@ -1,0 +1,439 @@
+{
+  "authority_scope": "FROZEN_STRUCTURAL_GRAMMAR_CONSTRUCTION_ONLY",
+  "checks": {
+    "direct_rows_match": true,
+    "independent_checks": true,
+    "m_minus_2_value_false": true,
+    "no_minimal_padding": true,
+    "no_novelty_or_physical": true,
+    "no_optimizer_relabel": true,
+    "protocol_hash": true,
+    "scope_bounded": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true,
+    "unbounded_additive_true": true
+  },
+  "decision": "ACCEPT_RWISE_VALUE_SEPARATION",
+  "independent": {
+    "all_checks": true,
+    "checks": {
+      "all_columns_nonempty": true,
+      "direct_rows": true,
+      "linear_gap": true,
+      "one_block_column_bound": true,
+      "parity_count_identity": true,
+      "symbolic_margin": true
+    },
+    "formula_rows": [
+      {
+        "L": 1,
+        "bits": 3,
+        "common": 172,
+        "gap": 19,
+        "m": 5,
+        "margin": 345,
+        "overhead": 11,
+        "qubits": 180,
+        "trade": 8
+      },
+      {
+        "L": 7,
+        "bits": 3,
+        "common": 1132,
+        "gap": 133,
+        "m": 5,
+        "margin": 2265,
+        "overhead": 11,
+        "qubits": 1188,
+        "trade": 56
+      },
+      {
+        "L": 3,
+        "bits": 3,
+        "common": 6165,
+        "gap": 93,
+        "m": 8,
+        "margin": 12331,
+        "overhead": 20,
+        "qubits": 6357,
+        "trade": 192
+      },
+      {
+        "L": 2,
+        "bits": 4,
+        "common": 2621494,
+        "gap": 158,
+        "m": 16,
+        "margin": 5242989,
+        "overhead": 53,
+        "qubits": 2654262,
+        "trade": 32768
+      },
+      {
+        "L": 1,
+        "bits": 6,
+        "common": 496068722830,
+        "gap": 230,
+        "m": 33,
+        "margin": 992137445661,
+        "overhead": 141,
+        "qubits": 498216206478,
+        "trade": 2147483648
+      }
+    ],
+    "rows": [
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "delta": 1520,
+          "optimizer_count": 1,
+          "optimum": 260,
+          "partition_count": 52,
+          "unary": 1780,
+          "weights": [
+            180,
+            176,
+            176,
+            176,
+            176
+          ]
+        },
+        "B": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "delta": 1501,
+          "optimizer_count": 1,
+          "optimum": 279,
+          "partition_count": 52,
+          "unary": 1780,
+          "weights": [
+            180,
+            176,
+            176,
+            176,
+            176
+          ]
+        },
+        "L": 1,
+        "all_checks": true,
+        "both_unique_full": true,
+        "expected_gap": 19,
+        "gap": 19,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 5,
+        "margin_positive": true,
+        "qubits": 180,
+        "same_qubits": true,
+        "same_weights": true,
+        "strict": true
+      },
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "delta": 4301,
+          "optimizer_count": 1,
+          "optimum": 614,
+          "partition_count": 203,
+          "unary": 4915,
+          "weights": [
+            415,
+            407,
+            407,
+            407,
+            407,
+            407
+          ]
+        },
+        "B": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "delta": 4278,
+          "optimizer_count": 1,
+          "optimum": 637,
+          "partition_count": 203,
+          "unary": 4915,
+          "weights": [
+            415,
+            407,
+            407,
+            407,
+            407,
+            407
+          ]
+        },
+        "L": 1,
+        "all_checks": true,
+        "both_unique_full": true,
+        "expected_gap": 23,
+        "gap": 23,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 6,
+        "margin_positive": true,
+        "qubits": 415,
+        "same_qubits": true,
+        "same_weights": true,
+        "strict": true
+      },
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          ],
+          "delta": 11654,
+          "optimizer_count": 1,
+          "optimum": 1416,
+          "partition_count": 877,
+          "unary": 13070,
+          "weights": [
+            946,
+            930,
+            930,
+            930,
+            930,
+            930,
+            930
+          ]
+        },
+        "B": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          ],
+          "delta": 11627,
+          "optimizer_count": 1,
+          "optimum": 1443,
+          "partition_count": 877,
+          "unary": 13070,
+          "weights": [
+            946,
+            930,
+            930,
+            930,
+            930,
+            930,
+            930
+          ]
+        },
+        "L": 1,
+        "all_checks": true,
+        "both_unique_full": true,
+        "expected_gap": 27,
+        "gap": 27,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 7,
+        "margin_positive": true,
+        "qubits": 946,
+        "same_qubits": true,
+        "same_weights": true,
+        "strict": true
+      },
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          ],
+          "delta": 30491,
+          "optimizer_count": 1,
+          "optimum": 3210,
+          "partition_count": 4140,
+          "unary": 33701,
+          "weights": [
+            2133,
+            2101,
+            2101,
+            2101,
+            2101,
+            2101,
+            2101,
+            2101
+          ]
+        },
+        "B": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          ],
+          "delta": 30460,
+          "optimizer_count": 1,
+          "optimum": 3241,
+          "partition_count": 4140,
+          "unary": 33701,
+          "weights": [
+            2133,
+            2101,
+            2101,
+            2101,
+            2101,
+            2101,
+            2101,
+            2101
+          ]
+        },
+        "L": 1,
+        "all_checks": true,
+        "both_unique_full": true,
+        "expected_gap": 31,
+        "gap": 31,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 8,
+        "margin_positive": true,
+        "qubits": 2133,
+        "same_qubits": true,
+        "same_weights": true,
+        "strict": true
+      },
+      {
+        "A": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          ],
+          "delta": 96485,
+          "optimizer_count": 1,
+          "optimum": 8967,
+          "partition_count": 21147,
+          "unary": 105452,
+          "weights": [
+            5914,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850
+          ]
+        },
+        "B": {
+          "best_partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          ],
+          "delta": 96441,
+          "optimizer_count": 1,
+          "optimum": 9011,
+          "partition_count": 21147,
+          "unary": 105452,
+          "weights": [
+            5914,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850,
+            5850
+          ]
+        },
+        "L": 1,
+        "all_checks": true,
+        "both_unique_full": true,
+        "expected_gap": 44,
+        "gap": 44,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 9,
+        "margin_positive": true,
+        "qubits": 5914,
+        "same_qubits": true,
+        "same_weights": true,
+        "strict": true
+      }
+    ]
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.PaperC.C3.GenericVerification.v1",
+  "source_result_digest": "d35d50524a7c1734c86493b9db2f5eff8b9fdb8ec94a639cba9cd5e4dad0c815",
+  "verification_digest": "8076c38a64e5045b9d2c4701b2bbaa8255a09aeec4386f3fec659e87489a8bcc"
+}

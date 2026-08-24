@@ -1,0 +1,50 @@
+{
+  "both_accept": true,
+  "ci_authority": false,
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "direct_m": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "executions": {
+    "analyzer": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "generic_verifier": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true
+  },
+  "generic_decision": "ACCEPT_RWISE_VALUE_SEPARATION",
+  "generic_verification_digest": "8076c38a64e5045b9d2c4701b2bbaa8255a09aeec4386f3fec659e87489a8bcc",
+  "m_minus_2_tensor_identical": true,
+  "maximum_verified_tensor_order": 7,
+  "minimal_padding_authority": false,
+  "multiplicative_approximation_lower_bound": false,
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_RWISE_VALUE_SEPARATION",
+  "native_manifest_digest": "63f9706ece3982173287f374e21a8e0b750a37948aa1fbc97f06212f5d864ca6",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "optimizer_separation_new_in_c3": false,
+  "physical_quantum_advantage_claim": false,
+  "receipt_digest": "2f51550e062f7ee40cb2680040d63f475d90bbd22cf32fbc8ad094874bd88b3b",
+  "schema": "ORION.PaperC.C3.DualHarness.v1",
+  "source_result_digest": "d35d50524a7c1734c86493b9db2f5eff8b9fdb8ec94a639cba9cd5e4dad0c815",
+  "terminal": "PAPER_C_C3_ARBITRARY_FIXED_ORDER_INTERACTION_DATA_VALUE_INSUFFICIENT__LINEAR_GAP_MACHINE_CORROBORATED",
+  "theorem_authority": "FROZEN_STRUCTURAL_GRAMMAR_CONSTRUCTION_ONLY",
+  "unbounded_additive_value_ambiguity": true
+}
