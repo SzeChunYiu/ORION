@@ -1,0 +1,104 @@
+{
+  "schema": "orion.p1.scienceagentbench.lunarc-fullcontext-replay-protocol.v1",
+  "authority": "SYNTHETIC_NONBENCHMARK_DIAGNOSTIC_ONLY",
+  "source": {
+    "pr": 1130,
+    "commit": "92f078040c9e5248af44ae2e7ec8930124d41ca5",
+    "short_request_path": "development/p1-scienceagentbench-lunarc-openweight-v1-2026-08-24/remote-job-3533966/raw/replay_seed101_1.request.json",
+    "long_request_path": "development/p1-scienceagentbench-lunarc-openweight-v1-2026-08-24/remote-job-3533966/raw/long_context_seed101.request.json",
+    "prompt_bodies_retained_in_this_packet": false
+  },
+  "model": {
+    "repository": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+    "revision": "b17cb02dd882d5b6ab62fc777ad2995f19668350",
+    "filename": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+    "bytes": 18556689568,
+    "sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad"
+  },
+  "runtime": {
+    "site_module": "ollama/0.32.14",
+    "ollama_release": "v0.32.14",
+    "ollama_tag_commit": "d67ad83426633195089509347ffd4fe795120198",
+    "llama_cpp_version": "b10434",
+    "llama_cpp_commit": "7e4c0a96880dae4fc4268ad441f8a6446bd5460a",
+    "site_ollama_executable_sha256": "d0758d38ac5882a2c68fd930d0c1220af1952469fa9f30c268746d4021709bf4",
+    "site_llama_server_executable_sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+    "site_cuda_v13_backend_sha256": "fbe27c15253195c10559d98c6ba9c6d476a65d2bbf0240307b4a46d8aa17cefb"
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 11473,
+    "ctx_size": 32768,
+    "parallel_slots": 1,
+    "continuous_batching": false,
+    "threads": 8,
+    "threads_batch": 8,
+    "batch_size": 512,
+    "ubatch_size": 512,
+    "cache_type_k": "f16",
+    "cache_type_v": "f16",
+    "flash_attention": true,
+    "n_gpu_layers": "all",
+    "context_shift": false,
+    "cache_prompt": false
+  },
+  "request_order": [101, 202, 101, 202, 101, 202],
+  "conditions": {
+    "short_pr1130_replay": {
+      "prompt_sha256": "afb432d64085e79f36da380ce0dbc79aa8b5efe221921da06d511480947b4a3b",
+      "prompt_bytes": 186,
+      "source_ollama_context_prefix_token_count": 42,
+      "source_ollama_prompt_eval_count": 43,
+      "temperature": 0.8,
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "n_predict": 96,
+      "required_markers": []
+    },
+    "long_pr1130_six_marker": {
+      "prompt_sha256": "6c52c9055c03367832e9e61c31f49489194cecd94e732fbc7ca59caeb40cf918",
+      "prompt_bytes": 90575,
+      "source_ollama_prompt_eval_count": 27764,
+      "temperature": 0.2,
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "n_predict": 128,
+      "required_markers": [
+        "MK0_7b91c2",
+        "MK1_a46fd8",
+        "MK2_19e3ab",
+        "MK3_c58071",
+        "MK4_ef268d",
+        "MK5_34da90"
+      ]
+    }
+  },
+  "gates": {
+    "within_seed_generated_token_identity": true,
+    "within_seed_content_identity": true,
+    "between_seed_generated_token_sensitivity": true,
+    "between_seed_content_sensitivity": true,
+    "cache_n_all_zero": true,
+    "prompt_n_constant": true,
+    "truncated_false": true,
+    "long_markers_complete_and_ordered": true
+  },
+  "cost": {
+    "billed_usd": null,
+    "status": "CANNOT_CHECK_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION_UNAVAILABLE"
+  },
+  "forbidden_inputs": {
+    "protected_archive": true,
+    "benchmark_tasks": true,
+    "outcomes": true,
+    "gold_programs": true,
+    "evaluators": true,
+    "rubrics": true,
+    "credentials": true
+  },
+  "scientific_authority_delta": "NONE"
+}

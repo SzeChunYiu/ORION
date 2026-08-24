@@ -1,0 +1,49 @@
+P1 ScienceAgentBench full-context replay staging/resource boundary
+date_utc=2026-08-24
+authority=SYNTHETIC_NONBENCHMARK_DIAGNOSTIC_ONLY
+
+model_repository=unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF
+model_revision=b17cb02dd882d5b6ab62fc777ad2995f19668350
+model_filename=Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf
+model_bytes=18556689568
+model_sha256=fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad
+staging_result=PASS_EXACT_SIZE_AND_SHA256_BEFORE_SUBMISSION
+staging_network_bytes_billed_cost=CANNOT_CHECK
+
+pre_submission_command_failure=First hash-extraction command reached awk with an invalid escaped program and exited before submission.
+pre_submission_repair=Re-read the already-downloaded model with sha256sum and extracted its first field using cut; exact size and SHA-256 passed.
+
+job_3534209_result_class=NOT_RESULT_BEARING_INFRASTRUCTURE_PRECHECK_FAILURE
+job_3534209_top_level_state=FAILED
+job_3534209_top_level_exit_code=1:0
+job_3534209_top_level_elapsed_seconds=55
+job_3534209_batch_elapsed_seconds=55
+job_3534209_completion_calls=0
+job_3534209_sampled_gpu_seconds=5.011
+job_3534209_sampled_energy_wh=0.09616465972222221
+
+job_3534213_result_class=RESULT_BEARING_MIXED_SHORT_PASS_LONG_ADVERSE
+job_3534213_top_level_state=FAILED
+job_3534213_top_level_exit_code=2:0
+job_3534213_top_level_elapsed_seconds=126
+job_3534213_batch_elapsed_seconds=126
+job_3534213_completion_calls=12
+job_3534213_sampled_gpu_seconds=75.859
+job_3534213_sampled_energy_wh=5.778553875000002
+
+slurm_top_level_gpu_allocation_elapsed_seconds_total=181
+slurm_batch_elapsed_seconds_total=181
+sampled_gpu_seconds_total=80.87
+sample_integrated_energy_wh_total=5.874718534722224
+slurm_consumed_energy_raw_both_jobs=0
+
+billed_usd=null
+cost_status=CANNOT_CHECK_OWNER_AUTHORITATIVE_ALLOCATION_COST_CONVERSION_UNAVAILABLE
+boundary=SLURM elapsed time, sampled GPU seconds, sampled energy, and billing TRES are retained separately and are not currency.
+
+remote_cleanup_status=PASS_REMOTE_ROOT_REMOVED
+remote_cleanup_du_bytes_before=18557303002
+remote_cleanup_file_bytes_removed=18557293301
+remote_cleanup_files_removed=68
+remote_cleanup_utc=2026-08-24T13:58:51Z
+scientific_authority_delta=NONE
