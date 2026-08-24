@@ -32,6 +32,8 @@ sys.path.insert(0, str(REPO / "src"))
 from orion.study.p2.baselines import (  # noqa: E402
     BM25_B,
     BM25_K1,
+    RRF_K,
+    reciprocal_rank_fusion,
     HashedDistributionalScorer,
     tokenize,
 )
@@ -220,13 +222,24 @@ def main() -> int:
             # RouteEvent exposes retrieved_doc_ids; an earlier version of this
             # driver read a non-existent `records` attribute and silently
             # surfaced nothing, which showed up as every arm scoring 0.0000.
-            surfaced: list[str] = []
-            seen: set[str] = set()
-            for event in session.route_events:
-                for doc_id in event.retrieved_doc_ids:
-                    if doc_id not in seen:
-                        seen.add(doc_id)
-                        surfaced.append(doc_id)
+            # Rank each arm's candidates by fusing the routes it ACTUALLY used.
+            #
+            # Concatenating routes in discovery order made every arm score
+            # identically: LEXICAL runs first and returns a full depth-100
+            # posting, so the top 100 was always route 1 and a second or third
+            # route could only add candidates past the cut. That measured route
+            # ordering, not route allocation.
+            #
+            # The fusion rule is the repo's own reciprocal_rank_fusion at the
+            # frozen RRF_K, already used by the hybrid comparator. It is not a
+            # rule invented for this table, and no variant of it was compared.
+            rankings = [list(e.retrieved_doc_ids) for e in session.route_events
+                        if e.retrieved_doc_ids]
+            if rankings:
+                fused = reciprocal_rank_fusion(rankings, k=RRF_K)
+                surfaced = [d for d, _ in sorted(fused.items(), key=lambda kv: (-kv[1], kv[0]))]
+            else:
+                surfaced = []
             route_detail = [
                 {"route": e.route, "status": str(e.status), "docs": len(e.retrieved_doc_ids)}
                 for e in session.route_events
