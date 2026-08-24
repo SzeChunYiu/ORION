@@ -1,0 +1,198 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{enumitem}
+% Keep long formal prose and bibliography entries within the journal text width.
+\setlength{\emergencystretch}{3em}
+\sloppy
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\title{Formal Epistemic Structures and Mechanics: Scientific Admissibility over Repair, Effects, and Authority}
+\author{Sze Chun Yiu\\Department of Physics, Stockholm University, Stockholm, Sweden\\\texttt{sze-chun.yiu@fysik.su.se}}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Scientific agents change more than propositional belief: they mutate representations, search universes, measurements, procedures, evidence bindings, certified claims, obligations, and sometimes the mechanisms governing later changes. Existing work already provides strong components for epistemic update, truth maintenance, incremental recomputation, typed effects, authorization, provenance, and dependency-guided repair. This paper treats those components as donors rather than competitors and asks what additional semantics are required when the maintained state carries scientific certification. We define a history-aware epistemic mechanic contract with faithful semantic read/write interfaces, hard evidence and authority requirements, typed effects, invariants, provenance, residual obligations, and explicit failure terminals. We prove safe root-inclusive reopening under support-sound dependencies; show that soundness alone does not imply descendant minimality in the presence of conservative edges; and recover graph-only minimax minimality under an explicit affected-realizability condition. We distinguish preservation from protected revalidation, prove history-aware commutation under faithful full scientific separation, sequential authority non-escalation, hard-obligation persistence, and a recursive-audit boundary. A separation theorem shows that contracts with identical bare computational/dependency behavior can differ in scientific admissibility when obligations or commit authority differ. Deterministic finite checkers exhaust bounded graph, preservation, authority, obligation, and composition cases. The contribution is deliberately scoped to the scientific-admissibility layer over donor mechanisms, not to dependency repair or authorization in general.
+\end{abstract}
+
+\noindent\textbf{Keywords:} autonomous scientific agents; epistemic state; truth maintenance; scientific certification; effect systems; provenance; authorization
+
+\section{Introduction}
+A computation can be correct yet scientifically unauthorized. A dependency graph can identify which derived values might need recomputation without establishing which scientific certificates remain entitled to stand. A type-correct requested effect can lack the evidence or authority needed to mutate a protected scientific coordinate. Later computational success can coexist with an earlier verification obligation that remains open.
+
+These distinctions matter for autonomous science because agent state is heterogeneous. Some objects are ordinary computational values; others are claims whose standing depends on evidence lineage, measurement semantics, independent verification, coverage, or protected evaluation. Treating both kinds of objects as interchangeable mutable state creates a failure mode in which computational continuity is silently converted into epistemic continuity.
+
+The surrounding fields already solve substantial parts of this problem. Truth-maintenance systems (TMS/ATMS) maintain beliefs under changing justifications \cite{doyle1979,dekleer1986a,dekleer1986b}. Dynamic epistemic logic and belief revision formalize structured epistemic change \cite{agm1985,del2007}. Self-adjusting computation tracks dynamic dependencies and propagates change \cite{acar2002}. Contemporary agent systems add typed effects and residual obligations \cite{etas2026}, evidence-backed pre-effect authorization \cite{fava2026}, dependency-guided diagnosis and repair \cite{agenttether2026,rollback2026}, and typed decision graphs with preservation of unaffected artifacts \cite{boardroom2026}. P6 therefore does not claim any of those components as new.
+
+Our question is narrower: what must be added when these mechanisms maintain \emph{scientifically certified state}? The answer is a contract layer that keeps computation/support preservation distinct from scientific admissibility. This paper contributes four central results. First, safe dependency reopening must include a changed certified root, not only strict descendants. Second, graph soundness gives safety but not minimality unless the compatible semantics class satisfies an explicit realizability condition. Third, mechanic composition requires operationally faithful semantic footprints and yields equality of current scientific state only modulo independent history order. Fourth, erasing scientific obligations, commit authority, and provenance is not fully abstract for admissibility: computationally identical transitions may have different scientific standing.
+
+The result is intended as a formal interface rather than a monolithic replacement for donor theories. When the added scientific dimensions are inert, donor-native judgments should be recovered unchanged.
+
+\section{Related work as donor structure}
+\subsection{Truth maintenance and dependency repair}
+Doyle's TMS and de Kleer's ATMS establish justification-based maintenance, dependency-directed revision, multiple support environments, and preservation under independent support \cite{doyle1979,dekleer1986a,dekleer1986b}. Recent memory-augmented-agent repair work likewise tracks typed dependencies from stored state to actions, invalidates downstream effects, preserves independent trusted support, and selectively replays affected computation \cite{rollback2026}. BoardroomAI similarly uses typed decision graphs and dependency-aware propagation after human interventions \cite{boardroom2026}. These works own selective invalidation and preservation. P6 uses them as the repair substrate.
+
+\subsection{Epistemic update and incremental computation}
+AGM-style belief revision and dynamic epistemic logic formalize rational and informational state change \cite{agm1985,del2007}. Adaptive and self-adjusting computation formalizes dependence-aware recomputation after input changes \cite{acar2002}. These traditions demonstrate why state change and recomputation should not be presented as new. P6 adds a separate certification/admissibility question to their outputs.
+
+\subsection{Effects, authorization, and evidence}
+ETAS makes requested/handled/denied/committed effects and residual obligations visible in an effect-typed agent language \cite{etas2026}. FAVA uses evidence-backed permission graphs and deterministic authorization before effectful execution \cite{fava2026}. Current action-evidence specifications also emphasize exact action binding, heterogeneous evidence roles, freshness, and a separate authorization decision \cite{aeb2026,aec2026}. Validation studies of repair agents show that a passing validation event can lack bug-discriminating information \cite{validation2026}. Accordingly, P6 claims neither effect typing nor evidence binding. The scientific layer asks whether the evidence/authority available actually discharges the certification obligations attached to the target scientific transition.
+
+\section{Epistemic mechanic contracts}
+Let a typed epistemic state be
+\[
+E=(\nu,s,D,P,O,A,H),
+\]
+where $\nu$ is the valuation of typed scientific coordinates, $s$ maps claims to scientific status, $D$ is a dependency abstraction, $P$ stores content/provenance identities, $O$ is the active obligation set, $A$ is authority state, and $H$ is immutable request/transition/failure/revocation history.
+
+A mechanic is a contract
+\[
+m=(R,W,Pre,Req,Eff,\tau,Emit,Fail,Inv),
+\]
+with semantic read and write footprints $R,W$, a precondition, hard/soft requirements, typed requested effects, a transition relation, emitted obligations/provenance, failure terminals, and invariants. A commit is admissible only if the computational transition is valid, every hard requirement needed for commit is discharged, the write effect is within the faithful declared interface, commit authority is current and scope-correct, new scientific objects carry provenance, and any undischarged hard obligation remains visible.
+
+This yields the basic non-implication
+\[
+\text{computationally executable}\not\Rightarrow\text{scientifically admissible}.
+\]
+
+\section{Safe root-inclusive repair}
+Let $Q_{cert}(E)$ be the certified claims in $E$. For a changed set $X$, define
+\[
+Aff_D(E,X)=(X\cap Q_{cert}(E))\cup(Desc_D(X)\cap Q_{cert}(E)).
+\]
+The first term matters: a strict descendant operator omits a certified claim that is itself directly changed.
+
+\begin{definition}[Support soundness]
+A dependency abstraction $D$ is support-sound for a semantics class if every actual support whose mutation can invalidate a certified claim is represented by the changed claim itself or by an ancestor path to that claim.
+\end{definition}
+
+\begin{theorem}[Root-inclusive safety]
+If only elements of $X$ change and $D$ is support-sound, invalidating or protectedly revalidating every claim in $Aff_D(E,X)$ leaves no certification standing whose validity may have been destroyed by the change.
+\end{theorem}
+\begin{proof}
+A directly changed certified claim is included by the root term. For any other claim whose certification may be invalidated, support soundness supplies an ancestor path from some changed element, so it lies in the descendant term. Every potentially invalidated certificate is therefore reconsidered.
+\end{proof}
+
+The theorem is a safety result and permits conservative edges.
+
+\section{Why graph soundness is not graph minimality}
+Consider a graph containing $x\rightarrow q$ while every semantics compatible with the actual system says that $q$ depends only on independent coordinate $y$ and is invariant under $x$. The graph can still be support-sound because it omits no real support, yet reopening $q$ after changing $x$ is unnecessary. Thus support soundness alone does not imply that every graph descendant must be reopened.
+
+\begin{definition}[Affected realizability]
+For $(E,X)$, a compatible semantics class is affected-realizable if for every $q\in Aff_D(E,X)$ there exists a graph-indistinguishable admissible semantics in which the declared change invalidates the old certification of $q$ (directly for a changed root or through necessary support along a path for a descendant).
+\end{definition}
+
+\begin{theorem}[Graph-only minimax minimality]
+Among policies that observe only the graph-visible state and must be sound for every affected-realizable compatible semantics, root-inclusive affected-set reopening is inclusion-minimal unless a protected revalidation establishes invariance for the exact change.
+\end{theorem}
+\begin{proof}
+Suppose a uniformly sound graph-only policy preserves an affected claim without protected revalidation. Affected realizability provides a compatible, graph-indistinguishable semantics in which that exact claim is invalidated by the change. The policy makes the same preservation decision and leaves a stale certificate, contradicting uniform soundness. The affected-set policy reconsiders all such claims and is therefore inclusion-minimal in this minimax information model.
+\end{proof}
+
+The additional premise is substantive. The theorem does not assert that every recorded dependency edge in a real agent is semantically necessary.
+
+\section{Preservation versus revalidation}
+Conservative dependency structure can reopen more certificates than a richer proof system needs to. A preservation certificate may keep a downstream certificate standing if it binds the exact changed set, content identity, scope, epoch, protected issuer, and a proof that the original derivation remains valid. A directly changed certified claim is different: its old standing cannot be preserved merely by continuity of identifier. It may end certified only through a new protected revalidation/re-certification derivation after the mutation.
+
+This distinction prevents a changed claim from carrying its own previous authority through mutation while still permitting legitimate protected re-certification.
+
+\section{Composition and history}
+Declared footprints are useful only if enforced. A mechanic is read-footprint faithful when its effects, outputs, obligation emissions, and failure choices depend only on declared semantic inputs or explicitly registered external inputs. It is write-footprint faithful when every committed mutation lies within the declared write/effect interface.
+
+A hidden ambient read defeats syntactic separation: if $m$ secretly reads mutable variable $z$ while $n$ writes $z$, order can change $m$ even though the declared footprints appear disjoint.
+
+Let $\pi_{sci}(E)$ omit only ordered audit history. Two mechanics are fully scientifically separated when their faithful state footprints do not interfere and neither changes an obligation, authority fact, provenance object, dependency, resource, or declared external input consumed by the other.
+
+\begin{theorem}[History-aware commutation]
+For deterministic admissible footprint-faithful mechanics $m,n$ that are fully scientifically separated, whenever both sequential compositions are defined,
+\[
+\pi_{sci}(n(m(E)))=\pi_{sci}(m(n(E))).
+\]
+Their histories need not be equal as sequences; they are equivalent under the congruence generated by swapping adjacent independent commit events.
+\end{theorem}
+\begin{proof}
+Footprint fidelity and full separation make each mechanic observe the same semantic inputs in either order and write disjoint scientific outputs. All non-history scientific components therefore agree. The audit log intentionally records a different event order, but the two events are independent and differ only by an allowed adjacent swap.
+\end{proof}
+
+This closes the other contract forms conservatively. Sequential composition is
+defined only when postconditions establish the next preconditions and residual
+obligations/authority restrictions cross the boundary. A conditional requires
+an authorized footprint-faithful guard and a common declared join contract;
+the selected branch's obligations and provenance remain visible. Independent
+parallel composition denotes the equivalence class of the two sequential
+interleavings under the theorem's full separation premises. Recursive
+composition additionally requires the well-founded or cycle-rejection rule
+below. These clauses specify well-formedness; they do not claim a new process
+algebra.
+
+\section{Obligation and authority conservation}
+A non-escalating mechanic may retain authority, narrow it, or obtain new authority only from a protected root. By induction, a finite sequential composition of such mechanics is non-escalating.
+
+Hard obligations obey a parallel conservation law: if an admissible step emits a hard scientific obligation, later computational success cannot delete it. It persists until an authorized discharge rule is applied with valid evidence and lineage. If the required evidence becomes unavailable, an explicit inability-to-check terminal is sounder than silent success.
+
+These laws are not claims that effect systems or authorization are new. Their role is to ensure that adding repair/recomputation does not silently erase scientific obligations.
+
+\section{Recursive audit and protected authority}
+Recursive audit terminates if every recursive call decreases a well-founded rank or if a cycle detector terminates repeated audit states. Same-state unguarded self-audit immediately yields an infinite trace. Further, if a candidate mechanism can rewrite both its own admission predicate and all evidence consulted by that predicate, internal acceptance cannot imply an externally defined correctness property: a constant-accepting policy is reachable without satisfying the external property. The general authority problem belongs to authorization theory and ORION's dedicated authority paper; here it is a boundary condition for recursive mechanics.
+
+\section{Typed-erasure separation}
+Define $Erase(m)$ to remove hard scientific obligations, commit authority, and scientific provenance constraints while retaining the bare computational transition and ordinary dependency behavior.
+
+\begin{theorem}[Erasure is not fully abstract for scientific admissibility]
+There exist mechanics $m_1,m_2$ with identical erasures but different scientific-admissibility judgments.
+\end{theorem}
+\begin{proof}
+Give both mechanics the same deterministic state transition and dependency behavior. Let $m_1$ have the required independent evidence and current in-scope commit authority, while $m_2$ lacks one mandatory scientific premise. Their erased computational semantics are identical. Under the full contract, only $m_1$ has an admissible commit.
+\end{proof}
+
+This is the principal cross-donor discriminator. It does not say that TMS, incremental computation, effect systems, or access-control systems fail at their own goals; it says that those goals do not automatically decide the standing of a scientific certificate.
+
+\section{Conservative donor embeddings and falsifiers}
+When scientific obligations, authority, and provenance are inert, ordinary transition systems are recovered. TMS/ATMS behavior is recovered when status follows justification/dependency maintenance. Self-adjusting computation is recovered when dependencies govern recomputation and all scientific commits are trivially admissible. Typed-effect systems embed their requested/committed effects and residual obligations. Evidence-backed authorization embeds permission/provenance dependencies as authority premises.
+
+A purported P6 embedding is rejected if it changes a donor-native verdict without an explicitly stronger scientific premise. The separate-paper claim should also be rejected if a donor-complete formalism is shown to prove the same scientific-admissibility interface under equivalent semantics, if ORION embeddings require ad hoc exceptions that destroy the common contract, or if the added scientific dimensions never change a relevant decision.
+
+\section{Deterministic verification}
+The repository contains standard-library checkers that exhaust all forward dependency DAGs over four ordered nodes and all nonempty changed subsets, preservation/revalidation combinations, residual-obligation cases, authority compositions, history-aware commutation cases, recursive cycles, typed-erasure witnesses, spurious-edge countermodels, affected-realizability omissions, and hidden-read counterexamples. These checks support theorem boundaries and regression resistance. They are not measurements of deployed-agent performance.
+
+The strongest future empirical comparator is an integrated donor product containing repair, incremental computation, typed effects, authorization, and provenance with correct interfaces. If that product implements the same scientific contract, behavioral equality is an expected and informative result rather than evidence that the donor components were weak.
+
+\section{Discussion and implications for AI systems}
+The practical implication is architectural: an autonomous research system should not reuse the same boolean notion of ``valid'' across computation, scientific certification, and permission. Dependency information can justify what to recompute; provenance can identify what evidence was used; authorization can control an effect; none alone proves that a scientific obligation remains discharged after a mutation. Exposing these interfaces creates more opportunities to fail closed without forcing full reset.
+
+The framework also clarifies why repair systems can be both computationally conservative and scientifically unsafe. Preserving an unaffected computational node is desirable; preserving a scientific certificate attached to that node additionally requires that its scientific premises remain valid. Conversely, a conservative dependency graph may reopen too much, motivating protected preservation proofs rather than weakening the safety contract.
+
+\section{Limitations}
+The framework assumes that scientific obligation schemas, trusted roots, and preservation/revalidation rules are themselves correctly specified. The bounded checkers do not prove completeness for arbitrary infinite state spaces. A graph can be support-sound yet highly conservative, and affected realizability is a modeling assumption rather than a consequence of soundness. The paper establishes formal separation and sufficient conditions, not real-system performance superiority. Rapid 2026 work on agent repair and governance may further narrow the most economical presentation of the interface.
+
+\section{Conclusion}
+P6 engulfs maintenance, incremental computation, epistemic update, effects, authorization, and provenance rather than narrowing the surrounding theory to manufacture novelty. After doing so, a distinct scientific layer remains: safe repair must reconsider changed certified roots; graph minimality requires stronger assumptions than graph safety; composition requires faithful scientific footprints; hard obligations and authority cannot disappear under later computation; and computationally identical transitions can differ in scientific admissibility. The resulting contract is intended as a reusable formal interface for autonomous scientific systems whose state carries certification rather than merely values.
+
+\section*{Declaration of generative AI and AI-assisted technologies in manuscript preparation}
+OpenAI ChatGPT (GPT-5.6 Sol) was used during research preparation to assist with broad literature discovery, adversarial formal checking, organization, and drafting/editing. The author reviewed and revised the manuscript, independently checked cited sources and formal claims against the recorded artifacts, and takes responsibility for the submitted content. The AI system is not an author and no empirical result is attributed to it.
+
+\section*{Data, code, and competing-interest statements}
+The formal checkers, frozen countermodels, claim ledgers, and reproduction instructions are maintained in the ORION repository at the exact submission commit. This theoretical study reports no human-subject or animal data. Competing-interest and funding declarations are supplied through the journal submission interface after author confirmation; the scientific manuscript makes no claim about private funding or interests not present in the research record.
+
+\begin{thebibliography}{99}
+\bibitem{doyle1979} J. Doyle, A truth maintenance system, \emph{Artificial Intelligence} 12(3) (1979) 231--272. doi:10.1016/0004-3702(79)90008-0.
+\bibitem{dekleer1986a} J. de Kleer, An assumption-based TMS, \emph{Artificial Intelligence} 28(2) (1986) 127--162. doi:10.1016/0004-3702(86)90080-9.
+\bibitem{dekleer1986b} J. de Kleer, Extending the ATMS, \emph{Artificial Intelligence} 28(2) (1986) 163--196. doi:10.1016/0004-3702(86)90081-0.
+\bibitem{agm1985} C.E. Alchourr\'on, P. G\"ardenfors, D. Makinson, On the logic of theory change: partial meet contraction and revision functions, \emph{Journal of Symbolic Logic} 50(2) (1985).
+\bibitem{del2007} H. van Ditmarsch, W. van der Hoek, B. Kooi, \emph{Dynamic Epistemic Logic}, Springer, 2007. doi:10.1007/978-1-4020-5839-4.
+\bibitem{acar2002} U.A. Acar, G.E. Blelloch, R. Harper, Adaptive functional programming, in: POPL, 2002.
+\bibitem{etas2026} H. Tan, Y. Wang, P. Zhang, S. Li, J. Shen, ETAS: An effect-typed language for agent systems, arXiv:2607.17780, 2026.
+\bibitem{fava2026} Y. Zhang, X. Zhao, S. Liu, H. Lou, G. Cheng, C. Liu, FAVA: Formal authorization for verified agents with evidence-backed permission graphs, arXiv:2607.27267, 2026.
+\bibitem{agenttether2026} C. Zhao et al., AgentTether: Graph-guided diagnosis and runtime intervention for reliable LLM agent operation, arXiv:2607.06273, 2026.
+\bibitem{rollback2026} C. Yu et al., From faulty memories to corrected actions: dependency-guided rollback repair for memory-augmented agents, arXiv:2608.10502, 2026.
+\bibitem{boardroom2026} BoardroomAI: Dependency-aware human-steerable multi-agent deliberation through evolving decision graphs, arXiv:2608.13046, 2026.
+\bibitem{validation2026} Validation Evidence in LLM Repair Agents: How Much of What Passes Actually Tests the Bug?, arXiv:2607.28871, 2026.
+\bibitem{aeb2026} Action Evidence Boundary for Consequential Agent Effects, IETF Internet-Draft, 2026.
+\bibitem{aec2026} Authorization Evidence Chains, IETF Internet-Draft, 2026.
+\end{thebibliography}
+\end{document}

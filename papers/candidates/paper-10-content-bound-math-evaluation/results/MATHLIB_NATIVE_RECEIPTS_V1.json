@@ -1,0 +1,192 @@
+{
+  "claim_boundary": "Native acceptance is established only for these eight exact files; identity, statement faithfulness and authority remain separate.",
+  "corpus_manifest_sha256": "373e621b918f7a686e4a1eab4f16f4f808b0d735911ca6f5dfc54dd0ac767564",
+  "lean_release_sha256": "41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17",
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc1",
+  "mathlib_commit": "e72c1e277f31441626621f7d0c7207862fc25569",
+  "negative_control": {
+    "command": [
+      "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+      "env",
+      "lean",
+      "/tmp/ORIONP10NegativeControl.lean"
+    ],
+    "exit_status": 1,
+    "expected_verdict": "FAIL",
+    "source_sha256": "e2d49d586e7bfb0956375e471ce2aa90e6a1627848916c6485c1ca2895326f2d",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_bytes": 421,
+    "stdout_sha256": "8e208cea9490a1586e031bc398ead7dc1f942aa14b77d8abbf97351af10f055d",
+    "verdict": "FAIL"
+  },
+  "passes": true,
+  "protocol_sha256": "b1a91f477a6dd585de954847dee27adcd8ff488deab4813ddfaa21617b1d9ec1",
+  "receipts": [
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/Computability/TMComputable.lean"
+      ],
+      "environment_sha256": "8cd53bd4936389e5c7465dbf0c2c5acc4aa23809ba5ef5c0ffbbd8058d164add",
+      "exit_status": 0,
+      "source_path": "Mathlib/Computability/TMComputable.lean",
+      "source_sha256": "17b7bbcca530d2e5dc3422c1ef4cc6c1b3f915ed3783424519cbc29f80185f47",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "Computability",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/Order/Filter/Ring.lean"
+      ],
+      "environment_sha256": "b35742629bfeb38b081b9da5a53be704151ce6dca84e073a4d6a7a84dea9229c",
+      "exit_status": 0,
+      "source_path": "Mathlib/Order/Filter/Ring.lean",
+      "source_sha256": "ac7b36428a35988f6343e30c26dd87fa17fd35c73bbef49532309996ef6ababa",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "Order",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/Tactic.lean"
+      ],
+      "environment_sha256": "99d22a762d85345a9839b00339622efd23176a1639b0b7506b2da34f646d1ee1",
+      "exit_status": 0,
+      "source_path": "Mathlib/Tactic.lean",
+      "source_sha256": "a113f6f7751f51d838aaaf837c0f174548858d077c2aec73e563357a161c05d4",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "Tactic.lean",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/Probability/Independence/Basic.lean"
+      ],
+      "environment_sha256": "7b22e39a13dddfa95d7c30a048e6f6f3d3193e697b5ac5673de434bc4c0185b0",
+      "exit_status": 0,
+      "source_path": "Mathlib/Probability/Independence/Basic.lean",
+      "source_sha256": "85c6c98a306c1b10952181fcb9cc777c0ed06e91246428690a88d7821d24f9d2",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "Probability",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/ModelTheory/Skolem.lean"
+      ],
+      "environment_sha256": "fce71614ac63fe9d61838caf74af16c53aa4fb37c5a15efeb8414c1eb2e34582",
+      "exit_status": 0,
+      "source_path": "Mathlib/ModelTheory/Skolem.lean",
+      "source_sha256": "dc0cb1245348192920dbd4ff7d7f2c8bf45a81e1a3481070e7e0c9bd1b53ad92",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "ModelTheory",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/AlgebraicGeometry/EllipticCurve/Projective/Basic.lean"
+      ],
+      "environment_sha256": "ae7dc70f68bd6f378e7fff8e16963e5fa670acfc53af5ac574cb76eb59883c1f",
+      "exit_status": 0,
+      "source_path": "Mathlib/AlgebraicGeometry/EllipticCurve/Projective/Basic.lean",
+      "source_sha256": "978d5982205dbab758704dc4a7589609cc6014888c3610cfb6cdb9032c0a2585",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "AlgebraicGeometry",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/Geometry/Manifold/VectorBundle/Tangent.lean"
+      ],
+      "environment_sha256": "62678a517fc89e7238738a3ead308c32a06b00556e9a93af583be0863d8f7dae",
+      "exit_status": 0,
+      "source_path": "Mathlib/Geometry/Manifold/VectorBundle/Tangent.lean",
+      "source_sha256": "192ed254687f9a2e1daaa2cd84590174ee6894c1d4bc01fe064fcaf523e24ac3",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "Geometry",
+      "verdict": "SUCCESS"
+    },
+    {
+      "command": [
+        "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+        "env",
+        "lean",
+        "Mathlib/Logic/Function/DependsOn.lean"
+      ],
+      "environment_sha256": "7bcf201f5521b6ffb6afe99a577cfa3f594ad8da325fb4b794bff1bb1a3bcd3a",
+      "exit_status": 0,
+      "source_path": "Mathlib/Logic/Function/DependsOn.lean",
+      "source_sha256": "1d141a044523a853d02df5af87c4f3bbdc97d3b659e94b97711013f76745558e",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "top_module": "Logic",
+      "verdict": "SUCCESS"
+    }
+  ],
+  "runtime_adapter": {
+    "path": "/tmp/orion_p10_readlink_self.so",
+    "sha256": "cd7d3f44759a9c87d67e38514784c140212dda97fe2751d2d671739999641f68"
+  },
+  "sample_sha256": "d06ad7e699a8c2c5a47a03c9bca816c125da315a0183856f184fc8e6a0b8e4c8",
+  "schema": "P10MathlibNativeReceipts.v1",
+  "version_preflight": {
+    "command": [
+      "/tmp/lean-4.34.0-rc1-clean/bin/lake",
+      "env",
+      "lean",
+      "--version"
+    ],
+    "exit_status": 0,
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_bytes": 110,
+    "stdout_sha256": "6cd69c5752c644291ede2418997a70e9994409d30b15fe5ef14a1be60f27f8ef",
+    "stdout_utf8": "Lean (version 4.34.0-rc1, x86_64-unknown-linux-gnu, commit 3447a668783dbce1a8fdb97101dd067687b2b418, Release)",
+    "verdict": "SUCCESS"
+  }
+}

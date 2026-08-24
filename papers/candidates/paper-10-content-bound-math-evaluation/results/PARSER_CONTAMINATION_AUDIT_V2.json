@@ -1,0 +1,583 @@
+{
+  "boundary_commands": {
+    "abbrev": 109,
+    "attribute": 43,
+    "class": 16,
+    "def": 873,
+    "elab": 5,
+    "end": 890,
+    "example": 17,
+    "inductive": 7,
+    "instance": 694,
+    "lemma": 170,
+    "macro": 1,
+    "namespace": 222,
+    "open": 211,
+    "section": 343,
+    "structure": 17,
+    "syntax": 3,
+    "theorem": 282
+  },
+  "contaminated_fraction": 0.26517177535486525,
+  "contaminated_trajectories": 1289,
+  "examples": [
+    {
+      "boundaries": [
+        {
+          "block_line": 13,
+          "command": "end",
+          "text": "end spectrum"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Algebra/Spectrum/Pi.lean",
+      "theorem_name": "Prod.quasispectrum_eq"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 5,
+          "command": "def",
+          "text": "def homEquiv {M N : ModuleCat.{v} R} : (M \u27f6 N) \u2243 (M \u2192\u2097[R] N) where"
+        },
+        {
+          "block_line": 15,
+          "command": "def",
+          "text": "def equivalenceSemimoduleCat : ModuleCat.{v} R \u224c SemimoduleCat.{v} R where"
+        },
+        {
+          "block_line": 25,
+          "command": "end",
+          "text": "end"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Basic.lean",
+      "theorem_name": "hom_inv_apply"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 10,
+          "command": "instance",
+          "text": "instance : HasZeroObject (ModuleCat.{v} R) :="
+        },
+        {
+          "block_line": 13,
+          "command": "end",
+          "text": "end ModuleCat"
+        },
+        {
+          "block_line": 18,
+          "command": "open",
+          "text": "open ModuleCat"
+        },
+        {
+          "block_line": 23,
+          "command": "section",
+          "text": "section"
+        },
+        {
+          "block_line": 27,
+          "command": "def",
+          "text": "def LinearEquiv.toModuleIso {g\u2081 : AddCommGroup X\u2081} {g\u2082 : AddCommGroup X\u2082} {m\u2081 : Module R X\u2081}"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Basic.lean",
+      "theorem_name": "isZero_of_subsingleton"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 64,
+          "command": "instance",
+          "text": "scoped instance instLinear : Linear S\u2080 (ModuleCat.{v} S) where"
+        },
+        {
+          "block_line": 67,
+          "command": "end",
+          "text": "end Algebra"
+        },
+        {
+          "block_line": 69,
+          "command": "section",
+          "text": "section"
+        },
+        {
+          "block_line": 73,
+          "command": "instance",
+          "text": "instance : Linear S (ModuleCat.{v} S) := ModuleCat.Algebra.instLinear"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Basic.lean",
+      "theorem_name": "ofHom_add"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 11,
+          "command": "def",
+          "text": "def smulNatTrans : R \u2192+* End (forget\u2082 (ModuleCat R) AddCommGrpCat) where"
+        },
+        {
+          "block_line": 23,
+          "command": "def",
+          "text": "def mkOfSMul' {A : AddCommGrpCat} (_ : R \u2192+* End A) := A"
+        },
+        {
+          "block_line": 25,
+          "command": "section",
+          "text": "section"
+        },
+        {
+          "block_line": 29,
+          "command": "instance",
+          "text": "instance : AddCommGroup (mkOfSMul' \u03c6) :="
+        },
+        {
+          "block_line": 32,
+          "command": "instance",
+          "text": "instance : SMul R (mkOfSMul' \u03c6) := \u27e8fun r (x : A) => (show A \u27f6 A from \u03c6 r) x\u27e9"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Basic.lean",
+      "theorem_name": "smul_naturality"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 21,
+          "command": "end",
+          "text": "end ModuleCat"
+        },
+        {
+          "block_line": 23,
+          "command": "section",
+          "text": "section Bilinear"
+        },
+        {
+          "block_line": 27,
+          "command": "namespace",
+          "text": "namespace ModuleCat"
+        },
+        {
+          "block_line": 31,
+          "command": "def",
+          "text": "def ofHom\u2082 {M N P : ModuleCat.{u} R} (f : M \u2192\u2097[R] N \u2192\u2097[R] P) :"
+        },
+        {
+          "block_line": 37,
+          "command": "def",
+          "text": "def Hom.hom\u2082 {M N P : ModuleCat.{u} R} (f : M \u27f6 (of R (N \u27f6 P))) : M \u2192\u2097[R] N \u2192\u2097[R] P :="
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Basic.lean",
+      "theorem_name": "isoMk_symm"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 5,
+          "command": "end",
+          "text": "end Elements"
+        },
+        {
+          "block_line": 7,
+          "command": "section",
+          "text": "section"
+        },
+        {
+          "block_line": 13,
+          "command": "abbrev",
+          "text": "noncomputable abbrev freeYonedaCoproduct : PresheafOfModules.{u} R :="
+        },
+        {
+          "block_line": 18,
+          "command": "abbrev",
+          "text": "noncomputable abbrev \u03b9FreeYonedaCoproduct (m : M.Elements) :"
+        },
+        {
+          "block_line": 24,
+          "command": "def",
+          "text": "noncomputable def fromFreeYonedaCoproduct :"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Presheaf/Generator.lean",
+      "theorem_name": "fromFreeYoneda_app_apply"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 5,
+          "command": "instance",
+          "text": "instance : Epi M.fromFreeYonedaCoproduct :="
+        },
+        {
+          "block_line": 12,
+          "command": "def",
+          "text": "noncomputable def toFreeYonedaCoproduct :"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Presheaf/Generator.lean",
+      "theorem_name": "fromFreeYonedaCoproduct_app_mk"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 7,
+          "command": "abbrev",
+          "text": "noncomputable abbrev freeYonedaCoproductsCokernelCofork :"
+        },
+        {
+          "block_line": 15,
+          "command": "def",
+          "text": "noncomputable def isColimitFreeYonedaCoproductsCokernelCofork :"
+        },
+        {
+          "block_line": 26,
+          "command": "end",
+          "text": "end"
+        },
+        {
+          "block_line": 28,
+          "command": "end",
+          "text": "end PresheafOfModules"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Category/ModuleCat/Presheaf/Generator.lean",
+      "theorem_name": "toFreeYonedaCoproduct_fromFreeYonedaCoproduct"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 5,
+          "command": "end",
+          "text": "end CommMonoid"
+        },
+        {
+          "block_line": 7,
+          "command": "end",
+          "text": "end Units"
+        },
+        {
+          "block_line": 9,
+          "command": "namespace",
+          "text": "namespace IsUnit"
+        },
+        {
+          "block_line": 11,
+          "command": "section",
+          "text": "section Monoid"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Divisibility/Units.lean",
+      "theorem_name": "mul_left_dvd"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 5,
+          "command": "end",
+          "text": "end CommMonoid"
+        },
+        {
+          "block_line": 7,
+          "command": "end",
+          "text": "end IsUnit"
+        },
+        {
+          "block_line": 9,
+          "command": "section",
+          "text": "section CommMonoid"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Divisibility/Units.lean",
+      "theorem_name": "mul_left_dvd"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 7,
+          "command": "end",
+          "text": "end CommMonoid"
+        },
+        {
+          "block_line": 9,
+          "command": "section",
+          "text": "section RelPrime"
+        },
+        {
+          "block_line": 12,
+          "command": "def",
+          "text": "def IsRelPrime [Monoid \u03b1] (x y : \u03b1) : Prop := \u2200 \u2983d\u2984, d \u2223 x \u2192 d \u2223 y \u2192 IsUnit d"
+        },
+        {
+          "block_line": 16,
+          "command": "theorem",
+          "text": "@[symm] theorem IsRelPrime.symm (H : IsRelPrime x y) : IsRelPrime y x := fun _ hx hy \u21a6 H hy hx"
+        },
+        {
+          "block_line": 18,
+          "command": "instance",
+          "text": "instance symm_isRelPrime : Std.Symm (IsRelPrime : \u03b1 \u2192 \u03b1 \u2192 Prop) where"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Divisibility/Units.lean",
+      "theorem_name": "dvd_pow_self_iff"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 4,
+          "command": "end",
+          "text": "end IsUnit"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Divisibility/Units.lean",
+      "theorem_name": "isRelPrime_mul_unit_right"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 12,
+          "command": "abbrev",
+          "text": "noncomputable abbrev Plus.precylinder (K : Plus C) : Precylinder K :="
+        },
+        {
+          "block_line": 16,
+          "command": "abbrev",
+          "text": "noncomputable abbrev Plus.prepathObject (K : Plus C) : PrepathObject K :="
+        },
+        {
+          "block_line": 19,
+          "command": "end",
+          "text": "end CochainComplex"
+        },
+        {
+          "block_line": 21,
+          "command": "namespace",
+          "text": "namespace HomotopyCategory"
+        },
+        {
+          "block_line": 26,
+          "command": "def",
+          "text": "def plus : ObjectProperty (HomotopyCategory C (.up \u2124)) :="
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Homology/HomotopyCategory/Plus.lean",
+      "theorem_name": "isStrictlyGE_mappingCone"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 9,
+          "command": "instance",
+          "text": "instance [HasZeroObject C] : (plus C).ContainsZero where"
+        },
+        {
+          "block_line": 15,
+          "command": "instance",
+          "text": "instance : (plus C).IsStableUnderShift \u2124 where"
+        },
+        {
+          "block_line": 27,
+          "command": "instance",
+          "text": "instance [HasZeroObject C] [HasBinaryBiproducts C] :"
+        },
+        {
+          "block_line": 44,
+          "command": "instance",
+          "text": "instance [HasZeroObject C] [HasBinaryBiproducts C] : (plus C).IsTriangulated where"
+        },
+        {
+          "block_line": 48,
+          "command": "abbrev",
+          "text": "abbrev Plus := (plus C).FullSubcategory"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Homology/HomotopyCategory/Plus.lean",
+      "theorem_name": "plus_quotient_obj_iff"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 12,
+          "command": "instance",
+          "text": "instance : (quasiIso A).RespectsIso := by"
+        },
+        {
+          "block_line": 19,
+          "command": "def",
+          "text": "def quotient : CochainComplex.Plus C \u2964 Plus C :="
+        },
+        {
+          "block_line": 29,
+          "command": "def",
+          "text": "def quotientComp\u03b9Iso :"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Homology/HomotopyCategory/Plus.lean",
+      "theorem_name": "quasiIso_iff"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 8,
+          "command": "instance",
+          "text": "instance : (quotient C).EssSurj where"
+        },
+        {
+          "block_line": 13,
+          "command": "instance",
+          "text": "instance : (quotient C).Full := by dsimp [quotient]; infer_instance"
+        },
+        {
+          "block_line": 15,
+          "command": "section",
+          "text": "section"
+        },
+        {
+          "block_line": 20,
+          "command": "open",
+          "text": "open HomologicalComplex in"
+        },
+        {
+          "block_line": 22,
+          "command": "instance",
+          "text": "instance :"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Homology/HomotopyCategory/Plus.lean",
+      "theorem_name": "quotient_obj_surjective"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 9,
+          "command": "end",
+          "text": "end Multiplicative"
+        },
+        {
+          "block_line": 18,
+          "command": "def",
+          "text": "def LocallyFiniteOrder.addMonoidHom :"
+        },
+        {
+          "block_line": 46,
+          "command": "def",
+          "text": "def LocallyFiniteOrder.orderAddMonoidHom :"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Order/Monoid/LocallyFiniteOrder.lean",
+      "theorem_name": "card_Ico_one_mul"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 28,
+          "command": "def",
+          "text": "def LocallyFiniteOrder.orderAddMonoidEquiv [Nontrivial G] :"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Order/Monoid/LocallyFiniteOrder.lean",
+      "theorem_name": "LocallyFiniteOrder.orderAddMonoidHom_bijective"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 5,
+          "command": "end",
+          "text": "end WithBot"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Order/Monoid/WithTop.lean",
+      "theorem_name": "lt_zero_iff_eq_bot"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 4,
+          "command": "end",
+          "text": "end Semiring"
+        },
+        {
+          "block_line": 6,
+          "command": "section",
+          "text": "section Semiring"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Polynomial/Degree/Support.lean",
+      "theorem_name": "nonempty_support_iff"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 6,
+          "command": "lemma",
+          "text": "@[to_additive] lemma IsRegular.pow (n : \u2115) (ra : IsRegular a) : IsRegular (a ^ n) :="
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Regular/Basic.lean",
+      "theorem_name": "IsRightRegular.pow"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 30,
+          "command": "instance",
+          "text": "instance [Ring \u03b1] [Invertible (2 : \u03b1)] : NonAssocRing \u03b1\u02e2\u02b8\u1d50 :="
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Symmetrized.lean",
+      "theorem_name": "invOf_sym"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 39,
+          "command": "end",
+          "text": "end SymAlg"
+        }
+      ],
+      "source_id": "Mathlib/Algebra/Symmetrized.lean",
+      "theorem_name": "mul_comm"
+    },
+    {
+      "boundaries": [
+        {
+          "block_line": 12,
+          "command": "instance",
+          "text": "instance [QuasiCompactCover \ud835\udcb0] {T : Scheme.{u}} (f : T \u27f6 S) :"
+        },
+        {
+          "block_line": 38,
+          "command": "instance",
+          "text": "instance [QuasiCompactCover \ud835\udcb0] {T : Scheme.{u}} (f : T \u27f6 S) :"
+        },
+        {
+          "block_line": 43,
+          "command": "instance",
+          "text": "instance {X : Scheme.{u}} (\ud835\udcb0 : PreZeroHypercover.{w} X) [QuasiCompactCover \ud835\udcb0]"
+        },
+        {
+          "block_line": 57,
+          "command": "instance",
+          "text": "instance of_finite {\ud835\udcb0 : S.Cover K} [Scheme.JointlySurjective K]"
+        },
+        {
+          "block_line": 65,
+          "command": "instance",
+          "text": "instance [IsAffine S] {P : MorphismProperty Scheme.{u}} (\ud835\udcb0 : S.AffineCover P) [Finite \ud835\udcb0.I\u2080] :"
+        }
+      ],
+      "source_id": "Mathlib/AlgebraicGeometry/Cover/QuasiCompact.lean",
+      "theorem_name": "of_hom"
+    }
+  ],
+  "intervening_top_level_boundaries": 3903,
+  "manifest_sha256": "373e621b918f7a686e4a1eab4f16f4f808b0d735911ca6f5dfc54dd0ac767564",
+  "parser_sha256": "30c617426a2fd4bfdf6454933a279d19a9ec8b169aad51b9d0d75994ef5fb6b2",
+  "reason": "The inherited parser ended a theorem/lemma block only at the next theorem/lemma. Intervening top-level commands could contribute unrelated tactic-like text to the prior trajectory.",
+  "required_repair": "End a projected declaration at the next recognized top-level command and rerun under an amended, frozen protocol.",
+  "schema": "P10ParserContaminationAudit.v2",
+  "status": "INVALIDATES_MATHLIB_TRANSFER_V2",
+  "trajectories": 4861
+}

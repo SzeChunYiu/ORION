@@ -1,0 +1,222 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+% Keep long formal prose and bibliography entries within the journal text width.
+\setlength{\emergencystretch}{3em}
+\sloppy
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\title{Epistemic Authority for Autonomous Science: Typed Discharge across Heterogeneous Scientific Effects}
+\author{Sze Chun Yiu\\Department of Physics, Stockholm University, Stockholm, Sweden\\\texttt{sze-chun.yiu@fysik.su.se}}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Autonomous scientific systems combine capabilities governed by different evidential standards: reframing a problem, stopping search, merging constructs, asserting a result, or promoting a self-modification. Existing work already provides authorization, delegation, revocation, usage control, typed effects, evidence-bound action governance, abstention, provenance, and multi-authority coordination. We study the narrower interface between generic permission and \emph{target scientific-obligation discharge}. Every authority-relevant judgment is typed by domain, kind, scope, content identity, and epoch; a source judgment may discharge a target obligation only by exact match or a protected composable coercion. We prove a typed anti-laundering result, non-compensatory hard-obligation semantics, exact revocation over alternative complete derivations, and a separation between generic action permission and scientific authorization. We also prove a negative result: a shared authority calculus is extensionally equivalent to an ideal product of correctly typed domain gates when both implement the same coercion, freshness, blocker, and revocation semantics. Centralization is therefore not an inherent scientific advantage. A deterministic checker exercises the full five-by-five source/target-domain matrix, coercion composition, stale epochs, revocation, terminal distinctions, and shared/product equivalence. The contribution is scoped to scientific discharge across epistemic domains, not authorization or evidence-bound runtime governance in general.
+\end{abstract}
+
+\noindent\textbf{Keywords:} autonomous agents; scientific authority; authorization; epistemic obligations; provenance; revocation
+
+\section{Introduction}
+A general scientific agent may be able to construct a reframe, stop a route, merge two constructs, assert a conclusion, or modify its own method. These actions are all executable computations, yet they need not share an authorization criterion. Planner confidence does not itself establish responsibility for changing the problem formulation. Search saturation on one route does not prove global completion. Semantic similarity does not prove construct identity. Citation support does not establish independent verification. Successful replay of a self-change does not grant the candidate authority to promote itself.
+
+This problem must be scoped carefully because adjacent work is already strong. Authorization logics, trust management, and usage control formalize permission, delegation, conditions, and revocation \cite{ucon2002,ucon2004,secpal2010}. Current agent systems add typed effects and residual obligations \cite{etas2026}, evidence-backed permission graphs \cite{fava2026}, multiple independent authorities and governance receipts \cite{agentbound2026}, multi-agent authorization propagation \cite{propagation2026}, provenance-aware verification \cite{provguard2026}, and action-boundary abstention/calibration \cite{abstain2026,steerbench2026}. Most directly, SAGE-Fin already demonstrates that correct context or workflow progress does not imply authority to commit an effect; it uses typed adapter-bound candidates, missing/stale obligations, exact-artifact receipts, and authorization rechecking after state change \cite{sagefin2026}. Current action-evidence specifications likewise bind heterogeneous evidence roles and freshness to exact actions \cite{aeb2026,aec2026}. P8 therefore does not claim any generic ``evidence is not authority'' principle, exact-artifact binding, pre-commit checking, delegation, provenance, or revocation as new.
+
+The residual question is scientific: when does a valid source-domain judgment actually discharge the \emph{different scientific obligation} required by a target effect? We formalize the answer through complete judgment types and protected coercions. The central type is not merely a security domain; it includes the scientific role of the evidence, target scope/content, and epoch. The framework also represents authorization support as a family of complete alternative derivations, preventing a naive descendant graph from revoking too much or too little.
+
+The final result is deliberately negative about architecture: if five domain-specific gates share the same correct type system, coercions, freshness, blockers, and revocation store, their ideal product is extensionally equivalent to one shared calculus. A centralized implementation is not inherently more expressive. A real empirical advantage would have to arise from fewer interface inconsistencies, smaller proof/audit burden, better revocation coverage, or implementation quality—not from centralization itself.
+
+\section{Related work as donor structure}
+\subsection{Authorization, delegation, and usage control}
+UCON extends one-shot access control with obligations, conditions, changing attributes, and ongoing decisions \cite{ucon2002,ucon2004}. SecPAL provides a formal decentralized authorization language with policy proof and delegation structure \cite{secpal2010}. These traditions already own permission, delegation, policy proof, revocation, and continuing authorization. P8 treats them as the generic policy layer.
+
+\subsection{Typed effects and evidence-backed governance}
+ETAS exposes typed requested/handled/denied/committed agent effects and residual obligations \cite{etas2026}. FAVA formalizes evidence-backed permission graphs and deterministic authorization before effects \cite{fava2026}. AgentBound composes multiple authority sources into verifiable behavioral governance \cite{agentbound2026}; authorization-propagation work models transitive delegation and temporal validity across agent workflows \cite{propagation2026}. These systems own typed action governance and authority propagation.
+
+SAGE-Fin is a particularly close current donor because it makes the proposed effect the governed object, tracks missing/stale institutional obligations, requires exact-artifact receipts, and rechecks authority after state change \cite{sagefin2026}. Action Evidence Boundary and Authorization Evidence Chains similarly emphasize exact-action identity, heterogeneous evidence roles, freshness, and fail-closed evidence-chain satisfaction \cite{aeb2026,aec2026}. P8's claim therefore begins \emph{after} these structures: it asks whether an otherwise valid source judgment has the right scientific type to discharge the target obligation.
+
+\subsection{Abstention, provenance, and steering calibration}
+AgentAbstain separates acting from knowing when not to act \cite{abstain2026}. ProvenanceGuard makes source identity an independent verification dimension \cite{provguard2026}. SteerBench-Work shows why a safe gate must be evaluated bidirectionally: over-refusal of evidence-cleared actions can dominate unsafe allow in some settings \cite{steerbench2026}. P8 therefore treats unnecessary refusal and clean authorized coverage as first-class empirical measures, not only attack blocking.
+
+\section{Typed scientific authority}
+Let effect domains include
+\[
+D=\{REFRAME, SEARCH\_STOP, MAP\_MERGE, ASSERT, SELF\_MODIFY\}.
+\]
+An effect request is
+\[
+e=(id,d,op,scope,payload,epoch).
+\]
+Every authority-relevant judgment has a complete type
+\[
+\tau=(domain,kind,scope,content,epoch).
+\]
+Here \emph{kind} distinguishes evidential roles such as support, independent verification, closure, responsibility, protected evaluation, or authority grant. An obligation $o$ specifies the exact expected judgment type $\tau_o$ plus any conjunctive premises.
+
+The authority context contains active typed judgments, hard and soft obligations, grants, a protected coercion registry, revocation state, provenance/derivation lineage, and retained request/allow/deny/commit/revoke history.
+
+A hard obligation is discharged only by a current judgment of the expected type or by a valid typed coercion derivation that produces that exact target type. Soft confidence or utility can rank already admissible effects but cannot replace a missing hard premise.
+
+\section{Why typing must cover the full derivation}
+A system can type only the final authorization token yet still launder authority earlier. For example, foreign-domain evidence may first be converted into a generic intermediate value such as `SAT', after which the final gate sees only a locally typed success bit. The information about the evidential role was lost before the final check.
+
+P8 therefore types evidence-to-obligation discharge itself. A judgment $j:\tau_j$ directly discharges $o:\tau_o$ only when the complete types match and all mandatory premises hold. If the information needed to decide a premise is unavailable, the terminal is \texttt{CANNOT\_CHECK}; if available evidence establishes a blocker, stale epoch, wrong scope/content, or incompatible type, the result is \texttt{DENIED}.
+
+\section{Protected typed coercions}
+Cross-domain evidence use is not prohibited. It must be justified. A coercion is a protected partial rule
+\[
+c:\tau\rightharpoonup\tau'
+\]
+with a trusted registration root, semantic premises, lineage, and validity interval. Two coercions compose only when the \emph{complete} output type of the first matches the complete input type of the second.
+
+This is stricter than reachability in a domain graph. Suppose one rule maps a reframe judgment to a search-stop judgment scoped to `map-A', while another maps a search-stop judgment scoped to `map-B' to an assertion judgment. A domain graph contains a path $REFRAME\to SEARCH\_STOP\to ASSERT$, but the typed path does not compose because the intermediate scopes differ.
+
+\begin{theorem}[Typed anti-laundering]
+If ordinary inference preserves complete judgment type and only registered protected coercions may change it, any derivation that uses a source judgment of type $\tau$ to discharge a target obligation of different type $\tau'$ must contain a composable coercion path from $\tau$ to $\tau'$.
+\end{theorem}
+\begin{proof}
+Proceed by induction on derivation height. A base judgment has its declared type. Every ordinary inference rule preserves type, so the first derivation step that changes type must be a registered coercion. Repeating the argument for any later type change yields a path whose adjacent full types compose.
+\end{proof}
+
+The theorem does not establish that a registered coercion is semantically good. Trusted coercion design remains an external policy/scientific specification responsibility.
+
+\section{Non-compensatory obligations and terminals}
+Authorization requires all hard obligations discharged, no active blocker, a valid grant, fresh bindings, and matching effect identity/scope/content/epoch immediately before commit.
+
+A finite penalty in an extensible additive score cannot represent an absolute blocker if positive evidence can grow without a global bound: enough positive mass eventually outweighs the penalty. A hard scientific blocker therefore needs a conjunctive, veto, or lexicographic layer unless the score domain is externally bounded.
+
+The calculus distinguishes three authority terminals:
+\begin{itemize}
+\item \texttt{AUTHORIZED}: every mandatory premise is established and current;
+\item \texttt{DENIED}: available facts establish a violated mandatory condition or blocker;
+\item \texttt{CANNOT\_CHECK}: at least one mandatory premise cannot currently be established or refuted.
+\end{itemize}
+This distinction is operational. Missing a verifier suggests evidence acquisition or escalation; an established blocker is not repaired by collecting unrelated confidence.
+
+The fail-closed reading needs one further distinction. A blocker is a positive,
+currently supported judgment that an effect is impermissible. For each blocker
+type, its status is \emph{established}, \emph{refuted}, or \emph{undetermined}.
+Authorization requires refutation of every in-scope blocker type, not merely the
+absence of an observed blocker. An undetermined blocker therefore yields
+\texttt{CANNOT\_CHECK}; treating it as absent can authorize a request before the
+evidence that establishes the blocker is consulted.
+
+Confidence, expected utility, support, and permission are separate quantities.
+Two effects can have equal confidence and expected utility while only one has a
+complete obligation-support family; their permission terminals then differ.
+Consequently confidence and utility may rank effects already in the
+\texttt{AUTHORIZED} fibre but cannot promote \texttt{DENIED} or
+\texttt{CANNOT\_CHECK}.
+
+\section{Alternative-derivation revocation}
+A simple dependency graph can conflate conjunction and alternatives. If a certificate can be derived from $A\wedge B$ or independently from $C\wedge D$, revoking $A$ should break the first derivation without necessarily destroying the second.
+
+Represent an authorization certificate $\kappa$ by a support family
+\[
+\mathcal S(\kappa)=\{S_1,\ldots,S_m\},
+\]
+where every $S_i$ is a complete sufficient premise set.
+
+\begin{theorem}[Exact support-family revocation]
+After revoking premise set $R$, certificate $\kappa$ remains valid if and only if at least one complete support set $S_i$ remains current and disjoint from revoked/invalid premises.
+\end{theorem}
+\begin{proof}
+If one complete support set remains valid, its original sufficient derivation remains available. If every complete support set intersects the revoked or invalid set, every sufficient derivation has lost a premise and the certificate is no longer derivable.
+\end{proof}
+
+This semantics preserves independent derivations and invalidates exactly when all complete support routes are broken.
+
+\section{Commit-time authority}
+A certificate is bound to the exact requested effect and state epoch. A later refusal cannot retroactively prevent an irreversible effect already committed, and an authorization from an earlier epoch cannot be replayed after a relevant policy/evidence change unless a freshness proof revalidates it. These constraints are donor-owned by ongoing authorization and current runtime-governance systems \cite{ucon2004,sagefin2026}; P8 uses them as premises rather than novelty claims.
+
+Authority is non-monotone in the premise stream: new evidence can establish a
+blocker and move an otherwise admissible pending request to \texttt{DENIED},
+whereas revocation can break its only complete support set and move it to
+\texttt{CANNOT\_CHECK}. Demotion is forward-only. It changes pending and future
+permission, while the immutable history continues to record the terminal that
+was actually computed at the old epoch; that historical record is not authority
+to act at the new epoch.
+
+Protected custody is likewise one root class rather than a premise of every
+ordinary authorization. Delegated grants, standing policy, and explicitly
+obligation-free effects can ground authority in their valid scopes. Protected
+external custody becomes mandatory when an effect can change the policy or
+evidence that would admit that same effect; an unprotected self-admission root
+cannot certify its own promotion.
+
+\section{Generic permission is weaker than scientific discharge}
+\begin{theorem}[Permission/scientific-discharge separation]
+There exists a context in which a generic policy grant validly permits an operation while the corresponding scientific effect remains \texttt{CANNOT\_CHECK} because a mandatory scientific obligation is unresolved.
+\end{theorem}
+\begin{proof}
+Give an assertion operation a valid generic in-scope write/communication grant and no security blocker. Add a scientific obligation requiring an independent verification judgment for the exact asserted content. Let that verification evidence be unavailable. Generic permission is valid, but the scientific obligation is unresolved, so the scientific authorization cannot be \texttt{AUTHORIZED}.
+\end{proof}
+
+This is not a criticism of access control: the two layers answer different questions. The interface is valuable precisely because both can be correct on their own terms.
+
+\section{Five scientific effect domains}
+The calculus conservatively embeds five ORION-native scientific gates. For \texttt{REFRAME}, the ability to propose a new formulation is distinct from authority/responsibility to mutate the protected problem representation. For \texttt{SEARCH\_STOP}, route exhaustion is distinct from task completion under open/censored obligations. For \texttt{MAP\_MERGE}, similarity does not by itself discharge referent, measurement, and obstruction obligations. For \texttt{ASSERT}, source support is distinct from protected independent verification. For \texttt{SELF\_MODIFY}, replay improvement is evidence about a candidate change, not authority to promote the candidate.
+
+These within-domain gates are not P8 contributions; they are ownership constraints. The general calculus is acceptable only if its embeddings reproduce their native decisions when P8-specific cross-domain coercions are inert.
+
+\section{Shared calculus versus ideal typed product}
+It is tempting to claim that centralizing authority into one calculus is inherently stronger than separate domain gates. That is false when the separate gates are integrated correctly.
+
+Define an ideal product with one gate per effect domain, but a common complete-type system, coercion registry, current blocker/grant semantics, epoch/freshness rules, and support-family revocation store.
+
+\begin{theorem}[Shared/product equivalence]
+For every request and authority context, a shared calculus and the ideal typed product return the same authority terminal when they implement the same discharge relation, coercion semantics, blockers, grants, freshness, and revocation support families.
+\end{theorem}
+\begin{proof}
+Both implementations evaluate the same predicates over the same request/context. Domain dispatch changes code organization but not the extension of the decision relation. Therefore their terminal functions are extensionally equal.
+\end{proof}
+
+This negative result is important: P8 cannot use architectural centralization as an expressivity claim. A real engineering advantage must be demonstrated prospectively through fewer cross-module inconsistencies, more complete global revocation lineage, reduced proof/audit duplication, or implementation reliability.
+
+\section{Deterministic verification and evaluation contract}
+The normative checker exercises all 25 direct source-domain/target-domain combinations, valid and invalid typed coercion paths, scope mismatches, stale epochs, non-compensatory blockers, protected self-promotion boundaries, exact alternative-derivation revocation, and the three authority terminals. It also runs 160 shared-calculus/ideal-product equivalence cases. A frozen 17-case authority manifest contains clean authorized controls in each domain, paired blockers, five explicit cross-domain laundering attacks, an inability-to-check case, and a positive registered coercion.
+
+Any empirical extension must be bidirectional. SteerBench-Work shows that over-refusal can be a major action-boundary failure mode \cite{steerbench2026}. P8 therefore precommits to report unauthorized commits, unnecessary refusal, clean authorized coverage, inability-to-check calibration, stale authorization reuse, revocation correctness, cross-domain coercion accuracy, and proof/audit cost. Blocking more actions is not automatically better.
+
+\section{Discussion}
+The central design recommendation is to make scientific obligations explicit enough that valid upstream evidence cannot be silently cast into a target permission. A source citation can remain good support while failing to satisfy an independent-verification obligation. A search certificate can be valid for one route while failing to prove task-wide closure. A protected permission to execute code can coexist with an unresolved scientific obligation about whether the result may be promoted.
+
+Current systems such as SAGE-Fin already show the value of exact effect identity, stale-obligation tracking, and reauthorization at the action boundary \cite{sagefin2026}. P8's added claim is therefore not that evidence should be checked. It is that heterogeneous scientific effect domains require a type-correct \emph{discharge interface}: the target obligation, not merely the existence of a valid source artifact, determines what may count as authority.
+
+The product-equivalence theorem turns this into a falsifiable architecture claim. If an ideal set of domain gates shares the same interface semantics, centralization yields no behavioral difference. If a real distributed implementation fails, the paper must identify the missing interface rule rather than compare against a deliberately weak strawman.
+
+\section{Limitations}
+The calculus assumes correctly specified scientific obligation schemas, protected roots, and coercions. A trusted but scientifically unsound coercion can authorize a bad transfer. Support-family maintenance can become expensive in large derivation graphs. The deterministic cases establish conformance to the formal semantics, not independent real-world safety accuracy. Generic governance work is moving rapidly in 2026; the publication claim is therefore intentionally restricted to target scientific-obligation discharge, full-type coercion composition, support-family revocation, and the shared/product equivalence result.
+
+\section{Conclusion}
+P8 treats authorization, usage control, typed effects, exact-artifact governance, delegation, provenance, abstention, and current runtime authority systems as donors. After those mechanisms are included, one scientific interface remains: a valid source-domain judgment can authorize a heterogeneous scientific effect only if it actually discharges the target scientific obligation under the complete type and current epoch, directly or through a protected composable coercion. Alternative complete derivations determine revocation exactly, and a shared implementation is not inherently more expressive than an ideal typed product. These results frame scientific authority as an interface problem rather than a confidence score or a centralization claim.
+
+\section*{Use of large language models}
+OpenAI ChatGPT (GPT-5.6 Sol) was used during research preparation to assist with broad literature discovery, adversarial formal checking, organization, and drafting/editing. The author reviewed and revised the manuscript, independently checked cited sources and formal claims against the recorded artifacts, and takes responsibility for the submitted content. The AI system is not an author and no empirical result is attributed to it.
+
+\section*{Statements and Declarations}
+\textbf{Data and code availability.} Formal checkers, frozen authority contracts, claim ledgers, and reproduction instructions are maintained in the ORION repository at the exact submission commit. This theoretical study reports no human-subject or animal data.
+
+\textbf{Competing interests and funding.} Personal competing-interest and funding declarations are entered in the submission system after direct author confirmation. This manuscript does not infer or fabricate private financial/non-financial declarations from repository data.
+
+\textbf{Author contribution.} Sze Chun Yiu is the sole human author and is responsible for conception, formal analysis, source verification, manuscript revision, and the final submission decision.
+
+\begin{thebibliography}{99}
+\bibitem{ucon2002} J. Park, R. Sandhu, Towards usage control models: beyond traditional access control, SACMAT (2002) 57--64. https://doi.org/10.1145/507711.507722.
+\bibitem{ucon2004} J. Park, R. Sandhu, The UCONABC usage control model, ACM TISSEC 7(1) (2004) 128--174. https://doi.org/10.1145/984334.984339.
+\bibitem{secpal2010} M.Y. Becker, C. Fournet, A.D. Gordon, SecPAL: design and semantics of a decentralized authorization language, Journal of Computer Security 18(4) (2010) 619--665. https://doi.org/10.3233/JCS-2009-0364.
+\bibitem{etas2026} H. Tan, Y. Wang, P. Zhang, S. Li, J. Shen, ETAS: An effect-typed language for agent systems, arXiv:2607.17780, 2026.
+\bibitem{fava2026} Y. Zhang, X. Zhao, S. Liu, H. Lou, G. Cheng, C. Liu, FAVA: Formal authorization for verified agents with evidence-backed permission graphs, arXiv:2607.27267, 2026.
+\bibitem{agentbound2026} A. Kaul, Q. Lan, P. Gupta, AgentBound: verifiable behavioral governance for autonomous AI agents, arXiv:2606.30970, 2026.
+\bibitem{propagation2026} K. Tallam, Authorization propagation in multi-agent AI systems: identity governance as infrastructure, arXiv:2605.05440, 2026.
+\bibitem{abstain2026} X. Liu et al., AgentAbstain: Do LLM agents know when not to act?, arXiv:2607.10059, 2026.
+\bibitem{provguard2026} A. Alvarez, S. Rajan, S. Mugel, R. Or\'us, ProvenanceGuard: source-aware factuality verification for MCP-based LLM agents, arXiv:2606.18037, 2026.
+\bibitem{sagefin2026} R. Tang, Q. Liu, Y. Zhang, Y. Wang, X. Chen, C. Dong, Context Is Not Authority: Structured runtime governance for financial market agents, arXiv:2608.09025, 2026.
+\bibitem{steerbench2026} O. Serdar, C. Mertayak, SteerBench-Work: A benchmark for agent steering at action boundaries, arXiv:2608.12654, 2026.
+\bibitem{aeb2026} Action Evidence Boundary for Consequential Agent Effects, IETF Internet-Draft, 2026.
+\bibitem{aec2026} Authorization Evidence Chains, IETF Internet-Draft, 2026.
+\end{thebibliography}
+\end{document}

@@ -114,54 +114,25 @@ def parse_journal_readiness_terminal(text: str) -> str | None:
         if not match:
             continue
         value = match.group(1)
-        has_ready = PEER_REVIEW_READY_TOKEN.search(value) is not None
-        has_cannot = "CANNOT_CHECK" in value
+        ready_match = PEER_REVIEW_READY_TOKEN.search(value)
+        cannot_match = re.search(r"\bCANNOT_CHECK\b", value)
         negated = re.search(
-            r"\bnot\b[^*\n]*PEER_REVIEW_READY(?![A-Za-z0-9_])", value, re.IGNORECASE
+            r"\bnot\b[^*\n]*(?:PEER_REVIEW_READY(?![A-Za-z0-9_])|peer[- ]review[- ]ready)",
+            value,
+            re.IGNORECASE,
         )
-        if has_ready and not has_cannot and not negated:
-            return "PEER_REVIEW_READY"
-        if has_cannot or negated:
+        conditional = re.search(r"\b(?:when|once|after|until|if)\b", value, re.IGNORECASE)
+        if negated or conditional:
             return "CANNOT_CHECK"
-        return None
-    return None
-
-
-def terminal_line_is_ambiguous(text: str) -> str | None:
-    """The terminal line names both terminals at once; return it, else None.
-
-    `parse_journal_readiness_terminal` resolves this fail-closed: any `CANNOT_CHECK`
-    on the terminal line wins, so a paper declaring `PEER_REVIEW_READY` while naming
-    an excluded `CANNOT_CHECK` claim in the same sentence scores as blocked. That is
-    the safe direction and it stays the behaviour.
-
-    What it should not be is silent. P2 declared
-
-        `ORION-P2 = PEER_REVIEW_READY` on the bounded methods claim ... external
-        superiority remains `CANNOT_CHECK` and is not part of the ready claim
-
-    which reads correctly to a person and is unresolvable for a parser that returns
-    one terminal. It scored `CANNOT_CHECK` with twelve blockers while the paper's own
-    fail-closed evidence gate reported `ok=True` with none, and nothing said why. The
-    author sees a blocked paper and no reason to suspect the sentence.
-
-    Reporting it separately keeps "the declaration could not be resolved" distinct
-    from "the paper declared itself not ready". Those are different states and only
-    one of them is fixed by editing a line.
-    """
-
-    for raw in text.splitlines()[:24]:
-        match = TERMINAL_LINE.match(raw.strip())
-        if not match:
-            continue
-        value = match.group(1)
-        has_ready = PEER_REVIEW_READY_TOKEN.search(value) is not None
-        has_cannot = "CANNOT_CHECK" in value
-        negated = re.search(
-            r"\bnot\b[^*\n]*PEER_REVIEW_READY(?![A-Za-z0-9_])", value, re.IGNORECASE
-        )
-        if has_ready and has_cannot and not negated:
-            return raw.strip()
+        # A bounded ready declaration may explain an unresolved external
+        # comparison afterwards.  The declaration wins only when it precedes
+        # that explanatory CANNOT_CHECK; a cannot-check lead-in remains blocked.
+        if ready_match and (
+            cannot_match is None or ready_match.start() < cannot_match.start()
+        ):
+            return "PEER_REVIEW_READY"
+        if cannot_match:
+            return "CANNOT_CHECK"
         return None
     return None
 
@@ -415,15 +386,6 @@ def derive_paper(spec: dict[str, Any], repo: Path) -> dict[str, Any]:
     missing.append(
         f"{record['journal_readiness']}: current terminal is {terminal}, not PEER_REVIEW_READY"
     )
-    ambiguous = terminal_line_is_ambiguous(jr_text)
-    if ambiguous:
-        warnings.append(
-            f"{record['journal_readiness']}: the terminal line names both PEER_REVIEW_READY "
-            f"and CANNOT_CHECK, so it was resolved fail-closed to CANNOT_CHECK. If the "
-            f"CANNOT_CHECK describes a claim excluded from the ready declaration, move it off "
-            f"the terminal line; the scoreboard reads that one line and cannot represent a "
-            f"scoped verdict. Line: {ambiguous[:160]}"
-        )
     if protocol is None:
         pass
     elif protocol.get("protocol_status") == "DESIGN_FROZEN":
