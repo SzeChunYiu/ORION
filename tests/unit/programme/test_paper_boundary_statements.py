@@ -165,3 +165,16 @@ def test_p9_refuses_a_scalar_exchange_rate() -> None:
 def test_p12_refuses_a_cross_domain_scalar_exchange_rate() -> None:
     text = _flat(PAPERS / "paper-12-adaptive-state-reasoning/README.md")
     assert "no cross-domain scalar exchange rate between heterogeneous charged units" in text
+
+
+def test_p5_baseline_and_ablation_table_is_explicit_cannot_check() -> None:
+    """An absent table and an unrun arm look identical to a reader."""
+    text = _flat(PAPERS / "paper-05-self-orion/JOURNAL_READINESS.md")
+    assert "No baseline or ablation arm has been executed" in text
+    for arm in ("no-edit control", "direct self-edit", "strongest runnable self-improvement baseline",
+                "ADAS", "DGM", "ADIAS"):
+        assert arm in text, arm
+    assert "No cell is populated from a default" in text
+    # the two reasons must stay distinct
+    assert "not executed; no SWE-bench Verified run exists" in text
+    assert "comparator unavailable; not replaced by a weak proxy" in text

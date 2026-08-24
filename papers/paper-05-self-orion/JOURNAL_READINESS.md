@@ -6,6 +6,31 @@
 
 A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirical PASS.
 
+## Baseline and ablation table
+
+No baseline or ablation arm has been executed. The table states that rather
+than omitting it, because an absent table and an unrun arm look identical to a
+reader, and only one of them is a disclosure.
+
+| Arm | State | Why |
+| --- | --- | --- |
+| no-edit control | `CANNOT_CHECK` | not executed; no SWE-bench Verified run exists in this tree |
+| direct self-edit | `CANNOT_CHECK` | not executed |
+| strongest runnable self-improvement baseline | `CANNOT_CHECK` | not executed; the arm is runnable in principle, which is why it is not marked unavailable |
+| ADAS | `CANNOT_CHECK` | comparator unavailable; not replaced by a weak proxy |
+| DGM | `CANNOT_CHECK` | comparator unavailable; not replaced by a weak proxy |
+| ADIAS | `CANNOT_CHECK` | comparator unavailable; not replaced by a weak proxy |
+
+Two distinct reasons appear above and are not merged. *Not executed* means the
+run has not happened and could. *Comparator unavailable* means the arm cannot
+be obtained at all, which is the condition #1086 already records for
+ADAS/DGM/ADIAS. Collapsing them would hide that the first three are within
+reach and the last three are not.
+
+No cell is populated from a default, a prior, or a value carried over from
+another paper. A number in this table would have to come from a run, and there
+has been none.
+
 ## 0. Already present on `origin/main`
 
 - [x] canonical working manuscript exists;
