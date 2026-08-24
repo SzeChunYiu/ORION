@@ -22,6 +22,30 @@
 - [x] Non-retrieval experimental-design transfer case.
 - [x] Final theory manuscript, claim ledger, reproduction path and CI wiring.
 
+## Real-regime transport evidence (three landed classes)
+
+This record was theory-only and did not mention the non-synthetic evidence at
+all. A readiness record silent on a paper's empirical result is stale in the
+way that matters: a reader checking readiness sees the theory closed and no
+indication that three real change classes have landed.
+
+All three are witness-aware `1.0` against the same two donor-complete
+baselines, with the denominators that make that checkable:
+
+| Change class | Denominator | Witness-aware | Value-only | Always-reopen |
+| --- | --- | --- | --- | --- |
+| representation (RO-Crate `1.2 -> 1.3`) | 14 frozen cases | `1.0`, 4 correct `CANNOT_CHECK` | `0.428571...`, 8 false closures | `0.285714...`, 6 unnecessary reopens |
+| responsibility/ontology (UCI Wine) | 712 protected rows | `1.0`, 238 correct `CANNOT_CHECK` | `0.665730...`, 238 false closures | `0.0`, 474 unnecessary reopens |
+| objective/obligation (WDBC) | 5 folds x 2 states = 10 cells | `1.0`, 5 correct `CANNOT_CHECK` | `0.3`, 5 false closures | `0.1`, 4 unnecessary reopens |
+
+Bound receipts: `top_tier/P7_REAL_REGIME_TRANSPORT_RESULT_RECEIPT_V1.md` for
+classes 1 and 2, `top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md`
+for class 3.
+
+The `1.0` is exact conformance to a finite frozen contract on the cases above,
+not universal regime transport; the README states that boundary in full and it
+is not weakened here.
+
 ## Peer-review submission closure
 
 - [x] Two-round pre-submission literature delta dated 2026-08-18.

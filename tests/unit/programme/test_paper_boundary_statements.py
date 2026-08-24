@@ -210,3 +210,12 @@ def test_p13_integrates_the_cnf_result_with_its_comparators() -> None:
     assert "RCS: **24/24** verifier-correct" in text
     assert "confidence/provenance-only: **12/24**" in text
     assert "44.44%" in text
+
+
+def test_p7_readiness_record_carries_the_three_landed_classes() -> None:
+    """A readiness record silent on the empirical result is stale."""
+    text = _flat(PAPERS / "paper-07-epistemic-navigation-open-worlds/JOURNAL_READINESS_V2_1.md")
+    for denominator in ("14 frozen cases", "712 protected rows", "10 cells"):
+        assert denominator in text, denominator
+    assert "474 unnecessary reopens" in text
+    assert "not universal regime transport" in text
