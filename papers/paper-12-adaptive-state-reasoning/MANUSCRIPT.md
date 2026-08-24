@@ -1,12 +1,16 @@
 # Adaptive State–Reasoning Co-Design under Matched Total Compute
 
-> **Historical integrated review snapshot — noncanonical.** The editable publication source is `manuscript/sections/*.md`, the rendered paper is `manuscript/main.pdf`, and the sole current claim authority is `P12_ACTIVE_CLAIM_AUTHORITY_V4.json`. This snapshot preserves earlier review history and must not be used as the current submission source.
+> **Historical integrated review snapshot — noncanonical.** The editable publication source is `manuscript/sections/*.md`, the rendered paper is `manuscript/main.pdf`, and the sole current claim authority is `P12_ACTIVE_CLAIM_AUTHORITY_V5.json`
+> (V5 preserves every V4 leaf, terminal, status and binding byte-for-byte and
+> adds only the stop/go campaign leaf; V4 and V3 are retained as historical
+> authorities). This snapshot preserves earlier review history and must not be used as the current submission source.
 
 **ORION-P12 · issue #665 · resource-accounting owner #664**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`; controlled equal-action world
 
-**Current authority:** `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`. It retains P12A's
+**Authority at the time of this snapshot** (historical; superseded by
+`P12_ACTIVE_CLAIM_AUTHORITY_V5.json`): `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`. It retains P12A's
 comparison failure and activates only the prospectively frozen P12B equal-action
 signal-complementarity result after locked-environment V1.1 revalidation.
 **Submission status:** `P12A_SUPERIORITY_AUTHORITY_WITHHELD`; capability-matched P12B required
@@ -159,7 +163,8 @@ No policy is tuned on protected family outcomes.
 The historical P12A protected terminal is
 `P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`; its historical superiority authority is
 withheld under `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json`. Current authority
-comes from `P12_ACTIVE_CLAIM_AUTHORITY_V3.json`.
+at the time of this snapshot came from the historical, since-superseded
+`P12_ACTIVE_CLAIM_AUTHORITY_V3.json`; the current authority is `P12_ACTIVE_CLAIM_AUTHORITY_V5.json`.
 The historical protected terminal is
 `P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`. Current authority is
 `P12A_SUPERIORITY_AUTHORITY_WITHHELD` under

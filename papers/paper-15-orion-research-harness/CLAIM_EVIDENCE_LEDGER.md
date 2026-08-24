@@ -2,12 +2,17 @@
 
 **Stable ID:** ORION-P15
 
-**Active authority:** `P15_ACTIVE_CLAIM_AUTHORITY_V2.json`
+**Active authority:** `P15_ACTIVE_CLAIM_AUTHORITY_V3.json`
 
-**Lifecycle:** `PROSPECTIVE_ACQUISITION_PROTOCOL_FROZEN / NO_SCIENTIFIC_RESULT`
-**Active authority:** `P15_ACTIVE_CLAIM_AUTHORITY_V1.json`
+**Lifecycle:** `BOUNDED_SCIENTIFIC_RESULT_EARNED` · **Terminal:** `P15_BOUNDED_SEI_PROVENANCE_ATTESTATION_EARNED` · `promotion_allowed=false`
 
-**Lifecycle:** `METHODS_SCOPE_ONLY / NO_SCIENTIFIC_RESULT`
+Historical authorities, preserved and superseded (see the evidence correction
+below):
+
+| Superseded authority | Lifecycle when it was in force |
+| --- | --- |
+| `P15_ACTIVE_CLAIM_AUTHORITY_V2.json` | `PROSPECTIVE_ACQUISITION_PROTOCOL_FROZEN / NO_SCIENTIFIC_RESULT` |
+| `P15_ACTIVE_CLAIM_AUTHORITY_V1.json` | `METHODS_SCOPE_ONLY / NO_SCIENTIFIC_RESULT` |
 
 | Candidate statement | Current authority | Maximum authorized wording |
 |---|---|---|
