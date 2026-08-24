@@ -256,11 +256,70 @@ byte-identical. Terminal:
 `P13B_AUTHENTICATED_CERTIFICATE_SAFETY_COST_SUPPORTED_FINITE_WORLD`.
 Always reopening has zero historical unsafe compact reuse, roughly twice the mean RCS cost and unnecessary reopen on 57.44% of all episodes. Those are descriptive P13A rates. Whether RCS occupies a valid interior safety–cost frontier remains a P13B question because P13A's self-scored harm coordinate had no reachable opportunities.
 
+### 7.5 Composed safety–efficacy (P13C)
+
+P13C composes the two successors on one registered benchmark: the P13B
+authenticated-certificate machinery (imported unchanged from
+`src/orion/study/p13/authenticated_successor.py`, parameterized by the frozen
+`P13C_COMPOSED_GOLD_SPEC_V1.json`) is transplanted onto the P13A randomized
+efficacy design (24 families x 512 episodes = 12,288 episodes, seed
+`2026082113`, six-form certificate class), with the four-world corruption
+register interleaved at a frozen 1-in-5 schedule (2,457 scheduled corrupted
+episodes). Protocol, gold spec and runner were committed before first
+execution, and two fresh-subprocess replays are byte-identical
+(SHA-256 `645961cf01afe15f1b5976244b76b846c31d3c6119af4fbbc031e4b2a3611e57`).
+
+All eleven frozen gates are green; terminal
+`P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED` (result
+`P13C_COMPOSED_RESULT_V1.json`, receipt
+`P13C_COMPOSED_RESULT_RECEIPT_V1.md`). Within the registered composed finite
+world:
+
+| arm | unsafe reuse | verified correct | mean cost |
+|---|---:|---:|---:|
+| authenticated RCS | **0** (0/12,288) | 0.97933 | 3.0921 |
+| unverified RCS | 330 (0.0269) | 0.98063 | 2.3282 |
+| confidence only | 1,789 (0.1456) | 0.97412 | 1.7170 |
+| unqualified | 3,649 (0.2970) | 0.93660 | 1.0000 |
+| always raw | 0 | 0.95247 | 5.7386 |
+
+Authenticated RCS rejects every scheduled corruption (2,457/2,457), makes zero
+unnecessary reopens on the 9,831 valid-certificate episodes, remains exactly
+`CANNOT_CHECK` on the 254 certificate-declared unsupported cases, and costs
+0.539 times always-raw overall (0.498 on the 3,322-episode parent-form
+subpanel, reproducing the P13A economy). The strongest trusting comparator,
+unverified RCS, is noninferior in verified correctness (0.98063 vs 0.97933)
+but commits 330 unsafe reuses (FORGED 66, OVERBROAD 87, STALE 177) plus 123
+adversary-induced unnecessary reopens under omitted support, and forces 2,349
+adversary-induced reopens on authenticated episodes overall. Authority
+boundary: registered composed finite world only — no external validation,
+real-agent safety, population generalization, certificate-authority
+independence or deployment authority is claimed. Active authority:
+`P13_ACTIVE_CLAIM_AUTHORITY_V3.json`.
+
 ## 8. Certificate transport, invalidation and authority
 
 Responsibility support is conditional on evidence identity, transform version, required context, witness identity and resource envelope. A semantic change can therefore require preserve, reopen, revoke or `CANNOT_CHECK` behavior.
 
 The RCS object does not certify its own scientific authority. An evaluator can establish an operational support contract without granting novelty, publication or safety-critical deployment authority. This separation is especially important in scientific workflows, where a compact summary may support question answering but not claim promotion.
+
+### 8.1 Scope binding — machine-verifiable lifecycle contracts
+
+Under issue #1086 decision D7 (portfolio disposition
+`papers/ISSUE_1086_PORTFOLIO_DISPOSITION_V1.json`, binding artifact
+`P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json`), P13 and P14 are consolidated
+as one machine-verifiable lifecycle-contract safety scope. The supported scope
+of this manuscript is exactly the machine-verifiable layer: certificate
+validation, responsibility-scoped reuse decisions, reopen semantics,
+corruption rejection and their registered benchmark gates. Broader
+correct-governance or social-responsibility claims — that retaining or
+reopening state is the *correct* governance decision for real organizations —
+remain **CANNOT_CHECK**: they require two independent experts plus a
+tie-break/custodian, which no artifact in this repository provides. On the
+present evidence P14 is not a separate paper at the 75+ bar; any external
+lifecycle-contract campaign must derive gold only from the objective facts
+enumerated in `P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md` and must never
+use ORION itself as an external subject.
 
 ## 9. Relation to certified reuse and proof-carrying agents
 

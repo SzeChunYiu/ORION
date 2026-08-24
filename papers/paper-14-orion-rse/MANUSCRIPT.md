@@ -239,6 +239,43 @@ Round 1 creates positive, null, negative and subsumed history. Round 2 changes e
 
 Useful-discovery noninferiority remains co-primary so safety cannot be purchased by blanket abstention.
 
+### P14D — frozen acquisition contract; preflight blocked
+
+The Tier-A path is operationalized by the frozen fail-closed acquisition
+contract `P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md` (bound in
+`P14_ACTIVE_CLAIM_AUTHORITY_V1.json` under `prospective_external_validation`).
+Its intake validator rejects missing packets, self-authored custody, unblinded
+labels, unequal resources and stale digests; until every required artifact
+passes, the only admissible terminal is `P14D_EXTERNAL_ACQUISITION_BLOCKED`.
+The committed preflight `P14D_EXTERNAL_ACQUISITION_PREFLIGHT_V1.json` records
+`execution_authorized=false` with all eight required artifacts absent
+(packet register, common-resource manifest, blinded assignment manifest,
+external-adjudicator custody attestation, frozen adjudication rubric,
+independent adjudications, protected-output register, replay receipt) and no
+trusted external custody verifier configured, so no external-validation
+authority exists. The active bounded result remains P14C
+(`P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`).
+
+### Scope binding — consolidated lifecycle-contract safety
+
+Under issue #1086 decision D7 (portfolio disposition
+`papers/ISSUE_1086_PORTFOLIO_DISPOSITION_V1.json`, binding artifact
+`papers/paper-13-responsibility-carrying-state/P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json`),
+P14 is consolidated with P13 into one machine-verifiable lifecycle-contract
+safety scope. What this manuscript supports is the machine-verifiable layer:
+specification-separated policy conformance, fail-closed acquisition
+preflights, and the registered governance cases. Broader correct-governance or
+social-responsibility claims — that the governance policy is the *correct* one
+for real organizations — remain **CANNOT_CHECK**: they require two independent
+experts plus a tie-break/custodian, which no artifact in this repository
+provides. On the present evidence P14 is **not** a separate paper at the 75+
+bar; the external campaign that could change this (30–50 pinned repositories
+from at least five unrelated organizations) is OPEN and must derive gold only
+from the objective facts enumerated in
+`papers/paper-13-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md`
+(object/hash existence, ancestry, tag/signature, test exit, timestamp order)
+and must never use ORION itself as an external subject.
+
 ## 10. Resource accounting
 
 Every workflow should report model/checkpoint, evidence access, web/literature access, tool access, generated tokens, experiment/search budget, reviewer/evaluator calls, number of research/reflection passes and end-to-end latency. ORION-RSE cannot hide extra compute as “governance.”
@@ -262,6 +299,7 @@ Its distinctive mechanism is active negative/subsumed history plus material-reop
 6. Longitudinal value of negative-history retention is not yet demonstrated on realistic scientific work.
 7. Poorly calibrated reopen/materiality criteria could suppress productive risk-taking; useful-discovery noninferiority is therefore mandatory.
 8. No claim of frontier autonomous-research superiority is authorized.
+9. The P14D external-acquisition preflight is blocked (all eight required artifacts absent, no trusted external custody verifier), so no external-validation authority exists; and under issue #1086 decision D7 the paper's supported scope is narrowed to machine-verifiable lifecycle contracts — broader correct-governance and social-responsibility claims are CANNOT_CHECK (two independent experts plus tie-break/custodian required), and P14 is not a separate 75+ paper on the present evidence.
 
 ## 13. Conclusion
 

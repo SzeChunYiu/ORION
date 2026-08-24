@@ -9,6 +9,14 @@
 
 `MANUSCRIPT.md` is the current peer-review manuscript. Its historical P13A/P13B sections remain part of the audit trail, but the current top-tier scientific object is supported by later real-data, verifier-backed, donor-complete and certificate-transport studies.
 
+## Active claim authority
+
+The machine-rebuilt authority chain, in force order:
+
+- `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json` — historical adjudication; terminal `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD` (the self-scored zero-harm endpoint can never authorize empirical superiority).
+- `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` — active authority for the P13B leaf; active terminal `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`, retained unchanged.
+- `P13_ACTIVE_CLAIM_AUTHORITY_V3.json` — extends V2 with the composed P13C leaf, terminal `P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED` (registered composed finite world; zero authenticated unsafe reuses; every scheduled corruption rejected; external validation forbidden). V2 remains the active authority for its own leaf.
+
 ## Current scientific state
 
 ### 1. Historical outcome-entailment correction

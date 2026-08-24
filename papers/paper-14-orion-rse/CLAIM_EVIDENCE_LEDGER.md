@@ -38,6 +38,9 @@
 | the internally authored P14C specification is scientifically correct for open-ended real research | OPEN / NOT AUTHORIZED | no external adjudication | forbidden |
 | ORION-RSE is superior to frontier autonomous research agents | OPEN / NOT AUTHORIZED | no realistic agent benchmark | forbidden |
 | complete ORION-RSE conforms strictly better than registered partial governance contracts against a separately frozen specification without suppressing valid promotion | **SUPPORTED SYNTHESIS** | P14C + V2 protocol adjudication | strongest current paper claim |
+| P14D blocked status is integrated in the canonical manuscript | **SUPPORTED / BINDING** | `MANUSCRIPT.md` section 9 ("P14D — frozen acquisition contract; preflight blocked") + `P14_ACTIVE_CLAIM_AUTHORITY_V1.json` `prospective_external_validation` | manuscript states terminal `P14D_EXTERNAL_ACQUISITION_BLOCKED`, `execution_authorized=false`, all eight required artifacts absent, active authority unchanged at P14C |
+| broader correct-governance / social-responsibility claims for the consolidated lifecycle-contract scope | **CANNOT_CHECK / CONSOLIDATED D7** | `papers/paper-13-responsibility-carrying-state/P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json` (issue #1086 decision D7) | requires two independent experts plus tie-break/custodian; P14 is not a separate 75+ paper on the present evidence |
+| external lifecycle-contract campaign gold derivation | **PROSPECTIVE RULE / OPEN** | `papers/paper-13-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md` | gold only from object/hash existence, ancestry, tag/signature, test exit, timestamp order; never ORION as external subject; 30–50 pinned repositories from >=5 unrelated organizations remains OPEN |
 
 ## Evidence corrections
 
