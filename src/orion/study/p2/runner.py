@@ -132,6 +132,10 @@ class SessionConfig:
     budget: Any
     extraction_questions: tuple[str, ...]
     extraction_shift_after_reads: int | None
+    #: The extraction schema version in force. Host-controlled, as the
+    #: DiscoverySession protocol requires. DiscoveryTask does not carry one, so
+    #: it defaults here rather than being invented per call site.
+    extraction_schema: str = "P2.Extraction.v1"
 
     @classmethod
     def from_task(cls, task: DiscoveryTask) -> SessionConfig:
@@ -197,6 +201,18 @@ class BudgetedSession:
             return questions[0]
         stage = min(len(self._read_events) // shift, len(questions) - 1)
         return questions[stage]
+
+    @property
+    def current_extraction_schema(self) -> str:
+        """The extraction schema version in force.
+
+        Required by the DiscoverySession protocol. BudgetedSession did not
+        implement it, so any read that recorded the schema raised
+        AttributeError -- the protocol declared a member no implementation
+        provided, and nothing checked.
+        """
+
+        return self._task.extraction_schema
 
     @property
     def route_events(self) -> tuple[RouteEvent, ...]:
