@@ -44,8 +44,8 @@ from orion.study.p2.systems import RetrievedRecord  # noqa: E402
 
 DATA = Path.home() / "orion-work/trec/trec-covid"
 HERE = Path(__file__).resolve().parent
-FREEZE = HERE / "P2_TREC_COVID_ROUTE_FREEZE_V3.json"
-EXPECTED_FREEZE_SHA = "4fab37da4ef8f66fde7f08b1a88a3c541a160d2682b7400bd527f7fa1b7f7aa9"
+FREEZE = HERE / "P2_TREC_COVID_ROUTE_FREEZE_V4.json"
+EXPECTED_FREEZE_SHA = "72617a082c438457eecfe3b4b0194c81f3099d266db8bd1b4b9884f8f03ade85"
 
 ARMS = [
     Policy(system_id="bm25", mode="bm25"),
