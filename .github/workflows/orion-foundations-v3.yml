@@ -62,3 +62,23 @@ jobs:
           python -m json.tool research/orion-foundations-v3/THEOREM_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/ASSUMPTION_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/EXECUTION_ONLY_BACKLOG_V1.json >/dev/null
+      - name: Reject incomplete Lean proofs
+        run: |
+          if grep -R -nE '(^|[^[:alnum:]_])(sorry|admit|axiom)([^[:alnum:]_]|$)' \
+            research/orion-foundations-v3/formal/lean/OrionFoundations \
+            research/orion-foundations-v3/formal/lean/OrionFoundations.lean; then
+            echo "Lean proof contains sorry/admit/axiom" >&2
+            exit 1
+          fi
+
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: research/orion-foundations-v3/formal/lean
+          build: true
+          test: false
+          lint: false
+          use-github-cache: false
