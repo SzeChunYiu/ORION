@@ -31,7 +31,7 @@ def test_donor_campaign_builder_root_export_is_module_identity():
 def test_normal_orion_campaign_is_immediately_terminal_when_no_external_donor(tmp_path: Path):
     workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
     manifest = build_donor_campaign_manifest(_problem("orion"))
-    assert manifest["donor_registry_id"] == "orion:donors:normal:v1"
+    assert manifest["donor_registry_id"] == "orion:donors:normal:v2"
     assert manifest["initial_phase"] == "DONOR_COMPLETE"
     result = run_campaign(workspace, manifest)
     assert result["status"] == "TERMINAL"
@@ -42,7 +42,7 @@ def test_normal_orion_campaign_is_immediately_terminal_when_no_external_donor(tm
 def test_orion_q_campaign_requests_external_donor_and_advances_on_bound_result(tmp_path: Path):
     workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
     manifest = build_donor_campaign_manifest(_problem("orion-q"))
-    assert manifest["donor_registry_id"] == "orion:donors:orion-q:v1"
+    assert manifest["donor_registry_id"] == "orion:donors:orion-q:v2"
     assert len(manifest["capabilities"]) == 13
     first = run_campaign_cycle(workspace, manifest, auto_service_local=False)
     assert first["status"] == "PENDING_CAPABILITY"

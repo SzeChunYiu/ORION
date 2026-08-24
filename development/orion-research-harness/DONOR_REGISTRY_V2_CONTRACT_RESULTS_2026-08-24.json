@@ -1,0 +1,39 @@
+{
+  "schema": "ORION.ResearchHarness.DonorRegistryV2ContractRepair.v1",
+  "base_revision": "9805f309b923e17a68905e004e7898733197c7b6",
+  "terminal": "DONOR_REGISTRY_V2_CONTRACT_REPAIRED",
+  "authority": "CURRENT_REGISTRY_IDENTITY_AND_FIXTURE_CAMPAIGN_ONLY",
+  "protocol": "development/orion-research-harness/DONOR_REGISTRY_V2_CONTRACT_REPAIR_2026-08-24.md",
+  "protocol_sha256": "c1041333f99b297ebf1f148db83a3c58419c62fcbc6f8056ad7d2064c3f53df0",
+  "implementation_sha256": {
+    "packages/orion-research-harness/tests/test_paper_parity_campaign.py": "a3d4d851871b487292e6f1a1f199c852cbc84384af61fff2c2cb7cc5224425e4"
+  },
+  "verification": {
+    "command": "PYTHONPATH=packages/orion-research-harness/src:src /tmp/orion-harness-fix-venv-20260824/bin/python -m pytest packages/orion-research-harness/tests/test_paper_parity_campaign.py -q",
+    "result": "4 passed in 1.49s",
+    "typed_probe_terminal": "DONOR_REGISTRY_V2_CONTRACT_REPAIRED",
+    "normal_registry_id": "orion:donors:normal:v2",
+    "orion_q_registry_id": "orion:donors:orion-q:v2"
+  },
+  "validated_fixture_boundaries": {
+    "normal_no_external_donor_terminal": true,
+    "orion_q_bound_result_advances": true,
+    "authority_escalation_rejected": true,
+    "root_export_identity": true
+  },
+  "preserved_adverse": {
+    "external_donor_executed": false,
+    "campaign_broader_suite_green": false,
+    "p2_runner_importable": false,
+    "scientific_negative": false,
+    "classification": "CURRENT_IDENTITY_FIXTURE_CONFORMANCE_ONLY"
+  },
+  "remaining_boundary": {
+    "full_registry_complete_for_all_scientific_domains": false,
+    "real_external_donor_validated": false,
+    "dual_harness_scientific_execution_validated": false,
+    "historical_receipts_revalidated": false,
+    "scientific_authority": false,
+    "publication_authority": false
+  }
+}
