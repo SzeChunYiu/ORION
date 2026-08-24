@@ -22,13 +22,28 @@ jobs:
           python-version: "3.13"
       - name: Reject execution-lane edits
         shell: bash
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
         run: |
-          base="${{ github.event.pull_request.base.sha || github.event.before }}"
-          if [[ -z "$base" || "$base" == "0000000000000000000000000000000000000000" ]]; then
-            base="HEAD^"
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            base="$PR_BASE_SHA"
+            head="$PR_HEAD_SHA"
+          else
+            base="$PUSH_BEFORE_SHA"
+            head="$EVENT_SHA"
+            if [[ -z "$base" || "$base" == "0000000000000000000000000000000000000000" ]]; then
+              base="$head^"
+            fi
           fi
-          git diff --name-only "$base"...HEAD | tee /tmp/foundations-v3-paths.txt
-          unexpected="$(grep -Ev '^(research/orion-foundations-v3/|\.github/workflows/orion-foundations-v3\.yml)$' /tmp/foundations-v3-paths.txt || true)"
+
+          git cat-file -e "$base^{commit}" 2>/dev/null || git fetch origin "$base"
+          git cat-file -e "$head^{commit}" 2>/dev/null || git fetch origin "$head"
+          git diff --name-only "$base" "$head" | tee /tmp/foundations-v3-paths.txt
+
+          unexpected="$(grep -Ev '^(research/orion-foundations-v3/.*|\.github/workflows/orion-foundations-v3\.yml)$' /tmp/foundations-v3-paths.txt || true)"
           if [[ -n "$unexpected" ]]; then
             echo "Unexpected non-theory paths:" >&2
             echo "$unexpected" >&2
