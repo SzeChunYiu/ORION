@@ -47,6 +47,22 @@ GPU_UUID = "GPU-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 START = "2026-08-24T11:00:00"
 END = "2026-08-24T11:15:00"
 TUPLE = {"task_id": "1", "arm_id": "RR", "attempt": 1, "seed": 101}
+LIVE_CONFIG_HEADER = b"Configuration data as of 2026-08-24T22:23:08\n"
+LIVE_NODE_LINE = (
+    b"NodeName=cg14 Arch=x86_64 CoresPerSocket=16  CPUAlloc=0 CPUEfctv=32 "
+    b"CPUTot=32 CPULoad=10.64 AvailableFeatures=icelake,mem512GB,rack_f1,gpua40 "
+    b"ActiveFeatures=icelake,mem512GB,rack_f1,gpua40 Gres=gpu:a40:1 "
+    b"GresDrain=N/A GresUsed=gpu:a40:0(IDX:N/A) NodeAddr=cg14 "
+    b"NodeHostName=cg14 Version=23.11.3 OS=Linux 5.14.0-687.24.1.el9_8.x86_64 "
+    b"#1 SMP PREEMPT_DYNAMIC Thu Jul 9 16:32:56 UTC 2026  RealMemory=512000 "
+    b"AllocMem=0 FreeMem=465242 Sockets=2 Boards=1 State=IDLE ThreadsPerCore=1 "
+    b"TmpDisk=0 Weight=10 Owner=N/A MCS_label=N/A Partitions=gpua40i,hpua40i  "
+    b"BootTime=2026-07-13T10:15:51 SlurmdStartTime=2026-07-20T12:39:41 "
+    b"LastBusyTime=2026-08-24T20:18:53 ResumeAfterTime=None "
+    b"CfgTRES=cpu=32,mem=500G,billing=32,gres/gpu=1,gres/gpu:a40=1 "
+    b"AllocTRES= CapWatts=n/a CurrentWatts=0 AveWatts=0 ExtSensorsJoules=n/a "
+    b"ExtSensorsWatts=0 ExtSensorsTemp=n/a\n"
+)
 
 SACCT_FIELDS = (
     "JobIDRaw",
@@ -114,6 +130,8 @@ def sacct_row(
     end: str = END,
     node: str = NODE,
     alloc_tres: str = "billing=8,cpu=8,gres/gpu:a40=1,gres/gpu=1,mem=64G,node=1",
+    n_tasks: str = "",
+    req_mem: str = "64G",
 ) -> bytes:
     values = {
         "JobIDRaw": job_id,
@@ -130,9 +148,9 @@ def sacct_row(
         "NodeList": node,
         "NNodes": "1",
         "NCPUS": "8",
-        "NTasks": "1",
+        "NTasks": n_tasks,
         "ReqCPUS": "8",
-        "ReqMem": "64Gn",
+        "ReqMem": req_mem,
         "ReqTRES": "billing=8,cpu=8,gres/gpu:a40=1,gres/gpu=1,mem=64G,node=1",
         "AllocTRES": alloc_tres,
         "Account": ACCOUNT,
@@ -141,7 +159,7 @@ def sacct_row(
         "Reservation": "",
         "Reason": "None",
     }
-    return ("|".join(values[field] for field in SACCT_FIELDS) + "|\n").encode()
+    return ("|".join(values[field] for field in SACCT_FIELDS) + "\n").encode()
 
 
 def scontrol_snapshot(*, state: str, end: str, exit_code: str = "0:0") -> bytes:
@@ -175,18 +193,22 @@ def materialized_argv() -> dict[str, list[str]]:
     }
 
 
-ROOT_INPUTS = (
+CAPTURE_INPUTS = (
     "POST_JOB_SACCT_V1.txt",
     "POST_JOB_SACCT_NONOVERLAP_V1.txt",
     "POST_JOB_SCONTROL_V1.txt",
     "SCHEDULER_CONFIG_V1.txt",
     "SCHEDULER_PARTITION_V1.txt",
     "SCHEDULER_NODE_V1.txt",
+    "SCHEDULER_CAPTURE_PROVENANCE_V1.json",
+)
+ROOT_INPUTS = (
+    *CAPTURE_INPUTS[:6],
     "GPU_ALLOCATION_IDENTITY_V1.json",
     "SERVER_CLEANUP_V1.json",
     "STAGED_RUNTIME_INPUT_V1.json",
     "PROCESS_ATTESTATION_V1.json",
-    "SCHEDULER_CAPTURE_PROVENANCE_V1.json",
+    CAPTURE_INPUTS[6],
 )
 ATTEMPT_INPUTS = (
     "SCONTROL_IN_JOB_V1.txt",
@@ -198,6 +220,25 @@ ATTEMPT_INPUTS = (
 
 
 class SyntheticFixture:
+    def split_capture(self, root: Path, capture_root: Path) -> None:
+        capture_root.mkdir(mode=0o700)
+        for name in CAPTURE_INPUTS:
+            source = root / name
+            target = capture_root / name
+            source_info = source.lstat()
+            if stat.S_ISLNK(source_info.st_mode):
+                target.symlink_to(os.readlink(source))
+                continue
+            target.write_bytes(source.read_bytes())
+            source_mode = stat.S_IMODE(source_info.st_mode)
+            target.chmod(
+                0o400
+                if source_mode in {0o400, 0o600} and source_info.st_nlink == 1
+                else source_mode
+            )
+            if source_info.st_nlink != 1:
+                os.link(target, capture_root / f".{name}.synthetic-hardlink")
+
     def create(self, root: Path) -> None:
         root.chmod(0o700)
         attempt = root / "attempt"
@@ -215,13 +256,15 @@ class SyntheticFixture:
         write_private(root / "POST_JOB_SACCT_NONOVERLAP_V1.txt", terminal)
         write_private(root / "POST_JOB_SCONTROL_V1.txt", post_scontrol)
         write_private(root / "SCHEDULER_CONFIG_V1.txt",
+            LIVE_CONFIG_HEADER
+            +
             b"SlurmctldVersion = 23.11.3\n"
             b"ClusterName = cosmos\n"
             b"MinJobAge = 300 sec\n"
             b"SelectType = select/cons_tres\n"
             b"SelectTypeParameters = CR_Core_Memory\n"
             b"GresTypes = gpu\n"
-            b"TaskPlugin = task/cgroup\n"
+            b"TaskPlugin = task/cgroup,task/affinity\n"
             b"ProctrackType = proctrack/cgroup\n"
             b"AccountingStorageType = accounting_storage/slurmdbd\n"
             b"AccountingStorageEnforce = associations,limits,qos,safe\n"
@@ -230,11 +273,15 @@ class SyntheticFixture:
             b"PrivateData = none\n"
         )
         write_private(root / "SCHEDULER_PARTITION_V1.txt",
-            f"PartitionName={PARTITION} AllowAccounts={ACCOUNT} Nodes=aurora[01-04] OverSubscribe=NO State=UP\n".encode()
+            f"PartitionName={PARTITION} AllowAccounts=ALL Nodes=aurora[01-04] OverSubscribe=NO State=UP\n".encode()
         )
         write_private(root / "SCHEDULER_NODE_V1.txt",
-            b"NodeName=aurora01 State=ALLOCATED Gres=gpu:a40:4(S:0-1) "
-            b"CfgTRES=cpu=64,mem=500G,billing=64,gres/gpu=4,gres/gpu:a40=4\n"
+            b"NodeName=aurora01 Arch=x86_64 CoresPerSocket=16  CPUAlloc=8 "
+            b"State=ALLOCATED Gres=gpu:a40:4(S:0-1) Version=23.11.3 "
+            b"OS=Linux 5.14.0-687.24.1.el9_8.x86_64 #1 SMP PREEMPT_DYNAMIC "
+            b"Thu Jul 9 16:32:56 UTC 2026  RealMemory=512000 "
+            b"CfgTRES=cpu=64,mem=500G,billing=64,gres/gpu=4,gres/gpu:a40=4 "
+            b"AllocTRES=cpu=8,mem=64G,gres/gpu=1,gres/gpu:a40=1\n"
         )
         write_private(attempt / "SCONTROL_IN_JOB_V1.txt", in_job)
         identity = {
@@ -447,7 +494,7 @@ class SyntheticFixture:
                     "transport_status": "SENT_RESPONSE_ACCEPTED",
                 },
                 {
-                    "phase_id": "RR_PHASE1", "rendered_prompt_sha256": "d" * 64,
+                    "phase_id": "RR_PHASE1", "rendered_prompt_sha256": "2" * 64,
                     "canonical_request_sha256": "e" * 64, "cache_prompt": False,
                     "completion_raw_response_sha256": "f" * 64,
                     "transport_status": "SENT_RESPONSE_ACCEPTED",
@@ -505,6 +552,48 @@ class SyntheticFixture:
             "allocation_started_at": START,
             "allocation_ended_at": END,
             "capture_argv": materialized_argv(),
+            "capture_command_timeout_seconds": 20,
+            "post_terminal_capture_deadline_seconds": 240,
+            "post_job_scontrol_start_latency_limit_seconds": 2,
+            "terminal_observed_at_utc": "2026-08-24T22:23:08.000000Z",
+            "terminal_observed_monotonic_ns": "2000000000",
+            "post_job_scontrol_started_at_utc": "2026-08-24T22:23:09.000000Z",
+            "post_job_scontrol_start_seconds_after_terminal_observation": "1.000000000",
+            "post_job_scontrol_completed_at_utc": "2026-08-24T22:23:10.000000Z",
+            "post_job_scontrol_seconds_after_terminal_observation": "2.000000000",
+            "capture_command_observations": [
+                {
+                    "key": key,
+                    "argv": materialized_argv()[key],
+                    "started_at_monotonic_ns": str(started),
+                    "started_at_utc": f"2026-08-24T22:23:{started_second:02d}.000000Z",
+                    "completed_at_monotonic_ns": str(completed),
+                    "completed_at_utc": f"2026-08-24T22:23:{completed_second:02d}.000000Z",
+                    "duration_seconds": "1.000000000",
+                    "seconds_after_terminal_observation": f"{elapsed}.000000000",
+                    "post_terminal_deadline_remaining_seconds": f"{240 - elapsed}.000000000",
+                    "completed_before_post_terminal_deadline": True,
+                }
+                for key, started, completed, started_second, completed_second, elapsed in (
+                    ("post_job_scontrol", 3_000_000_000, 4_000_000_000, 9, 10, 2),
+                    ("scheduler_config", 5_000_000_000, 6_000_000_000, 11, 12, 4),
+                    ("scheduler_partition", 7_000_000_000, 8_000_000_000, 13, 14, 6),
+                    ("scheduler_node", 9_000_000_000, 10_000_000_000, 15, 16, 8),
+                    ("nonoverlap_sacct", 11_000_000_000, 12_000_000_000, 17, 18, 10),
+                )
+            ],
+            "terminal_poll_interval_seconds": 5,
+            "terminal_poll_limit": 1440,
+            "terminal_poll_count": 1,
+            "terminal_poll_observations": [{
+                "poll_index": 1,
+                "observed_at_monotonic_ns": "1000000000",
+                "argv": materialized_argv()["terminal_sacct"],
+                "row_count": 1,
+                "terminal": True,
+            }],
+            "partition_source": "INTERNAL_FROZEN_gpua40i",
+            "node_source": "DERIVED_FROM_UNIQUE_TERMINAL_SACCT_NODELIST",
             "raw_file_sha256": {
                 name: sha256_bytes((root / name).read_bytes()) for name in raw_names
             },
@@ -656,12 +745,16 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             self.skipTest("implementation intentionally absent for TDD RED")
         return self.module
 
-    def run_fixture(self, mutate: Any = None, *, refresh: bool = True) -> tuple[int, dict[str, Any], Path]:
+    def run_fixture(
+        self, mutate: Any = None, *, refresh: bool = True,
+        capture_mutate: Any = None,
+    ) -> tuple[int, dict[str, Any], Path]:
         module = self.require_module()
         holder = tempfile.TemporaryDirectory(dir=ROOT)
         self.addCleanup(holder.cleanup)
         base = Path(holder.name)
         evidence = base / "evidence"
+        capture_root = base / "capture"
         output = base / "finalized"
         evidence.mkdir()
         self.fixture.create(evidence)
@@ -670,7 +763,12 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             if refresh:
                 self.fixture.refresh_capture_provenance(evidence)
                 self.fixture.refresh_export(evidence)
-        code, receipt = module.finalize(evidence.resolve(), output.resolve())
+        self.fixture.split_capture(evidence, capture_root)
+        if capture_mutate is not None:
+            capture_mutate(capture_root)
+        code, receipt = module.finalize(
+            evidence.resolve(), capture_root.resolve(), output.resolve()
+        )
         return code, receipt, output
 
     def assert_cannot_check(self, result: tuple[int, dict[str, Any], Path]) -> dict[str, Any]:
@@ -693,6 +791,43 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         self.assertEqual(contract["base_commit"], "eba4a67e8607cdef96a2bb038d685a9a5d548599")
         self.assertEqual(contract["scheduler_audit_binding"]["slurm_version"], "23.11.3")
         self.assertEqual(contract["scheduler_audit_binding"]["min_job_age_seconds"], 300)
+        self.assertEqual(contract["capture_execution"]["terminal_poll_interval_seconds"], 5)
+        self.assertEqual(contract["capture_execution"]["terminal_poll_limit"], 1440)
+        self.assertEqual(
+            contract["capture_execution"]["post_terminal_timing"],
+            {
+                "capture_sequence_deadline_seconds": 240,
+                "command_timeout_seconds": 20,
+                "first_command": "scontrol show job -dd <SLURM_JOB_ID>",
+                "first_command_max_start_latency_seconds": 2,
+                "monotonic_arithmetic": "EXACT_INTEGER_NANOSECOND_START_COMPLETION_DURATION_ELAPSED_AND_REMAINING_DEADLINE",
+                "terminal_persistence_order": "FIRST_COMMAND_SUBPROCESS_LAUNCHED_BEFORE_TERMINAL_SACCT_O_EXCL_FSYNC",
+                "terminal_raw_retained_on_any_subsequent_failure": True,
+                "utc_grammar": "YYYY-MM-DDTHH:MM:SS.ffffffZ_NONDECREASING",
+            },
+        )
+        self.assertEqual(
+            contract["scheduler_audit_binding"][
+                "post_terminal_deadline_margin_before_min_job_age_seconds"
+            ],
+            60,
+        )
+        self.assertTrue(
+            contract["filesystem_custody"][
+                "evidence_capture_descriptor_identity_distinct_required"
+            ]
+        )
+        self.assertTrue(
+            contract["filesystem_custody"][
+                "finalize_three_path_values_distinct_required"
+            ]
+        )
+        self.assertFalse(
+            contract["operator_assembly"]["manual_scheduler_export_authorship_required"]
+        )
+        self.assertEqual(
+            contract["entrypoint_argv"][0][1:3], ["watch-capture", "--job-id"]
+        )
         argv = contract["capture_command_argv_templates"]
         self.assertEqual(argv["terminal_sacct"][:6], ["sacct", "-a", "-X", "-D", "-j", "<SLURM_JOB_ID>"])
         self.assertIn("JobIDRaw,Partition,State,ExitCode,DerivedExitCode", argv["terminal_sacct"][-1])
@@ -709,11 +844,31 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
     def test_03_cli_argv_is_exact_and_absolute(self) -> None:
         module = self.require_module()
         with self.assertRaises(module.FinalizationError):
-            module.parse_cli(["finalize", "--evidence-root", "relative", "--output-root", "/tmp/x"])
+            module.parse_cli([
+                "finalize", "--evidence-root", "relative",
+                "--capture-root", "/tmp/c", "--output-root", "/tmp/x",
+            ])
         with self.assertRaises(module.FinalizationError):
-            module.parse_cli(["finalize", "--evidence-root", "/tmp/e", "--output-root", "/tmp/o", "extra"])
-        args = module.parse_cli(["finalize", "--evidence-root", "/tmp/e", "--output-root", "/tmp/o"])
+            module.parse_cli([
+                "finalize", "--evidence-root", "/tmp/e",
+                "--capture-root", "/tmp/c", "--output-root", "/tmp/o", "extra",
+            ])
+        args = module.parse_cli([
+            "finalize", "--evidence-root", "/tmp/e",
+            "--capture-root", "/tmp/c", "--output-root", "/tmp/o",
+        ])
         self.assertEqual(args.evidence_root, Path("/tmp/e"))
+        self.assertEqual(args.capture_root, Path("/tmp/c"))
+        capture = module.parse_capture_cli([
+            "watch-capture", "--job-id", JOB_ID,
+            "--output-root", "/tmp/new-capture",
+        ])
+        self.assertEqual(capture.job_id, JOB_ID)
+        with self.assertRaises(module.FinalizationError):
+            module.parse_capture_cli([
+                "watch-capture", "--job-id", JOB_ID,
+                "--partition", PARTITION, "--output-root", "/tmp/new-capture",
+            ])
 
     def test_04_valid_synthetic_evidence_emits_bounded_pass(self) -> None:
         code, receipt, output = self.run_fixture()
@@ -738,14 +893,59 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         self.assertTrue((output / "ONE_TUPLE_FINALIZATION_RECEIPT_V1.json").is_file())
         self.assertFalse((output / "ONE_TUPLE_FINALIZATION_CANNOT_CHECK_V1.json").exists())
 
+        def omit_optional_export(root: Path) -> None:
+            (root / "SCHEDULER_EXPORT_V1.jsonl").unlink()
+
+        generated_code, generated_receipt, generated_output = self.run_fixture(
+            omit_optional_export, refresh=False
+        )
+        self.assertEqual(generated_code, 0)
+        generated_export = generated_output / "SCHEDULER_EXPORT_V1.jsonl"
+        self.assertTrue(generated_export.is_file())
+        self.assertEqual(
+            sha256_bytes(generated_export.read_bytes()),
+            generated_receipt["scheduler_export_raw_record_sha256"],
+        )
+
+        module = self.require_module()
+        live_row = module.parse_sacct_snapshot(sacct_row(), allow_multiple=False)[0]
+        self.assertEqual(live_row["NTasks"], "")
+        self.assertEqual(live_row["ReqMem"], "64G")
+
+        def explicit_one_task(root: Path) -> None:
+            row = sacct_row(n_tasks="1")
+            (root / "POST_JOB_SACCT_V1.txt").write_bytes(row)
+            (root / "POST_JOB_SACCT_NONOVERLAP_V1.txt").write_bytes(row)
+
+        explicit_code, _, _ = self.run_fixture(explicit_one_task)
+        self.assertEqual(explicit_code, 0)
+
+        for label, row in (
+            ("two-tasks", sacct_row(n_tasks="2")),
+            ("node-suffixed-reqmem", sacct_row(req_mem="64Gn")),
+        ):
+            with self.subTest(label=label):
+                def mutate(root: Path, payload: bytes = row) -> None:
+                    (root / "POST_JOB_SACCT_V1.txt").write_bytes(payload)
+                    (root / "POST_JOB_SACCT_NONOVERLAP_V1.txt").write_bytes(payload)
+                receipt = self.assert_cannot_check(self.run_fixture(mutate))
+                self.assertIn(
+                    receipt["failure_code"],
+                    {"EXCLUSIVITY_CANNOT_CHECK", "EVIDENCE_PARSE_INVALID"},
+                )
+
     def test_05_sacct_parser_rejects_crlf_extra_rows_and_wrong_field_count(self) -> None:
         module = self.require_module()
+        self.assertEqual(sacct_row().count(b"|"), len(SACCT_FIELDS) - 1)
+        self.assertFalse(sacct_row().endswith(b"|\n"))
         with self.assertRaises(module.FinalizationError):
             module.parse_sacct_snapshot(sacct_row().replace(b"\n", b"\r\n"), allow_multiple=False)
         with self.assertRaises(module.FinalizationError):
             module.parse_sacct_snapshot(sacct_row() + sacct_row(job_id="4000002"), allow_multiple=False)
         with self.assertRaises(module.FinalizationError):
             module.parse_sacct_snapshot(b"too|short|\n", allow_multiple=False)
+        with self.assertRaises(module.FinalizationError):
+            module.parse_sacct_snapshot(sacct_row()[:-1] + b"|\n", allow_multiple=False)
 
     def test_06_scontrol_duplicate_required_key_fails_closed(self) -> None:
         for label, suffix in (
@@ -758,12 +958,91 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
                     path.write_bytes(path.read_bytes() + payload)
                 self.assert_cannot_check(self.run_fixture(mutate))
 
-    def test_07_config_partition_and_node_proofs_are_all_required(self) -> None:
-        def mutate(root: Path) -> None:
+    def test_07_live_config_partition_formats_and_negative_proofs(self) -> None:
+        module = self.require_module()
+        live = module.parse_config_snapshots(
+            LIVE_CONFIG_HEADER
+            + b"SlurmctldVersion = 23.11.3\n"
+            + b"ClusterName = cosmos\n"
+            + b"MinJobAge = 300 sec\n"
+            + b"SelectType = select/cons_tres\n"
+            + b"GresTypes = gpu\n"
+            + b"TaskPlugin = task/cgroup,task/affinity\n"
+            + b"ProctrackType = proctrack/cgroup\n"
+            + b"AccountingStorageType = accounting_storage/slurmdbd\n"
+            + b"AccountingStorageEnforce = associations,limits,qos,safe\n"
+            + b"AccountingStorageTRES = gres/gpu\n"
+            + b"JobAcctGatherType = jobacct_gather/cgroup\n"
+            + b"PrivateData = none\n",
+            b"PartitionName=gpua40i AllowAccounts=ALL Nodes=cg14 OverSubscribe=NO State=UP\n",
+            LIVE_NODE_LINE,
+        )
+        self.assertIn("PREEMPT_DYNAMIC", live["node"]["OS"])
+        self.assertEqual(live["node"]["AllocTRES"], "")
+
+        def explicit_account_list(root: Path) -> None:
             (root / "SCHEDULER_PARTITION_V1.txt").write_bytes(
-                b"PartitionName=gpu Nodes=aurora[01-04] OverSubscribe=YES State=UP\n"
+                f"PartitionName={PARTITION} AllowAccounts=other,{ACCOUNT} "
+                "Nodes=aurora[01-04] OverSubscribe=NO State=UP\n".encode()
             )
-        self.assert_cannot_check(self.run_fixture(mutate))
+
+        code, _, _ = self.run_fixture(explicit_account_list)
+        self.assertEqual(code, 0)
+
+        def account_missing(root: Path) -> None:
+            (root / "SCHEDULER_PARTITION_V1.txt").write_bytes(
+                f"PartitionName={PARTITION} AllowAccounts=other "
+                "Nodes=aurora[01-04] OverSubscribe=NO State=UP\n".encode()
+            )
+
+        def affinity_missing(root: Path) -> None:
+            path = root / "SCHEDULER_CONFIG_V1.txt"
+            path.write_bytes(
+                path.read_bytes().replace(
+                    b"TaskPlugin = task/cgroup,task/affinity\n",
+                    b"TaskPlugin = task/cgroup\n",
+                )
+            )
+
+        def cgroup_missing(root: Path) -> None:
+            path = root / "SCHEDULER_CONFIG_V1.txt"
+            path.write_bytes(
+                path.read_bytes().replace(
+                    b"TaskPlugin = task/cgroup,task/affinity\n",
+                    b"TaskPlugin = task/affinity\n",
+                )
+            )
+
+        def header_missing(root: Path) -> None:
+            path = root / "SCHEDULER_CONFIG_V1.txt"
+            path.write_bytes(path.read_bytes().removeprefix(LIVE_CONFIG_HEADER))
+
+        def header_malformed(root: Path) -> None:
+            path = root / "SCHEDULER_CONFIG_V1.txt"
+            path.write_bytes(path.read_bytes().replace(
+                LIVE_CONFIG_HEADER,
+                b"Configuration data as of 2026-08-24T22:23\n",
+            ))
+
+        def header_misplaced(root: Path) -> None:
+            path = root / "SCHEDULER_CONFIG_V1.txt"
+            lines = path.read_bytes().splitlines(keepends=True)
+            path.write_bytes(lines[1] + lines[0] + b"".join(lines[2:]))
+
+        for label, mutate in (
+            ("account-missing", account_missing),
+            ("affinity-missing", affinity_missing),
+            ("cgroup-missing", cgroup_missing),
+            ("header-missing", header_missing),
+            ("header-malformed", header_malformed),
+            ("header-misplaced", header_misplaced),
+        ):
+            with self.subTest(label=label):
+                receipt = self.assert_cannot_check(self.run_fixture(mutate))
+                self.assertIn(
+                    receipt["failure_code"],
+                    {"EXCLUSIVITY_CANNOT_CHECK", "EVIDENCE_PARSE_INVALID"},
+                )
 
     def test_08_scheduler_export_requires_canonical_single_lf_json_record(self) -> None:
         module = self.require_module()
@@ -874,12 +1153,42 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         self.assert_cannot_check(self.run_fixture(mutate))
 
     def test_17_attempt_capture_hash_and_pending_allocation_must_bind(self) -> None:
-        def mutate(root: Path) -> None:
-            path = root / "attempt/ATTEMPT_CAPTURE_V1.json"
-            value = read_json(path)
-            value["allocation_status"] = "EXCLUSIVE_NO_OVERLAP_CONFIRMED"
-            write_json(path, value)
-        self.assert_cannot_check(self.run_fixture(mutate))
+        def mutation(field: str, value: Any) -> Any:
+            def mutate(root: Path) -> None:
+                path = root / "attempt/ATTEMPT_CAPTURE_V1.json"
+                capture = read_json(path)
+                if field == "base_tuple":
+                    capture["base_candidate_record"]["task_id"] = value
+                    capture["base_candidate_record_canonical_sha256"] = canonical_hash(
+                        capture["base_candidate_record"]
+                    )
+                elif field == "base_seed":
+                    capture["base_candidate_record"]["seed"] = value
+                    capture["base_candidate_record_canonical_sha256"] = canonical_hash(
+                        capture["base_candidate_record"]
+                    )
+                else:
+                    capture[field] = value
+                write_json(path, capture)
+                bridge_path = root / "attempt/DIRECT_ROUTE_BRIDGE_BINDING_V1.json"
+                bridge = read_json(bridge_path)
+                bridge["attempt_capture_canonical_sha256"] = canonical_hash(capture)
+                write_json(bridge_path, bridge)
+            return mutate
+
+        for label, mutate in (
+            ("allocation", mutation("allocation_status", "EXCLUSIVE_NO_OVERLAP_CONFIRMED")),
+            ("clock-id", mutation("clock_id", "CLOCK_MONOTONIC")),
+            ("clock-api", mutation("clock_api", "time_ns")),
+            ("base-tuple", mutation("base_tuple", "2")),
+            ("base-seed", mutation("base_seed", 202)),
+        ):
+            with self.subTest(label=label):
+                receipt = self.assert_cannot_check(self.run_fixture(mutate))
+                self.assertIn(
+                    receipt["failure_code"],
+                    {"CAPTURE_CANNOT_CHECK", "CROSS_BINDING_MISMATCH"},
+                )
 
     def test_18_attempt_cannot_check_sidecar_forces_typed_finalizer_cannot_check(self) -> None:
         def mutate(root: Path) -> None:
@@ -930,13 +1239,88 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         self.assertEqual(receipt["failure_code"], "ATTEMPT_CAPTURE_CANNOT_CHECK")
 
     def test_19_dynamic_tokenize_fit_and_bridge_hashes_are_required(self) -> None:
-        def mutate(root: Path) -> None:
+        def fit_incomplete(root: Path) -> None:
             path = root / "attempt/DYNAMIC_RR1_PRETOKENIZE_BINDING_V1.json"
             value = read_json(path)
             value["completion_prompt_n_equal"] = False
             value["status"] = "PRETOKENIZE_FIT__COMPLETION_COUNT_PENDING"
             write_json(path, value)
-        self.assert_cannot_check(self.run_fixture(mutate))
+
+        def request_hash_unbound(root: Path) -> None:
+            path = root / "attempt/DIRECT_ROUTE_BRIDGE_BINDING_V1.json"
+            value = read_json(path)
+            value["request_bindings"][0]["rendered_prompt_sha256"] = "9" * 64
+            write_json(path, value)
+
+        def authority_drift(root: Path) -> None:
+            path = root / "attempt/DIRECT_ROUTE_BRIDGE_BINDING_V1.json"
+            value = read_json(path)
+            value["authority"] = "SYNTHETIC_AUTHORITY_DRIFT"
+            write_json(path, value)
+
+        def capture_authority_drift(root: Path) -> None:
+            attempt = root / "attempt"
+            path = attempt / "ATTEMPT_CAPTURE_V1.json"
+            value = read_json(path)
+            value["authority"] = "SYNTHETIC_AUTHORITY_DRIFT"
+            write_json(path, value)
+            bridge_path = attempt / "DIRECT_ROUTE_BRIDGE_BINDING_V1.json"
+            bridge = read_json(bridge_path)
+            bridge["attempt_capture_canonical_sha256"] = canonical_hash(value)
+            write_json(bridge_path, bridge)
+
+        def dynamic_authority_drift(root: Path) -> None:
+            attempt = root / "attempt"
+            path = attempt / "DYNAMIC_RR1_PRETOKENIZE_BINDING_V1.json"
+            value = read_json(path)
+            value["authority"] = "SYNTHETIC_AUTHORITY_DRIFT"
+            write_json(path, value)
+            bridge_path = attempt / "DIRECT_ROUTE_BRIDGE_BINDING_V1.json"
+            bridge = read_json(bridge_path)
+            bridge["dynamic_rr1_pretokenize_file_sha256"] = sha256_bytes(
+                path.read_bytes()
+            )
+            write_json(bridge_path, bridge)
+
+        def gpu_authority_drift(root: Path) -> None:
+            path = root / "GPU_ALLOCATION_IDENTITY_V1.json"
+            value = read_json(path)
+            value["authority"] = "SYNTHETIC_AUTHORITY_DRIFT"
+            write_json(path, value)
+
+        def stage_authority_drift(root: Path) -> None:
+            stage_path = root / "STAGED_RUNTIME_INPUT_V1.json"
+            stage = read_json(stage_path)
+            stage["authority"] = "SYNTHETIC_AUTHORITY_DRIFT"
+            write_json(stage_path, stage)
+            process_path = root / "PROCESS_ATTESTATION_V1.json"
+            process = read_json(process_path)
+            process["runtime_stage_sha256"] = sha256_bytes(stage_path.read_bytes())
+            write_json(process_path, process)
+            bridge_path = root / "attempt/DIRECT_ROUTE_BRIDGE_BINDING_V1.json"
+            bridge = read_json(bridge_path)
+            bridge["runtime_stage_sha256"] = sha256_bytes(stage_path.read_bytes())
+            bridge["process_attestation_sha256"] = sha256_bytes(process_path.read_bytes())
+            write_json(bridge_path, bridge)
+
+        def gpu_extra_top_level(root: Path) -> None:
+            path = root / "GPU_ALLOCATION_IDENTITY_V1.json"
+            value = read_json(path)
+            value["extra"] = "must-fail"
+            write_json(path, value)
+
+        for label, mutate in (
+            ("fit-incomplete", fit_incomplete),
+            ("request-hash-unbound", request_hash_unbound),
+            ("bridge-authority-drift", authority_drift),
+            ("capture-authority-drift", capture_authority_drift),
+            ("dynamic-authority-drift", dynamic_authority_drift),
+            ("gpu-authority-drift", gpu_authority_drift),
+            ("stage-authority-drift", stage_authority_drift),
+            ("gpu-extra-top-level", gpu_extra_top_level),
+        ):
+            with self.subTest(label=label):
+                self.assert_cannot_check(self.run_fixture(mutate))
 
     def test_20_cleanup_requires_every_owned_process_and_group_absent(self) -> None:
         def mutate(root: Path) -> None:
@@ -975,25 +1359,122 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             sentinel = output / "sentinel"
             sentinel.write_text("keep")
             with self.assertRaises(module.FinalizationError):
-                module.finalize(evidence.resolve(), output.resolve())
+                module.finalize(
+                    evidence.resolve(), (base / "capture").resolve(), output.resolve()
+                )
             self.assertEqual(sentinel.read_text(), "keep")
+
+            self.fixture.create(evidence)
+            same_root_output = base / "same-root-output"
+            with self.assertRaises(module.FinalizationError):
+                module.finalize(
+                    evidence.resolve(), evidence.resolve(), same_root_output.resolve()
+                )
+            self.assertFalse(same_root_output.exists())
+
+            capture_root = base / "capture"
+            self.fixture.split_capture(evidence, capture_root)
+            atomic_output = base / "atomic-output"
+            real_write_json = module._write_new_json
+
+            def fail_success_receipt(
+                output_fd: int, name: str, value: Any
+            ) -> tuple[str, tuple[int, int]]:
+                if name == module.SUCCESS_NAME:
+                    raise module.FinalizationError(
+                        "OUTPUT_INVALID", "synthetic second-write failure"
+                    )
+                return real_write_json(output_fd, name, value)
+
+            with (
+                mock.patch.object(module, "_write_new_json", side_effect=fail_success_receipt),
+                self.assertRaises(module.FinalizationError),
+            ):
+                module.finalize(
+                    evidence.resolve(), capture_root.resolve(), atomic_output.resolve()
+                )
+            self.assertFalse(atomic_output.exists())
 
     def test_24_cli_terminal_is_body_free_and_exit_codes_are_exact(self) -> None:
         module = self.require_module()
         with tempfile.TemporaryDirectory(dir=ROOT) as directory:
             base = Path(directory)
             evidence = base / "evidence"
+            capture_root = base / "capture-input"
             output = base / "output"
             evidence.mkdir()
             self.fixture.create(evidence)
+            self.fixture.split_capture(evidence, capture_root)
             stream = io.StringIO()
             with contextlib.redirect_stdout(stream):
                 code = module.main([
                     "finalize", "--evidence-root", str(evidence.resolve()),
+                    "--capture-root", str(capture_root.resolve()),
                     "--output-root", str(output.resolve()),
                 ])
             self.assertEqual(code, 0)
             self.assertEqual(stream.getvalue().strip(), "P1_SAB_PROTECTED_RR1_ONE_TUPLE_POST_JOB_FINALIZATION_PASS")
+            self.assertTrue((output / "SCHEDULER_EXPORT_V1.jsonl").is_file())
+
+            for label, bad_output in (
+                ("preexisting", output.resolve()),
+                ("missing-parent", (base / "missing" / "output").resolve()),
+            ):
+                with self.subTest(label=label):
+                    stderr = io.StringIO()
+                    with contextlib.redirect_stderr(stderr):
+                        bad_code = module.main([
+                            "finalize", "--evidence-root", str(evidence.resolve()),
+                            "--capture-root", str(capture_root.resolve()),
+                            "--output-root", str(bad_output),
+                        ])
+                    terminal = stderr.getvalue().strip()
+                    self.assertEqual(bad_code, 2)
+                    self.assertRegex(
+                        terminal,
+                        r"^P1_SAB_PROTECTED_RR1_ONE_TUPLE_FINALIZER_ARGV_CANNOT_CHECK "
+                        r"failure_code=(?:OUTPUT_INVALID|INPUT_SET_INVALID) "
+                        r"detail_sha256=[0-9a-f]{64}$",
+                    )
+                    self.assertNotIn("Traceback", terminal)
+
+            nonprivate = base / "nonprivate"
+            nonprivate.mkdir(mode=0o755)
+            symlink_parent = base / "parent-link"
+            symlink_parent.symlink_to(nonprivate)
+            for label, bad_output in (
+                ("non-0700-parent", nonprivate / "out"),
+                ("symlink-parent", symlink_parent / "out"),
+            ):
+                with self.subTest(label=label):
+                    stderr = io.StringIO()
+                    with contextlib.redirect_stderr(stderr):
+                        bad_code = module.main([
+                            "finalize", "--evidence-root", str(evidence.resolve()),
+                            "--capture-root", str(capture_root.resolve()),
+                            "--output-root", str(bad_output.absolute()),
+                        ])
+                    self.assertEqual(bad_code, 2)
+                    self.assertNotIn("Traceback", stderr.getvalue())
+
+            unexpected_stderr = io.StringIO()
+            with (
+                mock.patch.object(
+                    module, "finalize", side_effect=RuntimeError("synthetic trap")
+                ),
+                contextlib.redirect_stderr(unexpected_stderr),
+            ):
+                unexpected_code = module.main([
+                    "finalize", "--evidence-root", str(evidence.resolve()),
+                    "--capture-root", str(capture_root.resolve()),
+                    "--output-root", str((base / "unexpected-output").resolve()),
+                ])
+            self.assertEqual(unexpected_code, 2)
+            self.assertRegex(
+                unexpected_stderr.getvalue().strip(),
+                r"failure_code=FINALIZER_RUNTIME_FAILED detail_sha256=[0-9a-f]{64}$",
+            )
+            self.assertNotIn("Traceback", unexpected_stderr.getvalue())
 
     def test_25_output_schema_fields_are_exact(self) -> None:
         _, receipt, _ = self.run_fixture()
@@ -1011,6 +1492,13 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         self.assertFalse(receipt["official_evaluator_invoked"])
         self.assertFalse(receipt["official_outcomes_opened"])
         self.assertFalse(receipt["runner_v2_population_finalizer_invoked"])
+
+        module = self.require_module()
+        with mock.patch.object(
+            module, "_validate_evidence", side_effect=RuntimeError("synthetic trap")
+        ):
+            runtime_receipt = self.assert_cannot_check(self.run_fixture())
+        self.assertEqual(runtime_receipt["failure_code"], "FINALIZER_RUNTIME_FAILED")
 
     def test_26_module_never_executes_scheduler_submission_or_opens_outcomes(self) -> None:
         self.require_module()
@@ -1042,38 +1530,142 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
                 tuple(argv["nonoverlap_sacct"]): (evidence / "POST_JOB_SACCT_NONOVERLAP_V1.txt").read_bytes(),
             }
             calls: list[list[str]] = []
+            persistence_order: list[str] = []
 
             def fake_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
                 calls.append(list(actual))
+                if actual == argv["post_job_scontrol"]:
+                    persistence_order.append("post-job-scontrol-launched")
                 self.assertEqual(
-                    set(kwargs), {"stdout", "stderr", "env", "check"}
+                    set(kwargs), {"stdout", "stderr", "env", "check", "timeout"}
                 )
                 self.assertIs(kwargs["stdout"], module.subprocess.PIPE)
                 self.assertIs(kwargs["stderr"], module.subprocess.PIPE)
                 self.assertEqual(kwargs["env"], module.CAPTURE_ENVIRONMENT)
                 self.assertFalse(kwargs["check"])
+                self.assertEqual(kwargs["timeout"], 20)
                 return SimpleNamespace(
                     returncode=0, stdout=response_by_argv[tuple(actual)], stderr=b""
                 )
 
-            provenance = module.capture_scheduler(
-                JOB_ID, PARTITION, NODE, output.resolve(), runner=fake_runner
-            )
+            real_write_new_bytes = module._write_new_bytes
+
+            def recording_write_new_bytes(
+                output_fd: int, name: str, payload: bytes
+            ) -> tuple[str, tuple[int, int]]:
+                if name == "POST_JOB_SACCT_V1.txt":
+                    persistence_order.append("terminal-sacct-persistence-started")
+                return real_write_new_bytes(output_fd, name, payload)
+
+            ticks = iter(range(1_000_000_000, 30_000_000_000, 1_000_000_000))
+            with mock.patch.object(
+                module, "_write_new_bytes", side_effect=recording_write_new_bytes
+            ):
+                provenance = module.watch_capture_scheduler(
+                    JOB_ID, output.resolve(), runner=fake_runner,
+                    sleeper=lambda _: self.fail("terminal fixture must not sleep"),
+                    monotonic_ns=lambda: next(ticks),
+                )
             expected_order = [
                 argv["terminal_sacct"], argv["post_job_scontrol"],
                 argv["scheduler_config"], argv["scheduler_partition"],
                 argv["scheduler_node"], argv["nonoverlap_sacct"],
             ]
             self.assertEqual(calls, expected_order)
+            self.assertEqual(
+                persistence_order[:2],
+                [
+                    "post-job-scontrol-launched",
+                    "terminal-sacct-persistence-started",
+                ],
+            )
             self.assertEqual(provenance["capture_argv"], argv)
+            self.assertEqual(provenance["node_name"], NODE)
+            self.assertEqual(provenance["terminal_poll_count"], 1)
+            self.assertEqual(provenance["capture_command_timeout_seconds"], 20)
+            self.assertEqual(provenance["post_terminal_capture_deadline_seconds"], 240)
+            self.assertEqual(
+                provenance["post_job_scontrol_start_latency_limit_seconds"], 2
+            )
+            self.assertEqual(
+                provenance[
+                    "post_job_scontrol_start_seconds_after_terminal_observation"
+                ],
+                "1.000000000",
+            )
+            self.assertEqual(
+                [item["key"] for item in provenance["capture_command_observations"]],
+                [
+                    "post_job_scontrol", "scheduler_config",
+                    "scheduler_partition", "scheduler_node",
+                    "nonoverlap_sacct",
+                ],
+            )
+            self.assertTrue(
+                all(
+                    item["completed_before_post_terminal_deadline"]
+                    for item in provenance["capture_command_observations"]
+                )
+            )
+            self.assertTrue(
+                all(
+                    item["duration_seconds"] == "1.000000000"
+                    for item in provenance["capture_command_observations"]
+                )
+            )
+            self.assertEqual(
+                provenance["terminal_poll_observations"][0]["argv"],
+                argv["terminal_sacct"],
+            )
             self.assertEqual(stat.S_IMODE(output.stat().st_mode), 0o700)
             for path in output.iterdir():
-                self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o600)
+                self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o400)
 
-    def test_28_capture_failure_rolls_back_only_the_new_private_root(self) -> None:
+            sequence_output = base / "capture-sequence"
+            poll_payloads = iter([
+                b"",
+                sacct_row(state="PENDING", start="", end="", node=""),
+                sacct_row(state="RUNNING", end="Unknown"),
+                sacct_row(),
+            ])
+            terminal_calls = 0
+            sleeps: list[int] = []
+
+            def sequence_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
+                nonlocal terminal_calls
+                if actual == argv["terminal_sacct"] and terminal_calls < 4:
+                    terminal_calls += 1
+                    return SimpleNamespace(
+                        returncode=0, stdout=next(poll_payloads), stderr=b""
+                    )
+                return SimpleNamespace(
+                    returncode=0, stdout=response_by_argv[tuple(actual)], stderr=b""
+                )
+
+            sequence_ticks = iter([
+                0, 5_000_000_000, 10_000_000_000, 15_000_000_000,
+                *range(16_000_000_000, 40_000_000_000, 1_000_000_000),
+            ])
+            sequence = module.watch_capture_scheduler(
+                JOB_ID, sequence_output.resolve(), runner=sequence_runner,
+                sleeper=sleeps.append, monotonic_ns=lambda: next(sequence_ticks),
+            )
+            self.assertEqual(sequence["terminal_poll_count"], 4)
+            self.assertEqual(sleeps, [5, 5, 5])
+            self.assertEqual(
+                [item["row_count"] for item in sequence["terminal_poll_observations"]],
+                [0, 1, 1, 1],
+            )
+            self.assertEqual(
+                [item["terminal"] for item in sequence["terminal_poll_observations"]],
+                [False, False, False, True],
+            )
+
+    def test_28_watch_capture_failures_retain_only_body_free_private_evidence(self) -> None:
         module = self.require_module()
         with tempfile.TemporaryDirectory(dir=ROOT) as directory:
-            output = Path(directory) / "capture"
+            base = Path(directory)
+            output = base / "capture"
             calls = 0
 
             def fake_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
@@ -1084,10 +1676,197 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
                 return SimpleNamespace(returncode=1, stdout=b"", stderr=b"synthetic")
 
             with self.assertRaises(module.FinalizationError):
-                module.capture_scheduler(
-                    JOB_ID, PARTITION, NODE, output.resolve(), runner=fake_runner
+                module.watch_capture_scheduler(
+                    JOB_ID, output.resolve(), runner=fake_runner,
+                    sleeper=lambda _: None, monotonic_ns=lambda: 1_000_000_000,
                 )
-            self.assertFalse(output.exists())
+            self.assertTrue(output.is_dir())
+            self.assertTrue((output / "POST_JOB_SACCT_V1.txt").is_file())
+            self.assertTrue((output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json").is_file())
+            cannot = read_json(output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json")
+            self.assertEqual(cannot["failure_code"], "SCHEDULER_CAPTURE_FAILED")
+            self.assertNotIn("failure_detail", cannot)
+            for path in output.iterdir():
+                self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o400)
+
+            def run_terminal_failure(label: str, payloads: list[bytes]) -> None:
+                target = base / label
+                iterator = iter(payloads)
+                ticks = iter(range(0, 100_000_000_000, 5_000_000_000))
+
+                def terminal_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
+                    return SimpleNamespace(returncode=0, stdout=next(iterator), stderr=b"")
+
+                with self.assertRaises(module.FinalizationError):
+                    module.watch_capture_scheduler(
+                        JOB_ID, target.resolve(), runner=terminal_runner,
+                        sleeper=lambda _: None, monotonic_ns=lambda: next(ticks),
+                    )
+                receipt = read_json(target / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json")
+                self.assertRegex(receipt["failure_detail_sha256"], r"^[0-9a-f]{64}$")
+
+            run_terminal_failure("multiple", [sacct_row() + sacct_row(job_id="4000002")])
+            run_terminal_failure("step", [sacct_row(job_id="4000001.batch")])
+            run_terminal_failure("ambiguous-node", [sacct_row(node="aurora[01-02]")])
+            with mock.patch.object(module, "TERMINAL_POLL_LIMIT", 2):
+                run_terminal_failure("retry-exhausted", [b"", b""])
+
+            hung_output = base / "hung-scontrol"
+            hung_calls = 0
+
+            def hung_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
+                nonlocal hung_calls
+                hung_calls += 1
+                if hung_calls == 1:
+                    return SimpleNamespace(returncode=0, stdout=sacct_row(), stderr=b"")
+                raise module.subprocess.TimeoutExpired(
+                    cmd=actual, timeout=kwargs["timeout"]
+                )
+
+            hung_ticks = iter(range(0, 100_000_000_000, 1_000_000_000))
+            with self.assertRaises(module.FinalizationError):
+                module.watch_capture_scheduler(
+                    JOB_ID, hung_output.resolve(), runner=hung_runner,
+                    sleeper=lambda _: None, monotonic_ns=lambda: next(hung_ticks),
+                )
+            hung = read_json(hung_output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json")
+            self.assertEqual(hung["failure_code"], "SCHEDULER_CAPTURE_TIMEOUT")
+            self.assertTrue((hung_output / "POST_JOB_SACCT_V1.txt").is_file())
+
+            unexpected_output = base / "unexpected-runner"
+            unexpected_calls = 0
+
+            def unexpected_runner(
+                actual: list[str], **kwargs: Any
+            ) -> SimpleNamespace:
+                nonlocal unexpected_calls
+                unexpected_calls += 1
+                if unexpected_calls == 1:
+                    return SimpleNamespace(returncode=0, stdout=sacct_row(), stderr=b"")
+                raise RuntimeError("synthetic runner trap")
+
+            with self.assertRaises(module.FinalizationError) as unexpected_context:
+                module.watch_capture_scheduler(
+                    JOB_ID, unexpected_output.resolve(), runner=unexpected_runner,
+                    sleeper=lambda _: None,
+                    monotonic_ns=lambda: 1_000_000_000,
+                )
+            self.assertEqual(
+                unexpected_context.exception.code,
+                "SCHEDULER_CAPTURE_RUNTIME_FAILED",
+            )
+            unexpected = read_json(
+                unexpected_output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json"
+            )
+            self.assertEqual(
+                unexpected["failure_code"], "SCHEDULER_CAPTURE_RUNTIME_FAILED"
+            )
+            self.assertTrue(
+                (unexpected_output / "POST_JOB_SACCT_V1.txt").is_file()
+            )
+
+            latency_output = base / "late-first-scontrol"
+            latency_calls = 0
+
+            def latency_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
+                nonlocal latency_calls
+                latency_calls += 1
+                if latency_calls == 1:
+                    return SimpleNamespace(returncode=0, stdout=sacct_row(), stderr=b"")
+                return SimpleNamespace(
+                    returncode=0,
+                    stdout=scontrol_snapshot(state="COMPLETED", end=END),
+                    stderr=b"",
+                )
+
+            latency_ticks = iter([0, 1_000_000_000, 3_000_000_001])
+            with self.assertRaises(module.FinalizationError):
+                module.watch_capture_scheduler(
+                    JOB_ID, latency_output.resolve(), runner=latency_runner,
+                    sleeper=lambda _: None,
+                    monotonic_ns=lambda: next(latency_ticks),
+                )
+            latency = read_json(
+                latency_output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json"
+            )
+            self.assertEqual(
+                latency["failure_code"],
+                "SCHEDULER_CAPTURE_START_LATENCY_EXCEEDED",
+            )
+            self.assertEqual(latency_calls, 1)
+            self.assertTrue((latency_output / "POST_JOB_SACCT_V1.txt").is_file())
+            self.assertFalse((latency_output / "POST_JOB_SCONTROL_V1.txt").exists())
+
+            duration_output = base / "over-duration-scontrol"
+            duration_calls = 0
+
+            def duration_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
+                nonlocal duration_calls
+                duration_calls += 1
+                if duration_calls == 1:
+                    return SimpleNamespace(returncode=0, stdout=sacct_row(), stderr=b"")
+                return SimpleNamespace(
+                    returncode=0,
+                    stdout=scontrol_snapshot(state="COMPLETED", end=END),
+                    stderr=b"",
+                )
+
+            duration_ticks = iter([0, 1_000_000_000, 2_000_000_000, 22_000_000_001])
+            with self.assertRaises(module.FinalizationError):
+                module.watch_capture_scheduler(
+                    JOB_ID, duration_output.resolve(), runner=duration_runner,
+                    sleeper=lambda _: None,
+                    monotonic_ns=lambda: next(duration_ticks),
+                )
+            duration = read_json(
+                duration_output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json"
+            )
+            self.assertEqual(duration["failure_code"], "SCHEDULER_CAPTURE_TIMEOUT")
+            self.assertTrue((duration_output / "POST_JOB_SACCT_V1.txt").is_file())
+            self.assertFalse((duration_output / "POST_JOB_SCONTROL_V1.txt").exists())
+
+            deadline_output = base / "deadline"
+            deadline_calls = 0
+
+            def deadline_runner(actual: list[str], **kwargs: Any) -> SimpleNamespace:
+                nonlocal deadline_calls
+                deadline_calls += 1
+                if deadline_calls == 1:
+                    return SimpleNamespace(returncode=0, stdout=sacct_row(), stderr=b"")
+                return SimpleNamespace(
+                    returncode=0,
+                    stdout=scontrol_snapshot(state="COMPLETED", end=END),
+                    stderr=b"",
+                )
+
+            deadline_ticks = iter([
+                0, 1_000_000_000, 2_000_000_000,
+                3_000_000_000, 242_000_000_000,
+            ])
+            with self.assertRaises(module.FinalizationError):
+                module.watch_capture_scheduler(
+                    JOB_ID, deadline_output.resolve(), runner=deadline_runner,
+                    sleeper=lambda _: None,
+                    monotonic_ns=lambda: next(deadline_ticks),
+                )
+            deadline = read_json(
+                deadline_output / "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json"
+            )
+            self.assertEqual(
+                deadline["failure_code"], "SCHEDULER_CAPTURE_DEADLINE_EXCEEDED"
+            )
+            self.assertTrue((deadline_output / "POST_JOB_SCONTROL_V1.txt").is_file())
+
+            preexisting = base / "preexisting"
+            preexisting.mkdir(mode=0o700)
+            sentinel = preexisting / "sentinel"
+            sentinel.write_text("keep")
+            with self.assertRaises(module.FinalizationError):
+                module.watch_capture_scheduler(
+                    JOB_ID, preexisting.resolve(), runner=fake_runner,
+                    sleeper=lambda _: None, monotonic_ns=lambda: 3_000_000_000,
+                )
+            self.assertEqual(sentinel.read_text(), "keep")
 
     def test_29_nonoverlap_target_row_must_be_present_once(self) -> None:
         def absent(root: Path) -> None:
@@ -1149,6 +1928,44 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         receipt = self.assert_cannot_check(self.run_fixture(mutate, refresh=False))
         self.assertIn(receipt["failure_code"], {"SCHEDULER_CAPTURE_FAILED", "ARGV_INVALID"})
 
+        def wrong_start_latency(provenance: dict[str, Any]) -> None:
+            provenance[
+                "post_job_scontrol_start_seconds_after_terminal_observation"
+            ] = "2.000000001"
+
+        def wrong_duration(provenance: dict[str, Any]) -> None:
+            provenance["capture_command_observations"][0][
+                "duration_seconds"
+            ] = "0.999999999"
+
+        def utc_regression(provenance: dict[str, Any]) -> None:
+            provenance["capture_command_observations"][1][
+                "started_at_utc"
+            ] = "2026-08-24T22:23:09.000000Z"
+
+        for label, timing_mutator in (
+            ("start-latency-arithmetic", wrong_start_latency),
+            ("command-duration-arithmetic", wrong_duration),
+            ("utc-order", utc_regression),
+        ):
+            with self.subTest(label=label):
+                def capture_mutate(
+                    capture_root: Path, mutator: Any = timing_mutator
+                ) -> None:
+                    path = capture_root / "SCHEDULER_CAPTURE_PROVENANCE_V1.json"
+                    path.chmod(0o600)
+                    provenance = read_json(path)
+                    mutator(provenance)
+                    write_json(path, provenance)
+                    path.chmod(0o400)
+
+                timing_receipt = self.assert_cannot_check(
+                    self.run_fixture(capture_mutate=capture_mutate)
+                )
+                self.assertEqual(
+                    timing_receipt["failure_code"], "SCHEDULER_CAPTURE_FAILED"
+                )
+
     def test_32_source_hash_map_rejects_extra_and_missing_entries(self) -> None:
         def extra(root: Path) -> None:
             path = root / "SCHEDULER_EXPORT_V1.jsonl"
@@ -1188,6 +2005,28 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
                 receipt = self.assert_cannot_check(self.run_fixture(mutate))
                 self.assertEqual(receipt["failure_code"], "INPUT_SET_INVALID")
 
+        def capture_mode_drift(capture_root: Path) -> None:
+            (capture_root / "SCHEDULER_CAPTURE_PROVENANCE_V1.json").chmod(0o600)
+
+        receipt = self.assert_cannot_check(
+            self.run_fixture(capture_mutate=capture_mode_drift)
+        )
+        self.assertEqual(receipt["failure_code"], "INPUT_SET_INVALID")
+
+        module = self.require_module()
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            base = Path(directory)
+            evidence = base / "evidence"
+            output = base / "alias-output"
+            evidence.mkdir()
+            self.fixture.create(evidence)
+            alias = evidence / ".." / "evidence"
+            code, alias_receipt = module.finalize(
+                evidence.resolve(), alias.absolute(), output.resolve()
+            )
+            self.assertEqual(code, 1)
+            self.assertEqual(alias_receipt["failure_code"], "INPUT_SET_INVALID")
+
     def test_34_symlinked_output_parent_is_rejected(self) -> None:
         module = self.require_module()
         with tempfile.TemporaryDirectory(dir=ROOT) as directory:
@@ -1195,12 +2034,14 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             evidence = base / "evidence"
             evidence.mkdir()
             self.fixture.create(evidence)
+            capture_root = base / "capture"
+            self.fixture.split_capture(evidence, capture_root)
             real_parent = base / "real-parent"
             real_parent.mkdir(mode=0o700)
             alias = base / "alias"
             alias.symlink_to(real_parent, target_is_directory=True)
             with self.assertRaises(module.FinalizationError):
-                module.finalize(evidence.resolve(), alias / "output")
+                module.finalize(evidence.resolve(), capture_root.resolve(), alias / "output")
             self.assertFalse((real_parent / "output").exists())
 
     def test_35_post_read_path_swap_is_detected_by_named_inode_recheck(self) -> None:
@@ -1229,6 +2070,31 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             finally:
                 os.close(parent_fd)
 
+            for label, drift in (
+                ("mode", lambda target: target.chmod(0o644)),
+                ("link-count", lambda target: os.link(target, root / "held-link.txt")),
+            ):
+                with self.subTest(label=label):
+                    target = root / f"held-{label}.txt"
+                    write_private(target, b"original\n")
+                    fd = os.open(root, os.O_RDONLY)
+                    changed = False
+
+                    def drifting_read(file_fd: int, count: int) -> bytes:
+                        nonlocal changed
+                        payload = real_read(file_fd, count)
+                        if not changed:
+                            changed = True
+                            drift(target)
+                        return payload
+
+                    try:
+                        with mock.patch.object(module.os, "read", side_effect=drifting_read):
+                            with self.assertRaises(module.FinalizationError):
+                                module._read_held(fd, target.name, f"{label} fixture")
+                    finally:
+                        os.close(fd)
+
     def test_36_success_output_directory_and_file_modes_are_exact(self) -> None:
         code, _, output = self.run_fixture()
         self.assertEqual(code, 0)
@@ -1236,6 +2102,9 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         receipt = output / "ONE_TUPLE_FINALIZATION_RECEIPT_V1.json"
         self.assertEqual(stat.S_IMODE(receipt.stat().st_mode), 0o600)
         self.assertEqual(receipt.stat().st_nlink, 1)
+        export = output / "SCHEDULER_EXPORT_V1.jsonl"
+        self.assertEqual(stat.S_IMODE(export.stat().st_mode), 0o600)
+        self.assertEqual(export.stat().st_nlink, 1)
 
     def test_37_nested_body_and_token_id_key_aliases_are_rejected(self) -> None:
         aliases = ("token_ids", "Token-IDs", "completion_body", "PromptBody")
@@ -1257,6 +2126,8 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             output = base / "output"
             evidence.mkdir()
             self.fixture.create(evidence)
+            capture_root = base / "capture"
+            self.fixture.split_capture(evidence, capture_root)
             real_open = module.os.open
             opened: list[str] = []
 
@@ -1268,7 +2139,9 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
                 return real_open(path, *args, **kwargs)
 
             with mock.patch.object(module.os, "open", side_effect=recording_open):
-                code, _ = module.finalize(evidence.resolve(), output.resolve())
+                code, _ = module.finalize(
+                    evidence.resolve(), capture_root.resolve(), output.resolve()
+                )
             self.assertEqual(code, 0)
             basenames = {Path(name).name for name in opened}
             self.assertNotIn("MASKED_PACKET.json", basenames)
@@ -1284,6 +2157,8 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
             output = base / "output"
             evidence.mkdir()
             self.fixture.create(evidence)
+            capture_root = base / "capture"
+            self.fixture.split_capture(evidence, capture_root)
             forbidden = AssertionError("forbidden finalize side effect")
             with (
                 mock.patch.object(module.subprocess, "run", side_effect=forbidden),
@@ -1291,7 +2166,9 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
                 mock.patch.object(socket, "socket", side_effect=forbidden),
                 mock.patch.object(socket, "create_connection", side_effect=forbidden),
             ):
-                code, receipt = module.finalize(evidence.resolve(), output.resolve())
+                code, receipt = module.finalize(
+                    evidence.resolve(), capture_root.resolve(), output.resolve()
+                )
             self.assertEqual(code, 0)
             self.assertFalse(receipt["network_invoked_by_finalizer"])
             self.assertFalse(receipt["external_api_invoked_by_finalizer"])
@@ -1334,7 +2211,10 @@ class ProtectedRR1OneTupleFinalizerTests(unittest.TestCase):
         self.assertFalse(manifest["protected_packet_bodies_in_export_set"])
         self.assertFalse(manifest["prompt_or_completion_bodies_in_export_set"])
         self.assertFalse(manifest["token_ids_in_export_set"])
-        self.assertFalse(manifest["live_outputs_in_export_set"])
+        self.assertFalse(manifest["live_job_or_protected_outputs_in_export_set"])
+        self.assertTrue(
+            manifest["privacy_safe_read_only_scheduler_format_exemplars_in_export_set"]
+        )
         self.assertEqual(manifest["production_admissibility"], "CANNOT_CHECK")
         checksum_lines = SHA256SUMS_PATH.read_text().splitlines()
         checksums = {

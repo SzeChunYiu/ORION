@@ -16,7 +16,8 @@ import re
 import stat
 import subprocess
 import sys
-from datetime import datetime
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from types import ModuleType
 from typing import Any, Mapping, Sequence
@@ -26,9 +27,9 @@ ROOT = Path(__file__).resolve().parent
 REPO_ROOT = ROOT.parents[1]
 CONTRACT_PATH = ROOT / "FINALIZER_CONTRACT_V1.json"
 SCHEMA_PATH = ROOT / "FINALIZER_OUTPUT_SCHEMA_V1.json"
-CONTRACT_SHA256 = "5fa93cfccc2183d191e2191e0ce4b500d04b1803eeee9835d71e9383d3c51ee3"
+CONTRACT_SHA256 = "7a2b1bd4113a98d9f9f14f404e69e0848974aadbd96848a19a9cde423bc8ca6c"
 SCHEMA_SHA256 = "a5704293fa96a6838cbedde0007e92659d5714a54613d5845a02f9fce9c64c83"
-NORMALIZED_MODULE_SHA256 = "2bd160895305fce99836da97a3539ef7957b9ac64f87a82e33a46e030f1b68fb"
+NORMALIZED_MODULE_SHA256 = "fe48d3354a77114e2ab82ad2975d0c9d4439a51dc2ee13967ae0d28f9ab8db4f"
 
 ADAPTER_PATH = (
     REPO_ROOT
@@ -79,6 +80,9 @@ GPU_UUID_RE = re.compile(
     r"^GPU-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
 )
 SLURM_TIME_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$")
+UTC_TIME_RE = re.compile(
+    r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{6}Z$"
+)
 EXIT_RE = re.compile(r"^(?:0|[1-9][0-9]*):(?:0|[1-9][0-9]*)$")
 FORBIDDEN_JSON_KEYS = {
     "masked_packet", "recovered_packet", "prompt_body", "completion_body",
@@ -92,19 +96,20 @@ SELF_BINDING_CONSTANT_RE = re.compile(
     rb'(?m)^(CONTRACT_SHA256|SCHEMA_SHA256|NORMALIZED_MODULE_SHA256) = "[0-9a-f]{64}"$'
 )
 
-ROOT_COMMON = (
+CAPTURE_ROOT_COMMON = (
     "POST_JOB_SACCT_V1.txt",
     "POST_JOB_SACCT_NONOVERLAP_V1.txt",
     "POST_JOB_SCONTROL_V1.txt",
     "SCHEDULER_CONFIG_V1.txt",
     "SCHEDULER_PARTITION_V1.txt",
     "SCHEDULER_NODE_V1.txt",
-    "SCHEDULER_EXPORT_V1.jsonl",
+    "SCHEDULER_CAPTURE_PROVENANCE_V1.json",
+)
+EVIDENCE_ROOT_COMMON = (
     "GPU_ALLOCATION_IDENTITY_V1.json",
     "SERVER_CLEANUP_V1.json",
     "STAGED_RUNTIME_INPUT_V1.json",
     "PROCESS_ATTESTATION_V1.json",
-    "SCHEDULER_CAPTURE_PROVENANCE_V1.json",
 )
 ATTEMPT_COMMON = (
     "SCONTROL_IN_JOB_V1.txt",
@@ -214,7 +219,24 @@ CAPTURE_PROVENANCE_FIELDS = {
     "node_name", "allocation_started_at", "allocation_ended_at", "capture_argv",
     "raw_file_sha256", "credential_environment_read", "stderr_retained",
     "job_submitted", "scientific_authority_delta",
+    "terminal_poll_interval_seconds", "terminal_poll_limit",
+    "terminal_poll_count", "terminal_poll_observations",
+    "partition_source", "node_source",
+    "capture_command_timeout_seconds", "post_terminal_capture_deadline_seconds",
+    "post_job_scontrol_start_latency_limit_seconds",
+    "terminal_observed_at_utc", "terminal_observed_monotonic_ns",
+    "post_job_scontrol_started_at_utc",
+    "post_job_scontrol_start_seconds_after_terminal_observation",
+    "post_job_scontrol_completed_at_utc",
+    "post_job_scontrol_seconds_after_terminal_observation",
+    "capture_command_observations",
 }
+
+TERMINAL_POLL_INTERVAL_SECONDS = 5
+TERMINAL_POLL_LIMIT = 1440
+CAPTURE_COMMAND_TIMEOUT_SECONDS = 20
+POST_TERMINAL_CAPTURE_DEADLINE_SECONDS = 240
+POST_JOB_SCONTROL_START_LATENCY_LIMIT_SECONDS = 2
 
 
 class FinalizationError(ValueError):
@@ -225,21 +247,28 @@ class FinalizationError(ValueError):
         self.code = code
 
 
+def _typed_unexpected_failure(
+    exc: Exception, code: str, detail: str
+) -> FinalizationError:
+    if isinstance(exc, FinalizationError):
+        return exc
+    return FinalizationError(code, f"{detail}; exception_type={type(exc).__name__}")
+
+
 class DuplicateJsonMemberError(ValueError):
     pass
 
 
 class CliArgs:
-    def __init__(self, evidence_root: Path, output_root: Path):
+    def __init__(self, evidence_root: Path, capture_root: Path, output_root: Path):
         self.evidence_root = evidence_root
+        self.capture_root = capture_root
         self.output_root = output_root
 
 
 class CaptureArgs:
-    def __init__(self, job_id: str, partition: str, node: str, output_root: Path):
+    def __init__(self, job_id: str, output_root: Path):
         self.job_id = job_id
-        self.partition = partition
-        self.node = node
         self.output_root = output_root
 
 
@@ -340,33 +369,43 @@ def strict_json(payload: bytes, label: str, adapter: ModuleType) -> dict[str, An
 
 def parse_cli(argv: Sequence[str]) -> CliArgs:
     actual = list(argv)
-    if len(actual) != 5 or actual[0] != "finalize" or actual[1] != "--evidence-root" or actual[3] != "--output-root":
+    if (
+        len(actual) != 7
+        or actual[0] != "finalize"
+        or actual[1] != "--evidence-root"
+        or actual[3] != "--capture-root"
+        or actual[5] != "--output-root"
+    ):
         raise FinalizationError("ARGV_INVALID", "argv must equal the frozen finalize form")
     evidence = Path(actual[2])
-    output = Path(actual[4])
-    if not evidence.is_absolute() or not output.is_absolute() or evidence == output:
-        raise FinalizationError("ARGV_INVALID", "evidence and output roots must be distinct absolute paths")
-    return CliArgs(evidence, output)
+    capture = Path(actual[4])
+    output = Path(actual[6])
+    if (
+        not evidence.is_absolute()
+        or not capture.is_absolute()
+        or not output.is_absolute()
+        or len({evidence, capture, output}) != 3
+    ):
+        raise FinalizationError("ARGV_INVALID", "evidence, capture, and output roots must be distinct absolute paths")
+    return CliArgs(evidence, capture, output)
 
 
 def parse_capture_cli(argv: Sequence[str]) -> CaptureArgs:
     actual = list(argv)
     if (
-        len(actual) != 9
-        or actual[0] != "capture"
+        len(actual) != 5
+        or actual[0] != "watch-capture"
         or actual[1] != "--job-id"
-        or actual[3] != "--partition"
-        or actual[5] != "--node"
-        or actual[7] != "--output-root"
+        or actual[3] != "--output-root"
     ):
-        raise FinalizationError("ARGV_INVALID", "argv must equal the frozen capture form")
-    job_id, partition, node, raw_output = actual[2], actual[4], actual[6], actual[8]
+        raise FinalizationError("ARGV_INVALID", "argv must equal the frozen watch-capture form")
+    job_id, raw_output = actual[2], actual[4]
     output = Path(raw_output)
-    if JOB_RE.fullmatch(job_id) is None or partition != "gpua40i" or NODE_RE.fullmatch(node) is None:
-        raise FinalizationError("ARGV_INVALID", "capture job, partition, or node is outside the freeze")
+    if JOB_RE.fullmatch(job_id) is None:
+        raise FinalizationError("ARGV_INVALID", "capture job is outside the freeze")
     if not output.is_absolute():
         raise FinalizationError("ARGV_INVALID", "capture output root must be absolute")
-    return CaptureArgs(job_id, partition, node, output)
+    return CaptureArgs(job_id, output)
 
 
 def _open_directory(path: Path, label: str) -> int:
@@ -421,7 +460,10 @@ def _entry_exists(parent_fd: int, name: str) -> bool:
         raise FinalizationError("INPUT_SET_INVALID", f"cannot inspect evidence entry: {name}") from exc
 
 
-def _read_held(parent_fd: int, name: str, label: str, max_bytes: int = 2_000_000) -> bytes:
+def _read_held(
+    parent_fd: int, name: str, label: str, max_bytes: int = 2_000_000,
+    *, allowed_modes: frozenset[int] = frozenset({0o400, 0o600}),
+) -> bytes:
     flags = os.O_RDONLY
     if hasattr(os, "O_NOFOLLOW"):
         flags |= os.O_NOFOLLOW
@@ -437,7 +479,7 @@ def _read_held(parent_fd: int, name: str, label: str, max_bytes: int = 2_000_000
             or before.st_size > max_bytes
             or before.st_nlink != 1
             or before.st_uid != os.getuid()
-            or evidence_mode not in {0o400, 0o600}
+            or evidence_mode not in allowed_modes
         ):
             raise FinalizationError("INPUT_SET_INVALID", f"{label} is not one bounded regular file")
         chunks: list[bytes] = []
@@ -461,6 +503,14 @@ def _read_held(parent_fd: int, name: str, label: str, max_bytes: int = 2_000_000
     if (
         remaining != 0
         or len(payload) != before.st_size
+        or not stat.S_ISREG(after.st_mode)
+        or not stat.S_ISREG(named_after.st_mode)
+        or after.st_uid != os.getuid()
+        or named_after.st_uid != os.getuid()
+        or after.st_nlink != 1
+        or named_after.st_nlink != 1
+        or stat.S_IMODE(after.st_mode) not in allowed_modes
+        or stat.S_IMODE(named_after.st_mode) not in allowed_modes
         or (before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns)
         != (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns)
         or (named_after.st_dev, named_after.st_ino, named_after.st_size, named_after.st_mtime_ns)
@@ -520,7 +570,9 @@ def _create_output_root(path: Path) -> int:
     return fd
 
 
-def _write_new_json(output_fd: int, name: str, value: Mapping[str, Any]) -> None:
+def _write_new_json(
+    output_fd: int, name: str, value: Mapping[str, Any]
+) -> tuple[str, tuple[int, int]]:
     payload = canonical_bytes(value) + b"\n"
     expected_sha = sha256_bytes(payload)
     flags = os.O_RDWR | os.O_CREAT | os.O_EXCL
@@ -571,6 +623,9 @@ def _write_new_json(output_fd: int, name: str, value: Mapping[str, Any]) -> None
     finally:
         if fd is not None:
             os.close(fd)
+    if created_identity is None:
+        raise FinalizationError("OUTPUT_INVALID", f"receipt identity is unavailable: {name}")
+    return expected_sha, created_identity
 
 
 def _write_new_bytes(
@@ -670,6 +725,39 @@ def _rollback_new_output_root(
         pass
     finally:
         os.close(parent_fd)
+
+
+def _seal_capture_files(
+    output_fd: int, identities: Mapping[str, tuple[int, int]]
+) -> None:
+    """Seal every safely-held capture artifact to exact mode 0400."""
+    for name, identity in identities.items():
+        try:
+            before = os.stat(name, dir_fd=output_fd, follow_symlinks=False)
+            if (
+                not stat.S_ISREG(before.st_mode)
+                or before.st_uid != os.getuid()
+                or before.st_nlink != 1
+                or (before.st_dev, before.st_ino) != identity
+            ):
+                raise OSError("capture artifact identity drift")
+            os.chmod(name, 0o400, dir_fd=output_fd, follow_symlinks=False)
+            after = os.stat(name, dir_fd=output_fd, follow_symlinks=False)
+            if (
+                (after.st_dev, after.st_ino) != identity
+                or stat.S_IMODE(after.st_mode) != 0o400
+                or after.st_uid != os.getuid()
+                or after.st_nlink != 1
+            ):
+                raise OSError("capture artifact seal drift")
+        except OSError as exc:
+            raise FinalizationError(
+                "OUTPUT_INVALID", "capture artifacts could not be sealed read-only"
+            ) from exc
+    try:
+        os.fsync(output_fd)
+    except OSError as exc:
+        raise FinalizationError("OUTPUT_INVALID", "capture root fsync failed") from exc
 
 
 def load_exact_adapter() -> ModuleType:
@@ -800,7 +888,9 @@ def _parse_slurm_time(value: str, label: str, *, allow_unknown: bool = False) ->
         raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} timestamp is invalid") from exc
 
 
-def parse_sacct_snapshot(payload: bytes, *, allow_multiple: bool) -> list[dict[str, str]]:
+def parse_sacct_snapshot(
+    payload: bytes, *, allow_multiple: bool, require_terminal: bool = True
+) -> list[dict[str, str]]:
     if not isinstance(payload, bytes) or not payload or not payload.endswith(b"\n") or b"\r" in payload:
         raise FinalizationError("EVIDENCE_PARSE_INVALID", "sacct snapshot must be nonempty LF-only bytes")
     try:
@@ -815,9 +905,9 @@ def parse_sacct_snapshot(payload: bytes, *, allow_multiple: bool) -> list[dict[s
     seen: set[str] = set()
     for line in lines:
         parts = line.split("|")
-        if len(parts) != len(SACCT_FIELDS) + 1 or parts[-1] != "":
+        if len(parts) != len(SACCT_FIELDS):
             raise FinalizationError("EVIDENCE_PARSE_INVALID", "sacct row has wrong explicit field count")
-        record = dict(zip(SACCT_FIELDS, parts[:-1]))
+        record = dict(zip(SACCT_FIELDS, parts))
         job_id = record["JobIDRaw"]
         if JOB_RE.fullmatch(job_id) is None or job_id in seen:
             raise FinalizationError("EVIDENCE_PARSE_INVALID", "sacct steps, arrays, aliases, or duplicates are forbidden")
@@ -829,15 +919,59 @@ def parse_sacct_snapshot(payload: bytes, *, allow_multiple: bool) -> list[dict[s
         for field in ("Submit", "Eligible", "Start"):
             _parse_slurm_time(record[field], f"sacct {field}")
         _parse_slurm_time(record["End"], "sacct End", allow_unknown=allow_multiple)
-        for field in ("NNodes", "NCPUS", "NTasks", "ReqCPUS", "TimelimitRaw"):
+        for field in ("NNodes", "NCPUS", "ReqCPUS", "TimelimitRaw"):
             if UINT_RE.fullmatch(record[field]) is None:
                 raise FinalizationError("EVIDENCE_PARSE_INVALID", f"sacct {field} is not canonical unsigned decimal")
+        if record["NTasks"] != "" and UINT_RE.fullmatch(record["NTasks"]) is None:
+            raise FinalizationError("EVIDENCE_PARSE_INVALID", "sacct NTasks is neither empty nor canonical unsigned decimal")
         _parse_tres(record["ReqTRES"], "sacct ReqTRES")
         _parse_tres(record["AllocTRES"], "sacct AllocTRES")
         records.append(record)
-    if not allow_multiple and records[0]["State"] not in TERMINAL_STATES:
+    if require_terminal and not allow_multiple and records[0]["State"] not in TERMINAL_STATES:
         raise FinalizationError("EVIDENCE_PARSE_INVALID", "terminal sacct state is not terminal")
     return records
+
+
+def parse_sacct_poll_snapshot(payload: bytes) -> dict[str, str]:
+    """Parse only identity/state while a job may legitimately have blank fields."""
+    if (
+        not isinstance(payload, bytes)
+        or not payload
+        or not payload.endswith(b"\n")
+        or b"\r" in payload
+    ):
+        raise FinalizationError(
+            "EVIDENCE_PARSE_INVALID", "polled sacct row must be nonempty LF-only bytes"
+        )
+    try:
+        lines = payload.decode("utf-8").splitlines()
+    except UnicodeDecodeError as exc:
+        raise FinalizationError(
+            "EVIDENCE_PARSE_INVALID", "polled sacct row is not UTF-8"
+        ) from exc
+    if len(lines) != 1:
+        raise FinalizationError(
+            "EVIDENCE_PARSE_INVALID", "polled sacct must contain exactly one allocation row"
+        )
+    parts = lines[0].split("|")
+    if len(parts) != len(SACCT_FIELDS):
+        raise FinalizationError(
+            "EVIDENCE_PARSE_INVALID", "polled sacct row has wrong explicit field count"
+        )
+    record = dict(zip(SACCT_FIELDS, parts))
+    if JOB_RE.fullmatch(record["JobIDRaw"]) is None:
+        raise FinalizationError(
+            "EVIDENCE_PARSE_INVALID", "polled sacct steps, arrays, and aliases are forbidden"
+        )
+    if record["Partition"] != "gpua40i":
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "polled sacct partition differs from the freeze"
+        )
+    if re.fullmatch(r"[A-Z][A-Z_]*", record["State"]) is None:
+        raise FinalizationError(
+            "EVIDENCE_PARSE_INVALID", "polled sacct state must be one exact uppercase token"
+        )
+    return record
 
 
 def parse_scontrol_snapshot(payload: bytes, label: str) -> dict[str, str]:
@@ -891,16 +1025,35 @@ def parse_scontrol_snapshot(payload: bytes, label: str) -> dict[str, str]:
     return fields
 
 
-def _parse_key_value_lines(payload: bytes, label: str) -> dict[str, str]:
+def _parse_key_value_lines(
+    payload: bytes, label: str, *, configuration_header: bool = False
+) -> dict[str, str]:
     if not payload or not payload.endswith(b"\n") or b"\r" in payload:
         raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} must be nonempty LF-only bytes")
     try:
         text = payload.decode("utf-8")
     except UnicodeDecodeError as exc:
         raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} is not UTF-8") from exc
+    lines = text.splitlines()
+    if configuration_header:
+        prefix = "Configuration data as of "
+        if not lines or not lines[0].startswith(prefix):
+            raise FinalizationError(
+                "EVIDENCE_PARSE_INVALID", f"{label} lacks exact first configuration header"
+            )
+        if lines[0].count(prefix) != 1:
+            raise FinalizationError(
+                "EVIDENCE_PARSE_INVALID", f"{label} configuration header is ambiguous"
+            )
+        _parse_slurm_time(lines[0][len(prefix):], f"{label} header")
+        lines = lines[1:]
+        if not lines:
+            raise FinalizationError(
+                "EVIDENCE_PARSE_INVALID", f"{label} has no fields after configuration header"
+            )
     fields: dict[str, str] = {}
     aliases: set[str] = set()
-    for line in text.splitlines():
+    for line in lines:
         match = re.fullmatch(r"([A-Za-z][A-Za-z0-9]*)\s*=\s*(.+)", line)
         if match is None:
             raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} line is not Key = Value")
@@ -922,25 +1075,45 @@ def _parse_one_line_tokens(payload: bytes, label: str) -> dict[str, str]:
         raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} is not UTF-8") from exc
     if len(lines) != 1:
         raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} must be exactly one -o line")
+    line = lines[0]
+    markers = list(re.finditer(r"(?:^| +)([A-Za-z][A-Za-z0-9_]*)=", line))
+    if not markers or markers[0].start() != 0 or markers[0].group(0).startswith(" "):
+        raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} lacks a leading key=value")
     fields: dict[str, str] = {}
     aliases: set[str] = set()
-    for token in lines[0].split():
-        if "=" not in token:
-            raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} token is not key=value")
-        key, value = token.split("=", 1)
+    for index, marker in enumerate(markers):
+        key = marker.group(1)
+        value_start = marker.end()
+        value_end = markers[index + 1].start() if index + 1 < len(markers) else len(line)
+        value = line[value_start:value_end].rstrip(" ")
         alias = key.casefold()
-        if not key or not value or alias in aliases:
+        if alias in aliases:
             raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} token is ambiguous")
         aliases.add(alias)
         fields[key] = value
     return fields
 
 
+def _parse_canonical_csv(value: Any, label: str) -> tuple[str, ...]:
+    if not isinstance(value, str) or not value:
+        raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} list is empty")
+    items = value.split(",")
+    aliases: set[str] = set()
+    for item in items:
+        alias = item.casefold()
+        if not item or item.strip() != item or alias in aliases:
+            raise FinalizationError("EVIDENCE_PARSE_INVALID", f"{label} list is ambiguous")
+        aliases.add(alias)
+    return tuple(items)
+
+
 def parse_config_snapshots(config: bytes, partition: bytes, node: bytes) -> dict[str, dict[str, str]]:
-    cfg = _parse_key_value_lines(config, "scheduler config")
+    cfg = _parse_key_value_lines(
+        config, "scheduler config", configuration_header=True
+    )
     required = {
         "SlurmctldVersion": "23.11.3", "ClusterName": "cosmos",
-        "SelectType": "select/cons_tres", "TaskPlugin": "task/cgroup",
+        "SelectType": "select/cons_tres",
         "ProctrackType": "proctrack/cgroup",
         "AccountingStorageType": "accounting_storage/slurmdbd",
         "JobAcctGatherType": "jobacct_gather/cgroup",
@@ -949,17 +1122,23 @@ def parse_config_snapshots(config: bytes, partition: bytes, node: bytes) -> dict
     for key, expected in required.items():
         if cfg.get(key) != expected:
             raise FinalizationError("EXCLUSIVITY_CANNOT_CHECK", f"scheduler config {key} mismatch")
+    task_plugins = _parse_canonical_csv(cfg.get("TaskPlugin"), "scheduler TaskPlugin")
     if (
         cfg.get("MinJobAge") != "300 sec"
         or "gpu" not in cfg.get("GresTypes", "").split(",")
         or not cfg.get("AccountingStorageEnforce")
         or "gres/gpu" not in cfg.get("AccountingStorageTRES", "").split(",")
+        or not {"task/cgroup", "task/affinity"}.issubset(task_plugins)
     ):
         raise FinalizationError("EXCLUSIVITY_CANNOT_CHECK", "scheduler retention or GRES config mismatch")
     part = _parse_one_line_tokens(partition, "scheduler partition")
+    allow_accounts = _parse_canonical_csv(
+        part.get("AllowAccounts"), "scheduler partition AllowAccounts"
+    )
+    account_allowed = allow_accounts == ("ALL",) or "lu2026-2-51" in allow_accounts
     if (
         part.get("PartitionName") != "gpua40i"
-        or part.get("AllowAccounts") != "lu2026-2-51"
+        or not account_allowed
         or part.get("OverSubscribe") != "NO"
         or part.get("State") != "UP"
     ):
@@ -1011,9 +1190,46 @@ CAPTURE_FILE_BY_KEY = {
 }
 
 
+def _utc_now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _format_utc(value: datetime) -> str:
+    if not isinstance(value, datetime) or value.tzinfo is None:
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "capture UTC clock returned a naive value"
+        )
+    return value.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
+
+def _format_ns_seconds(value: int) -> str:
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "capture elapsed nanoseconds are invalid"
+        )
+    return f"{value // 1_000_000_000}.{value % 1_000_000_000:09d}"
+
+
+def _parse_utc(value: Any, label: str) -> datetime:
+    if not isinstance(value, str) or UTC_TIME_RE.fullmatch(value) is None:
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", f"{label} is not exact UTC microseconds"
+        )
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ").replace(
+            tzinfo=timezone.utc
+        )
+    except ValueError as exc:
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", f"{label} is not a real UTC time"
+        ) from exc
+
+
 def _capture_command(
     argv: Sequence[str],
     runner: Any,
+    *,
+    allow_empty: bool = False,
 ) -> bytes:
     try:
         completed = runner(
@@ -1022,7 +1238,12 @@ def _capture_command(
             stderr=subprocess.PIPE,
             env=dict(CAPTURE_ENVIRONMENT),
             check=False,
+            timeout=CAPTURE_COMMAND_TIMEOUT_SECONDS,
         )
+    except subprocess.TimeoutExpired as exc:
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_TIMEOUT", "scheduler capture command exceeded frozen timeout"
+        ) from exc
     except OSError as exc:
         raise FinalizationError("SCHEDULER_CAPTURE_FAILED", "scheduler capture command could not execute") from exc
     stderr = completed.stderr if isinstance(completed.stderr, bytes) else b""
@@ -1032,81 +1253,343 @@ def _capture_command(
             "SCHEDULER_CAPTURE_FAILED",
             f"scheduler capture returned nonzero; stderr_sha256={sha256_bytes(stderr)}",
         )
-    if not stdout:
+    if not stdout and not allow_empty:
         raise FinalizationError("SCHEDULER_CAPTURE_FAILED", "scheduler capture returned empty stdout")
     return stdout
 
 
-def capture_scheduler(
+def watch_capture_scheduler(
     job_id: str,
-    partition: str,
-    node: str,
     output_root: Path,
     *,
     runner: Any = subprocess.run,
+    sleeper: Any = time.sleep,
+    monotonic_ns: Any = time.monotonic_ns,
+    utc_now: Any = _utc_now,
 ) -> dict[str, Any]:
-    if JOB_RE.fullmatch(job_id) is None or partition != "gpua40i" or NODE_RE.fullmatch(node) is None:
-        raise FinalizationError("ARGV_INVALID", "capture identity is outside the exact freeze")
+    """Poll one frozen job to terminal state, derive its node, and retain raw evidence."""
+    if JOB_RE.fullmatch(job_id) is None:
+        raise FinalizationError("ARGV_INVALID", "watch-capture job is outside the exact freeze")
     if not output_root.is_absolute():
         raise FinalizationError("ARGV_INVALID", "capture output root must be absolute")
     output_fd = _create_output_root(output_root)
     raw_hashes: dict[str, str] = {}
-    raw_identities: dict[str, tuple[int, int]] = {}
-    completed_capture = False
+    identities: dict[str, tuple[int, int]] = {}
+    observations: list[dict[str, Any]] = []
+    command_observations: list[dict[str, Any]] = []
+    completed_argv: dict[str, list[str]] = {}
+    terminal: dict[str, str] | None = None
+    terminal_raw: bytes | None = None
+    node: str | None = None
+    terminal_observed_monotonic_ns: int | None = None
+    terminal_observed_at_utc: str | None = None
+    post_job_scontrol_started_at_utc: str | None = None
+    post_job_scontrol_start_seconds_after_terminal: str | None = None
+    post_job_scontrol_completed_at_utc: str | None = None
+    post_job_scontrol_seconds_after_terminal: str | None = None
+    fields = ",".join(SACCT_FIELDS)
+    terminal_argv = [
+        "sacct", "-a", "-X", "-D", "-j", job_id,
+        "--parsable2", "--noheader", f"--format={fields}",
+    ]
     try:
-        fields = ",".join(SACCT_FIELDS)
-        terminal_argv = [
-            "sacct", "-a", "-X", "-D", "-j", job_id,
-            "--parsable2", "--noheader", f"--format={fields}",
-        ]
-        terminal_raw = _capture_command(terminal_argv, runner)
-        terminal = parse_sacct_snapshot(terminal_raw, allow_multiple=False)[0]
-        if terminal["JobIDRaw"] != job_id or terminal["Partition"] != partition or terminal["NodeList"] != node:
-            raise FinalizationError("SCHEDULER_CAPTURE_FAILED", "terminal sacct identity differs from capture argv")
-        terminal_name = CAPTURE_FILE_BY_KEY["terminal_sacct"]
-        terminal_sha, terminal_identity = _write_new_bytes(
-            output_fd, terminal_name, terminal_raw
-        )
-        raw_hashes[terminal_name] = terminal_sha
-        raw_identities[terminal_name] = terminal_identity
-        argv_by_key = _materialized_argv(
-            job_id, partition, terminal["Start"], terminal["End"], node
-        )
-        for key in (
-            "post_job_scontrol", "scheduler_config", "scheduler_partition",
-            "scheduler_node", "nonoverlap_sacct",
-        ):
-            raw = _capture_command(argv_by_key[key], runner)
-            name = CAPTURE_FILE_BY_KEY[key]
-            digest, identity = _write_new_bytes(output_fd, name, raw)
-            raw_hashes[name] = digest
-            raw_identities[name] = identity
-        provenance = {
-            "schema_version": "orion.p1.scienceagentbench.protected-rr1-scheduler-capture-provenance.v1",
-            "authority": "EXACT_SCHEDULER_CAPTURE_COMMAND_AND_RAW_BYTE_BINDING_ONLY",
-            "status": "PASS_EXACT_POST_JOB_SCHEDULER_CAPTURE",
-            "slurm_job_id": job_id,
-            "partition": partition,
-            "node_name": node,
-            "allocation_started_at": terminal["Start"],
-            "allocation_ended_at": terminal["End"],
-            "capture_argv": argv_by_key,
-            "raw_file_sha256": raw_hashes,
-            "credential_environment_read": False,
-            "stderr_retained": False,
-            "job_submitted": False,
-            "scientific_authority_delta": "NONE",
-        }
-        _write_new_json(output_fd, "SCHEDULER_CAPTURE_PROVENANCE_V1.json", provenance)
-        completed_capture = True
-        return provenance
-    finally:
-        if not completed_capture:
-            _rollback_new_output_root(
-                output_root,
-                output_fd,
-                raw_identities,
+        try:
+            for poll_index in range(1, TERMINAL_POLL_LIMIT + 1):
+                observed = monotonic_ns()
+                if isinstance(observed, bool) or not isinstance(observed, int) or observed < 0:
+                    raise FinalizationError(
+                        "SCHEDULER_CAPTURE_FAILED", "monotonic poll timestamp is invalid"
+                    )
+                if observations:
+                    previous_poll = int(
+                        observations[-1]["observed_at_monotonic_ns"]
+                    )
+                    if (
+                        observed - previous_poll
+                        < TERMINAL_POLL_INTERVAL_SECONDS * 1_000_000_000
+                    ):
+                        raise FinalizationError(
+                            "SCHEDULER_CAPTURE_FAILED",
+                            "terminal poll cadence is shorter than the frozen interval",
+                        )
+                raw = _capture_command(
+                    terminal_argv, runner, allow_empty=True
+                )
+                row_count = 0 if raw == b"" else len(raw.splitlines())
+                observation = {
+                    "poll_index": poll_index,
+                    "observed_at_monotonic_ns": str(observed),
+                    "argv": list(terminal_argv),
+                    "row_count": row_count,
+                    "terminal": False,
+                }
+                observations.append(observation)
+                if raw:
+                    row = parse_sacct_poll_snapshot(raw)
+                    if row["JobIDRaw"] != job_id or row["Partition"] != "gpua40i":
+                        raise FinalizationError(
+                            "SCHEDULER_CAPTURE_FAILED",
+                            "polled sacct identity differs from frozen job or partition",
+                        )
+                    if row["State"] in TERMINAL_STATES:
+                        row = parse_sacct_snapshot(
+                            raw, allow_multiple=False, require_terminal=True
+                        )[0]
+                        if row["NNodes"] != "1" or NODE_RE.fullmatch(row["NodeList"]) is None:
+                            raise FinalizationError(
+                                "SCHEDULER_CAPTURE_FAILED",
+                                "terminal sacct does not derive exactly one canonical node",
+                            )
+                        observation["terminal"] = True
+                        terminal = row
+                        terminal_raw = raw
+                        node = row["NodeList"]
+                        terminal_observed_monotonic_ns = monotonic_ns()
+                        if (
+                            isinstance(terminal_observed_monotonic_ns, bool)
+                            or not isinstance(terminal_observed_monotonic_ns, int)
+                            or terminal_observed_monotonic_ns < observed
+                        ):
+                            raise FinalizationError(
+                                "SCHEDULER_CAPTURE_FAILED",
+                                "terminal observation monotonic time is invalid",
+                            )
+                        terminal_observed_at_utc = _format_utc(utc_now())
+                        break
+                if poll_index < TERMINAL_POLL_LIMIT:
+                    sleeper(TERMINAL_POLL_INTERVAL_SECONDS)
+            if (
+                terminal is None
+                or node is None
+                or terminal_observed_monotonic_ns is None
+                or terminal_observed_at_utc is None
+            ):
+                raise FinalizationError(
+                    "SCHEDULER_TERMINAL_TIMEOUT",
+                    "terminal sacct poll limit was exhausted",
+                )
+
+            argv_by_key = _materialized_argv(
+                job_id, "gpua40i", terminal["Start"], terminal["End"], node
             )
+            for key in (
+                "post_job_scontrol", "scheduler_config", "scheduler_partition",
+                "scheduler_node", "nonoverlap_sacct",
+            ):
+                started_ns = monotonic_ns()
+                if (
+                    isinstance(started_ns, bool)
+                    or not isinstance(started_ns, int)
+                    or started_ns < terminal_observed_monotonic_ns
+                    or started_ns - terminal_observed_monotonic_ns
+                    > POST_TERMINAL_CAPTURE_DEADLINE_SECONDS * 1_000_000_000
+                ):
+                    raise FinalizationError(
+                        "SCHEDULER_CAPTURE_DEADLINE_EXCEEDED",
+                        "post-terminal capture deadline expired before command start",
+                    )
+                start_elapsed_ns = started_ns - terminal_observed_monotonic_ns
+                if (
+                    key == "post_job_scontrol"
+                    and start_elapsed_ns
+                    > POST_JOB_SCONTROL_START_LATENCY_LIMIT_SECONDS
+                    * 1_000_000_000
+                ):
+                    raise FinalizationError(
+                        "SCHEDULER_CAPTURE_START_LATENCY_EXCEEDED",
+                        "first post-job scontrol did not start within the frozen latency limit",
+                    )
+                started_utc = _format_utc(utc_now())
+                if key == "post_job_scontrol":
+                    post_job_scontrol_started_at_utc = started_utc
+                    post_job_scontrol_start_seconds_after_terminal = (
+                        _format_ns_seconds(start_elapsed_ns)
+                    )
+                raw = _capture_command(argv_by_key[key], runner)
+                completed_ns = monotonic_ns()
+                if (
+                    isinstance(completed_ns, bool)
+                    or not isinstance(completed_ns, int)
+                    or completed_ns < started_ns
+                ):
+                    raise FinalizationError(
+                        "SCHEDULER_CAPTURE_FAILED",
+                        "capture command monotonic completion time is invalid",
+                    )
+                duration_ns = completed_ns - started_ns
+                if duration_ns > CAPTURE_COMMAND_TIMEOUT_SECONDS * 1_000_000_000:
+                    raise FinalizationError(
+                        "SCHEDULER_CAPTURE_TIMEOUT",
+                        "scheduler capture command exceeded frozen monotonic duration",
+                    )
+                completed_utc = _format_utc(utc_now())
+                if key == "post_job_scontrol":
+                    if terminal_raw is None:
+                        raise FinalizationError(
+                            "SCHEDULER_CAPTURE_FAILED", "terminal raw bytes are unavailable"
+                        )
+                    terminal_name = CAPTURE_FILE_BY_KEY["terminal_sacct"]
+                    digest, identity = _write_new_bytes(
+                        output_fd, terminal_name, terminal_raw
+                    )
+                    raw_hashes[terminal_name] = digest
+                    identities[terminal_name] = identity
+                    completed_argv["terminal_sacct"] = list(terminal_argv)
+                name = CAPTURE_FILE_BY_KEY[key]
+                digest, identity = _write_new_bytes(output_fd, name, raw)
+                raw_hashes[name] = digest
+                identities[name] = identity
+                completed_argv[key] = list(argv_by_key[key])
+                elapsed_ns = completed_ns - terminal_observed_monotonic_ns
+                before_deadline = (
+                    elapsed_ns
+                    <= POST_TERMINAL_CAPTURE_DEADLINE_SECONDS * 1_000_000_000
+                )
+                command_observations.append({
+                    "key": key,
+                    "argv": list(argv_by_key[key]),
+                    "started_at_monotonic_ns": str(started_ns),
+                    "started_at_utc": started_utc,
+                    "completed_at_monotonic_ns": str(completed_ns),
+                    "completed_at_utc": completed_utc,
+                    "duration_seconds": _format_ns_seconds(duration_ns),
+                    "seconds_after_terminal_observation": _format_ns_seconds(elapsed_ns),
+                    "post_terminal_deadline_remaining_seconds": _format_ns_seconds(
+                        max(
+                            0,
+                            POST_TERMINAL_CAPTURE_DEADLINE_SECONDS * 1_000_000_000
+                            - elapsed_ns,
+                        )
+                    ),
+                    "completed_before_post_terminal_deadline": before_deadline,
+                })
+                if key == "post_job_scontrol":
+                    post_job_scontrol_completed_at_utc = completed_utc
+                    post_job_scontrol_seconds_after_terminal = _format_ns_seconds(
+                        elapsed_ns
+                    )
+                if not before_deadline:
+                    raise FinalizationError(
+                        "SCHEDULER_CAPTURE_DEADLINE_EXCEEDED",
+                        "post-terminal capture command completed after frozen deadline",
+                    )
+
+            post = parse_scontrol_snapshot(
+                _read_held(output_fd, CAPTURE_FILE_BY_KEY["post_job_scontrol"], "captured post-job scontrol"),
+                "captured post-job scontrol -dd",
+            )
+            if post["JobId"] != job_id or post["NodeList"] != node:
+                raise FinalizationError(
+                    "SCHEDULER_CAPTURE_FAILED", "post-job scontrol identity drift"
+                )
+            parse_config_snapshots(
+                _read_held(output_fd, CAPTURE_FILE_BY_KEY["scheduler_config"], "captured scheduler config"),
+                _read_held(output_fd, CAPTURE_FILE_BY_KEY["scheduler_partition"], "captured scheduler partition"),
+                _read_held(output_fd, CAPTURE_FILE_BY_KEY["scheduler_node"], "captured scheduler node"),
+            )
+            overlap_rows = parse_sacct_snapshot(
+                _read_held(output_fd, CAPTURE_FILE_BY_KEY["nonoverlap_sacct"], "captured non-overlap sacct"),
+                allow_multiple=True,
+            )
+            _validate_nonoverlap(overlap_rows, terminal)
+
+            provenance = {
+                "schema_version": "orion.p1.scienceagentbench.protected-rr1-scheduler-capture-provenance.v1",
+                "authority": "EXACT_SCHEDULER_CAPTURE_COMMAND_AND_RAW_BYTE_BINDING_ONLY",
+                "status": "PASS_EXACT_POST_JOB_SCHEDULER_CAPTURE",
+                "slurm_job_id": job_id,
+                "partition": "gpua40i",
+                "node_name": node,
+                "allocation_started_at": terminal["Start"],
+                "allocation_ended_at": terminal["End"],
+                "capture_argv": argv_by_key,
+                "capture_command_timeout_seconds": CAPTURE_COMMAND_TIMEOUT_SECONDS,
+                "post_terminal_capture_deadline_seconds": POST_TERMINAL_CAPTURE_DEADLINE_SECONDS,
+                "post_job_scontrol_start_latency_limit_seconds": POST_JOB_SCONTROL_START_LATENCY_LIMIT_SECONDS,
+                "terminal_observed_at_utc": terminal_observed_at_utc,
+                "terminal_observed_monotonic_ns": str(terminal_observed_monotonic_ns),
+                "post_job_scontrol_started_at_utc": post_job_scontrol_started_at_utc,
+                "post_job_scontrol_start_seconds_after_terminal_observation": post_job_scontrol_start_seconds_after_terminal,
+                "post_job_scontrol_completed_at_utc": post_job_scontrol_completed_at_utc,
+                "post_job_scontrol_seconds_after_terminal_observation": post_job_scontrol_seconds_after_terminal,
+                "capture_command_observations": command_observations,
+                "terminal_poll_interval_seconds": TERMINAL_POLL_INTERVAL_SECONDS,
+                "terminal_poll_limit": TERMINAL_POLL_LIMIT,
+                "terminal_poll_count": len(observations),
+                "terminal_poll_observations": observations,
+                "partition_source": "INTERNAL_FROZEN_gpua40i",
+                "node_source": "DERIVED_FROM_UNIQUE_TERMINAL_SACCT_NODELIST",
+                "raw_file_sha256": raw_hashes,
+                "credential_environment_read": False,
+                "stderr_retained": False,
+                "job_submitted": False,
+                "scientific_authority_delta": "NONE",
+            }
+            _, identity = _write_new_json(
+                output_fd, "SCHEDULER_CAPTURE_PROVENANCE_V1.json", provenance
+            )
+            identities["SCHEDULER_CAPTURE_PROVENANCE_V1.json"] = identity
+            _seal_capture_files(output_fd, identities)
+            return provenance
+        except Exception as caught:
+            exc = _typed_unexpected_failure(
+                caught,
+                "SCHEDULER_CAPTURE_RUNTIME_FAILED",
+                "unexpected scheduler capture runtime failure",
+            )
+            if (
+                terminal_raw is not None
+                and CAPTURE_FILE_BY_KEY["terminal_sacct"] not in raw_hashes
+            ):
+                terminal_name = CAPTURE_FILE_BY_KEY["terminal_sacct"]
+                digest, identity = _write_new_bytes(
+                    output_fd, terminal_name, terminal_raw
+                )
+                raw_hashes[terminal_name] = digest
+                identities[terminal_name] = identity
+                completed_argv["terminal_sacct"] = list(terminal_argv)
+            failure = {
+                "schema_version": "orion.p1.scienceagentbench.protected-rr1-scheduler-capture-cannot-check.v1",
+                "authority": "BODY_FREE_PARTIAL_READ_ONLY_SCHEDULER_CAPTURE_FAILURE_ONLY",
+                "status": "CANNOT_CHECK_POST_JOB_SCHEDULER_CAPTURE",
+                "slurm_job_id": job_id,
+                "partition": "gpua40i",
+                "node_name": node,
+                "capture_command_timeout_seconds": CAPTURE_COMMAND_TIMEOUT_SECONDS,
+                "post_terminal_capture_deadline_seconds": POST_TERMINAL_CAPTURE_DEADLINE_SECONDS,
+                "post_job_scontrol_start_latency_limit_seconds": POST_JOB_SCONTROL_START_LATENCY_LIMIT_SECONDS,
+                "terminal_observed_at_utc": terminal_observed_at_utc,
+                "terminal_observed_monotonic_ns": (
+                    None if terminal_observed_monotonic_ns is None
+                    else str(terminal_observed_monotonic_ns)
+                ),
+                "post_job_scontrol_started_at_utc": post_job_scontrol_started_at_utc,
+                "post_job_scontrol_start_seconds_after_terminal_observation": post_job_scontrol_start_seconds_after_terminal,
+                "post_job_scontrol_completed_at_utc": post_job_scontrol_completed_at_utc,
+                "post_job_scontrol_seconds_after_terminal_observation": post_job_scontrol_seconds_after_terminal,
+                "capture_command_observations": command_observations,
+                "terminal_poll_interval_seconds": TERMINAL_POLL_INTERVAL_SECONDS,
+                "terminal_poll_limit": TERMINAL_POLL_LIMIT,
+                "terminal_poll_count": len(observations),
+                "terminal_poll_observations": observations,
+                "completed_capture_argv": completed_argv,
+                "raw_file_sha256": raw_hashes,
+                "failure_code": exc.code,
+                "failure_detail_sha256": sha256_bytes(
+                    f"{type(exc).__name__}:{exc}".encode("utf-8", errors="replace")
+                ),
+                "stderr_retained": False,
+                "credential_environment_read": False,
+                "job_submitted": False,
+                "scientific_authority_delta": "NONE",
+            }
+            _, identity = _write_new_json(
+                output_fd, "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json", failure
+            )
+            identities["SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json"] = identity
+            _seal_capture_files(output_fd, identities)
+            raise exc from (None if exc is caught else caught)
+    finally:
         os.close(output_fd)
 
 
@@ -1135,7 +1618,12 @@ def _validate_stage_process(
     stage_file_sha: str, process_file_sha: str,
 ) -> None:
     _require_exact(stage, STAGE_FIELDS, "runtime stage")
-    if stage.get("schema_version") != "orion.p1.scienceagentbench.protected-rr1-direct-route-runtime-stage.v1":
+    if (
+        stage.get("schema_version")
+        != "orion.p1.scienceagentbench.protected-rr1-direct-route-runtime-stage.v1"
+        or stage.get("authority")
+        != "ONE_TUPLE_RUNTIME_PREFLIGHT_METADATA_ONLY__NO_SUBMISSION_OUTCOME_OR_SCIENTIFIC_AUTHORITY"
+    ):
         raise FinalizationError("CROSS_BINDING_MISMATCH", "runtime stage schema mismatch")
     if stage.get("tuple_identity") != FIXED_STAGE_TUPLE or stage.get("tuple_seed") != 101:
         raise FinalizationError("CROSS_BINDING_MISMATCH", "runtime stage tuple/seed mismatch")
@@ -1276,14 +1764,34 @@ def _validate_job_identity(identity: Any) -> dict[str, Any]:
 
 
 def _validate_gpu(gpu: Mapping[str, Any], job_id: str) -> dict[str, Any]:
-    if gpu.get("schema_version") != "orion.p1.scienceagentbench.one-a40-allocation-identity.v1" or gpu.get("status") != "PASS_EXACTLY_ONE_VISIBLE_NVIDIA_A40":
+    _require_exact(
+        gpu,
+        {
+            "schema_version", "authority", "status", "slurm_job_id",
+            "cuda_visible_devices", "slurm_job_gpus", "slurm_step_gpus",
+            "gpu", "nvidia_smi_stdout_sha256", "scheduler_exclusivity_status",
+            "production_admissibility", "scientific_authority_delta",
+        },
+        "GPU identity",
+    )
+    if (
+        gpu.get("schema_version")
+        != "orion.p1.scienceagentbench.one-a40-allocation-identity.v1"
+        or gpu.get("authority") != "IN_JOB_VISIBLE_GPU_IDENTITY_METADATA_ONLY"
+        or gpu.get("status") != "PASS_EXACTLY_ONE_VISIBLE_NVIDIA_A40"
+    ):
         raise FinalizationError("GPU_IDENTITY_CANNOT_CHECK", "one-A40 identity schema/status mismatch")
     if gpu.get("slurm_job_id") != job_id:
         raise FinalizationError("CROSS_BINDING_MISMATCH", "GPU identity job mismatch")
     value = gpu.get("gpu")
     if not isinstance(value, dict) or set(value) != {"visible_index", "gpu_uuid", "name"}:
         raise FinalizationError("GPU_IDENTITY_CANNOT_CHECK", "GPU identity fields are not exact")
-    if value["name"] != "NVIDIA A40" or GPU_UUID_RE.fullmatch(value["gpu_uuid"]) is None:
+    if (
+        value["name"] != "NVIDIA A40"
+        or value["visible_index"] != "0"
+        or gpu["cuda_visible_devices"] != "0"
+        or GPU_UUID_RE.fullmatch(value["gpu_uuid"]) is None
+    ):
         raise FinalizationError("GPU_IDENTITY_CANNOT_CHECK", "exact one NVIDIA A40 UUID is required")
     job_gpus = gpu.get("slurm_job_gpus")
     step_gpus = gpu.get("slurm_step_gpus")
@@ -1304,7 +1812,13 @@ def _validate_gpu(gpu: Mapping[str, Any], job_id: str) -> dict[str, Any]:
 
 def _validate_dynamic(dynamic: Mapping[str, Any]) -> dict[str, Any]:
     _require_exact(dynamic, DYNAMIC_FIELDS, "dynamic RR1 binding")
-    if dynamic["schema_version"] != "orion.p1.scienceagentbench.dynamic-rr1-pretokenize-binding.v1" or dynamic["tuple_identity"] != FIXED_TUPLE:
+    if (
+        dynamic["schema_version"]
+        != "orion.p1.scienceagentbench.dynamic-rr1-pretokenize-binding.v1"
+        or dynamic["authority"]
+        != "DYNAMIC_PROMPT_FIT_METADATA_ONLY__NO_BODY_OUTCOME_OR_SCIENTIFIC_AUTHORITY"
+        or dynamic["tuple_identity"] != FIXED_TUPLE
+    ):
         raise FinalizationError("DYNAMIC_TOKENIZE_CANNOT_CHECK", "dynamic RR1 schema/tuple mismatch")
     if dynamic["phase_id"] != "RR_PHASE1" or dynamic["tokenize_repeat_count"] != 3:
         raise FinalizationError("DYNAMIC_TOKENIZE_CANNOT_CHECK", "dynamic RR1 phase/repeat mismatch")
@@ -1398,10 +1912,26 @@ def _validate_cleanup(cleanup: Mapping[str, Any]) -> None:
     _require_false_boundaries(cleanup, "cleanup")
 
 
-def _validate_capture(capture: Mapping[str, Any], adapter: ModuleType, identity: Mapping[str, Any], in_job_sha: str) -> None:
+def _validate_capture(
+    capture: Mapping[str, Any], adapter: ModuleType, plan: Mapping[str, Any],
+    identity: Mapping[str, Any], in_job_sha: str,
+) -> None:
     expected_fields = set(adapter.CAPTURE_FIELDS)
     _require_exact(capture, expected_fields, "attempt capture")
-    if capture["schema_version"] != adapter.CAPTURE_SCHEMA or capture["status"] != adapter.CAPTURE_STATUS:
+    try:
+        adapter._validate_capture(
+            capture, plan, EXPECTED_STAGE_SOURCE_SHA256["plan"]
+        )
+    except Exception as exc:
+        raise FinalizationError(
+            "CAPTURE_CANNOT_CHECK", "exact adapter donor rejected attempt capture"
+        ) from exc
+    if (
+        capture["schema_version"] != adapter.CAPTURE_SCHEMA
+        or capture["authority"]
+        != "GENERATION_TIMING_METADATA_ONLY__ALLOCATION_AND_OUTCOMES_UNFINALIZED"
+        or capture["status"] != adapter.CAPTURE_STATUS
+    ):
         raise FinalizationError("CAPTURE_CANNOT_CHECK", "attempt capture schema/status mismatch")
     if {key: capture[key] for key in ("task_id", "arm_id", "attempt", "seed")} != FIXED_TUPLE:
         raise FinalizationError("CAPTURE_CANNOT_CHECK", "attempt capture tuple/seed mismatch")
@@ -1433,10 +1963,17 @@ def _validate_capture(capture: Mapping[str, Any], adapter: ModuleType, identity:
 def _validate_bridge(
     bridge: Mapping[str, Any], capture: Mapping[str, Any], dynamic: Mapping[str, Any],
     stage_sha: str, process_sha: str, dynamic_file_sha: str,
-    stage_extension: Mapping[str, Any],
+    stage_extension: Mapping[str, Any], rr0_rendered_prompt_sha256: str,
 ) -> None:
     _require_exact(bridge, BRIDGE_FIELDS, "direct-route bridge binding")
-    if bridge["schema_version"] != "orion.p1.scienceagentbench.protected-rr1-direct-route-bridge-binding.v1" or bridge["status"] != "BOUND_ONE_TUPLE_CAPTURE__POST_JOB_FINALIZATION_PENDING" or bridge["tuple_identity"] != FIXED_TUPLE:
+    if (
+        bridge["schema_version"]
+        != "orion.p1.scienceagentbench.protected-rr1-direct-route-bridge-binding.v1"
+        or bridge["authority"]
+        != "ONE_TUPLE_ATTEMPT_BINDING_METADATA_ONLY__ALLOCATION_OUTCOMES_AND_918_LEDGER_UNFINALIZED"
+        or bridge["status"] != "BOUND_ONE_TUPLE_CAPTURE__POST_JOB_FINALIZATION_PENDING"
+        or bridge["tuple_identity"] != FIXED_TUPLE
+    ):
         raise FinalizationError("CROSS_BINDING_MISMATCH", "bridge schema/status/tuple mismatch")
     if bridge["runtime_stage_sha256"] != stage_sha or bridge["process_attestation_sha256"] != process_sha:
         raise FinalizationError("CROSS_BINDING_MISMATCH", "bridge stage/process file hash mismatch")
@@ -1463,6 +2000,13 @@ def _validate_bridge(
             raise FinalizationError("CROSS_BINDING_MISMATCH", f"bridge {phase} request status/order drift")
         for field in ("rendered_prompt_sha256", "canonical_request_sha256", "completion_raw_response_sha256"):
             _require_sha(request[field], f"bridge {phase} {field}")
+    if (
+        requests[0]["rendered_prompt_sha256"] != rr0_rendered_prompt_sha256
+        or requests[1]["rendered_prompt_sha256"] != dynamic["rendered_prompt_sha256"]
+    ):
+        raise FinalizationError(
+            "CROSS_BINDING_MISMATCH", "bridge request prompt hashes are not cross-bound"
+        )
     _reject_forbidden_keys(requests)
     _require_false_boundaries(bridge, "bridge")
 
@@ -1595,6 +2139,160 @@ def _validate_capture_provenance(
     expected_argv: Mapping[str, list[str]], terminal: Mapping[str, str],
 ) -> None:
     _require_exact(provenance, CAPTURE_PROVENANCE_FIELDS, "scheduler capture provenance")
+    observations = provenance["terminal_poll_observations"]
+    if (
+        not isinstance(observations, list)
+        or not observations
+        or len(observations) != provenance["terminal_poll_count"]
+        or len(observations) > TERMINAL_POLL_LIMIT
+    ):
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "terminal poll provenance count is invalid"
+        )
+    previous_time = -1
+    for index, observation in enumerate(observations, 1):
+        _require_exact(
+            observation,
+            {
+                "poll_index", "observed_at_monotonic_ns", "argv",
+                "row_count", "terminal",
+            },
+            "terminal poll observation",
+        )
+        timestamp = observation["observed_at_monotonic_ns"]
+        if (
+            observation["poll_index"] != index
+            or not isinstance(timestamp, str)
+            or UINT_RE.fullmatch(timestamp) is None
+            or int(timestamp) < previous_time
+            or (
+                previous_time >= 0
+                and int(timestamp) - previous_time
+                < TERMINAL_POLL_INTERVAL_SECONDS * 1_000_000_000
+            )
+            or observation["argv"] != expected_argv["terminal_sacct"]
+            or isinstance(observation["row_count"], bool)
+            or observation["row_count"] not in {0, 1}
+            or not isinstance(observation["terminal"], bool)
+            or (observation["terminal"] is True) != (index == len(observations))
+            or (index == len(observations) and observation["row_count"] != 1)
+        ):
+            raise FinalizationError(
+                "SCHEDULER_CAPTURE_FAILED", "terminal poll observation drift"
+            )
+        previous_time = int(timestamp)
+    terminal_monotonic = provenance["terminal_observed_monotonic_ns"]
+    if (
+        not isinstance(terminal_monotonic, str)
+        or UINT_RE.fullmatch(terminal_monotonic) is None
+        or int(terminal_monotonic) < previous_time
+    ):
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "terminal observation monotonic time drift"
+        )
+    terminal_utc = _parse_utc(
+        provenance["terminal_observed_at_utc"], "terminal observation UTC"
+    )
+    post_started_utc = _parse_utc(
+        provenance["post_job_scontrol_started_at_utc"],
+        "post-job scontrol start UTC",
+    )
+    post_utc = _parse_utc(
+        provenance["post_job_scontrol_completed_at_utc"],
+        "post-job scontrol completion UTC",
+    )
+    command_observations = provenance["capture_command_observations"]
+    expected_keys = [
+        "post_job_scontrol", "scheduler_config", "scheduler_partition",
+        "scheduler_node", "nonoverlap_sacct",
+    ]
+    if not isinstance(command_observations, list) or len(command_observations) != 5:
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "capture command timing count is invalid"
+        )
+    previous_completion = int(terminal_monotonic)
+    previous_utc = terminal_utc
+    for command, key in zip(command_observations, expected_keys):
+        _require_exact(
+            command,
+            {
+                "key", "argv", "started_at_monotonic_ns",
+                "started_at_utc", "completed_at_monotonic_ns",
+                "completed_at_utc", "duration_seconds",
+                "seconds_after_terminal_observation",
+                "post_terminal_deadline_remaining_seconds",
+                "completed_before_post_terminal_deadline",
+            },
+            "capture command observation",
+        )
+        started_raw = command["started_at_monotonic_ns"]
+        completed_raw = command["completed_at_monotonic_ns"]
+        if (
+            not isinstance(started_raw, str)
+            or UINT_RE.fullmatch(started_raw) is None
+            or not isinstance(completed_raw, str)
+            or UINT_RE.fullmatch(completed_raw) is None
+        ):
+            raise FinalizationError(
+                "SCHEDULER_CAPTURE_FAILED", "capture command monotonic time is invalid"
+            )
+        started_ns = int(started_raw)
+        completed_ns = int(completed_raw)
+        duration_ns = completed_ns - started_ns
+        elapsed_ns = completed_ns - int(terminal_monotonic)
+        remaining_ns = (
+            POST_TERMINAL_CAPTURE_DEADLINE_SECONDS * 1_000_000_000 - elapsed_ns
+        )
+        started_utc = _parse_utc(
+            command["started_at_utc"], f"{key} start UTC"
+        )
+        completed_utc = _parse_utc(
+            command["completed_at_utc"], f"{key} completion UTC"
+        )
+        if (
+            command["key"] != key
+            or command["argv"] != expected_argv[key]
+            or started_ns < previous_completion
+            or completed_ns < started_ns
+            or duration_ns > CAPTURE_COMMAND_TIMEOUT_SECONDS * 1_000_000_000
+            or elapsed_ns < 0
+            or remaining_ns < 0
+            or command["duration_seconds"] != _format_ns_seconds(duration_ns)
+            or command["seconds_after_terminal_observation"]
+            != _format_ns_seconds(elapsed_ns)
+            or command["post_terminal_deadline_remaining_seconds"]
+            != _format_ns_seconds(remaining_ns)
+            or command["completed_before_post_terminal_deadline"] is not True
+            or started_utc < previous_utc
+            or completed_utc < started_utc
+        ):
+            raise FinalizationError(
+                "SCHEDULER_CAPTURE_FAILED", "capture command timing/deadline drift"
+            )
+        previous_completion = completed_ns
+        previous_utc = completed_utc
+    first_command = command_observations[0]
+    first_start_latency_ns = (
+        int(first_command["started_at_monotonic_ns"]) - int(terminal_monotonic)
+    )
+    if (
+        first_start_latency_ns < 0
+        or first_start_latency_ns
+        > POST_JOB_SCONTROL_START_LATENCY_LIMIT_SECONDS * 1_000_000_000
+        or post_started_utc < terminal_utc
+        or post_utc < terminal_utc
+        or provenance["post_job_scontrol_started_at_utc"]
+        != first_command["started_at_utc"]
+        or provenance["post_job_scontrol_start_seconds_after_terminal_observation"]
+        != _format_ns_seconds(first_start_latency_ns)
+        or provenance["post_job_scontrol_completed_at_utc"]
+        != first_command["completed_at_utc"]
+        or provenance["post_job_scontrol_seconds_after_terminal_observation"]
+        != first_command["seconds_after_terminal_observation"]
+    ):
+        raise FinalizationError(
+            "SCHEDULER_CAPTURE_FAILED", "post-job scontrol timing is not first and bound"
+        )
     if (
         provenance["schema_version"]
         != "orion.p1.scienceagentbench.protected-rr1-scheduler-capture-provenance.v1"
@@ -1607,6 +2305,15 @@ def _validate_capture_provenance(
         or provenance["allocation_started_at"] != terminal["Start"]
         or provenance["allocation_ended_at"] != terminal["End"]
         or provenance["capture_argv"] != expected_argv
+        or provenance["terminal_poll_interval_seconds"] != TERMINAL_POLL_INTERVAL_SECONDS
+        or provenance["terminal_poll_limit"] != TERMINAL_POLL_LIMIT
+        or provenance["capture_command_timeout_seconds"] != CAPTURE_COMMAND_TIMEOUT_SECONDS
+        or provenance["post_terminal_capture_deadline_seconds"]
+        != POST_TERMINAL_CAPTURE_DEADLINE_SECONDS
+        or provenance["post_job_scontrol_start_latency_limit_seconds"]
+        != POST_JOB_SCONTROL_START_LATENCY_LIMIT_SECONDS
+        or provenance["partition_source"] != "INTERNAL_FROZEN_gpua40i"
+        or provenance["node_source"] != "DERIVED_FROM_UNIQUE_TERMINAL_SACCT_NODELIST"
         or provenance["credential_environment_read"] is not False
         or provenance["stderr_retained"] is not False
         or provenance["job_submitted"] is not False
@@ -1621,10 +2328,28 @@ def _validate_capture_provenance(
         raise FinalizationError("SCHEDULER_CAPTURE_FAILED", "scheduler capture raw hash set mismatch")
 
 
-def _load_evidence(evidence_root: Path, adapter: ModuleType) -> tuple[dict[str, bytes], bool]:
+def _load_evidence(
+    evidence_root: Path, capture_root: Path, adapter: ModuleType
+) -> tuple[dict[str, bytes], bool]:
+    del adapter
     root_fd = _open_directory(evidence_root, "evidence root")
-    attempt_fd = runtime_fd = None
+    capture_fd = attempt_fd = runtime_fd = None
     try:
+        capture_fd = _open_directory(capture_root, "capture root")
+        evidence_identity = os.fstat(root_fd)
+        capture_identity = os.fstat(capture_fd)
+        if (evidence_identity.st_dev, evidence_identity.st_ino) == (
+            capture_identity.st_dev, capture_identity.st_ino
+        ):
+            raise FinalizationError(
+                "INPUT_SET_INVALID",
+                "evidence and capture roots resolve to the same held directory",
+            )
+        if _entry_exists(capture_fd, "SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json"):
+            raise FinalizationError(
+                "SCHEDULER_CAPTURE_FAILED",
+                "capture root contains only a typed partial-capture failure",
+            )
         attempt_fd = _open_child_directory(root_fd, "attempt")
         runtime_fd = _open_child_directory(root_fd, "runtime-inputs")
         present_success = [_entry_exists(attempt_fd, name) for name in SUCCESS_PAIR]
@@ -1634,8 +2359,16 @@ def _load_evidence(evidence_root: Path, adapter: ModuleType) -> tuple[dict[str, 
         if not (success_pair ^ failure_pair):
             raise FinalizationError("INPUT_SET_INVALID", "success and failure attempt pairs must be mutually exclusive and complete")
         payloads: dict[str, bytes] = {}
-        for name in ROOT_COMMON:
+        for name in EVIDENCE_ROOT_COMMON:
             payloads[name] = _read_held(root_fd, name, name)
+        for name in CAPTURE_ROOT_COMMON:
+            payloads[name] = _read_held(
+                capture_fd, name, name, allowed_modes=frozenset({0o400})
+            )
+        if _entry_exists(root_fd, "SCHEDULER_EXPORT_V1.jsonl"):
+            payloads["SCHEDULER_EXPORT_V1.jsonl"] = _read_held(
+                root_fd, "SCHEDULER_EXPORT_V1.jsonl", "optional scheduler export assertion"
+            )
         for name in ATTEMPT_COMMON:
             payloads[f"attempt/{name}"] = _read_held(attempt_fd, name, name)
         for name in SUCCESS_PAIR if success_pair else FAILURE_PAIR:
@@ -1647,11 +2380,21 @@ def _load_evidence(evidence_root: Path, adapter: ModuleType) -> tuple[dict[str, 
             os.close(runtime_fd)
         if attempt_fd is not None:
             os.close(attempt_fd)
+        if capture_fd is not None:
+            os.close(capture_fd)
         os.close(root_fd)
 
 
-def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: ModuleType) -> dict[str, Any]:
-    hashes = {name: sha256_bytes(payload) for name, payload in payloads.items()}
+def _validate_evidence(
+    payloads: dict[str, bytes], success_pair: bool, adapter: ModuleType
+) -> tuple[dict[str, Any], bytes]:
+    provided_export_payload = payloads.get("SCHEDULER_EXPORT_V1.jsonl")
+    source_hashes = {
+        name: sha256_bytes(payload)
+        for name, payload in payloads.items()
+        if name != "SCHEDULER_EXPORT_V1.jsonl"
+    }
+    hashes = dict(source_hashes)
     plan = strict_json(payloads["runtime-inputs/RUN_PLAN.json"], "full Runner V2 plan", adapter)
     _validate_plan(plan, adapter)
     stage = strict_json(payloads["STAGED_RUNTIME_INPUT_V1.json"], "runtime stage", adapter)
@@ -1676,17 +2419,10 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
     if in_job["JobId"] != identity["job_id"] or in_job["JobState"] != "RUNNING":
         raise FinalizationError("CROSS_BINDING_MISMATCH", "in-job scontrol job identity/state mismatch")
 
-    export = parse_scheduler_export(payloads["SCHEDULER_EXPORT_V1.jsonl"], adapter)
     capture_provenance = strict_json(
         payloads["SCHEDULER_CAPTURE_PROVENANCE_V1.json"],
         "scheduler capture provenance", adapter,
     )
-    source_hashes = {name: digest for name, digest in hashes.items() if name != "SCHEDULER_EXPORT_V1.jsonl"}
-    if export["source_sha256"] != source_hashes:
-        raise FinalizationError("CROSS_BINDING_MISMATCH", "scheduler export source hash set mismatch")
-    if export["tuple_identity"] != FIXED_TUPLE or export["slurm_job_identity"] != identity or export["in_job_snapshot_sha256"] != in_job_sha:
-        raise FinalizationError("CROSS_BINDING_MISMATCH", "scheduler export tuple/in-job identity mismatch")
-    _require_false_boundaries(export, "scheduler export")
 
     if not success_pair:
         sidecar = strict_json(payloads["attempt/ATTEMPT_CAPTURE_CANNOT_CHECK_V1.json"], "attempt failure sidecar", adapter)
@@ -1705,7 +2441,7 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
     bridge = strict_json(payloads["attempt/DIRECT_ROUTE_BRIDGE_BINDING_V1.json"], "direct-route bridge", adapter)
     cleanup = strict_json(payloads["SERVER_CLEANUP_V1.json"], "server cleanup", adapter)
     gpu_record = strict_json(payloads["GPU_ALLOCATION_IDENTITY_V1.json"], "one-A40 identity", adapter)
-    _validate_capture(capture, adapter, identity, in_job_sha)
+    _validate_capture(capture, adapter, plan, identity, in_job_sha)
     dynamic_core = _validate_dynamic(dynamic)
     del dynamic_core
     _validate_bridge(
@@ -1714,6 +2450,7 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
         hashes["PROCESS_ATTESTATION_V1.json"],
         hashes["attempt/DYNAMIC_RR1_PRETOKENIZE_BINDING_V1.json"],
         stage["run_plan_binding_extension"],
+        stage["prompt_commitments_by_phase"]["RR_PHASE0"]["rendered_prompt_sha256"],
     )
     _validate_cleanup(cleanup)
     gpu = _validate_gpu(gpu_record, identity["job_id"])
@@ -1729,7 +2466,11 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
     )
     if config["node"]["NodeName"] != terminal["NodeList"]:
         raise FinalizationError("CROSS_BINDING_MISMATCH", "node snapshot and allocation node mismatch")
-    if terminal["JobIDRaw"] != identity["job_id"] or post["JobId"] != identity["job_id"]:
+    if (
+        terminal["JobIDRaw"] != identity["job_id"]
+        or post["JobId"] != identity["job_id"]
+        or in_job["NodeList"] != terminal["NodeList"]
+    ):
         raise FinalizationError("CROSS_BINDING_MISMATCH", "terminal scheduler identity mismatch")
     if (
         terminal["State"] != post["JobState"]
@@ -1746,9 +2487,9 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
         or terminal["Account"] != "lu2026-2-51"
         or terminal["NNodes"] != "1"
         or terminal["NCPUS"] != "8"
-        or terminal["NTasks"] != "1"
+        or terminal["NTasks"] not in {"", "1"}
         or terminal["ReqCPUS"] != "8"
-        or terminal["ReqMem"] != "64Gn"
+        or terminal["ReqMem"] != "64G"
         or terminal["TimelimitRaw"] != "60"
         or terminal["Constraints"] != ""
         or terminal_req.get("gres/gpu:a40") != "1"
@@ -1773,21 +2514,58 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
     gres_index = gres_match.group(1)
     if gpu["slurm_job_gpus"] != gres_index or gpu["slurm_step_gpus"] != gres_index:
         raise FinalizationError("CROSS_BINDING_MISMATCH", "SLURM job/step GPU index and scontrol GresDetail disagree")
-    allocation = export["gpu_allocations"]
-    if not isinstance(allocation, list) or len(allocation) != 1 or not isinstance(allocation[0], dict):
-        raise FinalizationError("EXCLUSIVITY_CANNOT_CHECK", "scheduler export must bind exactly one GPU GRES")
     expected_allocation = {
         "node_name": terminal["NodeList"], "gres_name": "gpu", "gres_type": "a40",
         "gres_index": gres_index, "gpu_uuid": gpu["gpu_uuid"],
     }
-    if allocation[0] != expected_allocation:
-        raise FinalizationError("CROSS_BINDING_MISMATCH", "scheduler GRES and in-job A40 UUID binding mismatch")
     expected_argv = _materialized_argv(
         identity["job_id"], terminal["Partition"], terminal["Start"], terminal["End"], terminal["NodeList"]
     )
     _validate_capture_provenance(capture_provenance, hashes, expected_argv, terminal)
-    if export["capture_argv"] != expected_argv or export["capture_argv"] != capture_provenance["capture_argv"]:
-        raise FinalizationError("ARGV_INVALID", "scheduler export capture argv mismatch")
+    export = {
+        "schema_version": "orion.p1.scienceagentbench.protected-rr1-one-tuple-scheduler-export.v1",
+        "authority": "CANONICAL_SCHEDULER_AND_IN_JOB_METADATA_BINDING_ONLY",
+        "status": "SCHEDULER_CONFIRMED_ONE_TUPLE_TERMINAL_EXCLUSIVE_GRES",
+        "tuple_identity": dict(FIXED_TUPLE),
+        "slurm_job_identity": identity,
+        "capture_argv": expected_argv,
+        "source_sha256": source_hashes,
+        "in_job_snapshot_sha256": in_job_sha,
+        "scheduler_record_source": "TERMINAL_SACCT__POST_JOB_SCONTROL_DD__CONFIG_PARTITION_NODE__NONOVERLAP_SACCT__IN_JOB_GPU_IDENTITY",
+        "scheduler_job_state": "COMPLETED",
+        "scheduler_exit_code": "0:0",
+        "allocation_started_at": terminal["Start"],
+        "allocation_ended_at": terminal["End"],
+        "node_name": terminal["NodeList"],
+        "partition": "gpua40i",
+        "account": "lu2026-2-51",
+        "allocated_cpu_count": "8",
+        "allocated_memory": "64G",
+        "timelimit_raw_minutes": "60",
+        "constraints": "",
+        "allocated_gpu_count": "1",
+        "gpu_allocations": [expected_allocation],
+        "exclusive_gres_status": "SCHEDULER_CONFIRMED_CONSUMABLE_EXCLUSIVE_GRES",
+        "attempt_scope_status": "ONE_TASK_ARM_ATTEMPT_ONLY_CONFIRMED",
+        "nonoverlap_query_status": "NODE_WIDE_BOUNDED_A40_GRES_QUERY_NO_OVERLAP_CONFIRMED",
+        "nonoverlap_conflict_count": 0,
+        "whole_node_exclusivity_claimed": False,
+        "protected_bodies_retained": False,
+        "official_evaluator_invoked": False,
+        "official_outcomes_opened": False,
+        "runner_v2_population_ledger_status": "NOT_FINALIZED_918_TUPLES",
+        "production_admissibility": "CANNOT_CHECK",
+        "scientific_authority_delta": "NONE",
+    }
+    export_payload = canonical_bytes(export) + b"\n"
+    if provided_export_payload is not None:
+        provided_export = parse_scheduler_export(provided_export_payload, adapter)
+        if provided_export != export or provided_export_payload != export_payload:
+            raise FinalizationError(
+                "CROSS_BINDING_MISMATCH",
+                "optional scheduler export assertion differs from deterministic export",
+            )
+    hashes["SCHEDULER_EXPORT_V1.jsonl"] = sha256_bytes(export_payload)
     exact_export = {
         "schema_version": "orion.p1.scienceagentbench.protected-rr1-one-tuple-scheduler-export.v1",
         "authority": "CANONICAL_SCHEDULER_AND_IN_JOB_METADATA_BINDING_ONLY",
@@ -1819,7 +2597,7 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
         "status": SUCCESS_STATUS,
         "tuple_identity": dict(FIXED_TUPLE),
         "slurm_job_identity": identity,
-        "input_artifact_sha256": hashes,
+        "input_artifact_sha256": source_hashes,
         "finalizer_contract_sha256": CONTRACT_SHA256,
         "finalizer_schema_sha256": SCHEMA_SHA256,
         "finalizer_module_sha256": adapter._finalizer_module_raw_sha256,
@@ -1873,7 +2651,7 @@ def _validate_evidence(payloads: dict[str, bytes], success_pair: bool, adapter: 
     schema = strict_json(adapter._finalizer_schema_bytes, "finalizer output schema", adapter)
     if set(receipt) != set(schema["success"]["required_fields"]):
         raise FinalizationError("OUTPUT_INVALID", "success receipt fields drift from frozen schema")
-    return receipt
+    return receipt, export_payload
 
 
 def _cannot_receipt(exc: FinalizationError) -> dict[str, Any]:
@@ -1913,20 +2691,49 @@ def _cannot_receipt(exc: FinalizationError) -> dict[str, Any]:
     return receipt
 
 
-def finalize(evidence_root: Path, output_root: Path) -> tuple[int, dict[str, Any]]:
-    if not evidence_root.is_absolute() or not output_root.is_absolute() or evidence_root == output_root:
-        raise FinalizationError("ARGV_INVALID", "finalize roots must be distinct absolute paths")
+def finalize(
+    evidence_root: Path, capture_root: Path, output_root: Path
+) -> tuple[int, dict[str, Any]]:
+    if (
+        not evidence_root.is_absolute()
+        or not capture_root.is_absolute()
+        or not output_root.is_absolute()
+        or len({evidence_root, capture_root, output_root}) != 3
+    ):
+        raise FinalizationError(
+            "ARGV_INVALID", "finalize roots must be three distinct absolute paths"
+        )
     output_fd = _create_output_root(output_root)
     try:
         try:
             adapter = load_exact_adapter()
-            payloads, success_pair = _load_evidence(evidence_root, adapter)
-            receipt = _validate_evidence(payloads, success_pair, adapter)
-        except FinalizationError as exc:
+            payloads, success_pair = _load_evidence(
+                evidence_root, capture_root, adapter
+            )
+            receipt, export_payload = _validate_evidence(
+                payloads, success_pair, adapter
+            )
+        except Exception as caught:
+            exc = _typed_unexpected_failure(
+                caught,
+                "FINALIZER_RUNTIME_FAILED",
+                "unexpected finalizer validation runtime failure",
+            )
             receipt = _cannot_receipt(exc)
             _write_new_json(output_fd, CANNOT_NAME, receipt)
             return 1, receipt
-        _write_new_json(output_fd, SUCCESS_NAME, receipt)
+        _, export_identity = _write_new_bytes(
+            output_fd, "SCHEDULER_EXPORT_V1.jsonl", export_payload
+        )
+        try:
+            _write_new_json(output_fd, SUCCESS_NAME, receipt)
+        except FinalizationError:
+            _rollback_new_output_root(
+                output_root,
+                output_fd,
+                {"SCHEDULER_EXPORT_V1.jsonl": export_identity},
+            )
+            raise
         return 0, receipt
     finally:
         os.close(output_fd)
@@ -1934,14 +2741,18 @@ def finalize(evidence_root: Path, output_root: Path) -> tuple[int, dict[str, Any
 
 def main(argv: Sequence[str] | None = None) -> int:
     actual = list(sys.argv[1:] if argv is None else argv)
-    if actual and actual[0] == "capture":
+    if actual and actual[0] == "watch-capture":
         try:
             capture_args = parse_capture_cli(actual)
-            capture_scheduler(
-                capture_args.job_id, capture_args.partition, capture_args.node,
-                capture_args.output_root,
+            watch_capture_scheduler(
+                capture_args.job_id, capture_args.output_root,
             )
-        except FinalizationError as exc:
+        except Exception as caught:
+            exc = _typed_unexpected_failure(
+                caught,
+                "SCHEDULER_CAPTURE_RUNTIME_FAILED",
+                "unexpected scheduler capture entrypoint failure",
+            )
             digest = sha256_bytes(f"{type(exc).__name__}:{exc}".encode("utf-8", errors="replace"))
             print(
                 "P1_SAB_PROTECTED_RR1_POST_JOB_SCHEDULER_CAPTURE_CANNOT_CHECK "
@@ -1953,11 +2764,38 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     try:
         args = parse_cli(actual)
-    except FinalizationError as exc:
+    except Exception as caught:
+        exc = _typed_unexpected_failure(
+            caught,
+            "FINALIZER_RUNTIME_FAILED",
+            "unexpected finalizer entrypoint failure",
+        )
         digest = sha256_bytes(f"{type(exc).__name__}:{exc}".encode("utf-8", errors="replace"))
-        print(f"P1_SAB_PROTECTED_RR1_ONE_TUPLE_FINALIZER_ARGV_CANNOT_CHECK detail_sha256={digest}", file=sys.stderr)
+        print(
+            "P1_SAB_PROTECTED_RR1_ONE_TUPLE_FINALIZER_ARGV_CANNOT_CHECK "
+            f"failure_code={exc.code} detail_sha256={digest}",
+            file=sys.stderr,
+        )
         return 2
-    code, receipt = finalize(args.evidence_root, args.output_root)
+    try:
+        code, receipt = finalize(
+            args.evidence_root, args.capture_root, args.output_root
+        )
+    except Exception as caught:
+        exc = _typed_unexpected_failure(
+            caught,
+            "FINALIZER_RUNTIME_FAILED",
+            "unexpected finalizer entrypoint failure",
+        )
+        digest = sha256_bytes(
+            f"{type(exc).__name__}:{exc}".encode("utf-8", errors="replace")
+        )
+        print(
+            "P1_SAB_PROTECTED_RR1_ONE_TUPLE_FINALIZER_ARGV_CANNOT_CHECK "
+            f"failure_code={exc.code} detail_sha256={digest}",
+            file=sys.stderr,
+        )
+        return 2
     if code == 0:
         print("P1_SAB_PROTECTED_RR1_ONE_TUPLE_POST_JOB_FINALIZATION_PASS")
     else:

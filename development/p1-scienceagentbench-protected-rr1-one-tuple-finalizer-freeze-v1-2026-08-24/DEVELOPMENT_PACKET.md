@@ -12,9 +12,11 @@ ScienceAgentBench Runner V2 tuple:
 
 It was rebased on `origin/main` commit
 `eba4a67e8607cdef96a2bb038d685a9a5d548599`. The implementation and its
-hostile suite were exercised only with invented metadata. No LUNARC job was
-submitted, no model or evaluator was invoked, no protected packet body was
-opened, and no official outcome was opened while producing this lane.
+hostile suite were exercised only with invented metadata. Privacy-safe parser
+shapes were repaired after fresh read-only LUNARC review probes on 2026-08-24;
+those probes submitted no job and opened no protected body, credential,
+evaluator material, or official outcome. No model or evaluator was invoked
+while producing this lane.
 
 The strongest possible success receipt is only
 `PASS_ONE_TUPLE_POST_JOB_METADATA_FINALIZATION`. It is not a Runner V2
@@ -34,7 +36,8 @@ with all of the following properties:
 - account `lu2026-2-51`
 - partition `gpua40i`
 - `gpu:a40:1`
-- 8 CPUs, 64 GiB, one node, one task
+- 8 CPUs, 64 GiB, one node, one task (`scontrol NumTasks=1`; terminal
+  `sacct NTasks` may be empty or `1` and `ReqMem` is raw `64G`)
 - 60-minute time limit
 - no constraint
 - terminal `COMPLETED`, `ExitCode=0:0`, and `DerivedExitCode=0:0`
@@ -55,13 +58,13 @@ Run from this directory or invoke the module by an absolute path. Both output
 parents must already be owned by the current user and mode `0700`; each output
 root must not exist.
 
-Read-only scheduler capture:
+Bounded read-only terminal watcher and scheduler capture. Start this immediately
+after the job ID is issued; the partition is frozen internally and the unique
+node is derived from the terminal allocation row:
 
 ```text
-python3 protected_rr1_one_tuple_finalizer_v1.py capture \
+python3 protected_rr1_one_tuple_finalizer_v1.py watch-capture \
   --job-id <SLURM_JOB_ID> \
-  --partition gpua40i \
-  --node <NODE> \
   --output-root <ABSOLUTE_NEW_CAPTURE_ROOT>
 ```
 
@@ -69,19 +72,44 @@ Private evidence finalization:
 
 ```text
 python3 protected_rr1_one_tuple_finalizer_v1.py finalize \
-  --evidence-root <ABSOLUTE_PRIVATE_EVIDENCE_ROOT> \
+  --evidence-root <ABSOLUTE_PRIVATE_RUNTIME_EVIDENCE_ROOT> \
+  --capture-root <ABSOLUTE_PRIVATE_CAPTURE_ROOT> \
   --output-root <ABSOLUTE_NEW_FINALIZATION_ROOT>
 ```
 
-The capture route executes only the six exact read-only `sacct`/`scontrol`
-argument vectors frozen in `FINALIZER_CONTRACT_V1.json`, using a fixed
-credential-free environment. There is no submission command, shell route,
-network route, or external API route. A failed capture retains only a SHA-256
-of stderr in its terminal diagnostic and rolls back the newly created capture
-root when its identity is still safe.
+`watch-capture` polls only the exact allocation-level 24-field `sacct` query at
+five-second intervals, with a hard limit of 1,440 polls. Nonterminal blank and
+`Unknown` scheduling fields are accepted only by the narrow poll identity/state
+parser; a terminal row receives the full strict parser. The operator does not
+supply partition or node. On one unique terminal row the module binds internal
+partition `gpua40i`, derives one canonical `NodeList`, captures `scontrol show
+job -dd` first and immediately, then runs the remaining four exact read-only
+queries. Every poll argv/count/monotonic time is retained in body-free
+provenance. There is no submission, shell, network, or external API route.
 
-The finalize route never executes scheduler commands. It only parses already
-retained private metadata and emits one new canonical JSON receipt.
+The unique terminal observation is bound to exact UTC microseconds and an
+integer monotonic-nanosecond timestamp. The first post-job `scontrol` subprocess
+must start no more than two monotonic seconds later. Its subprocess launch
+occurs **before** any `O_EXCL` write or `fsync` of the terminal `sacct` bytes;
+after that launch, any failure still causes those already-held terminal bytes
+to be retained and sealed. Every post-terminal command has both a subprocess
+timeout and a validated monotonic-duration ceiling of 20 seconds. Per-command
+start/completion UTC, start/completion monotonic time, duration, seconds after
+terminal observation, and remaining deadline are recorded and arithmetically
+validated. The whole five-command sequence must complete within 240 seconds,
+leaving a fixed 60-second margin under the live `MinJobAge=300` setting.
+
+A later capture failure does not discard already unique terminal/controller
+bytes. The new mode-`0700` root is retained with only safely created raw files
+and `SCHEDULER_CAPTURE_CANNOT_CHECK_V1.json`; every retained file is sealed
+mode `0400`, and stderr/private details are represented only by SHA-256.
+
+The finalize route never executes scheduler commands. It parses the separate
+capture and runtime roots, deterministically constructs the canonical
+`SCHEDULER_EXPORT_V1.jsonl` in memory, and writes that export plus the receipt
+with verified `O_EXCL` output custody. A pre-existing export in the runtime
+root is optional and is treated only as an assertion: it must byte-equal the
+deterministic record. Operators never hand-author the export or its source map.
 
 ## Private evidence layout
 
@@ -91,7 +119,12 @@ and mode `0400` or `0600`. Symlinks, hardlinks, case aliases, duplicate fields,
 CRLF, noncanonical JSON, file swaps, and group/world-readable evidence fail
 closed.
 
-Root inputs:
+The finalize CLI and direct API require three distinct path values. The held
+runtime-evidence and capture directory descriptors must also resolve to
+different `(st_dev, st_ino)` identities; lexical aliases cannot satisfy this
+separation requirement.
+
+Capture-root success inputs (all sealed mode `0400` by `watch-capture`):
 
 ```text
 POST_JOB_SACCT_V1.txt
@@ -100,8 +133,12 @@ POST_JOB_SCONTROL_V1.txt
 SCHEDULER_CONFIG_V1.txt
 SCHEDULER_PARTITION_V1.txt
 SCHEDULER_NODE_V1.txt
-SCHEDULER_EXPORT_V1.jsonl
 SCHEDULER_CAPTURE_PROVENANCE_V1.json
+```
+
+Runtime evidence-root inputs:
+
+```text
 GPU_ALLOCATION_IDENTITY_V1.json
 SERVER_CLEANUP_V1.json
 STAGED_RUNTIME_INPUT_V1.json
@@ -132,9 +169,8 @@ ATTEMPT_CAPTURE_CANNOT_CHECK_V1.json
 102-task, three-arm, three-attempt Runner V2 plan (918 tuples). The selection
 of task `1` / `RR` / attempt `1` occurs only after the full plan validates.
 Other private runtime packet files may coexist there, but the finalizer never
-opens them. The scheduler export is a private upstream input; the capture
-entrypoint does not synthesize it. Its exact canonical record and complete
-source-hash map must be assembled by the evidence custodian before finalizing.
+opens them. An optional `SCHEDULER_EXPORT_V1.jsonl` assertion may coexist at
+the runtime root; it is not required and cannot override generated bytes.
 
 ## Cross-bindings required for success
 
@@ -148,8 +184,18 @@ Success requires all of these chains to agree:
    hash, bridge binding, and cleanup evidence;
 4. terminal `sacct`, post-job `scontrol -dd`, scheduler config, partition,
    node, in-job GPU UUID/index identity, and conservative non-overlap query;
-5. exact capture argv, capture provenance raw-file hashes, scheduler export
-   raw record, and the complete opened-evidence source-hash map.
+5. exact repeated poll/capture argv, capture provenance raw-file hashes,
+   UTC/monotonic timing order and arithmetic, two-second first-query latency,
+   20-second per-command duration, 240-second sequence deadline,
+   deterministic scheduler export, and the complete opened-evidence source-hash
+   map.
+
+The scheduler parsers match the fresh Slurm 23.11.3 read-only shapes: config
+starts with exactly `Configuration data as of <seconds timestamp>`;
+`TaskPlugin` contains both `task/cgroup` and `task/affinity`; partition
+`AllowAccounts` is `ALL` or a canonical list containing `lu2026-2-51`; node
+`-o` values may contain spaces (including `OS`); and `parsable2` rows contain
+exactly 24 fields with no trailing `|`.
 
 The truthful success fields distinguish actions by this finalizer from the
 metadata it observes: generation was not invoked by the finalizer, while a
@@ -166,9 +212,11 @@ the otherwise circular module/contract binding without weakening any other
 byte.
 
 Output directories are created with exclusive semantics and exact mode
-`0700`. Receipt files use `O_EXCL`, exact mode `0600`, `fsync`, descriptor
-reread, SHA-256 verification, and named-inode recheck. Rollback unlinks only a
-new file or directory whose identity remains the one created by the module.
+`0700`. Finalizer receipt/export files use `O_EXCL`, exact mode `0600`,
+`fsync`, descriptor reread, SHA-256 verification, and named-inode recheck.
+Capture files use the same verified creation path before their exact mode
+`0400` seal. Held input reads recheck regular-file type, owner, mode, link
+count, identity, size, and modification time after the descriptor read.
 
 ## Synthetic verification
 
