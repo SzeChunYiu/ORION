@@ -934,6 +934,28 @@
             "success_condition": "The V2 selector binds all 120 live corruption opportunities, zero gold-scored unsafe reuses, and the finite-world external boundary.",
             "failure_terminal": "P13B_AUTHENTICATED_CORRUPTION_AUTHORITY_INVALID"
           }
+        },
+        {
+          "item_id": "P13.C.COMPOSED.SAFETY.EFFICACY.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P13C.COMPOSED_SAFETY_EFFICACY.V1",
+          "disposition": "The composed successor freezes and executes the conjunction neither parent established: the P13B authenticated-certificate machinery (imported unchanged) transplanted onto the P13A randomized efficacy benchmark (seed 2026082113, 24 families x 512 = 12,288 episodes) over a six-form certificate class strictly larger than either parent's, with all four corruption worlds interleaved at a frozen 1-in-5 schedule (2,457 corrupted episodes, every certificate rejected). The authenticated arm made zero unsafe reuses overall and zero unnecessary reopens on the valid panel, is noninferior in verified correctness to both always-raw and the unverified arm (0.97933 vs 0.95247 / 0.98063), and costs 0.539 times always-raw overall (0.498 on the parent-form subpanel), while the unverified arm commits 330 unsafe reuses and 123 adversary-induced unnecessary reopens.",
+          "scope": "Registered composed finite world: seeded randomized families, six-form certificate class, four-world corruption register at a frozen schedule, locally authored gold reconciling the P13A truth model with the P13B subset rule. No external validation, real-agent safety, population generalization, certificate-authority independence, or deployment authority.",
+          "authority_artifact": "papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_RESULT_RECEIPT_V1.md",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md", "availability": "EXISTING_PR", "ref": "gap/p13-composed"},
+            {"path": "papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py", "availability": "EXISTING_PR", "ref": "gap/p13-composed"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_RESULT_V1.json", "availability": "EXISTING_PR", "ref": "gap/p13-composed"},
+            {"path": "papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_RESULT_RECEIPT_V1.md", "availability": "EXISTING_PR", "ref": "gap/p13-composed"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py",
+            "success_condition": "Terminal P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED with all eleven frozen gates green and byte-identical two-subprocess replay.",
+            "failure_terminal": "P13C_COMPOSED_AUTHORITY_INVALID"
+          }
         }
       ]
     },
