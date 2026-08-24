@@ -4,7 +4,7 @@
 **Issues:** #471, #664, #667  
 **Evidence cut:** 2026-08-22
 
-`P11_ACTIVE_CLAIM_AUTHORITY_V1.json` is the sole active lifecycle record. It binds the P11I positive `r=7` leaf and retains P11H only as the disjoint historical `r=3` boundary.
+`P11_ACTIVE_CLAIM_AUTHORITY_V2.json` is the sole active lifecycle record. It binds the P11I positive `r=7` leaf, retains P11H as the disjoint historical `r=3` boundary, and integrates the adverse ten-responsibility digits study as a binding responsibility-conditioned boundary.
 
 | Claim | Status | Evidence | Maximum authorized wording |
 |---|---|---|---|
@@ -41,6 +41,8 @@
 | the compiled-state low-sample advantage replicates at `r=7` against the pooled universal decoder | **SUPPORTED / WIDE REPLICATION** | P11I: nine fresh seed×geometry units, prospectively frozen | every unit passes non-compensatorily; pooled best below `n=256` 0.8489–0.9421, `delta64` +0.2463–+0.3543, compiled@64 0.9690–0.9981 |
 | the P11I positive comes from an inert pooled attack | **FALSE / MATCHED CONTROL** | nine matched `r=3` controls | the same pool reaches 1.0000 below `n=256` in every control |
 | P11I two fresh subprocess scientific payloads are byte-identical | **SUPPORTED / REPRODUCIBLE** | P11I terminal path | both SHA `b50ace30…e0ce` |
+| a 16-of-64 learned compilation is family-scale quality-supported across ten digit responsibilities | **NEGATIVE / FALSE** | `P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET`: LINEAR 3/10, RBF 5/10, KNN 5/10 versus frozen >=8/10; primary/independent/binding receipts content-bound in active authority V2 | never generalize the single-responsibility compiler result to a ten-responsibility family; retain raw state unless `U<=4` and every member is individually compile-tolerant |
+| the query-family resource/phase identities survive the adverse quality result | **SUPPORTED / EXACT BOUNDARY** | all 70 rows agree in both implementations; memory crossover `U<=4`, LINEAR break-even `1917..19169`, nonzero future-query specialization cost | resource identities do not rescue the failed family-scale quality gate |
 | future-query option coverage follows `r/N`, `1-(1-r/N)^K` and coupon-style distinct-demand law in frozen model | SUPPORTED / EXACT | optionality theorem/receipt | exact specified workload model |
 | state compilation universally dominates universal state | NOT AUTHORIZED | sparse hostile result + optionality regimes | forbidden |
 | a smaller real reasoner with compiled state beats a larger universal-state reasoner | OPEN | real-system gate | not inferred from controlled learner |

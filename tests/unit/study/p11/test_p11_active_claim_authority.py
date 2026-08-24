@@ -10,15 +10,18 @@ from orion.study.p11.active_claim_authority import (
     P11H_TERMINAL,
     P11I_TERMINAL,
     build_active_claim_authority,
+    build_active_claim_authority_v1,
 )
 
 ROOT = Path(__file__).resolve().parents[4]
 PAPER = ROOT / "papers/paper-11-state-as-computation"
-AUTHORITY = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V1.json"
+AUTHORITY = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V2.json"
+AUTHORITY_V1 = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V1.json"
 
 
 def test_committed_authority_is_rebuilt_from_bound_evidence() -> None:
     assert json.loads(AUTHORITY.read_text(encoding="utf-8")) == build_active_claim_authority()
+    assert json.loads(AUTHORITY_V1.read_text(encoding="utf-8")) == build_active_claim_authority_v1()
 
 
 def test_active_leaf_is_positive_and_width_conditioned() -> None:
@@ -51,6 +54,10 @@ def test_frozen_protocol_and_results_are_content_bound() -> None:
         "p11i_result",
         "p11i_runner",
         "p11i_unit_amendment",
+        "query_family_binding",
+        "query_family_independent",
+        "query_family_primary",
+        "query_family_receipt",
         "p11i_revalidation_runner",
         "p11i_revalidation_receipt",
     }
@@ -60,6 +67,6 @@ def test_frozen_protocol_and_results_are_content_bound() -> None:
 def test_current_surfaces_use_the_correct_replication_language() -> None:
     for relative in ("README.md", "CLAIM_EVIDENCE_LEDGER.md", "MANUSCRIPT.md"):
         text = (PAPER / relative).read_text(encoding="utf-8")
-        assert "P11_ACTIVE_CLAIM_AUTHORITY_V1.json" in text, relative
+        assert "P11_ACTIVE_CLAIM_AUTHORITY_V2.json" in text, relative
         assert "nine independent `r=7`" not in text, relative
         assert "nine independent high-width units" not in text, relative
