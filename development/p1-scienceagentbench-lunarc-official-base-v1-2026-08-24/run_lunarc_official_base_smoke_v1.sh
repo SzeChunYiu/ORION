@@ -141,11 +141,14 @@ SOCKET_ROOT_REMOVED=false
 
 FINAL_RC=0
 python3 - "${RECEIPT}" "${DRIVER_RC}" "${JOB_ROOT_REMOVED}" \
-  "${SOCKET_ROOT_REMOVED}" <<'PY' || FINAL_RC=$?
+  "${SOCKET_ROOT_REMOVED}" "${SCRIPT_ROOT}" <<'PY' || FINAL_RC=$?
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+sys.path.insert(0, sys.argv[5])
+from cleanup_gate_v1 import batch_cleanup_passed
 
 path = Path(sys.argv[1])
 driver_rc = int(sys.argv[2])
@@ -156,11 +159,11 @@ data["cleanup"]["node_local_job_root_removal_pending"] = False
 data["cleanup"]["node_local_job_root_removed"] = job_root_removed
 data["cleanup"]["runtime_socket_root_removed"] = socket_root_removed
 data["cleanup"]["finalized_at_utc"] = datetime.now(timezone.utc).isoformat()
-passed = (
-    driver_rc == 0
-    and data["status"] == "PASS"
-    and job_root_removed
-    and socket_root_removed
+passed = batch_cleanup_passed(
+    data,
+    driver_rc=driver_rc,
+    job_root_removed=job_root_removed,
+    socket_root_removed=socket_root_removed,
 )
 data["status"] = "PASS" if passed else "FAIL"
 data["terminal"] = (
@@ -192,6 +195,7 @@ sha256sum \
   "${SCRIPT_ROOT}/singlemap_owner_command_v1.pl" \
   "${SCRIPT_ROOT}/singlemap_adduser_v1.sh" \
   "${SCRIPT_ROOT}/docker_sdk_owner_normalization_v1.py" \
+  "${SCRIPT_ROOT}/cleanup_gate_v1.py" \
   "${SCRIPT_ROOT}/official_base_docker_sdk_smoke_v1.py" \
   "${SCRIPT_ROOT}/run_lunarc_official_base_smoke_v1.sh" \
   "${SCRIPT_ROOT}/REMOTE_INPUT_SHA256SUMS" \

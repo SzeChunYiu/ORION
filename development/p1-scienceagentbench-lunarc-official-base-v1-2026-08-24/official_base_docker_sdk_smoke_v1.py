@@ -24,6 +24,7 @@ from typing import Any, Iterable
 
 import docker
 
+from cleanup_gate_v1 import driver_cleanup_passed
 from docker_sdk_owner_normalization_v1 import install as install_owner_normalization
 
 
@@ -168,6 +169,16 @@ def main() -> int:
     runtime_status = "FAIL"
     error_type = None
     error_message = None
+    cleanup_errors: list[dict[str, str]] = []
+
+    def record_cleanup_error(operation: str, exc: Exception) -> None:
+        cleanup_errors.append(
+            {
+                "operation": operation,
+                "type": type(exc).__name__,
+                "message": bounded(exc),
+            }
+        )
 
     credential_presence = {name: bool(os.environ.get(name)) for name in CREDENTIAL_NAMES}
     if any(credential_presence.values()):
@@ -309,70 +320,86 @@ def main() -> int:
                 if adapter_probe_container_id:
                     try:
                         client.containers.get(adapter_probe_container_id).remove(force=True)
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        record_cleanup_error("remove_adapter_probe_container", exc)
                     try:
                         client.containers.get(adapter_probe_container_id)
                     except docker.errors.NotFound:
                         adapter_probe_container_removed = True
+                    except Exception as exc:
+                        record_cleanup_error("verify_adapter_probe_container_removed", exc)
                 if container_id:
                     try:
                         client.containers.get(container_id).remove(force=True)
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        record_cleanup_error("remove_runtime_probe_container", exc)
                     try:
                         client.containers.get(container_id)
                     except docker.errors.NotFound:
                         container_removed = True
+                    except Exception as exc:
+                        record_cleanup_error("verify_runtime_probe_container_removed", exc)
                 if image_id:
                     try:
                         client.images.remove(image=image_id, force=True)
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        record_cleanup_error("remove_built_image", exc)
                     try:
                         client.images.get(image_id)
                     except docker.errors.ImageNotFound:
                         built_image_removed = True
+                    except Exception as exc:
+                        record_cleanup_error("verify_built_image_removed", exc)
                 if base_image_id:
                     try:
                         client.images.remove(image=base_image_id, force=True)
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        record_cleanup_error("remove_base_image", exc)
                     try:
                         client.images.get(base_image_id)
                     except docker.errors.ImageNotFound:
                         base_image_removed = True
+                    except Exception as exc:
+                        record_cleanup_error("verify_base_image_removed", exc)
                 try:
                     for residual in client.images.list(all=True):
                         try:
                             client.images.remove(image=residual.id, force=True)
-                        except Exception:
-                            pass
+                        except Exception as exc:
+                            record_cleanup_error(
+                                f"remove_residual_image:{residual.id}", exc
+                            )
                     client.images.prune(filters={"dangling": True})
                     remaining_image_ids = sorted(
                         img.id for img in client.images.list(all=True)
                     )
                 except Exception as exc:
-                    if error_type is None:
-                        error_type = type(exc).__name__
-                        error_message = bounded(exc)
-                client.close()
+                    record_cleanup_error("residual_image_sweep", exc)
+                try:
+                    client.close()
+                except Exception as exc:
+                    record_cleanup_error("close_docker_client", exc)
 
-    cleanup_ok = (
-        container_removed
-        and built_image_removed
-        and base_image_removed
-        and not remaining_image_ids
+    cleanup_ok = driver_cleanup_passed(
+        adapter_probe_container_removed=adapter_probe_container_removed,
+        container_removed=container_removed,
+        built_image_removed=built_image_removed,
+        base_image_removed=base_image_removed,
+        remaining_image_ids=remaining_image_ids,
+        cleanup_errors=cleanup_errors,
     )
-    if runtime_status == "PASS" and not cleanup_ok:
+    if not cleanup_ok:
         runtime_status = "FAIL"
-        error_type = "CleanupVerificationError"
-        error_message = (
-            f"container_removed={container_removed} "
-            f"built_image_removed={built_image_removed} "
-            f"base_image_removed={base_image_removed} "
-            f"remaining_images={remaining_image_ids}"
-        )
+        if error_type is None:
+            error_type = "CleanupVerificationError"
+            error_message = (
+                f"adapter_probe_container_removed={adapter_probe_container_removed} "
+                f"container_removed={container_removed} "
+                f"built_image_removed={built_image_removed} "
+                f"base_image_removed={base_image_removed} "
+                f"remaining_images={remaining_image_ids} "
+                f"cleanup_errors={cleanup_errors}"
+            )
 
     post_image_cleanup_disk = shutil.disk_usage(node_local_job_root)
 
@@ -468,6 +495,7 @@ def main() -> int:
             "built_image_removed": built_image_removed,
             "resolved_base_image_removed": base_image_removed,
             "remaining_image_ids": remaining_image_ids,
+            "cleanup_errors": cleanup_errors,
             "node_local_job_root": str(node_local_job_root),
             "node_local_graphroot": str(node_local_graphroot),
             "node_local_filesystem_bytes": initial_disk.total,

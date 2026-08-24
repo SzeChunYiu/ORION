@@ -140,18 +140,26 @@
       "status": "FAIL"
     },
     {
-      "build_log_normalized_json_bytes": 838041,
-      "build_log_normalized_json_event_count": 34072,
-      "build_log_normalized_json_sha256": "71a9f845380231f3146d5bb0c6372066bbceeb36b42b1c284f055687ee06ac59",
+      "build_log_normalized_json_bytes": 672301,
+      "build_log_normalized_json_event_count": 22232,
+      "build_log_normalized_json_sha256": "5bc54b20e286379b87a214c7c7dab6b87014cce965eea324c6e13e8845de589e",
       "node_local_job_root_removed": true,
       "receipt_path": "SLURM_OFFICIAL_BASE_RECEIPT_V1.json",
-      "receipt_sha256": "e52765de0931dd35f0a71d26b7888f861d0d20422b89aacbd6dcbdd1a198d8c4",
-      "resolution": "Exact 1,251-byte Dockerfile built and bounded inspection passed; container, built image, resolved base image, remaining image list, runtime socket root and node-local job root were all cleared.",
-      "slurm_job_id": "3533859",
+      "receipt_sha256": "8117d9f4f1c20c26f4d15b8544fdb9c75bc856b01edf2dda31e84efaf27f9452",
+      "resolution": "Exact 1,251-byte Dockerfile rebuilt after cleanup-gate hardening; hostile cleanup regressions pass and container, built image, resolved base image, residual image list, runtime socket root and node-local job root were all cleared.",
+      "slurm_job_id": "3533961",
       "status": "PASS"
     }
   ],
   "official_dockerfile_sha256": "08045fc892652a6835adb808ee6db4dc5715ae64f65878eb0d0140e7d8c29a15",
   "schema": "orion.p1.sab.lunarc.official-public-base-failure-atlas.v1",
-  "terminal": "P1_SAB_LUNARC_OFFICIAL_PUBLIC_BASE_FAILURE_CHAIN_BOUND__8_FAILURES_REPAIRED_TO_1_PASS__ZERO_TASKS_RUN__ZERO_OUTCOMES_OPENED"
+  "superseded_cleanup_guard_witness": {
+    "disposition": "receipt facts retained; harness repaired and whole smoke rerun before integration",
+    "receipt_path": "superseded-receipts/SLURM_OFFICIAL_BASE_RECEIPT_3533859.json",
+    "receipt_sha256": "e52765de0931dd35f0a71d26b7888f861d0d20422b89aacbd6dcbdd1a198d8c4",
+    "review_finding": "residual image sweep exception could retain an initially empty remaining_image_ids list and still satisfy the V1 cleanup predicate",
+    "slurm_job_id": "3533859",
+    "status": "PASS_RECEIPT_SUPERSEDED_BY_FAIL_CLOSED_HARNESS_REVIEW"
+  },
+  "terminal": "P1_SAB_LUNARC_OFFICIAL_PUBLIC_BASE_FAILURE_CHAIN_BOUND__8_RUNTIME_FAILURES_AND_1_SUPERSEDED_PASS_REPAIRED_TO_REVIEWED_PASS__ZERO_TASKS_RUN__ZERO_OUTCOMES_OPENED"
 }

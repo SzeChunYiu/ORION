@@ -9,12 +9,18 @@
   "created_at_utc": "2026-08-24T11:38:05.769635+00:00",
   "packet_integration_base_commit": "0dc9e07badae039743a6966dd9198586a497d72f",
   "repository": "https://github.com/SzeChunYiu/ORION",
+  "review_repair": {
+    "reason": "fail-closed cleanup predicate and batch finalizer hardened before integration",
+    "reviewed_rerun_job_id": "3533961",
+    "superseded_job_id": "3533859"
+  },
   "schema": "orion.p1.sab.lunarc.official-public-base-integration-binding.v1",
   "scientific_authority_delta": "NONE",
   "successful_execution_binding": {
-    "failure_atlas_sha256": "44a50096824583bdd6789bda5a571bd717d7c65eac5cae249beee22da63ab852",
-    "receipt_sha256": "e52765de0931dd35f0a71d26b7888f861d0d20422b89aacbd6dcbdd1a198d8c4",
-    "slurm_job_id": "3533859",
+    "cleanup_gate_sha256": "e65d0ffaee31d35b5600b438b293281a9d665fdbd9a67ae2ef3d456b4cb9d986",
+    "failure_atlas_sha256": "2d4f1fc35bf2ee37d7e7bd2117ae8b9eed243fdc3bf7cda58f749533ec930aa6",
+    "receipt_sha256": "8117d9f4f1c20c26f4d15b8544fdb9c75bc856b01edf2dda31e84efaf27f9452",
+    "slurm_job_id": "3533961",
     "source_binding_sha256": "7c91b3a4f47e694d745d46eec6ed74fe3fdb92a726c1cbdf21e08467f51da758"
   },
   "synthetic_runtime_predecessor": {

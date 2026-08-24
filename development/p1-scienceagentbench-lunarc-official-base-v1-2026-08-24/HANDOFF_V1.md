@@ -8,13 +8,18 @@
 
 - The exact 1,251-byte pinned public base Dockerfile, SHA-256
   `08045fc892652a6835adb808ee6db4dc5715ae64f65878eb0d0140e7d8c29a15`,
-  built through Docker SDK `7.1.0` and Podman `5.8.2` on Slurm job `3533859`.
+  built through Docker SDK `7.1.0` and Podman `5.8.2` on reviewed Slurm job
+  `3533961`.
 - Public Ubuntu and built-image identities, image size, Dockerfile/source
   hashes, bounded runtime package versions and build-log hash are recorded.
-- Eight failed runtime discriminators are retained with their exact bounded
-  receipts and mechanism-specific repairs.
+- Eight failed runtime discriminators and superseded clean receipt `3533859`
+  are retained with their exact bounded receipts and repair reason.
 - Container, built image, pulled base image, residual image list, runtime
   socket root and node-local job root all verified clean.
+- Cleanup exceptions now fail the driver, and the batch finalizer independently
+  requires null error, every per-object removal flag, an empty residual image
+  list, no cleanup errors and both node-local roots removed. Hostile cleanup
+  regressions pass.
 
 ## Not closed
 
@@ -33,7 +38,8 @@ Use the exact files and hashes in this directory and the merged toolchain from
 `development/p1-scienceagentbench-lunarc-runtime-v1-2026-08-24/`. Run only on
 Slurm compute with graph/run roots under node-local `$TMPDIR`. Require every
 credential-presence flag false, the exact PASS terminal, all image removals,
-an empty residual image list and node-local directory removal.
+an empty residual image list, an empty cleanup-error list and node-local
+directory removal.
 
 Do not use this witness to authorize archive extraction, an official task,
 evaluator access or a scientific claim.
