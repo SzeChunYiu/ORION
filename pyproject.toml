@@ -34,7 +34,12 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+# `packages/orion-research-harness/` is a sibling distribution, not part of the
+# `src/` layout that setuptools installs, so `pip install -e .` never puts it on
+# sys.path. Three tests import it, and without this line the first one aborts
+# COLLECTION -- which takes the whole non-p2 suite down with it rather than
+# failing one test. Landed with #1137; see #1134 for the same failure shape.
+pythonpath = ["src", "packages/orion-research-harness/src"]
 # Unique module names by path. Parallel lanes independently added
 # test_schema.py / test_metrics.py; the default prepend import mode
 # then fails collection with "import file mismatch" and reds every PR.
