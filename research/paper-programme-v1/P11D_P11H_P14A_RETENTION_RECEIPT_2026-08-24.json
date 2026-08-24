@@ -1,0 +1,54 @@
+{
+  "schema": "ORION.Programme.HistoricalRetentionReceipt.v1",
+  "receipt_date": "2026-08-24",
+  "purpose": "Execute the two HISTORICAL_ADVERSE_RESULT replay-and-retain steps assigned to the P11-P15 gap lane and record that both adverse terminals remain reproducible and unchanged. This receipt adds no claim, grants no authority, and edits no frozen result.",
+  "items": [
+    {
+      "ledger_item_id": "P11.D_H.HISTORICAL_ADVERSE",
+      "claim_id": "P11.D.P11.H",
+      "command": "python -m json.tool papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-11-state-as-computation/P11H_POOLED_SPARSITY_LADDER_RESULT_V1.json",
+          "sha256": "8436ff99ddec0ab11a16e1ac49a924f0d7c9019998cfc42e8275f71a2db39305",
+          "terminal": "P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED",
+          "r3_attack_status": "prevailed"
+        },
+        {
+          "path": "papers/paper-11-state-as-computation/P11D_SPARSE_DECODER_RESULT_RECEIPT_V1.json",
+          "sha256": "c24a89813342e0bc7ca09b2b5d5a23654f7c59b948f2a37c432d7ced055518b9",
+          "terminal": "P11D_SPARSE_DECODER_GAP_NOT_MET",
+          "disposition": "PERMANENT_NEGATIVE"
+        }
+      ],
+      "success_condition_met": true
+    },
+    {
+      "ledger_item_id": "P14.A.HISTORICAL.GATE_DEFECT",
+      "claim_id": "P14A.CONTROLLED_GOVERNANCE.SUPERIORITY",
+      "command": "python -m json.tool papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json >/dev/null",
+      "exit_code": 0,
+      "receipts_retained": [
+        {
+          "path": "papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json",
+          "sha256": "bcbc1441ef54ec1ffff7eb08f4c35d5b0ba5809d500516a49596a54825c2a9f0",
+          "terminal": "P14A_SUPERIORITY_GATES_UNMEASURABLE__QUESTION_ANSWERED_BY_P14C_AT_UNCHANGED_THRESHOLDS",
+          "p14a_authority": "NONE"
+        },
+        {
+          "path": "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
+          "sha256": "5c91f882e76d4cdaad37e7ffc0e310a51253f8b2b253e34afa38df11442dc62e",
+          "terminal": "P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET",
+          "authority": "NONE"
+        }
+      ],
+      "success_condition_met": true
+    }
+  ],
+  "notes": [
+    "Both replay commands were executed verbatim from the ledger's next_executable_step on this worktree; neither failure_terminal fired.",
+    "The P14 gate-attainability adjudication already answers the P14A threshold question at unchanged thresholds via P14C; the P14A successor lane in this programme therefore targets a governance-mechanic improvement with a new claim identity, not a threshold edit.",
+    "python interpreter: /Users/billy/miniforge3/bin/python3 (single json.tool invocations; no test suites, no worker pools)."
+  ]
+}
