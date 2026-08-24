@@ -1,0 +1,42 @@
+{
+  "both_accept": true,
+  "ci_authority": false,
+  "cross_unrelated_grammar_transfer": false,
+  "executions": {
+    "generic": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true,
+    "source": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    }
+  },
+  "general_multitag_sharpness": false,
+  "generic_decision": "ACCEPT_MULTITAG_CONSTRAINT_RANK_THEOREM",
+  "generic_multitag_tare_transfer": false,
+  "generic_verification_digest": "e72b2d006aa8b719ea2efeafcefd3d7b43f4cac133e66f5772d6eda35609a770",
+  "grammar": "MULTITAG_TARE_M2_THREE_BLOCK_STRUCTURAL",
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_MULTITAG_CONSTRAINT_RANK_THEOREM",
+  "native_manifest_digest": "167ab1f90502ba4d24c1d977abc26274fcb79b3d1966c9780344d47c63f35a2f",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "normal_form": "support(R)<=rank(realized signature)<=s+1",
+  "novelty_authority": false,
+  "objective_region": "mu>=2*t_restore",
+  "outside_cone_support_necessity": false,
+  "physical_quantum_advantage_claim": false,
+  "r6m_sharp_kappa": 2,
+  "receipt_digest": "49318ced07223717e6b11bd6ef3216d232e28e22b79f5379f41eca47e8ca5c08",
+  "schema": "ORION.PaperA.A1.DualHarness.v1",
+  "source_result_digest": "ff149b9ca1c5fef83d1411e9fed43460b716c88d126f560dcad8d73247e03c57",
+  "terminal": "PAPER_A_A1_MULTITAG_TARE_ALL_N_SUPPORT_AT_MOST_CONSTRAINT_RANK__R6M_SHARP_BINARY_COROLLARY"
+}

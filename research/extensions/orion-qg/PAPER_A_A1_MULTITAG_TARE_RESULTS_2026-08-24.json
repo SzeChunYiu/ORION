@@ -1,0 +1,270 @@
+{
+  "base_revision": "346cbf8bffbbaef200b86a9f9921393cce916716",
+  "ci_authority": false,
+  "cross_unrelated_grammar_transfer": false,
+  "descent_ledger": {
+    "all_checks": true,
+    "basis_rows": [
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 1,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 2,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 3,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 4,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 5,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 6,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 7,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 8,
+        "rank_tight_abstract_word": true
+      },
+      {
+        "basis_total_nonzero": true,
+        "basis_zero_subset_count": 0,
+        "dimension": 9,
+        "rank_tight_abstract_word": true
+      }
+    ],
+    "exhaustive_small_dimensions": [
+      {
+        "dimension": 1,
+        "failures": 0,
+        "words_checked": 2
+      },
+      {
+        "dimension": 2,
+        "failures": 0,
+        "words_checked": 48
+      },
+      {
+        "dimension": 3,
+        "failures": 0,
+        "words_checked": 3584
+      }
+    ],
+    "symbolic_all_dimensions": true
+  },
+  "gates": {
+    "authority_and_donor_boundaries_preserved": true,
+    "constraint_rank_descent": true,
+    "multitag_signatures_realized": true,
+    "protocol_present": true,
+    "r6m_sharp_parent_bound": true,
+    "restore_bound_exact": true,
+    "weighted_objective_cone": true
+  },
+  "generic_multitag_tare_transfer": false,
+  "multitag_sharpness_authority": false,
+  "novelty_authority": false,
+  "objective_ledger": {
+    "all_checks": true,
+    "checks": {
+      "cone_mu_ge_2tR": true,
+      "frame_refund_at_least_mu": true,
+      "outside_means_proof_inapplicable_only": true,
+      "per_coordinate_restore_penalty_2tR": true,
+      "tag_cost_unchanged": true,
+      "unit_r6m_on_boundary": true
+    },
+    "examples": [
+      {
+        "inside": true,
+        "margin": "0",
+        "mu": "2",
+        "t_restore": "1"
+      },
+      {
+        "inside": true,
+        "margin": "0",
+        "mu": "4",
+        "t_restore": "2"
+      },
+      {
+        "inside": true,
+        "margin": "1",
+        "mu": "3",
+        "t_restore": "1"
+      },
+      {
+        "inside": false,
+        "margin": "-1",
+        "mu": "1",
+        "t_restore": "1"
+      },
+      {
+        "inside": false,
+        "margin": "-1",
+        "mu": "2",
+        "t_restore": "3/2"
+      }
+    ]
+  },
+  "outside_cone_support_necessity": false,
+  "physical_quantum_advantage_claim": false,
+  "protocol_path": "development/orion-qg-regime-geometry/PAPER_A_A1_MULTITAG_TARE_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "e572676c9bd0dbe5eb0755146369d7503cb16cd3588b7d30389f249cea8aa428",
+  "r6m_parent_binding": {
+    "all_checks": true,
+    "lower_checks": {
+      "gates": true,
+      "kappa2": true,
+      "no_physical": true,
+      "terminal": true
+    },
+    "lower_file_sha256": "ace665d82f07bc7ffc12f51fb5813ab7886f4d9bcc415f8f3d1bca6b2610f013",
+    "lower_path": "research/extensions/orion-qg/QG18_TARE_KAPPA_RESULTS.json",
+    "sharp_kappa": 2,
+    "upper_checks": {
+      "authority": true,
+      "gates": true,
+      "no_novelty": true,
+      "not_r6": true,
+      "outcome": true
+    },
+    "upper_file_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+    "upper_path": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+  },
+  "restore_ledger": {
+    "all_checks": true,
+    "checks": {
+      "all_integer": true,
+      "max_delta_2": true,
+      "minimum_delta_minus2": true,
+      "row_count_768": true
+    },
+    "histogram": {
+      "-1": 144,
+      "-2": 18,
+      "0": 444,
+      "1": 144,
+      "2": 18
+    },
+    "max_delta": 2,
+    "min_delta": -2,
+    "row_count": 768
+  },
+  "result_digest": "ff149b9ca1c5fef83d1411e9fed43460b716c88d126f560dcad8d73247e03c57",
+  "schema": "ORION.PaperA.A1.MultiTagTARE.v1",
+  "scientific_authority": "DEFINED_MULTITAG_TARE_M2_STRUCTURAL_GRAMMAR_ONLY",
+  "signature_ledger": {
+    "all_checks": true,
+    "rows": [
+      {
+        "all_realized": true,
+        "dimension_ceiling": 1,
+        "distinct_observed": 2,
+        "expected_signature_count": 2,
+        "signature_count": 2,
+        "tag_count": 0
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 2,
+        "distinct_observed": 4,
+        "expected_signature_count": 4,
+        "signature_count": 4,
+        "tag_count": 1
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 3,
+        "distinct_observed": 8,
+        "expected_signature_count": 8,
+        "signature_count": 8,
+        "tag_count": 2
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 4,
+        "distinct_observed": 16,
+        "expected_signature_count": 16,
+        "signature_count": 16,
+        "tag_count": 3
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 5,
+        "distinct_observed": 32,
+        "expected_signature_count": 32,
+        "signature_count": 32,
+        "tag_count": 4
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 6,
+        "distinct_observed": 64,
+        "expected_signature_count": 64,
+        "signature_count": 64,
+        "tag_count": 5
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 7,
+        "distinct_observed": 128,
+        "expected_signature_count": 128,
+        "signature_count": 128,
+        "tag_count": 6
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 8,
+        "distinct_observed": 256,
+        "expected_signature_count": 256,
+        "signature_count": 256,
+        "tag_count": 7
+      },
+      {
+        "all_realized": true,
+        "dimension_ceiling": 9,
+        "distinct_observed": 512,
+        "expected_signature_count": 512,
+        "signature_count": 512,
+        "tag_count": 8
+      }
+    ]
+  },
+  "terminal": "PAPER_A_A1_MULTITAG_TARE_ALL_N_SUPPORT_AT_MOST_CONSTRAINT_RANK__R6M_SHARP_BINARY_COROLLARY",
+  "theorem": {
+    "grammar": "MULTITAG_TARE_M2_THREE_BLOCK_STRUCTURAL",
+    "normal_form": "support(R)<=rank(realized signature)<=s+1 for every frame",
+    "objective_region": "minimum frame multiplier mu >= 2*t_restore",
+    "quantifiers": "every s>=0, n, admitted target instance and grammar choice",
+    "r6m_corollary": "s=1, mu=2, t_restore=1, kappa=2 sharp",
+    "tag_weights": "arbitrary nonnegative; unchanged by exchange"
+  }
+}

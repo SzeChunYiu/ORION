@@ -1,0 +1,176 @@
+{
+  "authority_scope": "DEFINED_MULTITAG_TARE_M2_STRUCTURAL_GRAMMAR_ONLY",
+  "checks": {
+    "independent": true,
+    "no_generic_transfer": true,
+    "no_multitag_sharpness": true,
+    "no_novelty_or_physical": true,
+    "outside_no_necessity": true,
+    "protocol_hash": true,
+    "restore_histogram_match": true,
+    "scope": true,
+    "signature_rows_match": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true
+  },
+  "decision": "ACCEPT_MULTITAG_CONSTRAINT_RANK_THEOREM",
+  "independent": {
+    "all_checks": true,
+    "checks": {
+      "descent": true,
+      "outside_cone_no_necessity": true,
+      "parents": true,
+      "restore": true,
+      "signatures": true,
+      "tags_fixed": true,
+      "weighted_bound": true
+    },
+    "descent": {
+      "all_checks": true,
+      "basis": [
+        {
+          "d": 1,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 2,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 3,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 4,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 5,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 6,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 7,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 8,
+          "total_nonzero": true,
+          "zero": false
+        },
+        {
+          "d": 9,
+          "total_nonzero": true,
+          "zero": false
+        }
+      ],
+      "exhaustive": [
+        {
+          "checked": 2,
+          "d": 1,
+          "failures": 0
+        },
+        {
+          "checked": 48,
+          "d": 2,
+          "failures": 0
+        },
+        {
+          "checked": 3584,
+          "d": 3,
+          "failures": 0
+        }
+      ]
+    },
+    "parents": {
+      "all_checks": true,
+      "checks": {
+        "kappa2": true,
+        "lower_gates": true,
+        "lower_terminal": true,
+        "upper_authority": true,
+        "upper_gates": true
+      }
+    },
+    "restore": {
+      "all_checks": true,
+      "histogram": {
+        "-1": 144,
+        "-2": 18,
+        "0": 444,
+        "1": 144,
+        "2": 18
+      },
+      "max_delta": 2,
+      "min_delta": -2,
+      "rows": 768
+    },
+    "signatures": {
+      "all_checks": true,
+      "rows": [
+        {
+          "expected": 2,
+          "observed": 2,
+          "s": 0
+        },
+        {
+          "expected": 4,
+          "observed": 4,
+          "s": 1
+        },
+        {
+          "expected": 8,
+          "observed": 8,
+          "s": 2
+        },
+        {
+          "expected": 16,
+          "observed": 16,
+          "s": 3
+        },
+        {
+          "expected": 32,
+          "observed": 32,
+          "s": 4
+        },
+        {
+          "expected": 64,
+          "observed": 64,
+          "s": 5
+        },
+        {
+          "expected": 128,
+          "observed": 128,
+          "s": 6
+        },
+        {
+          "expected": 256,
+          "observed": 256,
+          "s": 7
+        },
+        {
+          "expected": 512,
+          "observed": 512,
+          "s": 8
+        }
+      ]
+    }
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.PaperA.A1.GenericVerification.v1",
+  "source_result_digest": "ff149b9ca1c5fef83d1411e9fed43460b716c88d126f560dcad8d73247e03c57",
+  "verification_digest": "e72b2d006aa8b719ea2efeafcefd3d7b43f4cac133e66f5772d6eda35609a770"
+}
