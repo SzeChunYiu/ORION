@@ -59,12 +59,16 @@ jobs:
         run: python research/orion-foundations-v3/check_foundations_v3.py
       - name: Validate P1-P15 theorem crosswalk
         run: python research/orion-foundations-v3/check_paper_theorem_ledger_v1.py
+      - name: Validate completion receipt and formalization coverage
+        run: python research/orion-foundations-v3/check_completion_receipt_v1.py
       - name: Parse JSON artifacts
         run: |
           python -m json.tool research/orion-foundations-v3/THEOREM_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/PAPER_THEOREM_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/ASSUMPTION_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/EXECUTION_ONLY_BACKLOG_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/FORMALIZATION_COVERAGE_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/AUDIT_RECEIPT_V1.json >/dev/null
       - name: Reject incomplete Lean proofs
         run: |
           if grep -R -nE '(^|[^[:alnum:]_])(sorry|admit|axiom)([^[:alnum:]_]|$)' \
