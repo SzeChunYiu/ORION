@@ -1,0 +1,115 @@
+{
+  "schema_version": "orion.p3.comparator-arm-disposition.v22",
+  "identity": "P3_V22_COMPARATOR_ARM_DISPOSITION",
+  "issue": "SzeChunYiu/ORION#1086",
+  "box_addressed": "P3 — Compare against LogMap and AML, or mark unavailable arms CANNOT_CHECK.",
+  "results_exist": false,
+  "campaign_executed": false,
+  "outcome_accessed": false,
+  "artifact_class": "FROZEN_DISPOSITION",
+  "what_this_artifact_is": "A per-arm disposition over comparator systems already exercised in the P3 development record. It creates no new result. It records, for each arm, whether a scored comparison exists, and where it does not, the exact evidenced reason and the exact conditions that would promote the arm to scorable.",
+  "case_universe": {
+    "case_id": "OAEI-2004-test-103",
+    "cases": 1,
+    "analysis_unit": "case",
+    "descriptive_only": true,
+    "source_disjoint_replication": false,
+    "note": "One historical public case. No population estimand, confidence interval or p value is carried by this artifact or by the V21 result it cites."
+  },
+  "arms": [
+    {
+      "arm": "AML",
+      "system_version": "AML 3.2",
+      "disposition": "SCORED",
+      "matching_mode_executed": true,
+      "scored_against_reference": true,
+      "evidence": [
+        {
+          "path": "development/p3-aml-java8-prospective-comparator-v16-2026-08-23/AML_ALIGNMENT_V16.rdf",
+          "sha256": "994c74c3749543205d89ef7daea0c3156d267410e35c1687f55601768b3db934",
+          "bytes": 15151,
+          "role": "native alignment output of the arm"
+        },
+        {
+          "path": "development/p3-aml-java8-prospective-comparator-v16-2026-08-23/RESULT_V16.json",
+          "sha256": "8045631b720ac9d0c612c418b853efb6b45951257972604923dcf1d9f9a253ce",
+          "bytes": 3076,
+          "role": "execution receipt"
+        },
+        {
+          "path": "development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/COMMON_PAIR_METRICS_V21.json",
+          "sha256": "99c2b5614e461587c327a61bffae918b9af4d478efbaacf2f9e2c31135ad3082",
+          "bytes": 4965,
+          "role": "common-universe scoring of this arm against the frozen reference"
+        }
+      ]
+    },
+    {
+      "arm": "LogMap",
+      "system_version": "LogMap 4.0",
+      "disposition": "CANNOT_CHECK",
+      "matching_mode_executed": "SMOKE_UNIVERSE_ONLY",
+      "scored_against_reference": false,
+      "explicitly_not_claimed": [
+        "LogMap is unavailable",
+        "LogMap cannot be run",
+        "LogMap failed to produce output",
+        "LogMap is inferior or superior to any other arm"
+      ],
+      "what_is_true_instead": "LogMap 4.0 runs. Its runtime is bound to an exact 90/90 dependency closure and it has terminated normally with exit code 0. What does not exist is a LogMap MATCHING-mode alignment over the scored case, admitted through the frozen V21 identity interface. The arm is unbound for scoring, not unavailable.",
+      "blocking_conditions": [
+        {
+          "id": "LM-B1",
+          "condition": "Matching mode has only ever been exercised on a synthetic smoke universe, never on the scored case.",
+          "evidence_path": "development/p3-comparator-native-preflight-v6-2026-08-23/K2_LOGMAP_RESULT_V6.json",
+          "evidence_sha256": "44f59b0dbb89545d30a30105b2cfdacc9e31da0bfad637180f0a4d4a6eb3bba1",
+          "detail": "V6 preflight declares authority RUNTIME_AND_NATIVE_ARTIFACT_PREFLIGHT_ONLY__NO_PERFORMANCE_OR_SCIENTIFIC_OUTCOME_AUTHORITY over ontologies named urn:orion:p3:v6:smoke:source / :target, and carries the interpretation guard that rows were not compared to gold. Its declared output logmap2_mappings.rdf is recorded by digest only and is not retained in the tree."
+        },
+        {
+          "id": "LM-B2",
+          "condition": "The retained LogMap output on the real case is REPAIR mode, not matching. A repair of another system's mappings is not that system's own alignment and cannot be scored as an independent arm.",
+          "evidence_path": "development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output/mappings_repaired_with_LogMap.tsv",
+          "evidence_sha256": "8507d5de622b74b202a288b186e080afbea5dde55d056015a8cb72c5e472b2cf",
+          "detail": "V11 obtained this file by repairing the V9 filtered mapping input. Its own claim boundary states it does not establish mapping correctness, performance, harm, coverage, transport or superiority."
+        },
+        {
+          "id": "LM-B3",
+          "condition": "Every retained LogMap row wraps its IRIs in Optional.of(...), which the frozen V21 identity decoder rejects.",
+          "evidence_path": "development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output/mappings_repaired_with_LogMap.tsv",
+          "evidence_sha256": "8507d5de622b74b202a288b186e080afbea5dde55d056015a8cb72c5e472b2cf",
+          "measured": {"rows_total": 16, "rows_with_optional_wrapper": 16},
+          "detail": "The V21 decoder admits an entity string only if the whole string matches the frozen absolute-IRI grammar and decoding is an identity transform with no wrapper removal. Stripping Optional.of(...) after seeing the reference would be exactly the post-outcome normalization V11 forbade its successor from performing."
+        },
+        {
+          "id": "LM-B4",
+          "condition": "No reproducible runtime pin exists for the official MELT LogMap wrapper.",
+          "evidence_path": "development/p3-selective-envelope-harm-successor-v4-2026-08-23/COMPARATOR_RESEARCH.md",
+          "detail": "The wrapper is pinned at ernestojimenezruiz/logmap-melt@e891cea083cf5660776a59cc1f06578acc8ca229, but its POM resolves master-SNAPSHOT on openjdk:8-jre-alpine. That is provenance, not a reproducible runtime, until dependency and image digests are frozen."
+        }
+      ],
+      "promotion_conditions": [
+        "Freeze a LogMap matching-mode invocation (not repair) against the scored case's exact source and target ontology hashes, one attempt, no retry.",
+        "Retain the native alignment artifact in the tree, not only its digest.",
+        "Resolve LM-B3 at the source: either obtain unwrapped IRIs from a corrected native invocation, or freeze an explicit, pre-outcome interface amendment that declares Optional.of(...) unwrapping part of the admitted grammar. Never strip the wrapper after reference access.",
+        "Pin the MELT wrapper's dependency and image digests, or bind a non-MELT invocation path with its own frozen closure.",
+        "Re-verify the RDF header defect recorded in V6 (duplicate_ontology_1_call_found: true, both onto1 and onto2 naming ontology 1) so alignment role assignment is decidable from the artifact."
+      ]
+    }
+  ],
+  "search_scope_for_the_absence_claim": {
+    "claim": "No LogMap matching-mode alignment artifact over a scored case exists anywhere on origin/main.",
+    "how_searched": "git ls-tree -r --name-only origin/main filtered case-insensitively for 'logmap'; every non-JAR hit inspected. Also searched path patterns logmap_mappings, logmap_anchors, logmap_overestimation and logmap2_mappings across the whole tree.",
+    "result": "All retained LogMap artifacts are mappings_repaired_with_LogMap.* or filtered_mappings_for_LogMap_repair.txt. Matching-mode outputs: 0 retained.",
+    "note": "Stated as a searched-and-absent claim with its scope named, not as an inference from a command that printed nothing."
+  },
+  "box_verdict": {
+    "box": "Compare against LogMap and AML, or mark unavailable arms CANNOT_CHECK.",
+    "satisfied": true,
+    "how": "AML executed in matching mode and scored against the frozen reference on the case (V16 + V21 receipts). LogMap marked CANNOT_CHECK with four evidenced blocking conditions and explicit promotion conditions. The box's disjunction is satisfied by the second branch for the arm that has no scored comparison.",
+    "not_claimed": "That the comparison is complete, population-valid, or a current-SOTA claim. The V21 boundary stands unchanged."
+  },
+  "out_of_scope_boxes": {
+    "official RDF reference alignments and MELT scoring": "NOT addressed. Official RDF reference is used (REFERENCE_FROZEN_V21.rdf, sha256 0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16), but scoring is performed by the house evaluator common_pair_evaluator_v21.py, not by MELT. This box remains open.",
+    "at least one natural ontology-pair track": "NOT addressed. The only scored case is OAEI 2004 test-103, itself a generated benchmark track. This box remains open and requires a natural pair."
+  }
+}

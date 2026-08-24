@@ -1,0 +1,49 @@
+{
+  "schema_version": "orion.p3.analysis-unit-rule.v22",
+  "identity": "P3_V22_ANALYSIS_UNIT_RULE",
+  "issue": "SzeChunYiu/ORION#1086",
+  "box_addressed": "P3 — Bootstrap/aggregate by ontology pair or track, not correspondence row.",
+  "results_exist": false,
+  "campaign_executed": false,
+  "outcome_accessed": false,
+  "artifact_class": "FROZEN_RULE",
+  "rule": {
+    "admissible_analysis_units": ["ontology_pair", "track", "case"],
+    "inadmissible_analysis_units": ["correspondence_row", "pair_cell", "mapping", "seed", "episode", "generated_row"],
+    "statement": "Every P3 aggregate, bootstrap, confidence interval and p value must take an ontology pair, a track, or a case as its unit. Correspondence rows within a case are not independent samples and must never be resampled or counted as such.",
+    "why": "Correspondences inside one ontology pair share the seed ontology, the label vocabulary, the reference-alignment construction and the matcher's own decision threshold. Treating them as independent inflates n by orders of magnitude and manufactures significance that the case count cannot support. One pair with 91 correspondences is n=1, not n=91."
+  },
+  "enforcement": {
+    "mechanized_by": "src/orion/study/p3/analysis_unit_guard.py",
+    "fails_closed_on": [
+      "a population estimand whose declared unit is not in admissible_analysis_units",
+      "a confidence interval or p value reported when the case count is below the declared minimum",
+      "a resample/bootstrap whose unit is a correspondence row or pair cell",
+      "an aggregate that declares no unit at all"
+    ],
+    "exit_codes": {
+      "0": "PASS",
+      "2": "inadmissible analysis unit",
+      "3": "interval or p value reported below the minimum case count",
+      "4": "aggregate declares no analysis unit",
+      "5": "malformed report — could not check"
+    },
+    "cannot_check_is_distinct_from_pass": true
+  },
+  "precedent_this_rule_freezes": {
+    "source": "development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/SCIENTIFIC_REPORT_V21.md",
+    "quoted_discipline": "The analysis unit is one public OAEI 2004 test-103 case. Pair cells are not treated as independent samples, so no population estimand, confidence interval or p value is reported.",
+    "successor_constraint": "development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/NEXT_DISCRIMINATOR_V22.json",
+    "successor_constraint_sha256": "cf232b45e1ca336a4abcc3b084a9904e14c49f5e49be8f2fd4cdec103b2b00e7",
+    "successor_prohibition": "no pair cell treated as an independent case",
+    "note": "V21 stated and obeyed this rule in prose and V22 re-froze it as a prohibited promotion. This artifact adds the missing third thing: a checker that fails closed when a future P3 report breaks it."
+  },
+  "minimum_case_count_for_interval_reporting": 7,
+  "minimum_case_count_basis": "development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/NEXT_DISCRIMINATOR_V22.json required_case_family.minimum_cases",
+  "box_verdict": {
+    "box": "Bootstrap/aggregate by ontology pair or track, not correspondence row.",
+    "satisfied": true,
+    "how": "The rule is stated, its unit taxonomy is closed, it is bound to the V21 precedent by hash, and it is mechanically enforced by a fail-closed checker with a CANNOT_CHECK exit distinct from PASS.",
+    "not_claimed": "That any aggregate has been computed. No result is created by this artifact."
+  }
+}
