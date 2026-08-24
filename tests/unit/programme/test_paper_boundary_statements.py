@@ -186,3 +186,27 @@ def test_p1_frames_v2_2_4_as_frozen_generator_mechanism_evidence() -> None:
     assert "Both are runs of a frozen generator" in text
     assert "not 2,882 independent observations of scientific practice" in text
     assert "Replication across seeds is exactly as broad as the generator" in text
+
+
+def test_p11_integrates_the_ten_responsibility_negative() -> None:
+    """3/10, 5/10, 5/10 against a frozen >=8/10 gate, recorded as NEGATIVE."""
+    text = _flat(PAPERS / "paper-11-state-as-computation/CLAIM_EVIDENCE_LEDGER.md")
+    assert "LINEAR 3/10, RBF 5/10, KNN 5/10 versus frozen >=8/10" in text
+    assert "NEGATIVE / FALSE" in text
+    assert "never generalize the single-responsibility compiler result" in text
+
+
+def test_p12_integrates_the_robustness_outcome_without_retuning() -> None:
+    """FLAT replicates; price and shift both BROKEN; no threshold retuned."""
+    text = _flat(PAPERS / "paper-12-adaptive-state-reasoning/README.md")
+    assert "FLAT result replicates" in text
+    assert "price and distribution-shift axes are both **BROKEN**" in text
+    assert "was not retuned" in text
+
+
+def test_p13_integrates_the_cnf_result_with_its_comparators() -> None:
+    """24/24 means little without the arms it is 24/24 against."""
+    text = _flat(PAPERS / "paper-13-responsibility-carrying-state/README.md")
+    assert "RCS: **24/24** verifier-correct" in text
+    assert "confidence/provenance-only: **12/24**" in text
+    assert "44.44%" in text
