@@ -1,0 +1,121 @@
+{
+  "schema_version": "orion.shared-infra.box-conformance.v1",
+  "identity": "ISSUE_1086_SHARED_INFRA_CONFORMANCE_V1",
+  "issue": "SzeChunYiu/ORION#1086",
+  "section": "Shared AI-executable infrastructure",
+  "subject": "src/orion/benchmarks/public_campaign.py",
+  "subject_landed_by": "#1127 (86f85614)",
+  "results_exist": false,
+  "campaign_executed": false,
+  "outcome_accessed": false,
+  "artifact_class": "BOX_CONFORMANCE_VERDICT",
+  "what_this_artifact_is": "A box-by-box demonstration that the landed public campaign runner has the properties this section requires, evidenced by mutation tests against the runner's own valid baseline campaign. It executes no paper endpoint and scores no paper.",
+  "why_these_boxes_are_infrastructure_boxes": "The section is titled 'Shared AI-executable infrastructure' and its bullets are verbs about the runner -- Build, Record, Reject, Use, Retain, Require, Freeze, Create. They are satisfied by a runner that has and enforces those properties. They are NOT satisfied campaigns; every per-paper execution box remains open and is unaffected by this artifact.",
+  "boxes": [
+    {
+      "box": "Build one fail-closed runner: fetch -> license/hash manifest -> frozen IDs/splits -> matched arms -> official evaluator -> paired/block CI -> cost -> PASS/FAIL/CANNOT_CHECK receipt.",
+      "verdict": "SATISFIED",
+      "mechanism": "run_fail_closed_campaign() consumes a CampaignFreeze and emits a CampaignReceipt binding every stage by digest: source_receipts (fetch), freeze_sha256 (frozen IDs/splits), observations_sha256, gate_result_sha256, replay_sha256, authority_surfaces_sha256, receipt_sha256. Terminal vocabulary is exactly {PASS, FAIL, CANNOT_CHECK}. GateResult carries subject/comparator arms, a paired interval, and subject_cost/comparator_cost/cost_ratio.",
+      "demonstrated_by": [
+        "test_box1_the_receipt_binds_every_pipeline_stage",
+        "test_box1_the_terminal_vocabulary_is_exactly_pass_fail_cannot_check",
+        "test_box1_the_gate_carries_a_paired_interval_and_a_cost_ratio",
+        "test_box1_every_interval_method_offered_is_paired_or_clustered",
+        "test_box1_matched_arms_carry_a_role_and_a_comparator_exists"
+      ]
+    },
+    {
+      "box": "Record source URL, pinned revision, SHA256, SPDX/data license, citation, redistribution flag, retrieval date, task IDs, exclusions, model/evaluator versions, budgets, seeds, environment and raw-output hashes.",
+      "verdict": "SATISFIED",
+      "mechanism": "SourceBinding carries url, pinned_revision, sha256, license_expression, license_url, citation, redistribution_allowed, retrieved_at_utc, task_ids, exclusions. ArmSpec carries model_id, tool_access, resource_budget, implementation_sha256. EvaluatorBinding carries version and artifact_sha256. Observation carries seed, environment, evaluator_version, raw_output_sha256. A blank raw-output hash fails closed rather than being recorded as absent.",
+      "demonstrated_by": [
+        "test_box2_the_source_binding_records_every_field_the_box_enumerates",
+        "test_box2_the_observation_records_seed_environment_and_raw_output_hash",
+        "test_box2_arms_record_model_identity_tool_access_and_budget",
+        "test_box2_a_missing_raw_output_hash_fails_closed"
+      ]
+    },
+    {
+      "box": "Reject ambiguous/unlicensed inputs, missing gold, missing comparator, missing hash, or missing custody as CANNOT_CHECK.",
+      "verdict": "SATISFIED",
+      "mechanism": "Placeholder sentinels are rejected rather than coerced: '', UNKNOWN, TBD, UNSET and even the literal CANNOT_CHECK are all refused as a licence expression. A blank source hash, a gold binding with no identity or access scope, a gold artifact with no hash, a custody binding with no owners, and a gate with no comparator each terminate CANNOT_CHECK with a named blocker.",
+      "demonstrated_by": [
+        "test_box3_an_ambiguous_licence_is_refused[5 placeholder variants]",
+        "test_box3_a_missing_source_hash_is_refused",
+        "test_box3_a_gold_binding_without_an_identity_is_refused",
+        "test_box3_a_gold_artifact_without_a_hash_is_refused",
+        "test_box3_a_custody_binding_without_owners_is_refused",
+        "test_box3_a_gate_without_a_comparator_is_refused"
+      ],
+      "note_on_how_missing_is_expressed": "gold and custody are non-optional fields of CampaignFreeze, so 'missing' is an unusable binding, not None. Two earlier drafts of these tests passed None and hit an AttributeError; that was a defect in the test, not the runner, and was corrected rather than reported."
+    },
+    {
+      "box": "Use source task, repository, ontology pair, or task family as the inference unit -- not generated rows, seeds or episodes.",
+      "verdict": "SATISFIED",
+      "mechanism": "InferenceUnit is a closed enum whose members are exactly {SOURCE_TASK, REPOSITORY, ONTOLOGY_PAIR, TASK_FAMILY}. The inadmissible units the box names cannot be expressed at all -- there is no SEED, EPISODE, ROW, GENERATED_ROW or CORRESPONDENCE member to select. GateResult reports inference_unit_count separately from included_record_count.",
+      "demonstrated_by": [
+        "test_box4_the_inference_unit_vocabulary_is_exactly_the_four_the_box_allows",
+        "test_box4_row_seed_and_episode_units_are_not_expressible[5 forbidden units]",
+        "test_box4_the_gate_counts_inference_units_not_observations"
+      ]
+    },
+    {
+      "box": "Retain all null, harmful and failed runs.",
+      "verdict": "SATISFIED",
+      "mechanism": "ObservationOutcome is exactly {PASS, NULL, HARMFUL, FAIL, CANNOT_CHECK}. Retention is enforced, not merely representable: setting raw_output_retained=False fails closed, and dropping the HARMFUL row from the scored set fails closed. The passing baseline campaign itself retains a HARMFUL observation in its receipt counts, so retention is demonstrated on a PASS rather than only on a refusal.",
+      "demonstrated_by": [
+        "test_box5_the_outcome_vocabulary_can_express_null_harmful_and_failed",
+        "test_box5_the_baseline_actually_retains_a_harmful_run",
+        "test_box5_discarding_a_raw_output_fails_closed",
+        "test_box5_dropping_the_harmful_row_from_the_gate_fails_closed"
+      ]
+    },
+    {
+      "box": "Require a fresh-container replay and exact agreement among manuscript, active authority, claim ledger, result files and rendered PDF.",
+      "verdict": "SATISFIED_AS_A_REQUIREMENT",
+      "mechanism": "SurfaceKind is exactly {MANUSCRIPT, ACTIVE_AUTHORITY, CLAIM_LEDGER, RESULT, RENDERED_PDF} -- the five surfaces the box names, no more and no fewer. ReplayBinding.fresh_container=False fails closed; a replay whose predictions digest or result digest differs from the original does not pass.",
+      "explicitly_not_claimed": "That any paper campaign has been replayed. The box says Require, and the requirement is mechanized and fails closed. No campaign has yet been run through this runner, so no replay has occurred.",
+      "demonstrated_by": [
+        "test_box6_the_surface_vocabulary_is_exactly_the_five_the_box_names",
+        "test_box6_a_replay_that_was_not_fresh_is_refused",
+        "test_box6_a_replay_whose_predictions_differ_is_refused",
+        "test_box6_a_replay_whose_result_digest_differs_is_refused"
+      ]
+    },
+    {
+      "box": "Freeze protocol, splits, estimands and gates before result creation. A local hash proves chronology but does not create external independence.",
+      "verdict": "SATISFIED",
+      "mechanism": "CampaignFreeze carries protocol_sha256, frozen_at_utc, split_assignments, estimand and gate. A result whose creation time precedes the freeze terminates CANNOT_CHECK. The second sentence is honoured structurally: a PASS campaign still reports independent_authority != PASS and carries an explicit authority_boundary sentence, and CustodyMode distinguishes SAME_OWNER_PUBLIC from INDEPENDENT_ATTESTED and PROTECTED_EXTERNAL_ATTESTED so same-owner execution can never be read as independent adjudication.",
+      "demonstrated_by": [
+        "test_box7_the_freeze_carries_protocol_splits_estimand_and_gate",
+        "test_box7_a_result_created_before_the_freeze_is_refused",
+        "test_box7_a_local_hash_never_buys_independent_authority",
+        "test_box7_same_owner_public_custody_is_a_distinct_mode_from_attested"
+      ]
+    },
+    {
+      "box": "Create a dataset license audit that prevents redistribution of upstream full text/repositories when only metadata or IDs may be redistributed.",
+      "verdict": "SATISFIED",
+      "mechanism": "SourceBinding separates permission (redistribution_allowed) from action (redistributed_content). Redistributing content without permission terminates CANNOT_CHECK. The lawful path is preserved: declining to redistribute under no permission still passes, so the audit constrains redistribution rather than blocking public data outright.",
+      "demonstrated_by": [
+        "test_box8_the_source_binding_separates_permission_from_action",
+        "test_box8_redistributing_content_without_permission_is_refused",
+        "test_box8_declining_to_redistribute_under_no_permission_is_allowed"
+      ]
+    }
+  ],
+  "control": {
+    "why": "A runner that refuses every input would satisfy every refusal test while being useless. The unmutated baseline campaign is asserted to PASS with zero blockers so the suite cannot succeed by rejecting everything.",
+    "test": "test_the_unmutated_baseline_campaign_passes"
+  },
+  "test_evidence": {
+    "file": "tests/unit/benchmarks/test_public_campaign_issue1086_shared_infra.py",
+    "tests_passed": 43,
+    "baseline_reused": "tests/unit/benchmarks/test_public_campaign.py builders, so the mutations are applied to the runner's own valid campaign rather than to a fixture written to agree with them"
+  },
+  "limits": [
+    "This closes infrastructure boxes only. Every per-paper execution box in P1-P15 remains open and none is affected by this artifact.",
+    "The runner has not yet been driven by any real campaign. Its properties are demonstrated by construction and mutation, not by a completed public-data run.",
+    "Same-owner execution through this runner still yields independent_authority != PASS by design; that boundary is the point, not a shortfall."
+  ]
+}
